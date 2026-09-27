@@ -1,0 +1,446 @@
+import Mathlib
+import Definitions.MTT.Def_MTT_NormalizedParabolicCocycles
+import Theorems.MTT.Thm_MTT_Cohomology_normalizedParabolic_finrank
+
+set_option autoImplicit false
+
+/-! # A six-coset Schreier computation for Gamma0(4)
+
+The transversal argument follows the platform's level-three generator proof
+by adapting its row-label calculation to the nonfield ZMod 4.
+-/
+
+open Matrix CongruenceSubgroup Subgroup
+open scoped MatrixGroups Pointwise
+
+namespace MTT.Cohomology.GammaZeroFour
+
+def lower : SL(2, ℤ) := ⟨!![1, 0; -4, 1], by simp [Matrix.det_fin_two]⟩
+
+def rep : Fin 6 → SL(2, ℤ)
+  | 0 => 1
+  | 1 => ModularGroup.S
+  | 2 => ⟨!![0, -1; 1, 1], by decide⟩
+  | 3 => ⟨!![0, -1; 1, 2], by decide⟩
+  | 4 => ⟨!![0, -1; 1, 3], by decide⟩
+  | 5 => ⟨!![1, 0; 2, 1], by decide⟩
+
+def rowLabel (c d : ZMod 4) : Fin 6 :=
+  if c = 0 then 0 else if c = 2 then 5 else
+    ⟨1 + (c * d).val, by have := (c * d).val_lt; omega⟩
+
+def label (g : SL(2, ℤ)) : Fin 6 := rowLabel (g 1 0) (g 1 1)
+
+theorem rowLabel_spec (c d : ZMod 4) (h : ∃ a b : ZMod 4, a * d - b * c = 1)
+    (l : Fin 6) :
+    c * (rep l 1 1 : ZMod 4) = d * (rep l 1 0 : ZMod 4) ↔ l = rowLabel c d := by
+  have hf : ∀ c d : ZMod 4, (∃ a b : ZMod 4, a * d - b * c = 1) →
+      ∀ l : Fin 6,
+        c * (rep l 1 1 : ZMod 4) = d * (rep l 1 0 : ZMod 4) ↔ l = rowLabel c d := by
+    decide +kernel
+  exact hf c d h l
+
+theorem mul_inv_mem_iff (g h : SL(2, ℤ)) :
+    g * h⁻¹ ∈ Gamma0 4 ↔
+      (g 1 0 : ZMod 4) * (h 1 1 : ZMod 4) = (g 1 1 : ZMod 4) * (h 1 0 : ZMod 4) := by
+  rw [Gamma0_mem]
+  have he : (g * h⁻¹) 1 0 = g 1 0 * h 1 1 - g 1 1 * h 1 0 := by
+    simp [Matrix.adjugate_fin_two, Matrix.mul_apply, Fin.sum_univ_two, sub_eq_add_neg]
+  rw [he]
+  push_cast
+  exact sub_eq_zero
+
+theorem mul_inv_rep_mem_iff (g : SL(2, ℤ)) (l : Fin 6) :
+    g * (rep l)⁻¹ ∈ Gamma0 4 ↔ l = label g := by
+  rw [mul_inv_mem_iff]
+  apply rowLabel_spec
+  refine ⟨g 0 0, g 0 1, ?_⟩
+  have hd := g.property
+  rw [Matrix.det_fin_two] at hd
+  have he := congrArg (Int.castRingHom (ZMod 4)) hd
+  simpa only [map_sub, map_mul, map_one, Int.coe_castRingHom] using he
+
+def transversal : Set SL(2, ℤ) := Set.range rep
+
+theorem isComplement_transversal :
+    IsComplement (Gamma0 4 : Set SL(2, ℤ)) transversal := by
+  rw [isComplement_iff_existsUnique_mul_inv_mem]
+  intro g
+  refine ⟨⟨rep (label g), ⟨label g, rfl⟩⟩, (mul_inv_rep_mem_iff g _).mpr rfl, ?_⟩
+  rintro ⟨x, l, rfl⟩ hx
+  exact Subtype.ext (congrArg rep ((mul_inv_rep_mem_iff g l).mp hx))
+
+theorem coe_toRightFun (g : SL(2, ℤ)) :
+    (isComplement_transversal.toRightFun g : SL(2, ℤ)) = rep (label g) := by
+  have hu := isComplement_iff_existsUnique_mul_inv_mem.mp isComplement_transversal g
+  have h₁ := isComplement_transversal.mul_inv_toRightFun_mem g
+  have h₂ : g * ((⟨rep (label g), ⟨label g, rfl⟩⟩ : transversal) : SL(2, ℤ))⁻¹ ∈
+      (Gamma0 4 : Set SL(2, ℤ)) := (mul_inv_rep_mem_iff g _).mpr rfl
+  exact congrArg Subtype.val (hu.unique h₁ h₂)
+
+def schreierGen (l : Fin 6) (s : SL(2, ℤ)) : SL(2, ℤ) :=
+  rep l * s * (rep (label (rep l * s)))⁻¹
+
+def schreierGens : Set SL(2, ℤ) :=
+  {x | ∃ l : Fin 6, x = schreierGen l ModularGroup.S ∨ x = schreierGen l ModularGroup.T}
+
+theorem closure_schreierGens : Subgroup.closure schreierGens = Gamma0 4 := by
+  refine le_antisymm ((Subgroup.closure_le _).mpr ?_) ?_
+  · rintro x ⟨l, rfl | rfl⟩ <;> exact (mul_inv_rep_mem_iff _ _).mpr rfl
+  · rw [← Subgroup.closure_mul_image_eq isComplement_transversal
+      (show (1 : SL(2, ℤ)) ∈ transversal from ⟨0, rfl⟩)
+      SpecialLinearGroup.SL2Z_generators]
+    refine Subgroup.closure_mono ?_
+    rintro x ⟨g, hg, rfl⟩
+    obtain ⟨r, hr, s, hs, rfl⟩ := Set.mem_mul.mp hg
+    obtain ⟨l, rfl⟩ := hr
+    simp only [coe_toRightFun]
+    simp only [Set.mem_insert_iff, Set.mem_singleton_iff] at hs
+    rcases hs with rfl | rfl
+    · exact ⟨l, Or.inl rfl⟩
+    · exact ⟨l, Or.inr rfl⟩
+
+theorem schreier_table_S :
+    (fun l => schreierGen l ModularGroup.S) =
+      ![1, -1, ModularGroup.T⁻¹ * lower⁻¹, lower * -1,
+        (lower * ModularGroup.T) * -1, lower⁻¹] := by
+  funext l
+  fin_cases l <;> decide +kernel
+
+theorem schreier_table_T :
+    (fun l => schreierGen l ModularGroup.T) =
+      ![ModularGroup.T, 1, 1, 1, lower, (lower⁻¹ * ModularGroup.T⁻¹) * -1] := by
+  funext l
+  fin_cases l <;> decide +kernel
+
+theorem closure_T_lower_neg_one :
+    Subgroup.closure ({ModularGroup.T, lower, -1} : Set SL(2, ℤ)) = Gamma0 4 := by
+  let H := Subgroup.closure ({ModularGroup.T, lower, -1} : Set SL(2, ℤ))
+  have hT : ModularGroup.T ∈ H := Subgroup.subset_closure (Or.inl rfl)
+  have hU : lower ∈ H := Subgroup.subset_closure (Or.inr (Or.inl rfl))
+  have hz : (-1 : SL(2, ℤ)) ∈ H := Subgroup.subset_closure (Or.inr (Or.inr rfl))
+  refine le_antisymm ((Subgroup.closure_le _).mpr ?_) ?_
+  · rintro x (rfl | rfl | rfl) <;> exact Gamma0_mem.mpr (by decide)
+  · rw [← closure_schreierGens]
+    apply (Subgroup.closure_le _).mpr
+    rintro x ⟨l, rfl | rfl⟩
+    · have he := congrFun schreier_table_S l
+      rw [he]
+      fin_cases l
+      · exact H.one_mem
+      · exact hz
+      · exact H.mul_mem (H.inv_mem hT) (H.inv_mem hU)
+      · exact H.mul_mem hU hz
+      · exact H.mul_mem (H.mul_mem hU hT) hz
+      · exact H.inv_mem hU
+    · have he := congrFun schreier_table_T l
+      rw [he]
+      fin_cases l
+      · exact hT
+      · exact H.one_mem
+      · exact H.one_mem
+      · exact H.one_mem
+      · exact hU
+      · exact H.mul_mem (H.mul_mem (H.inv_mem hU) (H.inv_mem hT)) hz
+
+end MTT.Cohomology.GammaZeroFour
+
+/-! # The index change on adjoining the central involution -/
+
+open scoped MatrixGroups
+
+namespace MTT.Cohomology
+
+theorem mem_sup_neg_one_iff (H : Subgroup SL(2, ℤ)) (g : SL(2, ℤ)) :
+    g ∈ H ⊔ Subgroup.zpowers (-1) ↔ g ∈ H ∨ -g ∈ H := by
+  let K : Subgroup SL(2, ℤ) :=
+    { carrier := {g | g ∈ H ∨ -g ∈ H}
+      one_mem' := Or.inl H.one_mem
+      mul_mem' := by
+        rintro a b (ha | ha) (hb | hb)
+        · exact Or.inl (H.mul_mem ha hb)
+        · exact Or.inr (by simpa using H.mul_mem ha hb)
+        · exact Or.inr (by simpa using H.mul_mem ha hb)
+        · exact Or.inl (by simpa using H.mul_mem ha hb)
+      inv_mem' := by
+        rintro a (ha | ha)
+        · exact Or.inl (H.inv_mem ha)
+        · exact Or.inr (by simpa using H.inv_mem ha) }
+  have hle : H ⊔ Subgroup.zpowers (-1) ≤ K := by
+    refine sup_le (fun _ h => Or.inl h) (Subgroup.zpowers_le.mpr ?_)
+    exact Or.inr (by simpa only [neg_neg] using H.one_mem)
+  refine ⟨fun h => hle h, ?_⟩
+  rintro (h | h)
+  · exact Subgroup.mem_sup_left h
+  · have hm := Subgroup.mul_mem_sup h (Subgroup.mem_zpowers (-1 : SL(2, ℤ)))
+    simpa using hm
+
+end MTT.Cohomology
+
+/-! # Adjoining the central sign at levels three and four -/
+
+open scoped MatrixGroups
+
+namespace MTT.Cohomology
+
+theorem gammaOne_neg_one_not_mem_of_three_le {N : ℕ} (hN : 3 ≤ N) :
+    (-1 : SL(2, ℤ)) ∉ CongruenceSubgroup.Gamma1 N := by
+  intro h
+  have ha := ((CongruenceSubgroup.Gamma1_mem N _).mp h).1
+  have hc : ((-1 : ℤ) : ZMod N) = (1 : ℤ) := by simpa using ha
+  have hd := (ZMod.intCast_eq_intCast_iff_dvd_sub (-1) 1 N).mp hc
+  have hz := Int.eq_zero_of_dvd_of_nonneg_of_lt (by norm_num : (0 : ℤ) ≤ 1 - -1)
+    (by omega : (1 : ℤ) - -1 < N) hd
+  norm_num at hz
+
+end MTT.Cohomology
+
+/-! # Two generators for Gamma1(4) -/
+
+open scoped MatrixGroups
+
+namespace MTT.Cohomology
+
+def gammaOneFourLower : CongruenceSubgroup.Gamma1 4 :=
+  ⟨GammaZeroFour.lower, by rw [CongruenceSubgroup.Gamma1_mem]; decide⟩
+
+theorem gammaOne_four_closure :
+    Subgroup.closure ({ModularGroup.T, GammaZeroFour.lower} : Set SL(2, ℤ)) =
+      CongruenceSubgroup.Gamma1 4 := by
+  let H := Subgroup.closure ({ModularGroup.T, GammaZeroFour.lower} : Set SL(2, ℤ))
+  have hH : H ≤ CongruenceSubgroup.Gamma1 4 := by
+    apply (Subgroup.closure_le _).mpr
+    rintro g (rfl | rfl)
+    · exact (gammaOneT 4).property
+    · exact gammaOneFourLower.property
+  have hG : CongruenceSubgroup.Gamma0 4 ≤ H ⊔ Subgroup.zpowers (-1 : SL(2, ℤ)) := by
+    rw [← GammaZeroFour.closure_T_lower_neg_one]
+    apply (Subgroup.closure_le _).mpr
+    rintro g (rfl | rfl | rfl)
+    · exact Subgroup.mem_sup_left (Subgroup.subset_closure (Or.inl rfl))
+    · exact Subgroup.mem_sup_left (Subgroup.subset_closure (Or.inr rfl))
+    · exact Subgroup.mem_sup_right (Subgroup.mem_zpowers _)
+  refine le_antisymm hH fun g hg => ?_
+  have hs := hG (CongruenceSubgroup.Gamma1_in_Gamma0 4 hg)
+  rcases (mem_sup_neg_one_iff H g).mp hs with h | h
+  · exact h
+  · exfalso
+    apply gammaOne_neg_one_not_mem_of_three_le (by decide : 3 ≤ 4)
+    have hm := (CongruenceSubgroup.Gamma1 4).mul_mem (hH h)
+      ((CongruenceSubgroup.Gamma1 4).inv_mem hg)
+    simpa only [neg_mul, mul_inv_cancel] using hm
+
+theorem gammaOne_four_generators :
+    Subgroup.closure ({gammaOneT 4, gammaOneFourLower} :
+      Set (CongruenceSubgroup.Gamma1 4)) = ⊤ := by
+  apply Subgroup.map_injective (CongruenceSubgroup.Gamma1 4).subtype_injective
+  rw [MonoidHom.map_closure, Set.image_insert_eq, Set.image_singleton]
+  change Subgroup.closure ({ModularGroup.T, GammaZeroFour.lower} : Set SL(2, ℤ)) = _
+  rw [gammaOne_four_closure, ← MonoidHom.range_eq_map, Subgroup.range_subtype]
+
+end MTT.Cohomology
+
+/-!
+# Finite-dimensional one-cocycles
+
+A one-cocycle is determined by its values on group generators. Restriction to
+a finite generating set therefore embeds the cocycle space into a finite power
+of the coefficient module. This is the finite-generation input for the MTT
+parabolic-cohomology dimension argument; it assumes no Eichler–Shimura theorem.
+-/
+
+noncomputable section
+
+universe u
+
+namespace groupCohomology
+
+variable {K G : Type u} [Field K] [Group G] {A : Rep K G}
+
+/-- One-cocycles agreeing on a generating set agree everywhere. -/
+theorem cocycles₁_ext_of_generators {s : Set G} (hs : Subgroup.closure s = ⊤)
+    {f g : cocycles₁ A} (hfg : ∀ x ∈ s, f x = g x) : f = g := by
+  apply cocycles₁_ext
+  intro x
+  have hx : x ∈ Subgroup.closure s := hs ▸ Subgroup.mem_top x
+  induction hx using Subgroup.closure_induction with
+  | mem x hx => exact hfg x hx
+  | one => simp only [cocycles₁_map_one]
+  | mul x y _ _ hx hy =>
+      rw [(mem_cocycles₁_iff f).1 f.property,
+        (mem_cocycles₁_iff g).1 g.property, hx, hy]
+  | inv x _ hx =>
+      have hf := (mem_cocycles₁_iff f).1 f.property x⁻¹ x
+      have hg := (mem_cocycles₁_iff g).1 g.property x⁻¹ x
+      simp only [inv_mul_cancel, cocycles₁_map_one, hx] at hf hg
+      exact add_left_cancel (hf.symm.trans hg)
+
+end groupCohomology
+
+/-! # Finite coordinates for binary homogeneous polynomials -/
+
+noncomputable section
+
+namespace MTT.Cohomology
+
+def homogeneousExponentEquiv (n : ℕ) :
+    {d : Fin 2 →₀ ℕ // d.degree = n} ≃ Fin (n + 1) where
+  toFun d := ⟨d.val 0, by
+    have hd := d.property
+    rw [Finsupp.degree_eq_sum, Fin.sum_univ_two] at hd
+    omega⟩
+  invFun j := ⟨Finsupp.equivFunOnFinite.symm ![j.val, n - j.val], by
+    rw [Finsupp.degree_eq_sum, Fin.sum_univ_two]
+    change j.val + (n - j.val) = n
+    omega⟩
+  left_inv d := by
+    apply Subtype.ext
+    ext i
+    have hd := d.property
+    rw [Finsupp.degree_eq_sum, Fin.sum_univ_two] at hd
+    change (![d.val 0, n - d.val 0] : Fin 2 → ℕ) i = d.val i
+    fin_cases i
+    · rfl
+    · change n - d.val 0 = d.val 1
+      omega
+  right_inv j := by
+    apply Fin.ext
+    rfl
+
+def symmetricPowerCoordinates (R : Type*) [CommRing R] (n : ℕ) :
+    Sym R n ≃ₗ[R] (Fin (n + 1) →₀ R) :=
+  (LinearEquiv.ofEq _ _ (MvPolynomial.homogeneousSubmodule_eq_finsupp_supported (Fin 2) R n))
+    ≪≫ₗ AddMonoidAlgebra.supportedEquivFinsupp _
+    ≪≫ₗ Finsupp.domLCongr (homogeneousExponentEquiv n)
+
+theorem finrank_sym (n : ℕ) : Module.finrank ℂ (Sym ℂ n) = n + 1 := by
+  rw [(symmetricPowerCoordinates ℂ n).finrank_eq, Module.finrank_finsupp_self, Fintype.card_fin]
+
+end MTT.Cohomology
+
+/-! # From degree-zero MTT cocycles to scalar parabolic homomorphisms
+
+The comparison uses only the definitions: degree-zero homogeneous polynomials
+are constants, and an integral determinant-one matrix of trace squared four
+fixes a rational cusp. No period-map injectivity is used.
+-/
+
+noncomputable section
+
+namespace MTT.Cohomology
+
+open Matrix
+
+theorem exists_cusp_fixed_of_trace_sq (g : SpecialLinearGroup (Fin 2) ℤ)
+    (hg : g.val.trace ^ 2 = 4) : ∃ x : Cusp, cuspAct g x = x := by
+  let a := SpecialLinearGroup.mapGL ℚ g
+  by_cases hc : a 1 0 = 0
+  · exact ⟨OnePoint.infty, OnePoint.smul_infty_eq_self_iff.mpr hc⟩
+  · refine ⟨((a 0 0 - a 1 1) / (2 * a 1 0) : ℚ), ?_⟩
+    change a • (((a 0 0 - a 1 1) / (2 * a 1 0) : ℚ) : Cusp) = _
+    apply GeneralLinearGroup.fixpointPolynomial_aeval_eq_zero_iff.mp
+    have hdet : a 0 0 * a 1 1 - a 0 1 * a 1 0 = 1 := by
+      have h := g.property
+      rw [det_fin_two] at h
+      change (g 0 0 : ℚ) * g 1 1 - g 0 1 * g 1 0 = 1
+      exact_mod_cast h
+    have htrace : (a 0 0 + a 1 1) ^ 2 = 4 := by
+      rw [trace_fin_two] at hg
+      change ((g 0 0 : ℚ) + g 1 1) ^ 2 = 4
+      exact_mod_cast hg
+    simp only [GeneralLinearGroup.fixpointPolynomial, map_sub, map_add, map_mul,
+      Polynomial.aeval_X_pow, Polynomial.aeval_X, Polynomial.aeval_C,
+      Algebra.algebraMap_self_apply]
+    field_simp
+    linear_combination -htrace + 4 * hdet
+
+end MTT.Cohomology
+
+/-! # A generator bound for level-four parabolic cohomology -/
+
+noncomputable section
+
+namespace MTT.Cohomology
+
+def levelFourLowerDifference (n : ℕ) : Module.End ℂ (gammaOneRep 4 n) :=
+  (gammaOneRep 4 n).ρ gammaOneFourLower - LinearMap.id
+
+def normalizedEvalLower (n : ℕ) : normalizedParabolic 4 n →ₗ[ℂ] gammaOneRep 4 n :=
+  (LinearMap.proj gammaOneFourLower).comp
+    ((parabolicCocycles 4 n).subtype.comp (normalizedParabolic 4 n).subtype)
+
+theorem normalizedEvalLower_injective (n : ℕ) :
+    Function.Injective (normalizedEvalLower n) := by
+  intro c d h
+  have hc : (⟨c.val.val, c.val.property.1⟩ : groupCohomology.cocycles₁ (gammaOneRep 4 n)) =
+      ⟨d.val.val, d.val.property.1⟩ := by
+    apply groupCohomology.cocycles₁_ext_of_generators gammaOne_four_generators
+    rintro g (rfl | rfl)
+    · exact c.property.trans d.property.symm
+    · exact h
+  apply Subtype.ext
+  apply Subtype.ext
+  exact congrArg (fun z : groupCohomology.cocycles₁ (gammaOneRep 4 n) => z.val) hc
+
+theorem normalizedEvalLower_mem_range (n : ℕ) (c : normalizedParabolic 4 n) :
+    normalizedEvalLower n c ∈ (levelFourLowerDifference n).range := by
+  obtain ⟨x, hx⟩ := exists_cusp_fixed_of_trace_sq gammaOneFourLower.val (by decide)
+  obtain ⟨P, hP⟩ := ((mem_parabolicCocycles_iff _).mp c.val.property).2
+    x gammaOneFourLower hx
+  exact ⟨P, hP.symm⟩
+
+def normalizedToLowerRange (n : ℕ) : normalizedParabolic 4 n →ₗ[ℂ]
+    (levelFourLowerDifference n).range :=
+  (normalizedEvalLower n).codRestrict _ (normalizedEvalLower_mem_range n)
+
+theorem normalizedToLowerRange_injective (n : ℕ) :
+    Function.Injective (normalizedToLowerRange n) := by
+  intro c d h
+  exact normalizedEvalLower_injective n (congrArg Subtype.val h)
+
+def levelFourYPower (n : ℕ) : gammaOneRep 4 n :=
+  ⟨MvPolynomial.X 1 ^ n, MvPolynomial.isHomogeneous_X_pow 1 n⟩
+
+theorem levelFourYPower_ne_zero (n : ℕ) : levelFourYPower n ≠ 0 := by
+  intro h
+  exact pow_ne_zero n (MvPolynomial.X_ne_zero (1 : Fin 2)) (congrArg Subtype.val h)
+
+theorem levelFourYPower_mem_ker (n : ℕ) :
+    levelFourYPower n ∈ (levelFourLowerDifference n).ker := by
+  rw [LinearMap.mem_ker]
+  change (gammaOneRep 4 n).ρ gammaOneFourLower (levelFourYPower n) - levelFourYPower n = 0
+  rw [sub_eq_zero]
+  apply Subtype.ext
+  change act !![1, 0; -4, 1] (MvPolynomial.X 1 ^ n : Binary ℂ) = MvPolynomial.X 1 ^ n
+  change MvPolynomial.aeval _ (MvPolynomial.X 1 ^ n : Binary ℂ) = _
+  simp [Fin.sum_univ_two]
+
+theorem levelFourLowerDifference_range_finrank_le (n : ℕ) :
+    Module.finrank ℂ (levelFourLowerDifference n).range ≤ n := by
+  have : FiniteDimensional ℂ (gammaOneRep 4 n) :=
+    Module.Finite.of_fg (MvPolynomial.homogeneousSubmodule_fg (Fin 2) ℂ n)
+  have hk : 1 ≤ Module.finrank ℂ (levelFourLowerDifference n).ker := by
+    have hs : Submodule.span ℂ {levelFourYPower n} ≤ (levelFourLowerDifference n).ker :=
+      Submodule.span_le.mpr (Set.singleton_subset_iff.mpr (levelFourYPower_mem_ker n))
+    have hd := Submodule.finrank_mono hs
+    rwa [finrank_span_singleton (levelFourYPower_ne_zero n)] at hd
+  have hd := (levelFourLowerDifference n).finrank_range_add_finrank_ker
+  change _ + _ = Module.finrank ℂ (Sym ℂ n) at hd
+  rw [finrank_sym] at hd
+  omega
+
+theorem parabolicH1_finrank_add_one_le_level_four {n : ℕ} (hn : 0 < n) :
+    Module.finrank ℂ (ParabolicH1 4 n) + 1 ≤ n := by
+  have : FiniteDimensional ℂ (gammaOneRep 4 n) :=
+    Module.Finite.of_fg (MvPolynomial.homogeneousSubmodule_fg (Fin 2) ℂ n)
+  have hd := LinearMap.finrank_le_finrank_of_injective
+    (normalizedToLowerRange_injective n)
+  rw [normalizedParabolic_finrank (by decide : 0 < 4) hn] at hd
+  exact hd.trans (levelFourLowerDifference_range_finrank_le n)
+
+end MTT.Cohomology
+
+theorem solution {n : ℕ} (hn : 0 < n) :
+    Module.finrank ℂ (MTT.Cohomology.ParabolicH1 4 n) + 1 ≤ n :=
+  MTT.Cohomology.parabolicH1_finrank_add_one_le_level_four hn
+

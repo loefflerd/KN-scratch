@@ -1,0 +1,11 @@
+.lake/
+.server-sync/
+.vscode/
+.DS_Store
+__pycache__/
+
+*.olean
+*.ilean
+*.olean.hash
+*.trace
+*.o

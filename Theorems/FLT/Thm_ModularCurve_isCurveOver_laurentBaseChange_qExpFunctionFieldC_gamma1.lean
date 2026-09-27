@@ -1,0 +1,17 @@
+import Mathlib
+import Definitions.FLT.Def_ModularCurve_X1
+import Definitions.FLT.Def_ModularCurve_JqCoeff
+import Definitions.FLT.Def_AlgebraicCurve_Repartitions
+import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
+
+set_option maxHeartbeats 4000000
+set_option synthInstance.maxHeartbeats 400000
+set_option backward.isDefEq.respectTransparency.types false
+
+set_option autoImplicit false
+
+open ModularCurve CongruenceSubgroup AlgebraicCurve
+open scoped MatrixGroups
+theorem ModularCurve.isCurveOver_laurentBaseChange_qExpFunctionFieldC_gamma1
+    (K : Type*) [Field K] [Algebra ℚ K] [IsAlgClosed K] (M : ℕ) [NeZero M] :
+    AlgebraicCurve.IsCurveOver K ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) := by sorry
