@@ -369,7 +369,7 @@ theorem qExpandAlgK_apply (M : ℕ) [NeZero M] (f : LaurentSeries K) :
 theorem qExpand_mem_range_of_dvd (M P : ℕ) [NeZero M] [NeZero P] (h : M ∣ P)
     (f : LaurentSeries K) :
     qExpand K P f ∈ (qExpandAlgK (K := K) M).fieldRange := by
-  haveI : NeZero (P / M) :=
+  have : NeZero (P / M) :=
     ⟨Nat.div_ne_zero_iff.mpr ⟨NeZero.ne M, Nat.le_of_dvd (Nat.pos_of_ne_zero (NeZero.ne P)) h⟩⟩
   refine ⟨qExpand K (P / M) f, ?_⟩
   show qExpand K M (qExpand K (P / M) f) = qExpand K P f
@@ -403,12 +403,12 @@ private theorem cd3_slotWidth (N : ℕ) [NeZero N] (ζ : Kˣ) (a b : ℕ) (ha : 
 
   have ha0 : a ≠ 0 := NeZero.ne a
   have hg0 : g ≠ 0 := Nat.gcd_ne_zero_left ha0
-  haveI hag0 : NeZero (a * g) := ⟨Nat.mul_ne_zero ha0 hg0⟩
+  have hag0 : NeZero (a * g) := ⟨Nat.mul_ne_zero ha0 hg0⟩
   have hag_dvd_N : a * g ∣ N := by
     calc a * g ∣ a * (N / a) := Nat.mul_dvd_mul_left a (Nat.gcd_dvd_right _ _)
       _ = N := Nat.mul_div_cancel' ha
   have hag_dvd_aa : a * g ∣ a * a := Nat.mul_dvd_mul_left a (Nat.gcd_dvd_left _ _)
-  haveI : NeZero (a * a) := ⟨Nat.mul_ne_zero ha0 ha0⟩
+  have : NeZero (a * a) := ⟨Nat.mul_ne_zero ha0 ha0⟩
 
   have hord1 : (ι jbar).order = -(N : ℤ) := by
     rw [show ι jbar = qExpand K N (coeffEmb K jq) from hι₁, order_qExpand, order_coeffEmb_jq,
@@ -820,7 +820,7 @@ theorem card_slotFibre (N : ℕ) [NeZero N] {α : Type*} [DecidableEq α] (P : (
     exact congrArg Sigma.snd h
   ·
     intro s hs
-    simp only [Finset.coe_filter, Set.mem_setOf_eq] at hs
+    simp only [Finset.coe_filter, Set.mem_ofPred_eq] at hs
     obtain ⟨hsmem, hsP⟩ := hs
     obtain ⟨_, hsb, _⟩ := mem_slotFinset.mp hsmem
     obtain ⟨hfst, hsnd⟩ := (hP s hsmem s₀ hs₀).mp hsP
@@ -929,7 +929,7 @@ theorem he_compat :
 
 theorem finite_ratFunc :
     Module.Finite (RatFunc K) (laurentBaseChange K (modularFunctionFieldFull N)) := by
-  haveI : FiniteDimensional (K⟮coeffEmb K jq⟯) (K⟮coeffEmb K jq⟯⟮coeffEmb K (jqN N)⟯) :=
+  have : FiniteDimensional (K⟮coeffEmb K jq⟯) (K⟮coeffEmb K jq⟯⟮coeffEmb K (jqN N)⟯) :=
     Module.finite_of_finrank_pos
       (by rw [Row1.CD.finrank_adjoin_adjoin K N]; exact dedekindPsi_pos N (NeZero.ne N))
   exact Module.Finite.of_equiv_equiv
@@ -946,8 +946,8 @@ theorem finrank_ratFunc :
 
 theorem isSeparable_ratFunc :
     Algebra.IsSeparable (RatFunc K) (laurentBaseChange K (modularFunctionFieldFull N)) := by
-  haveI : CharZero K := charZero_of_injective_algebraMap (algebraMap ℚ K).injective
-  haveI : CharZero (RatFunc K) :=
+  have : CharZero K := charZero_of_injective_algebraMap (algebraMap ℚ K).injective
+  have : CharZero (RatFunc K) :=
     charZero_of_injective_algebraMap (algebraMap K (RatFunc K)).injective
   exact Algebra.IsAlgebraic.isSeparable_of_perfectField
 
@@ -1018,7 +1018,7 @@ theorem exists_slotData (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) N) :
   obtain ⟨hadiv, hblt, hgcd⟩ := hs
   have haN : a ∣ N := (Nat.mem_divisors.mp hadiv).1
   have ha0 : a ≠ 0 := (Nat.pos_of_mem_divisors hadiv).ne'
-  haveI : NeZero a := ⟨ha0⟩
+  have : NeZero a := ⟨ha0⟩
   obtain ⟨ι, hι₁, hι₂⟩ := Row1.CD.cd1_slotEmbedding K N ζ hζ a b haN hblt hgcd
   have hordj : (ι ⟨coeffEmb K jq, coeffEmb_mem_laurentBaseChange K (jq_mem_full N)⟩).order =
       (N : ℤ) * (-1) := by
@@ -1095,8 +1095,8 @@ theorem main_exhaustion (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) N)
         (f s = f s' ↔ s.1 = s'.1 ∧ s.2 ≡ s'.2 [MOD Nat.gcd s.1 (N / s.1)]) := by
       intro s hs s' hs'
       have h1 := (mem_slotFinset.mp hs); have h2 := (mem_slotFinset.mp hs')
-      haveI : NeZero s.1 := ⟨(Nat.pos_of_mem_divisors h1.1).ne'⟩
-      haveI : NeZero s'.1 := ⟨(Nat.pos_of_mem_divisors h2.1).ne'⟩
+      have : NeZero s.1 := ⟨(Nat.pos_of_mem_divisors h1.1).ne'⟩
+      have : NeZero s'.1 := ⟨(Nat.pos_of_mem_divisors h2.1).ne'⟩
       have hpos1 : (0 : ℤ) < ((s.1 * Nat.gcd s.1 (N / s.1) : ℕ) : ℤ) := by
         exact_mod_cast Nat.mul_pos (Nat.pos_of_mem_divisors h1.1)
           (Nat.gcd_pos_of_pos_left _ (Nat.pos_of_mem_divisors h1.1))
@@ -1149,7 +1149,7 @@ theorem main_exhaustion (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) N)
     linarith
   obtain ⟨⟨a, b⟩, hs, rfl⟩ := hexists
   have hmem := mem_slotFinset.mp hs
-  haveI : NeZero a := ⟨(Nat.pos_of_mem_divisors hmem.1).ne'⟩
+  have : NeZero a := ⟨(Nat.pos_of_mem_divisors hmem.1).ne'⟩
   exact ⟨a, b, (Nat.mem_divisors.mp hmem.1).1, hmem.2.1, hmem.2.2,
     ⟨‹NeZero a›, ι ⟨a, b⟩ hs, hι₁ ⟨a, b⟩ hs, hι₂ ⟨a, b⟩ hs, hword ⟨a, b⟩ hs⟩⟩
 

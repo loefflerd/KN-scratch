@@ -29,7 +29,7 @@ theorem gammaFundamentalSet_eq_biUnion (Γ : Subgroup SL(2, ℤ)) [Finite (SL(2,
     haveI : Fintype (SL(2, ℤ) ⧸ Γ) := Fintype.ofFinite _
     gammaFundamentalSet Γ =
       ⋃ γ ∈ (Finset.univ.image fun q : SL(2, ℤ) ⧸ Γ => (Quotient.out q)⁻¹), γ • 𝒟 := by
-  haveI : Fintype (SL(2, ℤ) ⧸ Γ) := Fintype.ofFinite _
+  have : Fintype (SL(2, ℤ) ⧸ Γ) := Fintype.ofFinite _
   ext z
   simp only [gammaFundamentalSet, Set.mem_iUnion, Finset.mem_image, Finset.mem_univ,
     true_and]
@@ -37,7 +37,7 @@ theorem gammaFundamentalSet_eq_biUnion (Γ : Subgroup SL(2, ℤ)) [Finite (SL(2,
 
 theorem volume_gammaFundamentalSet_lt_top (Γ : Subgroup SL(2, ℤ))
     [Finite (SL(2, ℤ) ⧸ Γ)] : volume (gammaFundamentalSet Γ) < ⊤ := by
-  haveI : Fintype (SL(2, ℤ) ⧸ Γ) := Fintype.ofFinite _
+  have : Fintype (SL(2, ℤ) ⧸ Γ) := Fintype.ofFinite _
   rw [gammaFundamentalSet_eq_biUnion Γ]
   exact FLT.FundamentalDomainVolume.volume_biUnion_smul_fd_lt_top _
 
@@ -100,7 +100,7 @@ theorem gate_volume_lt_volume_univ (Γ : Subgroup SL(2, ℤ)) [Finite (SL(2, ℤ
 
 theorem gate_volume_top_eq : volume (gammaFundamentalSet (⊤ : Subgroup SL(2, ℤ))) =
     volume 𝒟 := by
-  haveI : Subsingleton (SL(2, ℤ) ⧸ (⊤ : Subgroup SL(2, ℤ))) :=
+  have : Subsingleton (SL(2, ℤ) ⧸ (⊤ : Subgroup SL(2, ℤ))) :=
     QuotientGroup.subsingleton_quotient_top
   have huniq : ∀ q : SL(2, ℤ) ⧸ (⊤ : Subgroup SL(2, ℤ)),
       q = (QuotientGroup.mk 1 : SL(2, ℤ) ⧸ (⊤ : Subgroup SL(2, ℤ))) := fun q =>

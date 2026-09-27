@@ -210,7 +210,7 @@ theorem isFinitePlace_iff_exists_placeOfEquation [IsAlgClosed F]
   constructor
   · intro hv
 
-    haveI := hv.centre_isPrime
+    have := hv.centre_isPrime
     have hmax : hv.centre.IsMaximal := Ideal.IsPrime.isMaximal hv.centre_isPrime hv.centre_ne_bot
     obtain ⟨x, y, hxy, hXY⟩ :=
       CoordinateRing.exists_eq_XYIdeal (W := W) (P := hv.centre) hv.centre_ne_bot
@@ -219,7 +219,7 @@ theorem isFinitePlace_iff_exists_placeOfEquation [IsAlgClosed F]
     set w : HeightOneSpectrum W.CoordinateRing := heightOneSpectrumOfEquation hxy with hw
     set A : ValuationSubring W.FunctionField :=
       HeightOneSpectrum.valuationSubringAtPrime W.FunctionField w with hA
-    haveI hAded : IsDedekindDomain A := by rw [hA]; infer_instance
+    have hAded : IsDedekindDomain A := by rw [hA]; infer_instance
     have hle : A ≤ v.toValuationSubring := by
       intro z hz
       rw [hA] at hz
@@ -335,13 +335,13 @@ variable {V W : Affine F} [V.IsElliptic] [W.IsElliptic]
 
 theorem normFormulaAlong_of_elliptic (ι : V.FunctionField →ₐ[F] W.FunctionField)
     (hfin : FiniteAlong F ι) : NormFormulaAlong F ι hfin := by
-  haveI : HasPrincipalDivisors F W.FunctionField := hasPrincipalDivisors_functionField W
-  haveI : CharZero V.FunctionField :=
+  have : HasPrincipalDivisors F W.FunctionField := hasPrincipalDivisors_functionField W
+  have : CharZero V.FunctionField :=
     charZero_of_injective_algebraMap (algebraMap F V.FunctionField).injective
   have hsep : SeparableAlong F ι := by
-    letI := algebraAlong ι
-    haveI := isScalarTower_along ι
-    haveI : Module.Finite V.FunctionField W.FunctionField := hfin
+    let := algebraAlong ι
+    have := isScalarTower_along ι
+    have : Module.Finite V.FunctionField W.FunctionField := hfin
     show Algebra.IsSeparable V.FunctionField W.FunctionField
     infer_instance
   exact AlgebraicCurve.normFormulaAlong ι hfin hsep
@@ -780,13 +780,13 @@ theorem kw_toPointAddEquiv_mk (z : ℂ) :
 
 scoped instance kw_infinite_quotientLattice : Infinite (ℂ ⧸ L.lattice.toAddSubgroup) := by
   rw [← not_finite_iff_infinite]; intro hfin
-  haveI : Countable L.lattice.toAddSubgroup :=
+  have : Countable L.lattice.toAddSubgroup :=
     Set.countable_coe_iff.mpr L.kw_countable_lattice
-  haveI : Countable ((ℂ ⧸ L.lattice.toAddSubgroup) × L.lattice.toAddSubgroup) := inferInstance
+  have : Countable ((ℂ ⧸ L.lattice.toAddSubgroup) × L.lattice.toAddSubgroup) := inferInstance
   have hCc : Countable ℂ :=
     Countable.of_equiv _ (AddSubgroup.addGroupEquivQuotientProdAddSubgroup
       (s := L.lattice.toAddSubgroup)).symm
-  haveI : Uncountable ℂ := Complex.ofReal_injective.uncountable
+  have : Uncountable ℂ := Complex.ofReal_injective.uncountable
   exact absurd hCc not_countable
 
 private scoped instance _root_.PeriodPair.kw_infinite_point : Infinite L.weierstrassCurve.toAffine.Point :=
@@ -1056,7 +1056,7 @@ def latticeQuotTorsionEquiv (hn : (n : ℤ) ≠ 0) :
 theorem card_torsionBy_latticeQuotient [Module.Free ℤ ↥Λ] [Module.Finite ℤ ↥Λ]
     (hn : (n : ℤ) ≠ 0) :
     Nat.card (Submodule.torsionBy ℤ (V ⧸ Λ) (n : ℤ)) = n ^ Module.finrank ℤ ↥Λ := by
-  haveI : NeZero n := ⟨by exact_mod_cast hn⟩
+  have : NeZero n := ⟨by exact_mod_cast hn⟩
   rw [← Nat.card_congr (latticeQuotTorsionEquiv Λ hn).toEquiv, ModN.natCard_eq]
 
 end LatticeQuotient
@@ -1687,7 +1687,7 @@ theorem kw_surgehgf4_kqe_isAddCyclic_ker_of_surjective'
     (hcard : Nat.card C = N) (hcyc : IsAddCyclic C) :
     IsAddCyclic φ.ker := by
   have _ := kw_surgehgf4_kqe_axiomAnchor
-  haveI hfin : Finite C := Nat.finite_of_card_ne_zero (hcard ▸ NeZero.ne N)
+  have hfin : Finite C := Nat.finite_of_card_ne_zero (hcard ▸ NeZero.ne N)
   obtain ⟨g, hg⟩ := hcyc
   let e : C ≃+ ZMod N := (zmodAddEquivOfGenerator hg hcard).symm
   have hker_eq : (e.toAddMonoidHom.comp φ).ker = φ.ker := by

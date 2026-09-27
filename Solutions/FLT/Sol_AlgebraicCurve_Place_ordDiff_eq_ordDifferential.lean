@@ -26,14 +26,14 @@ theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F]
     [CharZero K] [Algebra.EssFiniteType K F] [AlgebraicCurve.IsCurveOver K F]
     (v : AlgebraicCurve.Place K F) (ω : Ω[F⁄K]) :
     v.ordDiff ω = v.ordDifferential ω := by
-  haveI : PerfectField K := inferInstance
-  haveI : v.DCoordGenerates := AlgebraicCurve.dCoordGenerates_of_isCurveOver v
+  have : PerfectField K := inferInstance
+  have : v.DCoordGenerates := AlgebraicCurve.dCoordGenerates_of_isCurveOver v
 
   obtain ⟨x, -, hfin, -⟩ :=
     (AlgebraicCurve.isCurveOver_iff_exists_transcendental_finiteDimensional (K := K) (F := F)).mp
       inferInstance
-  haveI := hfin
-  haveI : Algebra.IsAlgebraic K⟮x⟯ F := Algebra.IsAlgebraic.of_finite K⟮x⟯ F
+  have := hfin
+  have : Algebra.IsAlgebraic K⟮x⟯ F := Algebra.IsAlgebraic.of_finite K⟮x⟯ F
 
   have hirr := (IsDiscreteValuationRing.exists_irreducible v.toValuationSubring).choose_spec
   have hπ₀ : v.ord ((IsDiscreteValuationRing.exists_irreducible v.toValuationSubring).choose : F) = 1 :=

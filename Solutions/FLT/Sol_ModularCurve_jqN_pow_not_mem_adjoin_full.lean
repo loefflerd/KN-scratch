@@ -193,8 +193,8 @@ theorem roots_phiProd_conj_nodup (p : ℕ) [hp : Fact p.Prime] (ζ : Kˣ) (hζ :
 
 theorem exists_isPrimitiveRoot_cyclotomicField (N : ℕ) [NeZero N] :
     ∃ z : CyclotomicField N ℚ, IsPrimitiveRoot z N := by
-  haveI : NeZero ((N : ℕ) : ℚ) := ⟨Nat.cast_ne_zero.mpr (NeZero.ne N)⟩
-  haveI : IsCyclotomicExtension {N} ℚ (CyclotomicField N ℚ) := CyclotomicField.isCyclotomicExtension N ℚ
+  have : NeZero ((N : ℕ) : ℚ) := ⟨Nat.cast_ne_zero.mpr (NeZero.ne N)⟩
+  have : IsCyclotomicExtension {N} ℚ (CyclotomicField N ℚ) := CyclotomicField.isCyclotomicExtension N ℚ
   exact IsCyclotomicExtension.exists_isPrimitiveRoot ℚ (CyclotomicField N ℚ) (Set.mem_singleton N) (NeZero.ne N)
 
 def cycUnit (N : ℕ) [NeZero N] : (CyclotomicField N ℚ)ˣ :=
@@ -554,7 +554,7 @@ private theorem chain_extend (p e s : ℕ) [hpp : Fact (Nat.Prime p)] [NeZero e]
   have hdvd : minpoly F (jqN (d * p)) ∣ phiAtSeed dp (⟨jqN d, hd_mem⟩ : F) :=
     minpoly.dvd F _ hP_aeval
 
-  letI : Algebra F (LaurentSeries K) := σ.toAlgebra
+  let : Algebra F (LaurentSeries K) := σ.toAlgebra
   have halg : algebraMap F (LaurentSeries K) = σ := RingHom.algebraMap_toAlgebra σ
   have hpB : p ∣ p * e * s := ⟨e * s, by ring⟩
   have hBdiv : p * e * s / p = e * s := by

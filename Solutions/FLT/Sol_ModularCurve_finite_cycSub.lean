@@ -20,7 +20,7 @@ theorem solution (N : ℕ) [NeZero N] (E₀ : WeierstrassCurve (AlgebraicClosure
     Finite (CycSub E₀ N) := by
   classical
   have hN : ((N : ℕ) : AlgebraicClosure ℚ) ≠ 0 := by exact_mod_cast (NeZero.ne N)
-  haveI : Finite (Submodule.torsionBy ℤ E₀.toAffine.Point N) :=
+  have : Finite (Submodule.torsionBy ℤ E₀.toAffine.Point N) :=
     WeierstrassCurve.finite_torsionBy_of_natCast_ne_zero (AlgebraicClosure ℚ) E₀ N hN
 
   have hle : ∀ H : CycSub E₀ N, ∀ x : E₀.toAffine.Point, x ∈ H.1 →

@@ -545,16 +545,16 @@ theorem jqNModC_mem_of_div_primes {N : ℕ} [NeZero N] (ζ : Kˣ) (hζ : IsPrimi
     {p q : ℕ} (pp : Nat.Prime p) (qq : Nat.Prime q) (hpq : p ≠ q) (hpd : p ∣ d) (hqd : q ∣ d)
     [NeZero (d / p)] [NeZero (d / q)] (hmp : jqNModC K (d / p) ∈ F) (hmq : jqNModC K (d / q) ∈ F) :
     jqNModC K d ∈ F := by
-  haveI : Fact (Nat.Prime p) := ⟨pp⟩
-  haveI : Fact (Nat.Prime q) := ⟨qq⟩
-  haveI : NeZero p := ⟨pp.ne_zero⟩
-  haveI : NeZero q := ⟨qq.ne_zero⟩
+  have : Fact (Nat.Prime p) := ⟨pp⟩
+  have : Fact (Nat.Prime q) := ⟨qq⟩
+  have : NeZero p := ⟨pp.ne_zero⟩
+  have : NeZero q := ⟨qq.ne_zero⟩
   have hpN : p ∣ N := hpd.trans hdN
   have hqN : q ∣ N := hqd.trans hdN
   have hNp0 : N / p ≠ 0 := fun h0 => NeZero.ne N (by rw [← Nat.div_mul_cancel hpN, h0, zero_mul])
   have hNq0 : N / q ≠ 0 := fun h0 => NeZero.ne N (by rw [← Nat.div_mul_cancel hqN, h0, zero_mul])
-  haveI : NeZero (N / p) := ⟨hNp0⟩
-  haveI : NeZero (N / q) := ⟨hNq0⟩
+  have : NeZero (N / p) := ⟨hNp0⟩
+  have : NeZero (N / q) := ⟨hNq0⟩
   have hζp := isPrimitiveRoot_pow_div hζ hpN
   have hζq := isPrimitiveRoot_pow_div hζ hqN
   have hpe : p * (N / p * (d / p)) = N * (d / p) := by
@@ -567,7 +567,7 @@ theorem jqNModC_mem_of_div_primes {N : ℕ} [NeZero N] (ζ : Kˣ) (hζ : IsPrimi
     rw [hqe, mul_left_comm, Nat.mul_div_cancel' hqd]
   have data_p : ModularPolynomialData p := (ModularCurve.exists_phiIrreducible_evalSymm p).choose
   have data_q : ModularPolynomialData q := (ModularCurve.exists_phiIrreducible_evalSymm q).choose
-  letI : Algebra F (LaurentSeries K) := ((qExpand K N).comp (algebraMap F (LaurentSeries K))).toAlgebra
+  let : Algebra F (LaurentSeries K) := ((qExpand K N).comp (algebraMap F (LaurentSeries K))).toAlgebra
   have hmapA : (phiAtSeed data_p (⟨jqNModC K (d / p), hmp⟩ : F)).map (algebraMap F (LaurentSeries K))
       = phiAtSeed data_p (qExpand K N (jqNModC K (d / p))) :=
     phiAtSeed_map data_p _ _
@@ -658,12 +658,12 @@ theorem jqNModC_mem_of_div_prime_of_mul_prime {N : ℕ} [NeZero N] (ζ : Kˣ) (h
     {l p : ℕ} (ll : Nat.Prime l) (pp : Nat.Prime p) (hlN : l ∣ N) (hpN : p ∣ N) (hld : l ∣ d)
     [NeZero (d / l)] [NeZero (p * d)] (hml : jqNModC K (d / l) ∈ F) (hmp : jqNModC K (p * d) ∈ F) :
     jqNModC K d ∈ F := by
-  haveI : Fact (Nat.Prime l) := ⟨ll⟩
-  haveI : Fact (Nat.Prime p) := ⟨pp⟩
-  haveI : NeZero l := ⟨ll.ne_zero⟩
-  haveI : NeZero p := ⟨pp.ne_zero⟩
+  have : Fact (Nat.Prime l) := ⟨ll⟩
+  have : Fact (Nat.Prime p) := ⟨pp⟩
+  have : NeZero l := ⟨ll.ne_zero⟩
+  have : NeZero p := ⟨pp.ne_zero⟩
   have hNl0 : N / l ≠ 0 := fun h0 => NeZero.ne N (by rw [← Nat.div_mul_cancel hlN, h0, zero_mul])
-  haveI : NeZero (N / l) := ⟨hNl0⟩
+  have : NeZero (N / l) := ⟨hNl0⟩
   have hζl := isPrimitiveRoot_pow_div hζ hlN
   have hζp := isPrimitiveRoot_pow_div hζ hpN
   have hle : l * (N / l * (d / l)) = N * (d / l) := by
@@ -673,7 +673,7 @@ theorem jqNModC_mem_of_div_prime_of_mul_prime {N : ℕ} [NeZero N] (ζ : Kˣ) (h
   have hpe : N * (p * d) = p * (N * d) := Nat.mul_left_comm N p d
   have data_l : ModularPolynomialData l := (ModularCurve.exists_phiIrreducible_evalSymm l).choose
   have data_p : ModularPolynomialData p := (ModularCurve.exists_phiIrreducible_evalSymm p).choose
-  letI : Algebra F (LaurentSeries K) := ((qExpand K N).comp (algebraMap F (LaurentSeries K))).toAlgebra
+  let : Algebra F (LaurentSeries K) := ((qExpand K N).comp (algebraMap F (LaurentSeries K))).toAlgebra
   have hmapA : (phiAtSeed data_l (⟨jqNModC K (d / l), hml⟩ : F)).map (algebraMap F (LaurentSeries K))
       = phiAtSeed data_l (qExpand K N (jqNModC K (d / l))) :=
     phiAtSeed_map data_l _ _
@@ -810,9 +810,9 @@ theorem jqNModC_mem_adjoin_top_insert (M : ℕ) [NeZero M] (p : ℕ) [hp : Fact 
           rw [hd, pow_succ, ← Nat.mul_assoc, Nat.mul_div_cancel _ hp.out.pos]
         have hdq : d / q = m' * p ^ (a + 1) := by
           rw [hd, hm', Nat.mul_assoc, Nat.mul_div_cancel_left _ hq.pos]
-        haveI : NeZero (d / p) :=
+        have : NeZero (d / p) :=
           ⟨by rw [hdp]; exact Nat.mul_ne_zero hm0 (pow_ne_zero _ hp.out.ne_zero)⟩
-        haveI : NeZero (d / q) :=
+        have : NeZero (d / q) :=
           ⟨by rw [hdq]; exact Nat.mul_ne_zero hm'0 (pow_ne_zero _ hp.out.ne_zero)⟩
         have hmem_p : jqNModC K (d / p) ∈
             IntermediateField.adjoin K (insert (jqNModC K (p ^ (a + 1))) (divSet K (M * p ^ a))) := by
@@ -853,7 +853,7 @@ theorem fullC_mul_prime_eq_adjoin_insert_image (L₀ : ℕ) [NeZero L₀] (p : �
           have h := hdL
           rw [Nat.mul_comm L₀ p] at h
           exact Nat.dvd_of_mul_dvd_mul_left hp.out.pos h
-        haveI : NeZero d' := ⟨fun h0 => hd0.out (by rw [h0, Nat.mul_zero])⟩
+        have : NeZero d' := ⟨fun h0 => hd0.out (by rw [h0, Nat.mul_zero])⟩
         exact IntermediateField.subset_adjoin K _
           (Set.mem_insert_of_mem _ ⟨jqNModC K d', jqNModC_mem_divSet hd'L, qExpandₐK_jqNModC p d'⟩)
       · have hdL₀ : d ∣ L₀ :=
@@ -867,7 +867,7 @@ theorem fullC_mul_prime_eq_adjoin_insert_image (L₀ : ℕ) [NeZero L₀] (p : �
           obtain ⟨d₁, hd₁⟩ := (Nat.minFac_dvd d : l ∣ d)
           have hd₁0 : d₁ ≠ 0 := fun h0 => hd0.out (by rw [hd₁, h0, Nat.mul_zero])
           have hdl : d / l = d₁ := by rw [hd₁, Nat.mul_div_cancel_left _ hl.pos]
-          haveI : NeZero (d / l) := ⟨by rw [hdl]; exact hd₁0⟩
+          have : NeZero (d / l) := ⟨by rw [hdl]; exact hd₁0⟩
           have hld : l ∣ d := ⟨d₁, hd₁⟩
           have hmem_l : jqNModC K (d / l)
               ∈ IntermediateField.adjoin K (insert (jqModC K) ((qExpandₐK K p) '' divSet K L₀)) := by
@@ -1007,7 +1007,7 @@ theorem finrank_adjoin_jqNModC_prime_of_not_mem' (F : IntermediateField K (Laure
     rw [one_pow, qTwist_one_apply, jqNModC, qExpand_qExpand]
     exact qExpand_congr (by ring) _
   have hirr : Irreducible (phiAtSeed data (⟨jqModC K, hj⟩ : F)) := by
-    letI : Algebra F (LaurentSeries K) := ((qExpand K p).comp (algebraMap F (LaurentSeries K))).toAlgebra
+    let : Algebra F (LaurentSeries K) := ((qExpand K p).comp (algebraMap F (LaurentSeries K))).toAlgebra
     have halg : ∀ x : F, algebraMap F (LaurentSeries K) x = qExpand K p (x : LaurentSeries K) := fun _ => rfl
     have hPmapL : (phiAtSeed data (⟨jqModC K, hj⟩ : F)).map (algebraMap F (LaurentSeries K))
         = phiAtSeed data (qExpand K (p * 1) (qTwist ((1 : Kˣ) ^ p) (jqModC K))) := by

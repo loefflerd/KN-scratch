@@ -339,7 +339,7 @@ theorem main :
   set PC := coeffParabolicCocycles W with hPC
   set CB' : Submodule ℂ ↥PC := (coeffCoboundaries W).comap PC.subtype with hCB'
 
-  haveI : FiniteDimensional ℂ ↥PC := Module.Finite.of_injective (E W) (E_injective W hneg)
+  have : FiniteDimensional ℂ ↥PC := Module.Finite.of_injective (E W) (E_injective W hneg)
   have hPK : Module.finrank ℂ ↥PC ≤ Module.finrank ℂ ↥(K W) :=
     LinearMap.finrank_le_finrank_of_injective
       (f := LinearMap.codRestrict (K W) (E W) (E_mem_K W hneg))

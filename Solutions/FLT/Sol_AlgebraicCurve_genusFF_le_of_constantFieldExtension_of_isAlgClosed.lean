@@ -39,7 +39,7 @@ theorem constantsAreBase {K F : Type*} [Field K] [Field F] [Algebra K F] [IsAlgC
       FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F) :
     ConstantsAreBase K F := by
   obtain ⟨x, hxt, hxfd⟩ := hfg
-  haveI : HasPrincipalDivisors K F := IsCurveOver.hasPrincipalDivisors
+  have : HasPrincipalDivisors K F := IsCurveOver.hasPrincipalDivisors
   refine le_antisymm (fun f hf => ?_) (fun f ⟨c, hc⟩ => hc ▸ fun v =>
     Place.adicValuation_algebraMap_le_one v c)
   rcases eq_or_ne f 0 with rfl | hf0
@@ -55,7 +55,7 @@ theorem constantsAreBase {K F : Type*} [Field K] [Field F] [Algebra K F] [IsAlgC
       (Int.natCast_nonneg _)) ⟨v, ?_, ?_⟩
     · simp only [Finsupp.mem_support_iff, hDord v]; exact hv
     · rw [hDord v]
-      haveI : Module.Finite K v.ResidueField := IsCurveOver.finiteResidue v
+      have : Module.Finite K v.ResidueField := IsCurveOver.finiteResidue v
       have : (v.deg : ℤ) = 1 := by exact_mod_cast Place.deg_eq_one_of_isAlgClosed_of_finite v
       rw [this, mul_one]; exact (hord v).lt_of_ne' hv
   exact ⟨_, (Place.mem_range_algebraMap_of_forall_ord_eq_zero_of_isAlgClosed x hxt
@@ -79,14 +79,14 @@ theorem solution (K F K' F' : Type*)
 
   obtain ⟨x, hxt, hxfd⟩ := id hfg
   obtain ⟨x', hxt', hxfd'⟩ := id hfg'
-  haveI : Algebra.EssFiniteType K F :=
+  have : Algebra.EssFiniteType K F :=
     essFiniteType_of_transcendental_of_finiteDimensional hxt hxfd
-  haveI : Algebra.EssFiniteType K' F' :=
+  have : Algebra.EssFiniteType K' F' :=
     essFiniteType_of_transcendental_of_finiteDimensional hxt' hxfd'
   have hCAB : ConstantsAreBase K F := constantsAreBase hfg
   have hCAB' : ConstantsAreBase K' F' := constantsAreBase hfg'
-  haveI : HasPrincipalDivisors K F := IsCurveOver.hasPrincipalDivisors
-  haveI : HasPrincipalDivisors K' F' := IsCurveOver.hasPrincipalDivisors
+  have : HasPrincipalDivisors K F := IsCurveOver.hasPrincipalDivisors
+  have : HasPrincipalDivisors K' F' := IsCurveOver.hasPrincipalDivisors
 
   obtain ⟨γ, hγ⟩ := exists_genus_riemannIndex_of_isCurveOver (K := K) (F := F) hCAB
   obtain ⟨γ', hγ'⟩ := exists_genus_riemannIndex_of_isCurveOver (K := K') (F := F') hCAB'
@@ -113,8 +113,8 @@ theorem solution (K F K' F' : Type*)
   have hlift_new : ∀ v' : Place K' F', (∀ v, lift v ≠ v') →
       ∀ v : Place K F, v'.toValuationSubring.comap (algebraMap F F') ≠ v.toValuationSubring :=
     fun v' hnv v hcomap => hnv v ((hlift_uniq v v' hcomap).symm)
-  haveI : ∀ v : Place K F, Module.Finite K v.ResidueField := fun v => IsCurveOver.finiteResidue v
-  haveI : ∀ v' : Place K' F', Module.Finite K' v'.ResidueField :=
+  have : ∀ v : Place K F, Module.Finite K v.ResidueField := fun v => IsCurveOver.finiteResidue v
+  have : ∀ v' : Place K' F', Module.Finite K' v'.ResidueField :=
     fun v' => IsCurveOver.finiteResidue v'
 
   obtain ⟨D, hiD'⟩ :=
@@ -133,8 +133,8 @@ theorem solution (K F K' F' : Type*)
       show ((v.deg : ℤ)) = 1 from by exact_mod_cast Place.deg_eq_one_of_isAlgClosed_of_finite v]
 
   obtain ⟨hne, hfd0, γ₀, D₀, hD₀⟩ := stichtenothGenusExists_of_isCurveOver (K := K) (F := F) hCAB
-  haveI : FiniteDimensional K ↥(LSpace (0 : Divisor K F)) := hfd0
-  haveI hfdD : FiniteDimensional K ↥(riemannRochSpace D) := finiteDimensional_lSpace D
+  have : FiniteDimensional K ↥(LSpace (0 : Divisor K F)) := hfd0
+  have hfdD : FiniteDimensional K ↥(riemannRochSpace D) := finiteDimensional_lSpace D
   have hellEq : ell (K := K') D' = ell (K := K) D := by
     rw [hD'def]
     exact ell_mapDomain_eq_of_constantFieldExtension_of_isAlgClosed K F K' F' hfg hfg' hgen

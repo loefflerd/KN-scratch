@@ -31,7 +31,7 @@ attribute [local instance] isAlgClosed_H charZero_H
 
 theorem transcendental_rat_of_transcendental_qbar {_ : Algebra ℚ H} {x : H}
     (hx : Transcendental Qbar x) : Transcendental ℚ x := by
-  haveI := IsScalarTower.of_algebraMap_eq' (R := ℚ) (S := Qbar) (A := H) (Subsingleton.elim _ _)
+  have := IsScalarTower.of_algebraMap_eq' (R := ℚ) (S := Qbar) (A := H) (Subsingleton.elim _ _)
   exact hx.of_tower_top ℚ
 
 theorem two_mul_pred_div_two_add_one {p : ℕ} [Fact p.Prime] (hp2 : p ≠ 2) :
@@ -175,7 +175,7 @@ variable (E : WeierstrassCurve H) [E.IsElliptic] {p : ℕ} [Fact p.Prime]
 
 theorem cycSubRoot_bijective (hp2 : p ≠ 2) (data : ModularPolynomialData p)
     (hj : Transcendental Qbar E.j) : Function.Bijective (cycSubRoot E hp2 data) := by
-  haveI := finite_rootsAt data E.j
+  have := finite_rootsAt data E.j
   refine (cycSubRoot_injective E hp2 data hj).bijective_of_nat_card_le ?_
   rw [natCard_cycSubH]
   exact natCard_rootsAt_le data E.j

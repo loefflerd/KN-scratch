@@ -73,7 +73,7 @@ theorem exists_char_apply_eq (q : ℚ) (hq : q ≠ 0) (u : Kˣ) :
     simp only [g, LinearMap.comp_apply, LinearEquiv.coe_toLinearMap, h1,
       LinearMap.toSpanSingleton_apply, one_smul]
 
-  letI := divisibleByIntAdditiveUnits K
+  let := divisibleByIntAdditiveUnits K
   obtain ⟨h, hh⟩ := (Module.Baer.of_divisible (Additive Kˣ)).extension_property (ℤ ∙ q).subtype
     (Submodule.subtype_injective _) g
   refine ⟨{ toFun := fun a => (h a.toAdd).toMul
@@ -390,7 +390,7 @@ private theorem goodModel_zero_spec :
     rw [HahnSeries.orderTop_single one_ne_zero, ← WithTop.coe_add, WithTop.coe_eq_zero]
     norm_num
   · rw [specialFibre_goodModel_zero]
-    haveI hE : (⟨0, 0, 0, 0, -(2 * 1728 ^ 4)⟩ : WeierstrassCurve Qbar).IsElliptic := by
+    have hE : (⟨0, 0, 0, 0, -(2 * 1728 ^ 4)⟩ : WeierstrassCurve Qbar).IsElliptic := by
       rw [WeierstrassCurve.isElliptic_iff, isUnit_iff_ne_zero]
       simp only [WeierstrassCurve.Δ, WeierstrassCurve.b₂, WeierstrassCurve.b₄,
         WeierstrassCurve.b₆, WeierstrassCurve.b₈]
@@ -417,7 +417,7 @@ private theorem goodModel_1728_spec :
     rw [HahnSeries.orderTop_single one_ne_zero, ← WithTop.coe_add, WithTop.coe_eq_zero]
     norm_num
   · rw [specialFibre_goodModel_1728]
-    haveI hE : (⟨0, 0, 0, -36, 0⟩ : WeierstrassCurve Qbar).IsElliptic := by
+    have hE : (⟨0, 0, 0, -36, 0⟩ : WeierstrassCurve Qbar).IsElliptic := by
       rw [WeierstrassCurve.isElliptic_iff, isUnit_iff_ne_zero]
       simp only [WeierstrassCurve.Δ, WeierstrassCurve.b₂, WeierstrassCurve.b₄,
         WeierstrassCurve.b₆, WeierstrassCurve.b₈]
@@ -654,7 +654,7 @@ theorem nonsingular_specialFibre (W : WeierstrassCurve H) (hW : IntegralCoeffs W
     (hΔ : W.Δ.orderTop = 0) {x y : H} (hx : 0 ≤ x.orderTop) (hy : 0 ≤ y.orderTop)
     (h : W.toAffine.Nonsingular x y) :
     (specialFibre W).toAffine.Nonsingular (x.coeff 0) (y.coeff 0) := by
-  haveI := isElliptic_specialFibre W hW hΔ
+  have := isElliptic_specialFibre W hW hΔ
   rw [← WeierstrassCurve.Affine.equation_iff_nonsingular]
   exact equation_specialFibre W hW hx hy h.1
 
@@ -1151,7 +1151,7 @@ private theorem exists_torsionBy_reduction_addEquiv (W : WeierstrassCurve H) [W.
       rw [redPoint_some W hW hΔ hx hy] at h0
       exact absurd h0 (WeierstrassCurve.Affine.Point.some_ne_zero _)
 
-  haveI : IsAlgClosed H := HahnSeries.isAlgClosed_rat
+  have : IsAlgClosed H := HahnSeries.isAlgClosed_rat
   have hne : ∀ m : ℕ, m ≠ 0 → (m : H) ≠ 0 := fun m hm => by
     rw [(map_natCast (HahnSeries.C : Qbar →+* H) m).symm]
     show HahnSeries.single (0 : ℚ) ((m : ℕ) : Qbar) ≠ 0
@@ -1163,7 +1163,7 @@ private theorem exists_torsionBy_reduction_addEquiv (W : WeierstrassCurve H) [W.
       Nat.card (Submodule.torsionBy ℤ (specialFibre W).toAffine.Point (p : ℤ)) = p ^ 2 :=
     WeierstrassCurve.card_torsionBy_eq_sq_of_isAlgClosed (specialFibre W)
       (Nat.cast_ne_zero.mpr hp) (by norm_num)
-  haveI : Finite (Submodule.torsionBy ℤ (specialFibre W).toAffine.Point (p : ℤ)) :=
+  have : Finite (Submodule.torsionBy ℤ (specialFibre W).toAffine.Point (p : ℤ)) :=
     Nat.finite_of_card_ne_zero (by rw [hcard₂]; exact pow_ne_zero 2 hp)
   have hbij : Function.Bijective f :=
     (Nat.bijective_iff_injective_and_card f).mpr ⟨hinj, by rw [hcard₁, hcard₂]⟩

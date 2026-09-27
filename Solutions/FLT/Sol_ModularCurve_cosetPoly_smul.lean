@@ -228,7 +228,7 @@ theorem cosetPoly_smul' (ℓ : ℕ) (hℓ : ℓ.Prime) (F : ℍ → ℂ)
     (hF : ∀ (γ : SL(2, ℤ)) (τ : ℍ), F (γ • τ) = F τ) (γ : SL(2, ℤ)) (τ : ℍ) :
     (X - C (F (heckeDiagMatrix ℓ • γ • τ))) * ∏ b : Fin ℓ, (X - C (F (heckeMatrix ℓ (b : ℕ) • γ • τ)))
       = (X - C (F (heckeDiagMatrix ℓ • τ))) * ∏ b : Fin ℓ, (X - C (F (heckeMatrix ℓ (b : ℕ) • τ))) := by
-  haveI : Fact ℓ.Prime := ⟨hℓ⟩
+  have : Fact ℓ.Prime := ⟨hℓ⟩
   rw [cosetPoly_eq_prod_onePoint F (γ • τ), cosetPoly_eq_prod_onePoint F τ]
   calc ∏ x : OnePoint (ZMod ℓ), (X - C (F (heckeRep ℓ x • γ • τ)))
       = ∏ x : OnePoint (ZMod ℓ), (X - C (F (heckeRep ℓ (redMatrix ℓ γ • x) • τ))) :=

@@ -72,7 +72,7 @@ omit [Algebra ℂ K] in
 
 theorem isIntegral_of_isIntegral_adjoin_singleton {A : Type*} [CommRing A] [Algebra A K] {r z : K}
     (hr : IsIntegral A r) (hz : IsIntegral ↥(Algebra.adjoin A {r}) z) : IsIntegral A z := by
-  haveI : Algebra.IsIntegral A ↥(Algebra.adjoin A {r}) :=
+  have : Algebra.IsIntegral A ↥(Algebra.adjoin A {r}) :=
     Algebra.IsIntegral.adjoin fun _ h ↦ by rw [Set.mem_singleton_iff] at h; rw [h]; exact hr
   exact isIntegral_trans z hz
 
@@ -164,7 +164,7 @@ theorem isPrincipalIdealRing_TRng (ht : Transcendental ℂ t) :
 theorem finiteDimensional_KFldT (hSfin : S.Finite)
     (hSint : ∀ s ∈ S, IsIntegral ↥(TRng F t) s) :
     FiniteDimensional ↥(RFld F t) ↥(KFldT F t S) := by
-  haveI : Finite ↥S := hSfin.to_subtype
+  have : Finite ↥S := hSfin.to_subtype
   refine IntermediateField.finiteDimensional_adjoin (fun s hs => ?_)
   exact (hSint s hs).tower_top
 
@@ -175,8 +175,8 @@ scoped instance charZero_KFldT : CharZero ↥(KFldT F t S) :=
 set_option synthInstance.maxHeartbeats 1600000 in
 theorem isDedekindDomain_RFa (ht : Transcendental ℂ t) (hSfin : S.Finite)
     (hSint : ∀ s ∈ S, IsIntegral ↥(TRng F t) s) : IsDedekindDomain ↥(RFa F t S) := by
-  haveI := isPrincipalIdealRing_TRng F t ht
-  haveI := finiteDimensional_KFldT F t S hSfin hSint
+  have := isPrincipalIdealRing_TRng F t ht
+  have := finiteDimensional_KFldT F t S hSfin hSint
   exact integralClosure.isDedekindDomain ↥(TRng F t) ↥(RFld F t) ↥(KFldT F t S)
 
 set_option synthInstance.maxHeartbeats 1600000 in
@@ -184,8 +184,8 @@ theorem isFractionRing_RFa (ht : Transcendental ℂ t) (hSfin : S.Finite)
     (hSint : ∀ s ∈ S, IsIntegral ↥(TRng F t) s) :
     IsFractionRing ↥(RFa F t S) ↥(KFldT F t S) := by
   have hPID := isPrincipalIdealRing_TRng F t ht
-  haveI : IsDedekindDomain ↥(TRng F t) := @IsPrincipalIdealRing.isDedekindDomain _ _ _ hPID
-  haveI := finiteDimensional_KFldT F t S hSfin hSint
+  have : IsDedekindDomain ↥(TRng F t) := @IsPrincipalIdealRing.isDedekindDomain _ _ _ hPID
+  have := finiteDimensional_KFldT F t S hSfin hSint
   exact integralClosure.isFractionRing_of_finite_extension ↥(RFld F t) ↥(KFldT F t S)
 
 end instances
@@ -196,7 +196,7 @@ set_option maxHeartbeats 6400000 in
 theorem isIntegrallyClosed_RFa_polynomial (ht : Transcendental ℂ t) (hSfin : S.Finite)
     (hSint : ∀ s ∈ S, IsIntegral ↥(TRng F t) s) :
     IsIntegrallyClosed (Polynomial ↥(RFa F t S)) := by
-  haveI : IsDedekindDomain ↥(RFa F t S) := isDedekindDomain_RFa F t S ht hSfin hSint
+  have : IsDedekindDomain ↥(RFa F t S) := isDedekindDomain_RFa F t S ht hSfin hSint
   infer_instance
 
 theorem algebraMap_adjoinF_mem {c : ℂ} {z : ℂ} (hz : z ∈ IntermediateField.adjoin ↥F {c}) :
@@ -388,8 +388,8 @@ theorem mem_span_RSet_of_adjoin_simple_transcendental
   have hψalg : ∀ a : (↥(RFa F t S))[X], ψ (algebraMap _ _ a) = rfPolyEval F t S c a :=
     fun a => IsFractionRing.lift_algebraMap _ _
   have hψinj : Function.Injective ψ := ψ.injective
-  haveI hDD : IsDedekindDomain ↥(RFa F t S) := isDedekindDomain_RFa F t S ht hSfin hSint
-  haveI hFR : IsFractionRing ↥(RFa F t S) ↥(KFldT F t S) :=
+  have hDD : IsDedekindDomain ↥(RFa F t S) := isDedekindDomain_RFa F t S ht hSfin hSint
+  have hFR : IsFractionRing ↥(RFa F t S) ↥(KFldT F t S) :=
     isFractionRing_RFa F t S ht hSfin hSint
 
   have hrange : ∀ z ∈ IntermediateField.adjoin ↥(KFldT F t S) {c'}, z ∈ ψ.fieldRange := by
@@ -510,9 +510,9 @@ theorem mem_span_RSet_of_adjoin_simple_transcendental
           rw [Polynomial.eval₂_mul, Polynomial.eval₂_C, Polynomial.eval₂_pow,
             Polynomial.eval₂_X]]
       exact hmrel
-  haveI hDomRFa : IsDomain ↥(RFa F t S) := Subalgebra.isDomain _
-  haveI hICR : IsIntegrallyClosed ↥(RFa F t S) := inferInstance
-  haveI hICX : IsIntegrallyClosed ((↥(RFa F t S))[X]) :=
+  have hDomRFa : IsDomain ↥(RFa F t S) := Subalgebra.isDomain _
+  have hICR : IsIntegrallyClosed ↥(RFa F t S) := inferInstance
+  have hICX : IsIntegrallyClosed ((↥(RFa F t S))[X]) :=
     isIntegrallyClosed_RFa_polynomial F t S ht hSfin hSint
   obtain ⟨a, ha⟩ := IsIntegrallyClosed.isIntegral_iff.mp hmint
   have hyrange : y ∈ Set.range ⇑(rfPolyEval F t S c) :=

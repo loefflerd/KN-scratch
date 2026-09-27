@@ -248,12 +248,12 @@ private theorem finite_allNorm_and_card_le (t : F) (c : K)
   classical
   rcases isEmpty_or_nonempty {ψ : F →ₐ[K] HahnSeries ℚ K //
       ψ t = HahnSeries.C c + HahnSeries.single (1 : ℚ) 1} with hE | hNE
-  · haveI : Fintype {ψ : F →ₐ[K] HahnSeries ℚ K //
+  · have : Fintype {ψ : F →ₐ[K] HahnSeries ℚ K //
         ψ t = HahnSeries.C c + HahnSeries.single (1 : ℚ) 1} := ⟨∅, fun a => (hE.elim a)⟩
     exact ⟨Finite.of_fintype _, by rw [Nat.card_of_isEmpty]; exact Nat.zero_le _⟩
   obtain ⟨⟨ψ₀, hψ₀⟩⟩ := hNE
   set B := IntermediateField.adjoin K ({t} : Set F) with hB
-  haveI : CharZero ↥B := charZero_of_injective_algebraMap (algebraMap K ↥B).injective
+  have : CharZero ↥B := charZero_of_injective_algebraMap (algebraMap K ↥B).injective
   obtain ⟨θ, hθ⟩ := Field.exists_primitive_element ↥B F
   have hint : IsIntegral ↥B θ := IsIntegral.of_finite ↥B θ
   have hagree : ∀ ψ : F →ₐ[K] HahnSeries ℚ K,
@@ -302,7 +302,7 @@ private theorem finite_allNorm_and_card_le (t : F) (c : K)
       ψ₂ t = HahnSeries.C c + HahnSeries.single (1 : ℚ) 1 →
       ψ₁ θ = ψ₂ θ → ψ₁ = ψ₂ := by
     intro ψ₁ ψ₂ h₁ h₂ hθeq
-    letI : Algebra ↥B (HahnSeries ℚ K) := βr.toAlgebra
+    let : Algebra ↥B (HahnSeries ℚ K) := βr.toAlgebra
     let ψ₁' : F →ₐ[↥B] HahnSeries ℚ K :=
       { toRingHom := ψ₁.toRingHom,
         commutes' := fun b => RingHom.congr_fun (hβr ψ₁ h₁) b }
@@ -371,7 +371,7 @@ theorem natCard_normalized_algHom_eq_toNat_ord
       (w.ord (t - algebraMap K F c)).toNat := by
   classical
   obtain ⟨hfinAll, hcardAll⟩ := finite_allNorm_and_card_le t c
-  haveI := hfinAll
+  have := hfinAll
   have hfinEmb : ∀ v : Place K F, Finite {ψ : F →ₐ[K] HahnSeries ℚ K //
       ψ t = HahnSeries.C c + HahnSeries.single (1 : ℚ) 1 ∧
       ∃ g : ℚ, 0 < g ∧ ∀ x, (v.ord x : ℚ) * g = (ψ x).order} := by
@@ -392,7 +392,7 @@ theorem natCard_normalized_algHom_eq_toNat_ord
     obtain ⟨φ', hφf, hφord⟩ := hP1 v hv'
     set e : ℕ := (v.ord (t - algebraMap K F c)).toNat with he'
     have he : 0 < e := by omega
-    haveI : NeZero e := ⟨he.ne'⟩
+    have : NeZero e := ⟨he.ne'⟩
     obtain ⟨ζ, hζ⟩ := HasEnoughRootsOfUnity.exists_primitiveRoot K e
     have hun : IsUnit ζ := hζ.isUnit he.ne'
     have huζval : (hun.unit : K) = ζ := hun.unit_spec
@@ -429,7 +429,7 @@ theorem natCard_normalized_algHom_eq_toNat_ord
       have hζpow : ζ ^ (i : ℕ) = ζ ^ (j : ℕ) := by
         rwa [Units.val_pow_eq_pow_val, Units.val_pow_eq_pow_val, huζval] at hpow
       exact Fin.ext (hζ.pow_inj i.2 j.2 hζpow)
-    haveI := hfinEmb v
+    have := hfinEmb v
     have hle := Nat.card_le_card_of_injective _ hinj
     have hfe : Nat.card (Fin e) = e := by simp
     rw [hfe] at hle
@@ -439,7 +439,7 @@ theorem natCard_normalized_algHom_eq_toNat_ord
       ψ t = HahnSeries.C c + HahnSeries.single (1 : ℚ) 1 ∧
       ∃ g : ℚ, 0 < g ∧ ∀ x, (v.ord x : ℚ) * g = (ψ x).order} ≤
       Module.finrank (IntermediateField.adjoin K ({t} : Set F)) F := by
-    haveI : ∀ v : ↥S, Finite {ψ : F →ₐ[K] HahnSeries ℚ K //
+    have : ∀ v : ↥S, Finite {ψ : F →ₐ[K] HahnSeries ℚ K //
         ψ t = HahnSeries.C c + HahnSeries.single (1 : ℚ) 1 ∧
         ∃ g : ℚ, 0 < g ∧ ∀ x, ((v : Place K F).ord x : ℚ) * g = (ψ x).order} :=
       fun v => hfinEmb v

@@ -220,7 +220,7 @@ theorem exp_F_const [Γ.FiniteIndex] (hF : ModularCurve.HasEquivariantPrimitiveO
     (h : ∀ γ : Γ, (ModularCurve.periodOf Γ γ f).re = 0) :
     ∃ c : ℂ, ∀ z : ℍ, cexp (F z) = c := by
   classical
-  haveI : Fintype (SL(2, ℤ) ⧸ Γ) := Subgroup.fintypeQuotientOfFiniteIndex
+  have : Fintype (SL(2, ℤ) ⧸ Γ) := Subgroup.fintypeQuotientOfFiniteIndex
   set r : ℝ := Real.exp (-π / M) with hr
   have hr0 : 0 ≤ r := (Real.exp_pos _).le
   have hr1 : r < 1 := by

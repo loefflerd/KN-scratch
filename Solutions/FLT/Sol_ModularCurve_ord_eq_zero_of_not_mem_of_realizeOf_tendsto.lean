@@ -218,8 +218,8 @@ theorem solution
     v.ord x = 0 := by
   subst hF
   obtain ⟨M, hM0, hΓM⟩ := hΓ
-  haveI : NeZero M := ⟨hM0⟩
-  haveI : IsDomain (ModularCurve.LevelN.ring M) := ModularCurve.LevelN.isDomain_ring M
+  have : NeZero M := ⟨hM0⟩
+  have : IsDomain (ModularCurve.LevelN.ring M) := ModularCurve.LevelN.isDomain_ring M
   exact ModularCurve.CuspPlaceGlue.ord_eq_zero_aux Γ hT M hΓM (FractionRing (ModularCurve.LevelN.ring M))
     x F hFx hcusp v y hy hv
 

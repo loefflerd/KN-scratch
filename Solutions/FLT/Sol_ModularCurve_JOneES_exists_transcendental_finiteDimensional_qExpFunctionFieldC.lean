@@ -97,7 +97,7 @@ theorem linearIndependent_map {ι : Type*} {v : ι → LaurentSeries K} (hv : Li
   intro s c hsum i hi
 
   let W : Submodule K L := Submodule.span K (Set.range fun j : s => c j)
-  haveI : Module.Finite K W := Module.Finite.span_of_finite K (Set.finite_range _)
+  have : Module.Finite K W := Module.Finite.span_of_finite K (Set.finite_range _)
   let b := Module.finBasis K W
 
   have hcW : ∀ j : s, c j ∈ W := fun j => Submodule.subset_span ⟨j, rfl⟩
@@ -150,14 +150,14 @@ variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 theorem finiteDimensional_of_forall_aeval_eq_zero [PerfectField K] (D : ℕ)
     (h : ∀ y : F, ∃ p : K[X], p ≠ 0 ∧ p.natDegree ≤ D ∧ aeval y p = 0) :
     FiniteDimensional K F := by
-  haveI : Algebra.IsAlgebraic K F := ⟨fun y => by
+  have : Algebra.IsAlgebraic K F := ⟨fun y => by
     obtain ⟨p, hp0, -, hpy⟩ := h y
     exact ⟨p, hp0, hpy⟩⟩
-  haveI : Algebra.IsSeparable K F := Algebra.IsAlgebraic.isSeparable_of_perfectField
+  have : Algebra.IsSeparable K F := Algebra.IsAlgebraic.isSeparable_of_perfectField
   by_contra hinf
   obtain ⟨L, hLfd, hlt⟩ := IntermediateField.exists_lt_finrank_of_infinite_dimensional hinf D
-  haveI := hLfd
-  haveI : Algebra.IsSeparable K L := Algebra.isSeparable_tower_bot_of_isSeparable K L F
+  have := hLfd
+  have : Algebra.IsSeparable K L := Algebra.isSeparable_tower_bot_of_isSeparable K L F
   obtain ⟨α, hα⟩ := Field.exists_primitive_element K L
   have hdeg : (minpoly K α).natDegree = Module.finrank K L :=
     (Field.primitive_element_iff_minpoly_natDegree_eq K α).mp hα
@@ -975,7 +975,7 @@ theorem exists_transcendental_finiteDimensional (hT : ModularGroup.T ∈ Γ) :
       ((φ.comp (algebraMap K₀ F)).comp (algebraMap ℚ K₀)) (algebraMap ℚ (LaurentSeries ℚ))) e
     rw [← h]
     rfl
-  haveI : PerfectField K₀ := PerfectField.ofCharZero
+  have : PerfectField K₀ := PerfectField.ofCharZero
   refine JOneESAlg.finiteDimensional_of_forall_aeval_eq_zero (Nat.card (JOneESNorm.Cos Γ)) ?_
   intro Y
   obtain ⟨k, f, g, pf, pg, hf, hg, hg0, hY⟩ := (mem_qExpFunctionFieldC_iff hT).mp Y.2

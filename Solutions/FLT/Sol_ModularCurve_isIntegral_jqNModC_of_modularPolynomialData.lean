@@ -226,7 +226,7 @@ variable (K : Type*) [Field K] {N : ℕ} [hN : Fact N.Prime] (data : ModularPoly
 
 include hsymm in
 theorem slice_jqModC_separable (hNK : (N : K) ≠ 0) : (slice data.Φ (jqModC K)).Separable := by
-  haveI : NeZero ((N : ℕ) : K) := ⟨hNK⟩
+  have : NeZero ((N : ℕ) : K) := ⟨hNK⟩
   obtain ⟨z, hz⟩ := HasEnoughRootsOfUnity.prim (M := AlgebraicClosure K) (n := N)
   have hz' : IsPrimitiveRoot ((hz.isUnit hN.out.ne_zero).unit : AlgebraicClosure K) N := by
     simpa using hz

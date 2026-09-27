@@ -113,17 +113,17 @@ theorem coords_neg (P : (W0 L).toAffine.Point) :
 variable [Algebra ℚ L]
 
 theorem isElliptic_W0 : (W0 L).IsElliptic := by
-  haveI : CharZero L := charZero_of_injective_algebraMap (algebraMap ℚ L).injective
+  have : CharZero L := charZero_of_injective_algebraMap (algebraMap ℚ L).injective
   exact ⟨by rw [W0_Δ]; exact isUnit_iff_ne_zero.mpr (by norm_num)⟩
 
 theorem j_W0 : haveI := isElliptic_W0 (L := L); (W0 L).j = 0 := by
-  haveI := isElliptic_W0 (L := L)
+  have := isElliptic_W0 (L := L)
   rw [WeierstrassCurve.j, W0_c₄]; ring
 
 theorem stab_W0 (γ : VariableChange L) (hγ : γ • W0 L = W0 L) :
     γ.r = 0 ∧ γ.s = 0 ∧ γ.t = 0 ∧ (γ.u : L) ^ 6 = 1 := by
-  haveI : CharZero L := charZero_of_injective_algebraMap (algebraMap ℚ L).injective
-  haveI : (W0 L).IsShortNF := ⟨rfl, rfl, rfl⟩
+  have : CharZero L := charZero_of_injective_algebraMap (algebraMap ℚ L).injective
+  have : (W0 L).IsShortNF := ⟨rfl, rfl, rfl⟩
   exact (WeierstrassCurve.mem_stabilizer_variableChange_iff_of_isShortNF_of_a4_eq_zero (F := L)
     two_ne_zero three_ne_zero (W0 L) rfl one_ne_zero γ).mp hγ
 
@@ -273,7 +273,7 @@ def τ (u : Lˣ) (hu : (u : L) ^ 3 = 1) (N : ℕ) (H : CycSub L N) : CycSub L N 
   ⟨H.1.map (σ u hu), by
     obtain ⟨hc, hcard⟩ := H.2
     refine ⟨?_, ?_⟩
-    · haveI := hc
+    · have := hc
       exact isAddCyclic_of_surjective ((σ u hu).addSubgroupMap H.1) ((σ u hu).addSubgroupMap_surjective H.1)
     · exact (Nat.card_congr (H.1.equivMapOfInjective (σ u hu) (σ_injective u hu)).symm.toEquiv).trans hcard⟩
 
@@ -325,7 +325,7 @@ theorem natCard_C3 : Nat.card (Multiplicative (ZMod 3)) = 3 := by
 
 theorem mem_fixedPoints_iff (u : Lˣ) (hu : (u : L) ^ 3 = 1) (N : ℕ) (H : CycSub L N) :
     (letI := actC3 u hu N; H ∈ MulAction.fixedPoints (Multiplicative (ZMod 3)) (CycSub L N)) ↔ τ u hu N H = H := by
-  letI := actC3 u hu N
+  let := actC3 u hu N
   rw [MulAction.mem_fixedPoints]
   have h10 : (1 : ZMod 3) ≠ 0 := by decide
   have h20 : (2 : ZMod 3) ≠ 0 := by decide
@@ -436,7 +436,7 @@ theorem autPt_one (h1 : (1 : VariableChange L) • W0 L = W0 L) (P : (W0 L).toAf
 private theorem _root_.P2MWs13.R2b.exists_generator (hN : N ≠ 0) (H : CycSub L N) :
     ∃ T : (W0 L).toAffine.Point, addOrderOf T = N ∧ AddSubgroup.zmultiples T = H.1 := by
   obtain ⟨hc, hcard⟩ := H.2
-  haveI := hc
+  have := hc
   obtain ⟨g, hg⟩ := IsAddCyclic.exists_generator (α := H.1)
   have hfin : Finite H.1 := Nat.finite_of_card_ne_zero (by rw [hcard]; exact hN)
   have hog : addOrderOf g = N := (addOrderOf_eq_card_of_forall_mem_zmultiples hg).trans hcard
@@ -511,7 +511,7 @@ theorem R_imp_or (u : Lˣ) (hu : (u : L) ^ 3 = 1) (hu1 : (u : L) ≠ 1)
 theorem natCard_quot_R_eq (u : Lˣ) (hu : (u : L) ^ 3 = 1) (hu1 : (u : L) ≠ 1) (hN : N ≠ 0) :
     Nat.card (Quot (R (L := L) N)) =
       (letI := actC3 u hu N; Nat.card (MulAction.orbitRel.Quotient (Multiplicative (ZMod 3)) (CycSub L N))) := by
-  letI := actC3 u hu N
+  let := actC3 u hu N
   have h10 : (1 : ZMod 3) ≠ 0 := by decide
   have h20 : (2 : ZMod 3) ≠ 0 := by decide
   have h21 : (2 : ZMod 3) ≠ 1 := by decide
@@ -562,8 +562,8 @@ open P2MWs13.R2b in
 theorem solution
     (N : ℕ) [NeZero N] (L : Type*) [Field L] [DecidableEq L] [Algebra ℚ L] [IsAlgClosed L] :
     3 * Nat.card {x : ModuliPoint N L // ModuliPoint.j x = (0 : L)} = dedekindPsi N + 2 * nuThree N := by
-  haveI : CharZero L := charZero_of_injective_algebraMap (algebraMap ℚ L).injective
-  haveI := isElliptic_W0 (L := L)
+  have : CharZero L := charZero_of_injective_algebraMap (algebraMap ℚ L).injective
+  have := isElliptic_W0 (L := L)
   have hN : N ≠ 0 := NeZero.ne N
   have hNL : ((N : ℕ) : L) ≠ 0 := Nat.cast_ne_zero.mpr hN
 
@@ -590,7 +590,7 @@ theorem solution
     rw [e]
     exact ModularCurve.natCard_moduliPoint_j_eq_eq_natCard_quot_addOrderOf_eq N L (W0 L)
 
-  letI := actC3 u hu N
+  let := actC3 u hu N
   have h2 := natCard_quot_R_eq N u hu hu1' hN
 
   have hfinT : Finite {T : (W0 L).toAffine.Point // addOrderOf T = N} := by
@@ -599,7 +599,7 @@ theorem solution
       show ((W0 L).baseChange L).toAffine = (W0 L).toAffine
       rw [WeierstrassCurve.baseChange, Algebra.algebraMap_self, WeierstrassCurve.map_id]
     rw [hb] at hc
-    haveI : Finite (Submodule.torsionBy ℤ (W0 L).toAffine.Point N) :=
+    have : Finite (Submodule.torsionBy ℤ (W0 L).toAffine.Point N) :=
       Nat.finite_of_card_ne_zero (by rw [hc]; positivity)
     refine Finite.of_injective (fun T => (⟨T.1, ?_⟩ : Submodule.torsionBy ℤ (W0 L).toAffine.Point N)) ?_
     · rw [Submodule.mem_torsionBy_iff]; show (N : ℤ) • T.1 = 0
@@ -607,7 +607,7 @@ theorem solution
       rw [T.2] at hT0
       rw [natCast_zsmul]; exact hT0
     · intro a b h; exact Subtype.ext (congrArg Subtype.val h :)
-  haveI : Finite (CycSub L N) := by
+  have : Finite (CycSub L N) := by
     refine Finite.of_surjective (fun T : {T : (W0 L).toAffine.Point // addOrderOf T = N} => cyc N T) ?_
     intro H
     obtain ⟨T, hT, hTH⟩ := exists_generator N hN H

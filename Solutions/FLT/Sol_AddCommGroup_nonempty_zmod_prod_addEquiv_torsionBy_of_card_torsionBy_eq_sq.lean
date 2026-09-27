@@ -18,10 +18,10 @@ theorem nonempty_zmodSqAddEquiv_of_card_eq_sq {p : ℕ} (hp : p.Prime)
     (M : Type*) [AddCommGroup M] [Module (ZMod p) M]
     (hcard : Nat.card M = p ^ 2) :
     Nonempty ((ZMod p × ZMod p) ≃+ M) := by
-  haveI : Fact p.Prime := ⟨hp⟩
-  haveI : Finite M :=
+  have : Fact p.Prime := ⟨hp⟩
+  have : Finite M :=
     Nat.finite_of_card_ne_zero (by rw [hcard]; exact pow_ne_zero 2 hp.ne_zero)
-  haveI : Module.Finite (ZMod p) M := Module.Finite.of_finite
+  have : Module.Finite (ZMod p) M := Module.Finite.of_finite
   have hfr : Module.finrank (ZMod p) M = 2 := by
     have hcard2 := Module.natCard_eq_pow_finrank (K := ZMod p) (V := M)
     rw [hcard, Nat.card_zmod] at hcard2
@@ -94,8 +94,8 @@ theorem nonempty_zmodPowSqAddEquiv_of_span_pair {n : ℕ} (hn : n ≠ 0)
     (hcard : Nat.card M = n ^ 2) (x y : M)
     (hgen : ∀ t : M, ∃ a b : ℤ, t = a • x + b • y) :
     Nonempty ((ZMod n × ZMod n) ≃+ M) := by
-  haveI : NeZero n := ⟨hn⟩
-  haveI : Finite M := Nat.finite_of_card_ne_zero (by rw [hcard]; exact pow_ne_zero 2 hn)
+  have : NeZero n := ⟨hn⟩
+  have : Finite M := Nat.finite_of_card_ne_zero (by rw [hcard]; exact pow_ne_zero 2 hn)
   let f : (ZMod n × ZMod n) →+ M := AddMonoidHom.mk' (fun c => c.1 • x + c.2 • y) (by
     intro c d
     show (c.1 + d.1) • x + (c.2 + d.2) • y = (c.1 • x + c.2 • y) + (d.1 • x + d.2 • y)
@@ -119,7 +119,7 @@ theorem nonempty_zmodPowSqAddEquiv_of_card_pow {p : ℕ} (hp : p.Prime) (k : ℕ
     (hcard : Nat.card M = p ^ (2 * k))
     (hcardp : Nat.card (Submodule.torsionBy ℤ M (p : ℤ)) = p ^ 2) :
     Nonempty ((ZMod (p ^ k) × ZMod (p ^ k)) ≃+ M) := by
-  haveI : Finite M :=
+  have : Finite M :=
     Nat.finite_of_card_ne_zero (by rw [hcard]; exact pow_ne_zero _ hp.ne_zero)
   rcases Nat.eq_zero_or_pos k with rfl | hk
   ·
@@ -133,7 +133,7 @@ theorem nonempty_zmodPowSqAddEquiv_of_card_pow {p : ℕ} (hp : p.Prime) (k : ℕ
   ·
     set K : AddSubgroup M := (pSmulHom M p).ker with hKdef
     set R : AddSubgroup M := (pSmulHom M p).range with hRdef
-    haveI : Nonempty R := ⟨0⟩
+    have : Nonempty R := ⟨0⟩
 
     have hKcard : Nat.card K = p ^ 2 := by
       rw [hKdef, Nat.card_congr (pSmulHomKerEquivTorsionBy M p)]
@@ -163,7 +163,7 @@ theorem nonempty_zmodPowSqAddEquiv_of_card_pow {p : ℕ} (hp : p.Prime) (k : ℕ
       rwa [← QuotientAddGroup.ker_mk' R, AddMonoidHom.mem_ker] at hmem
 
     obtain ⟨E⟩ : Nonempty ((ZMod p × ZMod p) ≃+ (M ⧸ R)) := by
-      letI : Module (ZMod p) (M ⧸ R) := AddCommGroup.zmodModule hQkill
+      let : Module (ZMod p) (M ⧸ R) := AddCommGroup.zmodModule hQkill
       exact nonempty_zmodSqAddEquiv_of_card_eq_sq hp (M ⧸ R) hQcard
 
     obtain ⟨x, hx⟩ := QuotientAddGroup.mk'_surjective R (E ((1 : ZMod p), (0 : ZMod p)))
@@ -194,7 +194,7 @@ theorem nonempty_zmodPowSqAddEquiv_of_card_pow {p : ℕ} (hp : p.Prime) (k : ℕ
 
     have hgen : ∀ t : M, ∃ a b : ℤ, t = a • x + b • y :=
       forall_exists_zsmul_pair_of_step hexp hstep
-    letI : Module (ZMod (p ^ k)) M := AddCommGroup.zmodModule hexp
+    let : Module (ZMod (p ^ k)) M := AddCommGroup.zmodModule hexp
     exact nonempty_zmodPowSqAddEquiv_of_span_pair (pow_ne_zero k hp.ne_zero) M
       (by rw [hcard, show 2 * k = k * 2 from Nat.mul_comm 2 k, pow_mul]) x y hgen
 
@@ -347,7 +347,7 @@ end AbstractEngine
 
 theorem nonempty_zmodSqAddEquiv_torsionBy_one {A : Type*} [AddCommGroup A] :
     Nonempty ((ZMod 1 × ZMod 1) ≃+ Submodule.torsionBy ℤ A ((1 : ℕ) : ℤ)) := by
-  haveI : Subsingleton (Submodule.torsionBy ℤ A ((1 : ℕ) : ℤ)) := by
+  have : Subsingleton (Submodule.torsionBy ℤ A ((1 : ℕ) : ℤ)) := by
     refine ⟨fun x y => Subtype.ext ?_⟩
     have hx := x.2; have hy := y.2
     rw [Submodule.mem_torsionBy_iff] at hx hy

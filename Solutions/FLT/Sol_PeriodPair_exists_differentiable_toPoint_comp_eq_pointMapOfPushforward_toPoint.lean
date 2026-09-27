@@ -210,7 +210,7 @@ theorem isFinitePlace_iff_exists_placeOfEquation [IsAlgClosed F]
   constructor
   · intro hv
 
-    haveI := hv.centre_isPrime
+    have := hv.centre_isPrime
     have hmax : hv.centre.IsMaximal := Ideal.IsPrime.isMaximal hv.centre_isPrime hv.centre_ne_bot
     obtain ⟨x, y, hxy, hXY⟩ :=
       CoordinateRing.exists_eq_XYIdeal (W := W) (P := hv.centre) hv.centre_ne_bot
@@ -219,7 +219,7 @@ theorem isFinitePlace_iff_exists_placeOfEquation [IsAlgClosed F]
     set w : HeightOneSpectrum W.CoordinateRing := heightOneSpectrumOfEquation hxy with hw
     set A : ValuationSubring W.FunctionField :=
       HeightOneSpectrum.valuationSubringAtPrime W.FunctionField w with hA
-    haveI hAded : IsDedekindDomain A := by rw [hA]; infer_instance
+    have hAded : IsDedekindDomain A := by rw [hA]; infer_instance
     have hle : A ≤ v.toValuationSubring := by
       intro z hz
       rw [hA] at hz
@@ -337,13 +337,13 @@ variable {V W : Affine F} [V.IsElliptic] [W.IsElliptic]
 
 theorem normFormulaAlong_of_elliptic (ι : V.FunctionField →ₐ[F] W.FunctionField)
     (hfin : FiniteAlong F ι) : NormFormulaAlong F ι hfin := by
-  haveI : HasPrincipalDivisors F W.FunctionField := hasPrincipalDivisors_functionField W
-  haveI : CharZero V.FunctionField :=
+  have : HasPrincipalDivisors F W.FunctionField := hasPrincipalDivisors_functionField W
+  have : CharZero V.FunctionField :=
     charZero_of_injective_algebraMap (algebraMap F V.FunctionField).injective
   have hsep : SeparableAlong F ι := by
-    letI := algebraAlong ι
-    haveI := isScalarTower_along ι
-    haveI : Module.Finite V.FunctionField W.FunctionField := hfin
+    let := algebraAlong ι
+    have := isScalarTower_along ι
+    have : Module.Finite V.FunctionField W.FunctionField := hfin
     show Algebra.IsSeparable V.FunctionField W.FunctionField
     infer_instance
   exact AlgebraicCurve.normFormulaAlong ι hfin hsep
@@ -943,13 +943,13 @@ theorem kw_toPointAddEquiv_mk (z : ℂ) :
 
 scoped instance kw_infinite_quotientLattice : Infinite (ℂ ⧸ L.lattice.toAddSubgroup) := by
   rw [← not_finite_iff_infinite]; intro hfin
-  haveI : Countable L.lattice.toAddSubgroup :=
+  have : Countable L.lattice.toAddSubgroup :=
     Set.countable_coe_iff.mpr L.kw_countable_lattice
-  haveI : Countable ((ℂ ⧸ L.lattice.toAddSubgroup) × L.lattice.toAddSubgroup) := inferInstance
+  have : Countable ((ℂ ⧸ L.lattice.toAddSubgroup) × L.lattice.toAddSubgroup) := inferInstance
   have hCc : Countable ℂ :=
     Countable.of_equiv _ (AddSubgroup.addGroupEquivQuotientProdAddSubgroup
       (s := L.lattice.toAddSubgroup)).symm
-  haveI : Uncountable ℂ := Complex.ofReal_injective.uncountable
+  have : Uncountable ℂ := Complex.ofReal_injective.uncountable
   exact absurd hCc not_countable
 
 scoped instance kw_infinite_point : Infinite L.weierstrassCurve.toAffine.Point :=
@@ -1194,9 +1194,9 @@ namespace Place p2m_export "AlgebraicCurve.Place" "restrictAlong ramificationInd
 p2m_open_scoped "AlgebraicCurve.Place" in
 theorem Place.ramificationIndexAlong_pos (φ : F →ₐ[K] F') (hφ : φ.toRingHom.IsIntegral)
     (w : Place K F') : 0 < Place.ramificationIndexAlong φ w := by
-  letI := algebraAlong φ
-  haveI := isScalarTower_along φ
-  haveI := isIntegral_along φ hφ
+  let := algebraAlong φ
+  have := isScalarTower_along φ
+  have := isIntegral_along φ hφ
   exact w.ramificationIndex_pos
 
 namespace Place
@@ -2046,8 +2046,8 @@ variable (hι : ι.toRingHom.IsIntegral) (hfin : FiniteAlong K ι)
 include hfin in
 theorem kw_fdn2_qephod_hend10_finrankAlong_pos : 0 < finrankAlong K ι := by
   unfold finrankAlong
-  letI := algebraAlong ι
-  haveI : Module.Finite E'.FunctionField E.FunctionField := hfin
+  let := algebraAlong ι
+  have : Module.Finite E'.FunctionField E.FunctionField := hfin
   exact Module.finrank_pos
 
 theorem kw_fdn2_qephod_hend10_kerPMOP_finite :
@@ -2261,7 +2261,7 @@ theorem kw_surgehgf4_hH2e_betweenCurvesCocountableAffineHoloCoords_of_weak
       ι'' hι'' hfin''
     have heq : K = ((AddMonoidHom.ker (pointMapOfPushforward ι'' hι'' hfin''
         (normFormulaAlong_of_elliptic ι'' hfin''))) : Set _) := by
-      ext P; simp only [hKdef, Set.mem_setOf_eq, SetLike.mem_coe, AddMonoidHom.mem_ker]
+      ext P; simp only [hKdef, Set.mem_ofPred_eq, SetLike.mem_coe, AddMonoidHom.mem_ker]
     rw [heq]; exact Set.finite_coe_iff.mp hfin
   set S' : Set ℂ := (fun z => (2 : ℂ) * z) ⁻¹' (L.kw_toPointHom ⁻¹' K)
   have hS'c : S'.Countable :=
@@ -2425,9 +2425,9 @@ theorem kw_surgehgf4_hH2f_finite_geomMorphBC_preimage (t : E'.Point) :
     {P : E.Point | gBC P = t}.Finite := by
   have hT : {w : AlgebraicCurve.Place K E.FunctionField |
       w.restrictAlong ι hι = placeOfPoint t}.Finite := by
-    letI := algebraAlong ι
-    haveI := isScalarTower_along ι
-    haveI := isIntegral_along ι hι
+    let := algebraAlong ι
+    have := isScalarTower_along ι
+    have := isIntegral_along ι hι
     exact Place.restrict_fiber_finite (placeOfPoint t)
   refine (Set.Finite.preimage (placeOfPoint_injective (W := E)).injOn hT).subset
     fun P hP => ?_
@@ -2571,7 +2571,7 @@ theorem kw_surgehgf4_hH2f_betweenCurvesCocountableAffineHoloCoordsWeak :
       = placeOfEquation (L.equation_weierstrassP hz₀Λ) := by
     rw [L.kw_toPointHom_apply, L.toPoint_of_notMem _ hz₀Λ]; exact placeOfPoint_some _
   have hz₀Tq' := hz₀Tq; rw [show Tq = _ from rfl, Set.mem_preimage, Set.mem_union, not_or,
-    Set.mem_setOf_eq, Set.mem_setOf_eq, not_ne_iff, not_ne_iff, hplace₀] at hz₀Tq'
+    Set.mem_ofPred_eq, Set.mem_ofPred_eq, not_ne_iff, not_ne_iff, hplace₀] at hz₀Tq'
   have hz₀U₁ : z₀ ∈ U₁ := by
     refine ⟨⟨hz₀Λ, fun h => ?_⟩, hz₀Λ, fun h => ?_⟩
     · exact (((ord_placeOfEquation_pos_iff (L.equation_weierstrassP hz₀Λ)

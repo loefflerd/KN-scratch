@@ -251,7 +251,7 @@ theorem mem_Gamma_or_neg_mem_of_vecMulSL {N : ℕ} [NeZero N] (γ : SL(2, ℤ))
     γ ∈ CongruenceSubgroup.Gamma N ∨ -γ ∈ CongruenceSubgroup.Gamma N := by
 
   rcases Nat.lt_or_ge 1 N with hN | hN
-  · haveI : Fact (1 < N) := ⟨hN⟩
+  · have : Fact (1 < N) := ⟨hN⟩
     have h10 : (1 : ZMod N) ≠ 0 := one_ne_zero
     have r1 := h ![1, 0] (fun e ↦ h10 (by simpa using congrFun e 0))
     have r2 := h ![0, 1] (fun e ↦ h10 (by simpa using congrFun e 1))
@@ -840,7 +840,7 @@ theorem transcendental_jA (N : ℕ) [NeZero N] : Transcendental ℂ (jA N) := by
   apply Polynomial.eq_zero_of_infinite_isRoot
   have : {x : ℂ | P.IsRoot x} = Set.univ := by
     ext z
-    simp only [Set.mem_setOf_eq, Set.mem_univ, iff_true, Polynomial.IsRoot.def]
+    simp only [Set.mem_ofPred_eq, Set.mem_univ, iff_true, Polynomial.IsRoot.def]
     obtain ⟨τ, rfl⟩ := j_surjective z
     exact congrFun hfun τ
   rw [this]
@@ -1173,8 +1173,8 @@ theorem finrank_ratJN_field : Module.finrank ↥(WLight.ratJ N) D.field = (level
   rfl
 
 theorem finrank_levelField_field : Module.finrank (levelField N) D.field = 1 := by
-  haveI : Module.Free (levelField N) D.field := Module.Free.of_divisionRing _ _
-  haveI : Module.Free ↥(WLight.ratJ N) (levelField N) := Module.Free.of_divisionRing _ _
+  have : Module.Free (levelField N) D.field := Module.Free.of_divisionRing _ _
+  have : Module.Free ↥(WLight.ratJ N) (levelField N) := Module.Free.of_divisionRing _ _
   have h := Module.finrank_mul_finrank ↥(WLight.ratJ N) (levelField N) D.field
   rw [finrank_ratJN_field, finrank_adjoin_j_levelField, ← levelFixer_eq_pmGamma] at h
   have hpos : 0 < (levelFixer N).index := Nat.pos_of_ne_zero Subgroup.FiniteIndex.index_ne_zero
@@ -1184,8 +1184,8 @@ theorem finrank_levelField_field : Module.finrank (levelField N) D.field = 1 := 
 
 theorem toField_surjective : Function.Surjective D.toField := by
   intro x
-  haveI : Module.Free (levelField N) D.field := Module.Free.of_divisionRing _ _
-  haveI : FiniteDimensional (levelField N) D.field :=
+  have : Module.Free (levelField N) D.field := Module.Free.of_divisionRing _ _
+  have : FiniteDimensional (levelField N) D.field :=
     Module.finite_of_finrank_pos (by rw [finrank_levelField_field]; exact one_pos)
   obtain ⟨c, hc⟩ := (finrank_eq_one_iff_of_nonzero' (1 : D.field) one_ne_zero).mp
     D.finrank_levelField_field x

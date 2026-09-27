@@ -104,7 +104,7 @@ theorem solution
     have hcard : Fintype.card (ZMod M)ˣ ≤ 1 := by
       rw [ZMod.card_units_eq_totient]
       interval_cases M <;> decide
-    haveI : Subsingleton (ZMod M)ˣ := Fintype.card_le_one_iff_subsingleton.mp hcard
+    have : Subsingleton (ZMod M)ˣ := Fintype.card_le_one_iff_subsingleton.mp hcard
     exact hd (by rw [Subsingleton.elim (CohCarrier.gamma0Units M ⟨γ, hγ⟩) 1]; exact Subgroup.one_mem _)
 
   obtain ⟨R, hRq, hRs⟩ :=
@@ -196,7 +196,7 @@ theorem solution
       simpa [CongruenceSubgroup.Gamma0Map] using hβ'.2.1
     rw [h1]
     exact H.one_mem
-  haveI hfinH : (CohCarrier.GammaH M H).FiniteIndex := Subgroup.finiteIndex_of_le hle1
+  have hfinH : (CohCarrier.GammaH M H).FiniteIndex := Subgroup.finiteIndex_of_le hle1
   have hcusp : ∀ {c : OnePoint ℝ}, IsCusp c (CohCarrier.GammaH M H : Subgroup (GL (Fin 2) ℝ)) →
       IsCusp c (CongruenceSubgroup.Gamma1 M : Subgroup (GL (Fin 2) ℝ)) := fun hc =>
     (Subgroup.IsArithmetic.isCusp_iff_isCusp_SL2Z _).mpr

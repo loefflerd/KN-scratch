@@ -191,7 +191,7 @@ theorem eq_basePlace_of_ord_pos (v : Place K (IntermediateField.adjoin K ({t} : 
     rw [Place.mem_center_iff_ord_pos v hw (linGen_ne_zero t htr c), algebraMap_linGen]
     exact hv
   have hcenter : Place.center (Algebra.adjoin K ({t} : Set F)) v hw = Ideal.span {linGen t c} := by
-    haveI : (Ideal.span {linGen t c}).IsPrime := (linPrime t htr c).isPrime
+    have : (Ideal.span {linGen t c}).IsPrime := (linPrime t htr c).isPrime
     have hmax : (Ideal.span {linGen t c}).IsMaximal :=
       IsPrime.to_maximal_ideal (linPrime t htr c).ne_bot
     exact (hmax.eq_of_le (Ideal.IsPrime.ne_top inferInstance)
@@ -248,7 +248,7 @@ theorem coe_adjoinEquivAlong (r : IntermediateField.adjoin K ({y} : Set F)) :
 theorem finiteAlong_of_finiteDimensional_adjoin
     [h : FiniteDimensional (IntermediateField.adjoin K ({ι y} : Set M)) M] :
     FiniteAlong K ι := by
-  letI := algebraAlong ι
+  let := algebraAlong ι
   set R' := IntermediateField.adjoin K ({ι y} : Set M)
   obtain ⟨S, hS⟩ := h.fg_top
   refine ⟨⟨S, ?_⟩⟩
@@ -272,7 +272,7 @@ theorem finiteAlong_of_finiteDimensional_adjoin
 theorem separableAlong_of_isSeparable_adjoin
     [Algebra.IsSeparable (IntermediateField.adjoin K ({ι y} : Set M)) M] :
     SeparableAlong K ι := by
-  letI := algebraAlong ι
+  let := algebraAlong ι
   set R := IntermediateField.adjoin K ({y} : Set F)
   set R' := IntermediateField.adjoin K ({ι y} : Set M)
   refine ⟨fun b => ?_⟩
@@ -291,15 +291,15 @@ theorem separableAlong_of_isSeparable_adjoin
   exact hq.of_dvd (minpoly.dvd F b hqb)
 
 theorem isIntegral_of_finiteAlong (hfin : FiniteAlong K ι) : ι.toRingHom.IsIntegral := by
-  letI := algebraAlong ι
-  haveI : Module.Finite F M := hfin
+  let := algebraAlong ι
+  have : Module.Finite F M := hfin
   intro m
   exact Algebra.IsIntegral.isIntegral (R := F) m
 
 theorem normalAlong_of_normal_adjoin
     [Normal (IntermediateField.adjoin K ({ι y} : Set M)) M] :
     @Normal F M _ _ (algebraAlong ι) := by
-  letI := algebraAlong ι
+  let := algebraAlong ι
   set R := IntermediateField.adjoin K ({y} : Set F)
   set R' := IntermediateField.adjoin K ({ι y} : Set M)
   set e := adjoinEquivAlong ι y
@@ -448,9 +448,9 @@ theorem psi'_baseHom (ψ ψ' : F →ₐ[K] M) (hψ : ψ x = t) (hψ' : ψ' x = t
 
 theorem exists_algEquiv_comp_eq [Normal K⟮t⟯ M] (ψ ψ' : F →ₐ[K] M) (hψ : ψ x = t)
     (hψ' : ψ' x = t) : ∃ τ : M ≃ₐ[K⟮t⟯] M, ∀ f, τ (ψ f) = ψ' f := by
-  letI : Algebra K⟮t⟯ F := (baseHom x t ψ hψ).toAlgebra
-  letI : Algebra F M := algebraAlong ψ
-  haveI : IsScalarTower K⟮t⟯ F M := IsScalarTower.of_algebraMap_eq fun r =>
+  let : Algebra K⟮t⟯ F := (baseHom x t ψ hψ).toAlgebra
+  let : Algebra F M := algebraAlong ψ
+  have : IsScalarTower K⟮t⟯ F M := IsScalarTower.of_algebraMap_eq fun r =>
     (psi_baseHom x t ψ hψ r).symm
   let ϕ : F →ₐ[K⟮t⟯] M :=
     { (ψ' : F →+* M) with
@@ -459,7 +459,7 @@ theorem exists_algEquiv_comp_eq [Normal K⟮t⟯ M] (ψ ψ' : F →ₐ[K] M) (h�
         exact psi'_baseHom x t ψ ψ' hψ hψ' r }
   have hϕ : ∀ f, ϕ f = ψ' f := fun f => rfl
   let τh : M →ₐ[K⟮t⟯] M := ϕ.liftNormal M
-  haveI : Algebra.IsAlgebraic K⟮t⟯ M := Algebra.IsIntegral.isAlgebraic
+  have : Algebra.IsAlgebraic K⟮t⟯ M := Algebra.IsIntegral.isAlgebraic
   refine ⟨AlgEquiv.ofBijective τh (Algebra.IsAlgebraic.algHom_bijective τh), fun f => ?_⟩
   show τh (algebraMap F M f) = ψ' f
   rw [AlgHom.liftNormal_commutes]
@@ -480,20 +480,20 @@ theorem restrictAlong_comp (ψ : F →ₐ[K] M) (τ : M ≃ₐ[K⟮t⟯] M)
 
 theorem finiteAlong_norm [FiniteDimensional K⟮t⟯ M] (ψ : F →ₐ[K] M) (hψ : ψ x = t) :
     FiniteAlong K ψ := by
-  haveI : FiniteDimensional K⟮ψ x⟯ M := by rw [hψ]; infer_instance
+  have : FiniteDimensional K⟮ψ x⟯ M := by rw [hψ]; infer_instance
   exact finiteAlong_of_finiteDimensional_adjoin ψ x
 
 theorem separableAlong_norm [FiniteDimensional K⟮t⟯ M] [IsGalois K⟮t⟯ M] (ψ : F →ₐ[K] M)
     (hψ : ψ x = t) : SeparableAlong K ψ := by
-  haveI : IsGalois K⟮ψ x⟯ M := by rw [hψ]; infer_instance
+  have : IsGalois K⟮ψ x⟯ M := by rw [hψ]; infer_instance
   exact separableAlong_of_isSeparable_adjoin ψ x
 
 theorem isGalois_along [FiniteDimensional K⟮t⟯ M] [IsGalois K⟮t⟯ M] (ψ : F →ₐ[K] M)
     (hψ : ψ x = t) : @IsGalois F _ M _ (algebraAlong ψ) := by
-  letI := algebraAlong ψ
-  haveI : IsGalois K⟮ψ x⟯ M := by rw [hψ]; infer_instance
-  haveI : Algebra.IsSeparable F M := separableAlong_of_isSeparable_adjoin ψ x
-  haveI : Normal F M := normalAlong_of_normal_adjoin ψ x
+  let := algebraAlong ψ
+  have : IsGalois K⟮ψ x⟯ M := by rw [hψ]; infer_instance
+  have : Algebra.IsSeparable F M := separableAlong_of_isSeparable_adjoin ψ x
+  have : Normal F M := normalAlong_of_normal_adjoin ψ x
   exact isGalois_iff.mpr ⟨inferInstance, inferInstance⟩
 
 end AlongPsi
@@ -577,9 +577,9 @@ theorem exists_restrictAlong_eq (w : Place K F) (hw : 0 < w.ord (x - algebraMap 
     have hf := Place.ord_restrictAlong ι (hint ι hι) W (x - algebraMap K F j₀)
     rw [psi_sub x t j₀ ι hι, hWw] at hf
     rw [hf]
-    letI := algebraAlong ι
-    haveI := isScalarTower_along (K := K) ι
-    haveI := isIntegral_along (K := K) ι (hint ι hι)
+    let := algebraAlong ι
+    have := isScalarTower_along (K := K) ι
+    have := isIntegral_along (K := K) ι (hint ι hι)
     have he : 0 < Place.ramificationIndexAlong ι W := W.ramificationIndex_pos (F := F)
     exact mul_pos (by exact_mod_cast he) hw
   obtain ⟨σ, hσ⟩ := exists_smul_eq_of_ord_pos t j₀ W₀ hW₀ W hW
@@ -609,10 +609,10 @@ theorem restrictAlong_eq_iff (ψ ψ' : F →ₐ[K] M) (hψ : ψ x = t) (hψ' : �
     subst hψ'eq
     rw [restrictAlong_comp t ψ τ _ (hint ψ hψ) W₀] at h
 
-    letI := algebraAlong ψ
-    haveI := isScalarTower_along (K := K) ψ
-    haveI : Module.Finite F M := finiteAlong_norm x t ψ hψ
-    haveI : IsGalois F M := isGalois_along x t ψ hψ
+    let := algebraAlong ψ
+    have := isScalarTower_along (K := K) ψ
+    have : Module.Finite F M := finiteAlong_norm x t ψ hψ
+    have : IsGalois F M := isGalois_along x t ψ hψ
     obtain ⟨u, hu⟩ := Place.exists_algEquiv_smul_eq_of_restrict_eq (K := K) (F' := F) W₀ (τ⁻¹ • W₀)
       h.symm
     have huc : ∀ f, (u : M ≃+* M) (ψ f) = ψ f := fun f => u.commutes f
@@ -654,7 +654,7 @@ theorem setOf_sameClass_eq_orbit (ψ : Emb x t (K := K)) :
     {ψ' : Emb x t (K := K) | W₀.restrictAlong ψ'.1 (hint ψ'.1 ψ'.2) = W₀.restrictAlong ψ.1 (hint ψ.1 ψ.2)} =
       MulAction.orbit (MulAction.stabilizer (M ≃ₐ[K⟮t⟯] M) W₀) ψ := by
   ext ψ'
-  rw [Set.mem_setOf_eq, MulAction.mem_orbit_iff, eq_comm,
+  rw [Set.mem_ofPred_eq, MulAction.mem_orbit_iff, eq_comm,
     restrictAlong_eq_iff x t hint W₀ ψ.1 ψ'.1 ψ.2 ψ'.2]
   constructor
   · rintro ⟨σ, hσ, h⟩
@@ -667,10 +667,10 @@ include hW₀ in
 theorem card_stabilizer_emb (ψ : Emb x t (K := K)) :
     Nat.card (MulAction.stabilizer (MulAction.stabilizer (M ≃ₐ[K⟮t⟯] M) W₀) ψ) =
       Place.ramificationIndexAlong ψ.1 W₀ := by
-  letI := algebraAlong ψ.1
-  haveI := isScalarTower_along (K := K) ψ.1
-  haveI : Module.Finite F M := finiteAlong_norm x t ψ.1 ψ.2
-  haveI : IsGalois F M := isGalois_along x t ψ.1 ψ.2
+  let := algebraAlong ψ.1
+  have := isScalarTower_along (K := K) ψ.1
+  have : Module.Finite F M := finiteAlong_norm x t ψ.1 ψ.2
+  have : IsGalois F M := isGalois_along x t ψ.1 ψ.2
   have hdeg : W₀.deg = 1 := Place.deg_eq_one_of_isAlgClosed W₀
     (Place.deg_ne_zero_of_finiteDimensional_adjoin t (transcendental_t t j₀ W₀ hW₀) W₀)
   rw [show Place.ramificationIndexAlong ψ.1 W₀ = W₀.ramificationIndex F from rfl,
@@ -728,9 +728,9 @@ theorem ord_restrictAlong_eq_card (ψ : F →ₐ[K] M) (hψ : ψ x = t) :
   rw [h2, h3] at h1
 
   have he : 0 < Place.ramificationIndexAlong ψ W₀ := by
-    letI := algebraAlong ψ
-    haveI := isScalarTower_along (K := K) ψ
-    haveI := isIntegral_along (K := K) ψ (hint ψ hψ)
+    let := algebraAlong ψ
+    have := isScalarTower_along (K := K) ψ
+    have := isIntegral_along (K := K) ψ (hint ψ hψ)
     exact W₀.ramificationIndex_pos (F := F)
   have h6 : (Place.ramificationIndexAlong ψ W₀ : ℤ) * (W₀.restrictAlong ψ (hint ψ hψ)).ord
       (x - algebraMap K F j₀) = (Place.ramificationIndexAlong ψ W₀ : ℤ) *
@@ -773,8 +773,8 @@ theorem solution
         (W₀.restrictAlong ψ (hint ψ hψ)).ord (x - algebraMap K F j₀) =
           Nat.card {ψ' : {ψ' : F →ₐ[K] M // ψ' x = t} //
             W₀.restrictAlong ψ'.1 (hint ψ'.1 ψ'.2) = W₀.restrictAlong ψ (hint ψ hψ)}) := by
-  haveI := hfin
-  haveI := hgal
+  have := hfin
+  have := hgal
   refine ⟨?_, fun ψ hψ => ord_restrictAlong_pos x t j₀ W₀ hW₀ ψ hψ (hint ψ hψ),
     fun w hw => exists_restrictAlong_eq x t j₀ ι hι hint W₀ hW₀ w hw,
     fun ψ ψ' hψ hψ' => restrictAlong_eq_iff x t hint W₀ ψ ψ' hψ hψ',

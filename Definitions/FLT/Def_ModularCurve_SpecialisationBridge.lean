@@ -57,7 +57,7 @@ theorem nonsingular_specialFibre (W : WeierstrassCurve H) (hW : IntegralCoeffs W
     (hΔ : W.Δ.orderTop = 0) {x y : H} (hx : 0 ≤ x.orderTop) (hy : 0 ≤ y.orderTop)
     (h : W.toAffine.Nonsingular x y) :
     (specialFibre W).toAffine.Nonsingular (x.coeff 0) (y.coeff 0) := by
-  haveI := isElliptic_specialFibre W hW hΔ
+  have := isElliptic_specialFibre W hW hΔ
   rw [← WeierstrassCurve.Affine.equation_iff_nonsingular]
   exact equation_specialFibre W hW hx hy h.1
 

@@ -26,14 +26,14 @@ theorem step {ℓ : ℕ} [NeZero ℓ] (data : ModularPolynomialData ℓ) (d : �
     (hd : IsIntegral F₀ (jqNModC K d)) : IsIntegral F₀ (jqNModC K (d * ℓ)) := by
 
   set E : IntermediateField F₀ L := IntermediateField.adjoin F₀ ({jqNModC K d} : Set L) with hE
-  haveI : FiniteDimensional F₀ E := IntermediateField.adjoin.finiteDimensional hd
+  have : FiniteDimensional F₀ E := IntermediateField.adjoin.finiteDimensional hd
 
   have hmem : jqNModC K d ∈ E.restrictScalars K := by
     rw [IntermediateField.mem_restrictScalars]; exact IntermediateField.mem_adjoin_simple_self _ _
   have h1 : IsIntegral (E.restrictScalars K) (jqNModC K (d * ℓ)) := isIntegral_jqNModC_mul _ data d hmem
 
   have h2 : IsIntegral E (jqNModC K (d * ℓ)) := h1
-  haveI : Algebra.IsIntegral F₀ E := Algebra.IsIntegral.of_finite F₀ E
+  have : Algebra.IsIntegral F₀ E := Algebra.IsIntegral.of_finite F₀ E
   exact isIntegral_trans _ h2
 
 theorem base : IsIntegral F₀ (jqModC K) :=
@@ -58,8 +58,8 @@ theorem isIntegral_jqNModC_all (hΦ : ModularPolynomialFamily) :
       rintro rfl
       rw [mul_zero] at hd
       exact absurd hd (by omega)
-    haveI : NeZero d := ⟨hd0⟩
-    haveI : NeZero N.minFac := ⟨hp.ne_zero⟩
+    have : NeZero d := ⟨hd0⟩
+    have : NeZero N.minFac := ⟨hp.ne_zero⟩
     have hN' : N = d * N.minFac := hd.trans (mul_comm _ _)
     have hdlt : d < N := by
       have h2 : 2 ≤ N.minFac := hp.two_le

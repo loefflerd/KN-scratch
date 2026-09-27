@@ -429,7 +429,7 @@ theorem exists_chart {N : ℕ} [NeZero N] {F : ℍ → ℂ} (hF : Good N F)
   set P := qExpansion N F with hP
 
   have hsummN : Summable fun n : ℕ => ‖P.coeff n‖ * (1 / 2 : ℝ) ^ n := by
-    letI : FiniteDimensional ℝ ℂ := Complex.basisOneI.finiteDimensional_of_finite
+    let : FiniteDimensional ℝ ℂ := Complex.basisOneI.finiteDimensional_of_finite
     have h1 : HasSum (fun n : ℕ => P.coeff n • ((1 / 2 : ℝ) : ℂ) ^ n)
         (cuspFunction N F ((1 / 2 : ℝ) : ℂ)) :=
       hasSum_qExpansion_of_norm_lt hN pF dF bF (by
@@ -629,7 +629,7 @@ theorem good_one_modularForm {Γ : Subgroup SL(2, ℤ)} (hT : ModularGroup.T ∈
   have h1 : (1 : ℝ) ∈ (Γ : Subgroup (GL (Fin 2) ℝ)).strictPeriods := by
     rw [Subgroup.strictPeriods_eq_zmultiples_one_of_T_mem hT]
     exact AddSubgroup.mem_zmultiples _
-  haveI : Fact (IsCusp OnePoint.infty (Γ : Subgroup (GL (Fin 2) ℝ))) :=
+  have : Fact (IsCusp OnePoint.infty (Γ : Subgroup (GL (Fin 2) ℝ))) :=
     ⟨Subgroup.isCusp_of_mem_strictPeriods one_pos h1⟩
   exact
     { periodic := SlashInvariantFormClass.periodic_comp_ofComplex f h1

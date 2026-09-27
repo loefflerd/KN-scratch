@@ -191,7 +191,7 @@ include hζ in
 omit [Algebra ℚ K] in
 
 lemma zeta_mul_zeta_pow (b : Fin ℓ) : ζ * ζ ^ (b : ℕ) = ζ ^ (((b + 1 : Fin ℓ)) : ℕ) := by
-  haveI : NeZero ℓ := ⟨hℓ.out.ne_zero⟩
+  have : NeZero ℓ := ⟨hℓ.out.ne_zero⟩
   rw [← pow_succ', Fin.val_add, Fin.val_one', Nat.add_mod_mod]
   conv_lhs => rw [← Nat.div_add_mod ((b : ℕ) + 1) ℓ, pow_add, pow_mul, zeta_pow_ell ℓ ζ hζ, one_pow, one_mul]
 
@@ -199,7 +199,7 @@ include hζ in
 
 lemma qTwist_slotH (f g : LaurentSeries ℚ) (i : Fin (ℓ + 1)) :
     qTwist ζ (slotH ℓ ζ f g i) = slotH ℓ ζ f g (liftPerm ℓ (Equiv.addRight (1 : Fin ℓ)) i) := by
-  haveI : NeZero ℓ := ⟨hℓ.out.ne_zero⟩
+  have : NeZero ℓ := ⟨hℓ.out.ne_zero⟩
   refine Fin.cases ?_ (fun b => ?_) i
   · rw [liftPerm_zero, slotH_zero, coeffEmb_qExpand, qTwist_qExpand, zpow_natCast, zeta_pow_ell ℓ ζ hζ,
       qTwist_one_apply]
@@ -208,7 +208,7 @@ lemma qTwist_slotH (f g : LaurentSeries ℚ) (i : Fin (ℓ + 1)) :
 include hζ in
 lemma qTwist_conj (i : Fin (ℓ + 1)) :
     qTwist ζ (PhiGen.conj ℓ ζ i) = PhiGen.conj ℓ ζ (liftPerm ℓ (Equiv.addRight (1 : Fin ℓ)) i) := by
-  haveI : NeZero ℓ := ⟨hℓ.out.ne_zero⟩
+  have : NeZero ℓ := ⟨hℓ.out.ne_zero⟩
   refine Fin.cases ?_ (fun b => ?_) i
   · rw [liftPerm_zero, PhiGen.conj_zero, qTwist_qExpand]
     congr 1
@@ -562,7 +562,7 @@ lemma heckeDiag_smul_S_T_pow_smul [NeZero ℓ] (b : ℕ) (τ : ℍ) :
 include hσ in
 
 lemma realL_conj (i : Fin (ℓ + 1)) : RealL ℓ (coeffMap σ (PhiGen.conj ℓ ζ i)) (slotJ ℓ i) := by
-  haveI : NeZero ℓ := ⟨hℓ.out.ne_zero⟩
+  have : NeZero ℓ := ⟨hℓ.out.ne_zero⟩
   refine Fin.cases ?_ (fun b => ?_) i
   · intro τ
     have h := hasSum_qParam_heckeDiagMatrix_smul ℓ (coeffMap castC jq) jt realL_jqC τ
@@ -599,7 +599,7 @@ include hinv in
 
 lemma slots_smul (γ : SL(2, ℤ)) : ∃ e : Equiv.Perm (Fin (ℓ + 1)),
     (∀ i τ, slotF ℓ F i (γ • τ) = slotF ℓ F (e i) τ) ∧ (∀ i τ, slotJ ℓ i (γ • τ) = slotJ ℓ (e i) τ) := by
-  haveI : NeZero ℓ := ⟨hℓ.out.ne_zero⟩
+  have : NeZero ℓ := ⟨hℓ.out.ne_zero⟩
   obtain ⟨e, he⟩ := exists_perm_gamma0_cosetReps ℓ γ
   have key : ∀ (i : Fin (ℓ + 1)) (τ : ℍ),
       cosetRep ℓ i • γ • τ = (cosetRep ℓ i * γ * (cosetRep ℓ (e i))⁻¹) • cosetRep ℓ (e i) • τ := by
@@ -690,7 +690,7 @@ lemma iota_eq_slotH_zero : iota ℓ f = slotH ℓ ζ f g 0 := by
 
 omit [IsGalois ℚ K] [FiniteDimensional ℚ K] in
 lemma iota_jqN : iota (K := K) ℓ (jqN ℓ) = PhiGen.conj ℓ ζ 0 := by
-  haveI : NeZero ℓ := ⟨hℓ.out.ne_zero⟩
+  have : NeZero ℓ := ⟨hℓ.out.ne_zero⟩
   rw [iota_apply, jqN, qExpand_qExpand, PhiGen.conj_zero, coeffEmb_qExpand]
 
 def dHat : LaurentSeries K := ∏ m ∈ Finset.univ.erase (0 : Fin (ℓ + 1)), (PhiGen.conj ℓ ζ 0 - PhiGen.conj ℓ ζ m)
@@ -708,7 +708,7 @@ lemma exists_sum_eq_mul_dHat (hmem : ∀ (k : ℕ) (ξ : LaurentSeries ℚ),
       (interpK ℓ ζ f g).coeff k = coeffEmb K (qExpand ℚ ℓ ξ) → ξ ∈ Algebra.adjoin ℚ {jq}) :
     ∃ x : LaurentSeries ℚ, x ∈ modularFunctionField ℓ ∧ iota ℓ x = iota ℓ f * dHat ℓ ζ := by
   classical
-  haveI : NeZero ℓ := ⟨hℓ.out.ne_zero⟩
+  have : NeZero ℓ := ⟨hℓ.out.ne_zero⟩
   choose ξ hξ using fun k => exists_interpK_coeff_eq ℓ ζ hζ f g k
   have hadj : Algebra.adjoin ℚ {jq} ≤ (modularFunctionField ℓ).toSubalgebra :=
     Algebra.adjoin_le (Set.singleton_subset_iff.mpr (jq_mem ℓ))
@@ -722,7 +722,7 @@ include hζ hσ hF hG hinv in
 
 theorem mem_modularFunctionField_of_data : f ∈ modularFunctionField ℓ := by
   classical
-  haveI : NeZero ℓ := ⟨hℓ.out.ne_zero⟩
+  have : NeZero ℓ := ⟨hℓ.out.ne_zero⟩
 
   obtain ⟨x, hx, hιx⟩ := exists_sum_eq_mul_dHat ℓ ζ hζ f g
     (fun k ξ h => mem_adjoin_of_interpK_coeff_eq ℓ ζ σ hσ f g F hF hG hinv k ξ h)
@@ -754,7 +754,7 @@ include hζ hσ hF hG hinv in
 
 theorem isIntegral_of_data : IsIntegral (Algebra.adjoin ℚ {jq}) f := by
   classical
-  haveI : NeZero ℓ := ⟨hℓ.out.ne_zero⟩
+  have : NeZero ℓ := ⟨hℓ.out.ne_zero⟩
   choose π hπ using fun k => exists_conjK_coeff_eq ℓ ζ hζ f g k
   have hπmem : ∀ k, π k ∈ Algebra.adjoin ℚ {jq} := fun k =>
     mem_adjoin_of_conjK_coeff_eq ℓ ζ σ hσ f g F hF hG hinv k (π k) (hπ k)
@@ -813,9 +813,9 @@ def sigma (ζ : (CyclotomicField ℓ ℚ)ˣ) (hζ : IsPrimitiveRoot (ζ : Cyclot
 
 lemma sigma_zeta (ζ : (CyclotomicField ℓ ℚ)ˣ) (hζ : IsPrimitiveRoot (ζ : CyclotomicField ℓ ℚ) ℓ) :
     sigma ℓ ζ hζ (ζ : CyclotomicField ℓ ℚ) = expRoot ℓ := by
-  letI : Algebra ℚ (CyclotomicField ℓ ℚ) := CyclotomicField.algebra ℓ ℚ
-  haveI : NeZero ℓ := ⟨hℓ.out.ne_zero⟩
-  haveI := CyclotomicField.isCyclotomicExtension ℓ ℚ
+  let : Algebra ℚ (CyclotomicField ℓ ℚ) := CyclotomicField.algebra ℓ ℚ
+  have : NeZero ℓ := ⟨hℓ.out.ne_zero⟩
+  have := CyclotomicField.isCyclotomicExtension ℓ ℚ
   let e := hζ.embeddingsEquivPrimitiveRoots ℂ (Polynomial.cyclotomic.irreducible_rat hℓ.out.pos)
   let r : primitiveRoots ℓ ℂ := ⟨expRoot ℓ, (mem_primitiveRoots hℓ.out.pos).mpr (isPrimitiveRoot_expRoot ℓ)⟩
   have h := IsPrimitiveRoot.embeddingsEquivPrimitiveRoots_apply_coe hζ ℂ
@@ -831,12 +831,12 @@ variable (f g : LaurentSeries ℚ) (F : ℍ → ℂ)
 include hF hG hinv in
 
 theorem mem_modularFunctionField : f ∈ modularFunctionField ℓ := by
-  haveI : NeZero ((ℓ : ℕ) : ℚ) := ⟨Nat.cast_ne_zero.mpr hℓ.out.ne_zero⟩
-  haveI hcyc : IsCyclotomicExtension {ℓ} ℚ (CyclotomicField ℓ ℚ) :=
+  have : NeZero ((ℓ : ℕ) : ℚ) := ⟨Nat.cast_ne_zero.mpr hℓ.out.ne_zero⟩
+  have hcyc : IsCyclotomicExtension {ℓ} ℚ (CyclotomicField ℓ ℚ) :=
     CyclotomicField.isCyclotomicExtension (n := ℓ) (K := ℚ)
-  haveI : FiniteDimensional ℚ (CyclotomicField ℓ ℚ) :=
+  have : FiniteDimensional ℚ (CyclotomicField ℓ ℚ) :=
     IsCyclotomicExtension.finiteDimensional {ℓ} ℚ (CyclotomicField ℓ ℚ)
-  haveI : IsGalois ℚ (CyclotomicField ℓ ℚ) :=
+  have : IsGalois ℚ (CyclotomicField ℓ ℚ) :=
     IsCyclotomicExtension.isGalois (S := {ℓ}) (K := ℚ) (L := CyclotomicField ℓ ℚ)
   obtain ⟨z, hz⟩ := IsCyclotomicExtension.exists_isPrimitiveRoot ℚ (CyclotomicField ℓ ℚ)
     (Set.mem_singleton ℓ) hℓ.out.ne_zero
@@ -849,12 +849,12 @@ theorem mem_modularFunctionField : f ∈ modularFunctionField ℓ := by
 include hF hG hinv in
 
 theorem isIntegral_adjoin_jq : IsIntegral (Algebra.adjoin ℚ {jq}) f := by
-  haveI : NeZero ((ℓ : ℕ) : ℚ) := ⟨Nat.cast_ne_zero.mpr hℓ.out.ne_zero⟩
-  haveI hcyc : IsCyclotomicExtension {ℓ} ℚ (CyclotomicField ℓ ℚ) :=
+  have : NeZero ((ℓ : ℕ) : ℚ) := ⟨Nat.cast_ne_zero.mpr hℓ.out.ne_zero⟩
+  have hcyc : IsCyclotomicExtension {ℓ} ℚ (CyclotomicField ℓ ℚ) :=
     CyclotomicField.isCyclotomicExtension (n := ℓ) (K := ℚ)
-  haveI : FiniteDimensional ℚ (CyclotomicField ℓ ℚ) :=
+  have : FiniteDimensional ℚ (CyclotomicField ℓ ℚ) :=
     IsCyclotomicExtension.finiteDimensional {ℓ} ℚ (CyclotomicField ℓ ℚ)
-  haveI : IsGalois ℚ (CyclotomicField ℓ ℚ) :=
+  have : IsGalois ℚ (CyclotomicField ℓ ℚ) :=
     IsCyclotomicExtension.isGalois (S := {ℓ}) (K := ℚ) (L := CyclotomicField ℓ ℚ)
   obtain ⟨z, hz⟩ := IsCyclotomicExtension.exists_isPrimitiveRoot ℚ (CyclotomicField ℓ ℚ)
     (Set.mem_singleton ℓ) hℓ.out.ne_zero
@@ -884,7 +884,7 @@ variable {K : Type} [Field K] [Algebra ℚ K] [IsGalois ℚ K] [FiniteDimensiona
   (hinv : ∀ γ ∈ CongruenceSubgroup.Gamma0 ℓ, ∀ τ : ℍ, F (γ • τ) = F τ)
 
 lemma realL_jtN_S : RealL ℓ (coeffMap castC jq) (fun τ => jtN ℓ (ModularGroup.S • τ)) := by
-  haveI : NeZero ℓ := ⟨hℓ.out.ne_zero⟩
+  have : NeZero ℓ := ⟨hℓ.out.ne_zero⟩
   intro τ
 
   have hpt : ModularForm.heckeDiagMatrix ℓ • ModularGroup.S • τ = ModularGroup.S • ModularForm.heckeMatrix ℓ 0 • τ := by
@@ -937,7 +937,7 @@ lemma embW_apply (w : modularFunctionFieldFull ℓ ≃ₐ[ℚ] modularFunctionFi
 lemma embW_of_mem_adjoin (w : modularFunctionFieldFull ℓ ≃ₐ[ℚ] modularFunctionFieldFull ℓ)
     (hw : IsFrickeAutFull ℓ w) (ξ : LaurentSeries ℚ) (hξ : ξ ∈ Algebra.adjoin ℚ {jq})
     (hξ' : ξ ∈ modularFunctionFieldFull ℓ) : embW ℓ w ⟨ξ, hξ'⟩ = qExpand ℚ ℓ ξ := by
-  haveI : NeZero ℓ := ⟨hℓ.out.ne_zero⟩
+  have : NeZero ℓ := ⟨hℓ.out.ne_zero⟩
   revert hξ'
   induction hξ using Algebra.adjoin_induction with
   | mem x hx =>
@@ -989,7 +989,7 @@ theorem fricke_transport (w : modularFunctionFieldFull ℓ ≃ₐ[ℚ] modularFu
     (hw : IsFrickeAutFull ℓ w) (hf : f ∈ modularFunctionFieldFull ℓ) :
     ((w ⟨f, hf⟩ : modularFunctionFieldFull ℓ) : LaurentSeries ℚ) = g := by
   classical
-  haveI : NeZero ℓ := ⟨hℓ.out.ne_zero⟩
+  have : NeZero ℓ := ⟨hℓ.out.ne_zero⟩
   have hℓpos : (0 : ℝ) < ℓ := by exact_mod_cast hℓ.out.pos
   have hadj : Algebra.adjoin ℚ {jq} ≤ (modularFunctionFieldFull ℓ).toSubalgebra :=
     Algebra.adjoin_le (Set.singleton_subset_iff.mpr (jq_mem_full ℓ))
@@ -1142,13 +1142,13 @@ end
 p2m_reactivate "P2MW.S_ModularCurve_coe_frickeInvolutionFull_eq_of_hasSum_of_gamma0_invariant.ModularCurve.QExpN P2MW.S_ModularCurve_coe_frickeInvolutionFull_eq_of_hasSum_of_gamma0_invariant.ModularCurve"
 
 theorem solution (ℓ : ℕ) [Fact (Nat.Prime ℓ)] (f g : LaurentSeries ℚ) (F : UpperHalfPlane → ℂ) (hF : ∀ τ : UpperHalfPlane, HasSum (fun m : ℤ => ((f.coeff m : ℚ) : ℂ) * Function.Periodic.qParam 1 (τ : ℂ) ^ m) (F τ)) (hG : ∀ τ : UpperHalfPlane, HasSum (fun m : ℤ => ((g.coeff m : ℚ) : ℂ) * Function.Periodic.qParam ℓ (τ : ℂ) ^ m) (F (ModularGroup.S • τ))) (hinv : ∀ γ ∈ CongruenceSubgroup.Gamma0 ℓ, ∀ τ : UpperHalfPlane, F (γ • τ) = F τ) (hf : f ∈ ModularCurve.modularFunctionFieldFull ℓ) : ((ModularCurve.frickeInvolutionFull ℓ ⟨f, hf⟩ : ModularCurve.modularFunctionFieldFull ℓ) : LaurentSeries ℚ) = g := by
-  haveI hℓ : Fact (Nat.Prime ℓ) := inferInstance
-  haveI : NeZero ((ℓ : ℕ) : ℚ) := ⟨Nat.cast_ne_zero.mpr hℓ.out.ne_zero⟩
-  haveI hcyc : IsCyclotomicExtension {ℓ} ℚ (CyclotomicField ℓ ℚ) :=
+  have hℓ : Fact (Nat.Prime ℓ) := inferInstance
+  have : NeZero ((ℓ : ℕ) : ℚ) := ⟨Nat.cast_ne_zero.mpr hℓ.out.ne_zero⟩
+  have hcyc : IsCyclotomicExtension {ℓ} ℚ (CyclotomicField ℓ ℚ) :=
     CyclotomicField.isCyclotomicExtension (n := ℓ) (K := ℚ)
-  haveI : FiniteDimensional ℚ (CyclotomicField ℓ ℚ) :=
+  have : FiniteDimensional ℚ (CyclotomicField ℓ ℚ) :=
     IsCyclotomicExtension.finiteDimensional {ℓ} ℚ (CyclotomicField ℓ ℚ)
-  haveI : IsGalois ℚ (CyclotomicField ℓ ℚ) :=
+  have : IsGalois ℚ (CyclotomicField ℓ ℚ) :=
     IsCyclotomicExtension.isGalois (S := {ℓ}) (K := ℚ) (L := CyclotomicField ℓ ℚ)
   obtain ⟨z, hz⟩ := IsCyclotomicExtension.exists_isPrimitiveRoot ℚ (CyclotomicField ℓ ℚ)
     (Set.mem_singleton ℓ) hℓ.out.ne_zero

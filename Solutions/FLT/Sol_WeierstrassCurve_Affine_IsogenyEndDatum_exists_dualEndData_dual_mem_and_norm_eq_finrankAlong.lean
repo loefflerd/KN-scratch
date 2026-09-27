@@ -209,7 +209,7 @@ theorem isFinitePlace_iff_exists_placeOfEquation [IsAlgClosed F]
   constructor
   · intro hv
 
-    haveI := hv.centre_isPrime
+    have := hv.centre_isPrime
     have hmax : hv.centre.IsMaximal := Ideal.IsPrime.isMaximal hv.centre_isPrime hv.centre_ne_bot
     obtain ⟨x, y, hxy, hXY⟩ :=
       CoordinateRing.exists_eq_XYIdeal (W := W) (P := hv.centre) hv.centre_ne_bot
@@ -218,7 +218,7 @@ theorem isFinitePlace_iff_exists_placeOfEquation [IsAlgClosed F]
     set w : HeightOneSpectrum W.CoordinateRing := heightOneSpectrumOfEquation hxy with hw
     set A : ValuationSubring W.FunctionField :=
       HeightOneSpectrum.valuationSubringAtPrime W.FunctionField w with hA
-    haveI hAded : IsDedekindDomain A := by rw [hA]; infer_instance
+    have hAded : IsDedekindDomain A := by rw [hA]; infer_instance
     have hle : A ≤ v.toValuationSubring := by
       intro z hz
       rw [hA] at hz
@@ -334,13 +334,13 @@ variable {V W : Affine F} [V.IsElliptic] [W.IsElliptic]
 
 theorem normFormulaAlong_of_elliptic (ι : V.FunctionField →ₐ[F] W.FunctionField)
     (hfin : FiniteAlong F ι) : NormFormulaAlong F ι hfin := by
-  haveI : HasPrincipalDivisors F W.FunctionField := hasPrincipalDivisors_functionField W
-  haveI : CharZero V.FunctionField :=
+  have : HasPrincipalDivisors F W.FunctionField := hasPrincipalDivisors_functionField W
+  have : CharZero V.FunctionField :=
     charZero_of_injective_algebraMap (algebraMap F V.FunctionField).injective
   have hsep : SeparableAlong F ι := by
-    letI := algebraAlong ι
-    haveI := isScalarTower_along ι
-    haveI : Module.Finite V.FunctionField W.FunctionField := hfin
+    let := algebraAlong ι
+    have := isScalarTower_along ι
+    have : Module.Finite V.FunctionField W.FunctionField := hfin
     show Algebra.IsSeparable V.FunctionField W.FunctionField
     infer_instance
   exact AlgebraicCurve.normFormulaAlong ι hfin hsep
@@ -549,7 +549,7 @@ p2m_open "Real"
 end Real
 p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_dualEndData_dual_mem_and_norm_eq_finrankAlong.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_dualEndData_dual_mem_and_norm_eq_finrankAlong.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_dualEndData_dual_mem_and_norm_eq_finrankAlong.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_dualEndData_dual_mem_and_norm_eq_finrankAlong.WeierstrassCurve.Affine"
 namespace Set
-p2m_export "Set" "codRestrict restrict Finite.preimage preimage diagonal mem_compl_iff image ext finite_singleton image_singleton center singleton_subset_iff finite_empty mem_singleton_iff mem_biUnion indicator Finite.subset mem_union mem_insert_of_mem Finite.infinite_compl mem_setOf_eq mem_preimage mem_insert_iff inclusion mem_insert range Finite.biUnion not_finite image_pair"
+p2m_export "Set" "codRestrict restrict Finite.preimage preimage diagonal mem_compl_iff image ext finite_singleton image_singleton center singleton_subset_iff finite_empty mem_singleton_iff mem_biUnion indicator Finite.subset mem_union mem_insert_of_mem Finite.infinite_compl mem_ofPred_eq mem_preimage mem_insert_iff inclusion mem_insert range Finite.biUnion not_finite image_pair"
 p2m_open "Set"
 end Set
 p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_dualEndData_dual_mem_and_norm_eq_finrankAlong.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_dualEndData_dual_mem_and_norm_eq_finrankAlong.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_dualEndData_dual_mem_and_norm_eq_finrankAlong.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_dualEndData_dual_mem_and_norm_eq_finrankAlong.WeierstrassCurve.Affine"
@@ -720,7 +720,7 @@ variable (W : WeierstrassCurve K) [W.IsElliptic] [WeierstrassCurve.Affine.GenusO
 theorem cmm5_dp_natCard_ker_natCast (n : ℕ) (hn : 1 ≤ n) :
     Nat.card (AddMonoidHom.ker ((n : ℤ) : AddMonoid.End W.toAffine.Point)) = n ^ 2 := by
   obtain ⟨e⟩ := W.nonempty_pointTorsionBy_zmod hn
-  haveI : NeZero n := ⟨Nat.one_le_iff_ne_zero.mp hn⟩
+  have : NeZero n := ⟨Nat.one_le_iff_ne_zero.mp hn⟩
   have hsets : ∀ x : W.toAffine.Point,
       x ∈ AddMonoidHom.ker ((n : ℤ) : AddMonoid.End W.toAffine.Point)
         ↔ x ∈ Submodule.torsionBy ℤ W.toAffine.Point (n : ℤ) := by
@@ -1113,10 +1113,10 @@ theorem es1a1_dual_pushforwardAlong_pullbackAlong
     (hFI : FundamentalIdentityAlong F ι hι) (D : Divisor F W.FunctionField) :
     Divisor.pushforwardAlong ι hι (Divisor.pullbackAlong ι hι D)
       = (finrankAlong F ι : ℤ) • D := by
-  letI := algebraAlong ι
-  haveI := isScalarTower_along ι
-  haveI := isIntegral_along ι hι
-  haveI : FundamentalIdentity F W.FunctionField W.FunctionField := hFI
+  let := algebraAlong ι
+  have := isScalarTower_along ι
+  have := isIntegral_along ι hι
+  have : FundamentalIdentity F W.FunctionField W.FunctionField := hFI
   exact es1a1_dual_pushforward_pullback (deg_eq_one (W := W)) (deg_eq_one (W := W)) D
 
 theorem es1a1_dual_pushforwardAlongHom_conormPic0Hom
@@ -1631,7 +1631,7 @@ theorem mmr72_pp_end_eq_zero_of_cofinite_const {M : Type*} [AddCommGroup M]
     Set.Finite.preimage hinj.injOn hfin
   obtain ⟨Q', hQ'⟩ :=
     (Set.Finite.infinite_compl (hfin.union hpre)).nonempty
-  simp only [Set.mem_compl_iff, Set.mem_union, Set.mem_setOf_eq,
+  simp only [Set.mem_compl_iff, Set.mem_union, Set.mem_ofPred_eq,
     Set.mem_preimage, not_or, not_not] at hQ'
   have hadd : S (P + Q') = S P + S Q' := map_add S P Q'
   rw [hQ'.2, hQ'.1] at hadd
@@ -1873,7 +1873,7 @@ p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.m
 
 theorem le_exp_neg_one_of_lt_one {x : ℤᵐ⁰} (hx : x < 1) : x ≤ exp (-1 : ℤ) := by
   rcases eq_or_ne x 0 with rfl | hx0
-  · exact zero_le'
+  · exact zero_le
   · rw [← exp_log hx0] at hx ⊢
     rw [show (1 : ℤᵐ⁰) = exp 0 from rfl, exp_lt_exp] at hx
     rw [exp_le_exp]
@@ -2117,10 +2117,10 @@ variable [Algebra K F] [Algebra K F'] [Algebra K F'']
 
 theorem finrankAlong_comp (φ : F →ₐ[K] F') (ψ : F' →ₐ[K] F'') :
     finrankAlong K (ψ.comp φ) = finrankAlong K φ * finrankAlong K ψ := by
-  letI iφ : Algebra F F' := algebraAlong φ
-  letI iψ : Algebra F' F'' := algebraAlong ψ
-  letI iψφ : Algebra F F'' := algebraAlong (ψ.comp φ)
-  haveI : IsScalarTower F F' F'' := IsScalarTower.of_algebraMap_eq fun _ => rfl
+  let iφ : Algebra F F' := algebraAlong φ
+  let iψ : Algebra F' F'' := algebraAlong ψ
+  let iψφ : Algebra F F'' := algebraAlong (ψ.comp φ)
+  have : IsScalarTower F F' F'' := IsScalarTower.of_algebraMap_eq fun _ => rfl
   exact (Module.finrank_mul_finrank F F' F'').symm
 
 end FinrankAlongComp
@@ -2188,8 +2188,8 @@ universe u
 theorem cmm10_deg_finrankAlong_pos {K F F' : Type*} [Field K] [Field F] [Field F']
     [Algebra K F] [Algebra K F'] (φ : F →ₐ[K] F') (hfin : FiniteAlong K φ) :
     0 < finrankAlong K φ := by
-  letI := algebraAlong φ
-  haveI hfin' : Module.Finite F F' := hfin
+  let := algebraAlong φ
+  have hfin' : Module.Finite F F' := hfin
   exact (Module.finrank_pos_iff_of_free (R := F) (M := F')).mpr inferInstance
 
 variable {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
@@ -3313,7 +3313,7 @@ theorem surjective_residueOfCenter (hw : w.restrict F = v) :
     have h2 : 0 ≤ w.ord (algebraMap (integralClosureAt F' v) F' s) :=
       AlgebraicCurve.Place.ord_nonneg_of_mem w (forall_mem_of_restrict_eq hw s)
     omega
-  haveI hmax : (fiberCenter F' v hw).asIdeal.IsMaximal :=
+  have hmax : (fiberCenter F' v hw).asIdeal.IsMaximal :=
     (fiberCenter F' v hw).isPrime.isMaximal (fiberCenter F' v hw).ne_bot
   obtain ⟨t, i, hi, hti⟩ := hmax.exists_inv hsP
   have hst : s * t - 1 ∈ (fiberCenter F' v hw).asIdeal := by
@@ -3377,7 +3377,7 @@ theorem inertiaDeg_eq_inertiaDeg_fiberCenter (hw : w.restrict F = v) :
     w.inertiaDeg F =
       (IsLocalRing.maximalIdeal v.toValuationSubring).inertiaDeg'
         (fiberCenter F' v hw).asIdeal := by
-  haveI := fiberCenter_liesOver hw
+  have := fiberCenter_liesOver hw
   rw [Ideal.inertiaDeg_algebraMap]
   show Module.finrank (w.restrict F).ResidueField w.ResidueField = _
   refine Algebra.finrank_eq_of_equiv_equiv (restrictResidueFieldEquiv hw)
@@ -3754,16 +3754,16 @@ theorem ord_deriv_pos_of_ramificationIndex_ne_one
     (Algebra.IsSeparable.isSeparable F _).aeval_derivative_ne_zero (minpoly.aeval F _)
   have hc0 : aeval c (derivative (minpoly v.toValuationSubring c)) ≠ 0 := by
     intro h; exact hg0 (by rw [himg, h, _root_.map_zero])
-  haveI : FaithfulSMul v.toValuationSubring (integralClosureAt F' v) :=
+  have : FaithfulSMul v.toValuationSubring (integralClosureAt F' v) :=
     (faithfulSMul_iff_algebraMap_injective v.toValuationSubring (integralClosureAt F' v)).mpr
       (algebraMap_integralClosureAt_injective v)
-  letI : Algebra (FractionRing v.toValuationSubring) (FractionRing (integralClosureAt F' v)) :=
+  let : Algebra (FractionRing v.toValuationSubring) (FractionRing (integralClosureAt F' v)) :=
     FractionRing.liftAlgebra v.toValuationSubring (FractionRing (integralClosureAt F' v))
-  haveI : IsScalarTower v.toValuationSubring (FractionRing v.toValuationSubring)
+  have : IsScalarTower v.toValuationSubring (FractionRing v.toValuationSubring)
       (FractionRing (integralClosureAt F' v)) :=
     FractionRing.isScalarTower_liftAlgebra (R := v.toValuationSubring)
       (K := FractionRing (integralClosureAt F' v))
-  haveI : Algebra.IsSeparable (FractionRing v.toValuationSubring)
+  have : Algebra.IsSeparable (FractionRing v.toValuationSubring)
       (FractionRing (integralClosureAt F' v)) := by
     refine Algebra.IsSeparable.of_equiv_equiv
       (FractionRing.algEquiv v.toValuationSubring F).symm.toRingEquiv
@@ -3772,11 +3772,11 @@ theorem ord_deriv_pos_of_ramificationIndex_ne_one
     exact IsFractionRing.algEquiv_commutes
       (FractionRing.algEquiv v.toValuationSubring F).symm
       (FractionRing.algEquiv (integralClosureAt F' v) F').symm _
-  haveI := (fiberCenter F' v hw).isPrime
+  have := (fiberCenter F' v hw).isPrime
   have hdvd : (fiberCenter F' v hw).asIdeal
       ∣ differentIdeal v.toValuationSubring (integralClosureAt F' v) := by
     by_contra hnd
-    haveI : Algebra.IsUnramifiedAt v.toValuationSubring (fiberCenter F' v hw).asIdeal :=
+    have : Algebra.IsUnramifiedAt v.toValuationSubring (fiberCenter F' v hw).asIdeal :=
       not_dvd_differentIdeal_iff.mp hnd
     have he1 : Ideal.ramificationIdx'
         ((fiberCenter F' v hw).asIdeal.under v.toValuationSubring)
@@ -4230,9 +4230,9 @@ theorem Place.mem_restrictAlong_iff (φ : F →ₐ[K] F') (hφ : φ.toRingHom.Is
 p2m_open_scoped "AlgebraicCurve.Place" in
 theorem Place.ramificationIndexAlong_pos (φ : F →ₐ[K] F') (hφ : φ.toRingHom.IsIntegral)
     (w : Place K F') : 0 < Place.ramificationIndexAlong φ w := by
-  letI := algebraAlong φ
-  haveI := isScalarTower_along φ
-  haveI := isIntegral_along φ hφ
+  let := algebraAlong φ
+  have := isScalarTower_along φ
+  have := isIntegral_along φ hφ
   exact w.ramificationIndex_pos
 
 p2m_open_scoped "AlgebraicCurve.Place" in
@@ -4682,11 +4682,11 @@ variable {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra 
 theorem fundamentalIdentityAlong_of_charZero [CharZero F] [HasPrincipalDivisors K F']
     (φ : F →ₐ[K] F') (hφ : φ.toRingHom.IsIntegral) (hfin : FiniteAlong K φ) :
     FundamentalIdentityAlong K φ hφ := by
-  letI := algebraAlong φ
-  haveI := isScalarTower_along φ
-  haveI : Module.Finite F F' := hfin
-  haveI : Algebra.IsSeparable F F' := inferInstance
-  haveI := isIntegral_along φ hφ
+  let := algebraAlong φ
+  have := isScalarTower_along φ
+  have : Module.Finite F F' := hfin
+  have : Algebra.IsSeparable F F' := inferInstance
+  have := isIntegral_along φ hφ
   exact (fundamentalIdentity_iff_ramificationInertiaIdentity).mpr
     (ramificationInertiaIdentity_of_finiteDimensional K F F')
 
@@ -4735,7 +4735,7 @@ variable {K F F' : Type*} [Field K] [Field F] [Field F']
 theorem exists_restrict_eq_of_separable (v : Place K F) :
     ∃ w : Place K F', w.restrict F = v := by
   obtain ⟨M, hM⟩ := Ideal.exists_maximal (integralClosureAt F' v)
-  haveI := hM
+  have := hM
   exact ⟨placeOfPrime (heightOneSpectrumOfIsMaximal F' v M),
     restrict_placeOfPrime (heightOneSpectrumOfIsMaximal F' v M)⟩
 
@@ -4885,7 +4885,7 @@ theorem pointPullbackCoordHom_injective {xP yP : W.FunctionField}
     (hx : Function.Injective (Polynomial.aeval (R := F) xP)) :
     Function.Injective (pointPullbackCoordHom h) := by
   have hker : RingHom.ker (pointPullbackCoordHom h).toRingHom = ⊥ := by
-    haveI : Module.Finite F[X] W.CoordinateRing :=
+    have : Module.Finite F[X] W.CoordinateRing :=
       Module.Finite.of_basis (CoordinateRing.basis W)
     refine Ideal.eq_bot_of_comap_eq_bot (R := F[X]) ?_
     rw [RingHom.comap_ker, pointPullbackCoordHom_comp_algebraMap,
@@ -5455,10 +5455,10 @@ theorem exists_restrictAlong_eq_of_finiteAlong
     [Algebra K F] [Algebra K F'] [CharZero F]
     (φ : F →ₐ[K] F') (hφ : φ.toRingHom.IsIntegral) (hfin : FiniteAlong K φ)
     (v : Place K F) : ∃ w : Place K F', w.restrictAlong φ hφ = v := by
-  letI := algebraAlong φ
-  haveI := isScalarTower_along φ
-  haveI : Module.Finite F F' := hfin
-  haveI : Algebra.IsSeparable F F' := inferInstance
+  let := algebraAlong φ
+  have := isScalarTower_along φ
+  have : Module.Finite F F' := hfin
+  have : Algebra.IsSeparable F F' := inferInstance
   obtain ⟨w, hw⟩ := Place.exists_restrict_eq_of_separable (K := K) (F' := F') v
   exact ⟨w, hw⟩
 
@@ -6183,7 +6183,7 @@ variable {W : Affine F} [W.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGat
 
 theorem kw_geomMorph_surjective (D : IsogenyEndDatum W) :
     Surjective D.geomMorph := fun Q => by
-  haveI : CharZero W.FunctionField :=
+  have : CharZero W.FunctionField :=
     charZero_of_injective_algebraMap (algebraMap F W.FunctionField).injective
   obtain ⟨w, hw⟩ := AlgebraicCurve.Place.exists_restrictAlong_eq_of_finiteAlong
     D.ι D.hι D.hfin (placeOfPoint Q)
@@ -7026,10 +7026,10 @@ theorem kw_natCard_restrictAlong_fiber_eq_degree_of_unramified (D : IsogenyEndDa
     Nat.card {w : AlgebraicCurve.Place F W.FunctionField //
         w.restrictAlong D.ι D.hι = v}
       = D.degree := by
-  letI := algebraAlong D.ι
-  haveI := isScalarTower_along D.ι
-  haveI := isIntegral_along D.ι D.hι
-  haveI hFI' : FundamentalIdentity F W.FunctionField W.FunctionField :=
+  let := algebraAlong D.ι
+  have := isScalarTower_along D.ι
+  have := isIntegral_along D.ι D.hι
+  have hFI' : FundamentalIdentity F W.FunctionField W.FunctionField :=
     ModularCurve.Es1a1.es1a6_twFi_of_elliptic D.ι D.hι D.hfin
   have hsum := ModularCurve.Es1a1.es1a1_dual_sum_ramificationIndex (K := F)
     (F := W.FunctionField) (F' := W.FunctionField)
@@ -7247,9 +7247,9 @@ variable {F : Type u} [Field F] {W : WeierstrassCurve.Affine F}
 
 theorem es1a8_addInt_coordRing_isAlgebraic_cmp :
     Algebra.IsAlgebraic F[X] W.CoordinateRing := by
-  haveI : Module.Finite F[X] W.CoordinateRing :=
+  have : Module.Finite F[X] W.CoordinateRing :=
     Module.Finite.of_basis (CoordinateRing.basis W)
-  haveI : Algebra.IsIntegral F[X] W.CoordinateRing := Algebra.IsIntegral.of_finite _ _
+  have : Algebra.IsIntegral F[X] W.CoordinateRing := Algebra.IsIntegral.of_finite _ _
   exact Algebra.IsIntegral.isAlgebraic
 
 theorem es1a8_addInt_functionField_isAlgebraic_cmp :
@@ -7284,14 +7284,14 @@ theorem es1a8_addInt_algebraMap_injective_cmp :
 
 theorem es1a8_addInt_basisX_cmp :
     IsTranscendenceBasis F (fun _ : PUnit.{u + 1} => polyToFunctionField W X) := by
-  haveI h1 : Algebra.IsAlgebraic F[X] W.CoordinateRing :=
+  have h1 : Algebra.IsAlgebraic F[X] W.CoordinateRing :=
     es1a8_addInt_coordRing_isAlgebraic_cmp (W := W)
-  haveI h2 : Algebra.IsAlgebraic W.CoordinateRing W.FunctionField :=
+  have h2 : Algebra.IsAlgebraic W.CoordinateRing W.FunctionField :=
     es1a8_addInt_functionField_isAlgebraic_cmp (W := W)
-  haveI h3 : FaithfulSMul F[X] W.CoordinateRing :=
+  have h3 : FaithfulSMul F[X] W.CoordinateRing :=
     (faithfulSMul_iff_algebraMap_injective F[X] W.CoordinateRing).mpr
       es1a8_addInt_algebraMap_injective_cmp
-  haveI h4 : FaithfulSMul W.CoordinateRing W.FunctionField :=
+  have h4 : FaithfulSMul W.CoordinateRing W.FunctionField :=
     (faithfulSMul_iff_algebraMap_injective W.CoordinateRing W.FunctionField).mpr
       (IsFractionRing.injective W.CoordinateRing W.FunctionField)
   have h5 := IsTranscendenceBasis.polynomial PUnit.{u + 1} F
@@ -7363,8 +7363,8 @@ theorem es1a8_addInt_selfHom_finiteAlong_cmp (ι : W.FunctionField →ₐ[F] W.F
     (htr : Transcendental F (ι (polyToFunctionField W X))) :
     FiniteAlong F ι := by
   have hint := es1a8_addInt_selfHom_isIntegral_cmp ι htr
-  letI : Algebra W.FunctionField W.FunctionField := ι.toRingHom.toAlgebra
-  letI : Module W.FunctionField W.FunctionField := Algebra.toModule
+  let : Algebra W.FunctionField W.FunctionField := ι.toRingHom.toAlgebra
+  let : Module W.FunctionField W.FunctionField := Algebra.toModule
   show Module.Finite W.FunctionField W.FunctionField
   have hadj : IntermediateField.adjoin W.FunctionField
       ({polyToFunctionField W X, yGen W} : Set W.FunctionField) = ⊤ := by
@@ -7393,7 +7393,7 @@ theorem es1a8_addInt_selfHom_finiteAlong_cmp (ι : W.FunctionField →ₐ[F] W.F
     obtain ⟨a, b, _, hab⟩ := IsFractionRing.div_surjective (A := W.CoordinateRing) z
     rw [← hab]
     exact div_mem (hcr a) (hcr b)
-  haveI : Finite ({polyToFunctionField W X, yGen W} : Set W.FunctionField) :=
+  have : Finite ({polyToFunctionField W X, yGen W} : Set W.FunctionField) :=
     ((Set.finite_singleton (yGen W)).insert (polyToFunctionField W X)).to_subtype
   have h1 : FiniteDimensional W.FunctionField
       (IntermediateField.adjoin W.FunctionField
@@ -7470,15 +7470,15 @@ variable {W : Affine F} [W.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGat
 theorem kw_existsUnramifiedBasePlace_proved (D : IsogenyEndDatum W) :
     kw_ExistsUnramifiedBasePlace D := by
   classical
-  letI := algebraAlong D.ι
-  haveI := isScalarTower_along D.ι
-  haveI := isIntegral_along D.ι D.hι
-  haveI hfin : @Module.Finite W.FunctionField W.FunctionField _ _
+  let := algebraAlong D.ι
+  have := isScalarTower_along D.ι
+  have := isIntegral_along D.ι D.hι
+  have hfin : @Module.Finite W.FunctionField W.FunctionField _ _
     (@Algebra.toModule _ _ _ _ (algebraAlong D.ι)) := D.hfin
-  haveI hcz : CharZero W.FunctionField :=
+  have hcz : CharZero W.FunctionField :=
     charZero_of_injective_algebraMap (algebraMap F W.FunctionField).injective
-  haveI hsep : Algebra.IsSeparable W.FunctionField W.FunctionField := inferInstance
-  haveI hpd : HasPrincipalDivisors F W.FunctionField := hasPrincipalDivisors_functionField _
+  have hsep : Algebra.IsSeparable W.FunctionField W.FunctionField := inferInstance
+  have hpd : HasPrincipalDivisors F W.FunctionField := hasPrincipalDivisors_functionField _
   obtain ⟨θ, hgen⟩ := Field.exists_primitive_element W.FunctionField W.FunctionField
   have hpmon : (minpoly W.FunctionField θ).Monic :=
     minpoly.monic (_root_.IsIntegral.of_finite W.FunctionField θ)
@@ -7496,7 +7496,7 @@ theorem kw_existsUnramifiedBasePlace_proved (D : IsogenyEndDatum W) :
   have hS₂fin : S₂.Finite := finite_setOf_ord_ne_zero_of_hasPrincipalDivisors (K := F) hg0
   have hSfin : (S₁ ∪ (fun w => w.restrict W.FunctionField) '' S₂).Finite :=
     hS₁fin.union (hS₂fin.image _)
-  haveI : Infinite (AlgebraicCurve.Place F W.FunctionField) :=
+  have : Infinite (AlgebraicCurve.Place F W.FunctionField) :=
     (placeOfPointEquiv W).symm.infinite_iff.mpr kw_point_infinite
   obtain ⟨v, hv⟩ := hSfin.infinite_compl.nonempty
   simp only [Set.mem_compl_iff, Set.mem_union, not_or] at hv
@@ -7586,10 +7586,10 @@ theorem kw_iucz_sum_ramificationIndex_eq_degree (D : IsogenyEndDatum W)
         (w.ramificationIndex W.FunctionField : ℤ)
       = (D.degree : ℤ) := by
   have _pin := Classical.em True
-  letI := algebraAlong D.ι
-  haveI := isScalarTower_along D.ι
-  haveI := isIntegral_along D.ι D.hι
-  haveI hFI' : FundamentalIdentity F W.FunctionField W.FunctionField :=
+  let := algebraAlong D.ι
+  have := isScalarTower_along D.ι
+  have := isIntegral_along D.ι D.hι
+  have hFI' : FundamentalIdentity F W.FunctionField W.FunctionField :=
     ModularCurve.Es1a1.es1a6_twFi_of_elliptic D.ι D.hι D.hfin
   exact ModularCurve.Es1a1.es1a1_dual_sum_ramificationIndex (K := F)
     (F := W.FunctionField) (F' := W.FunctionField)
@@ -7600,9 +7600,9 @@ theorem kw_iucz_unramified_of_existsUnramifiedBasePlace (D : IsogenyEndDatum W)
     kw_ipfd_unramified D := by
   have _pin := Classical.em True
   classical
-  letI := algebraAlong D.ι
-  haveI := isScalarTower_along D.ι
-  haveI := isIntegral_along D.ι D.hι
+  let := algebraAlong D.ι
+  have := isScalarTower_along D.ι
+  have := isIntegral_along D.ι D.hι
   obtain ⟨v₀, hv₀⟩ := heub
   have hkd : Nat.card (AddMonoidHom.ker D.pointEnd') = D.degree := by
     rw [← kw_natCard_restrictAlong_fiber_eq_ker D v₀]
@@ -8081,7 +8081,7 @@ theorem kw_hk5f_pointEnd_add_eq_zero_of_cofinite_geomMorph_sum
     (D₁ D₂ : IsogenyEndDatum W) (T : W.Point)
     (hcof : {Q : W.Point | D₁.geomMorph Q + D₂.geomMorph Q ≠ T}.Finite) :
     D₁.pointEnd' + D₂.pointEnd' = 0 := by
-  haveI : Infinite W.Point := WeierstrassCurve.point_infinite _
+  have : Infinite W.Point := WeierstrassCurve.point_infinite _
   refine mmr72_pp_end_eq_zero_of_cofinite_const (D₁.pointEnd' + D₂.pointEnd')
     (T - (D₁.geomMorph 0 + D₂.geomMorph 0)) (hcof.subset ?_)
   intro Q hQ hT
@@ -8104,7 +8104,7 @@ theorem kw_hk5f_transversal_cofinite_geomMorph_sum
     (hx : es1a6_addSumX W D₁.ι D₂.ι = algebraMap F W.FunctionField c)
     (hy : es1a6_addSumY W D₁.ι D₂.ι = algebraMap F W.FunctionField d) :
     ∃ T : W.Point, {Q : W.Point | D₁.geomMorph Q + D₂.geomMorph Q ≠ T}.Finite := by
-  haveI : HasPrincipalDivisors F W.FunctionField := hasPrincipalDivisors_functionField _
+  have : HasPrincipalDivisors F W.FunctionField := hasPrincipalDivisors_functionField _
   have hcd : W.Nonsingular c d :=
     (equation_iff_nonsingular_of_Δ_ne_zero isElliptic_Δ_ne_zero).mp hEq
   refine ⟨Point.some c d hcd, ?_⟩
@@ -8124,7 +8124,7 @@ theorem kw_hk5f_transversal_cofinite_geomMorph_sum
       (mmr73_cs_finite_setOf_placeOfPoint_ord_ne_zero hg₂ne)).union
       (mmr73_cs_finite_setOf_placeOfPoint_ord_ne_zero hδne)) ?_
   intro Q hQ
-  simp only [Set.mem_union, Set.mem_setOf_eq]
+  simp only [Set.mem_union, Set.mem_ofPred_eq]
   by_contra hbad
   push Not at hbad
   obtain ⟨⟨⟨⟨hb1, hb2⟩, hb3⟩, hb4⟩, hb5⟩ := hbad
@@ -8180,12 +8180,12 @@ scoped instance kw_charZero_end_point {F : Type*} [Field F] [DecidableEq F] [IsA
       have h := DFunLike.congr_fun hn P
       rw [AddMonoid.End.natCast_apply] at h
       simpa [natCast_zsmul] using h
-    haveI : Finite (Submodule.torsionBy ℤ W.Point (n : ℤ)) :=
+    have : Finite (Submodule.torsionBy ℤ W.Point (n : ℤ)) :=
       WeierstrassCurve.finite_torsionBy_of_natCast_ne_zero F W n (by exact_mod_cast hne)
     have hsurj : Function.Surjective
         (fun P : Submodule.torsionBy ℤ W.Point (n : ℤ) => (P : W.Point)) := fun P =>
       ⟨⟨P, (Submodule.mem_torsionBy_iff _ _).mpr (htors P)⟩, rfl⟩
-    haveI : Finite W.Point := Finite.of_surjective _ hsurj
+    have : Finite W.Point := Finite.of_surjective _ hsurj
     exact (WeierstrassCurve.point_infinite (W := W)).not_finite ‹_›
   refine ⟨fun a b hab => ?_⟩
   rcases le_total a b with h | h
@@ -8284,7 +8284,7 @@ theorem kw_pointEnd_ne_zero (D : IsogenyEndDatum W) : D.pointEnd' ≠ 0 := by
     kw_datumKernelDegreeFace_unconditional D
   have hall : AddMonoidHom.ker D.pointEnd' = ⊤ := by
     rw [hzero]; exact AddMonoidHom.ker_zero
-  haveI : Infinite W.Point := kw_point_infinite
+  have : Infinite W.Point := kw_point_infinite
   rw [hall, Nat.card_congr (AddSubgroup.topEquiv (G := W.Point)).toEquiv,
     Nat.card_eq_zero_of_infinite] at hker
   exact (ModularCurve.cmm10_deg_degree_pos D).ne' hker.symm
@@ -8781,7 +8781,7 @@ theorem kw_dcao_geomMorphDualAdditivity_of_defectPrincipal
       have h2ne : (IsogenyEndDatum.idDatum W).pointEnd'
           + (IsogenyEndDatum.idDatum W).pointEnd' ≠ 0 := by
         rw [IsogenyEndDatum.idDatum_pointEnd, one_add_one_eq_two]
-        haveI := kw_charZero_end_point (W := W)
+        have := kw_charZero_end_point (W := W)
         exact two_ne_zero
       obtain ⟨DN, hDNgm⟩ := kw_hk5f_addGeomMorphSupply_proved W
         (IsogenyEndDatum.idDatum W) (IsogenyEndDatum.idDatum W) h2ne

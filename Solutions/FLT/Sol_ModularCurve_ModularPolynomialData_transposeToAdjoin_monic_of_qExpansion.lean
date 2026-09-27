@@ -343,8 +343,8 @@ variable (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)]
 
 theorem aeval_jq_ne_jqN (hpos : ∀ n : ℕ, (1 : ℚ) ≤ jq.coeff (n : ℤ)) (P : Polynomial ℚ) :
     Polynomial.aeval jq P ≠ jqN ℓ := by
-  haveI : NeZero ((ℓ : ℕ) : ℚ) := ⟨Nat.cast_ne_zero.mpr hℓ.out.ne_zero⟩
-  haveI : IsCyclotomicExtension {ℓ} ℚ (CyclotomicField ℓ ℚ) :=
+  have : NeZero ((ℓ : ℕ) : ℚ) := ⟨Nat.cast_ne_zero.mpr hℓ.out.ne_zero⟩
+  have : IsCyclotomicExtension {ℓ} ℚ (CyclotomicField ℓ ℚ) :=
     CyclotomicField.isCyclotomicExtension (n := ℓ) (K := ℚ)
   obtain ⟨z, hz⟩ := IsCyclotomicExtension.exists_isPrimitiveRoot ℚ (CyclotomicField ℓ ℚ)
     (Set.mem_singleton ℓ) hℓ.out.ne_zero

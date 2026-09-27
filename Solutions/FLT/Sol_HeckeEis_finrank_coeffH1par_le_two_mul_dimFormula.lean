@@ -48,9 +48,9 @@ theorem solution (N : ℕ) [NeZero N] (n : ℕ) (hn : 2 ≤ n) (hne : Even n) :
       ≤ 2 * ((((n + 2) : ℚ) - 1) * (ModularCurve.genusFormula N - 1) + (((n + 2) / 4 : ℕ) : ℚ) * (ModularCurve.nuTwo N : ℚ)
         + (((n + 2) / 3 : ℕ) : ℚ) * (ModularCurve.nuThree N : ℚ) + (((n + 2) : ℚ) / 2 - 1) * (ModularCurve.cuspCount N : ℚ)) := by
   classical
-  haveI : Module.Finite ℂ ↥(HeckeEis.BinaryForm ℂ n) := UHAsm.finite_binaryForm n
-  haveI : (CongruenceSubgroup.Gamma0 N).FiniteIndex := inferInstance
-  letI : Fintype (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N) := (CongruenceSubgroup.Gamma0 N).fintypeQuotientOfFiniteIndex
+  have : Module.Finite ℂ ↥(HeckeEis.BinaryForm ℂ n) := UHAsm.finite_binaryForm n
+  have : (CongruenceSubgroup.Gamma0 N).FiniteIndex := inferInstance
+  let : Fintype (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N) := (CongruenceSubgroup.Gamma0 N).fintypeQuotientOfFiniteIndex
 
   obtain ⟨W, hW, hneg, hinv, hcoinv⟩ := HeckeEis.exists_induced_binaryFormRepSL_top N n hne (by omega)
   have hB := HeckeEis.finrank_coeffH1par_gamma0_le_finrank_coeffH1par_top_induced N n W hW

@@ -179,10 +179,10 @@ variable {K : Type*} [Field K] [CharZero K]
 theorem separableAlong_of_charZero {E E' : WeierstrassCurve.Affine K}
     (ι : E'.FunctionField →ₐ[K] E.FunctionField) (hfin : FiniteAlong K ι) :
     SeparableAlong K ι := by
-  letI := algebraAlong ι
-  haveI := isScalarTower_along ι
-  haveI : Module.Finite E'.FunctionField E.FunctionField := hfin
-  haveI : CharZero E'.FunctionField :=
+  let := algebraAlong ι
+  have := isScalarTower_along ι
+  have : Module.Finite E'.FunctionField E.FunctionField := hfin
+  have : CharZero E'.FunctionField :=
     charZero_of_injective_algebraMap (algebraMap K E'.FunctionField).injective
   show Algebra.IsSeparable E'.FunctionField E.FunctionField
   infer_instance
@@ -190,9 +190,9 @@ theorem separableAlong_of_charZero {E E' : WeierstrassCurve.Affine K}
 theorem normFormulaAlong_of_charZero {E E' : WeierstrassCurve.Affine K}
     (ι : E'.FunctionField →ₐ[K] E.FunctionField) (hfin : FiniteAlong K ι) :
     NormFormulaAlong K ι hfin := by
-  haveI : HasPrincipalDivisors K E.FunctionField :=
+  have : HasPrincipalDivisors K E.FunctionField :=
     WeierstrassCurve.Affine.hasPrincipalDivisors_functionField E
-  haveI : CharZero E'.FunctionField :=
+  have : CharZero E'.FunctionField :=
     charZero_of_injective_algebraMap (algebraMap K E'.FunctionField).injective
   exact AlgebraicCurve.normFormulaAlong ι hfin (separableAlong_of_charZero ι hfin)
 
@@ -239,13 +239,13 @@ theorem complexCase (E E' : WeierstrassCurve.Affine ℂ) [E.IsElliptic] [E'.IsEl
   obtain ⟨L', C', hE'⟩ := PeriodPair.exists_variableChange_smul_weierstrassCurve_eq (E' : WeierstrassCurve ℂ)
   subst hE hE'
 
-  haveI : IsDedekindDomain L.weierstrassCurve.toAffine.CoordinateRing :=
+  have : IsDedekindDomain L.weierstrassCurve.toAffine.CoordinateRing :=
     WeierstrassCurve.Affine.CoordinateRing.isDedekindDomain L.weierstrassCurve
-  haveI : IsDedekindDomain L'.weierstrassCurve.toAffine.CoordinateRing :=
+  have : IsDedekindDomain L'.weierstrassCurve.toAffine.CoordinateRing :=
     WeierstrassCurve.Affine.CoordinateRing.isDedekindDomain L'.weierstrassCurve
-  haveI : HasPrincipalDivisors ℂ L.weierstrassCurve.toAffine.FunctionField :=
+  have : HasPrincipalDivisors ℂ L.weierstrassCurve.toAffine.FunctionField :=
     WeierstrassCurve.Affine.hasPrincipalDivisors_functionField L.weierstrassCurve.toAffine
-  haveI : HasPrincipalDivisors ℂ L'.weierstrassCurve.toAffine.FunctionField :=
+  have : HasPrincipalDivisors ℂ L'.weierstrassCurve.toAffine.FunctionField :=
     WeierstrassCurve.Affine.hasPrincipalDivisors_functionField L'.weierstrassCurve.toAffine
   obtain ⟨gL, hcL, haL⟩ :=
     WeierstrassCurve.Affine.exists_genusOnePlaceGate_isCentred_and_abelTheorem
@@ -253,12 +253,12 @@ theorem complexCase (E E' : WeierstrassCurve.Affine ℂ) [E.IsElliptic] [E'.IsEl
   obtain ⟨gL', hcL', haL'⟩ :=
     WeierstrassCurve.Affine.exists_genusOnePlaceGate_isCentred_and_abelTheorem
       (W := L'.weierstrassCurve.toAffine)
-  letI := gL
-  letI := gL'
-  haveI := hcL
-  haveI := haL
-  haveI := hcL'
-  haveI := haL'
+  let := gL
+  let := gL'
+  have := hcL
+  have := haL
+  have := hcL'
+  have := haL'
 
   obtain ⟨eE⟩ := WeierstrassCurve.nonempty_functionField_algEquiv_of_variableChange L.weierstrassCurve C
   obtain ⟨eE'⟩ := WeierstrassCurve.nonempty_functionField_algEquiv_of_variableChange L'.weierstrassCurve C'
@@ -312,69 +312,69 @@ theorem solution0
     (hcard : Nat.card (pointMapOfPushforward ι hι hfin hN).ker = N)
     (data : ModularCurve.ModularPolynomialData N) :
     (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom K) E.j)).eval E'.j = 0 := by
-  letI : Algebra ℚ K := DivisionRing.toRatAlgebra
+  let : Algebra ℚ K := DivisionRing.toRatAlgebra
   obtain ⟨K₀, hK₀, E₀, E₀', hE₀, hE₀', hE, hE', hEb, hEb', ι₀, hι₀, hfin₀, H⟩ :=
     WeierstrassCurve.Affine.exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward
       E E' ι hι hfin hN N hcyc hcard
-  haveI := hE₀
-  haveI := hE₀'
-  haveI := hEb
-  haveI := hEb'
-  haveI : Countable K₀ := hK₀
-  haveI : CharZero K₀ := (algebraMap K₀ K).charZero
-  haveI : CharZero (AlgebraicClosure K₀) :=
+  have := hE₀
+  have := hE₀'
+  have := hEb
+  have := hEb'
+  have : Countable K₀ := hK₀
+  have : CharZero K₀ := (algebraMap K₀ K).charZero
+  have : CharZero (AlgebraicClosure K₀) :=
     charZero_of_injective_algebraMap (algebraMap K₀ (AlgebraicClosure K₀)).injective
-  haveI : DecidableEq (AlgebraicClosure K₀) := Classical.decEq _
+  have : DecidableEq (AlgebraicClosure K₀) := Classical.decEq _
 
-  haveI : IsDedekindDomain (E₀.baseChange (AlgebraicClosure K₀)).toAffine.CoordinateRing :=
+  have : IsDedekindDomain (E₀.baseChange (AlgebraicClosure K₀)).toAffine.CoordinateRing :=
     WeierstrassCurve.Affine.CoordinateRing.isDedekindDomain _
-  haveI : IsDedekindDomain (E₀'.baseChange (AlgebraicClosure K₀)).toAffine.CoordinateRing :=
+  have : IsDedekindDomain (E₀'.baseChange (AlgebraicClosure K₀)).toAffine.CoordinateRing :=
     WeierstrassCurve.Affine.CoordinateRing.isDedekindDomain _
-  haveI : HasPrincipalDivisors (AlgebraicClosure K₀) (E₀.baseChange (AlgebraicClosure K₀)).toAffine.FunctionField :=
+  have : HasPrincipalDivisors (AlgebraicClosure K₀) (E₀.baseChange (AlgebraicClosure K₀)).toAffine.FunctionField :=
     WeierstrassCurve.Affine.hasPrincipalDivisors_functionField _
-  haveI : HasPrincipalDivisors (AlgebraicClosure K₀) (E₀'.baseChange (AlgebraicClosure K₀)).toAffine.FunctionField :=
+  have : HasPrincipalDivisors (AlgebraicClosure K₀) (E₀'.baseChange (AlgebraicClosure K₀)).toAffine.FunctionField :=
     WeierstrassCurve.Affine.hasPrincipalDivisors_functionField _
   obtain ⟨g₁, c₁, a₁⟩ := WeierstrassCurve.Affine.exists_genusOnePlaceGate_isCentred_and_abelTheorem
     (W := (E₀.baseChange (AlgebraicClosure K₀)).toAffine)
   obtain ⟨g₂, c₂, a₂⟩ := WeierstrassCurve.Affine.exists_genusOnePlaceGate_isCentred_and_abelTheorem
     (W := (E₀'.baseChange (AlgebraicClosure K₀)).toAffine)
-  letI := g₁
-  letI := g₂
-  haveI := c₁
-  haveI := a₁
-  haveI := c₂
-  haveI := a₂
+  let := g₁
+  let := g₂
+  have := c₁
+  have := a₁
+  have := c₂
+  have := a₂
   have hN₀ : NormFormulaAlong (AlgebraicClosure K₀) ι₀ hfin₀ := normFormulaAlong_of_charZero ι₀ hfin₀
   obtain ⟨hcyc₀, hcard₀⟩ := H hN₀
 
   obtain ⟨φ₀⟩ := Field.nonempty_ringHom_complex_of_countable K₀
-  letI : Algebra K₀ ℂ := φ₀.toAlgebra
-  haveI : Module.IsTorsionFree K₀ ℂ :=
+  let : Algebra K₀ ℂ := φ₀.toAlgebra
+  have : Module.IsTorsionFree K₀ ℂ :=
     Module.isTorsionFree_iff_algebraMap_injective.mpr φ₀.injective
-  haveI : Module.IsTorsionFree K₀ (AlgebraicClosure K₀) :=
+  have : Module.IsTorsionFree K₀ (AlgebraicClosure K₀) :=
     Module.isTorsionFree_iff_algebraMap_injective.mpr (algebraMap K₀ (AlgebraicClosure K₀)).injective
   let σ : AlgebraicClosure K₀ →ₐ[K₀] ℂ := IsAlgClosed.lift
-  haveI : (E₀.baseChange ℂ).IsElliptic := isElliptic_map E₀ _
-  haveI : (E₀'.baseChange ℂ).IsElliptic := isElliptic_map E₀' _
+  have : (E₀.baseChange ℂ).IsElliptic := isElliptic_map E₀ _
+  have : (E₀'.baseChange ℂ).IsElliptic := isElliptic_map E₀' _
 
-  haveI : IsDedekindDomain (E₀.baseChange ℂ).toAffine.CoordinateRing :=
+  have : IsDedekindDomain (E₀.baseChange ℂ).toAffine.CoordinateRing :=
     WeierstrassCurve.Affine.CoordinateRing.isDedekindDomain _
-  haveI : IsDedekindDomain (E₀'.baseChange ℂ).toAffine.CoordinateRing :=
+  have : IsDedekindDomain (E₀'.baseChange ℂ).toAffine.CoordinateRing :=
     WeierstrassCurve.Affine.CoordinateRing.isDedekindDomain _
-  haveI : HasPrincipalDivisors ℂ (E₀.baseChange ℂ).toAffine.FunctionField :=
+  have : HasPrincipalDivisors ℂ (E₀.baseChange ℂ).toAffine.FunctionField :=
     WeierstrassCurve.Affine.hasPrincipalDivisors_functionField _
-  haveI : HasPrincipalDivisors ℂ (E₀'.baseChange ℂ).toAffine.FunctionField :=
+  have : HasPrincipalDivisors ℂ (E₀'.baseChange ℂ).toAffine.FunctionField :=
     WeierstrassCurve.Affine.hasPrincipalDivisors_functionField _
   obtain ⟨g₃, c₃, a₃⟩ := WeierstrassCurve.Affine.exists_genusOnePlaceGate_isCentred_and_abelTheorem
     (W := (E₀.baseChange ℂ).toAffine)
   obtain ⟨g₄, c₄, a₄⟩ := WeierstrassCurve.Affine.exists_genusOnePlaceGate_isCentred_and_abelTheorem
     (W := (E₀'.baseChange ℂ).toAffine)
-  letI := g₃
-  letI := g₄
-  haveI := c₃
-  haveI := a₃
-  haveI := c₄
-  haveI := a₄
+  let := g₃
+  let := g₄
+  have := c₃
+  have := a₃
+  have := c₄
+  have := a₄
 
   obtain ⟨ι₁, hι₁, hfin₁, H₁⟩ :=
     WeierstrassCurve.Affine.exists_algHom_baseChange_of_isAddCyclic_ker_pointMapOfPushforward

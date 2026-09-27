@@ -166,8 +166,8 @@ theorem intCast_addMonoidEnd_point_injective :
 theorem finrankAlong_pos {K L L' : Type*} [Field K] [Field L] [Field L']
     [Algebra K L] [Algebra K L'] (φ : L →ₐ[K] L') (hfin : FiniteAlong K φ) :
     0 < finrankAlong K φ := by
-  letI := algebraAlong φ
-  haveI hfin' : Module.Finite L L' := hfin
+  let := algebraAlong φ
+  have hfin' : Module.Finite L L' := hfin
   exact (Module.finrank_pos_iff_of_free (R := L) (M := L')).mpr inferInstance
 
 variable [GenusOnePlaceGate W] [AbelTheorem W] [GenusOnePlaceGate.IsCentred W]

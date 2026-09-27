@@ -31,21 +31,21 @@ theorem stichtenothGenusExists_of_isCurveOver_port {K : Type*} {F : Type*} [Fiel
     StichtenothGenusExists K F := by
   classical
   obtain ⟨x, htr, hfd, hsep⟩ := IsCurveOver.exists_separating_transcendental (K := K) (F := F)
-  haveI := hfd; haveI := hsep
+  have := hfd; have := hsep
   set e : RatFunc K ≃ₐ[K] K⟮x⟯ := RatFunc.algEquivOfTranscendental x htr with he
-  letI : Algebra (RatFunc K) F := ((algebraMap K⟮x⟯ F).comp e.toAlgHom.toRingHom).toAlgebra
+  let : Algebra (RatFunc K) F := ((algebraMap K⟮x⟯ F).comp e.toAlgHom.toRingHom).toAlgebra
   have hsq : RingHom.comp (algebraMap (RatFunc K) F) (e.symm.toRingEquiv : K⟮x⟯ →+* RatFunc K)
       = RingHom.comp (RingEquiv.refl F : F →+* F) (algebraMap K⟮x⟯ F) := by
     refine RingHom.ext fun a => ?_
     show algebraMap K⟮x⟯ F (e (e.symm a)) = algebraMap K⟮x⟯ F a
     rw [e.apply_symm_apply]
-  haveI : IsScalarTower K (RatFunc K) F :=
+  have : IsScalarTower K (RatFunc K) F :=
     IsScalarTower.of_algebraMap_eq fun a => by
       show algebraMap K F a = algebraMap K⟮x⟯ F (e (algebraMap K (RatFunc K) a))
       rw [e.commutes, ← IsScalarTower.algebraMap_apply]
-  haveI : FiniteDimensional (RatFunc K) F :=
+  have : FiniteDimensional (RatFunc K) F :=
     Module.Finite.of_equiv_equiv e.symm.toRingEquiv (RingEquiv.refl F) hsq
-  haveI : Algebra.IsSeparable (RatFunc K) F :=
+  have : Algebra.IsSeparable (RatFunc K) F :=
     Algebra.IsSeparable.of_equiv_equiv e.symm.toRingEquiv (RingEquiv.refl F) hsq
   exact RationalFunctionField.stichtenothGenusExists K F hC
 

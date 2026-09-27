@@ -225,7 +225,7 @@ lemma norm_deriv_le {G : ℍ → ℂ} (hG : MDiff G) {M A : ℝ}
   have hsub : Metric.closedBall (z : ℂ) 1 ⊆ {w : ℂ | 0 < w.im} := by
     intro w hw
     have := him w (Metric.mem_closedBall.mp hw)
-    simp only [Set.mem_setOf_eq]
+    simp only [Set.mem_ofPred_eq]
     have : (0 : ℝ) ≤ max A 0 := le_max_right _ _
     linarith
   have hd : DiffContOnCl ℂ (G ∘ ofComplex) (Metric.ball (z : ℂ) 1) :=

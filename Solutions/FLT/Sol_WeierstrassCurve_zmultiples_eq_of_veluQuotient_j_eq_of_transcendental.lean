@@ -38,13 +38,13 @@ theorem charZero_hahn : CharZero (HahnSeries ℚ (AlgebraicClosure ℚ)) :=
 theorem normFormulaAlong_of_elliptic {F : Type*} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
     {V W : Affine F} [V.IsElliptic] [W.IsElliptic] (ι : V.FunctionField →ₐ[F] W.FunctionField)
     (hfin : FiniteAlong F ι) : NormFormulaAlong F ι hfin := by
-  haveI : HasPrincipalDivisors F W.FunctionField := hasPrincipalDivisors_functionField W
-  haveI : CharZero V.FunctionField :=
+  have : HasPrincipalDivisors F W.FunctionField := hasPrincipalDivisors_functionField W
+  have : CharZero V.FunctionField :=
     charZero_of_injective_algebraMap (algebraMap F V.FunctionField).injective
   have hsep : SeparableAlong F ι := by
-    letI := algebraAlong ι
-    haveI := isScalarTower_along ι
-    haveI : Module.Finite V.FunctionField W.FunctionField := hfin
+    let := algebraAlong ι
+    have := isScalarTower_along ι
+    have : Module.Finite V.FunctionField W.FunctionField := hfin
     show Algebra.IsSeparable V.FunctionField W.FunctionField
     infer_instance
   exact AlgebraicCurve.normFormulaAlong ι hfin hsep
@@ -65,15 +65,15 @@ theorem solution
       haveI : (W.veluQuotient (W.oddOrderSummingSet Q' n)).IsElliptic := ⟨isUnit_iff_ne_zero.mpr hΔ'⟩
       (W.veluQuotient (W.oddOrderSummingSet Q n)).j = (W.veluQuotient (W.oddOrderSummingSet Q' n)).j) :
     AddSubgroup.zmultiples Q = AddSubgroup.zmultiples Q' := by
-  haveI : CharZero (HahnSeries ℚ (AlgebraicClosure ℚ)) := Ws13B.charZero_hahn
-  haveI : IsAlgClosed (HahnSeries ℚ (AlgebraicClosure ℚ)) := HahnSeries.isAlgClosed_rat
-  haveI : IsDedekindDomain W.toAffine.CoordinateRing := CoordinateRing.isDedekindDomain W
-  haveI : HasPrincipalDivisors (HahnSeries ℚ (AlgebraicClosure ℚ)) W.toAffine.FunctionField :=
+  have : CharZero (HahnSeries ℚ (AlgebraicClosure ℚ)) := Ws13B.charZero_hahn
+  have : IsAlgClosed (HahnSeries ℚ (AlgebraicClosure ℚ)) := HahnSeries.isAlgClosed_rat
+  have : IsDedekindDomain W.toAffine.CoordinateRing := CoordinateRing.isDedekindDomain W
+  have : HasPrincipalDivisors (HahnSeries ℚ (AlgebraicClosure ℚ)) W.toAffine.FunctionField :=
     hasPrincipalDivisors_functionField W.toAffine
   obtain ⟨g, hc, ha⟩ := exists_genusOnePlaceGate_isCentred_and_abelTheorem (W := W.toAffine)
-  letI : GenusOnePlaceGate W.toAffine := g
-  haveI : GenusOnePlaceGate.IsCentred W.toAffine := hc
-  haveI : AbelTheorem W.toAffine := ha
+  let : GenusOnePlaceGate W.toAffine := g
+  have : GenusOnePlaceGate.IsCentred W.toAffine := hc
+  have : AbelTheorem W.toAffine := ha
   have hNs : ∀ D : IsogenyEndDatum W.toAffine,
       NormFormulaAlong (HahnSeries ℚ (AlgebraicClosure ℚ)) D.ι D.hfin :=
     fun D => Ws13B.normFormulaAlong_of_elliptic D.ι D.hfin

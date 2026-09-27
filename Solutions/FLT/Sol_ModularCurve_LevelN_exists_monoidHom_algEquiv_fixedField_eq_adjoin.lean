@@ -275,7 +275,7 @@ theorem ker_ρHom : (ρHom N).ker = Gpm N := by
       fricke N (Matrix.vecMul v (redMat N γ)) = fricke N v} ↔
       γ⁻¹ ∈ {γ : SL(2, ℤ) | γ ∈ CongruenceSubgroup.Gamma N ∨ -γ ∈ CongruenceSubgroup.Gamma N} := by
     rw [hset]
-  simp only [Set.mem_setOf_eq] at hmem
+  simp only [Set.mem_ofPred_eq] at hmem
   rw [hmem, ← mem_Gpm_iff, inv_mem_iff]
 
 theorem ker_σHom_eq : (σHom N K).ker = Gpm N := by
@@ -393,13 +393,13 @@ theorem natCard_range : Nat.card (σHom N K).range = (Gpm N).index := by
   rw [← ker_σHom_eq N K, Subgroup.index_ker]
 
 theorem isGalois_fixedField : IsGalois (IntermediateField.fixedField (σHom N K).range) K := by
-  haveI := finite_range N K
+  have := finite_range N K
   exact IsGalois.of_fixed_field K (σHom N K).range
 
 theorem finrank_fixedField :
     Module.finrank (IntermediateField.fixedField (σHom N K).range) K = (Gpm N).index := by
-  haveI := finite_range N K
-  haveI := Fintype.ofFinite (σHom N K).range
+  have := finite_range N K
+  have := Fintype.ofFinite (σHom N K).range
   rw [← natCard_range N K, Nat.card_eq_fintype_card]
   exact FixedPoints.finrank_eq_card (σHom N K).range K
 

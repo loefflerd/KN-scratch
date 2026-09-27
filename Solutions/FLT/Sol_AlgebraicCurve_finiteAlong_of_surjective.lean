@@ -12,7 +12,7 @@ set_option autoImplicit false
 open AlgebraicCurve
 
 theorem solution {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F'] (φ : F →ₐ[K] F') (hφ : Function.Surjective φ) : FiniteAlong K φ := by
-  letI := algebraAlong φ
+  let := algebraAlong φ
   exact Module.Finite.of_surjective (Algebra.linearMap F F') hφ
 
 end S_AlgebraicCurve_finiteAlong_of_surjective

@@ -23,8 +23,8 @@ section PrimePower
 
 private theorem isUnit_zmod_prime_pow_iff {p k : ℕ} (hp : p.Prime) (hk : k ≠ 0) (z : ZMod (p ^ k)) :
     IsUnit z ↔ ZMod.castHom (dvd_pow_self p hk) (ZMod p) z ≠ 0 := by
-  haveI : NeZero (p ^ k) := ⟨pow_ne_zero k hp.pos.ne'⟩
-  haveI : Fact p.Prime := ⟨hp⟩
+  have : NeZero (p ^ k) := ⟨pow_ne_zero k hp.pos.ne'⟩
+  have : Fact p.Prime := ⟨hp⟩
   constructor
   · intro h hzero
     exact (h.map (ZMod.castHom (dvd_pow_self p hk) (ZMod p))).ne_zero hzero
@@ -49,7 +49,7 @@ p2m_open_scoped "ModularCurve.IsUnimodularRow" in
 
 private theorem _root_.ModularCurve.IsUnimodularRow.isUnit_or_isUnit {p k : ℕ} (hp : p.Prime) (hk : k ≠ 0)
     {a c : ZMod (p ^ k)} (h : IsUnimodularRow a c) : IsUnit a ∨ IsUnit c := by
-  haveI : Fact p.Prime := ⟨hp⟩
+  have : Fact p.Prime := ⟨hp⟩
   by_contra hcon
   rw [not_or] at hcon
   have ha : ZMod.castHom (dvd_pow_self p hk) (ZMod p) a = 0 := by
@@ -75,7 +75,7 @@ private noncomputable def isUnitSubtypeEquivUnits (M : Type*) [Monoid M] :
 
 private theorem card_not_isUnit_zmod_prime_pow {p k : ℕ} (hp : p.Prime) (hk : k ≠ 0) :
     Nat.card { z : ZMod (p ^ k) // ¬IsUnit z } = p ^ (k - 1) := by
-  haveI : NeZero (p ^ k) := ⟨pow_ne_zero k hp.pos.ne'⟩
+  have : NeZero (p ^ k) := ⟨pow_ne_zero k hp.pos.ne'⟩
   classical
 
   have hsplit : Nat.card { z : ZMod (p ^ k) // IsUnit z } +
@@ -99,7 +99,7 @@ private theorem card_not_isUnit_zmod_prime_pow {p k : ℕ} (hp : p.Prime) (hk : 
 
 private theorem card_projectiveLine_prime_pow (p k : ℕ) (hp : p.Prime) (hk : k ≠ 0) :
     Nat.card (ProjectiveLine (ZMod (p ^ k))) = p ^ k + p ^ (k - 1) := by
-  haveI : NeZero (p ^ k) := ⟨pow_ne_zero k hp.pos.ne'⟩
+  have : NeZero (p ^ k) := ⟨pow_ne_zero k hp.pos.ne'⟩
 
   let f : ZMod (p ^ k) ⊕ { z : ZMod (p ^ k) // ¬IsUnit z } → ProjectiveLine (ZMod (p ^ k)) :=
     fun s => Sum.rec (fun t => ⟦⟨(1, t), isUnimodularRow_one_left t⟩⟧)
@@ -175,7 +175,7 @@ private theorem crtSnd_apply (M N : ℕ) (h : M.Coprime N) (z : ZMod (M * N)) :
 private theorem card_projectiveLine_mul (M N : ℕ) [NeZero M] [NeZero N] (h : M.Coprime N) :
     Nat.card (ProjectiveLine (ZMod (M * N))) =
       Nat.card (ProjectiveLine (ZMod M)) * Nat.card (ProjectiveLine (ZMod N)) := by
-  haveI : NeZero (M * N) := ⟨mul_ne_zero (NeZero.ne M) (NeZero.ne N)⟩
+  have : NeZero (M * N) := ⟨mul_ne_zero (NeZero.ne M) (NeZero.ne N)⟩
   set e := ZMod.chineseRemainder h with he
 
   let F : ProjectiveLine (ZMod (M * N)) → ProjectiveLine (ZMod M) × ProjectiveLine (ZMod N) :=
@@ -267,8 +267,8 @@ theorem solution (N : ℕ) (hN : N ≠ 0) :
       exact ⟨⟨fun a b => (hrep a).trans (hrep b).symm⟩,
         ⟨⟦⟨((1 : ZMod 1), (0 : ZMod 1)), isUnimodularRow_one_left 0⟩⟧⟩⟩
   | coprime a b ha hb hab iha ihb =>
-      haveI : NeZero a := ⟨by omega⟩
-      haveI : NeZero b := ⟨by omega⟩
+      have : NeZero a := ⟨by omega⟩
+      have : NeZero b := ⟨by omega⟩
       rw [card_projectiveLine_mul a b hab, iha (by omega), ihb (by omega),
         dedekindPsi_mul_of_coprime a b hab]
 

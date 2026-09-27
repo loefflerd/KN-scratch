@@ -199,8 +199,8 @@ theorem roots_phiProd_conj_nodup (p : ℕ) [hp : Fact p.Prime] (ζ : Kˣ) (hζ :
 
 theorem exists_isPrimitiveRoot_cyclotomicField (N : ℕ) [NeZero N] :
     ∃ z : CyclotomicField N ℚ, IsPrimitiveRoot z N := by
-  haveI : NeZero ((N : ℕ) : ℚ) := ⟨Nat.cast_ne_zero.mpr (NeZero.ne N)⟩
-  haveI : IsCyclotomicExtension {N} ℚ (CyclotomicField N ℚ) := CyclotomicField.isCyclotomicExtension N ℚ
+  have : NeZero ((N : ℕ) : ℚ) := ⟨Nat.cast_ne_zero.mpr (NeZero.ne N)⟩
+  have : IsCyclotomicExtension {N} ℚ (CyclotomicField N ℚ) := CyclotomicField.isCyclotomicExtension N ℚ
   exact IsCyclotomicExtension.exists_isPrimitiveRoot ℚ (CyclotomicField N ℚ) (Set.mem_singleton N) (NeZero.ne N)
 
 def cycUnit (N : ℕ) [NeZero N] : (CyclotomicField N ℚ)ˣ :=
@@ -439,7 +439,7 @@ private theorem level_exponent_eq {N M : ℕ} {v : LaurentSeries K} (hv : IsLeve
     (e' : ℕ) [NeZero e'] (w' : Kˣ) (hveq : v = TS K e' w') :
     ∃ d' : ℕ, d' ∣ M ∧ e' * (d' * d') = N * N * M ∧ w' ^ M = 1 := by
   obtain ⟨ez, dz, hez, wz, hdz, hezd, hwz, rfl⟩ := hv
-  haveI := hez
+  have := hez
   obtain ⟨rfl, rfl⟩ := TS_injective hveq
   exact ⟨dz, hdz, hezd, hwz⟩
 
@@ -449,7 +449,7 @@ theorem isLevel_mul_of_isRoot (N : ℕ) [NeZero N] (hN : Squarefree N) (ζ : Kˣ
     (hy : IsLevel K N M y) (hz : (phiAtSeed data y).IsRoot z) :
     IsLevel K N (M * q) z := by
   obtain ⟨e, d, he, w, hdM, hed, hwM, rfl⟩ := hy
-  haveI := he
+  have := he
   obtain ⟨hqN, hqNN, hcop, hqM⟩ := prime_step_facts N hN hq.out hMq
   have hζ1 : ζ ^ (N * N) = 1 :=
     Units.ext (by rw [Units.val_pow_eq_pow_val, Units.val_one]; exact hζ.pow_eq_one)
@@ -461,7 +461,7 @@ theorem isLevel_mul_of_isRoot (N : ℕ) [NeZero N] (hN : Squarefree N) (ζ : Kˣ
     · exact h
     · rcases hq.out.dvd_mul.mp h with h' | h' <;> exact absurd h' hqd
   obtain ⟨e₁, rfl⟩ := hqe
-  haveI : NeZero e₁ := ⟨fun h0 => NeZero.ne (q * e₁) (by rw [h0, mul_zero])⟩
+  have : NeZero e₁ := ⟨fun h0 => NeZero.ne (q * e₁) (by rw [h0, mul_zero])⟩
 
   obtain ⟨u, huq⟩ := exists_pow_eq_of_coprime (G := Kˣ) hcop.symm hwM
 
@@ -493,7 +493,7 @@ theorem eq_of_isRoot_of_isLevel (N : ℕ) [NeZero N] (hN : Squarefree N) (ζ : K
     (hz' : (phiAtSeed data y).IsRoot z') (hzM : IsLevel K N M z) (hz'M : IsLevel K N M z') :
     z = z' := by
   obtain ⟨e, d, he, w, hdMq, hed, hwMq, rfl⟩ := hy
-  haveI := he
+  have := he
   obtain ⟨hqN, hqNN, hcop, hqM⟩ := prime_step_facts N hN hq.out hMq
 
   have hqe : q ∣ e := by
@@ -520,7 +520,7 @@ theorem eq_of_isRoot_of_isLevel (N : ℕ) [NeZero N] (hN : Squarefree N) (ζ : K
           exact (mul_dvd_mul_iff_left hq.out.ne_zero).mp hh
         exact absurd (hqd₁.trans hd₁M) hqM
   obtain ⟨e₁, rfl⟩ := hqe
-  haveI : NeZero e₁ := ⟨fun h0 => NeZero.ne (q * e₁) (by rw [h0, mul_zero])⟩
+  have : NeZero e₁ := ⟨fun h0 => NeZero.ne (q * e₁) (by rw [h0, mul_zero])⟩
   have hed₁ : e₁ * (d * d) = N * N * M := by
     refine Nat.eq_of_mul_eq_mul_left hq.out.pos ?_
     calc q * (e₁ * (d * d)) = q * e₁ * (d * d) := by ring
@@ -704,7 +704,7 @@ private theorem ModularCurve.finrank_adjoin_jqN_eq_of_squarefree (N : ℕ) [NeZe
     exact relfinrank_full_of_squarefree N hN
   have hψpos : 0 < dedekindPsi N := by
     rw [dedekindPsi_of_squarefree hN]; exact Finset.prod_pos fun p _ => Nat.succ_pos p
-  haveI : FiniteDimensional ℚ⟮jq⟯ E := Module.finite_of_finrank_pos (by rw [hfin]; exact hψpos)
+  have : FiniteDimensional ℚ⟮jq⟯ E := Module.finite_of_finrank_pos (by rw [hfin]; exact hψpos)
 
   have memE : ∀ d : ℕ, ∀ _ : NeZero d, d ∣ N → jqN d ∈ E := by
     intro d _ hd
@@ -718,7 +718,7 @@ private theorem ModularCurve.finrank_adjoin_jqN_eq_of_squarefree (N : ℕ) [NeZe
   have hup : Module.finrank ℚ⟮jq⟯ (IntermediateField.adjoin ℚ⟮jq⟯ ({jqN N} : Set (LaurentSeries ℚ))) ≤ dedekindPsi N :=
     hfin ▸ IntermediateField.finrank_le_of_le_right hsub
 
-  haveI : NeZero (N * N) := ⟨mul_ne_zero (NeZero.ne N) (NeZero.ne N)⟩
+  have : NeZero (N * N) := ⟨mul_ne_zero (NeZero.ne N) (NeZero.ne N)⟩
   let K := CyclotomicField (N * N) ℚ
   let ζ : Kˣ := cycUnit (N * N)
   have hζ : IsPrimitiveRoot (ζ : K) (N * N) := cycUnit_spec (N * N)
@@ -730,7 +730,7 @@ private theorem ModularCurve.finrank_adjoin_jqN_eq_of_squarefree (N : ℕ) [NeZe
     have := congrArg (fun z : LaurentSeries K => z.coeff k) h
     simp only [ι, RingHom.comp_apply, coeffEmb_coeff] at this
     exact (algebraMap ℚ K).injective this
-  letI : Algebra ℚ⟮jq⟯ (LaurentSeries K) := (ι.comp (algebraMap ℚ⟮jq⟯ (LaurentSeries ℚ))).toAlgebra
+  let : Algebra ℚ⟮jq⟯ (LaurentSeries K) := (ι.comp (algebraMap ℚ⟮jq⟯ (LaurentSeries ℚ))).toAlgebra
   have halg : ∀ a : ℚ⟮jq⟯, algebraMap ℚ⟮jq⟯ (LaurentSeries K) a = ι a := fun a => rfl
 
   have hdata : ∀ q : ℕ, ∀ _ : Fact q.Prime, ∃ data : ModularPolynomialData q, EvalSymm data.Φ :=
@@ -749,7 +749,7 @@ private theorem ModularCurve.finrank_adjoin_jqN_eq_of_squarefree (N : ℕ) [NeZe
       rw [hj]
       simp only [Polynomial.map_sub, Polynomial.map_X, Polynomial.map_C]
       exact Polynomial.Splits.X_sub_C _
-    · haveI : Fact p.Prime := ⟨Nat.prime_of_mem_primeFactors hp⟩
+    · have : Fact p.Prime := ⟨Nat.prime_of_mem_primeFactors hp⟩
       have hpN : p ∣ N := Nat.dvd_of_mem_primeFactors hp
       obtain ⟨data, -⟩ := hdata p inferInstance
       have hmin := toAdjoin_eq_minpoly p data
@@ -757,7 +757,7 @@ private theorem ModularCurve.finrank_adjoin_jqN_eq_of_squarefree (N : ℕ) [NeZe
       · rw [hmin, ← Polynomial.aeval_def]; exact minpoly.aeval _ _
       rw [← hmin, phiAtSeed_map, halg]
       change (phiAtSeed data (ι jq)).Splits
-      haveI : NeZero (N * (N / p)) := ⟨mul_ne_zero (NeZero.ne N) (Nat.div_ne_zero_iff_of_dvd hpN |>.mpr ⟨NeZero.ne N, (Nat.prime_of_mem_primeFactors hp).ne_zero⟩)⟩
+      have : NeZero (N * (N / p)) := ⟨mul_ne_zero (NeZero.ne N) (Nat.div_ne_zero_iff_of_dvd hpN |>.mpr ⟨NeZero.ne N, (Nat.prime_of_mem_primeFactors hp).ne_zero⟩)⟩
       have hseed : ι jq = qExpand K (p * (N * (N / p))) (qTwist ((1 : Kˣ) ^ p) (coeffEmb K jq)) := by
         change coeffEmb K (qExpand ℚ (N * N) jq) = TS K (p * (N * (N / p))) (1 ^ p)
         rw [iota_jq, one_pow]
@@ -784,8 +784,8 @@ private theorem ModularCurve.finrank_adjoin_jqN_eq_of_squarefree (N : ℕ) [NeZe
       exact isLevel_one N
     | prime_mul p a hp ih =>
       intro _ hpa hmem
-      haveI : Fact p.Prime := ⟨hp⟩
-      haveI : NeZero a := ⟨fun h => NeZero.ne N (by rw [h, Nat.mul_zero] at hpa; exact zero_dvd_iff.mp hpa)⟩
+      have : Fact p.Prime := ⟨hp⟩
+      have : NeZero a := ⟨fun h => NeZero.ne N (by rw [h, Nat.mul_zero] at hpa; exact zero_dvd_iff.mp hpa)⟩
       have ha : a ∣ N := dvd_of_mul_left_dvd hpa
       have hap : a * p ∣ N := by rw [Nat.mul_comm]; exact hpa
       obtain ⟨data, -⟩ := hdata p inferInstance
@@ -815,8 +815,8 @@ private theorem ModularCurve.finrank_adjoin_jqN_eq_of_squarefree (N : ℕ) [NeZe
         exact htop
       | prime_mul p a hp ih =>
         intro d _ h
-        haveI : Fact p.Prime := ⟨hp⟩
-        haveI : NeZero (d * p) := ⟨mul_ne_zero (NeZero.ne d) hp.ne_zero⟩
+        have : Fact p.Prime := ⟨hp⟩
+        have : NeZero (d * p) := ⟨mul_ne_zero (NeZero.ne d) hp.ne_zero⟩
         have hdp : d * p * a = N := by rw [← h]; ring
         have hup := ih (d * p) inferInstance hdp
         obtain ⟨data, hs⟩ := hdata p inferInstance

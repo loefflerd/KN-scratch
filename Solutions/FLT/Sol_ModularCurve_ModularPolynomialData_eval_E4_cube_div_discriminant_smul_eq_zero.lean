@@ -69,7 +69,7 @@ def An (f : ℍ → ℂ) : Prop := AnalyticAt ℂ (cuspFunction 1 f) 0
 
 theorem an_of_modularForm {Γ : Subgroup (GL (Fin 2) ℝ)} {k : ℤ} [Γ.HasDetPlusMinusOne]
     (hΓ : (1 : ℝ) ∈ Γ.strictPeriods) (f : ModularForm Γ k) : An ⇑f := by
-  haveI : Fact (IsCusp OnePoint.infty Γ) := ⟨Γ.isCusp_of_mem_strictPeriods one_pos hΓ⟩
+  have : Fact (IsCusp OnePoint.infty Γ) := ⟨Γ.isCusp_of_mem_strictPeriods one_pos hΓ⟩
   exact UpperHalfPlane.analyticAt_cuspFunction_zero one_pos
     (SlashInvariantFormClass.periodic_comp_ofComplex f hΓ) (ModularFormClass.holo f)
     (ModularFormClass.bdd_at_infty f)

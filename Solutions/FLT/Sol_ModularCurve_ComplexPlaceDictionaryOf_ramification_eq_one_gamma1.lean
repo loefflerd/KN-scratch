@@ -375,7 +375,7 @@ theorem solution
     D.ramification τ = 1 := by
   classical
   subst hF
-  haveI : Fact (ModularGroup.T ∈ CongruenceSubgroup.Gamma1 M) := ⟨T_mem_Gamma1 M⟩
+  have : Fact (ModularGroup.T ∈ CongruenceSubgroup.Gamma1 M) := ⟨T_mem_Gamma1 M⟩
   obtain ⟨y, hy⟩ := exists_coe_eq_jqModC M
   set c : ℂ := (ModularForm.E₄ : ℍ → ℂ) τ ^ 3 / ModularForm.discriminant τ with hc
   set x := y - algebraMap ℂ _ c with hxdef

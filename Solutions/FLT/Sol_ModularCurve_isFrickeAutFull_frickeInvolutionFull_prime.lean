@@ -17,7 +17,7 @@ open ModularCurve AlgebraicCurve IntermediateField
 noncomputable section
 
 theorem solution (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] : IsFrickeAutFull ℓ (frickeInvolutionFull ℓ) := by
-  haveI : NeZero ℓ := ⟨hℓ.out.ne_zero⟩
+  have : NeZero ℓ := ⟨hℓ.out.ne_zero⟩
   exact ModularCurve.isFrickeAutFull_frickeInvolutionFull ℓ (ModularCurve.exists_isFrickeAutFull ℓ)
 
 end

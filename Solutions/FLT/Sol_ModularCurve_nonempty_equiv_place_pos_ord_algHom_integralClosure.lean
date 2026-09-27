@@ -75,7 +75,7 @@ open scoped IntermediateField.algebraAdjoinAdjoin
 variable [CharZero K] (t : F) [FiniteDimensional (IntermediateField.adjoin K ({t} : Set F)) F]
 
 scoped instance instIsDedekindDomainNormalization : IsDedekindDomain (normalization K t) := by
-  haveI : CharZero (IntermediateField.adjoin K ({t} : Set F)) :=
+  have : CharZero (IntermediateField.adjoin K ({t} : Set F)) :=
     charZero_of_injective_algebraMap (algebraMap K _).injective
   exact integralClosure.isDedekindDomain (Algebra.adjoin K ({t} : Set F))
     (IntermediateField.adjoin K ({t} : Set F)) F
@@ -302,10 +302,10 @@ end Surjective
 
 theorem isRational_of_deg_eq_one [IsAlgClosed K] (w : Place K F) (h : w.deg = 1) :
     w.IsRational := by
-  haveI : Module.Finite K w.ResidueField := Module.finite_of_finrank_pos (by
+  have : Module.Finite K w.ResidueField := Module.finite_of_finrank_pos (by
     show 0 < w.deg
     omega)
-  haveI : Algebra.IsIntegral K w.ResidueField := Algebra.IsIntegral.of_finite K w.ResidueField
+  have : Algebra.IsIntegral K w.ResidueField := Algebra.IsIntegral.of_finite K w.ResidueField
   exact (IsAlgClosed.algebraMap_bijective_of_isIntegral (k := K) (K := w.ResidueField)).2
 
 section Dictionary

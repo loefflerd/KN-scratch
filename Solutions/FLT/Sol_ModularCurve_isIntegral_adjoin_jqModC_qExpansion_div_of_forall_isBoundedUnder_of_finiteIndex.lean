@@ -307,7 +307,7 @@ theorem cuspOrder_spec (φ : ℍ → ℂ)
 theorem exists_forall_cuspOrder_le [Γ.FiniteIndex] (h : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) :
     ∃ m : ℕ, ∀ A : SL(2, ℤ), cuspOrder Γ (⇑h ∣[k] A) ≤ m := by
   classical
-  haveI : Finite (SL(2, ℤ) ⧸ Γ) := Subgroup.finite_quotient_of_finiteIndex
+  have : Finite (SL(2, ℤ) ⧸ Γ) := Subgroup.finite_quotient_of_finiteIndex
   let ψ : SL(2, ℤ) ⧸ Γ → ℕ := fun q => cuspOrder Γ (⇑h ∣[k] (q.out)⁻¹)
   obtain ⟨m, hm⟩ := (Set.finite_range ψ).bddAbove
   refine ⟨m, fun A => ?_⟩

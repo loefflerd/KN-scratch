@@ -47,7 +47,7 @@ theorem solution
       have h := hΓPl (b * a⁻¹) hab' a
       rw [inv_mul_cancel_right] at h
       exact h.symm)
-  haveI : Finite (Quotient (QuotientGroup.rightRel Γ)) :=
+  have : Finite (Quotient (QuotientGroup.rightRel Γ)) :=
     Finite.of_equiv _ (QuotientGroup.quotientRightRelEquivQuotientLeftRel Γ).symm
   have hfin : (Set.range Pl).Finite := by
     refine (Set.finite_range Pl').subset ?_

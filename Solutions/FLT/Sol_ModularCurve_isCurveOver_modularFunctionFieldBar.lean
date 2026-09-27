@@ -82,12 +82,12 @@ private theorem kaehler_free_rank_one_adjoin (x : LF) (hx : Transcendental K x) 
         (e.symm : K⟮x⟯ →+* A) (RingHom.id LF) hcomp'
     exact (isIntegral_algHom_iff (IsScalarTower.toAlgHom A F LF) Subtype.val_injective).mp h1
 
-  haveI : FiniteDimensional A F := by
+  have : FiniteDimensional A F := by
     set T' : Set F := (fun t : T => (⟨(t : LF), hTF t t.2⟩ : F)) '' Set.univ with hT'
-    haveI : Finite T' := Set.Finite.to_subtype ((Set.finite_univ).image _)
+    have : Finite T' := Set.Finite.to_subtype ((Set.finite_univ).image _)
     have hT'int : ∀ y ∈ T', IsIntegral A y := by
       rintro _ ⟨t, -, rfl⟩; exact hint t t.2
-    haveI : FiniteDimensional A (IntermediateField.adjoin A T') := finiteDimensional_adjoin hT'int
+    have : FiniteDimensional A (IntermediateField.adjoin A T') := finiteDimensional_adjoin hT'int
     have htop : IntermediateField.adjoin A T' = ⊤ := by
       apply restrictScalars_injective K
       rw [restrictScalars_adjoin, restrictScalars_top]
@@ -104,7 +104,7 @@ private theorem kaehler_free_rank_one_adjoin (x : LF) (hx : Transcendental K x) 
     rw [htop] at this
     exact LinearEquiv.finiteDimensional (IntermediateField.topEquiv (F := A) (E := F)).toLinearEquiv
 
-  haveI : Algebra.IsSeparable A F := ⟨fun z => by
+  have : Algebra.IsSeparable A F := ⟨fun z => by
     have hzLF : IsIntegral K⟮x⟯ ((z : F) : LF) :=
       ((IsIntegral.of_finite A z).map (IsScalarTower.toAlgHom A F LF)).map_of_comp_eq
         (R := A) (S := LF) (T := K⟮x⟯) (U := LF) (e : A →+* K⟮x⟯) (RingHom.id LF) hcomp
@@ -136,14 +136,14 @@ private theorem isCurveOver_laurentBaseChange (L : Type*) [Field L] {instQL : Al
         (insert (jqModC L) ((({jqNModC L N} : Finset (LaurentSeries L)) : Set (LaurentSeries L)))) →
       Module.Free E (KaehlerDifferential L E) ∧ Module.finrank E (KaehlerDifferential L E) = 1 := by
     rintro E rfl
-    haveI : CharZero L := charZero_of_injective_algebraMap (algebraMap ℚ L).injective
+    have : CharZero L := charZero_of_injective_algebraMap (algebraMap ℚ L).injective
     refine kaehler_free_rank_one_adjoin L (jqModC L) (transcendental_jqModC L) {jqNModC L N} ?_ ?_
     · intro t ht
       rw [Finset.mem_singleton] at ht
       subst ht
       exact isIntegral_jqNModC_all L N
     · intro y hy
-      haveI : CharZero L⟮jqModC L⟯ :=
+      have : CharZero L⟮jqModC L⟯ :=
         charZero_of_injective_algebraMap (algebraMap L L⟮jqModC L⟯).injective
       exact PerfectField.separable_of_irreducible (minpoly.irreducible hy)
   exact { hasPrincipalDivisors_laurentBaseChange_modularFunctionFieldFull_unconditional L N with

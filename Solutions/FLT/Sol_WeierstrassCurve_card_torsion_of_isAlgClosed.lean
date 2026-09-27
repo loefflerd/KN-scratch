@@ -411,7 +411,7 @@ theorem finite_not_squarefree_fiber [IsAlgClosed K] [W.IsElliptic] {n : ℕ}
     finite_setOf_isRoot hWr
   refine Set.Finite.subset (hroots.image (fun x => F'.eval x / G.eval x)) ?_
   intro c hc
-  rw [Set.mem_setOf_eq] at hc
+  rw [Set.mem_ofPred_eq] at hc
   unfold Squarefree at hc
   push Not at hc
   obtain ⟨q, hq2, hqu⟩ := hc
@@ -887,17 +887,17 @@ theorem card_nTorsion_odd_fibers [W.IsElliptic] {n : ℕ} (hodd : Odd n)
     have e := subtypeOrEquiv (fun P : W.toAffine⟮K⟯ => n • P = Q)
       (fun P : W.toAffine⟮K⟯ => n • P = -Q) hdisj
     rw [Nat.card_congr e] at hQ
-    haveI hfinsum : Finite ({P : W.toAffine⟮K⟯ // n • P = Q} ⊕
+    have hfinsum : Finite ({P : W.toAffine⟮K⟯ // n • P = Q} ⊕
         {P : W.toAffine⟮K⟯ // n • P = -Q}) := by
       refine Nat.finite_of_card_ne_zero ?_
       rw [hQ]
       exact mul_ne_zero two_ne_zero (pow_ne_zero 2 hn0)
-    haveI : Finite {P : W.toAffine⟮K⟯ // n • P = Q} :=
+    have : Finite {P : W.toAffine⟮K⟯ // n • P = Q} :=
       Finite.of_injective
         (Sum.inl : {P : W.toAffine⟮K⟯ // n • P = Q} →
           {P : W.toAffine⟮K⟯ // n • P = Q} ⊕ {P : W.toAffine⟮K⟯ // n • P = -Q})
         Sum.inl_injective
-    haveI : Finite {P : W.toAffine⟮K⟯ // n • P = -Q} :=
+    have : Finite {P : W.toAffine⟮K⟯ // n • P = -Q} :=
       Finite.of_injective
         (Sum.inr : {P : W.toAffine⟮K⟯ // n • P = -Q} →
           {P : W.toAffine⟮K⟯ // n • P = Q} ⊕ {P : W.toAffine⟮K⟯ // n • P = -Q})
@@ -1181,10 +1181,10 @@ theorem card_nTorsion_prime_pow [W.IsElliptic] {p : ℕ} (hp : p.Prime)
       refine Nat.finite_of_card_ne_zero ?_
       rw [card_nTorsion_prime W hp hn]
       exact pow_ne_zero 2 hp.pos.ne'
-    haveI := Fintype.ofFinite (nTorsion W (K := K) p)
+    have := Fintype.ofFinite (nTorsion W (K := K) p)
     have hfib : ∀ Q : W.toAffine⟮K⟯, Nat.card {P : W.toAffine⟮K⟯ // p ^ k • P = Q} =
         Nat.card (nTorsion W (K := K) (p ^ k)) := fun Q => card_smul_fiber_all W hpk Q
-    haveI hfibfin : ∀ Q : nTorsion W (K := K) p,
+    have hfibfin : ∀ Q : nTorsion W (K := K) p,
         Finite {P : W.toAffine⟮K⟯ // p ^ k • P = (Q : W.toAffine⟮K⟯)} := by
       intro Q
       refine Nat.finite_of_card_ne_zero ?_

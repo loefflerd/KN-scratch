@@ -326,9 +326,9 @@ private theorem _root_.AlgebraicCurve.Place.comap_algebraMap_ne_top [Algebra.IsI
     ValuationSubring.mem_comap.mp (htop ▸ ValuationSubring.mem_top f)
 
   refine SetLike.ext fun x => ⟨fun _ => ValuationSubring.mem_top x, fun _ => ?_⟩
-  letI : Algebra F w.toValuationSubring :=
+  let : Algebra F w.toValuationSubring :=
     ((algebraMap F F').codRestrict w.toValuationSubring.toSubring hF).toAlgebra
-  letI : IsScalarTower F w.toValuationSubring F' :=
+  let : IsScalarTower F w.toValuationSubring F' :=
     IsScalarTower.of_algebraMap_eq fun f => rfl
   have hx : _root_.IsIntegral w.toValuationSubring x :=
     (Algebra.IsIntegral.isIntegral (R := F) x).tower_top
@@ -1071,18 +1071,18 @@ theorem kwF4gRRTate_RTCC_of_tate
   rw [← kwHgfV352_localResidueCompletion_algebraMap w
     (g * w.differentialCoeff (kaehlerPullback K F E v.dCoord))]
 
-  haveI := hfinF w (algebraMap F w.adicCompletion
+  have := hfinF w (algebraMap F w.adicCompletion
     (g * w.differentialCoeff (kaehlerPullback K F E v.dCoord)))
     (algebraMap F w.adicCompletion w.uniformizer)
   rw [← hAF w (algebraMap F w.adicCompletion
     (g * w.differentialCoeff (kaehlerPullback K F E v.dCoord)))]
 
   rw [map_mul]
-  haveI := hfinF w (algebraMap F w.adicCompletion g)
+  have := hfinF w (algebraMap F w.adicCompletion g)
     (algebraMap F w.adicCompletion (algebraMap E F v.uniformizer))
   rw [← hC v w hw (algebraMap F w.adicCompletion g)]
 
-  haveI := hfinE v (kwHgfV352_completionTraceAt v w hw g)
+  have := hfinE v (kwHgfV352_completionTraceAt v w hw g)
     (algebraMap E v.adicCompletion v.uniformizer)
   rw [hT v w hw g]
 

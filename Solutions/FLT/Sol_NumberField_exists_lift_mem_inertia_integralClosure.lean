@@ -31,36 +31,36 @@ theorem solution
           (c : AlgebraicClosure ℚ) = σ b - b := by
   classical
 
-  haveI hnormQ : Normal ℚ ℚ̄ := by
+  have hnormQ : Normal ℚ ℚ̄ := by
     have h : @Normal ℚ ℚ̄ _ _ (AlgebraicClosure.instAlgebra ℚ) := inferInstance
     exact h
-  haveI halgQ : Algebra.IsAlgebraic ℚ ℚ̄ := by
+  have halgQ : Algebra.IsAlgebraic ℚ ℚ̄ := by
     have h : @Algebra.IsAlgebraic ℚ ℚ̄ _ _ (AlgebraicClosure.instAlgebra ℚ) := inferInstance
     exact h
-  haveI hsepQ : Algebra.IsSeparable ℚ ℚ̄ := by
+  have hsepQ : Algebra.IsSeparable ℚ ℚ̄ := by
     have h : @Algebra.IsSeparable ℚ ℚ̄ _ _ (AlgebraicClosure.instAlgebra ℚ) := inferInstance
     exact h
-  haveI : Algebra.IsAlgebraic L ℚ̄ := Algebra.IsAlgebraic.tower_top (K := ℚ) L
-  haveI : Algebra.IsIntegral L ℚ̄ := Algebra.isAlgebraic_iff_isIntegral.mp inferInstance
-  haveI : Normal L ℚ̄ := Normal.tower_top_of_normal ℚ L ℚ̄
-  haveI : Algebra.IsSeparable L ℚ̄ := Algebra.isSeparable_tower_top_of_isSeparable ℚ L ℚ̄
-  haveI : IsGalois L ℚ̄ := ⟨⟩
+  have : Algebra.IsAlgebraic L ℚ̄ := Algebra.IsAlgebraic.tower_top (K := ℚ) L
+  have : Algebra.IsIntegral L ℚ̄ := Algebra.isAlgebraic_iff_isIntegral.mp inferInstance
+  have : Normal L ℚ̄ := Normal.tower_top_of_normal ℚ L ℚ̄
+  have : Algebra.IsSeparable L ℚ̄ := Algebra.isSeparable_tower_top_of_isSeparable ℚ L ℚ̄
+  have : IsGalois L ℚ̄ := ⟨⟩
   have hτ' : ∀ x : 𝓞 L, τ • x - x ∈ Q := fun x => (AddSubgroup.mem_inertia.mp hτ) x
   have hstabτ : τ • Q = Q := Ideal.inertia_le_stabilizer Q hτ
 
-  letI actG : MulSemiringAction (ℚ̄ ≃ₐ[ℚ] ℚ̄) 𝔅 := inferInstance
-  letI actGI : DistribMulAction (ℚ̄ ≃ₐ[ℚ] ℚ̄) (Ideal 𝔅) := Ideal.pointwiseDistribMulAction
-  letI mulActGI : MulAction (ℚ̄ ≃ₐ[ℚ] ℚ̄) (Ideal 𝔅) := DistribMulAction.toMulAction
-  letI dsmulGI : DistribSMul (ℚ̄ ≃ₐ[ℚ] ℚ̄) (Ideal 𝔅) := DistribMulAction.toDistribSMul
-  letI smulzGI : SMulZeroClass (ℚ̄ ≃ₐ[ℚ] ℚ̄) (Ideal 𝔅) := DistribSMul.toSMulZeroClass
-  letI smulGI : SMul (ℚ̄ ≃ₐ[ℚ] ℚ̄) (Ideal 𝔅) := SMulZeroClass.toSMul
+  let actG : MulSemiringAction (ℚ̄ ≃ₐ[ℚ] ℚ̄) 𝔅 := inferInstance
+  let actGI : DistribMulAction (ℚ̄ ≃ₐ[ℚ] ℚ̄) (Ideal 𝔅) := Ideal.pointwiseDistribMulAction
+  let mulActGI : MulAction (ℚ̄ ≃ₐ[ℚ] ℚ̄) (Ideal 𝔅) := DistribMulAction.toMulAction
+  let dsmulGI : DistribSMul (ℚ̄ ≃ₐ[ℚ] ℚ̄) (Ideal 𝔅) := DistribMulAction.toDistribSMul
+  let smulzGI : SMulZeroClass (ℚ̄ ≃ₐ[ℚ] ℚ̄) (Ideal 𝔅) := DistribSMul.toSMulZeroClass
+  let smulGI : SMul (ℚ̄ ≃ₐ[ℚ] ℚ̄) (Ideal 𝔅) := SMulZeroClass.toSMul
 
   let f : 𝓞 L →+* 𝔅 := (algebraMap (𝓞 L) ℚ̄).codRestrict (integralClosure ℤ ℚ̄) fun x =>
     (map_isIntegral_int (algebraMap (𝓞 L) ℚ̄) (Algebra.IsIntegral.isIntegral x))
-  letI algOB : Algebra (𝓞 L) 𝔅 := f.toAlgebra
+  let algOB : Algebra (𝓞 L) 𝔅 := f.toAlgebra
   have hf_coe : ∀ x : 𝓞 L, ((algebraMap (𝓞 L) 𝔅 x : 𝔅) : ℚ̄) = algebraMap L ℚ̄ (x : L) :=
     fun x => rfl
-  haveI : IsScalarTower (𝓞 L) 𝔅 ℚ̄ := IsScalarTower.of_algebraMap_eq fun x => rfl
+  have : IsScalarTower (𝓞 L) 𝔅 ℚ̄ := IsScalarTower.of_algebraMap_eq fun x => rfl
   have hf_inj : Function.Injective (algebraMap (𝓞 L) 𝔅) := by
     intro x y hxy
     have h := congrArg (fun z : 𝔅 => (z : ℚ̄)) hxy
@@ -86,12 +86,12 @@ theorem solution
     change algebraMap L ℚ̄ (((rsh g).restrictNormal L) x) = algebraMap L ℚ̄ x
     rw [AlgEquiv.restrictNormal_commutes, hrsh_apply]
     exact g.commutes x
-  letI actL : MulSemiringAction (ℚ̄ ≃ₐ[L] ℚ̄) 𝔅 := MulSemiringAction.compHom 𝔅 rsh
-  letI actLI : DistribMulAction (ℚ̄ ≃ₐ[L] ℚ̄) (Ideal 𝔅) := Ideal.pointwiseDistribMulAction
-  letI mulActLI : MulAction (ℚ̄ ≃ₐ[L] ℚ̄) (Ideal 𝔅) := DistribMulAction.toMulAction
-  letI dsmulLI : DistribSMul (ℚ̄ ≃ₐ[L] ℚ̄) (Ideal 𝔅) := DistribMulAction.toDistribSMul
-  letI smulzLI : SMulZeroClass (ℚ̄ ≃ₐ[L] ℚ̄) (Ideal 𝔅) := DistribSMul.toSMulZeroClass
-  letI smulLI : SMul (ℚ̄ ≃ₐ[L] ℚ̄) (Ideal 𝔅) := SMulZeroClass.toSMul
+  let actL : MulSemiringAction (ℚ̄ ≃ₐ[L] ℚ̄) 𝔅 := MulSemiringAction.compHom 𝔅 rsh
+  let actLI : DistribMulAction (ℚ̄ ≃ₐ[L] ℚ̄) (Ideal 𝔅) := Ideal.pointwiseDistribMulAction
+  let mulActLI : MulAction (ℚ̄ ≃ₐ[L] ℚ̄) (Ideal 𝔅) := DistribMulAction.toMulAction
+  let dsmulLI : DistribSMul (ℚ̄ ≃ₐ[L] ℚ̄) (Ideal 𝔅) := DistribMulAction.toDistribSMul
+  let smulzLI : SMulZeroClass (ℚ̄ ≃ₐ[L] ℚ̄) (Ideal 𝔅) := DistribSMul.toSMulZeroClass
+  let smulLI : SMul (ℚ̄ ≃ₐ[L] ℚ̄) (Ideal 𝔅) := SMulZeroClass.toSMul
   have hrs : ∀ (g : ℚ̄ ≃ₐ[L] ℚ̄) (b : 𝔅), g • b = rsh g • b := fun _ _ => rfl
   have hrsI : ∀ (g : ℚ̄ ≃ₐ[L] ℚ̄) (J : Ideal 𝔅), g • J = rsh g • J := by
     intro g J
@@ -99,15 +99,15 @@ theorem solution
     rw [Ideal.mem_pointwise_smul_iff_inv_smul_mem, Ideal.mem_pointwise_smul_iff_inv_smul_mem,
       ← map_inv, hrs]
 
-  haveI : SMulCommClass (ℚ̄ ≃ₐ[L] ℚ̄) (𝓞 L) 𝔅 := ⟨fun g a b => by
+  have : SMulCommClass (ℚ̄ ≃ₐ[L] ℚ̄) (𝓞 L) 𝔅 := ⟨fun g a b => by
     apply Subtype.ext
     change g ((algebraMap L ℚ̄ (a : L)) * (b : ℚ̄)) = algebraMap L ℚ̄ (a : L) * g (b : ℚ̄)
     rw [map_mul, AlgEquiv.commutes]⟩
-  letI : TopologicalSpace 𝔅 := ⊥
-  haveI : DiscreteTopology 𝔅 := ⟨rfl⟩
-  haveI : ContinuousSMul (ℚ̄ ≃ₐ[L] ℚ̄) 𝔅 := by
+  let : TopologicalSpace 𝔅 := ⊥
+  have : DiscreteTopology 𝔅 := ⟨rfl⟩
+  have : ContinuousSMul (ℚ̄ ≃ₐ[L] ℚ̄) 𝔅 := by
     refine continuousSMul_iff_stabilizer_isOpen.mpr fun b => ?_
-    haveI : FiniteDimensional L (IntermediateField.adjoin L {(b : ℚ̄)}) :=
+    have : FiniteDimensional L (IntermediateField.adjoin L {(b : ℚ̄)}) :=
       IntermediateField.adjoin.finiteDimensional (Algebra.IsIntegral.isIntegral (b : ℚ̄))
     refine Subgroup.isOpen_mono ?_
       (IntermediateField.fixingSubgroup_isOpen (IntermediateField.adjoin L {(b : ℚ̄)}))
@@ -117,7 +117,7 @@ theorem solution
     change g (b : ℚ̄) = b
     rw [IntermediateField.mem_fixingSubgroup_iff] at hg
     exact hg _ (IntermediateField.mem_adjoin_simple_self L (b : ℚ̄))
-  haveI : Algebra.IsInvariant (𝓞 L) 𝔅 (ℚ̄ ≃ₐ[L] ℚ̄) := ⟨fun b hb => by
+  have : Algebra.IsInvariant (𝓞 L) 𝔅 (ℚ̄ ≃ₐ[L] ℚ̄) := ⟨fun b hb => by
     have hb' : (b : ℚ̄) ∈ Set.range (algebraMap L ℚ̄) := by
       rw [InfiniteGalois.mem_range_algebraMap_iff_fixed]
       intro g
@@ -135,7 +135,7 @@ theorem solution
     rw [hf_coe]
     exact hy⟩
 
-  haveI : Algebra.IsIntegral (𝓞 L) 𝔅 :=
+  have : Algebra.IsIntegral (𝓞 L) 𝔅 :=
     Algebra.IsInvariant.isIntegral_of_profinite (G := ℚ̄ ≃ₐ[L] ℚ̄)
 
   obtain ⟨𝔔, h𝔔max, h𝔔Q⟩ := Ideal.exists_ideal_over_maximal_of_isIntegral (S := 𝔅) Q (by
@@ -144,8 +144,8 @@ theorem solution
     have hx0 : x = 0 := hf_inj (by rw [hx, map_zero])
     rw [hx0]
     exact Q.zero_mem)
-  haveI h𝔔prime : 𝔔.IsPrime := h𝔔max.isPrime
-  haveI h𝔔lies : 𝔔.LiesOver Q := ⟨by rw [Ideal.under_def, h𝔔Q]⟩
+  have h𝔔prime : 𝔔.IsPrime := h𝔔max.isPrime
+  have h𝔔lies : 𝔔.LiesOver Q := ⟨by rw [Ideal.under_def, h𝔔Q]⟩
   have hmemQ : ∀ x : 𝓞 L, algebraMap (𝓞 L) 𝔅 x ∈ 𝔔 ↔ x ∈ Q := fun x => by
     rw [← Ideal.mem_comap, h𝔔Q]
 

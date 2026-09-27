@@ -22,7 +22,7 @@ theorem solution
     (W : WeierstrassCurve F) [W.IsElliptic] {n : ℕ} (hn : (n : K) ≠ 0) :
     Nat.card {G : AddSubgroup (W⁄K).Point // IsAddCyclic G ∧ Nat.card G = n}
       = ModularCurve.dedekindPsi n := by
-  haveI : NeZero n := ⟨by rintro rfl; exact hn Nat.cast_zero⟩
+  have : NeZero n := ⟨by rintro rfl; exact hn Nat.cast_zero⟩
   obtain ⟨e⟩ := W.nonempty_torsionBy_addEquiv_zmod_prod_of_isAlgClosed (K := K) hn
   exact AddCommGroup.natCard_isAddCyclic_addSubgroup_eq_dedekindPsi_of_addEquiv_torsionBy n e
 

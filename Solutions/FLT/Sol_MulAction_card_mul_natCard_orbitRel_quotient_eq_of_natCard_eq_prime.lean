@@ -16,8 +16,8 @@ theorem solution
     p * Nat.card (MulAction.orbitRel.Quotient G X)
       = Nat.card X + (p - 1) * Nat.card (MulAction.fixedPoints G X) := by
   classical
-  haveI : Fintype G := Fintype.ofFinite G
-  haveI : Fintype X := Fintype.ofFinite X
+  have : Fintype G := Fintype.ofFinite G
+  have : Fintype X := Fintype.ofFinite X
   have hGc : Fintype.card G = p := by rw [← Nat.card_eq_fintype_card]; exact hG
 
   have hfix : ∀ g : G, g ≠ 1 → fixedBy X g = fixedPoints G X := by

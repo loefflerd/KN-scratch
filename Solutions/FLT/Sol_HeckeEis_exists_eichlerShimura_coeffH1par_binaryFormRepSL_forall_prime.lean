@@ -99,14 +99,14 @@ theorem solution (N : ℕ) [NeZero N] (n : ℕ) :
     exact HeckeEis.isCompl_range_eichlerShimuraMap_range_conj N n ES hES Φ.toAddMonoidHom (fun z => hΦ z) ESbar hESbar
   ·
     intro ℓ hℓ hℓN T hT
-    haveI : NeZero ℓ := ⟨hℓ.ne_zero⟩
+    have : NeZero ℓ := ⟨hℓ.ne_zero⟩
     refine ⟨fun f => ?_, fun f => ?_⟩
     · rw [hES, hES]
       exact HeckeEis.eichlerShimuraMap_heckeTLin N n hℓ hℓN T hT f
     · rw [hESbar, hESbar, hcomm ℓ T hT, hES, hES, HeckeEis.eichlerShimuraMap_heckeTLin N n hℓ hℓN T hT f]
   ·
     intro ℓ hℓ hℓN T hT
-    haveI : NeZero ℓ := ⟨hℓ.ne_zero⟩
+    have : NeZero ℓ := ⟨hℓ.ne_zero⟩
     refine ⟨fun f => ?_, fun f => ?_⟩
     · rw [hES, hES]
       exact HeckeEis.eichlerShimuraMap_heckeULin N n hℓ hℓN T hT f

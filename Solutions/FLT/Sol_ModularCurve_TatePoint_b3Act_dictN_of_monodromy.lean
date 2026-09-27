@@ -109,7 +109,7 @@ theorem j_fullKernelQuotient_nearTransport (Q : (nearCurve j₀).toAffine.Point)
     (hQ : ((nearCurve j₀).fullKernelQuotient Q N).IsElliptic)
     (hQ' : ((nearCurve j₀).fullKernelQuotient (nearTransport j₀ m Q) N).IsElliptic) :
     @WeierstrassCurve.j H _ _ hQ' = (m : H ≃ₐ[Qbar] H) (@WeierstrassCurve.j H _ _ hQ) := by
-  haveI := hQ
+  have := hQ
   rw [j_congr (fullKernelQuotient_nearTransport j₀ m Q N) hQ' inferInstance]
   exact WeierstrassCurve.map_j _ _
 

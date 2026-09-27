@@ -22,7 +22,7 @@ theorem exists_tendsto_div_qParam_pow {Γ' : Subgroup (GL (Fin 2) ℝ)} {k : ℤ
       Tendsto (fun τ : ℍ => F τ / Function.Periodic.qParam h τ ^ n) atImInfty (𝓝 a) := by
   have hper : Function.Periodic ((F : ℍ → ℂ) ∘ ofComplex) h := SlashInvariantFormClass.periodic_comp_ofComplex F hΓ
   have hG : AnalyticAt ℂ (cuspFunction h F) 0 := ModularFormClass.analyticAt_cuspFunction_zero F hh hΓ
-  haveI : Fact (IsCusp OnePoint.infty Γ') := ⟨Γ'.isCusp_of_mem_strictPeriods hh hΓ⟩
+  have : Fact (IsCusp OnePoint.infty Γ') := ⟨Γ'.isCusp_of_mem_strictPeriods hh hΓ⟩
   have hne : ¬ ∀ᶠ z in 𝓝 (0 : ℂ), cuspFunction h F z = 0 := by
     intro h0
     apply hF

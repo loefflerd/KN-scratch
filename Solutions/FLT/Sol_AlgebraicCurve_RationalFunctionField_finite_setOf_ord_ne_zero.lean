@@ -108,7 +108,7 @@ private def placeInfty' : Place K (RatFunc K) where
     rw [Valuation.mem_valuationSubring_iff]
     exact Valuation.IsTrivialOn.valuation_algebraMap_le_one (v := RatFunc.inftyValuation K) a
   ne_top' := by
-    haveI := nontrivial_valueGroup_inftyValuation K
+    have := nontrivial_valueGroup_inftyValuation K
     simp only [ne_eq, Valuation.valuationSubring_eq_top_iff, not_not]
     infer_instance
   isPrincipalIdealRing' :=
@@ -132,8 +132,8 @@ variable {K}
 private theorem eq_ofHeightOneSpectrum_or_eq_placeInfty' [DecidableEq (RatFunc K)]
     (v : Place K (RatFunc K)) :
     (∃ w : HeightOneSpectrum K[X], v = Place.ofHeightOneSpectrum w) ∨ v = placeInfty' K := by
-  haveI := v.adicValuation_isRankOneDiscrete'
-  haveI := v.adicValuation_isTrivialOn'
+  have := v.adicValuation_isRankOneDiscrete'
+  have := v.adicValuation_isTrivialOn'
   rcases (RatFunc.valuation_isEquiv_infty_or_adic (v := v.adicValuation)).or with h | h
   · exact Or.inr (Place.ext (v.adicValuation_valuationSubring'.symm.trans
       ((Valuation.isEquiv_iff_valuationSubring _ _).mp h)))
@@ -150,7 +150,7 @@ private theorem finite_setOf_valuation_ne_one' {f : RatFunc K} (hf : f ≠ 0) :
   refine Set.Finite.subset ((Ideal.finite_factors hnum).union (Ideal.finite_factors hden))
     fun w hw => ?_
   by_contra hcon
-  simp only [Set.mem_union, Set.mem_setOf_eq, not_or, Ideal.dvd_span_singleton] at hcon
+  simp only [Set.mem_union, Set.mem_ofPred_eq, not_or, Ideal.dvd_span_singleton] at hcon
   refine hw ?_
   have h1 : w.valuation (RatFunc K) (algebraMap K[X] (RatFunc K) f.num) = 1 :=
     (HeightOneSpectrum.valuation_eq_one_iff_notMem w).mpr hcon.1
@@ -179,8 +179,8 @@ theorem rowMain {f : RatFunc K} (hf : f ≠ 0) :
         (finite_setOf_valuation_ne_one' hf))
       (Set.Subsingleton.finite subsingleton_setOf_forall_ne_ofHeightOneSpectrum'))
     fun v hv => ?_
-  simp only [Set.mem_setOf_eq] at hv
-  simp only [Set.mem_union, Set.mem_image, Set.mem_setOf_eq]
+  simp only [Set.mem_ofPred_eq] at hv
+  simp only [Set.mem_union, Set.mem_image, Set.mem_ofPred_eq]
   by_cases hcase : ∃ w : HeightOneSpectrum K[X], v = Place.ofHeightOneSpectrum w
   · obtain ⟨w, rfl⟩ := hcase
     refine Or.inl ⟨w, fun hone => hv ?_, rfl⟩

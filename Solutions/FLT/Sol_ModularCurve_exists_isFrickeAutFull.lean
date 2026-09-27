@@ -33,7 +33,7 @@ end W2B
 end ModularCurve
 
 theorem solution (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] : ∃ σ : modularFunctionFieldFull ℓ ≃ₐ[ℚ] modularFunctionFieldFull ℓ, IsFrickeAutFull ℓ σ := by
-  haveI : NeZero ℓ := ⟨hℓ.out.ne_zero⟩
+  have : NeZero ℓ := ⟨hℓ.out.ne_zero⟩
   have hfull : modularFunctionFieldFull ℓ = modularFunctionField ℓ := ModularCurve.full_eq_of_prime hℓ.out
   obtain ⟨σ, hσ⟩ := ModularCurve.exists_isFrickeAut ℓ
   obtain ⟨σ', hσ'⟩ := ModularCurve.W2B.cast_algEquiv_exists hfull.symm σ

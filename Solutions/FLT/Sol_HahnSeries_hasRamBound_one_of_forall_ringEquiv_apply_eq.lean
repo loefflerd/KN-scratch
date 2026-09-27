@@ -276,7 +276,7 @@ theorem solution
     HahnSeries.HasRamBound 1 x := by
   intro q hq
   have hb : 0 < q.den := q.den_pos
-  haveI : NeZero q.den := ⟨q.den_nz⟩
+  have : NeZero q.den := ⟨q.den_nz⟩
 
   obtain ⟨μ, hμ⟩ := HasEnoughRootsOfUnity.exists_primitiveRoot K q.den
   obtain ⟨ζ, rfl⟩ : IsUnit μ := by

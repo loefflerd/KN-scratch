@@ -660,7 +660,7 @@ private theorem exists_ringHom_adjoin_of_isRoot {F E L : Type*} [Field F] [Field
     ∃ ψ : ↥(IntermediateField.adjoin F ({α} : Set E)) →+* L,
       ψ.comp (algebraMap F (IntermediateField.adjoin F ({α} : Set E))) = ι ∧
         ψ (IntermediateField.AdjoinSimple.gen F α) = y := by
-  letI : Algebra F L := ι.toAlgebra
+  let : Algebra F L := ι.toAlgebra
   have halgL : algebraMap F L = ι := RingHom.algebraMap_toAlgebra ι
   have hy' : y ∈ (minpoly F α).aroots L := by
     rw [Polynomial.mem_aroots]
@@ -703,8 +703,8 @@ private theorem TS_congr' {e e' : ℕ} [NeZero e] [NeZero e'] {u u' : Kˣ} (he :
 private theorem sv_inj {M : ℕ} {ζ : Kˣ} (hζ : IsPrimitiveRoot (ζ : K) M)
     {a b a' b' : ℕ} (ha0 : a ≠ 0) (ha0' : a' ≠ 0) (hb : b * a < M) (hb' : b' * a' < M)
     (h : sv K ζ a b = sv K ζ a' b') : a = a' ∧ b = b' := by
-  haveI : NeZero a := ⟨ha0⟩
-  haveI : NeZero a' := ⟨ha0'⟩
+  have : NeZero a := ⟨ha0⟩
+  have : NeZero a' := ⟨ha0'⟩
   rw [sv_eq_TS, sv_eq_TS] at h
   obtain ⟨he, hu⟩ := TS_injective h
   have haa : a = a' := (mul_self_inj (Nat.zero_le a) (Nat.zero_le a')).mp he
@@ -864,7 +864,7 @@ private theorem rval_aux : ∀ (M : ℕ) [NeZero M] {K : Type*} [Field K]
     have ha0 : a ≠ 0 := by
       rintro rfl
       exact hM0 (Nat.eq_zero_of_zero_dvd haM)
-    haveI : NeZero a := ⟨ha0⟩
+    have : NeZero a := ⟨ha0⟩
     have had : a * (M / a) = M := Nat.mul_div_cancel' haM
     by_cases hd1 : M / a = 1
     ·
@@ -884,17 +884,17 @@ private theorem rval_aux : ∀ (M : ℕ) [NeZero M] {K : Type*} [Field K]
         rw [h0, mul_zero] at had
         exact hM0 had.symm
       have hpp : (M / a).minFac.Prime := Nat.minFac_prime hd1
-      haveI : Fact (M / a).minFac.Prime := ⟨hpp⟩
-      haveI : NeZero (M / a).minFac := ⟨hpp.ne_zero⟩
+      have : Fact (M / a).minFac.Prime := ⟨hpp⟩
+      have : NeZero (M / a).minFac := ⟨hpp.ne_zero⟩
       obtain ⟨d'', hdd⟩ : (M / a).minFac ∣ M / a := Nat.minFac_dvd _
       set p := (M / a).minFac with hp_def
       have hd''0 : d'' ≠ 0 := by
         rintro rfl
         rw [mul_zero] at hdd
         exact hd0 hdd
-      haveI : NeZero d'' := ⟨hd''0⟩
+      have : NeZero d'' := ⟨hd''0⟩
       have hM'0 : a * d'' ≠ 0 := Nat.mul_ne_zero ha0 hd''0
-      haveI : NeZero (a * d'') := ⟨hM'0⟩
+      have : NeZero (a * d'') := ⟨hM'0⟩
       have hMM' : M = a * d'' * p := by rw [← had, hdd]; ring
       have hM'M : a * d'' ∣ M := ⟨p, hMM'⟩
       have hM'lt : a * d'' < M := by
@@ -948,7 +948,7 @@ private theorem rval_aux : ∀ (M : ℕ) [NeZero M] {K : Type*} [Field K]
         · rw [Polynomial.eval_sub, Polynomial.eval_X, Polynomial.eval_C, sub_self]
 
       obtain ⟨htM', hgM'⟩ := hall (a * d'') hM'M
-      haveI hfd' : FiniteDimensional K⟮jqModC K⟯
+      have hfd' : FiniteDimensional K⟮jqModC K⟯
           (IntermediateField.adjoin K⟮jqModC K⟯
             ({jqNModC K (a * d'')} : Set (LaurentSeries K))) :=
         FiniteDimensional.of_finrank_pos (htM' ▸ dedekindPsi_pos hM'0)
@@ -1071,7 +1071,7 @@ private theorem rval_aux : ∀ (M : ℕ) [NeZero M] {K : Type*} [Field K]
           rintro rfl
           rw [mul_zero] at hm''
           exact hM'0 hm''
-        haveI : NeZero m'' := ⟨hm''0⟩
+        have : NeZero m'' := ⟨hm''0⟩
         have hm''M : m'' ∣ M := ⟨p * p, by rw [hMM', hm'']; ring⟩
         have hm''lt : m'' < M := by
           calc m'' ≤ a * d'' := by rw [hm'']; exact Nat.le_mul_of_pos_left m'' hpp.pos
@@ -1158,7 +1158,7 @@ private theorem rval_aux : ∀ (M : ℕ) [NeZero M] {K : Type*} [Field K]
           have hα0' : α ≠ 0 := by
             rintro rfl
             exact hm''0 (Nat.eq_zero_of_zero_dvd hαdvd)
-          haveI : NeZero α := ⟨hα0'⟩
+          have : NeZero α := ⟨hα0'⟩
           have hcoll : TS K (a * a) (ζ ^ (b * a))
               = TS K (p * p * (α * α)) (ζ ^ (p * p * (β * α))) := by
             calc TS K (a * a) (ζ ^ (b * a)) = sv K ζ a b := (sv_eq_TS ζ a b).symm
@@ -1354,7 +1354,7 @@ private theorem rval_aux : ∀ (M : ℕ) [NeZero M] {K : Type*} [Field K]
       simp only [RingHom.comp_apply]
       rw [show (algebraMap K⟮jqModC K⟯ (LaurentSeries K)) jGenC = jqModC K from rfl, qExpand_one_apply]
     rw [h1]
-    haveI : NeZero (1 : ℕ) := ⟨one_ne_zero⟩
+    have : NeZero (1 : ℕ) := ⟨one_ne_zero⟩
     have h2 : sv K ζ 1 0 = jqModC K := by
       rw [sv_eq_TS]
       have h3 : TS K (1 * 1) (ζ ^ (0 * 1)) = TS K 1 1 :=
@@ -1362,7 +1362,7 @@ private theorem rval_aux : ∀ (M : ℕ) [NeZero M] {K : Type*} [Field K]
       rw [h3, TS, qTwist_one_apply, qExpand_one_apply]
     rw [h2]
   · obtain ⟨htM, -⟩ := hall M dvd_rfl
-    haveI hfd : FiniteDimensional K⟮jqModC K⟯
+    have hfd : FiniteDimensional K⟮jqModC K⟯
         (IntermediateField.adjoin K⟮jqModC K⟯ ({jqNModC K M} : Set (LaurentSeries K))) :=
       FiniteDimensional.of_finrank_pos (htM ▸ dedekindPsi_pos hM0)
     have hα : IsIntegral K⟮jqModC K⟯ (jqNModC K M) :=
@@ -1533,8 +1533,8 @@ private theorem jqNModC_prime_not_mem_adjoin (M : ℕ) [NeZero M] (p : ℕ)
   intro hmem
   have hM0 : M ≠ 0 := NeZero.ne M
   have hp0 : p ≠ 0 := hp.out.ne_zero
-  haveI : NeZero p := ⟨hp0⟩
-  haveI : NeZero (M * p) := ⟨Nat.mul_ne_zero hM0 hp0⟩
+  have : NeZero p := ⟨hp0⟩
+  have : NeZero (M * p) := ⟨Nat.mul_ne_zero hM0 hp0⟩
 
   have hζM : IsPrimitiveRoot ((ζ ^ p : Kˣ) : K) M := by
     have h1 := isPrimitiveRoot_pow_div hζ (⟨p, rfl⟩ : M ∣ M * p)
@@ -1546,7 +1546,7 @@ private theorem jqNModC_prime_not_mem_adjoin (M : ℕ) [NeZero M] (p : ℕ)
     rwa [h2] at h1
 
   obtain ⟨htM, -⟩ := hall M dvd_rfl
-  haveI hfd : FiniteDimensional K⟮jqModC K⟯
+  have hfd : FiniteDimensional K⟮jqModC K⟯
       (IntermediateField.adjoin K⟮jqModC K⟯ ({jqNModC K M} : Set (LaurentSeries K))) :=
     FiniteDimensional.of_finrank_pos (htM ▸ dedekindPsi_pos hM0)
   have hα : IsIntegral K⟮jqModC K⟯ (jqNModC K M) :=

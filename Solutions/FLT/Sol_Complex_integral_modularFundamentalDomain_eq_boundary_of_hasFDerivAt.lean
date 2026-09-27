@@ -51,7 +51,7 @@ lemma h_sq {x : ℝ} (hx : |x| ≤ 1 / 2) : h x ^ 2 = 1 - x ^ 2 :=
   Real.sq_sqrt (le_trans (by norm_num) (three_quarters_le hx))
 
 lemma mem_D_iff {x y : ℝ} : (⟨x, y⟩ : ℂ) ∈ D ↔ |x| ≤ 1 / 2 ∧ h x ≤ y := by
-  simp only [D, mem_setOf_eq, Complex.norm_def, Complex.normSq_mk, Real.one_le_sqrt]
+  simp only [D, mem_ofPred_eq, Complex.norm_def, Complex.normSq_mk, Real.one_le_sqrt]
   constructor
   · rintro ⟨hx, hn, hy⟩
     refine ⟨hx, ?_⟩
@@ -70,7 +70,7 @@ lemma mk_mem_D {x y : ℝ} (hx : |x| ≤ 1 / 2) (hy : h x ≤ y) : (⟨x, y⟩ :
 
 lemma preimage_D : (measurableEquivRealProd.symm : ℝ × ℝ → ℂ) ⁻¹' D = T := by
   ext ⟨x, y⟩
-  simp only [mem_preimage, measurableEquivRealProd_symm_apply, T, mem_setOf_eq]
+  simp only [mem_preimage, measurableEquivRealProd_symm_apply, T, mem_ofPred_eq]
   exact mem_D_iff
 
 lemma isClosed_T : IsClosed T := by
@@ -276,14 +276,14 @@ lemma h_le_iff {x y : ℝ} (hy : 0 ≤ y) : h x ≤ y ↔ r y ≤ |x| := by
 lemma slice_of_one_le {y : ℝ} (hy : 1 ≤ y) :
     {x : ℝ | |x| ≤ 1 / 2 ∧ h x ≤ y} = Icc (-(1 / 2)) (1 / 2) := by
   ext x
-  simp only [mem_setOf_eq, mem_Icc, abs_le]
+  simp only [mem_ofPred_eq, mem_Icc, abs_le]
   exact ⟨fun h => h.1, fun h => ⟨h, (h_le_one x).trans hy⟩⟩
 
 lemma slice_of_lt_one {y : ℝ} (hy0 : 0 ≤ y) (hy : y < 1) :
     {x : ℝ | |x| ≤ 1 / 2 ∧ h x ≤ y} = Icc (-(1 / 2)) (-r y) ∪ Icc (r y) (1 / 2) := by
   have hr := r_pos hy0 hy
   ext x
-  simp only [mem_setOf_eq, mem_union, mem_Icc, h_le_iff hy0, abs_le, le_abs']
+  simp only [mem_ofPred_eq, mem_union, mem_Icc, h_le_iff hy0, abs_le, le_abs']
   constructor
   · rintro ⟨⟨h1, h2⟩, h3 | h3⟩
     · exact Or.inl ⟨h1, h3⟩
@@ -294,7 +294,7 @@ lemma slice_of_lt_one {y : ℝ} (hy0 : 0 ≤ y) (hy : y < 1) :
 
 lemma slice_of_lt {y : ℝ} (hy : y < Real.sqrt 3 / 2) : {x : ℝ | |x| ≤ 1 / 2 ∧ h x ≤ y} = ∅ := by
   ext x
-  simp only [mem_setOf_eq, mem_empty_iff_false, iff_false, not_and, not_le]
+  simp only [mem_ofPred_eq, mem_empty_iff_false, iff_false, not_and, not_le]
   exact fun hx => lt_of_lt_of_le hy (sqrt3_le_h hx)
 
 lemma mem_D_r {y : ℝ} (hy : Real.sqrt 3 / 2 ≤ y) (hy1 : y ≤ 1) : (⟨r y, y⟩ : ℂ) ∈ D := by

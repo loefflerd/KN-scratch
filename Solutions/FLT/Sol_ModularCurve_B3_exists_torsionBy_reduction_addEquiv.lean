@@ -64,7 +64,7 @@ theorem solution (W : WeierstrassCurve H)
                 (specialFibre W).toAffine.Point) =
               WeierstrassCurve.Affine.Point.some (x.coeff 0) (y.coeff 0) h₀ := by
   have hΔ' : (specialFibre W).Δ ≠ 0 := (specialFibre_Δ_ne_zero_iff W hW).mpr hΔ
-  haveI : NeZero p := ⟨(Fact.out : p.Prime).ne_zero⟩
+  have : NeZero p := ⟨(Fact.out : p.Prime).ne_zero⟩
   refine ⟨AddEquiv.ofBijective (Sol3a.torsHom W hW hΔ' p) (Sol3a.torsHom_bijective W hW hΔ' p), ?_⟩
   intro P x y h hP
 

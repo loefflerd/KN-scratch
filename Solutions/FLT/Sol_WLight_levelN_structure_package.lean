@@ -250,7 +250,7 @@ theorem mem_Gamma_or_neg_mem_of_vecMulSL {N : ℕ} [NeZero N] (γ : SL(2, ℤ))
     γ ∈ CongruenceSubgroup.Gamma N ∨ -γ ∈ CongruenceSubgroup.Gamma N := by
 
   rcases Nat.lt_or_ge 1 N with hN | hN
-  · haveI : Fact (1 < N) := ⟨hN⟩
+  · have : Fact (1 < N) := ⟨hN⟩
     have h10 : (1 : ZMod N) ≠ 0 := one_ne_zero
     have r1 := h ![1, 0] (fun e ↦ h10 (by simpa using congrFun e 0))
     have r2 := h ![0, 1] (fun e ↦ h10 (by simpa using congrFun e 1))
@@ -839,7 +839,7 @@ theorem transcendental_jA (N : ℕ) [NeZero N] : Transcendental ℂ (jA N) := by
   apply Polynomial.eq_zero_of_infinite_isRoot
   have : {x : ℂ | P.IsRoot x} = Set.univ := by
     ext z
-    simp only [Set.mem_setOf_eq, Set.mem_univ, iff_true, Polynomial.IsRoot.def]
+    simp only [Set.mem_ofPred_eq, Set.mem_univ, iff_true, Polynomial.IsRoot.def]
     obtain ⟨τ, rfl⟩ := j_surjective z
     exact congrFun hfun τ
   rw [this]
@@ -1218,7 +1218,7 @@ theorem solution
   ·
     rw [hvm]
     ext γ
-    simp only [Set.mem_setOf_eq]
+    simp only [Set.mem_ofPred_eq]
     rw [← mem_levelFixer_iff_pm γ, mem_levelFixer_iff_frickeF γ]
     exact ⟨fun h i τ ↦ (frickeF_slash i.1 γ τ).trans (congrFun (h i.1 i.2) τ),
       fun h v hv ↦ funext fun τ ↦ (frickeF_slash v γ τ).symm.trans (h ⟨v, hv⟩ τ)⟩

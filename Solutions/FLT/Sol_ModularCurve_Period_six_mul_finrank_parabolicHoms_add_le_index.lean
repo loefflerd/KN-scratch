@@ -41,7 +41,7 @@ theorem sum_range_orderOf_natCard_fixedBy [Finite X] :
     ∑ i ∈ Finset.range (orderOf σ), Nat.card (MulAction.fixedBy X (σ ^ i)) =
       Nat.card (Orb σ) * orderOf σ := by
   classical
-  letI := Fintype.ofFinite X
+  let := Fintype.ofFinite X
   have hfin : IsOfFinOrder σ := isOfFinOrder_of_finite σ
   have hB := MulAction.sum_card_fixedBy_eq_card_orbits_mul_card_group (Subgroup.zpowers σ) X
   rw [Fintype.card_zpowers] at hB
@@ -636,7 +636,7 @@ theorem finrank_W_le :
     Module.finrank K ↥(parabolicHoms K (Gamma0 N) K) + Nat.card (CuspSpace N) ≤
       Module.finrank K ↥(relSpace K (sig2 N) (sig3 N)) + 1 := by
   classical
-  letI := Fintype.ofFinite (CuspSpace N)
+  let := Fintype.ofFinite (CuspSpace N)
   have h := LinearMap.finrank_le_finrank_of_injective (thetaPlus_injective K N)
   rw [Module.finrank_prod, Module.finrank_prod, Module.finrank_self,
     Module.finrank_fintype_fun_eq_card, ← Nat.card_eq_fintype_card] at h
@@ -650,7 +650,7 @@ theorem engine (N : ℕ) [NeZero N] (K : Type*) [Field K] [CharZero K] :
             (ModularGroup.S * ModularGroup.T) • x = x} ≤
       12 + (CongruenceSubgroup.Gamma0 N).index := by
   classical
-  letI : Fintype (X N) := Fintype.ofFinite _
+  let : Fintype (X N) := Fintype.ofFinite _
   have hR := relSpace_rank_bound K (sig2 N) (sig3 N) (sig2_sq N) (sig3_cube N) (connected N)
   have hW := finrank_W_le K N
   have hidx : (CongruenceSubgroup.Gamma0 N).index = Nat.card (X N) := rfl

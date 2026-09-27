@@ -249,11 +249,11 @@ theorem finite_setOf_forall_mem_and_ord_pos {r₀ : R} (hr₀ : r₀ ≠ 0) :
   have hfin : {p : HeightOneSpectrum R | p.asIdeal ∣ Ideal.span {r₀}}.Finite :=
     Ideal.finite_factors (by simpa [Ideal.span_singleton_eq_bot] using hr₀)
   rw [← Set.finite_coe_iff]
-  haveI := hfin.to_subtype
+  have := hfin.to_subtype
   refine Finite.of_injective
     (fun w => (⟨centerHeightOneSpectrum R w.1 w.2.1, ?_⟩ :
       {p : HeightOneSpectrum R | p.asIdeal ∣ Ideal.span {r₀}})) ?_
-  · rw [Set.mem_setOf_eq, centerHeightOneSpectrum_asIdeal, Ideal.dvd_span_singleton]
+  · rw [Set.mem_ofPred_eq, centerHeightOneSpectrum_asIdeal, Ideal.dvd_span_singleton]
     exact (mem_center_iff_ord_pos w.1 w.2.1 hr₀).mpr w.2.2
   · intro w w' h
     have hcenter : centerHeightOneSpectrum R w.1 w.2.1
@@ -273,13 +273,13 @@ theorem finite_setOf_restrict_eq (v : Place K F) :
     {w : Place K F' | w.restrict F = v}.Finite := by
   classical
 
-  letI : Algebra v.toValuationSubring F' :=
+  let : Algebra v.toValuationSubring F' :=
     ((algebraMap F F').comp (algebraMap v.toValuationSubring F)).toAlgebra
-  haveI : IsScalarTower v.toValuationSubring F F' :=
+  have : IsScalarTower v.toValuationSubring F F' :=
     IsScalarTower.of_algebraMap_eq fun _ => rfl
-  haveI : IsDedekindDomain (integralClosure v.toValuationSubring F') :=
+  have : IsDedekindDomain (integralClosure v.toValuationSubring F') :=
     integralClosure.isDedekindDomain v.toValuationSubring F F'
-  haveI : IsFractionRing (integralClosure v.toValuationSubring F') F' :=
+  have : IsFractionRing (integralClosure v.toValuationSubring F') F' :=
     integralClosure.isFractionRing_of_finite_extension (A := v.toValuationSubring) F F'
 
   obtain ⟨π, hπ0, hπpos⟩ := v.exists_ord_pos
@@ -723,7 +723,7 @@ theorem surjective_residueOfCenter (hw : w.restrict F = v) :
       w.ord_nonneg_of_mem (forall_mem_of_restrict_eq hw s)
     omega
 
-  haveI hmax : (fiberCenter F' v hw).asIdeal.IsMaximal :=
+  have hmax : (fiberCenter F' v hw).asIdeal.IsMaximal :=
     (fiberCenter F' v hw).isPrime.isMaximal (fiberCenter F' v hw).ne_bot
   obtain ⟨t, i, hi, hti⟩ := hmax.exists_inv hsP
   have hst : s * t - 1 ∈ (fiberCenter F' v hw).asIdeal := by
@@ -812,7 +812,7 @@ theorem inertiaDeg_eq_inertiaDeg_fiberCenter (hw : w.restrict F = v) :
     w.inertiaDeg F =
       (IsLocalRing.maximalIdeal v.toValuationSubring).inertiaDeg'
         (fiberCenter F' v hw).asIdeal := by
-  haveI := fiberCenter_liesOver hw
+  have := fiberCenter_liesOver hw
   rw [Ideal.inertiaDeg_algebraMap]
   show Module.finrank (w.restrict F).ResidueField w.ResidueField = _
   refine Algebra.finrank_eq_of_equiv_equiv (restrictResidueFieldEquiv hw)

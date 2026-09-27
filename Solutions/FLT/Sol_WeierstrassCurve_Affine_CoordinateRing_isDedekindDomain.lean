@@ -66,7 +66,7 @@ theorem isMaximal_iff_exists_eq_XYIdeal' [IsAlgClosed F] (I : Ideal W.Coordinate
     I.IsMaximal ↔ ∃ x y : F, W.Equation x y ∧ I = XYIdeal W x (C y) := by
   constructor
   · intro hI
-    letI := Ideal.Quotient.field I
+    let := Ideal.Quotient.field I
     have : Module.Finite F (W.CoordinateRing ⧸ I) :=
       finite_of_finite_type_of_isJacobsonRing F _
     have hbij := IsAlgClosed.algebraMap_bijective_of_isIntegral (k := F)
@@ -159,7 +159,7 @@ theorem isDiscreteValuationRing_localization_XYIdeal' {x y : F} (h : W.Nonsingul
     IsDiscreteValuationRing (Localization.AtPrime (XYIdeal W x (C y))) := by
   have hnf := IsLocalization.AtPrime.not_isField W.CoordinateRing (XYIdeal_ne_bot x (C y))
     (Localization.AtPrime (XYIdeal W x (C y)))
-  haveI : IsNoetherianRing (Localization.AtPrime (XYIdeal W x (C y))) :=
+  have : IsNoetherianRing (Localization.AtPrime (XYIdeal W x (C y))) :=
     IsLocalization.isNoetherianRing (XYIdeal W x (C y)).primeCompl _ inferInstance
   exact ((IsDiscreteValuationRing.TFAE _ hnf).out 0 4).mpr
     (isPrincipal_maximalIdeal_localization h)

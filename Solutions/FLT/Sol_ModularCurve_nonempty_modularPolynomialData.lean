@@ -73,7 +73,7 @@ theorem exists_eq_div (z : K) :
   rw [eq_intCast, eq_intCast, e]
 
 theorem isFractionRing_intPoly_K : IsFractionRing (Polynomial ℤ) K := by
-  haveI : FaithfulSMul (Polynomial ℤ) K :=
+  have : FaithfulSMul (Polynomial ℤ) K :=
     (faithfulSMul_iff_algebraMap_injective _ _).mpr ModularCurve.evalAtJGen_injective
   exact IsFractionRing.of_field (Polynomial ℤ) K exists_eq_div
 
@@ -95,7 +95,7 @@ theorem isIntegral_jN : IsIntegral (Polynomial ℤ) (jN N) := by
   exact (map_eq_zero_iff _ (algebraMap (modularFunctionField N) LS).injective).mp h0
 
 theorem main : Nonempty (ModularPolynomialData N) := by
-  haveI : IsFractionRing (Polynomial ℤ) K := isFractionRing_intPoly_K
+  have : IsFractionRing (Polynomial ℤ) K := isFractionRing_intPoly_K
   have hint := isIntegral_jN N
   refine ⟨⟨minpoly (Polynomial ℤ) (jN N), minpoly.monic hint, ?_, ?_⟩⟩
   ·

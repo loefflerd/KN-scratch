@@ -113,7 +113,7 @@ theorem realPeriodMap_bijective_of_le
       2 * Module.finrank ℂ (CuspForm Δ 2)) :
     Function.Bijective (realPeriodMap Δ) := by
   obtain ⟨hfin, heq⟩ := finite_and_finrank_parabolicHoms_real_eq Δ
-  haveI := hfin
+  have := hfin
   have hinj := realPeriodMap_injective Δ
   have h1 : Module.finrank ℝ (CuspForm Δ 2) ≤
       Module.finrank ℝ (ModularCurve.Period.parabolicHoms ℝ Δ ℝ) :=
@@ -395,11 +395,11 @@ theorem main (hle : Γ' ≤ Γ) (hn : (Γ'.subgroupOf Γ).Normal)
       2 * Module.finrank ℂ (CuspForm Γ' 2)) :
     Module.finrank ℤ (ModularCurve.Period.parabolicHoms ℤ Γ ℤ) ≤
       2 * Module.finrank ℂ (CuspForm Γ 2) := by
-  haveI : Γ.FiniteIndex := finiteIndex_of_le hle
+  have : Γ.FiniteIndex := finiteIndex_of_le hle
   have hbij := realPeriodMap_bijective_of_le Γ' h
   have hsurj := realPeriodMap_surjective hle hn hbij
   obtain ⟨hfin, heq⟩ := finite_and_finrank_parabolicHoms_real_eq Γ
-  haveI := hfin
+  have := hfin
   rw [← heq, ← finrank_real_cuspForm]
   exact LinearMap.finrank_le_finrank_of_surjective hsurj
 

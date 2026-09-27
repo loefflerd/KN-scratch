@@ -37,7 +37,7 @@ theorem analyticAt_comp_ofComplex {Γ : Subgroup (GL (Fin 2) ℝ)} {k : ℤ} (f 
 theorem coe_eq_of_qExpansion_eq {M : ℕ} {a b : ℤ} (f : ModularForm (Gamma1 M) a) (g : ModularForm (Gamma1 M) b)
     (h : qExpansion 1 (f : ℍ → ℂ) = qExpansion 1 (g : ℍ → ℂ)) : (f : ℍ → ℂ) = g := by
   have h1 := one_mem_strictPeriods_gamma1 M
-  haveI : Fact (IsCusp OnePoint.infty (Subgroup.map (Matrix.SpecialLinearGroup.mapGL ℝ) (CongruenceSubgroup.Gamma1 M))) :=
+  have : Fact (IsCusp OnePoint.infty (Subgroup.map (Matrix.SpecialLinearGroup.mapGL ℝ) (CongruenceSubgroup.Gamma1 M))) :=
     ⟨Subgroup.isCusp_of_mem_strictPeriods one_pos h1⟩
   funext z
   have hf := hasSum_qExpansion one_pos (SlashInvariantFormClass.periodic_comp_ofComplex f h1)
@@ -79,7 +79,7 @@ theorem solution
       HahnSeries.ofPowerSeries ℤ ℂ (UpperHalfPlane.qExpansion 1 f) =
         X * HahnSeries.ofPowerSeries ℤ ℂ (UpperHalfPlane.qExpansion 1 w) ^ k := by
   classical
-  haveI : (CongruenceSubgroup.Gamma1 M).FiniteIndex := inferInstance
+  have : (CongruenceSubgroup.Gamma1 M).FiniteIndex := inferInstance
   have hT : ModularGroup.T ∈ CongruenceSubgroup.Gamma1 M := by
     rw [CongruenceSubgroup.Gamma1_mem]; simp [ModularGroup.T]
   have h1 := one_mem_strictPeriods_gamma1 M

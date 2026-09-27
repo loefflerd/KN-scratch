@@ -26,7 +26,7 @@ theorem solution (k : Type*) [Field k] [DecidableEq k] (W : WeierstrassCurve k) 
     exact hn (by simp)
   have hcard : Nat.card (Submodule.torsionBy ℤ (W⁄K).Point n) = n ^ 2 :=
     WeierstrassCurve.card_torsion_of_isAlgClosed (K := K) W hnK
-  haveI : Finite (Submodule.torsionBy ℤ (W⁄K).Point n) :=
+  have : Finite (Submodule.torsionBy ℤ (W⁄K).Point n) :=
     Nat.finite_of_card_ne_zero (by rw [hcard]; exact pow_ne_zero 2 hn0)
 
   let φ : (W.toAffine⁄k).Point →+ (W.toAffine⁄K).Point := Point.baseChange k K

@@ -58,11 +58,11 @@ theorem solution
           (ModularCurve.qExpFunctionFieldC ℚ Γ)) + 2 := by
   classical
 
-  haveI hKc : CharZero (AlgebraicClosure ℚ) :=
+  have hKc : CharZero (AlgebraicClosure ℚ) :=
     charZero_of_injective_algebraMap (algebraMap ℚ (AlgebraicClosure ℚ)).injective
 
-  haveI : (Gamma1 M).FiniteIndex := (CongruenceSubgroup.Gamma1_is_congruence M).finiteIndex
-  haveI : Γ.FiniteIndex := Subgroup.finiteIndex_of_le hΓ
+  have : (Gamma1 M).FiniteIndex := (CongruenceSubgroup.Gamma1_is_congruence M).finiteIndex
+  have : Γ.FiniteIndex := Subgroup.finiteIndex_of_le hΓ
   have hT1 : ModularGroup.T ∈ Gamma1 M := by
     rw [← ModularCurve.GammaH_bot M]; exact ModularCurve.translation_mem_GammaH M ⊥
   have hT : ModularGroup.T ∈ Γ := hΓ hT1
@@ -70,7 +70,7 @@ theorem solution
   obtain ⟨htr, hfin⟩ :=
     ModularCurve.transcendental_and_finiteDimensional_adjoin_laurentBaseChange_qExpFunctionFieldC_of_coe_eq_jqModC
       (AlgebraicClosure ℚ) Γ hT y hy
-  haveI := hfin
+  have := hfin
 
   have hle := ModularCurve.two_mul_genusFF_add_card_fibres_le_finrank_add_two_of_gamma1_le M Γ hΓ y hy
   refine le_antisymm hle ?_
@@ -133,7 +133,7 @@ theorem solution
     rw [hsum] at hy0
     exact lt_irrefl _ hy0
 
-  haveI : CharZero ↥(IntermediateField.adjoin (AlgebraicClosure ℚ)
+  have : CharZero ↥(IntermediateField.adjoin (AlgebraicClosure ℚ)
       ({y} : Set ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)))) :=
     charZero_of_injective_algebraMap (algebraMap (AlgebraicClosure ℚ) _).injective
   have hsep : Algebra.IsSeparable

@@ -198,8 +198,8 @@ theorem roots_phiProd_conj_nodup (p : ℕ) [hp : Fact p.Prime] (ζ : Kˣ) (hζ :
 
 theorem exists_isPrimitiveRoot_cyclotomicField (N : ℕ) [NeZero N] :
     ∃ z : CyclotomicField N ℚ, IsPrimitiveRoot z N := by
-  haveI : NeZero ((N : ℕ) : ℚ) := ⟨Nat.cast_ne_zero.mpr (NeZero.ne N)⟩
-  haveI : IsCyclotomicExtension {N} ℚ (CyclotomicField N ℚ) := CyclotomicField.isCyclotomicExtension N ℚ
+  have : NeZero ((N : ℕ) : ℚ) := ⟨Nat.cast_ne_zero.mpr (NeZero.ne N)⟩
+  have : IsCyclotomicExtension {N} ℚ (CyclotomicField N ℚ) := CyclotomicField.isCyclotomicExtension N ℚ
   exact IsCyclotomicExtension.exists_isPrimitiveRoot ℚ (CyclotomicField N ℚ) (Set.mem_singleton N) (NeZero.ne N)
 
 def cycUnit (N : ℕ) [NeZero N] : (CyclotomicField N ℚ)ˣ :=
@@ -434,7 +434,7 @@ theorem step_contradiction (p r : ℕ) [hpp : Fact (Nat.Prime p)] [hrr : Fact (N
     (F : IntermediateField ℚ (LaurentSeries ℚ)) (hj : jq ∈ F)
     (hpF : jqN p ∉ F) (hrF : jqN r ∉ F)
     (hmem : jqN r ∈ IntermediateField.adjoin F ({jqN p} : Set (LaurentSeries ℚ))) : False := by
-  haveI : NeZero (p * r) := ⟨Nat.mul_ne_zero hpp.out.ne_zero hrr.out.ne_zero⟩
+  have : NeZero (p * r) := ⟨Nat.mul_ne_zero hpp.out.ne_zero hrr.out.ne_zero⟩
   classical
 
   have hdeg := ModularCurve.finrank_adjoin_jqN_prime_of_not_mem F hj p hpF
@@ -457,7 +457,7 @@ theorem step_contradiction (p r : ℕ) [hpp : Fact (Nat.Prime p)] [hrr : Fact (N
     rw [Polynomial.degree_eq_natDegree (phiAtSeed_monic data_p (⟨jq, hj⟩ : F)).ne_zero,
       Polynomial.degree_eq_natDegree (minpoly.ne_zero hα), hPdeg, hmin_natdeg]
 
-  letI : Algebra F (LaurentSeries K) :=
+  let : Algebra F (LaurentSeries K) :=
     (((coeffEmb K).comp (qExpand ℚ (p * r))).comp (algebraMap F (LaurentSeries ℚ))).toAlgebra
   have halg : algebraMap F (LaurentSeries K)
       = ((coeffEmb K).comp (qExpand ℚ (p * r))).comp (algebraMap F (LaurentSeries ℚ)) :=
@@ -586,7 +586,7 @@ theorem jqN_prime_not_mem_adjoin_key (S : Finset ℕ) : (∀ p ∈ S, p.Prime) �
   induction S using Finset.induction_on with
   | empty =>
       intro _ r _ hr hrS hmem
-      haveI : Fact (Nat.Prime r) := ⟨hr⟩
+      have : Fact (Nat.Prime r) := ⟨hr⟩
       have hset : (insert jq {x : LaurentSeries ℚ | ∃ p ∈ (∅ : Finset ℕ), ∃ _ : NeZero p, x = jqN p})
           = ({jq} : Set (LaurentSeries ℚ)) := by
         ext x
@@ -607,8 +607,8 @@ theorem jqN_prime_not_mem_adjoin_key (S : Finset ℕ) : (∀ p ∈ S, p.Prime) �
       have hT : ∀ p ∈ T, p.Prime := fun p hp => hS' p (Finset.mem_insert_of_mem hp)
       have hrq : r ≠ q := fun h => hrS' (h ▸ Finset.mem_insert_self q T)
       have hrT : r ∉ T := fun h => hrS' (Finset.mem_insert_of_mem h)
-      haveI : Fact (Nat.Prime q) := ⟨hq⟩
-      haveI : Fact (Nat.Prime r) := ⟨hr⟩
+      have : Fact (Nat.Prime q) := ⟨hq⟩
+      have : Fact (Nat.Prime r) := ⟨hr⟩
       have hqF : jqN q ∉ IntermediateField.adjoin ℚ
           (insert jq {x : LaurentSeries ℚ | ∃ p ∈ T, ∃ _ : NeZero p, x = jqN p}) := IH hT q hq hqT
       have hrF : jqN r ∉ IntermediateField.adjoin ℚ
@@ -619,7 +619,7 @@ theorem jqN_prime_not_mem_adjoin_key (S : Finset ℕ) : (∀ p ∈ S, p.Prime) �
       have hsets : (insert jq {x : LaurentSeries ℚ | ∃ p ∈ insert q T, ∃ _ : NeZero p, x = jqN p})
           = (insert jq {x : LaurentSeries ℚ | ∃ p ∈ T, ∃ _ : NeZero p, x = jqN p}) ∪ {jqN q} := by
         ext x
-        simp only [Set.mem_insert_iff, Set.mem_setOf_eq, Finset.mem_insert, Set.mem_union,
+        simp only [Set.mem_insert_iff, Set.mem_ofPred_eq, Finset.mem_insert, Set.mem_union,
           Set.mem_singleton_iff]
         constructor
         · rintro (rfl | ⟨p', rfl | hp'T, hne, rfl⟩)
@@ -634,7 +634,7 @@ theorem jqN_prime_not_mem_adjoin_key (S : Finset ℕ) : (∀ p ∈ S, p.Prime) �
         IntermediateField.mem_restrictScalars] at hmem
       obtain ⟨data_q, -, -⟩ := ModularCurve.exists_phiIrreducible_evalSymm q
       obtain ⟨data_r, -, -⟩ := ModularCurve.exists_phiIrreducible_evalSymm r
-      haveI : NeZero (q * r) := ⟨Nat.mul_ne_zero hq.ne_zero hr.ne_zero⟩
+      have : NeZero (q * r) := ⟨Nat.mul_ne_zero hq.ne_zero hr.ne_zero⟩
       exact step_contradiction q r hrq (cycUnit (q * r)) (cycUnit_spec (q * r)) data_q data_r
         _ hj hqF hrF hmem
 

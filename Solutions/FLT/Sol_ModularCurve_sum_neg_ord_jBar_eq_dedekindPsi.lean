@@ -26,7 +26,7 @@ theorem solution (N : ℕ) [NeZero N]
     (hS : ∀ v, v ∈ S ↔ v.ord (ModularCurve.jBar N) < 0) :
     ∑ v ∈ S, -v.ord (ModularCurve.jBar N) = ModularCurve.dedekindPsi N := by
   classical
-  haveI : IsCurveOver (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) := isCurveOver_modularFunctionFieldBar N
+  have : IsCurveOver (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) := isCurveOver_modularFunctionFieldBar N
   have hHPD : HasPrincipalDivisors (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) :=
     IsCurveOver.hasPrincipalDivisors
   have hdeg : ∀ w : Place (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N), w.deg = 1 :=

@@ -31,7 +31,7 @@ p2m_open "CongruenceSubgroup"
 
 theorem mem_sup_zpowers_neg_one_iff (H : Subgroup SL(2, ℤ)) (g : SL(2, ℤ)) :
     g ∈ H ⊔ Subgroup.zpowers (-1 : SL(2, ℤ)) ↔ g ∈ H ∨ -g ∈ H := by
-  haveI hN : (Subgroup.zpowers (-1 : SL(2, ℤ))).Normal := by
+  have hN : (Subgroup.zpowers (-1 : SL(2, ℤ))).Normal := by
     refine ⟨fun n hn g => ?_⟩
     obtain ⟨k, rfl⟩ := Subgroup.mem_zpowers_iff.mp hn
     have hc : Commute ((-1 : SL(2, ℤ)) ^ k) g := (Commute.neg_one_left g).zpow_left k
@@ -75,7 +75,7 @@ theorem S_sq : S ^ 2 = (-1 : SL(2, ℤ)) := by
 
 theorem S_mul_T_notMem (M : ℕ) (hM : 2 ≤ M) : S * T ∉ Gamma M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ)) := by
   rw [mem_sup_zpowers_neg_one_iff]
-  haveI : Fact (1 < M) := ⟨hM⟩
+  have : Fact (1 < M) := ⟨hM⟩
   rintro (h | h)
   · have h10 := (Gamma_mem.mp h).2.2.1
     simp [Matrix.SpecialLinearGroup.coe_mul, ModularGroup.coe_S, ModularGroup.coe_T, Matrix.mul_apply, Fin.sum_univ_two] at h10
@@ -84,7 +84,7 @@ theorem S_mul_T_notMem (M : ℕ) (hM : 2 ≤ M) : S * T ∉ Gamma M ⊔ Subgroup
 
 theorem S_notMem (M : ℕ) (hM : 2 ≤ M) : S ∉ Gamma M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ)) := by
   rw [mem_sup_zpowers_neg_one_iff]
-  haveI : Fact (1 < M) := ⟨hM⟩
+  have : Fact (1 < M) := ⟨hM⟩
   rintro (h | h)
   · have h10 := (Gamma_mem.mp h).2.2.1
     simp [ModularGroup.coe_S] at h10
@@ -559,7 +559,7 @@ theorem apply_eq_self_of_mem_adjoin (t : K) (ψ : K →ₐ[ℂ] K) (ht : ψ t = 
 theorem isIntegral_of_apply_eq (t : K) (hfin : FiniteDimensional ℂ⟮t⟯ K) (ψ : K →ₐ[ℂ] K) (ht : ψ t = t) :
     ψ.toRingHom.IsIntegral := by
   intro y
-  haveI : Algebra.IsIntegral ℂ⟮t⟯ K := Algebra.IsIntegral.of_finite ℂ⟮t⟯ K
+  have : Algebra.IsIntegral ℂ⟮t⟯ K := Algebra.IsIntegral.of_finite ℂ⟮t⟯ K
   obtain ⟨p, hp, hpy⟩ := Algebra.IsIntegral.isIntegral (R := ℂ⟮t⟯) y
   refine ⟨p.map (algebraMap ℂ⟮t⟯ K), hp.map _, ?_⟩
   rw [Polynomial.eval₂_map]
@@ -602,12 +602,12 @@ def decomp (t : K) (W : Place ℂ K) : Subgroup (K ≃ₐ[ℂ⟮t⟯] K) where
     show SemilinearAut.ofAlgAut ((g * h).restrictScalars ℂ) • W = W
     rw [show (g * h).restrictScalars ℂ = g.restrictScalars ℂ * h.restrictScalars ℂ from AlgEquiv.ext fun _ => rfl,
       map_mul, mul_smul]
-    rw [Set.mem_setOf_eq] at hg hh
+    rw [Set.mem_ofPred_eq] at hg hh
     rw [hh, hg]
   inv_mem' {g} hg := by
     show SemilinearAut.ofAlgAut (g⁻¹.restrictScalars ℂ) • W = W
     rw [show g⁻¹.restrictScalars ℂ = (g.restrictScalars ℂ)⁻¹ from AlgEquiv.ext fun _ => rfl, map_inv, inv_smul_eq_iff]
-    rw [Set.mem_setOf_eq] at hg
+    rw [Set.mem_ofPred_eq] at hg
     exact hg.symm
 
 theorem mem_decomp (t : K) (W : Place ℂ K) (g : K ≃ₐ[ℂ⟮t⟯] K) :
@@ -626,9 +626,9 @@ theorem core
     ∃ W : Place ℂ K, W.ord (jK M K - algebraMap ℂ K (LevelN.jAnalytic τ₀)) = p ∧
       ∀ g : K ≃ₐ[ℂ⟮jK M K⟯] K, SemilinearAut.ofAlgAut (g.restrictScalars ℂ) • W = W →
         ∃ k : ℕ, g.restrictScalars ℂ = σhom γ₀ ^ k := by
-  haveI := isDomain_ring M K
-  haveI := hfin
-  haveI := hgal
+  have := isDomain_ring M K
+  have := hfin
+  have := hgal
   obtain ⟨W, e, he, hW⟩ := ModularCurve.LevelN.exists_place_analyticOrderAt_eq_mul_ord M K τ₀
   obtain ⟨hpos, hmul⟩ := ord_jsub_bounds M K τ₀ W e he hW
   set a := W.ord (jK M K - algebraMap ℂ K (LevelN.jAnalytic τ₀)) with ha
@@ -677,7 +677,7 @@ theorem core
     have h1 : ((Nat.card (decomp K (jK M K) W) : ℕ) : ℤ) = a := by rw [hcardD, ha]; exact hDH.symm
     have h2 : ((Nat.card (decomp K (jK M K) W) : ℕ) : ℤ) = p := by rw [h1, hap]
     exact_mod_cast h2
-  haveI : Finite (decomp K (jK M K) W) := Nat.finite_of_card_ne_zero (by rw [hcardDp]; exact hp.ne_zero)
+  have : Finite (decomp K (jK M K) W) := Nat.finite_of_card_ne_zero (by rw [hcardDp]; exact hp.ne_zero)
   have hDeq : Subgroup.zpowers g₀ = decomp K (jK M K) W :=
     Subgroup.eq_of_le_of_card_ge hzle (by rw [hcardz, hcardDp])
   have hg' : g ∈ Subgroup.zpowers g₀ := by rw [hDeq]; exact hg

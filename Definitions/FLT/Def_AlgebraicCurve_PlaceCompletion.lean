@@ -373,8 +373,8 @@ theorem kw_ffgc_denseRange_completionLinearCombination {ι : Type*} [Fintype ι]
 
 instance kw_ffgc_finiteDimensional_adicCompletion [FiniteDimensional F F'] :
     FiniteDimensional (W.restrict F).adicCompletion W.adicCompletion := by
-  letI := kw_ffgc_rankOne_adicCompletion (W.restrict F)
-  letI : NontriviallyNormedField (W.restrict F).adicCompletion :=
+  let := kw_ffgc_rankOne_adicCompletion (W.restrict F)
+  let : NontriviallyNormedField (W.restrict F).adicCompletion :=
     Valued.toNontriviallyNormedField (W.restrict F).adicCompletion ℤᵐ⁰
   let b := Module.finBasis F F'
   exact Module.Finite.of_surjective (kw_ffgc_completionLinearCombination F W b) (by

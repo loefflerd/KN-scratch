@@ -38,14 +38,14 @@ private theorem isDedekindDomain_Kx : IsDedekindDomain (Kx) := by
     (Algebra.adjoin_singleton_eq_range_aeval K x).symm
   let e : Polynomial K ≃ₐ[K] Kx :=
     (AlgEquiv.ofInjective _ hinj).trans (Subalgebra.equivOfEq _ _ hrange)
-  haveI : IsPrincipalIdealRing (Kx) :=
+  have : IsPrincipalIdealRing (Kx) :=
     IsPrincipalIdealRing.of_surjective (e : Polynomial K →+* Kx) e.surjective
   infer_instance
 
 include hx in
 private theorem isDedekindDomain_integralClosure :
     IsDedekindDomain (integralClosure (Kx) F) := by
-  haveI := isDedekindDomain_Kx x hx
+  have := isDedekindDomain_Kx x hx
   exact integralClosure.isDedekindDomain (Kx) (Kxfield) F
 
 omit [Algebra.IsSeparable (IntermediateField.adjoin K ({x} : Set F)) F] in
@@ -75,9 +75,9 @@ private theorem integralClosure_Kx_le_A :
     (integralClosure (Kx) F).toSubring ≤ A.toSubring := by
   intro y hy
   have hyI : IsIntegral (Kx) y := hy
-  letI : Algebra (Kx) A :=
+  let : Algebra (Kx) A :=
     (Subring.inclusion (Kx_le_A x A hAK hxA)).toAlgebra
-  haveI : IsScalarTower (Kx) A F :=
+  have : IsScalarTower (Kx) A F :=
     IsScalarTower.of_algebraMap_eq fun _ => rfl
   have hyA : IsIntegral A y := hyI.tower_top
   obtain ⟨z, hz⟩ := (isIntegrallyClosed_iff F).mp inferInstance hyA
@@ -102,7 +102,7 @@ include hxA hAK hA in
 private theorem idealOfA_ne_bot :
     (IsLocalRing.maximalIdeal A).comap
         (Subring.inclusion (integralClosure_Kx_le_A x A hAK hxA)) ≠ ⊥ := by
-  haveI : IsFractionRing (integralClosure (Kx) F) F := isFractionRing_integralClosure x
+  have : IsFractionRing (integralClosure (Kx) F) F := isFractionRing_integralClosure x
   intro hP
   apply hA
   rw [eq_top_iff]
@@ -140,8 +140,8 @@ private theorem place_of_idealOfA_le (P : HeightOneSpectrum (integralClosure (Kx
 include hx hxA hAK hA in
 private theorem exists_place_of_mem :
     ∃ v : Place K F, v.toValuationSubring = A := by
-  haveI := isDedekindDomain_integralClosure x hx
-  haveI : IsFractionRing (integralClosure (Kx) F) F := isFractionRing_integralClosure x
+  have := isDedekindDomain_integralClosure x hx
+  have : IsFractionRing (integralClosure (Kx) F) F := isFractionRing_integralClosure x
   let P : HeightOneSpectrum (integralClosure (Kx) F) :=
     ⟨(IsLocalRing.maximalIdeal A).comap
         (Subring.inclusion (integralClosure_Kx_le_A x A hAK hxA)),
@@ -175,24 +175,24 @@ private theorem AlgebraicCurve.Place.exists_of_valuationSubring {K F : Type*} [F
           have h : x⁻¹⁻¹ ∈ IntermediateField.adjoin K ({x⁻¹} : Set F) :=
             inv_mem (IntermediateField.mem_adjoin_simple_self K x⁻¹)
           rwa [inv_inv] at h
-      haveI : FiniteDimensional (IntermediateField.adjoin K ({x⁻¹} : Set F)) F := by
+      have : FiniteDimensional (IntermediateField.adjoin K ({x⁻¹} : Set F)) F := by
         rw [hadj]; infer_instance
-      haveI : Algebra.IsSeparable (IntermediateField.adjoin K ({x⁻¹} : Set F)) F := by
+      have : Algebra.IsSeparable (IntermediateField.adjoin K ({x⁻¹} : Set F)) F := by
         rw [hadj]; infer_instance
       exact exists_place_of_mem x⁻¹ A hAK hA hxinv hxiA
   · rw [Transcendental, not_not] at hx
     refine absurd ?_ hA
     rw [eq_top_iff]
     intro y _
-    haveI : FiniteDimensional K (IntermediateField.adjoin K ({x} : Set F)) :=
+    have : FiniteDimensional K (IntermediateField.adjoin K ({x} : Set F)) :=
       IntermediateField.adjoin.finiteDimensional hx.isIntegral
-    haveI : FiniteDimensional K F :=
+    have : FiniteDimensional K F :=
       FiniteDimensional.trans K (IntermediateField.adjoin K ({x} : Set F)) F
-    haveI : Algebra.IsAlgebraic K F := Algebra.IsAlgebraic.of_finite K F
+    have : Algebra.IsAlgebraic K F := Algebra.IsAlgebraic.of_finite K F
     have hyI : IsIntegral K y := (Algebra.IsAlgebraic.isAlgebraic y).isIntegral
-    letI : Algebra K A :=
+    let : Algebra K A :=
       ((algebraMap K F).codRestrict A.toSubring hAK).toAlgebra
-    haveI : IsScalarTower K A F := IsScalarTower.of_algebraMap_eq fun _ => rfl
+    have : IsScalarTower K A F := IsScalarTower.of_algebraMap_eq fun _ => rfl
     have hyA : IsIntegral A y := hyI.tower_top
     obtain ⟨z, hz⟩ := (isIntegrallyClosed_iff F).mp inferInstance hyA
     exact hz ▸ z.2

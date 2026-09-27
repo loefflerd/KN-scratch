@@ -136,7 +136,7 @@ private theorem pDigits_linearIndependent {t : M} (htp : ∀ a : M, a ^ p ≠ t)
     haveI : ExpChar M p := ExpChar.prime hp.out
     LinearIndependent (frobeniusSubfield M p)
       (fun i : Fin p ↦ (t ^ (i : ℕ) : M)) := by
-  haveI : ExpChar M p := ExpChar.prime hp.out
+  have : ExpChar M p := ExpChar.prime hp.out
 
   have htp' : ∀ c : frobeniusSubfield M p, c ^ p ≠
       (⟨t ^ p, pow_mem_frobeniusSubfield p t⟩ : frobeniusSubfield M p) := by
@@ -226,7 +226,7 @@ private theorem adjoin_genT_over_frobeniusSubfield [PerfectField K] (t : M) :
       expChar_of_injective_algebraMap (algebraMap K _).injective p
     (IntermediateField.adjoin (↥(frobeniusSubfield (↥K⟮t⟯) p)) {genT t} :
         IntermediateField _ (↥K⟮t⟯)) = ⊤ := by
-  haveI : ExpChar (↥K⟮t⟯) p :=
+  have : ExpChar (↥K⟮t⟯) p :=
     expChar_of_injective_algebraMap (algebraMap K _).injective p
   rw [eq_top_iff]
   intro x _
@@ -269,9 +269,9 @@ private theorem finrank_frobeniusSubfield_adjoin_transcendental [PerfectField K]
     Module.finrank
       (frobeniusSubfield (↥(IntermediateField.adjoin K ({t} : Set M))) p)
       (↥(IntermediateField.adjoin K ({t} : Set M))) = p := by
-  haveI : ExpChar (↥K⟮t⟯) p :=
+  have : ExpChar (↥K⟮t⟯) p :=
     expChar_of_injective_algebraMap (algebraMap K _).injective p
-  haveI : CharP (↥K⟮t⟯) p :=
+  have : CharP (↥K⟮t⟯) p :=
     charP_of_injective_algebraMap (algebraMap K _).injective p
 
   let t' : ↥K⟮t⟯ := genT t
@@ -280,7 +280,7 @@ private theorem finrank_frobeniusSubfield_adjoin_transcendental [PerfectField K]
     refine ⟨X ^ p - C tp, monic_X_pow_sub_C _ hp.out.ne_zero, ?_⟩
     simp only [eval₂_sub, eval₂_X_pow, eval₂_C]
     exact sub_eq_zero.mpr rfl
-  haveI hfd : FiniteDimensional (↥(frobeniusSubfield (↥K⟮t⟯) p)) (↥K⟮t⟯) := by
+  have hfd : FiniteDimensional (↥(frobeniusSubfield (↥K⟮t⟯) p)) (↥K⟮t⟯) := by
     have h1 := adjoin_genT_over_frobeniusSubfield (K := K) (M := M) p t
     have h2 := IntermediateField.adjoin.finiteDimensional hint
     rw [show t' = genT t from rfl, h1] at h2
@@ -314,10 +314,10 @@ private theorem finrank_frobeniusSubfield_eq_of_transcendental {K M : Type*} [Fi
     [FiniteDimensional (IntermediateField.adjoin K ({t} : Set M)) M] :
     haveI : ExpChar M p := expChar_of_injective_algebraMap (algebraMap K M).injective p
     Module.finrank (frobeniusSubfield M p) M = p := by
-  haveI : ExpChar M p := expChar_of_injective_algebraMap (algebraMap K M).injective p
-  haveI : ExpChar (↥(IntermediateField.adjoin K ({t} : Set M))) p :=
+  have : ExpChar M p := expChar_of_injective_algebraMap (algebraMap K M).injective p
+  have : ExpChar (↥(IntermediateField.adjoin K ({t} : Set M))) p :=
     expChar_of_injective_algebraMap (algebraMap K _).injective p
-  haveI : FiniteDimensional
+  have : FiniteDimensional
       (frobeniusSubfield (↥(IntermediateField.adjoin K ({t} : Set M))) p)
       (↥(IntermediateField.adjoin K ({t} : Set M))) :=
     FiniteDimensional.of_finrank_pos (by
@@ -334,7 +334,7 @@ private theorem pDigits_exists_of_finrank_eq
       Module.finrank (frobeniusSubfield M p) M = p)
     {t : M} (htp : ∀ a : M, a ^ p ≠ t) (g : M) :
     ∃ a : Fin p → M, g = ∑ i : Fin p, a i ^ p * t ^ (i : ℕ) := by
-  haveI : ExpChar M p := ExpChar.prime hp.out
+  have : ExpChar M p := ExpChar.prime hp.out
   have hlin := pDigits_linearIndependent p htp
   let b : Module.Basis (Fin p) (frobeniusSubfield M p) M :=
     basisOfLinearIndependentOfCardEqFinrank hlin (by rw [hfr, Fintype.card_fin])
@@ -355,8 +355,8 @@ private theorem pDigits_existsUnique_of_transcendental {K M : Type*} [Field K] [
     [FiniteDimensional (IntermediateField.adjoin K ({t} : Set M)) M]
     (htp : ∀ a : M, a ^ p ≠ t) (g : M) :
     ∃! a : Fin p → M, g = ∑ i : Fin p, a i ^ p * t ^ (i : ℕ) := by
-  haveI : CharP M p := charP_of_injective_algebraMap (algebraMap K M).injective p
-  haveI : ExpChar M p := ExpChar.prime hp.out
+  have : CharP M p := charP_of_injective_algebraMap (algebraMap K M).injective p
+  have : ExpChar M p := ExpChar.prime hp.out
 
   have hlin := pDigits_linearIndependent p htp
   have hfr := finrank_frobeniusSubfield_eq_of_transcendental p t htr

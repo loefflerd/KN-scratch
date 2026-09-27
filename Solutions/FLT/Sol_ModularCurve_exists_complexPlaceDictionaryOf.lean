@@ -428,7 +428,7 @@ theorem solution
     (F₀ : IntermediateField ℚ (LaurentSeries ℚ)) (hF : F₀ = ModularCurve.qExpFunctionFieldC ℚ Γ) :
     Nonempty (ModularCurve.ComplexPlaceDictionaryOf Γ F₀) := by
   subst hF
-  haveI : Fact (ModularGroup.T ∈ Γ) := ⟨hT⟩
+  have : Fact (ModularGroup.T ∈ Γ) := ⟨hT⟩
   refine ⟨{ pt := fun τ => (exists_place (Γ := Γ) τ).choose
             ramification := fun τ => (exists_place (Γ := Γ) τ).choose_spec.choose
             ramification_pos := fun τ => (exists_place (Γ := Γ) τ).choose_spec.choose_spec.1

@@ -135,7 +135,7 @@ theorem finite_binaryForm (n : ℕ) : Module.Finite ℂ ↥(HeckeEis.BinaryForm 
     refine Submodule.smul_mem _ _ (Submodule.subset_span ?_)
     simp only [Finset.coe_image, Finset.coe_range, Set.mem_image, Set.mem_Iio]
     exact ⟨d 0, by omega, rfl⟩
-  haveI : FiniteDimensional ℂ ↥(Submodule.span ℂ (((Finset.range (n + 1)).image fun a =>
+  have : FiniteDimensional ℂ ↥(Submodule.span ℂ (((Finset.range (n + 1)).image fun a =>
       (X 0 ^ a * X 1 ^ (n - a) : MvPolynomial (Fin 2) ℂ)) : Set (MvPolynomial (Fin 2) ℂ))) :=
     FiniteDimensional.span_finset ℂ _
   exact Submodule.finiteDimensional_of_le hsub
@@ -176,7 +176,7 @@ theorem le_finrank_ker (n : ℕ) (g : SL(2, ℤ)) (c₁ c₂ μ₁ μ₂ : ℂ) 
     (heig : ∀ t, μ₁ ^ a t * μ₂ ^ (n - a t) = 1) :
     B ≤ Module.finrank ℂ ↥(LinearMap.ker (binaryFormRepSL ℂ n g - 1)) := by
   classical
-  haveI := finite_binaryForm n
+  have := finite_binaryForm n
   let e : Fin B → ↥(LinearMap.ker (binaryFormRepSL ℂ n g - 1)) := fun t =>
     ⟨⟨bvec c₁ c₂ n (a t), bvec_mem c₁ c₂ n (a t) (hle t)⟩, by
       rw [LinearMap.mem_ker, LinearMap.sub_apply, Module.End.one_apply, sub_eq_zero]

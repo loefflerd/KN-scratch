@@ -144,7 +144,7 @@ abbrev Gpm (N : ℕ) : Subgroup SL(2, ℤ) :=
 
 theorem mem_Gpm_imp (N : ℕ) {g : SL(2, ℤ)} (hg : g ∈ Gpm N) :
     g ∈ CongruenceSubgroup.Gamma N ∨ -g ∈ CongruenceSubgroup.Gamma N := by
-  haveI : (CongruenceSubgroup.Gamma N).Normal := CongruenceSubgroup.Gamma_normal N
+  have : (CongruenceSubgroup.Gamma N).Normal := CongruenceSubgroup.Gamma_normal N
   obtain ⟨y, hy, z, hz, rfl⟩ := Subgroup.mem_sup_of_normal_left.mp hg
   obtain ⟨k, rfl⟩ := Subgroup.mem_zpowers_iff.mp hz
   have h2 : ((-1 : SL(2, ℤ)) ^ (2 : ℤ)) = 1 := by rw [zpow_two]; simp
@@ -180,7 +180,7 @@ theorem dvd_of_T_pow_mem (N : ℕ) {n : ℕ} (h : ModularGroup.T ^ n ∈ Gpm N) 
   exact (ZMod.natCast_eq_zero_iff n N).mp h01
 
 theorem one_ne_zero_zmod {N : ℕ} (hN : 2 ≤ N) : (1 : ZMod N) ≠ 0 := by
-  haveI : Fact (1 < N) := ⟨hN⟩
+  have : Fact (1 < N) := ⟨hN⟩
   exact one_ne_zero
 
 theorem dvd_of_S_pow_mem {N : ℕ} (hN : 2 ≤ N) {n : ℕ} (h : ModularGroup.S ^ n ∈ Gpm N) : 2 ∣ n := by
@@ -284,7 +284,7 @@ theorem orbit_package (t : L) [FiniteDimensional ℂ⟮t⟯ L] [IsGalois ℂ⟮t
       (∀ P ∈ T, P.ord (t - algebraMap ℂ L c) = e) ∧ 0 < e ∧ m ∣ e ∧
         T.card * e = Module.finrank ℂ⟮t⟯ L := by
   classical
-  letI : MulAction (L ≃ₐ[ℂ⟮t⟯] L) (AlgebraicCurve.Place ℂ L) := MulAction.compHom _ (toSemi ℂ⟮t⟯)
+  let : MulAction (L ≃ₐ[ℂ⟮t⟯] L) (AlgebraicCurve.Place ℂ L) := MulAction.compHom _ (toSemi ℂ⟮t⟯)
   have hsmul : ∀ (g' : (L ≃ₐ[ℂ⟮t⟯] L)) (P : AlgebraicCurve.Place ℂ L), g' • P = toSemi ℂ⟮t⟯ g' • P := fun _ _ => rfl
 
   have hDH := (AlgebraicCurve.Place.ord_restrictAlong_eq_natCard_algHom_of_isGalois ℂ t t c
@@ -422,8 +422,8 @@ theorem main (hN : 2 ≤ N) :
   obtain ⟨hst, σ, hσ, hker, hfix, htr, hfd, hrank, hgal⟩ :=
     ModularCurve.LevelN.exists_monoidHom_algEquiv_fixedField_eq_adjoin N K
   set jK : K := algebraMap (ring N) K (jGen N) with hjK
-  haveI := hfd
-  haveI := hgal
+  have := hfd
+  have := hgal
 
   have hσE : ∀ (γ : SL(2, ℤ)), ∀ x ∈ ℂ⟮jK⟯, σ γ x = x := fun γ x hx => by
     rw [← hfix] at hx
@@ -431,8 +431,8 @@ theorem main (hN : 2 ≤ N) :
   have hEinv : ℂ⟮jK⁻¹⟯ = ℂ⟮jK⟯ := adjoin_inv_eq jK
   have hσE' : ∀ (γ : SL(2, ℤ)), ∀ x ∈ ℂ⟮jK⁻¹⟯, σ γ x = x := by
     rw [hEinv]; exact hσE
-  haveI hfd' : FiniteDimensional ℂ⟮jK⁻¹⟯ K := finiteDimensional_congr hEinv.symm
-  haveI hgal' : IsGalois ℂ⟮jK⁻¹⟯ K := isGalois_congr hEinv.symm
+  have hfd' : FiniteDimensional ℂ⟮jK⁻¹⟯ K := finiteDimensional_congr hEinv.symm
+  have hgal' : IsGalois ℂ⟮jK⁻¹⟯ K := isGalois_congr hEinv.symm
   have hrank' : Module.finrank ℂ⟮jK⁻¹⟯ K = (Gpm N).index := by
     rw [finrank_congr hEinv]; exact hrank
 

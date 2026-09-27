@@ -133,11 +133,11 @@ theorem solution
     refine RingHom.ext fun f => Subtype.ext ?_
     rw [hΨ, coe_liftRingHom]
 
-  letI algQK : Algebra (AlgebraicClosure ℚ) K := τ.toRingHom.toAlgebra
-  letI algQF : Algebra (AlgebraicClosure ℚ) ↥(laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ Γ)) := algebraOfLift τ (ModularCurve.qExpFunctionFieldC ℚ Γ)
-  haveI : IsScalarTower (AlgebraicClosure ℚ) K ↥(laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ Γ)) := IsScalarTower.of_algebraMap_eq fun _ => rfl
-  letI algFF : Algebra ↥(laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)) ↥(laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ Γ)) := Ψ.toAlgebra
-  haveI : IsScalarTower (AlgebraicClosure ℚ) ↥(laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)) ↥(laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ Γ)) := by
+  let algQK : Algebra (AlgebraicClosure ℚ) K := τ.toRingHom.toAlgebra
+  let algQF : Algebra (AlgebraicClosure ℚ) ↥(laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ Γ)) := algebraOfLift τ (ModularCurve.qExpFunctionFieldC ℚ Γ)
+  have : IsScalarTower (AlgebraicClosure ℚ) K ↥(laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ Γ)) := IsScalarTower.of_algebraMap_eq fun _ => rfl
+  let algFF : Algebra ↥(laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)) ↥(laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ Γ)) := Ψ.toAlgebra
+  have : IsScalarTower (AlgebraicClosure ℚ) ↥(laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)) ↥(laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ Γ)) := by
     refine IsScalarTower.of_algebraMap_eq fun c => ?_
     show _ = Ψ (algebraMap (AlgebraicClosure ℚ) ↥(laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)) c)
     rw [hΨeq]
@@ -145,8 +145,8 @@ theorem solution
 
   obtain ⟨x₀, hx₀tr, hx₀fd⟩ :=
     ModularCurve.JOneES.exists_transcendental_finiteDimensional_laurentBaseChange (AlgebraicClosure ℚ) Γ hT
-  haveI := hx₀fd
-  haveI : IsCurveOver (AlgebraicClosure ℚ) ↥(laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)) :=
+  have := hx₀fd
+  have : IsCurveOver (AlgebraicClosure ℚ) ↥(laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)) :=
     isCurveOver_of_transcendental_of_perfectField hx₀tr hx₀fd
   obtain ⟨x₁, hx₁tr, hx₁fd⟩ := ModularCurve.JOneES.exists_transcendental_finiteDimensional_laurentBaseChange K Γ hT
   have hgen : IntermediateField.adjoin K (Set.range (algebraMap ↥(laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)) ↥(laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ Γ)))) = ⊤ := by

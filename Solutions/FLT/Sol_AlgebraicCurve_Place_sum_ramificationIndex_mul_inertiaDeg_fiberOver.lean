@@ -264,7 +264,7 @@ private theorem surjective_residueOfCenter (hw : w.restrict F = v) :
       w.ord_nonneg_of_mem (forall_mem_of_restrict_eq hw s)
     omega
 
-  haveI hmax : (fiberCenter F' v hw).asIdeal.IsMaximal :=
+  have hmax : (fiberCenter F' v hw).asIdeal.IsMaximal :=
     (fiberCenter F' v hw).isPrime.isMaximal (fiberCenter F' v hw).ne_bot
   obtain ⟨t, i, hi, hti⟩ := hmax.exists_inv hsP
   have hst : s * t - 1 ∈ (fiberCenter F' v hw).asIdeal := by
@@ -353,7 +353,7 @@ private theorem inertiaDeg_eq_inertiaDeg_fiberCenter (hw : w.restrict F = v) :
     w.inertiaDeg F =
       (IsLocalRing.maximalIdeal v.toValuationSubring).inertiaDeg'
         (fiberCenter F' v hw).asIdeal := by
-  haveI := fiberCenter_liesOver hw
+  have := fiberCenter_liesOver hw
   rw [Ideal.inertiaDeg_algebraMap]
   show Module.finrank (w.restrict F).ResidueField w.ResidueField = _
   refine Algebra.finrank_eq_of_equiv_equiv (restrictResidueFieldEquiv hw)

@@ -28,9 +28,9 @@ theorem solution
   classical
 
   have hsep : SeparableAlong F ι := by
-    letI := algebraAlong ι
-    haveI : Module.Finite E'.FunctionField E.FunctionField := hfin
-    haveI : CharZero E'.FunctionField :=
+    let := algebraAlong ι
+    have : Module.Finite E'.FunctionField E.FunctionField := hfin
+    have : CharZero E'.FunctionField :=
       charZero_of_injective_algebraMap (algebraMap F E'.FunctionField).injective
     show Algebra.IsSeparable E'.FunctionField E.FunctionField
     exact Algebra.IsSeparable.of_integral E'.FunctionField E.FunctionField

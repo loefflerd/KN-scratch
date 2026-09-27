@@ -54,7 +54,7 @@ private theorem ModularCurve.theta_order {K : Type*} [Field K] [Algebra ℚ K] (
     rw [HahnSeries.coeff_single_mul, one_mul, LaurentSeries.derivative_apply,
       LaurentSeries.hasseDeriv_coeff]
     simp
-  haveI : CharZero K := charZero_of_injective_algebraMap (algebraMap ℚ K).injective
+  have : CharZero K := charZero_of_injective_algebraMap (algebraMap ℚ K).injective
   have hf0 : f ≠ 0 := fun h => hf (by rw [h, HahnSeries.order_zero])
   have hlead : ((HahnSeries.single (1 : ℤ) (1 : K) : LaurentSeries K) *
       LaurentSeries.derivative K f).coeff f.order ≠ 0 := by
@@ -103,7 +103,7 @@ private theorem ModularCurve.PhiGen.weightTwo_coeff_sum_slots {K : Type*} [Field
 p2m_open_scoped "ModularCurve ModularCurve.PhiGen" in
 private theorem ModularCurve.PhiGen.weightTwo_coeff_sum_slots_inv {K : Type*} [Field K] [Algebra ℚ K] (ℓ : ℕ) [NeZero ℓ] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) ℓ) (f : LaurentSeries K) (n : ℤ) : ((ℓ : K) • qExpand K (ℓ * ℓ) f + (ℓ : K)⁻¹ • ∑ b ∈ Finset.range ℓ, qTwist (ζ ^ b) f).coeff ((ℓ : ℤ) * n) = f.coeff ((ℓ : ℤ) * n) + if (ℓ : ℤ) ∣ n then (ℓ : K) * f.coeff (n / ℓ) else 0 := by
   have hℓ : (ℓ : ℤ) ≠ 0 := by exact_mod_cast NeZero.ne ℓ
-  haveI : CharZero K := charZero_of_injective_algebraMap (algebraMap ℚ K).injective
+  have : CharZero K := charZero_of_injective_algebraMap (algebraMap ℚ K).injective
   have hℓK : (ℓ : K) ≠ 0 := by exact_mod_cast NeZero.ne ℓ
   rw [HahnSeries.coeff_add, HahnSeries.coeff_smul, HahnSeries.coeff_smul, sum_qTwist_coeff ℓ ζ hζ f,
     if_pos (dvd_mul_right _ _), smul_eq_mul, smul_eq_mul, inv_mul_cancel_left₀ hℓK]

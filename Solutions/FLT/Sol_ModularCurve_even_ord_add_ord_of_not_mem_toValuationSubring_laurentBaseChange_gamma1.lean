@@ -309,7 +309,7 @@ theorem solution
     (hP : y ∉ P.toValuationSubring) :
     Even (P.ord v + P.ord y) := by
   classical
-  haveI : (CongruenceSubgroup.Gamma1 M).FiniteIndex := inferInstance
+  have : (CongruenceSubgroup.Gamma1 M).FiniteIndex := inferInstance
   have hT : ModularGroup.T ∈ CongruenceSubgroup.Gamma1 M := by
     rw [CongruenceSubgroup.Gamma1_mem]; simp [ModularGroup.T]
   have hΓ := CongruenceSubgroup.Gamma1_is_congruence M

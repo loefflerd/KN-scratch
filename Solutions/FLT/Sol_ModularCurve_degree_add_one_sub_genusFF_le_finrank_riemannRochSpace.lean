@@ -29,13 +29,13 @@ theorem solution (N : ℕ) [NeZero N]
       ≤ (Module.finrank (AlgebraicClosure ℚ) ↥(riemannRochSpace D) : ℤ) := by
   classical
 
-  haveI : IsCurveOver (AlgebraicClosure ℚ) (modularFunctionFieldBar N) := isCurveOver_modularFunctionFieldBar N
-  haveI : HasCanonicalDivisor (K := AlgebraicClosure ℚ) (F := modularFunctionFieldBar N) :=
+  have : IsCurveOver (AlgebraicClosure ℚ) (modularFunctionFieldBar N) := isCurveOver_modularFunctionFieldBar N
+  have : HasCanonicalDivisor (K := AlgebraicClosure ℚ) (F := modularFunctionFieldBar N) :=
     hasCanonicalDivisor_modularFunctionFieldBar N
-  haveI : Algebra.EssFiniteType (AlgebraicClosure ℚ) (modularFunctionFieldBar N) :=
+  have : Algebra.EssFiniteType (AlgebraicClosure ℚ) (modularFunctionFieldBar N) :=
     essFiniteType_modularFunctionFieldBar N
-  haveI : PerfectField (AlgebraicClosure ℚ) := PerfectField.ofCharZero
-  haveI : ∀ w : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N), w.DCoordGenerates :=
+  have : PerfectField (AlgebraicClosure ℚ) := PerfectField.ofCharZero
+  have : ∀ w : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N), w.DCoordGenerates :=
     AlgebraicCurve.dCoordGenerates_of_isCurveOver
   have hRR : FunctionFieldRiemannRoch (AlgebraicClosure ℚ) (modularFunctionFieldBar N) :=
     functionFieldRiemannRoch_modularFunctionFieldBar N

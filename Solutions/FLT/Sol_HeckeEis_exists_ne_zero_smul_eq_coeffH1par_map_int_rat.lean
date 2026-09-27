@@ -442,8 +442,8 @@ theorem conj_T_zpow_mem_Gamma0 (N : ℕ) (δ : SL(2, ℤ)) : δ * ModularGroup.T
   exact Gamma_le_Gamma0 N ((CongruenceSubgroup.Gamma_normal N).conj_mem _ hTN δ)
 
 scoped instance instGroupFG_Gamma0 (N : ℕ) [NeZero N] : Group.FG (Gamma0 N) := by
-  haveI : (Gamma0 N).FiniteIndex := Subgroup.finiteIndex_of_le (Gamma_le_Gamma0 N)
-  haveI : Group.FG SL(2, ℤ) := ⟨⟨{ModularGroup.S, ModularGroup.T}, by simpa using SpecialLinearGroup.SL2Z_generators⟩⟩
+  have : (Gamma0 N).FiniteIndex := Subgroup.finiteIndex_of_le (Gamma_le_Gamma0 N)
+  have : Group.FG SL(2, ℤ) := ⟨⟨{ModularGroup.S, ModularGroup.T}, by simpa using SpecialLinearGroup.SL2Z_generators⟩⟩
   exact Subgroup.fg_of_index_ne_zero _
 
 theorem conj_T_zpow_eq (δ : SL(2, ℤ)) (h : ℤ) : δ * ModularGroup.T ^ h * δ⁻¹ = MulAut.conj δ (ModularGroup.T ^ h) := by
@@ -680,8 +680,8 @@ theorem main
     (x : coeffH1par ((binaryFormRepSL ℚ n).comp (Gamma0 N).subtype)) :
     ∃ (m : ℤ) (y : coeffH1par ((binaryFormRepSL ℤ n).comp (Gamma0 N).subtype)), m ≠ 0 ∧ Φ y = m • x := by
   classical
-  haveI : (Gamma0 N).FiniteIndex := Subgroup.finiteIndex_of_le (Gamma_le_Gamma0 N)
-  haveI : Fintype (SL(2, ℤ) ⧸ Gamma0 N) := Fintype.ofFinite _
+  have : (Gamma0 N).FiniteIndex := Subgroup.finiteIndex_of_le (Gamma_le_Gamma0 N)
+  have : Fintype (SL(2, ℤ) ⧸ Gamma0 N) := Fintype.ofFinite _
   have hρQ' : ∀ g : Gamma0 N, ((binaryFormRepSL ℚ n).comp (Gamma0 N).subtype) g = binaryFormRepSL ℚ n (g : SL(2, ℤ)) :=
     fun g => rfl
   have hρZ' : ∀ g : Gamma0 N, ((binaryFormRepSL ℤ n).comp (Gamma0 N).subtype) g = binaryFormRepSL ℤ n (g : SL(2, ℤ)) :=

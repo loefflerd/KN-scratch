@@ -14,9 +14,9 @@ universe u
 theorem solution
     (K : Type u) [Field K] [CharZero K] [Countable K] : Nonempty (K →+* ℂ) := by
   classical
-  haveI : FaithfulSMul ℚ K :=
+  have : FaithfulSMul ℚ K :=
     (faithfulSMul_iff_algebraMap_injective ℚ K).2 (algebraMap ℚ K).injective
-  haveI : FaithfulSMul ℚ ℂ :=
+  have : FaithfulSMul ℚ ℂ :=
     (faithfulSMul_iff_algebraMap_injective ℚ ℂ).2 (algebraMap ℚ ℂ).injective
 
   obtain ⟨s, hs⟩ := exists_isTranscendenceBasis ℚ K
@@ -41,11 +41,11 @@ theorem solution
   have hg : Function.Injective g :=
     (algebraicIndependent_iff_injective_aeval.1 hind).comp hs.1.aevalEquiv.symm.injective
 
-  haveI : Algebra.IsAlgebraic A K := hs.isAlgebraic
-  letI : Algebra A ℂ := g.toRingHom.toAlgebra
-  haveI : Module.IsTorsionFree A ℂ :=
+  have : Algebra.IsAlgebraic A K := hs.isAlgebraic
+  let : Algebra A ℂ := g.toRingHom.toAlgebra
+  have : Module.IsTorsionFree A ℂ :=
     Module.isTorsionFree_iff_algebraMap_injective.mpr hg
-  haveI : Module.IsTorsionFree A K :=
+  have : Module.IsTorsionFree A K :=
     Module.isTorsionFree_iff_algebraMap_injective.mpr Subtype.val_injective
   exact ⟨(IsAlgClosed.lift (R := A) (S := K) (M := ℂ)).toRingHom⟩
 

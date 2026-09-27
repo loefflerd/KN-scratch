@@ -20,7 +20,7 @@ theorem exists_divisor_ord (K : Type*) [Field K] {F : Type*} [Field F] [Algebra 
   classical
   rcases eq_or_ne f 0 with rfl | hf
   · exact ⟨0, fun v => by simp⟩
-  · haveI : HasPrincipalDivisors K F := IsCurveOver.hasPrincipalDivisors
+  · have : HasPrincipalDivisors K F := IsCurveOver.hasPrincipalDivisors
     obtain ⟨D, hD, -⟩ := HasPrincipalDivisors.exists_divisor (K := K) (F := F) f hf
     exact ⟨D, hD⟩
 

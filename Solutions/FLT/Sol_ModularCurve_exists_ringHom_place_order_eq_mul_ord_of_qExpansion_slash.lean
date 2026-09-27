@@ -93,7 +93,7 @@ theorem slash_mdiff (g : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) (σ : S
 
 theorem slash_bddAtImInfty (g : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) (σ : SL(2, ℤ)) :
     IsBoundedAtImInfty (⇑g ∣[k] σ) := by
-  haveI hFact : Fact (IsCusp ∞ (ConjAct.toConjAct ((σ : GL (Fin 2) ℝ))⁻¹ •
+  have hFact : Fact (IsCusp ∞ (ConjAct.toConjAct ((σ : GL (Fin 2) ℝ))⁻¹ •
       ((Γ : Subgroup SL(2, ℤ)) : Subgroup (GL (Fin 2) ℝ)))) :=
     ⟨Subgroup.isCusp_of_mem_strictPeriods (wd_pos Γ) (natCast_mem_strictPeriods_translate Γ σ)⟩
   have h := ModularFormClass.bdd_at_infty
@@ -111,7 +111,7 @@ private theorem exists_chart {N : ℕ} [NeZero N] {F : ℍ → ℂ}
   set P := qExpansion N F with hP
 
   have hsummN : Summable fun n : ℕ => ‖P.coeff n‖ * (1 / 2 : ℝ) ^ n := by
-    letI : FiniteDimensional ℝ ℂ := basisOneI.finiteDimensional_of_finite
+    let : FiniteDimensional ℝ ℂ := basisOneI.finiteDimensional_of_finite
     have h1 : HasSum (fun n : ℕ => P.coeff n • ((1 / 2 : ℝ) : ℂ) ^ n)
         (cuspFunction N F ((1 / 2 : ℝ) : ℂ)) :=
       hasSum_qExpansion_of_norm_lt hN pF dF bF (by
@@ -352,7 +352,7 @@ private theorem qExpansion_natCast_coeff {F : ℍ → ℂ} (N : ℕ) [NeZero N]
     exact (hinj.hasSum_iff hoff).mp h1
   have hA : AnalyticAt ℂ (cuspFunction (N : ℝ) F) 0 :=
     analyticAt_cuspFunction_zero hN pN dF bF
-  letI : FunLike (ℍ → ℂ) ℍ ℂ := ⟨id, fun _ _ hfg => hfg⟩
+  let : FunLike (ℍ → ℂ) ℍ ℂ := ⟨id, fun _ _ hfg => hfg⟩
   exact (qExpansion_coeff_unique F hN hA key n).symm
 
 end S3CuspLimit
@@ -385,7 +385,7 @@ private theorem map_ne_zero_iff' {x : F} : Φ x ≠ 0 ↔ x ≠ 0 :=
 private def orderValuationSubring : ValuationSubring F where
   carrier := {x | 0 ≤ (Φ x).order}
   mul_mem' {x y} hx hy := by
-    simp only [Set.mem_setOf_eq] at hx hy ⊢
+    simp only [Set.mem_ofPred_eq] at hx hy ⊢
     rcases eq_or_ne x 0 with rfl | hx0
     · simp
     rcases eq_or_ne y 0 with rfl | hy0
@@ -394,17 +394,17 @@ private def orderValuationSubring : ValuationSubring F where
     omega
   one_mem' := by simp [HahnSeries.order_one]
   add_mem' {x y} hx hy := by
-    simp only [Set.mem_setOf_eq] at hx hy ⊢
+    simp only [Set.mem_ofPred_eq] at hx hy ⊢
     rcases eq_or_ne (Φ x + Φ y) 0 with h0 | h0
     · simp [h0]
     · rw [map_add]
       exact (le_min hx hy).trans (HahnSeries.min_order_le_order_add h0)
   zero_mem' := by simp
   neg_mem' {x} hx := by
-    simp only [Set.mem_setOf_eq] at hx ⊢
+    simp only [Set.mem_ofPred_eq] at hx ⊢
     rwa [map_neg, HahnSeries.order_neg]
   mem_or_inv_mem' x := by
-    simp only [Set.mem_setOf_eq]
+    simp only [Set.mem_ofPred_eq]
     rcases eq_or_ne x 0 with rfl | hx0
     · simp
     rw [map_inv₀, order_inv_laurent ((map_ne_zero_iff' Φ).2 hx0)]
@@ -1031,7 +1031,7 @@ private theorem presJ1 : S3c.PresJ :=
   exists_modularForm_mul_qExpansion_eq_coeffEmb_qExpand_jq 1 1 (dvd_refl 1)
 
 private theorem reindexN (N : ℕ) [NeZero N] : S3c.Reindex N := fun k f n => by
-  haveI : Fact (IsCusp OnePoint.infty S3c.Γ1top) :=
+  have : Fact (IsCusp OnePoint.infty S3c.Γ1top) :=
     ⟨Subgroup.isCusp_of_mem_strictPeriods one_pos S3c.one_mem_strictPeriods_levelOne⟩
   exact S3CuspLimit.qExpansion_natCast_coeff N
     (SlashInvariantFormClass.periodic_comp_ofComplex f S3c.one_mem_strictPeriods_levelOne)
@@ -1245,7 +1245,7 @@ theorem solution
             Complex.exp (-(2 * Real.pi * Complex.I * ((e : ℤ) * P.ord x : ℂ) * (τ : ℂ) / (Γ.normalCore.index : ℂ))))
           atImInfty (𝓝 L)) := by
   subst hF
-  haveI hTΓ : Fact (ModularGroup.T ∈ Γ) := ⟨hT⟩
+  have hTΓ : Fact (ModularGroup.T ∈ Γ) := ⟨hT⟩
   obtain ⟨e, he, hord⟩ := S3c.exists_order_eq_mul_ord (S3readout.Φ Γ σ) (S3readout.Φ_algebraMap Γ σ)
     (S3readout.order_Φ_J_neg Γ σ)
   refine ⟨S3readout.Φ Γ σ, S3readout.P Γ σ, e, he, S3readout.mem_P_iff Γ σ, ?_, ?_, S3readout.Φ_algebraMap Γ σ,

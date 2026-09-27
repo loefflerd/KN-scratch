@@ -128,7 +128,7 @@ theorem transfer (x : Fκ) (hx : (x : LaurentSeries κ) = jqModC κ)
   set Lκ : IntermediateField κ Fκ := adjoin κ ({x} : Set Fκ) with hLκ
   set K₀ : IntermediateField k Fk := adjoin k ({x'} : Set Fk) with hK₀
   set K₁ : IntermediateField k (LaurentSeries k) := adjoin k ({jqModC k} : Set (LaurentSeries k)) with hK₁
-  haveI : FiniteDimensional Lκ Fκ := hfd
+  have : FiniteDimensional Lκ Fκ := hfd
 
   let ψ₀ : Lκ →+* LaurentSeries k :=
     (Φ φ).comp (((qExpFunctionFieldC κ Γ).val : Fκ →+* LaurentSeries κ).comp (algebraMap Lκ Fκ))
@@ -149,7 +149,7 @@ theorem transfer (x : Fκ) (hx : (x : LaurentSeries κ) = jqModC κ)
   let v := Module.finBasis Lκ Fκ
   let w : Fin n → LaurentSeries k := fun i => Φ φ ((v i : Fκ) : LaurentSeries κ)
   set S : Submodule K₁ (LaurentSeries k) := Submodule.span K₁ (Set.range w) with hS
-  haveI hSfin : Module.Finite K₁ S := Module.Finite.span_of_finite K₁ (Set.finite_range w)
+  have hSfin : Module.Finite K₁ S := Module.Finite.span_of_finite K₁ (Set.finite_range w)
   have hSrank : Module.finrank K₁ S ≤ n := (finrank_range_le_card w).trans (by simp)
 
   have hsub : ∀ y : LaurentSeries κ, y ∈ Fκ → Φ φ y ∈ S := by
@@ -239,7 +239,7 @@ theorem transfer (x : Fκ) (hx : (x : LaurentSeries κ) = jqModC κ)
     intro z hz
     have hz' : z ∈ Fk := hz
     exact hFkS hz'
-  haveI hfdN : FiniteDimensional K₁ N₁ :=
+  have hfdN : FiniteDimensional K₁ N₁ :=
     Module.Finite.of_injective (Submodule.inclusion hN₁S) (Submodule.inclusion_injective hN₁S)
   have hrankN : Module.finrank K₁ N₁ ≤ n := by
     have h1 : Module.finrank K₁ (Subalgebra.toSubmodule N₁.toSubalgebra) ≤ Module.finrank K₁ S :=
@@ -280,9 +280,9 @@ theorem isAlgebraic_residueField :
       (Fact.out : p.Prime) hA
     letI := ZMod.algebra (IsLocalRing.ResidueField A) p
     Algebra.IsAlgebraic (ZMod p) (IsLocalRing.ResidueField A) := by
-  letI : CharP (IsLocalRing.ResidueField A) p := ValuationSubring.charP_residueField_of_liesOverPrime_def
+  let : CharP (IsLocalRing.ResidueField A) p := ValuationSubring.charP_residueField_of_liesOverPrime_def
     (Fact.out : p.Prime) hA
-  letI := ZMod.algebra (IsLocalRing.ResidueField A) p
+  let := ZMod.algebra (IsLocalRing.ResidueField A) p
   have hp : p.Prime := Fact.out
   refine ⟨fun ybar => ?_⟩
   obtain ⟨y, rfl⟩ := IsLocalRing.residue_surjective ybar
@@ -368,13 +368,13 @@ theorem bound_of_isAlgClosed (K' : Type*) [Field K'] [IsAlgClosed K']
   obtain ⟨p, hchar⟩ := CharP.exists K'
   rcases CharP.char_is_prime_or_zero K' p with hp | rfl
   ·
-    haveI : Fact p.Prime := ⟨hp⟩
+    have : Fact p.Prime := ⟨hp⟩
     obtain ⟨A, hA⟩ := ValuationSubring.exists_liesOverPrime_algebraicClosure_rat ⟨p, hp⟩
-    haveI : CharP (IsLocalRing.ResidueField A) p :=
+    have : CharP (IsLocalRing.ResidueField A) p :=
       ValuationSubring.charP_residueField_of_liesOverPrime_def hp hA
-    letI := ZMod.algebra (IsLocalRing.ResidueField A) p
-    letI := ZMod.algebra K' p
-    haveI : Algebra.IsAlgebraic (ZMod p) (IsLocalRing.ResidueField A) :=
+    let := ZMod.algebra (IsLocalRing.ResidueField A) p
+    let := ZMod.algebra K' p
+    have : Algebra.IsAlgebraic (ZMod p) (IsLocalRing.ResidueField A) :=
       isAlgebraic_residueField p A hA
     let φ : IsLocalRing.ResidueField A →+* K' :=
       (IsAlgClosed.lift (R := ZMod p) (S := IsLocalRing.ResidueField A) (M := K')).toRingHom
@@ -393,7 +393,7 @@ theorem bound_of_isAlgClosed (K' : Type*) [Field K'] [IsAlgClosed K']
     obtain ⟨hfd', hle'⟩ := transfer φ Γ xκ hxκ x' hx' hfd
     exact ⟨hfd', hle'.trans (hb.trans hidx)⟩
   ·
-    haveI : CharZero K' := CharP.charP_to_charZero K'
+    have : CharZero K' := CharP.charP_to_charZero K'
     obtain ⟨xκ, hxκ, -, hfd, hle⟩ :=
       ModularCurve.exists_transcendental_finiteDimensional_qExpFunctionFieldC_residueField
         K' (⊤ : ValuationSubring K') Γ hT
@@ -435,7 +435,7 @@ theorem solution
     intFormRatiosC_subset (AlgebraicClosure K) Γ
       (ModularCurve.jqModC_mem_intFormRatiosC (AlgebraicClosure K) Γ)
   obtain ⟨hfd', hle'⟩ := bound_of_isAlgClosed Γ hT Γ' hΓ' hneg (AlgebraicClosure K) ⟨_, hjK'⟩ rfl
-  haveI := hfd'
+  have := hfd'
   have hxt : Transcendental K (x : LaurentSeries K) := by rw [hx]; exact transcendental_jqModC K
   have hxx' : ((⟨_, hjK'⟩ : qExpFunctionFieldC (AlgebraicClosure K) Γ) :
       LaurentSeries (AlgebraicClosure K)) =

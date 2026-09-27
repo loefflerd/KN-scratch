@@ -49,7 +49,7 @@ namespace DimLBEven
 theorem finite_doubleCoset_quotient {G : Type*} [Group G] (H K : Subgroup G) [H.FiniteIndex] :
     Finite (DoubleCoset.Quotient (H : Set G) (K : Set G)) := by
   classical
-  haveI : Finite (Quotient (QuotientGroup.rightRel H)) :=
+  have : Finite (Quotient (QuotientGroup.rightRel H)) :=
     Finite.of_equiv _ (QuotientGroup.quotientRightRelEquivQuotientLeftRel H).symm
   refine Finite.of_surjective (fun q : Quotient (QuotientGroup.rightRel H) => Quotient.liftOn' q (fun g => DoubleCoset.mk H K g) ?_) ?_
   · intro a b hab
@@ -135,14 +135,14 @@ theorem solution
   obtain ⟨m, rfl⟩ := hke
   have hm1 : 1 ≤ m := by omega
 
-  haveI hfi : (CongruenceSubgroup.Gamma1 M).FiniteIndex := inferInstance
-  haveI hfi' : (CongruenceSubgroup.Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).FiniteIndex := Subgroup.finiteIndex_of_le le_sup_left
+  have hfi : (CongruenceSubgroup.Gamma1 M).FiniteIndex := inferInstance
+  have hfi' : (CongruenceSubgroup.Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).FiniteIndex := Subgroup.finiteIndex_of_le le_sup_left
   have hμpos : 0 < (CongruenceSubgroup.Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index :=
     Nat.pos_of_ne_zero Subgroup.FiniteIndex.index_ne_zero
   have hcpos : 1 ≤ Nat.card (DoubleCoset.Quotient (CongruenceSubgroup.Gamma1 M : Set SL(2, ℤ))
       ((Subgroup.zpowers ModularGroup.T ⊔ Subgroup.zpowers (-1) : Subgroup SL(2, ℤ)) : Set SL(2, ℤ))) := by
-    haveI := finite_doubleCoset_quotient (CongruenceSubgroup.Gamma1 M) (Subgroup.zpowers ModularGroup.T ⊔ Subgroup.zpowers (-1) : Subgroup SL(2, ℤ))
-    haveI : Nonempty (DoubleCoset.Quotient (CongruenceSubgroup.Gamma1 M : Set SL(2, ℤ))
+    have := finite_doubleCoset_quotient (CongruenceSubgroup.Gamma1 M) (Subgroup.zpowers ModularGroup.T ⊔ Subgroup.zpowers (-1) : Subgroup SL(2, ℤ))
+    have : Nonempty (DoubleCoset.Quotient (CongruenceSubgroup.Gamma1 M : Set SL(2, ℤ))
       ((Subgroup.zpowers ModularGroup.T ⊔ Subgroup.zpowers (-1) : Subgroup SL(2, ℤ)) : Set SL(2, ℤ))) := ⟨DoubleCoset.mk _ _ 1⟩
     exact Nat.card_pos
 
@@ -151,12 +151,12 @@ theorem solution
     rw [CongruenceSubgroup.Gamma1_mem]; simp [ModularGroup.T]
   obtain ⟨htr, hfin⟩ := ModularCurve.transcendental_and_finiteDimensional_adjoin_laurentBaseChange_qExpFunctionFieldC_of_coe_eq_jqModC
     ℂ (CongruenceSubgroup.Gamma1 M) hT y hy
-  haveI := hfin
+  have := hfin
   have hfull := ModularCurve.finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_gamma1_eq_index ℂ M y hy
-  haveI hsep : Algebra.IsSeparable ↥(IntermediateField.adjoin ℂ ({y} : Set ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))))
+  have hsep : Algebra.IsSeparable ↥(IntermediateField.adjoin ℂ ({y} : Set ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))))
       ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) := inferInstance
   obtain ⟨h0, h1728⟩ := ModularCurve.ord_eq_three_of_ord_pos_and_ord_sub_eq_two_laurentBaseChange_gamma1 ℂ M (by omega) y hy
-  haveI : IsCurveOver ℂ ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) :=
+  have : IsCurveOver ℂ ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) :=
     ModularCurve.isCurveOver_laurentBaseChange_qExpFunctionFieldC_gamma1 ℂ M
   obtain ⟨D, hD⟩ := AlgebraicCurve.exists_divisor_forall_eq_weightFloor ℂ y m
   have hdeg := AlgebraicCurve.six_mul_degree_eq_mul_finrank_of_forall_eq_weightFloor_of_ord_eq_three_two ℂ y htr hfin hsep h0 h1728 m D hD
@@ -174,7 +174,7 @@ theorem solution
 
   have hRRhyp : 2 * (gg : ℤ) - 1 ≤ D.degree := by nlinarith [hdeg, hgZ, hμZ, hmZ, hcZ]
   have hRR := AlgebraicCurve.ell_eq_degree_add_one_sub_genusFF_of_isAlgClosed_of_isSeparable ℂ y htr hfin hsep D hRRhyp
-  haveI := ModularCurve.finiteDimensional_riemannRochSpace_laurentBaseChange_qExpFunctionFieldC_gamma1 ℂ M D
+  have := ModularCurve.finiteDimensional_riemannRochSpace_laurentBaseChange_qExpFunctionFieldC_gamma1 ℂ M D
   set d : ℕ := Module.finrank ℂ ↥(riemannRochSpace D) with hddef
   have hell : (ell D : ℤ) = d := rfl
 

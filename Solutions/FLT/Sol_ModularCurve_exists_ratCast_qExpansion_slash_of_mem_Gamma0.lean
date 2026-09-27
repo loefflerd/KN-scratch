@@ -96,7 +96,7 @@ theorem conj_mem_Gamma1 {γ A : SL(2, ℤ)} (hγ : γ ∈ Gamma0 M) (hA : A ∈ 
   have hA1 : A₀ ∈ Gamma1' M := by
     rw [Gamma1_to_Gamma0_mem]
     exact (Gamma1_mem M A).mp hA
-  haveI : (Gamma1' M).Normal := by
+  have : (Gamma1' M).Normal := by
     change ((Gamma0Map M).ker).Normal
     infer_instance
   have hconj : γ₀ * A₀ * γ₀⁻¹ ∈ Gamma1' M := Subgroup.Normal.conj_mem inferInstance A₀ hA1 γ₀
@@ -492,7 +492,7 @@ theorem exists_lift (d : ℤ) (hd : IsCoprime d (M : ℤ)) :
 theorem isRat_slash_of_odd (hk : Odd k) (f : ModularForm Γ₁(M) k) (hf : IsRat (qExpansion 1 f))
     {γ : SL(2, ℤ)} (hγ : γ ∈ Gamma0 M) : IsRat (qExpansion 1 ((⇑f : ℍ → ℂ) ∣[k] γ)) := by
   obtain ⟨E, hE, hE0⟩ := exists_E1
-  haveI : NeZero (3 * M) := ⟨mul_ne_zero three_ne_zero (NeZero.ne M)⟩
+  have : NeZero (3 * M) := ⟨mul_ne_zero three_ne_zero (NeZero.ne M)⟩
 
   obtain ⟨d', hcop, ⟨t, ht⟩, h3⟩ := exists_lift (M := M) (γ 1 1) (isCoprime_entry hγ)
   obtain ⟨x, y, hxy⟩ := hcop

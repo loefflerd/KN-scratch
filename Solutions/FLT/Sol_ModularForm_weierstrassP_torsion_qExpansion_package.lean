@@ -489,7 +489,7 @@ lemma finite_wpMonExp_fiber {N a₁ : ℕ} (ha₁ : a₁ < N) (n : ℕ) :
 
 theorem wpQCoeff_mem_kN {N a₁ : ℕ} (ha₁ : a₁ < N) (a₂ n : ℕ) : wpQCoeff N a₁ a₂ n ∈ kN N := by
   have := (finite_wpMonExp_fiber ha₁ n).to_subtype
-  haveI := Fintype.ofFinite (wpMonExp N a₁ ⁻¹' {n})
+  have := Fintype.ofFinite (wpMonExp N a₁ ⁻¹' {n})
   rw [wpQCoeff, tsum_fintype]
   exact sum_mem fun i _ ↦ wpMonCoeff_mem_kN N a₁ a₂ i
 
@@ -1118,7 +1118,7 @@ theorem ringHom_wpQCoeffK {N a₁ : ℕ} (ha₁ : a₁ < N) (φ : kN N →+* ℂ
     φ (wpQCoeffK ha₁ a₂ n) = wpQCoeff N a₁ (s * a₂ % N) n := by
   have hN : N ≠ 0 := by omega
   have hfin := (finite_wpMonExp_fiber ha₁ n).to_subtype
-  haveI := Fintype.ofFinite (wpMonExp N a₁ ⁻¹' {n})
+  have := Fintype.ofFinite (wpMonExp N a₁ ⁻¹' {n})
   have e : wpQCoeffK ha₁ a₂ n = ∑ i : (wpMonExp N a₁ ⁻¹' {n}), wpMonCoeffK N a₁ a₂ i := by
     apply Subtype.ext
     rw [AddSubmonoidClass.coe_finsetSum, coe_wpQCoeffK, wpQCoeff, tsum_fintype]
@@ -1223,7 +1223,7 @@ private theorem _root_.WLightR2.ModularFormClass.qExpansion_coeff_width {F : Typ
     {Γ : Subgroup (GL (Fin 2) ℝ)} {k : ℤ} [ModularFormClass F Γ k] (f : F)
     (h1 : (1 : ℝ) ∈ Γ.strictPeriods) {N : ℕ} (hN : N ≠ 0) (n : ℕ) :
     (qExpansion N f).coeff n = if N ∣ n then (qExpansion 1 f).coeff (n / N) else 0 := by
-  haveI : Fact (IsCusp OnePoint.infty Γ) := ⟨Γ.isCusp_of_mem_strictPeriods one_pos h1⟩
+  have : Fact (IsCusp OnePoint.infty Γ) := ⟨Γ.isCusp_of_mem_strictPeriods one_pos h1⟩
   exact WLightR2.qExpansion_coeff_width f hN (by simpa using periodic_comp_ofComplex f h1)
     (ModularFormClass.holo f) (ModularFormClass.bdd_at_infty f) n
 

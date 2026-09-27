@@ -17,7 +17,7 @@ theorem solution
     (y : E) (hy : algebraMap E F y ∉ (frobenius F p).fieldRange) :
     Algebra.IsSeparable E F := by
   set S : Subfield F := (frobenius F p).fieldRange with hS
-  haveI : IsSimpleOrder (IntermediateField S F) :=
+  have : IsSimpleOrder (IntermediateField S F) :=
     IntermediateField.isSimpleOrder_of_finrank_prime S F (by rw [hdeg]; exact Fact.out)
 
   set D := KaehlerDifferential.D E F with hD
@@ -31,18 +31,18 @@ theorem solution
     { carrier := {z | D z = 0}
       mul_mem' := by
         intro a b ha hb
-        simp only [Set.mem_setOf_eq] at ha hb ⊢
+        simp only [Set.mem_ofPred_eq] at ha hb ⊢
         rw [D.leibniz, ha, hb, smul_zero, smul_zero, add_zero]
       one_mem' := D.map_one_eq_zero
       add_mem' := by
         intro a b ha hb
-        simp only [Set.mem_setOf_eq] at ha hb ⊢
+        simp only [Set.mem_ofPred_eq] at ha hb ⊢
         rw [map_add, ha, hb, add_zero]
       zero_mem' := map_zero D
       algebraMap_mem' := fun s => hDS _ s.2
       inv_mem' := by
         intro z hz
-        simp only [Set.mem_setOf_eq] at hz ⊢
+        simp only [Set.mem_ofPred_eq] at hz ⊢
         rw [D.leibniz_inv, hz, smul_zero] }
   have hyZ : IntermediateField.adjoin S {algebraMap E F y} ≤ Z :=
     IntermediateField.adjoin_le_iff.mpr (Set.singleton_subset_iff.mpr hDy)
@@ -62,7 +62,7 @@ theorem solution
     have hz : z ∈ Z := hZ ▸ IntermediateField.mem_top
     exact hz
 
-  haveI : Subsingleton (KaehlerDifferential E F) := by
+  have : Subsingleton (KaehlerDifferential E F) := by
     refine subsingleton_of_forall_eq 0 fun ω => ?_
     have hω : ω ∈ Submodule.span F (Set.range D) := by
       rw [hD, KaehlerDifferential.span_range_derivation]
@@ -72,7 +72,7 @@ theorem solution
       rintro _ ⟨z, rfl⟩
       exact (Submodule.mem_bot F).mpr (hD0 z)
     exact (Submodule.mem_bot F).mp (hle hω)
-  haveI : Algebra.FormallyUnramified E F := ⟨inferInstance⟩
+  have : Algebra.FormallyUnramified E F := ⟨inferInstance⟩
   exact Algebra.FormallyUnramified.isSeparable E F
 
 end S_Algebra_IsSeparable_of_finrank_fieldRange_frobenius_eq

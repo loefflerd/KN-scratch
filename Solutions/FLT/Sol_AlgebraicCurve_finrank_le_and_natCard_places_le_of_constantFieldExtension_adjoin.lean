@@ -341,7 +341,7 @@ theorem solution
             Nat.card {P : AlgebraicCurve.Place k F // P.ord u < 0}) := by
 
   have hx : Transcendental K' (algebraMap F E y) := by
-    haveI : IsScalarTower K' E L := IsScalarTower.of_algebraMap_eq (fun _ => rfl)
+    have : IsScalarTower K' E L := IsScalarTower.of_algebraMap_eq (fun _ => rfl)
     rw [← transcendental_algebraMap_iff (R := K') (A := L) (algebraMap E L).injective]
     change Transcendental K' ((algebraMap F E y : E) : L)
     rw [hyt]

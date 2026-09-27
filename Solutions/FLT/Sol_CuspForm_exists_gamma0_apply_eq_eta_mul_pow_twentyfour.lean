@@ -108,7 +108,7 @@ theorem eta_sq_S {w : ℂ} (hw : w ∈ ℍₒ) :
     η (-1 / w) ^ 2 = -Complex.I * w * η w ^ 2 := by
   have hw0 : w ≠ 0 := by
     rintro rfl
-    simp only [mem_setOf_eq, Complex.zero_im, lt_self_iff_false] at hw
+    simp only [mem_ofPred_eq, Complex.zero_im, lt_self_iff_false] at hw
   have h := eta_comp_eq_csqrt_I_inv hw
   simp only [Function.comp_apply, Pi.smul_apply, Pi.mul_apply, smul_eq_mul] at h
   rw [h, mul_pow, mul_pow, inv_pow, csqrt_sq Complex.I_ne_zero, csqrt_sq hw0, Complex.inv_I]
@@ -118,7 +118,7 @@ theorem etaProductEleven_fricke {w : ℂ} (hw : w ∈ ℍₒ) :
     etaProductEleven (-1 / (11 * w)) = -(11 * w ^ 2) * etaProductEleven w := by
   have hw0 : w ≠ 0 := by
     rintro rfl
-    simp only [mem_setOf_eq, Complex.zero_im, lt_self_iff_false] at hw
+    simp only [mem_ofPred_eq, Complex.zero_im, lt_self_iff_false] at hw
   have h11w : (11 : ℂ) * w ∈ ℍₒ := mem_upperHalfPlaneSet_eleven_mul hw
   have key : (11 : ℂ) * (-1 / (11 * w)) = -1 / w := by
     field_simp
@@ -212,9 +212,9 @@ private lemma finite_twelfthRoots : {x : ℂ | x ^ 12 = 1}.Finite := by
   have hsub : {x : ℂ | x ^ 12 = 1}
       ⊆ {x : ℂ | Polynomial.IsRoot (Polynomial.X ^ 12 - Polynomial.C 1 : Polynomial ℂ) x} := by
     intro x hx
-    simp only [mem_setOf_eq, Polynomial.IsRoot, Polynomial.eval_sub, Polynomial.eval_pow,
+    simp only [mem_ofPred_eq, Polynomial.IsRoot, Polynomial.eval_sub, Polynomial.eval_pow,
       Polynomial.eval_X, Polynomial.eval_C]
-    rw [Set.mem_setOf_eq] at hx
+    rw [Set.mem_ofPred_eq] at hx
     rw [hx]
     ring
   exact (Polynomial.finite_setOf_isRoot
@@ -640,7 +640,7 @@ private lemma etaMultiplier_eq_one_of_apply_eq_aux (γ : SL(2, ℤ))
   have hz₀ne : z₀ ≠ 0 := by
     intro h
     rw [h] at hz₀
-    simp only [Set.mem_setOf_eq, Complex.zero_im, lt_self_iff_false] at hz₀
+    simp only [Set.mem_ofPred_eq, Complex.zero_im, lt_self_iff_false] at hz₀
 
   have key1 : 11 * ((γ 0 0 : ℤ) : ℂ) * z₀ ^ 2 + 22 * ((γ 0 1 : ℤ) : ℂ) * z₀
       + ((γ 1 1 : ℤ) : ℂ) = 0 := by

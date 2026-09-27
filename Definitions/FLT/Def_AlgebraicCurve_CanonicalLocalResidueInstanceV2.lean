@@ -1033,7 +1033,7 @@ theorem mp72a102_t1_exists_completion_root_of_residue_root
     ∃ α : lg37_completion v,
       Polynomial.aeval α p = 0 ∧ lg37_residueHat v α = rbar := by
   classical
-  haveI _htower : IsScalarTower K v.toValuationSubring (lg37_completion v) :=
+  have _htower : IsScalarTower K v.toValuationSubring (lg37_completion v) :=
     mp72a102_t1_isScalarTower v
 
   obtain ⟨a, ha⟩ := IsLocalRing.residue_surjective (R := v.toValuationSubring) rbar
@@ -1124,7 +1124,7 @@ variable {R : Type*} [CommRing R] (I : Ideal R)
 
 theorem mp72a102_t3_evalₐ_zero_depth (z : AdicCompletion I R) :
     AdicCompletion.evalₐ I 0 z = 0 := by
-  haveI : Subsingleton (R ⧸ (I ^ 0)) :=
+  have : Subsingleton (R ⧸ (I ^ 0)) :=
     Ideal.Quotient.subsingleton_iff.mpr (by rw [pow_zero, Ideal.one_eq_top])
   exact Subsingleton.elim _ _
 
@@ -1611,8 +1611,8 @@ theorem map_isMaximal (v : Place K F) :
 
 instance isLocalRing_completion (v : Place K F) :
     IsLocalRing (lg37_completion v) := by
-  haveI := map_isMaximal v
-  haveI := isAdicComplete_map v
+  have := map_isMaximal v
+  have := isAdicComplete_map v
   exact isLocalRing_of_isAdicComplete_maximal
     ((maximalIdeal v.toValuationSubring).map
       (algebraMap v.toValuationSubring (lg37_completion v)))
@@ -1627,7 +1627,7 @@ theorem hensel_unique (v : Place K F) {p : K[X]} (hsep : p.Separable)
     {α β : lg37_completion v}
     (hα : aeval α p = 0) (hβ : aeval β p = 0)
     (hres : lg37_residueHat v α = lg37_residueHat v β) : α = β := by
-  haveI := isLocalRing_completion v
+  have := isLocalRing_completion v
   set f := p.map (algebraMap K (lg37_completion v)) with hf
   have hevalα : f.eval α = 0 := by rw [hf, eval_map, ← aeval_def]; exact hα
   have hevalβ : f.eval β = 0 := by rw [hf, eval_map, ← aeval_def]; exact hβ
@@ -2162,8 +2162,8 @@ noncomputable instance instHasCanonicalLocalResidueKStar [IsCurveOver K F] [Perf
 theorem localResidue_eq_resStar [IsCurveOver K F] [PerfectField K] (v : Place K F)
     (S : Lg37CompletionSection v) (f : F) :
     v.localResidue f = resStar v S f := by
-  haveI : FiniteDimensional K v.ResidueField := Place.FiniteResidue.finite
-  haveI : Algebra.IsSeparable K v.ResidueField :=
+  have : FiniteDimensional K v.ResidueField := Place.FiniteResidue.finite
+  have : Algebra.IsSeparable K v.ResidueField :=
     Algebra.IsAlgebraic.isSeparable_of_perfectField
   show resStar v (Classical.choice (completionSection_nonempty_generic v)) f = resStar v S f
   unfold resStar

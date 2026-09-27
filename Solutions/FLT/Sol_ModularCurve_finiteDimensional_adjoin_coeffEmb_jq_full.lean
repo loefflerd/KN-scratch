@@ -58,10 +58,10 @@ private theorem ModularCurve.isSeparable_adjoin_coeffEmb_jq_full (L : Type*) [Fi
   set X : IntermediateField L (laurentBaseChange L (modularFunctionFieldFull N)) :=
     IntermediateField.adjoin L ({⟨coeffEmb L jq, coeffEmb_mem_laurentBaseChange L (jq_mem_full N)⟩} :
       Set (laurentBaseChange L (modularFunctionFieldFull N))) with hX
-  haveI : FiniteDimensional X (laurentBaseChange L (modularFunctionFieldFull N)) :=
+  have : FiniteDimensional X (laurentBaseChange L (modularFunctionFieldFull N)) :=
     finiteDimensional_adjoin_coeffEmb_jq_full L N
-  haveI : CharZero L := charZero_of_injective_algebraMap (algebraMap ℚ L).injective
-  haveI : CharZero X := charZero_of_injective_algebraMap (algebraMap L X).injective
+  have : CharZero L := charZero_of_injective_algebraMap (algebraMap ℚ L).injective
+  have : CharZero X := charZero_of_injective_algebraMap (algebraMap L X).injective
   infer_instance
 
 p2m_open "ModularCurve~modularFunctionFieldBar" in open _root_.P2MW.S_ModularCurve_finiteDimensional_adjoin_coeffEmb_jq_full.ModularCurve in

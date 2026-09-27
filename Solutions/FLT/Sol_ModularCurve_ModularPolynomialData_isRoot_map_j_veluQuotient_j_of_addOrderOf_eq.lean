@@ -41,48 +41,48 @@ theorem solution
     haveI : (W.veluQuotient (W.oddOrderSummingSet Q n)).IsElliptic := ⟨isUnit_iff_ne_zero.mpr hΔ⟩
     (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (HahnSeries ℚ (AlgebraicClosure ℚ))) W.j)).IsRoot
       (W.veluQuotient (W.oddOrderSummingSet Q n)).j := by
-  haveI hE' : (W.veluQuotient (W.oddOrderSummingSet Q n)).IsElliptic := ⟨isUnit_iff_ne_zero.mpr hΔ⟩
-  haveI : IsAlgClosed 𝕂 := HahnSeries.isAlgClosed_rat
-  haveI : CharZero 𝕂 :=
+  have hE' : (W.veluQuotient (W.oddOrderSummingSet Q n)).IsElliptic := ⟨isUnit_iff_ne_zero.mpr hΔ⟩
+  have : IsAlgClosed 𝕂 := HahnSeries.isAlgClosed_rat
+  have : CharZero 𝕂 :=
     (RingHom.charZero_iff (HahnSeries.C (R := AlgebraicClosure ℚ) (Γ := ℚ)).injective).mp inferInstance
 
-  haveI : W.toAffine.IsElliptic := ‹W.IsElliptic›
-  haveI : (W.veluQuotient (W.oddOrderSummingSet Q n)).toAffine.IsElliptic := hE'
-  haveI : IsDedekindDomain W.toAffine.CoordinateRing := CoordinateRing.isDedekindDomain W
-  haveI : HasPrincipalDivisors 𝕂 W.toAffine.FunctionField := hasPrincipalDivisors_functionField W.toAffine
+  have : W.toAffine.IsElliptic := ‹W.IsElliptic›
+  have : (W.veluQuotient (W.oddOrderSummingSet Q n)).toAffine.IsElliptic := hE'
+  have : IsDedekindDomain W.toAffine.CoordinateRing := CoordinateRing.isDedekindDomain W
+  have : HasPrincipalDivisors 𝕂 W.toAffine.FunctionField := hasPrincipalDivisors_functionField W.toAffine
   obtain ⟨g, hgc, hga⟩ :=
     exists_genusOnePlaceGate_isCentred_and_abelTheorem (F := 𝕂) (W := W.toAffine)
-  letI := g
-  haveI := hgc
-  haveI := hga
-  haveI : IsDedekindDomain (W.veluQuotient (W.oddOrderSummingSet Q n)).toAffine.CoordinateRing :=
+  let := g
+  have := hgc
+  have := hga
+  have : IsDedekindDomain (W.veluQuotient (W.oddOrderSummingSet Q n)).toAffine.CoordinateRing :=
     CoordinateRing.isDedekindDomain (W.veluQuotient (W.oddOrderSummingSet Q n))
-  haveI : HasPrincipalDivisors 𝕂 (W.veluQuotient (W.oddOrderSummingSet Q n)).toAffine.FunctionField :=
+  have : HasPrincipalDivisors 𝕂 (W.veluQuotient (W.oddOrderSummingSet Q n)).toAffine.FunctionField :=
     hasPrincipalDivisors_functionField (W.veluQuotient (W.oddOrderSummingSet Q n)).toAffine
   obtain ⟨g', hgc', hga'⟩ :=
     exists_genusOnePlaceGate_isCentred_and_abelTheorem (F := 𝕂)
       (W := (W.veluQuotient (W.oddOrderSummingSet Q n)).toAffine)
-  letI := g'
-  haveI := hgc'
-  haveI := hga'
+  let := g'
+  have := hgc'
+  have := hga'
 
   obtain ⟨ι, hι, hfin, hdeg, hker⟩ :=
     WeierstrassCurve.exists_veluFunctionFieldHom_pointMapOfPushforward_ker_eq_zmultiples
       (W := W) (Q := Q) (n := n) hQ hΔ
 
-  haveI : CharZero (W.veluQuotient (W.oddOrderSummingSet Q n)).toAffine.FunctionField :=
+  have : CharZero (W.veluQuotient (W.oddOrderSummingSet Q n)).toAffine.FunctionField :=
     charZero_of_injective_algebraMap
       (algebraMap 𝕂 (W.veluQuotient (W.oddOrderSummingSet Q n)).toAffine.FunctionField).injective
   have hsep : SeparableAlong 𝕂 ι := by
-    letI := algebraAlong ι
-    haveI := isScalarTower_along ι
-    haveI : Module.Finite (W.veluQuotient (W.oddOrderSummingSet Q n)).toAffine.FunctionField
+    let := algebraAlong ι
+    have := isScalarTower_along ι
+    have : Module.Finite (W.veluQuotient (W.oddOrderSummingSet Q n)).toAffine.FunctionField
         W.toAffine.FunctionField := hfin
     show Algebra.IsSeparable _ _
     infer_instance
   have hN : NormFormulaAlong 𝕂 ι hfin := AlgebraicCurve.normFormulaAlong ι hfin hsep
   have hkerQ := hker hN
-  haveI : NeZero (2 * n + 1) := ⟨by omega⟩
+  have : NeZero (2 * n + 1) := ⟨by omega⟩
   have hcyc : IsAddCyclic (pointMapOfPushforward ι hι hfin hN).ker := by
     rw [hkerQ]; infer_instance
   have hcard : Nat.card (pointMapOfPushforward ι hι hfin hN).ker = 2 * n + 1 := by

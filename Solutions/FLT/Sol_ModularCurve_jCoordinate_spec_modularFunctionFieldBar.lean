@@ -81,7 +81,7 @@ private lemma mwP2_finite_ord_support [HasPrincipalDivisors K L] {f : L} (hf : f
     {v : Place K L | v.ord f ≠ 0}.Finite := by
   obtain ⟨D, hD, -⟩ := HasPrincipalDivisors.exists_divisor (K := K) (F := L) f hf
   refine Set.Finite.subset D.support.finite_toSet fun v hv => ?_
-  simp only [Set.mem_setOf_eq] at hv
+  simp only [Set.mem_ofPred_eq] at hv
   exact Finset.mem_coe.mpr (Finsupp.mem_support_iff.mpr (by rw [hD v]; exact hv))
 
 private lemma mwP2_module_finite_of_adjoin {R : Type*} [Field R] [Algebra R L]
@@ -112,7 +112,7 @@ private theorem mwP2_exists_unique_coord [IsAlgClosed K] {x : L}
   have hinj : Function.Injective (Polynomial.aeval x : Polynomial K →ₐ[K] L) :=
     transcendental_iff_injective.mp htr
   have hφ0 := nonZeroDivisors_le_comap_nonZeroDivisors_of_injective _ hinj
-  letI : Algebra (RatFunc K) L := (RatFunc.liftAlgHom (Polynomial.aeval x) hφ0).toRingHom.toAlgebra
+  let : Algebra (RatFunc K) L := (RatFunc.liftAlgHom (Polynomial.aeval x) hφ0).toRingHom.toAlgebra
   have hψalg : ∀ p : Polynomial K,
       algebraMap (RatFunc K) L (algebraMap (Polynomial K) (RatFunc K) p)
         = Polynomial.aeval x p := by
@@ -120,20 +120,20 @@ private theorem mwP2_exists_unique_coord [IsAlgClosed K] {x : L}
     have h := RatFunc.liftAlgHom_apply_div (Polynomial.aeval x) hφ0 p 1
     simp at h
     exact h
-  haveI : IsScalarTower K (RatFunc K) L :=
+  have : IsScalarTower K (RatFunc K) L :=
     IsScalarTower.of_algebraMap_eq fun c =>
       ((RatFunc.liftAlgHom (Polynomial.aeval x) hφ0).commutes c).symm
-  haveI : Module.Finite (RatFunc K) L := by
+  have : Module.Finite (RatFunc K) L := by
     refine mwP2_module_finite_of_adjoin (IntermediateField.adjoin K ({x} : Set L)) hFD ?_
     intro y
     obtain ⟨p, q, hpq⟩ := (IntermediateField.mem_adjoin_simple_iff K (y : L)).mp y.2
     refine ⟨algebraMap (Polynomial K) (RatFunc K) p / algebraMap (Polynomial K) (RatFunc K) q, ?_⟩
     rw [map_div₀, hψalg, hψalg]
     exact hpq.symm
-  haveI : Algebra.IsIntegral (RatFunc K) L := Algebra.IsIntegral.of_finite _ _
+  have : Algebra.IsIntegral (RatFunc K) L := Algebra.IsIntegral.of_finite _ _
   obtain ⟨v₀, hv₀⟩ := Place.exists_toValuationSubring_eq_comap (K := K) (F := RatFunc K) v
   obtain ⟨e, he, hord⟩ := Place.exists_ord_algebraMap_eq_mul_ord v v₀ hv₀
-  haveI : DecidableEq (RatFunc K) := Classical.decEq _
+  have : DecidableEq (RatFunc K) := Classical.decEq _
   rcases RationalFunctionField.eq_placeOfPoint_or_eq_placeInfty K v₀ with ⟨a, ha⟩ | hinf
   · have hXa : (Polynomial.X - Polynomial.C a : Polynomial K) ≠ 0 := Polynomial.X_sub_C_ne_zero a
     have h1 : v₀.ord (algebraMap (Polynomial K) (RatFunc K) (Polynomial.X - Polynomial.C a)) = 1 := by
@@ -197,7 +197,7 @@ theorem solution (N : ℕ) [NeZero N] :
     rw [h, Place.ord_zero] at hcusp
     omega
   have hFD := ModularCurve.finiteDimensional_adjoin_coeffEmb_jq_full (AlgebraicClosure ℚ) N
-  haveI hpd : HasPrincipalDivisors (AlgebraicClosure ℚ) (modularFunctionFieldBar N) :=
+  have hpd : HasPrincipalDivisors (AlgebraicClosure ℚ) (modularFunctionFieldBar N) :=
     ModularCurve.hasPrincipalDivisors_modularFunctionFieldBar_unconditional N
   refine ⟨fun v hv => mwP2_exists_unique_coord htr hFD v hv, fun c => ?_, ?_⟩
   ·
@@ -209,11 +209,11 @@ theorem solution (N : ℕ) [NeZero N] :
       intro h
       exact htr (by rw [h]; exact isAlgebraic_algebraMap c)
     refine Set.Finite.subset (mwP2_finite_ord_support hne) fun v hv => ?_
-    simp only [Set.mem_setOf_eq] at hv ⊢
+    simp only [Set.mem_ofPred_eq] at hv ⊢
     omega
   ·
     refine Set.Finite.subset (mwP2_finite_ord_support hjb0) fun v hv => ?_
-    simp only [Set.mem_setOf_eq] at hv ⊢
+    simp only [Set.mem_ofPred_eq] at hv ⊢
     omega
 
 end S_ModularCurve_jCoordinate_spec_modularFunctionFieldBar

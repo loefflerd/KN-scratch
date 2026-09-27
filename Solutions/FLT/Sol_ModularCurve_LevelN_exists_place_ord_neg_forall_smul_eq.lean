@@ -668,7 +668,7 @@ def ordValuation : Valuation (ring N) (WithZero (Multiplicative ℤ)) where
     ring
   map_add_le_max' F G := by
     by_cases hFG : ((F + G : ring N) : ℍ → ℂ) = 0
-    · rw [ordFun_zero' N hFG]; exact zero_le'
+    · rw [ordFun_zero' N hFG]; exact zero_le
     by_cases hF : (F : ℍ → ℂ) = 0
     · have : F + G = G := by
         have hF' : F = 0 := Subtype.ext hF

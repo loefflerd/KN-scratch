@@ -22,7 +22,7 @@ variable (Γ : Subgroup SL(2, ℤ)) [Γ.FiniteIndex]
 abbrev A : Type := Additive (Abelianization ↥Γ)
 
 scoped instance : AddGroup.FG (A Γ) := by
-  haveI : Group.FG (Abelianization ↥Γ) :=
+  have : Group.FG (Abelianization ↥Γ) :=
     Group.fg_of_surjective (f := Abelianization.of) (QuotientGroup.mk_surjective)
   infer_instance
 
@@ -110,9 +110,9 @@ attribute [scoped instance] Decomp.instT Decomp.finT
 
 theorem nonempty_decomp : Nonempty (Decomp Γ) := by
   obtain ⟨n, ι, hι, p, hp, e, ⟨E⟩⟩ := AddCommGroup.equiv_free_prod_directSum_zmod (Q Γ)
-  haveI : ∀ i, NeZero (p i ^ e i) := fun i => ⟨pow_ne_zero _ (hp i).ne_zero⟩
-  haveI : Finite ι := Finite.of_fintype ι
-  haveI : Finite (DirectSum ι fun i => ZMod (p i ^ e i)) :=
+  have : ∀ i, NeZero (p i ^ e i) := fun i => ⟨pow_ne_zero _ (hp i).ne_zero⟩
+  have : Finite ι := Finite.of_fintype ι
+  have : Finite (DirectSum ι fun i => ZMod (p i ^ e i)) :=
     Finite.of_injective (fun x : DirectSum ι (fun i => ZMod (p i ^ e i)) =>
       (x : Π i, ZMod (p i ^ e i))) DFunLike.coe_injective
   exact ⟨⟨n, _, inferInstance, inferInstance, E⟩⟩

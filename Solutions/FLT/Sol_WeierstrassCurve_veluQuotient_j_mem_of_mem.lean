@@ -82,7 +82,7 @@ theorem solution {F : Type*} [Field F] {S : Type*} [SetLike S F] [SubfieldClass 
     (hT : ∀ P ∈ T, P.1 ∈ K ∧ P.2 ∈ K) (hΔ : (W.veluQuotient T).Δ ≠ 0) :
     haveI : (W.veluQuotient T).IsElliptic := ⟨isUnit_iff_ne_zero.mpr hΔ⟩
     (W.veluQuotient T).j ∈ K := by
-  haveI : (W.veluQuotient T).IsElliptic := ⟨isUnit_iff_ne_zero.mpr hΔ⟩
+  have : (W.veluQuotient T).IsElliptic := ⟨isUnit_iff_ne_zero.mpr hΔ⟩
   have ht : W.veluTSum T ∈ K := W.veluTSum_mem K h₁ h₂ h₃ h₄ hT
   have hw : W.veluWSum T ∈ K := W.veluWSum_mem K h₁ h₂ h₃ h₄ hT
   have hb₂ : W.b₂ ∈ K := by

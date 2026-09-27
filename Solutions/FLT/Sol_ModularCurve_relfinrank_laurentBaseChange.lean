@@ -284,7 +284,7 @@ theorem relfinrank_eq (ht : t ∈ F₀) (htr : Transcendental ℚ t) :
   change Module.finrank (K L t) (E L F₀ t ht) = Module.finrank (K₀ t) (E₀ F₀ t ht)
   by_cases hfin : FiniteDimensional (K₀ t) (E₀ F₀ t ht)
   · obtain ⟨hfinE, hle⟩ := finite_and_finrank_le L ht
-    haveI := hfinE
+    have := hfinE
     refine le_antisymm hle ?_
     let b := Module.Free.chooseBasis (K₀ t) (E₀ F₀ t ht)
     have hind := linearIndependent_ψ L ht htr b.linearIndependent
@@ -293,7 +293,7 @@ theorem relfinrank_eq (ht : t ∈ F₀) (htr : Transcendental ℚ t) :
   · rw [Module.finrank_of_not_finite hfin]
     by_contra hE
     have hE' : 0 < Module.finrank (K L t) (E L F₀ t ht) := Nat.pos_of_ne_zero hE
-    haveI : Module.Finite (K L t) (E L F₀ t ht) := Module.finite_of_finrank_pos hE'
+    have : Module.Finite (K L t) (E L F₀ t ht) := Module.finite_of_finrank_pos hE'
     apply hfin
 
     have hrank : Module.rank (K₀ t) (E₀ F₀ t ht) ≤ Module.finrank (K L t) (E L F₀ t ht) := by

@@ -91,7 +91,7 @@ theorem finite_residueField (w : Place K F') :
 end S09G2
 
 theorem solution {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F'] [Algebra F F'] [IsScalarTower K F F'] [FiniteDimensional F F'] (w : Place K F') : 0 < w.inertiaDeg F := by
-  haveI := S09G2.finite_residueField (F := F) w
+  have := S09G2.finite_residueField (F := F) w
   exact Module.finrank_pos
 
 end S_AlgebraicCurve_Place_inertiaDeg_pos_of_finiteDimensional

@@ -25,9 +25,9 @@ theorem isAlgebraic_adjoin_of_transcendental' (x : F)
 
   have hx : Transcendental K x := by
     intro hxalg
-    haveI : Algebra.IsAlgebraic K (IntermediateField.adjoin K ({x} : Set F)) :=
+    have : Algebra.IsAlgebraic K (IntermediateField.adjoin K ({x} : Set F)) :=
       IntermediateField.isAlgebraic_adjoin_simple hxalg.isIntegral
-    haveI : Algebra.IsAlgebraic K F :=
+    have : Algebra.IsAlgebraic K F :=
       Algebra.IsAlgebraic.trans K (IntermediateField.adjoin K ({x} : Set F)) F
     exact ht (Algebra.IsAlgebraic.isAlgebraic t)
 
@@ -55,16 +55,16 @@ theorem finiteDimensional_adjoin_of_transcendental' (x : F)
     [hfin : FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F]
     {t : F} (ht : Transcendental K t) :
     FiniteDimensional (IntermediateField.adjoin K ({t} : Set F)) F := by
-  haveI halg : Algebra.IsAlgebraic (IntermediateField.adjoin K ({t} : Set F)) F :=
+  have halg : Algebra.IsAlgebraic (IntermediateField.adjoin K ({t} : Set F)) F :=
     isAlgebraic_adjoin_of_transcendental' x ht
   set E := IntermediateField.adjoin K ({t} : Set F)
   set Kx := IntermediateField.adjoin K ({x} : Set F)
 
   let b := Module.finBasis Kx F
   let S : Set F := insert x (Set.range b)
-  haveI : Finite S := Set.Finite.insert x (Set.finite_range b) |>.to_subtype
+  have : Finite S := Set.Finite.insert x (Set.finite_range b) |>.to_subtype
 
-  haveI hM : FiniteDimensional E (IntermediateField.adjoin E S) :=
+  have hM : FiniteDimensional E (IntermediateField.adjoin E S) :=
     IntermediateField.finiteDimensional_adjoin fun y _ => (halg.isAlgebraic y).isIntegral
 
   have htop : IntermediateField.adjoin E S = ⊤ := by

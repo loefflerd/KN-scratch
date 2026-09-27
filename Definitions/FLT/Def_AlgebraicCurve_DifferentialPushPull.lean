@@ -24,14 +24,14 @@ def pullbackAlong (φ : F →ₐ[K] F') : Ω[F⁄K] →ₗ[K] Ω[F'⁄K] :=
 
 theorem pullbackAlong_D (φ : F →ₐ[K] F') (f : F) :
     pullbackAlong φ (D K F f) = D K F' (φ f) := by
-  letI := algebraAlong φ
-  haveI := isScalarTower_along φ
+  let := algebraAlong φ
+  have := isScalarTower_along φ
   exact KaehlerDifferential.map_D K K F F' f
 
 theorem pullbackAlong_smul (φ : F →ₐ[K] F') (f : F) (ω : Ω[F⁄K]) :
     pullbackAlong φ (f • ω) = φ f • pullbackAlong φ ω := by
-  letI := algebraAlong φ
-  haveI := isScalarTower_along φ
+  let := algebraAlong φ
+  have := isScalarTower_along φ
   show KaehlerDifferential.map K K F F' (f • ω) = _
   rw [LinearMap.map_smul_of_tower]
   rfl
@@ -53,10 +53,10 @@ theorem traceAlong_smul_pullbackAlong (φ : F →ₐ[K] F') (h : SeparableAlong 
     (ω : Ω[F⁄K]) :
     traceAlong φ (u • pullbackAlong φ ω) =
       (letI := algebraAlong φ; Algebra.trace F F' u) • ω := by
-  letI := algebraAlong φ
-  haveI := isScalarTower_along φ
-  haveI : Algebra.IsSeparable F F' := h
-  haveI : Algebra.FormallyEtale F F' := Algebra.FormallyEtale.of_isSeparable F F'
+  let := algebraAlong φ
+  have := isScalarTower_along φ
+  have : Algebra.IsSeparable F F' := h
+  have : Algebra.FormallyEtale F F' := Algebra.FormallyEtale.of_isSeparable F F'
   rw [traceAlong, dif_pos h]
   simp only [LinearMap.coe_restrictScalars, LinearMap.coe_comp, LinearEquiv.coe_coe,
     Function.comp_apply]

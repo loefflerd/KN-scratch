@@ -607,7 +607,7 @@ p2m_open "ModularCurve"
 theorem kw_surgehgf4_hu5c_not_isAddCyclic_zmod_prod {p : ℕ} (hp : 1 < p) :
     ¬ IsAddCyclic (ZMod p × ZMod p) := by
   rintro ⟨⟨g, hg⟩⟩
-  haveI : NeZero p := ⟨by omega⟩
+  have : NeZero p := ⟨by omega⟩
   have hord : addOrderOf g ∣ p := by
     rw [addOrderOf_dvd_iff_nsmul_eq_zero]
     show ((p • g.1, p • g.2) : ZMod p × ZMod p) = 0
@@ -640,7 +640,7 @@ theorem kw_surgehgf4_hu5c_gcd_eq_one_of_isAddCyclic
     exact hb ▸ Int.natCast_dvd_natCast.mpr this
   have hpd : (p : ℤ) ∣ (dOf H : ℤ) :=
     Int.natCast_dvd_natCast.mpr (hpdvd.trans ((Nat.gcd_dvd_right _ _).trans (Nat.gcd_dvd_right _ _)))
-  haveI : NeZero p := ⟨hp.ne_zero⟩
+  have : NeZero p := ⟨hp.ne_zero⟩
   let π : ℤ × ℤ →+ ZMod p × ZMod p :=
     (Int.castAddHom (ZMod p)).prodMap (Int.castAddHom (ZMod p))
   have hπapply : ∀ x y : ℤ, π (x, y) = ((x : ZMod p), (y : ZMod p)) := fun x y => rfl

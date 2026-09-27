@@ -202,7 +202,7 @@ theorem isFinitePlace_iff_exists_placeOfEquation [IsAlgClosed F]
   constructor
   · intro hv
 
-    haveI := hv.centre_isPrime
+    have := hv.centre_isPrime
     have hmax : hv.centre.IsMaximal := Ideal.IsPrime.isMaximal hv.centre_isPrime hv.centre_ne_bot
     obtain ⟨x, y, hxy, hXY⟩ :=
       CoordinateRing.exists_eq_XYIdeal (W := W) (P := hv.centre) hv.centre_ne_bot
@@ -211,7 +211,7 @@ theorem isFinitePlace_iff_exists_placeOfEquation [IsAlgClosed F]
     set w : HeightOneSpectrum W.CoordinateRing := heightOneSpectrumOfEquation hxy with hw
     set A : ValuationSubring W.FunctionField :=
       HeightOneSpectrum.valuationSubringAtPrime W.FunctionField w with hA
-    haveI hAded : IsDedekindDomain A := by rw [hA]; infer_instance
+    have hAded : IsDedekindDomain A := by rw [hA]; infer_instance
     have hle : A ≤ v.toValuationSubring := by
       intro z hz
       rw [hA] at hz
@@ -327,13 +327,13 @@ variable {V W : Affine F} [V.IsElliptic] [W.IsElliptic]
 
 theorem normFormulaAlong_of_elliptic (ι : V.FunctionField →ₐ[F] W.FunctionField)
     (hfin : FiniteAlong F ι) : NormFormulaAlong F ι hfin := by
-  haveI : HasPrincipalDivisors F W.FunctionField := hasPrincipalDivisors_functionField W
-  haveI : CharZero V.FunctionField :=
+  have : HasPrincipalDivisors F W.FunctionField := hasPrincipalDivisors_functionField W
+  have : CharZero V.FunctionField :=
     charZero_of_injective_algebraMap (algebraMap F V.FunctionField).injective
   have hsep : SeparableAlong F ι := by
-    letI := algebraAlong ι
-    haveI := isScalarTower_along ι
-    haveI : Module.Finite V.FunctionField W.FunctionField := hfin
+    let := algebraAlong ι
+    have := isScalarTower_along ι
+    have : Module.Finite V.FunctionField W.FunctionField := hfin
     show Algebra.IsSeparable V.FunctionField W.FunctionField
     infer_instance
   exact AlgebraicCurve.normFormulaAlong ι hfin hsep
@@ -1052,7 +1052,7 @@ p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.m
 
 theorem le_exp_neg_one_of_lt_one {x : ℤᵐ⁰} (hx : x < 1) : x ≤ exp (-1 : ℤ) := by
   rcases eq_or_ne x 0 with rfl | hx0
-  · exact zero_le'
+  · exact zero_le
   · rw [← exp_log hx0] at hx ⊢
     rw [show (1 : ℤᵐ⁰) = exp 0 from rfl, exp_lt_exp] at hx
     rw [exp_le_exp]
@@ -1823,9 +1823,9 @@ theorem Place.mem_restrictAlong_iff (φ : F →ₐ[K] F') (hφ : φ.toRingHom.Is
 p2m_open_scoped "AlgebraicCurve.Place" in
 theorem Place.ramificationIndexAlong_pos (φ : F →ₐ[K] F') (hφ : φ.toRingHom.IsIntegral)
     (w : Place K F') : 0 < Place.ramificationIndexAlong φ w := by
-  letI := algebraAlong φ
-  haveI := isScalarTower_along φ
-  haveI := isIntegral_along φ hφ
+  let := algebraAlong φ
+  have := isScalarTower_along φ
+  have := isIntegral_along φ hφ
   exact w.ramificationIndex_pos
 
 p2m_open_scoped "AlgebraicCurve.Place" in
@@ -2971,7 +2971,7 @@ variable (htr : AddXFunTranscendental W a b)
 include htr in
 theorem translationCoordHom_injective : Function.Injective (translationCoordHom hA) := by
   have hker : RingHom.ker (translationCoordHom hA).toRingHom = ⊥ := by
-    haveI : Module.Finite F[X] W.CoordinateRing :=
+    have : Module.Finite F[X] W.CoordinateRing :=
       Module.Finite.of_basis (CoordinateRing.basis W)
     refine Ideal.eq_bot_of_comap_eq_bot (R := F[X]) ?_
     rw [RingHom.comap_ker, translationCoordHom_comp_algebraMap, ← RingHom.injective_iff_ker_eq_bot]
@@ -3077,7 +3077,7 @@ theorem addXFunTranscendental (hΔ : W.Δ ≠ 0) (hA : W.Equation a b) :
     AddXFunTranscendental W a b := by
   intro hX'alg
   have hX'int : _root_.IsIntegral F (W.addXFun a b) := isAlgebraic_iff_isIntegral.mp hX'alg
-  haveI hRint : Algebra.IsIntegral F
+  have hRint : Algebra.IsIntegral F
       (Algebra.adjoin F ({W.addXFun a b} : Set W.FunctionField)) :=
     Algebra.IsIntegral.adjoin (fun x hx => by
       obtain rfl := Set.mem_singleton_iff.mp hx; exact hX'int)

@@ -13,7 +13,7 @@ noncomputable section
 
 theorem solution {ℓ : ℕ} [NeZero ℓ] (hℓ : ℓ.Prime) : FunctionFieldGeneration ℓ :=by
   intro d hd hne
-  haveI := hne
+  have := hne
   rcases (Nat.dvd_prime hℓ).mp hd with rfl | rfl
   · rw [qExpand_one_apply]
     exact subset_adjoin ℚ _ (Set.mem_insert _ _)

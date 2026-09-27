@@ -46,17 +46,17 @@ theorem isDomain_levelN_ring (N : ℕ) [NeZero N] : IsDomain ↥(ModularCurve.Le
     (ModularCurve.LevelN.wp N) (fun v τ => rfl) (ModularCurve.LevelN.fricke N) (fun v τ => rfl)
     ModularCurve.LevelN.jAnalytic (fun τ => rfl)
   obtain ⟨-, -, -, -, -, hdom⟩ := h
-  haveI : NoZeroDivisors ↥(ModularCurve.LevelN.ring N) := ⟨fun {a b} hab => by
+  have : NoZeroDivisors ↥(ModularCurve.LevelN.ring N) := ⟨fun {a b} hab => by
     have := hdom a b a.2 b.2 (by rw [← Subalgebra.coe_mul, hab]; rfl)
     rcases this with h0 | h0
     · left; exact Subtype.ext h0
     · right; exact Subtype.ext h0⟩
-  haveI : Nontrivial ↥(ModularCurve.LevelN.ring N) := inferInstance
+  have : Nontrivial ↥(ModularCurve.LevelN.ring N) := inferInstance
   exact NoZeroDivisors.to_isDomain _
 
 theorem mem_sup_zpowers_neg_one_iff (H : Subgroup SL(2, ℤ)) (g : SL(2, ℤ)) :
     g ∈ H ⊔ Subgroup.zpowers (-1 : SL(2, ℤ)) ↔ g ∈ H ∨ -g ∈ H := by
-  haveI hN : (Subgroup.zpowers (-1 : SL(2, ℤ))).Normal := by
+  have hN : (Subgroup.zpowers (-1 : SL(2, ℤ))).Normal := by
     refine ⟨fun n hn g => ?_⟩
     obtain ⟨k, rfl⟩ := Subgroup.mem_zpowers_iff.mp hn
     have hc : Commute ((-1 : SL(2, ℤ)) ^ k) g := (Commute.neg_one_left g).zpow_left k
@@ -107,11 +107,11 @@ theorem ModularCurve.NoEllAux.main
       (ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) :
     (0 < P.ord y → P.ord y = 3) ∧ (0 < P.ord (y - 1728) → P.ord (y - 1728) = 2) := by
   classical
-  haveI : IsDomain ↥(ModularCurve.LevelN.ring M) := isDomain_levelN_ring M
+  have : IsDomain ↥(ModularCurve.LevelN.ring M) := isDomain_levelN_ring M
   let K : Type := FractionRing ↥(ModularCurve.LevelN.ring M)
-  letI algCK : Algebra ℂ K := inferInstance
-  haveI : IsScalarTower ℂ ↥(ModularCurve.LevelN.ring M) K := inferInstance
-  haveI hQalg : Algebra.IsAlgebraic ℚ (AlgebraicClosure ℚ) := by
+  let algCK : Algebra ℂ K := inferInstance
+  have : IsScalarTower ℂ ↥(ModularCurve.LevelN.ring M) K := inferInstance
+  have hQalg : Algebra.IsAlgebraic ℚ (AlgebraicClosure ℚ) := by
     constructor
     intro x
     obtain ⟨p, hp0, hp⟩ := (AlgebraicClosure.isAlgebraic ℚ).isAlgebraic x
@@ -139,7 +139,7 @@ theorem ModularCurve.NoEllAux.main
   obtain ⟨⟨W0, hW0, hD0⟩, ⟨W1728, hW1728, hD1728⟩⟩ :=
     ModularCurve.LevelN.exists_place_ord_jGen_eq_three_two_and_stabilizer_subset_zpowers M hM2 K hst σ hσ hker
       hfix hfd hgal
-  haveI : (CongruenceSubgroup.Gamma1 M).FiniteIndex := inferInstance
+  have : (CongruenceSubgroup.Gamma1 M).FiniteIndex := inferInstance
   let t : K := algebraMap ↥(ModularCurve.LevelN.ring M) K (ModularCurve.LevelN.jGen M)
   have hΦy' : Φ y = t := hΦy y hy
   let E : IntermediateField ℂ K := IntermediateField.adjoin ℂ (Set.range Φ)
@@ -147,29 +147,29 @@ theorem ModularCurve.NoEllAux.main
   let ΦE : ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) →+* ↥E := Φ.codRestrict E hΦmem
   have hΦE : ∀ f, ((ΦE f : ↥E) : K) = Φ f := fun f => RingHom.codRestrict_apply Φ E hΦmem f
   have hcoeC : ∀ z : ℂ, ((algebraMap ℂ ↥E z : ↥E) : K) = algebraMap ℂ K z := fun _ => rfl
-  letI algFE : Algebra ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) ↥E := ΦE.toAlgebra
-  letI algQC : Algebra (AlgebraicClosure ℚ) ℂ := ι.toAlgebra
-  letI algQE : Algebra (AlgebraicClosure ℚ) ↥E := ((algebraMap ℂ ↥E).comp ι).toAlgebra
-  haveI : IsScalarTower (AlgebraicClosure ℚ) ℂ ↥E := IsScalarTower.of_algebraMap_eq fun _ => rfl
-  haveI : IsScalarTower (AlgebraicClosure ℚ) ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) ↥E := IsScalarTower.of_algebraMap_eq fun c =>
+  let algFE : Algebra ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) ↥E := ΦE.toAlgebra
+  let algQC : Algebra (AlgebraicClosure ℚ) ℂ := ι.toAlgebra
+  let algQE : Algebra (AlgebraicClosure ℚ) ↥E := ((algebraMap ℂ ↥E).comp ι).toAlgebra
+  have : IsScalarTower (AlgebraicClosure ℚ) ℂ ↥E := IsScalarTower.of_algebraMap_eq fun _ => rfl
+  have : IsScalarTower (AlgebraicClosure ℚ) ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) ↥E := IsScalarTower.of_algebraMap_eq fun c =>
     Subtype.ext (by
       change ((algebraMap ℂ ↥E (ι c) : ↥E) : K) = ((ΦE (algebraMap (AlgebraicClosure ℚ) ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) c) : ↥E) : K)
       rw [hcoeC, hΦE, hΦc])
   obtain ⟨x₀, hx₀tr, hx₀fd⟩ :=
     ModularCurve.JOneES.exists_transcendental_finiteDimensional_laurentBaseChange (AlgebraicClosure ℚ) (CongruenceSubgroup.Gamma1 M) hT
-  haveI : IsCurveOver (AlgebraicClosure ℚ) ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) := isCurveOver_of_transcendental_of_perfectField hx₀tr hx₀fd
+  have : IsCurveOver (AlgebraicClosure ℚ) ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) := isCurveOver_of_transcendental_of_perfectField hx₀tr hx₀fd
 
   have htr' : Transcendental ℂ (ΦE y) := fun h => htr (by
     have h' := IntermediateField.isAlgebraic_iff.mp h
     rwa [hΦE, hΦy'] at h')
-  haveI := hfd
+  have := hfd
   have hEfd : FiniteDimensional ↥(IntermediateField.adjoin ℂ ({ΦE y} : Set ↥E)) ↥E := by
 
     have hlift : IntermediateField.lift (IntermediateField.adjoin ℂ ({ΦE y} : Set ↥E)) = IntermediateField.adjoin ℂ ({t} : Set K) := by
       rw [IntermediateField.lift_adjoin_simple, hΦE, hΦy']
     have hle' : IntermediateField.adjoin ℂ ({t} : Set K) ≤ E := by rw [← hlift]; exact IntermediateField.lift_le _
     let E₂ : IntermediateField ↥(IntermediateField.adjoin ℂ ({t} : Set K)) K := IntermediateField.extendScalars hle'
-    haveI hE₂ : FiniteDimensional ↥(IntermediateField.adjoin ℂ ({t} : Set K)) ↥E₂ := inferInstance
+    have hE₂ : FiniteDimensional ↥(IntermediateField.adjoin ℂ ({t} : Set K)) ↥E₂ := inferInstance
     let e₁ : ↥(IntermediateField.adjoin ℂ ({ΦE y} : Set ↥E)) ≃ₐ[ℂ] ↥(IntermediateField.adjoin ℂ ({t} : Set K)) :=
       (IntermediateField.liftAlgEquiv _).trans (IntermediateField.equivOfEq hlift)
     let e₂ : ↥E₂ ≃+* ↥E := RingEquiv.refl _
@@ -201,10 +201,10 @@ theorem ModularCurve.NoEllAux.main
         IntermediateField.adjoin_simple_le_iff.mpr ⟨ΦE y, hψ⟩
       intro w hw
       exact (AlgHom.mem_fieldRange.mp (this hw))
-    letI algRS : Algebra ↥(IntermediateField.adjoin ℂ ({t} : Set K)) ↥S := (Subalgebra.inclusion hleS).toRingHom.toAlgebra
-    haveI : IsScalarTower ↥(IntermediateField.adjoin ℂ ({t} : Set K)) ↥S K := IsScalarTower.of_algebraMap_eq fun _ => rfl
-    haveI : Module.Finite ↥S K := Module.Finite.of_restrictScalars_finite ↥(IntermediateField.adjoin ℂ ({t} : Set K)) _ _
-    haveI : Algebra.IsIntegral ↥S K := Algebra.IsIntegral.of_finite _ _
+    let algRS : Algebra ↥(IntermediateField.adjoin ℂ ({t} : Set K)) ↥S := (Subalgebra.inclusion hleS).toRingHom.toAlgebra
+    have : IsScalarTower ↥(IntermediateField.adjoin ℂ ({t} : Set K)) ↥S K := IsScalarTower.of_algebraMap_eq fun _ => rfl
+    have : Module.Finite ↥S K := Module.Finite.of_restrictScalars_finite ↥(IntermediateField.adjoin ℂ ({t} : Set K)) _ _
+    have : Algebra.IsIntegral ↥S K := Algebra.IsIntegral.of_finite _ _
     have hS : (algebraMap ↥S K).IsIntegral := fun x => Algebra.IsIntegral.isIntegral (R := ↥S) x
     let e : ↥E ≃ₐ[ℂ] ↥S := AlgEquiv.ofInjective ψ ψ.toRingHom.injective
     have he : ψ.toRingHom = (algebraMap ↥S K).comp e.toAlgHom.toRingHom := by
@@ -227,8 +227,8 @@ theorem ModularCurve.NoEllAux.main
       hfd hgal hint W₀ hW₀
     obtain ⟨ψ, hψ, rfl⟩ := h3 w hw
     rw [h5 ψ hψ, h1]
-    haveI := hfd
-    haveI := hgal
+    have := hfd
+    have := hgal
 
     have htmem : t ∈ IntermediateField.adjoin ℂ ({t} : Set K) := IntermediateField.mem_adjoin_simple_self ℂ t
     have hσt : ∀ g : K ≃ₐ[↥(IntermediateField.adjoin ℂ ({t} : Set K))] K, g t = t := fun g =>
@@ -251,7 +251,7 @@ theorem ModularCurve.NoEllAux.main
       have hle : σ.range ≤ rSH.range := by
         rintro _ ⟨d, rfl⟩
         exact ⟨{ (σ d).toRingEquiv with commutes' := fun z => hfixL d z z.2 }, AlgEquiv.ext fun _ => rfl⟩
-      haveI : Finite rSH.range := inferInstance
+      have : Finite rSH.range := inferInstance
       refine Subgroup.eq_of_le_of_card_ge hle (le_of_eq ?_)
       show Nat.card rSH.range = Nat.card σ.range
       rw [← Subgroup.index_ker σ, hker, ← hdeg, ← IsGalois.card_aut_eq_finrank]
@@ -295,12 +295,12 @@ theorem ModularCurve.NoEllAux.main
         { ψ.toRingHom with
           commutes' := fun z => hψfix z z.2 }
       have hψ₂ : ∀ e : ↥E, ψ₂ e = ψ e := fun _ => rfl
-      haveI : Normal ↥(IntermediateField.adjoin ℂ ({t} : Set K)) K := inferInstance
+      have : Normal ↥(IntermediateField.adjoin ℂ ({t} : Set K)) K := inferInstance
       let φ' : K →ₐ[↥(IntermediateField.adjoin ℂ ({t} : Set K))] K := ψ₂.liftNormal K
       have hφ' : ∀ e : ↥E, φ' (e : K) = ψ e := fun e => by
         have := AlgHom.liftNormal_commutes ψ₂ K (e : ↥E₂)
         exact this
-      haveI : Algebra.IsAlgebraic ↥(IntermediateField.adjoin ℂ ({t} : Set K)) K := Algebra.IsAlgebraic.of_finite _ _
+      have : Algebra.IsAlgebraic ↥(IntermediateField.adjoin ℂ ({t} : Set K)) K := Algebra.IsAlgebraic.of_finite _ _
       let g' : K ≃ₐ[↥(IntermediateField.adjoin ℂ ({t} : Set K))] K :=
         AlgEquiv.ofBijective φ' (Algebra.IsAlgebraic.algHom_bijective φ')
       have hg' : ∀ e : ↥E, g' (e : K) = ψ e := hφ'

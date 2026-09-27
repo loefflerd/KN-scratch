@@ -22,13 +22,13 @@ theorem solution (M : ℕ) [NeZero M] : IsDomain (ModularCurve.LevelN.ring M) :=
     ModularCurve.LevelN.jAnalytic (fun τ => rfl)
   obtain ⟨-, -, -, -, -, hdom⟩ := hpkg
 
-  haveI : NoZeroDivisors (ModularCurve.LevelN.ring M) := ⟨fun {a b} h => by
+  have : NoZeroDivisors (ModularCurve.LevelN.ring M) := ⟨fun {a b} h => by
     have h' := hdom (a : UpperHalfPlane → ℂ) (b : UpperHalfPlane → ℂ) a.2 b.2
       (by simpa using congrArg Subtype.val h)
     rcases h' with ha | hb
     · left; exact Subtype.ext ha
     · right; exact Subtype.ext hb⟩
-  haveI : Nontrivial (ModularCurve.LevelN.ring M) := inferInstance
+  have : Nontrivial (ModularCurve.LevelN.ring M) := inferInstance
   exact NoZeroDivisors.to_isDomain _
 
 end S_ModularCurve_LevelN_isDomain_ring

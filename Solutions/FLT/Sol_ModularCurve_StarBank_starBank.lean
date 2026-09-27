@@ -225,7 +225,7 @@ theorem natCast_prime_ne_zero (K : Type*) [Field K] {ℓ p : ℕ} [Fact ℓ.Prim
 
 theorem exists_primitiveRoot_units (K : Type*) [Field K] [IsAlgClosed K] (p : ℕ)
     [Fact p.Prime] (hp : (p : K) ≠ 0) : ∃ ζ : Kˣ, IsPrimitiveRoot ((ζ : Kˣ) : K) p := by
-  haveI : NeZero ((p : K)) := ⟨hp⟩
+  have : NeZero ((p : K)) := ⟨hp⟩
   obtain ⟨z, hz⟩ := HasEnoughRootsOfUnity.exists_primitiveRoot K p
   obtain ⟨u, hu⟩ := hz.isUnit (Nat.Prime.ne_zero Fact.out)
   exact ⟨u, hu.symm ▸ hz⟩
@@ -433,7 +433,7 @@ private theorem ModularCurve.StarBank.starBank {K : Type*} [Field K] {ℓ : ℕ}
     jqNModC K p ∉ IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K)) := by
   apply ModularCurve.jqNModC_prime_not_mem_adjoin_of_forall_aeval_ne
   intro R0 hR0
-  haveI : CharP (AlgebraicClosure K) ℓ :=
+  have : CharP (AlgebraicClosure K) ℓ :=
     charP_of_injective_algebraMap (algebraMap K (AlgebraicClosure K)).injective ℓ
   have hR1 : Polynomial.aeval (jqModC (AlgebraicClosure K))
       (R0.map (algebraMap K (AlgebraicClosure K)))

@@ -521,7 +521,7 @@ theorem finite_setOf_valuation_ne_one {f : RatFunc K} (hf : f ≠ 0) :
   refine Set.Finite.subset ((Ideal.finite_factors hnum).union (Ideal.finite_factors hden))
     fun w hw => ?_
   by_contra hcon
-  simp only [Set.mem_union, Set.mem_setOf_eq, not_or, Ideal.dvd_span_singleton] at hcon
+  simp only [Set.mem_union, Set.mem_ofPred_eq, not_or, Ideal.dvd_span_singleton] at hcon
   refine hw ?_
   have h1 : w.valuation (RatFunc K) (algebraMap K[X] (RatFunc K) f.num) = 1 :=
     (HeightOneSpectrum.valuation_eq_one_iff_notMem w).mpr hcon.1
@@ -539,8 +539,8 @@ theorem finite_setOf_ord_ne_zero {f : RatFunc K} (hf : f ≠ 0) :
         (finite_setOf_valuation_ne_one hf))
       (Set.Subsingleton.finite subsingleton_setOf_forall_ne_ofHeightOneSpectrum))
     fun v hv => ?_
-  simp only [Set.mem_setOf_eq] at hv
-  simp only [Set.mem_union, Set.mem_image, Set.mem_setOf_eq]
+  simp only [Set.mem_ofPred_eq] at hv
+  simp only [Set.mem_union, Set.mem_image, Set.mem_ofPred_eq]
   by_cases hcase : ∃ w : HeightOneSpectrum K[X], v = Place.ofHeightOneSpectrum w
   · obtain ⟨w, rfl⟩ := hcase
     refine Or.inl ⟨w, fun hone => hv ?_, rfl⟩
@@ -784,7 +784,7 @@ theorem finite_setOf_ord_ne_zero_of_finiteDimensional {f : F'} (hf : f ≠ 0) :
   ·
     intro w hw
     obtain ⟨i, hi, hci, hord⟩ := w.exists_coeff_ord_ne_zero (F := RatFunc K) hf hw
-    simp only [Set.mem_iUnion, Set.mem_setOf_eq, exists_prop]
+    simp only [Set.mem_iUnion, Set.mem_ofPred_eq, exists_prop]
     refine ⟨i, hi, w.restrict (RatFunc K), ?_, rfl⟩
     intro h0
     apply hord
@@ -1071,7 +1071,7 @@ theorem surjective_residueOfCenter (hw : w.restrict F = v) :
       w.ord_nonneg_of_mem (forall_mem_of_restrict_eq hw s)
     omega
 
-  haveI hmax : (fiberCenter F' v hw).asIdeal.IsMaximal :=
+  have hmax : (fiberCenter F' v hw).asIdeal.IsMaximal :=
     (fiberCenter F' v hw).isPrime.isMaximal (fiberCenter F' v hw).ne_bot
   obtain ⟨t, i, hi, hti⟩ := hmax.exists_inv hsP
   have hst : s * t - 1 ∈ (fiberCenter F' v hw).asIdeal := by
@@ -1139,7 +1139,7 @@ theorem inertiaDeg_eq_inertiaDeg_fiberCenter (hw : w.restrict F = v) :
     w.inertiaDeg F =
       (IsLocalRing.maximalIdeal v.toValuationSubring).inertiaDeg'
         (fiberCenter F' v hw).asIdeal := by
-  haveI := fiberCenter_liesOver hw
+  have := fiberCenter_liesOver hw
   rw [Ideal.inertiaDeg_algebraMap]
   show Module.finrank (w.restrict F).ResidueField w.ResidueField = _
   refine Algebra.finrank_eq_of_equiv_equiv (restrictResidueFieldEquiv hw)
@@ -1251,7 +1251,7 @@ p2m_open "AlgebraicCurve"
 
 theorem le_exp_neg_one_of_lt_one {x : ℤᵐ⁰} (hx : x < 1) : x ≤ exp (-1 : ℤ) := by
   rcases eq_or_ne x 0 with rfl | hx0
-  · exact zero_le'
+  · exact zero_le
   · rw [← exp_log hx0] at hx ⊢
     rw [show (1 : ℤᵐ⁰) = exp 0 from rfl, exp_lt_exp] at hx
     rw [exp_le_exp]
@@ -2222,7 +2222,7 @@ variable {K F : Type*} [Field K] [Field F] [Algebra K F] (V : Place K F)
 theorem kw_ffgc_norm_adicCompletion_eq (x : V.adicCompletion) :
     letI := kw_ffgc_rankOne_adicCompletion V
     ‖x‖ = (WithZeroMulInt.toNNReal (two_ne_zero) (Valued.v x) : ℝ) := by
-  letI := kw_ffgc_rankOne_adicCompletion V
+  let := kw_ffgc_rankOne_adicCompletion V
   have h := valueGroup₀_equiv_withZeroMulInt_restrict_apply_of_surjective
     (V.heightOneSpectrum.valuedAdicCompletion_surjective F) x
   simp only [Valued.toNormedField.norm_def, Valuation.RankOne.hom]
@@ -2245,8 +2245,8 @@ theorem kw_ffgc_absoluteValue_extends (c : (W.restrict F).adicCompletion) :
     letI := kw_ffgc_rankOne_adicCompletion (W.restrict F)
     kw_ffgc_absoluteValue F W
       (algebraMap (W.restrict F).adicCompletion W.adicCompletion c) = ‖c‖ := by
-  letI := kw_ffgc_rankOne_adicCompletion (W.restrict F)
-  letI := kw_ffgc_rankOne_adicCompletion W
+  let := kw_ffgc_rankOne_adicCompletion (W.restrict F)
+  let := kw_ffgc_rankOne_adicCompletion W
   have hr : (0 : ℝ) < (W.ramificationIndex F : ℝ) :=
     Nat.cast_pos.mpr (W.ramificationIndex_pos (F := F))
   show ‖algebraMap (W.restrict F).adicCompletion W.adicCompletion c‖
@@ -2271,11 +2271,11 @@ theorem kw_ffgc_isIntegral_adicCompletionIntegers_of_algebraic
     [Algebra.IsAlgebraic (W.restrict F).adicCompletion W.adicCompletion]
     (x : W.adicCompletionIntegers) :
     _root_.IsIntegral (W.restrict F).adicCompletionIntegers x := by
-  letI := kw_ffgc_rankOne_adicCompletion (W.restrict F)
-  letI := kw_ffgc_rankOne_adicCompletion W
-  letI : NontriviallyNormedField (W.restrict F).adicCompletion :=
+  let := kw_ffgc_rankOne_adicCompletion (W.restrict F)
+  let := kw_ffgc_rankOne_adicCompletion W
+  let : NontriviallyNormedField (W.restrict F).adicCompletion :=
     Valued.toNontriviallyNormedField (W.restrict F).adicCompletion ℤᵐ⁰
-  haveI : IsUltrametricDist (W.restrict F).adicCompletion :=
+  have : IsUltrametricDist (W.restrict F).adicCompletion :=
     IsUltrametricDist.isUltrametricDist_of_isNonarchimedean_norm
       (fun a b => Valuation.norm_add_le Valued.v a b)
   have hr : (0 : ℝ) < ((W.ramificationIndex F : ℝ))⁻¹ :=
@@ -2325,7 +2325,7 @@ theorem kw_ffgc_isIntegralClosure_adicCompletionIntegers
     constructor
     · intro hx
       have hxW : _root_.IsIntegral W.adicCompletionIntegers x := hx.tower_top
-      haveI : IsIntegrallyClosed W.adicCompletionIntegers :=
+      have : IsIntegrallyClosed W.adicCompletionIntegers :=
         Valuation.Integers.isIntegrallyClosed
           (HeightOneSpectrum.adicCompletionIntegers.integers
             (K := F') (v := W.heightOneSpectrum))
@@ -5587,7 +5587,7 @@ theorem residueTheoremK_of_cotraceResidueIdentityK
     (hIdentK : FiberKaehlerCotraceResidueIdentityK K F E) :
     ResidueTheoremK K F := by
   intro RfamF _ ωF hωF f
-  haveI : Nontrivial Ω[F⁄K] := ⟨ωF, 0, hωF⟩
+  have : Nontrivial Ω[F⁄K] := ⟨ωF, 0, hωF⟩
   rcases isEmpty_or_nonempty (Place K F) with hempty | hne
   ·
     rw [weilOfKaehlerK_apply]
@@ -5729,7 +5729,7 @@ theorem cotpk43_t3_toValuationSubring_eq_of_dedekind_le
     (O : ValuationSubring F) (hO : IsDedekindDomain O)
     (v : Place k F) (hle : O ≤ v.toValuationSubring) :
     v.toValuationSubring = O := by
-  haveI := hO
+  have := hO
   have hSP : O.ofPrime (O.idealOfLE v.toValuationSubring hle) = v.toValuationSubring :=
     ValuationSubring.ofPrime_idealOfLE O v.toValuationSubring hle
   rcases eq_or_ne (O.idealOfLE v.toValuationSubring hle) ⊥ with hP | hP
@@ -7310,8 +7310,8 @@ variable [FiniteDimensional E F]
 theorem kwF4R1V384a_completionLinearCombination_surjective
     (w' : Place K F) {ι : Type*} [Fintype ι] (b : Module.Basis ι E F) :
     Function.Surjective (kw_ffgc_completionLinearCombination E w' b) := by
-  letI := kw_ffgc_rankOne_adicCompletion (K := K) (w'.restrict E)
-  letI : NontriviallyNormedField (w'.restrict E).adicCompletion :=
+  let := kw_ffgc_rankOne_adicCompletion (K := K) (w'.restrict E)
+  let : NontriviallyNormedField (w'.restrict E).adicCompletion :=
     Valued.toNontriviallyNormedField (w'.restrict E).adicCompletion
       (WithZero (Multiplicative ℤ))
   rw [← Set.range_eq_univ, ← LinearMap.coe_range,
@@ -7379,7 +7379,7 @@ theorem kwF4R1V384a_semilocalDiag_surjective_of_distinctKernels
   intro y
   let m : v.fiber F → Ideal (v.adicCompletion ⊗[E] F) :=
     fun w' => RingHom.ker (kwF4R1V384a_semilocalComponent F v w').toRingHom
-  haveI : ∀ w', (m w').IsMaximal :=
+  have : ∀ w', (m w').IsMaximal :=
     kwF4R1V384a_ker_semilocalComponent_isMaximal v
   have hcop : Pairwise (Function.onFun IsCoprime m) := fun i j hij =>
     Ideal.isCoprime_of_isMaximal (I := m i) (J := m j) (hdist v i j hij)
@@ -7412,10 +7412,10 @@ theorem kwF4R1V384a_completionSemilocalBij_of_distinctKernels_finrankEF
   have hsurj := kwF4R1V384a_semilocalDiag_surjective_of_distinctKernels hdist v
   refine ⟨?_, hsurj⟩
 
-  letI srPi : Semiring ((w' : v.fiber F) → w'.1.adicCompletion) := inferInstance
-  letI algPi : Algebra v.adicCompletion ((w' : v.fiber F) → w'.1.adicCompletion) :=
+  let srPi : Semiring ((w' : v.fiber F) → w'.1.adicCompletion) := inferInstance
+  let algPi : Algebra v.adicCompletion ((w' : v.fiber F) → w'.1.adicCompletion) :=
     inferInstance
-  letI modPi : Module v.adicCompletion ((w' : v.fiber F) → w'.1.adicCompletion) :=
+  let modPi : Module v.adicCompletion ((w' : v.fiber F) → w'.1.adicCompletion) :=
     @Algebra.toModule _ _ _ srPi algPi
 
   have hdimcod : Module.finrank v.adicCompletion ((w' : v.fiber F) → w'.1.adicCompletion)
@@ -7443,7 +7443,7 @@ theorem kwF4R1V384a_completionSemilocalBij_of_distinctKernels_finrankEF
   have hsurj' : Function.Surjective
       (kwF4R1V384a_semilocalDiag F v).toLinearMap := hsurj
 
-  haveI fdPi : FiniteDimensional v.adicCompletion
+  have fdPi : FiniteDimensional v.adicCompletion
       ((w' : v.fiber F) → w'.1.adicCompletion) := inferInstance
   exact (@LinearMap.injective_iff_surjective_of_finrank_eq_finrank
     v.adicCompletion (v.adicCompletion ⊗[E] F) _ _ _
@@ -7587,7 +7587,7 @@ theorem kwF4R1V386a_isSeparable_fiberCompletion
     rw [eq_top_iff]; intro x _
     exact IntermediateField.algebra_adjoin_le_adjoin _ _ (hgen ▸ Algebra.mem_top)
 
-  haveI hsepAdj : Algebra.IsSeparable v.adicCompletion
+  have hsepAdj : Algebra.IsSeparable v.adicCompletion
       (IntermediateField.adjoin v.adicCompletion
         (Set.range (algebraMap F w'.1.adicCompletion))) :=
     (IntermediateField.isSeparable_adjoin_iff_isSeparable v.adicCompletion
@@ -7616,13 +7616,13 @@ theorem kwF4R1V386a_spectralNorm_eq_absoluteValue [FiniteDimensional E F]
       Valued.toNontriviallyNormedField (w'.restrict E).adicCompletion ℤᵐ⁰
     spectralNorm (w'.restrict E).adicCompletion w'.adicCompletion y
       = kw_ffgc_absoluteValue E w' y := by
-  letI := kw_ffgc_rankOne_adicCompletion (w'.restrict E)
-  letI : NontriviallyNormedField (w'.restrict E).adicCompletion :=
+  let := kw_ffgc_rankOne_adicCompletion (w'.restrict E)
+  let : NontriviallyNormedField (w'.restrict E).adicCompletion :=
     Valued.toNontriviallyNormedField (w'.restrict E).adicCompletion ℤᵐ⁰
-  haveI : IsUltrametricDist (w'.restrict E).adicCompletion :=
+  have : IsUltrametricDist (w'.restrict E).adicCompletion :=
     IsUltrametricDist.isUltrametricDist_of_isNonarchimedean_norm
       (fun a b => Valuation.norm_add_le Valued.v a b)
-  haveI : Algebra.IsAlgebraic (w'.restrict E).adicCompletion w'.adicCompletion :=
+  have : Algebra.IsAlgebraic (w'.restrict E).adicCompletion w'.adicCompletion :=
     Algebra.IsAlgebraic.of_finite _ _
   exact (spectralNorm_unique_field_norm_ext (f := kw_ffgc_absoluteValue E w')
     (kw_ffgc_absoluteValue_extends E w') y).symm
@@ -7658,7 +7658,7 @@ theorem kwF4R1V386a_absoluteValue_algebraMap_le_one_iff
     (w' : Place K F) (g : F) :
     kw_ffgc_absoluteValue E w' (algebraMap F w'.adicCompletion g) ≤ 1
       ↔ g ∈ w'.toValuationSubring := by
-  letI := kw_ffgc_rankOne_adicCompletion w'
+  let := kw_ffgc_rankOne_adicCompletion w'
   have hr : (0 : ℝ) < ((w'.ramificationIndex E : ℝ))⁻¹ :=
     inv_pos.mpr (Nat.cast_pos.mpr (w'.ramificationIndex_pos (F := E)))
 
@@ -7714,8 +7714,8 @@ theorem kwF4R1V386a_distinctKernels :
     rwa [kwF4R1V384a_semilocalComponent_tmul, map_one, one_mul,
       kwF4R1V384a_semilocalComponent_tmul, map_one, one_mul] at h'
 
-  letI := kw_ffgc_rankOne_adicCompletion v
-  letI : NontriviallyNormedField v.adicCompletion :=
+  let := kw_ffgc_rankOne_adicCompletion v
+  let : NontriviallyNormedField v.adicCompletion :=
     Valued.toNontriviallyNormedField v.adicCompletion ℤᵐ⁰
   have hσinj : Function.Injective σ := σ.toRingHom.injective
   have hσspec : ∀ y, spectralNorm v.adicCompletion w''.1.adicCompletion (σ y)
@@ -7812,10 +7812,10 @@ theorem kwF4R1V386a_inertiaDeg_completion_eq
     (maximalIdeal (w'.restrict E).adicCompletionIntegers).inertiaDeg'
       (maximalIdeal w'.adicCompletionIntegers) = w'.inertiaDeg E := by
 
-  haveI : IsLocalHom (algebraMap (w'.restrict E).adicCompletionIntegers
+  have : IsLocalHom (algebraMap (w'.restrict E).adicCompletionIntegers
       w'.adicCompletionIntegers) :=
     kw_ffgc_isLocalHom_adicCompletionComapIntegers E w'
-  haveI : (maximalIdeal w'.adicCompletionIntegers).LiesOver
+  have : (maximalIdeal w'.adicCompletionIntegers).LiesOver
       (maximalIdeal (w'.restrict E).adicCompletionIntegers) := by
     have hcomap : (maximalIdeal w'.adicCompletionIntegers).comap
         (algebraMap (w'.restrict E).adicCompletionIntegers w'.adicCompletionIntegers)
@@ -7843,22 +7843,22 @@ theorem kwF4R1V386a_finrankCompletionEF [Algebra.IsSeparable E F] :
   intro _ _ _ v wfib
   have hv : wfib.1.restrict E = v := Place.mem_fiber.mp wfib.2
 
-  haveI hsep : Algebra.IsSeparable v.adicCompletion wfib.1.adicCompletion :=
+  have hsep : Algebra.IsSeparable v.adicCompletion wfib.1.adicCompletion :=
     kwF4R1V386a_isSeparable_fiberCompletion v wfib
   rcases wfib with ⟨w', hw'⟩
   dsimp only at hv hsep ⊢
   subst hv
 
-  haveI : Algebra.IsSeparable (w'.restrict E).adicCompletion w'.adicCompletion := hsep
-  haveI : Algebra.IsAlgebraic (w'.restrict E).adicCompletion w'.adicCompletion :=
+  have : Algebra.IsSeparable (w'.restrict E).adicCompletion w'.adicCompletion := hsep
+  have : Algebra.IsAlgebraic (w'.restrict E).adicCompletion w'.adicCompletion :=
     Algebra.IsAlgebraic.of_finite _ _
-  haveI : IsIntegralClosure w'.adicCompletionIntegers
+  have : IsIntegralClosure w'.adicCompletionIntegers
       (w'.restrict E).adicCompletionIntegers w'.adicCompletion :=
     kw_ffgc_isIntegralClosure_adicCompletionIntegers E w'
-  haveI : IsNoetherian (w'.restrict E).adicCompletionIntegers w'.adicCompletionIntegers :=
+  have : IsNoetherian (w'.restrict E).adicCompletionIntegers w'.adicCompletionIntegers :=
     IsIntegralClosure.isNoetherian (w'.restrict E).adicCompletionIntegers
       (w'.restrict E).adicCompletion w'.adicCompletion w'.adicCompletionIntegers
-  haveI : Module.Finite (w'.restrict E).adicCompletionIntegers w'.adicCompletionIntegers :=
+  have : Module.Finite (w'.restrict E).adicCompletionIntegers w'.adicCompletionIntegers :=
     Module.IsNoetherian.finite _ _
 
   have hpne : maximalIdeal (w'.restrict E).adicCompletionIntegers ≠ ⊥ := by

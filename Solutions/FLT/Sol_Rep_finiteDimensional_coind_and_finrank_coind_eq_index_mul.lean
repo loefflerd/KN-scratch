@@ -19,8 +19,8 @@ theorem solution {k G : Type u} [Field k] [Group G] (S : Subgroup G) [S.FiniteIn
       Module.finrank k (Rep.coind S.subtype N) = S.index * Module.finrank k N := by
   classical
   let Q := Quotient (QuotientGroup.rightRel S)
-  haveI : Finite Q := Finite.of_equiv _ (QuotientGroup.quotientRightRelEquivQuotientLeftRel S).symm
-  letI : Fintype Q := Fintype.ofFinite Q
+  have : Finite Q := Finite.of_equiv _ (QuotientGroup.quotientRightRelEquivQuotientLeftRel S).symm
+  let : Fintype Q := Fintype.ofFinite Q
 
   let rep : G → G := fun g => (Quotient.mk (QuotientGroup.rightRel S) g).out
   have rep_spec : ∀ g : G, g * (rep g)⁻¹ ∈ S := fun g =>
@@ -68,7 +68,7 @@ theorem solution {k G : Type u} [Field k] [Group G] (S : Subgroup G) [S.FiniteIn
         have hout : Quotient.mk (QuotientGroup.rightRel S) q.out = q := Quotient.out_eq q
         rw [hout]
         exact key _ _ _ (by show q.out * ((Quotient.mk (QuotientGroup.rightRel S) q.out).out)⁻¹ = 1; rw [hout, mul_inv_cancel]) }
-  haveI : FiniteDimensional k (Rep.coind S.subtype N) := LinearEquiv.finiteDimensional e.symm
+  have : FiniteDimensional k (Rep.coind S.subtype N) := LinearEquiv.finiteDimensional e.symm
   refine ⟨inferInstance, ?_⟩
   rw [LinearEquiv.finrank_eq e, Module.finrank_pi_fintype, Finset.sum_const, Finset.card_univ, smul_eq_mul,
     Subgroup.index, ← Nat.card_eq_fintype_card,

@@ -72,7 +72,7 @@ theorem exists_char_apply_eq (q : ℚ) (hq : q ≠ 0) (u : Kˣ) :
     simp only [g, LinearMap.comp_apply, LinearEquiv.coe_toLinearMap, h1,
       LinearMap.toSpanSingleton_apply, one_smul]
 
-  letI := divisibleByIntAdditiveUnits K
+  let := divisibleByIntAdditiveUnits K
   obtain ⟨h, hh⟩ := (Module.Baer.of_divisible (Additive Kˣ)).extension_property (ℤ ∙ q).subtype
     (Submodule.subtype_injective _) g
   refine ⟨{ toFun := fun a => (h a.toAdd).toMul

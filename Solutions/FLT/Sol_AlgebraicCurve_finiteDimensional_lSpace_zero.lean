@@ -35,7 +35,7 @@ theorem solution
       simp [Divisor.degree, Finsupp.liftAddHom_apply, AddMonoidHom.coe_mulRight]
     have hdegpos : ∀ w : Place K F, 0 < (w.deg : ℤ) := by
       intro w
-      haveI : Module.Finite K w.ResidueField := IsCurveOver.finiteResidue w
+      have : Module.Finite K w.ResidueField := IsCurveOver.finiteResidue w
       exact_mod_cast Module.finrank_pos
     have hterm : ∀ w ∈ D.support, D w * (w.deg : ℤ) = 0 := by
       refine (Finset.sum_eq_zero_iff_of_nonneg ?_).mp ?_
@@ -98,7 +98,7 @@ theorem solution
     rw [hφf] at this
     exact this.ne_zero rfl
 
-  haveI : Module.Finite K v₀.ResidueField := IsCurveOver.finiteResidue v₀
+  have : Module.Finite K v₀.ResidueField := IsCurveOver.finiteResidue v₀
   exact FiniteDimensional.of_injective φ ((injective_iff_map_eq_zero φ).mpr hker)
 
 end

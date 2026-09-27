@@ -71,11 +71,11 @@ theorem finrank_quotient_pow_succ (hP : P ≠ ⊥) (c : ℕ) [Module.Finite K (R
 theorem finrank_quotient_pow (hP : P ≠ ⊥) :
     ∀ (c : ℕ) [Module.Finite K (R ⧸ P ^ c)], finrank K (R ⧸ P ^ c) = c * finrank K (R ⧸ P)
   | 0, _ => by
-    haveI : Subsingleton (R ⧸ P ^ 0) :=
+    have : Subsingleton (R ⧸ P ^ 0) :=
       Ideal.Quotient.subsingleton_iff.mpr ((pow_zero P).trans Ideal.one_eq_top)
     rw [zero_mul, finrank_zero_of_subsingleton]
   | c + 1, _ => by
-    haveI : Module.Finite K (R ⧸ P ^ c) := Module.Finite.of_surjective
+    have : Module.Finite K (R ⧸ P ^ c) := Module.Finite.of_surjective
       (Ideal.Quotient.factorₐ K (Ideal.pow_le_pow_right c.le_succ) :
         (R ⧸ P ^ (c + 1)) →ₐ[K] R ⧸ P ^ c).toLinearMap
       (fun x => by
@@ -105,12 +105,12 @@ theorem finrank_quotient_eq_finsum {I : Ideal R} (hI : I ≠ ⊥) [Module.Finite
   let e : (R ⧸ I) ≃ₐ[K] ∀ v : T, R ⧸ (v : HeightOneSpectrum R).asIdeal ^ c v :=
     AlgEquiv.ofRingEquiv (f := HeightOneSpectrum.quotientEquivPiOfProdEq I (fun v : T => v.1) (fun v => c v)
       (fun _ _ h => Subtype.coe_injective.ne h) hprod) (fun _ => rfl)
-  haveI : Module.Finite K (∀ v : T, R ⧸ (v : HeightOneSpectrum R).asIdeal ^ c v) :=
+  have : Module.Finite K (∀ v : T, R ⧸ (v : HeightOneSpectrum R).asIdeal ^ c v) :=
     Module.Finite.equiv e.toLinearEquiv
   have hφ : ∀ v : T, Function.Surjective
       (LinearMap.proj (R := K) (φ := fun w : T => R ⧸ (w : HeightOneSpectrum R).asIdeal ^ c w) v) :=
     fun v => LinearMap.proj_surjective v
-  haveI : ∀ v : T, Module.Finite K (R ⧸ (v : HeightOneSpectrum R).asIdeal ^ c v) := fun v =>
+  have : ∀ v : T, Module.Finite K (R ⧸ (v : HeightOneSpectrum R).asIdeal ^ c v) := fun v =>
     Module.Finite.of_surjective _ (hφ v)
   rw [e.toLinearEquiv.finrank_eq,
     finsum_eq_sum_of_support_subset _ (s := T) fun v hv =>
@@ -135,12 +135,12 @@ theorem finrank_quotient_eq_finsum_of_isAlgClosed [IsAlgClosed K] {I : Ideal R} 
   · rw [hv, zero_mul]
   · have hle : I ≤ v.asIdeal :=
       Ideal.le_of_dvd ((Associates.count_ne_zero_iff_dvd hI v.irreducible).mp hv)
-    haveI : Module.Finite K (R ⧸ v.asIdeal) := Module.Finite.of_surjective
+    have : Module.Finite K (R ⧸ v.asIdeal) := Module.Finite.of_surjective
       (Ideal.Quotient.factorₐ K hle : (R ⧸ I) →ₐ[K] R ⧸ v.asIdeal).toLinearMap
       (fun x => by
         obtain ⟨y, rfl⟩ := Ideal.Quotient.mk_surjective x
         exact ⟨Ideal.Quotient.mk _ y, rfl⟩)
-    haveI : Algebra.IsIntegral K (R ⧸ v.asIdeal) := Algebra.IsIntegral.of_finite K _
+    have : Algebra.IsIntegral K (R ⧸ v.asIdeal) := Algebra.IsIntegral.of_finite K _
     rw [← (LinearEquiv.ofBijective (Algebra.linearMap K (R ⧸ v.asIdeal))
       (IsAlgClosed.algebraMap_bijective_of_isIntegral (k := K))).finrank_eq, Module.finrank_self,
       mul_one]
@@ -168,7 +168,7 @@ theorem natDegree_norm_eq_finsum_count_aux {a : W.CoordinateRing} (ha : a ≠ 0)
         (FractionalIdeal.spanSingleton W.CoordinateRing⁰
           (algebraMap W.CoordinateRing W.FunctionField a)) := by
   have hI : Ideal.span {a} ≠ ⊥ := by rwa [Ne, Ideal.span_singleton_eq_bot]
-  haveI : Module.Finite K (W.CoordinateRing ⧸ Ideal.span {a}) :=
+  have : Module.Finite K (W.CoordinateRing ⧸ Ideal.span {a}) :=
     Module.Finite.equiv
       ((Ideal.quotientEquivPiSpan (Ideal.span {a}) (CoordinateRing.basis W) hI).restrictScalars K).symm
   have hfin : Function.HasFiniteSupport fun v : HeightOneSpectrum W.CoordinateRing =>

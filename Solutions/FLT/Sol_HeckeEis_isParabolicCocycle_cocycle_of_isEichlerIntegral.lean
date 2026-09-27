@@ -58,7 +58,7 @@ theorem solution (N n : ℕ) [NeZero N]
       ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype) F) :
     HeckeEis.IsParabolicCocycle
       ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype) hF.cocycle := by
-  haveI : (Gamma0 N).FiniteIndex := Subgroup.finiteIndex_of_le (Gamma_le_Gamma0 N)
+  have : (Gamma0 N).FiniteIndex := Subgroup.finiteIndex_of_le (Gamma_le_Gamma0 N)
   set ρ := (binaryFormRepSL ℂ n).comp (Gamma0 N).subtype with hρ
   set R := binaryFormRepSL ℂ n with hR
   have hρapp : ∀ γ : Gamma0 N, ρ γ = R (γ : SL(2, ℤ)) := fun γ => rfl

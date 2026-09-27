@@ -214,7 +214,7 @@ theorem isFinitePlace_iff_exists_placeOfEquation [IsAlgClosed F]
   constructor
   · intro hv
 
-    haveI := hv.centre_isPrime
+    have := hv.centre_isPrime
     have hmax : hv.centre.IsMaximal := Ideal.IsPrime.isMaximal hv.centre_isPrime hv.centre_ne_bot
     obtain ⟨x, y, hxy, hXY⟩ :=
       CoordinateRing.exists_eq_XYIdeal (W := W) (P := hv.centre) hv.centre_ne_bot
@@ -223,7 +223,7 @@ theorem isFinitePlace_iff_exists_placeOfEquation [IsAlgClosed F]
     set w : HeightOneSpectrum W.CoordinateRing := heightOneSpectrumOfEquation hxy with hw
     set A : ValuationSubring W.FunctionField :=
       HeightOneSpectrum.valuationSubringAtPrime W.FunctionField w with hA
-    haveI hAded : IsDedekindDomain A := by rw [hA]; infer_instance
+    have hAded : IsDedekindDomain A := by rw [hA]; infer_instance
     have hle : A ≤ v.toValuationSubring := by
       intro z hz
       rw [hA] at hz
@@ -359,13 +359,13 @@ variable {V W : Affine F} [V.IsElliptic] [W.IsElliptic]
 
 theorem normFormulaAlong_of_elliptic (ι : V.FunctionField →ₐ[F] W.FunctionField)
     (hfin : FiniteAlong F ι) : NormFormulaAlong F ι hfin := by
-  haveI : HasPrincipalDivisors F W.FunctionField := hasPrincipalDivisors_functionField W
-  haveI : CharZero V.FunctionField :=
+  have : HasPrincipalDivisors F W.FunctionField := hasPrincipalDivisors_functionField W
+  have : CharZero V.FunctionField :=
     charZero_of_injective_algebraMap (algebraMap F V.FunctionField).injective
   have hsep : SeparableAlong F ι := by
-    letI := algebraAlong ι
-    haveI := isScalarTower_along ι
-    haveI : Module.Finite V.FunctionField W.FunctionField := hfin
+    let := algebraAlong ι
+    have := isScalarTower_along ι
+    have : Module.Finite V.FunctionField W.FunctionField := hfin
     show Algebra.IsSeparable V.FunctionField W.FunctionField
     infer_instance
   exact AlgebraicCurve.normFormulaAlong ι hfin hsep
@@ -963,13 +963,13 @@ theorem kw_toPointAddEquiv_mk (z : ℂ) :
 
 scoped instance kw_infinite_quotientLattice : Infinite (ℂ ⧸ L.lattice.toAddSubgroup) := by
   rw [← not_finite_iff_infinite]; intro hfin
-  haveI : Countable L.lattice.toAddSubgroup :=
+  have : Countable L.lattice.toAddSubgroup :=
     Set.countable_coe_iff.mpr L.kw_countable_lattice
-  haveI : Countable ((ℂ ⧸ L.lattice.toAddSubgroup) × L.lattice.toAddSubgroup) := inferInstance
+  have : Countable ((ℂ ⧸ L.lattice.toAddSubgroup) × L.lattice.toAddSubgroup) := inferInstance
   have hCc : Countable ℂ :=
     Countable.of_equiv _ (AddSubgroup.addGroupEquivQuotientProdAddSubgroup
       (s := L.lattice.toAddSubgroup)).symm
-  haveI : Uncountable ℂ := Complex.ofReal_injective.uncountable
+  have : Uncountable ℂ := Complex.ofReal_injective.uncountable
   exact absurd hCc not_countable
 
 scoped instance kw_infinite_point : Infinite L.weierstrassCurve.toAffine.Point :=
@@ -1734,9 +1734,9 @@ p2m_open_scoped "AlgebraicCurve.Place" in
 
 theorem Place.ramificationIndexAlong_pos (φ : F →ₐ[K] F') (hφ : φ.toRingHom.IsIntegral)
     (w : Place K F') : 0 < Place.ramificationIndexAlong φ w := by
-  letI := algebraAlong φ
-  haveI := isScalarTower_along φ
-  haveI := isIntegral_along φ hφ
+  let := algebraAlong φ
+  have := isScalarTower_along φ
+  have := isIntegral_along φ hφ
   exact w.ramificationIndex_pos
 
 p2m_open_scoped "AlgebraicCurve.Place" in
@@ -3322,7 +3322,7 @@ theorem pointPullbackCoordHomTo_injective {xP yP : L}
     (hx : Function.Injective (Polynomial.aeval (R := F) xP)) :
     Function.Injective (pointPullbackCoordHomTo h) := by
   have hker : RingHom.ker (pointPullbackCoordHomTo h).toRingHom = ⊥ := by
-    haveI : Module.Finite F[X] W.CoordinateRing :=
+    have : Module.Finite F[X] W.CoordinateRing :=
       Module.Finite.of_basis (CoordinateRing.basis W)
     refine Ideal.eq_bot_of_comap_eq_bot (R := F[X]) ?_
     rw [RingHom.comap_ker, pointPullbackCoordHomTo_comp_algebraMap,
@@ -3522,7 +3522,7 @@ def kw_coordinateRingMapAlongGeneralNoAC :
 
 theorem kw_coordinateRingTensor_isDomainGeneralNoAC : IsDomain (CR ⊗[F] F') := by
   suffices h : IsDomain (F' ⊗[F] CR) by
-    haveI := h
+    have := h
     exact Function.Injective.isDomain (Algebra.TensorProduct.comm F CR F').toRingHom
       (Algebra.TensorProduct.comm F CR F').injective
   set W'' := (W⁄F).toAffine.map (algebraMap F F') with hW''
@@ -3544,16 +3544,16 @@ theorem kw_coordinateRingTensor_isDomainGeneralNoAC : IsDomain (CR ⊗[F] F') :=
 theorem kw_functionFieldTensorIsDomain_dischargeGeneralNoAC :
     KwFunctionFieldTensorIsDomainGeneralNoAC W F F' := by
   show IsDomain (FFₗ ⊗[F] F')
-  haveI hCR : IsDomain (CR ⊗[F] F') := kw_coordinateRingTensor_isDomainGeneralNoAC W F F'
-  letI : Algebra (CR ⊗[F] F') (FFₗ ⊗[F] F') :=
+  have hCR : IsDomain (CR ⊗[F] F') := kw_coordinateRingTensor_isDomainGeneralNoAC W F F'
+  let : Algebra (CR ⊗[F] F') (FFₗ ⊗[F] F') :=
     (Algebra.TensorProduct.map (IsScalarTower.toAlgHom F CR FFₗ)
       (AlgHom.id F F')).toRingHom.toAlgebra
-  haveI hst : IsScalarTower CR (CR ⊗[F] F') (FFₗ ⊗[F] F') :=
+  have hst : IsScalarTower CR (CR ⊗[F] F') (FFₗ ⊗[F] F') :=
     IsScalarTower.of_algebraMap_eq (R := CR) (S := CR ⊗[F] F') (A := FFₗ ⊗[F] F') fun c => by
       show Algebra.TensorProduct.map (IsScalarTower.toAlgHom F CR FFₗ) (AlgHom.id F F')
           (algebraMap CR (CR ⊗[F] F') c) = algebraMap CR (FFₗ ⊗[F] F') c
       rfl
-  haveI hloc : IsLocalization
+  have hloc : IsLocalization
       (Algebra.algebraMapSubmonoid (CR ⊗[F] F') (nonZeroDivisors CR)) (FFₗ ⊗[F] F') :=
     IsLocalization.tensorProduct_tensorProduct F F' (nonZeroDivisors CR) FFₗ (by
       ext x; simp [RingHom.algebraMap_toAlgebra, Algebra.TensorProduct.map_tmul])
@@ -3894,7 +3894,7 @@ def kw_coordinateRingMapAlongGeneral :
 
 theorem kw_coordinateRingTensor_isDomainGeneral : IsDomain (CR ⊗[F] F') := by
   suffices h : IsDomain (F' ⊗[F] CR) by
-    haveI := h
+    have := h
     exact Function.Injective.isDomain (Algebra.TensorProduct.comm F CR F').toRingHom
       (Algebra.TensorProduct.comm F CR F').injective
   set W'' := (W⁄F).toAffine.map (algebraMap F F') with hW''
@@ -3916,16 +3916,16 @@ theorem kw_coordinateRingTensor_isDomainGeneral : IsDomain (CR ⊗[F] F') := by
 theorem kw_functionFieldTensorIsDomain_dischargeGeneral :
     KwFunctionFieldTensorIsDomainGeneral W F F' := by
   show IsDomain (FFₗ ⊗[F] F')
-  haveI hCR : IsDomain (CR ⊗[F] F') := kw_coordinateRingTensor_isDomainGeneral W F F'
-  letI : Algebra (CR ⊗[F] F') (FFₗ ⊗[F] F') :=
+  have hCR : IsDomain (CR ⊗[F] F') := kw_coordinateRingTensor_isDomainGeneral W F F'
+  let : Algebra (CR ⊗[F] F') (FFₗ ⊗[F] F') :=
     (Algebra.TensorProduct.map (IsScalarTower.toAlgHom F CR FFₗ)
       (AlgHom.id F F')).toRingHom.toAlgebra
-  haveI hst : IsScalarTower CR (CR ⊗[F] F') (FFₗ ⊗[F] F') :=
+  have hst : IsScalarTower CR (CR ⊗[F] F') (FFₗ ⊗[F] F') :=
     IsScalarTower.of_algebraMap_eq (R := CR) (S := CR ⊗[F] F') (A := FFₗ ⊗[F] F') fun c => by
       show Algebra.TensorProduct.map (IsScalarTower.toAlgHom F CR FFₗ) (AlgHom.id F F')
           (algebraMap CR (CR ⊗[F] F') c) = algebraMap CR (FFₗ ⊗[F] F') c
       rfl
-  haveI hloc : IsLocalization
+  have hloc : IsLocalization
       (Algebra.algebraMapSubmonoid (CR ⊗[F] F') (nonZeroDivisors CR)) (FFₗ ⊗[F] F') :=
     IsLocalization.tensorProduct_tensorProduct F F' (nonZeroDivisors CR) FFₗ (by
       ext x; simp [RingHom.algebraMap_toAlgebra, Algebra.TensorProduct.map_tmul])
@@ -4197,11 +4197,11 @@ theorem kw_surge_hgf4_bcTensorFracIotaSeam (hfin₀ : FiniteAlong F ι₀) :
   have hιFr_am : ∀ t : T', ιFr (algebraMap T' FrT' t) = algebraMap T FrT (ιT t) :=
     kw_surge_hgf4_bcTensorFracIota_algebraMap E₀ E₀' F F' ι₀
 
-  letI algι : Algebra FF' FF := ι₀.toRingHom.toAlgebra
-  letI modι : Module FF' FF := Algebra.toModule
+  let algι : Algebra FF' FF := ι₀.toRingHom.toAlgebra
+  let modι : Module FF' FF := Algebra.toModule
   have hsmul_ι : ∀ (c : FF') (x : FF), c • x = ι₀ c * x := fun c x => rfl
-  haveI hfinFF : Module.Finite FF' FF := hfin₀
-  haveI hfreeFF : Module.Free FF' FF := Module.Free.of_divisionRing FF' FF
+  have hfinFF : Module.Finite FF' FF := hfin₀
+  have hfreeFF : Module.Free FF' FF := Module.Free.of_divisionRing FF' FF
   let D := finrankAlong F ι₀
   let b : Module.Basis (Fin D) FF' FF := Module.finBasisOfFinrankEq FF' FF (n := D) rfl
   have hrepr_mul : ∀ (c : FF') (x : FF) (j : Fin D),
@@ -4324,8 +4324,8 @@ theorem kw_surge_hgf4_bcTensorFracIotaSeam (hfin₀ : FiniteAlong F ι₀) :
       rw [← hp' j, hpj, map_zero]
     exact (mul_eq_zero.mp hthis).resolve_left hq0
 
-  letI algFr : Algebra FrT' FrT := ιFr.toAlgebra
-  letI modFr : Module FrT' FrT := Algebra.toModule
+  let algFr : Algebra FrT' FrT := ιFr.toAlgebra
+  let modFr : Module FrT' FrT := Algebra.toModule
   have hsmul_Fr : ∀ (c : FrT') (x : FrT), c • x = ιFr c * x := fun c x => rfl
   have hli_modFr : LinearIndependent FrT' bFr := by
     rw [Fintype.linearIndependent_iff]
@@ -4594,7 +4594,7 @@ theorem kw_surge_hgf4_χE_VSR_compat {x y : F} (hP : (E₀⁄F).toAffine.Nonsing
       rwa [add_sub_cancel_right] at hsub
     exact (mem_nonunits_iff.mp ((IsLocalRing.mem_maximalIdeal _).mp hfirst_𝔪)) hfirst_unit
 
-  haveI hXY_prime : (CoordinateRing.XYIdeal (E₀⁄F).toAffine x (C y)).IsPrime :=
+  have hXY_prime : (CoordinateRing.XYIdeal (E₀⁄F).toAffine x (C y)).IsPrime :=
     (CoordinateRing.XYIdeal_isMaximal hP.left).isPrime
 
   have hmem_P : ∀ f : (E₀⁄F).toAffine.FunctionField,
@@ -5032,13 +5032,13 @@ theorem kw_surge_hgf4_hBC_proved : KwD5BetweenCurvesFFSeamBaseChange := by
   have _ := kw_surge_hgf4_hBC_axiomAnchor
   intro R₀ _ E₀ E₀' _ _ F F' _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ σ ι₀ hι₀ hfin₀ N _ hcyc hcard
 
-  letI : Algebra F F' := σ.toRingHom.toAlgebra
-  haveI : IsScalarTower R₀ F F' := IsScalarTower.of_algebraMap_eq fun r =>
+  let : Algebra F F' := σ.toRingHom.toAlgebra
+  have : IsScalarTower R₀ F F' := IsScalarTower.of_algebraMap_eq fun r =>
     (σ.commutes r).symm
 
-  haveI : IsDomain ((E₀⁄F).toAffine.FunctionField ⊗[F] F') :=
+  have : IsDomain ((E₀⁄F).toAffine.FunctionField ⊗[F] F') :=
     kw_functionFieldTensorIsDomain_dischargeGeneral E₀ F F'
-  haveI : IsDomain ((E₀'⁄F).toAffine.FunctionField ⊗[F] F') :=
+  have : IsDomain ((E₀'⁄F).toAffine.FunctionField ⊗[F] F') :=
     kw_functionFieldTensorIsDomain_dischargeGeneral E₀' F F'
 
   let ι₁ := kw_surge_hgf4_bcIota₁ E₀ E₀' F F' ι₀
@@ -5224,9 +5224,9 @@ theorem kw_surgehgf4_hfgkd_ktd_kerTransport_proved :
   intro R₀ _ E₀ E₀' _ _ F₁ _ _ _ _ _ F₂ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
     ι₁ hι₁ hfin₁ ι₂ hι₂ hfin₂ hχ N _ hcyc₂ hcard₂
 
-  haveI : IsDomain ((E₀⁄F₁).toAffine.FunctionField ⊗[F₁] F₂) :=
+  have : IsDomain ((E₀⁄F₁).toAffine.FunctionField ⊗[F₁] F₂) :=
     kw_functionFieldTensorIsDomain_dischargeGeneral E₀ F₁ F₂
-  haveI : IsDomain ((E₀'⁄F₁).toAffine.FunctionField ⊗[F₁] F₂) :=
+  have : IsDomain ((E₀'⁄F₁).toAffine.FunctionField ⊗[F₁] F₂) :=
     kw_functionFieldTensorIsDomain_dischargeGeneral E₀' F₁ F₂
 
   have hχE₀ := kw_surgehgf4_hfgkd_ktd_chiNoAC_eq_chiGeneral E₀ F₁ F₂

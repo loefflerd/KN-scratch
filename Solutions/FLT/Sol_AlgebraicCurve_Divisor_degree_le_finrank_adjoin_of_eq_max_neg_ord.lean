@@ -222,14 +222,14 @@ theorem solution
     exact ⟨t, ht0, by simpa using htord v hv, fun v' hv' hne => by simpa [hne] using htord v' hv'⟩
   choose! t ht0 htv htv' using hex_t
 
-  haveI hfinres : ∀ v : Place K F, Module.Finite K v.ResidueField := IsCurveOver.finiteResidue
+  have hfinres : ∀ v : Place K F, Module.Finite K v.ResidueField := IsCurveOver.finiteResidue
   have hex_z : ∀ (v : Place K F) (hv : v ∈ S),
       ∃ (z : Fin v.deg → F) (hreg : ∀ k, ∀ v' ∈ S, z k ∈ v'.toValuationSubring),
       (∀ k, IsUnit (⟨z k, hreg k v hv⟩ : v.toValuationSubring)) ∧
       LinearIndependent K (fun k => IsLocalRing.residue _
         (⟨z k, hreg k v hv⟩ : v.toValuationSubring)) := by
     intro v hv
-    haveI := hfinres v
+    have := hfinres v
     let bκ : Module.Basis (Fin v.deg) K v.ResidueField := Module.finBasis K v.ResidueField
     choose z₀ hz₀ using fun k =>
       Ideal.Quotient.mk_surjective (I := IsLocalRing.maximalIdeal v.toValuationSubring) (bκ k)

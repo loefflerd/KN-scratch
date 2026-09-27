@@ -110,8 +110,8 @@ theorem exists_sub_algebraMap_mem_maximalIdeal [IsAlgClosed k] [IsCurveOver k L]
     (X : w.toValuationSubring) :
     ∃ a : k, X - algebraMap k w.toValuationSubring a ∈
       IsLocalRing.maximalIdeal w.toValuationSubring := by
-  haveI : Module.Finite k w.ResidueField := IsCurveOver.finiteResidue w
-  haveI : Algebra.IsIntegral k w.ResidueField := Algebra.IsIntegral.of_finite k _
+  have : Module.Finite k w.ResidueField := IsCurveOver.finiteResidue w
+  have : Algebra.IsIntegral k w.ResidueField := Algebra.IsIntegral.of_finite k _
   have hbij : Function.Bijective (algebraMap k w.ResidueField) :=
     IsAlgClosed.algebraMap_bijective_of_isIntegral
   obtain ⟨a, ha⟩ := hbij.2 (IsLocalRing.residue w.toValuationSubring X)
@@ -292,7 +292,7 @@ theorem transcendental_algebraMap [IsAlgClosed K] [IsAlgClosed K']
     {x : F} (hx : Transcendental K x) :
     Transcendental K' (algebraMap F F' x) := by
   obtain ⟨j, hj, hfin⟩ := id hfg
-  haveI := hfin
+  have := hfin
   obtain ⟨v, hv⟩ : ∃ v : Place K F, v.ord x ≠ 0 := by
     by_contra h
     push Not at h
@@ -337,7 +337,7 @@ theorem exists_ord_sub_pos [IsAlgClosed K'] [IsCurveOver K' F']
     ∃ v' : Place K' F', 0 < v'.ord (x' - algebraMap K' F' c) := by
   classical
   obtain ⟨j, hj, hfin⟩ := id hfg'
-  haveI := hfin
+  have := hfin
   set u := x' - algebraMap K' F' c with hu
   have hu_nmem : u ∉ (algebraMap K' F').range := by
     rintro ⟨a, ha⟩
@@ -429,7 +429,7 @@ theorem trace_mem [IsAlgClosed K] [IsAlgClosed K'] [IsCurveOver K F] [IsCurveOve
     obtain ⟨j₀, hj₀, hfin₀⟩ := id hfg'
     obtain ⟨j, _hj, hfin, hsep_j⟩ :=
       AlgebraicCurve.exists_separating_transcendental_of_perfectField hj₀ hfin₀
-    haveI := hfin; haveI := hsep_j
+    have := hfin; have := hsep_j
     obtain ⟨W, hW₀⟩ :=
       Place.exists_toValuationSubring_eq_comap_ringHom_of_isSeparable
         (K := K') j (RingHom.id F') B (by simpa using hBK) ⟨w, by simpa using hwB⟩
@@ -711,7 +711,7 @@ theorem exists_basis [IsAlgClosed K] [IsAlgClosed K']
       refine Submodule.sum_mem _ fun i _ => ?_
       rw [algebraMap_smul (K' := K') (F' := F')]
       exact Submodule.smul_mem _ _ (Submodule.subset_span ⟨i, rfl⟩)
-    haveI : Algebra.IsIntegral kx F := Algebra.IsIntegral.of_finite kx F
+    have : Algebra.IsIntegral kx F := Algebra.IsIntegral.of_finite kx F
     have halg : ∀ g ∈ Set.range (algebraMap F F'), IsAlgebraic kx' g := by
       rintro _ ⟨f, rfl⟩
       have hint : IsIntegral kx f := Algebra.IsIntegral.isIntegral f
@@ -826,15 +826,15 @@ theorem mem_span_range_algebraMap_of_constantFieldExtension
   obtain ⟨x₀, hx₀, hfin₀⟩ := id hfg
   obtain ⟨x, hx, hfin, hsep_kx⟩ :=
     AlgebraicCurve.exists_separating_transcendental_of_perfectField hx₀ hfin₀
-  haveI := hfin
+  have := hfin
   set kx : IntermediateField K F := IntermediateField.adjoin K ({x} : Set F) with hkx
   set x' := algebraMap F F' x with hx'def
   set kx' : IntermediateField K' F' := IntermediateField.adjoin K' ({x'} : Set F') with hkx'
-  haveI : Algebra.IsSeparable kx F := hsep_kx
+  have : Algebra.IsSeparable kx F := hsep_kx
   have hx' : Transcendental K' x' := transcendental_algebraMap hfg hfg' hgen hx
   let y : Module.Basis (Fin (Module.finrank kx F)) kx F := Module.finBasis kx F
   obtain ⟨y', hy⟩ := exists_basis hfg hfg' hgen hx y
-  haveI : FiniteDimensional kx' F' := Module.Finite.of_basis y'
+  have : FiniteDimensional kx' F' := Module.Finite.of_basis y'
   set yd := (Algebra.traceForm kx F).dualBasis (traceForm_nondegenerate kx F) y with hyd
   have ht : ∀ i, ((Algebra.trace kx' F' (z * algebraMap F F' (yd i)) : kx') : F') ∈
       Submodule.span K' (Set.range (algebraMap F F')) := by

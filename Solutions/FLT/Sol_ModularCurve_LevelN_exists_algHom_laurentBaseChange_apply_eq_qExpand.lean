@@ -31,7 +31,7 @@ theorem N3Prep.exists_apply_eq_apply_smul
     (hagree : ∀ c ∈ IntermediateField.fixedField H, E c = E' c) (x : K) :
     ∃ h : H, E' x = E ((h : K ≃ₐ[F] K) x) := by
   classical
-  haveI : Fintype H := Fintype.ofFinite H
+  have : Fintype H := Fintype.ofFinite H
   set Q : K[X] := ∏ h : H, (X - C ((h : K ≃ₐ[F] K) x)) with hQ
 
   have hfix : ∀ i, Q.coeff i ∈ IntermediateField.fixedField H := by
@@ -107,7 +107,7 @@ theorem solution
   classical
   set jK := algebraMap (ModularCurve.LevelN.ring M) K (ModularCurve.LevelN.jGen M) with hjK
 
-  haveI : Algebra.IsAlgebraic ℚ (AlgebraicClosure ℚ) := AlgebraicClosure.isAlgebraic ℚ
+  have : Algebra.IsAlgebraic ℚ (AlgebraicClosure ℚ) := AlgebraicClosure.isAlgebraic ℚ
   let ι : AlgebraicClosure ℚ →+* ℂ :=
     (IsAlgClosed.lift (R := ℚ) (S := AlgebraicClosure ℚ) (M := ℂ)).toRingHom
   have h9 := ModularCurve.exists_ringHom_laurentBaseChange_qExpFunctionFieldC_levelN_qExpansion
@@ -153,9 +153,9 @@ theorem solution
     rw [AlgEquiv.apply_symm_apply]
     rfl
 
-  haveI : σ.ker.FiniteIndex := by
+  have : σ.ker.FiniteIndex := by
     rw [hker]; exact Subgroup.finiteIndex_of_le le_sup_left
-  haveI : Finite σ.range :=
+  have : Finite σ.range :=
     Finite.of_equiv _ (QuotientGroup.quotientKerEquivRange σ).toEquiv
 
   have hagree : ∀ c ∈ IntermediateField.fixedField σ.range, E c = E₉ c := by

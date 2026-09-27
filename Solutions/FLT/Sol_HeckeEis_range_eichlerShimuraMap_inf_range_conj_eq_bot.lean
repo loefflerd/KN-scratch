@@ -884,7 +884,7 @@ theorem tr_decay (hk : 0 ≤ k) {a : ℝ} (ha : 0 < a) :
   · exact le_max_of_le_left (le_max_right _ _)
   rcases le_or_gt A τ.im with h | h
   · have := hA τ h
-    simp only [Set.mem_setOf_eq, Real.norm_eq_abs, Real.abs_exp] at this
+    simp only [Set.mem_ofPred_eq, Real.norm_eq_abs, Real.abs_exp] at this
     refine this.trans ?_
     gcongr
     exact le_max_of_le_left (le_max_left _ _)

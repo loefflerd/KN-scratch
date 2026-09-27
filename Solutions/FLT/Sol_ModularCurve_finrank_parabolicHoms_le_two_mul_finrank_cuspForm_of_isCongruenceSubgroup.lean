@@ -30,9 +30,9 @@ theorem main (Γ : Subgroup SL(2, ℤ)) (hΓ : CongruenceSubgroup.IsCongruenceSu
     Module.finrank ℤ (ModularCurve.Period.parabolicHoms ℤ Γ ℤ) ≤
       2 * Module.finrank ℂ (CuspForm Γ 2) := by
   obtain ⟨N, hN, hle⟩ := hΓ
-  haveI : NeZero N := ⟨hN⟩
-  haveI : (CongruenceSubgroup.Gamma N).Normal := CongruenceSubgroup.Gamma_normal N
-  haveI : ((CongruenceSubgroup.Gamma N).subgroupOf Γ).Normal := inferInstance
+  have : NeZero N := ⟨hN⟩
+  have : (CongruenceSubgroup.Gamma N).Normal := CongruenceSubgroup.Gamma_normal N
+  have : ((CongruenceSubgroup.Gamma N).subgroupOf Γ).Normal := inferInstance
   exact ModularCurve.finrank_parabolicHoms_le_two_mul_finrank_cuspForm_of_le_of_normal
     (CongruenceSubgroup.Gamma N) Γ hle inferInstance
     (ModularCurve.finrank_parabolicHoms_Gamma_le_two_mul_finrank_cuspForm N)

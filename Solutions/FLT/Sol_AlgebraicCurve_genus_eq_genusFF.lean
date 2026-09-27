@@ -20,7 +20,7 @@ theorem solution
     (hRR : AlgebraicCurve.FunctionFieldRiemannRoch K F) (hWDA : AlgebraicCurve.WeilDualityAdelic K F)
     (hC : AlgebraicCurve.ConstantsAreBase K F) :
     AlgebraicCurve.genus K F = AlgebraicCurve.genusFF K F := by
-  haveI : HasPrincipalDivisors K F := IsCurveOver.hasPrincipalDivisors
+  have : HasPrincipalDivisors K F := IsCurveOver.hasPrincipalDivisors
   obtain ⟨ω, hω⟩ := exists_ne (0 : Ω[F⁄K])
   have h1 : (indexOfSpecialty (0 : Divisor K F) : ℤ) = (ell (canonicalDivisorOf hω - 0) : ℤ) := hWDA hω 0
   rw [sub_zero] at h1

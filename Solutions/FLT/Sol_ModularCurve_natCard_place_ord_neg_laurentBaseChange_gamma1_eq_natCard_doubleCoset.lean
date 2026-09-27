@@ -111,9 +111,9 @@ theorem finiteDimensional_adjoin (t : L) (E : IntermediateField ℂ⟮t⟯ L) [F
     (x : E) (hx : (x : L) = t) :
     FiniteDimensional (IntermediateField.adjoin ℂ ({x} : Set E)) E := by
   let A : IntermediateField ℂ E := IntermediateField.adjoin ℂ ({x} : Set E)
-  letI : Algebra ℂ⟮t⟯ A :=
+  let : Algebra ℂ⟮t⟯ A :=
     ((algebraMap ℂ⟮t⟯ E).codRestrict A (algebraMap_mem_adjoin t E x hx)).toAlgebra
-  haveI : IsScalarTower ℂ⟮t⟯ A E := IsScalarTower.of_algebraMap_eq (fun l => rfl)
+  have : IsScalarTower ℂ⟮t⟯ A E := IsScalarTower.of_algebraMap_eq (fun l => rfl)
   exact Module.Finite.of_restrictScalars_finite ℂ⟮t⟯ A E
 
 end Galois
@@ -256,8 +256,8 @@ theorem σ'_eq_one_iff (γ : SL(2, ℤ)) : σ' M K γ = 1 ↔ γ ∈ Gpm M := by
   rw [← MonoidHom.mem_ker, σ'_ker]
 
 theorem σ'_surjective : Function.Surjective (σ' M K) := by
-  haveI := finiteDimensional_jK M K
-  haveI := isGalois_jK M K
+  have := finiteDimensional_jK M K
+  have := isGalois_jK M K
   rw [← MonoidHom.range_eq_top]
   apply Subgroup.eq_top_of_card_eq
   rw [← Subgroup.index_ker, σ'_ker, ← finrank_jK M K, IsGalois.card_aut_eq_finrank]
@@ -364,10 +364,10 @@ theorem natCard_place_ord_lt_zero_le (ι : ℚ̄ →+* ℂ) (y : FF) (hy : (y : 
         ((Subgroup.zpowers ModularGroup.T ⊔ Subgroup.zpowers (-1) : Subgroup SL(2, ℤ)) :
           Set SL(2, ℤ))) := by
   classical
-  haveI := finiteDimensional_jK M K
-  haveI := isGalois_jK M K
-  haveI hKc : CharZero ℚ̄ := charZero_of_injective_algebraMap (algebraMap ℚ ℚ̄).injective
-  haveI hΓfi : (CongruenceSubgroup.Gamma1 M).FiniteIndex :=
+  have := finiteDimensional_jK M K
+  have := isGalois_jK M K
+  have hKc : CharZero ℚ̄ := charZero_of_injective_algebraMap (algebraMap ℚ ℚ̄).injective
+  have hΓfi : (CongruenceSubgroup.Gamma1 M).FiniteIndex :=
     (CongruenceSubgroup.Gamma1_is_congruence M).finiteIndex
   have hΓM : CongruenceSubgroup.Gamma M ≤ CongruenceSubgroup.Gamma1 M := Gamma_le_Gamma1 M
   have hT : ModularGroup.T ∈ CongruenceSubgroup.Gamma1 M := T_mem_Gamma1 M
@@ -380,11 +380,11 @@ theorem natCard_place_ord_lt_zero_le (ι : ℚ̄ →+* ℂ) (y : FF) (hy : (y : 
   have hΦE : ∀ u, Φ u ∈ E := fun u => IntermediateField.subset_adjoin _ _ ⟨u, rfl⟩
   let ΦE : FF →+* E := Φ.codRestrict E hΦE
 
-  letI : Algebra ℚ̄ ℂ := ι.toAlgebra
-  letI : Algebra FF E := ΦE.toAlgebra
-  letI : Algebra ℚ̄ E := ((algebraMap ℂ E).comp ι).toAlgebra
-  haveI : IsScalarTower ℚ̄ ℂ E := IsScalarTower.of_algebraMap_eq (fun _ => rfl)
-  haveI : IsScalarTower ℚ̄ FF E := IsScalarTower.of_algebraMap_eq (fun c => by
+  let : Algebra ℚ̄ ℂ := ι.toAlgebra
+  let : Algebra FF E := ΦE.toAlgebra
+  let : Algebra ℚ̄ E := ((algebraMap ℂ E).comp ι).toAlgebra
+  have : IsScalarTower ℚ̄ ℂ E := IsScalarTower.of_algebraMap_eq (fun _ => rfl)
+  have : IsScalarTower ℚ̄ FF E := IsScalarTower.of_algebraMap_eq (fun c => by
     apply Subtype.ext
     change algebraMap ℂ K (ι c) = Φ (algebraMap ℚ̄ FF c)
     rw [hΦc])
@@ -392,15 +392,15 @@ theorem natCard_place_ord_lt_zero_le (ι : ℚ̄ →+* ℂ) (y : FF) (hy : (y : 
   obtain ⟨hyT, hfin⟩ :=
     ModularCurve.transcendental_and_finiteDimensional_adjoin_laurentBaseChange_qExpFunctionFieldC_of_coe_eq_jqModC
       ℚ̄ (CongruenceSubgroup.Gamma1 M) hT y hy
-  haveI := hfin
-  haveI : AlgebraicCurve.IsCurveOver ℚ̄ FF :=
+  have := hfin
+  have : AlgebraicCurve.IsCurveOver ℚ̄ FF :=
     AlgebraicCurve.isCurveOver_of_transcendental_of_perfectField hyT hfin
 
   have hjE : jK M K ∈ E := E.algebraMap_mem (⟨jK M K, IntermediateField.mem_adjoin_simple_self ℂ _⟩ : L₀)
   let xE : E := ⟨jK M K, hjE⟩
   have hyt : ((algebraMap FF E y : E) : K) = jK M K := hΦy y hy
   have hΦEy : algebraMap FF E y = xE := Subtype.ext hyt
-  haveI hfinE : FiniteDimensional L₀ E := IntermediateField.finiteDimensional_left E
+  have hfinE : FiniteDimensional L₀ E := IntermediateField.finiteDimensional_left E
   have hgen : IntermediateField.adjoin ℂ (Set.range (algebraMap FF E)) = ⊤ := by
     apply adjoin_range_eq_top (jK M K) E
     change ((IntermediateField.adjoin L₀ (Set.range Φ) : IntermediateField L₀ K) : Set K) ⊆
@@ -434,7 +434,7 @@ theorem natCard_place_ord_lt_zero_le (ι : ℚ̄ →+* ℂ) (y : FF) (hy : (y : 
   obtain ⟨-, hplaces⟩ :=
     AlgebraicCurve.finrank_le_and_natCard_places_le_of_constantFieldExtension_adjoin y hyT
       (jK M K) (transcendental_jK M K) E hyt hgen
-  haveI hfinE' : Finite {P : AlgebraicCurve.Place ℂ E // P.ord (algebraMap FF E y) < 0} :=
+  have hfinE' : Finite {P : AlgebraicCurve.Place ℂ E // P.ord (algebraMap FF E y) < 0} :=
     ((hplaces y hy0).2).1
 
   have hDC := fun P : AlgebraicCurve.Place ℚ̄ FF =>
@@ -473,8 +473,8 @@ theorem natCard_place_ord_lt_zero_eq (y : FF) (hy : (y : LaurentSeries ℚ̄) = 
       Nat.card (DoubleCoset.Quotient (CongruenceSubgroup.Gamma1 M : Set SL(2, ℤ))
         ((Subgroup.zpowers ModularGroup.T ⊔ Subgroup.zpowers (-1) : Subgroup SL(2, ℤ)) :
           Set SL(2, ℤ))) := by
-  haveI := isDomain_ring M
-  haveI : Algebra.IsAlgebraic ℚ ℚ̄ := AlgebraicClosure.isAlgebraic ℚ
+  have := isDomain_ring M
+  have : Algebra.IsAlgebraic ℚ ℚ̄ := AlgebraicClosure.isAlgebraic ℚ
   let ι : ℚ̄ →+* ℂ := (IsAlgClosed.lift (R := ℚ) (M := ℂ) (S := ℚ̄)).toRingHom
   refine le_antisymm (natCard_place_ord_lt_zero_le M (FractionRing (LevelN.ring M)) ι y hy) ?_
   have hfull :=
@@ -566,9 +566,9 @@ theorem natCard_place_ord_lt_zero_laurentBaseChange_eq
   classical
 
   let F₀ : IntermediateField ℚ (LaurentSeries ℚ) := qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)
-  haveI : CharZero K := charZero_of_injective_algebraMap (algebraMap ℚ K).injective
+  have : CharZero K := charZero_of_injective_algebraMap (algebraMap ℚ K).injective
 
-  haveI : Algebra.IsAlgebraic ℚ (AlgebraicClosure ℚ) := AlgebraicClosure.isAlgebraic ℚ
+  have : Algebra.IsAlgebraic ℚ (AlgebraicClosure ℚ) := AlgebraicClosure.isAlgebraic ℚ
   let τ : (AlgebraicClosure ℚ) →ₐ[ℚ] K := IsAlgClosed.lift
   let Ψ : ↥(laurentBaseChange (AlgebraicClosure ℚ) F₀) →+* ↥(laurentBaseChange K F₀) := psi τ F₀
   have hΨ : ∀ f, ((Ψ f : ↥(laurentBaseChange K F₀)) : LaurentSeries K) = coeffMap τ.toRingHom (f : LaurentSeries (AlgebraicClosure ℚ)) :=
@@ -577,7 +577,7 @@ theorem natCard_place_ord_lt_zero_laurentBaseChange_eq
     apply Subtype.ext
     rw [hΨ, hy, hyK, coeffMap_jqModC]
 
-  haveI : (CongruenceSubgroup.Gamma1 M).FiniteIndex := (CongruenceSubgroup.Gamma1_is_congruence M).finiteIndex
+  have : (CongruenceSubgroup.Gamma1 M).FiniteIndex := (CongruenceSubgroup.Gamma1_is_congruence M).finiteIndex
   have hT : ModularGroup.T ∈ CongruenceSubgroup.Gamma1 M := by
     rw [CongruenceSubgroup.Gamma1_mem]
     simp [ModularGroup.T]
@@ -587,16 +587,16 @@ theorem natCard_place_ord_lt_zero_laurentBaseChange_eq
   obtain ⟨htrK, hfinK⟩ :=
     ModularCurve.transcendental_and_finiteDimensional_adjoin_laurentBaseChange_qExpFunctionFieldC_of_coe_eq_jqModC
       K (CongruenceSubgroup.Gamma1 M) hT yK hyK
-  haveI : IsCurveOver (AlgebraicClosure ℚ) ↥(laurentBaseChange (AlgebraicClosure ℚ) F₀) :=
+  have : IsCurveOver (AlgebraicClosure ℚ) ↥(laurentBaseChange (AlgebraicClosure ℚ) F₀) :=
     AlgebraicCurve.isCurveOver_of_transcendental_of_perfectField htr hfin
 
-  letI : Algebra (AlgebraicClosure ℚ) K := τ.toRingHom.toAlgebra
-  letI : Algebra ↥(laurentBaseChange (AlgebraicClosure ℚ) F₀) ↥(laurentBaseChange K F₀) := Ψ.toAlgebra
-  letI : Algebra (AlgebraicClosure ℚ) ↥(laurentBaseChange K F₀) :=
+  let : Algebra (AlgebraicClosure ℚ) K := τ.toRingHom.toAlgebra
+  let : Algebra ↥(laurentBaseChange (AlgebraicClosure ℚ) F₀) ↥(laurentBaseChange K F₀) := Ψ.toAlgebra
+  let : Algebra (AlgebraicClosure ℚ) ↥(laurentBaseChange K F₀) :=
     ((algebraMap K ↥(laurentBaseChange K F₀)).comp τ.toRingHom).toAlgebra
-  haveI : IsScalarTower (AlgebraicClosure ℚ) K ↥(laurentBaseChange K F₀) :=
+  have : IsScalarTower (AlgebraicClosure ℚ) K ↥(laurentBaseChange K F₀) :=
     IsScalarTower.of_algebraMap_eq (fun _ => rfl)
-  haveI : IsScalarTower (AlgebraicClosure ℚ) ↥(laurentBaseChange (AlgebraicClosure ℚ) F₀) ↥(laurentBaseChange K F₀) := by
+  have : IsScalarTower (AlgebraicClosure ℚ) ↥(laurentBaseChange (AlgebraicClosure ℚ) F₀) ↥(laurentBaseChange K F₀) := by
     refine IsScalarTower.of_algebraMap_eq (fun a => ?_)
     apply Subtype.ext
     change ((algebraMap K ↥(laurentBaseChange K F₀) (τ a) : ↥(laurentBaseChange K F₀)) : LaurentSeries K) =

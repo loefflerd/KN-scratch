@@ -171,22 +171,22 @@ theorem solution {K : Type*} [Field K] (E : Type*) [Field E] [Algebra K E]
     refine IntermediateField.nonempty_algHom_of_adjoin_splits (fun s hs => ?_) hα
     obtain rfl : s = α := by simpa using hs
     exact ⟨hint, Polynomial.SplittingField.splits _⟩
-  letI : Algebra E (minpoly (RatFunc K) α).SplittingField := g.toRingHom.toAlgebra
-  haveI : IsScalarTower (RatFunc K) E (minpoly (RatFunc K) α).SplittingField :=
+  let : Algebra E (minpoly (RatFunc K) α).SplittingField := g.toRingHom.toAlgebra
+  have : IsScalarTower (RatFunc K) E (minpoly (RatFunc K) α).SplittingField :=
     IsScalarTower.of_algebraMap_eq fun x => (g.commutes x).symm
-  haveI : IsScalarTower K E (minpoly (RatFunc K) α).SplittingField :=
+  have : IsScalarTower K E (minpoly (RatFunc K) α).SplittingField :=
     IsScalarTower.of_algebraMap_eq fun x => by
       show algebraMap K (minpoly (RatFunc K) α).SplittingField x = g (algebraMap K E x)
       rw [IsScalarTower.algebraMap_apply K (RatFunc K) E x, g.commutes,
         ← IsScalarTower.algebraMap_apply K (RatFunc K)
           (minpoly (RatFunc K) α).SplittingField x]
-  haveI : IsGalois (RatFunc K) (minpoly (RatFunc K) α).SplittingField :=
+  have : IsGalois (RatFunc K) (minpoly (RatFunc K) α).SplittingField :=
     IsGalois.of_separable_splitting_field hsep
-  haveI : FiniteDimensional E (minpoly (RatFunc K) α).SplittingField :=
+  have : FiniteDimensional E (minpoly (RatFunc K) α).SplittingField :=
     FiniteDimensional.right (RatFunc K) E _
-  haveI : Algebra.IsSeparable E (minpoly (RatFunc K) α).SplittingField :=
+  have : Algebra.IsSeparable E (minpoly (RatFunc K) α).SplittingField :=
     Algebra.isSeparable_tower_top_of_isSeparable (RatFunc K) E _
-  haveI : HasPrincipalDivisors K (RatFunc K) := RationalFunctionField.hasPrincipalDivisors K
+  have : HasPrincipalDivisors K (RatFunc K) := RationalFunctionField.hasPrincipalDivisors K
   refine ⟨fun f hf => ⟨principalDivisorOf hf, fun _ => rfl, ?_⟩⟩
 
   refine degree_eq_zero_of_tower (K := K) (F := E)

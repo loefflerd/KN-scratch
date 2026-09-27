@@ -447,7 +447,7 @@ variable {M : ℕ} [NeZero M] {k : ℤ}
 theorem isBdd_of_odd (hk : Odd k) (f : ModularForm Γ₁(M) k) (hf : IsRat (qExpansion 1 f)) :
     IsBdd (qExpansion 1 f) := by
   obtain ⟨E, hE, hE0⟩ := exists_E1
-  haveI : NeZero (3 * M) := ⟨mul_ne_zero three_ne_zero (NeZero.ne M)⟩
+  have : NeZero (3 * M) := ⟨mul_ne_zero three_ne_zero (NeZero.ne M)⟩
   set f3 : ModularForm Γ₁(3 * M) k := res (dvd_mul_left M 3) f with hf3
   set E3 : ModularForm Γ₁(3 * M) 1 := res (dvd_mul_right 3 M) E with hE3
   set F : ModularForm Γ₁(3 * M) (k + 1) := f3.mul E3 with hF

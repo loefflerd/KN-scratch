@@ -78,9 +78,9 @@ private theorem comap_algebraMap_ne_top [Algebra.IsIntegral F F'] :
     ValuationSubring.mem_comap.mp (htop ▸ ValuationSubring.mem_top f)
 
   refine SetLike.ext fun x => ⟨fun _ => ValuationSubring.mem_top x, fun _ => ?_⟩
-  letI : Algebra F w.toValuationSubring :=
+  let : Algebra F w.toValuationSubring :=
     ((algebraMap F F').codRestrict w.toValuationSubring.toSubring hF).toAlgebra
-  letI : IsScalarTower F w.toValuationSubring F' :=
+  let : IsScalarTower F w.toValuationSubring F' :=
     IsScalarTower.of_algebraMap_eq fun f => rfl
   have hx : IsIntegral w.toValuationSubring x :=
     (Algebra.IsIntegral.isIntegral (R := F) x).tower_top

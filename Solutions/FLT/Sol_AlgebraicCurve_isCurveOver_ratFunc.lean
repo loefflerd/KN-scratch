@@ -60,7 +60,7 @@ theorem finite_setOf_valuation_ne_one {f : RatFunc K} (hf : f ≠ 0) :
   refine Set.Finite.subset ((Ideal.finite_factors hnum).union (Ideal.finite_factors hden))
     fun w hw => ?_
   by_contra hcon
-  simp only [Set.mem_union, Set.mem_setOf_eq, not_or, Ideal.dvd_span_singleton] at hcon
+  simp only [Set.mem_union, Set.mem_ofPred_eq, not_or, Ideal.dvd_span_singleton] at hcon
   refine hw ?_
   have h1 : w.valuation (RatFunc K) (algebraMap K[X] (RatFunc K) f.num) = 1 :=
     (HeightOneSpectrum.valuation_eq_one_iff_notMem w).mpr hcon.1
@@ -78,8 +78,8 @@ theorem finite_setOf_ord_ne_zero {f : RatFunc K} (hf : f ≠ 0) :
         (finite_setOf_valuation_ne_one hf))
       (Set.Subsingleton.finite subsingleton_setOf_forall_ne_ofHeightOneSpectrum))
     fun v hv => ?_
-  simp only [Set.mem_setOf_eq] at hv
-  simp only [Set.mem_union, Set.mem_image, Set.mem_setOf_eq]
+  simp only [Set.mem_ofPred_eq] at hv
+  simp only [Set.mem_union, Set.mem_image, Set.mem_ofPred_eq]
   by_cases hcase : ∃ w : HeightOneSpectrum K[X], v = Place.ofHeightOneSpectrum w
   · obtain ⟨w, rfl⟩ := hcase
     refine Or.inl ⟨w, fun hone => hv ?_, rfl⟩
@@ -189,7 +189,7 @@ p2m_open "AlgebraicCurve"
 
 theorem le_exp_neg_one_of_lt_one {x : ℤᵐ⁰} (hx : x < 1) : x ≤ exp (-1 : ℤ) := by
   rcases eq_or_ne x 0 with rfl | hx0
-  · exact zero_le'
+  · exact zero_le
   · rw [← exp_log hx0] at hx ⊢
     rw [show (1 : ℤᵐ⁰) = exp 0 from rfl, exp_lt_exp] at hx
     rw [exp_le_exp]

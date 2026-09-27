@@ -42,7 +42,7 @@ theorem algebraMap_mem_of_new
   obtain ⟨x, hxt, hxfin⟩ := hfg
   obtain ⟨t, _ht_trans, ht_fin, ht_sep⟩ :=
     AlgebraicCurve.exists_separating_transcendental_of_perfectField hxt hxfin
-  haveI := ht_fin; haveI := ht_sep
+  have := ht_fin; have := ht_sep
   obtain ⟨P, hP⟩ :=
     AlgebraicCurve.Place.exists_toValuationSubring_eq_comap_ringHom_of_isSeparable
       (K := K) t (algebraMap F F') v'.toValuationSubring

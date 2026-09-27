@@ -96,10 +96,10 @@ theorem finrank_ker_sumL_add_one [Fintype (Cu Γ)] :
 
 theorem moduleFinite_hom : Module.Finite K (Additive Γ →+ K) := by
   classical
-  haveI : Group.FG SL(2, ℤ) := ⟨⟨{ModularGroup.S, ModularGroup.T}, by
+  have : Group.FG SL(2, ℤ) := ⟨⟨{ModularGroup.S, ModularGroup.T}, by
     rw [Finset.coe_insert, Finset.coe_singleton]
     exact SpecialLinearGroup.SL2Z_generators⟩⟩
-  haveI hΓ : Group.FG Γ := Subgroup.fg_of_index_ne_zero _
+  have hΓ : Group.FG Γ := Subgroup.fg_of_index_ne_zero _
   obtain ⟨s, hs⟩ := hΓ.out
   let e : (Additive Γ →+ K) →ₗ[K] (s → K) :=
     { toFun := fun φ i => φ (Additive.ofMul (i : Γ))
@@ -121,8 +121,8 @@ theorem main (hneg : (-1 : SL(2, ℤ)) ∈ Γ) :
     Module.finrank K (parabolicHoms K Γ K) + Nat.card (Cu Γ)
       ≤ Module.finrank K (Additive Γ →+ K) + 1 := by
   classical
-  haveI : Fintype (Cu Γ) := Fintype.ofFinite _
-  haveI := moduleFinite_hom Γ K
+  have : Fintype (Cu Γ) := Fintype.ofFinite _
+  have := moduleFinite_hom Γ K
   have h1 : Module.finrank K (parabolicHoms K Γ K) ≤ Module.finrank K (LinearMap.ker (ev Γ K)) :=
     Submodule.finrank_mono (parabolicHoms_le_ker Γ K)
   have h2 : Module.finrank K (LinearMap.ker (sumL Γ K))

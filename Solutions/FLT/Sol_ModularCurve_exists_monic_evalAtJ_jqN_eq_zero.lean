@@ -67,7 +67,7 @@ p2m_open_scoped "ModularCurve" in
 
 private theorem ModularCurve.exists_monic_evalAtJ_jqN_eq_zero (N : ℕ) [NeZero N] :
     ∃ P : Polynomial (Polynomial ℤ), P.Monic ∧ P.eval₂ evalAtJ (jqN N) = 0 := by
-  letI : Algebra (Polynomial ℤ) (LaurentSeries ℚ) := evalAtJ.toAlgebra
+  let : Algebra (Polynomial ℤ) (LaurentSeries ℚ) := evalAtJ.toAlgebra
   suffices h : ∀ (n : ℕ) [NeZero n], IsIntegral (Polynomial ℤ) (jqN n) by
     obtain ⟨P, hP, hval⟩ := h N
     exact ⟨P, hP, hval⟩
@@ -83,15 +83,15 @@ private theorem ModularCurve.exists_monic_evalAtJ_jqN_eq_zero (N : ℕ) [NeZero 
     exact isIntegral_algebraMap
   | prime_mul p a hp ih =>
     intro hpa
-    haveI hNp : NeZero p := ⟨hp.ne_zero⟩
-    haveI hNa : NeZero a := ⟨fun h => NeZero.ne (p * a) (by rw [h, Nat.mul_zero])⟩
-    haveI hNap : NeZero (a * p) := ⟨by rw [Nat.mul_comm]; exact NeZero.ne (p * a)⟩
-    haveI hFp : Fact p.Prime := ⟨hp⟩
+    have hNp : NeZero p := ⟨hp.ne_zero⟩
+    have hNa : NeZero a := ⟨fun h => NeZero.ne (p * a) (by rw [h, Nat.mul_zero])⟩
+    have hNap : NeZero (a * p) := ⟨by rw [Nat.mul_comm]; exact NeZero.ne (p * a)⟩
+    have hFp : Fact p.Prime := ⟨hp⟩
     have hia : IsIntegral (Polynomial ℤ) (jqN a) := ih
     obtain ⟨data, -, -⟩ := ModularCurve.exists_phiIrreducible_evalSymm p
     set A := Algebra.adjoin (Polynomial ℤ) ({jqN a} : Set (LaurentSeries ℚ)) with hA
     have hmem : jqN a ∈ A := Algebra.self_mem_adjoin_singleton _ _
-    haveI : Algebra.IsIntegral (Polynomial ℤ) ↥A :=
+    have : Algebra.IsIntegral (Polynomial ℤ) ↥A :=
       ⟨fun x => (isIntegral_algebraMap_iff (fun _ _ huv => Subtype.ext huv)).mp
         (IsIntegral.of_mem_of_fg A hia.fg_adjoin_singleton _ x.2)⟩
     have hroot : Polynomial.eval₂ (algebraMap ↥A (LaurentSeries ℚ)) (jqN (a * p))

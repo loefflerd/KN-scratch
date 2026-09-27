@@ -68,12 +68,12 @@ variable {V W : Affine F} [V.IsElliptic] [W.IsElliptic]
 
 theorem normFormulaAlong_of_elliptic (ι : V.FunctionField →ₐ[F] W.FunctionField)
     (hfin : FiniteAlong F ι) : NormFormulaAlong F ι hfin := by
-  haveI : CharZero V.FunctionField :=
+  have : CharZero V.FunctionField :=
     charZero_of_injective_algebraMap (algebraMap F V.FunctionField).injective
   have hsep : SeparableAlong F ι := by
-    letI := algebraAlong ι
-    haveI := isScalarTower_along ι
-    haveI : Module.Finite V.FunctionField W.FunctionField := hfin
+    let := algebraAlong ι
+    have := isScalarTower_along ι
+    have : Module.Finite V.FunctionField W.FunctionField := hfin
     show Algebra.IsSeparable V.FunctionField W.FunctionField
     infer_instance
   exact AlgebraicCurve.normFormulaAlong ι hfin hsep
@@ -191,15 +191,15 @@ theorem isoTarget_odd (n : ℕ) (W : WeierstrassCurve F) [W.IsElliptic]
     Nonempty (IsoTarget W g L) := by
   have hΔ' : (W.veluQuotient (W.oddOrderSummingSet g n)).Δ ≠ 0 :=
     WeierstrassCurve.veluQuotient_oddOrderSummingSet_discriminant_ne_zero two_ne_zero W n g hg
-  haveI hell : (W.veluQuotient (W.oddOrderSummingSet g n)).IsElliptic :=
+  have hell : (W.veluQuotient (W.oddOrderSummingSet g n)).IsElliptic :=
     ⟨isUnit_iff_ne_zero.mpr hΔ'⟩
-  haveI : IsDedekindDomain (W.veluQuotient (W.oddOrderSummingSet g n)).toAffine.CoordinateRing :=
+  have : IsDedekindDomain (W.veluQuotient (W.oddOrderSummingSet g n)).toAffine.CoordinateRing :=
     CoordinateRing.isDedekindDomain (W.veluQuotient (W.oddOrderSummingSet g n))
   obtain ⟨gV, hcV, haV⟩ := exists_genusOnePlaceGate_isCentred_and_abelTheorem
     (W := (W.veluQuotient (W.oddOrderSummingSet g n)).toAffine)
-  letI := gV
-  haveI := hcV
-  haveI := haV
+  let := gV
+  have := hcV
+  have := haV
   obtain ⟨ι, hι, hfin, -, hker⟩ :=
     WeierstrassCurve.exists_veluFunctionFieldHom_pointMapOfPushforward_ker_eq_zmultiples hg hΔ'
   have hj : (W.veluQuotient (W.oddOrderSummingSet g n)).j ∈ L :=
@@ -253,15 +253,15 @@ theorem isoTarget_even_step (M : ℕ) (hM : 0 < M)
 
   have hΔW : W.Δ ≠ 0 := W.isUnit_Δ.ne_zero
   have hΔ₁ : (W.veluQuotient2 x₀ y₀).Δ ≠ 0 := WeierstrassCurve.veluQuotient2_Delta_ne_zero hΔW hQeq hgy
-  haveI : (W.veluQuotient2 x₀ y₀).IsElliptic :=
+  have : (W.veluQuotient2 x₀ y₀).IsElliptic :=
     WeierstrassCurve.isElliptic_veluQuotient2_of_isElliptic hQeq hgy
-  haveI : IsDedekindDomain (W.veluQuotient2 x₀ y₀).toAffine.CoordinateRing :=
+  have : IsDedekindDomain (W.veluQuotient2 x₀ y₀).toAffine.CoordinateRing :=
     CoordinateRing.isDedekindDomain (W.veluQuotient2 x₀ y₀)
   obtain ⟨gV, hcV, haV⟩ := exists_genusOnePlaceGate_isCentred_and_abelTheorem
     (W := (W.veluQuotient2 x₀ y₀).toAffine)
-  letI := gV
-  haveI := hcV
-  haveI := haV
+  let := gV
+  have := hcV
+  have := haV
 
   obtain ⟨ι₁, hι₁, hfin₁, hseam⟩ :=
     WeierstrassCurve.exists_velu2FunctionFieldHom_restrictAlong_placeOfPoint_veluPointMap2 hQeq hgy hΔ₁
@@ -345,10 +345,10 @@ theorem isoTarget_even_step (M : ℕ) (hM : 0 < M)
     (by rw [WeierstrassCurve.veluQuotient2_a₁]; exact h₁)
     (by rw [WeierstrassCurve.veluQuotient2_a₂]; exact h₂)
     (by rw [WeierstrassCurve.veluQuotient2_a₃]; exact h₃) h₄' h₆' (p₁ g) hg₁ord hcoord₁
-  letI := T₂.gate
-  haveI := T₂.ell
-  haveI := T₂.centred
-  haveI := T₂.abel
+  let := T₂.gate
+  have := T₂.ell
+  have := T₂.centred
+  have := T₂.abel
   have hN₂ : NormFormulaAlong F T₂.ι T₂.hfin := normFormulaAlong_of_elliptic T₂.ι T₂.hfin
   set p₂ := pointMapOfPushforward T₂.ι T₂.hι T₂.hfin hN₂ with hp₂_def
   have hker₂ : p₂.ker = AddSubgroup.zmultiples (p₁ g) := T₂.ker_eq hN₂
@@ -411,11 +411,11 @@ theorem main {N : ℕ} [NeZero N] (data : ModularCurve.ModularPolynomialData N)
     r ∈ L := by
   classical
 
-  haveI : IsDedekindDomain W.toAffine.CoordinateRing := CoordinateRing.isDedekindDomain W
+  have : IsDedekindDomain W.toAffine.CoordinateRing := CoordinateRing.isDedekindDomain W
   obtain ⟨gW, hcW, haW⟩ := exists_genusOnePlaceGate_isCentred_and_abelTheorem (W := W.toAffine)
-  letI := gW
-  haveI := hcW
-  haveI := haW
+  let := gW
+  have := hcW
+  have := haW
   have hNs : ∀ D : IsogenyEndDatum W.toAffine, NormFormulaAlong F D.ι D.hfin := fun D =>
     normFormulaAlong_of_elliptic D.ι D.hfin
   have hEnd : ∀ D : IsogenyEndDatum W.toAffine, ∃ m : ℤ, ∀ P : W.toAffine.Point,
@@ -435,8 +435,8 @@ theorem main {N : ℕ} [NeZero N] (data : ModularCurve.ModularPolynomialData N)
     refine Finset.sum_pos' (fun _ _ => Nat.zero_le _) ⟨1, ?_, ?_⟩
     · simp [Nat.mem_divisors, NeZero.ne N]
     · simp [hN0]
-  haveI : Finite B := Nat.finite_of_card_ne_zero (hBcard ▸ hψpos.ne')
-  haveI : Fintype B := Fintype.ofFinite _
+  have : Finite B := Nat.finite_of_card_ne_zero (hBcard ▸ hψpos.ne')
+  have : Fintype B := Fintype.ofFinite _
 
   have hgen : ∀ H : B, ∃ g : W.toAffine.Point, AddSubgroup.zmultiples g = H.1 ∧ addOrderOf g = N :=
     fun H => exists_generator_of_isAddCyclic H.1 H.2.1 H.2.2
@@ -457,10 +457,10 @@ theorem main {N : ℕ} [NeZero N] (data : ModularCurve.ModularPolynomialData N)
 
   have hjHroot : ∀ H : B, Φj.IsRoot (jH H) := by
     intro H
-    letI := (T H).gate
-    haveI := (T H).ell
-    haveI := (T H).centred
-    haveI := (T H).abel
+    let := (T H).gate
+    have := (T H).ell
+    have := (T H).centred
+    have := (T H).abel
     have hN' : NormFormulaAlong F (T H).ι (T H).hfin := normFormulaAlong_of_elliptic _ _
     have hker := (T H).ker_eq hN'
     have hcyc : IsAddCyclic (pointMapOfPushforward (T H).ι (T H).hι (T H).hfin hN').ker := by
@@ -472,14 +472,14 @@ theorem main {N : ℕ} [NeZero N] (data : ModularCurve.ModularPolynomialData N)
 
   have hjHinj : Function.Injective jH := by
     intro H H' hjeq
-    letI := (T H).gate
-    haveI := (T H).ell
-    haveI := (T H).centred
-    haveI := (T H).abel
-    letI := (T H').gate
-    haveI := (T H').ell
-    haveI := (T H').centred
-    haveI := (T H').abel
+    let := (T H).gate
+    have := (T H).ell
+    have := (T H).centred
+    have := (T H).abel
+    let := (T H').gate
+    have := (T H').ell
+    have := (T H').centred
+    have := (T H').abel
     have hN₁ : NormFormulaAlong F (T H).ι (T H).hfin := normFormulaAlong_of_elliptic _ _
     have hN₂ : NormFormulaAlong F (T H').ι (T H').hfin := normFormulaAlong_of_elliptic _ _
     have hker := (T H).ker_eq hN₁
@@ -539,8 +539,8 @@ theorem solution
   ·
     exact ModularCurve.ModularPolynomialData.mem_of_isRoot_map_j_of_transcendental_of_odd hodd data W
       ht L h₁ h₂ h₃ h₄ h₆ htors r hr
-  · haveI : IsAlgClosed (HahnSeries ℚ (AlgebraicClosure ℚ)) := HahnSeries.isAlgClosed_rat
-    haveI : CharZero (HahnSeries ℚ (AlgebraicClosure ℚ)) :=
+  · have : IsAlgClosed (HahnSeries ℚ (AlgebraicClosure ℚ)) := HahnSeries.isAlgClosed_rat
+    have : CharZero (HahnSeries ℚ (AlgebraicClosure ℚ)) :=
       (RingHom.charZero_iff (HahnSeries.C (R := AlgebraicClosure ℚ) (Γ := ℚ)).injective).mp
         inferInstance
 

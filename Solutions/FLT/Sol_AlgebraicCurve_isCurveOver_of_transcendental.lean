@@ -34,10 +34,10 @@ theorem solution
   have hkae : Module.Free F Ω[F⁄K] ∧ Module.finrank F Ω[F⁄K] = 1 :=
     AlgebraicCurve.kaehlerRankOne_of_transcendental htr hsep
   have hfin : ∀ v : Place K F, Module.Finite K v.ResidueField := by
-    haveI := hfd
-    haveI := hsep
+    have := hfd
+    have := hsep
     set e : RatFunc K ≃ₐ[K] K⟮x⟯ := RatFunc.algEquivOfTranscendental x htr with he
-    letI : Algebra (RatFunc K) F :=
+    let : Algebra (RatFunc K) F :=
       ((algebraMap K⟮x⟯ F).comp e.toAlgHom.toRingHom).toAlgebra
     have hsq : RingHom.comp (algebraMap (RatFunc K) F)
           (e.symm.toRingEquiv : K⟮x⟯ →+* RatFunc K)
@@ -45,18 +45,18 @@ theorem solution
       refine RingHom.ext fun a => ?_
       show algebraMap K⟮x⟯ F (e (e.symm a)) = algebraMap K⟮x⟯ F a
       rw [e.apply_symm_apply]
-    haveI : IsScalarTower K (RatFunc K) F :=
+    have : IsScalarTower K (RatFunc K) F :=
       IsScalarTower.of_algebraMap_eq fun a => by
         show algebraMap K F a = algebraMap K⟮x⟯ F (e (algebraMap K (RatFunc K) a))
         rw [e.commutes, ← IsScalarTower.algebraMap_apply]
-    haveI : FiniteDimensional (RatFunc K) F :=
+    have : FiniteDimensional (RatFunc K) F :=
       Module.Finite.of_equiv_equiv e.symm.toRingEquiv (RingEquiv.refl F) hsq
-    haveI : Algebra.IsSeparable (RatFunc K) F :=
+    have : Algebra.IsSeparable (RatFunc K) F :=
       Algebra.IsSeparable.of_equiv_equiv e.symm.toRingEquiv (RingEquiv.refl F) hsq
     intro v
-    haveI h1 : Module.Finite (v.restrict (RatFunc K)).ResidueField v.ResidueField :=
+    have h1 : Module.Finite (v.restrict (RatFunc K)).ResidueField v.ResidueField :=
       Place.finite_residueField_of_finiteDimensional (F := RatFunc K) v
-    haveI h2 : Module.Finite K (v.restrict (RatFunc K)).ResidueField :=
+    have h2 : Module.Finite K (v.restrict (RatFunc K)).ResidueField :=
       (AlgebraicCurve.instIsCurveOverRatFunc K).finiteResidue _
     exact Module.Finite.trans (v.restrict (RatFunc K)).ResidueField v.ResidueField
   exact { toHasPrincipalDivisors := hprin, finiteResidue := hfin, kaehler_free_rank_one := hkae }

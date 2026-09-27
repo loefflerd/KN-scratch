@@ -31,7 +31,7 @@ theorem conj_mem_Gamma1 {γ A : SL(2, ℤ)} (hγ : γ ∈ Gamma0 M) (hA : A ∈ 
   have hA1 : A₀ ∈ Gamma1' M := by
     rw [Gamma1_to_Gamma0_mem]
     exact (Gamma1_mem M A).mp hA
-  haveI : (Gamma1' M).Normal := by
+  have : (Gamma1' M).Normal := by
     change ((Gamma0Map M).ker).Normal
     infer_instance
   have hconj : γ₀ * A₀ * γ₀⁻¹ ∈ Gamma1' M := Subgroup.Normal.conj_mem inferInstance A₀ hA1 γ₀

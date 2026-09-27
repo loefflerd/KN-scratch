@@ -29,7 +29,7 @@ variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 theorem exists_digit [IsAlgClosed K] (v : Place K F) [Module.Finite K v.ResidueField]
     {π : v.toValuationSubring} (hπ : Irreducible π) (o : v.toValuationSubring) :
     ∃ a : K, ∃ o' : v.toValuationSubring, o = algebraMap K v.toValuationSubring a + π * o' := by
-  haveI : Algebra.IsIntegral K v.ResidueField := Algebra.IsIntegral.of_finite K _
+  have : Algebra.IsIntegral K v.ResidueField := Algebra.IsIntegral.of_finite K _
   have hbij : Function.Bijective (algebraMap K v.ResidueField) :=
     IsAlgClosed.algebraMap_bijective_of_isIntegral
   obtain ⟨a, ha⟩ := hbij.2 (IsLocalRing.residue v.toValuationSubring o)
@@ -67,7 +67,7 @@ theorem solution
   classical
   set Tot := ∑ j ∈ g.support, algebraMap K' F' (B j) * algebraMap F F' (g j) with hTot
   have hsne : g.support.Nonempty := Finsupp.support_nonempty_iff.mpr hg
-  haveI : Module.Finite K v.ResidueField := IsCurveOver.finiteResidue v
+  have : Module.Finite K v.ResidueField := IsCurveOver.finiteResidue v
   obtain ⟨j₁, hj₁, hj₁m⟩ := g.support.exists_mem_eq_inf' hsne (fun j => v.ord (g j))
   set m := g.support.inf' hsne (fun j => v.ord (g j)) with hm
   have hmle : ∀ j ∈ g.support, m ≤ v.ord (g j) := fun j hj => Finset.inf'_le _ hj

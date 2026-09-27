@@ -29,7 +29,7 @@ variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 
 theorem not_isSeparable [IsCurveOver K F] : ¬ Algebra.IsSeparable K F := by
   intro hsep
-  haveI : Algebra.FormallyUnramified K F := Algebra.FormallyUnramified.of_isSeparable K F
+  have : Algebra.FormallyUnramified K F := Algebra.FormallyUnramified.of_isSeparable K F
   exact false_of_nontrivial_of_subsingleton Ω[F⁄K]
 
 theorem not_isAlgebraic [PerfectField K] [IsCurveOver K F] :
@@ -142,7 +142,7 @@ theorem finrank_kaehler_eq_card_of_separating' {s : Finset F}
       (IntermediateField.adjoin K (Set.range ((↑) : s → F))) :=
     IntermediateField.equivOfEq heq
 
-  haveI : Algebra.IsSeparable (IntermediateField.adjoin K (Set.range ((↑) : s → F))) F :=
+  have : Algebra.IsSeparable (IntermediateField.adjoin K (Set.range ((↑) : s → F))) F :=
     Algebra.IsSeparable.of_equiv_equiv e.toRingEquiv (RingEquiv.refl F)
       (RingHom.ext fun x => rfl)
   exact finrank_kaehler_eq_card_of_separating hs
@@ -155,7 +155,7 @@ theorem trdeg_le_one [PerfectField K] [Algebra.EssFiniteType K F] [IsCurveOver K
     Algebra.trdeg K F ≤ 1 := by
   obtain ⟨s, hs, hsep⟩ := exists_isTranscendenceBasis_and_isSeparable_of_perfectField K F
 
-  haveI := hsep
+  have := hsep
   have hcard : s.card = 1 := by
     rw [← finrank_kaehler_eq_card_of_separating' hs.1, IsCurveOver.finrank_kaehler]
 
@@ -210,12 +210,12 @@ theorem exists_separating_transcendental_s6 [PerfectField K] [Algebra.EssFiniteT
 
   have heq : IntermediateField.adjoin K (↑({t} : Finset F) : Set F) = K⟮t⟯ := by
     rw [Finset.coe_singleton]
-  haveI hsep' : Algebra.IsSeparable K⟮t⟯ F :=
+  have hsep' : Algebra.IsSeparable K⟮t⟯ F :=
     Algebra.IsSeparable.of_equiv_equiv
       (IntermediateField.equivOfEq heq).toRingEquiv (RingEquiv.refl F)
       (RingHom.ext fun _ => rfl)
 
-  haveI : Algebra.EssFiniteType K⟮t⟯ F := Algebra.EssFiniteType.of_comp K K⟮t⟯ F
+  have : Algebra.EssFiniteType K⟮t⟯ F := Algebra.EssFiniteType.of_comp K K⟮t⟯ F
   exact ⟨t, htr, Algebra.finite_of_essFiniteType_of_isAlgebraic, hsep'⟩
 
 end IsCurveOver

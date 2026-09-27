@@ -109,7 +109,7 @@ variable {R : Type*} [CommRing R] (p : ℕ) [Fact p.Prime] [CharP R p]
 theorem pow_char_single_one_eq (n : ℤ) :
     (HahnSeries.single n (1 : R)) ^ p
       = laurentMap (frobenius R p) (qExpand R p (HahnSeries.single n (1 : R))) := by
-  haveI : ExpChar R p := ExpChar.prime (Fact.out : p.Prime)
+  have : ExpChar R p := ExpChar.prime (Fact.out : p.Prime)
   rw [HahnSeries.single_pow, one_pow, qExpand_single, laurentMap_single,
     show frobenius R p 1 = 1 from (frobenius R p).map_one,
     show (p • n : ℤ) = (p : ℤ) * n from nsmul_eq_mul p n]
@@ -118,7 +118,7 @@ theorem pow_char_ofPowerSeries_eq (u : PowerSeries R) :
     (HahnSeries.ofPowerSeries ℤ R u) ^ p
       = laurentMap (frobenius R p)
           (qExpand R p (HahnSeries.ofPowerSeries ℤ R u)) := by
-  haveI : ExpChar R p := ExpChar.prime (Fact.out : p.Prime)
+  have : ExpChar R p := ExpChar.prime (Fact.out : p.Prime)
   rw [qExpand_ofPowerSeries_eq_expand p u, laurentMap_ofPowerSeries, ← map_pow]
   congr 1
   exact (MvPowerSeries.map_frobenius_expand p (NeZero.ne p) (f := u)).symm
@@ -149,7 +149,7 @@ section IntCastImage
 variable {K : Type*} [CommRing K] (ℓ : ℕ) [Fact ℓ.Prime] [CharP K ℓ]
 
 theorem intCast_pow_char_eq (n : ℤ) : ((n : K) : K) ^ ℓ = (n : K) := by
-  haveI : ExpChar K ℓ := ExpChar.prime (Fact.out : ℓ.Prime)
+  have : ExpChar K ℓ := ExpChar.prime (Fact.out : ℓ.Prime)
   have h : (frobenius K ℓ).comp (Int.castRingHom K) = Int.castRingHom K :=
     RingHom.ext_int _ _
   calc ((n : K) : K) ^ ℓ = frobenius K ℓ (Int.castRingHom K n) := rfl

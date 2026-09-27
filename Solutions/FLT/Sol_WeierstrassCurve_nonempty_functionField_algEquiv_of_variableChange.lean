@@ -152,7 +152,7 @@ theorem pointPullbackCoordHomTo_injective {xP yP : L}
     (hx : Function.Injective (Polynomial.aeval (R := F) xP)) :
     Function.Injective (pointPullbackCoordHomTo h) := by
   have hker : RingHom.ker (pointPullbackCoordHomTo h).toRingHom = ⊥ := by
-    haveI : Module.Finite F[X] W.CoordinateRing :=
+    have : Module.Finite F[X] W.CoordinateRing :=
       Module.Finite.of_basis (CoordinateRing.basis W)
     refine Ideal.eq_bot_of_comap_eq_bot (R := F[X]) ?_
     rw [RingHom.comap_ker, pointPullbackCoordHomTo_comp_algebraMap,

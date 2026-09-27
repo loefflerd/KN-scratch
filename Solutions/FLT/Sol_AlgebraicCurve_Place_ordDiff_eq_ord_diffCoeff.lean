@@ -108,7 +108,7 @@ theorem ordDiff_D_of_ord_pos (v : Place K F) {f : F} (hf : 0 < v.ord f) :
   obtain ⟨n, hn⟩ : ∃ n : ℕ, v.ord f = n := ⟨(v.ord f).toNat, (Int.toNat_of_nonneg hf.le).symm⟩
   have hn0 : n ≠ 0 := by rintro rfl; simp [hn] at hf
   rw [hn, zpow_natCast] at hu
-  haveI : CharZero F := charZero_of_injective_algebraMap (algebraMap K F).injective
+  have : CharZero F := charZero_of_injective_algebraMap (algebraMap K F).injective
   set uF : F := ((u : v.toValuationSubring) : F) with huF
   have huF0 : uF ≠ 0 := by
     intro h; apply hf0; rw [hu, h, zero_mul]

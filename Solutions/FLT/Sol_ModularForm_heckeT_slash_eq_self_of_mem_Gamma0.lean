@@ -329,7 +329,7 @@ theorem heckeT_slash_eq_self_of_mem_Gamma0' {N : ℕ} (k : ℤ) {p : ℕ} (hp : 
     (γ : Matrix.GeneralLinearGroup (Fin 2) ℝ)
     (hγ : γ ∈ (CongruenceSubgroup.Gamma0 N : Subgroup (Matrix.GeneralLinearGroup (Fin 2) ℝ))) :
     SlashAction.map k γ (ModularForm.heckeT k p f) = ModularForm.heckeT k p f := by
-  haveI : Fact p.Prime := ⟨hp⟩
+  have : Fact p.Prime := ⟨hp⟩
   obtain ⟨g, hg, rfl⟩ := hγ
   exact heckeT_slash_mapGL k hpN f hf g hg
 
@@ -343,7 +343,7 @@ theorem heckeU_slash_eq_self_of_mem_Gamma0' {N : ℕ} (k : ℤ) {p : ℕ} (hpN :
     SlashAction.map k γ (ModularForm.heckeU k p f) = ModularForm.heckeU k p f := by
   rcases Nat.eq_zero_or_pos p with rfl | hp
   · simp
-  haveI : NeZero p := ⟨hp.ne'⟩
+  have : NeZero p := ⟨hp.ne'⟩
   obtain ⟨g, hg, rfl⟩ := hγ
   exact heckeU_slash_mapGL k hpN f hf g hg
 

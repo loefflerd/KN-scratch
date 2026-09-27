@@ -69,7 +69,7 @@ omit [Algebra ℂ K] in
 
 theorem isIntegral_of_isIntegral_adjoin_singleton {A : Type*} [CommRing A] [Algebra A K] {r z : K}
     (hr : IsIntegral A r) (hz : IsIntegral ↥(Algebra.adjoin A {r}) z) : IsIntegral A z := by
-  haveI : Algebra.IsIntegral A ↥(Algebra.adjoin A {r}) :=
+  have : Algebra.IsIntegral A ↥(Algebra.adjoin A {r}) :=
     Algebra.IsIntegral.adjoin fun _ h ↦ by rw [Set.mem_singleton_iff] at h; rw [h]; exact hr
   exact isIntegral_trans z hz
 
@@ -145,7 +145,7 @@ theorem card_rootFinset_minpoly_KFld {c : ℂ} (hc : IsIntegral ↥F c) :
       (minpoly ↥(KFld F S) (algebraMap ℂ K c)).natDegree := by
   set ι := algebraMap ℂ K
   set L₀ := KFld F S
-  haveI : CharZero ↥L₀ := charZero_KFld F L₀
+  have : CharZero ↥L₀ := charZero_KFld F L₀
   have hint : IsIntegral ↥L₀ (ι c) := isIntegral_KFld_algebraMap F hc
   set m₁ := minpoly ↥L₀ (ι c)
   have hsep : (m₁.map (algebraMap ↥L₀ K)).Separable :=
@@ -274,7 +274,7 @@ theorem mem_span_RSet_of_adjoin_simple (hBS : B ⊆ S) {c : ℂ} (hc : IsIntegra
   classical
   set ι := algebraMap ℂ K
   set L₀ := KFld F S
-  haveI : CharZero ↥L₀ := charZero_KFld F L₀
+  have : CharZero ↥L₀ := charZero_KFld F L₀
   have hint : IsIntegral ↥L₀ (ι c) := isIntegral_KFld_algebraMap F hc
   set E := IntermediateField.adjoin ↥L₀ {ι c}
   set g := IntermediateField.AdjoinSimple.gen ↥L₀ (ι c)

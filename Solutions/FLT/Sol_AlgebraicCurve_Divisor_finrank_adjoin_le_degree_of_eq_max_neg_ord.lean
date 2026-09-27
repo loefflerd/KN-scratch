@@ -51,7 +51,7 @@ theorem solution
   set A : Subalgebra K E := Algebra.adjoin K ({xE} : Set E) with hA
   have hA_dom : IsDomain A := inferInstance
 
-  haveI hfrac : IsFractionRing A E := by
+  have hfrac : IsFractionRing A E := by
 
     refine IsFractionRing.of_field A E fun z => ?_
 
@@ -185,7 +185,7 @@ theorem solution
 
   have hlow : ∀ m, c ≤ m → (n : ℤ) * (m - c + 1) ≤ ell (m • D) := by
     intro m hm
-    haveI : FiniteDimensional K (LSpace (m • D)) := finiteDimensional_lSpace (m • D)
+    have : FiniteDimensional K (LSpace (m • D)) := finiteDimensional_lSpace (m • D)
 
     set ι := Fin (m - c + 1) × Fin n
     have hli' : LinearIndependent K (fun p : ι => (⟨x ^ (p.1 : ℕ) * u p.2,

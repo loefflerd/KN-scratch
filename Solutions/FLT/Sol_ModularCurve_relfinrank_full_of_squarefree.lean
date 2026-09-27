@@ -194,8 +194,8 @@ theorem roots_phiProd_conj_nodup (p : ℕ) [hp : Fact p.Prime] (ζ : Kˣ) (hζ :
 
 theorem exists_isPrimitiveRoot_cyclotomicField (N : ℕ) [NeZero N] :
     ∃ z : CyclotomicField N ℚ, IsPrimitiveRoot z N := by
-  haveI : NeZero ((N : ℕ) : ℚ) := ⟨Nat.cast_ne_zero.mpr (NeZero.ne N)⟩
-  haveI : IsCyclotomicExtension {N} ℚ (CyclotomicField N ℚ) := CyclotomicField.isCyclotomicExtension N ℚ
+  have : NeZero ((N : ℕ) : ℚ) := ⟨Nat.cast_ne_zero.mpr (NeZero.ne N)⟩
+  have : IsCyclotomicExtension {N} ℚ (CyclotomicField N ℚ) := CyclotomicField.isCyclotomicExtension N ℚ
   exact IsCyclotomicExtension.exists_isPrimitiveRoot ℚ (CyclotomicField N ℚ) (Set.mem_singleton N) (NeZero.ne N)
 
 def cycUnit (N : ℕ) [NeZero N] : (CyclotomicField N ℚ)ˣ :=
@@ -434,8 +434,8 @@ private theorem w1_relfinrank_insert (S : Finset ℕ) (hS : ∀ q ∈ S, Nat.Pri
       (IntermediateField.adjoin ℚ
         (insert jq {x : LaurentSeries ℚ | ∃ q ∈ insert p S, ∃ _ : NeZero q, x = jqN q}))
       = p + 1 := by
-  haveI : Fact (Nat.Prime p) := ⟨pp⟩
-  haveI : NeZero p := ⟨pp.ne_zero⟩
+  have : Fact (Nat.Prime p) := ⟨pp⟩
+  have : NeZero p := ⟨pp.ne_zero⟩
   have h : IntermediateField.adjoin ℚ
         (insert jq {x : LaurentSeries ℚ | ∃ q ∈ S, ∃ _ : NeZero q, x = jqN q}) ≤
       IntermediateField.adjoin ℚ
@@ -508,7 +508,7 @@ private theorem ModularCurve.relfinrank_full_of_squarefree (N : ℕ) [NeZero N] 
 
 p2m_open_scoped "ModularCurve" in
 private theorem ModularCurve.relfinrank_full_mul_prime (N : ℕ) [NeZero N] (hN : Squarefree N) {ℓ : ℕ} (hℓ : ℓ.Prime) (hℓN : ¬ ℓ ∣ N) : IntermediateField.relfinrank (modularFunctionFieldFull N) (modularFunctionFieldFull (N * ℓ)) = ℓ + 1 := by
-  haveI : NeZero (N * ℓ) := ⟨mul_ne_zero (NeZero.ne N) hℓ.ne_zero⟩
+  have : NeZero (N * ℓ) := ⟨mul_ne_zero (NeZero.ne N) hℓ.ne_zero⟩
   have hcop : N.Coprime ℓ := Nat.coprime_comm.mp (hℓ.coprime_iff_not_dvd.mpr hℓN)
   have hNℓ : Squarefree (N * ℓ) := Nat.squarefree_mul_iff.mpr ⟨hcop, hN, hℓ.prime.squarefree⟩
   have hfac : (N * ℓ).primeFactors = insert ℓ N.primeFactors := by

@@ -213,7 +213,7 @@ theorem intSeriesC_injective (K : Type*) [Field K] [CharZero K] : Function.Injec
 variable (L) in
 
 theorem intSeriesC_ne_zero_of_ne_zero {e : PowerSeries ℤ} (he : intSeriesC k e ≠ 0) : intSeriesC L e ≠ 0 := by
-  haveI := charZero_L L
+  have := charZero_L L
   intro h0
   apply he
   have : e = 0 := intSeriesC_injective L (h0.trans (intSeriesC_zero L).symm)
@@ -432,9 +432,9 @@ theorem main (A : ValuationSubring L) (π : A →+* k) (Γ : Subgroup (Matrix.Sp
   classical
 
   obtain ⟨t, ht, hfdt⟩ := hF
-  haveI := hfdt
+  have := hfdt
   have hXtr : Transcendental L X := transcendental_upstairs A π Γ a b X hX x hx htr
-  haveI : FiniteDimensional L⟮X⟯ (FL L Γ) := AlgebraicCurve.finiteDimensional_adjoin_of_transcendental t hXtr
+  have : FiniteDimensional L⟮X⟯ (FL L Γ) := AlgebraicCurve.finiteDimensional_adjoin_of_transcendental t hXtr
   set d : ℕ := Module.finrank L⟮X⟯ (FL L Γ) with hd
 
   have hbound : ∀ T : Finset (FK k Γ), (↑T : Set (FK k Γ)) ⊆ monomials L k Γ →
@@ -486,7 +486,7 @@ theorem main (A : ValuationSubring L) (π : A →+* k) (Γ : Subgroup (Matrix.Sp
         map_smul' := fun r v => Subtype.ext (mul_smul_comm _ _ _) }
     have hμinj : Function.Injective μ := fun v v' h =>
       Subtype.ext (mul_left_cancel₀ hu0 (congrArg Subtype.val h :))
-    haveI := hVfd
+    have := hVfd
     obtain ⟨v, hv⟩ := (LinearMap.injective_iff_surjective.mp hμinj) ⟨1, hone⟩
     have huv : u * v = 1 := congrArg Subtype.val hv
     rw [inv_eq_of_mul_eq_one_right huv]

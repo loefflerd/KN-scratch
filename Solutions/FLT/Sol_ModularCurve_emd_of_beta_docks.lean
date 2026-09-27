@@ -111,8 +111,8 @@ private theorem emd_of_beta_docks (N : ℕ) [NeZero N] (j₀ : (AlgebraicClosure
     rw [Nat.card_congr (e1.trans e2)]
     exact hPEO w.1 w.2
 
-  haveI : E₀.IsElliptic := hell
-  haveI : Finite (CycSub E₀ N) := hfin E₀
+  have : E₀.IsElliptic := hell
+  have : Finite (CycSub E₀ N) := hfin E₀
   have hfinH : ∀ w, Finite {H : CycSub E₀ N // f H = w} := fun _ => Subtype.finite
   have hfinψ : ∀ w, Finite {ψ : Emb N j₀ // F ψ = w} := by
     intro w

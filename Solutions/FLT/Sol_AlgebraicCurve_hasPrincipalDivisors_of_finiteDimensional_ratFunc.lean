@@ -273,7 +273,7 @@ private theorem surjective_residueOfCenter (hw : w.restrict F = v) :
       w.ord_nonneg_of_mem (forall_mem_of_restrict_eq hw s)
     omega
 
-  haveI hmax : (fiberCenter F' v hw).asIdeal.IsMaximal :=
+  have hmax : (fiberCenter F' v hw).asIdeal.IsMaximal :=
     (fiberCenter F' v hw).isPrime.isMaximal (fiberCenter F' v hw).ne_bot
   obtain ⟨t, i, hi, hti⟩ := hmax.exists_inv hsP
   have hst : s * t - 1 ∈ (fiberCenter F' v hw).asIdeal := by
@@ -362,7 +362,7 @@ private theorem inertiaDeg_eq_inertiaDeg_fiberCenter (hw : w.restrict F = v) :
     w.inertiaDeg F =
       (IsLocalRing.maximalIdeal v.toValuationSubring).inertiaDeg'
         (fiberCenter F' v hw).asIdeal := by
-  haveI := fiberCenter_liesOver hw
+  have := fiberCenter_liesOver hw
   rw [Ideal.inertiaDeg_algebraMap]
   show Module.finrank (w.restrict F).ResidueField w.ResidueField = _
   refine Algebra.finrank_eq_of_equiv_equiv (restrictResidueFieldEquiv hw)
@@ -530,9 +530,9 @@ variable {v : Place K F} {w : Place K F'}
 private theorem relNorm_fiberCenter (hw : w.restrict F = v) :
     Ideal.relNorm v.toValuationSubring (fiberCenter F' v hw).asIdeal
       = IsLocalRing.maximalIdeal v.toValuationSubring ^ w.inertiaDeg F := by
-  haveI : (fiberCenter F' v hw).asIdeal.IsMaximal :=
+  have : (fiberCenter F' v hw).asIdeal.IsMaximal :=
     (fiberCenter F' v hw).isPrime.isMaximal (fiberCenter F' v hw).ne_bot
-  haveI : (fiberCenter F' v hw).asIdeal.LiesOver
+  have : (fiberCenter F' v hw).asIdeal.LiesOver
       (IsLocalRing.maximalIdeal v.toValuationSubring) := fiberCenter_liesOver hw
   rw [Ideal.relNorm_eq_pow_of_isMaximal (fiberCenter F' v hw).asIdeal
     (IsLocalRing.maximalIdeal v.toValuationSubring), inertiaDeg_eq_inertiaDeg_fiberCenter hw,
@@ -544,7 +544,7 @@ private theorem count_normalizedFactors_span_singleton
     (hw : w.restrict F = v) {c : integralClosureAt F' v} (hc : c ≠ 0) :
     (normalizedFactors (Ideal.span {c})).count (fiberCenter F' v hw).asIdeal
       = (w.ord (algebraMap (integralClosureAt F' v) F' c)).toNat := by
-  haveI : (fiberCenter F' v hw).asIdeal.IsPrime := (fiberCenter F' v hw).isPrime
+  have : (fiberCenter F' v hw).asIdeal.IsPrime := (fiberCenter F' v hw).isPrime
 
   have hord0 : 0 ≤ w.ord (algebraMap (integralClosureAt F' v) F' c) :=
     w.ord_nonneg_of_mem (forall_mem_of_restrict_eq hw c)
@@ -573,7 +573,7 @@ private theorem relNorm_span_singleton {c : integralClosureAt F' v}
     rw [Multiset.mem_toFinset] at hQ
     have hQprime : Prime Q := prime_of_normalized_factor Q hQ
     have hQbot : Q ≠ ⊥ := hQprime.ne_zero
-    haveI : Q.IsPrime := Ideal.isPrime_of_prime hQprime
+    have : Q.IsPrime := Ideal.isPrime_of_prime hQprime
     exact ⟨placeOfPrime ⟨Q, inferInstance, hQbot⟩, restrict_placeOfPrime _,
       congrArg HeightOneSpectrum.asIdeal (fiberCenter_placeOfPrime
         (⟨Q, inferInstance, hQbot⟩ : HeightOneSpectrum (integralClosureAt F' v)))⟩
@@ -746,7 +746,7 @@ private theorem finite_setOf_ord_ne_zero_of_finiteDimensional {f : F'} (hf : f �
   ·
     intro w hw
     obtain ⟨i, hi, hci, hord⟩ := w.exists_coeff_ord_ne_zero (F := RatFunc K) hf hw
-    simp only [Set.mem_iUnion, Set.mem_setOf_eq, exists_prop]
+    simp only [Set.mem_iUnion, Set.mem_ofPred_eq, exists_prop]
     refine ⟨i, hi, w.restrict (RatFunc K), ?_, rfl⟩
     intro h0
     apply hord
@@ -763,7 +763,7 @@ p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_hasPrincipalDivisors_of_finiteDim
 theorem solution (K : Type*) [Field K] [CharZero K] (F' : Type*)
     [Field F'] [Algebra K F'] [Algebra (RatFunc K) F'] [IsScalarTower K (RatFunc K) F'] [FiniteDimensional (RatFunc K) F'] :
     HasPrincipalDivisors K F' := by
-  haveI : CharZero (RatFunc K) :=
+  have : CharZero (RatFunc K) :=
     charZero_of_injective_algebraMap (algebraMap K (RatFunc K)).injective
   constructor
   intro f hf

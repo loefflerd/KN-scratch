@@ -34,7 +34,7 @@ private theorem eisRc_isIntegralQExp_of_apply_eq (M : ℕ) [NeZero M] (hM : 3 �
     rw [CongruenceSubgroup.strictPeriods_Gamma1]
     exact AddSubgroup.mem_zmultiples 1
   have hc0 : (c : ZMod M) ≠ 0 := by
-    haveI : Nontrivial (ZMod M) := ZMod.nontrivial_iff.mpr (by omega)
+    have : Nontrivial (ZMod M) := ZMod.nontrivial_iff.mpr (by omega)
     exact c.ne_zero
   have hcneg : (c : ZMod M) ≠ -(c : ZMod M) := by
     intro h

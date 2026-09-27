@@ -190,12 +190,12 @@ theorem finite_extendScalars (X₀ : F₀) [FiniteDimensional ℚ⟮X₀⟯ F₀
       IntermediateField.adjoin L (⇑(coeffEmb L) '' (F₀ : Set (LaurentSeries ℚ)))) :
     Module.Finite L⟮coeffEmb L (X₀ : LaurentSeries ℚ)⟯ (IntermediateField.extendScalars hle) := by
   classical
-  haveI := charZero_L L
+  have := charZero_L L
 
-  haveI : Module.Free ℚ⟮X₀⟯ F₀ := Module.Free.of_divisionRing _ _
+  have : Module.Free ℚ⟮X₀⟯ F₀ := Module.Free.of_divisionRing _ _
   let bF := Module.finBasis ℚ⟮X₀⟯ F₀
   let T : Set (LaurentSeries L) := Set.range fun j => coeffEmb L ((bF j : F₀) : LaurentSeries ℚ)
-  haveI : Finite T := Set.finite_range _ |>.to_subtype
+  have : Finite T := Set.finite_range _ |>.to_subtype
 
   have hcoeQ : ∀ c : ℚ, ((algebraMap ℚ F₀ c : F₀) : LaurentSeries ℚ) = algebraMap ℚ (LaurentSeries ℚ) c :=
     fun c => RingHom.congr_fun (Subsingleton.elim
@@ -238,7 +238,7 @@ theorem finite_extendScalars (X₀ : F₀) [FiniteDimensional ℚ⟮X₀⟯ F₀
     have := Polynomial.hom_eval₂ P (algebraMap ℚ⟮X₀⟯ F₀) Φ (bF j)
     rw [hP, map_zero] at this
     exact this.symm
-  haveI hfinT : FiniteDimensional L⟮coeffEmb L (X₀ : LaurentSeries ℚ)⟯
+  have hfinT : FiniteDimensional L⟮coeffEmb L (X₀ : LaurentSeries ℚ)⟯
       (IntermediateField.adjoin L⟮coeffEmb L (X₀ : LaurentSeries ℚ)⟯ T) :=
     IntermediateField.finiteDimensional_adjoin hint
 
@@ -262,7 +262,7 @@ theorem finite_extendScalars (X₀ : F₀) [FiniteDimensional ℚ⟮X₀⟯ F₀
         (⇑(coeffEmb L) '' (F₀ : Set (LaurentSeries ℚ))) ≤
       IntermediateField.adjoin L⟮coeffEmb L (X₀ : LaurentSeries ℚ)⟯ T :=
     IntermediateField.adjoin_le_iff.mpr hST
-  haveI hfinS : FiniteDimensional L⟮coeffEmb L (X₀ : LaurentSeries ℚ)⟯
+  have hfinS : FiniteDimensional L⟮coeffEmb L (X₀ : LaurentSeries ℚ)⟯
       (IntermediateField.adjoin L⟮coeffEmb L (X₀ : LaurentSeries ℚ)⟯
         (⇑(coeffEmb L) '' (F₀ : Set (LaurentSeries ℚ)))) :=
     finite_adjoin_of_le L _ _ T hle'
@@ -274,9 +274,9 @@ theorem exists_transcendental_finiteDimensional_laurentBaseChange
     ∃ y : laurentBaseChange L F₀, Transcendental L y ∧
       FiniteDimensional L⟮y⟯ (laurentBaseChange L F₀) := by
   classical
-  haveI := charZero_L L
+  have := charZero_L L
   obtain ⟨X₀, hX₀, hfin⟩ := h
-  haveI := hfin
+  have := hfin
   have hxE : coeffEmb L (X₀ : LaurentSeries ℚ) ∈ laurentBaseChange L F₀ :=
     coeffEmb_mem_laurentBaseChange L X₀.2
   let Y : laurentBaseChange L F₀ := ⟨coeffEmb L (X₀ : LaurentSeries ℚ), hxE⟩

@@ -33,7 +33,7 @@ private theorem exists_smul_D_jBar_aux (N : ℕ) [NeZero N]
     ∃ x : modularFunctionFieldBar N,
       ω = x • D (AlgebraicClosure ℚ) (modularFunctionFieldBar N)
         ⟨coeffEmb (AlgebraicClosure ℚ) jq, coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (jq_mem_full N)⟩ := by
-  haveI : Algebra.IsSeparable
+  have : Algebra.IsSeparable
       (IntermediateField.adjoin (AlgebraicClosure ℚ)
         ({⟨coeffEmb (AlgebraicClosure ℚ) jq, coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (jq_mem_full N)⟩} :
           Set (modularFunctionFieldBar N)))

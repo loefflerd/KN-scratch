@@ -60,13 +60,13 @@ theorem solution {K F' M : Type*} [Field K] [Field F'] [Field M]
     ∃ σ : M ≃ₐ[F'] M, SemilinearAut.ofAlgAut (σ.restrictScalars K) • W = W' := by
   set w : Place K F' := W.restrict F'
   have hW : W.restrict F' = w := rfl
-  letI := IsIntegralClosure.MulSemiringAction w.toValuationSubring F' M (integralClosureAt M w)
-  haveI : IsGaloisGroup Gal(M/F') w.toValuationSubring (integralClosureAt M w) :=
+  let := IsIntegralClosure.MulSemiringAction w.toValuationSubring F' M (integralClosureAt M w)
+  have : IsGaloisGroup Gal(M/F') w.toValuationSubring (integralClosureAt M w) :=
     IsGaloisGroup.of_isFractionRing Gal(M/F') w.toValuationSubring (integralClosureAt M w) F' M
-  haveI hp : (fiberCenter M w hW).asIdeal.IsPrime := (fiberCenter M w hW).isPrime
-  haveI hp' : (fiberCenter M w h).asIdeal.IsPrime := (fiberCenter M w h).isPrime
-  haveI := fiberCenter_liesOver (F' := M) hW
-  haveI := fiberCenter_liesOver (F' := M) h
+  have hp : (fiberCenter M w hW).asIdeal.IsPrime := (fiberCenter M w hW).isPrime
+  have hp' : (fiberCenter M w h).asIdeal.IsPrime := (fiberCenter M w h).isPrime
+  have := fiberCenter_liesOver (F' := M) hW
+  have := fiberCenter_liesOver (F' := M) h
   obtain ⟨σ, hσ'⟩ := Ideal.exists_smul_eq_of_isGaloisGroup
     (IsLocalRing.maximalIdeal w.toValuationSubring) (fiberCenter M w hW).asIdeal
     (fiberCenter M w h).asIdeal Gal(M/F')

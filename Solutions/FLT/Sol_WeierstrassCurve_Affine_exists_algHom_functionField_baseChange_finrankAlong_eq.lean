@@ -450,7 +450,7 @@ theorem pointPullbackCoordHomTo_injective {xP yP : L}
     (hx : Function.Injective (Polynomial.aeval (R := F) xP)) :
     Function.Injective (pointPullbackCoordHomTo h) := by
   have hker : RingHom.ker (pointPullbackCoordHomTo h).toRingHom = ⊥ := by
-    haveI : Module.Finite F[X] W.CoordinateRing :=
+    have : Module.Finite F[X] W.CoordinateRing :=
       Module.Finite.of_basis (CoordinateRing.basis W)
     refine Ideal.eq_bot_of_comap_eq_bot (R := F[X]) ?_
     rw [RingHom.comap_ker, pointPullbackCoordHomTo_comp_algebraMap,
@@ -1079,7 +1079,7 @@ def kw_coordinateRingMapAlongGeneral :
 
 theorem kw_coordinateRingTensor_isDomainGeneral : IsDomain (CR ⊗[F] F') := by
   suffices h : IsDomain (F' ⊗[F] CR) by
-    haveI := h
+    have := h
     exact Function.Injective.isDomain (Algebra.TensorProduct.comm F CR F').toRingHom
       (Algebra.TensorProduct.comm F CR F').injective
   set W'' := (W⁄F).toAffine.map (algebraMap F F') with hW''
@@ -1101,16 +1101,16 @@ theorem kw_coordinateRingTensor_isDomainGeneral : IsDomain (CR ⊗[F] F') := by
 theorem kw_functionFieldTensorIsDomain_dischargeGeneral :
     KwFunctionFieldTensorIsDomainGeneral W F F' := by
   show IsDomain (FFₗ ⊗[F] F')
-  haveI hCR : IsDomain (CR ⊗[F] F') := kw_coordinateRingTensor_isDomainGeneral W F F'
-  letI : Algebra (CR ⊗[F] F') (FFₗ ⊗[F] F') :=
+  have hCR : IsDomain (CR ⊗[F] F') := kw_coordinateRingTensor_isDomainGeneral W F F'
+  let : Algebra (CR ⊗[F] F') (FFₗ ⊗[F] F') :=
     (Algebra.TensorProduct.map (IsScalarTower.toAlgHom F CR FFₗ)
       (AlgHom.id F F')).toRingHom.toAlgebra
-  haveI hst : IsScalarTower CR (CR ⊗[F] F') (FFₗ ⊗[F] F') :=
+  have hst : IsScalarTower CR (CR ⊗[F] F') (FFₗ ⊗[F] F') :=
     IsScalarTower.of_algebraMap_eq (R := CR) (S := CR ⊗[F] F') (A := FFₗ ⊗[F] F') fun c => by
       show Algebra.TensorProduct.map (IsScalarTower.toAlgHom F CR FFₗ) (AlgHom.id F F')
           (algebraMap CR (CR ⊗[F] F') c) = algebraMap CR (FFₗ ⊗[F] F') c
       rfl
-  haveI hloc : IsLocalization
+  have hloc : IsLocalization
       (Algebra.algebraMapSubmonoid (CR ⊗[F] F') (nonZeroDivisors CR)) (FFₗ ⊗[F] F') :=
     IsLocalization.tensorProduct_tensorProduct F F' (nonZeroDivisors CR) FFₗ (by
       ext x; simp [RingHom.algebraMap_toAlgebra, Algebra.TensorProduct.map_tmul])
@@ -1148,12 +1148,12 @@ theorem kw_tensorFracIotaFinrankSeam_dischargeGeneral :
   have hιT_fin : ιT.Finite := kw_tensorIotaRingHom_finiteGeneral W F F' D
   have hιFr_am : ∀ t : T, ιFr (algebraMap T FrT t) = algebraMap T FrT (ιT t) :=
     kw_tensorFracIotaRingHomGeneral_algebraMap W F F' D
-  letI algDι : Algebra FF FF := D.ι.toRingHom.toAlgebra
-  letI smulDι : SMul FF FF := algDι.toSMul
-  letI modDι : Module FF FF := Algebra.toModule
+  let algDι : Algebra FF FF := D.ι.toRingHom.toAlgebra
+  let smulDι : SMul FF FF := algDι.toSMul
+  let modDι : Module FF FF := Algebra.toModule
   have hsmul_Dι : ∀ (c x : FF), c • x = D.ι c * x := fun c x => rfl
-  haveI hfinFF : Module.Finite FF FF := D.hfin
-  haveI hfreeFF : Module.Free FF FF := Module.Free.of_divisionRing FF FF
+  have hfinFF : Module.Finite FF FF := D.hfin
+  have hfreeFF : Module.Free FF FF := Module.Free.of_divisionRing FF FF
   let b : Module.Basis (Fin D.degree) FF FF :=
     Module.finBasisOfFinrankEq FF FF (n := D.degree) rfl
   have hrepr_mul : ∀ (c x : FF) (j : Fin D.degree),
@@ -1269,9 +1269,9 @@ theorem kw_tensorFracIotaFinrankSeam_dischargeGeneral :
     have hthis : algebraMap T FrT (q : T) * d j = 0 := by
       rw [← hp' j, hpj, _root_.map_zero]
     exact (mul_eq_zero.mp hthis).resolve_left hq0
-  letI algFr : Algebra FrT FrT := ιFr.toAlgebra
-  letI smulFr : SMul FrT FrT := algFr.toSMul
-  letI modFr : Module FrT FrT := Algebra.toModule
+  let algFr : Algebra FrT FrT := ιFr.toAlgebra
+  let smulFr : SMul FrT FrT := algFr.toSMul
+  let modFr : Module FrT FrT := Algebra.toModule
   have hsmul_Fr : ∀ (c x : FrT), c • x = ιFr c * x := fun c x => rfl
   have hli_modFr : LinearIndependent FrT bFr := by
     rw [Fintype.linearIndependent_iff]

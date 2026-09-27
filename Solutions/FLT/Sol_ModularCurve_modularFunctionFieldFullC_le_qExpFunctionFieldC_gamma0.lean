@@ -21,7 +21,7 @@ theorem solution
       ModularCurve.qExpFunctionFieldC K (CongruenceSubgroup.Gamma0 M) := by
   rw [ModularCurve.modularFunctionFieldFullC, IntermediateField.adjoin_le_iff]
   rintro x ⟨d, hd, hdM, rfl⟩
-  haveI := hd
+  have := hd
   refine ModularCurve.intFormRatiosC_subset K _ ?_
 
   have hle : CongruenceSubgroup.Gamma0 M ≤ CongruenceSubgroup.Gamma0 d := by

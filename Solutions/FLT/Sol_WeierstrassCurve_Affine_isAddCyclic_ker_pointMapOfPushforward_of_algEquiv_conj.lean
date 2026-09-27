@@ -212,7 +212,7 @@ theorem isFinitePlace_iff_exists_placeOfEquation [IsAlgClosed F]
   constructor
   · intro hv
 
-    haveI := hv.centre_isPrime
+    have := hv.centre_isPrime
     have hmax : hv.centre.IsMaximal := Ideal.IsPrime.isMaximal hv.centre_isPrime hv.centre_ne_bot
     obtain ⟨x, y, hxy, hXY⟩ :=
       CoordinateRing.exists_eq_XYIdeal (W := W) (P := hv.centre) hv.centre_ne_bot
@@ -221,7 +221,7 @@ theorem isFinitePlace_iff_exists_placeOfEquation [IsAlgClosed F]
     set w : HeightOneSpectrum W.CoordinateRing := heightOneSpectrumOfEquation hxy with hw
     set A : ValuationSubring W.FunctionField :=
       HeightOneSpectrum.valuationSubringAtPrime W.FunctionField w with hA
-    haveI hAded : IsDedekindDomain A := by rw [hA]; infer_instance
+    have hAded : IsDedekindDomain A := by rw [hA]; infer_instance
     have hle : A ≤ v.toValuationSubring := by
       intro z hz
       rw [hA] at hz
@@ -345,13 +345,13 @@ variable {V W : Affine F} [V.IsElliptic] [W.IsElliptic]
 
 theorem normFormulaAlong_of_elliptic (ι : V.FunctionField →ₐ[F] W.FunctionField)
     (hfin : FiniteAlong F ι) : NormFormulaAlong F ι hfin := by
-  haveI : HasPrincipalDivisors F W.FunctionField := hasPrincipalDivisors_functionField W
-  haveI : CharZero V.FunctionField :=
+  have : HasPrincipalDivisors F W.FunctionField := hasPrincipalDivisors_functionField W
+  have : CharZero V.FunctionField :=
     charZero_of_injective_algebraMap (algebraMap F V.FunctionField).injective
   have hsep : SeparableAlong F ι := by
-    letI := algebraAlong ι
-    haveI := isScalarTower_along ι
-    haveI : Module.Finite V.FunctionField W.FunctionField := hfin
+    let := algebraAlong ι
+    have := isScalarTower_along ι
+    have : Module.Finite V.FunctionField W.FunctionField := hfin
     show Algebra.IsSeparable V.FunctionField W.FunctionField
     infer_instance
   exact AlgebraicCurve.normFormulaAlong ι hfin hsep
@@ -950,13 +950,13 @@ theorem kw_toPointAddEquiv_mk (z : ℂ) :
 
 scoped instance kw_infinite_quotientLattice : Infinite (ℂ ⧸ L.lattice.toAddSubgroup) := by
   rw [← not_finite_iff_infinite]; intro hfin
-  haveI : Countable L.lattice.toAddSubgroup :=
+  have : Countable L.lattice.toAddSubgroup :=
     Set.countable_coe_iff.mpr L.kw_countable_lattice
-  haveI : Countable ((ℂ ⧸ L.lattice.toAddSubgroup) × L.lattice.toAddSubgroup) := inferInstance
+  have : Countable ((ℂ ⧸ L.lattice.toAddSubgroup) × L.lattice.toAddSubgroup) := inferInstance
   have hCc : Countable ℂ :=
     Countable.of_equiv _ (AddSubgroup.addGroupEquivQuotientProdAddSubgroup
       (s := L.lattice.toAddSubgroup)).symm
-  haveI : Uncountable ℂ := Complex.ofReal_injective.uncountable
+  have : Uncountable ℂ := Complex.ofReal_injective.uncountable
   exact absurd hCc not_countable
 
 scoped instance kw_infinite_point : Infinite L.weierstrassCurve.toAffine.Point :=
@@ -1163,9 +1163,9 @@ def restrictInclusionAlong (φ : F →ₐ[K] F') (hφ : φ.toRingHom.IsIntegral)
 
 scoped instance (φ : F →ₐ[K] F') (hφ : φ.toRingHom.IsIntegral) (w : Place K F') :
     IsLocalHom (restrictInclusionAlong φ hφ w) := by
-  letI := algebraAlong φ
-  haveI := isScalarTower_along φ
-  haveI := isIntegral_along φ hφ
+  let := algebraAlong φ
+  have := isScalarTower_along φ
+  have := isIntegral_along φ hφ
   exact inferInstanceAs (IsLocalHom (Place.restrictInclusion F w))
 
 def restrictResidueMapAlong (φ : F →ₐ[K] F') (hφ : φ.toRingHom.IsIntegral)
@@ -1181,14 +1181,14 @@ theorem inertiaDegAlong_comp (hφ : φ.toRingHom.IsIntegral) (hχ : χ.toRingHom
 
   set w : Place K F' := W.restrictAlong χ hχ with hw
 
-  letI iA : Algebra (W.restrictAlong (χ.comp φ) hχφ).ResidueField W.ResidueField :=
+  let iA : Algebra (W.restrictAlong (χ.comp φ) hχφ).ResidueField W.ResidueField :=
     (restrictResidueMapAlong (χ.comp φ) hχφ W).toAlgebra
-  letI iB : Algebra w.ResidueField W.ResidueField :=
+  let iB : Algebra w.ResidueField W.ResidueField :=
     (restrictResidueMapAlong χ hχ W).toAlgebra
-  letI iC : Algebra (W.restrictAlong (χ.comp φ) hχφ).ResidueField w.ResidueField :=
+  let iC : Algebra (W.restrictAlong (χ.comp φ) hχφ).ResidueField w.ResidueField :=
     (restrictResidueMapAlong φ hφ w).toAlgebra
 
-  haveI : IsScalarTower (W.restrictAlong (χ.comp φ) hχφ).ResidueField
+  have : IsScalarTower (W.restrictAlong (χ.comp φ) hχφ).ResidueField
       w.ResidueField W.ResidueField := by
     refine IsScalarTower.of_algebraMap_eq fun x => ?_
     obtain ⟨a, rfl⟩ := IsLocalRing.residue_surjective x
@@ -1480,12 +1480,12 @@ variable [Algebra K F] [Algebra K F'] [Algebra K F'']
 
 theorem finiteAlong_comp {φ : F →ₐ[K] F'} {ψ : F' →ₐ[K] F''}
     (hφ : FiniteAlong K φ) (hψ : FiniteAlong K ψ) : FiniteAlong K (ψ.comp φ) := by
-  letI := algebraAlong φ
-  letI := algebraAlong ψ
-  letI := algebraAlong (ψ.comp φ)
-  haveI : IsScalarTower F F' F'' := IsScalarTower.of_algebraMap_eq fun _ => rfl
-  haveI : Module.Finite F F' := hφ
-  haveI : Module.Finite F' F'' := hψ
+  let := algebraAlong φ
+  let := algebraAlong ψ
+  let := algebraAlong (ψ.comp φ)
+  have : IsScalarTower F F' F'' := IsScalarTower.of_algebraMap_eq fun _ => rfl
+  have : Module.Finite F F' := hφ
+  have : Module.Finite F' F'' := hψ
   exact Module.Finite.trans F' F''
 
 end Engines
@@ -1602,7 +1602,7 @@ theorem kw_surgehgf4_pck_algEquiv_finiteAlong
     (e : W.FunctionField ≃ₐ[ℂ] V.FunctionField) :
     FiniteAlong ℂ (e.toAlgHom (R := ℂ)) := by
   show @Module.Finite W.FunctionField V.FunctionField _ _ (algebraAlong e.toAlgHom).toModule
-  letI := algebraAlong e.toAlgHom
+  let := algebraAlong e.toAlgHom
   exact Module.Finite.of_surjective
     (Algebra.linearMap W.FunctionField V.FunctionField) e.surjective
 

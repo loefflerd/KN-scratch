@@ -122,7 +122,7 @@ theorem solution
     (∀ P : AlgebraicCurve.Place K ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))), 0 < P.ord y → P.ord y = 3) ∧
       (∀ P : AlgebraicCurve.Place K ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))), 0 < P.ord (y - 1728) → P.ord (y - 1728) = 2) := by
   classical
-  haveI hQalg : Algebra.IsAlgebraic ℚ (AlgebraicClosure ℚ) := by
+  have hQalg : Algebra.IsAlgebraic ℚ (AlgebraicClosure ℚ) := by
     constructor
     intro x
     obtain ⟨p, hp0, hp⟩ := (AlgebraicClosure.isAlgebraic ℚ).isAlgebraic x

@@ -17,7 +17,7 @@ theorem solution {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [
   unfold Place.ramificationIndex
   congr 1
   ext n
-  simp only [Set.mem_setOf_eq]
+  simp only [Set.mem_ofPred_eq]
   refine and_congr_right fun _ => ⟨?_, ?_⟩
   · rintro ⟨f, hf, hford⟩
     exact ⟨g⁻¹ • f, by rwa [ne_eq, smul_eq_zero_iff_eq], by rw [← ord_algebraMap_smul hgg', hford]⟩

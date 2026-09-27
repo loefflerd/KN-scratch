@@ -486,7 +486,7 @@ theorem coeffMap_aeval_jqModC {K' : Type*} [Field K'] (σ : K →+* K') (P : Pol
 theorem aeval_jqModC_ne_jqNModC (hpK : (p : K) ≠ 0) {m : ℕ} (hm : 0 < m) (hw : (jqModC K).coeff ((p * m : ℕ) : ℤ) ≠ 0)
     (P : Polynomial K) : Polynomial.aeval (jqModC K) P ≠ jqNModC K p := by
   intro h
-  haveI : NeZero ((p : ℕ) : K) := ⟨hpK⟩
+  have : NeZero ((p : ℕ) : K) := ⟨hpK⟩
   obtain ⟨z, hz⟩ := HasEnoughRootsOfUnity.exists_primitiveRoot (AlgebraicClosure K) p
   set σ : K →+* AlgebraicClosure K := algebraMap K (AlgebraicClosure K) with hσ
   have hzu : IsUnit z := hz.isUnit hp.out.ne_zero
@@ -518,7 +518,7 @@ theorem jqNModC_not_mem_adjoin_of_forall_aeval_ne
     (h : ∀ P : Polynomial K, Polynomial.aeval (jqModC K) P ≠ jqNModC K p) :
     jqNModC K p ∉ IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K)) := by
   intro hmem
-  haveI : UniqueFactorizationMonoid (Algebra.adjoin K ({jqModC K} : Set (LaurentSeries K))) :=
+  have : UniqueFactorizationMonoid (Algebra.adjoin K ({jqModC K} : Set (LaurentSeries K))) :=
     (ModularCurve.transcendental_jqModC K).uniqueFactorizationMonoid_adjoin
   obtain ⟨data, -, -⟩ := ModularCurve.exists_phiIrreducible_evalSymm p
   have hrel : (phiAtSeed data (jqModC K)).eval (jqNModC K p) = 0 := by

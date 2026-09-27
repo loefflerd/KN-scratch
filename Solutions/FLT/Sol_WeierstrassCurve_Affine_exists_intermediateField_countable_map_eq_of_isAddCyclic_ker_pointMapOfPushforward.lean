@@ -212,7 +212,7 @@ theorem isFinitePlace_iff_exists_placeOfEquation [IsAlgClosed F]
   constructor
   · intro hv
 
-    haveI := hv.centre_isPrime
+    have := hv.centre_isPrime
     have hmax : hv.centre.IsMaximal := Ideal.IsPrime.isMaximal hv.centre_isPrime hv.centre_ne_bot
     obtain ⟨x, y, hxy, hXY⟩ :=
       CoordinateRing.exists_eq_XYIdeal (W := W) (P := hv.centre) hv.centre_ne_bot
@@ -221,7 +221,7 @@ theorem isFinitePlace_iff_exists_placeOfEquation [IsAlgClosed F]
     set w : HeightOneSpectrum W.CoordinateRing := heightOneSpectrumOfEquation hxy with hw
     set A : ValuationSubring W.FunctionField :=
       HeightOneSpectrum.valuationSubringAtPrime W.FunctionField w with hA
-    haveI hAded : IsDedekindDomain A := by rw [hA]; infer_instance
+    have hAded : IsDedekindDomain A := by rw [hA]; infer_instance
     have hle : A ≤ v.toValuationSubring := by
       intro z hz
       rw [hA] at hz
@@ -339,13 +339,13 @@ variable {V W : Affine F} [V.IsElliptic] [W.IsElliptic]
 
 theorem normFormulaAlong_of_elliptic (ι : V.FunctionField →ₐ[F] W.FunctionField)
     (hfin : FiniteAlong F ι) : NormFormulaAlong F ι hfin := by
-  haveI : HasPrincipalDivisors F W.FunctionField := hasPrincipalDivisors_functionField W
-  haveI : CharZero V.FunctionField :=
+  have : HasPrincipalDivisors F W.FunctionField := hasPrincipalDivisors_functionField W
+  have : CharZero V.FunctionField :=
     charZero_of_injective_algebraMap (algebraMap F V.FunctionField).injective
   have hsep : SeparableAlong F ι := by
-    letI := algebraAlong ι
-    haveI := isScalarTower_along ι
-    haveI : Module.Finite V.FunctionField W.FunctionField := hfin
+    let := algebraAlong ι
+    have := isScalarTower_along ι
+    have : Module.Finite V.FunctionField W.FunctionField := hfin
     show Algebra.IsSeparable V.FunctionField W.FunctionField
     infer_instance
   exact AlgebraicCurve.normFormulaAlong ι hfin hsep
@@ -618,8 +618,8 @@ variable {F : Type*} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F] (W :
 
 theorem s13_exists_gate : ∃ (g : GenusOnePlaceGate W),
     @GenusOnePlaceGate.IsCentred F _ W g ∧ @AbelTheorem F _ _ W g := by
-  haveI : IsDedekindDomain W.CoordinateRing := CoordinateRing.isDedekindDomain W
-  haveI : AlgebraicCurve.HasPrincipalDivisors F W.FunctionField := hasPrincipalDivisors_functionField W
+  have : IsDedekindDomain W.CoordinateRing := CoordinateRing.isDedekindDomain W
+  have : AlgebraicCurve.HasPrincipalDivisors F W.FunctionField := hasPrincipalDivisors_functionField W
   exact exists_genusOnePlaceGate_isCentred_and_abelTheorem (W := W)
 
 noncomputable scoped instance (priority := 50) s13GlobalGate : GenusOnePlaceGate W := (s13_exists_gate W).choose
@@ -1376,7 +1376,7 @@ theorem pointPullbackCoordHomTo_injective {xP yP : L}
     (hx : Function.Injective (Polynomial.aeval (R := F) xP)) :
     Function.Injective (pointPullbackCoordHomTo h) := by
   have hker : RingHom.ker (pointPullbackCoordHomTo h).toRingHom = ⊥ := by
-    haveI : Module.Finite F[X] W.CoordinateRing :=
+    have : Module.Finite F[X] W.CoordinateRing :=
       Module.Finite.of_basis (CoordinateRing.basis W)
     refine Ideal.eq_bot_of_comap_eq_bot (R := F[X]) ?_
     rw [RingHom.comap_ker, pointPullbackCoordHomTo_comp_algebraMap,
@@ -1713,7 +1713,7 @@ def kw_coordinateRingMapAlongGeneralNoAC :
 
 theorem kw_coordinateRingTensor_isDomainGeneralNoAC : IsDomain (CR ⊗[F] F') := by
   suffices h : IsDomain (F' ⊗[F] CR) by
-    haveI := h
+    have := h
     exact Function.Injective.isDomain (Algebra.TensorProduct.comm F CR F').toRingHom
       (Algebra.TensorProduct.comm F CR F').injective
   set W'' := (W⁄F).toAffine.map (algebraMap F F') with hW''
@@ -1735,16 +1735,16 @@ theorem kw_coordinateRingTensor_isDomainGeneralNoAC : IsDomain (CR ⊗[F] F') :=
 theorem kw_functionFieldTensorIsDomain_dischargeGeneralNoAC :
     KwFunctionFieldTensorIsDomainGeneralNoAC W F F' := by
   show IsDomain (FFₗ ⊗[F] F')
-  haveI hCR : IsDomain (CR ⊗[F] F') := kw_coordinateRingTensor_isDomainGeneralNoAC W F F'
-  letI : Algebra (CR ⊗[F] F') (FFₗ ⊗[F] F') :=
+  have hCR : IsDomain (CR ⊗[F] F') := kw_coordinateRingTensor_isDomainGeneralNoAC W F F'
+  let : Algebra (CR ⊗[F] F') (FFₗ ⊗[F] F') :=
     (Algebra.TensorProduct.map (IsScalarTower.toAlgHom F CR FFₗ)
       (AlgHom.id F F')).toRingHom.toAlgebra
-  haveI hst : IsScalarTower CR (CR ⊗[F] F') (FFₗ ⊗[F] F') :=
+  have hst : IsScalarTower CR (CR ⊗[F] F') (FFₗ ⊗[F] F') :=
     IsScalarTower.of_algebraMap_eq (R := CR) (S := CR ⊗[F] F') (A := FFₗ ⊗[F] F') fun c => by
       show Algebra.TensorProduct.map (IsScalarTower.toAlgHom F CR FFₗ) (AlgHom.id F F')
           (algebraMap CR (CR ⊗[F] F') c) = algebraMap CR (FFₗ ⊗[F] F') c
       rfl
-  haveI hloc : IsLocalization
+  have hloc : IsLocalization
       (Algebra.algebraMapSubmonoid (CR ⊗[F] F') (nonZeroDivisors CR)) (FFₗ ⊗[F] F') :=
     IsLocalization.tensorProduct_tensorProduct F F' (nonZeroDivisors CR) FFₗ (by
       ext x; simp [RingHom.algebraMap_toAlgebra, Algebra.TensorProduct.map_tmul])
@@ -2088,17 +2088,17 @@ variable {K : Type*} [Field K] (W : WeierstrassCurve.Affine K)
 theorem kw_iPFA_isTranscendenceBasis_coord :
     IsTranscendenceBasis K
       (fun _ : Fin 1 => algebraMap (RatFunc K) W.FunctionField RatFunc.X) := by
-  haveI : Algebra.IsAlgebraic (RatFunc K) (RatFunc K) :=
+  have : Algebra.IsAlgebraic (RatFunc K) (RatFunc K) :=
     Algebra.IsAlgebraic.of_finite (RatFunc K) (RatFunc K)
-  haveI : Algebra.IsAlgebraic (Polynomial K) (RatFunc K) :=
+  have : Algebra.IsAlgebraic (Polynomial K) (RatFunc K) :=
     (IsFractionRing.comap_isAlgebraic_iff
       (A := Polynomial K) (K := RatFunc K) (C := RatFunc K)).mpr inferInstance
-  haveI : FaithfulSMul (Polynomial K) (RatFunc K) :=
+  have : FaithfulSMul (Polynomial K) (RatFunc K) :=
     (faithfulSMul_iff_algebraMap_injective (Polynomial K) (RatFunc K)).mpr
       (IsFractionRing.injective (Polynomial K) (RatFunc K))
-  haveI : Algebra.IsAlgebraic (RatFunc K) W.FunctionField :=
+  have : Algebra.IsAlgebraic (RatFunc K) W.FunctionField :=
     Algebra.IsAlgebraic.of_finite (RatFunc K) W.FunctionField
-  haveI : FaithfulSMul (RatFunc K) W.FunctionField :=
+  have : FaithfulSMul (RatFunc K) W.FunctionField :=
     (faithfulSMul_iff_algebraMap_injective (RatFunc K) W.FunctionField).mpr
       (algebraMap (RatFunc K) W.FunctionField).injective
   have h0 : IsTranscendenceBasis K (fun _ : Fin 1 => (Polynomial.X : Polynomial K)) :=
@@ -2242,7 +2242,7 @@ theorem kw_iPFE_functionField_ringHom_ext {F : Type*} [Field F] {W : Affine F}
     (hF : ∀ r : F, f (algebraMap F W.FunctionField r) = g (algebraMap F W.FunctionField r))
     (hX : f (polyToFunctionField W X) = g (polyToFunctionField W X))
     (hy : f (yGen W) = g (yGen W)) : f = g := by
-  letI : Algebra F L := (f.comp (algebraMap F W.FunctionField)).toAlgebra
+  let : Algebra F L := (f.comp (algebraMap F W.FunctionField)).toAlgebra
   let f' : W.FunctionField →ₐ[F] L := { f with commutes' := fun _ => rfl }
   let g' : W.FunctionField →ₐ[F] L := { g with commutes' := fun r => (hF r).symm }
   have heq : f' = g' := kw_functionField_algHom_ext hX hy
@@ -2453,12 +2453,12 @@ theorem kw_fdn2_qephod_hend2fgd1_bcFGDescent_of_two
     (hKD : KwD5BetweenCurvesKerDescendAlgClosed.{uK}) :
     KwD5BetweenCurvesFGFieldDescent.{uK} := by
   intro K _ _ _ _ E E' _ _ _ _ _ _ _ _ ι hι hfin N _ hcyc hcard
-  letI : Algebra ℚ K := DivisionRing.toRatAlgebra
+  let : Algebra ℚ K := DivisionRing.toRatAlgebra
   obtain ⟨K₀, hfg, E₀, E₀', hE₀ell, hE₀'ell, hE₀map, hE₀'map,
     ι', hι', hfin', _hfinrank, hcompat⟩ := hSD K E E' ι hι hfin
-  haveI : E₀.IsElliptic := hE₀ell
-  haveI : E₀'.IsElliptic := hE₀'ell
-  haveI : Countable (↥K₀) := kw_fdn2_qephod_hend2fgd1_countable_of_fg hfg
+  have : E₀.IsElliptic := hE₀ell
+  have : E₀'.IsElliptic := hE₀'ell
+  have : Countable (↥K₀) := kw_fdn2_qephod_hend2fgd1_countable_of_fg hfg
   obtain ⟨hE₀ACell, hE₀'ACell, ι₀, hι₀, hfin₀, hcyc₀, hcard₀⟩ :=
     hKD K E E' ι hι hfin N hcyc hcard K₀ E₀ E₀' hE₀map hE₀'map ι' hι' hfin' hcompat
   exact ⟨K₀, inferInstance, E₀, E₀', hE₀ell, hE₀'ell, hE₀map, hE₀'map,
@@ -2604,11 +2604,11 @@ theorem kw_surgehgf4_hfgkd_bcTensorFracIotaSeam (hfin' : FiniteAlong F ι') :
     kw_surgehgf4_hfgkd_bcTensorIota_finite E₀ E₀' F F' ι' hfin'
   have hιFr_am : ∀ t : T', ιFr (algebraMap T' FrT' t) = algebraMap T FrT (ιT t) :=
     kw_surgehgf4_hfgkd_bcTensorFracIota_algebraMap E₀ E₀' F F' ι'
-  letI algι : Algebra FF' FF := ι'.toRingHom.toAlgebra
-  letI modι : Module FF' FF := Algebra.toModule
+  let algι : Algebra FF' FF := ι'.toRingHom.toAlgebra
+  let modι : Module FF' FF := Algebra.toModule
   have hsmul_ι : ∀ (c : FF') (x : FF), c • x = ι' c * x := fun c x => rfl
-  haveI hfinFF : Module.Finite FF' FF := hfin'
-  haveI hfreeFF : Module.Free FF' FF := Module.Free.of_divisionRing FF' FF
+  have hfinFF : Module.Finite FF' FF := hfin'
+  have hfreeFF : Module.Free FF' FF := Module.Free.of_divisionRing FF' FF
   let D := finrankAlong F ι'
   let b : Module.Basis (Fin D) FF' FF := Module.finBasisOfFinrankEq FF' FF (n := D) rfl
   have hrepr_mul : ∀ (c : FF') (x : FF) (j : Fin D),
@@ -2726,8 +2726,8 @@ theorem kw_surgehgf4_hfgkd_bcTensorFracIotaSeam (hfin' : FiniteAlong F ι') :
     have hthis : algebraMap T' FrT' (q : T') * d j = 0 := by
       rw [← hp' j, hpj, _root_.map_zero]
     exact (mul_eq_zero.mp hthis).resolve_left hq0
-  letI algFr : Algebra FrT' FrT := ιFr.toAlgebra
-  letI modFr : Module FrT' FrT := Algebra.toModule
+  let algFr : Algebra FrT' FrT := ιFr.toAlgebra
+  let modFr : Module FrT' FrT := Algebra.toModule
   have hsmul_Fr : ∀ (c : FrT') (x : FrT), c • x = ιFr c * x := fun c x => rfl
   have hli_modFr : LinearIndependent FrT' bFr := by
     rw [Fintype.linearIndependent_iff]
@@ -2894,26 +2894,26 @@ theorem kw_surgehgf4_hfgkd_hKD_of_kerTransport
     KwD5BetweenCurvesKerDescendAlgClosed.{uK} := by
   intro K _ _ _ _ E E' _ _ _ _ _ _ _ _ ι hι hfin N _ hcyc hcard
   intro K₀ E₀ E₀' _ _ hE₀map hE₀'map ι' hι' hfin' hcompat
-  letI : Algebra ℚ K := DivisionRing.toRatAlgebra
+  let : Algebra ℚ K := DivisionRing.toRatAlgebra
   subst hE₀map; subst hE₀'map
-  haveI : CharZero (AlgebraicClosure (↥K₀)) :=
+  have : CharZero (AlgebraicClosure (↥K₀)) :=
     charZero_of_injective_algebraMap (algebraMap (↥K₀) (AlgebraicClosure (↥K₀))).injective
-  haveI : (E₀⁄(↥K₀)).IsElliptic :=
+  have : (E₀⁄(↥K₀)).IsElliptic :=
     inferInstanceAs ((E₀.map (algebraMap (↥K₀) (↥K₀))).IsElliptic)
-  haveI : (E₀'⁄(↥K₀)).IsElliptic :=
+  have : (E₀'⁄(↥K₀)).IsElliptic :=
     inferInstanceAs ((E₀'.map (algebraMap (↥K₀) (↥K₀))).IsElliptic)
-  haveI hE₀AC : (E₀⁄(AlgebraicClosure (↥K₀))).IsElliptic :=
+  have hE₀AC : (E₀⁄(AlgebraicClosure (↥K₀))).IsElliptic :=
     inferInstanceAs ((E₀.map (algebraMap (↥K₀) (AlgebraicClosure (↥K₀)))).IsElliptic)
-  haveI hE₀'AC : (E₀'⁄(AlgebraicClosure (↥K₀))).IsElliptic :=
+  have hE₀'AC : (E₀'⁄(AlgebraicClosure (↥K₀))).IsElliptic :=
     inferInstanceAs ((E₀'.map (algebraMap (↥K₀) (AlgebraicClosure (↥K₀)))).IsElliptic)
-  haveI : (E₀⁄K).IsElliptic :=
+  have : (E₀⁄K).IsElliptic :=
     inferInstanceAs ((E₀.map (algebraMap (↥K₀) K)).IsElliptic)
-  haveI : (E₀'⁄K).IsElliptic :=
+  have : (E₀'⁄K).IsElliptic :=
     inferInstanceAs ((E₀'.map (algebraMap (↥K₀) K)).IsElliptic)
 
-  haveI : IsDedekindDomain (E₀.map (algebraMap (↥K₀) K)).toAffine.CoordinateRing :=
+  have : IsDedekindDomain (E₀.map (algebraMap (↥K₀) K)).toAffine.CoordinateRing :=
     WeierstrassCurve.Affine.CoordinateRing.isDedekindDomain (E₀.map (algebraMap (↥K₀) K))
-  haveI : IsDedekindDomain (E₀'.map (algebraMap (↥K₀) K)).toAffine.CoordinateRing :=
+  have : IsDedekindDomain (E₀'.map (algebraMap (↥K₀) K)).toAffine.CoordinateRing :=
     WeierstrassCurve.Affine.CoordinateRing.isDedekindDomain (E₀'.map (algebraMap (↥K₀) K))
   have hgE : ‹WeierstrassCurve.Affine.GenusOnePlaceGate (E₀.map (algebraMap (↥K₀) K))›
       = WeierstrassCurve.Affine.s13GlobalGate (E₀.map (algebraMap (↥K₀) K)).toAffine :=
@@ -2932,8 +2932,8 @@ theorem kw_surgehgf4_hfgkd_hKD_of_kerTransport
   have hfin₀ : FiniteAlong (AlgebraicClosure (↥K₀)) ι₀ :=
     kw_surgehgf4_hfgkd_bcIota₁NoAC_finiteAlong E₀ E₀' (↥K₀) (AlgebraicClosure (↥K₀)) ι' hfin'
   let τ : (AlgebraicClosure (↥K₀)) →ₐ[↥K₀] K := IsAlgClosed.lift
-  letI : Algebra (AlgebraicClosure (↥K₀)) K := τ.toRingHom.toAlgebra
-  haveI : IsScalarTower (↥K₀) (AlgebraicClosure (↥K₀)) K :=
+  let : Algebra (AlgebraicClosure (↥K₀)) K := τ.toRingHom.toAlgebra
+  have : IsScalarTower (↥K₀) (AlgebraicClosure (↥K₀)) K :=
     IsScalarTower.of_algebraMap_eq fun r => (τ.commutes r).symm
   have hD3 : ∀ a, ι₀ (kw_functionFieldMapAlongGeneralNoAC E₀' (↥K₀) (AlgebraicClosure (↥K₀)) a)
       = kw_functionFieldMapAlongGeneralNoAC E₀ (↥K₀) (AlgebraicClosure (↥K₀)) (ι' a) :=
@@ -3259,12 +3259,12 @@ theorem kw_surgehgf4_hSD_finiteAlong :
     ⟨polyToFunctionField E₀'.toAffine Polynomial.X, kw_surgehgf4_hSD_ι'_X E₀ E₀' ι hcoeffs⟩
   have hle : (K₀ : Type uK)⟮xP⟯ ≤ ι'.fieldRange :=
     IntermediateField.adjoin_simple_le_iff.mpr hxPrange
-  letI algIncl : Algebra (↥(K₀ : Type uK)⟮xP⟯) (↥ι'.fieldRange) :=
+  let algIncl : Algebra (↥(K₀ : Type uK)⟮xP⟯) (↥ι'.fieldRange) :=
     (IntermediateField.inclusion hle).toRingHom.toAlgebra
-  haveI towIncl : IsScalarTower (↥(K₀ : Type uK)⟮xP⟯) (↥ι'.fieldRange)
+  have towIncl : IsScalarTower (↥(K₀ : Type uK)⟮xP⟯) (↥ι'.fieldRange)
       E₀.toAffine.FunctionField :=
     IsScalarTower.of_algebraMap_eq (fun r => rfl)
-  haveI hfdR : FiniteDimensional (↥ι'.fieldRange) E₀.toAffine.FunctionField :=
+  have hfdR : FiniteDimensional (↥ι'.fieldRange) E₀.toAffine.FunctionField :=
     FiniteDimensional.right (↥(K₀ : Type uK)⟮xP⟯) (↥ι'.fieldRange) E₀.toAffine.FunctionField
   show ι'.toRingHom.Finite
   let ρ : E₀'.toAffine.FunctionField →+* ↥ι'.fieldRange :=
@@ -3400,7 +3400,7 @@ theorem kw_surgehgf4_hSD_of_canonicalFinrankEq
       KwD5BCSubfieldDescentCanonicalFinrankEq E E' ι) :
     KwD5BetweenCurvesSubfieldDescent.{uK} := by
   intro K _ _ _ _ E E' _ _ _ _ _ _ _ _ ι hι hfin
-  letI : Algebra ℚ K := DivisionRing.toRatAlgebra
+  let : Algebra ℚ K := DivisionRing.toRatAlgebra
   exact kw_surgehgf4_hSD_instance_cast (kw_surgehgf4_hSD_E₀ E E' ι)
     (kw_surgehgf4_hSD_E₀' E E' ι) (kw_surgehgf4_hSD_E₀_map E E' ι)
     (kw_surgehgf4_hSD_E₀'_map E E' ι) ι hι hfin
@@ -3633,7 +3633,7 @@ section Wires
 theorem kw_surgehgf4_cfe_hSD_discharge : KwD5BetweenCurvesSubfieldDescent.{uK} := by
   refine kw_surgehgf4_hSD_of_canonicalFinrankEq ?_
   intro K _ _ _ _ E E' _ _ _ _ _ _ _ _ ι _hι _hfin
-  letI : Algebra ℚ K := DivisionRing.toRatAlgebra
+  let : Algebra ℚ K := DivisionRing.toRatAlgebra
   exact kw_surgehgf4_cfe_canonicalFinrankEq E E' ι
 
 theorem kw_surgehgf4_cfe_bcFGDescent_of_two
@@ -3719,9 +3719,9 @@ theorem solution
   have hdec : instDec = s13DecEqAlgebraicClosure := Subsingleton.elim _ _
   subst hdec
 
-  haveI : IsDedekindDomain (E₀.baseChange (AlgebraicClosure ↥K₀)).toAffine.CoordinateRing :=
+  have : IsDedekindDomain (E₀.baseChange (AlgebraicClosure ↥K₀)).toAffine.CoordinateRing :=
     @CoordinateRing.isDedekindDomain _ _ _ (E₀.baseChange (AlgebraicClosure ↥K₀)) hAC
-  haveI : IsDedekindDomain (E₀'.baseChange (AlgebraicClosure ↥K₀)).toAffine.CoordinateRing :=
+  have : IsDedekindDomain (E₀'.baseChange (AlgebraicClosure ↥K₀)).toAffine.CoordinateRing :=
     @CoordinateRing.isDedekindDomain _ _ _ (E₀'.baseChange (AlgebraicClosure ↥K₀)) hAC'
   have hg : g = @WeierstrassCurve.Affine.s13GlobalGate _ _ _ _ _ (E₀.baseChange (AlgebraicClosure ↥K₀)).toAffine hAC :=
     GenusOnePlaceGate.ext_of_isCentred _ _ gc

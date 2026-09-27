@@ -140,7 +140,7 @@ theorem isRatio_coeffEmb [NeZero N] {y : LaurentSeries ℚ} (hy : y ∈ modularF
   | mem z hz =>
       rcases hz with ⟨r, rfl⟩ | ⟨d, hd0, hdN, rfl⟩
       · rw [coeffEmb_algebraMap]; exact isRatio_algebraMap _
-      · haveI := hd0
+      · have := hd0
         obtain ⟨k, g, h, hh, he⟩ :=
           ModularCurve.exists_modularForm_mul_qExpansion_eq_coeffEmb_qExpand_jq N d hdN
         exact ⟨k, g, h, hh, he⟩

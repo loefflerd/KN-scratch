@@ -628,7 +628,7 @@ theorem solution (N : ℕ) [NeZero N] (n : ℕ) {ℓ : ℕ} (hℓ : ℓ.Prime) (
     (f : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2)) :
     T (HeckeEis.eichlerShimuraMap n N f)
       = HeckeEis.eichlerShimuraMap n N (CuspForm.heckeULin ((n : ℤ) + 2) hℓN f) := by
-  haveI : NeZero ℓ := ⟨hℓ.ne_zero⟩
+  have : NeZero ℓ := ⟨hℓ.ne_zero⟩
   obtain ⟨F, hEI, hF, hpar⟩ := HeckeEis.exists_isEichlerIntegral_isParabolicCocycle N n f
 
   have hGEI : IsEichlerIntegral n (CuspForm.heckeULin ((n : ℤ) + 2) hℓN f) (heckeEichler N ℓ n F) := by

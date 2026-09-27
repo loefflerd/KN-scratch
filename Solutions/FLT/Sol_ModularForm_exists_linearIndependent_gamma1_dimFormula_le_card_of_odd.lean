@@ -51,7 +51,7 @@ namespace DimLBOddE96
 theorem finite_doubleCoset_quotient {G : Type*} [Group G] (H K : Subgroup G) [H.FiniteIndex] :
     Finite (DoubleCoset.Quotient (H : Set G) (K : Set G)) := by
   classical
-  haveI : Finite (Quotient (QuotientGroup.rightRel H)) :=
+  have : Finite (Quotient (QuotientGroup.rightRel H)) :=
     Finite.of_equiv _ (QuotientGroup.quotientRightRelEquivQuotientLeftRel H).symm
   refine Finite.of_surjective (fun q : Quotient (QuotientGroup.rightRel H) => Quotient.liftOn' q (fun g => DoubleCoset.mk H K g) ?_) ?_
   · intro a b hab
@@ -128,7 +128,7 @@ theorem solution
   classical
   have hk1 : 1 ≤ k := by omega
 
-  haveI hfi' : (CongruenceSubgroup.Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).FiniteIndex :=
+  have hfi' : (CongruenceSubgroup.Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).FiniteIndex :=
     Subgroup.finiteIndex_of_le le_sup_left
 
   obtain ⟨y, hy⟩ := exists_coe_eq_jqModC M
@@ -137,14 +137,14 @@ theorem solution
   obtain ⟨htr, hfin⟩ :=
     ModularCurve.transcendental_and_finiteDimensional_adjoin_laurentBaseChange_qExpFunctionFieldC_of_coe_eq_jqModC
       ℂ (CongruenceSubgroup.Gamma1 M) hT y hy
-  haveI := hfin
+  have := hfin
   have hfull := ModularCurve.finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_gamma1_eq_index ℂ M y hy
-  haveI hsep : Algebra.IsSeparable
+  have hsep : Algebra.IsSeparable
       ↥(IntermediateField.adjoin ℂ ({y} : Set ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))))
       ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) := inferInstance
   obtain ⟨h0, h1728⟩ :=
     ModularCurve.ord_eq_three_of_ord_pos_and_ord_sub_eq_two_laurentBaseChange_gamma1 ℂ M (by omega) y hy
-  haveI : IsCurveOver ℂ ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) :=
+  have : IsCurveOver ℂ ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) :=
     ModularCurve.isCurveOver_laurentBaseChange_qExpFunctionFieldC_gamma1 ℂ M
   have hg := ModularCurve.twelve_mul_genusFF_laurentBaseChange_gamma1_add_six_mul_natCard_doubleCoset_eq_index_add_twelve_of_isAlgClosed ℂ M hM
 
@@ -204,9 +204,9 @@ theorem solution
   set gg : ℕ := genusFF ℂ ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) with hggdef
   have hgZ : (12 : ℤ) * gg + 6 * cc = μ + 12 := by exact_mod_cast hg
   have hcpos : 1 ≤ cc := by
-    haveI := finite_doubleCoset_quotient (CongruenceSubgroup.Gamma1 M)
+    have := finite_doubleCoset_quotient (CongruenceSubgroup.Gamma1 M)
       (Subgroup.zpowers ModularGroup.T ⊔ Subgroup.zpowers (-1) : Subgroup SL(2, ℤ))
-    haveI : Nonempty (DoubleCoset.Quotient (CongruenceSubgroup.Gamma1 M : Set SL(2, ℤ))
+    have : Nonempty (DoubleCoset.Quotient (CongruenceSubgroup.Gamma1 M : Set SL(2, ℤ))
       ((Subgroup.zpowers ModularGroup.T ⊔ Subgroup.zpowers (-1) : Subgroup SL(2, ℤ)) : Set SL(2, ℤ))) :=
       ⟨DoubleCoset.mk _ _ 1⟩
     exact Nat.card_pos
@@ -215,7 +215,7 @@ theorem solution
   have hμZ : (0 : ℤ) ≤ μ := by exact_mod_cast Nat.zero_le μ
   have hRRhyp : 2 * (gg : ℤ) - 1 ≤ (k • Dw).degree := by nlinarith [hdegw, hgZ, hμZ, hkZ, hcZ]
   have hRR := AlgebraicCurve.ell_eq_degree_add_one_sub_genusFF_of_isAlgClosed_of_isSeparable ℂ y htr hfin hsep (k • Dw) hRRhyp
-  haveI := ModularCurve.finiteDimensional_riemannRochSpace_laurentBaseChange_qExpFunctionFieldC_gamma1 ℂ M (k • Dw)
+  have := ModularCurve.finiteDimensional_riemannRochSpace_laurentBaseChange_qExpFunctionFieldC_gamma1 ℂ M (k • Dw)
   set d : ℕ := Module.finrank ℂ ↥(riemannRochSpace (k • Dw)) with hddef
   have hell : (ell (k • Dw) : ℤ) = d := rfl
   let b := Module.finBasis ℂ ↥(riemannRochSpace (k • Dw))

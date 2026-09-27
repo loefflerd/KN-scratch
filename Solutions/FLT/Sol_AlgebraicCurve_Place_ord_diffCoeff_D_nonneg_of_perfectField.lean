@@ -17,8 +17,8 @@ theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] [PerfectField K
     [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F] (v : AlgebraicCurve.Place K F) {t : F}
     (ht : v.ord t = 1) {f : F} (hf : 0 ≤ v.ord f) :
     0 ≤ v.ord (AlgebraicCurve.Place.diffCoeff t (KaehlerDifferential.D K F f)) := by
-  haveI : Algebra.IsAlgebraic (IntermediateField.adjoin K ({x} : Set F)) F := Algebra.IsAlgebraic.of_finite _ _
-  haveI := AlgebraicCurve.Place.isSeparable_adjoin_of_ord_eq_one x v ht
+  have : Algebra.IsAlgebraic (IntermediateField.adjoin K ({x} : Set F)) F := Algebra.IsAlgebraic.of_finite _ _
+  have := AlgebraicCurve.Place.isSeparable_adjoin_of_ord_eq_one x v ht
   exact AlgebraicCurve.Place.ord_diffCoeff_D_nonneg_of_isSeparable x v ht hf
 
 end S_AlgebraicCurve_Place_ord_diffCoeff_D_nonneg_of_perfectField

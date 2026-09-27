@@ -25,9 +25,9 @@ theorem isAlgebraic_adjoin_of_transcendental' (x : F)
 
   have hx : Transcendental K x := by
     intro hxalg
-    haveI : Algebra.IsAlgebraic K (IntermediateField.adjoin K ({x} : Set F)) :=
+    have : Algebra.IsAlgebraic K (IntermediateField.adjoin K ({x} : Set F)) :=
       IntermediateField.isAlgebraic_adjoin_simple hxalg.isIntegral
-    haveI : Algebra.IsAlgebraic K F :=
+    have : Algebra.IsAlgebraic K F :=
       Algebra.IsAlgebraic.trans K (IntermediateField.adjoin K ({x} : Set F)) F
     exact ht (Algebra.IsAlgebraic.isAlgebraic t)
 

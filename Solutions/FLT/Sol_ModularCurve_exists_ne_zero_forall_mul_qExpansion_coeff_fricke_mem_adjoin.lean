@@ -619,7 +619,7 @@ theorem main (X : FD N) (v : Fin 2 → ZMod N) (hv : v ≠ 0) :
   set a₂ : ℕ := (v 1).val with ha₂
   have ha₁N : a₁ < N := ZMod.val_lt _
   have ha₂N : a₂ < N := ZMod.val_lt _
-  haveI : Fact (a₁ < N) := ⟨ha₁N⟩
+  have : Fact (a₁ < N) := ⟨ha₁N⟩
   have h0 : a₁ ≠ 0 ∨ a₂ ≠ 0 := by
     by_contra h
     push Not at h

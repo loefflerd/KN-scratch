@@ -17,10 +17,10 @@ open scoped Pointwise
 noncomputable section
 
 theorem solution {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F'] [CharZero F] (φ : F →ₐ[K] F') [HasPrincipalDivisors K F'] (hfin : FiniteAlong K φ) (hsep : SeparableAlong K φ) : NormFormulaAlong K φ hfin := by
-  letI := algebraAlong φ
-  haveI := isScalarTower_along φ
-  haveI : Module.Finite F F' := hfin
-  haveI : Algebra.IsSeparable F F' := hsep
+  let := algebraAlong φ
+  have := isScalarTower_along φ
+  have : Module.Finite F F' := hfin
+  have : Algebra.IsSeparable F F' := hsep
   exact Divisor.pushforwardNormFormula
 
 end

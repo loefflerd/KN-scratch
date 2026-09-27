@@ -248,7 +248,7 @@ theorem den_le_natDegree [IsAlgClosed K] [CharZero K]
     q.den ≤ p.natDegree := by
   classical
   have hb : 0 < q.den := q.den_pos
-  haveI : NeZero q.den := ⟨q.den_nz⟩
+  have : NeZero q.den := ⟨q.den_nz⟩
 
   obtain ⟨μ, hμ⟩ := HasEnoughRootsOfUnity.exists_primitiveRoot K q.den
   have hcard : Nat.card (rootsOfUnity q.den K) = q.den := hμ.card_rootsOfUnity

@@ -61,7 +61,7 @@ theorem finiteDimensional_adjoin_coeffEmb_jq (L : Type*) [Field L] [Algebra ℚ 
   classical
 
   let ι : Type := {d : ℕ // d ∣ N ∧ d ≠ 0}
-  haveI : Finite ι := by
+  have : Finite ι := by
     refine Finite.of_injective (fun d : ι => (⟨d.1, ?_⟩ : Fin (N + 1))) ?_
     · exact Nat.lt_succ_of_le (Nat.le_of_dvd (Nat.pos_of_ne_zero (NeZero.ne N)) d.2.1)
     · intro d d' h
@@ -79,7 +79,7 @@ theorem finiteDimensional_adjoin_coeffEmb_jq (L : Type*) [Field L] [Algebra ℚ 
   have hint : ∀ d : ι, IsIntegral
       (IntermediateField.adjoin L ({J} : Set (laurentBaseChange L (modularFunctionFieldFull N)))) (g d) := by
     rintro ⟨d, hdvd, hd0⟩
-    haveI : NeZero d := ⟨hd0⟩
+    have : NeZero d := ⟨hd0⟩
     obtain ⟨data⟩ := ModularCurve.nonempty_modularPolynomialData d
     let J' : IntermediateField.adjoin L ({J} : Set (laurentBaseChange L (modularFunctionFieldFull N))) :=
       ⟨J, IntermediateField.mem_adjoin_simple_self L J⟩

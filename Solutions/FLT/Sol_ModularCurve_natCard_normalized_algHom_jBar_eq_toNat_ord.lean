@@ -68,7 +68,7 @@ private theorem ModularCurve.natCard_normalized_algHom_jBar_eq_toNat_ord (N : �
         ψ (jBar N) = HahnSeries.C j₀ + HahnSeries.single (1 : ℚ) (1 : AlgebraicClosure ℚ) ∧
         ∃ g : ℚ, 0 < g ∧ ∀ x, (w.ord x : ℚ) * g = (ψ x).order} =
       (w.ord (jBar N - algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) j₀)).toNat := by
-  haveI : FiniteDimensional
+  have : FiniteDimensional
       ↥(IntermediateField.adjoin (AlgebraicClosure ℚ)
         ({jBar N} : Set ↥(modularFunctionFieldBar N)))
       ↥(modularFunctionFieldBar N) :=

@@ -76,17 +76,17 @@ def pullbackAlong : Divisor K F →+ Divisor K F' :=
 
 theorem isPrincipal_pullbackAlong {D : Divisor K F} (hD : D.IsPrincipal) :
     (pullbackAlong φ hφ D).IsPrincipal := by
-  letI := algebraAlong φ
-  haveI := isScalarTower_along φ
-  haveI := isIntegral_along φ hφ
+  let := algebraAlong φ
+  have := isScalarTower_along φ
+  have := isIntegral_along φ hφ
   exact Divisor.isPrincipal_pullback hD
 
 theorem degree_pullbackAlong (hFI : FundamentalIdentityAlong K φ hφ) (D : Divisor K F) :
     degree (pullbackAlong φ hφ D) = (finrankAlong K φ : ℤ) * degree D := by
-  letI := algebraAlong φ
-  haveI := isScalarTower_along φ
-  haveI := isIntegral_along φ hφ
-  haveI : FundamentalIdentity K F F' := hFI
+  let := algebraAlong φ
+  have := isScalarTower_along φ
+  have := isIntegral_along φ hφ
+  have : FundamentalIdentity K F F' := hFI
   exact Divisor.degree_pullback D
 
 theorem pullbackAlong_mem_degZero (hFI : FundamentalIdentityAlong K φ hφ) {D : Divisor K F}
@@ -109,9 +109,9 @@ def pushforwardAlong : Divisor K F' →+ Divisor K F :=
 @[simp]
 theorem degree_pushforwardAlong (D : Divisor K F') :
     degree (pushforwardAlong φ hφ D) = degree D := by
-  letI := algebraAlong φ
-  haveI := isScalarTower_along φ
-  haveI := isIntegral_along φ hφ
+  let := algebraAlong φ
+  have := isScalarTower_along φ
+  have := isIntegral_along φ hφ
   exact Divisor.degree_pushforward D
 
 theorem pushforwardAlong_mem_degZero {D : Divisor K F'}
@@ -122,10 +122,10 @@ theorem pushforwardAlong_mem_degZero {D : Divisor K F'}
 theorem isPrincipal_pushforwardAlong (hfin : FiniteAlong K φ)
     (hN : NormFormulaAlong K φ hfin) {D : Divisor K F'} (hD : D.IsPrincipal) :
     (pushforwardAlong φ hφ D).IsPrincipal := by
-  letI := algebraAlong φ
-  haveI := isScalarTower_along φ
-  haveI := isIntegral_along φ hφ
-  haveI : Module.Finite F F' := hfin
+  let := algebraAlong φ
+  have := isScalarTower_along φ
+  have := isIntegral_along φ hφ
+  have : Module.Finite F F' := hfin
   exact Divisor.isPrincipal_pushforward_of_normFormula hN hD
 
 end Pushforward
@@ -226,27 +226,27 @@ def Place.inertiaDegAlong (φ : F →ₐ[K] F') (hφ : φ.toRingHom.IsIntegral) 
 theorem Place.ord_restrictAlong (φ : F →ₐ[K] F') (hφ : φ.toRingHom.IsIntegral)
     (w : Place K F') (f : F) :
     w.ord (φ f) = Place.ramificationIndexAlong φ w * (w.restrictAlong φ hφ).ord f := by
-  letI := algebraAlong φ
-  haveI := isScalarTower_along φ
-  haveI := isIntegral_along φ hφ
+  let := algebraAlong φ
+  have := isScalarTower_along φ
+  have := isIntegral_along φ hφ
   exact w.ord_restrict f
 
 theorem Divisor.pullbackAlong_apply [HasPrincipalDivisors K F'] (φ : F →ₐ[K] F')
     (hφ : φ.toRingHom.IsIntegral) (D : Divisor K F) (w : Place K F') :
     Divisor.pullbackAlong φ hφ D w
       = Place.ramificationIndexAlong φ w * D (w.restrictAlong φ hφ) := by
-  letI := algebraAlong φ
-  haveI := isScalarTower_along φ
-  haveI := isIntegral_along φ hφ
+  let := algebraAlong φ
+  have := isScalarTower_along φ
+  have := isIntegral_along φ hφ
   exact Divisor.pullback_apply D w
 
 theorem Divisor.pushforwardAlong_single (φ : F →ₐ[K] F') (hφ : φ.toRingHom.IsIntegral)
     (w : Place K F') (n : ℤ) :
     Divisor.pushforwardAlong φ hφ (Finsupp.single w n)
       = Finsupp.single (w.restrictAlong φ hφ) (n * w.inertiaDegAlong φ hφ) := by
-  letI := algebraAlong φ
-  haveI := isScalarTower_along φ
-  haveI := isIntegral_along φ hφ
+  let := algebraAlong φ
+  have := isScalarTower_along φ
+  have := isIntegral_along φ hφ
   exact Divisor.pushforward_single w n
 
 end AlongPlaces
@@ -280,9 +280,9 @@ def fiberAlong (u : F₁ →ₐ[K] Z) (hu : u.toRingHom.IsIntegral) (w₁ : Plac
 @[simp]
 theorem mem_fiberAlong {u : F₁ →ₐ[K] Z} {hu : u.toRingHom.IsIntegral} {w₁ : Place K F₁}
     {W : Place K Z} : W ∈ fiberAlong u hu w₁ ↔ W.restrictAlong u hu = w₁ := by
-  letI := algebraAlong u
-  haveI := isScalarTower_along u
-  haveI := isIntegral_along u hu
+  let := algebraAlong u
+  have := isScalarTower_along u
+  have := isIntegral_along u hu
   exact Place.mem_fiber
 
 theorem _root_.AlgebraicCurve.Divisor.pullbackAlong_single (u : F₁ →ₐ[K] Z)
@@ -290,9 +290,9 @@ theorem _root_.AlgebraicCurve.Divisor.pullbackAlong_single (u : F₁ →ₐ[K] Z
     Divisor.pullbackAlong u hu (Finsupp.single w₁ n)
       = ∑ W ∈ fiberAlong u hu w₁,
           Finsupp.single W (n * W.ramificationIndexAlong u) := by
-  letI := algebraAlong u
-  haveI := isScalarTower_along u
-  haveI := isIntegral_along u hu
+  let := algebraAlong u
+  have := isScalarTower_along u
+  have := isIntegral_along u hu
   exact Divisor.pullback_single w₁ n
 
 end Fiber

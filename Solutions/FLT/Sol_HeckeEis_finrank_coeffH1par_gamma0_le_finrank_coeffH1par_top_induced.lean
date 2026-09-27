@@ -414,7 +414,7 @@ theorem finite_binaryForm : Module.Finite ℂ (Vn n) := by
 
 omit hW in
 theorem finite_coeffParabolicCocycles : Module.Finite ℂ ↥(coeffParabolicCocycles W) := by
-  haveI : Module.Finite ℂ (Vn n) := finite_binaryForm
+  have : Module.Finite ℂ (Vn n) := finite_binaryForm
   let E : ↥(coeffParabolicCocycles W) →ₗ[ℂ] (X0 N → Vn n) × (X0 N → Vn n) :=
     { toFun := fun Z => ((Z : ↥Gt → X0 N → Vn n) ⟨ModularGroup.S, Subgroup.mem_top _⟩,
                         (Z : ↥Gt → X0 N → Vn n) ⟨ModularGroup.T, Subgroup.mem_top _⟩)
@@ -479,8 +479,8 @@ theorem Ψ_injective : Function.Injective (Ψ W hW) := by
 
 theorem main :
     Module.finrank ℂ (coeffH1par (ρΓ N n)) ≤ Module.finrank ℂ (coeffH1par W) := by
-  haveI := finite_coeffParabolicCocycles W
-  haveI : Module.Finite ℂ (coeffH1par W) := Module.Finite.of_surjective (coeffH1parMk W) (coeffH1parMk_surjective W)
+  have := finite_coeffParabolicCocycles W
+  have : Module.Finite ℂ (coeffH1par W) := Module.Finite.of_surjective (coeffH1parMk W) (coeffH1parMk_surjective W)
   exact LinearMap.finrank_le_finrank_of_injective (Ψ_injective W hW)
 
 end Final

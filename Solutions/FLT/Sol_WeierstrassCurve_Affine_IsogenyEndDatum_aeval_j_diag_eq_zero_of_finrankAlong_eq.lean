@@ -63,7 +63,7 @@ theorem kw_aleph0_lt_mk_transcendenceBasis_complex
     {t : Set ℂ} (ht : IsTranscendenceBasis ℚ ((↑) : t → ℂ)) : ℵ₀ < #t := by
   rw [← not_le]
   intro h
-  haveI : Algebra.IsAlgebraic
+  have : Algebra.IsAlgebraic
       (IntermediateField.adjoin ℚ (Set.range ((↑) : t → ℂ))) ℂ := ht.isAlgebraic_field
   have hadj : #(IntermediateField.adjoin ℚ (Set.range ((↑) : t → ℂ))) ≤ ℵ₀ :=
     (IntermediateField.cardinalMk_adjoin_le ℚ _).trans
@@ -77,7 +77,7 @@ set_option synthInstance.maxHeartbeats 6400000 in
 theorem kw_nonempty_ringHom_algebraicClosure_complex (K₀ : Type u) [Field K₀] [Algebra ℚ K₀]
     [Countable K₀] : Nonempty (AlgebraicClosure K₀ →+* ℂ) := by
   let ACK := AlgebraicClosure K₀
-  haveI : Countable ACK := kw_countable_algebraicClosure K₀
+  have : Countable ACK := kw_countable_algebraicClosure K₀
   obtain ⟨s, hs⟩ := exists_isTranscendenceBasis ℚ (A := ACK)
   obtain ⟨t, ht⟩ := exists_isTranscendenceBasis ℚ (A := ℂ)
 
@@ -94,8 +94,8 @@ theorem kw_nonempty_ringHom_algebraicClosure_complex (K₀ : Type u) [Field K₀
     ((adjoin ℚ (Set.range (fun i : s => ((f i : t) : ℂ)))).val.toRingHom.comp
       (kw_d5eu_ratEquivStrip hf_indep.aevalEquivField).toRingHom).comp
         (kw_d5eu_ratEquivStrip hs.1.aevalEquivField).symm.toRingHom
-  letI : Algebra Qs ℂ := φQs.toAlgebra
-  haveI : Algebra.IsAlgebraic Qs ACK := hs.isAlgebraic_field
+  let : Algebra Qs ℂ := φQs.toAlgebra
+  have : Algebra.IsAlgebraic Qs ACK := hs.isAlgebraic_field
   exact ⟨(IsAlgClosed.lift (R := Qs) (M := ℂ) (S := ACK)).toRingHom⟩
 
 end ModularCurve
@@ -118,13 +118,13 @@ variable {V W : Affine F} [V.IsElliptic] [W.IsElliptic]
 
 theorem normFormulaAlong_of_elliptic (ι : V.FunctionField →ₐ[F] W.FunctionField)
     (hfin : FiniteAlong F ι) : NormFormulaAlong F ι hfin := by
-  haveI : HasPrincipalDivisors F W.FunctionField := hasPrincipalDivisors_functionField W
-  haveI : CharZero V.FunctionField :=
+  have : HasPrincipalDivisors F W.FunctionField := hasPrincipalDivisors_functionField W
+  have : CharZero V.FunctionField :=
     charZero_of_injective_algebraMap (algebraMap F V.FunctionField).injective
   have hsep : SeparableAlong F ι := by
-    letI := algebraAlong ι
-    haveI := isScalarTower_along ι
-    haveI : Module.Finite V.FunctionField W.FunctionField := hfin
+    let := algebraAlong ι
+    have := isScalarTower_along ι
+    have : Module.Finite V.FunctionField W.FunctionField := hfin
     show Algebra.IsSeparable V.FunctionField W.FunctionField
     infer_instance
   exact AlgebraicCurve.normFormulaAlong ι hfin hsep
@@ -531,13 +531,13 @@ theorem kw_toPointAddEquiv_mk (z : ℂ) :
 
 scoped instance kw_infinite_quotientLattice : Infinite (ℂ ⧸ L.lattice.toAddSubgroup) := by
   rw [← not_finite_iff_infinite]; intro hfin
-  haveI : Countable L.lattice.toAddSubgroup :=
+  have : Countable L.lattice.toAddSubgroup :=
     Set.countable_coe_iff.mpr L.kw_countable_lattice
-  haveI : Countable ((ℂ ⧸ L.lattice.toAddSubgroup) × L.lattice.toAddSubgroup) := inferInstance
+  have : Countable ((ℂ ⧸ L.lattice.toAddSubgroup) × L.lattice.toAddSubgroup) := inferInstance
   have hCc : Countable ℂ :=
     Countable.of_equiv _ (AddSubgroup.addGroupEquivQuotientProdAddSubgroup
       (s := L.lattice.toAddSubgroup)).symm
-  haveI : Uncountable ℂ := Complex.ofReal_injective.uncountable
+  have : Uncountable ℂ := Complex.ofReal_injective.uncountable
   exact absurd hCc not_countable
 
 scoped instance kw_infinite_point : Infinite L.weierstrassCurve.toAffine.Point :=
@@ -582,15 +582,15 @@ theorem solution
 
   obtain ⟨K₀, hK₀c, E₀, hE₀e, hE₀map, ι₀, hι₀, hfin₀, hrk₀⟩ :=
     WeierstrassCurve.exists_intermediateField_countable_map_eq_and_finrankAlong_eq W D.ι D.hι D.hfin
-  haveI := hE₀e
-  haveI : Countable K₀ := hK₀c
-  haveI : CharZero (AlgebraicClosure K₀) :=
+  have := hE₀e
+  have : Countable K₀ := hK₀c
+  have : CharZero (AlgebraicClosure K₀) :=
     charZero_of_injective_algebraMap (algebraMap K₀ (AlgebraicClosure K₀)).injective
 
   obtain ⟨σ⟩ := kw_nonempty_ringHom_algebraicClosure_complex (↥K₀)
-  letI : Algebra (AlgebraicClosure K₀) ℂ := σ.toAlgebra
-  letI : Algebra (↥K₀) ℂ := (σ.comp (algebraMap (↥K₀) (AlgebraicClosure K₀))).toAlgebra
-  haveI : IsScalarTower (↥K₀) (AlgebraicClosure K₀) ℂ := IsScalarTower.of_algebraMap_eq' rfl
+  let : Algebra (AlgebraicClosure K₀) ℂ := σ.toAlgebra
+  let : Algebra (↥K₀) ℂ := (σ.comp (algebraMap (↥K₀) (AlgebraicClosure K₀))).toAlgebra
+  have : IsScalarTower (↥K₀) (AlgebraicClosure K₀) ℂ := IsScalarTower.of_algebraMap_eq' rfl
 
   obtain ⟨ι₁, hι₁, hfin₁, hrk₁⟩ :=
     WeierstrassCurve.Affine.exists_algHom_functionField_baseChange_finrankAlong_eq E₀
@@ -600,7 +600,7 @@ theorem solution
   have hjK : W.j = algebraMap (↥K₀) K E₀.j := by
     subst hE₀map
     exact E₀.map_j (algebraMap (↥K₀) K)
-  haveI hE1inst : (E₀.baseChange ℂ).IsElliptic :=
+  have hE1inst : (E₀.baseChange ℂ).IsElliptic :=
     inferInstanceAs (E₀.map (algebraMap (↥K₀) ℂ)).IsElliptic
   have hjC : (E₀.baseChange ℂ).j = algebraMap (↥K₀) ℂ E₀.j := E₀.map_j (algebraMap (↥K₀) ℂ)
 
@@ -617,17 +617,17 @@ theorem solution
   subst hC
 
   have hL : L.DiscriminantNeZero := PeriodPair.discriminant_ne_zero L
-  haveI hLe : L.weierstrassCurve.IsElliptic :=
+  have hLe : L.weierstrassCurve.IsElliptic :=
     ⟨isUnit_iff_ne_zero.mpr hL.weierstrassCurve_Δ_ne_zero⟩
-  haveI : IsDedekindDomain L.weierstrassCurve.toAffine.CoordinateRing :=
+  have : IsDedekindDomain L.weierstrassCurve.toAffine.CoordinateRing :=
     WeierstrassCurve.Affine.CoordinateRing.isDedekindDomain L.weierstrassCurve
-  haveI : HasPrincipalDivisors ℂ L.weierstrassCurve.toAffine.FunctionField :=
+  have : HasPrincipalDivisors ℂ L.weierstrassCurve.toAffine.FunctionField :=
     WeierstrassCurve.Affine.hasPrincipalDivisors_functionField _
   obtain ⟨g, hgc, hga⟩ :=
     WeierstrassCurve.Affine.exists_genusOnePlaceGate_isCentred_and_abelTheorem (W := L.weierstrassCurve.toAffine)
-  letI := g
-  haveI := hgc
-  haveI := hga
+  let := g
+  have := hgc
+  have := hga
 
   obtain ⟨eE⟩ := WeierstrassCurve.nonempty_functionField_algEquiv_of_variableChange L.weierstrassCurve C
   let ι₂ := kw_fdn2_qephod_hend21_conjSeam eE eE ι₁

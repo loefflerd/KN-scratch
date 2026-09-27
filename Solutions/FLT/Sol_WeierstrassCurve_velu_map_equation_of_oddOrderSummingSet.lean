@@ -568,10 +568,10 @@ scoped instance : Algebra.FiniteType F W.CoordinateRing :=
 
 theorem exists_eq_XYIdeal_of_isMaximal [IsAlgClosed F] (𝔪 : Ideal W.CoordinateRing)
     (h𝔪 : 𝔪.IsMaximal) : ∃ x y : F, W.Equation x y ∧ XYIdeal W x (C y) = 𝔪 := by
-  haveI := h𝔪
+  have := h𝔪
 
-  letI : Field (W.CoordinateRing ⧸ 𝔪) := Ideal.Quotient.field 𝔪
-  haveI : Module.Finite F (W.CoordinateRing ⧸ 𝔪) :=
+  let : Field (W.CoordinateRing ⧸ 𝔪) := Ideal.Quotient.field 𝔪
+  have : Module.Finite F (W.CoordinateRing ⧸ 𝔪) :=
     finite_of_finite_type_of_isJacobsonRing F (W.CoordinateRing ⧸ 𝔪)
   have he : Function.Bijective (algebraMap F (W.CoordinateRing ⧸ 𝔪)) :=
     IsAlgClosed.algebraMap_bijective_of_isIntegral
@@ -965,9 +965,9 @@ theorem comap_algebraMap_ne_top [Algebra.IsIntegral F F'] :
     ValuationSubring.mem_comap.mp (htop ▸ ValuationSubring.mem_top f)
 
   refine SetLike.ext fun x => ⟨fun _ => ValuationSubring.mem_top x, fun _ => ?_⟩
-  letI : Algebra F w.toValuationSubring :=
+  let : Algebra F w.toValuationSubring :=
     ((algebraMap F F').codRestrict w.toValuationSubring.toSubring hF).toAlgebra
-  letI : IsScalarTower F w.toValuationSubring F' :=
+  let : IsScalarTower F w.toValuationSubring F' :=
     IsScalarTower.of_algebraMap_eq fun f => rfl
   have hx : _root_.IsIntegral w.toValuationSubring x :=
     (Algebra.IsIntegral.isIntegral (R := F) x).tower_top
@@ -1405,7 +1405,7 @@ theorem finite_setOf_valuation_ne_one {f : RatFunc K} (hf : f ≠ 0) :
   refine Set.Finite.subset ((Ideal.finite_factors hnum).union (Ideal.finite_factors hden))
     fun w hw => ?_
   by_contra hcon
-  simp only [Set.mem_union, Set.mem_setOf_eq, not_or, Ideal.dvd_span_singleton] at hcon
+  simp only [Set.mem_union, Set.mem_ofPred_eq, not_or, Ideal.dvd_span_singleton] at hcon
   refine hw ?_
   have h1 : w.valuation (RatFunc K) (algebraMap K[X] (RatFunc K) f.num) = 1 :=
     (HeightOneSpectrum.valuation_eq_one_iff_notMem w).mpr hcon.1
@@ -1423,8 +1423,8 @@ theorem finite_setOf_ord_ne_zero {f : RatFunc K} (hf : f ≠ 0) :
         (finite_setOf_valuation_ne_one hf))
       (Set.Subsingleton.finite subsingleton_setOf_forall_ne_ofHeightOneSpectrum))
     fun v hv => ?_
-  simp only [Set.mem_setOf_eq] at hv
-  simp only [Set.mem_union, Set.mem_image, Set.mem_setOf_eq]
+  simp only [Set.mem_ofPred_eq] at hv
+  simp only [Set.mem_union, Set.mem_image, Set.mem_ofPred_eq]
   by_cases hcase : ∃ w : HeightOneSpectrum K[X], v = Place.ofHeightOneSpectrum w
   · obtain ⟨w, rfl⟩ := hcase
     refine Or.inl ⟨w, fun hone => hv ?_, rfl⟩
@@ -1993,7 +1993,7 @@ theorem isFinitePlace_iff_exists_placeOfEquation [IsAlgClosed F]
   constructor
   · intro hv
 
-    haveI := hv.centre_isPrime
+    have := hv.centre_isPrime
     have hmax : hv.centre.IsMaximal := Ideal.IsPrime.isMaximal hv.centre_isPrime hv.centre_ne_bot
     obtain ⟨x, y, hxy, hXY⟩ := CoordinateRing.exists_eq_XYIdeal_of_isMaximal hv.centre hmax
     refine ⟨x, y, hxy, ?_⟩
@@ -2001,7 +2001,7 @@ theorem isFinitePlace_iff_exists_placeOfEquation [IsAlgClosed F]
     set w : HeightOneSpectrum W.CoordinateRing := heightOneSpectrumOfEquation hxy with hw
     set A : ValuationSubring W.FunctionField :=
       HeightOneSpectrum.valuationSubringAtPrime W.FunctionField w with hA
-    haveI hAded : IsDedekindDomain A := by rw [hA]; infer_instance
+    have hAded : IsDedekindDomain A := by rw [hA]; infer_instance
     have hle : A ≤ v.toValuationSubring := by
       intro z hz
       rw [hA] at hz
@@ -2717,11 +2717,11 @@ theorem finite_setOf_forall_mem_and_ord_pos {r₀ : R} (hr₀ : r₀ ≠ 0) :
   have hfin : {p : HeightOneSpectrum R | p.asIdeal ∣ Ideal.span {r₀}}.Finite :=
     Ideal.finite_factors (by simpa [Ideal.span_singleton_eq_bot] using hr₀)
   rw [← Set.finite_coe_iff]
-  haveI := hfin.to_subtype
+  have := hfin.to_subtype
   refine Finite.of_injective
     (fun w => (⟨centerHeightOneSpectrum R w.1 w.2.1, ?_⟩ :
       {p : HeightOneSpectrum R | p.asIdeal ∣ Ideal.span {r₀}})) ?_
-  · rw [Set.mem_setOf_eq, centerHeightOneSpectrum_asIdeal, Ideal.dvd_span_singleton]
+  · rw [Set.mem_ofPred_eq, centerHeightOneSpectrum_asIdeal, Ideal.dvd_span_singleton]
     exact (mem_center_iff_ord_pos w.1 w.2.1 hr₀).mpr w.2.2
   · intro w w' h
     have hcenter : centerHeightOneSpectrum R w.1 w.2.1
@@ -2742,13 +2742,13 @@ theorem finite_setOf_restrict_eq (v : Place K F) :
     {w : Place K F' | w.restrict F = v}.Finite := by
   classical
 
-  letI : Algebra v.toValuationSubring F' :=
+  let : Algebra v.toValuationSubring F' :=
     ((algebraMap F F').comp (algebraMap v.toValuationSubring F)).toAlgebra
-  haveI : IsScalarTower v.toValuationSubring F F' :=
+  have : IsScalarTower v.toValuationSubring F F' :=
     IsScalarTower.of_algebraMap_eq fun _ => rfl
-  haveI : IsDedekindDomain (integralClosure v.toValuationSubring F') :=
+  have : IsDedekindDomain (integralClosure v.toValuationSubring F') :=
     integralClosure.isDedekindDomain v.toValuationSubring F F'
-  haveI : IsFractionRing (integralClosure v.toValuationSubring F') F' :=
+  have : IsFractionRing (integralClosure v.toValuationSubring F') F' :=
     integralClosure.isFractionRing_of_finite_extension (A := v.toValuationSubring) F F'
 
   obtain ⟨π, hπ0, hπpos⟩ := v.exists_ord_pos
@@ -2815,7 +2815,7 @@ theorem finite_setOf_ord_ne_zero_of_finiteDimensional {f : F'} (hf : f ≠ 0) :
   ·
     intro w hw
     obtain ⟨i, hi, hci, hord⟩ := w.exists_coeff_ord_ne_zero (F := RatFunc K) hf hw
-    simp only [Set.mem_iUnion, Set.mem_setOf_eq, exists_prop]
+    simp only [Set.mem_iUnion, Set.mem_ofPred_eq, exists_prop]
     refine ⟨i, hi, w.restrict (RatFunc K), ?_, rfl⟩
     intro h0
     apply hord
@@ -3446,7 +3446,7 @@ namespace AlgebraicCurve
 
 theorem le_exp_neg_one_of_lt_one {x : ℤᵐ⁰} (hx : x < 1) : x ≤ exp (-1 : ℤ) := by
   rcases eq_or_ne x 0 with rfl | hx0
-  · exact zero_le'
+  · exact zero_le
   · rw [← exp_log hx0] at hx ⊢
     rw [show (1 : ℤᵐ⁰) = exp 0 from rfl, exp_lt_exp] at hx
     rw [exp_le_exp]
@@ -4572,7 +4572,7 @@ theorem surjective_residueOfCenter (hw : w.restrict F = v) :
       w.ord_nonneg_of_mem (forall_mem_of_restrict_eq hw s)
     omega
 
-  haveI hmax : (fiberCenter F' v hw).asIdeal.IsMaximal :=
+  have hmax : (fiberCenter F' v hw).asIdeal.IsMaximal :=
     (fiberCenter F' v hw).isPrime.isMaximal (fiberCenter F' v hw).ne_bot
   obtain ⟨t, i, hi, hti⟩ := hmax.exists_inv hsP
   have hst : s * t - 1 ∈ (fiberCenter F' v hw).asIdeal := by
@@ -4640,7 +4640,7 @@ theorem inertiaDeg_eq_inertiaDeg_fiberCenter (hw : w.restrict F = v) :
     w.inertiaDeg F =
       (IsLocalRing.maximalIdeal v.toValuationSubring).inertiaDeg'
         (fiberCenter F' v hw).asIdeal := by
-  haveI := fiberCenter_liesOver hw
+  have := fiberCenter_liesOver hw
   rw [Ideal.inertiaDeg_algebraMap]
   show Module.finrank (w.restrict F).ResidueField w.ResidueField = _
   refine Algebra.finrank_eq_of_equiv_equiv (restrictResidueFieldEquiv hw)
@@ -6872,7 +6872,7 @@ include htr in
 
 theorem translationCoordHom_injective : Function.Injective (translationCoordHom hA) := by
   have hker : RingHom.ker (translationCoordHom hA).toRingHom = ⊥ := by
-    haveI : Module.Finite F[X] W.CoordinateRing :=
+    have : Module.Finite F[X] W.CoordinateRing :=
       Module.Finite.of_basis (CoordinateRing.basis W)
     refine Ideal.eq_bot_of_comap_eq_bot (R := F[X]) ?_
     rw [RingHom.comap_ker, translationCoordHom_comp_algebraMap, ← RingHom.injective_iff_ker_eq_bot]
@@ -7561,8 +7561,8 @@ theorem veluDeficitIsConstantAt_of_ordNonneg_of_specializesConst' {p : ℕ}
     (hspec : VeluDeficitFunSpecializesConstAt F p) :
     VeluDeficitIsConstantAt F p := by
   intro W hΔ x₀ y₀ h₀ hord
-  haveI := hPD W hΔ
-  haveI := hDD W hΔ
+  have := hPD W hΔ
+  have := hDD W hΔ
   obtain ⟨c, hc⟩ := Affine.functionField_liouville_of_equation h₀.left
     (hreg W hΔ x₀ y₀ h₀ hord)
   exact ⟨c, fun r s hrs hav => hspec W hΔ x₀ y₀ h₀ hord c hc hrs hav⟩
@@ -8429,7 +8429,7 @@ theorem veluDeficitFunSpecializesConstAt_of_evalAtPlace {p : ℕ}
     (heval : VeluDeficitFunEvalAtPlaceAt F hDD p) :
     VeluDeficitFunSpecializesConstAt F p := by
   intro W hΔ x₀ y₀ h₀ hord c hc r s hrs hav
-  haveI := hDD W hΔ
+  have := hDD W hΔ
   rw [← heval W hΔ x₀ y₀ h₀ hord hrs hav, hc, Place.evalAt_algebraMap]
 
 end ResidueBridge
@@ -8508,7 +8508,7 @@ omit [DecidableEq F] in
 theorem kw_infinite_of_isAlgClosed : Infinite F := by
   rw [← not_finite_iff_infinite]
   intro hfin
-  haveI := Fintype.ofFinite F
+  have := Fintype.ofFinite F
   have hdeg : (∏ a : F, (X - C a) : F[X]).degree = (Fintype.card F : ℕ) := by
     simp [Polynomial.degree_prod, Polynomial.degree_X_sub_C]
   have hlt : (1 : F[X]).degree < (∏ a : F, (X - C a) : F[X]).degree := by
@@ -9556,7 +9556,7 @@ theorem veluDeficitFunEvalAtPlaceAt
     (hDD : ∀ (W : WeierstrassCurve F), W.Δ ≠ 0 → IsDedekindDomain W.toAffine.CoordinateRing)
     (p : ℕ) : VeluDeficitFunEvalAtPlaceAt F hDD p := by
   intro W hΔ x₀ y₀ h₀ _hord r s hrs hav
-  haveI := hDD W hΔ
+  have := hDD W hΔ
   exact Affine.evalAt_veluDeficitFun_placeOfEquation hrs hav
 
 theorem veluDeficitIsConstantAt_of_ordNonneg_of_dedekind {p : ℕ}
@@ -9810,7 +9810,7 @@ theorem addXFunTranscendental (hΔ : W.Δ ≠ 0) (hA : W.Equation a b) :
   intro hX'alg
 
   have hX'int : _root_.IsIntegral F (W.addXFun a b) := isAlgebraic_iff_isIntegral.mp hX'alg
-  haveI hRint : Algebra.IsIntegral F
+  have hRint : Algebra.IsIntegral F
       (Algebra.adjoin F ({W.addXFun a b} : Set W.FunctionField)) :=
     Algebra.IsIntegral.adjoin (fun x hx => by
       obtain rfl := Set.mem_singleton_iff.mp hx; exact hX'int)
@@ -11738,7 +11738,7 @@ theorem kw_veluDeficitFunKernelTranslationYNotCentreAt_odd
     {p : ℕ} (hp3 : 3 ≤ p) (hpodd : Odd p) :
     VeluDeficitFunKernelTranslationYNotCentreAt F p := by
   intro W hΔ x₀ y₀ h₀ hord v hv ⟨A, hA, hXA⟩
-  haveI := hDD W hΔ
+  have := hDD W hΔ
   have hSset := kw_isOddVeluSet_oddOrderSummingSet_odd (W := W) hp3 hpodd hord
     (le_refl ((p - 1) / 2))
   have hAeq : W.toAffine.Equation A.1 A.2 := hSset.equation A hA
@@ -11929,7 +11929,7 @@ variable (F) in
 theorem kw_no6_hroute_veluDeficitConstancyAt_odd_of_two_ne_zero (h2 : (2 : F) ≠ 0)
     {p : ℕ} (hp3 : 3 ≤ p) (hpodd : Odd p) :
     VeluDeficitConstancyAt F p := by
-  haveI : Infinite F := kw_infinite_of_isAlgClosed
+  have : Infinite F := kw_infinite_of_isAlgClosed
   refine veluDeficitConstancyAt_of_isConstant_of_constantZero F
     (kw_no6_hroute_veluDeficitIsConstantAt_odd_of_two_ne_zero F h2 hp3 hpodd)
     (kw_veluDeficitConstantIsZeroAt_odd hp3 hpodd ?_)

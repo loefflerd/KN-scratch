@@ -441,7 +441,7 @@ theorem sup_range_eq_top (hn0 : n ≠ 0) :
   set eS : ↥Gt := ⟨ModularGroup.S, Subgroup.mem_top _⟩
   set eU : ↥Gt := ⟨ModularGroup.S * ModularGroup.T, Subgroup.mem_top _⟩
   set M := LinearMap.range (W eS - 1) ⊔ LinearMap.range (W eU - 1) with hM
-  haveI : Module.Finite ℂ (Vn n) := finite_binaryForm
+  have : Module.Finite ℂ (Vn n) := finite_binaryForm
   have hrefl := BW_isRefl (N := N) B hBsymm
   have hnd := BW_nondegenerate (N := N) B hBsymm hBnd
 

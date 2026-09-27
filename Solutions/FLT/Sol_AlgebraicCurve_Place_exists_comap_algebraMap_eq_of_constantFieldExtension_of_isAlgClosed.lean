@@ -252,8 +252,8 @@ theorem exists_digit [IsAlgClosed K] [IsCurveOver K F] {π : P.toValuationSubrin
       o = algebraMap K P.toValuationSubring a + π * o' ∧ (o = 0 → o' = 0) := by
   rcases eq_or_ne o 0 with rfl | ho
   · exact ⟨0, 0, by simp, fun _ => rfl⟩
-  haveI : Module.Finite K P.ResidueField := IsCurveOver.finiteResidue P
-  haveI : Algebra.IsIntegral K P.ResidueField := Algebra.IsIntegral.of_finite K _
+  have : Module.Finite K P.ResidueField := IsCurveOver.finiteResidue P
+  have : Algebra.IsIntegral K P.ResidueField := Algebra.IsIntegral.of_finite K _
   have hbij : Function.Bijective (algebraMap K P.ResidueField) :=
     IsAlgClosed.algebraMap_bijective_of_isIntegral
   obtain ⟨a, ha⟩ := hbij.2 (IsLocalRing.residue P.toValuationSubring o)
@@ -589,7 +589,7 @@ theorem solution (K F K' F' : Type*)
   obtain ⟨t', hfin', hsep'⟩ :=
     AlgebraicCurve.exists_finiteDimensional_isSeparable_adjoin_of_constantFieldExtension_of_isAlgClosed
       K F K' F' hfg hfg' hgen
-  haveI := hfin'; haveI := hsep'
+  have := hfin'; have := hsep'
   obtain ⟨P', hP'⟩ :=
     AlgebraicCurve.Place.exists_toValuationSubring_eq_comap_ringHom_of_isSeparable
       (K := K') t' (RingHom.id F') V (fun a => hAV' _ (algebraMap_mem_rangePsi F' B P a))

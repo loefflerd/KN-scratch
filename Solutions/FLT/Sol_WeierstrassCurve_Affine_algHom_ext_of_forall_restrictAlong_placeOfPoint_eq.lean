@@ -202,7 +202,7 @@ theorem isFinitePlace_iff_exists_placeOfEquation [IsAlgClosed F]
   constructor
   · intro hv
 
-    haveI := hv.centre_isPrime
+    have := hv.centre_isPrime
     have hmax : hv.centre.IsMaximal := Ideal.IsPrime.isMaximal hv.centre_isPrime hv.centre_ne_bot
     obtain ⟨x, y, hxy, hXY⟩ :=
       CoordinateRing.exists_eq_XYIdeal (W := W) (P := hv.centre) hv.centre_ne_bot
@@ -211,7 +211,7 @@ theorem isFinitePlace_iff_exists_placeOfEquation [IsAlgClosed F]
     set w : HeightOneSpectrum W.CoordinateRing := heightOneSpectrumOfEquation hxy with hw
     set A : ValuationSubring W.FunctionField :=
       HeightOneSpectrum.valuationSubringAtPrime W.FunctionField w with hA
-    haveI hAded : IsDedekindDomain A := by rw [hA]; infer_instance
+    have hAded : IsDedekindDomain A := by rw [hA]; infer_instance
     have hle : A ≤ v.toValuationSubring := by
       intro z hz
       rw [hA] at hz
@@ -327,13 +327,13 @@ variable {V W : Affine F} [V.IsElliptic] [W.IsElliptic]
 
 theorem normFormulaAlong_of_elliptic (ι : V.FunctionField →ₐ[F] W.FunctionField)
     (hfin : FiniteAlong F ι) : NormFormulaAlong F ι hfin := by
-  haveI : HasPrincipalDivisors F W.FunctionField := hasPrincipalDivisors_functionField W
-  haveI : CharZero V.FunctionField :=
+  have : HasPrincipalDivisors F W.FunctionField := hasPrincipalDivisors_functionField W
+  have : CharZero V.FunctionField :=
     charZero_of_injective_algebraMap (algebraMap F V.FunctionField).injective
   have hsep : SeparableAlong F ι := by
-    letI := algebraAlong ι
-    haveI := isScalarTower_along ι
-    haveI : Module.Finite V.FunctionField W.FunctionField := hfin
+    let := algebraAlong ι
+    have := isScalarTower_along ι
+    have : Module.Finite V.FunctionField W.FunctionField := hfin
     show Algebra.IsSeparable V.FunctionField W.FunctionField
     infer_instance
   exact AlgebraicCurve.normFormulaAlong ι hfin hsep
@@ -851,9 +851,9 @@ theorem no3ahbad_riqsucr_a1a_ord_pos_of_restrictAlong_ord_pos
   rw [hrw, Place.ord_restrictAlong φ hφ v (f - algebraMap K F' c)]
   refine mul_pos ?_ hord
   unfold Place.ramificationIndexAlong
-  letI := algebraAlong φ
-  haveI := isScalarTower_along φ
-  haveI := isIntegral_along φ hφ
+  let := algebraAlong φ
+  have := isScalarTower_along φ
+  have := isIntegral_along φ hφ
   exact_mod_cast v.ramificationIndex_pos (F := F')
 
 end RouteEta
@@ -929,17 +929,17 @@ theorem no3ahbad_riqsucr_a1a_algHom_ext_of_restrictAlong_placeOfPoint_eq
         simp [hf0]) hne'
     · refine (no3ahbad_riqsucr_a1a_finite_ord_ne_zero (V := V) (φ₁ f) h0).subset ?_
       intro P hP
-      simp only [Set.mem_setOf_eq] at hP ⊢
+      simp only [Set.mem_ofPred_eq] at hP ⊢
       rw [Place.ord_restrictAlong φ₁ hφ₁ (placeOfPoint P) f]
       exact ne_of_lt (mul_neg_of_pos_of_neg (by
         unfold Place.ramificationIndexAlong
-        letI := algebraAlong φ₁; haveI := isScalarTower_along φ₁
-        haveI := isIntegral_along φ₁ hφ₁
+        let := algebraAlong φ₁; have := isScalarTower_along φ₁
+        have := isIntegral_along φ₁ hφ₁
         exact_mod_cast (placeOfPoint P).ramificationIndex_pos (F := F')) hP)
   have hcofin : {P : V.Point | (placeOfPoint P).ord (φ₁ f - φ₂ f) > 0}ᶜ ⊆
       {P | ((placeOfPoint P).restrictAlong φ₁ hφ₁).ord f < 0} := by
     intro P hP
-    simp only [Set.mem_compl_iff, Set.mem_setOf_eq, not_lt] at hP ⊢
+    simp only [Set.mem_compl_iff, Set.mem_ofPred_eq, not_lt] at hP ⊢
     by_contra hge
     simp only [not_lt] at hge
     obtain ⟨c, hc⟩ := no3ahbad_riqsucr_a1a_exists_residue

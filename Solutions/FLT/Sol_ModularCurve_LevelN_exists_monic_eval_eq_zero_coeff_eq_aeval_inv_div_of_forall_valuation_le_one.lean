@@ -183,7 +183,7 @@ theorem N3Prep.exists_monic_eval_eq_zero_coeff_mem_fixedField
     ∃ P : K[X], P.Monic ∧ P.eval z = 0 ∧
       (∀ i, P.coeff i ∈ IntermediateField.fixedField H) ∧ ∀ i, E (P.coeff i) ∈ S := by
   classical
-  haveI : Fintype H := Fintype.ofFinite H
+  have : Fintype H := Fintype.ofFinite H
   refine ⟨∏ h : H, (X - C ((h : K ≃ₐ[F] K) z)), ?_, ?_, ?_, ?_⟩
   · exact monic_prod_of_monic _ _ fun h _ => monic_X_sub_C _
   · rw [eval_prod]
@@ -232,9 +232,9 @@ theorem solution
             aeval (algebraMap (ModularCurve.LevelN.ring M) K (ModularCurve.LevelN.jGen M))⁻¹ q := by
   classical
 
-  haveI : σ.ker.FiniteIndex := by
+  have : σ.ker.FiniteIndex := by
     rw [hker]; exact Subgroup.finiteIndex_of_le le_sup_left
-  haveI : Finite σ.range :=
+  have : Finite σ.range :=
     Finite.of_equiv _ (QuotientGroup.quotientKerEquivRange σ).toEquiv
   obtain ⟨P, hPm, hPz, hPfix, hPint⟩ :=
     N3Prep.exists_monic_eval_eq_zero_coeff_mem_fixedField σ.range z E

@@ -617,11 +617,11 @@ private theorem _root_.ModularCurve.TatePoint.DiscEvenEngine.fullKernelDiscAt_of
   obtain ⟨M, rfl⟩ := hE
   have hM : M ≠ 0 := by have := NeZero.ne (M + M); omega
   rw [← two_mul] at hQ ⊢
-  haveI : NeZero M := ⟨hM⟩
+  have : NeZero M := ⟨hM⟩
   have hMQord : addOrderOf (M • Q) = 2 := addOrderOf_nsmul_half hM hQ
   obtain ⟨x₀, y₀, h₀, hMQ, hgy⟩ := c4_entry (M • Q) hMQord
   have hΔ₂ : (W.veluQuotient2 x₀ y₀).Δ ≠ 0 := c4_stageDelta h₀ hgy
-  haveI : (W.veluQuotient2 x₀ y₀).IsElliptic := ⟨isUnit_iff_ne_zero.mpr hΔ₂⟩
+  have : (W.veluQuotient2 x₀ y₀).IsElliptic := ⟨isUnit_iff_ne_zero.mpr hΔ₂⟩
   rw [WeierstrassCurve.fullKernelQuotient_eq_fullKernelQuotient_veluPointMap2
       h2 W Q M hM hQ hMQ hgy hΔ₂]
   have hker₀ : ∀ P : W.toAffine.Point,

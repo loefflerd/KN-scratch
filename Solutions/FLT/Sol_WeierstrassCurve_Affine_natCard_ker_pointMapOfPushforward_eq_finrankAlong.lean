@@ -142,16 +142,16 @@ theorem ord_deriv_pos_of_ramificationIndex_ne_one
   have hc0 : aeval c (derivative (minpoly v.toValuationSubring c)) ≠ 0 := by
     intro h; exact hg0 (by rw [himg, h, _root_.map_zero])
 
-  haveI : FaithfulSMul v.toValuationSubring (integralClosureAt F' v) :=
+  have : FaithfulSMul v.toValuationSubring (integralClosureAt F' v) :=
     (faithfulSMul_iff_algebraMap_injective v.toValuationSubring (integralClosureAt F' v)).mpr
       (algebraMap_integralClosureAt_injective v)
-  letI : Algebra (FractionRing v.toValuationSubring) (FractionRing (integralClosureAt F' v)) :=
+  let : Algebra (FractionRing v.toValuationSubring) (FractionRing (integralClosureAt F' v)) :=
     FractionRing.liftAlgebra v.toValuationSubring (FractionRing (integralClosureAt F' v))
-  haveI : IsScalarTower v.toValuationSubring (FractionRing v.toValuationSubring)
+  have : IsScalarTower v.toValuationSubring (FractionRing v.toValuationSubring)
       (FractionRing (integralClosureAt F' v)) :=
     FractionRing.isScalarTower_liftAlgebra (R := v.toValuationSubring)
       (K := FractionRing (integralClosureAt F' v))
-  haveI : Algebra.IsSeparable (FractionRing v.toValuationSubring)
+  have : Algebra.IsSeparable (FractionRing v.toValuationSubring)
       (FractionRing (integralClosureAt F' v)) := by
     refine Algebra.IsSeparable.of_equiv_equiv
       (FractionRing.algEquiv v.toValuationSubring F).symm.toRingEquiv
@@ -160,11 +160,11 @@ theorem ord_deriv_pos_of_ramificationIndex_ne_one
     exact IsFractionRing.algEquiv_commutes
       (FractionRing.algEquiv v.toValuationSubring F).symm
       (FractionRing.algEquiv (integralClosureAt F' v) F').symm _
-  haveI := (fiberCenter F' v hw).isPrime
+  have := (fiberCenter F' v hw).isPrime
   have hdvd : (fiberCenter F' v hw).asIdeal
       ∣ differentIdeal v.toValuationSubring (integralClosureAt F' v) := by
     by_contra hnd
-    haveI : Algebra.IsUnramifiedAt v.toValuationSubring (fiberCenter F' v hw).asIdeal :=
+    have : Algebra.IsUnramifiedAt v.toValuationSubring (fiberCenter F' v hw).asIdeal :=
       not_dvd_differentIdeal_iff.mp hnd
     have he1 : Ideal.ramificationIdx'
         ((fiberCenter F' v hw).asIdeal.under v.toValuationSubring)
@@ -226,7 +226,7 @@ variable {W : Affine F} [W.IsElliptic]
 theorem kw_point_infinite : Infinite W.Point := by
   rw [← not_finite_iff_infinite]
   intro hfinite
-  haveI : Finite W.Point := hfinite
+  have : Finite W.Point := hfinite
   set N : ℕ := Nat.card W.Point with hN
   have hNpos : 0 < N := Nat.card_pos
   have htop : ∀ k : ℕ, N ∣ k → Submodule.torsionBy ℤ W.Point (k : ℤ) = ⊤ := by
@@ -286,11 +286,11 @@ theorem kw_fdn2_qephod_hend5_natCard_fiber_eq_finrank_of_unramified
       haveI := isIntegral_along φ hφ
       ∀ w : Place K F', w.restrict F = v → w.ramificationIndex F = 1) :
     Nat.card {w : Place K F' // w.restrictAlong φ hφ = v} = finrankAlong K φ := by
-  letI := algebraAlong φ
-  haveI := isScalarTower_along φ
-  haveI := isIntegral_along φ hφ
-  haveI : FiniteDimensional F F' := hfin
-  haveI : Algebra.IsSeparable F F' := hsep
+  let := algebraAlong φ
+  have := isScalarTower_along φ
+  have := isIntegral_along φ hφ
+  have : FiniteDimensional F F' := hfin
+  have : Algebra.IsSeparable F F' := hsep
   have hsum := AlgebraicCurve.Place.sum_ramificationIndex_mul_inertiaDeg
     (K := K) (F := F) (F' := F') v
 
@@ -346,12 +346,12 @@ theorem kw_fdn2_qephod_hend5_pmopKerCard_of_twoAtoms
     KwD5PointMapOfPushforwardKerCard.{u} := by
   intro K _ _ _ _ E E' _ _ _ _ _ _ ι hι hfin hN
   obtain ⟨v, hv⟩ := hUnram K E E' ι hι hfin
-  haveI : HasPrincipalDivisors K E.FunctionField := hasPrincipalDivisors_functionField E
+  have : HasPrincipalDivisors K E.FunctionField := hasPrincipalDivisors_functionField E
   have hsep : SeparableAlong K ι := by
-    letI := algebraAlong ι
-    haveI := isScalarTower_along ι
-    haveI : Module.Finite E'.FunctionField E.FunctionField := hfin
-    haveI : CharZero E'.FunctionField :=
+    let := algebraAlong ι
+    have := isScalarTower_along ι
+    have : Module.Finite E'.FunctionField E.FunctionField := hfin
+    have : CharZero E'.FunctionField :=
       charZero_of_injective_algebraMap (algebraMap K E'.FunctionField).injective
     show Algebra.IsSeparable E'.FunctionField E.FunctionField
     infer_instance
@@ -367,15 +367,15 @@ theorem kw_fdn2_qephod_hend6_existsUnramifiedBetweenCurves_proved :
   intro K _ _ _ _ E E' _ _ _ _ _ _ ι hι hfin
   classical
 
-  letI := algebraAlong ι
-  haveI := isScalarTower_along ι
-  haveI := isIntegral_along ι hι
-  haveI hfin' : Module.Finite E'.FunctionField E.FunctionField := hfin
-  haveI hcz : CharZero E'.FunctionField :=
+  let := algebraAlong ι
+  have := isScalarTower_along ι
+  have := isIntegral_along ι hι
+  have hfin' : Module.Finite E'.FunctionField E.FunctionField := hfin
+  have hcz : CharZero E'.FunctionField :=
     charZero_of_injective_algebraMap (algebraMap K E'.FunctionField).injective
-  haveI hsep : Algebra.IsSeparable E'.FunctionField E.FunctionField := inferInstance
-  haveI hpdE : HasPrincipalDivisors K E.FunctionField := hasPrincipalDivisors_functionField E
-  haveI hpdE' : HasPrincipalDivisors K E'.FunctionField := hasPrincipalDivisors_functionField E'
+  have hsep : Algebra.IsSeparable E'.FunctionField E.FunctionField := inferInstance
+  have hpdE : HasPrincipalDivisors K E.FunctionField := hasPrincipalDivisors_functionField E
+  have hpdE' : HasPrincipalDivisors K E'.FunctionField := hasPrincipalDivisors_functionField E'
 
   obtain ⟨θ, hgen⟩ := Field.exists_primitive_element E'.FunctionField E.FunctionField
   have hpmon : (minpoly E'.FunctionField θ).Monic :=
@@ -397,7 +397,7 @@ theorem kw_fdn2_qephod_hend6_existsUnramifiedBetweenCurves_proved :
   have hSfin : (S₁ ∪ (fun w => w.restrict E'.FunctionField) '' S₂).Finite :=
     hS₁fin.union (hS₂fin.image _)
 
-  haveI : Infinite (Place K E'.FunctionField) :=
+  have : Infinite (Place K E'.FunctionField) :=
     (placeOfPointEquiv E').symm.infinite_iff.mpr (kw_point_infinite (W := E'))
   obtain ⟨v, hv⟩ := hSfin.infinite_compl.nonempty
   simp only [Set.mem_compl_iff, Set.mem_union, not_or] at hv

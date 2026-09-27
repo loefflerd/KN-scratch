@@ -209,7 +209,7 @@ theorem eq_basePlace_of_ord_pos (v : Place K (IntermediateField.adjoin K ({t} : 
     exact hv
 
   have hcenter : Place.center (Algebra.adjoin K ({t} : Set F)) v hw = Ideal.span {linGen t c} := by
-    haveI : (Ideal.span {linGen t c}).IsPrime := (linPrime t htr c).isPrime
+    have : (Ideal.span {linGen t c}).IsPrime := (linPrime t htr c).isPrime
     have hmax : (Ideal.span {linGen t c}).IsMaximal :=
       IsPrime.to_maximal_ideal (linPrime t htr c).ne_bot
     exact (hmax.eq_of_le (Ideal.IsPrime.ne_top inferInstance)

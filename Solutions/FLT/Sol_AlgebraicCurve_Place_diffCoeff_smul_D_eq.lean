@@ -30,9 +30,9 @@ include x in
 
 private theorem isSeparable_adjoin (v : Place K F) {t : F} (ht : v.ord t ≠ 0) :
     Algebra.IsSeparable (IntermediateField.adjoin K ({t} : Set F)) F := by
-  haveI : Algebra.IsAlgebraic (IntermediateField.adjoin K ({t} : Set F)) F :=
+  have : Algebra.IsAlgebraic (IntermediateField.adjoin K ({t} : Set F)) F :=
     AlgebraicCurve.isAlgebraic_adjoin_of_transcendental x (v.transcendental_of_ord_ne_zero ht)
-  haveI : CharZero F := charZero_of_injective_algebraMap (algebraMap K F).injective
+  have : CharZero F := charZero_of_injective_algebraMap (algebraMap K F).injective
   infer_instance
 
 include x in
@@ -43,7 +43,7 @@ theorem D_ne_zero_of_ord_ne_zero (v : Place K F) {t : F} (ht : v.ord t ≠ 0) : 
 include x in
 theorem exists_eq_smul_D_of_ord_ne_zero (v : Place K F) {t : F} (ht : v.ord t ≠ 0) (ω : Ω[F⁄K]) :
     ∃ g : F, ω = g • D K F t := by
-  haveI := isSeparable_adjoin x v ht
+  have := isSeparable_adjoin x v ht
   have hspan := KaehlerDifferential.span_D_eq_top_of_transcendental K t (v.transcendental_of_ord_ne_zero ht)
   have hω : ω ∈ Submodule.span F {D K F t} := by rw [hspan]; trivial
   obtain ⟨g, hg⟩ := Submodule.mem_span_singleton.mp hω

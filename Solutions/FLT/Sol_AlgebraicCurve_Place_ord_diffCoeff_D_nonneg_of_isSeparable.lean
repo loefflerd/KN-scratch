@@ -217,7 +217,7 @@ private theorem surjective_residueOfCenter (hw : w.restrict F = v) :
       w.ord_nonneg_of_mem (forall_mem_of_restrict_eq hw s)
     omega
 
-  haveI hmax : (fiberCenter F' v hw).asIdeal.IsMaximal :=
+  have hmax : (fiberCenter F' v hw).asIdeal.IsMaximal :=
     (fiberCenter F' v hw).isPrime.isMaximal (fiberCenter F' v hw).ne_bot
   obtain ⟨t, i, hi, hti⟩ := hmax.exists_inv hsP
   have hst : s * t - 1 ∈ (fiberCenter F' v hw).asIdeal := by
@@ -274,8 +274,8 @@ private theorem engine {K : Type*} [Field K] [PerfectField K] {F : Type*} [Field
     ∃ g : F, 0 ≤ v.ord g ∧ D K F f = g • D K F (algebraMap (RatFunc K) F RatFunc.X) := by
   classical
 
-  haveI : Algebra.IsAlgebraic (RatFunc K) F := Algebra.IsAlgebraic.of_finite _ _
-  haveI : Algebra.IsIntegral (RatFunc K) F := Algebra.IsIntegral.of_finite _ _
+  have : Algebra.IsAlgebraic (RatFunc K) F := Algebra.IsAlgebraic.of_finite _ _
+  have : Algebra.IsIntegral (RatFunc K) F := Algebra.IsIntegral.of_finite _ _
 
   have hepos : 0 < v.ramificationIndex (RatFunc K) := v.ramificationIndex_pos
   have hres : v.ord (algebraMap (RatFunc K) F RatFunc.X)
@@ -298,20 +298,20 @@ private theorem engine {K : Type*} [Field K] [PerfectField K] {F : Type*} [Field
     rw [h, Place.ord_zero] at ht
     exact zero_ne_one ht
 
-  letI instCOv : Algebra (integralClosureAt F u) v.toValuationSubring :=
+  let instCOv : Algebra (integralClosureAt F u) v.toValuationSubring :=
     (toValuationSubringOfRestrictEq hu).toAlgebra
   have halgC : ∀ c : integralClosureAt F u,
       (algebraMap (integralClosureAt F u) v.toValuationSubring c : F)
         = algebraMap (integralClosureAt F u) F c := fun _ => rfl
-  haveI hloc : IsLocalization (fiberCenter F u hu).asIdeal.primeCompl v.toValuationSubring :=
+  have hloc : IsLocalization (fiberCenter F u hu).asIdeal.primeCompl v.toValuationSubring :=
     isLocalization_valuationSubring v (fiberCenter F u hu) halgC
       (toValuationSubring_eq_of_restrict_eq hu)
       (fun {c} hc => mem_fiberCenter_iff_ord_pos hu hc)
 
-  letI instOuOv : Algebra u.toValuationSubring v.toValuationSubring :=
+  let instOuOv : Algebra u.toValuationSubring v.toValuationSubring :=
     ((algebraMap (integralClosureAt F u) v.toValuationSubring).comp
       (algebraMap u.toValuationSubring (integralClosureAt F u))).toAlgebra
-  haveI instTowOuCOv : IsScalarTower u.toValuationSubring (integralClosureAt F u)
+  have instTowOuCOv : IsScalarTower u.toValuationSubring (integralClosureAt F u)
       v.toValuationSubring := IsScalarTower.of_algebraMap_eq' rfl
   have halgOuOv : ∀ g : u.toValuationSubring,
       (algebraMap u.toValuationSubring v.toValuationSubring g : F)
@@ -331,13 +331,13 @@ private theorem engine {K : Type*} [Field K] [PerfectField K] {F : Type*} [Field
     rw [halgOuOv g, IsScalarTower.algebraMap_apply u.toValuationSubring (RatFunc K) F]
     rfl
 
-  haveI instEFT : Algebra.EssFiniteType u.toValuationSubring v.toValuationSubring := by
-    haveI h2 : Algebra.EssFiniteType (integralClosureAt F u) v.toValuationSubring :=
+  have instEFT : Algebra.EssFiniteType u.toValuationSubring v.toValuationSubring := by
+    have h2 : Algebra.EssFiniteType (integralClosureAt F u) v.toValuationSubring :=
       Algebra.EssFiniteType.of_isLocalization _ (fiberCenter F u hu).asIdeal.primeCompl
     exact Algebra.EssFiniteType.comp u.toValuationSubring (integralClosureAt F u)
       v.toValuationSubring
 
-  haveI instLH : IsLocalHom (algebraMap u.toValuationSubring v.toValuationSubring) := by
+  have instLH : IsLocalHom (algebraMap u.toValuationSubring v.toValuationSubring) := by
     constructor
     intro a ha
     by_contra hnu
@@ -357,13 +357,13 @@ private theorem engine {K : Type*} [Field K] [PerfectField K] {F : Type*} [Field
 
   have hpmem : ∀ p : Polynomial K,
       algebraMap (Polynomial K) (RatFunc K) p ∈ u.toValuationSubring := polyMem u hXmem
-  letI instKXOu : Algebra (Polynomial K) u.toValuationSubring :=
+  let instKXOu : Algebra (Polynomial K) u.toValuationSubring :=
     ((algebraMap (Polynomial K) (RatFunc K)).codRestrict
       u.toValuationSubring.toSubring hpmem).toAlgebra
   have halgKXOu : ∀ p : Polynomial K,
       (algebraMap (Polynomial K) u.toValuationSubring p : RatFunc K)
         = algebraMap (Polynomial K) (RatFunc K) p := fun _ => rfl
-  haveI hlocKX : IsLocalization
+  have hlocKX : IsLocalization
       (centerHeightOneSpectrum (Polynomial K) u hpmem).asIdeal.primeCompl
         u.toValuationSubring :=
     isLocalization_valuationSubring u (centerHeightOneSpectrum (Polynomial K) u hpmem) halgKXOu
@@ -390,12 +390,12 @@ private theorem engine {K : Type*} [Field K] [PerfectField K] {F : Type*} [Field
     rw [h1]
     exact hXu_mm
 
-  haveI instAκu : Algebra.IsAlgebraic K (IsLocalRing.ResidueField u.toValuationSubring) :=
+  have instAκu : Algebra.IsAlgebraic K (IsLocalRing.ResidueField u.toValuationSubring) :=
     isAlgebraic_residueField_of_X_mem u halgKXOu
       (centerHeightOneSpectrum (Polynomial K) u hpmem).asIdeal.primeCompl hXKX_mm
-  haveI instPFκu : PerfectField (IsLocalRing.ResidueField u.toValuationSubring) :=
+  have instPFκu : PerfectField (IsLocalRing.ResidueField u.toValuationSubring) :=
     Algebra.IsAlgebraic.perfectField (K := K)
-  haveI instAκ : Algebra.IsAlgebraic (IsLocalRing.ResidueField u.toValuationSubring)
+  have instAκ : Algebra.IsAlgebraic (IsLocalRing.ResidueField u.toValuationSubring)
       (IsLocalRing.ResidueField v.toValuationSubring) := by
     constructor
     intro y
@@ -442,20 +442,20 @@ private theorem engine {K : Type*} [Field K] [PerfectField K] {F : Type*} [Field
       rw [hfact]
       exact Ideal.mul_mem_right _ _ (Ideal.mem_map_of_mem _ hXu_mm)
 
-  haveI hFU1 : Algebra.FormallyUnramified u.toValuationSubring v.toValuationSubring :=
+  have hFU1 : Algebra.FormallyUnramified u.toValuationSubring v.toValuationSubring :=
     Algebra.FormallyUnramified.of_map_maximalIdeal hmapmax
-  haveI hFU0 : Algebra.FormallyUnramified (Polynomial K) u.toValuationSubring :=
+  have hFU0 : Algebra.FormallyUnramified (Polynomial K) u.toValuationSubring :=
     Algebra.FormallyUnramified.of_isLocalization
       (centerHeightOneSpectrum (Polynomial K) u hpmem).asIdeal.primeCompl
-  letI instKXOv : Algebra (Polynomial K) v.toValuationSubring :=
+  let instKXOv : Algebra (Polynomial K) v.toValuationSubring :=
     ((algebraMap u.toValuationSubring v.toValuationSubring).comp
       (algebraMap (Polynomial K) u.toValuationSubring)).toAlgebra
-  haveI instTowKXOuOv : IsScalarTower (Polynomial K) u.toValuationSubring
+  have instTowKXOuOv : IsScalarTower (Polynomial K) u.toValuationSubring
       v.toValuationSubring := IsScalarTower.of_algebraMap_eq' rfl
-  haveI hFU : Algebra.FormallyUnramified (Polynomial K) v.toValuationSubring :=
+  have hFU : Algebra.FormallyUnramified (Polynomial K) v.toValuationSubring :=
     Algebra.FormallyUnramified.comp (Polynomial K) u.toValuationSubring v.toValuationSubring
 
-  haveI instTowKKXOv : IsScalarTower K (Polynomial K) v.toValuationSubring := by
+  have instTowKKXOv : IsScalarTower K (Polynomial K) v.toValuationSubring := by
     apply IsScalarTower.of_algebraMap_eq
     intro a
     apply Subtype.ext
@@ -528,28 +528,28 @@ theorem ord_diffCoeff_D_nonneg_of_isSeparable {K F : Type*} [Field K] [Field F] 
     v.transcendental_of_ord_ne_zero (by rw [ht]; exact one_ne_zero)
   let e : RatFunc K ≃ₐ[K] ↥(IntermediateField.adjoin K ({t} : Set F)) :=
     RatFunc.algEquivOfTranscendental t htr
-  letI : Algebra (RatFunc K) (↥(IntermediateField.adjoin K ({t} : Set F))) :=
+  let : Algebra (RatFunc K) (↥(IntermediateField.adjoin K ({t} : Set F))) :=
     e.toAlgHom.toRingHom.toAlgebra
-  letI : Algebra (RatFunc K) F :=
+  let : Algebra (RatFunc K) F :=
     ((algebraMap (↥(IntermediateField.adjoin K ({t} : Set F))) F).comp
       e.toAlgHom.toRingHom).toAlgebra
-  haveI : IsScalarTower (RatFunc K) (↥(IntermediateField.adjoin K ({t} : Set F))) F :=
+  have : IsScalarTower (RatFunc K) (↥(IntermediateField.adjoin K ({t} : Set F))) F :=
     IsScalarTower.of_algebraMap_eq fun q => rfl
-  haveI : IsScalarTower K (RatFunc K) F := IsScalarTower.of_algebraMap_eq fun r => by
+  have : IsScalarTower K (RatFunc K) F := IsScalarTower.of_algebraMap_eq fun r => by
     show algebraMap K F r
       = algebraMap (↥(IntermediateField.adjoin K ({t} : Set F))) F (e (algebraMap K (RatFunc K) r))
     rw [AlgEquiv.commutes]
     exact IsScalarTower.algebraMap_apply K (↥(IntermediateField.adjoin K ({t} : Set F))) F r
-  haveI : Module.Finite (RatFunc K) (↥(IntermediateField.adjoin K ({t} : Set F))) :=
+  have : Module.Finite (RatFunc K) (↥(IntermediateField.adjoin K ({t} : Set F))) :=
     Module.Finite.of_surjective
       (Algebra.linearMap (RatFunc K) (↥(IntermediateField.adjoin K ({t} : Set F))))
       e.surjective
-  haveI : FiniteDimensional (↥(IntermediateField.adjoin K ({t} : Set F))) F :=
+  have : FiniteDimensional (↥(IntermediateField.adjoin K ({t} : Set F))) F :=
     AlgebraicCurve.finiteDimensional_adjoin_of_transcendental x htr
-  haveI : FiniteDimensional (RatFunc K) F :=
+  have : FiniteDimensional (RatFunc K) F :=
     Module.Finite.trans (↥(IntermediateField.adjoin K ({t} : Set F))) F
 
-  haveI : Algebra.IsSeparable (RatFunc K) F :=
+  have : Algebra.IsSeparable (RatFunc K) F :=
     Algebra.IsSeparable.of_equiv_equiv e.symm.toRingEquiv (RingEquiv.refl F)
       (RingHom.ext fun y => by
         show algebraMap (↥(IntermediateField.adjoin K ({t} : Set F))) F (e (e.symm y))

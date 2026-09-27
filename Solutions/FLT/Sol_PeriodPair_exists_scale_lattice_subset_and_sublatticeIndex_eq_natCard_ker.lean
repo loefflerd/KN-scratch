@@ -266,7 +266,7 @@ def latticeQuotTorsionEquiv (hn : (n : ℤ) ≠ 0) :
 theorem card_torsionBy_latticeQuotient [Module.Free ℤ ↥Λ] [Module.Finite ℤ ↥Λ]
     (hn : (n : ℤ) ≠ 0) :
     Nat.card (Submodule.torsionBy ℤ (V ⧸ Λ) (n : ℤ)) = n ^ Module.finrank ℤ ↥Λ := by
-  haveI : NeZero n := ⟨by exact_mod_cast hn⟩
+  have : NeZero n := ⟨by exact_mod_cast hn⟩
   rw [← Nat.card_congr (latticeQuotTorsionEquiv Λ hn).toEquiv, ModN.natCard_eq]
 
 end LatticeQuotient
@@ -973,9 +973,9 @@ theorem solution (L L' : PeriodPair) (hL : L.DiscriminantNeZero) (hL' : L'.Discr
     (hψ : ∀ z : ℂ, L'.toPoint hL' ((α : ℂ) * z) = ψ (L.toPoint hL z)) :
     ∃ β : ℂˣ, ((L'.scale β).lattice : Set ℂ) ⊆ L.lattice ∧
       PeriodPair.sublatticeIndex L (L'.scale β) = Nat.card ψ.ker := by
-  haveI : L.weierstrassCurve.IsElliptic :=
+  have : L.weierstrassCurve.IsElliptic :=
     ⟨isUnit_iff_ne_zero.mpr L.discriminant_ne_zero.weierstrassCurve_Δ_ne_zero⟩
-  haveI : L'.weierstrassCurve.IsElliptic :=
+  have : L'.weierstrassCurve.IsElliptic :=
     ⟨isUnit_iff_ne_zero.mpr L'.discriminant_ne_zero.weierstrassCurve_Δ_ne_zero⟩
   refine ModularCurve.kw_surgehgf4_hID_betweenCurvesIndexDual_proved L L' α ψ ?_
   intro z

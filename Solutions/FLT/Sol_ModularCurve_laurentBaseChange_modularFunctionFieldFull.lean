@@ -17,7 +17,7 @@ theorem solution (L : Type*) [Field L] [Algebra ℚ L] (N : ℕ) [NeZero N] : Mo
   rw [modularFunctionFieldFull, laurentBaseChange_adjoin]
   congr 1
   ext x
-  simp only [Set.mem_image, divisorExpansions, Set.mem_setOf_eq]
+  simp only [Set.mem_image, divisorExpansions, Set.mem_ofPred_eq]
   constructor
   · rintro ⟨y, ⟨d, hd, hdvd, rfl⟩, rfl⟩
     exact ⟨d, hd, hdvd, (coeffEmb_jqN L d)⟩

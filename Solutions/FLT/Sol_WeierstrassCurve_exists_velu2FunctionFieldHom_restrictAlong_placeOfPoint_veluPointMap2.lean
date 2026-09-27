@@ -177,7 +177,7 @@ include hQ hgy in
 theorem equation_map_veluQuotient2_ξ_η :
     ((W.veluQuotient2 x₀ y₀).map (algebraMap F W.toAffine.FunctionField)).toAffine.Equation
       (ξ W x₀ y₀) (η W x₀ y₀) := by
-  haveI : CharZero W.toAffine.FunctionField :=
+  have : CharZero W.toAffine.FunctionField :=
     charZero_of_injective_algebraMap (algebraMap F W.toAffine.FunctionField).injective
   rw [← map_veluQuotient2, ← velu2X_map_generic, ← velu2Y_map_generic]
   refine (W.map (algebraMap F W.toAffine.FunctionField)).velu2_map_equation two_ne_zero
@@ -286,7 +286,7 @@ theorem coordHom_comp_algebraMap :
 
 theorem coordHom_injective : Function.Injective (coordHom hQ hgy) := by
   have hker : RingHom.ker (coordHom hQ hgy).toRingHom = ⊥ := by
-    haveI : Module.Finite F[X] (W.veluQuotient2 x₀ y₀).toAffine.CoordinateRing :=
+    have : Module.Finite F[X] (W.veluQuotient2 x₀ y₀).toAffine.CoordinateRing :=
       Module.Finite.of_basis (CoordinateRing.basis (W.veluQuotient2 x₀ y₀).toAffine)
     refine Ideal.eq_bot_of_comap_eq_bot (R := F[X]) ?_
     rw [RingHom.comap_ker, coordHom_comp_algebraMap, ← RingHom.injective_iff_ker_eq_bot]
@@ -331,7 +331,7 @@ theorem adjoin_xK_eq_top :
     letI := algebraAlong (ffHom hQ hgy)
     IntermediateField.adjoin (W.veluQuotient2 x₀ y₀).toAffine.FunctionField
       {xK W.toAffine} = ⊤ := by
-  letI := algebraAlong (ffHom hQ hgy)
+  let := algebraAlong (ffHom hQ hgy)
   set K' := (W.veluQuotient2 x₀ y₀).toAffine.FunctionField
   have halg : ∀ z : K', algebraMap K' W.toAffine.FunctionField z = ffHom hQ hgy z :=
     fun _ => rfl
@@ -401,7 +401,7 @@ theorem isIntegral_xK :
   ring
 
 theorem finiteAlong_ffHom : FiniteAlong F (ffHom hQ hgy) := by
-  letI := algebraAlong (ffHom hQ hgy)
+  let := algebraAlong (ffHom hQ hgy)
   show Module.Finite (W.veluQuotient2 x₀ y₀).toAffine.FunctionField W.toAffine.FunctionField
   have h1 := IntermediateField.adjoin.finiteDimensional (isIntegral_xK hQ hgy)
   rw [adjoin_xK_eq_top hQ hgy] at h1
@@ -410,8 +410,8 @@ theorem finiteAlong_ffHom : FiniteAlong F (ffHom hQ hgy) := by
     (E := W.toAffine.FunctionField)).toLinearEquiv.finiteDimensional
 
 theorem isIntegral_ffHom : (ffHom hQ hgy).toRingHom.IsIntegral := by
-  letI := algebraAlong (ffHom hQ hgy)
-  haveI : Module.Finite (W.veluQuotient2 x₀ y₀).toAffine.FunctionField
+  let := algebraAlong (ffHom hQ hgy)
+  have : Module.Finite (W.veluQuotient2 x₀ y₀).toAffine.FunctionField
       W.toAffine.FunctionField := finiteAlong_ffHom hQ hgy
   have h : Algebra.IsIntegral (W.veluQuotient2 x₀ y₀).toAffine.FunctionField
       W.toAffine.FunctionField := Algebra.IsIntegral.of_finite _ _
@@ -556,7 +556,7 @@ theorem restrictAlong_placeOfPoint_some_of_ne (h2 : (2 : F) ≠ 0)
     (hx : x ≠ x₀) :
     (placeOfPoint (Point.some x y h)).restrictAlong (ffHom hQ hgy) (isIntegral_ffHom hQ hgy)
       = placeOfPoint (veluPointMap2 h2 hQ hgy hΔ' (Point.some x y h)) := by
-  haveI := CoordinateRing.isDedekindDomain (W.veluQuotient2 x₀ y₀)
+  have := CoordinateRing.isDedekindDomain (W.veluQuotient2 x₀ y₀)
   rw [veluPointMap2_some_of_ne h2 hQ hgy hΔ' h hx]
   set O := (placeOfPoint (Point.some x y h)).toValuationSubring with hO
 

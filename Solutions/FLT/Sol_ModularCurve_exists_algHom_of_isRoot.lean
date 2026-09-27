@@ -183,9 +183,9 @@ private theorem exists_algHom_of_isRoot (L : Type*) [Field L] [Algebra ℚ L] (N
   let φ₀ : jAdjField L →ₐ[L] A := jBaseHom L hc
   have hφ₀c : φ₀ (jGenL L) = c := jBaseHom_jGenL L hc
 
-  letI : Algebra (jAdjField L) A := φ₀.toRingHom.toAlgebra
+  let : Algebra (jAdjField L) A := φ₀.toRingHom.toAlgebra
   have hamap : ∀ x, algebraMap (jAdjField L) A x = φ₀ x := fun _ => rfl
-  haveI : IsScalarTower L (jAdjField L) A :=
+  have : IsScalarTower L (jAdjField L) A :=
     IsScalarTower.of_algebraMap_eq' (by ext x; exact (φ₀.commutes x).symm)
 
   have hΦmonic : (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (jAdjField L))

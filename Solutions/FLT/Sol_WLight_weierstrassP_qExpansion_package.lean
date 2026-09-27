@@ -734,11 +734,11 @@ theorem differentiableOn_wpTorsionSeries {N a₁ a₂ : ℕ} (ha₁ : a₁ < N) 
   intro τ₀ hτ₀
 
   set B : ℝ := τ₀.im / 2 with hB
-  have hB0 : 0 < B := by simp only [Set.mem_setOf_eq] at hτ₀; positivity
+  have hB0 : 0 < B := by simp only [Set.mem_ofPred_eq] at hτ₀; positivity
   set U : Set ℂ := {τ : ℂ | B < τ.im} with hU
   have hUopen : IsOpen U := isOpen_lt continuous_const Complex.continuous_im
   have hτ₀U : τ₀ ∈ U := by
-    simp only [hU, Set.mem_setOf_eq, hB]; simp only [Set.mem_setOf_eq] at hτ₀; linarith
+    simp only [hU, Set.mem_ofPred_eq, hB]; simp only [Set.mem_ofPred_eq] at hτ₀; linarith
   have hUsub : U ⊆ {τ : ℂ | 0 < τ.im} := fun τ hτ ↦ lt_trans hB0 hτ
   set ρ : ℝ := Real.exp (-(2 * π * B / N)) with hρ
   have hN : 0 < N := by omega

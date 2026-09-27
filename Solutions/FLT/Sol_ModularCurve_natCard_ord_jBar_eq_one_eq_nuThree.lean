@@ -85,7 +85,7 @@ variable [CharZero K] (t : F) [FiniteDimensional (IntermediateField.adjoin K ({t
 
 private scoped instance DOM_instIsDedekindDomainNormalization :
     IsDedekindDomain (DOM_normalization K t) := by
-  haveI : CharZero (IntermediateField.adjoin K ({t} : Set F)) :=
+  have : CharZero (IntermediateField.adjoin K ({t} : Set F)) :=
     charZero_of_injective_algebraMap (algebraMap K _).injective
   exact integralClosure.isDedekindDomain (Algebra.adjoin K ({t} : Set F))
     (IntermediateField.adjoin K ({t} : Set F)) F
@@ -257,7 +257,7 @@ private theorem DOM_exists_place_of_forall_mem (A : ValuationSubring F') (hA : A
     ∃ v : Place K' F', v.toValuationSubring = A := by
   let φ : R →+* A.toSubring := (algebraMap R F').codRestrict A.toSubring hR
   let P : Ideal R := (IsLocalRing.maximalIdeal A).comap φ
-  haveI hP : P.IsPrime := Ideal.comap_isPrime _ _
+  have hP : P.IsPrime := Ideal.comap_isPrime _ _
 
   have hinv : ∀ s : R, s ∉ P → (algebraMap R F' s)⁻¹ ∈ A := by
     intro s hs
@@ -738,21 +738,21 @@ private theorem DOM_isIntegral_qbar (c : AlgebraicClosure ℚ) : IsIntegral ℚ 
 
 private theorem DOM_residueBij (v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N)) :
     Function.Bijective (algebraMap (AlgebraicClosure ℚ) v.ResidueField) := by
-  haveI hfin : Module.Finite (AlgebraicClosure ℚ) v.ResidueField :=
+  have hfin : Module.Finite (AlgebraicClosure ℚ) v.ResidueField :=
     Module.finite_of_finrank_pos (by
       have h1 : v.deg = 1 := ModularCurve.deg_eq_one_modularFunctionFieldBar N v
       show 0 < Module.finrank (AlgebraicClosure ℚ) v.ResidueField
       rw [show Module.finrank (AlgebraicClosure ℚ) v.ResidueField = v.deg from rfl, h1]
       omega)
-  haveI : Algebra.IsIntegral (AlgebraicClosure ℚ) v.ResidueField :=
+  have : Algebra.IsIntegral (AlgebraicClosure ℚ) v.ResidueField :=
     Algebra.IsIntegral.of_finite _ _
   exact IsAlgClosed.algebraMap_bijective_of_isIntegral
 
 private theorem DOM_card_embeddings (w : Place ℚ (modularFunctionField N))
     [FiniteDimensional ℚ w.ResidueField] :
     Fintype.card (w.ResidueField →ₐ[ℚ] AlgebraicClosure ℚ) = w.deg := by
-  haveI : Algebra.IsIntegral ℚ w.ResidueField := Algebra.IsIntegral.of_finite ℚ _
-  haveI : Algebra.IsAlgebraic ℚ w.ResidueField := Algebra.IsAlgebraic.of_finite ℚ _
+  have : Algebra.IsIntegral ℚ w.ResidueField := Algebra.IsIntegral.of_finite ℚ _
+  have : Algebra.IsAlgebraic ℚ w.ResidueField := Algebra.IsAlgebraic.of_finite ℚ _
   exact AlgHom.card ℚ w.ResidueField (AlgebraicClosure ℚ)
 
 section PerW
@@ -925,7 +925,7 @@ private theorem DOM_main (w : Place ℚ (modularFunctionField N))
   · have hdpos : 0 < w.deg := Nat.pos_of_ne_zero hdeg0
     have hj : DOM_j N ∈ w.toValuationSubring := DOM_j_mem_vsr N w hw
     obtain ⟨v, hdom⟩ := DOM_exists_dominating_place N w hj
-    haveI : FiniteDimensional ℚ w.ResidueField := Module.finite_of_finrank_pos hdpos
+    have : FiniteDimensional ℚ w.ResidueField := Module.finite_of_finrank_pos hdpos
     exact DOM_main_pos N w hj v hdom
 
 end Concrete
@@ -1757,7 +1757,7 @@ private theorem JD_deg_pos_of_restrict_eq_jLinePlace1728
     [Algebra.IsIntegral ↥ℚ⟮jq⟯ ↥(modularFunctionField N)]
     (w : Place ℚ (modularFunctionField N))
     (hw : w.restrict ↥ℚ⟮jq⟯ = jLinePlace1728) : 1 ≤ w.deg := by
-  haveI := JD_finiteDimensional_jAdjoin N
+  have := JD_finiteDimensional_jAdjoin N
   have hd := w.deg_restrict_mul_inertiaDeg (F := ↥ℚ⟮jq⟯)
   rw [hw, deg_jLinePlace1728, one_mul] at hd
   rw [← hd]
@@ -1767,7 +1767,7 @@ private theorem JD_deg_pos_of_restrict_eq_jLinePlaceZero
     [Algebra.IsIntegral ↥ℚ⟮jq⟯ ↥(modularFunctionField N)]
     (w : Place ℚ (modularFunctionField N))
     (hw : w.restrict ↥ℚ⟮jq⟯ = jLinePlaceZero) : 1 ≤ w.deg := by
-  haveI := JD_finiteDimensional_jAdjoin N
+  have := JD_finiteDimensional_jAdjoin N
   have hd := w.deg_restrict_mul_inertiaDeg (F := ↥ℚ⟮jq⟯)
   rw [hw, deg_jLinePlaceZero, one_mul] at hd
   rw [← hd]
@@ -1776,7 +1776,7 @@ private theorem JD_deg_pos_of_restrict_eq_jLinePlaceZero
 private theorem JD_deg_pos
     [Algebra.IsIntegral ↥ℚ⟮jq⟯ ↥(modularFunctionField N)]
     (w : Place ℚ (modularFunctionField N)) : 1 ≤ w.deg := by
-  haveI := JD_finiteDimensional_jAdjoin N
+  have := JD_finiteDimensional_jAdjoin N
   have hd := w.deg_restrict_mul_inertiaDeg (F := ↥ℚ⟮jq⟯)
   calc 1 ≤ (w.restrict ↥ℚ⟮jq⟯).deg * 1 := by
         simpa using JD_deg_restrict_jAdjoin_pos N w
@@ -1863,7 +1863,7 @@ private theorem ModularCurve.ramificationIndex_eq_one_or_eq_two_of_restrict_eq_j
       w.restrict ↥ℚ⟮ModularCurve.jq⟯ = ModularCurve.jLinePlace1728 →
       w.ramificationIndex ↥ℚ⟮ModularCurve.jq⟯ = 1 ∨ w.ramificationIndex ↥ℚ⟮ModularCurve.jq⟯ = 2 := by
   intro _ w hw
-  letI := jAdjoinAlgebra N
+  let := jAdjoinAlgebra N
   have _ := hN
   obtain ⟨v, c, hcpos, hvord⟩ := JD_exists_bar_ord_eq_mul_ram_1728 N w hw
   have hewpos : 0 < (w.ramificationIndex ↥ℚ⟮jq⟯ : ℤ) := by
@@ -1883,7 +1883,7 @@ private theorem ModularCurve.ramificationIndex_eq_one_or_eq_three_of_restrict_eq
       w.restrict ↥ℚ⟮ModularCurve.jq⟯ = ModularCurve.jLinePlaceZero →
       w.ramificationIndex ↥ℚ⟮ModularCurve.jq⟯ = 1 ∨ w.ramificationIndex ↥ℚ⟮ModularCurve.jq⟯ = 3 := by
   intro _ w hw
-  letI := jAdjoinAlgebra N
+  let := jAdjoinAlgebra N
   have _ := hN
   obtain ⟨v, c, hcpos, hvord⟩ := JD_exists_bar_ord_eq_mul_ram_zero N w hw
   have hewpos : 0 < (w.ramificationIndex ↥ℚ⟮jq⟯ : ℤ) := by
@@ -1903,7 +1903,7 @@ private theorem ModularCurve.ramificationIndex_eq_one_or_eq_two_of_restrict_eq_j
       w.restrict ↥ℚ⟮ModularCurve.jq⟯ = ModularCurve.jLinePlace1728 →
       w.ramificationIndex ↥ℚ⟮ModularCurve.jq⟯ = 1 ∨ w.ramificationIndex ↥ℚ⟮ModularCurve.jq⟯ = 2 := by
   intro _ w hw
-  letI := jAdjoinAlgebra N
+  let := jAdjoinAlgebra N
   have _ := hN
   obtain ⟨v, c, hcpos, hvord⟩ := JD_exists_bar_ord_eq_mul_ram_1728 N w hw
   have hewpos : 0 < (w.ramificationIndex ↥ℚ⟮jq⟯ : ℤ) := by
@@ -1923,7 +1923,7 @@ private theorem ModularCurve.ramificationIndex_eq_one_or_eq_three_of_restrict_eq
       w.restrict ↥ℚ⟮ModularCurve.jq⟯ = ModularCurve.jLinePlaceZero →
       w.ramificationIndex ↥ℚ⟮ModularCurve.jq⟯ = 1 ∨ w.ramificationIndex ↥ℚ⟮ModularCurve.jq⟯ = 3 := by
   intro _ w hw
-  letI := jAdjoinAlgebra N
+  let := jAdjoinAlgebra N
   have _ := hN
   obtain ⟨v, c, hcpos, hvord⟩ := JD_exists_bar_ord_eq_mul_ram_zero N w hw
   have hewpos : 0 < (w.ramificationIndex ↥ℚ⟮jq⟯ : ℤ) := by
@@ -1947,7 +1947,7 @@ private theorem ModularCurve.sum_inertiaDeg_unramified_fiber_jLinePlace1728_eq_n
         (fun w => w.ramificationIndex ↥ℚ⟮ModularCurve.jq⟯ = 1),
       (w.inertiaDeg ↥ℚ⟮ModularCurve.jq⟯ : ℤ) = (ModularCurve.nuTwo N : ℤ) := by
   intro _
-  letI := jAdjoinAlgebra N
+  let := jAdjoinAlgebra N
   have _ := hN
   rw [sum_inertiaDeg_unramified_fiber_jLinePlace1728_eq_natCard_bar N,
     natCard_ord_jBar_sub_1728_eq_one_eq_nuTwo N h2 hcount]
@@ -1965,7 +1965,7 @@ private theorem ModularCurve.sum_inertiaDeg_unramified_fiber_jLinePlaceZero_eq_n
         (fun w => w.ramificationIndex ↥ℚ⟮ModularCurve.jq⟯ = 1),
       (w.inertiaDeg ↥ℚ⟮ModularCurve.jq⟯ : ℤ) = (ModularCurve.nuThree N : ℤ) := by
   intro _
-  letI := jAdjoinAlgebra N
+  let := jAdjoinAlgebra N
   have _ := hN
   rw [sum_inertiaDeg_unramified_fiber_jLinePlaceZero_eq_natCard_bar N,
     natCard_ord_jBar_eq_one_eq_nuThree N h1 hcount]
@@ -1983,7 +1983,7 @@ private theorem ModularCurve.sum_inertiaDeg_unramified_fiber_jLinePlace1728_eq_n
         (fun w => w.ramificationIndex ↥ℚ⟮ModularCurve.jq⟯ = 1),
       (w.inertiaDeg ↥ℚ⟮ModularCurve.jq⟯ : ℤ) = (ModularCurve.nuTwo N : ℤ) := by
   intro _
-  letI := jAdjoinAlgebra N
+  let := jAdjoinAlgebra N
   have _ := hN
   rw [sum_inertiaDeg_unramified_fiber_jLinePlace1728_eq_natCard_bar N,
     natCard_ord_jBar_sub_1728_eq_one_eq_nuTwo N h2 hcount]
@@ -2001,7 +2001,7 @@ private theorem ModularCurve.sum_inertiaDeg_unramified_fiber_jLinePlaceZero_eq_n
         (fun w => w.ramificationIndex ↥ℚ⟮ModularCurve.jq⟯ = 1),
       (w.inertiaDeg ↥ℚ⟮ModularCurve.jq⟯ : ℤ) = (ModularCurve.nuThree N : ℤ) := by
   intro _
-  letI := jAdjoinAlgebra N
+  let := jAdjoinAlgebra N
   have _ := hN
   rw [sum_inertiaDeg_unramified_fiber_jLinePlaceZero_eq_natCard_bar N,
     natCard_ord_jBar_eq_one_eq_nuThree N h1 hcount]
@@ -2175,7 +2175,7 @@ private theorem ModularCurve.ramificationIndex_eq_one_of_restrict_ne_jLinePlaces
       w.restrict ↥ℚ⟮ModularCurve.jq⟯ ≠ ModularCurve.jLinePlaceInfty →
       w.ramificationIndex ↥ℚ⟮ModularCurve.jq⟯ = 1 := by
   intro _ w h1728 h0 hinfty
-  letI := jAdjoinAlgebra N
+  let := jAdjoinAlgebra N
   have _ := hN
 
   have hjnn : 0 ≤ w.ord (⟨jq, jq_mem N⟩ : modularFunctionField N) :=
@@ -2231,7 +2231,7 @@ private theorem ModularCurve.ramificationIndex_eq_one_of_restrict_ne_jLinePlaces
       w.restrict ↥ℚ⟮ModularCurve.jq⟯ ≠ ModularCurve.jLinePlaceInfty →
       w.ramificationIndex ↥ℚ⟮ModularCurve.jq⟯ = 1 := by
   intro _ w h1728 h0 hinfty
-  letI := jAdjoinAlgebra N
+  let := jAdjoinAlgebra N
   have _ := hN
 
   have hjnn : 0 ≤ w.ord (⟨jq, jq_mem N⟩ : modularFunctionField N) :=

@@ -98,7 +98,7 @@ theorem solution
             + (if 0 < P.ord (y - 1728) then (P.ord (y - 1728)) / 2 else 0)
             + (if P.ord y < 0 then P.ord y else 0))) := by
   classical
-  haveI : (CongruenceSubgroup.Gamma1 M).FiniteIndex := inferInstance
+  have : (CongruenceSubgroup.Gamma1 M).FiniteIndex := inferInstance
   have hT : ModularGroup.T ∈ CongruenceSubgroup.Gamma1 M := by
     rw [CongruenceSubgroup.Gamma1_mem]; simp [ModularGroup.T]
   have h1 := one_mem_strictPeriods_gamma1 M

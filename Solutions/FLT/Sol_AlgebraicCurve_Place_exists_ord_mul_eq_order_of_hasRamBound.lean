@@ -305,7 +305,7 @@ def place : Place K F where
     rw [mem_valuationSubring_iff, order_map_inv] at hmem
     linarith
   isPrincipalIdealRing' := by
-    haveI : IsDiscreteValuationRing (valuationSubring φ) :=
+    have : IsDiscreteValuationRing (valuationSubring φ) :=
       IsDiscreteValuationRing.ofHasUnitMulPowIrreducibleFactorization
         (hasUnitMulPowIrreducibleFactorization φ hπpos hgen)
     infer_instance

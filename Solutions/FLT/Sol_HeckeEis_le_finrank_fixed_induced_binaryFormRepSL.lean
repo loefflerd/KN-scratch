@@ -309,24 +309,24 @@ theorem finrank_binaryForm (K : Type*) [Field K] (n : ℕ) : Module.finrank K (B
   have e2 : S ≃ Fin (n + 1) :=
     { toFun := fun d => ⟨d.1 0, by
         have h := d.2
-        simp only [S, Set.mem_setOf_eq, Finsupp.degree_eq_sum, Fin.sum_univ_two] at h
+        simp only [S, Set.mem_ofPred_eq, Finsupp.degree_eq_sum, Fin.sum_univ_two] at h
         omega⟩
       invFun := fun i => ⟨Finsupp.single 0 i.1 + Finsupp.single 1 (n - i.1), by
         have hi := i.2
-        simp only [S, Set.mem_setOf_eq, Finsupp.degree_eq_sum, Fin.sum_univ_two, Finsupp.add_apply,
+        simp only [S, Set.mem_ofPred_eq, Finsupp.degree_eq_sum, Fin.sum_univ_two, Finsupp.add_apply,
           Finsupp.single_apply]
         simp
         omega⟩
       left_inv := fun d => by
         have h := d.2
-        simp only [S, Set.mem_setOf_eq, Finsupp.degree_eq_sum, Fin.sum_univ_two] at h
+        simp only [S, Set.mem_ofPred_eq, Finsupp.degree_eq_sum, Fin.sum_univ_two] at h
         apply Subtype.ext
         ext j
         fin_cases j <;> simp <;> omega
       right_inv := fun i => by
         apply Fin.ext
         simp }
-  haveI : Fintype S := Fintype.ofEquiv _ e2.symm
+  have : Fintype S := Fintype.ofEquiv _ e2.symm
   rw [e1.finrank_eq, Module.finrank_finsupp_self, Fintype.card_congr e2, Fintype.card_fin]
 
 scoped instance instFiniteDimensionalBinaryForm (K : Type*) [Field K] (n : ℕ) : FiniteDimensional K (BinaryForm K n) :=
@@ -390,7 +390,7 @@ theorem finrank_coset_fun [NeZero N] :
     Module.finrank ℂ (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N → BinaryForm ℂ n)
       = (n + 1) * (CongruenceSubgroup.Gamma0 N).index := by
   classical
-  letI : Fintype (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N) := Fintype.ofFinite _
+  let : Fintype (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N) := Fintype.ofFinite _
   rw [Module.finrank_pi_fintype, Finset.sum_const, Finset.card_univ, smul_eq_mul, finrank_binaryForm,
     Subgroup.index_eq_card, Nat.card_eq_fintype_card, mul_comm]
 
@@ -404,7 +404,7 @@ theorem prime_conjunct [NeZero N] (hn : Even n) {g : SL(2, ℤ)}
         - Nat.card {x : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N // g • x = x}) * (n + 1)
       ≤ p * Module.finrank ℂ (LinearMap.ker (Φ - 1)) := by
   classical
-  letI : Fintype (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N) := Fintype.ofFinite _
+  let : Fintype (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N) := Fintype.ofFinite _
   have hΦ : ∀ f x, Φ f x = binaryFormRepSL ℂ n g (f ((MulAction.toPerm g)⁻¹ x)) := by
     intro f x
     rw [hW, Equiv.Perm.inv_def, MulAction.toPerm_symm_apply]
@@ -429,8 +429,8 @@ theorem T_conjunct [NeZero N]
   let Cos := SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N
   let Q := MulAction.orbitRel.Quotient (Subgroup.zpowers ModularGroup.T) Cos
   let π : Cos → Q := Quotient.mk''
-  haveI : Finite Q := Finite.of_surjective π Quotient.mk''_surjective
-  letI : Fintype Q := Fintype.ofFinite Q
+  have : Finite Q := Finite.of_surjective π Quotient.mk''_surjective
+  let : Fintype Q := Fintype.ofFinite Q
   let L0 : (Q → ℂ) →ₗ[ℂ] (Cos → BinaryForm ℂ n) :=
     (LinearMap.toSpanSingleton ℂ (BinaryForm ℂ n) (xPow n)).compLeft Cos ∘ₗ LinearMap.funLeft ℂ ℂ π
   have hL0 : ∀ c x, L0 c x = c (π x) • xPow n := fun c x => rfl

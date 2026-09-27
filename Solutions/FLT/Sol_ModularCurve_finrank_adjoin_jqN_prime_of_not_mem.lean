@@ -191,8 +191,8 @@ theorem roots_phiProd_conj_nodup (p : ℕ) [hp : Fact p.Prime] (ζ : Kˣ) (hζ :
 
 theorem exists_isPrimitiveRoot_cyclotomicField (N : ℕ) [NeZero N] :
     ∃ z : CyclotomicField N ℚ, IsPrimitiveRoot z N := by
-  haveI : NeZero ((N : ℕ) : ℚ) := ⟨Nat.cast_ne_zero.mpr (NeZero.ne N)⟩
-  haveI : IsCyclotomicExtension {N} ℚ (CyclotomicField N ℚ) := CyclotomicField.isCyclotomicExtension N ℚ
+  have : NeZero ((N : ℕ) : ℚ) := ⟨Nat.cast_ne_zero.mpr (NeZero.ne N)⟩
+  have : IsCyclotomicExtension {N} ℚ (CyclotomicField N ℚ) := CyclotomicField.isCyclotomicExtension N ℚ
   exact IsCyclotomicExtension.exists_isPrimitiveRoot ℚ (CyclotomicField N ℚ) (Set.mem_singleton N) (NeZero.ne N)
 
 def cycUnit (N : ℕ) [NeZero N] : (CyclotomicField N ℚ)ˣ :=
@@ -314,7 +314,7 @@ private theorem ModularCurve.finrank_adjoin_jqN_prime_of_not_mem (F : Intermedia
   let ζ : Kˣ := cycUnit p
   have hζ : IsPrimitiveRoot (ζ : K) p := cycUnit_spec p
   let ι : LaurentSeries ℚ →+* LaurentSeries K := (coeffEmb K).comp (qExpand ℚ p)
-  letI : Algebra F (LaurentSeries K) := (ι.comp (algebraMap F (LaurentSeries ℚ))).toAlgebra
+  let : Algebra F (LaurentSeries K) := (ι.comp (algebraMap F (LaurentSeries ℚ))).toAlgebra
   have halg : ∀ a : F, algebraMap F (LaurentSeries K) a = ι a := fun a => rfl
 
   have hPmapL : P.map (algebraMap F (LaurentSeries K)) = phiProd p (conj p ζ) := by

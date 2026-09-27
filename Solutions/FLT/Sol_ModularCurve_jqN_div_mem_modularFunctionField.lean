@@ -192,8 +192,8 @@ theorem roots_phiProd_conj_nodup (p : ℕ) [hp : Fact p.Prime] (ζ : Kˣ) (hζ :
 
 theorem exists_isPrimitiveRoot_cyclotomicField (N : ℕ) [NeZero N] :
     ∃ z : CyclotomicField N ℚ, IsPrimitiveRoot z N := by
-  haveI : NeZero ((N : ℕ) : ℚ) := ⟨Nat.cast_ne_zero.mpr (NeZero.ne N)⟩
-  haveI : IsCyclotomicExtension {N} ℚ (CyclotomicField N ℚ) := CyclotomicField.isCyclotomicExtension N ℚ
+  have : NeZero ((N : ℕ) : ℚ) := ⟨Nat.cast_ne_zero.mpr (NeZero.ne N)⟩
+  have : IsCyclotomicExtension {N} ℚ (CyclotomicField N ℚ) := CyclotomicField.isCyclotomicExtension N ℚ
   exact IsCyclotomicExtension.exists_isPrimitiveRoot ℚ (CyclotomicField N ℚ) (Set.mem_singleton N) (NeZero.ne N)
 
 def cycUnit (N : ℕ) [NeZero N] : (CyclotomicField N ℚ)ˣ :=
@@ -407,16 +407,16 @@ private theorem jqN_mem_of_div_primes {K : Type*} [Field K] [Algebra ℚ K]
     (hpd : p ∣ d) (hqd : q ∣ d) [NeZero (d / p)] [NeZero (d / q)]
     (hmp : jqN (d / p) ∈ F) (hmq : jqN (d / q) ∈ F) :
     jqN d ∈ F := by
-  haveI : Fact (Nat.Prime p) := ⟨pp⟩
-  haveI : Fact (Nat.Prime q) := ⟨qq⟩
-  haveI : NeZero p := ⟨pp.ne_zero⟩
-  haveI : NeZero q := ⟨qq.ne_zero⟩
+  have : Fact (Nat.Prime p) := ⟨pp⟩
+  have : Fact (Nat.Prime q) := ⟨qq⟩
+  have : NeZero p := ⟨pp.ne_zero⟩
+  have : NeZero q := ⟨qq.ne_zero⟩
   have hpN : p ∣ N := hpd.trans hdN
   have hqN : q ∣ N := hqd.trans hdN
   have hNp0 : N / p ≠ 0 := fun h0 => NeZero.ne N (by rw [← Nat.div_mul_cancel hpN, h0, zero_mul])
   have hNq0 : N / q ≠ 0 := fun h0 => NeZero.ne N (by rw [← Nat.div_mul_cancel hqN, h0, zero_mul])
-  haveI : NeZero (N / p) := ⟨hNp0⟩
-  haveI : NeZero (N / q) := ⟨hNq0⟩
+  have : NeZero (N / p) := ⟨hNp0⟩
+  have : NeZero (N / q) := ⟨hNq0⟩
 
   have hpe : p * (N / p * (d / p)) = N * (d / p) := by
     rw [← mul_assoc, Nat.mul_div_cancel' hpN]
@@ -430,7 +430,7 @@ private theorem jqN_mem_of_div_primes {K : Type*} [Field K] [Algebra ℚ K]
   have data_p : ModularPolynomialData p := (ModularCurve.exists_phiIrreducible_evalSymm p).choose
   have data_q : ModularPolynomialData q := (ModularCurve.exists_phiIrreducible_evalSymm q).choose
 
-  letI : Algebra F (LaurentSeries K) :=
+  let : Algebra F (LaurentSeries K) :=
     (((coeffEmb K).comp (qExpand ℚ N)).comp (algebraMap F (LaurentSeries ℚ))).toAlgebra
 
   have hmapA : (phiAtSeed data_p (⟨jqN (d / p), hmp⟩ : F)).map (algebraMap F (LaurentSeries K))
@@ -580,7 +580,7 @@ private theorem ModularCurve.jqN_div_mem_modularFunctionField (M : ℕ) [NeZero 
     IntermediateField.subset_adjoin ℚ _ (Set.mem_insert_of_mem _ rfl)
   have hle : IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ)) ≤ F :=
     ModularCurve.adjoin_jq_le (M * p)
-  letI : Algebra F (LaurentSeries K) :=
+  let : Algebra F (LaurentSeries K) :=
     (((coeffEmb K).comp (qExpand ℚ (M * p))).comp (algebraMap F (LaurentSeries ℚ))).toAlgebra
 
   set A : Polynomial F := phiAtSeed data (⟨jqN (M * p), hjNmem⟩ : F) with hA
@@ -714,7 +714,7 @@ private theorem ModularCurve.modularFunctionField_eq_full_of (N : ℕ) [NeZero N
     have hq : m.minFac.Prime := Nat.minFac_prime hm1
     obtain ⟨m', hm'⟩ := Nat.minFac_dvd m
     have hm'0 : m' ≠ 0 := fun h0 => hm0 (by rw [hm', h0, Nat.mul_zero])
-    haveI : NeZero (d * m') := ⟨Nat.mul_ne_zero hd0.out hm'0⟩
+    have : NeZero (d * m') := ⟨Nat.mul_ne_zero hd0.out hm'0⟩
     have hdm' : (d * m') * m.minFac = N := by
       rw [Nat.mul_assoc, Nat.mul_comm m' m.minFac, ← hm', ← hm]
     have hmem : jqN (d * m') ∈ modularFunctionField N := hstep (d * m') m.minFac hq hdm'

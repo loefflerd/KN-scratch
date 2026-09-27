@@ -34,48 +34,48 @@ theorem solution (N : ℕ) [NeZero N]
     (AlgebraicCurve.canonicalDivisorOf hω).degree
       = 2 * (AlgebraicCurve.genus (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar N) : ℤ) - 2 := by
 
-  haveI : IsCurveOver (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) := isCurveOver_modularFunctionFieldBar N
-  haveI : HasPrincipalDivisors (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) := IsCurveOver.hasPrincipalDivisors
-  haveI : Algebra.EssFiniteType (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) :=
+  have : IsCurveOver (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) := isCurveOver_modularFunctionFieldBar N
+  have : HasPrincipalDivisors (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) := IsCurveOver.hasPrincipalDivisors
+  have : Algebra.EssFiniteType (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) :=
     essFiniteType_modularFunctionFieldBar N
-  haveI hDCG : ∀ w : Place (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N), w.DCoordGenerates :=
+  have hDCG : ∀ w : Place (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N), w.DCoordGenerates :=
     AlgebraicCurve.dCoordGenerates_of_isCurveOver
 
-  letI algRE : Algebra (RatFunc (AlgebraicClosure ℚ)) ↥(jLineBar N) := (jLineBarRingEquiv N).toRingHom.toAlgebra
-  letI algRF : Algebra (RatFunc (AlgebraicClosure ℚ)) ↥(modularFunctionFieldBar N) :=
+  let algRE : Algebra (RatFunc (AlgebraicClosure ℚ)) ↥(jLineBar N) := (jLineBarRingEquiv N).toRingHom.toAlgebra
+  let algRF : Algebra (RatFunc (AlgebraicClosure ℚ)) ↥(modularFunctionFieldBar N) :=
     ((algebraMap ↥(jLineBar N) ↥(modularFunctionFieldBar N)).comp (jLineBarRingEquiv N).toRingHom).toAlgebra
-  haveI : IsScalarTower (RatFunc (AlgebraicClosure ℚ)) ↥(jLineBar N) ↥(modularFunctionFieldBar N) :=
+  have : IsScalarTower (RatFunc (AlgebraicClosure ℚ)) ↥(jLineBar N) ↥(modularFunctionFieldBar N) :=
     IsScalarTower.of_algebraMap_eq (fun _ => rfl)
-  haveI : IsScalarTower (AlgebraicClosure ℚ) (RatFunc (AlgebraicClosure ℚ)) ↥(modularFunctionFieldBar N) := by
+  have : IsScalarTower (AlgebraicClosure ℚ) (RatFunc (AlgebraicClosure ℚ)) ↥(modularFunctionFieldBar N) := by
     refine IsScalarTower.of_algebraMap_eq (fun a => ?_)
     show algebraMap _ _ a = algebraMap ↥(jLineBar N) ↥(modularFunctionFieldBar N) (jLineBarRingEquiv N (algebraMap _ _ a))
     rw [jLineBarRingEquiv_algebraMap]
     rfl
-  haveI : Module.Finite (RatFunc (AlgebraicClosure ℚ)) ↥(jLineBar N) :=
+  have : Module.Finite (RatFunc (AlgebraicClosure ℚ)) ↥(jLineBar N) :=
     Module.Finite.of_surjective (Algebra.linearMap (RatFunc (AlgebraicClosure ℚ)) ↥(jLineBar N))
       (jLineBarRingEquiv N).surjective
-  haveI : FiniteDimensional ↥(jLineBar N) ↥(modularFunctionFieldBar N) :=
+  have : FiniteDimensional ↥(jLineBar N) ↥(modularFunctionFieldBar N) :=
     finiteDimensional_adjoin_coeffEmb_jq_of_neZero N
-  haveI hfinRF : Module.Finite (RatFunc (AlgebraicClosure ℚ)) ↥(modularFunctionFieldBar N) :=
+  have hfinRF : Module.Finite (RatFunc (AlgebraicClosure ℚ)) ↥(modularFunctionFieldBar N) :=
     Module.Finite.trans ↥(jLineBar N) ↥(modularFunctionFieldBar N)
-  haveI : Algebra.IsIntegral (RatFunc (AlgebraicClosure ℚ)) ↥(modularFunctionFieldBar N) :=
+  have : Algebra.IsIntegral (RatFunc (AlgebraicClosure ℚ)) ↥(modularFunctionFieldBar N) :=
     Algebra.IsIntegral.of_finite _ _
-  haveI : CharZero ↥(modularFunctionFieldBar N) :=
+  have : CharZero ↥(modularFunctionFieldBar N) :=
     charZero_of_injective_algebraMap (algebraMap (AlgebraicClosure ℚ) _).injective
-  haveI : PerfectField (RatFunc (AlgebraicClosure ℚ)) := PerfectField.ofCharZero
-  haveI : Algebra.IsSeparable (RatFunc (AlgebraicClosure ℚ)) ↥(modularFunctionFieldBar N) :=
+  have : PerfectField (RatFunc (AlgebraicClosure ℚ)) := PerfectField.ofCharZero
+  have : Algebra.IsSeparable (RatFunc (AlgebraicClosure ℚ)) ↥(modularFunctionFieldBar N) :=
     Algebra.IsSeparable.of_integral _ _
-  haveI : IsCurveOver (AlgebraicClosure ℚ) (RatFunc (AlgebraicClosure ℚ)) :=
+  have : IsCurveOver (AlgebraicClosure ℚ) (RatFunc (AlgebraicClosure ℚ)) :=
     AlgebraicCurve.instIsCurveOverRatFunc (AlgebraicClosure ℚ)
-  haveI : Algebra.EssFiniteType (Polynomial (AlgebraicClosure ℚ)) (RatFunc (AlgebraicClosure ℚ)) :=
+  have : Algebra.EssFiniteType (Polynomial (AlgebraicClosure ℚ)) (RatFunc (AlgebraicClosure ℚ)) :=
     Algebra.EssFiniteType.of_isLocalization _ (nonZeroDivisors (Polynomial (AlgebraicClosure ℚ)))
-  haveI : Algebra.EssFiniteType (AlgebraicClosure ℚ) (RatFunc (AlgebraicClosure ℚ)) :=
+  have : Algebra.EssFiniteType (AlgebraicClosure ℚ) (RatFunc (AlgebraicClosure ℚ)) :=
     Algebra.EssFiniteType.comp (AlgebraicClosure ℚ) (Polynomial (AlgebraicClosure ℚ)) (RatFunc (AlgebraicClosure ℚ))
-  haveI hDCGR : ∀ v : Place (AlgebraicClosure ℚ) (RatFunc (AlgebraicClosure ℚ)), v.DCoordGenerates :=
+  have hDCGR : ∀ v : Place (AlgebraicClosure ℚ) (RatFunc (AlgebraicClosure ℚ)), v.DCoordGenerates :=
     AlgebraicCurve.dCoordGenerates_of_isCurveOver
 
-  haveI : HasCanonicalLocalResidueKStar (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) := inferInstance
-  haveI : HasSeparableResidue (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) := inferInstance
+  have : HasCanonicalLocalResidueKStar (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) := inferInstance
+  have : HasSeparableResidue (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) := inferInstance
   exact AlgebraicCurve.degree_canonicalDivisor_eq_of_isAlgClosed hω
 
 end S_ModularCurve_degree_canonicalDivisorOf_modularFunctionFieldBar

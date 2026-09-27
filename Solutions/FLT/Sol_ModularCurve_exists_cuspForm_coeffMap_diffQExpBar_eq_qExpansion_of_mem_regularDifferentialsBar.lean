@@ -143,7 +143,7 @@ theorem solution (N : ℕ) [NeZero N] (ι₀ : AlgebraicClosure ℚ →+* ℂ)
       ModularCurve.coeffMap ι₀ (ModularCurve.diffQExpBar N ω) =
         HahnSeries.ofPowerSeries ℤ ℂ (UpperHalfPlane.qExpansion 1 f) := by
   classical
-  haveI hCO := ModularCurve.isCurveOver_modularFunctionFieldBar N
+  have hCO := ModularCurve.isCurveOver_modularFunctionFieldBar N
 
   have hrank : Module.finrank (modularFunctionFieldBar N)
       Ω[modularFunctionFieldBar N⁄AlgebraicClosure ℚ] = 1 := IsCurveOver.finrank_kaehler

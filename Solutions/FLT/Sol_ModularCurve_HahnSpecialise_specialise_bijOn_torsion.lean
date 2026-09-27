@@ -85,16 +85,16 @@ theorem specialiseTorsion_injective (E : WeierstrassCurve H) (hE : IntegralCoeff
 theorem specialiseTorsion_bijective (E : WeierstrassCurve H) (hE : IntegralCoeffs E)
     (hΔ : (specialFibre E).Δ ≠ 0) {N : ℕ} (hN : N ≠ 0) :
     Function.Bijective (specialiseTorsion E hE hΔ N) := by
-  haveI : IsAlgClosed H := HahnSeries.isAlgClosed_rat
-  haveI : E.IsElliptic := isElliptic_of_specialFibre E hE hΔ
-  haveI : (specialFibre E).IsElliptic := isElliptic_specialFibre E hΔ
+  have : IsAlgClosed H := HahnSeries.isAlgClosed_rat
+  have : E.IsElliptic := isElliptic_of_specialFibre E hE hΔ
+  have : (specialFibre E).IsElliptic := isElliptic_specialFibre E hΔ
   have hcardH : Nat.card (Submodule.torsionBy ℤ E.toAffine.Point (N : ℤ)) = N ^ 2 :=
     WeierstrassCurve.card_torsionBy_eq_sq_of_isAlgClosed E (natCast_H_ne_zero hN)
       (by exact_mod_cast natCast_H_ne_zero (n := 2) two_ne_zero)
   have hcardQ : Nat.card (Submodule.torsionBy ℤ (specialFibre E).toAffine.Point (N : ℤ)) = N ^ 2 :=
     WeierstrassCurve.card_torsionBy_eq_sq_of_isAlgClosed (specialFibre E) (Nat.cast_ne_zero.mpr hN)
       two_ne_zero
-  haveI : Finite (Submodule.torsionBy ℤ (specialFibre E).toAffine.Point (N : ℤ)) :=
+  have : Finite (Submodule.torsionBy ℤ (specialFibre E).toAffine.Point (N : ℤ)) :=
     Nat.finite_of_card_ne_zero (by rw [hcardQ]; exact pow_ne_zero _ hN)
   exact (specialiseTorsion_injective E hE hΔ hN).bijective_of_nat_card_le
     (by rw [hcardH, hcardQ])

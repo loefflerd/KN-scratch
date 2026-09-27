@@ -27,12 +27,12 @@ theorem normFormulaAlong_of_finiteAlong_aux
     [HasPrincipalDivisors F W.FunctionField]
     (ι : V.FunctionField →ₐ[F] W.FunctionField) (hfin : FiniteAlong F ι) :
     NormFormulaAlong F ι hfin := by
-  haveI : CharZero V.FunctionField :=
+  have : CharZero V.FunctionField :=
     charZero_of_injective_algebraMap (algebraMap F V.FunctionField).injective
   have hsep : SeparableAlong F ι := by
-    letI := algebraAlong ι
-    haveI := isScalarTower_along ι
-    haveI : Module.Finite V.FunctionField W.FunctionField := hfin
+    let := algebraAlong ι
+    have := isScalarTower_along ι
+    have : Module.Finite V.FunctionField W.FunctionField := hfin
     show Algebra.IsSeparable V.FunctionField W.FunctionField
     infer_instance
   exact AlgebraicCurve.normFormulaAlong ι hfin hsep
@@ -50,7 +50,7 @@ theorem solution
   obtain ⟨D₃, hD₃⟩ :=
     IsogenyEndDatum.exists_restrictAlong_placeOfPoint_eq_add D₁ hN₁ D₂ hN₂ h
 
-  haveI : HasPrincipalDivisors F W.FunctionField := hasPrincipalDivisors_functionField W
+  have : HasPrincipalDivisors F W.FunctionField := hasPrincipalDivisors_functionField W
   have hN₃ : NormFormulaAlong F D₃.ι D₃.hfin := normFormulaAlong_of_finiteAlong_aux D₃.ι D₃.hfin
   refine ⟨D₃, hN₃, ?_⟩
 

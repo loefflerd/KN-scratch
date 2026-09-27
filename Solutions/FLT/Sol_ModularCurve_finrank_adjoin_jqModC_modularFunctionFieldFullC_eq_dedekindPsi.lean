@@ -45,7 +45,7 @@ theorem mem_adjoin_of_degree_count {F L : Type*} [Field F] [Field L] [Algebra F 
       omega
     obtain rfl : c = 1 := by omega
     rw [hc, mul_one]
-  haveI : FiniteDimensional F F⟮a, b⟯ :=
+  have : FiniteDimensional F F⟮a, b⟯ :=
     Module.finite_of_finrank_pos (by rw [htower]; exact Nat.mul_pos hm htpos)
   have hfin : finrank F F⟮b⟯ = finrank F F⟮a, b⟯ := by rw [hb, htower, heq]
   rw [eq_of_le_of_finrank_eq hle hfin]
@@ -61,7 +61,7 @@ theorem jq_congr {a b : ℕ} [NeZero a] [NeZero b] (h : a = b) : jqNModC K a = j
 theorem socket (p : ℕ) [Fact p.Prime] (hpK : (p : K) ≠ 0) : jqNModC K p ∉ E𝕛 := by
   rcases CharP.exists' K with hK | ⟨ℓ, hℓ, hKℓ⟩
   · exact jqNModC_prime_not_mem_adjoin_of_charZero p
-  · haveI := hℓ
+  · have := hℓ
     refine StarBank.starBank (ℓ := ℓ) ?_
     rintro rfl
     exact hpK (CharP.cast_eq_zero K p)
@@ -160,11 +160,11 @@ theorem mem_adjoin_of_mul_dvd (N : ℕ) (hN : (N : K) ≠ 0) :
       rw [jq_congr K (mul_one d)]
       exact mem_adjoin_simple_self _ _
     · obtain ⟨p, hp, k', rfl⟩ := Nat.exists_prime_and_dvd h1
-      haveI : Fact p.Prime := ⟨hp⟩
+      have : Fact p.Prime := ⟨hp⟩
       have hk' : k' ≠ 0 := by
         rintro rfl
         exact hk.out (mul_zero p)
-      haveI : NeZero k' := ⟨hk'⟩
+      have : NeZero k' := ⟨hk'⟩
       have hlt : k' < p * k' := lt_mul_of_one_lt_left (Nat.pos_of_ne_zero hk') hp.one_lt
       have hdpN : d * p ∣ N := (Dvd.intro k' (by ring)).trans hdvd
       have hstep : jqNModC K d ∈ adjoin E𝕛 ({jqNModC K (d * p)} : Set (LaurentSeries K)) :=
@@ -188,7 +188,7 @@ theorem restrictScalars_adjoin_eq_full (N : ℕ) [NeZero N] (hN : (N : K) ≠ 0)
     · exact modularFunctionFieldC_le_full K N (jqNModC_mem K N)
   · rw [modularFunctionFieldFullC, adjoin_le_iff]
     rintro x ⟨d, _, ⟨k, hk⟩, rfl⟩
-    haveI : NeZero k := ⟨by rintro rfl; exact NeZero.ne N (by rw [hk, mul_zero])⟩
+    have : NeZero k := ⟨by rintro rfl; exact NeZero.ne N (by rw [hk, mul_zero])⟩
     change jqNModC K d ∈ adjoin E𝕛 ({jqNModC K N} : Set (LaurentSeries K))
     rw [jq_congr K hk]
     exact mem_adjoin_of_mul_dvd K N hN k d (hk ▸ dvd_refl N)

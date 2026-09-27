@@ -105,7 +105,7 @@ private def placeInfty' : Place K (RatFunc K) where
     rw [Valuation.mem_valuationSubring_iff]
     exact Valuation.IsTrivialOn.valuation_algebraMap_le_one (v := RatFunc.inftyValuation K) a
   ne_top' := by
-    haveI := nontrivial_valueGroup_inftyValuation K
+    have := nontrivial_valueGroup_inftyValuation K
     simp only [ne_eq, Valuation.valuationSubring_eq_top_iff, not_not]
     infer_instance
   isPrincipalIdealRing' :=

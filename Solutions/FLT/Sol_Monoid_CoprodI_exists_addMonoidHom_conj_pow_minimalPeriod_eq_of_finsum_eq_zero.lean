@@ -493,7 +493,7 @@ theorem engine (H : Subgroup Gp) [H.FiniteIndex] (R : Type*) [AddCommGroup R]
     (a : Cu H → R) (ha : ∑ᶠ c, a c = 0) :
     ∃ φ : Additive H →+ R, ∀ g : Gp, φ (Additive.ofMul (genAt H g)) = a (cusp H (g : X H)) := by
   classical
-  haveI : Fintype (Cu H) := Fintype.ofFinite _
+  have : Fintype (Cu H) := Fintype.ofFinite _
   rw [finsum_eq_sum_of_fintype] at ha
   have c₀ : Cu H := cusp H ((1 : Gp) : X H)
 

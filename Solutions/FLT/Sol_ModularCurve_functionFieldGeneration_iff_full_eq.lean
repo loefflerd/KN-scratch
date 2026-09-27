@@ -19,7 +19,7 @@ theorem solution (N : ℕ) [NeZero N] : FunctionFieldGeneration N ↔ modularFun
     rintro x ⟨d, hne, hdvd, rfl⟩
     exact hgen d hdvd hne
   · intro heq d hdvd hne
-    haveI := hne
+    have := hne
     show qExpand ℚ d jq ∈ modularFunctionField N
     rw [← heq]
     exact jqd_mem_full N hdvd

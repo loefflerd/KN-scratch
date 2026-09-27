@@ -245,7 +245,7 @@ theorem finiteDimensional_adjoin_jb :
       (modularFunctionFieldBar ℓ) := by
   have hℓ : ℓ.Prime := Fact.out
   obtain ⟨data⟩ := nonempty_modularPolynomialData_of_squarefree ℓ hℓ.squarefree hℓ.one_lt
-  haveI := finiteDimensional_adjoin_jqNModC 𝕂 data
+  have := finiteDimensional_adjoin_jqNModC 𝕂 data
   exact Module.Finite.of_equiv_equiv (e₁ ℓ).symm.toRingEquiv (jTr ℓ) (compat ℓ)
 
 end DivUSol

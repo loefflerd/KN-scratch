@@ -155,7 +155,7 @@ theorem solution
     have hjE : jqModC K ∈ qExpFunctionFieldC K Γ := hEE ▸ hjE'
     obtain ⟨hfin, -⟩ := ModularCurve.finiteDimensional_and_finrank_adjoin_jqModC_qExpFunctionFieldC_le_index K
       Γ hT Γ le_rfl (fun γ hγ => Or.inl hγ) ⟨jqModC K, hjE⟩ rfl
-    haveI := hfin
+    have := hfin
     have hpos : 0 < Module.finrank
         ↥(IntermediateField.adjoin K ({(⟨jqModC K, hjE⟩ : qExpFunctionFieldC K Γ)} : Set (qExpFunctionFieldC K Γ)))
         ↥(qExpFunctionFieldC K Γ) := Module.finrank_pos
@@ -170,7 +170,7 @@ theorem solution
         ↥(IntermediateField.adjoin K ({y} : Set ↥(laurentBaseChange K (qExpFunctionFieldC ℚ Γ))))
         ↥(laurentBaseChange K (qExpFunctionFieldC ℚ Γ)) :=
       lt_of_lt_of_eq hpos ((e1.trans e12).trans e2.symm)
-    haveI : Module.Free
+    have : Module.Free
         ↥(IntermediateField.adjoin K ({y} : Set ↥(laurentBaseChange K (qExpFunctionFieldC ℚ Γ))))
         ↥(laurentBaseChange K (qExpFunctionFieldC ℚ Γ)) := Module.Free.of_divisionRing _ _
     exact Module.finite_of_finrank_pos hpos'

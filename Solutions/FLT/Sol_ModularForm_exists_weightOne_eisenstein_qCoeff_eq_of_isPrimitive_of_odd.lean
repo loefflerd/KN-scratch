@@ -197,7 +197,7 @@ lemma vb_not_dvd {b : ZMod L} (hb : b ≠ 0) : ¬ ∀ i, (L : ℤ) ∣ vb L b i 
   exact hb ((ZMod.val_eq_zero b).mp h3)
 
 lemma inv_zero_eq (hL : 3 ≤ L) : χ⁻¹ (0 : ZMod L) = 0 := by
-  haveI : Fact (1 < L) := ⟨by omega⟩
+  have : Fact (1 < L) := ⟨by omega⟩
   apply MulChar.map_nonunit
   simp
 

@@ -43,7 +43,7 @@ theorem solution
   have hdegN : finrankAlong F D.ι = N := by
     have h := congrArg Int.toNat hDdeg
     rwa [Int.toNat_natCast] at h
-  haveI : NeZero N := ⟨by omega⟩
+  have : NeZero N := ⟨by omega⟩
   obtain ⟨data⟩ := ModularCurve.nonempty_modularPolynomialData N
   have hjroot : Polynomial.aeval W.j (data.Φ.eval₂ (RingHom.id (Polynomial ℤ)) Polynomial.X) = 0 :=
     IsogenyEndDatum.aeval_j_diag_eq_zero_of_finrankAlong_eq W hsf data D hdegN

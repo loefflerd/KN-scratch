@@ -143,7 +143,7 @@ theorem conjTrivial (i : Fin 2) (g : Monoid.CoprodI G23) (x : G23 i)
 
 theorem nonempty_freeGroupBasis [Γ.FiniteIndex] (hneg : (-1 : SL(2, ℤ)) ∈ Γ) :
     Nonempty (FreeGroupBasis (Fin (1 + Γ.index / 6)) (bar Γ)) := by
-  haveI : (pulledBack Γ).FiniteIndex := ⟨by
+  have : (pulledBack Γ).FiniteIndex := ⟨by
     rw [index_pulledBack Γ hneg]; exact Subgroup.FiniteIndex.index_ne_zero⟩
   have hCT := conjTrivial Γ hΓ
 

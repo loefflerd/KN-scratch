@@ -102,15 +102,15 @@ theorem solution
         ∀ T ∈ H, ∃ T' ∈ H, HEq (Point.vcInvFun (⟨u, 0, 0, 0⟩ : VariableChange L)
           (⟨0, 0, 0, A, 0⟩ : WeierstrassCurve L).toAffine T) T'}
       = nuTwo N := by
-  haveI : CharZero L := charZero_of_injective_algebraMap (algebraMap ℚ L).injective
-  haveI : NeZero N := ⟨hN⟩
+  have : CharZero L := charZero_of_injective_algebraMap (algebraMap ℚ L).injective
+  have : NeZero N := ⟨hN⟩
   set W : WeierstrassCurve L := ⟨0, 0, 0, A, 0⟩ with hWdef
   set γ : VariableChange L := ⟨u, 0, 0, 0⟩ with hγdef
 
   have hΔ : W.Δ = -64 * A ^ 3 := by
     simp only [hWdef, WeierstrassCurve.Δ, WeierstrassCurve.b₂, WeierstrassCurve.b₄, WeierstrassCurve.b₆,
       WeierstrassCurve.b₈]; ring
-  haveI hE : W.IsElliptic := ⟨by rw [hΔ]; exact isUnit_iff_ne_zero.mpr (by simp [hA])⟩
+  have hE : W.IsElliptic := ⟨by rw [hΔ]; exact isUnit_iff_ne_zero.mpr (by simp [hA])⟩
 
   have hW : γ • W = W := WeierstrassCurve.variableChange_mk_smul_eq_self_of_sq_eq_neg_one u hu A
   let σ : W.toAffine.Point →+ W.toAffine.Point := vcHom γ W hW
@@ -150,9 +150,9 @@ theorem solution
   rw [← AddCommGroup.natCard_isAddCyclic_addSubgroup_map_eq_of_sq_eq_neg_one_eq_nuTwo N e σ hσ hns]
   refine Nat.card_congr (Equiv.subtypeEquivRight fun H => ?_)
   refine ⟨fun ⟨hc, hcard, hst⟩ => ⟨hc, hcard, ?_⟩, fun ⟨hc, hcard, hst⟩ => ⟨hc, hcard, ?_⟩⟩
-  · haveI : Finite H := Nat.finite_of_card_ne_zero (by rw [hcard]; exact hN)
+  · have : Finite H := Nat.finite_of_card_ne_zero (by rw [hcard]; exact hN)
     exact (forall_exists_heq_iff_map_eq γ W hW σinj H).mp hst
-  · haveI : Finite H := Nat.finite_of_card_ne_zero (by rw [hcard]; exact hN)
+  · have : Finite H := Nat.finite_of_card_ne_zero (by rw [hcard]; exact hN)
     exact (forall_exists_heq_iff_map_eq γ W hW σinj H).mpr hst
 
 end S_WeierstrassCurve_natCard_isAddCyclic_addSubgroup_card_eq_fixed_vcInvFun_eq_nuTwo

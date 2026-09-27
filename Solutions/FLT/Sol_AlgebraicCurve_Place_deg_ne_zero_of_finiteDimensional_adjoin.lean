@@ -28,9 +28,9 @@ theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F]
     have h := RatFunc.liftAlgHom_apply_div (Polynomial.aeval x)
       (nonZeroDivisors_le_comap_nonZeroDivisors_of_injective _ hinj) p 1
     rwa [map_one, div_one, map_one, div_one] at h
-  letI : Algebra (RatFunc K) F := lift.toRingHom.toAlgebra
-  haveI : IsScalarTower K (RatFunc K) F := IsScalarTower.of_algebraMap_eq' (lift.comp_algebraMap).symm
-  haveI hFD : FiniteDimensional (RatFunc K) F := by
+  let : Algebra (RatFunc K) F := lift.toRingHom.toAlgebra
+  have : IsScalarTower K (RatFunc K) F := IsScalarTower.of_algebraMap_eq' (lift.comp_algebraMap).symm
+  have hFD : FiniteDimensional (RatFunc K) F := by
     obtain ⟨s, hs⟩ := Module.finite_def.mp ‹FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F›
     refine ⟨⟨s, ?_⟩⟩
     rw [eq_top_iff]

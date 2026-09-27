@@ -113,8 +113,8 @@ theorem ord_pos_of_mem_maximalIdeal (v : Place K F) {a : v.toValuationSubring}
 theorem exists_value [IsAlgClosed K] [IsCurveOver K F] (v : Place K F) {f : F}
     (hf : f ∈ v.toValuationSubring) :
     ∃ c : K, f - algebraMap K F c = 0 ∨ 0 < v.ord (f - algebraMap K F c) := by
-  haveI : Module.Finite K v.ResidueField := IsCurveOver.finiteResidue v
-  haveI : Algebra.IsIntegral K v.ResidueField := Algebra.IsIntegral.of_finite K v.ResidueField
+  have : Module.Finite K v.ResidueField := IsCurveOver.finiteResidue v
+  have : Algebra.IsIntegral K v.ResidueField := Algebra.IsIntegral.of_finite K v.ResidueField
   have hbij : Function.Bijective (algebraMap K v.ResidueField) :=
     IsAlgClosed.algebraMap_bijective_of_isIntegral
   obtain ⟨c, hc⟩ := hbij.2 (IsLocalRing.residue v.toValuationSubring ⟨f, hf⟩)
@@ -140,7 +140,7 @@ theorem ord_bound (x : 𝔽) (hx0 : x ≠ 0) (hreg : ∀ v : Place 𝕂 𝔽, 0 
     [FiniteDimensional (IntermediateField.adjoin 𝕂 ({(jB N : 𝔽)} : Set 𝔽)) 𝔽]
     (v : Place 𝕂 𝔽) {g : 𝔽} (hg : v.ord g ≠ 0) (hDg : D 𝕂 𝔽 g = D 𝕂 𝔽 (jB N)) :
     1 - v.ord g ≤ v.ord x := by
-  haveI : Algebra.IsAlgebraic (IntermediateField.adjoin 𝕂 ({(jB N : 𝔽)} : Set 𝔽)) 𝔽 :=
+  have : Algebra.IsAlgebraic (IntermediateField.adjoin 𝕂 ({(jB N : 𝔽)} : Set 𝔽)) 𝔽 :=
     Algebra.IsAlgebraic.of_finite _ _
   have h := hreg v
   rw [← hDg] at h
@@ -153,13 +153,13 @@ theorem main (x : 𝔽) (hx : x • D 𝕂 𝔽 (jB N) ∈ regularDifferentialsB
     IsIntegral (Algebra.adjoin 𝕂 ({(jB N : 𝔽)⁻¹} : Set 𝔽))
       (x ^ (2 * dedekindPsi N) * (jB N) ^ (dedekindPsi N + 1) * (jB N - algebraMap 𝕂 𝔽 1728) ^ dedekindPsi N) := by
   classical
-  haveI hCO := ModularCurve.isCurveOver_modularFunctionFieldBar N
-  haveI hEFT := ModularCurve.essFiniteType_modularFunctionFieldBar N
-  haveI hFD : FiniteDimensional (IntermediateField.adjoin 𝕂 ({(jB N : 𝔽)} : Set 𝔽)) 𝔽 :=
+  have hCO := ModularCurve.isCurveOver_modularFunctionFieldBar N
+  have hEFT := ModularCurve.essFiniteType_modularFunctionFieldBar N
+  have hFD : FiniteDimensional (IntermediateField.adjoin 𝕂 ({(jB N : 𝔽)} : Set 𝔽)) 𝔽 :=
     ModularCurve.finiteDimensional_adjoin_coeffEmb_jq_of_neZero N
-  haveI hALG : Algebra.IsAlgebraic (IntermediateField.adjoin 𝕂 ({(jB N : 𝔽)} : Set 𝔽)) 𝔽 :=
+  have hALG : Algebra.IsAlgebraic (IntermediateField.adjoin 𝕂 ({(jB N : 𝔽)} : Set 𝔽)) 𝔽 :=
     Algebra.IsAlgebraic.of_finite _ _
-  haveI hPD : HasPrincipalDivisors 𝕂 𝔽 := IsCurveOver.hasPrincipalDivisors
+  have hPD : HasPrincipalDivisors 𝕂 𝔽 := IsCurveOver.hasPrincipalDivisors
   set J : 𝔽 := jB N with hJdef
   set ψ : ℕ := dedekindPsi N with hψdef
   have hψpos : 0 < ψ := ModularCurve.dedekindPsi_pos N (NeZero.ne N)
@@ -322,7 +322,7 @@ theorem main (x : 𝔽) (hx : x • D 𝕂 𝔽 (jB N) ∈ regularDifferentialsB
         have h1 := IntermediateField.mem_adjoin_simple_self 𝕂 (J⁻¹)
         have h2 : (J⁻¹)⁻¹ ∈ IntermediateField.adjoin 𝕂 ({J⁻¹} : Set 𝔽) := inv_mem h1
         rwa [inv_inv] at h2
-    haveI : FiniteDimensional (IntermediateField.adjoin 𝕂 ({J⁻¹} : Set 𝔽)) 𝔽 := by
+    have : FiniteDimensional (IntermediateField.adjoin 𝕂 ({J⁻¹} : Set 𝔽)) 𝔽 := by
       rw [hadj]; exact hFD
     refine AlgebraicCurve.isIntegral_adjoin_of_forall_ord_nonneg (K := 𝕂) (F := 𝔽) J⁻¹ htr' _ ?_
     intro v hvJinv

@@ -177,8 +177,8 @@ theorem solution
     ∃ T : (⟨0, 0, 0, 0, B⟩ : WeierstrassCurve L).toAffine.Point, addOrderOf T = p ∧
       ∀ k : ℕ, ¬ HEq (WeierstrassCurve.Affine.Point.vcInvFun (⟨u, 0, 0, 0⟩ : WeierstrassCurve.VariableChange L)
         (⟨0, 0, 0, 0, B⟩ : WeierstrassCurve L).toAffine T) (k • T) := by
-  haveI : CharZero L := charZero_of_injective_algebraMap (algebraMap ℚ L).injective
-  haveI : Fact p.Prime := ⟨hp⟩
+  have : CharZero L := charZero_of_injective_algebraMap (algebraMap ℚ L).injective
+  have : Fact p.Prime := ⟨hp⟩
   set W : WeierstrassCurve L := ⟨0, 0, 0, 0, B⟩ with hWdef
   set γ : VariableChange L := ⟨u, 0, 0, 0⟩ with hγdef
   have hu0 : (u : L) ≠ 0 := u.ne_zero
@@ -193,7 +193,7 @@ theorem solution
   have hΔ : W.Δ = -432 * B ^ 2 := by
     simp only [hWdef, WeierstrassCurve.Δ, WeierstrassCurve.b₂, WeierstrassCurve.b₄, WeierstrassCurve.b₆,
       WeierstrassCurve.b₈]; ring
-  haveI hE : W.IsElliptic := ⟨by rw [hΔ]; exact isUnit_iff_ne_zero.mpr (by simp [hB])⟩
+  have hE : W.IsElliptic := ⟨by rw [hΔ]; exact isUnit_iff_ne_zero.mpr (by simp [hB])⟩
 
   have hW : γ • W = W := WeierstrassCurve.variableChange_mk_smul_eq_self_of_pow_three_eq_one u hu B
 
@@ -328,8 +328,8 @@ theorem solution
 
       obtain ⟨x₀, y₀, h₀, hp₀⟩ : ∃ (x y : L) (h : W.toAffine.Nonsingular x y), (p : ℤ) • Point.some x y h = 0 := by
         have h1 : 1 < Nat.card Ep := by rw [show Nat.card Ep = p ^ 2 from hcard]; nlinarith
-        haveI : Finite Ep := Nat.finite_of_card_ne_zero (by rw [show Nat.card Ep = p ^ 2 from hcard]; positivity)
-        haveI : Nontrivial Ep := Finite.one_lt_card_iff_nontrivial.mp h1
+        have : Finite Ep := Nat.finite_of_card_ne_zero (by rw [show Nat.card Ep = p ^ 2 from hcard]; positivity)
+        have : Nontrivial Ep := Finite.one_lt_card_iff_nontrivial.mp h1
         obtain ⟨⟨T, hT⟩, hT0⟩ := exists_ne (0 : Ep)
         rcases T with _ | ⟨x, y, h⟩
         · exact absurd rfl (fun h => hT0 (Subtype.ext h))
@@ -393,8 +393,8 @@ theorem solution
       rw [hFdef, eval_sub, eval_mul, eval_mul, eval_C, eval_X]
       linear_combination hx
 
-    haveI hfinEp : Finite Ep := Nat.finite_of_card_ne_zero (by rw [show Nat.card Ep = p ^ 2 from hcard]; positivity)
-    haveI : Fintype Ep := Fintype.ofFinite Ep
+    have hfinEp : Finite Ep := Nat.finite_of_card_ne_zero (by rw [show Nat.card Ep = p ^ 2 from hcard]; positivity)
+    have : Fintype Ep := Fintype.ofFinite Ep
     classical
     let g : Ep → Option L := fun T => xco (T.1 : W.toAffine.Point)
     let s : Finset Ep := Finset.univ.filter (fun T => T ≠ 0)

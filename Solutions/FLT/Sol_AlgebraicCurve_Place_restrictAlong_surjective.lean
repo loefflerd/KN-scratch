@@ -20,10 +20,10 @@ theorem solution
     (hfin : AlgebraicCurve.FiniteAlong K φ) (hsep : AlgebraicCurve.SeparableAlong K φ) :
     Function.Surjective (fun w : AlgebraicCurve.Place K F' => w.restrictAlong φ hφ) := by
   intro v
-  letI := algebraAlong φ
-  haveI := isScalarTower_along φ
-  haveI : Module.Finite F F' := hfin
-  haveI : Algebra.IsSeparable F F' := hsep
+  let := algebraAlong φ
+  have := isScalarTower_along φ
+  have : Module.Finite F F' := hfin
+  have : Algebra.IsSeparable F F' := hsep
   obtain ⟨W, hW⟩ := AlgebraicCurve.Place.exists_restrict_eq (K := K) (F' := F) (M := F') v
   exact ⟨W, hW⟩
 

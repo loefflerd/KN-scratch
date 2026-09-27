@@ -30,7 +30,7 @@ theorem ModularCurve.RestrictAux.ord_algebraMap_pos_iff (N : ℕ) [NeZero N] :
           0 < (w.restrict ↥ℚ⟮ModularCurve.jq⟯).ord x) ∧
       (w.ord (algebraMap ↥ℚ⟮ModularCurve.jq⟯ ↥(ModularCurve.modularFunctionField N) x) < 0 ↔
           (w.restrict ↥ℚ⟮ModularCurve.jq⟯).ord x < 0) := by
-  letI := ModularCurve.jAdjoinAlgebra N
+  let := ModularCurve.jAdjoinAlgebra N
   intro _ w x
   have he : (0 : ℤ) < (w.ramificationIndex ↥ℚ⟮ModularCurve.jq⟯ : ℤ) :=
     Int.natCast_pos.mpr (w.ramificationIndex_pos (F := ↥ℚ⟮ModularCurve.jq⟯))
@@ -49,7 +49,7 @@ theorem solution (N : ℕ) [NeZero N] :
       (w : AlgebraicCurve.Place ℚ ↥(ModularCurve.modularFunctionField N)),
       w.restrict ↥ℚ⟮ModularCurve.jq⟯ = ModularCurve.jLinePlace1728 ↔
         0 < w.ord ((⟨ModularCurve.jq, ModularCurve.jq_mem N⟩ : ↥(ModularCurve.modularFunctionField N)) - 1728) := by
-  letI := ModularCurve.jAdjoinAlgebra N
+  let := ModularCurve.jAdjoinAlgebra N
   intro _ w
   rw [ModularCurve.eq_jLinePlace1728_iff_ord_jGen_sub_pos,
     ← (ModularCurve.RestrictAux.ord_algebraMap_pos_iff N w (ModularCurve.jGen - 1728)).1, map_sub, map_ofNat]

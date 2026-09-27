@@ -26,11 +26,11 @@ theorem solution
     algebraMap W.CoordinateRing W.FunctionField (CoordinateRing.mk W (Polynomial.C Polynomial.X))
       ∉ (placeOfPoint (0 : W.Point)).toValuationSubring := by
   intro hXO
-  haveI : IsDedekindDomain W.CoordinateRing := CoordinateRing.isDedekindDomain W
+  have : IsDedekindDomain W.CoordinateRing := CoordinateRing.isDedekindDomain W
   obtain ⟨w, hw⟩ := WeierstrassCurve.Affine.FunctionField.exists_eq_valuationSubring_of_X_mem W
     (placeOfPoint (0 : W.Point)).toValuationSubring (placeOfPoint (0 : W.Point)).ne_top'
     (placeOfPoint (0 : W.Point)).algebraMap_mem' hXO
-  haveI := w.isPrime
+  have := w.isPrime
   obtain ⟨a, b, hab, hwI⟩ := CoordinateRing.exists_eq_XYIdeal (W := W) (P := w.asIdeal) w.ne_bot
   have hns : W.Nonsingular a b := (equation_iff_nonsingular (W := W)).mp hab
   have h1 : placeOfPoint (Point.some a b hns) = Place.ofHeightOneSpectrum (K := F) w :=

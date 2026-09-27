@@ -510,7 +510,7 @@ theorem exists_primitive_poly {r : L[X]} (hr : r ≠ 0) :
   have hvx : ∀ n, A.valuation (r.coeff n) ≤ A.valuation (r.coeff n₀) := fun n => by
     by_cases hn : n ∈ r.support
     · exact hcmax _ (Finset.mem_image_of_mem _ hn)
-    · rw [Polynomial.notMem_support_iff.mp hn, map_zero]; exact zero_le'
+    · rw [Polynomial.notMem_support_iff.mp hn, map_zero]; exact zero_le
   have hcA : ∀ n, (r.coeff n₀)⁻¹ * r.coeff n ∈ A := fun n => by
     rw [← A.valuation_le_one_iff, map_mul, map_inv₀]
     have hc' : A.valuation (r.coeff n₀) ≠ 0 := by simpa using hc0
@@ -909,7 +909,7 @@ theorem finiteDimensional_adjoin_of_transcendental {x t : F}
     FiniteDimensional (IntermediateField.adjoin K {t}) F := by
   set Kx := IntermediateField.adjoin K {x} with hKx
   set Kt := IntermediateField.adjoin K {t} with hKt
-  haveI := hfin
+  have := hfin
 
   set d := Module.finrank Kx F with hd
   have hdep : ¬ LinearIndependent Kx (fun i : Fin (d + 1) => t ^ (i : ℕ)) := by
@@ -949,9 +949,9 @@ theorem finiteDimensional_adjoin_of_transcendental {x t : F}
     exact mul_ne_zero (fun h => hi₁ (Subtype.ext h)) hprod
 
   have halg : IsAlgebraic Kt x := isAlgebraic_of_sum_aeval_mul_pow_eq_zero ht c hrel hne
-  haveI : FiniteDimensional Kt (IntermediateField.adjoin Kt {x}) :=
+  have : FiniteDimensional Kt (IntermediateField.adjoin Kt {x}) :=
     IntermediateField.adjoin.finiteDimensional halg.isIntegral
-  haveI : Module.Finite (IntermediateField.adjoin Kt {x}) F := finite_adjoin_adjoin hfin
+  have : Module.Finite (IntermediateField.adjoin Kt {x}) F := finite_adjoin_adjoin hfin
   exact Module.Finite.trans (IntermediateField.adjoin Kt {x}) F
 
 end Exchange
@@ -995,7 +995,7 @@ theorem solution (L : Type*) [Field L] [Algebra ℚ L] (A : ValuationSubring L)
             (IntermediateField.adjoin L
               ({y} : Set (ModularCurve.laurentBaseChange L (ModularCurve.qExpFunctionFieldC ℚ Γ))))
             (ModularCurve.laurentBaseChange L (ModularCurve.qExpFunctionFieldC ℚ Γ)) := by
-  haveI := finite_adjoin_jF L Γ hT
+  have := finite_adjoin_jF L Γ hT
   obtain ⟨hfin, hle⟩ := finiteDimensional_and_finrank_le A Γ
   refine ⟨jbar Γ (IsLocalRing.ResidueField A), coe_jbar Γ _, transcendental_jbar Γ _, hfin, ?_⟩
   intro y hy

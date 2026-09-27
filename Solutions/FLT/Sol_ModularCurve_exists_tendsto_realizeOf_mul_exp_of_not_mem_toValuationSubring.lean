@@ -81,7 +81,7 @@ theorem solution
             Complex.exp (-(2 * Real.pi * Complex.I * (P.ord x : ℂ) * (τ : ℂ) / (h : ℂ))))
           UpperHalfPlane.atImInfty (nhds L) := by
   classical
-  haveI : Γ.normalCore.FiniteIndex := inferInstance
+  have : Γ.normalCore.FiniteIndex := inferInstance
 
   have hR := fun σ : SL(2, ℤ) =>
     ModularCurve.exists_ringHom_place_order_eq_mul_ord_of_qExpansion_slash Γ hT F₀ hF σ

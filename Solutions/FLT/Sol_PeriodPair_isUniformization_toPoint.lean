@@ -36,7 +36,7 @@ p2m_export "PeriodPair" "analyticAt_weierstrassPExcept ω₁_div_two_notMem_latt
 p2m_open "PeriodPair"
 end PeriodPair
 namespace Set
-p2m_export "Set" "mem_diff preimage countable_coe_iff mem_compl_iff image ext preimage_compl compl_union mem_singleton_iff nonempty_compl compl_setOf diff_subset mem_inter inter_subset_left EqOn countable_range mem_inter_iff mem_setOf_eq mem_preimage range"
+p2m_export "Set" "mem_diff preimage countable_coe_iff mem_compl_iff image ext preimage_compl compl_union mem_singleton_iff nonempty_compl compl_setOf diff_subset mem_inter inter_subset_left EqOn countable_range mem_inter_iff mem_ofPred_eq mem_preimage range"
 p2m_open "Set"
 end Set
 namespace Topology
@@ -787,13 +787,13 @@ private theorem _root_.PeriodPair.kw_addBridgeR_order_ge_four (hw : w ∉ L.latt
       analyticOrderAt_mul ((hid.pow 2).mul hg) (hP.sub analyticAt_const),
       analyticOrderAt_mul (hid.pow 2) hg, analyticOrderAt_pow hid, hord_id]
     calc (4 : ℕ∞) = 0 + ((2 • 1 + 2) + 0) := by norm_num
-      _ ≤ _ := add_le_add zero_le'
-              (add_le_add (add_le_add le_rfl L.kw_weierstrassPExcept_zero_order_ge_two) zero_le')
+      _ ≤ _ := add_le_add zero_le
+              (add_le_add (add_le_add le_rfl L.kw_weierstrassPExcept_zero_order_ge_two) zero_le)
   ·
     rw [analyticOrderAt_mul (hid.pow 4) (L.kw_analyticAt_addBridgeT hw),
       analyticOrderAt_pow hid, hord_id]
     calc (4 : ℕ∞) = 4 • 1 + 0 := by norm_num
-      _ ≤ _ := add_le_add le_rfl zero_le'
+      _ ≤ _ := add_le_add le_rfl zero_le
 
 p2m_export "PeriodPair" "kw_addBridgeR_order_ge_four"
 
@@ -1025,7 +1025,7 @@ private theorem _root_.PeriodPair.kw_elliptic_Liouville_zero (hw : w ∉ L.latti
         (L.kw_add_notMem_mem_nhds_zero hw)
     have hs_diff : s \ {(0 : ℂ)} = L.kwAddΦDomain w ∩ s := by
       ext u; simp only [hs_def, mem_diff, mem_inter_iff, mem_compl_iff, mem_singleton_iff,
-        mem_setOf_eq, kwAddΦDomain]
+        mem_ofPred_eq, kwAddΦDomain]
       constructor
       · rintro ⟨⟨h1, h2⟩, h3⟩
         exact ⟨⟨fun hu => h1 ⟨hu, h3⟩, h2⟩, ⟨h1, h2⟩⟩
@@ -1049,7 +1049,7 @@ private theorem _root_.PeriodPair.kw_elliptic_Liouville_zero (hw : w ∉ L.latti
       have hpre : {u : ℂ | u + w ∈ L.lattice} \ {-w} =
           (· + w) ⁻¹' ((L.lattice : Set ℂ) \ {0}) := by
         ext u
-        simp only [mem_diff, mem_preimage, mem_singleton_iff, mem_setOf_eq, SetLike.mem_coe,
+        simp only [mem_diff, mem_preimage, mem_singleton_iff, mem_ofPred_eq, SetLike.mem_coe,
           and_congr_right_iff]
         exact fun _ => ⟨fun h1 h2 => h1 (eq_neg_of_add_eq_zero_left h2),
           fun h1 h2 => h1 (by rw [h2, _root_.neg_add_cancel])⟩
@@ -1058,7 +1058,7 @@ private theorem _root_.PeriodPair.kw_elliptic_Liouville_zero (hw : w ∉ L.latti
       rw [_root_.neg_add_cancel]; exact L.compl_lattice_diff_singleton_mem_nhds 0
     have hs_diff : s \ {-w} = L.kwAddΦDomain w ∩ s := by
       ext u; simp only [hs_def, mem_diff, mem_inter_iff, mem_compl_iff, mem_singleton_iff,
-        mem_setOf_eq, kwAddΦDomain]
+        mem_ofPred_eq, kwAddΦDomain]
       constructor
       · rintro ⟨⟨h1, h2⟩, h3⟩
         exact ⟨⟨h1, fun hu => h2 ⟨hu, h3⟩⟩, ⟨h1, h2⟩⟩
@@ -1273,7 +1273,7 @@ private theorem _root_.PeriodPair.kw_addΨ_removable_at_zero (hw : w ∉ L.latti
     rw [heq, analyticOrderAt_mul (analyticAt_id.pow 3) hT_an,
       analyticOrderAt_pow analyticAt_id, analyticOrderAt_id]
     calc (3 : ℕ∞) = 3 • 1 + 0 := by norm_num
-      _ ≤ _ := add_le_add le_rfl zero_le'
+      _ ≤ _ := add_le_add le_rfl zero_le
 
   obtain ⟨B, hB_an, hB_eq⟩ := (natCast_le_analyticOrderAt hSum_an).mp hord
   refine ⟨B, hB_an, ?_⟩
@@ -1359,7 +1359,7 @@ private theorem _root_.PeriodPair.kw_countable_analytic_level {f : ℂ → ℂ}
       refine isDiscrete_of_codiscreteWithin ?_
       simp only [compl_setOf, not_not] at hne ⊢
       exact hne
-    haveI := hD.to_subtype
+    have := hD.to_subtype
     have hcount : Countable ({z | f z = 0} ∩ (L.lattice : Set ℂ)ᶜ : Set ℂ) :=
       countable_of_Lindelof_of_discrete
     refine (Set.countable_coe_iff.mp hcount).mono fun z hz => ?_
@@ -1429,7 +1429,7 @@ private theorem _root_.PeriodPair.kw_exists_generic_perturbation (z : ℂ) :
     rw [Set.nonempty_compl]
     exact fun hSu => not_countable_complex (hSu ▸ hSc)
   obtain ⟨u, hu⟩ := hSne
-  simp only [hS_def, Set.compl_union, Set.mem_inter_iff, Set.mem_compl_iff, Set.mem_setOf_eq,
+  simp only [hS_def, Set.compl_union, Set.mem_inter_iff, Set.mem_compl_iff, Set.mem_ofPred_eq,
     not_and] at hu
   obtain ⟨⟨⟨⟨⟨⟨⟨⟨⟨⟨⟨h1, h2⟩, h3⟩, h4⟩, h5⟩, h6⟩, h7⟩, h8⟩, h9⟩, h10⟩, h11⟩, h12⟩ := hu
   exact ⟨u, h1, h2, h3, h4, h5, h6, h7 h1, h8 h4, Ne.symm (h9 h1), Ne.symm (h10 h1),

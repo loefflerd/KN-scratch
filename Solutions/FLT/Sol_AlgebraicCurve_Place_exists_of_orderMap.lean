@@ -65,7 +65,7 @@ theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F]
 
   obtain ⟨x₀, hx₀pos, hx₀top⟩ := h_nontriv
   have hx₀ne : x₀ ≠ 0 := fun h => hx₀top ((h_top x₀).mpr h)
-  haveI hnt : v.IsNontrivial := by
+  have hnt : v.IsNontrivial := by
     refine ⟨x₀, ?_, ?_⟩
     · rw [v_apply]
       obtain ⟨n, hn⟩ := WithTop.ne_top_iff_exists.mp hx₀top
@@ -74,9 +74,9 @@ theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F]
       intro h
       have h1 := (w_le 0 (μ x₀)).mp h.ge
       exact absurd (lt_of_lt_of_le hx₀pos h1) (lt_irrefl _)
-  haveI : Nontrivial (MonoidWithZeroHom.valueGroup (.ofClass v)) := inferInstance
-  haveI : IsCyclic (MonoidWithZeroHom.valueGroup (.ofClass v)) := inferInstance
-  haveI hPIR : IsPrincipalIdealRing v.valuationSubring :=
+  have : Nontrivial (MonoidWithZeroHom.valueGroup (.ofClass v)) := inferInstance
+  have : IsCyclic (MonoidWithZeroHom.valueGroup (.ofClass v)) := inferInstance
+  have hPIR : IsPrincipalIdealRing v.valuationSubring :=
     Valuation.valuationSubring_isPrincipalIdealRing v
 
   have hK : ∀ a : K, algebraMap K F a ∈ v.valuationSubring := by

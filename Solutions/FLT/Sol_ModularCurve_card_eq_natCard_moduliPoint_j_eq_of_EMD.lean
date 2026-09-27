@@ -22,7 +22,7 @@ theorem solution (N : ℕ) [NeZero N]
     S.card = Nat.card {x : ModularCurve.ModuliPoint N (AlgebraicClosure ℚ) // ModularCurve.ModuliPoint.j x = j₀} := by
   obtain ⟨E₀, hE₀, hj, hcard⟩ :=
     ModularCurve.exists_natCard_quot_samePlace_eq_natCard_quot_sameOrbit_of_EMD N j₀ hEMD
-  haveI := hE₀
+  have := hE₀
   rw [ModularCurve.card_eq_natCard_quot_samePlace_of_forall_mem_iff_pos_ord N j₀ S hS, hcard,
     ModularCurve.natCard_quot_sameOrbit_cycSub_eq_natCard_moduliPoint_j_eq N E₀, hj]
 

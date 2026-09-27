@@ -58,9 +58,9 @@ variable {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra 
 theorem Place.deg_restrictAlong_mul_inertiaDegAlong (φ : F →ₐ[K] F')
     (hφ : φ.toRingHom.IsIntegral) (w : Place K F') :
     (w.restrictAlong φ hφ).deg * w.inertiaDegAlong φ hφ = w.deg := by
-  letI := algebraAlong φ
-  haveI := isScalarTower_along φ
-  haveI := isIntegral_along φ hφ
+  let := algebraAlong φ
+  have := isScalarTower_along φ
+  have := isIntegral_along φ hφ
   exact w.deg_restrict_mul_inertiaDeg
 
 end AlgebraicCurve

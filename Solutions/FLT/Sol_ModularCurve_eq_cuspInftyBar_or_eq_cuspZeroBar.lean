@@ -133,7 +133,7 @@ theorem he_compat :
 theorem finite_ratFunc : Module.Finite (RatFunc 𝕂) (modularFunctionFieldBar ℓ) := by
   have hℓ : ℓ.Prime := Fact.out
   obtain ⟨data⟩ := nonempty_modularPolynomialData_of_squarefree ℓ hℓ.squarefree hℓ.one_lt
-  haveI := finiteDimensional_adjoin_jqNModC 𝕂 data
+  have := finiteDimensional_adjoin_jqNModC 𝕂 data
   exact Module.Finite.of_equiv_equiv (σa.symm.toRingEquiv : 𝕂⟮jqModC 𝕂⟯ ≃+* RatFunc 𝕂) (jTr ℓ)
     (he_compat ℓ)
 

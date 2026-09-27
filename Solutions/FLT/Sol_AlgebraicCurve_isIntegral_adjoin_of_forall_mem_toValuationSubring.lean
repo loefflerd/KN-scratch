@@ -72,7 +72,7 @@ theorem isIntegral_of_forall_valuationSubring {F : Type*} [Field F] (A : Subring
 
   let Bs : Subring F := B.toSubring
   let m' : Ideal Bs := m
-  haveI : m'.IsMaximal := hm
+  have : m'.IsMaximal := hm
   let L : LocalSubring F := LocalSubring.ofPrime Bs m'
   obtain ⟨V, hV⟩ := L.exists_le_valuationSubring
   obtain ⟨hLV, hloc⟩ := LocalSubring.le_def.mp hV

@@ -87,7 +87,7 @@ theorem exists_eq_unit_mul_pow (ϖ : C) (hϖ : Irreducible ϖ) (x : AdicCompleti
   rw [hx', IsUnit.unit_spec, mul_comm]
 
 theorem isDomain (ϖ : C) (hϖ : Irreducible ϖ) : IsDomain (AdicCompletion (maximalIdeal C) C) := by
-  haveI : NoZeroDivisors (AdicCompletion (maximalIdeal C) C) := by
+  have : NoZeroDivisors (AdicCompletion (maximalIdeal C) C) := by
     refine ⟨fun {a b} hab => ?_⟩
     by_contra hne
     push Not at hne
@@ -103,7 +103,7 @@ theorem isDomain (ϖ : C) (hϖ : Irreducible ϖ) : IsDomain (AdicCompletion (max
 
 theorem irreducible_algebraMap (ϖ : C) (hϖ : Irreducible ϖ) :
     Irreducible (algebraMap C (AdicCompletion (maximalIdeal C) C) ϖ) := by
-  haveI := isDomain ϖ hϖ
+  have := isDomain ϖ hϖ
   have hπ0 : algebraMap C (AdicCompletion (maximalIdeal C) C) ϖ ≠ 0 := by
     have := algebraMap_pow_ne_zero ϖ hϖ 1
     rwa [pow_one] at this
@@ -152,7 +152,7 @@ theorem irreducible_algebraMap (ϖ : C) (hϖ : Irreducible ϖ) :
 
 theorem isDiscreteValuationRing (ϖ : C) (hϖ : Irreducible ϖ) :
     @IsDiscreteValuationRing (AdicCompletion (maximalIdeal C) C) _ (isDomain ϖ hϖ) := by
-  haveI := isDomain ϖ hϖ
+  have := isDomain ϖ hϖ
   exact IsDiscreteValuationRing.ofHasUnitMulPowIrreducibleFactorization
     ⟨algebraMap C _ ϖ, irreducible_algebraMap ϖ hϖ, fun {x} hx => by
       obtain ⟨n, v, hv⟩ := exists_eq_unit_mul_pow ϖ hϖ x hx
@@ -179,8 +179,8 @@ theorem solution
       (∀ (n : ℕ) (w : AdicCompletion (IsLocalRing.maximalIdeal C) C), ∃ c : C,
           w - algebraMap C (AdicCompletion (IsLocalRing.maximalIdeal C) C) c ∈
             Ideal.span {algebraMap C (AdicCompletion (IsLocalRing.maximalIdeal C) C) ϖ ^ n}) := by
-  haveI := isDomain ϖ hϖ
-  haveI := isDiscreteValuationRing ϖ hϖ
+  have := isDomain ϖ hϖ
+  have := isDiscreteValuationRing ϖ hϖ
   refine ⟨inferInstance, inferInstance, isAdicComplete_maximalIdeal, irreducible_algebraMap ϖ hϖ, fun n c hc => ?_,
     fun n w => ?_⟩
   · rw [← maximalIdeal_pow_eq_span ϖ hϖ n, AdicCompletion.maximalIdeal_pow_eq_ker_evalₐ, RingHom.mem_ker,

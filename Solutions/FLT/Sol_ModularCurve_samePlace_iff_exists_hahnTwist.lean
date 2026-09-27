@@ -239,7 +239,7 @@ theorem exists_monoChar_of_induces [IsAlgClosed K] [CharZero K]
       ∃ g : ℚ, 0 < g ∧ ∀ x, (v x : ℚ) * g = (φ x).order} = n := by
     rw [hcard he0, ← hn, Int.toNat_natCast]
 
-  haveI : NeZero n := ⟨hn0.ne'⟩
+  have : NeZero n := ⟨hn0.ne'⟩
   obtain ⟨μ, hμ⟩ := HasEnoughRootsOfUnity.exists_primitiveRoot K n
   have hμu : IsUnit μ := hμ.isUnit hn0.ne'
   set ζ : Kˣ := hμu.unit with hζdef
@@ -285,7 +285,7 @@ theorem exists_monoChar_of_induces [IsAlgClosed K] [CharZero K]
       rwa [Units.val_pow_eq_pow_val, Units.val_pow_eq_pow_val] at this
     exact Fin.ext (hζ.pow_inj k.2 l.2 h')
 
-  haveI : Finite {φ : F →ₐ[K] HahnSeries ℚ K //
+  have : Finite {φ : F →ₐ[K] HahnSeries ℚ K //
       φ jb = HahnSeries.C j₀ + HahnSeries.single (1 : ℚ) (1 : K) ∧
       ∃ g : ℚ, 0 < g ∧ ∀ x, (v x : ℚ) * g = (φ x).order} :=
     Nat.finite_of_card_ne_zero (by rw [hcard']; exact hn0.ne')

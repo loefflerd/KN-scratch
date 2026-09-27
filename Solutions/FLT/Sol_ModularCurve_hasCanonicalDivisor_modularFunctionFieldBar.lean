@@ -25,8 +25,8 @@ open AlgebraicCurve ModularCurve
 
 theorem solution (N : ℕ) [NeZero N] :
     HasCanonicalDivisor (K := AlgebraicClosure ℚ) (F := modularFunctionFieldBar N) := by
-  haveI := ModularCurve.isCurveOver_modularFunctionFieldBar N
-  haveI := ModularCurve.essFiniteType_modularFunctionFieldBar N
+  have := ModularCurve.isCurveOver_modularFunctionFieldBar N
+  have := ModularCurve.essFiniteType_modularFunctionFieldBar N
   exact AlgebraicCurve.hasCanonicalDivisor_of_isCurveOver
 
 end S_ModularCurve_hasCanonicalDivisor_modularFunctionFieldBar

@@ -960,7 +960,7 @@ theorem mem_Gamma_or_neg_mem_of_vecMulSL {N : ℕ} [NeZero N] (γ : SL(2, ℤ))
     (h : ∀ a : Fin 2 → ZMod N, a ≠ 0 → vecMulSL N a γ = a ∨ vecMulSL N a γ = -a) :
     γ ∈ CongruenceSubgroup.Gamma N ∨ -γ ∈ CongruenceSubgroup.Gamma N := by
   rcases Nat.lt_or_ge 1 N with hN | hN
-  · haveI : Fact (1 < N) := ⟨hN⟩
+  · have : Fact (1 < N) := ⟨hN⟩
     have h10 : (1 : ZMod N) ≠ 0 := one_ne_zero
     have r1 := h ![1, 0] (fun e ↦ h10 (by simpa using congrFun e 0))
     have r2 := h ![0, 1] (fun e ↦ h10 (by simpa using congrFun e 1))

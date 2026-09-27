@@ -155,7 +155,7 @@ theorem j_eq_1728_add_single_two_one (𝓔 : WeierstrassCurve (PowerSeries K)) (
     haveI : 𝓔.IsElliptic := ⟨hΔ⟩
     (𝓔.map (HahnSeries.ofPowerSeries ℚ K)).j
       = (1728 : HahnSeries ℚ K) + HahnSeries.single (2 : ℚ) (1 : K) := by
-  haveI : 𝓔.IsElliptic := ⟨hΔ⟩
+  have : 𝓔.IsElliptic := ⟨hΔ⟩
   have hWΔ : IsUnit (𝓔.map (HahnSeries.ofPowerSeries ℚ K)).Δ := by
     rw [WeierstrassCurve.map_Δ]; exact hΔ.map _
   have hΔj : (𝓔.map (HahnSeries.ofPowerSeries ℚ K)).Δ *
@@ -189,7 +189,7 @@ theorem hasRamBound_two_of_isRoot_at_1728
   obtain ⟨𝓔, hΔ, hc⟩ :=
     WeierstrassCurve.exists_isUnit_discriminant_and_c6_sq_eq_mul_X_sq_powerSeries
       (AlgebraicClosure ℚ) two_ne_zero three_ne_zero
-  haveI h𝓔E : 𝓔.IsElliptic := ⟨hΔ⟩
+  have h𝓔E : 𝓔.IsElliptic := ⟨hΔ⟩
   have hjW : (𝓔.map (HahnSeries.ofPowerSeries ℚ ℚ̄)).j = (1728 : 𝕂) + HahnSeries.single (2 : ℚ) (1 : ℚ̄) :=
     j_eq_1728_add_single_two_one 𝓔 hΔ hc
   have ht : Transcendental ℚ (𝓔.map (HahnSeries.ofPowerSeries ℚ ℚ̄)).j := by
@@ -247,7 +247,7 @@ abbrev jNb : ↥(modularFunctionFieldBar N) :=
 theorem isScalarTower_RF :
     letI := algRF N
     IsScalarTower (AlgebraicClosure ℚ) (RatFunc (AlgebraicClosure ℚ)) ↥(modularFunctionFieldBar N) := by
-  letI := algRF N
+  let := algRF N
   refine IsScalarTower.of_algebraMap_eq (fun a => ?_)
   show algebraMap _ _ a = algebraMap ↥(jLineBar N) ↥(modularFunctionFieldBar N)
     (jLineBarRingEquiv N (algebraMap _ _ a))
@@ -257,14 +257,14 @@ theorem isScalarTower_RF :
 theorem finite_RF :
     letI := algRF N
     FiniteDimensional (RatFunc (AlgebraicClosure ℚ)) ↥(modularFunctionFieldBar N) := by
-  letI := algRF N
-  letI algRE : Algebra (RatFunc (AlgebraicClosure ℚ)) ↥(jLineBar N) := (jLineBarRingEquiv N).toRingHom.toAlgebra
-  haveI : IsScalarTower (RatFunc (AlgebraicClosure ℚ)) ↥(jLineBar N) ↥(modularFunctionFieldBar N) :=
+  let := algRF N
+  let algRE : Algebra (RatFunc (AlgebraicClosure ℚ)) ↥(jLineBar N) := (jLineBarRingEquiv N).toRingHom.toAlgebra
+  have : IsScalarTower (RatFunc (AlgebraicClosure ℚ)) ↥(jLineBar N) ↥(modularFunctionFieldBar N) :=
     IsScalarTower.of_algebraMap_eq (fun _ => rfl)
-  haveI : Module.Finite (RatFunc (AlgebraicClosure ℚ)) ↥(jLineBar N) :=
+  have : Module.Finite (RatFunc (AlgebraicClosure ℚ)) ↥(jLineBar N) :=
     Module.Finite.of_surjective (Algebra.linearMap (RatFunc (AlgebraicClosure ℚ)) ↥(jLineBar N))
       (jLineBarRingEquiv N).surjective
-  haveI : FiniteDimensional ↥(jLineBar N) ↥(modularFunctionFieldBar N) :=
+  have : FiniteDimensional ↥(jLineBar N) ↥(modularFunctionFieldBar N) :=
     finiteDimensional_adjoin_coeffEmb_jq_of_neZero N
   exact Module.Finite.trans ↥(jLineBar N) ↥(modularFunctionFieldBar N)
 
@@ -272,7 +272,7 @@ theorem algebraMap_RF_X :
     letI := algRF N
     algebraMap (RatFunc (AlgebraicClosure ℚ)) ↥(modularFunctionFieldBar N)
       (algebraMap (Polynomial (AlgebraicClosure ℚ)) (RatFunc (AlgebraicClosure ℚ)) Polynomial.X) = jb N := by
-  letI := algRF N
+  let := algRF N
   show ((jLineBarRingEquiv N (algebraMap (Polynomial (AlgebraicClosure ℚ)) (RatFunc (AlgebraicClosure ℚ)) X)
     : ↥(jLineBar N)) : ↥(modularFunctionFieldBar N)) = jb N
   rw [RatFunc.algebraMap_X, jLineBarRingEquiv_X]
@@ -282,8 +282,8 @@ theorem algebraMap_RF_C (c : AlgebraicClosure ℚ) :
     algebraMap (RatFunc (AlgebraicClosure ℚ)) ↥(modularFunctionFieldBar N)
       (algebraMap (Polynomial (AlgebraicClosure ℚ)) (RatFunc (AlgebraicClosure ℚ)) (Polynomial.C c))
         = algebraMap (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) c := by
-  letI := algRF N
-  haveI := isScalarTower_RF N
+  let := algRF N
+  have := isScalarTower_RF N
   rw [RatFunc.algebraMap_C, ← RatFunc.algebraMap_eq_C, ← IsScalarTower.algebraMap_apply]
 
 theorem algebraMap_RF_X_sub_C (c : AlgebraicClosure ℚ) :
@@ -291,7 +291,7 @@ theorem algebraMap_RF_X_sub_C (c : AlgebraicClosure ℚ) :
     algebraMap (RatFunc (AlgebraicClosure ℚ)) ↥(modularFunctionFieldBar N)
       (algebraMap (Polynomial (AlgebraicClosure ℚ)) (RatFunc (AlgebraicClosure ℚ)) (X - C c))
         = jb N - algebraMap (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) c := by
-  letI := algRF N
+  let := algRF N
   rw [map_sub, map_sub, algebraMap_RF_X, algebraMap_RF_C]
 
 theorem eval₂_Phi_jb_jNb (data : ModularPolynomialData N) :
@@ -392,9 +392,9 @@ theorem ord_jb_sub_dvd (data : ModularPolynomialData N) (c : AlgebraicClosure �
     (v : Place (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N))
     (hpos : 0 < v.ord (jb N - algebraMap (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) c)) :
     v.ord (jb N - algebraMap (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) c) ∣ (d : ℤ) := by
-  letI := algRF N
-  haveI := isScalarTower_RF N
-  haveI := finite_RF N
+  let := algRF N
+  have := isScalarTower_RF N
+  have := finite_RF N
   have key := AlgebraicCurve.Place.ord_dvd_of_forall_hahnSeries_embedding_hasRamBound
     (K := AlgebraicClosure ℚ) (L := AlgebraicClosure ℚ) (F := ↥(modularFunctionFieldBar N))
     (X - C c) (Polynomial.irreducible_X_sub_C c) c (by simp) (by simp) hd

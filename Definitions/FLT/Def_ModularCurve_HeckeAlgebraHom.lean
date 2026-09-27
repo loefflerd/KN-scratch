@@ -53,7 +53,7 @@ theorem evalGen_injective {S : Set G} (hS : Subgroup.closure S = ⊤) :
 
 theorem addHom_int_moduleFinite [Group.FG G] : Module.Finite ℤ (Additive G →+ ℤ) := by
   obtain ⟨S, hS, hSfin⟩ := Group.fg_iff.mp ‹Group.FG G›
-  haveI : Finite S := hSfin
+  have : Finite S := hSfin
   exact Module.Finite.of_injective (evalGen S) (evalGen_injective hS)
 
 instance instIsNoetherian_addHom_int (N : ℕ) [NeZero N] :
@@ -63,7 +63,7 @@ instance instIsNoetherian_addHom_int (N : ℕ) [NeZero N] :
 
 theorem moduleEnd_addHom_int_moduleFinite [Group.FG G] :
     Module.Finite ℤ (Module.End ℤ (Additive G →+ ℤ)) := by
-  haveI := addHom_int_moduleFinite (G := G)
+  have := addHom_int_moduleFinite (G := G)
   set M := Additive G →+ ℤ
   obtain ⟨s, hs⟩ := Module.Finite.fg_top (R := ℤ) (M := M)
   let ev : Module.End ℤ M →ₗ[ℤ] (s → M) :=

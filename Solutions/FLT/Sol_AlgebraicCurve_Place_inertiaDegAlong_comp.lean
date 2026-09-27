@@ -12,21 +12,21 @@ set_option autoImplicit false
 open IsDedekindDomain AlgebraicCurve
 
 theorem solution {K F F' F'' : Type*} [Field K] [Field F] [Field F'] [Field F''] [Algebra K F] [Algebra K F'] [Algebra K F''] (φ : F →ₐ[K] F') (χ : F' →ₐ[K] F'') (hφ : φ.toRingHom.IsIntegral) (hχ : χ.toRingHom.IsIntegral) (hχφ : (χ.comp φ).toRingHom.IsIntegral) (W : Place K F'') : W.inertiaDegAlong (χ.comp φ) hχφ = W.inertiaDegAlong χ hχ * (W.restrictAlong χ hχ).inertiaDegAlong φ hφ := by
-  letI iχ : Algebra F' F'' := algebraAlong χ
-  haveI := isScalarTower_along χ
-  haveI := isIntegral_along χ hχ
-  letI iφ : Algebra F F' := algebraAlong φ
-  haveI := isScalarTower_along φ
-  haveI := isIntegral_along φ hφ
+  let iχ : Algebra F' F'' := algebraAlong χ
+  have := isScalarTower_along χ
+  have := isIntegral_along χ hχ
+  let iφ : Algebra F F' := algebraAlong φ
+  have := isScalarTower_along φ
+  have := isIntegral_along φ hφ
 
   let w : Place K F' := W.restrict F'
   let v : Place K F := w.restrict F
 
-  letI iχφ : Algebra F F'' := algebraAlong (χ.comp φ)
-  haveI := isScalarTower_along (χ.comp φ)
-  haveI := isIntegral_along (χ.comp φ) hχφ
-  letI : Algebra v.ResidueField W.ResidueField := (Place.restrictResidueMap F W).toAlgebra
-  haveI : IsScalarTower v.ResidueField w.ResidueField W.ResidueField := by
+  let iχφ : Algebra F F'' := algebraAlong (χ.comp φ)
+  have := isScalarTower_along (χ.comp φ)
+  have := isIntegral_along (χ.comp φ) hχφ
+  let : Algebra v.ResidueField W.ResidueField := (Place.restrictResidueMap F W).toAlgebra
+  have : IsScalarTower v.ResidueField w.ResidueField W.ResidueField := by
     refine IsScalarTower.of_algebraMap_eq fun x => ?_
     obtain ⟨a, rfl⟩ := IsLocalRing.residue_surjective x
     show Place.restrictResidueMap F W (IsLocalRing.residue _ a)

@@ -150,19 +150,19 @@ private theorem engine_generic (N : ℕ) [NeZero N] (data : ModularPolynomialDat
     have h := RatFunc.liftAlgHom_apply_div' (φ := Polynomial.aeval _)
       (hφ := nonZeroDivisors_le_comap_nonZeroDivisors_of_injective _ hinj) p 1
     simpa using h
-  letI : Algebra (RatFunc (AlgebraicClosure ℚ))
+  let : Algebra (RatFunc (AlgebraicClosure ℚ))
       ↥(laurentBaseChange (AlgebraicClosure ℚ) (modularFunctionFieldFull N)) :=
     lift.toRingHom.toAlgebra
   have halgmap : algebraMap (RatFunc (AlgebraicClosure ℚ))
       ↥(laurentBaseChange (AlgebraicClosure ℚ) (modularFunctionFieldFull N)) =
       lift.toRingHom := rfl
-  haveI : IsScalarTower (AlgebraicClosure ℚ) (RatFunc (AlgebraicClosure ℚ))
+  have : IsScalarTower (AlgebraicClosure ℚ) (RatFunc (AlgebraicClosure ℚ))
       ↥(laurentBaseChange (AlgebraicClosure ℚ) (modularFunctionFieldFull N)) :=
     IsScalarTower.of_algebraMap_eq' (lift.comp_algebraMap).symm
 
-  haveI hFD : FiniteDimensional (RatFunc (AlgebraicClosure ℚ))
+  have hFD : FiniteDimensional (RatFunc (AlgebraicClosure ℚ))
       ↥(laurentBaseChange (AlgebraicClosure ℚ) (modularFunctionFieldFull N)) := by
-    haveI hfin := finiteDimensional_adjoin_coeffEmb_jq_full (AlgebraicClosure ℚ) N
+    have hfin := finiteDimensional_adjoin_coeffEmb_jq_full (AlgebraicClosure ℚ) N
     obtain ⟨s, hs⟩ := Module.finite_def.mp hfin
     refine ⟨⟨s, ?_⟩⟩
     rw [eq_top_iff]

@@ -178,11 +178,11 @@ theorem solution
 
   have hidx : ρ.ker.index = (H ⊔ Subgroup.zpowers (-1 : (ZMod M)ˣ)).index := by
     rw [hker]; exact Subgroup.index_comap_of_surjective _ (CohCarrier.gamma0Units_surjective' M)
-  haveI : (H ⊔ Subgroup.zpowers (-1 : (ZMod M)ˣ)).FiniteIndex := inferInstance
-  haveI : ρ.ker.FiniteIndex := ⟨by rw [hidx]; exact Subgroup.FiniteIndex.index_ne_zero⟩
-  haveI : Finite (↥(CongruenceSubgroup.Gamma0 M) ⧸ ρ.ker) := Subgroup.finite_quotient_of_finiteIndex
-  haveI : Finite ρ.range := Finite.of_equiv _ (QuotientGroup.quotientKerEquivRange ρ).toEquiv
-  haveI : Fintype ρ.range := Fintype.ofFinite _
+  have : (H ⊔ Subgroup.zpowers (-1 : (ZMod M)ˣ)).FiniteIndex := inferInstance
+  have : ρ.ker.FiniteIndex := ⟨by rw [hidx]; exact Subgroup.FiniteIndex.index_ne_zero⟩
+  have : Finite (↥(CongruenceSubgroup.Gamma0 M) ⧸ ρ.ker) := Subgroup.finite_quotient_of_finiteIndex
+  have : Finite ρ.range := Finite.of_equiv _ (QuotientGroup.quotientKerEquivRange ρ).toEquiv
+  have : Fintype ρ.range := Fintype.ofFinite _
   have hcard : Fintype.card ρ.range = (H ⊔ Subgroup.zpowers (-1 : (ZMod M)ˣ)).index := by
     rw [Fintype.card_eq_nat_card, ← Nat.card_congr (QuotientGroup.quotientKerEquivRange ρ).toEquiv,
       ← Subgroup.index_eq_card, hidx]
@@ -204,9 +204,9 @@ theorem solution
       (H ⊔ Subgroup.zpowers (-1 : (ZMod M)ˣ)).index := by
     exact (relfinrank_lift_eq_finrank _ _).trans (hartin.trans hcard)
 
-  haveI : (CongruenceSubgroup.Gamma1 M).FiniteIndex :=
+  have : (CongruenceSubgroup.Gamma1 M).FiniteIndex :=
     (CongruenceSubgroup.Gamma1_is_congruence M).finiteIndex
-  haveI : (CohCarrier.GammaH M H).FiniteIndex :=
+  have : (CohCarrier.GammaH M H).FiniteIndex :=
     Subgroup.finiteIndex_of_le (CohCarrier.Gamma1_le_GammaH' M H)
 
   have hjH : ModularCurve.jqModC K ∈ ModularCurve.qExpFunctionFieldC K (CohCarrier.GammaH M H) :=
@@ -237,7 +237,7 @@ theorem solution
       (⊤ : ValuationSubring K) ((⊤ : ValuationSubring K).subtype) (CohCarrier.GammaH M H) hF a b
       ⟨ModularCurve.jqModC K, hXmem⟩ (by simpa using hj) x0 (by rw [hx0]; exact hj) htr).1
   have hJH : 0 < (IntermediateField.adjoin K ({ModularCurve.jqModC K} : Set (LaurentSeries K))).relfinrank (ModularCurve.qExpFunctionFieldC K (CohCarrier.GammaH M H)) := by
-    haveI : Module.Finite
+    have : Module.Finite
         (IntermediateField.adjoin K ({x0} : Set (ModularCurve.qExpFunctionFieldC K (CohCarrier.GammaH M H)))) (ModularCurve.qExpFunctionFieldC K (CohCarrier.GammaH M H)) := hfin
     have hpos : 0 < Module.finrank (IntermediateField.adjoin K ({x0} : Set (ModularCurve.qExpFunctionFieldC K (CohCarrier.GammaH M H)))) (ModularCurve.qExpFunctionFieldC K (CohCarrier.GammaH M H)) :=
       Module.finrank_pos

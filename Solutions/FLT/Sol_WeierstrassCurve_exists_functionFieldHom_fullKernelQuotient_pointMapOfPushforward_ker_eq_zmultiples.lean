@@ -806,10 +806,10 @@ private theorem WeierstrassCurve.exists_functionFieldHom_fullKernelQuotient_poin
 
       obtain ⟨x₀, y₀, h₀, hMQ, hgy⟩ := Affine.Point.exists_veluGy_eq_zero_of_addOrderOf_eq_two (M • Q) hord2
 
-      haveI instWbare : W.IsElliptic := ‹W.toAffine.IsElliptic›
-      haveI hW1ell : (W.veluQuotient2 x₀ y₀).IsElliptic :=
+      have instWbare : W.IsElliptic := ‹W.toAffine.IsElliptic›
+      have hW1ell : (W.veluQuotient2 x₀ y₀).IsElliptic :=
         isElliptic_veluQuotient2_of_isElliptic h₀.1 hgy
-      haveI : (W.veluQuotient2 x₀ y₀).toAffine.IsElliptic := hW1ell
+      have : (W.veluQuotient2 x₀ y₀).toAffine.IsElliptic := hW1ell
       have hΔ₂ : (W.veluQuotient2 x₀ y₀).Δ ≠ 0 := hW1ell.isUnit.ne_zero
 
       have hordφ : addOrderOf (veluPointMap2 two_ne_zero h₀.1 hgy hΔ₂ Q) = M :=
@@ -825,10 +825,10 @@ private theorem WeierstrassCurve.exists_functionFieldHom_fullKernelQuotient_poin
 
       obtain ⟨g₁, hc₁, hA₁⟩ :=
         Affine.exists_genusOnePlaceGate_isCentred_abelTheorem (W.veluQuotient2 x₀ y₀).toAffine
-      letI := g₁
-      haveI : WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred
+      let := g₁
+      have : WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred
         (W.veluQuotient2 x₀ y₀).toAffine := hc₁
-      haveI : WeierstrassCurve.Affine.AbelTheorem (W.veluQuotient2 x₀ y₀).toAffine := hA₁
+      have : WeierstrassCurve.Affine.AbelTheorem (W.veluQuotient2 x₀ y₀).toAffine := hA₁
 
       obtain ⟨ιM, hιM, hfinM, hkerM⟩ :=
         IH M (by omega) (Nat.pos_of_ne_zero hM0) (W.veluQuotient2 x₀ y₀)
@@ -846,14 +846,14 @@ private theorem WeierstrassCurve.exists_functionFieldHom_fullKernelQuotient_poin
         AlgebraicCurve.finiteAlong_comp ιM ι₂ hfinM hfin₂
       refine ⟨ι₂.comp ιM, hιc, hfinc, fun hNc => ?_⟩
 
-      haveI : CharZero (W.veluQuotient2 x₀ y₀).toAffine.FunctionField :=
+      have : CharZero (W.veluQuotient2 x₀ y₀).toAffine.FunctionField :=
         charZero_of_injective_algebraMap (algebraMap F _).injective
-      haveI : CharZero ((W.veluQuotient2 x₀ y₀).fullKernelQuotient
+      have : CharZero ((W.veluQuotient2 x₀ y₀).fullKernelQuotient
           (veluPointMap2 two_ne_zero h₀.1 hgy hΔ₂ Q) M).toAffine.FunctionField :=
         charZero_of_injective_algebraMap (algebraMap F _).injective
-      haveI : AlgebraicCurve.HasPrincipalDivisors F W.toAffine.FunctionField :=
+      have : AlgebraicCurve.HasPrincipalDivisors F W.toAffine.FunctionField :=
         Affine.hasPrincipalDivisors_of_isAlgClosed W.toAffine
-      haveI : AlgebraicCurve.HasPrincipalDivisors F
+      have : AlgebraicCurve.HasPrincipalDivisors F
           (W.veluQuotient2 x₀ y₀).toAffine.FunctionField :=
         Affine.hasPrincipalDivisors_of_isAlgClosed (W.veluQuotient2 x₀ y₀).toAffine
       have hN₂ : AlgebraicCurve.NormFormulaAlong F ι₂ hfin₂ :=

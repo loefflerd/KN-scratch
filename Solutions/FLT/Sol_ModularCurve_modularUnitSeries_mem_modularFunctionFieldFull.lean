@@ -20,7 +20,7 @@ theorem solution (N : ℕ) [NeZero N] : ModularCurve.modularUnitSeries N ∈ Mod
   induction n using Nat.strong_induction_on with
   | _ n ih =>
     intro hNZ
-    haveI := hNZ
+    have := hNZ
     have hn : n ≠ 0 := NeZero.ne n
     rcases eq_or_ne n 1 with rfl | hn1
     · rw [ModularCurve.modularUnitSeries_one]
@@ -29,10 +29,10 @@ theorem solution (N : ℕ) [NeZero N] : ModularCurve.modularUnitSeries N ∈ Mod
       obtain ⟨M, rfl⟩ := hdvd
       have hM : M ≠ 0 := by rintro rfl; exact hn (mul_zero p)
       have hp0 : p ≠ 0 := hp.ne_zero
-      haveI : NeZero p := ⟨hp0⟩
-      haveI : NeZero M := ⟨hM⟩
-      haveI : NeZero (p * M) := ⟨mul_ne_zero hp0 hM⟩
-      haveI : Fact p.Prime := ⟨hp⟩
+      have : NeZero p := ⟨hp0⟩
+      have : NeZero M := ⟨hM⟩
+      have : NeZero (p * M) := ⟨mul_ne_zero hp0 hM⟩
+      have : Fact p.Prime := ⟨hp⟩
       rw [ModularCurve.modularUnitSeries_mul p M]
       refine mul_mem ?_ ?_
       · exact ModularCurve.full_degeneracy_le (dvd_mul_right p M)

@@ -153,7 +153,7 @@ lemma valuation_algebraMap_sq {f : W.CoordinateRing} (hf : f ≠ 0) :
   have hC0 : ∀ p : K[X], w (ι (CoordinateRing.mk W (C p))) ≤ γ ^ p.natDegree := by
     intro p
     by_cases hp : p = 0
-    · rw [hp, map_zero, map_zero, map_zero]; exact zero_le'
+    · rw [hp, map_zero, map_zero, map_zero]; exact zero_le
     · exact (hC hp).le
 
   have hδ : δ ^ 2 = γ ^ 3 := by
@@ -219,12 +219,12 @@ lemma valuation_algebraMap_sq {f : W.CoordinateRing} (hf : f ≠ 0) :
       rcases le_total (γ ^ p.natDegree) (γ ^ q.natDegree * δ) with h | h
       · rw [max_eq_right h, hB2]
         have h2 : (γ ^ p.natDegree) ^ 2 ≤ (γ ^ q.natDegree * δ) ^ 2 :=
-          pow_le_pow_left₀ zero_le' h 2
+          pow_le_pow_left₀ zero_le h 2
         rw [hA2, hB2, pow_le_pow_iff_right₀ hγ1] at h2
         rw [max_eq_right h2]
       · rw [max_eq_left h, hA2]
         have h2 : (γ ^ q.natDegree * δ) ^ 2 ≤ (γ ^ p.natDegree) ^ 2 :=
-          pow_le_pow_left₀ zero_le' h 2
+          pow_le_pow_left₀ zero_le h 2
         rw [hA2, hB2, pow_le_pow_iff_right₀ hγ1] at h2
         rw [max_eq_left h2]
 
@@ -254,8 +254,8 @@ theorem eq_valuationSubring_of_X_not_mem_aux (O : ValuationSubring W.FunctionFie
     div_le_one₀ ((Valuation.pos_iff _).mpr (hι hb0)), div_le_one₀ WithZero.exp_pos,
     WithZero.exp_le_exp, Nat.cast_le, ← pow_le_pow_iff_right₀ hγ1,
     ← valuation_algebraMap_sq hK hx ha, ← valuation_algebraMap_sq hK hx hb0]
-  exact ⟨fun h => pow_le_pow_left₀ zero_le' h 2,
-    fun h => le_of_pow_le_pow_left₀ two_ne_zero zero_le' h⟩
+  exact ⟨fun h => pow_le_pow_left₀ zero_le h 2,
+    fun h => le_of_pow_le_pow_left₀ two_ne_zero zero_le h⟩
 
 end FunctionField
 

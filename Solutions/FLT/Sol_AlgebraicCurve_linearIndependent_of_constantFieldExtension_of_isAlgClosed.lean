@@ -112,7 +112,7 @@ theorem exists_factorisation_of_factorisation_map (m : K[X][X])
 
   have hker : RingHom.ker evc ≠ ⊤ := RingHom.ker_ne_top evc
   obtain ⟨𝔪, h𝔪, hle⟩ := Ideal.exists_le_maximal _ hker
-  haveI : Finite σ := inferInstance
+  have : Finite σ := inferInstance
   obtain ⟨a, ha⟩ := (MvPolynomial.isMaximal_iff_eq_vanishingIdeal_singleton (K := K)).mp h𝔪
   let eva : R →+* K := (MvPolynomial.aeval a : R →ₐ[K] K)
   have heva : ∀ j n : ℕ, eva ((D.coeff j).coeff n) = 0 := by
@@ -362,11 +362,11 @@ theorem transcendental_algebraMap {x : F} [FiniteDimensional K⟮x⟯ F]
   intro hx₁
   obtain ⟨x', hx', -⟩ := hfg'
   apply hx'
-  haveI : FiniteDimensional K' K'⟮algebraMap F F' x⟯ := adjoin.finiteDimensional hx₁.isIntegral
+  have : FiniteDimensional K' K'⟮algebraMap F F' x⟯ := adjoin.finiteDimensional hx₁.isIntegral
   have hS : ∀ z ∈ Set.range (algebraMap F F'), IsIntegral K' z := by
     rintro _ ⟨f, rfl⟩
     exact isIntegral_trans (R := K') _ (isIntegral_algebraMap (K := K) (K' := K') x f)
-  haveI := IntermediateField.isAlgebraic_adjoin hS
+  have := IntermediateField.isAlgebraic_adjoin hS
   have hmem : x' ∈ IntermediateField.adjoin K' (Set.range (algebraMap F F')) := by
     rw [hgen]; exact mem_top
   exact IntermediateField.isAlgebraic_iff.mp
@@ -524,7 +524,7 @@ theorem linearIndependent_algebraMap_of_fintype [IsAlgClosed K] {x : F}
   rw [Fintype.linearIndependent_iff]
   intro a hrel i₀
   let W : Submodule K K' := Submodule.span K (Set.range a)
-  haveI : Module.Finite K W := Module.Finite.span_of_finite K (Set.finite_range a)
+  have : Module.Finite K W := Module.Finite.span_of_finite K (Set.finite_range a)
   let bW := Module.finBasis K W
   let c : Fin (Module.finrank K W) → K' := fun k => (bW k : K')
   have hc : LinearIndependent K c :=
@@ -579,8 +579,8 @@ theorem solution (K F K' F' : Type*)
 
   obtain ⟨x, hx, hfin, hsep⟩ :=
     AlgebraicCurve.exists_separating_transcendental_of_perfectField hx₀ hfin₀
-  haveI := hfin
-  haveI := hsep
+  have := hfin
+  have := hsep
   have hx₁ : Transcendental K' (algebraMap F F' x) :=
     transcendental_algebraMap (K := K) (x := x) hfg' hgen
   rw [linearIndependent_iff_finset_linearIndependent]

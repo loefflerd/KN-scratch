@@ -22,29 +22,29 @@ theorem solution
     Nonempty (AlgebraicCurve.Place k F) := by
   classical
   set E := IntermediateField.adjoin k ({x} : Set F) with hE
-  haveI : FiniteDimensional ↥E F := hfin
+  have : FiniteDimensional ↥E F := hfin
 
   let e : RatFunc k ≃ₐ[k] ↥E := RatFunc.algEquivOfTranscendental x hx
-  letI algRE : Algebra (RatFunc k) ↥E := e.toAlgHom.toRingHom.toAlgebra
-  letI algRF : Algebra (RatFunc k) F := ((algebraMap ↥E F).comp e.toAlgHom.toRingHom).toAlgebra
-  haveI : IsScalarTower (RatFunc k) ↥E F := IsScalarTower.of_algebraMap_eq (fun r => rfl)
-  haveI : IsScalarTower k (RatFunc k) F := IsScalarTower.of_algebraMap_eq (fun c => by
+  let algRE : Algebra (RatFunc k) ↥E := e.toAlgHom.toRingHom.toAlgebra
+  let algRF : Algebra (RatFunc k) F := ((algebraMap ↥E F).comp e.toAlgHom.toRingHom).toAlgebra
+  have : IsScalarTower (RatFunc k) ↥E F := IsScalarTower.of_algebraMap_eq (fun r => rfl)
+  have : IsScalarTower k (RatFunc k) F := IsScalarTower.of_algebraMap_eq (fun c => by
     change algebraMap k F c = algebraMap ↥E F (e (algebraMap k (RatFunc k) c))
     rw [e.commutes, ← IsScalarTower.algebraMap_apply])
-  haveI : IsScalarTower k (RatFunc k) ↥E := IsScalarTower.of_algebraMap_eq (fun c => by
+  have : IsScalarTower k (RatFunc k) ↥E := IsScalarTower.of_algebraMap_eq (fun c => by
     change algebraMap k ↥E c = e (algebraMap k (RatFunc k) c)
     rw [e.commutes])
 
-  haveI : Module.Finite (RatFunc k) ↥E :=
+  have : Module.Finite (RatFunc k) ↥E :=
     Module.Finite.of_surjective (Algebra.linearMap (RatFunc k) ↥E) e.surjective
-  haveI : FiniteDimensional (RatFunc k) F := Module.Finite.trans ↥E F
+  have : FiniteDimensional (RatFunc k) F := Module.Finite.trans ↥E F
 
-  haveI : Algebra.IsSeparable (RatFunc k) ↥E := by
+  have : Algebra.IsSeparable (RatFunc k) ↥E := by
     refine ⟨fun y => ?_⟩
     obtain ⟨r, rfl⟩ := e.surjective y
     change IsSeparable (RatFunc k) (algebraMap (RatFunc k) ↥E r)
     exact isSeparable_algebraMap r
-  haveI : Algebra.IsSeparable (RatFunc k) F := Algebra.IsSeparable.trans (RatFunc k) ↥E F
+  have : Algebra.IsSeparable (RatFunc k) F := Algebra.IsSeparable.trans (RatFunc k) ↥E F
   exact AlgebraicCurve.RationalFunctionField.nonempty_place_of_ratFunc_tower k F
 
 end S_AlgebraicCurve_nonempty_place_of_transcendental_of_finiteDimensional

@@ -42,7 +42,7 @@ theorem mem_gens_iff (L : Type*) [Field L] (N : ℕ) [NeZero N] (x : LaurentSeri
 theorem insert_gens (L : Type*) [Field L] (N : ℕ) [NeZero N] :
     insert (jqModC L) (gens L N : Set (LaurentSeries L)) = {x | ∃ (d : ℕ) (_ : NeZero d), d ∣ N ∧ x = jqNModC L d} := by
   ext x
-  simp only [Set.mem_insert_iff, Finset.mem_coe, mem_gens_iff, Set.mem_setOf_eq]
+  simp only [Set.mem_insert_iff, Finset.mem_coe, mem_gens_iff, Set.mem_ofPred_eq]
   constructor
   · rintro (rfl | h)
     · exact ⟨1, inferInstance, one_dvd N, (jqNModC_one L).symm⟩
@@ -57,7 +57,7 @@ p2m_open "ModularCurve P2MW.S_ModularCurve_hasPrincipalDivisors_laurentBaseChang
 theorem solution (L : Type*) [Field L] [Algebra ℚ L]
     (hΦ : ModularPolynomialFamily) (N : ℕ) [NeZero N] :
     HasPrincipalDivisors L (laurentBaseChange L (modularFunctionFieldFull N)) := by
-  haveI : CharZero L := charZero_of_injective_algebraMap (algebraMap ℚ L).injective
+  have : CharZero L := charZero_of_injective_algebraMap (algebraMap ℚ L).injective
   rw [laurentBaseChange_modularFunctionFieldFull, ← ModularCurve.R8.insert_gens]
   refine AlgebraicCurve.hasPrincipalDivisors_adjoin_of_transcendental L (jqModC L) (transcendental_jqModC L)
     (ModularCurve.R8.gens L N) ?_

@@ -144,7 +144,7 @@ def ordValuation (τ₀ : ℍ) : Valuation (ring N) (WithZero (Multiplicative �
     ring
   map_add_le_max' F G := by
     by_cases hFG : ((F + G : ring N) : ℍ → ℂ) = 0
-    · rw [ordFun_zero' N τ₀ hFG]; exact zero_le'
+    · rw [ordFun_zero' N τ₀ hFG]; exact zero_le
     by_cases hF : (F : ℍ → ℂ) = 0
     · have : F + G = G := by
         have hF' : F = 0 := Subtype.ext hF
@@ -302,7 +302,7 @@ theorem inv_jSub_notMem (τ₀ : ℍ) :
   rw [mem_analyticPlace_iff, map_inv₀, not_le, one_lt_inv₀]
   · exact ordValuationK_jSub_lt_one N K τ₀
   · rw [ordValuationK_algebraMap]
-    exact (zero_le'.lt_of_ne (ordValuation_ne_zero N τ₀ (jSub_ne_zero N τ₀)).symm)
+    exact (zero_le.lt_of_ne (ordValuation_ne_zero N τ₀ (jSub_ne_zero N τ₀)).symm)
 
 theorem jSub_mem_nonunits (τ₀ : ℍ) :
     algebraMap (ring N) K (jSub N τ₀) ∈ (analyticPlace N K τ₀).toValuationSubring.nonunits := by
@@ -313,7 +313,7 @@ theorem algebraMap_mem_analyticPlace (τ₀ : ℍ) (F : ring N) :
     algebraMap (ring N) K F ∈ (analyticPlace N K τ₀).toValuationSubring := by
   rw [mem_analyticPlace_iff, ordValuationK_algebraMap]
   by_cases hF : (F : ℍ → ℂ) = 0
-  · rw [ordFun_zero' N τ₀ hF]; exact zero_le'
+  · rw [ordFun_zero' N τ₀ hF]; exact zero_le
   · rw [ordFun_of_ne_zero N τ₀ hF, ← WithZero.exp_zero, WithZero.exp_le_exp]
     omega
 

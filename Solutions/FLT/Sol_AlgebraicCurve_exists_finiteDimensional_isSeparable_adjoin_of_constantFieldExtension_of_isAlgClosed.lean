@@ -30,7 +30,7 @@ theorem solution
   obtain ⟨x, hx, hxfin⟩ := hfg
   obtain ⟨t, _ht_trans, ht_fin, ht_sep⟩ :=
     AlgebraicCurve.exists_separating_transcendental_of_perfectField hx hxfin
-  haveI := ht_fin; haveI := ht_sep
+  have := ht_fin; have := ht_sep
   refine ⟨algebraMap F F' t, ?_, ?_⟩
   all_goals
     set Kt := IntermediateField.adjoin K ({t} : Set F) with hKt
@@ -56,7 +56,7 @@ theorem solution
 
     set Bt := Module.finBasis Kt F with hBt
     set S : Set F' := Set.range fun i => algebraMap F F' (Bt i : F) with hS
-    haveI : Finite S := (Set.finite_range _).to_subtype
+    have : Finite S := (Set.finite_range _).to_subtype
 
     have key : ∀ i,
         Polynomial.aeval (R := Kt') (algebraMap F F' (Bt i : F))

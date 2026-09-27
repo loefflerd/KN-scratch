@@ -83,8 +83,8 @@ open CongruenceSubgroup
 open scoped MatrixGroups
 theorem Gamma_le_Gamma0 (N : ℕ) : Gamma N ≤ Gamma0 N := fun _ hA => Gamma0_mem.mpr (Gamma_mem.mp hA).2.2.1
 scoped instance instGroupFG_Gamma0 (N : ℕ) [NeZero N] : Group.FG (Gamma0 N) := by
-  haveI : (Gamma0 N).FiniteIndex := Subgroup.finiteIndex_of_le (Gamma_le_Gamma0 N)
-  haveI : Group.FG SL(2, ℤ) := ⟨⟨{ModularGroup.S, ModularGroup.T}, by simpa using SpecialLinearGroup.SL2Z_generators⟩⟩
+  have : (Gamma0 N).FiniteIndex := Subgroup.finiteIndex_of_le (Gamma_le_Gamma0 N)
+  have : Group.FG SL(2, ℤ) := ⟨⟨{ModularGroup.S, ModularGroup.T}, by simpa using SpecialLinearGroup.SL2Z_generators⟩⟩
   exact Subgroup.fg_of_index_ne_zero _
 end HeckeEis.ZQAux
 p2m_reactivate "P2MW.S_HeckeEis_exists_basis_coeffH1par_int_complex.HeckeEis P2MW.S_HeckeEis_exists_basis_coeffH1par_int_complex.HeckeEis.ZQAux"
@@ -124,7 +124,7 @@ theorem moduleFinite_binaryForm (n : ℕ) : Module.Finite ℤ ↥(BinaryForm ℤ
     intro d hd
     have hsum : d 0 + d 1 = n := by
       have h := hd
-      rw [Set.mem_setOf_eq, Finsupp.degree_eq_sum, Fin.sum_univ_two] at h
+      rw [Set.mem_ofPred_eq, Finsupp.degree_eq_sum, Fin.sum_univ_two] at h
       exact h
     refine ⟨⟨d 1, by omega⟩, ?_⟩
     ext i
@@ -145,20 +145,20 @@ variable (n N : ℕ) [NeZero N]
 theorem moduleFinite_coeffParabolicCocycles :
     Module.Finite ℤ ↥(coeffParabolicCocycles ((binaryFormRepSL ℤ n).comp (Gamma0 N).subtype)) := by
   classical
-  haveI := moduleFinite_binaryForm n
+  have := moduleFinite_binaryForm n
   obtain ⟨S, hS⟩ := Group.fg_def.mp (HeckeEis.ZQAux.instGroupFG_Gamma0 N)
 
   let ev : ↥(coeffParabolicCocycles ((binaryFormRepSL ℤ n).comp (Gamma0 N).subtype)) →ₗ[ℤ] (↥S → ↥(BinaryForm ℤ n)) :=
     { toFun := fun z g => z.1 g
       map_add' := fun _ _ => rfl
       map_smul' := fun _ _ => rfl }
-  haveI : IsNoetherian ℤ (↥S → ↥(BinaryForm ℤ n)) := isNoetherian_of_isNoetherianRing_of_finite ℤ _
+  have : IsNoetherian ℤ (↥S → ↥(BinaryForm ℤ n)) := isNoetherian_of_isNoetherianRing_of_finite ℤ _
   refine Module.Finite.of_injective ev fun z z' h => Subtype.ext ?_
   exact coeffCocycles_eq_of_eqOn z.2.1 z'.2.1 hS fun g hg => congrFun h ⟨g, hg⟩
 
 theorem moduleFinite_coeffH1par :
     Module.Finite ℤ (coeffH1par ((binaryFormRepSL ℤ n).comp (Gamma0 N).subtype)) := by
-  haveI := moduleFinite_coeffParabolicCocycles n N
+  have := moduleFinite_coeffParabolicCocycles n N
   exact Module.Finite.of_surjective (coeffH1parMk _) (coeffH1parMk_surjective _)
 
 theorem isTorsionFree_coeffH1par :
@@ -170,8 +170,8 @@ theorem isTorsionFree_coeffH1par :
   exact sub_eq_zero.mp (HeckeEis.coeffH1par_binaryFormRepSL_int_eq_zero_of_smul_eq_zero n N r hr0 _ h)
 
 theorem free_coeffH1par : Module.Free ℤ (coeffH1par ((binaryFormRepSL ℤ n).comp (Gamma0 N).subtype)) := by
-  haveI := moduleFinite_coeffH1par n N
-  haveI := isTorsionFree_coeffH1par n N
+  have := moduleFinite_coeffH1par n N
+  have := isTorsionFree_coeffH1par n N
   exact Module.free_of_finite_type_torsion_free'
 
 theorem comp_eq_of_clauses
@@ -236,8 +236,8 @@ theorem main (n N : ℕ) [NeZero N]
   obtain ⟨Ψ, hΨ⟩ := HeckeEis.exists_coeffH1par_map_ringHom (algebraMap ℚ ℂ) n (Gamma0 N)
   have hcomp : ∀ x, ΦC x = Ψ (ΦQ x) := comp_eq_of_clauses n N ΦC hΦC ΦQ hΦQ Ψ hΨ
 
-  haveI := moduleFinite_coeffH1par n N
-  haveI := free_coeffH1par n N
+  have := moduleFinite_coeffH1par n N
+  have := free_coeffH1par n N
   let b : Module.Basis (Fin (Module.finrank ℤ (coeffH1par ((binaryFormRepSL ℤ n).comp (Gamma0 N).subtype)))) ℤ
       (coeffH1par ((binaryFormRepSL ℤ n).comp (Gamma0 N).subtype)) := Module.finBasis ℤ _
 

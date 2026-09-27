@@ -11,7 +11,7 @@ namespace P2MW.S_AlgebraicCurve_Place_deg_eq_one_of_isAlgClosed
 open AlgebraicCurve
 
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] [IsAlgClosed K] (v : Place K F) (hv : v.deg ≠ 0) : v.deg = 1 := by
-  haveI : Module.Finite K v.ResidueField := Module.finite_of_finrank_pos (Nat.pos_of_ne_zero hv)
+  have : Module.Finite K v.ResidueField := Module.finite_of_finrank_pos (Nat.pos_of_ne_zero hv)
   have e : K ≃ₗ[K] v.ResidueField :=
     LinearEquiv.ofBijective (Algebra.linearMap K v.ResidueField) (IsAlgClosed.algebraMap_bijective_of_isIntegral)
   unfold Place.deg

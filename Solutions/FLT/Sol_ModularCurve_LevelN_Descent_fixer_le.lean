@@ -187,8 +187,8 @@ theorem fixer_le (t : K)
     (δ : SL(2, ℤ)) (hδ : ∀ u, σ δ (Φ u) = Φ u) :
     δ ∈ CongruenceSubgroup.Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ)) := by
   classical
-  haveI := hfin
-  haveI := hgal
+  have := hfin
+  have := hgal
 
   let S₁ : Subgroup SL(2, ℤ) :=
     { carrier := {δ | ∀ u, σ δ (Φ u) = Φ u}
@@ -255,7 +255,7 @@ theorem fixer_le (t : K)
       show σ d z = z
       rw [h, AlgEquiv.one_apply]
 
-  haveI : Finite (K ≃ₐ[ℂ⟮t⟯] K) := inferInstance
+  have : Finite (K ≃ₐ[ℂ⟮t⟯] K) := inferInstance
   have hcard1 : Nat.card θ.range ≤ Nat.card E₂.fixingSubgroup := Subgroup.card_le_of_le hθrange
   have hcard2 : Nat.card E₂.fixingSubgroup = Module.finrank ↥E₂ K := IsGalois.card_fixingSubgroup_eq_finrank E₂
   have hcard3 : σ.ker.relIndex S₁ = Nat.card θ.range := by

@@ -63,7 +63,7 @@ theorem solution
             + (if 0 < P.ord (y - 1728) then (P.ord (y - 1728)) / 2 else 0)
             + (if P.ord y < 0 then P.ord y else 0)) := by
   classical
-  haveI := ModularCurve.isCurveOver_laurentBaseChange_qExpFunctionFieldC_gamma1 ℂ M
+  have := ModularCurve.isCurveOver_laurentBaseChange_qExpFunctionFieldC_gamma1 ℂ M
 
   obtain ⟨W, hW⟩ := AlgebraicCurve.exists_divisor_forall_eq_weightFloor ℂ y 1
   obtain ⟨Dv, hDv⟩ : ∃ Dv : AlgebraicCurve.Divisor ℂ

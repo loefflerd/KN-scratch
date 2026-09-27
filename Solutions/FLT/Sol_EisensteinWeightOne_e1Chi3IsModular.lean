@@ -1658,7 +1658,7 @@ theorem differentiableAt_latticeSum {τ : ℂ} (hτ : 0 < τ.im) :
     DifferentiableAt ℂ latticeSum τ := by
   have hT : (0 : ℝ) < τ.im / 2 := by positivity
   have hmem : τ ∈ {z : ℂ | τ.im / 2 < z.im} := by
-    simp only [Set.mem_setOf_eq]
+    simp only [Set.mem_ofPred_eq]
     linarith
   exact (differentiableOn_latticeSum_of_lt_im hT).differentiableAt
     ((isOpen_lt_im _).mem_nhds hmem)
@@ -2028,8 +2028,8 @@ variable {p : ℕ}
 
 theorem sq_add_self_add_one_eq_zero_iff_orderOf_eq_three (hp : p.Prime) (hp3 : p ≠ 3)
     (x : ZMod p) : x ^ 2 + x + 1 = 0 ↔ orderOf x = 3 := by
-  haveI : Fact p.Prime := ⟨hp⟩
-  haveI : Fact (Nat.Prime 3) := ⟨by norm_num⟩
+  have : Fact p.Prime := ⟨hp⟩
+  have : Fact (Nat.Prime 3) := ⟨by norm_num⟩
   constructor
   · intro hx
     refine orderOf_eq_prime ?_ ?_
@@ -2054,7 +2054,7 @@ theorem sq_add_self_add_one_eq_zero_iff_orderOf_eq_three (hp : p.Prime) (hp3 : p
 
 theorem sq_add_self_add_one_eq_zero_iff_of_prime (hp : p.Prime) {ζ x : ZMod p}
     (hζ : ζ ^ 2 + ζ + 1 = 0) : x ^ 2 + x + 1 = 0 ↔ x = ζ ∨ x = -1 - ζ := by
-  haveI : Fact p.Prime := ⟨hp⟩
+  have : Fact p.Prime := ⟨hp⟩
   constructor
   · intro hx
     have hfac : (x - ζ) * (x + ζ + 1) = 0 := by linear_combination hx - hζ
@@ -2067,7 +2067,7 @@ theorem sq_add_self_add_one_eq_zero_iff_of_prime (hp : p.Prime) {ζ x : ZMod p}
 
 theorem ne_neg_one_sub_of_sq_add_self_add_one_eq_zero (hp : p.Prime) (hp3 : p ≠ 3)
     {ζ : ZMod p} (hζ : ζ ^ 2 + ζ + 1 = 0) : ζ ≠ -1 - ζ := by
-  haveI : Fact p.Prime := ⟨hp⟩
+  have : Fact p.Prime := ⟨hp⟩
   intro hcontra
   have h3 : (3 : ZMod p) = 0 := by linear_combination 4 * hζ - (2 * ζ + 1) * hcontra
   have hcast : ((3 : ℕ) : ZMod p) = 0 := by exact_mod_cast h3
@@ -2076,8 +2076,8 @@ theorem ne_neg_one_sub_of_sq_add_self_add_one_eq_zero (hp : p.Prime) (hp3 : p �
 
 theorem exists_orderOf_eq_three (hp : p.Prime) (h1 : p % 3 = 1) :
     ∃ x : ZMod p, orderOf x = 3 := by
-  haveI : Fact p.Prime := ⟨hp⟩
-  haveI : Fact (Nat.Prime 3) := ⟨by norm_num⟩
+  have : Fact p.Prime := ⟨hp⟩
+  have : Fact (Nat.Prime 3) := ⟨by norm_num⟩
   have hdvd : 3 ∣ Fintype.card (ZMod p)ˣ := by
     rw [ZMod.card_units p]
     have := hp.two_le
@@ -2087,7 +2087,7 @@ theorem exists_orderOf_eq_three (hp : p.Prime) (h1 : p % 3 = 1) :
 
 theorem nuThree_prime (hp : p.Prime) (hp3 : p ≠ 3) :
     nuThree p = if p % 3 = 1 then 2 else 0 := by
-  haveI : Fact p.Prime := ⟨hp⟩
+  have : Fact p.Prime := ⟨hp⟩
   by_cases h1 : p % 3 = 1
   ·
 
@@ -2247,7 +2247,7 @@ variable {p : ℕ}
 
 theorem not_isRoot_of_inert (hp : p.Prime) (h2 : p % 3 = 2) (t : ZMod p) :
     t ^ 2 + t + 1 ≠ 0 := by
-  haveI : Fact p.Prime := ⟨hp⟩
+  have : Fact p.Prime := ⟨hp⟩
   intro ht
   have hp3 : p ≠ 3 := by rintro rfl; omega
   have hord : orderOf t = 3 :=
@@ -2261,7 +2261,7 @@ theorem not_isRoot_of_inert (hp : p.Prime) (h2 : p % 3 = 2) (t : ZMod p) :
 
 theorem inert_dvd_right_of_dvd_hexForm (hp : p.Prime) (h2 : p % 3 = 2) {x y : ℤ}
     (h : (p : ℤ) ∣ hexForm x y) : (p : ℤ) ∣ y := by
-  haveI : Fact p.Prime := ⟨hp⟩
+  have : Fact p.Prime := ⟨hp⟩
   rw [← ZMod.intCast_zmod_eq_zero_iff_dvd] at h ⊢
   by_contra hy
   have hyu : (y : ZMod p) * (y : ZMod p)⁻¹ = 1 := mul_inv_cancel₀ hy
@@ -2443,7 +2443,7 @@ theorem reprCount_inert_pow {p : ℕ} (hp : p.Prime) (h2 : p % 3 = 2) (k : ℕ) 
 
 theorem exists_dvd_hexForm_of_split {p : ℕ} (hp : p.Prime) (h1 : p % 3 = 1) :
     ∃ a : ℤ, (p : ℤ) ∣ hexForm a 1 := by
-  haveI : Fact p.Prime := ⟨hp⟩
+  have : Fact p.Prime := ⟨hp⟩
   have hp3 : p ≠ 3 := by rintro rfl; omega
   obtain ⟨t, ht⟩ := ModularCurve.exists_orderOf_eq_three hp h1
   have hroot : t ^ 2 + t + 1 = 0 :=
@@ -3313,7 +3313,7 @@ theorem emul_injOn {a b : ℤ} (hz : ¬(a = 0 ∧ b = 0)) (s : Finset (ℤ × �
 theorem thue_lemma (p : ℕ) (hp : p.Prime) (t : ZMod p) :
     ∃ x y : ℤ, ¬(x = 0 ∧ y = 0) ∧ x.natAbs ≤ p.sqrt ∧ y.natAbs ≤ p.sqrt ∧
       (x : ZMod p) = t * (y : ZMod p) := by
-  haveI : Fact p.Prime := ⟨hp⟩
+  have : Fact p.Prime := ⟨hp⟩
   have hlt : (Finset.univ : Finset (ZMod p)).card <
       (Finset.range (p.sqrt + 1) ×ˢ Finset.range (p.sqrt + 1)).card := by
     rw [Finset.card_product, Finset.card_range, Finset.card_univ, ZMod.card]
@@ -3344,7 +3344,7 @@ theorem sqrt_mul_self_lt_of_prime {p : ℕ} (hp : p.Prime) : p.sqrt * p.sqrt < p
 
 theorem exists_hexForm_eq_prime {p : ℕ} (hp : p.Prime) (h1 : p % 3 = 1) :
     ∃ x y : ℤ, hexForm x y = (p : ℤ) := by
-  haveI : Fact p.Prime := ⟨hp⟩
+  have : Fact p.Prime := ⟨hp⟩
   have hp3 : p ≠ 3 := by omega
   obtain ⟨t, ht3⟩ := ModularCurve.exists_orderOf_eq_three hp h1
   have htroot : t ^ 2 + t + 1 = 0 :=

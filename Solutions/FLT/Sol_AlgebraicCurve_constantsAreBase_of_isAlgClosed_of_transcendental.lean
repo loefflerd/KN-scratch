@@ -30,12 +30,12 @@ theorem solution
     [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F] :
     ConstantsAreBase K F := by
 
-  haveI hICO : IsCurveOver K F := isCurveOver_of_isAlgClosed_of_transcendental x hx
+  have hICO : IsCurveOver K F := isCurveOver_of_isAlgClosed_of_transcendental x hx
 
   obtain ⟨t, htr_t, hfd_t, hsep_t⟩ :=
     exists_separating_transcendental_of_perfectField (K := K) (F := F) hx inferInstance
-  haveI : FiniteDimensional (IntermediateField.adjoin K ({t} : Set F)) F := hfd_t
-  haveI : Algebra.IsSeparable (IntermediateField.adjoin K ({t} : Set F)) F := hsep_t
+  have : FiniteDimensional (IntermediateField.adjoin K ({t} : Set F)) F := hfd_t
+  have : Algebra.IsSeparable (IntermediateField.adjoin K ({t} : Set F)) F := hsep_t
 
   have hxIC : x ∉ (integralClosure K F).toSubring := fun h ↦ hx h.isAlgebraic
 

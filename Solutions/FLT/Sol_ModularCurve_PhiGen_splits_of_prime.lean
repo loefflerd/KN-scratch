@@ -192,8 +192,8 @@ theorem roots_phiProd_conj_nodup (p : ℕ) [hp : Fact p.Prime] (ζ : Kˣ) (hζ :
 
 theorem exists_isPrimitiveRoot_cyclotomicField (N : ℕ) [NeZero N] :
     ∃ z : CyclotomicField N ℚ, IsPrimitiveRoot z N := by
-  haveI : NeZero ((N : ℕ) : ℚ) := ⟨Nat.cast_ne_zero.mpr (NeZero.ne N)⟩
-  haveI : IsCyclotomicExtension {N} ℚ (CyclotomicField N ℚ) := CyclotomicField.isCyclotomicExtension N ℚ
+  have : NeZero ((N : ℕ) : ℚ) := ⟨Nat.cast_ne_zero.mpr (NeZero.ne N)⟩
+  have : IsCyclotomicExtension {N} ℚ (CyclotomicField N ℚ) := CyclotomicField.isCyclotomicExtension N ℚ
   exact IsCyclotomicExtension.exists_isPrimitiveRoot ℚ (CyclotomicField N ℚ) (Set.mem_singleton N) (NeZero.ne N)
 
 def cycUnit (N : ℕ) [NeZero N] : (CyclotomicField N ℚ)ˣ :=
@@ -311,10 +311,10 @@ p2m_reactivate "P2MW.S_ModularCurve_PhiGen_splits_of_prime.ModularCurve P2MW.S_M
 theorem splits_of_prime_cyclotomicField (p : ℕ) [hp : Fact p.Prime] (data : ModularPolynomialData p) :
     data.Φ.map (((coeffEmb (CyclotomicField p ℚ)).comp (qExpand ℚ p)).comp evalAtJ) =
       phiProd p (conj p (cycUnit p)) := by
-  haveI : NeZero ((p : ℕ) : ℚ) := ⟨Nat.cast_ne_zero.mpr hp.out.ne_zero⟩
-  haveI : IsCyclotomicExtension {p} ℚ (CyclotomicField p ℚ) := CyclotomicField.isCyclotomicExtension p ℚ
-  haveI : IsGalois ℚ (CyclotomicField p ℚ) := IsCyclotomicExtension.isGalois {p} ℚ (CyclotomicField p ℚ)
-  haveI : FiniteDimensional ℚ (CyclotomicField p ℚ) :=
+  have : NeZero ((p : ℕ) : ℚ) := ⟨Nat.cast_ne_zero.mpr hp.out.ne_zero⟩
+  have : IsCyclotomicExtension {p} ℚ (CyclotomicField p ℚ) := CyclotomicField.isCyclotomicExtension p ℚ
+  have : IsGalois ℚ (CyclotomicField p ℚ) := IsCyclotomicExtension.isGalois {p} ℚ (CyclotomicField p ℚ)
+  have : FiniteDimensional ℚ (CyclotomicField p ℚ) :=
     IsCyclotomicExtension.finiteDimensional {p} ℚ (CyclotomicField p ℚ)
   have hζ := cycUnit_spec p
   obtain ⟨c, hc⟩ := exists_phiGenDescends p (cycUnit p) hζ
@@ -333,8 +333,8 @@ p2m_open_scoped "ModularCurve ModularCurve.PhiGen" in
 open ModularCurve.W1 in
 private theorem ModularCurve.PhiGen.splits_of_prime {K : Type*} [Field K] [Algebra ℚ K] (p : ℕ) [hp : Fact (Nat.Prime p)] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) p) (data : ModularPolynomialData p) : data.Φ.map (((coeffEmb K).comp (qExpand ℚ p)).comp evalAtJ) = phiProd p (conj p ζ) := by
 
-  haveI : NeZero ((p : ℕ) : ℚ) := ⟨Nat.cast_ne_zero.mpr hp.out.ne_zero⟩
-  haveI : IsCyclotomicExtension {p} ℚ (CyclotomicField p ℚ) := CyclotomicField.isCyclotomicExtension p ℚ
+  have : NeZero ((p : ℕ) : ℚ) := ⟨Nat.cast_ne_zero.mpr hp.out.ne_zero⟩
+  have : IsCyclotomicExtension {p} ℚ (CyclotomicField p ℚ) := CyclotomicField.isCyclotomicExtension p ℚ
   have hζ₀ := cycUnit_spec p
   have hirr := Polynomial.cyclotomic.irreducible_rat hp.out.pos
   obtain ⟨σ, hσ⟩ : ∃ σ : CyclotomicField p ℚ →ₐ[ℚ] K, σ (cycUnit p : CyclotomicField p ℚ) = ζ :=

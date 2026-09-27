@@ -556,16 +556,16 @@ theorem jqNModC_mem_of_div_primes {N : ℕ} [NeZero N] (ζ : Kˣ) (hζ : IsPrimi
     {p q : ℕ} (pp : Nat.Prime p) (qq : Nat.Prime q) (hpq : p ≠ q) (hpd : p ∣ d) (hqd : q ∣ d)
     [NeZero (d / p)] [NeZero (d / q)] (hmp : jqNModC K (d / p) ∈ F) (hmq : jqNModC K (d / q) ∈ F) :
     jqNModC K d ∈ F := by
-  haveI : Fact (Nat.Prime p) := ⟨pp⟩
-  haveI : Fact (Nat.Prime q) := ⟨qq⟩
-  haveI : NeZero p := ⟨pp.ne_zero⟩
-  haveI : NeZero q := ⟨qq.ne_zero⟩
+  have : Fact (Nat.Prime p) := ⟨pp⟩
+  have : Fact (Nat.Prime q) := ⟨qq⟩
+  have : NeZero p := ⟨pp.ne_zero⟩
+  have : NeZero q := ⟨qq.ne_zero⟩
   have hpN : p ∣ N := hpd.trans hdN
   have hqN : q ∣ N := hqd.trans hdN
   have hNp0 : N / p ≠ 0 := fun h0 => NeZero.ne N (by rw [← Nat.div_mul_cancel hpN, h0, zero_mul])
   have hNq0 : N / q ≠ 0 := fun h0 => NeZero.ne N (by rw [← Nat.div_mul_cancel hqN, h0, zero_mul])
-  haveI : NeZero (N / p) := ⟨hNp0⟩
-  haveI : NeZero (N / q) := ⟨hNq0⟩
+  have : NeZero (N / p) := ⟨hNp0⟩
+  have : NeZero (N / q) := ⟨hNq0⟩
   have hζp := isPrimitiveRoot_pow_div hζ hpN
   have hζq := isPrimitiveRoot_pow_div hζ hqN
   have hpe : p * (N / p * (d / p)) = N * (d / p) := by
@@ -578,7 +578,7 @@ theorem jqNModC_mem_of_div_primes {N : ℕ} [NeZero N] (ζ : Kˣ) (hζ : IsPrimi
     rw [hqe, mul_left_comm, Nat.mul_div_cancel' hqd]
   have data_p : ModularPolynomialData p := (ModularCurve.exists_phiIrreducible_evalSymm p).choose
   have data_q : ModularPolynomialData q := (ModularCurve.exists_phiIrreducible_evalSymm q).choose
-  letI : Algebra F (LaurentSeries K) := ((qExpand K N).comp (algebraMap F (LaurentSeries K))).toAlgebra
+  let : Algebra F (LaurentSeries K) := ((qExpand K N).comp (algebraMap F (LaurentSeries K))).toAlgebra
   have hmapA : (phiAtSeed data_p (⟨jqNModC K (d / p), hmp⟩ : F)).map (algebraMap F (LaurentSeries K))
       = phiAtSeed data_p (qExpand K N (jqNModC K (d / p))) :=
     phiAtSeed_map data_p _ _
@@ -669,12 +669,12 @@ theorem jqNModC_mem_of_div_prime_of_mul_prime {N : ℕ} [NeZero N] (ζ : Kˣ) (h
     {l p : ℕ} (ll : Nat.Prime l) (pp : Nat.Prime p) (hlN : l ∣ N) (hpN : p ∣ N) (hld : l ∣ d)
     [NeZero (d / l)] [NeZero (p * d)] (hml : jqNModC K (d / l) ∈ F) (hmp : jqNModC K (p * d) ∈ F) :
     jqNModC K d ∈ F := by
-  haveI : Fact (Nat.Prime l) := ⟨ll⟩
-  haveI : Fact (Nat.Prime p) := ⟨pp⟩
-  haveI : NeZero l := ⟨ll.ne_zero⟩
-  haveI : NeZero p := ⟨pp.ne_zero⟩
+  have : Fact (Nat.Prime l) := ⟨ll⟩
+  have : Fact (Nat.Prime p) := ⟨pp⟩
+  have : NeZero l := ⟨ll.ne_zero⟩
+  have : NeZero p := ⟨pp.ne_zero⟩
   have hNl0 : N / l ≠ 0 := fun h0 => NeZero.ne N (by rw [← Nat.div_mul_cancel hlN, h0, zero_mul])
-  haveI : NeZero (N / l) := ⟨hNl0⟩
+  have : NeZero (N / l) := ⟨hNl0⟩
   have hζl := isPrimitiveRoot_pow_div hζ hlN
   have hζp := isPrimitiveRoot_pow_div hζ hpN
   have hle : l * (N / l * (d / l)) = N * (d / l) := by
@@ -684,7 +684,7 @@ theorem jqNModC_mem_of_div_prime_of_mul_prime {N : ℕ} [NeZero N] (ζ : Kˣ) (h
   have hpe : N * (p * d) = p * (N * d) := Nat.mul_left_comm N p d
   have data_l : ModularPolynomialData l := (ModularCurve.exists_phiIrreducible_evalSymm l).choose
   have data_p : ModularPolynomialData p := (ModularCurve.exists_phiIrreducible_evalSymm p).choose
-  letI : Algebra F (LaurentSeries K) := ((qExpand K N).comp (algebraMap F (LaurentSeries K))).toAlgebra
+  let : Algebra F (LaurentSeries K) := ((qExpand K N).comp (algebraMap F (LaurentSeries K))).toAlgebra
   have hmapA : (phiAtSeed data_l (⟨jqNModC K (d / l), hml⟩ : F)).map (algebraMap F (LaurentSeries K))
       = phiAtSeed data_l (qExpand K N (jqNModC K (d / l))) :=
     phiAtSeed_map data_l _ _
@@ -838,7 +838,7 @@ theorem mffC_eq_fullC_of_steps (d : ℕ) [NeZero d]
       have hq : m.minFac.Prime := Nat.minFac_prime hm1
       obtain ⟨m', hm'⟩ := (Nat.minFac_dvd m : m.minFac ∣ m)
       have hm'0 : m' ≠ 0 := fun h0 => hm0 (by rw [hm', h0, Nat.mul_zero])
-      haveI : NeZero (e * m') := ⟨Nat.mul_ne_zero (NeZero.ne e) hm'0⟩
+      have : NeZero (e * m') := ⟨Nat.mul_ne_zero (NeZero.ne e) hm'0⟩
       have hprod : e * m' * m.minFac = d := by
         rw [Nat.mul_assoc, Nat.mul_comm m' m.minFac, ← hm', ← hm]
       have hmemM : jqNModC K (e * m') ∈ modularFunctionFieldC K d := hstep (e * m') m.minFac hq hprod
@@ -915,7 +915,7 @@ theorem pkg_of_socket (L : ℕ) [NeZero L] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ
     have hgen : modularFunctionFieldC K d = fullC K d := by
       refine mffC_eq_fullC_of_steps d ?_ ?_
       · intro M _ q hq hMq
-        haveI : Fact (Nat.Prime q) := ⟨hq⟩
+        have : Fact (Nat.Prime q) := ⟨hq⟩
         have hMd : M < d := by
           rw [← hMq]
           exact lt_mul_of_one_lt_right (Nat.pos_of_ne_zero (NeZero.ne M)) hq.one_lt
@@ -937,10 +937,10 @@ theorem pkg_of_socket (L : ℕ) [NeZero L] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ
     rcases eq_or_ne d 1 with rfl | hd1
     · rw [fullC_one, IntermediateField.relfinrank_self, dedekindPsi_one]
     · obtain ⟨p, hp, hpd⟩ : ∃ p : ℕ, p.Prime ∧ p ∣ d := ⟨d.minFac, Nat.minFac_prime hd1, Nat.minFac_dvd d⟩
-      haveI : Fact (Nat.Prime p) := ⟨hp⟩
+      have : Fact (Nat.Prime p) := ⟨hp⟩
       obtain ⟨e, M, hpM, hdeM⟩ := Nat.exists_eq_pow_mul_and_not_dvd (NeZero.ne d) p hp.ne_one
       have hM0 : M ≠ 0 := fun h0 => NeZero.ne d (by rw [hdeM, h0, Nat.mul_zero])
-      haveI : NeZero M := ⟨hM0⟩
+      have : NeZero M := ⟨hM0⟩
       obtain ⟨a, rfl⟩ : ∃ a, e = a + 1 := by
         rcases e with _ | a
         · exfalso

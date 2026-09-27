@@ -25,7 +25,7 @@ theorem solution (N : ℕ) [NeZero N] :
       (w : AlgebraicCurve.Place ℚ ↥(ModularCurve.modularFunctionField N)),
       w.restrict ↥ℚ⟮ModularCurve.jq⟯ = ModularCurve.jLinePlaceZero →
       (w.ramificationIndex ↥ℚ⟮ModularCurve.jq⟯ : ℤ) = w.ord (⟨ModularCurve.jq, ModularCurve.jq_mem N⟩ : ↥(ModularCurve.modularFunctionField N)) := by
-  letI := ModularCurve.jAdjoinAlgebra N
+  let := ModularCurve.jAdjoinAlgebra N
   intro _ w hres
   have h := w.ord_restrict (F := ↥ℚ⟮ModularCurve.jq⟯) ModularCurve.jGen
   rw [hres, ModularCurve.ord_jLinePlaceZero_jGen, mul_one] at h

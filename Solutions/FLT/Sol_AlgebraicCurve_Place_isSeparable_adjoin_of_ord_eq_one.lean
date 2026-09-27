@@ -143,7 +143,7 @@ private theorem pDigits_linearIndependent {t : M} (htp : ∀ a : M, a ^ p ≠ t)
     haveI : ExpChar M p := ExpChar.prime hp.out
     LinearIndependent (frobeniusSubfield M p)
       (fun i : Fin p ↦ (t ^ (i : ℕ) : M)) := by
-  haveI : ExpChar M p := ExpChar.prime hp.out
+  have : ExpChar M p := ExpChar.prime hp.out
 
   have htp' : ∀ c : frobeniusSubfield M p, c ^ p ≠
       (⟨t ^ p, pow_mem_frobeniusSubfield p t⟩ : frobeniusSubfield M p) := by
@@ -233,7 +233,7 @@ private theorem adjoin_genT_over_frobeniusSubfield [PerfectField K] (t : M) :
       expChar_of_injective_algebraMap (algebraMap K _).injective p
     (IntermediateField.adjoin (↥(frobeniusSubfield (↥K⟮t⟯) p)) {genT t} :
         IntermediateField _ (↥K⟮t⟯)) = ⊤ := by
-  haveI : ExpChar (↥K⟮t⟯) p :=
+  have : ExpChar (↥K⟮t⟯) p :=
     expChar_of_injective_algebraMap (algebraMap K _).injective p
   rw [eq_top_iff]
   intro x _
@@ -276,9 +276,9 @@ private theorem finrank_frobeniusSubfield_adjoin_transcendental [PerfectField K]
     Module.finrank
       (frobeniusSubfield (↥(IntermediateField.adjoin K ({t} : Set M))) p)
       (↥(IntermediateField.adjoin K ({t} : Set M))) = p := by
-  haveI : ExpChar (↥K⟮t⟯) p :=
+  have : ExpChar (↥K⟮t⟯) p :=
     expChar_of_injective_algebraMap (algebraMap K _).injective p
-  haveI : CharP (↥K⟮t⟯) p :=
+  have : CharP (↥K⟮t⟯) p :=
     charP_of_injective_algebraMap (algebraMap K _).injective p
 
   let t' : ↥K⟮t⟯ := genT t
@@ -287,7 +287,7 @@ private theorem finrank_frobeniusSubfield_adjoin_transcendental [PerfectField K]
     refine ⟨X ^ p - C tp, monic_X_pow_sub_C _ hp.out.ne_zero, ?_⟩
     simp only [eval₂_sub, eval₂_X_pow, eval₂_C]
     exact sub_eq_zero.mpr rfl
-  haveI hfd : FiniteDimensional (↥(frobeniusSubfield (↥K⟮t⟯) p)) (↥K⟮t⟯) := by
+  have hfd : FiniteDimensional (↥(frobeniusSubfield (↥K⟮t⟯) p)) (↥K⟮t⟯) := by
     have h1 := adjoin_genT_over_frobeniusSubfield (K := K) (M := M) p t
     have h2 := IntermediateField.adjoin.finiteDimensional hint
     rw [show t' = genT t from rfl, h1] at h2
@@ -321,10 +321,10 @@ private theorem finrank_frobeniusSubfield_eq_of_transcendental {K M : Type*} [Fi
     [FiniteDimensional (IntermediateField.adjoin K ({t} : Set M)) M] :
     haveI : ExpChar M p := expChar_of_injective_algebraMap (algebraMap K M).injective p
     Module.finrank (frobeniusSubfield M p) M = p := by
-  haveI : ExpChar M p := expChar_of_injective_algebraMap (algebraMap K M).injective p
-  haveI : ExpChar (↥(IntermediateField.adjoin K ({t} : Set M))) p :=
+  have : ExpChar M p := expChar_of_injective_algebraMap (algebraMap K M).injective p
+  have : ExpChar (↥(IntermediateField.adjoin K ({t} : Set M))) p :=
     expChar_of_injective_algebraMap (algebraMap K _).injective p
-  haveI : FiniteDimensional
+  have : FiniteDimensional
       (frobeniusSubfield (↥(IntermediateField.adjoin K ({t} : Set M))) p)
       (↥(IntermediateField.adjoin K ({t} : Set M))) :=
     FiniteDimensional.of_finrank_pos (by
@@ -341,7 +341,7 @@ private theorem pDigits_exists_of_finrank_eq
       Module.finrank (frobeniusSubfield M p) M = p)
     {t : M} (htp : ∀ a : M, a ^ p ≠ t) (g : M) :
     ∃ a : Fin p → M, g = ∑ i : Fin p, a i ^ p * t ^ (i : ℕ) := by
-  haveI : ExpChar M p := ExpChar.prime hp.out
+  have : ExpChar M p := ExpChar.prime hp.out
   have hlin := pDigits_linearIndependent p htp
   let b : Module.Basis (Fin p) (frobeniusSubfield M p) M :=
     basisOfLinearIndependentOfCardEqFinrank hlin (by rw [hfr, Fintype.card_fin])
@@ -386,7 +386,7 @@ private theorem isSeparable_of_not_pow_mem_range {E M : Type*} [Field E] [Field 
       Module.finrank (frobeniusSubfield M p) M = p)
     {t : M} (htE : t ∈ (algebraMap E M).range) (htp : ∀ a : M, a ^ p ≠ t) :
     Algebra.IsSeparable E M := by
-  haveI : ExpChar M p := ExpChar.prime hp.out
+  have : ExpChar M p := ExpChar.prime hp.out
   obtain ⟨tE, rfl⟩ := htE
   have hDt : D E M (algebraMap E M tE) = 0 := (D E M).map_algebraMap tE
   have hDzero : ∀ m : M, D E M m = 0 := by
@@ -405,7 +405,7 @@ private theorem isSeparable_of_not_pow_mem_range {E M : Type*} [Field E] [Field 
     have h1 : ω₁ ∈ (⊥ : Submodule M (Ω[M⁄E])) := htop ▸ Submodule.mem_top
     have h2 : ω₂ ∈ (⊥ : Submodule M (Ω[M⁄E])) := htop ▸ Submodule.mem_top
     rw [Submodule.mem_bot] at h1 h2; rw [h1, h2]
-  haveI : Algebra.FormallyUnramified E M := ⟨hsubsingleton⟩
+  have : Algebra.FormallyUnramified E M := ⟨hsubsingleton⟩
   exact Algebra.FormallyUnramified.isSeparable E M
 
 end AlgebraicCurve.SEPEngine
@@ -418,33 +418,33 @@ theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] [PerfectField K
     Algebra.IsSeparable (IntermediateField.adjoin K ({t} : Set F)) F := by
   have ht0 : v.ord t ≠ 0 := by rw [ht]; exact one_ne_zero
   have htr : Transcendental K t := v.transcendental_of_ord_ne_zero ht0
-  haveI halg : Algebra.IsAlgebraic (↥K⟮t⟯) F :=
+  have halg : Algebra.IsAlgebraic (↥K⟮t⟯) F :=
     AlgebraicCurve.isAlgebraic_adjoin_of_transcendental x htr
   obtain ⟨q, hq⟩ := ExpChar.exists K
-  haveI := hq
+  have := hq
   cases hq with
   | zero =>
-    haveI : CharZero (↥K⟮t⟯) := charZero_of_injective_algebraMap (algebraMap K _).injective
+    have : CharZero (↥K⟮t⟯) := charZero_of_injective_algebraMap (algebraMap K _).injective
     infer_instance
   | prime hqp =>
-    haveI : Fact q.Prime := ⟨hqp⟩
+    have : Fact q.Prime := ⟨hqp⟩
     have htp : ∀ a : F, a ^ q ≠ t := fun a ↦ not_pow_of_ord_eq_one v ht hqp.two_le a
-    haveI hEq : ExpChar (↥K⟮t⟯) q :=
+    have hEq : ExpChar (↥K⟮t⟯) q :=
       expChar_of_injective_algebraMap (algebraMap K _).injective q
-    haveI hEqC : CharP (↥K⟮t⟯) q :=
+    have hEqC : CharP (↥K⟮t⟯) q :=
       charP_of_injective_algebraMap (algebraMap K _).injective q
     have hEfr : Module.finrank (frobeniusSubfield (↥K⟮t⟯) q) (↥K⟮t⟯) = q :=
       finrank_frobeniusSubfield_adjoin_transcendental q htr
-    haveI hEfd : FiniteDimensional (frobeniusSubfield (↥K⟮t⟯) q) (↥K⟮t⟯) :=
+    have hEfd : FiniteDimensional (frobeniusSubfield (↥K⟮t⟯) q) (↥K⟮t⟯) :=
       .of_finrank_pos (by rw [hEfr]; exact hqp.pos)
     refine ⟨fun y ↦ ?_⟩
-    haveI hMfd : FiniteDimensional (↥K⟮t⟯) (↥(↥K⟮t⟯)⟮y⟯) :=
+    have hMfd : FiniteDimensional (↥K⟮t⟯) (↥(↥K⟮t⟯)⟮y⟯) :=
       IntermediateField.adjoin.finiteDimensional (Algebra.IsAlgebraic.isAlgebraic y).isIntegral
     suffices hMsep : Algebra.IsSeparable (↥K⟮t⟯) (↥(↥K⟮t⟯)⟮y⟯) from
       isSeparable_of_mem_isSeparable _ F (mem_adjoin_simple_self (↥K⟮t⟯) y)
-    haveI hMq : CharP (↥(↥K⟮t⟯)⟮y⟯) q :=
+    have hMq : CharP (↥(↥K⟮t⟯)⟮y⟯) q :=
       charP_of_injective_algebraMap (algebraMap (↥K⟮t⟯) _).injective q
-    haveI hMqe : ExpChar (↥(↥K⟮t⟯)⟮y⟯) q := ExpChar.prime hqp
+    have hMqe : ExpChar (↥(↥K⟮t⟯)⟮y⟯) q := ExpChar.prime hqp
     have hMfr : Module.finrank (frobeniusSubfield (↥(↥K⟮t⟯)⟮y⟯) q) (↥(↥K⟮t⟯)⟮y⟯) = q := by
       rw [finrank_frobeniusSubfield_eq (E := ↥K⟮t⟯) q]
       exact hEfr

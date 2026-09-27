@@ -53,7 +53,7 @@ theorem solution
 
   by_contra hne
 
-  haveI homegafin : Module.Finite K ↥(omegaSpace (K := K) (F := F) Dn) :=
+  have homegafin : Module.Finite K ↥(omegaSpace (K := K) (F := F) Dn) :=
     omegaSpace_finite_of_genusReached h Dn
   have homegane : (omegaSpace (K := K) (F := F) Dn) ≠ ⊥ := by
     intro hbot
@@ -63,7 +63,7 @@ theorem solution
 
   obtain ⟨ψ, hψ, hψne⟩ := (Submodule.ne_bot_iff _).mp homegane
 
-  haveI hfin0 : Module.Finite K ↥(omegaSpace (K := K) (F := F) (0 : Divisor K F)) :=
+  have hfin0 : Module.Finite K ↥(omegaSpace (K := K) (F := F) (0 : Divisor K F)) :=
     omegaSpace_finite_of_genusReached h 0
   have hle : (ell Dn : ℤ) ≤ (indexOfSpecialty (0 : Divisor K F) : ℤ) := by
     have hls := ell_sub_le_indexOfSpecialty Dn (0 : Divisor K F) hψ hψne

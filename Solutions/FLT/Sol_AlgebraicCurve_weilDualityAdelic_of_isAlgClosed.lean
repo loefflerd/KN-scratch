@@ -49,11 +49,11 @@ theorem solution
     [FiniteDimensional (RatFunc K) F] [AlgebraicCurve.HasSeparableResidue K F] :
     AlgebraicCurve.WeilDualityAdelic K F := by
   have hC : ConstantsAreBase K F := constantsAreBase_of_isAlgClosed K F
-  haveI : Algebra.EssFiniteType (Polynomial K) (RatFunc K) :=
+  have : Algebra.EssFiniteType (Polynomial K) (RatFunc K) :=
     Algebra.EssFiniteType.of_isLocalization (RatFunc K) (nonZeroDivisors (Polynomial K))
-  haveI : Algebra.EssFiniteType K (RatFunc K) :=
+  have : Algebra.EssFiniteType K (RatFunc K) :=
     Algebra.EssFiniteType.comp K (Polynomial K) (RatFunc K)
-  haveI : Algebra.EssFiniteType K F := Algebra.EssFiniteType.comp K (RatFunc K) F
+  have : Algebra.EssFiniteType K F := Algebra.EssFiniteType.comp K (RatFunc K) F
   intro _i1 _i2 _i3 ω hω D
   exact weilDualityAdelic_of_functionFieldRiemannRoch_of_stichtenothGenusExists (K := K) (F := F)
     functionFieldRiemannRoch_of_isAlgClosed (stichtenothGenusExists_of_isCurveOver hC) hω D

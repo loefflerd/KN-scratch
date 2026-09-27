@@ -29,10 +29,10 @@ theorem solution
     [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F]
     (D : Divisor K F) (hD : ∀ v : Place K F, D v = max 0 (-v.ord x)) :
     Divisor.degree D = (Module.finrank (IntermediateField.adjoin K ({x} : Set F)) F : ℤ) := by
-  haveI : IsCurveOver K F := isCurveOver_of_isAlgClosed_of_transcendental x hx
+  have : IsCurveOver K F := isCurveOver_of_isAlgClosed_of_transcendental x hx
   have hcab : ConstantsAreBase K F := constantsAreBase_of_isAlgClosed_of_transcendental x hx
   have hℓ0 : ell (0 : Divisor K F) = 1 := ell_zero_eq_one_of_constantsAreBase hcab
-  haveI : FiniteDimensional K (LSpace (0 : Divisor K F)) :=
+  have : FiniteDimensional K (LSpace (0 : Divisor K F)) :=
     FiniteDimensional.of_finrank_eq_succ (n := 0) hℓ0
   exact Divisor.degree_eq_finrank_adjoin_of_eq_max_neg_ord x hx D hD
 

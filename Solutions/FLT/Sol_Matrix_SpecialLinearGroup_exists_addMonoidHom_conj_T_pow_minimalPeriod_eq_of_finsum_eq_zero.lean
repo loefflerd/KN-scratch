@@ -168,7 +168,7 @@ theorem solution (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ)) [Γ.Fin
         φ (Additive.ofMul ⟨_, hg⟩)
           = a (Quotient.mk (MulAction.orbitRel (Subgroup.zpowers ModularGroup.T) _)
               (g : Matrix.SpecialLinearGroup (Fin 2) ℤ ⧸ Γ)) := by
-  haveI : (Hm Γ).FiniteIndex := ⟨by rw [index_Hm Γ hneg]; exact Subgroup.FiniteIndex.index_ne_zero⟩
+  have : (Hm Γ).FiniteIndex := ⟨by rw [index_Hm Γ hneg]; exact Subgroup.FiniteIndex.index_ne_zero⟩
 
   set a' : MulAction.orbitRel.Quotient (Subgroup.zpowers τ) (Gp ⧸ Hm Γ) → R :=
     fun c => a ((Θ Γ hneg).symm c) with ha'def

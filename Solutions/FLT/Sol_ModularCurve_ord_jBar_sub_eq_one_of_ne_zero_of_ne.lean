@@ -32,7 +32,7 @@ theorem solution (N : ℕ) [NeZero N]
     v.ord (ModularCurve.jBar N - algebraMap (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar N) c) = 1 := by
   classical
   obtain ⟨E₀, hE, hj, f, hfib, hord⟩ := ModularCurve.exists_elliptic_cycSub_orbitMap N c
-  letI : E₀.IsElliptic := hE
+  let : E₀.IsElliptic := hE
   have hΔ : E₀.Δ ≠ 0 := by rw [← E₀.coe_Δ']; exact E₀.Δ'.ne_zero
 
   have hc4 : E₀.c₄ ≠ 0 := by
@@ -58,8 +58,8 @@ theorem solution (N : ℕ) [NeZero N]
     exact (Subtype.ext this.1).symm
   have hordv := hord ⟨v, hpos⟩
 
-  haveI : Finite (CycSub E₀ N) := ModularCurve.finite_cycSub N E₀
-  haveI : Fintype {H : CycSub E₀ N // f H = ⟨v, hpos⟩} := Fintype.ofFinite _
+  have : Finite (CycSub E₀ N) := ModularCurve.finite_cycSub N E₀
+  have : Fintype {H : CycSub E₀ N // f H = ⟨v, hpos⟩} := Fintype.ofFinite _
   have hsub : Subsingleton {H : CycSub E₀ N // f H = ⟨v, hpos⟩} :=
     ⟨fun ⟨H, hH⟩ ⟨H', hH'⟩ => Subtype.ext (hinj (hH.trans hH'.symm))⟩
   have hle : Nat.card {H : CycSub E₀ N // f H = ⟨v, hpos⟩} ≤ 1 := by

@@ -292,7 +292,7 @@ theorem cuspOrder_spec (φ : ℍ → ℂ)
 theorem exists_forall_cuspOrder_le [Γ.FiniteIndex] (h : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) :
     ∃ m : ℕ, ∀ A : SL(2, ℤ), cuspOrder M (⇑h ∣[k] A) ≤ m := by
   classical
-  haveI : Finite (SL(2, ℤ) ⧸ Γ) := Subgroup.finite_quotient_of_finiteIndex
+  have : Finite (SL(2, ℤ) ⧸ Γ) := Subgroup.finite_quotient_of_finiteIndex
   let ψ : SL(2, ℤ) ⧸ Γ → ℕ := fun q => cuspOrder M (⇑h ∣[k] (q.out)⁻¹)
   obtain ⟨m, hm⟩ := (Set.finite_range ψ).bddAbove
   refine ⟨m, fun A => ?_⟩
@@ -546,7 +546,7 @@ theorem solution
     IsIntegral (Algebra.adjoin ℂ ({ModularCurve.jqModC ℂ} : Set (LaurentSeries ℂ)))
       (HahnSeries.ofPowerSeries ℤ ℂ (UpperHalfPlane.qExpansion 1 ⇑g) /
         HahnSeries.ofPowerSeries ℤ ℂ (UpperHalfPlane.qExpansion 1 ⇑h)) := by
-  haveI : Γ.FiniteIndex := Subgroup.finiteIndex_of_le hΓ
+  have : Γ.FiniteIndex := Subgroup.finiteIndex_of_le hΓ
   exact ModularCurve.IntegralGammaAux.isIntegral_of_forall_isBoundedUnder M Γ
     ((ModularCurve.IntegralGammaAux.Gamma_le_Gamma1 M).trans hΓ)
     (hΓ (ModularCurve.IntegralGammaAux.T_mem_Gamma1 M)) g h hh hb

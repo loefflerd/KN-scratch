@@ -425,7 +425,7 @@ theorem solution {m p : ℕ} [NeZero m] (hp : p.Prime) (hpm : ¬ p ∣ m)
     rw [h0]
     exact CuspFormClass.qExpansion_coeff_zero F one_pos hΓ
 
-  haveI := CuspForm.finiteDimensional_Gamma0 m 2
+  have := CuspForm.finiteDimensional_Gamma0 m 2
   set d := Module.finrank ℂ (CuspForm (CongruenceSubgroup.Gamma0 m) 2) with hd
   let G₀ : Supp m p := ⟨F, hF⟩
   have hpC : (p : ℂ) ≠ 0 := by exact_mod_cast hp.ne_zero

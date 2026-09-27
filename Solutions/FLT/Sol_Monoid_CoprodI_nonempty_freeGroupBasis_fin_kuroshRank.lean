@@ -770,7 +770,7 @@ theorem card_vertexOrbits (H : Subgroup (CoprodI G)) [H.FiniteIndex]
     Nat.card (orbitRel.Quotient H (BassSerre.Vertex G)) =
       H.index / Nat.card (G 0) + H.index / Nat.card (G 1) := by
   classical
-  haveI hfin : ∀ i : Fin 2, Finite (ComponentOrbits H i) := fun i =>
+  have hfin : ∀ i : Fin 2, Finite (ComponentOrbits H i) := fun i =>
     finite_orbitRelQuotient H _ (hCT i)
   have hcard : ∀ i : Fin 2, Nat.card (ComponentOrbits H i) = H.index / Nat.card (G i) := by
     intro i
@@ -786,7 +786,7 @@ omit [∀ i, Finite (G i)] in
 theorem finite_vertexOrbits (H : Subgroup (CoprodI G)) [H.FiniteIndex]
     (hCT : ∀ i, Kurosh.ConjTrivial (CoprodI.of (M := G) (i := i)).range H) :
     Finite (orbitRel.Quotient H (BassSerre.Vertex G)) := by
-  haveI hfin : ∀ i : Fin 2, Finite (ComponentOrbits H i) := fun i =>
+  have hfin : ∀ i : Fin 2, Finite (ComponentOrbits H i) := fun i =>
     finite_orbitRelQuotient H _ (hCT i)
   exact Finite.of_equiv _ (vertexOrbitEquivSigma H).symm
 
@@ -1407,7 +1407,7 @@ include hD in
 
 theorem connected_induce_transversal : ((graph G).induce D).Connected := by
   obtain ⟨d₀, hd₀, -⟩ := hD.exists_mem_orbit (Vertex.mk 0 1)
-  haveI : Nonempty D := ⟨⟨d₀, hd₀⟩⟩
+  have : Nonempty D := ⟨⟨d₀, hd₀⟩⟩
   refine (connected_iff _).mpr ⟨?_, inferInstance⟩
   rintro ⟨v, hv⟩ ⟨w, hw⟩
   obtain ⟨p, hp⟩ := hD.walkConnected v hv w hw
@@ -1462,11 +1462,11 @@ theorem nat_card_treeRep_add_one [H.FiniteIndex]
     Nat.card (treeRep H hD) + 1 = Nat.card D := by
   classical
   have hfree' := forall_smul_eq_of_forall_mem hfree
-  haveI : Finite (MulAction.orbitRel.Quotient H (Vertex G)) :=
+  have : Finite (MulAction.orbitRel.Quotient H (Vertex G)) :=
     FreeActionTree.finite_vertexOrbits H (conjTrivial_iff_forall_smul_ne.mpr hfree)
-  haveI : Finite D := Finite.of_equiv _ (transversalEquivOrbits hD).symm
-  haveI : Fintype D := Fintype.ofFinite _
-  haveI : Fintype ((graph G).induce D).edgeSet := Set.Finite.fintype (Set.toFinite _)
+  have : Finite D := Finite.of_equiv _ (transversalEquivOrbits hD).symm
+  have : Fintype D := Fintype.ofFinite _
+  have : Fintype ((graph G).induce D).edgeSet := Set.Finite.fintype (Set.toFinite _)
   have hcount := SimpleGraph.IsTree.card_edgeFinset
     ⟨connected_induce_transversal hD, isAcyclic_induce_transversal⟩
   rw [SimpleGraph.edgeFinset_card] at hcount
@@ -1479,11 +1479,11 @@ theorem nat_card_nonTreeRep [H.FiniteIndex]
     Nat.card (nonTreeRep H hD) =
       1 + H.index - Nat.card (MulAction.orbitRel.Quotient H (Vertex G)) := by
   have hfree' := forall_smul_eq_of_forall_mem hfree
-  haveI := finite_baseRep hD hfree'
+  have := finite_baseRep hD hfree'
   have hsub : nonTreeRep H hD ⊆ baseRep H hD := fun g hg => hg.1
   have hdiff : baseRep H hD \ nonTreeRep H hD = treeRep H hD := by
     ext g
-    simp only [Set.mem_diff, baseRep, nonTreeRep, treeRep, Set.mem_setOf_eq, not_and, not_not]
+    simp only [Set.mem_diff, baseRep, nonTreeRep, treeRep, Set.mem_ofPred_eq, not_and, not_not]
     exact ⟨fun ⟨hg, hg'⟩ => ⟨hg, hg' hg⟩, fun ⟨hg, hg'⟩ => ⟨hg, fun _ => hg'⟩⟩
   have hpart := Set.ncard_diff_add_ncard_of_subset hsub (Set.toFinite _)
   rw [hdiff] at hpart
@@ -1514,10 +1514,10 @@ open BassSerre
 theorem freeActionRankFormula (G : Fin 2 → Type*) [∀ i, Group (G i)] :
     FreeActionRankFormula G := by
   intro H hFI hfree
-  haveI := hFI
+  have := hFI
   obtain ⟨D, -, hD⟩ := exists_transversal H (Vertex.mk 0 1)
   have hfree' := forall_smul_eq_of_forall_mem hfree
-  haveI := finite_nonTreeRep hD hfree'
+  have := finite_nonTreeRep hD hfree'
   obtain ⟨n, ⟨e⟩⟩ := Finite.exists_equiv_fin (nonTreeRep H hD)
   have hn : n = 1 + H.index - Nat.card (MulAction.orbitRel.Quotient H (Vertex G)) := by
     rw [← Nat.card_eq_of_equiv_fin e, nat_card_nonTreeRep hD hfree]

@@ -23,7 +23,7 @@ theorem solution
     (x : F) (hx : Transcendental K x)
     [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F] :
     ∃ D : Divisor K F, ∀ v : Place K F, D v = max 0 (-v.ord x) := by
-  haveI : IsCurveOver K F := isCurveOver_of_isAlgClosed_of_transcendental x hx
+  have : IsCurveOver K F := isCurveOver_of_isAlgClosed_of_transcendental x hx
   have hx0 : x ≠ 0 := fun h => hx (h ▸ isAlgebraic_zero)
   obtain ⟨P, hP, -⟩ := HasPrincipalDivisors.exists_divisor (K := K) (F := F) x hx0
   refine ⟨(-P) ⊔ 0, fun v => ?_⟩

@@ -24,7 +24,7 @@ theorem isAddCyclic_map_and_card_of_injective (f : A →+ E) (hf : Function.Inje
     {K : AddSubgroup A} (h : IsAddCyclic K ∧ Nat.card K = N) :
     IsAddCyclic (K.map f) ∧ Nat.card (K.map f) = N ∧ K.map f ≤ f.range := by
   obtain ⟨h1, h2⟩ := h
-  haveI : IsAddCyclic K := h1
+  have : IsAddCyclic K := h1
   refine ⟨?_, ?_, AddSubgroup.map_le_range f K⟩
   · exact isAddCyclic_of_surjective (K.equivMapOfInjective f hf)
       (K.equivMapOfInjective f hf).surjective
@@ -35,7 +35,7 @@ theorem isAddCyclic_comap_and_card_of_le_range (f : A →+ E) (hf : Function.Inj
     IsAddCyclic (H.comap f) ∧ Nat.card (H.comap f) = N := by
   have hKmap : (H.comap f).map f = H := AddSubgroup.map_comap_eq_self hle
   rw [← hKmap] at hcyc hcard
-  haveI : IsAddCyclic ((H.comap f).map f) := hcyc
+  have : IsAddCyclic ((H.comap f).map f) := hcyc
   constructor
   · exact isAddCyclic_of_surjective ((H.comap f).equivMapOfInjective f hf).symm
       ((H.comap f).equivMapOfInjective f hf).symm.surjective

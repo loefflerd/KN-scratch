@@ -50,7 +50,7 @@ theorem qExpandAlgK_apply (M : ℕ) [NeZero M] (f : LaurentSeries K) :
 theorem qExpand_mem_range_of_dvd (M P : ℕ) [NeZero M] [NeZero P] (h : M ∣ P)
     (f : LaurentSeries K) :
     qExpand K P f ∈ (qExpandAlgK (K := K) M).fieldRange := by
-  haveI : NeZero (P / M) :=
+  have : NeZero (P / M) :=
     ⟨Nat.div_ne_zero_iff.mpr ⟨NeZero.ne M, Nat.le_of_dvd (Nat.pos_of_ne_zero (NeZero.ne P)) h⟩⟩
   refine ⟨qExpand K (P / M) f, ?_⟩
   show qExpand K M (qExpand K (P / M) f) = qExpand K P f
@@ -83,12 +83,12 @@ private theorem _root_.ModularCurve.slot_ord_of_algHom_laurentBaseChange (N : �
 
   have ha0 : a ≠ 0 := NeZero.ne a
   have hg0 : g ≠ 0 := Nat.gcd_ne_zero_left ha0
-  haveI hag0 : NeZero (a * g) := ⟨Nat.mul_ne_zero ha0 hg0⟩
+  have hag0 : NeZero (a * g) := ⟨Nat.mul_ne_zero ha0 hg0⟩
   have hag_dvd_N : a * g ∣ N := by
     calc a * g ∣ a * (N / a) := Nat.mul_dvd_mul_left a (Nat.gcd_dvd_right _ _)
       _ = N := Nat.mul_div_cancel' ha
   have hag_dvd_aa : a * g ∣ a * a := Nat.mul_dvd_mul_left a (Nat.gcd_dvd_left _ _)
-  haveI : NeZero (a * a) := ⟨Nat.mul_ne_zero ha0 ha0⟩
+  have : NeZero (a * a) := ⟨Nat.mul_ne_zero ha0 ha0⟩
 
   have hord1 : (ι jbar).order = -(N : ℤ) := by
     rw [show ι jbar = qExpand K N (coeffEmb K jq) from hι₁, order_qExpand, order_coeffEmb_jq,

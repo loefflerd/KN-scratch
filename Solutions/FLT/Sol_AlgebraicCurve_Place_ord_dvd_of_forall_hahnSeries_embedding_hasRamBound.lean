@@ -119,12 +119,12 @@ theorem solution
   set f₀ : RatFunc K := algebraMap (Polynomial K) (RatFunc K) p with hf₀
 
   let E := AlgebraicClosure F
-  haveI : Algebra.IsAlgebraic (RatFunc K) E := Algebra.IsAlgebraic.trans (RatFunc K) F E
-  haveI : IsAlgClosure (RatFunc K) E := IsAlgClosure.ofAlgebraic (RatFunc K) F E
+  have : Algebra.IsAlgebraic (RatFunc K) E := Algebra.IsAlgebraic.trans (RatFunc K) F E
+  have : IsAlgClosure (RatFunc K) E := IsAlgClosure.ofAlgebraic (RatFunc K) F E
   let M := IntermediateField.normalClosure (RatFunc K) F E
-  haveI : FiniteDimensional F M := Module.Finite.of_restrictScalars_finite (RatFunc K) F M
-  haveI : IsScalarTower K F M := IsScalarTower.of_algebraMap_eq (fun c => rfl)
-  haveI : Algebra.IsSeparable F M := Algebra.isSeparable_tower_top_of_isSeparable (RatFunc K) F M
+  have : FiniteDimensional F M := Module.Finite.of_restrictScalars_finite (RatFunc K) F M
+  have : IsScalarTower K F M := IsScalarTower.of_algebraMap_eq (fun c => rfl)
+  have : Algebra.IsSeparable F M := Algebra.isSeparable_tower_top_of_isSeparable (RatFunc K) F M
 
   let φ : Polynomial K →ₐ[K] HahnSeries ℚ L := Polynomial.aeval t
   have hφ : nonZeroDivisors (Polynomial K)
@@ -140,9 +140,9 @@ theorem solution
     have h := RatFunc.liftAlgHom_apply_div φ hφ q 1
     rwa [map_one, div_one, map_one, div_one] at h
   have hτX : τ X₀ = t := by rw [hX₀, hτp]; exact Polynomial.aeval_X t
-  letI : Algebra (RatFunc K) (HahnSeries ℚ L) := τ.toRingHom.toAlgebra
+  let : Algebra (RatFunc K) (HahnSeries ℚ L) := τ.toRingHom.toAlgebra
   have hτalg : ∀ r : RatFunc K, algebraMap (RatFunc K) (HahnSeries ℚ L) r = τ r := fun r => rfl
-  haveI : IsAlgClosed (HahnSeries ℚ L) := HahnSeries.isAlgClosed_rat
+  have : IsAlgClosed (HahnSeries ℚ L) := HahnSeries.isAlgClosed_rat
 
   let ψM : M →ₐ[RatFunc K] HahnSeries ℚ L := IsAlgClosed.lift
   let ψ : M →ₐ[K] HahnSeries ℚ L :=

@@ -102,7 +102,7 @@ theorem analyticAt_toC (f : 𝒩) (τ : ℍ) : AnalyticAt ℂ (toC f) (τ : ℂ)
 
 theorem nice_of_modularForm {F : Type*} {Γ : Subgroup (GL (Fin 2) ℝ)} {k : ℤ} [FunLike F ℍ ℂ]
     [ModularFormClass F Γ k] (f : F) (h1 : (1 : ℝ) ∈ Γ.strictPeriods) : Nice (f : ℍ → ℂ) := by
-  haveI : Fact (IsCusp OnePoint.infty Γ) := ⟨Subgroup.isCusp_of_mem_strictPeriods one_pos h1⟩
+  have : Fact (IsCusp OnePoint.infty Γ) := ⟨Subgroup.isCusp_of_mem_strictPeriods one_pos h1⟩
   refine ⟨?_, ModularFormClass.holo f, ModularFormClass.bdd_at_infty f⟩
   simpa using SlashInvariantFormClass.periodic_comp_ofComplex (h := 1) f h1
 

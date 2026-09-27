@@ -39,7 +39,7 @@ theorem linearIndependent_ringHom_comp_of_linearIndependent {K L : Type*} [Field
     (ι : K →+* L) {n : ℕ} {X : Type*} {v : Fin n → X → K} (hv : LinearIndependent K v) :
     LinearIndependent L (fun i x => ι (v i x)) := by
   classical
-  letI : Algebra K L := ι.toAlgebra
+  let : Algebra K L := ι.toAlgebra
   rw [Fintype.linearIndependent_iff] at hv ⊢
   intro c hc i
   let B := Module.Basis.ofVectorSpace K L
@@ -68,15 +68,15 @@ set_option maxHeartbeats 6400000 in
 theorem solution (N : ℕ) [NeZero N] :
     ModularCurve.genusFormula N ≤ (Module.finrank ℂ (CuspForm (CongruenceSubgroup.Gamma0 N) 2) : ℚ) := by
   classical
-  haveI hCO := ModularCurve.isCurveOver_modularFunctionFieldBar N
-  haveI hEFT := ModularCurve.essFiniteType_modularFunctionFieldBar N
-  haveI hCD := ModularCurve.hasCanonicalDivisor_modularFunctionFieldBar N
-  haveI hfinS := CuspForm.finiteDimensional_Gamma0 N 2
+  have hCO := ModularCurve.isCurveOver_modularFunctionFieldBar N
+  have hEFT := ModularCurve.essFiniteType_modularFunctionFieldBar N
+  have hCD := ModularCurve.hasCanonicalDivisor_modularFunctionFieldBar N
+  have hfinS := CuspForm.finiteDimensional_Gamma0 N 2
   obtain ⟨hfinΩ, hrank⟩ :=
     AlgebraicCurve.finite_and_finrank_regularDifferentials_eq_genus
       (K := AlgebraicClosure ℚ) (F := ↥(modularFunctionFieldBar N))
   rw [← ModularCurve.genus_modularFunctionFieldBar_eq_genusFormula N, ← hrank]
-  haveI : Module.Finite (AlgebraicClosure ℚ) ↥(regularDifferentialsBar N) := hfinΩ
+  have : Module.Finite (AlgebraicClosure ℚ) ↥(regularDifferentialsBar N) := hfinΩ
 
   suffices key : Module.finrank (AlgebraicClosure ℚ) ↥(regularDifferentialsBar N)
       ≤ Module.finrank ℂ (CuspForm (CongruenceSubgroup.Gamma0 N) 2) by
@@ -84,7 +84,7 @@ theorem solution (N : ℕ) [NeZero N] :
 
   let b := Module.finBasis (AlgebraicClosure ℚ) ↥(regularDifferentialsBar N)
 
-  haveI : Algebra.IsAlgebraic ℚ (AlgebraicClosure ℚ) := AlgebraicClosure.isAlgebraic ℚ
+  have : Algebra.IsAlgebraic ℚ (AlgebraicClosure ℚ) := AlgebraicClosure.isAlgebraic ℚ
   let ι₀ : AlgebraicClosure ℚ →+* ℂ := (IsAlgClosed.lift : AlgebraicClosure ℚ →ₐ[ℚ] ℂ).toRingHom
 
   have hex : ∀ i : Fin (Module.finrank (AlgebraicClosure ℚ) ↥(regularDifferentialsBar N)),

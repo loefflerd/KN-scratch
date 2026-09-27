@@ -42,9 +42,9 @@ theorem isAlgebraic_residueField :
       (Fact.out : p.Prime) hA
     letI := ZMod.algebra (IsLocalRing.ResidueField A) p
     Algebra.IsAlgebraic (ZMod p) (IsLocalRing.ResidueField A) := by
-  letI : CharP (IsLocalRing.ResidueField A) p := ValuationSubring.charP_residueField_of_liesOverPrime_def
+  let : CharP (IsLocalRing.ResidueField A) p := ValuationSubring.charP_residueField_of_liesOverPrime_def
     (Fact.out : p.Prime) hA
-  letI := ZMod.algebra (IsLocalRing.ResidueField A) p
+  let := ZMod.algebra (IsLocalRing.ResidueField A) p
   have hp : p.Prime := Fact.out
   refine ⟨fun ybar => ?_⟩
   obtain ⟨y, rfl⟩ := IsLocalRing.residue_surjective ybar
@@ -183,18 +183,18 @@ theorem solution
   obtain ⟨p, hchar⟩ := CharP.exists K
   rcases CharP.char_is_prime_or_zero K p with hp | rfl
   ·
-    haveI : Fact p.Prime := ⟨hp⟩
+    have : Fact p.Prime := ⟨hp⟩
     obtain ⟨A, hA⟩ := ValuationSubring.exists_liesOverPrime_algebraicClosure_rat ⟨p, hp⟩
-    haveI : CharP (IsLocalRing.ResidueField A) p :=
+    have : CharP (IsLocalRing.ResidueField A) p :=
       ValuationSubring.charP_residueField_of_liesOverPrime_def hp hA
-    letI := ZMod.algebra (IsLocalRing.ResidueField A) p
-    letI := ZMod.algebra K p
-    haveI : Algebra.IsAlgebraic (ZMod p) (IsLocalRing.ResidueField A) := isAlgebraic_residueField p A hA
+    let := ZMod.algebra (IsLocalRing.ResidueField A) p
+    let := ZMod.algebra K p
+    have : Algebra.IsAlgebraic (ZMod p) (IsLocalRing.ResidueField A) := isAlgebraic_residueField p A hA
     let φ : IsLocalRing.ResidueField A →+* K :=
       (IsAlgClosed.lift (R := ZMod p) (S := IsLocalRing.ResidueField A) (M := K)).toRingHom
     exact bound_of_place K Γ hT Γ' hΓ' hneg x hx (AlgebraicClosure ℚ) A (φ.comp (IsLocalRing.residue A))
   ·
-    haveI : CharZero K := CharP.charP_to_charZero K
+    have : CharZero K := CharP.charP_to_charZero K
     exact bound_of_place K Γ hT Γ' hΓ' hneg x hx K (⊤ : ValuationSubring K) (⊤ : ValuationSubring K).subtype
 
 end S_ModularCurve_finrank_adjoin_jqModC_qExpFunctionFieldC_le_index_of_isAlgClosed

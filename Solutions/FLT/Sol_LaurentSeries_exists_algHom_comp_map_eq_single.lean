@@ -29,7 +29,7 @@ theorem henselianLocalRing_of_henselianRing_maximalIdeal
 
 scoped instance instHenselianLocalRingPowerSeries {K : Type*} [Field K] :
     HenselianLocalRing (PowerSeries K) := by
-  haveI : HenselianRing (PowerSeries K) (IsLocalRing.maximalIdeal (PowerSeries K)) := by
+  have : HenselianRing (PowerSeries K) (IsLocalRing.maximalIdeal (PowerSeries K)) := by
     rw [PowerSeries.maximalIdeal_eq_span_X]
     exact IsAdicComplete.henselianRing _ _
   exact henselianLocalRing_of_henselianRing_maximalIdeal

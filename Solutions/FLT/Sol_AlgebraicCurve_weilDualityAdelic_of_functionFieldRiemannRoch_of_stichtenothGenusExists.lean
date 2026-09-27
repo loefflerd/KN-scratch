@@ -23,15 +23,15 @@ theorem solution
     AlgebraicCurve.WeilDualityAdelic K F := by
   intro _instCurve _instCan _instDC ω hω D
   obtain ⟨⟨v⟩, hfd, γ, D₀, hγ⟩ := hSG
-  haveI : Nonempty (Place K F) := ⟨v⟩
-  haveI : FiniteDimensional K ↥(LSpace (0 : Divisor K F)) := hfd
+  have : Nonempty (Place K F) := ⟨v⟩
+  have : FiniteDimensional K ↥(LSpace (0 : Divisor K F)) := hfd
 
   have hi : ∀ D' : Divisor K F,
       (indexOfSpecialty D' : ℤ) = (ell D' : ℤ) - (Divisor.degree D' + 1 - γ) :=
     fun D' => (indexOfSpecialty_eq_of_genusReached hγ D').2
 
   have hdegv : 0 < (v.deg : ℤ) := by
-    haveI : Module.Finite K v.ResidueField := IsCurveOver.finiteResidue v
+    have : Module.Finite K v.ResidueField := IsCurveOver.finiteResidue v
     exact_mod_cast (Module.finrank_pos : 0 < Module.finrank K v.ResidueField)
 
   have hγle : γ ≤ (genus K F : ℤ) := by

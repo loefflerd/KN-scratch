@@ -35,7 +35,7 @@ theorem constantsAreBase {K F : Type*} [Field K] [Field F] [Algebra K F] [IsAlgC
       FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F) :
     ConstantsAreBase K F := by
   obtain ⟨x, hxt, _⟩ := hfg
-  haveI : HasPrincipalDivisors K F := IsCurveOver.hasPrincipalDivisors
+  have : HasPrincipalDivisors K F := IsCurveOver.hasPrincipalDivisors
   refine le_antisymm (fun f hf => ?_) (fun f ⟨c, hc⟩ => hc ▸ fun v =>
     Place.adicValuation_algebraMap_le_one v c)
   rcases eq_or_ne f 0 with rfl | hf0
@@ -51,7 +51,7 @@ theorem constantsAreBase {K F : Type*} [Field K] [Field F] [Algebra K F] [IsAlgC
       (Int.natCast_nonneg _)) ⟨v, ?_, ?_⟩
     · simp only [Finsupp.mem_support_iff, hDord v]; exact hv
     · rw [hDord v]
-      haveI : Module.Finite K v.ResidueField := IsCurveOver.finiteResidue v
+      have : Module.Finite K v.ResidueField := IsCurveOver.finiteResidue v
       have : (v.deg : ℤ) = 1 := by exact_mod_cast Place.deg_eq_one_of_isAlgClosed_of_finite v
       rw [this, mul_one]; exact (hord v).lt_of_ne' hv
   exact ⟨_, (Place.mem_range_algebraMap_of_forall_ord_eq_zero_of_isAlgClosed x hxt
@@ -79,9 +79,9 @@ theorem solution
 
   obtain ⟨x, hxt, hxfd⟩ := id hfg
   obtain ⟨x', hxt', hxfd'⟩ := id hfg'
-  haveI : Algebra.EssFiniteType K F :=
+  have : Algebra.EssFiniteType K F :=
     essFiniteType_of_transcendental_of_finiteDimensional hxt hxfd
-  haveI : Algebra.EssFiniteType K' F' :=
+  have : Algebra.EssFiniteType K' F' :=
     essFiniteType_of_transcendental_of_finiteDimensional hxt' hxfd'
   have hCAB : ConstantsAreBase K F := constantsAreBase hfg
   have hCAB' : ConstantsAreBase K' F' := constantsAreBase hfg'
@@ -89,7 +89,7 @@ theorem solution
   obtain ⟨hne, hfd0, γ, D₀, hD₀⟩ := stichtenothGenusExists_of_isCurveOver (K := K) (F := F) hCAB
   obtain ⟨hne', hfd0', γ', D₀', hD₀'⟩ :=
     stichtenothGenusExists_of_isCurveOver (K := K') (F := F') hCAB'
-  haveI := hne; haveI := hfd0; haveI := hne'; haveI := hfd0'
+  have := hne; have := hfd0; have := hne'; have := hfd0'
 
   obtain ⟨P₀⟩ := hne
 

@@ -84,7 +84,7 @@ theorem solution (M : ℕ) [NeZero M] (m : ℕ) (hm : 1 ≤ m)
       HahnSeries.ofPowerSeries ℤ ℂ (UpperHalfPlane.qExpansion 1 f) =
         X * ModularCurve.thetaL ℂ (ModularCurve.jqModC ℂ) ^ m := by
   classical
-  haveI : (CongruenceSubgroup.Gamma1 M).FiniteIndex := inferInstance
+  have : (CongruenceSubgroup.Gamma1 M).FiniteIndex := inferInstance
   have hT : ModularGroup.T ∈ CongruenceSubgroup.Gamma1 M := by
     rw [CongruenceSubgroup.Gamma1_mem]; simp [ModularGroup.T]
   obtain ⟨m, rfl⟩ : ∃ m' : ℕ, m = m' + 1 := ⟨m - 1, (Nat.sub_add_cancel hm).symm⟩

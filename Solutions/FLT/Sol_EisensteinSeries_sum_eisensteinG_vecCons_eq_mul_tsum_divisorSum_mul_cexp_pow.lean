@@ -46,7 +46,7 @@ theorem solution
     simp_rw [hS]
     rw [← Summable.tsum_finsetSum (fun e _ => (hfsum.of_norm.indicator _))]
     refine tsum_congr fun v => ?_
-    simp only [Set.indicator_apply, Set.mem_setOf_eq]
+    simp only [Set.indicator_apply, Set.mem_ofPred_eq]
     by_cases hv : v ∈ S
     · have hv' : ((v 0 : ℤ) : ZMod N) = a := hv
       rw [if_pos hv, Finset.sum_eq_single ((v 1 : ℤ) : ZMod N)]
@@ -73,7 +73,8 @@ theorem solution
   let F : ℤ × ℤ → ℂ := (S.indicator f) ∘ (finTwoArrowEquiv ℤ).symm
   have hF : ∀ p : ℤ × ℤ, F p = if ((p.1 : ℤ) : ZMod N) = a then f ![p.1, p.2] else 0 := fun p => by
     simp only [F, Function.comp_apply, finTwoArrowEquiv_symm_apply, Set.indicator_apply, S,
-      Set.mem_setOf_eq, Matrix.cons_val_zero]
+      Set.mem_ofPred_eq, Matrix.cons_val_zero]
+    rfl
   have hFsum : Summable F := (Equiv.summable_iff _).mpr (hfsum.of_norm.indicator S)
   obtain ⟨G, hG⟩ : ∃ G : ℤ → ℂ, G = fun m => if ((m : ℤ) : ZMod N) = a then row m else 0 := ⟨_, rfl⟩
   have h2 : ∑' v, S.indicator f v = ∑' m : ℤ, G m := by

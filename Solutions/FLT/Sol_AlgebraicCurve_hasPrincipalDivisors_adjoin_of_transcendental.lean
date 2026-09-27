@@ -52,12 +52,12 @@ theorem hasPrincipalDivisors_adjoin (x : LF) (hx : Transcendental K x) (T : Fins
       rw [← he (e.symm b), AlgEquiv.apply_symm_apply]
     exact (isIntegral_algHom_iff (IsScalarTower.toAlgHom A F LF) Subtype.val_injective).mp h1
 
-  haveI : FiniteDimensional A F := by
+  have : FiniteDimensional A F := by
     set T' : Set F := (fun t : T => (⟨(t : LF), hTF t t.2⟩ : F)) '' Set.univ with hT'
-    haveI : Finite T' := Set.Finite.to_subtype ((Set.finite_univ).image _)
+    have : Finite T' := Set.Finite.to_subtype ((Set.finite_univ).image _)
     have hT'int : ∀ y ∈ T', IsIntegral A y := by
       rintro _ ⟨t, -, rfl⟩; exact hint t t.2
-    haveI : FiniteDimensional A (IntermediateField.adjoin A T') := finiteDimensional_adjoin hT'int
+    have : FiniteDimensional A (IntermediateField.adjoin A T') := finiteDimensional_adjoin hT'int
 
     have htop : IntermediateField.adjoin A T' = ⊤ := by
       apply restrictScalars_injective K

@@ -46,9 +46,9 @@ private theorem emb_eq_baseChangeEquiv_one_tmul [Algebra.IsAlgebraic ℚ L] (f :
 
 private theorem transcendental_emb [Algebra.IsAlgebraic ℚ L] {j : ↥F₀} (hj : Transcendental ℚ j) :
     Transcendental L (emb L F₀ j) := by
-  letI iQA : Algebra ℚ ↥(laurentBaseChange L F₀) :=
+  let iQA : Algebra ℚ ↥(laurentBaseChange L F₀) :=
     ((algebraMap L ↥(laurentBaseChange L F₀)).comp (algebraMap ℚ L)).toAlgebra
-  haveI : @IsScalarTower ℚ L ↥(laurentBaseChange L F₀) _ _ iQA.toSMul :=
+  have : @IsScalarTower ℚ L ↥(laurentBaseChange L F₀) _ _ iQA.toSMul :=
     IsScalarTower.of_algebraMap_eq' rfl
   have hQ : Transcendental ℚ (emb L F₀ j) :=
     hj.ringHom_of_comp_eq (RingHom.id ℚ) (emb L F₀) Function.surjective_id (emb L F₀).injective

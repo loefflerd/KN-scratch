@@ -40,7 +40,7 @@ theorem isMaximal_iff_exists_eq_XYIdeal' [IsAlgClosed F] (I : Ideal W.Coordinate
     I.IsMaximal ↔ ∃ x y : F, W.Equation x y ∧ I = XYIdeal W x (C y) := by
   constructor
   · intro hI
-    letI := Ideal.Quotient.field I
+    let := Ideal.Quotient.field I
     have : Module.Finite F (W.CoordinateRing ⧸ I) :=
       finite_of_finite_type_of_isJacobsonRing F _
     have hbij := IsAlgClosed.algebraMap_bijective_of_isIntegral (k := F)

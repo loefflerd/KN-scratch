@@ -197,7 +197,7 @@ theorem exists_smul_sub_natDegree_norm_lt {a b : W.CoordinateRing} (hb : b ≠ 0
   · exact absurd (hndef.symm.trans hn1) (natDegree_norm_ne_one b)
   have hn2 : 2 ≤ n := by omega
   have hn1' : 1 ≤ n - 1 := by omega
-  haveI : FiniteDimensional F (RRSpace W n) :=
+  have : FiniteDimensional F (RRSpace W n) :=
     Module.Finite.of_basis (RRSpace.finBasis W n (by omega))
   have hbnot : b ∉ RRSpace W (n - 1) := by
     intro hcon
@@ -215,7 +215,7 @@ theorem exists_smul_sub_natDegree_norm_lt {a b : W.CoordinateRing} (hb : b ≠ 0
       refine hbnot ?_
       rw [hcon]
       exact (le_sup_right (a := RRSpace W (n - 1))) (Submodule.mem_span_singleton_self b)
-    haveI : FiniteDimensional F (RRSpace W (n - 1) ⊔ Submodule.span F {b} : Submodule F _) :=
+    have : FiniteDimensional F (RRSpace W (n - 1) ⊔ Submodule.span F {b} : Submodule F _) :=
       Submodule.finiteDimensional_of_le hle
     have h1 := Submodule.finrank_lt_finrank_of_lt hlt
     rw [RRSpace.finrank_eq (n - 1) hn1'] at h1
@@ -277,7 +277,7 @@ theorem infVal_algebraMap_le (c : F) :
     infVal W (algebraMap F W.FunctionField c) ≤ 1 := by
   rcases eq_or_ne c 0 with rfl | hc
   · rw [map_zero, map_zero]
-    exact zero_le'
+    exact zero_le
   · have hc' : algebraMap F W.CoordinateRing c ≠ 0 :=
       (map_ne_zero_iff _ (FaithfulSMul.algebraMap_injective F W.CoordinateRing)).mpr hc
     have hCc : (C c : F[X]) • (1 : W.CoordinateRing) + (0 : F[X]) • mk W Y

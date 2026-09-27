@@ -112,8 +112,8 @@ theorem solution
         ∀ T ∈ H, ∃ T' ∈ H, HEq (Point.vcInvFun (⟨u, 0, 0, 0⟩ : VariableChange L)
           (⟨0, 0, 0, 0, B⟩ : WeierstrassCurve L).toAffine T) T'}
       = nuThree N := by
-  haveI : CharZero L := charZero_of_injective_algebraMap (algebraMap ℚ L).injective
-  haveI : NeZero N := ⟨hN⟩
+  have : CharZero L := charZero_of_injective_algebraMap (algebraMap ℚ L).injective
+  have : NeZero N := ⟨hN⟩
   set W : WeierstrassCurve L := ⟨0, 0, 0, 0, B⟩ with hWdef
   set γ : VariableChange L := ⟨u, 0, 0, 0⟩ with hγdef
   have h2 : (2 : L) ≠ 0 := two_ne_zero
@@ -121,7 +121,7 @@ theorem solution
   have hΔ : W.Δ = -432 * B ^ 2 := by
     simp only [hWdef, WeierstrassCurve.Δ, WeierstrassCurve.b₂, WeierstrassCurve.b₄, WeierstrassCurve.b₆,
       WeierstrassCurve.b₈]; ring
-  haveI hE : W.IsElliptic := ⟨by rw [hΔ]; exact isUnit_iff_ne_zero.mpr (by simp [hB])⟩
+  have hE : W.IsElliptic := ⟨by rw [hΔ]; exact isUnit_iff_ne_zero.mpr (by simp [hB])⟩
 
   have hW : γ • W = W := WeierstrassCurve.variableChange_mk_smul_eq_self_of_pow_three_eq_one u hu B
   let σ : W.toAffine.Point →+ W.toAffine.Point := vcHom γ W hW
@@ -195,9 +195,9 @@ theorem solution
     N e σ hσ hns]
   refine Nat.card_congr (Equiv.subtypeEquivRight fun H => ?_)
   refine ⟨fun ⟨hc, hcard, hst⟩ => ⟨hc, hcard, ?_⟩, fun ⟨hc, hcard, hst⟩ => ⟨hc, hcard, ?_⟩⟩
-  · haveI : Finite H := Nat.finite_of_card_ne_zero (by rw [hcard]; exact hN)
+  · have : Finite H := Nat.finite_of_card_ne_zero (by rw [hcard]; exact hN)
     exact (forall_exists_heq_iff_map_eq γ W hW σinj H).mp hst
-  · haveI : Finite H := Nat.finite_of_card_ne_zero (by rw [hcard]; exact hN)
+  · have : Finite H := Nat.finite_of_card_ne_zero (by rw [hcard]; exact hN)
     exact (forall_exists_heq_iff_map_eq γ W hW σinj H).mpr hst
 
 end S_WeierstrassCurve_natCard_isAddCyclic_addSubgroup_card_eq_fixed_vcInvFun_eq_nuThree

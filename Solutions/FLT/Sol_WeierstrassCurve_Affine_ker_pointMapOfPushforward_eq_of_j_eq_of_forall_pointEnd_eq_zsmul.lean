@@ -105,12 +105,12 @@ variable {V W : Affine F} [V.IsElliptic] [W.IsElliptic]
 
 theorem normFormulaAlong_of_elliptic (ι : V.FunctionField →ₐ[F] W.FunctionField)
     (hfin : FiniteAlong F ι) : NormFormulaAlong F ι hfin := by
-  haveI : CharZero V.FunctionField :=
+  have : CharZero V.FunctionField :=
     charZero_of_injective_algebraMap (algebraMap F V.FunctionField).injective
   have hsep : SeparableAlong F ι := by
-    letI := algebraAlong ι
-    haveI := isScalarTower_along ι
-    haveI : Module.Finite V.FunctionField W.FunctionField := hfin
+    let := algebraAlong ι
+    have := isScalarTower_along ι
+    have : Module.Finite V.FunctionField W.FunctionField := hfin
     show Algebra.IsSeparable V.FunctionField W.FunctionField
     infer_instance
   exact AlgebraicCurve.normFormulaAlong ι hfin hsep
@@ -162,7 +162,7 @@ variable {W} in
 theorem kw_point_infinite : Infinite W.Point := by
   rw [← not_finite_iff_infinite]
   intro hfinite
-  haveI : Finite W.Point := hfinite
+  have : Finite W.Point := hfinite
   set N : ℕ := Nat.card W.Point with hN
   have hNpos : 0 < N := Nat.card_pos
   have htop : ∀ k : ℕ, N ∣ k → Submodule.torsionBy ℤ W.Point (k : ℤ) = ⊤ := by
@@ -272,7 +272,7 @@ variable {A B : Affine F}
 
 theorem finrankAlong_eq_one_of_bijective (τ : B.FunctionField →ₐ[F] A.FunctionField)
     (hτ : Function.Bijective τ) : finrankAlong F τ = 1 := by
-  letI := algebraAlong τ
+  let := algebraAlong τ
   let σ : B.FunctionField ≃+* A.FunctionField := RingEquiv.ofBijective τ hτ
   let e : A.FunctionField ≃ₗ[B.FunctionField] B.FunctionField :=
     { σ.symm.toAddEquiv with
@@ -291,7 +291,7 @@ theorem pointMapOfPushforward_injective_of_bijective
   have hcard : Nat.card (pointMapOfPushforward τ hτ hfin hN).ker = 1 := by
     rw [natCard_ker_pointMapOfPushforward_eq_finrankAlong A B τ hτ hfin hN,
       finrankAlong_eq_one_of_bijective τ hbij]
-  haveI : Finite (pointMapOfPushforward τ hτ hfin hN).ker :=
+  have : Finite (pointMapOfPushforward τ hτ hfin hN).ker :=
     Nat.finite_of_card_ne_zero (by rw [hcard]; exact one_ne_zero)
   have hbot : (pointMapOfPushforward τ hτ hfin hN).ker = ⊥ :=
     AddSubgroup.eq_bot_of_card_eq _ hcard
@@ -370,12 +370,12 @@ theorem ker_pointMapOfPushforward_eq_of_j_eq_of_forall_pointEnd_eq_zsmul_a68
   have hdpos : 0 < d := by
     rw [hd_def, hφ'_def, natCard_ker_pointMapOfPushforward_eq_finrankAlong W.toAffine V'.toAffine
       ι' hι' hfin' hN']
-    letI := algebraAlong ι'
-    haveI : Module.Finite V'.toAffine.FunctionField W.toAffine.FunctionField := hfin'
+    let := algebraAlong ι'
+    have : Module.Finite V'.toAffine.FunctionField W.toAffine.FunctionField := hfin'
     show 0 < Module.finrank V'.toAffine.FunctionField W.toAffine.FunctionField
     exact Module.finrank_pos
   have hd0 : d ≠ 0 := hdpos.ne'
-  haveI hfinker : Finite φ'.ker := Nat.finite_of_card_ne_zero (hd_def ▸ hd0)
+  have hfinker : Finite φ'.ker := Nat.finite_of_card_ne_zero (hd_def ▸ hd0)
 
   have hNne : ((d : ℤ) : AddMonoid.End W.toAffine.Point) ≠ 0 := by
     intro h
@@ -439,7 +439,7 @@ theorem ker_pointMapOfPushforward_eq_of_j_eq_of_forall_pointEnd_eq_zsmul_a68
     have htop : θ.ker = ⊤ :=
       AddSubgroup.ext fun P => ⟨fun _ => trivial, fun _ => AddMonoidHom.mem_ker.mpr (hall P)⟩
     rw [htop] at hkerθ
-    haveI : Infinite W.toAffine.Point := kw_point_infinite
+    have : Infinite W.toAffine.Point := kw_point_infinite
     simp only [AddSubgroup.card_top, Nat.card_eq_zero_of_infinite] at hkerθ
     exact absurd hkerθ.symm (by positivity)
   have hm_abs : m.natAbs = d := by

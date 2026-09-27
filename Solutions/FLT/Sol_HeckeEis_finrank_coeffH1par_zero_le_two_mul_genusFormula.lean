@@ -160,7 +160,7 @@ theorem solution (N : ℕ) [NeZero N] :
       ≤ 2 * ModularCurve.genusFormula N := by
   obtain ⟨t, b, hb⟩ := ModularCurve.Period.exists_basis_parabolicHoms_castAddHom_comp (CongruenceSubgroup.Gamma0 N)
   obtain ⟨bK, -⟩ := hb ℂ
-  haveI : FiniteDimensional ℂ ↥(ModularCurve.Period.parabolicHoms ℂ (CongruenceSubgroup.Gamma0 N) ℂ) := Module.Finite.of_basis bK
+  have : FiniteDimensional ℂ ↥(ModularCurve.Period.parabolicHoms ℂ (CongruenceSubgroup.Gamma0 N) ℂ) := Module.Finite.of_basis bK
   have h1 : Module.finrank ℂ (HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ 0).comp (CongruenceSubgroup.Gamma0 N).subtype))
       ≤ Module.finrank ℂ ↥(ModularCurve.Period.parabolicHoms ℂ (CongruenceSubgroup.Gamma0 N) ℂ) :=
     LinearMap.finrank_le_finrank_of_injective (HeckeEis.N0Sol.Ψ_injective (N := N))

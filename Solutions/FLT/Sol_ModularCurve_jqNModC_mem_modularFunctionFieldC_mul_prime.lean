@@ -380,7 +380,7 @@ theorem jqNModC_mem_mffC_mul_prime_of_prod (M : ℕ) [NeZero M] (p : ℕ) [hp : 
   have hjNmem : jqNModC K (M * p) ∈ modularFunctionFieldC K (M * p) := jqNModC_mem K (M * p)
   have hle : IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K)) ≤ modularFunctionFieldC K (M * p) :=
     IntermediateField.adjoin_le_iff.mpr (Set.singleton_subset_iff.mpr (jqModC_mem K (M * p)))
-  letI : Algebra (modularFunctionFieldC K (M * p)) (LaurentSeries K) :=
+  let : Algebra (modularFunctionFieldC K (M * p)) (LaurentSeries K) :=
     ((qExpand K (M * p)).comp (algebraMap (modularFunctionFieldC K (M * p)) (LaurentSeries K))).toAlgebra
 
   set A : Polynomial (modularFunctionFieldC K (M * p)) :=
@@ -443,7 +443,7 @@ theorem jqNModC_mem_mffC_mul_prime_of_prod (M : ℕ) [NeZero M] (p : ℕ) [hp : 
       Finset.mem_range, Nat.mem_divisors, sub_eq_zero] at hy
     obtain ⟨a, ⟨haM, -⟩, b, ⟨hb, -⟩, hy⟩ := hy
     have ha0 : a ≠ 0 := fun h0 => NeZero.ne M (Nat.eq_zero_of_zero_dvd (h0 ▸ haM))
-    haveI : NeZero a := ⟨ha0⟩
+    have : NeZero a := ⟨ha0⟩
     refine ⟨a, haM, b, hb, inferInstance, ?_⟩
     rw [hy, dif_neg ha0]
     show qExpand K p (qExpand K (a * a) (qTwist (ζ₁ ^ (b * a)) (jqModC K)))

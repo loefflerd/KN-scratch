@@ -102,8 +102,8 @@ theorem isCompl_range_of_finrank_le {S H : Type*} [AddCommGroup S] [Module ℂ S
 theorem isCompl_of_forall_eq_zero {S H : Type*} [AddCommGroup S] [Module ℂ S] [AddCommGroup H] [Module ℂ H]
     (ES : S →ₗ[ℂ] H) (ESbar : S →ₛₗ[starRingEnd ℂ] H) (h0 : ∀ x : H, x = 0) :
     IsCompl (LinearMap.range ES) (LinearMap.range ESbar) := by
-  haveI : Subsingleton H := ⟨fun a b => by rw [h0 a, h0 b]⟩
-  haveI : Subsingleton (Submodule ℂ H) := (Submodule.subsingleton_iff ℂ).mpr inferInstance
+  have : Subsingleton H := ⟨fun a b => by rw [h0 a, h0 b]⟩
+  have : Subsingleton (Submodule ℂ H) := (Submodule.subsingleton_iff ℂ).mpr inferInstance
   exact ⟨disjoint_iff.mpr (Subsingleton.elim _ _), codisjoint_iff.mpr (Subsingleton.elim _ _)⟩
 
 end ISCAsm
@@ -130,7 +130,7 @@ theorem solution (N : ℕ) [NeZero N] (n : ℕ)
 
   obtain ⟨ΦZ, hΦZ⟩ := HeckeEis.exists_coeffH1par_map_ringHom (Int.castRingHom ℂ) n (CongruenceSubgroup.Gamma0 N)
   obtain ⟨t, b, c, -⟩ := HeckeEis.exists_basis_coeffH1par_int_complex n N ΦZ hΦZ
-  haveI : FiniteDimensional ℂ (HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype)) := Module.Finite.of_basis c
+  have : FiniteDimensional ℂ (HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype)) := Module.Finite.of_basis c
 
   rcases Nat.even_or_odd n with hne | hno
   swap
@@ -141,7 +141,7 @@ theorem solution (N : ℕ) [NeZero N] (n : ℕ)
     intro a b h
     have h' : HeckeEis.eichlerShimuraMap n N a = HeckeEis.eichlerShimuraMap n N b := by rw [← hES, ← hES, h]
     exact HeckeEis.eichlerShimuraMap_injective N n h'
-  haveI : FiniteDimensional ℂ (CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2)) := Module.Finite.of_injective ES hESinj
+  have : FiniteDimensional ℂ (CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2)) := Module.Finite.of_injective ES hESinj
   obtain ⟨Φ', hΦ', hΦ'Φ'⟩ := HeckeEis.exists_coeffH1par_semilinearMap_starRingEnd n (CongruenceSubgroup.Gamma0 N)
   have hΦeq : ∀ x, Φ x = Φ' x := by
     intro x

@@ -25,7 +25,7 @@ theorem l3x_transport {A : Type*} [AddCommGroup A] (n : ℕ) [NeZero n]
   have hΦ : ∀ L : AddSubgroup M, IsAddCyclic L ∧ Nat.card L = n ∧ L.map T = L →
       IsAddCyclic (L.map ι) ∧ Nat.card (L.map ι) = n ∧ (L.map ι).map σ = L.map ι := by
     rintro L ⟨hc, hcard, hst⟩
-    haveI := hc
+    have := hc
     refine ⟨isAddCyclic_of_surjective _ (L.equivMapOfInjective ι hι).surjective, ?_, ?_⟩
     · rw [← Nat.card_congr (L.equivMapOfInjective ι hι).toEquiv, hcard]
     · rw [AddSubgroup.map_map, hcomm, ← AddSubgroup.map_map, hst]
@@ -40,7 +40,7 @@ theorem l3x_transport {A : Type*} [AddCommGroup A] (n : ℕ) [NeZero n]
       obtain ⟨m, hm⟩ := hιr a (addOrderOf_dvd_iff_nsmul_eq_zero.mp hdvd)
       exact ⟨m, hm⟩
     have hmc : (H.comap ι).map ι = H := AddSubgroup.map_comap_eq_self hle
-    haveI := hc
+    have := hc
     refine ⟨hmc, ?_, ?_, ?_⟩
     · have e := (H.comap ι).equivMapOfInjective ι hι
       rw [hmc] at e

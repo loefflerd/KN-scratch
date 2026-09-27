@@ -104,7 +104,7 @@ end
 open S09T3 in
 theorem solution (K : Type*) [Field K] (N : ℕ) [NeZero N] (w : Place K (modularFunctionFieldC K N)) : w.deg ≠ 0 := by
   obtain ⟨data⟩ := nonempty_modularPolynomialData N
-  haveI : FiniteDimensional (Fj K) (FjN K N) := finiteDimensional_adjoin_jqNModC K data
+  have : FiniteDimensional (Fj K) (FjN K N) := finiteDimensional_adjoin_jqNModC K data
   rw [← Place.deg_congrRingEquiv (toFjN K N) (toFjN_algebraMap K N) w]
   exact deg_ne_zero_of_restrict (F := Fj K) _ (deg_ne_zero_Fj K _)
 

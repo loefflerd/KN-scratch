@@ -78,7 +78,7 @@ theorem solution
   obtain ⟨htr, hfd⟩ :=
     ModularCurve.transcendental_and_finiteDimensional_adjoin_laurentBaseChange_qExpFunctionFieldC_of_coe_eq_jqModC
       (AlgebraicClosure ℚ) (CongruenceSubgroup.Gamma1 M) (by rw [CongruenceSubgroup.Gamma1_mem]; simp [ModularGroup.T]) y hy
-  haveI := hfd
+  have := hfd
   obtain ⟨S₀, hS₀, hsum₀⟩ := AlgebraicCurve.exists_finset_sum_ord_sub_algebraMap_eq_finrank_of_isAlgClosed
     (AlgebraicClosure ℚ) y htr hfd 0
   obtain ⟨S₁, hS₁, hsum₁⟩ := AlgebraicCurve.exists_finset_sum_ord_sub_algebraMap_eq_finrank_of_isAlgClosed

@@ -88,11 +88,11 @@ theorem solution
 
   have hQ := ModularCurve.twelve_mul_genusFF_laurentBaseChange_gamma1_add_six_mul_natCard_doubleCoset_eq_index_add_twelve M hM
 
-  letI algQK : Algebra (AlgebraicClosure ℚ) K := (GenusK.ι K).toRingHom.toAlgebra
-  letI algFF : Algebra ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) := (GenusK.φ K M).toAlgebra
-  letI algQF : Algebra (AlgebraicClosure ℚ) ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) := ((algebraMap K ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))).comp (GenusK.ι K).toRingHom).toAlgebra
-  haveI : IsScalarTower (AlgebraicClosure ℚ) K ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) := IsScalarTower.of_algebraMap_eq (fun a => rfl)
-  haveI : IsScalarTower (AlgebraicClosure ℚ) ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) := by
+  let algQK : Algebra (AlgebraicClosure ℚ) K := (GenusK.ι K).toRingHom.toAlgebra
+  let algFF : Algebra ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) := (GenusK.φ K M).toAlgebra
+  let algQF : Algebra (AlgebraicClosure ℚ) ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) := ((algebraMap K ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))).comp (GenusK.ι K).toRingHom).toAlgebra
+  have : IsScalarTower (AlgebraicClosure ℚ) K ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) := IsScalarTower.of_algebraMap_eq (fun a => rfl)
+  have : IsScalarTower (AlgebraicClosure ℚ) ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) := by
     refine IsScalarTower.of_algebraMap_eq (fun a => ?_)
     apply Subtype.ext
     show ((algebraMap K ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) (GenusK.ι K a) : ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) : LaurentSeries K)
@@ -110,9 +110,9 @@ theorem solution
     (CongruenceSubgroup.Gamma1 M) (GenusK.hT M)
   have hfg' := ModularCurve.JOneES.exists_transcendental_finiteDimensional_laurentBaseChange K
     (CongruenceSubgroup.Gamma1 M) (GenusK.hT M)
-  haveI : IsCurveOver (AlgebraicClosure ℚ) ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) := by
+  have : IsCurveOver (AlgebraicClosure ℚ) ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) := by
     obtain ⟨x, htr, hfd⟩ := hfg; exact AlgebraicCurve.isCurveOver_of_transcendental_of_perfectField htr hfd
-  haveI : IsCurveOver K ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) := by
+  have : IsCurveOver K ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) := by
     obtain ⟨x, htr, hfd⟩ := hfg'; exact AlgebraicCurve.isCurveOver_of_transcendental_of_perfectField htr hfd
 
   have hgen : IntermediateField.adjoin K (Set.range (algebraMap ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))))) = ⊤ := by

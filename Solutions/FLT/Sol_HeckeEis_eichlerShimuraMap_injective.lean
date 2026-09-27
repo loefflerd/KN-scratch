@@ -101,7 +101,7 @@ open scoped ModularForm Pointwise Manifold MatrixGroups in
 theorem solution (N : ℕ) [NeZero N] (n : ℕ) :
     Function.Injective
       (fun f : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2) ↦ HeckeEis.eichlerShimuraMap n N f) := by
-  haveI : (Gamma0 N).FiniteIndex := Subgroup.finiteIndex_of_le (Gamma_le_Gamma0 N)
+  have : (Gamma0 N).FiniteIndex := Subgroup.finiteIndex_of_le (Gamma_le_Gamma0 N)
 
   obtain ⟨ES, hES⟩ := existsEichlerShimuraMapLinear n N
   suffices hker : ∀ f : CuspForm (Gamma0 N) ((n : ℤ) + 2), eichlerShimuraMap n N f = 0 → f = 0 by

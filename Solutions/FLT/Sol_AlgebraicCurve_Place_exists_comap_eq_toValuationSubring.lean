@@ -28,15 +28,15 @@ theorem rowMain (v : Place K F) :
   classical
 
   let A : Type _ := v.toValuationSubring
-  letI : Algebra A F' := ((algebraMap F F').comp (algebraMap A F)).toAlgebra
-  haveI : IsScalarTower A F F' := IsScalarTower.of_algebraMap_eq (fun _ => rfl)
+  let : Algebra A F' := ((algebraMap F F').comp (algebraMap A F)).toAlgebra
+  have : IsScalarTower A F F' := IsScalarTower.of_algebraMap_eq (fun _ => rfl)
 
   let C : Type _ := integralClosure A F'
-  haveI : IsDedekindDomain C := integralClosure.isDedekindDomain A F F'
-  haveI : IsFractionRing C F' := integralClosure.isFractionRing_of_finite_extension F F'
-  letI : Algebra K C := ((algebraMap A C).comp (algebraMap K A)).toAlgebra
+  have : IsDedekindDomain C := integralClosure.isDedekindDomain A F F'
+  have : IsFractionRing C F' := integralClosure.isFractionRing_of_finite_extension F F'
+  let : Algebra K C := ((algebraMap A C).comp (algebraMap K A)).toAlgebra
   have hAC : ∀ a : A, algebraMap C F' (algebraMap A C a) = algebraMap F F' (a : F) := fun a => rfl
-  haveI : IsScalarTower K C F' := IsScalarTower.of_algebraMap_eq (fun a => by
+  have : IsScalarTower K C F' := IsScalarTower.of_algebraMap_eq (fun a => by
     show algebraMap K F' a = algebraMap C F' (algebraMap A C (algebraMap K A a))
     rw [hAC, Place.coe_algebraMap, ← IsScalarTower.algebraMap_apply])
 

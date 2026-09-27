@@ -139,7 +139,7 @@ end Place
 theorem ell_le_ell_sub_single_add_deg [IsCurveOver K F] (D : Divisor K F) (P : Place K F) :
     ell D ≤ ell (D - Finsupp.single P 1) + P.deg := by
   classical
-  haveI : Module.Finite K P.ResidueField := IsCurveOver.finite_residueField P
+  have : Module.Finite K P.ResidueField := IsCurveOver.finite_residueField P
   set E : Divisor K F := D - Finsupp.single P 1 with hE
   have hEP : E P = D P - 1 := by rw [hE, Finsupp.sub_apply, Finsupp.single_eq_same]
   have hEv : ∀ v, v ≠ P → E v = D v := by
@@ -232,7 +232,7 @@ theorem ell_le_ell_sub_single_add_deg [IsCurveOver K F] (D : Divisor K F) (P : P
     exact Submodule.finrank_le (LinearMap.range φ)
 
   by_cases hfin : FiniteDimensional K (LSpace D)
-  · haveI := hfin
+  · have := hfin
     have hrn := Submodule.finrank_quotient_add_finrank (LinearMap.ker φ)
     rw [hkerfin] at hrn
     have hb : ell D = finrank K (LSpace D) := rfl
@@ -241,7 +241,7 @@ theorem ell_le_ell_sub_single_add_deg [IsCurveOver K F] (D : Divisor K F) (P : P
     omega
 
 theorem one_le_deg [IsCurveOver K F] (P : Place K F) : 1 ≤ P.deg := by
-  haveI : Module.Finite K P.ResidueField := IsCurveOver.finite_residueField P
+  have : Module.Finite K P.ResidueField := IsCurveOver.finite_residueField P
   exact Module.finrank_pos
 
 theorem ell_le_degree_add_ellZero_port [IsCurveOver K F] {D : Divisor K F}

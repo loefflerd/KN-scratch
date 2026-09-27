@@ -863,9 +863,9 @@ scoped instance instIsScalarTowerAKjCF : IsScalarTower (A y) (Kj y) (CF Γ) :=
 include hT hy hΓ in
 
 theorem finiteDimensional_Kj : FiniteDimensional (Kj y) (CF Γ) := by
-  haveI : Γ.FiniteIndex := Subgroup.finiteIndex_of_le hΓ
+  have : Γ.FiniteIndex := Subgroup.finiteIndex_of_le hΓ
   obtain ⟨x, hx, hfin⟩ := JOneES.exists_transcendental_finiteDimensional_laurentBaseChange ℂ Γ hT
-  haveI := hfin
+  have := hfin
   exact AlgebraicCurve.finiteDimensional_adjoin_of_transcendental x (transcendental_y y hy)
 
 def B : Subalgebra (A y) (CF Γ) := integralClosure (A y) (CF Γ)
@@ -885,16 +885,16 @@ theorem algebraMap_B_apply (b : B y) : algebraMap (B y) (CF Γ) b = (b : CF Γ) 
 
 include hT hy hΓ in
 theorem isDedekindDomain_B : IsDedekindDomain (B y) := by
-  haveI := isPrincipalIdealRing_A y hy
-  haveI : IsDedekindDomain (A y) := inferInstance
-  haveI := finiteDimensional_Kj hT y hy M hΓ
+  have := isPrincipalIdealRing_A y hy
+  have : IsDedekindDomain (A y) := inferInstance
+  have := finiteDimensional_Kj hT y hy M hΓ
   unfold B; exact integralClosure.isDedekindDomain (A y) (Kj y) (CF Γ)
 
 include hT hy hΓ in
 theorem isFractionRing_B : IsFractionRing (B y) (CF Γ) := by
-  haveI := isPrincipalIdealRing_A y hy
-  haveI : IsDedekindDomain (A y) := inferInstance
-  haveI := finiteDimensional_Kj hT y hy M hΓ
+  have := isPrincipalIdealRing_A y hy
+  have : IsDedekindDomain (A y) := inferInstance
+  have := finiteDimensional_Kj hT y hy M hΓ
   unfold B; exact integralClosure.isFractionRing_of_finite_extension (Kj y) (CF Γ)
 
 def valSubalgebra (Q : AlgebraicCurve.Place ℂ (CF Γ)) : Subalgebra ℂ (CF Γ) where
@@ -958,8 +958,8 @@ open scoped nonZeroDivisors in
 include hΓ in
 theorem exists_pt_eq (P : Place ℂ (CF Γ)) (hP : y ∈ P.toValuationSubring) :
     ∃ τ : ℍ, pt hT y hy τ = P := by
-  haveI := isDedekindDomain_B hT y hy M hΓ
-  haveI := isFractionRing_B hT y hy M hΓ
+  have := isDedekindDomain_B hT y hy M hΓ
+  have := isFractionRing_B hT y hy M hΓ
 
   have eq_of_center_eq : ∀ {Q Q' : Place ℂ (CF Γ)}
       (hQ : ∀ b : B y, algebraMap (B y) (CF Γ) b ∈ Q.toValuationSubring)
@@ -1113,7 +1113,7 @@ theorem solution
       (ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ Γ))) :
     P.ord (y - algebraMap ℂ
         (ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ Γ)) a) ≤ 1 := by
-  haveI : Γ.FiniteIndex := Subgroup.finiteIndex_of_le hΓ
+  have : Γ.FiniteIndex := Subgroup.finiteIndex_of_le hΓ
   exact ord_sub_le_one (Γ := Γ) (hΓ (T_mem_Gamma1 M)) y hy M hΓ a ha₀ ha₁₇₂₈ P
 
 end S_ModularCurve_ord_sub_algebraMap_le_one_laurentBaseChange_qExpFunctionFieldC_of_ne_zero_of_ne_1728

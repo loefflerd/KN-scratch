@@ -150,7 +150,7 @@ lemma kw_four_not_dvd_f (D k : ℕ) : ¬ (4 : ℕ) ∣ ((2*D*k + D + 1)^2 + D) :
 
 lemma kw_primeDvdD_not_dvd_f {D p : ℕ} (k : ℕ) (hp : p.Prime) (hpD : p ∣ D) :
     ¬ p ∣ ((2*D*k + D + 1)^2 + D) := by
-  haveI := Fact.mk hp
+  have := Fact.mk hp
   intro h
   have hZ : (((2*D*k + D + 1)^2 + D : ℕ) : ZMod p) = 0 := (ZMod.natCast_eq_zero_iff _ p).mpr h
   have hDZ : ((D : ℕ) : ZMod p) = 0 := (ZMod.natCast_eq_zero_iff _ p).mpr hpD

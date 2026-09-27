@@ -449,8 +449,8 @@ theorem Gamma_subgroupOf_le_range_iotaDeg [NeZero M'] [NeZero d] (h : LevelLE M 
 
 instance iotaDeg_range_finiteIndex [NeZero M'] [NeZero d] (h : LevelLE M M' H H' d) :
     ((iotaDeg M M' H H' d h).range).FiniteIndex := by
-  haveI : NeZero (M' * d) := ⟨mul_ne_zero (NeZero.ne M') (NeZero.ne d)⟩
-  haveI : ((Gamma (M' * d)).subgroupOf (GammaH M H)).FiniteIndex := inferInstance
+  have : NeZero (M' * d) := ⟨mul_ne_zero (NeZero.ne M') (NeZero.ne d)⟩
+  have : ((Gamma (M' * d)).subgroupOf (GammaH M H)).FiniteIndex := inferInstance
   exact Subgroup.finiteIndex_of_le (Gamma_subgroupOf_le_range_iotaDeg M M' H H' d h)
 
 theorem iotaDeg_injective [NeZero d] (h : LevelLE M M' H H' d) :

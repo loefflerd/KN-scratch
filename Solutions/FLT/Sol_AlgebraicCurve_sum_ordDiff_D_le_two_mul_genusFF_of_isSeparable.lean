@@ -79,21 +79,21 @@ theorem with_ratFunc {P : Prop}
       [FiniteDimensional (RatFunc k) F] [Algebra.IsSeparable (RatFunc k) F],
       algebraMap (RatFunc k) F RatFunc.X = x →
       Module.finrank (RatFunc k) F = Module.finrank k⟮x⟯ F → P) : P := by
-  haveI := hfin
-  haveI := hsep
+  have := hfin
+  have := hsep
   let e : RatFunc k ≃ₐ[k] k⟮x⟯ := RatFunc.algEquivOfTranscendental x hx
-  letI : Algebra (RatFunc k) F := ((algebraMap k⟮x⟯ F).comp e.toAlgHom.toRingHom).toAlgebra
+  let : Algebra (RatFunc k) F := ((algebraMap k⟮x⟯ F).comp e.toAlgHom.toRingHom).toAlgebra
   have hsq : RingHom.comp (algebraMap (RatFunc k) F) (e.symm.toRingEquiv : k⟮x⟯ →+* RatFunc k)
       = RingHom.comp (RingEquiv.refl F : F →+* F) (algebraMap k⟮x⟯ F) := by
     ext y
     show algebraMap k⟮x⟯ F (e (e.symm y)) = algebraMap k⟮x⟯ F y
     rw [e.apply_symm_apply]
-  haveI : IsScalarTower k (RatFunc k) F := IsScalarTower.of_algebraMap_eq fun a => by
+  have : IsScalarTower k (RatFunc k) F := IsScalarTower.of_algebraMap_eq fun a => by
     show algebraMap k F a = algebraMap k⟮x⟯ F (e (algebraMap k (RatFunc k) a))
     rw [e.commutes, ← IsScalarTower.algebraMap_apply]
-  haveI hfd : FiniteDimensional (RatFunc k) F :=
+  have hfd : FiniteDimensional (RatFunc k) F :=
     Module.Finite.of_equiv_equiv e.symm.toRingEquiv (RingEquiv.refl F) hsq
-  haveI : Algebra.IsSeparable (RatFunc k) F :=
+  have : Algebra.IsSeparable (RatFunc k) F :=
     Algebra.IsSeparable.of_equiv_equiv e.symm.toRingEquiv (RingEquiv.refl F) hsq
   have hX : algebraMap (RatFunc k) F RatFunc.X = x := by
     show algebraMap k⟮x⟯ F (e RatFunc.X) = x
@@ -107,43 +107,43 @@ theorem with_ratFunc {P : Prop}
 variable [IsAlgClosed k]
 
 theorem hasCanonicalDivisor_pkg : HasCanonicalDivisor (K := k) (F := F) := by
-  haveI := isCurveOver_pkg k x hx hfin hsep
-  haveI := essFiniteType_pkg k x hx hfin
+  have := isCurveOver_pkg k x hx hfin hsep
+  have := essFiniteType_pkg k x hx hfin
   exact AlgebraicCurve.hasCanonicalDivisor_of_isCurveOver
 
 theorem dCoordGenerates_pkg : ∀ v : Place k F, v.DCoordGenerates := by
-  haveI := isCurveOver_pkg k x hx hfin hsep
-  haveI := essFiniteType_pkg k x hx hfin
+  have := isCurveOver_pkg k x hx hfin hsep
+  have := essFiniteType_pkg k x hx hfin
   exact AlgebraicCurve.dCoordGenerates_of_isCurveOver
 
 theorem riemannRoch_and_constantsAreBase_pkg :
     haveI := hasCanonicalDivisor_pkg k x hx hfin hsep
     FunctionFieldRiemannRoch k F ∧ ConstantsAreBase k F := by
   classical
-  haveI := hfin
-  haveI := isCurveOver_pkg k x hx hfin hsep
-  haveI := hasCanonicalDivisor_pkg k x hx hfin hsep
-  haveI := dCoordGenerates_pkg k x hx hfin hsep
-  haveI : IsCurveOver k (RatFunc k) := AlgebraicCurve.isCurveOver_ratFunc k
-  haveI : Algebra.EssFiniteType (Polynomial k) (RatFunc k) :=
+  have := hfin
+  have := isCurveOver_pkg k x hx hfin hsep
+  have := hasCanonicalDivisor_pkg k x hx hfin hsep
+  have := dCoordGenerates_pkg k x hx hfin hsep
+  have : IsCurveOver k (RatFunc k) := AlgebraicCurve.isCurveOver_ratFunc k
+  have : Algebra.EssFiniteType (Polynomial k) (RatFunc k) :=
     Algebra.EssFiniteType.of_isLocalization _ (nonZeroDivisors (Polynomial k))
-  haveI : Algebra.EssFiniteType k (RatFunc k) :=
+  have : Algebra.EssFiniteType k (RatFunc k) :=
     Algebra.EssFiniteType.comp k (Polynomial k) (RatFunc k)
-  haveI : ∀ v : Place k (RatFunc k), v.DCoordGenerates :=
+  have : ∀ v : Place k (RatFunc k), v.DCoordGenerates :=
     AlgebraicCurve.dCoordGenerates_of_isCurveOver
   refine with_ratFunc k x hx hfin hsep ?_
   intro _ _ _ _ _ _
-  haveI : Algebra.IsIntegral (RatFunc k) F := Algebra.IsIntegral.of_finite _ _
+  have : Algebra.IsIntegral (RatFunc k) F := Algebra.IsIntegral.of_finite _ _
   exact ⟨AlgebraicCurve.functionFieldRiemannRoch_of_isAlgClosed_of_isCurveOver,
     AlgebraicCurve.constantsAreBase_of_isAlgClosed k F⟩
 
 theorem genus_eq_genusFF_pkg :
     haveI := hasCanonicalDivisor_pkg k x hx hfin hsep
     genus k F = genusFF k F := by
-  haveI := isCurveOver_pkg k x hx hfin hsep
-  haveI := hasCanonicalDivisor_pkg k x hx hfin hsep
-  haveI := dCoordGenerates_pkg k x hx hfin hsep
-  haveI := essFiniteType_pkg k x hx hfin
+  have := isCurveOver_pkg k x hx hfin hsep
+  have := hasCanonicalDivisor_pkg k x hx hfin hsep
+  have := dCoordGenerates_pkg k x hx hfin hsep
+  have := essFiniteType_pkg k x hx hfin
   have rr := riemannRoch_and_constantsAreBase_pkg k x hx hfin hsep
   have hSG : StichtenothGenusExists k F :=
     AlgebraicCurve.stichtenothGenusExists_of_isCurveOver rr.2
@@ -156,9 +156,9 @@ theorem degree_canonical_pkg :
     ∀ {ω : Ω[F⁄k]} (hω : ω ≠ 0),
       Divisor.degree (canonicalDivisorOf hω) = 2 * (genusFF k F : ℤ) - 2 := by
   intro ω hω
-  haveI := isCurveOver_pkg k x hx hfin hsep
-  haveI := hasCanonicalDivisor_pkg k x hx hfin hsep
-  haveI := dCoordGenerates_pkg k x hx hfin hsep
+  have := isCurveOver_pkg k x hx hfin hsep
+  have := hasCanonicalDivisor_pkg k x hx hfin hsep
+  have := dCoordGenerates_pkg k x hx hfin hsep
   have rr := riemannRoch_and_constantsAreBase_pkg k x hx hfin hsep
   rw [← genus_eq_genusFF_pkg k x hx hfin hsep]
   exact AlgebraicCurve.degree_canonicalDivisor_eq_of_riemannRoch rr.1 rr.2 hω
@@ -367,9 +367,9 @@ theorem main
       2 * (genusFF k F : ℤ) - 2 +
         2 * (Module.finrank (IntermediateField.adjoin k ({x} : Set F)) F : ℤ) := by
   classical
-  haveI hC : IsCurveOver k F := isCurveOver_pkg k x hx hfin hsep
-  haveI hK : HasCanonicalDivisor (K := k) (F := F) := hasCanonicalDivisor_pkg k x hx hfin hsep
-  haveI hG : ∀ v : Place k F, v.DCoordGenerates := dCoordGenerates_pkg k x hx hfin hsep
+  have hC : IsCurveOver k F := isCurveOver_pkg k x hx hfin hsep
+  have hK : HasCanonicalDivisor (K := k) (F := F) := hasCanonicalDivisor_pkg k x hx hfin hsep
+  have hG : ∀ v : Place k F, v.DCoordGenerates := dCoordGenerates_pkg k x hx hfin hsep
 
   have hω : KaehlerDifferential.D k F x ≠ 0 :=
     KaehlerDifferential.D_ne_zero_of_transcendental k x hx

@@ -38,24 +38,24 @@ theorem fullKernelIsRootAt_of_tower
     (N : ℕ) [NeZero N] : FullKernelIsRootAt N := by
   rcases Nat.even_or_odd N with hE | hO
   · intro _ W _ Q hQ hΔ data
-    letI : (W.fullKernelQuotient Q N).IsElliptic := ⟨isUnit_iff_ne_zero.mpr hΔ⟩
+    let : (W.fullKernelQuotient Q N).IsElliptic := ⟨isUnit_iff_ne_zero.mpr hΔ⟩
     obtain ⟨gW, hgWc, hgWa⟩ :=
       WeierstrassCurve.Affine.exists_genusOnePlaceGate_isCentred_abelTheorem W.toAffine
-    letI := gW
-    haveI : GenusOnePlaceGate.IsCentred W.toAffine := hgWc
-    haveI : AbelTheorem W.toAffine := hgWa
+    let := gW
+    have : GenusOnePlaceGate.IsCentred W.toAffine := hgWc
+    have : AbelTheorem W.toAffine := hgWa
     obtain ⟨gV, hgVc, hgVa⟩ :=
       WeierstrassCurve.Affine.exists_genusOnePlaceGate_isCentred_abelTheorem
         (W.fullKernelQuotient Q N).toAffine
-    letI := gV
-    haveI : GenusOnePlaceGate.IsCentred (W.fullKernelQuotient Q N).toAffine := hgVc
-    haveI : AbelTheorem (W.fullKernelQuotient Q N).toAffine := hgVa
+    let := gV
+    have : GenusOnePlaceGate.IsCentred (W.fullKernelQuotient Q N).toAffine := hgVc
+    have : AbelTheorem (W.fullKernelQuotient Q N).toAffine := hgVa
     obtain ⟨ι, hι, hfin, hker⟩ :=
       WeierstrassCurve.exists_functionFieldHom_fullKernelQuotient_pointMapOfPushforward_ker_eq_zmultiples
         hQ hΔ
-    haveI : HasPrincipalDivisors H W.toAffine.FunctionField :=
+    have : HasPrincipalDivisors H W.toAffine.FunctionField :=
       WeierstrassCurve.Affine.hasPrincipalDivisors_of_isAlgClosed W.toAffine
-    haveI : CharZero ((W.fullKernelQuotient Q N).toAffine.FunctionField) :=
+    have : CharZero ((W.fullKernelQuotient Q N).toAffine.FunctionField) :=
       charZero_of_injective_algebraMap (algebraMap H _).injective
     have hsep : SeparableAlong H ι := AlgebraicCurve.separableAlong_of_charZero ι hι
     have hN : NormFormulaAlong H ι hfin := AlgebraicCurve.normFormulaAlong ι hfin hsep

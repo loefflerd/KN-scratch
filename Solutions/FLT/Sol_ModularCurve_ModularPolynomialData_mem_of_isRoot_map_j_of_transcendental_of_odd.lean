@@ -82,8 +82,8 @@ theorem solution
     (hr : (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (HahnSeries ℚ (AlgebraicClosure ℚ))) W.j)).IsRoot r) :
     r ∈ L := by
 
-  haveI hK : IsAlgClosed (HahnSeries ℚ (AlgebraicClosure ℚ)) := HahnSeries.isAlgClosed_rat
-  haveI : CharZero (HahnSeries ℚ (AlgebraicClosure ℚ)) :=
+  have hK : IsAlgClosed (HahnSeries ℚ (AlgebraicClosure ℚ)) := HahnSeries.isAlgClosed_rat
+  have : CharZero (HahnSeries ℚ (AlgebraicClosure ℚ)) :=
     (RingHom.charZero_iff (HahnSeries.C (R := AlgebraicClosure ℚ) (Γ := ℚ)).injective).mp inferInstance
   obtain ⟨n, rfl⟩ := hN
   have h2 : (2 : HahnSeries ℚ (AlgebraicClosure ℚ)) ≠ 0 := two_ne_zero
@@ -101,8 +101,8 @@ theorem solution
     refine Finset.sum_pos' (fun _ _ => Nat.zero_le _) ⟨1, ?_, ?_⟩
     · simp [Nat.mem_divisors]
     · simp
-  haveI : Finite B := Nat.finite_of_card_ne_zero (hBcard ▸ hψpos.ne')
-  haveI : Fintype B := Fintype.ofFinite _
+  have : Finite B := Nat.finite_of_card_ne_zero (hBcard ▸ hψpos.ne')
+  have : Fintype B := Fintype.ofFinite _
 
   have hgen : ∀ H : B, ∃ g : W.toAffine.Point,
       AddSubgroup.zmultiples g = H.1 ∧ addOrderOf g = 2 * n + 1 :=

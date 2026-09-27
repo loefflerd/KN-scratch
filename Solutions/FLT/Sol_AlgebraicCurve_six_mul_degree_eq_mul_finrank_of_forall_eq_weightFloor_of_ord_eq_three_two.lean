@@ -62,7 +62,7 @@ theorem adicValuation_algebraMap {c : K} (hc : c ≠ 0) : w.adicValuation (algeb
   by_contra h
   rw [not_le] at h
   have : w.adicValuation (algebraMap K FF c) * w.adicValuation (algebraMap K FF c⁻¹) < 1 * 1 :=
-    mul_lt_mul_of_lt_of_le_of_nonneg_of_pos h h2 zero_le' zero_lt_one
+    mul_lt_mul_of_lt_of_le_of_nonneg_of_pos h h2 zero_le zero_lt_one
   rw [h1, one_mul] at this
   exact lt_irrefl _ this
 
@@ -115,9 +115,9 @@ theorem solution
           + (if w.ord y < 0 then (m : ℤ) * w.ord y else 0)) :
     6 * D.degree = (m : ℤ) * (Module.finrank ↥(IntermediateField.adjoin k ({y} : Set F)) F : ℤ) := by
   classical
-  haveI := hfin
-  haveI : IsCurveOver k F := isCurveOver_of_transcendental_of_perfectField hy hfin
-  haveI : HasPrincipalDivisors k F := IsCurveOver.hasPrincipalDivisors
+  have := hfin
+  have : IsCurveOver k F := isCurveOver_of_transcendental_of_perfectField hy hfin
+  have : HasPrincipalDivisors k F := IsCurveOver.hasPrincipalDivisors
   have hdeg1 : ∀ v : Place k F, v.deg = 1 := IsCurveOver.forall_deg_eq_one_of_isAlgClosed
   set n : ℤ := (Module.finrank ↥(IntermediateField.adjoin k ({y} : Set F)) F : ℤ) with hn
 

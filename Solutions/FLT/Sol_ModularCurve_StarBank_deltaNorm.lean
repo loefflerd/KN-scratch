@@ -294,8 +294,8 @@ theorem etaNorm_powerSeries {K : Type*} [Field K] {p : ℕ} [Fact p.Prime] {ζ :
       PowerSeries.expand (p * p) (mul_ne_zero (NeZero.ne p) (NeZero.ne p))
         (PowerSeries.map (Int.castRingHom K) etaProd) =
     PowerSeries.expand p (NeZero.ne p) (PowerSeries.map (Int.castRingHom K) etaProd) ^ (p + 1) := by
-  letI : TopologicalSpace K := ⊥
-  haveI : DiscreteTopology K := ⟨rfl⟩
+  let : TopologicalSpace K := ⊥
+  have : DiscreteTopology K := ⟨rfl⟩
   have hp : p.Prime := Fact.out
   have hmult : ∀ b ∈ Finset.range p, Multipliable fun n : ℕ =>
       (1 : PowerSeries K) - PowerSeries.C ((ζ ^ b) ^ (n + 1)) * PowerSeries.X ^ (n + 1) :=

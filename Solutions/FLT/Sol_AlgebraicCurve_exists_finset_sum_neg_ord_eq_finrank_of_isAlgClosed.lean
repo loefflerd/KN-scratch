@@ -31,8 +31,8 @@ theorem solution
     ∃ S : Finset (Place k F), (∀ P, P ∈ S ↔ P.ord x < 0) ∧
       ∑ P ∈ S, (-P.ord x) = (Module.finrank (IntermediateField.adjoin k ({x} : Set F)) F : ℤ) := by
   classical
-  haveI := hfin
-  haveI : IsCurveOver k F := isCurveOver_of_isAlgClosed_of_transcendental x hx
+  have := hfin
+  have : IsCurveOver k F := isCurveOver_of_isAlgClosed_of_transcendental x hx
   obtain ⟨D, hD⟩ := AlgebraicCurve.exists_poleDivisor_of_transcendental x hx
   refine ⟨D.support, fun P => ?_, ?_⟩
   · rw [Finsupp.mem_support_iff, hD P]

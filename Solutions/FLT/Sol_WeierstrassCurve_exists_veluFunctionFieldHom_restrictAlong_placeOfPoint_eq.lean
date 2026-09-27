@@ -208,7 +208,7 @@ theorem isFinitePlace_iff_exists_placeOfEquation [IsAlgClosed F]
   constructor
   · intro hv
 
-    haveI := hv.centre_isPrime
+    have := hv.centre_isPrime
     have hmax : hv.centre.IsMaximal := Ideal.IsPrime.isMaximal hv.centre_isPrime hv.centre_ne_bot
     obtain ⟨x, y, hxy, hXY⟩ :=
       CoordinateRing.exists_eq_XYIdeal (W := W) (P := hv.centre) hv.centre_ne_bot
@@ -217,7 +217,7 @@ theorem isFinitePlace_iff_exists_placeOfEquation [IsAlgClosed F]
     set w : HeightOneSpectrum W.CoordinateRing := heightOneSpectrumOfEquation hxy with hw
     set A : ValuationSubring W.FunctionField :=
       HeightOneSpectrum.valuationSubringAtPrime W.FunctionField w with hA
-    haveI hAded : IsDedekindDomain A := by rw [hA]; infer_instance
+    have hAded : IsDedekindDomain A := by rw [hA]; infer_instance
     have hle : A ≤ v.toValuationSubring := by
       intro z hz
       rw [hA] at hz
@@ -333,13 +333,13 @@ variable {V W : Affine F} [V.IsElliptic] [W.IsElliptic]
 
 theorem normFormulaAlong_of_elliptic (ι : V.FunctionField →ₐ[F] W.FunctionField)
     (hfin : FiniteAlong F ι) : NormFormulaAlong F ι hfin := by
-  haveI : HasPrincipalDivisors F W.FunctionField := hasPrincipalDivisors_functionField W
-  haveI : CharZero V.FunctionField :=
+  have : HasPrincipalDivisors F W.FunctionField := hasPrincipalDivisors_functionField W
+  have : CharZero V.FunctionField :=
     charZero_of_injective_algebraMap (algebraMap F V.FunctionField).injective
   have hsep : SeparableAlong F ι := by
-    letI := algebraAlong ι
-    haveI := isScalarTower_along ι
-    haveI : Module.Finite V.FunctionField W.FunctionField := hfin
+    let := algebraAlong ι
+    have := isScalarTower_along ι
+    have : Module.Finite V.FunctionField W.FunctionField := hfin
     show Algebra.IsSeparable V.FunctionField W.FunctionField
     infer_instance
   exact AlgebraicCurve.normFormulaAlong ι hfin hsep
@@ -1306,9 +1306,9 @@ scoped instance : Algebra.FiniteType F W.CoordinateRing :=
 
 theorem exists_eq_XYIdeal_of_isMaximal [IsAlgClosed F] (𝔪 : Ideal W.CoordinateRing)
     (h𝔪 : 𝔪.IsMaximal) : ∃ x y : F, W.Equation x y ∧ XYIdeal W x (C y) = 𝔪 := by
-  haveI := h𝔪
-  letI : Field (W.CoordinateRing ⧸ 𝔪) := Ideal.Quotient.field 𝔪
-  haveI : Module.Finite F (W.CoordinateRing ⧸ 𝔪) :=
+  have := h𝔪
+  let : Field (W.CoordinateRing ⧸ 𝔪) := Ideal.Quotient.field 𝔪
+  have : Module.Finite F (W.CoordinateRing ⧸ 𝔪) :=
     finite_of_finite_type_of_isJacobsonRing F (W.CoordinateRing ⧸ 𝔪)
   have he : Function.Bijective (algebraMap F (W.CoordinateRing ⧸ 𝔪)) :=
     IsAlgClosed.algebraMap_bijective_of_isIntegral
@@ -2827,7 +2827,7 @@ open _root_.Polynomial _root_.P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHo
 theorem kw_infinite_of_isAlgClosed : Infinite F := by
   rw [← not_finite_iff_infinite]
   intro hfin
-  haveI := Fintype.ofFinite F
+  have := Fintype.ofFinite F
   have hdeg : (∏ a : F, (X - C a) : F[X]).degree = (Fintype.card F : ℕ) := by
     simp [Polynomial.degree_prod, Polynomial.degree_X_sub_C]
   have hlt : (1 : F[X]).degree < (∏ a : F, (X - C a) : F[X]).degree := by
@@ -3251,9 +3251,9 @@ theorem Place.mem_restrictAlong_iff (φ : F →ₐ[K] F') (hφ : φ.toRingHom.Is
 p2m_open_scoped "AlgebraicCurve.Place" in
 theorem Place.ramificationIndexAlong_pos (φ : F →ₐ[K] F') (hφ : φ.toRingHom.IsIntegral)
     (w : Place K F') : 0 < Place.ramificationIndexAlong φ w := by
-  letI := algebraAlong φ
-  haveI := isScalarTower_along φ
-  haveI := isIntegral_along φ hφ
+  let := algebraAlong φ
+  have := isScalarTower_along φ
+  have := isIntegral_along φ hφ
   exact w.ramificationIndex_pos
 
 p2m_open_scoped "AlgebraicCurve.Place" in
@@ -4692,7 +4692,7 @@ variable (htr : AddXFunTranscendental W a b)
 include htr in
 theorem translationCoordHom_injective : Function.Injective (translationCoordHom hA) := by
   have hker : RingHom.ker (translationCoordHom hA).toRingHom = ⊥ := by
-    haveI : Module.Finite F[X] W.CoordinateRing :=
+    have : Module.Finite F[X] W.CoordinateRing :=
       Module.Finite.of_basis (CoordinateRing.basis W)
     refine Ideal.eq_bot_of_comap_eq_bot (R := F[X]) ?_
     rw [RingHom.comap_ker, translationCoordHom_comp_algebraMap, ← RingHom.injective_iff_ker_eq_bot]
@@ -5143,8 +5143,8 @@ theorem veluDeficitIsConstantAt_of_ordNonneg_of_specializesConst' {p : ℕ}
     (hspec : VeluDeficitFunSpecializesConstAt F p) :
     VeluDeficitIsConstantAt F p := by
   intro W hΔ x₀ y₀ h₀ hord
-  haveI := hPD W hΔ
-  haveI := hDD W hΔ
+  have := hPD W hΔ
+  have := hDD W hΔ
   obtain ⟨c, hc⟩ := Affine.functionField_liouville_of_equation h₀.left
     (hreg W hΔ x₀ y₀ h₀ hord)
   exact ⟨c, fun r s hrs hav => hspec W hΔ x₀ y₀ h₀ hord c hc hrs hav⟩
@@ -5759,7 +5759,7 @@ theorem veluDeficitFunSpecializesConstAt_of_evalAtPlace {p : ℕ}
     (heval : VeluDeficitFunEvalAtPlaceAt F hDD p) :
     VeluDeficitFunSpecializesConstAt F p := by
   intro W hΔ x₀ y₀ h₀ hord c hc r s hrs hav
-  haveI := hDD W hΔ
+  have := hDD W hΔ
   rw [← heval W hΔ x₀ y₀ h₀ hord hrs hav, hc, Place.evalAt_algebraMap]
 
 end ResidueBridge
@@ -6826,7 +6826,7 @@ theorem veluDeficitFunEvalAtPlaceAt
     (hDD : ∀ (W : WeierstrassCurve F), W.Δ ≠ 0 → IsDedekindDomain W.toAffine.CoordinateRing)
     (p : ℕ) : VeluDeficitFunEvalAtPlaceAt F hDD p := by
   intro W hΔ x₀ y₀ h₀ _hord r s hrs hav
-  haveI := hDD W hΔ
+  have := hDD W hΔ
   exact Affine.evalAt_veluDeficitFun_placeOfEquation hrs hav
 
 theorem veluDeficitFunSpecializesConstAt_of_dedekind
@@ -7470,7 +7470,7 @@ theorem addXFunTranscendental (hΔ : W.Δ ≠ 0) (hA : W.Equation a b) :
     AddXFunTranscendental W a b := by
   intro hX'alg
   have hX'int : _root_.IsIntegral F (W.addXFun a b) := isAlgebraic_iff_isIntegral.mp hX'alg
-  haveI hRint : Algebra.IsIntegral F
+  have hRint : Algebra.IsIntegral F
       (Algebra.adjoin F ({W.addXFun a b} : Set W.FunctionField)) :=
     Algebra.IsIntegral.adjoin (fun x hx => by
       obtain rfl := Set.mem_singleton_iff.mp hx; exact hX'int)
@@ -8532,7 +8532,7 @@ theorem kw_veluDeficitFunKernelTranslationYNotCentreAt_odd
     {p : ℕ} (hp3 : 3 ≤ p) (hpodd : Odd p) :
     VeluDeficitFunKernelTranslationYNotCentreAt F p := by
   intro W hΔ x₀ y₀ h₀ hord v hv ⟨A, hA, hXA⟩
-  haveI := hDD W hΔ
+  have := hDD W hΔ
   have hSset := kw_isOddVeluSet_oddOrderSummingSet_odd (W := W) hp3 hpodd hord
     (le_refl ((p - 1) / 2))
   have hAeq : W.toAffine.Equation A.1 A.2 := hSset.equation A hA
@@ -8670,7 +8670,7 @@ theorem kw_veluDeficitConstantIsZeroAt_odd [Infinite F] [IsAlgClosed F]
 variable (F : Type*) [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F] in
 theorem kw_veluDeficitConstancyAt_odd {p : ℕ} (hp3 : 3 ≤ p) (hpodd : Odd p) :
     VeluDeficitConstancyAt F p := by
-  haveI : Infinite F := kw_infinite_of_isAlgClosed
+  have : Infinite F := kw_infinite_of_isAlgClosed
   refine veluDeficitConstancyAt_of_isConstant_of_constantZero F
     (kw_veluDeficitIsConstantAt_odd F hp3 hpodd)
     (kw_veluDeficitConstantIsZeroAt_odd hp3 hpodd ?_)
@@ -8705,7 +8705,7 @@ theorem kw_kwVeluMapEquationAt_oddOrderSummingSet_odd
     {W : WeierstrassCurve F} {Q : W.toAffine.Point} {p : ℕ}
     (hp3 : 3 ≤ p) (hpodd : Odd p) (hord : addOrderOf Q = p) (hΔW : W.Δ ≠ 0) :
     W.KwVeluMapEquationAt (W.oddOrderSummingSet Q ((p - 1) / 2)) := by
-  haveI : W.IsElliptic := ⟨(Ne.isUnit hΔW)⟩
+  have : W.IsElliptic := ⟨(Ne.isUnit hΔW)⟩
   intro r s hrs hav
   have hQ : addOrderOf Q = 2 * ((p - 1) / 2) + 1 := by
     obtain ⟨k, hk⟩ := hpodd
@@ -8752,8 +8752,8 @@ theorem kw_veluDeficitFun_oddOrderSummingSet_eq_zero_odd
   have hQ0 : Q ≠ 0 := by intro h; rw [h, addOrderOf_zero] at hord; omega
   obtain ⟨x₀, y₀, h₀, rfl, -⟩ := exists_some_of_ne_zero hQ0
   set S := W.oddOrderSummingSet (Point.some x₀ y₀ h₀) ((p - 1) / 2) with hS
-  haveI : HasPrincipalDivisors F W.toAffine.FunctionField := veluHPDSupplier F W hΔW
-  haveI : IsDedekindDomain W.toAffine.CoordinateRing :=
+  have : HasPrincipalDivisors F W.toAffine.FunctionField := veluHPDSupplier F W hΔW
+  have : IsDedekindDomain W.toAffine.CoordinateRing :=
     Affine.CoordinateRing.isDedekindDomain_of_Δ_ne_zero hΔW
   have hreg := kw_veluDeficitFunOrdNonnegAt_odd (F := F)
     (fun V hΔV => Affine.CoordinateRing.isDedekindDomain_of_Δ_ne_zero hΔV)
@@ -8844,7 +8844,7 @@ theorem kw_oddOrderSummingSetCoordHom_odd_injective :
     Function.Injective (kw_oddOrderSummingSetCoordHom_odd (W := W) hp3 hpodd hord) := by
   have hker : RingHom.ker (kw_oddOrderSummingSetCoordHom_odd (W := W) hp3 hpodd hord).toRingHom
       = ⊥ := by
-    haveI : Module.Finite F[X]
+    have : Module.Finite F[X]
         (W.veluQuotient (W.oddOrderSummingSet Q ((p - 1) / 2))).toAffine.CoordinateRing :=
       Module.Finite.of_basis (CoordinateRing.basis
         (W.veluQuotient (W.oddOrderSummingSet Q ((p - 1) / 2))).toAffine)
@@ -8906,7 +8906,7 @@ include hp3 hpodd hord in
 theorem kw_isIntegral_polyToFunctionField_X_oddOrderSummingSet_odd :
     letI : Algebra (V').FunctionField W.toAffine.FunctionField := (ι).toRingHom.toAlgebra
     _root_.IsIntegral (V').FunctionField (polyToFunctionField W.toAffine X) := by
-  letI : Algebra (V').FunctionField W.toAffine.FunctionField := (ι).toRingHom.toAlgebra
+  let : Algebra (V').FunctionField W.toAffine.FunctionField := (ι).toRingHom.toAlgebra
   refine ⟨(veluXClearedPoly W S_Q).map (algebraMap F (V').FunctionField)
       - C (polyToFunctionField V' X)
           * ((veluXDenomPoly S_Q).map (algebraMap F (V').FunctionField)) ^ 2,
@@ -8945,7 +8945,7 @@ theorem kw_adjoin_X_yGen_eq_top_oddOrderSummingSet_odd :
     IntermediateField.adjoin (V').FunctionField
         ({polyToFunctionField W.toAffine X, yGen W.toAffine} : Set W.toAffine.FunctionField)
       = ⊤ := by
-  letI : Algebra (V').FunctionField W.toAffine.FunctionField := (ι).toRingHom.toAlgebra
+  let : Algebra (V').FunctionField W.toAffine.FunctionField := (ι).toRingHom.toAlgebra
   rw [eq_top_iff]
   rintro z -
   set L := IntermediateField.adjoin (V').FunctionField
@@ -8973,16 +8973,16 @@ theorem kw_adjoin_X_yGen_eq_top_oddOrderSummingSet_odd :
 include hp3 hpodd hord in
 theorem kw_oddOrderSummingSetFunctionFieldHom_odd_finiteAlong :
     FiniteAlong F (kw_oddOrderSummingSetFunctionFieldHom_odd (W := W) hp3 hpodd hord) := by
-  letI : Algebra (V').FunctionField W.toAffine.FunctionField := (ι).toRingHom.toAlgebra
+  let : Algebra (V').FunctionField W.toAffine.FunctionField := (ι).toRingHom.toAlgebra
   show Module.Finite (V').FunctionField W.toAffine.FunctionField
   have hxint := kw_isIntegral_polyToFunctionField_X_oddOrderSummingSet_odd hp3 hpodd hord
   set Lx := IntermediateField.adjoin (V').FunctionField
     ({polyToFunctionField W.toAffine X} : Set W.toAffine.FunctionField) with hLx
-  haveI hxfd : FiniteDimensional (V').FunctionField Lx :=
+  have hxfd : FiniteDimensional (V').FunctionField Lx :=
     IntermediateField.adjoin.finiteDimensional hxint
   have hyint : _root_.IsIntegral Lx (yGen W.toAffine) := by
     have hyFx : _root_.IsIntegral F[X] (yGen W.toAffine) := by
-      haveI : Module.Finite F[X] W.toAffine.CoordinateRing :=
+      have : Module.Finite F[X] W.toAffine.CoordinateRing :=
         Module.Finite.of_basis (CoordinateRing.basis W.toAffine)
       show _root_.IsIntegral F[X]
         (algebraMap W.toAffine.CoordinateRing W.toAffine.FunctionField
@@ -9030,8 +9030,8 @@ include hp3 hpodd hord in
 theorem kw_oddOrderSummingSetFunctionFieldHom_odd_isIntegral :
     (kw_oddOrderSummingSetFunctionFieldHom_odd (W := W) hp3 hpodd hord).toRingHom.IsIntegral
     := by
-  letI : Algebra (V').FunctionField W.toAffine.FunctionField := (ι).toRingHom.toAlgebra
-  haveI : Module.Finite (V').FunctionField W.toAffine.FunctionField :=
+  let : Algebra (V').FunctionField W.toAffine.FunctionField := (ι).toRingHom.toAlgebra
+  have : Module.Finite (V').FunctionField W.toAffine.FunctionField :=
     kw_oddOrderSummingSetFunctionFieldHom_odd_finiteAlong hp3 hpodd hord
   exact fun z => (Algebra.IsIntegral.of_finite _ _).isIntegral z
 
@@ -9460,13 +9460,13 @@ theorem s2c_zero (V : WeierstrassCurve F) (hVW : V = W)
                 = placeOfPoint (Point.some _ _ h')) := by
   subst hVW; subst hQ; subst hS
 
-  haveI : IsDedekindDomain V.toAffine.CoordinateRing := CoordinateRing.isDedekindDomain V
+  have : IsDedekindDomain V.toAffine.CoordinateRing := CoordinateRing.isDedekindDomain V
   have hgg : gV = gW := GenusOnePlaceGate.ext_of_isCentred gV gW cV cW
   subst hgg
   refine ⟨AlgHom.id F _, IsogenyEndDatum.isIntegral_algHomId V.toAffine,
     IsogenyEndDatum.finiteAlong_algHomId V.toAffine, ?_, ?_, ?_, ?_⟩
   · rw [addOrderOf_zero]
-    letI := algebraAlong (AlgHom.id F V.toAffine.FunctionField)
+    let := algebraAlong (AlgHom.id F V.toAffine.FunctionField)
     show Module.finrank V.toAffine.FunctionField V.toAffine.FunctionField = 1
     convert Module.finrank_self V.toAffine.FunctionField
   · intro hN
@@ -9528,7 +9528,7 @@ theorem solution
                 (W.veluX (W.oddOrderSummingSet Q n) x) (W.veluY (W.oddOrderSummingSet Q n) x y),
               (WeierstrassCurve.Affine.placeOfPoint (WeierstrassCurve.Affine.Point.some x y h)).restrictAlong ι hι
                 = WeierstrassCurve.Affine.placeOfPoint (WeierstrassCurve.Affine.Point.some _ _ h')) := by
-  haveI : W.toAffine.IsElliptic := ‹W.IsElliptic›
+  have : W.toAffine.IsElliptic := ‹W.IsElliptic›
   rw [← hord]
   rcases Nat.eq_zero_or_pos n with hn0 | hnpos
   · subst hn0

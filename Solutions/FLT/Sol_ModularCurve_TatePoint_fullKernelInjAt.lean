@@ -36,27 +36,27 @@ theorem charZero_functionField {F : Type*} [Field F] [CharZero F] (V : Weierstra
 
 private theorem fullKernelInjAt' (N : ℕ) [NeZero N] : FullKernelInjAt N := by
   intro _ W _ ht Q Q' hQ hQ' hΔ hΔ' hj
-  letI := isAlgClosed_H
-  letI := charZero_H
+  let := isAlgClosed_H
+  let := charZero_H
 
-  haveI hV : (W.fullKernelQuotient Q N).IsElliptic := ⟨isUnit_iff_ne_zero.mpr hΔ⟩
-  haveI hV' : (W.fullKernelQuotient Q' N).IsElliptic := ⟨isUnit_iff_ne_zero.mpr hΔ'⟩
+  have hV : (W.fullKernelQuotient Q N).IsElliptic := ⟨isUnit_iff_ne_zero.mpr hΔ⟩
+  have hV' : (W.fullKernelQuotient Q' N).IsElliptic := ⟨isUnit_iff_ne_zero.mpr hΔ'⟩
 
   obtain ⟨gW, hcW, hAW⟩ :=
     WeierstrassCurve.Affine.exists_genusOnePlaceGate_isCentred_abelTheorem W.toAffine
-  letI := gW
-  haveI := hcW
-  haveI := hAW
+  let := gW
+  have := hcW
+  have := hAW
   obtain ⟨gV, hcV, hAV⟩ := WeierstrassCurve.Affine.exists_genusOnePlaceGate_isCentred_abelTheorem
     (W.fullKernelQuotient Q N).toAffine
-  letI := gV
-  haveI := hcV
-  haveI := hAV
+  let := gV
+  have := hcV
+  have := hAV
   obtain ⟨gV', hcV', hAV'⟩ := WeierstrassCurve.Affine.exists_genusOnePlaceGate_isCentred_abelTheorem
     (W.fullKernelQuotient Q' N).toAffine
-  letI := gV'
-  haveI := hcV'
-  haveI := hAV'
+  let := gV'
+  have := hcV'
+  have := hAV'
 
   obtain ⟨ι, hι, hfin, hker⟩ :=
     WeierstrassCurve.exists_functionFieldHom_fullKernelQuotient_pointMapOfPushforward_ker_eq_zmultiples
@@ -65,9 +65,9 @@ private theorem fullKernelInjAt' (N : ℕ) [NeZero N] : FullKernelInjAt N := by
     WeierstrassCurve.exists_functionFieldHom_fullKernelQuotient_pointMapOfPushforward_ker_eq_zmultiples
       (W := W) (Q := Q') (N := N) hQ' hΔ'
 
-  haveI := WeierstrassCurve.Affine.hasPrincipalDivisors_of_isAlgClosed W.toAffine
-  haveI := charZero_functionField (W.fullKernelQuotient Q N)
-  haveI := charZero_functionField (W.fullKernelQuotient Q' N)
+  have := WeierstrassCurve.Affine.hasPrincipalDivisors_of_isAlgClosed W.toAffine
+  have := charZero_functionField (W.fullKernelQuotient Q N)
+  have := charZero_functionField (W.fullKernelQuotient Q' N)
   have hN : AlgebraicCurve.NormFormulaAlong H ι hfin :=
     AlgebraicCurve.normFormulaAlong ι hfin (AlgebraicCurve.separableAlong_of_charZero ι hι)
   have hN' : AlgebraicCurve.NormFormulaAlong H ι' hfin' :=

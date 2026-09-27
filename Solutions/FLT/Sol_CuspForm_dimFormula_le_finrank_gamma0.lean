@@ -40,7 +40,7 @@ theorem linearIndependent_ringHom_comp_of_linearIndependent' {K L : Type*} [Fiel
     (ι : K →+* L) {n : ℕ} {X : Type*} {v : Fin n → X → K} (hv : LinearIndependent K v) :
     LinearIndependent L (fun i x => ι (v i x)) := by
   classical
-  letI : Algebra K L := ι.toAlgebra
+  let : Algebra K L := ι.toAlgebra
   rw [Fintype.linearIndependent_iff] at hv ⊢
   intro c hc i
   let B := Module.Basis.ofVectorSpace K L
@@ -83,8 +83,8 @@ theorem solution (N : ℕ) [NeZero N] (k : ℕ) (hk : 4 ≤ k) (hke : Even k) :
   obtain ⟨m, hkm⟩ : ∃ m, k = 2 * m := by obtain ⟨r, hr⟩ := hke; exact ⟨r, by omega⟩
   subst hkm
   have hm : 1 ≤ m := by omega
-  haveI hCD := ModularCurve.hasCanonicalDivisor_modularFunctionFieldBar N
-  haveI hfinS := CuspForm.finiteDimensional_Gamma0 N (2 * (m : ℤ))
+  have hCD := ModularCurve.hasCanonicalDivisor_modularFunctionFieldBar N
+  have hfinS := CuspForm.finiteDimensional_Gamma0 N (2 * (m : ℤ))
 
   obtain ⟨D, hdeg, hint⟩ :=
     ModularCurve.exists_divisor_degree_weight_and_isIntegral_of_mem_riemannRochSpace N m hm
@@ -121,7 +121,7 @@ theorem solution (N : ℕ) [NeZero N] (k : ℕ) (hk : 4 ≤ k) (hke : Even k) :
   let b := Module.finBasis (AlgebraicClosure ℚ) ↥(riemannRochSpace D)
   set r := Module.finrank (AlgebraicClosure ℚ) ↥(riemannRochSpace D) with hr
 
-  haveI : Algebra.IsAlgebraic ℚ (AlgebraicClosure ℚ) := AlgebraicClosure.isAlgebraic ℚ
+  have : Algebra.IsAlgebraic ℚ (AlgebraicClosure ℚ) := AlgebraicClosure.isAlgebraic ℚ
   let ι₀ : AlgebraicClosure ℚ →+* ℂ := (IsAlgClosed.lift : AlgebraicClosure ℚ →ₐ[ℚ] ℂ).toRingHom
 
   have hex : ∀ i : Fin r, ∃ f : CuspForm (CongruenceSubgroup.Gamma0 N) (2 * (m : ℤ)),

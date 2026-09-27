@@ -24,7 +24,7 @@ private theorem hasSum_int {Γ : Subgroup (GL (Fin 2) ℝ)} {k : ℤ} {F : Type*
     HasSum (fun m : ℤ =>
       ((qExpansion 1 (f : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ).coeff m *
         Function.Periodic.qParam 1 (τ : ℂ) ^ m) (f τ) := by
-  haveI : Fact (IsCusp OnePoint.infty Γ) := ⟨Γ.isCusp_of_mem_strictPeriods one_pos hΓ⟩
+  have : Fact (IsCusp OnePoint.infty Γ) := ⟨Γ.isCusp_of_mem_strictPeriods one_pos hΓ⟩
   have h0 := UpperHalfPlane.hasSum_qExpansion (f := (f : ℍ → ℂ)) one_pos
     (SlashInvariantFormClass.periodic_comp_ofComplex f hΓ) (ModularFormClass.holo f)
     (ModularFormClass.bdd_at_infty f) τ

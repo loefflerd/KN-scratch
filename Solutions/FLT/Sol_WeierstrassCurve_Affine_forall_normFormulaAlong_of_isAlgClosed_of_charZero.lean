@@ -23,9 +23,9 @@ theorem solution {F : Type*} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero
     (W : WeierstrassCurve.Affine F) [W.IsElliptic]
     [GenusOnePlaceGate W] [GenusOnePlaceGate.IsCentred W] [AbelTheorem W] :
     ∀ D : IsogenyEndDatum W, NormFormulaAlong F D.ι D.hfin := by
-  haveI : CharZero W.FunctionField :=
+  have : CharZero W.FunctionField :=
     (RingHom.charZero_iff (algebraMap F W.FunctionField).injective).mp ‹CharZero F›
-  haveI : HasPrincipalDivisors F W.FunctionField := hasPrincipalDivisors_functionField W
+  have : HasPrincipalDivisors F W.FunctionField := hasPrincipalDivisors_functionField W
   intro D
   exact AlgebraicCurve.normFormulaAlong D.ι D.hfin
     (AlgebraicCurve.separableAlong_of_charZero D.ι D.hι)

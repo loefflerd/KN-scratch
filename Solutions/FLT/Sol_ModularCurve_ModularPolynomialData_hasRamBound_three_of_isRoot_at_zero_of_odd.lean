@@ -155,7 +155,7 @@ theorem j_eq_single_three_one (𝓔 : WeierstrassCurve (PowerSeries K)) (hΔ : I
     (hc4 : 𝓔.c₄ ^ 3 = 𝓔.Δ * PowerSeries.X ^ 3) :
     haveI : 𝓔.IsElliptic := ⟨hΔ⟩
     (𝓔.map (HahnSeries.ofPowerSeries ℚ K)).j = HahnSeries.single (3 : ℚ) (1 : K) := by
-  haveI : 𝓔.IsElliptic := ⟨hΔ⟩
+  have : 𝓔.IsElliptic := ⟨hΔ⟩
   have hWΔ : IsUnit (𝓔.map (HahnSeries.ofPowerSeries ℚ K)).Δ := by
     rw [WeierstrassCurve.map_Δ]; exact hΔ.map _
   have hΔj : (𝓔.map (HahnSeries.ofPowerSeries ℚ K)).Δ *
@@ -176,7 +176,7 @@ theorem j_eq_1728_add_single_two_one (𝓔 : WeierstrassCurve (PowerSeries K)) (
     haveI : 𝓔.IsElliptic := ⟨hΔ⟩
     (𝓔.map (HahnSeries.ofPowerSeries ℚ K)).j
       = (1728 : HahnSeries ℚ K) + HahnSeries.single (2 : ℚ) (1 : K) := by
-  haveI : 𝓔.IsElliptic := ⟨hΔ⟩
+  have : 𝓔.IsElliptic := ⟨hΔ⟩
   have hWΔ : IsUnit (𝓔.map (HahnSeries.ofPowerSeries ℚ K)).Δ := by
     rw [WeierstrassCurve.map_Δ]; exact hΔ.map _
   have hΔj : (𝓔.map (HahnSeries.ofPowerSeries ℚ K)).Δ *
@@ -217,7 +217,7 @@ theorem solution
   classical
 
   obtain ⟨𝓔, hΔ, hc⟩ := WeierstrassCurve.exists_isUnit_discriminant_and_c4_cube_eq_mul_X_cube_powerSeries (AlgebraicClosure ℚ) two_ne_zero three_ne_zero
-  haveI h𝓔E : 𝓔.IsElliptic := ⟨hΔ⟩
+  have h𝓔E : 𝓔.IsElliptic := ⟨hΔ⟩
   have hjW : (𝓔.map (HahnSeries.ofPowerSeries ℚ ℚ̄)).j = HahnSeries.single (3 : ℚ) (1 : ℚ̄) :=
     j_eq_single_three_one 𝓔 hΔ hc
   have ht : Transcendental ℚ (𝓔.map (HahnSeries.ofPowerSeries ℚ ℚ̄)).j := by

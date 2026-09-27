@@ -128,7 +128,7 @@ theorem full_degeneracyC_le {N M : ℕ} [NeZero N] [NeZero M] (h : N ∣ M) :
     modularFunctionFieldFullC K N ≤ modularFunctionFieldFullC K M := by
   rw [modularFunctionFieldFullC, adjoin_le_iff]
   rintro x ⟨d, hne, hdvd, rfl⟩
-  haveI := hne
+  have := hne
   exact jqModCd_mem_full K M (hdvd.trans h)
 
 omit [NeZero N] in
@@ -137,8 +137,8 @@ theorem full_degeneracyC_map_le (ℓ : ℕ) [NeZero ℓ] :
     (modularFunctionFieldFullC K N).map (qExpandAlgHomC K ℓ) ≤ modularFunctionFieldFullC K (N * ℓ) := by
   rw [modularFunctionFieldFullC, adjoin_map, adjoin_le_iff]
   rintro x ⟨y, ⟨d, hne, hdvd, rfl⟩, rfl⟩
-  haveI := hne
-  haveI : NeZero (ℓ * d) := ⟨Nat.mul_ne_zero (NeZero.ne ℓ) (NeZero.ne d)⟩
+  have := hne
+  have : NeZero (ℓ * d) := ⟨Nat.mul_ne_zero (NeZero.ne ℓ) (NeZero.ne d)⟩
   show qExpandAlgHomC K ℓ (qExpand K d (jqModC K)) ∈ _
   rw [qExpandAlgHomC_apply, qExpand_qExpand]
   exact jqModCd_mem_full K (N * ℓ) ((mul_dvd_mul_left ℓ hdvd).trans (dvd_of_eq (mul_comm ℓ N)))

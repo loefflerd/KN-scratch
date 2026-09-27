@@ -153,11 +153,11 @@ theorem riemannRoch_and_constantsAreBase [IsAlgClosed K] [Algebra.EssFiniteType 
 
   obtain ⟨t, ht, htfd, htsep⟩ :=
     IsCurveOver.exists_separating_transcendental (K := K) (F := F)
-  haveI := htfd
-  haveI := htsep
+  have := htfd
+  have := htsep
 
   set e : RatFunc K ≃ₐ[K] K⟮t⟯ := RatFunc.algEquivOfTranscendental t ht with he
-  letI : Algebra (RatFunc K) F :=
+  let : Algebra (RatFunc K) F :=
     ((algebraMap K⟮t⟯ F).comp e.toAlgHom.toRingHom).toAlgebra
   have hsq : RingHom.comp (algebraMap (RatFunc K) F)
         (e.symm.toRingEquiv : K⟮t⟯ →+* RatFunc K)
@@ -165,18 +165,18 @@ theorem riemannRoch_and_constantsAreBase [IsAlgClosed K] [Algebra.EssFiniteType 
     refine RingHom.ext fun a => ?_
     show algebraMap K⟮t⟯ F (e (e.symm a)) = algebraMap K⟮t⟯ F a
     rw [e.apply_symm_apply]
-  haveI : IsScalarTower K (RatFunc K) F :=
+  have : IsScalarTower K (RatFunc K) F :=
     IsScalarTower.of_algebraMap_eq fun a => by
       show algebraMap K F a = algebraMap K⟮t⟯ F (e (algebraMap K (RatFunc K) a))
       rw [e.commutes, ← IsScalarTower.algebraMap_apply]
-  haveI : FiniteDimensional (RatFunc K) F :=
+  have : FiniteDimensional (RatFunc K) F :=
     Module.Finite.of_equiv_equiv e.symm.toRingEquiv (RingEquiv.refl F) hsq
-  haveI : Algebra.IsSeparable (RatFunc K) F :=
+  have : Algebra.IsSeparable (RatFunc K) F :=
     Algebra.IsSeparable.of_equiv_equiv e.symm.toRingEquiv (RingEquiv.refl F) hsq
-  haveI : Algebra.IsIntegral (RatFunc K) F := Algebra.IsIntegral.of_finite (RatFunc K) F
+  have : Algebra.IsIntegral (RatFunc K) F := Algebra.IsIntegral.of_finite (RatFunc K) F
 
-  haveI : IsCurveOver K (RatFunc K) := isCurveOver_ratFunc K
-  haveI : FiniteDimensional (IntermediateField.adjoin K ({RatFunc.X} : Set (RatFunc K)))
+  have : IsCurveOver K (RatFunc K) := isCurveOver_ratFunc K
+  have : FiniteDimensional (IntermediateField.adjoin K ({RatFunc.X} : Set (RatFunc K)))
       (RatFunc K) := by
     refine Module.Finite.of_surjective
       (Algebra.linearMap (IntermediateField.adjoin K ({RatFunc.X} : Set (RatFunc K)))
@@ -184,10 +184,10 @@ theorem riemannRoch_and_constantsAreBase [IsAlgClosed K] [Algebra.EssFiniteType 
     refine ⟨⟨y, ?_⟩, rfl⟩
     rw [RatFunc.adjoin_X]
     exact IntermediateField.mem_top
-  haveI : Algebra.EssFiniteType K (RatFunc K) :=
+  have : Algebra.EssFiniteType K (RatFunc K) :=
     essFiniteType_of_transcendental_of_finiteDimensional
       (RatFunc.transcendental_X (K := K)) inferInstance
-  haveI : ∀ v : Place K (RatFunc K), v.DCoordGenerates := dCoordGenerates_of_isCurveOver
+  have : ∀ v : Place K (RatFunc K), v.DCoordGenerates := dCoordGenerates_of_isCurveOver
   refine ⟨?_, constantsAreBase_of_isAlgClosed K F⟩
   intro _ _ _ ω hω D
   exact functionFieldRiemannRoch_of_isAlgClosed_of_isCurveOver (K := K) (F := F) hω D
@@ -207,16 +207,16 @@ theorem solution {K F : Type*} [Field K]
         AlgebraicCurve.genus K F := by
   classical
 
-  haveI : ∀ v : Place K F, v.DCoordGenerates := dCoordGenerates_of_isCurveOver
+  have : ∀ v : Place K F, v.DCoordGenerates := dCoordGenerates_of_isCurveOver
 
   obtain ⟨hRR, hC⟩ := riemannRoch_and_constantsAreBase (K := K) (F := F)
 
   obtain ⟨ω₀, hω₀⟩ := exists_ne (0 : Ω[F⁄K])
 
-  haveI : FiniteDimensional K ↥(LSpace (0 : Divisor K F)) := by
+  have : FiniteDimensional K ↥(LSpace (0 : Divisor K F)) := by
     rw [show LSpace (0 : Divisor K F) = _ from hC]
     infer_instance
-  haveI : FiniteDimensional K ↥(LSpace (canonicalDivisorOf hω₀)) :=
+  have : FiniteDimensional K ↥(LSpace (canonicalDivisorOf hω₀)) :=
     finiteDimensional_lSpace _
 
   set e := lSpaceCanonicalEquivRegular (K := K) (F := F) hω₀

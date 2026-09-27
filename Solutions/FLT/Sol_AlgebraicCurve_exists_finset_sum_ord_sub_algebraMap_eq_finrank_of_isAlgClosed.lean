@@ -31,11 +31,11 @@ theorem solution
     ∃ S : Finset (Place k F), (∀ P, P ∈ S ↔ 0 < P.ord (x - algebraMap k F a)) ∧
       ∑ P ∈ S, P.ord (x - algebraMap k F a) = (Module.finrank (IntermediateField.adjoin k ({x} : Set F)) F : ℤ) := by
   classical
-  haveI := hfin
-  haveI : IsCurveOver k F := isCurveOver_of_isAlgClosed_of_transcendental x hx
+  have := hfin
+  have : IsCurveOver k F := isCurveOver_of_isAlgClosed_of_transcendental x hx
   have hcab : ConstantsAreBase k F := constantsAreBase_of_isAlgClosed_of_transcendental x hx
   have hℓ0 : ell (0 : Divisor k F) = 1 := ell_zero_eq_one_of_constantsAreBase hcab
-  haveI : FiniteDimensional k (LSpace (0 : Divisor k F)) :=
+  have : FiniteDimensional k (LSpace (0 : Divisor k F)) :=
     FiniteDimensional.of_finrank_eq_succ (n := 0) hℓ0
   obtain ⟨D, hD⟩ := AlgebraicCurve.exists_divisor_eq_max_ord_sub_algebraMap x hx a
   refine ⟨D.support, fun P => ?_, ?_⟩

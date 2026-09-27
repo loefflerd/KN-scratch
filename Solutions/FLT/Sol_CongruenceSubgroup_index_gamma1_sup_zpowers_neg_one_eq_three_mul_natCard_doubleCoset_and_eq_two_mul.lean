@@ -149,7 +149,7 @@ theorem zpowers_neg_one_normal : (Subgroup.zpowers (-1 : SL(2, ℤ))).Normal :=
 
 theorem relIndex_Gamma1_sup {M : ℕ} (hM : 5 ≤ M) :
     (Gamma1 M).relIndex (Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))) = 2 := by
-  haveI := zpowers_neg_one_normal
+  have := zpowers_neg_one_normal
   rw [Subgroup.relIndex_eq_two_iff]
   refine ⟨-1, Subgroup.mem_sup_right (Subgroup.mem_zpowers _), fun b hb => ?_⟩
   rw [Subgroup.mem_sup_of_normal_right] at hb

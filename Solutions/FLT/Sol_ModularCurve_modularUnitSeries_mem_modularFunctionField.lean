@@ -20,7 +20,7 @@ p2m_attr_erase "simp" "ModularCurve.evalAtJqN_X ModularCurve.qTwistFun_coeff Mod
 set_option autoImplicit false
 
 theorem solution (ℓ : ℕ) [Fact (Nat.Prime ℓ)] : ModularCurve.modularUnitSeries ℓ ∈ ModularCurve.modularFunctionField ℓ := by
-  haveI : NeZero ℓ := ⟨(Fact.out : Nat.Prime ℓ).ne_zero⟩
+  have : NeZero ℓ := ⟨(Fact.out : Nat.Prime ℓ).ne_zero⟩
   exact ModularCurve.mem_modularFunctionField_of_hasSum_of_gamma0_invariant ℓ
     (ModularCurve.modularUnitSeries ℓ) ((ℓ : ℚ) ^ 12 • (ModularCurve.modularUnitSeries ℓ)⁻¹)
     (fun τ => ModularForm.discriminant τ

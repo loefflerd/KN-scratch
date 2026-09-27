@@ -25,7 +25,7 @@ lemma eisensteinG_eq (N : ℕ) (k : ℤ) (a : Fin 2 → ZMod N) :
 
 lemma vecMul_mem_congrSet {a : Fin 2 → ZMod N} {v : Fin 2 → ℤ} (hv : v ∈ congrSet N a)
     (γ : SL(2, ℤ)) : v ᵥ* (γ : Matrix (Fin 2) (Fin 2) ℤ) ∈ congrSet N (a ᵥ* γ) := by
-  simp only [congrSet, Set.mem_setOf_eq] at hv ⊢
+  simp only [congrSet, Set.mem_ofPred_eq] at hv ⊢
   have := RingHom.map_vecMul (m := Fin 2) (n := Fin 2) (Int.castRingHom (ZMod N)) γ v
   simp only [eq_intCast, Int.coe_castRingHom] at this
   simp_rw [Function.comp_def, this, ← hv]

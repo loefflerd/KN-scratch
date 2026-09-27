@@ -202,7 +202,7 @@ theorem isFinitePlace_iff_exists_placeOfEquation [IsAlgClosed F]
   constructor
   · intro hv
 
-    haveI := hv.centre_isPrime
+    have := hv.centre_isPrime
     have hmax : hv.centre.IsMaximal := Ideal.IsPrime.isMaximal hv.centre_isPrime hv.centre_ne_bot
     obtain ⟨x, y, hxy, hXY⟩ :=
       CoordinateRing.exists_eq_XYIdeal (W := W) (P := hv.centre) hv.centre_ne_bot
@@ -211,7 +211,7 @@ theorem isFinitePlace_iff_exists_placeOfEquation [IsAlgClosed F]
     set w : HeightOneSpectrum W.CoordinateRing := heightOneSpectrumOfEquation hxy with hw
     set A : ValuationSubring W.FunctionField :=
       HeightOneSpectrum.valuationSubringAtPrime W.FunctionField w with hA
-    haveI hAded : IsDedekindDomain A := by rw [hA]; infer_instance
+    have hAded : IsDedekindDomain A := by rw [hA]; infer_instance
     have hle : A ≤ v.toValuationSubring := by
       intro z hz
       rw [hA] at hz
@@ -323,13 +323,13 @@ variable {V W : Affine F} [V.IsElliptic] [W.IsElliptic]
 
 theorem normFormulaAlong_of_elliptic (ι : V.FunctionField →ₐ[F] W.FunctionField)
     (hfin : FiniteAlong F ι) : NormFormulaAlong F ι hfin := by
-  haveI : HasPrincipalDivisors F W.FunctionField := hasPrincipalDivisors_functionField W
-  haveI : CharZero V.FunctionField :=
+  have : HasPrincipalDivisors F W.FunctionField := hasPrincipalDivisors_functionField W
+  have : CharZero V.FunctionField :=
     charZero_of_injective_algebraMap (algebraMap F V.FunctionField).injective
   have hsep : SeparableAlong F ι := by
-    letI := algebraAlong ι
-    haveI := isScalarTower_along ι
-    haveI : Module.Finite V.FunctionField W.FunctionField := hfin
+    let := algebraAlong ι
+    have := isScalarTower_along ι
+    have : Module.Finite V.FunctionField W.FunctionField := hfin
     show Algebra.IsSeparable V.FunctionField W.FunctionField
     infer_instance
   exact AlgebraicCurve.normFormulaAlong ι hfin hsep
@@ -1023,7 +1023,7 @@ theorem mmr72_pp_end_eq_zero_of_cofinite_const {M : Type*} [AddCommGroup M]
     Set.Finite.preimage hinj.injOn hfin
   obtain ⟨Q', hQ'⟩ :=
     (Set.Finite.infinite_compl (hfin.union hpre)).nonempty
-  simp only [Set.mem_compl_iff, Set.mem_union, Set.mem_setOf_eq,
+  simp only [Set.mem_compl_iff, Set.mem_union, Set.mem_ofPred_eq,
     Set.mem_preimage, not_or, not_not] at hQ'
   have hadd : S (P + Q') = S P + S Q' := map_add S P Q'
   rw [hQ'.2, hQ'.1] at hadd
@@ -1792,9 +1792,9 @@ p2m_open_scoped "AlgebraicCurve.Place" in
 
 theorem Place.ramificationIndexAlong_pos (φ : F →ₐ[K] F') (hφ : φ.toRingHom.IsIntegral)
     (w : Place K F') : 0 < Place.ramificationIndexAlong φ w := by
-  letI := algebraAlong φ
-  haveI := isScalarTower_along φ
-  haveI := isIntegral_along φ hφ
+  let := algebraAlong φ
+  have := isScalarTower_along φ
+  have := isIntegral_along φ hφ
   exact w.ramificationIndex_pos
 
 p2m_open_scoped "AlgebraicCurve.Place" in
@@ -2249,7 +2249,7 @@ theorem pointPullbackCoordHom_injective {xP yP : W.FunctionField}
     (hx : Function.Injective (Polynomial.aeval (R := F) xP)) :
     Function.Injective (pointPullbackCoordHom h) := by
   have hker : RingHom.ker (pointPullbackCoordHom h).toRingHom = ⊥ := by
-    haveI : Module.Finite F[X] W.CoordinateRing :=
+    have : Module.Finite F[X] W.CoordinateRing :=
       Module.Finite.of_basis (CoordinateRing.basis W)
     refine Ideal.eq_bot_of_comap_eq_bot (R := F[X]) ?_
     rw [RingHom.comap_ker, pointPullbackCoordHom_comp_algebraMap,
@@ -6602,9 +6602,9 @@ variable {F : Type u} [Field F] {W : WeierstrassCurve.Affine F}
 
 theorem es1a8_addInt_coordRing_isAlgebraic_cmp :
     Algebra.IsAlgebraic F[X] W.CoordinateRing := by
-  haveI : Module.Finite F[X] W.CoordinateRing :=
+  have : Module.Finite F[X] W.CoordinateRing :=
     Module.Finite.of_basis (CoordinateRing.basis W)
-  haveI : Algebra.IsIntegral F[X] W.CoordinateRing := Algebra.IsIntegral.of_finite _ _
+  have : Algebra.IsIntegral F[X] W.CoordinateRing := Algebra.IsIntegral.of_finite _ _
   exact Algebra.IsIntegral.isAlgebraic
 
 theorem es1a8_addInt_functionField_isAlgebraic_cmp :
@@ -6639,14 +6639,14 @@ theorem es1a8_addInt_algebraMap_injective_cmp :
 
 theorem es1a8_addInt_basisX_cmp :
     IsTranscendenceBasis F (fun _ : PUnit.{u + 1} => polyToFunctionField W X) := by
-  haveI h1 : Algebra.IsAlgebraic F[X] W.CoordinateRing :=
+  have h1 : Algebra.IsAlgebraic F[X] W.CoordinateRing :=
     es1a8_addInt_coordRing_isAlgebraic_cmp (W := W)
-  haveI h2 : Algebra.IsAlgebraic W.CoordinateRing W.FunctionField :=
+  have h2 : Algebra.IsAlgebraic W.CoordinateRing W.FunctionField :=
     es1a8_addInt_functionField_isAlgebraic_cmp (W := W)
-  haveI h3 : FaithfulSMul F[X] W.CoordinateRing :=
+  have h3 : FaithfulSMul F[X] W.CoordinateRing :=
     (faithfulSMul_iff_algebraMap_injective F[X] W.CoordinateRing).mpr
       es1a8_addInt_algebraMap_injective_cmp
-  haveI h4 : FaithfulSMul W.CoordinateRing W.FunctionField :=
+  have h4 : FaithfulSMul W.CoordinateRing W.FunctionField :=
     (faithfulSMul_iff_algebraMap_injective W.CoordinateRing W.FunctionField).mpr
       (IsFractionRing.injective W.CoordinateRing W.FunctionField)
   have h5 := IsTranscendenceBasis.polynomial PUnit.{u + 1} F
@@ -6718,8 +6718,8 @@ theorem es1a8_addInt_selfHom_finiteAlong_cmp (ι : W.FunctionField →ₐ[F] W.F
     (htr : Transcendental F (ι (polyToFunctionField W X))) :
     FiniteAlong F ι := by
   have hint := es1a8_addInt_selfHom_isIntegral_cmp ι htr
-  letI : Algebra W.FunctionField W.FunctionField := ι.toRingHom.toAlgebra
-  letI : Module W.FunctionField W.FunctionField := Algebra.toModule
+  let : Algebra W.FunctionField W.FunctionField := ι.toRingHom.toAlgebra
+  let : Module W.FunctionField W.FunctionField := Algebra.toModule
   show Module.Finite W.FunctionField W.FunctionField
   have hadj : IntermediateField.adjoin W.FunctionField
       ({polyToFunctionField W X, yGen W} : Set W.FunctionField) = ⊤ := by
@@ -6748,7 +6748,7 @@ theorem es1a8_addInt_selfHom_finiteAlong_cmp (ι : W.FunctionField →ₐ[F] W.F
     obtain ⟨a, b, _, hab⟩ := IsFractionRing.div_surjective (A := W.CoordinateRing) z
     rw [← hab]
     exact div_mem (hcr a) (hcr b)
-  haveI : Finite ({polyToFunctionField W X, yGen W} : Set W.FunctionField) :=
+  have : Finite ({polyToFunctionField W X, yGen W} : Set W.FunctionField) :=
     ((Set.finite_singleton (yGen W)).insert (polyToFunctionField W X)).to_subtype
   have h1 : FiniteDimensional W.FunctionField
       (IntermediateField.adjoin W.FunctionField
@@ -7136,7 +7136,7 @@ theorem kw_hk5f_pointEnd_add_eq_zero_of_cofinite_geomMorph_sum
     (D₁ D₂ : IsogenyEndDatum W) (T : W.Point)
     (hcof : {Q : W.Point | D₁.geomMorph Q + D₂.geomMorph Q ≠ T}.Finite) :
     D₁.pointEnd' + D₂.pointEnd' = 0 := by
-  haveI : Infinite W.Point := WeierstrassCurve.point_infinite _
+  have : Infinite W.Point := WeierstrassCurve.point_infinite _
   refine mmr72_pp_end_eq_zero_of_cofinite_const (D₁.pointEnd' + D₂.pointEnd')
     (T - (D₁.geomMorph 0 + D₂.geomMorph 0)) (hcof.subset ?_)
   intro Q hQ hT
@@ -7159,7 +7159,7 @@ theorem kw_hk5f_transversal_cofinite_geomMorph_sum
     (hx : es1a6_addSumX W D₁.ι D₂.ι = algebraMap F W.FunctionField c)
     (hy : es1a6_addSumY W D₁.ι D₂.ι = algebraMap F W.FunctionField d) :
     ∃ T : W.Point, {Q : W.Point | D₁.geomMorph Q + D₂.geomMorph Q ≠ T}.Finite := by
-  haveI : HasPrincipalDivisors F W.FunctionField := hasPrincipalDivisors_functionField _
+  have : HasPrincipalDivisors F W.FunctionField := hasPrincipalDivisors_functionField _
   have hcd : W.Nonsingular c d :=
     (equation_iff_nonsingular_of_Δ_ne_zero isElliptic_Δ_ne_zero).mp hEq
   refine ⟨Point.some c d hcd, ?_⟩
@@ -7179,7 +7179,7 @@ theorem kw_hk5f_transversal_cofinite_geomMorph_sum
       (mmr73_cs_finite_setOf_placeOfPoint_ord_ne_zero hg₂ne)).union
       (mmr73_cs_finite_setOf_placeOfPoint_ord_ne_zero hδne)) ?_
   intro Q hQ
-  simp only [Set.mem_union, Set.mem_setOf_eq]
+  simp only [Set.mem_union, Set.mem_ofPred_eq]
   by_contra hbad
   push Not at hbad
   obtain ⟨⟨⟨⟨hb1, hb2⟩, hb3⟩, hb4⟩, hb5⟩ := hbad

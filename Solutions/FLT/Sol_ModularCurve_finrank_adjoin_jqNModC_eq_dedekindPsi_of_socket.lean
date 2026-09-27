@@ -449,7 +449,7 @@ theorem natCast_ne_zero_of_socket (d : ℕ) [NeZero d]
   intro hd
   have hdvd : ringChar K ∣ d := ringChar.dvd hd
   have h0 : ringChar K ≠ 0 := fun h => NeZero.ne d (Nat.eq_zero_of_zero_dvd (h ▸ hdvd))
-  haveI : Fact (Nat.Prime (ringChar K)) := ⟨CharP.char_prime_of_ne_zero K h0⟩
+  have : Fact (Nat.Prime (ringChar K)) := ⟨CharP.char_prime_of_ne_zero K h0⟩
   have hfrob : jqNModC K (ringChar K) = jqModC K ^ ringChar K :=
     ModularCurve.qExpand_jqModC_eq_pow_unconditional K
 
@@ -473,7 +473,7 @@ p2m_open_scoped "ModularCurve" in
 open ModularCurve.W1 in
 private theorem ModularCurve.finrank_adjoin_jqNModC_eq_dedekindPsi_of_socket {K : Type*} [Field K] (d : ℕ) [NeZero d] (hbase : ∀ (p : ℕ) [Fact (Nat.Prime p)], p ∣ d → jqNModC K p ∉ IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) : Module.finrank (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) (IntermediateField.adjoin (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) ({jqNModC K d} : Set (LaurentSeries K))) = dedekindPsi d := by
   have hd : (d : K) ≠ 0 := natCast_ne_zero_of_socket d hbase
-  haveI : NeZero ((d : ℕ) : K) := ⟨hd⟩
+  have : NeZero ((d : ℕ) : K) := ⟨hd⟩
   obtain ⟨z, hz⟩ := HasEnoughRootsOfUnity.exists_primitiveRoot (AlgebraicClosure K) d
   have hzu : IsUnit z := hz.isUnit (NeZero.ne d)
   have hζ : IsPrimitiveRoot ((hzu.unit : (AlgebraicClosure K)ˣ) : AlgebraicClosure K) d := by

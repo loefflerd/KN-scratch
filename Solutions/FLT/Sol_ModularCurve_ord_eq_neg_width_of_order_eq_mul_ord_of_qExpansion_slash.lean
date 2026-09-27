@@ -220,7 +220,7 @@ theorem fibre_eq_range (a : SL(2, ℤ)) :
   · intro hq
     induction q using Quotient.inductionOn' with
     | h b =>
-      rw [Set.mem_setOf_eq, toCusp_mk, toCusp_mk, eq_comm, DoubleCoset.eq] at hq
+      rw [Set.mem_ofPred_eq, toCusp_mk, toCusp_mk, eq_comm, DoubleCoset.eq] at hq
       obtain ⟨γ, hγ, k, hk, rfl⟩ := hq
       obtain ⟨m, hm⟩ := (mem_KT_iff).mp hk
       refine ⟨m, ?_⟩
@@ -234,7 +234,7 @@ theorem fibre_eq_range (a : SL(2, ℤ)) :
           simp only [mul_neg, neg_mul, neg_inj]; group
         rw [this]; exact neg_mem_pm Γ (Subgroup.mem_sup_left hγ)
   · rintro ⟨m, rfl⟩
-    rw [Set.mem_setOf_eq, toCusp_mk, toCusp_mk, eq_comm, DoubleCoset.eq]
+    rw [Set.mem_ofPred_eq, toCusp_mk, toCusp_mk, eq_comm, DoubleCoset.eq]
     exact ⟨1, Γ.one_mem, ModularGroup.T ^ m,
       Subgroup.mem_sup_left (Subgroup.mem_zpowers_iff.mpr ⟨m, rfl⟩), by simp⟩
 
@@ -357,7 +357,7 @@ theorem slash_bddAtImInfty (g : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) 
     IsBoundedAtImInfty (⇑g ∣[k] σ) := by
   have hpos : (0 : ℝ) < ((Γ.normalCore.index : ℤ) : ℝ) := by
     exact_mod_cast Nat.pos_of_ne_zero Subgroup.FiniteIndex.index_ne_zero
-  haveI hFact : Fact (IsCusp OnePoint.infty (ConjAct.toConjAct ((σ : GL (Fin 2) ℝ))⁻¹ •
+  have hFact : Fact (IsCusp OnePoint.infty (ConjAct.toConjAct ((σ : GL (Fin 2) ℝ))⁻¹ •
       ((Γ : Subgroup SL(2, ℤ)) : Subgroup (GL (Fin 2) ℝ)))) :=
     ⟨Subgroup.isCusp_of_mem_strictPeriods hpos
       (mem_strictPeriods_translate σ _ (conj_T_zpow_index_mem σ))⟩
@@ -664,8 +664,8 @@ theorem ord_eq_neg_cw_of_squeeze
   rw [hadj, hfull] at hsum
   simp only [map_zero, sub_zero, Place.ord_inv, neg_pos] at hS hsum
 
-  letI : Fintype {P : Place ℂ F // P.ord y < 0} := Fintype.subtype S hS
-  letI : Fintype (Cusp Γ) := Fintype.ofFinite _
+  let : Fintype {P : Place ℂ F // P.ord y < 0} := Fintype.subtype S hS
+  let : Fintype (Cusp Γ) := Fintype.ofFinite _
 
   have hout : ∀ τ : SL(2, ℤ),
       Pl (DoubleCoset.mk (Γ : Subgroup SL(2, ℤ)) KT τ : Cusp Γ).out = Pl τ := by
@@ -729,7 +729,7 @@ theorem ord_Pl_eq_neg_cw (hM : 5 ≤ M) (y : CF (Gamma1 M))
   obtain ⟨htr, hfin⟩ :=
     ModularCurve.transcendental_and_finiteDimensional_adjoin_laurentBaseChange_qExpFunctionFieldC_of_coe_eq_jqModC
       ℂ (Gamma1 M) hT y hy
-  haveI := hfin
+  have := hfin
   have hfull := ModularCurve.finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_gamma1_eq_index ℂ M y hy
   have hcard := ModularCurve.natCard_place_ord_neg_laurentBaseChange_gamma1_eq_natCard_doubleCoset ℂ M y hy
 
@@ -816,7 +816,7 @@ theorem ord_eq_neg_cw_of_squeeze'
   rw [hadj, hfull] at hsum
   simp only [map_zero, sub_zero, Place.ord_inv, neg_pos] at hS hsum
 
-  letI : Fintype (Cusp Γ) := Fintype.ofFinite _
+  let : Fintype (Cusp Γ) := Fintype.ofFinite _
 
   have hout : ∀ τ : SL(2, ℤ),
       Pl (DoubleCoset.mk (Γ : Subgroup SL(2, ℤ)) KT τ : Cusp Γ).out = Pl τ := by
@@ -998,7 +998,7 @@ theorem ord_PlG_eq_neg_cw (hΓ : CongruenceSubgroup.IsCongruenceSubgroup Γ) (y 
   obtain ⟨htr, hfin⟩ :=
     ModularCurve.transcendental_and_finiteDimensional_adjoin_laurentBaseChange_qExpFunctionFieldC_of_coe_eq_jqModC
       ℂ Γ hT y hy
-  haveI := hfin
+  have := hfin
   have hE2 : ∀ (σ : SL(2, ℤ)) (x : CF Γ), x ∈ (PlG Γ hT σ).toValuationSubring ↔
       ∃ L : ℂ, Tendsto (fun τ : ℍ => ModularCurve.realizeOf Γ (x : LaurentSeries ℂ) (σ • τ))
         atImInfty (𝓝 L) := by

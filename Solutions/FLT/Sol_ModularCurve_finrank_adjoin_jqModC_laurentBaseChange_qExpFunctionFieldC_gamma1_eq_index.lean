@@ -209,11 +209,11 @@ theorem solution
         ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) =
       (CongruenceSubgroup.Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index := by
   classical
-  haveI : CharZero K := charZero_of_injective_algebraMap (algebraMap ℚ K).injective
+  have : CharZero K := charZero_of_injective_algebraMap (algebraMap ℚ K).injective
   have hMK : (M : K) ≠ 0 := Nat.cast_ne_zero.mpr (NeZero.ne M)
 
-  haveI hfi1 : (Gamma1 M).FiniteIndex := (CongruenceSubgroup.Gamma1_is_congruence M).finiteIndex
-  haveI hfi0 : (Gamma0 M).FiniteIndex := (CongruenceSubgroup.Gamma0_is_congruence M).finiteIndex
+  have hfi1 : (Gamma1 M).FiniteIndex := (CongruenceSubgroup.Gamma1_is_congruence M).finiteIndex
+  have hfi0 : (Gamma0 M).FiniteIndex := (CongruenceSubgroup.Gamma0_is_congruence M).finiteIndex
   have hT1 : ModularGroup.T ∈ Gamma1 M := by
     rw [← ModularCurve.GammaH_bot M]; exact ModularCurve.translation_mem_GammaH M ⊥
   have hT0 : ModularGroup.T ∈ Gamma0 M := by
@@ -256,7 +256,7 @@ theorem solution
       (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))).relfinrank (qExpFunctionFieldC K (Gamma0 M)) := by
     obtain ⟨hfin, -⟩ := ModularCurve.finrank_adjoin_jqModC_qExpFunctionFieldC_le_index_of_isAlgClosed K
       (Gamma0 M) hT0 (Gamma0 M) le_rfl (fun γ hγ => Or.inl hγ) ⟨jqModC K, hjF0⟩ rfl
-    haveI := hfin
+    have := hfin
     have h := ModularCurve.dedekindPsi_le_finrank_adjoin_qExpFunctionFieldC_gamma0 K M hMK ⟨jqModC K, hjF0⟩ rfl
     have e := finrank_adjoin_eq_relfinrank (qExpFunctionFieldC K (Gamma0 M)) ⟨jqModC K, hjF0⟩
     exact e ▸ h

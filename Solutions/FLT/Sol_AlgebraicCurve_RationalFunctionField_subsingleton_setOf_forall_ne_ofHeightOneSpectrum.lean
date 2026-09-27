@@ -107,7 +107,7 @@ private def placeInfty' : Place K (RatFunc K) where
     rw [Valuation.mem_valuationSubring_iff]
     exact Valuation.IsTrivialOn.valuation_algebraMap_le_one (v := RatFunc.inftyValuation K) a
   ne_top' := by
-    haveI := nontrivial_valueGroup_inftyValuation K
+    have := nontrivial_valueGroup_inftyValuation K
     simp only [ne_eq, Valuation.valuationSubring_eq_top_iff, not_not]
     infer_instance
   isPrincipalIdealRing' :=
@@ -131,8 +131,8 @@ variable {K}
 private theorem eq_ofHeightOneSpectrum_or_eq_placeInfty' [DecidableEq (RatFunc K)]
     (v : Place K (RatFunc K)) :
     (∃ w : HeightOneSpectrum K[X], v = Place.ofHeightOneSpectrum w) ∨ v = placeInfty' K := by
-  haveI := v.adicValuation_isRankOneDiscrete'
-  haveI := v.adicValuation_isTrivialOn'
+  have := v.adicValuation_isRankOneDiscrete'
+  have := v.adicValuation_isTrivialOn'
   rcases (RatFunc.valuation_isEquiv_infty_or_adic (v := v.adicValuation)).or with h | h
   · exact Or.inr (Place.ext (v.adicValuation_valuationSubring'.symm.trans
       ((Valuation.isEquiv_iff_valuationSubring _ _).mp h)))

@@ -62,25 +62,25 @@ variable (K) in
 noncomputable def puiseuxVal : ValuationSubring (HahnSeries ℚ K) where
   carrier := {f | 0 ≤ f.orderTop}
   mul_mem' {a b} ha hb := by
-    simp only [Set.mem_setOf_eq] at ha hb ⊢
+    simp only [Set.mem_ofPred_eq] at ha hb ⊢
     rw [HahnSeries.orderTop_mul]
     exact add_nonneg ha hb
   one_mem' := by
-    simp only [Set.mem_setOf_eq, HahnSeries.orderTop_one]
+    simp only [Set.mem_ofPred_eq, HahnSeries.orderTop_one]
     exact le_rfl
   add_mem' {a b} ha hb := by
     show 0 ≤ (a + b).orderTop
     exact le_trans (le_min ha hb) HahnSeries.min_orderTop_le_orderTop_add
   zero_mem' := by
-    simp only [Set.mem_setOf_eq, HahnSeries.orderTop_zero]
+    simp only [Set.mem_ofPred_eq, HahnSeries.orderTop_zero]
     exact le_top
-  neg_mem' {a} ha := by simpa only [Set.mem_setOf_eq, HahnSeries.orderTop_neg] using ha
+  neg_mem' {a} ha := by simpa only [Set.mem_ofPred_eq, HahnSeries.orderTop_neg] using ha
   mem_or_inv_mem' a := by
     by_cases ha : a = 0
     · left
-      simp only [Set.mem_setOf_eq, ha, HahnSeries.orderTop_zero]
+      simp only [Set.mem_ofPred_eq, ha, HahnSeries.orderTop_zero]
       exact le_top
-    · simp only [Set.mem_setOf_eq]
+    · simp only [Set.mem_ofPred_eq]
       have hprod : a.orderTop + a⁻¹.orderTop = 0 := by
         rw [← HahnSeries.orderTop_mul, mul_inv_cancel₀ ha, HahnSeries.orderTop_one]
       obtain ⟨g, hg⟩ := WithTop.ne_top_iff_exists.mp (orderTop_ne_top_of_ne_zero' ha)

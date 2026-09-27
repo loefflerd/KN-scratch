@@ -183,11 +183,11 @@ theorem exists_weightDivisor (hm : 1 ≤ m) :
   set S1 : Finset (Place ℚb 𝔽) := (hfinc 1728).toFinset with hS1def
   set Sinf : Finset (Place ℚb 𝔽) := hfinI.toFinset with hSIdef
   have hS0 : ∀ v, v ∈ S0 ↔ 0 < v.ord (jBar N) := fun v => by
-    rw [hS0def, Set.Finite.mem_toFinset, Set.mem_setOf_eq, map_zero, sub_zero]
+    rw [hS0def, Set.Finite.mem_toFinset, Set.mem_ofPred_eq, map_zero, sub_zero]
   have hS1 : ∀ v, v ∈ S1 ↔ 0 < v.ord (jBar N - algebraMap ℚb 𝔽 1728) :=
-    fun v => by rw [hS1def, Set.Finite.mem_toFinset, Set.mem_setOf_eq]
+    fun v => by rw [hS1def, Set.Finite.mem_toFinset, Set.mem_ofPred_eq]
   have hSI : ∀ v, v ∈ Sinf ↔ v.ord (jBar N) < 0 := fun v => by
-    rw [hSIdef, Set.Finite.mem_toFinset, Set.mem_setOf_eq]
+    rw [hSIdef, Set.Finite.mem_toFinset, Set.mem_ofPred_eq]
 
   set S := S0 ∪ S1 ∪ Sinf with hSdef
   have hS : ∀ v, v ∈ S ↔ v ∈ S0 ∨ v ∈ S1 ∨ v ∈ Sinf := fun v => by
@@ -475,11 +475,11 @@ theorem isIntegral_pair_of_mem_riemannRochSpace (m : ℕ)
         (x ^ (2 * dedekindPsi N) * jBar N ^ (m * dedekindPsi N + 1)
           * (jBar N - algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) 1728) ^ (m * dedekindPsi N)) := by
   classical
-  haveI hCO := ModularCurve.isCurveOver_modularFunctionFieldBar N
-  haveI hFD : FiniteDimensional (IntermediateField.adjoin (AlgebraicClosure ℚ)
+  have hCO := ModularCurve.isCurveOver_modularFunctionFieldBar N
+  have hFD : FiniteDimensional (IntermediateField.adjoin (AlgebraicClosure ℚ)
       ({(jBar N : modularFunctionFieldBar N)} : Set (modularFunctionFieldBar N))) (modularFunctionFieldBar N) :=
     ModularCurve.finiteDimensional_adjoin_coeffEmb_jq_of_neZero N
-  haveI hPD : HasPrincipalDivisors (AlgebraicClosure ℚ) (modularFunctionFieldBar N) :=
+  have hPD : HasPrincipalDivisors (AlgebraicClosure ℚ) (modularFunctionFieldBar N) :=
     IsCurveOver.hasPrincipalDivisors
   set J : modularFunctionFieldBar N := jBar N with hJdef
   set ψ : ℕ := dedekindPsi N with hψdef
@@ -591,7 +591,7 @@ theorem isIntegral_pair_of_mem_riemannRochSpace (m : ℕ)
         have h2 : (J⁻¹)⁻¹ ∈ IntermediateField.adjoin (AlgebraicClosure ℚ) ({J⁻¹} : Set (modularFunctionFieldBar N)) :=
           inv_mem h1
         rwa [inv_inv] at h2
-    haveI : FiniteDimensional (IntermediateField.adjoin (AlgebraicClosure ℚ)
+    have : FiniteDimensional (IntermediateField.adjoin (AlgebraicClosure ℚ)
         ({J⁻¹} : Set (modularFunctionFieldBar N))) (modularFunctionFieldBar N) := by
       rw [hadj]; exact hFD
     refine AlgebraicCurve.isIntegral_adjoin_of_forall_ord_nonneg (K := AlgebraicClosure ℚ)

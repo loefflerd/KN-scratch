@@ -77,8 +77,8 @@ theorem isIntegral_of_apply_eq_sub (t : L) [FiniteDimensional K⟮t⟯ L]
 
 theorem finite_doubleCosetQuotient {Γ₀ : Type*} [Group Γ₀] (Γ Kst : Subgroup Γ₀) [Γ.FiniteIndex] :
     Finite (DoubleCoset.Quotient (Γ : Set Γ₀) (Kst : Set Γ₀)) := by
-  haveI : Finite (Γ₀ ⧸ Γ) := Subgroup.finite_quotient_of_finiteIndex
-  haveI : Finite (Quotient (QuotientGroup.rightRel Γ)) :=
+  have : Finite (Γ₀ ⧸ Γ) := Subgroup.finite_quotient_of_finiteIndex
+  have : Finite (Quotient (QuotientGroup.rightRel Γ)) :=
     Finite.of_equiv _ (QuotientGroup.quotientRightRelEquivQuotientLeftRel Γ).symm
   let π : Quotient (QuotientGroup.rightRel Γ) → DoubleCoset.Quotient (Γ : Set Γ₀) (Kst : Set Γ₀) :=
     Quotient.lift (fun a => DoubleCoset.mk Γ Kst a) (by
@@ -111,8 +111,8 @@ theorem solution
     Nat.card {P : AlgebraicCurve.Place K E // 0 < P.ord (x - algebraMap K E c)} ≤
       Nat.card (DoubleCoset.Quotient (Γ : Set Γ₀) (Kst : Set Γ₀)) := by
   classical
-  haveI := hfin
-  haveI := hgal
+  have := hfin
+  have := hgal
   have hint : ∀ ψ : E →ₐ[K] L, ψ x = t → ψ.toRingHom.IsIntegral :=
     fun ψ hψ => isIntegral_of_apply_eq_sub t E x hx ψ hψ
   have hDH := AlgebraicCurve.Place.ord_restrictAlong_eq_natCard_algHom_of_isGalois K x t c
@@ -187,7 +187,7 @@ theorem solution
     intro p
     obtain ⟨γ, rfl⟩ := hsurj p
     exact ⟨DoubleCoset.mk Γ Kst γ, rfl⟩
-  haveI : Finite (DoubleCoset.Quotient (Γ : Set Γ₀) (Kst : Set Γ₀)) := finite_doubleCosetQuotient Γ Kst
+  have : Finite (DoubleCoset.Quotient (Γ : Set Γ₀) (Kst : Set Γ₀)) := finite_doubleCosetQuotient Γ Kst
   exact Nat.card_le_card_of_surjective fbar hfbar
 
 end S_AlgebraicCurve_natCard_place_ord_sub_pos_le_natCard_doubleCoset

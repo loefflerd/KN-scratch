@@ -54,8 +54,8 @@ theorem solution
     ∑ P ∈ T, (P.ord (x - algebraMap k F (a P)) - 1) + ∑ P ∈ Tinf, (-P.ord x - 1) ≤
       2 * (genusFF k F : ℤ) - 2 +
         2 * (Module.finrank (IntermediateField.adjoin k ({x} : Set F)) F : ℤ) := by
-  haveI := hfin
-  haveI := hsep
+  have := hfin
+  have := hsep
 
   have hmain :=
     AlgebraicCurve.sum_ordDiff_D_le_two_mul_genusFF_of_isSeparable k x hx hfin hsep T

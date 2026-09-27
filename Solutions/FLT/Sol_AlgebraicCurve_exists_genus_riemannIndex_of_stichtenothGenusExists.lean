@@ -139,7 +139,7 @@ end Place
 theorem ell_le_ell_sub_single_add_deg [IsCurveOver K F] (D : Divisor K F) (P : Place K F) :
     ell D ≤ ell (D - Finsupp.single P 1) + P.deg := by
   classical
-  haveI : Module.Finite K P.ResidueField := IsCurveOver.finite_residueField P
+  have : Module.Finite K P.ResidueField := IsCurveOver.finite_residueField P
   set E : Divisor K F := D - Finsupp.single P 1 with hE
   have hEP : E P = D P - 1 := by rw [hE, Finsupp.sub_apply, Finsupp.single_eq_same]
   have hEv : ∀ v, v ≠ P → E v = D v := by
@@ -232,7 +232,7 @@ theorem ell_le_ell_sub_single_add_deg [IsCurveOver K F] (D : Divisor K F) (P : P
     exact Submodule.finrank_le (LinearMap.range φ)
 
   by_cases hfin : FiniteDimensional K (LSpace D)
-  · haveI := hfin
+  · have := hfin
     have hrn := Submodule.finrank_quotient_add_finrank (LinearMap.ker φ)
     rw [hkerfin] at hrn
     have hb : ell D = finrank K (LSpace D) := rfl
@@ -241,7 +241,7 @@ theorem ell_le_ell_sub_single_add_deg [IsCurveOver K F] (D : Divisor K F) (P : P
     omega
 
 theorem one_le_deg [IsCurveOver K F] (P : Place K F) : 1 ≤ P.deg := by
-  haveI : Module.Finite K P.ResidueField := IsCurveOver.finite_residueField P
+  have : Module.Finite K P.ResidueField := IsCurveOver.finite_residueField P
   exact Module.finrank_pos
 
 theorem ell_le_degree_add_ellZero [IsCurveOver K F] {D : Divisor K F}
@@ -407,9 +407,9 @@ theorem finrank_quotient_chain {A B C : Submodule K X} (hAB : A ≤ B) (hBC : B 
   have e3 := Submodule.quotientQuotientEquivQuotient S T hST
 
   have eK := nestedComapMapMkQEquiv (K := K) hAB hBC
-  haveI : Module.Finite K (T.map S.mkQ : Submodule K _) := Module.Finite.equiv eK.symm
-  haveI : Module.Finite K ((C ⧸ S) ⧸ T.map S.mkQ) := Module.Finite.equiv e3.symm
-  haveI hfin : Module.Finite K (C ⧸ S) := Module.Finite.of_submodule_quotient (T.map S.mkQ)
+  have : Module.Finite K (T.map S.mkQ : Submodule K _) := Module.Finite.equiv eK.symm
+  have : Module.Finite K ((C ⧸ S) ⧸ T.map S.mkQ) := Module.Finite.equiv e3.symm
+  have hfin : Module.Finite K (C ⧸ S) := Module.Finite.of_submodule_quotient (T.map S.mkQ)
   refine ⟨hfin, ?_⟩
   have h := Submodule.finrank_quotient_add_finrank (R := K) (T.map S.mkQ)
   rw [LinearEquiv.finrank_eq e3, LinearEquiv.finrank_eq eK] at h
@@ -425,7 +425,7 @@ theorem finrank_quotient_chain' {A B C : Submodule K X} (hAB : A ≤ B) (hBC : B
   have hST : S ≤ T := comap_mono hAB
   have e3 := Submodule.quotientQuotientEquivQuotient S T hST
   have eK := nestedComapMapMkQEquiv (K := K) hAB hBC
-  haveI : Module.Finite K (C ⧸ T) := Module.Finite.equiv e3
+  have : Module.Finite K (C ⧸ T) := Module.Finite.equiv e3
   refine ⟨this, ?_⟩
   have h := Submodule.finrank_quotient_add_finrank (R := K) (T.map S.mkQ)
   rw [LinearEquiv.finrank_eq e3, LinearEquiv.finrank_eq eK] at h
@@ -513,12 +513,12 @@ def adeleBddQuotSingleEquivResidueField (D : Divisor K F) (P : Place K F) :
           · exact absurd h' htn0
           · exact h'
         by_cases hv : v = P
-        · subst v; rw [hα0, Valuation.map_zero]; exact zero_le'
+        · subst v; rw [hα0, Valuation.map_zero]; exact zero_le
         · rw [hEv v hv]; exact hαD v
       · by_cases hv : v = P
         · subst v
           rcases eq_or_ne ((α : Place K F → F) P) 0 with hα0 | hα0
-          · rw [hα0, Valuation.map_zero]; exact zero_le'
+          · rw [hα0, Valuation.map_zero]; exact zero_le
           · rw [P.adicValuation_eq_exp_neg_ord hα0, WithZero.exp_le_exp, hEP]
             rw [hordmul hα0] at h; omega
         · rw [hEv v hv]; exact hαD v
@@ -542,13 +542,13 @@ def adeleBddQuotSingleEquivResidueField (D : Divisor K F) (P : Place K F) :
       · subst v
         simp only [Pi.single_eq_same]
         rcases eq_or_ne (cl : F) 0 with hc0 | hc0
-        · rw [hf, hc0, zero_mul, Valuation.map_zero]; exact zero_le'
+        · rw [hf, hc0, zero_mul, Valuation.map_zero]; exact zero_le
         · have hf0 : f ≠ 0 := by rw [hf]; exact mul_ne_zero hc0 (zpow_ne_zero _ ht0)
           rw [P.adicValuation_eq_exp_neg_ord hf0, WithZero.exp_le_exp]
           rw [hf, P.ord_mul hc0 (zpow_ne_zero _ ht0), P.ord_zpow, ht1, mul_one]
           have hclnn := P.ord_nonneg_of_mem cl.2
           linarith
-      · rw [Pi.single_eq_of_ne hv, Valuation.map_zero]; exact zero_le'
+      · rw [Pi.single_eq_of_ne hv, Valuation.map_zero]; exact zero_le
     refine ⟨⟨Pi.single P f, hαD⟩, ?_⟩
 
     show res (ψ ⟨Pi.single P f, hαD⟩) = c
@@ -569,7 +569,7 @@ theorem finrank_adeleBdd_quotient_single [IsCurveOver K F] (D : Divisor K F) (P 
       finrank K
           (adeleBdd D ⧸ (adeleBdd (D - Finsupp.single P 1)).comap (adeleBdd D).subtype)
         = P.deg := by
-  haveI := IsCurveOver.finite_residueField (K := K) P
+  have := IsCurveOver.finite_residueField (K := K) P
   exact ⟨Module.Finite.equiv (adeleBddQuotSingleEquivResidueField D P).symm,
     (adeleBddQuotSingleEquivResidueField D P).finrank_eq⟩
 
@@ -596,7 +596,7 @@ theorem finrank_adeleBdd_quotient [IsCurveOver K F] {D₁ D₂ : Divisor K F} (h
       have hD12 : D₁ = D₂ := (sub_eq_zero.mp hD0).symm
       subst hD12
       rw [Submodule.comap_subtype_self]
-      haveI : Subsingleton (adeleBdd D₁ ⧸ (⊤ : Submodule K (adeleBdd D₁))) :=
+      have : Subsingleton (adeleBdd D₁ ⧸ (⊤ : Submodule K (adeleBdd D₁))) :=
         Submodule.Quotient.subsingleton_iff.mpr rfl
       exact ⟨Module.Finite.of_finite, by simp [Module.finrank_zero_of_subsingleton]⟩
     ·
@@ -632,7 +632,7 @@ theorem finrank_adeleBdd_quotient [IsCurveOver K F] {D₁ D₂ : Divisor K F} (h
       obtain ⟨hfinS, hrankS⟩ := finrank_adeleBdd_quotient_single (K := K) D₂ P
       rw [← hD₂'] at hfinS hrankS
 
-      haveI := hfin'; haveI := hfinS
+      have := hfin'; have := hfinS
       obtain ⟨hfin, hrank⟩ := Submodule.finrank_quotient_chain
         (A := adeleBdd D₁) (B := adeleBdd D₂') (C := adeleBdd D₂)
         (adeleBdd_mono h12') (adeleBdd_mono h2'2)
@@ -679,7 +679,7 @@ set_option maxHeartbeats 1600000 in
 theorem ell_sub_ell_le_degree_sub_degree [IsCurveOver K F] {D₁ D₂ : Divisor K F} (hD : D₁ ≤ D₂)
     [FiniteDimensional K (LSpace D₂)] :
     (ell D₂ : ℤ) - (ell D₁ : ℤ) ≤ Divisor.degree D₂ - Divisor.degree D₁ := by
-  haveI := module_finite_adeleBdd_quotient hD
+  have := module_finite_adeleBdd_quotient hD
 
   have hℓ₁ : ell D₁ = finrank K ((LSpace D₁).comap (LSpace D₂).subtype) :=
     (LinearEquiv.finrank_eq (Submodule.comapSubtypeEquivOfLe (lSpace_mono hD))).symm
@@ -756,9 +756,9 @@ theorem finrank_quotient_chain_top {M : Type*} [AddCommGroup M] [Module K M]
   let eK : (B ⧸ A.comap B.subtype) ≃ₗ[K] (B.map A.mkQ : Submodule K (M ⧸ A)) :=
     (Submodule.quotEquivOfEq _ _ hker.symm).trans
       (ψ.quotKerEquivRange.trans (LinearEquiv.ofEq _ _ hran))
-  haveI : Module.Finite K (B.map A.mkQ : Submodule K (M ⧸ A)) := Module.Finite.equiv eK
-  haveI : Module.Finite K ((M ⧸ A) ⧸ B.map A.mkQ) := Module.Finite.equiv e3.symm
-  haveI hfin : Module.Finite K (M ⧸ A) := Module.Finite.of_submodule_quotient (B.map A.mkQ)
+  have : Module.Finite K (B.map A.mkQ : Submodule K (M ⧸ A)) := Module.Finite.equiv eK
+  have : Module.Finite K ((M ⧸ A) ⧸ B.map A.mkQ) := Module.Finite.equiv e3.symm
+  have hfin : Module.Finite K (M ⧸ A) := Module.Finite.of_submodule_quotient (B.map A.mkQ)
   refine ⟨hfin, ?_⟩
   have h := Submodule.finrank_quotient_add_finrank (R := K) (B.map A.mkQ)
   rw [LinearEquiv.finrank_eq e3, ← LinearEquiv.finrank_eq eK] at h
@@ -804,11 +804,11 @@ theorem finiteDimensional_lSpace [hL0 : FiniteDimensional K (LSpace (0 : Divisor
     exact Module.Finite.of_injective (Submodule.inclusion (lSpace_mono hDD))
       (Submodule.inclusion_injective _)
 
-  haveI := module_finite_adeleBdd_quotient (K := K) h0D
-  haveI hfinQ : FiniteDimensional K
+  have := module_finite_adeleBdd_quotient (K := K) h0D
+  have hfinQ : FiniteDimensional K
       (LSpace (D ⊔ 0) ⧸ (LSpace (0 : Divisor K F)).comap (LSpace (D ⊔ 0)).subtype) :=
     Module.Finite.of_injective _ (lSpaceQuotientToAdeleBddQuotient_injective h0D)
-  haveI : FiniteDimensional K
+  have : FiniteDimensional K
       ((LSpace (0 : Divisor K F)).comap (LSpace (D ⊔ 0)).subtype : Submodule K _) :=
     Module.Finite.equiv (Submodule.comapSubtypeEquivOfLe (lSpace_mono h0D)).symm
   exact Module.Finite.of_submodule_quotient
@@ -878,7 +878,7 @@ theorem finrank_adeleBddSup_quotient [IsCurveOver K F] [Nonempty (Place K F)]
     (adeleBdd D₁ ⊔ globalSub K F).comap (adeleBdd D₂).subtype
   have hAB : A ≤ B := Submodule.comap_mono le_sup_left
 
-  haveI hfinA : Module.Finite K (adeleBdd D₂ ⧸ A) := module_finite_adeleBdd_quotient hD
+  have hfinA : Module.Finite K (adeleBdd D₂ ⧸ A) := module_finite_adeleBdd_quotient hD
   have hdimA : (finrank K (adeleBdd D₂ ⧸ A) : ℤ) = Divisor.degree D₂ - Divisor.degree D₁ :=
     finrank_adeleBdd_quotient_eq hD
 
@@ -897,7 +897,7 @@ theorem finrank_adeleBddSup_quotient [IsCurveOver K F] [Nonempty (Place K F)]
     exact hdimL
 
   have e3 := Submodule.quotientQuotientEquivQuotient A B hAB
-  haveI hfinB : Module.Finite K (adeleBdd D₂ ⧸ B) := Module.Finite.equiv e3
+  have hfinB : Module.Finite K (adeleBdd D₂ ⧸ B) := Module.Finite.equiv e3
   have hdim2 : finrank K (adeleBdd D₂ ⧸ A)
       = finrank K (adeleBdd D₂ ⧸ B) + finrank K (B.map A.mkQ : Submodule K _) := by
     have h := Submodule.finrank_quotient_add_finrank (R := K) (M := adeleBdd D₂ ⧸ A)
@@ -952,7 +952,7 @@ theorem adeleBddSup_eq_of_degree_sub_ell_eq {D₁ D₂ : Divisor K F} (hD : D₁
   rw [heq, sub_self] at hdim
 
   refine le_antisymm ?_ (sup_le_sup_right (adeleBdd_mono hD) _)
-  haveI := hfin
+  have := hfin
   have hd0 : finrank K (↥(adeleBdd D₂ ⊔ globalSub K F)
       ⧸ (adeleBdd D₁ ⊔ globalSub K F).comap (adeleBdd D₂ ⊔ globalSub K F).subtype) = 0 := by
     exact_mod_cast hdim
@@ -977,7 +977,7 @@ private theorem _root_.AlgebraicCurve.RiemannGenusReachedAt.eq_of_ge [IsCurveOve
     {γ : ℤ} {D₀ : Divisor K F} (h : RiemannGenusReachedAt γ D₀)
     {D : Divisor K F} (hD : D₀ ≤ D) :
     Divisor.degree D - ell D = γ - 1 := by
-  haveI := finiteDimensional_lSpace (K := K) D
+  have := finiteDimensional_lSpace (K := K) D
   have hge : Divisor.degree D₀ - (ell D₀ : ℤ) ≤ Divisor.degree D - ell D := by
     have := ell_sub_ell_le_degree_sub_degree (K := K) hD
     linarith
@@ -996,7 +996,7 @@ theorem adeleSpace_eq_of_genusReached [IsCurveOver K F] [Nonempty (Place K F)]
   rw [adeleSpace, iSup_le_iff]
   intro D
   refine le_trans (adeleBdd_mono (le_sup_left : D ≤ D ⊔ D₀)) ?_
-  haveI := finiteDimensional_lSpace (K := K) (D ⊔ D₀)
+  have := finiteDimensional_lSpace (K := K) (D ⊔ D₀)
   have heq : Divisor.degree (D ⊔ D₀) - ell (D ⊔ D₀) = Divisor.degree D₀ - ell D₀ :=
     (h.eq_of_ge le_sup_right).trans h.eq.symm
   have hsup := adeleBddSup_eq_of_degree_sub_ell_eq (K := K)
@@ -1010,7 +1010,7 @@ theorem indexOfSpecialty_eq_zero_of_genusReached [IsCurveOver K F] [Nonempty (Pl
     indexOfSpecialty D₀ = 0 := by
   rw [indexOfSpecialty_eq, adeleBddPrincipal_eq_comap, ← adeleSpace_eq_of_genusReached h,
     Submodule.comap_subtype_self]
-  haveI : Subsingleton (adeleSpace K F ⧸ (⊤ : Submodule K (adeleSpace K F))) :=
+  have : Subsingleton (adeleSpace K F ⧸ (⊤ : Submodule K (adeleSpace K F))) :=
     Submodule.Quotient.subsingleton_iff.mpr rfl
   exact Module.finrank_zero_of_subsingleton
 
@@ -1025,7 +1025,7 @@ theorem indexOfSpecialty_eq_of_genusReached [IsCurveOver K F] [Nonempty (Place K
 
   have hDD' : D ≤ D ⊔ D₀ := le_sup_left
   have hD0D' : D₀ ≤ D ⊔ D₀ := le_sup_right
-  haveI := finiteDimensional_lSpace (K := K) (D ⊔ D₀)
+  have := finiteDimensional_lSpace (K := K) (D ⊔ D₀)
 
   have heqD' : Divisor.degree (D ⊔ D₀) - ell (D ⊔ D₀) = γ - 1 := h.eq_of_ge hD0D'
   have hsa : adeleSpace K F = adeleBdd (D ⊔ D₀) ⊔ globalSub K F := by
@@ -1040,22 +1040,22 @@ theorem indexOfSpecialty_eq_of_genusReached [IsCurveOver K F] [Nonempty (Place K
 
   have hCB : (adeleBdd (D ⊔ D₀) ⊔ globalSub K F).comap (adeleSpace K F).subtype = ⊤ := by
     rw [← hsa, Submodule.comap_subtype_self]
-  haveI hfinCB : Module.Finite K (adeleSpace K F ⧸
+  have hfinCB : Module.Finite K (adeleSpace K F ⧸
       (adeleBdd (D ⊔ D₀) ⊔ globalSub K F).comap (adeleSpace K F).subtype) := by
     rw [hCB]
-    haveI : Subsingleton (adeleSpace K F ⧸ (⊤ : Submodule K (adeleSpace K F))) :=
+    have : Subsingleton (adeleSpace K F ⧸ (⊤ : Submodule K (adeleSpace K F))) :=
       Submodule.Quotient.subsingleton_iff.mpr rfl
     exact Module.Finite.of_finite
   have hdimCB : finrank K (adeleSpace K F ⧸
       (adeleBdd (D ⊔ D₀) ⊔ globalSub K F).comap (adeleSpace K F).subtype) = 0 := by
     rw [hCB]
-    haveI : Subsingleton (adeleSpace K F ⧸ (⊤ : Submodule K (adeleSpace K F))) :=
+    have : Subsingleton (adeleSpace K F ⧸ (⊤ : Submodule K (adeleSpace K F))) :=
       Submodule.Quotient.subsingleton_iff.mpr rfl
     exact Module.finrank_zero_of_subsingleton
 
   obtain ⟨hfinBA, hdimBA⟩ := finrank_adeleBddSup_quotient (K := K) hDD'
 
-  haveI := hfinBA
+  have := hfinBA
   obtain ⟨hfinCA, hdimCA⟩ := Submodule.finrank_quotient_chain
     (A := adeleBdd D ⊔ globalSub K F) (B := adeleBdd (D ⊔ D₀) ⊔ globalSub K F)
     (C := adeleSpace K F) hABsub hBCsub
@@ -1240,7 +1240,7 @@ variable [IsCurveOver K F] [Nonempty (Place K F)]
 theorem omegaSpace_finite_of_genusReached
     {γ : ℤ} {D₀ : Divisor K F} (h : RiemannGenusReachedAt γ D₀) (D : Divisor K F) :
     Module.Finite K (omegaSpace (K := K) (F := F) D) := by
-  haveI := (indexOfSpecialty_eq_of_genusReached h D).1
+  have := (indexOfSpecialty_eq_of_genusReached h D).1
   exact Module.Finite.equiv (omegaSpaceEquivIndexDual D).symm
 
 end Finiteness
@@ -1286,8 +1286,8 @@ theorem exists_weilSmul_eq_of_genusReached
     have hlow := gate_riemannInequality_of_genusReached h (W - D)
     rw [hdegWD] at hlow; exact hlow
 
-  haveI := omegaSpace_finite_of_genusReached h D
-  haveI := finiteDimensional_lSpace (K := K) (W - D)
+  have := omegaSpace_finite_of_genusReached h D
+  have := finiteDimensional_lSpace (K := K) (W - D)
 
   have hdbl : (2 * ell (W - D) : ℤ) ≤ (indexOfSpecialty D : ℤ) := by
     exact_mod_cast two_mul_ell_le_indexOfSpecialty W D hφ hμ hφ0 hcon
@@ -1469,7 +1469,7 @@ set_option maxHeartbeats 1600000 in
 theorem ell_nsmul_poleDivisor_ge [IsCurveOver K F]
     [FiniteDimensional K (LSpace (0 : Divisor K F))] {m : ℕ} (hm : P.c ≤ m) :
     (P.n : ℤ) * (m - P.c + 1) ≤ ell (m • P.B) := by
-  haveI := finiteDimensional_lSpace (K := K) (m • P.B)
+  have := finiteDimensional_lSpace (K := K) (m • P.B)
 
   set g : Fin (m - P.c + 1) × Fin P.n → LSpace (m • P.B) :=
     fun p => ⟨P.x ^ (p.1 : ℕ) * P.u p.2,
@@ -1512,7 +1512,7 @@ theorem PoleDivisorPackage.ell_nsmul_sub_pos [IsCurveOver K F]
     (P : PoleDivisorPackage K F) {A : Divisor K F} (hA : 0 ≤ A) {m : ℕ} (hm : P.c ≤ m)
     (hbig : Divisor.degree A < (P.n : ℤ) * (m - P.c + 1)) :
     0 < ell (m • P.B - A) := by
-  haveI := finiteDimensional_lSpace (K := K) (m • P.B)
+  have := finiteDimensional_lSpace (K := K) (m • P.B)
   have hle : m • P.B - A ≤ m • P.B := by
     intro v
     have hAv : (0 : ℤ) ≤ A v := hA v
@@ -1538,7 +1538,7 @@ theorem PoleDivisorPackage.degree_sub_ell_le [IsCurveOver K F] [Nonempty (Place 
   set D' : Divisor K F := D ⊔ 0 with hD'def
   have hD'eff : 0 ≤ D' := le_sup_right
   have hDD' : D ≤ D' := le_sup_left
-  haveI := finiteDimensional_lSpace (K := K) D'
+  have := finiteDimensional_lSpace (K := K) D'
   have hmono : Divisor.degree D - (ell D : ℤ) ≤ Divisor.degree D' - ell D' := by
     have h := ell_sub_ell_le_degree_sub_degree (K := K) hDD'
     linarith
@@ -1571,7 +1571,7 @@ theorem PoleDivisorPackage.degree_sub_ell_le [IsCurveOver K F] [Nonempty (Place 
   have hdegshift : Divisor.degree (m • P.B + Dz) = Divisor.degree (m • P.B) := by
     rw [map_add, hDzdeg, add_zero]
 
-  haveI := finiteDimensional_lSpace (K := K) (m • P.B + Dz)
+  have := finiteDimensional_lSpace (K := K) (m • P.B + Dz)
   have hmono' : Divisor.degree D' - (ell D' : ℤ)
       ≤ Divisor.degree (m • P.B + Dz) - ell (m • P.B + Dz) := by
     have h := ell_sub_ell_le_degree_sub_degree (K := K) hD'le
@@ -1604,7 +1604,7 @@ variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 theorem weilDifferentialRankOne_of_stichtenothGenusExists [IsCurveOver K F]
     (h : StichtenothGenusExists K F) : WeilDifferentialRankOne K F := by
   obtain ⟨hne, hfin, γ, D₀, hγ⟩ := h
-  haveI := hne; haveI := hfin
+  have := hne; have := hfin
   intro φ hφ hφ0 μ hμ
   exact weilDifferentialRankOne_of_genusReached hγ hφ hφ0 hμ
 
@@ -1624,7 +1624,7 @@ theorem exists_genus_riemannIndex_of_stichtenothGenusExists_port [IsCurveOver K 
       Module.Finite K (↥(adeleSpace K F) ⧸ adeleBddPrincipal K F D) ∧
         (indexOfSpecialty D : ℤ) = (ell D : ℤ) - (Divisor.degree D + 1 - γ) := by
   obtain ⟨hne, hfin, γ, D₀, hγ⟩ := h
-  haveI := hne; haveI := hfin
+  have := hne; have := hfin
   exact ⟨γ, fun D => indexOfSpecialty_eq_of_genusReached hγ D⟩
 end AlgebraicCurve
 

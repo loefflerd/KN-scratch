@@ -197,8 +197,8 @@ theorem roots_phiProd_conj_nodup (p : ℕ) [hp : Fact p.Prime] (ζ : Kˣ) (hζ :
 
 theorem exists_isPrimitiveRoot_cyclotomicField (N : ℕ) [NeZero N] :
     ∃ z : CyclotomicField N ℚ, IsPrimitiveRoot z N := by
-  haveI : NeZero ((N : ℕ) : ℚ) := ⟨Nat.cast_ne_zero.mpr (NeZero.ne N)⟩
-  haveI : IsCyclotomicExtension {N} ℚ (CyclotomicField N ℚ) := CyclotomicField.isCyclotomicExtension N ℚ
+  have : NeZero ((N : ℕ) : ℚ) := ⟨Nat.cast_ne_zero.mpr (NeZero.ne N)⟩
+  have : IsCyclotomicExtension {N} ℚ (CyclotomicField N ℚ) := CyclotomicField.isCyclotomicExtension N ℚ
   exact IsCyclotomicExtension.exists_isPrimitiveRoot ℚ (CyclotomicField N ℚ) (Set.mem_singleton N) (NeZero.ne N)
 
 def cycUnit (N : ℕ) [NeZero N] : (CyclotomicField N ℚ)ˣ :=
@@ -527,16 +527,16 @@ private theorem ModularCurve.trace_jqN_prime {K : Type*} [Field K] [Algebra ℚ 
         (IntermediateField.AdjoinSimple.gen ℚ⟮jq⟯ (jqN ℓ)) : LaurentSeries ℚ)))
       = qExpand K (ℓ * ℓ) (coeffEmb K jq)
           + ∑ b ∈ Finset.range ℓ, qTwist (ζ ^ b) (coeffEmb K jq) := by
-  haveI : NeZero ℓ := ⟨hp.out.ne_zero⟩
+  have : NeZero ℓ := ⟨hp.out.ne_zero⟩
   obtain ⟨data, hirr⟩ := ModularCurve.exists_phiIrreducible ℓ
 
   have haev : Polynomial.aeval (jqN ℓ) data.toAdjoin = 0 := aeval_jqN_toAdjoin data
   have hα : IsIntegral ℚ⟮jq⟯ (jqN ℓ) :=
     ⟨data.toAdjoin, data.toAdjoin_monic, by rw [← Polynomial.aeval_def]; exact haev⟩
-  haveI : FiniteDimensional ℚ⟮jq⟯ ℚ⟮jq⟯⟮jqN ℓ⟯ :=
+  have : FiniteDimensional ℚ⟮jq⟯ ℚ⟮jq⟯⟮jqN ℓ⟯ :=
     IntermediateField.adjoin.finiteDimensional hα
 
-  letI : Algebra ℚ⟮jq⟯ (LaurentSeries K) :=
+  let : Algebra ℚ⟮jq⟯ (LaurentSeries K) :=
     ((((coeffEmb K).comp (qExpand ℚ ℓ))).comp
       (algebraMap ℚ⟮jq⟯ (LaurentSeries ℚ))).toAlgebra
   set gen := IntermediateField.AdjoinSimple.gen ℚ⟮jq⟯ (jqN ℓ) with hgen

@@ -827,7 +827,7 @@ theorem differentiableAt_latticeSum {τ : ℂ} (hτ : 0 < τ.im) :
     DifferentiableAt ℂ latticeSum τ := by
   have hT : (0 : ℝ) < τ.im / 2 := by positivity
   have hmem : τ ∈ {z : ℂ | τ.im / 2 < z.im} := by
-    simp only [Set.mem_setOf_eq]
+    simp only [Set.mem_ofPred_eq]
     linarith
   exact (differentiableOn_latticeSum_of_lt_im hT).differentiableAt
     ((isOpen_lt_im _).mem_nhds hmem)

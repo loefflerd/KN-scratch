@@ -425,8 +425,8 @@ theorem dvd_index_of_pow_eq (hN : 2 ≤ N) (u : SL(2, ℤ)) (p : ℕ) [Fact p.Pr
     (htr : (u : Matrix (Fin 2) (Fin 2) ℤ).trace = 0 ∨ (u : Matrix (Fin 2) (Fin 2) ℤ).trace = 1 ∨
       (u : Matrix (Fin 2) (Fin 2) ℤ).trace = -1) :
     p ∣ (Gpm N).index := by
-  haveI : NeZero N := ⟨by omega⟩
-  haveI : Fintype (orbitRel.Quotient (Subgroup.zpowers u) (SL(2, ℤ) ⧸ Gpm N)) := Fintype.ofFinite _
+  have : NeZero N := ⟨by omega⟩
+  have : Fintype (orbitRel.Quotient (Subgroup.zpowers u) (SL(2, ℤ) ⧸ Gpm N)) := Fintype.ofFinite _
   have hper : ∀ x : SL(2, ℤ) ⧸ Gpm N, minimalPeriod (u • ·) x = p := by
     intro x
     induction x using QuotientGroup.induction_on with
@@ -456,7 +456,7 @@ theorem six_dvd_index (hN : 2 ≤ N) : 6 ∣ (Gpm N).index := by
     · rw [sq, S_sq]
     · rw [ModularGroup.coe_S, Matrix.trace_fin_two_of]; norm_num
   have h3 : 3 ∣ (Gpm N).index := by
-    haveI : Fact (Nat.Prime 3) := ⟨Nat.prime_three⟩
+    have : Fact (Nat.Prime 3) := ⟨Nat.prime_three⟩
     refine dvd_index_of_pow_eq N hN (ModularGroup.S * ModularGroup.T) 3 ST_pow_three (Or.inr (Or.inl ?_))
     rw [Matrix.SpecialLinearGroup.coe_mul, ModularGroup.coe_S, ModularGroup.coe_T, Matrix.mul_fin_two,
       Matrix.trace_fin_two_of]
@@ -523,7 +523,7 @@ theorem finrank_parabolicHoms_Gpm [NeZero N] :
 theorem main (hN : 2 ≤ N) :
     6 * N * Module.finrank ℤ (parabolicHoms ℤ (CongruenceSubgroup.Gamma N) ℤ) +
         6 * (Gpm N).index = 12 * N + N * (Gpm N).index := by
-  haveI : NeZero N := ⟨by omega⟩
+  have : NeZero N := ⟨by omega⟩
   have hμc := index_Gpm_eq N
   obtain ⟨k, hk⟩ := six_dvd_index N hN
   have hHom : Module.finrank ℚ (Additive ↥(Gpm N) →+ ℚ) = 1 + (Gpm N).index / 6 :=

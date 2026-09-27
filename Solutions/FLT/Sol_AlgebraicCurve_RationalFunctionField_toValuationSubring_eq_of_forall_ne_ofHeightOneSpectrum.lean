@@ -20,8 +20,8 @@ open IsDedekindDomain WithZero IsLocalRing
 open scoped Polynomial
 
 theorem solution {K : Type*} [Field K] [DecidableEq (RatFunc K)] (v : Place K (RatFunc K)) (hv : ∀ w : IsDedekindDomain.HeightOneSpectrum (Polynomial K), v ≠ Place.ofHeightOneSpectrum w) : v.toValuationSubring = (RatFunc.inftyValuation K).valuationSubring := by
-  haveI := v.adicValuation_isRankOneDiscrete
-  haveI := v.adicValuation_isTrivialOn
+  have := v.adicValuation_isRankOneDiscrete
+  have := v.adicValuation_isTrivialOn
   rcases (RatFunc.valuation_isEquiv_infty_or_adic (v := v.adicValuation)).or with h | h
   · exact v.adicValuation_valuationSubring.symm.trans
       ((Valuation.isEquiv_iff_valuationSubring _ _).mp h)

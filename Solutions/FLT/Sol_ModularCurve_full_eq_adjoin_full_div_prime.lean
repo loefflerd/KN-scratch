@@ -192,8 +192,8 @@ theorem roots_phiProd_conj_nodup (p : ℕ) [hp : Fact p.Prime] (ζ : Kˣ) (hζ :
 
 theorem exists_isPrimitiveRoot_cyclotomicField (N : ℕ) [NeZero N] :
     ∃ z : CyclotomicField N ℚ, IsPrimitiveRoot z N := by
-  haveI : NeZero ((N : ℕ) : ℚ) := ⟨Nat.cast_ne_zero.mpr (NeZero.ne N)⟩
-  haveI : IsCyclotomicExtension {N} ℚ (CyclotomicField N ℚ) := CyclotomicField.isCyclotomicExtension N ℚ
+  have : NeZero ((N : ℕ) : ℚ) := ⟨Nat.cast_ne_zero.mpr (NeZero.ne N)⟩
+  have : IsCyclotomicExtension {N} ℚ (CyclotomicField N ℚ) := CyclotomicField.isCyclotomicExtension N ℚ
   exact IsCyclotomicExtension.exists_isPrimitiveRoot ℚ (CyclotomicField N ℚ) (Set.mem_singleton N) (NeZero.ne N)
 
 def cycUnit (N : ℕ) [NeZero N] : (CyclotomicField N ℚ)ˣ :=
@@ -407,16 +407,16 @@ private theorem jqN_mem_of_div_primes {K : Type*} [Field K] [Algebra ℚ K]
     (hpd : p ∣ d) (hqd : q ∣ d) [NeZero (d / p)] [NeZero (d / q)]
     (hmp : jqN (d / p) ∈ F) (hmq : jqN (d / q) ∈ F) :
     jqN d ∈ F := by
-  haveI : Fact (Nat.Prime p) := ⟨pp⟩
-  haveI : Fact (Nat.Prime q) := ⟨qq⟩
-  haveI : NeZero p := ⟨pp.ne_zero⟩
-  haveI : NeZero q := ⟨qq.ne_zero⟩
+  have : Fact (Nat.Prime p) := ⟨pp⟩
+  have : Fact (Nat.Prime q) := ⟨qq⟩
+  have : NeZero p := ⟨pp.ne_zero⟩
+  have : NeZero q := ⟨qq.ne_zero⟩
   have hpN : p ∣ N := hpd.trans hdN
   have hqN : q ∣ N := hqd.trans hdN
   have hNp0 : N / p ≠ 0 := fun h0 => NeZero.ne N (by rw [← Nat.div_mul_cancel hpN, h0, zero_mul])
   have hNq0 : N / q ≠ 0 := fun h0 => NeZero.ne N (by rw [← Nat.div_mul_cancel hqN, h0, zero_mul])
-  haveI : NeZero (N / p) := ⟨hNp0⟩
-  haveI : NeZero (N / q) := ⟨hNq0⟩
+  have : NeZero (N / p) := ⟨hNp0⟩
+  have : NeZero (N / q) := ⟨hNq0⟩
 
   have hpe : p * (N / p * (d / p)) = N * (d / p) := by
     rw [← mul_assoc, Nat.mul_div_cancel' hpN]
@@ -430,7 +430,7 @@ private theorem jqN_mem_of_div_primes {K : Type*} [Field K] [Algebra ℚ K]
   have data_p : ModularPolynomialData p := (ModularCurve.exists_phiIrreducible_evalSymm p).choose
   have data_q : ModularPolynomialData q := (ModularCurve.exists_phiIrreducible_evalSymm q).choose
 
-  letI : Algebra F (LaurentSeries K) :=
+  let : Algebra F (LaurentSeries K) :=
     (((coeffEmb K).comp (qExpand ℚ N)).comp (algebraMap F (LaurentSeries ℚ))).toAlgebra
 
   have hmapA : (phiAtSeed data_p (⟨jqN (d / p), hmp⟩ : F)).map (algebraMap F (LaurentSeries K))
@@ -577,9 +577,9 @@ private theorem w1_jqN_mem_adjoin_top_insert (M : ℕ) [NeZero M] (p : ℕ)
           rw [hd, pow_succ, ← Nat.mul_assoc, Nat.mul_div_cancel _ hp.out.pos]
         have hdq : d / q = m' * p ^ (a + 1) := by
           rw [hd, hm', Nat.mul_assoc, Nat.mul_div_cancel_left _ hq.pos]
-        haveI : NeZero (d / p) :=
+        have : NeZero (d / p) :=
           ⟨by rw [hdp]; exact Nat.mul_ne_zero hm0 (pow_ne_zero _ hp.out.ne_zero)⟩
-        haveI : NeZero (d / q) :=
+        have : NeZero (d / q) :=
           ⟨by rw [hdq]; exact Nat.mul_ne_zero hm'0 (pow_ne_zero _ hp.out.ne_zero)⟩
         have hmem_p : jqN (d / p) ∈ IntermediateField.adjoin ℚ
             (insert (jqN (p ^ (a + 1))) (modularFunctionFieldFull (M * p ^ a) :

@@ -68,7 +68,7 @@ theorem gcd_gcd_swap (a b c : ℕ) : Nat.gcd (Nat.gcd a b) c = Nat.gcd (Nat.gcd 
 theorem exists_slotAt (ζ : Kbˣ) (hζ : IsPrimitiveRoot (ζ : Kb) N) {a b : ℕ} (ha : a ∣ N)
     (hb : b < Nat.gcd a (N / a)) (hcop : Nat.Coprime (Nat.gcd a (N / a)) b) :
     ∃ w, SlotAt N ζ a b w := by
-  haveI := neZero_of_dvd ha
+  have := neZero_of_dvd ha
   have hb' : b < N / a :=
     lt_of_lt_of_le hb (Nat.le_of_dvd (div_pos_of_dvd ha) (Nat.gcd_dvd_right _ _))
   have hg : Nat.gcd (Nat.gcd a b) (N / a) = 1 := by
@@ -114,7 +114,7 @@ theorem exists_slotAt_of_ord_neg (ζ : Kbˣ) (hζ : IsPrimitiveRoot (ζ : Kb) N)
   refine ⟨a, b, ha, ?_, hne, ι, ((a * Nat.gcd a (N / a) : ℕ) : ℤ), ?_, h1, h2, hw⟩
   · rw [gcd_gcd_swap] at hg
     exact Nat.coprime_iff_gcd_eq_one.mpr hg
-  · haveI := hne
+  · have := hne
     exact_mod_cast Nat.mul_pos (NeZero.pos a) (gcd_pos_of_dvd ha)
 
 variable (N) in

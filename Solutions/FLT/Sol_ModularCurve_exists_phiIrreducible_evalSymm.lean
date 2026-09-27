@@ -28,12 +28,12 @@ p2m_open "ModularCurve"
 private theorem exists_phiIrreducible_evalSymm (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] :
     ∃ data : ModularPolynomialData ℓ, PhiIrreducible data ∧ EvalSymm data.Φ := by
 
-  haveI : NeZero ((ℓ : ℕ) : ℚ) := ⟨Nat.cast_ne_zero.mpr hℓ.out.ne_zero⟩
-  haveI hcyc : IsCyclotomicExtension {ℓ} ℚ (CyclotomicField ℓ ℚ) :=
+  have : NeZero ((ℓ : ℕ) : ℚ) := ⟨Nat.cast_ne_zero.mpr hℓ.out.ne_zero⟩
+  have hcyc : IsCyclotomicExtension {ℓ} ℚ (CyclotomicField ℓ ℚ) :=
     CyclotomicField.isCyclotomicExtension (n := ℓ) (K := ℚ)
-  haveI : FiniteDimensional ℚ (CyclotomicField ℓ ℚ) :=
+  have : FiniteDimensional ℚ (CyclotomicField ℓ ℚ) :=
     IsCyclotomicExtension.finiteDimensional {ℓ} ℚ (CyclotomicField ℓ ℚ)
-  haveI : IsGalois ℚ (CyclotomicField ℓ ℚ) :=
+  have : IsGalois ℚ (CyclotomicField ℓ ℚ) :=
     IsCyclotomicExtension.isGalois (S := {ℓ}) (K := ℚ) (L := CyclotomicField ℓ ℚ)
   obtain ⟨z, hz⟩ := IsCyclotomicExtension.exists_isPrimitiveRoot ℚ (CyclotomicField ℓ ℚ)
     (Set.mem_singleton ℓ) hℓ.out.ne_zero

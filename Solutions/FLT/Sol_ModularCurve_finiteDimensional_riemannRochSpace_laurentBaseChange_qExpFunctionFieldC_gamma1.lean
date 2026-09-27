@@ -34,18 +34,18 @@ theorem solution
       Transcendental K x ∧ FiniteDimensional ↥(IntermediateField.adjoin K ({x} : Set _)) _ :=
     ModularCurve.JOneES.exists_transcendental_finiteDimensional_laurentBaseChange
       K (CongruenceSubgroup.Gamma1 M) (by rw [CongruenceSubgroup.Gamma1_mem]; simp [ModularGroup.T])
-  haveI := hfd
-  haveI : CharZero K := charZero_of_injective_algebraMap (algebraMap ℚ K).injective
-  haveI : Algebra.IsAlgebraic ↥(IntermediateField.adjoin K ({x} : Set _))
+  have := hfd
+  have : CharZero K := charZero_of_injective_algebraMap (algebraMap ℚ K).injective
+  have : Algebra.IsAlgebraic ↥(IntermediateField.adjoin K ({x} : Set _))
       ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) :=
     Algebra.IsAlgebraic.of_finite _ _
-  haveI : Algebra.IsSeparable ↥(IntermediateField.adjoin K ({x} : Set _))
+  have : Algebra.IsSeparable ↥(IntermediateField.adjoin K ({x} : Set _))
       ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) :=
     Algebra.IsAlgebraic.isSeparable_of_perfectField
-  haveI := AlgebraicCurve.nonempty_place_of_transcendental_of_finiteDimensional K x htr hfd
-  haveI := ModularCurve.isCurveOver_laurentBaseChange_qExpFunctionFieldC_gamma1 K M
-  haveI := AlgebraicCurve.essFiniteType_of_transcendental_of_finiteDimensional htr hfd
-  haveI := AlgebraicCurve.finiteDimensional_lSpace_zero K
+  have := AlgebraicCurve.nonempty_place_of_transcendental_of_finiteDimensional K x htr hfd
+  have := ModularCurve.isCurveOver_laurentBaseChange_qExpFunctionFieldC_gamma1 K M
+  have := AlgebraicCurve.essFiniteType_of_transcendental_of_finiteDimensional htr hfd
+  have := AlgebraicCurve.finiteDimensional_lSpace_zero K
     ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))
   exact AlgebraicCurve.finiteDimensional_lSpace D
 

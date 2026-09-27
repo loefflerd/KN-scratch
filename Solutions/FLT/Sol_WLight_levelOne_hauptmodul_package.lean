@@ -682,7 +682,7 @@ private theorem _root_.WLight.ModularFormClass.qExpansion_coeff_width {F : Type*
     {Γ : Subgroup (GL (Fin 2) ℝ)} {k : ℤ} [ModularFormClass F Γ k] (f : F)
     (h1 : (1 : ℝ) ∈ Γ.strictPeriods) {N : ℕ} (hN : N ≠ 0) (n : ℕ) :
     (qExpansion N f).coeff n = if N ∣ n then (qExpansion 1 f).coeff (n / N) else 0 := by
-  haveI : Fact (IsCusp OnePoint.infty Γ) := ⟨Γ.isCusp_of_mem_strictPeriods one_pos h1⟩
+  have : Fact (IsCusp OnePoint.infty Γ) := ⟨Γ.isCusp_of_mem_strictPeriods one_pos h1⟩
   exact WLight.qExpansion_coeff_width f hN (by simpa using periodic_comp_ofComplex f h1)
     (ModularFormClass.holo f) (ModularFormClass.bdd_at_infty f) n
 
@@ -1167,7 +1167,7 @@ theorem solution :
     rw [hdisc] at hbd
     exact levelOne_holFn_eq_polynomial_j m h hol hinv hbd
   · intro k N hN m h hol hinv hper hbd hmem
-    haveI : NeZero N := ⟨hN⟩
+    have : NeZero N := ⟨hN⟩
     rw [hdisc] at hper hbd hmem
     obtain ⟨P, hdeg, hP⟩ := levelOne_holFn_eq_polynomial_j m h hol hinv hbd
     obtain ⟨P', hP'k, hP'⟩ := kPole_invariant_eq_polynomial_j_mem

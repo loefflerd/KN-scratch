@@ -370,8 +370,8 @@ theorem solution
     (hP : x ∈ P.toValuationSubring) :
     ∃ τ : UpperHalfPlane, D.pt τ = P := by
   subst hF
-  haveI : Fact (ModularGroup.T ∈ Γ) := ⟨hT⟩
-  haveI : Fact ((x : LaurentSeries ℂ) = ModularCurve.jqModC ℂ) := ⟨hx⟩
+  have : Fact (ModularGroup.T ∈ Γ) := ⟨hT⟩
+  have : Fact ((x : LaurentSeries ℂ) = ModularCurve.jqModC ℂ) := ⟨hx⟩
   exact ModularCurve.Ws49.CCPL.exists_pt_eq Γ x D P hP
 
 end S_ModularCurve_ComplexPlaceDictionaryOf_exists_pt_eq_of_mem

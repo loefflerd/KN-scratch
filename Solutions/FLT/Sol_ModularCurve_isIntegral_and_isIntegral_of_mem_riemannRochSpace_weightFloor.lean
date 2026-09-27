@@ -57,7 +57,7 @@ theorem adicValuation_algebraMap {c : K} (hc : c ≠ 0) : w.adicValuation (algeb
   by_contra h
   rw [not_le] at h
   have : w.adicValuation (algebraMap K FF c) * w.adicValuation (algebraMap K FF c⁻¹) < 1 * 1 :=
-    mul_lt_mul_of_lt_of_le_of_nonneg_of_pos h h2 zero_le' zero_lt_one
+    mul_lt_mul_of_lt_of_le_of_nonneg_of_pos h h2 zero_le zero_lt_one
   rw [h1, one_mul] at this
   exact lt_irrefl _ this
 

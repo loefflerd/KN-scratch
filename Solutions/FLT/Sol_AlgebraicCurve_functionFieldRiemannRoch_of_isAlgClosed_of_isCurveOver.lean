@@ -38,8 +38,8 @@ theorem solution
     [Nontrivial Ω[(RatFunc K)⁄K]] [∀ v : AlgebraicCurve.Place K (RatFunc K), v.DCoordGenerates]
     [FiniteDimensional (RatFunc K) F] :
     AlgebraicCurve.FunctionFieldRiemannRoch K F := by
-  haveI : HasCanonicalLocalResidueKStar K F := instHasCanonicalLocalResidueKStar
-  haveI : HasSeparableResidue K F := HasSeparableResidue.of_perfectField_of_isCurveOver
+  have : HasCanonicalLocalResidueKStar K F := instHasCanonicalLocalResidueKStar
+  have : HasSeparableResidue K F := HasSeparableResidue.of_perfectField_of_isCurveOver
   intro _i1 _i2 _i3 ω hω D
   exact functionFieldRiemannRoch_of_isAlgClosed (K := K) (F := F) hω D
 

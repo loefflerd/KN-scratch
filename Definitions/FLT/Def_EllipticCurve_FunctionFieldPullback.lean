@@ -30,7 +30,7 @@ theorem isMaximal_of_isPrime {P : Ideal W.CoordinateRing} (hP : P ≠ ⊥) [P.Is
     P.IsMaximal := by
   have hc : (P.comap (algebraMap K[X] W.CoordinateRing)) ≠ ⊥ := fun h =>
     hP (Ideal.eq_bot_of_comap_eq_bot h)
-  haveI : (P.comap (algebraMap K[X] W.CoordinateRing)).IsMaximal :=
+  have : (P.comap (algebraMap K[X] W.CoordinateRing)).IsMaximal :=
     IsPrime.to_maximal_ideal hc
   exact Ideal.isMaximal_of_isIntegral_of_isMaximal_comap (R := K[X]) P inferInstance
 
@@ -39,8 +39,8 @@ theorem exists_comap_eq_span [IsAlgClosed K] {P : Ideal W.CoordinateRing} (hP : 
     ∃ a : K, P.comap (algebraMap K[X] W.CoordinateRing) = Ideal.span {X - C a} := by
   set p := P.comap (algebraMap K[X] W.CoordinateRing) with hp
   have hp0 : p ≠ ⊥ := fun h => hP (Ideal.eq_bot_of_comap_eq_bot h)
-  haveI : p.IsPrime := Ideal.comap_isPrime _ P
-  haveI hpmax : p.IsMaximal := IsPrime.to_maximal_ideal hp0
+  have : p.IsPrime := Ideal.comap_isPrime _ P
+  have hpmax : p.IsMaximal := IsPrime.to_maximal_ideal hp0
   set g := Submodule.IsPrincipal.generator p with hg
   have hgp : Ideal.span {g} = p := Ideal.span_singleton_generator p
   have hgprime : Prime g := Submodule.IsPrincipal.prime_generator_of_isPrime p hp0
@@ -92,12 +92,12 @@ theorem algebraMap_quot_eq_comp_eval {P : Ideal W.CoordinateRing} {a : K}
 theorem exists_eq_XYIdeal [IsAlgClosed K] {P : Ideal W.CoordinateRing} (hP : P ≠ ⊥) [P.IsPrime] :
     ∃ a b : K, W.Equation a b ∧ P = XYIdeal W a (C b) := by
   obtain ⟨a, ha⟩ := exists_comap_eq_span hP
-  haveI hPmax : P.IsMaximal := isMaximal_of_isPrime hP
+  have hPmax : P.IsMaximal := isMaximal_of_isPrime hP
   set L := W.CoordinateRing ⧸ P
   set π := Ideal.Quotient.mk P
   have hθ := algebraMap_quot_eq_comp_eval ha
 
-  haveI : Algebra.IsIntegral K L := ⟨fun z => by
+  have : Algebra.IsIntegral K L := ⟨fun z => by
     obtain ⟨m, hm, hm0⟩ := Algebra.IsIntegral.isIntegral (R := K[X]) z
     refine ⟨m.map (evalRingHom a), hm.map _, ?_⟩
     rw [eval₂_map, ← hθ]
@@ -216,7 +216,7 @@ theorem generic_equation :
 
 theorem generic_nonsingular [W.IsElliptic] :
     (W⁄(W⁄K).FunctionField).Nonsingular (genericX W K) (genericY W K) := by
-  haveI : (W⁄(W⁄K).FunctionField).IsElliptic := by
+  have : (W⁄(W⁄K).FunctionField).IsElliptic := by
     dsimp only [Affine.baseChange, WeierstrassCurve.baseChange]; infer_instance
   exact (equation_iff_nonsingular (W := W⁄(W⁄K).FunctionField)).mp (generic_equation W K)
 
@@ -315,9 +315,9 @@ theorem pointHom_injective_of_ne_baseChange [DecidableEq K] [IsAlgClosed K] [W.I
     have hm : a ∈ RingHom.ker (pointHom Q hQ) := (RingHom.mem_ker).mpr ha
     rw [h, Ideal.mem_bot] at hm
     exact ha0 hm
-  haveI : (RingHom.ker (pointHom Q hQ)).IsPrime := RingHom.ker_isPrime _
+  have : (RingHom.ker (pointHom Q hQ)).IsPrime := RingHom.ker_isPrime _
   obtain ⟨a, b, hab, hker'⟩ := CoordinateRing.exists_eq_XYIdeal hker
-  haveI : (W⁄K).IsElliptic := by
+  have : (W⁄K).IsElliptic := by
     dsimp only [Affine.baseChange, WeierstrassCurve.baseChange]; infer_instance
   have hns : (W⁄K).Nonsingular a b := (equation_iff_nonsingular (W := W⁄K)).mp hab
   have hx : Q.xc = algebraMap K _ a := by
@@ -384,7 +384,7 @@ theorem FunctionField.algHom_ext {φ ψ : (W⁄K).FunctionField →ₐ[K] (W⁄K
 theorem exists_eq_baseChange_of_isIntegral_xc [DecidableEq K] [IsAlgClosed K] [W.IsElliptic]
     (Q : (W⁄(W⁄K).FunctionField).Point) (hQ : Q ≠ 0) (hx : _root_.IsIntegral K Q.xc) :
     ∃ P : (W⁄K).Point, Q = Point.baseChange K (W⁄K).FunctionField P := by
-  haveI : (W⁄K).IsElliptic := by
+  have : (W⁄K).IsElliptic := by
     dsimp only [Affine.baseChange, WeierstrassCurve.baseChange]; infer_instance
 
   have hdx : (minpoly K Q.xc).degree = 1 :=
@@ -727,7 +727,7 @@ theorem mulPull_comp' {m n : ℤ} (hm : MulGood W K m) (hn : MulGood W K n) (hnm
 omit [DecidableEq K] in
 
 theorem exists_point_xc_eq (x : K) : ∃ P : (W⁄K).Point, P ≠ 0 ∧ P.xc = x := by
-  haveI : (W⁄K).IsElliptic := by
+  have : (W⁄K).IsElliptic := by
     dsimp only [Affine.baseChange, WeierstrassCurve.baseChange]; infer_instance
   set c := (W⁄K).a₁ * x + (W⁄K).a₃ with hc
   set d := -(x ^ 3 + (W⁄K).a₂ * x ^ 2 + (W⁄K).a₄ * x + (W⁄K).a₆) with hd
@@ -799,9 +799,9 @@ omit [DecidableEq K] in
 theorem placeOf_surjective [IsAlgClosed K] [W.IsElliptic]
     (v : IsDedekindDomain.HeightOneSpectrum (W⁄K).CoordinateRing) :
     ∃ (P : (W⁄K).Point) (hP : P ≠ 0), placeOf W K P hP = v := by
-  haveI : (W⁄K).IsElliptic := by
+  have : (W⁄K).IsElliptic := by
     dsimp only [Affine.baseChange, WeierstrassCurve.baseChange]; infer_instance
-  haveI := v.isPrime
+  have := v.isPrime
   obtain ⟨a, b, hab, hv⟩ := CoordinateRing.exists_eq_XYIdeal v.ne_bot
   refine ⟨.some a b ((equation_iff_nonsingular (W := W⁄K)).mp hab), Point.some_ne_zero _, ?_⟩
   exact IsDedekindDomain.HeightOneSpectrum.ext hv.symm

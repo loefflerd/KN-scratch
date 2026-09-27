@@ -81,7 +81,7 @@ theorem cycSubRootN_bijective (E : WeierstrassCurve H) [E.IsElliptic] {N : ℕ} 
     (hW1 : FullKernelIsRootAt N) (hW2 : FullKernelInjAt N) (hW3 : FullKernelDiscAt N)
     (data : ModularPolynomialData N) (hj : Transcendental Qbar E.j) :
     Function.Bijective (cycSubRootN E hW1 hW3 data) := by
-  haveI := finite_rootsAt data E.j
+  have := finite_rootsAt data E.j
   refine (cycSubRootN_injective E hW1 hW2 hW3 data hj).bijective_of_nat_card_le ?_
   rw [natCard_cycSubH]
   exact natCard_rootsAt_le data E.j

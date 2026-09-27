@@ -87,7 +87,7 @@ theorem slash_mdiff (g : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) (σ : S
 
 theorem slash_bddAtImInfty (g : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) (σ : SL(2, ℤ)) :
     IsBoundedAtImInfty (⇑g ∣[k] σ) := by
-  haveI hFact : Fact (IsCusp ∞ (ConjAct.toConjAct ((σ : GL (Fin 2) ℝ))⁻¹ •
+  have hFact : Fact (IsCusp ∞ (ConjAct.toConjAct ((σ : GL (Fin 2) ℝ))⁻¹ •
       ((Γ : Subgroup SL(2, ℤ)) : Subgroup (GL (Fin 2) ℝ)))) :=
     ⟨Subgroup.isCusp_of_mem_strictPeriods (wd_pos Γ) (natCast_mem_strictPeriods_translate Γ σ)⟩
   have h := ModularFormClass.bdd_at_infty
@@ -105,7 +105,7 @@ private theorem exists_chart {N : ℕ} [NeZero N] {F : ℍ → ℂ}
   set P := qExpansion N F with hP
 
   have hsummN : Summable fun n : ℕ => ‖P.coeff n‖ * (1 / 2 : ℝ) ^ n := by
-    letI : FiniteDimensional ℝ ℂ := basisOneI.finiteDimensional_of_finite
+    let : FiniteDimensional ℝ ℂ := basisOneI.finiteDimensional_of_finite
     have h1 : HasSum (fun n : ℕ => P.coeff n • ((1 / 2 : ℝ) : ℂ) ^ n)
         (cuspFunction N F ((1 / 2 : ℝ) : ℂ)) :=
       hasSum_qExpansion_of_norm_lt hN pF dF bF (by
@@ -268,7 +268,7 @@ private theorem qExpansion_natCast_coeff {F : ℍ → ℂ} (N : ℕ) [NeZero N]
     exact (hinj.hasSum_iff hoff).mp h1
   have hA : AnalyticAt ℂ (cuspFunction (N : ℝ) F) 0 :=
     analyticAt_cuspFunction_zero hN pN dF bF
-  letI : FunLike (ℍ → ℂ) ℍ ℂ := ⟨id, fun _ _ hfg => hfg⟩
+  let : FunLike (ℍ → ℂ) ℍ ℂ := ⟨id, fun _ _ hfg => hfg⟩
   exact (qExpansion_coeff_unique F hN hA key n).symm
 
 end S3CuspLimit
@@ -379,7 +379,7 @@ theorem solution
     have hev : ∀ᶠ w in 𝓝[≠] τ, dist (F (σ • w)) L ≤ ε / 2 := by
       filter_upwards [mem_nhdsWithin_of_mem_nhds hU] with w hw
       exact (hA w (le_of_lt hw)).1.le
-    haveI := Glue.punctured_nhds_neBot τ
+    have := Glue.punctured_nhds_neBot τ
     have hle : dist (G τ) L ≤ ε / 2 := le_of_tendsto (ht.dist tendsto_const_nhds) hev
     show dist (G τ) L < ε
     linarith

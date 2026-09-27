@@ -73,7 +73,7 @@ theorem surjective_algebraMap_residueField {K F : Type*} [Field K] [Field F] [Al
   ·
 
     have ht : Transcendental K (y : F) := halg
-    haveI := AlgebraicCurve.isAlgebraic_adjoin_of_transcendental t ht
+    have := AlgebraicCurve.isAlgebraic_adjoin_of_transcendental t ht
     by_contra hcon
     simp only [not_exists] at hcon
     have hunit : ∀ c : K, w.toValuationSubring.valuation ((y : F) - algebraMap K F c) = 1 := by
@@ -105,7 +105,7 @@ theorem deg_eq_one_of_isAlgebraic_adjoin {K F : Type*} [Field K] [Field F] [Alge
     [IsAlgClosed K] (t : F)
     [Algebra.IsAlgebraic (IntermediateField.adjoin K ({t} : Set F)) F] (w : Place K F) :
     w.deg = 1 := by
-  haveI : Module.Finite K w.ResidueField :=
+  have : Module.Finite K w.ResidueField :=
     Module.Finite.of_surjective (Algebra.linearMap K w.ResidueField)
       (surjective_algebraMap_residueField t w)
   exact w.deg_eq_one_of_isAlgClosed_of_finite
@@ -153,7 +153,7 @@ p2m_open_scoped "ModularCurve" in
 
 private theorem ModularCurve.deg_eq_one_modularFunctionFieldBar (M : ℕ) [NeZero M]
     (w : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar M)) : w.deg = 1 := by
-  haveI := B2Deg.finiteDimensional_adjoin_jBar M
+  have := B2Deg.finiteDimensional_adjoin_jBar M
   exact B2Deg.deg_eq_one_of_isAlgebraic_adjoin
     (⟨coeffEmb (AlgebraicClosure ℚ) jq,
       coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (jq_mem_full M)⟩ :

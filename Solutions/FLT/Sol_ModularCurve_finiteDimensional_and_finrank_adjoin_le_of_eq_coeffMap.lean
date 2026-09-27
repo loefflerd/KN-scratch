@@ -75,12 +75,12 @@ def iota : qExpFunctionFieldC K₀ Γ →+* qExpFunctionFieldC K Γ where
 theorem linearIndependent_coeffMap {ι : Type*} {v : ι → LaurentSeries K₀} (hv : LinearIndependent K₀ v) :
     LinearIndependent K (fun i => coeffMap φ (v i)) := by
   classical
-  letI : Algebra K₀ K := φ.toAlgebra
+  let : Algebra K₀ K := φ.toAlgebra
   have hφ : ∀ c : K₀, algebraMap K₀ K c = φ c := fun _ => rfl
   rw [linearIndependent_iff']
   intro s c hsum i hi
   let W : Submodule K₀ K := Submodule.span K₀ (Set.range fun j : s => c j)
-  haveI : Module.Finite K₀ W := Module.Finite.span_of_finite K₀ (Set.finite_range _)
+  have : Module.Finite K₀ W := Module.Finite.span_of_finite K₀ (Set.finite_range _)
   let b := Module.finBasis K₀ W
   have hcW : ∀ j : s, c j ∈ W := fun j => Submodule.subset_span ⟨j, rfl⟩
   let a : s → Fin (Module.finrank K₀ W) → K₀ := fun j l => b.repr ⟨c j, hcW j⟩ l

@@ -64,21 +64,21 @@ theorem solution (N : ℕ) [NeZero N]
       = j - algebraMap (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) 1728 := by
     rw [map_ofNat]
 
-  haveI : CharZero ↥(modularFunctionFieldBar N) :=
+  have : CharZero ↥(modularFunctionFieldBar N) :=
     charZero_of_injective_algebraMap (algebraMap (AlgebraicClosure ℚ) _).injective
-  haveI : IsCurveOver (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) := isCurveOver_modularFunctionFieldBar N
-  haveI : HasPrincipalDivisors (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) := IsCurveOver.hasPrincipalDivisors
-  haveI : Algebra.EssFiniteType (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) :=
+  have : IsCurveOver (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) := isCurveOver_modularFunctionFieldBar N
+  have : HasPrincipalDivisors (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) := IsCurveOver.hasPrincipalDivisors
+  have : Algebra.EssFiniteType (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) :=
     essFiniteType_modularFunctionFieldBar N
-  haveI hfd : FiniteDimensional ↥(IntermediateField.adjoin (AlgebraicClosure ℚ) ({j} : Set ↥(modularFunctionFieldBar N)))
+  have hfd : FiniteDimensional ↥(IntermediateField.adjoin (AlgebraicClosure ℚ) ({j} : Set ↥(modularFunctionFieldBar N)))
       ↥(modularFunctionFieldBar N) := finiteDimensional_adjoin_coeffEmb_jq_of_neZero N
-  haveI : CharZero ↥(IntermediateField.adjoin (AlgebraicClosure ℚ) ({j} : Set ↥(modularFunctionFieldBar N))) :=
+  have : CharZero ↥(IntermediateField.adjoin (AlgebraicClosure ℚ) ({j} : Set ↥(modularFunctionFieldBar N))) :=
     charZero_of_injective_algebraMap (algebraMap (AlgebraicClosure ℚ) _).injective
-  haveI : PerfectField ↥(IntermediateField.adjoin (AlgebraicClosure ℚ) ({j} : Set ↥(modularFunctionFieldBar N))) :=
+  have : PerfectField ↥(IntermediateField.adjoin (AlgebraicClosure ℚ) ({j} : Set ↥(modularFunctionFieldBar N))) :=
     PerfectField.ofCharZero
-  haveI : Algebra.IsIntegral ↥(IntermediateField.adjoin (AlgebraicClosure ℚ) ({j} : Set ↥(modularFunctionFieldBar N)))
+  have : Algebra.IsIntegral ↥(IntermediateField.adjoin (AlgebraicClosure ℚ) ({j} : Set ↥(modularFunctionFieldBar N)))
       ↥(modularFunctionFieldBar N) := Algebra.IsIntegral.of_finite _ _
-  haveI : Algebra.IsSeparable ↥(IntermediateField.adjoin (AlgebraicClosure ℚ) ({j} : Set ↥(modularFunctionFieldBar N)))
+  have : Algebra.IsSeparable ↥(IntermediateField.adjoin (AlgebraicClosure ℚ) ({j} : Set ↥(modularFunctionFieldBar N)))
       ↥(modularFunctionFieldBar N) := Algebra.IsSeparable.of_integral _ _
   have htr : Transcendental (AlgebraicClosure ℚ) j := transcendental_coeffEmb_jq (AlgebraicClosure ℚ) N
 
@@ -91,11 +91,11 @@ theorem solution (N : ℕ) [NeZero N]
   set S1 : Finset (Place (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N)) := (hfinc 1728).toFinset with hS1def
   set Sinf : Finset (Place (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N)) := hfinI.toFinset with hSIdef
   have hS0 : ∀ v, v ∈ S0 ↔ 0 < v.ord j := fun v => by
-    rw [hS0def, Set.Finite.mem_toFinset, Set.mem_setOf_eq, map_zero, sub_zero]
+    rw [hS0def, Set.Finite.mem_toFinset, Set.mem_ofPred_eq, map_zero, sub_zero]
   have hS1 : ∀ v, v ∈ S1 ↔ 0 < v.ord (j - algebraMap (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) 1728) :=
-    fun v => by rw [hS1def, Set.Finite.mem_toFinset, Set.mem_setOf_eq]
+    fun v => by rw [hS1def, Set.Finite.mem_toFinset, Set.mem_ofPred_eq]
   have hSI : ∀ v, v ∈ Sinf ↔ v.ord j < 0 := fun v => by
-    rw [hSIdef, Set.Finite.mem_toFinset, Set.mem_setOf_eq]
+    rw [hSIdef, Set.Finite.mem_toFinset, Set.mem_ofPred_eq]
 
   have hDj1728 : KaehlerDifferential.D (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) j
       = KaehlerDifferential.D (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N)

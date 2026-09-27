@@ -559,7 +559,7 @@ theorem mdifferentiable_sl_smul (γ : SL(2, ℤ)) : MDiff (fun τ : ℍ => γ �
 
 theorem famS_stable (γ : SL(2, ℤ)) : ∀ G ∈ famS M, (G ∘ (γ • ·)) ∈ famS M := by
   rintro G ⟨hG, hinv, hpb⟩
-  haveI : (CongruenceSubgroup.Gamma M).Normal := CongruenceSubgroup.Gamma_normal M
+  have : (CongruenceSubgroup.Gamma M).Normal := CongruenceSubgroup.Gamma_normal M
   refine ⟨hG.comp (mdifferentiable_sl_smul γ), fun δ hδ τ => ?_, fun γ' => ?_⟩
   · change G (γ • δ • τ) = G (γ • τ)
     have hconj : γ * δ * γ⁻¹ ∈ CongruenceSubgroup.Gamma M := Subgroup.Normal.conj_mem inferInstance δ hδ γ
@@ -909,7 +909,7 @@ theorem main (hΓ : CongruenceSubgroup.Gamma M ≤ Γ) (hT : ModularGroup.T ∈ 
         (∀ (G : ℍ → ℂ) (hG : G ∈ ring M),
             φ (algebraMap (ring M) K ⟨G, hG⟩) = algebraMap (ring M) K ⟨fun τ : ℍ => G (γ⁻¹ • τ), hst G hG⟩) →
         ∀ u, φ (Φ u) = Φ u := by
-  haveI : Γ.FiniteIndex := Subgroup.finiteIndex_of_le hΓ
+  have : Γ.FiniteIndex := Subgroup.finiteIndex_of_le hΓ
   refine ⟨Phi M K Γ ι hΓ hT, fun c => ?_, fun y hy => ?_,
     fun γ hγ hst φ hφ u => (Phi_mem M K Γ ι hΓ hT u) γ hγ hst φ hφ⟩
   · apply E_injective M K

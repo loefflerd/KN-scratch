@@ -61,7 +61,7 @@ theorem solution (N : ℕ) [NeZero N] :
       ∃ p : Polynomial ℚ, Irreducible p ∧ p.Monic ∧ p.eval 0 ≠ 0 ∧ p.eval 1728 ≠ 0 ∧
         0 < w.ord (Polynomial.aeval (⟨ModularCurve.jq, ModularCurve.jq_mem N⟩ : ↥(ModularCurve.modularFunctionField N)) p) ∧
         (w.ramificationIndex ↥ℚ⟮ModularCurve.jq⟯ : ℤ) = w.ord (Polynomial.aeval (⟨ModularCurve.jq, ModularCurve.jq_mem N⟩ : ↥(ModularCurve.modularFunctionField N)) p) := by
-  letI := ModularCurve.jAdjoinAlgebra N
+  let := ModularCurve.jAdjoinAlgebra N
   intro _ w h1728 h0 hinf
   obtain ⟨v', hv'⟩ := exists_eq_congr (w.restrict ↥ℚ⟮ModularCurve.jq⟯)
 

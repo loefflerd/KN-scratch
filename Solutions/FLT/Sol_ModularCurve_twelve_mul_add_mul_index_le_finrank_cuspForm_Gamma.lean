@@ -59,32 +59,32 @@ theorem curve_package {x : F} (htr : Transcendental K x)
   classical
   obtain ⟨t, ht, htfd, htsep⟩ :=
     AlgebraicCurve.exists_separating_transcendental_of_perfectField htr hfd
-  haveI := htfd
-  haveI := htsep
-  haveI hC1 : IsCurveOver K F := isCurveOver_of_transcendental ht htfd htsep
-  haveI hC2 : Algebra.EssFiniteType K F :=
+  have := htfd
+  have := htsep
+  have hC1 : IsCurveOver K F := isCurveOver_of_transcendental ht htfd htsep
+  have hC2 : Algebra.EssFiniteType K F :=
     essFiniteType_of_transcendental_of_finiteDimensional ht htfd
-  haveI : HasCanonicalDivisor (K := K) (F := F) := hasCanonicalDivisor_of_isCurveOver
-  haveI hC3 : ∀ w : Place K F, w.DCoordGenerates := dCoordGenerates_of_isCurveOver
+  have : HasCanonicalDivisor (K := K) (F := F) := hasCanonicalDivisor_of_isCurveOver
+  have hC3 : ∀ w : Place K F, w.DCoordGenerates := dCoordGenerates_of_isCurveOver
 
   set e : RatFunc K ≃ₐ[K] K⟮t⟯ := RatFunc.algEquivOfTranscendental t ht with he
-  letI : Algebra (RatFunc K) F := ((algebraMap K⟮t⟯ F).comp e.toAlgHom.toRingHom).toAlgebra
+  let : Algebra (RatFunc K) F := ((algebraMap K⟮t⟯ F).comp e.toAlgHom.toRingHom).toAlgebra
   have hsq : RingHom.comp (algebraMap (RatFunc K) F) (e.symm.toRingEquiv : K⟮t⟯ →+* RatFunc K)
       = RingHom.comp (RingEquiv.refl F : F →+* F) (algebraMap K⟮t⟯ F) := by
     refine RingHom.ext fun a => ?_
     show algebraMap K⟮t⟯ F (e (e.symm a)) = algebraMap K⟮t⟯ F a
     rw [e.apply_symm_apply]
-  haveI : IsScalarTower K (RatFunc K) F :=
+  have : IsScalarTower K (RatFunc K) F :=
     IsScalarTower.of_algebraMap_eq fun a => by
       show algebraMap K F a = algebraMap K⟮t⟯ F (e (algebraMap K (RatFunc K) a))
       rw [e.commutes, ← IsScalarTower.algebraMap_apply]
-  haveI : FiniteDimensional (RatFunc K) F :=
+  have : FiniteDimensional (RatFunc K) F :=
     Module.Finite.of_equiv_equiv e.symm.toRingEquiv (RingEquiv.refl F) hsq
-  haveI : Algebra.IsSeparable (RatFunc K) F :=
+  have : Algebra.IsSeparable (RatFunc K) F :=
     Algebra.IsSeparable.of_equiv_equiv e.symm.toRingEquiv (RingEquiv.refl F) hsq
-  haveI : Algebra.IsIntegral (RatFunc K) F := Algebra.IsIntegral.of_finite (RatFunc K) F
-  haveI : IsCurveOver K (RatFunc K) := isCurveOver_ratFunc K
-  haveI : FiniteDimensional (IntermediateField.adjoin K ({RatFunc.X} : Set (RatFunc K)))
+  have : Algebra.IsIntegral (RatFunc K) F := Algebra.IsIntegral.of_finite (RatFunc K) F
+  have : IsCurveOver K (RatFunc K) := isCurveOver_ratFunc K
+  have : FiniteDimensional (IntermediateField.adjoin K ({RatFunc.X} : Set (RatFunc K)))
       (RatFunc K) := by
     refine Module.Finite.of_surjective
       (Algebra.linearMap (IntermediateField.adjoin K ({RatFunc.X} : Set (RatFunc K)))
@@ -92,10 +92,10 @@ theorem curve_package {x : F} (htr : Transcendental K x)
     refine ⟨⟨y, ?_⟩, rfl⟩
     rw [RatFunc.adjoin_X]
     exact IntermediateField.mem_top
-  haveI : Algebra.EssFiniteType K (RatFunc K) :=
+  have : Algebra.EssFiniteType K (RatFunc K) :=
     essFiniteType_of_transcendental_of_finiteDimensional
       (RatFunc.transcendental_X (K := K)) inferInstance
-  haveI : ∀ v : Place K (RatFunc K), v.DCoordGenerates := dCoordGenerates_of_isCurveOver
+  have : ∀ v : Place K (RatFunc K), v.DCoordGenerates := dCoordGenerates_of_isCurveOver
   have hRR : FunctionFieldRiemannRoch K F := by
     unfold FunctionFieldRiemannRoch
     intro _ _ _ ω hω D
@@ -115,7 +115,7 @@ theorem isDomain_ring (N : ℕ) [NeZero N] : IsDomain (ring N) := by
     (fun v τ => rfl) (fricke N) (fun v τ => rfl) jAnalytic (fun τ => rfl)
   have hdom : ∀ a b : UpperHalfPlane → ℂ, a ∈ ring N → b ∈ ring N → a * b = 0 → a = 0 ∨ b = 0 :=
     h.2.2.2.2.2
-  haveI : NoZeroDivisors (ring N) :=
+  have : NoZeroDivisors (ring N) :=
     ⟨fun {a b} hab => by
       have h' := hdom (a : UpperHalfPlane → ℂ) b a.2 b.2 (by
         have := congrArg (Subtype.val) hab
@@ -123,7 +123,7 @@ theorem isDomain_ring (N : ℕ) [NeZero N] : IsDomain (ring N) := by
       rcases h' with h' | h'
       · left; exact Subtype.ext h'
       · right; exact Subtype.ext h'⟩
-  haveI : Nontrivial (ring N) := ⟨⟨0, 1, by
+  have : Nontrivial (ring N) := ⟨⟨0, 1, by
     intro h01
     have := congrArg (fun F : ring N => (F : UpperHalfPlane → ℂ) UpperHalfPlane.I) h01
     simp at this⟩⟩
@@ -134,8 +134,8 @@ theorem main (N : ℕ) (hN : 2 ≤ N) :
       12 * N * Module.finrank ℂ (CuspForm (CongruenceSubgroup.Gamma N) 2) +
         6 * (CongruenceSubgroup.Gamma N ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index := by
   classical
-  haveI : NeZero N := ⟨by omega⟩
-  haveI : IsDomain (ring N) := isDomain_ring N
+  have : NeZero N := ⟨by omega⟩
+  have : IsDomain (ring N) := isDomain_ring N
 
   let K := FractionRing (ring N)
 
@@ -148,8 +148,8 @@ theorem main (N : ℕ) (hN : 2 ≤ N) :
     ModularCurve.LevelN.exists_linearMap_regularDifferentials_cuspForm_injective N K
 
   obtain ⟨_, _, _, hfin, hg⟩ := curve_package (K := ℂ) (F := K) htr hfd
-  haveI := hfin
-  haveI : FiniteDimensional ℂ (CuspForm (CongruenceSubgroup.Gamma N) 2) :=
+  have := hfin
+  have : FiniteDimensional ℂ (CuspForm (CongruenceSubgroup.Gamma N) 2) :=
     CuspForm.finiteDimensional_of_isArithmetic _ 2
   have hle : Module.finrank ℂ ↥(regularDifferentials ℂ K) ≤
       Module.finrank ℂ (CuspForm (CongruenceSubgroup.Gamma N) 2) :=

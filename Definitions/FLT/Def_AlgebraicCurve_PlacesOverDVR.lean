@@ -191,7 +191,7 @@ theorem finite_setOf_forall_mem_and_ord_pos {r₀ : R} (hr₀ : r₀ ≠ 0) :
   have hfin : {p : HeightOneSpectrum R | p.asIdeal ∣ Ideal.span {r₀}}.Finite :=
     Ideal.finite_factors (by simpa [Ideal.span_singleton_eq_bot] using hr₀)
   rw [← Set.finite_coe_iff]
-  haveI := hfin.to_subtype
+  have := hfin.to_subtype
   refine Finite.of_injective
     (fun w => (⟨centerHeightOneSpectrum R w.1 w.2.1, ?_⟩ :
       {p : HeightOneSpectrum R | p.asIdeal ∣ Ideal.span {r₀}})) ?_
@@ -449,7 +449,7 @@ theorem finite_setOf_restrict_eq : {w : Place K F' | w.restrict F = v}.Finite :=
       exact ⟨(fiberCenter F' v w.2).isPrime, fiberCenter_liesOver w.2⟩⟩
   have hc : Function.Injective c := fun w w' h =>
     Subtype.ext (eq_of_fiberCenter_eq w.2 w'.2 (HeightOneSpectrum.ext (congrArg Subtype.val h)))
-  haveI : Finite {w : Place K F' | w.restrict F = v} := Finite.of_injective c hc
+  have : Finite {w : Place K F' | w.restrict F = v} := Finite.of_injective c hc
   exact Set.toFinite _
 
 variable (F') in

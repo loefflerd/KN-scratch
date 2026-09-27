@@ -1172,7 +1172,7 @@ theorem solution
 
   obtain ⟨b, hbsub, hbspan, hbind⟩ := exists_linearIndependent ↥K (Set.range u)
   have hbfin : b.Finite := (Set.finite_range u).subset hbsub
-  haveI : Fintype ↥b := hbfin.fintype
+  have : Fintype ↥b := hbfin.fintype
   have hdata : ∀ w : ↥b, MDifferentiable 𝓘(ℂ) 𝓘(ℂ) ((w : ℍ → ℂ)) ∧ ∃ m : ℕ,
       Function.Periodic (((w : ℍ → ℂ) * ModularForm.discriminant ^ m) ∘
         UpperHalfPlane.ofComplex) N ∧

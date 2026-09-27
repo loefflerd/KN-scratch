@@ -69,8 +69,8 @@ theorem finiteAlong_factor {C : Type*} [Field C] [Algebra K C]
 
 theorem isIntegral_of_finiteAlong {C : Type*} [Field C] [Algebra K C] (ξ : C →ₐ[K] A)
     (hfin : FiniteAlong K ξ) : ξ.toRingHom.IsIntegral := by
-  letI := algebraAlong ξ
-  haveI : Module.Finite C A := hfin
+  let := algebraAlong ξ
+  have : Module.Finite C A := hfin
   have h : Algebra.IsIntegral C A := Algebra.IsIntegral.of_finite C A
   intro a
   exact h.isIntegral a
@@ -78,7 +78,7 @@ theorem isIntegral_of_finiteAlong {C : Type*} [Field C] [Algebra K C] (ξ : C �
 theorem finrankAlong_eq_finrank_fieldRange (φ : A →ₐ[K] B) :
     finrankAlong K φ = Module.finrank φ.fieldRange B := by
   show (letI := algebraAlong φ; Module.finrank A B) = Module.finrank φ.fieldRange B
-  letI := algebraAlong φ
+  let := algebraAlong φ
   exact Algebra.finrank_eq_of_equiv_equiv
     (AlgEquiv.ofInjectiveField φ).toRingEquiv (RingEquiv.refl B) (by ext x; rfl)
 
@@ -107,11 +107,11 @@ theorem isRational_of_deg_eq_one (v : Place K A) (h : v.deg = 1) : v.IsRational 
 
 theorem normFormulaAlong_of_finiteAlong [CharZero K] [HasPrincipalDivisors K B]
     (ι : A →ₐ[K] B) (hfin : FiniteAlong K ι) : NormFormulaAlong K ι hfin := by
-  haveI : CharZero A := charZero_of_injective_algebraMap (algebraMap K A).injective
+  have : CharZero A := charZero_of_injective_algebraMap (algebraMap K A).injective
   have hsep : SeparableAlong K ι := by
-    letI := algebraAlong ι
-    haveI := isScalarTower_along ι
-    haveI : Module.Finite A B := hfin
+    let := algebraAlong ι
+    have := isScalarTower_along ι
+    have : Module.Finite A B := hfin
     show Algebra.IsSeparable A B
     infer_instance
   exact AlgebraicCurve.normFormulaAlong ι hfin hsep
@@ -280,8 +280,8 @@ theorem natCard_ker : Nat.card (φ.pointHom hNφ).ker = finrankAlong F φ.ι :=
   natCard_ker_pointMapOfPushforward_eq_finrankAlong V₀ V₁ φ.ι φ.hι φ.hfin hNφ
 
 theorem finrankAlong_pos : 0 < finrankAlong F φ.ι := by
-  letI := algebraAlong φ.ι
-  haveI : Module.Finite V₁.FunctionField V₀.FunctionField := φ.hfin
+  let := algebraAlong φ.ι
+  have : Module.Finite V₁.FunctionField V₀.FunctionField := φ.hfin
   exact Module.finrank_pos
 
 scoped instance instFiniteKer : Finite (φ.pointHom hNφ).ker :=
@@ -350,7 +350,7 @@ theorem solution
   have hξfin : FiniteAlong F ξ := finiteAlong_factor φ.ι ξ (by rw [hξ]; exact ψ.hfin)
   have hξint : ξ.toRingHom.IsIntegral := isIntegral_of_finiteAlong ξ hξfin
   let χ : IsogenyHomDatum V₁ V₂ := ⟨ξ, hξint, hξfin⟩
-  haveI : HasPrincipalDivisors F V₁.FunctionField := hasPrincipalDivisors_functionField V₁
+  have : HasPrincipalDivisors F V₁.FunctionField := hasPrincipalDivisors_functionField V₁
   have hNχ : NormFormulaAlong F χ.ι χ.hfin := normFormulaAlong_of_finiteAlong ξ hξfin
   refine ⟨χ, hNχ, fun P => ?_⟩
 

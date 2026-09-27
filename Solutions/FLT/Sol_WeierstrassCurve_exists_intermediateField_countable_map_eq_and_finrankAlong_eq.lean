@@ -348,7 +348,7 @@ theorem pointPullbackCoordHomTo_injective {xP yP : L}
     (hx : Function.Injective (Polynomial.aeval (R := F) xP)) :
     Function.Injective (pointPullbackCoordHomTo h) := by
   have hker : RingHom.ker (pointPullbackCoordHomTo h).toRingHom = ⊥ := by
-    haveI : Module.Finite F[X] W.CoordinateRing :=
+    have : Module.Finite F[X] W.CoordinateRing :=
       Module.Finite.of_basis (CoordinateRing.basis W)
     refine Ideal.eq_bot_of_comap_eq_bot (R := F[X]) ?_
     rw [RingHom.comap_ker, pointPullbackCoordHomTo_comp_algebraMap,
@@ -875,7 +875,7 @@ theorem kw_subfieldDescent_of_iotaDescend (K : Type uK) [Field K] [Algebra ℚ K
     KwIsogenyEndDatumSubfieldDescent'' K E N := by
   intro ⟨D, hDN⟩
   obtain ⟨K₀, hfg, E₀, hE₀ell, hE₀map, ι₀, hι₀, hfin₀, hdeg₀⟩ := hIota D
-  haveI : E₀.IsElliptic := hE₀ell
+  have : E₀.IsElliptic := hE₀ell
   exact ⟨K₀, hfg, E₀, hE₀ell, hE₀map, ⟨ι₀, hι₀, hfin₀⟩, hdeg₀.trans hDN⟩
 
 end ModularCurve
@@ -1258,7 +1258,7 @@ def kw_coordinateRingMapAlongGeneralNoAC :
 
 theorem kw_coordinateRingTensor_isDomainGeneralNoAC : IsDomain (CR ⊗[F] F') := by
   suffices h : IsDomain (F' ⊗[F] CR) by
-    haveI := h
+    have := h
     exact Function.Injective.isDomain (Algebra.TensorProduct.comm F CR F').toRingHom
       (Algebra.TensorProduct.comm F CR F').injective
   set W'' := (W⁄F).toAffine.map (algebraMap F F') with hW''
@@ -1280,16 +1280,16 @@ theorem kw_coordinateRingTensor_isDomainGeneralNoAC : IsDomain (CR ⊗[F] F') :=
 theorem kw_functionFieldTensorIsDomain_dischargeGeneralNoAC :
     KwFunctionFieldTensorIsDomainGeneralNoAC W F F' := by
   show IsDomain (FFₗ ⊗[F] F')
-  haveI hCR : IsDomain (CR ⊗[F] F') := kw_coordinateRingTensor_isDomainGeneralNoAC W F F'
-  letI : Algebra (CR ⊗[F] F') (FFₗ ⊗[F] F') :=
+  have hCR : IsDomain (CR ⊗[F] F') := kw_coordinateRingTensor_isDomainGeneralNoAC W F F'
+  let : Algebra (CR ⊗[F] F') (FFₗ ⊗[F] F') :=
     (Algebra.TensorProduct.map (IsScalarTower.toAlgHom F CR FFₗ)
       (AlgHom.id F F')).toRingHom.toAlgebra
-  haveI hst : IsScalarTower CR (CR ⊗[F] F') (FFₗ ⊗[F] F') :=
+  have hst : IsScalarTower CR (CR ⊗[F] F') (FFₗ ⊗[F] F') :=
     IsScalarTower.of_algebraMap_eq (R := CR) (S := CR ⊗[F] F') (A := FFₗ ⊗[F] F') fun c => by
       show Algebra.TensorProduct.map (IsScalarTower.toAlgHom F CR FFₗ) (AlgHom.id F F')
           (algebraMap CR (CR ⊗[F] F') c) = algebraMap CR (FFₗ ⊗[F] F') c
       rfl
-  haveI hloc : IsLocalization
+  have hloc : IsLocalization
       (Algebra.algebraMapSubmonoid (CR ⊗[F] F') (nonZeroDivisors CR)) (FFₗ ⊗[F] F') :=
     IsLocalization.tensorProduct_tensorProduct F F' (nonZeroDivisors CR) FFₗ (by
       ext x; simp [RingHom.algebraMap_toAlgebra, Algebra.TensorProduct.map_tmul])
@@ -1327,12 +1327,12 @@ theorem kw_tensorFracIotaFinrankSeam_dischargeGeneralNoAC :
   have hιT_fin : ιT.Finite := kw_tensorIotaRingHom_finiteGeneralNoAC W F F' D
   have hιFr_am : ∀ t : T, ιFr (algebraMap T FrT t) = algebraMap T FrT (ιT t) :=
     kw_tensorFracIotaRingHomGeneralNoAC_algebraMap W F F' D
-  letI algDι : Algebra FF FF := D.ι.toRingHom.toAlgebra
-  letI smulDι : SMul FF FF := algDι.toSMul
-  letI modDι : Module FF FF := Algebra.toModule
+  let algDι : Algebra FF FF := D.ι.toRingHom.toAlgebra
+  let smulDι : SMul FF FF := algDι.toSMul
+  let modDι : Module FF FF := Algebra.toModule
   have hsmul_Dι : ∀ (c x : FF), c • x = D.ι c * x := fun c x => rfl
-  haveI hfinFF : Module.Finite FF FF := D.hfin
-  haveI hfreeFF : Module.Free FF FF := Module.Free.of_divisionRing FF FF
+  have hfinFF : Module.Finite FF FF := D.hfin
+  have hfreeFF : Module.Free FF FF := Module.Free.of_divisionRing FF FF
   let b : Module.Basis (Fin D.degree) FF FF :=
     Module.finBasisOfFinrankEq FF FF (n := D.degree) rfl
   have hrepr_mul : ∀ (c x : FF) (j : Fin D.degree),
@@ -1448,9 +1448,9 @@ theorem kw_tensorFracIotaFinrankSeam_dischargeGeneralNoAC :
     have hthis : algebraMap T FrT (q : T) * d j = 0 := by
       rw [← hp' j, hpj, _root_.map_zero]
     exact (mul_eq_zero.mp hthis).resolve_left hq0
-  letI algFr : Algebra FrT FrT := ιFr.toAlgebra
-  letI smulFr : SMul FrT FrT := algFr.toSMul
-  letI modFr : Module FrT FrT := Algebra.toModule
+  let algFr : Algebra FrT FrT := ιFr.toAlgebra
+  let smulFr : SMul FrT FrT := algFr.toSMul
+  let modFr : Module FrT FrT := Algebra.toModule
   have hsmul_Fr : ∀ (c x : FrT), c • x = ιFr c * x := fun c x => rfl
   have hli_modFr : LinearIndependent FrT bFr := by
     rw [Fintype.linearIndependent_iff]
@@ -1492,8 +1492,8 @@ def KwIsogenyEndDatumBaseChangeToAlgebraicClosure'' (K₀ : Type uK) [Field K₀
 theorem kw_baseChangeToAC_uncond (K₀ : Type uK) [Field K₀] [DecidableEq K₀] [CharZero K₀]
     (E₀ : WeierstrassCurve K₀) [E₀.IsElliptic] (N : ℕ) :
     KwIsogenyEndDatumBaseChangeToAlgebraicClosure'' K₀ E₀ N := by
-  haveI : DecidableEq (AlgebraicClosure K₀) := Classical.decEq _
-  haveI : CharZero (AlgebraicClosure K₀) :=
+  have : DecidableEq (AlgebraicClosure K₀) := Classical.decEq _
+  have : CharZero (AlgebraicClosure K₀) :=
     charZero_of_injective_algebraMap (algebraMap K₀ (AlgebraicClosure K₀)).injective
   intro ⟨D', hD'⟩
   have hmap_id : E₀⁄K₀ = E₀ := by
@@ -1749,8 +1749,8 @@ theorem kw_iotaAtom_of_subfieldDescent_of_baseChangeToAC (K : Type uK) [Field K]
     KwIsogenyEndDatumFGFieldDescentIotaAtom' K E N := by
   intro hD
   obtain ⟨K₀, hfg, E₀, hE₀ell, hE₀map, D', hD'deg⟩ := hSD hD
-  haveI : E₀.IsElliptic := hE₀ell
-  haveI : CharZero (↥K₀) :=
+  have : E₀.IsElliptic := hE₀ell
+  have : CharZero (↥K₀) :=
     charZero_of_injective_algebraMap (algebraMap ℚ (↥K₀)).injective
   obtain ⟨D₀, hD₀deg⟩ := hBC (↥K₀) E₀ ⟨D', hD'deg⟩
   exact ⟨K₀, hfg, E₀, hE₀ell, hE₀map, D₀, hD₀deg⟩
@@ -2256,17 +2256,17 @@ variable {K : Type*} [Field K] (W : WeierstrassCurve.Affine K)
 theorem kw_iPFA_isTranscendenceBasis_coord :
     IsTranscendenceBasis K
       (fun _ : Fin 1 => algebraMap (RatFunc K) W.FunctionField RatFunc.X) := by
-  haveI : Algebra.IsAlgebraic (RatFunc K) (RatFunc K) :=
+  have : Algebra.IsAlgebraic (RatFunc K) (RatFunc K) :=
     Algebra.IsAlgebraic.of_finite (RatFunc K) (RatFunc K)
-  haveI : Algebra.IsAlgebraic (Polynomial K) (RatFunc K) :=
+  have : Algebra.IsAlgebraic (Polynomial K) (RatFunc K) :=
     (IsFractionRing.comap_isAlgebraic_iff
       (A := Polynomial K) (K := RatFunc K) (C := RatFunc K)).mpr inferInstance
-  haveI : FaithfulSMul (Polynomial K) (RatFunc K) :=
+  have : FaithfulSMul (Polynomial K) (RatFunc K) :=
     (faithfulSMul_iff_algebraMap_injective (Polynomial K) (RatFunc K)).mpr
       (IsFractionRing.injective (Polynomial K) (RatFunc K))
-  haveI : Algebra.IsAlgebraic (RatFunc K) W.FunctionField :=
+  have : Algebra.IsAlgebraic (RatFunc K) W.FunctionField :=
     Algebra.IsAlgebraic.of_finite (RatFunc K) W.FunctionField
-  haveI : FaithfulSMul (RatFunc K) W.FunctionField :=
+  have : FaithfulSMul (RatFunc K) W.FunctionField :=
     (faithfulSMul_iff_algebraMap_injective (RatFunc K) W.FunctionField).mpr
       (algebraMap (RatFunc K) W.FunctionField).injective
   have h0 : IsTranscendenceBasis K (fun _ : Fin 1 => (Polynomial.X : Polynomial K)) :=
@@ -2374,13 +2374,13 @@ theorem kw_iPFA_finiteAlong :
   have hle : (K₀ : Type uK)⟮xP⟯ ≤ ι₀.fieldRange :=
     IntermediateField.adjoin_simple_le_iff.mpr hxPrange
 
-  letI algIncl : Algebra (↥(K₀ : Type uK)⟮xP⟯) (↥ι₀.fieldRange) :=
+  let algIncl : Algebra (↥(K₀ : Type uK)⟮xP⟯) (↥ι₀.fieldRange) :=
     (IntermediateField.inclusion hle).toRingHom.toAlgebra
-  haveI towIncl : IsScalarTower (↥(K₀ : Type uK)⟮xP⟯) (↥ι₀.fieldRange)
+  have towIncl : IsScalarTower (↥(K₀ : Type uK)⟮xP⟯) (↥ι₀.fieldRange)
       E₀.toAffine.FunctionField :=
     IsScalarTower.of_algebraMap_eq (fun r => rfl)
 
-  haveI hfdR : FiniteDimensional (↥ι₀.fieldRange) E₀.toAffine.FunctionField :=
+  have hfdR : FiniteDimensional (↥ι₀.fieldRange) E₀.toAffine.FunctionField :=
     FiniteDimensional.right (↥(K₀ : Type uK)⟮xP⟯) (↥ι₀.fieldRange) E₀.toAffine.FunctionField
 
   show ι₀.toRingHom.Finite
@@ -2457,7 +2457,7 @@ theorem kw_iPFE_functionField_ringHom_ext {F : Type*} [Field F] {W : Affine F}
     (hF : ∀ r : F, f (algebraMap F W.FunctionField r) = g (algebraMap F W.FunctionField r))
     (hX : f (polyToFunctionField W X) = g (polyToFunctionField W X))
     (hy : f (yGen W) = g (yGen W)) : f = g := by
-  letI : Algebra F L := (f.comp (algebraMap F W.FunctionField)).toAlgebra
+  let : Algebra F L := (f.comp (algebraMap F W.FunctionField)).toAlgebra
   let f' : W.FunctionField →ₐ[F] L := { f with commutes' := fun _ => rfl }
   let g' : W.FunctionField →ₐ[F] L := { g with commutes' := fun r => (hF r).symm }
   have heq : f' = g' := kw_functionField_algHom_ext hX hy
@@ -2472,7 +2472,7 @@ theorem kw_iPFE_finrankEq : KwIotaPinnedFinrankEq E₀ D hcoeffs := by
   let D₀ : TreeIsogenyEndDatum (E₀⁄(K₀ : Type uK)) := ⟨ι₀, hint, hfin⟩
   have hD₀_deg : D₀.degree = finrankAlong K₀ ι₀ := rfl
 
-  haveI hdom : IsDomain ((E₀⁄(K₀ : Type uK)).FunctionField ⊗[K₀] K) :=
+  have hdom : IsDomain ((E₀⁄(K₀ : Type uK)).FunctionField ⊗[K₀] K) :=
     kw_functionFieldTensorIsDomain_dischargeGeneralNoAC E₀ (K₀ : Type uK) K
   let T := (E₀⁄(K₀ : Type uK)).FunctionField ⊗[K₀] K
   let FrT := FractionRing T

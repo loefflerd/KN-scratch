@@ -58,7 +58,7 @@ theorem IsFrobeniusEndo.restrictAlong_injective (h : IsFrobeniusEndo ℓ φ) (h�
 theorem IsFrobeniusEndo.ramificationIndexAlong_eq (h : IsFrobeniusEndo ℓ φ)
     (hℓ : ℓ ≠ 0) (w : Place K F) :
     Place.ramificationIndexAlong φ w = ℓ := by
-  letI := algebraAlong φ
+  let := algebraAlong φ
   show w.ramificationIndex F = ℓ
 
   obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible w.toValuationSubring
@@ -121,7 +121,7 @@ variable {φ : F →ₐ[K] F}
 theorem IsFrobeniusEndo.norm_eq_frobNorm (h : IsFrobeniusEndo ℓ φ)
     (hrank : finrankAlong K φ = ℓ) (f : F) :
     (letI := algebraAlong φ; Algebra.norm F f) = h.frobNorm f := by
-  letI := algebraAlong φ
+  let := algebraAlong φ
   have hpow : (Algebra.norm F f) ^ ℓ = (h.frobNorm f) ^ ℓ := by
     have h3 : Algebra.norm F (algebraMap F F (h.frobNorm f))
         = h.frobNorm f ^ finrankAlong K φ :=
@@ -142,9 +142,9 @@ theorem IsFrobeniusEndo.normFormulaAlong (h : IsFrobeniusEndo ℓ φ)
     (hf1 : ∀ w : Place K F, Place.inertiaDegAlong φ hφ w = 1) :
     NormFormulaAlong K φ hfin := by
   have hℓ : ℓ ≠ 0 := (Fact.out : ℓ.Prime).ne_zero
-  letI := algebraAlong φ
-  haveI := isScalarTower_along φ
-  haveI := isIntegral_along φ hφ
+  let := algebraAlong φ
+  have := isScalarTower_along φ
+  have := isIntegral_along φ hφ
   intro f hf D hD v
   classical
 
@@ -262,10 +262,10 @@ theorem IsFrobeniusEndo.fundamentalIdentityAlong (h : IsFrobeniusEndo ℓ φ) (h
     (hsurj : Function.Surjective (Place.restrictAlong φ hφ))
     (hf1 : ∀ w : Place K F, Place.inertiaDegAlong φ hφ w = 1) :
     FundamentalIdentityAlong K φ hφ := by
-  letI := algebraAlong φ
-  haveI := isScalarTower_along φ
-  haveI := isIntegral_along φ hφ
-  haveI : SumRamificationInertia K F F := by
+  let := algebraAlong φ
+  have := isScalarTower_along φ
+  have := isIntegral_along φ hφ
+  have : SumRamificationInertia K F F := by
     refine ⟨fun v => ?_⟩
     have hloc : ∑ w ∈ Place.fiberAlong φ hφ v,
         (Place.ramificationIndexAlong φ w : ℤ) * (Place.inertiaDegAlong φ hφ w : ℤ)

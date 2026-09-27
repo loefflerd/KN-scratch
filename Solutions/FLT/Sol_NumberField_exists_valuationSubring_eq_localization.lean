@@ -52,7 +52,7 @@ noncomputable def subring : Subring ℚ̄ where
 theorem comap_ne_bot (K : IntermediateField ℚ ℚ̄) [NumberField K] :
     Qt.comap (algebraMap (𝓞 K) (𝓞 ℚ̄)) ≠ ⊥ := by
 
-  haveI : (Qt.under ℤ).IsMaximal := Ideal.IsMaximal.under ℤ Qt
+  have : (Qt.under ℤ).IsMaximal := Ideal.IsMaximal.under ℤ Qt
   have hne : Qt.under ℤ ≠ ⊥ := Ring.ne_bot_of_isMaximal_of_not_isField inferInstance Int.not_isField
   obtain ⟨n, hn, hn0⟩ := Submodule.exists_mem_ne_zero_of_ne_bot hne
   rw [Ideal.under_def, Ideal.mem_comap] at hn
@@ -67,8 +67,8 @@ theorem mem_or_inv_mem (x : ℚ̄) : x ∈ carrier Qt ∨ x⁻¹ ∈ carrier Qt 
 
   have hx : IsIntegral ℚ x := Algebra.IsIntegral.isIntegral x
   let K : IntermediateField ℚ ℚ̄ := IntermediateField.adjoin ℚ {x}
-  haveI : FiniteDimensional ℚ K := IntermediateField.adjoin.finiteDimensional hx
-  haveI : NumberField K := NumberField.mk
+  have : FiniteDimensional ℚ K := IntermediateField.adjoin.finiteDimensional hx
+  have : NumberField K := NumberField.mk
   have hxK : x ∈ K := IntermediateField.mem_adjoin_simple_self ℚ x
 
   let v : IsDedekindDomain.HeightOneSpectrum (𝓞 K) :=

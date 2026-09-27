@@ -40,8 +40,8 @@ scoped instance smulCommClass_gal_ringOfIntegers : SMulCommClass (ℚ̄ ≃ₐ[E
 
 scoped instance continuousSMul_gal_ringOfIntegers :
     @ContinuousSMul (ℚ̄ ≃ₐ[E] ℚ̄) (𝓞 ℚ̄) _ _ ⊥ := by
-  letI : TopologicalSpace (𝓞 ℚ̄) := ⊥
-  haveI : DiscreteTopology (𝓞 ℚ̄) := ⟨rfl⟩
+  let : TopologicalSpace (𝓞 ℚ̄) := ⊥
+  have : DiscreteTopology (𝓞 ℚ̄) := ⟨rfl⟩
   rw [continuousSMul_iff_stabilizer_isOpen]
   intro b
   have h := stabilizer_isOpen_of_isIntegral (K := E) (L := ℚ̄) (b : ℚ̄)
@@ -98,15 +98,15 @@ theorem solution
       Qt.LiesOver Q ∧ AlgEquiv.restrictNormal τ E = arithFrobAt ℤ (E ≃ₐ[ℚ] E) Q ∧
       (∀ x : 𝓞 (AlgebraicClosure ℚ), τ • x ∈ Qt ↔ x ∈ Qt) ∧
       ∀ x : 𝓞 (AlgebraicClosure ℚ), τ • x - x ^ ℓ ∈ Qt := by
-  letI : TopologicalSpace (𝓞 ℚ̄) := ⊥
-  haveI : DiscreteTopology (𝓞 ℚ̄) := ⟨rfl⟩
+  let : TopologicalSpace (𝓞 ℚ̄) := ⊥
+  have : DiscreteTopology (𝓞 ℚ̄) := ⟨rfl⟩
 
   have hQbot : Q ≠ ⊥ := FrobeniusDensity.ne_bot_of_liesOver_ratPrimeIdeal hℓ
-  haveI hQmax : Q.IsMaximal := Ideal.IsPrime.isMaximal inferInstance hQbot
+  have hQmax : Q.IsMaximal := Ideal.IsPrime.isMaximal inferInstance hQbot
 
-  haveI : Algebra.IsIntegral (𝓞 E) (𝓞 ℚ̄) := IsIntegralClosure.isIntegral_algebra (𝓞 E) (A := 𝓞 ℚ̄) ℚ̄
+  have : Algebra.IsIntegral (𝓞 E) (𝓞 ℚ̄) := IsIntegralClosure.isIntegral_algebra (𝓞 E) (A := 𝓞 ℚ̄) ℚ̄
   obtain ⟨Qt, hQt, hQtQ⟩ := Ideal.exists_maximal_ideal_liesOver_of_isIntegral (S := 𝓞 ℚ̄) Q
-  haveI := hQt; haveI := hQtQ
+  have := hQt; have := hQtQ
 
   set φ : E ≃ₐ[ℚ] E := arithFrobAt ℤ (E ≃ₐ[ℚ] E) Q with hφdef
   have hφQ : φ • Q = Q := IsArithFrobAt.arithFrobAt_mem_stabilizer ℤ (E ≃ₐ[ℚ] E) Q
@@ -160,8 +160,8 @@ theorem solution
   have hℓQt : ((ℓ : ℕ) : 𝓞 ℚ̄) ∈ Qt := by
     have h2 := (Ideal.mem_of_liesOver Qt Q ((ℓ : ℤ) : 𝓞 E)).mp hℓQ
     simpa using h2
-  haveI : Fact ℓ.Prime := ⟨hℓ⟩
-  haveI hchar : CharP (𝓞 ℚ̄ ⧸ Qt) ℓ :=
+  have : Fact ℓ.Prime := ⟨hℓ⟩
+  have hchar : CharP (𝓞 ℚ̄ ⧸ Qt) ℓ :=
     (CharP.charP_iff_prime_eq_zero hℓ).mpr ((Ideal.Quotient.eq_zero_iff_mem).mpr (by simpa using hℓQt))
   let F : 𝓞 ℚ̄ ⧸ Qt →+* 𝓞 ℚ̄ ⧸ Qt := frobenius (𝓞 ℚ̄ ⧸ Qt) ℓ
   have hFbij : Function.Bijective F := by

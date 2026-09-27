@@ -154,8 +154,8 @@ theorem isGood_generic : IntegralCoeffs (goodModel j₀) ∧
       @WeierstrassCurve.j Qbar _ (specialFibre (goodModel j₀)) h = j₀ := by
   refine ⟨integralCoeffs_generic h0 h1728, ?_⟩
   rw [specialFibre_generic h0 h1728]
-  haveI : Fact (IsUnit j₀) := ⟨isUnit_iff_ne_zero.mpr h0⟩
-  haveI : Fact (IsUnit (j₀ - 1728)) := ⟨isUnit_iff_ne_zero.mpr (sub_ne_zero.mpr h1728)⟩
+  have : Fact (IsUnit j₀) := ⟨isUnit_iff_ne_zero.mpr h0⟩
+  have : Fact (IsUnit (j₀ - 1728)) := ⟨isUnit_iff_ne_zero.mpr (sub_ne_zero.mpr h1728)⟩
   exact ⟨inferInstance, ofJNe0Or1728_j j₀⟩
 
 end Generic
@@ -222,7 +222,7 @@ theorem isGood_1728 : IntegralCoeffs (goodModel 1728) ∧
   rw [specialFibre_1728]
   have hΔ : (⟨0, 0, 0, -36, 0⟩ : WeierstrassCurve Qbar).Δ ≠ 0 := by
     rw [delta_j1728]; norm_num
-  haveI : (⟨0, 0, 0, -36, 0⟩ : WeierstrassCurve Qbar).IsElliptic := ⟨isUnit_iff_ne_zero.mpr hΔ⟩
+  have : (⟨0, 0, 0, -36, 0⟩ : WeierstrassCurve Qbar).IsElliptic := ⟨isUnit_iff_ne_zero.mpr hΔ⟩
   refine ⟨inferInstance, ?_⟩
   rw [j_eq, c4_j1728, delta_j1728]
   norm_num
@@ -333,7 +333,7 @@ theorem isGood_0 : IntegralCoeffs (goodModel 0) ∧
   have ha : ((-1728 : Qbar) ^ 5 / 864) ≠ 0 := by norm_num
   have hΔ : (⟨0, 0, 0, 0, (-1728 : Qbar) ^ 5 / 864⟩ : WeierstrassCurve Qbar).Δ ≠ 0 := by
     rw [delta_j0]; exact mul_ne_zero (by norm_num) (pow_ne_zero _ ha)
-  haveI : (⟨0, 0, 0, 0, (-1728 : Qbar) ^ 5 / 864⟩ : WeierstrassCurve Qbar).IsElliptic :=
+  have : (⟨0, 0, 0, 0, (-1728 : Qbar) ^ 5 / 864⟩ : WeierstrassCurve Qbar).IsElliptic :=
     ⟨isUnit_iff_ne_zero.mpr hΔ⟩
   refine ⟨inferInstance, ?_⟩
   rw [j_eq, c4_j0]

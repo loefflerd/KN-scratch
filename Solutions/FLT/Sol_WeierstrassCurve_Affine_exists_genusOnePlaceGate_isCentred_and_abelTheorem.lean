@@ -49,10 +49,10 @@ scoped instance : Algebra.FiniteType F W.CoordinateRing :=
 
 theorem exists_eq_XYIdeal_of_isMaximal [IsAlgClosed F] (𝔪 : Ideal W.CoordinateRing)
     (h𝔪 : 𝔪.IsMaximal) : ∃ x y : F, W.Equation x y ∧ XYIdeal W x (C y) = 𝔪 := by
-  haveI := h𝔪
+  have := h𝔪
 
-  letI : Field (W.CoordinateRing ⧸ 𝔪) := Ideal.Quotient.field 𝔪
-  haveI : Module.Finite F (W.CoordinateRing ⧸ 𝔪) :=
+  let : Field (W.CoordinateRing ⧸ 𝔪) := Ideal.Quotient.field 𝔪
+  have : Module.Finite F (W.CoordinateRing ⧸ 𝔪) :=
     finite_of_finite_type_of_isJacobsonRing F (W.CoordinateRing ⧸ 𝔪)
   have he : Function.Bijective (algebraMap F (W.CoordinateRing ⧸ 𝔪)) :=
     IsAlgClosed.algebraMap_bijective_of_isIntegral
@@ -243,7 +243,7 @@ p2m_open "AlgebraicCurve"
 
 theorem le_exp_neg_one_of_lt_one {x : ℤᵐ⁰} (hx : x < 1) : x ≤ exp (-1 : ℤ) := by
   rcases eq_or_ne x 0 with rfl | hx0
-  · exact zero_le'
+  · exact zero_le
   · rw [← exp_log hx0] at hx ⊢
     rw [show (1 : ℤᵐ⁰) = exp 0 from rfl, exp_lt_exp] at hx
     rw [exp_le_exp]
@@ -865,7 +865,7 @@ theorem isFinitePlace_iff_exists_placeOfEquation [IsAlgClosed F]
   constructor
   · intro hv
 
-    haveI := hv.centre_isPrime
+    have := hv.centre_isPrime
     have hmax : hv.centre.IsMaximal := Ideal.IsPrime.isMaximal hv.centre_isPrime hv.centre_ne_bot
     obtain ⟨x, y, hxy, hXY⟩ := CoordinateRing.exists_eq_XYIdeal_of_isMaximal hv.centre hmax
     refine ⟨x, y, hxy, ?_⟩
@@ -873,7 +873,7 @@ theorem isFinitePlace_iff_exists_placeOfEquation [IsAlgClosed F]
     set w : HeightOneSpectrum W.CoordinateRing := heightOneSpectrumOfEquation hxy with hw
     set A : ValuationSubring W.FunctionField :=
       HeightOneSpectrum.valuationSubringAtPrime W.FunctionField w with hA
-    haveI hAded : IsDedekindDomain A := by rw [hA]; infer_instance
+    have hAded : IsDedekindDomain A := by rw [hA]; infer_instance
     have hle : A ≤ v.toValuationSubring := by
       intro z hz
       rw [hA] at hz
@@ -1580,7 +1580,7 @@ theorem exists_smul_sub_natDegree_norm_lt {a b : W.CoordinateRing} (hb : b ≠ 0
 
   have hn2 : 2 ≤ n := by omega
   have hn1' : 1 ≤ n - 1 := by omega
-  haveI : FiniteDimensional F (RRSpace W n) :=
+  have : FiniteDimensional F (RRSpace W n) :=
     Module.Finite.of_basis (RRSpace.finBasis W n (by omega))
 
   have hbnot : b ∉ RRSpace W (n - 1) := by
@@ -1600,7 +1600,7 @@ theorem exists_smul_sub_natDegree_norm_lt {a b : W.CoordinateRing} (hb : b ≠ 0
       refine hbnot ?_
       rw [hcon]
       exact (le_sup_right (a := RRSpace W (n - 1))) (Submodule.mem_span_singleton_self b)
-    haveI : FiniteDimensional F (RRSpace W (n - 1) ⊔ Submodule.span F {b} : Submodule F _) :=
+    have : FiniteDimensional F (RRSpace W (n - 1) ⊔ Submodule.span F {b} : Submodule F _) :=
       Submodule.finiteDimensional_of_le hle
     have h1 := Submodule.finrank_lt_finrank_of_lt hlt
     rw [RRSpace.finrank_eq (n - 1) hn1'] at h1
@@ -2266,7 +2266,7 @@ theorem solution
       deg_eq_one := fun v => by
         obtain ⟨P, rfl⟩ := WeierstrassCurve.Affine.geomPlaceOfPoint_surjective (WeierstrassCurve.Affine.isElliptic_Δ_ne_zero (W := W)) v
         exact WeierstrassCurve.Affine.deg_geomPlaceOfPoint P }
-  letI := g
+  let := g
   refine ⟨g, ⟨?_, ?_⟩, ⟨?_⟩⟩
   ·
     intro x y h

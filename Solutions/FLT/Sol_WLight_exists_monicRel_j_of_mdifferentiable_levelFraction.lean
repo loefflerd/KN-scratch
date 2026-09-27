@@ -582,7 +582,7 @@ theorem exists_monicRel_j_of_mdifferentiable_levelFraction_of_deps
       simpa [sub_eq_zero] using this
     · exact absurd h hb0
 
-  haveI : Fintype (Matrix.SpecialLinearGroup (Fin 2) ℤ ⧸ CongruenceSubgroup.Gamma N) := Fintype.ofFinite _
+  have : Fintype (Matrix.SpecialLinearGroup (Fin 2) ℤ ⧸ CongruenceSubgroup.Gamma N) := Fintype.ofFinite _
   set orb := gammaOrbit N F (fun γ hγ => hFinv γ hγ) with horb
   have hperm : ∀ γ : Matrix.SpecialLinearGroup (Fin 2) ℤ,
       ∃ σ : Equiv.Perm (Matrix.SpecialLinearGroup (Fin 2) ℤ ⧸ CongruenceSubgroup.Gamma N),

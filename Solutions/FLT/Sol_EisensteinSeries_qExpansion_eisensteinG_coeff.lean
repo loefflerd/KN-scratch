@@ -27,7 +27,7 @@ lemma eisensteinG_eq (N : ℕ) (k : ℤ) (a : Fin 2 → ZMod N) :
 
 lemma vecMul_mem_congrSet {a : Fin 2 → ZMod N} {v : Fin 2 → ℤ} (hv : v ∈ congrSet N a)
     (γ : SL(2, ℤ)) : v ᵥ* (γ : Matrix (Fin 2) (Fin 2) ℤ) ∈ congrSet N (a ᵥ* γ) := by
-  simp only [congrSet, Set.mem_setOf_eq] at hv ⊢
+  simp only [congrSet, Set.mem_ofPred_eq] at hv ⊢
   have := RingHom.map_vecMul (m := Fin 2) (n := Fin 2) (Int.castRingHom (ZMod N)) γ v
   simp only [eq_intCast, Int.coe_castRingHom] at this
   simp_rw [Function.comp_def, this, ← hv]
@@ -320,7 +320,7 @@ lemma tsum_cls_split (b : ZMod N) (F : ℤ → ℂ) (hF : Summable F) :
     rw [show (∑' c : cls N b, F c.1) = ∑' c : ({c : ℤ | (c : ZMod N) = b} : Set ℤ), F c from rfl,
       tsum_subtype]
     refine tsum_congr fun c => ?_
-    simp only [Set.indicator_apply, Set.mem_setOf_eq, hG]
+    simp only [Set.indicator_apply, Set.mem_ofPred_eq, hG]
   have hs1 : Summable fun n : ℕ => G n := hG'.comp_injective Nat.cast_injective
   have hs2 : Summable fun n : ℕ => G (-(n + 1)) :=
     hG'.comp_injective (i := fun n : ℕ => (-(n + 1) : ℤ)) (fun m n h => by simpa using h)

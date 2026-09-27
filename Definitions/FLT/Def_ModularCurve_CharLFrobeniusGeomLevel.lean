@@ -188,7 +188,7 @@ include data hKr in
 theorem pow_mem_frobeniusGeomLevelImage
     {x : LaurentSeries K} (hx : x ∈ modularFunctionFieldC K N) :
     x ^ ℓ ∈ frobeniusGeomLevelImage K N (ℓ := ℓ) := by
-  haveI : CharP (LaurentSeries K) ℓ := charP_laurentSeries K
+  have : CharP (LaurentSeries K) ℓ := charP_laurentSeries K
   induction hx using IntermediateField.adjoin_induction with
   | mem y hy =>
     rcases hy with rfl | rfl
@@ -258,7 +258,7 @@ theorem frobImageIsIntegral :
     letI := frobImageAlgebra K N data hKr
     Algebra.IsIntegral (frobeniusGeomLevelImage K N (ℓ := ℓ))
       (modularFunctionFieldC K N) := by
-  letI := frobImageAlgebra K N data hKr
+  let := frobImageAlgebra K N data hKr
   refine ⟨fun x => ?_⟩
   refine ⟨Polynomial.X ^ ℓ - Polynomial.C
     ⟨(x : LaurentSeries K) ^ ℓ, pow_mem_frobeniusGeomLevelImage K N data hKr x.2⟩,
@@ -281,9 +281,9 @@ theorem mem_frobOnPlacesGeomLevel_iff (w : Place K (modularFunctionFieldC K N))
     (x : modularFunctionFieldC K N) :
     x ∈ (frobOnPlacesGeomLevel K N data hKr w).toValuationSubring
       ↔ frobeniusGeomLevel K N data hKr x ∈ w.toValuationSubring := by
-  letI := frobImageAlgebra K N data hKr
-  letI := frobImageTower K N data hKr
-  letI := frobImageIsIntegral K N data hKr
+  let := frobImageAlgebra K N data hKr
+  let := frobImageTower K N data hKr
+  let := frobImageIsIntegral K N data hKr
   rw [show frobOnPlacesGeomLevel K N data hKr w
       = (Place.congrEquiv (frobeniusGeomLevelEquiv K N (ℓ := ℓ)).toRingEquiv
           (fun a => (frobeniusGeomLevelEquiv K N (ℓ := ℓ)).commutes a)).symm
@@ -395,9 +395,9 @@ theorem exists_ramification_frobenius (w : Place K (modularFunctionFieldC K N)) 
       ∀ g : modularFunctionFieldC K N,
         w.ord (frobeniusGeomLevel K N data hKr g)
           = e * (frobOnPlacesGeomLevel K N data hKr w).ord g := by
-  letI := frobImageAlgebra K N data hKr
-  letI := frobImageTower K N data hKr
-  letI := frobImageIsIntegral K N data hKr
+  let := frobImageAlgebra K N data hKr
+  let := frobImageTower K N data hKr
+  let := frobImageIsIntegral K N data hKr
   refine ⟨Place.ramificationIndex (F := frobeniusGeomLevelImage K N (ℓ := ℓ)) w,
     Place.ramificationIndex_pos w, ?_, fun g => ?_⟩
   ·
@@ -503,9 +503,9 @@ theorem comap_algebraMap_ne_top [Algebra.IsIntegral F F'] :
     ValuationSubring.mem_comap.mp (htop ▸ ValuationSubring.mem_top f)
 
   refine SetLike.ext fun x => ⟨fun _ => ValuationSubring.mem_top x, fun _ => ?_⟩
-  letI : Algebra F w.toValuationSubring :=
+  let : Algebra F w.toValuationSubring :=
     ((algebraMap F F').codRestrict w.toValuationSubring.toSubring hF).toAlgebra
-  letI : IsScalarTower F w.toValuationSubring F' :=
+  let : IsScalarTower F w.toValuationSubring F' :=
     IsScalarTower.of_algebraMap_eq fun f => rfl
   have hx : IsIntegral w.toValuationSubring x :=
     (Algebra.IsIntegral.isIntegral (R := F) x).tower_top
@@ -638,7 +638,7 @@ include data hKr in
 theorem exists_pow_eq_frobeniusGeomLevel (hperf : ∀ c : K, ∃ d : K, d ^ ℓ = c)
     (y : modularFunctionFieldC K N) :
     ∃ x : modularFunctionFieldC K N, frobeniusGeomLevel K N data hKr y = x ^ ℓ := by
-  haveI : CharP (LaurentSeries K) ℓ := charP_laurentSeries K
+  have : CharP (LaurentSeries K) ℓ := charP_laurentSeries K
 
   have key : ∀ z : LaurentSeries K, z ∈ modularFunctionFieldC K N →
       ∃ w : LaurentSeries K, w ∈ modularFunctionFieldC K N ∧ qExpand K ℓ z = w ^ ℓ := by
@@ -927,8 +927,8 @@ def extendPlace (v : Place K F) : Place K F where
     exact (v.toValuationSubring.pow_mem_iff (Fact.out : ℓ.Prime).pos.ne' z).mp hz
   isPrincipalIdealRing' := by
 
-    letI : Algebra F F := h.frobNormRingHom.toAlgebra
-    haveI : Algebra.IsIntegral F F := ⟨h.frobNormRingHom_isIntegral⟩
+    let : Algebra F F := h.frobNormRingHom.toAlgebra
+    have : Algebra.IsIntegral F F := ⟨h.frobNormRingHom_isIntegral⟩
     exact v.isPrincipalIdealRing_comap (F := F)
 
 theorem mem_extendPlace_iff (v : Place K F) (y : F) :
@@ -988,7 +988,7 @@ include data hKr in
 theorem frobOnPlacesGeomLevel_extendPlaceGeomLevel (hperf : ∀ c : K, ∃ d : K, d ^ ℓ = c)
     (v : Place K (modularFunctionFieldC K N)) :
     frobOnPlacesGeomLevel K N data hKr (extendPlaceGeomLevel K N data hKr hperf v) = v := by
-  haveI : CharP (modularFunctionFieldC K N) ℓ := charP_modularFunctionFieldC K N
+  have : CharP (modularFunctionFieldC K N) ℓ := charP_modularFunctionFieldC K N
   rw [extendPlaceGeomLevel, ← restrictAlong_frobeniusGeomLevel_eq K N data hKr hperf]
   exact (isFrobeniusEndo_frobeniusGeomLevel K N data hKr hperf).restrictAlong_extendPlace
     (frobeniusGeomLevel_isIntegral K N data hKr hperf) v
@@ -1012,7 +1012,7 @@ include data hKr in
 theorem verOnPlacesGeomLevel_eq_extendPlaceGeomLevel (hperf : ∀ c : K, ∃ d : K, d ^ ℓ = c)
     (u : Place K (modularFunctionFieldC K N)) :
     verOnPlacesGeomLevel K N data hKr u = extendPlaceGeomLevel K N data hKr hperf u := by
-  haveI : CharP (modularFunctionFieldC K N) ℓ := charP_modularFunctionFieldC K N
+  have : CharP (modularFunctionFieldC K N) ℓ := charP_modularFunctionFieldC K N
   obtain ⟨w, rfl⟩ := frobOnPlacesGeomLevel_surjective K N data hKr hperf u
   rw [verOnPlacesGeomLevel_frobOnPlacesGeomLevel K N data hKr w, extendPlaceGeomLevel,
     ← restrictAlong_frobeniusGeomLevel_eq K N data hKr hperf]

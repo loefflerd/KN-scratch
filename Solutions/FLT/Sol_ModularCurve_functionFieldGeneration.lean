@@ -203,8 +203,8 @@ theorem roots_phiProd_conj_nodup (p : ℕ) [hp : Fact p.Prime] (ζ : Kˣ) (hζ :
 
 theorem exists_isPrimitiveRoot_cyclotomicField (N : ℕ) [NeZero N] :
     ∃ z : CyclotomicField N ℚ, IsPrimitiveRoot z N := by
-  haveI : NeZero ((N : ℕ) : ℚ) := ⟨Nat.cast_ne_zero.mpr (NeZero.ne N)⟩
-  haveI : IsCyclotomicExtension {N} ℚ (CyclotomicField N ℚ) := CyclotomicField.isCyclotomicExtension N ℚ
+  have : NeZero ((N : ℕ) : ℚ) := ⟨Nat.cast_ne_zero.mpr (NeZero.ne N)⟩
+  have : IsCyclotomicExtension {N} ℚ (CyclotomicField N ℚ) := CyclotomicField.isCyclotomicExtension N ℚ
   exact IsCyclotomicExtension.exists_isPrimitiveRoot ℚ (CyclotomicField N ℚ) (Set.mem_singleton N) (NeZero.ne N)
 
 def cycUnit (N : ℕ) [NeZero N] : (CyclotomicField N ℚ)ˣ :=
@@ -485,7 +485,7 @@ private theorem gen_one : Gen 1 := by
   refine le_antisymm (modularFunctionField_le_full 1) ?_
   rw [modularFunctionFieldFull, IntermediateField.adjoin_le_iff]
   rintro x ⟨d, hne, hdvd, rfl⟩
-  haveI := hne
+  have := hne
   have hd1 : d = 1 := Nat.dvd_one.mp hdvd
   subst hd1
   rw [qExpand_one_apply]
@@ -564,7 +564,7 @@ private theorem root_shape (M : ℕ) [NeZero M] (p : ℕ) [hp : Fact (Nat.Prime 
   rw [Polynomial.eval₂_sub, Polynomial.eval₂_X, Polynomial.eval₂_C, sub_eq_zero] at hy
   have ha0 : a ≠ 0 := Nat.ne_of_gt (Nat.pos_of_mem_divisors ha)
   rw [dif_neg ha0] at hy
-  haveI : NeZero a := ⟨ha0⟩
+  have : NeZero a := ⟨ha0⟩
   refine ⟨a, ⟨ha0⟩, Nat.dvd_of_mem_divisors ha, b, (Finset.mem_range.mp (Finset.mem_filter.mp hb).1), ?_⟩
   rw [hy]
   change qExpand K p (TS K (a * a) (ζ ^ (b * a))) = _
@@ -636,7 +636,7 @@ private theorem hall_all : ∀ N : ℕ, N ≠ 0 → Hall N := by
     unfold Gen
     refine ModularCurve.modularFunctionField_eq_full_of d ?_ ?_
     · intro M _ p hp hMp
-      haveI : Fact (Nat.Prime p) := ⟨hp⟩
+      have : Fact (Nat.Prime p) := ⟨hp⟩
       have hMlt : M < d := by
         rw [← hMp]; exact lt_mul_of_one_lt_right (Nat.pos_of_ne_zero (NeZero.ne M)) hp.one_lt
       have hallM : Hall M := hprop M ⟨p, hMp.symm⟩ hMlt
@@ -658,10 +658,10 @@ private theorem hall_all : ∀ N : ℕ, N ≠ 0 → Hall N := by
   unfold Tight
   set p := d.minFac with hpdef
   have hp : p.Prime := Nat.minFac_prime h1
-  haveI : Fact (Nat.Prime p) := ⟨hp⟩
+  have : Fact (Nat.Prime p) := ⟨hp⟩
   obtain ⟨k, M, hpM, hdM⟩ := Nat.exists_eq_pow_mul_and_not_dvd hN p hp.ne_one
   have hM0 : M ≠ 0 := by rintro rfl; rw [mul_zero] at hdM; exact hN hdM
-  haveI : NeZero M := ⟨hM0⟩
+  have : NeZero M := ⟨hM0⟩
   obtain ⟨a, rfl⟩ : ∃ a, k = a + 1 := by
     rcases k with - | a
     · exfalso

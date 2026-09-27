@@ -78,8 +78,8 @@ def pullbackDiff (φ : F →ₐ[K] F') : Ω[F⁄K] →ₗ[K] Ω[F'⁄K] :=
 
 theorem pullbackDiff_D (φ : F →ₐ[K] F') (x : F) :
     pullbackDiff φ (D K F x) = D K F' (φ x) := by
-  letI : Algebra F F' := φ.toRingHom.toAlgebra
-  haveI : IsScalarTower K F F' := IsScalarTower.of_algebraMap_eq fun k => (φ.commutes k).symm
+  let : Algebra F F' := φ.toRingHom.toAlgebra
+  have : IsScalarTower K F F' := IsScalarTower.of_algebraMap_eq fun k => (φ.commutes k).symm
   exact KaehlerDifferential.map_D K K F F' x
 
 end Pullback

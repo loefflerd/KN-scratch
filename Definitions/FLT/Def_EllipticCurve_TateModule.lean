@@ -346,8 +346,8 @@ def kerMulPEquiv (n : ℕ) : (mulP p M n).ker ≃ torsionBy ℤ M ((p ^ 1 : ℕ)
 
 theorem mulP_surjective (hcard : ∀ n : ℕ, Nat.card (torsionBy ℤ M ((p ^ n : ℕ) : ℤ)) = (p ^ n) ^ 2) (n : ℕ) :
     Function.Surjective (mulP p M n) := by
-  haveI := finite_torsionBy hcard (n + 1)
-  haveI := finite_torsionBy hcard n
+  have := finite_torsionBy hcard (n + 1)
+  have := finite_torsionBy hcard n
   have hker : Nat.card (mulP p M n).ker = p ^ 2 := by
     rw [Nat.card_congr (kerMulPEquiv p M n), hcard 1, pow_one]
   have h := AddSubgroup.card_eq_card_quotient_mul_card_addSubgroup (mulP p M n).ker
@@ -462,12 +462,12 @@ theorem exists_indep_pair_torsionBy_one
     (hcard : ∀ n : ℕ, Nat.card (torsionBy ℤ M ((p ^ n : ℕ) : ℤ)) = (p ^ n) ^ 2) :
     ∃ e₁ ∈ torsionBy ℤ M ((p ^ 1 : ℕ) : ℤ), ∃ e₂ ∈ torsionBy ℤ M ((p ^ 1 : ℕ) : ℤ),
       ∀ a b : ℤ, a • e₁ + b • e₂ = 0 → (p : ℤ) ∣ a ∧ (p : ℤ) ∣ b := by
-  haveI := finite_torsionBy hcard 1
+  have := finite_torsionBy hcard 1
   have hmod : ∀ m : torsionBy ℤ M ((p ^ 1 : ℕ) : ℤ), p • m = 0 := fun m =>
     Subtype.ext (by
       rw [coe_smul_of_tower, ← Nat.cast_smul_eq_nsmul ℤ, Submodule.coe_zero]
       exact smul_eq_zero_of_mem_torsionBy_one m.2)
-  letI : Module (ZMod p) (torsionBy ℤ M ((p ^ 1 : ℕ) : ℤ)) := AddCommGroup.zmodModule hmod
+  let : Module (ZMod p) (torsionBy ℤ M ((p ^ 1 : ℕ) : ℤ)) := AddCommGroup.zmodModule hmod
   have h1 : Nat.card (torsionBy ℤ M ((p ^ 1 : ℕ) : ℤ)) = p ^ 2 := by rw [hcard 1, pow_one]
   obtain ⟨v, w, h⟩ := exists_pair_of_card_eq_sq (p := p) h1
   refine ⟨v, v.2, w, w.2, fun a b hab => h a b (Subtype.ext ?_)⟩
@@ -508,7 +508,7 @@ noncomputable def levelMap (x y : TateModule p M) (n : ℕ) (c : ZMod (p ^ n) ×
 theorem levelMap_injective {x y : TateModule p M}
     (h1 : ∀ a b : ℤ, a • (x : ℕ → M) 1 + b • (y : ℕ → M) 1 = 0 → (p : ℤ) ∣ a ∧ (p : ℤ) ∣ b) (n : ℕ) :
     Function.Injective (levelMap x y n) := by
-  haveI : NeZero (p ^ n) := ⟨pow_ne_zero _ (Fact.out : p.Prime).ne_zero⟩
+  have : NeZero (p ^ n) := ⟨pow_ne_zero _ (Fact.out : p.Prime).ne_zero⟩
   rintro ⟨a, b⟩ ⟨a', b'⟩ h
   have h' : ((a.val : ℤ) - a'.val) • (x : ℕ → M) n + ((b.val : ℤ) - b'.val) • (y : ℕ → M) n = 0 := by
     have := sub_eq_zero.mpr (congrArg Subtype.val h)
@@ -525,7 +525,7 @@ theorem levelMap_bijective (hcard : ∀ n : ℕ, Nat.card (torsionBy ℤ M ((p ^
     {x y : TateModule p M}
     (h1 : ∀ a b : ℤ, a • (x : ℕ → M) 1 + b • (y : ℕ → M) 1 = 0 → (p : ℤ) ∣ a ∧ (p : ℤ) ∣ b) (n : ℕ) :
     Function.Bijective (levelMap x y n) := by
-  haveI := finite_torsionBy hcard n
+  have := finite_torsionBy hcard n
   refine (levelMap_injective h1 n).bijective_of_nat_card_le ?_
   rw [hcard n, Nat.card_prod, Nat.card_zmod, sq]
 
@@ -711,7 +711,7 @@ theorem finiteDimensional_torsionField (n : ℕ)
         Set (W⁄(AlgebraicClosure ℚ)).Point),
       Affine.Point.coords (W := W.baseChange (AlgebraicClosure ℚ)) P).Finite :=
     Set.Finite.biUnion (Set.finite_coe_iff.mp hfin) fun P _ => Affine.Point.coords_finite P
-  haveI := hS.to_subtype
+  have := hS.to_subtype
 
   exact IntermediateField.finiteDimensional_adjoin fun z _ => by
     convert ((AlgebraicClosure.isAlgebraic ℚ).isAlgebraic z).isIntegral

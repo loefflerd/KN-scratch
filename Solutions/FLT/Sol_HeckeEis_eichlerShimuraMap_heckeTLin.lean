@@ -53,8 +53,8 @@ lemma exists_cocycle {N : ℕ} {ℓ : ℕ} (hℓ : ℓ.Prime) (hℓN : ¬ ℓ �
     ∃ δ : SL(2, ℤ), δ ∈ Gamma0 N ∧ ∃ m : Option (Fin ℓ),
       repMat ℓ i * (g : Matrix (Fin 2) (Fin 2) ℤ)
         = (δ : Matrix (Fin 2) (Fin 2) ℤ) * repMat ℓ m := by
-  haveI : NeZero ℓ := ⟨hℓ.ne_zero⟩
-  haveI : Fact ℓ.Prime := ⟨hℓ⟩
+  have : NeZero ℓ := ⟨hℓ.ne_zero⟩
+  have : Fact ℓ.Prime := ⟨hℓ⟩
   have hℓ0 : (ℓ : ℤ) ≠ 0 := by exact_mod_cast hℓ.ne_zero
 
   have hdetG : (g : Matrix (Fin 2) (Fin 2) ℤ) 0 0 * (g : Matrix (Fin 2) (Fin 2) ℤ) 1 1 -
@@ -893,7 +893,7 @@ theorem solution (N : ℕ) [NeZero N] (n : ℕ) {ℓ : ℕ} (hℓ : ℓ.Prime) (
     (f : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2)) :
     T (HeckeEis.eichlerShimuraMap n N f)
       = HeckeEis.eichlerShimuraMap n N (CuspForm.heckeTLin ((n : ℤ) + 2) hℓ hℓN f) := by
-  haveI : NeZero ℓ := ⟨hℓ.ne_zero⟩
+  have : NeZero ℓ := ⟨hℓ.ne_zero⟩
   obtain ⟨F, hEI, hF, hpar⟩ := HeckeEis.exists_isEichlerIntegral_isParabolicCocycle N n f
 
   have hGEI : IsEichlerIntegral n (CuspForm.heckeTLin ((n : ℤ) + 2) hℓ hℓN f) (heckeEichler N ℓ n F) := by

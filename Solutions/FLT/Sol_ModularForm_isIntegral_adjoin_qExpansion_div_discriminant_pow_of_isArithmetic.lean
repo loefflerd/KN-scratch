@@ -298,7 +298,7 @@ theorem solution {𝒢 : Subgroup (GL (Fin 2) ℝ)} [𝒢.IsArithmetic] [𝒢.Ha
     rw [Ne, ← PowerSeries.coe_zero]
     exact fun h0 => hΔ0 (HahnSeries.ofPowerSeries_injective h0)
   have hΔmL : ((qExpansion 1 (ModularForm.discriminant : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) ^ m ≠ 0 := pow_ne_zero m hΔL
-  letI : Fintype (𝒮ℒ ⧸ (𝒢 ⊓ 𝒮ℒ).subgroupOf 𝒮ℒ) := Fintype.ofFinite _
+  let : Fintype (𝒮ℒ ⧸ (𝒢 ⊓ 𝒮ℒ).subgroupOf 𝒮ℒ) := Fintype.ofFinite _
   have h1' : (1 : ℝ) ∈ (𝒢 ⊓ 𝒮ℒ).strictPeriods := one_mem_strictPeriods_inf h1
   have h1'' : (1 : ℝ) ∈ ((𝒢 ⊓ 𝒮ℒ) ⊓ 𝒮ℒ).strictPeriods := one_mem_strictPeriods_inf h1'
 

@@ -59,7 +59,7 @@ theorem cycSubRootOdd_injective (E : WeierstrassCurve H) [E.IsElliptic] {N : ℕ
 theorem cycSubRootOdd_bijective (E : WeierstrassCurve H) [E.IsElliptic] {N : ℕ} [NeZero N] (hN : Odd N)
     (data : ModularPolynomialData N) (hj : Transcendental Qbar E.j) :
     Function.Bijective (cycSubRootOdd E hN data) := by
-  haveI := finite_rootsAt data E.j
+  have := finite_rootsAt data E.j
   refine (cycSubRootOdd_injective E hN data hj).bijective_of_nat_card_le ?_
   rw [natCard_cycSubH]
   exact natCard_rootsAt_le data E.j

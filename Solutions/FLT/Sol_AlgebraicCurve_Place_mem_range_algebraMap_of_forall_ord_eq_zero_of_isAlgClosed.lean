@@ -39,7 +39,7 @@ theorem AlgebraicCurve.isSeparable_of_finrank_fieldRange_frobenius_eq
     (y : E) (hy : algebraMap E F y ∉ (frobenius F p).fieldRange) :
     Algebra.IsSeparable E F := by
   set S : Subfield F := (frobenius F p).fieldRange with hS
-  haveI : IsSimpleOrder (IntermediateField S F) :=
+  have : IsSimpleOrder (IntermediateField S F) :=
     IntermediateField.isSimpleOrder_of_finrank_prime S F (by rw [hdeg]; exact Fact.out)
 
   set D := KaehlerDifferential.D E F with hD
@@ -53,18 +53,18 @@ theorem AlgebraicCurve.isSeparable_of_finrank_fieldRange_frobenius_eq
     { carrier := {z | D z = 0}
       mul_mem' := by
         intro a b ha hb
-        simp only [Set.mem_setOf_eq] at ha hb ⊢
+        simp only [Set.mem_ofPred_eq] at ha hb ⊢
         rw [D.leibniz, ha, hb, smul_zero, smul_zero, add_zero]
       one_mem' := D.map_one_eq_zero
       add_mem' := by
         intro a b ha hb
-        simp only [Set.mem_setOf_eq] at ha hb ⊢
+        simp only [Set.mem_ofPred_eq] at ha hb ⊢
         rw [map_add, ha, hb, add_zero]
       zero_mem' := map_zero D
       algebraMap_mem' := fun s => hDS _ s.2
       inv_mem' := by
         intro z hz
-        simp only [Set.mem_setOf_eq] at hz ⊢
+        simp only [Set.mem_ofPred_eq] at hz ⊢
         rw [D.leibniz_inv, hz, smul_zero] }
   have hyZ : IntermediateField.adjoin S {algebraMap E F y} ≤ Z :=
     IntermediateField.adjoin_le_iff.mpr (Set.singleton_subset_iff.mpr hDy)
@@ -84,7 +84,7 @@ theorem AlgebraicCurve.isSeparable_of_finrank_fieldRange_frobenius_eq
     have hz : z ∈ Z := hZ ▸ IntermediateField.mem_top
     exact hz
 
-  haveI : Subsingleton (KaehlerDifferential E F) := by
+  have : Subsingleton (KaehlerDifferential E F) := by
     refine subsingleton_of_forall_eq 0 fun ω => ?_
     have hω : ω ∈ Submodule.span F (Set.range D) := by
       rw [hD, KaehlerDifferential.span_range_derivation]
@@ -94,7 +94,7 @@ theorem AlgebraicCurve.isSeparable_of_finrank_fieldRange_frobenius_eq
       rintro _ ⟨z, rfl⟩
       exact (Submodule.mem_bot F).mpr (hD0 z)
     exact (Submodule.mem_bot F).mp (hle hω)
-  haveI : Algebra.FormallyUnramified E F := ⟨inferInstance⟩
+  have : Algebra.FormallyUnramified E F := ⟨inferInstance⟩
   exact Algebra.FormallyUnramified.isSeparable E F
 
 namespace AlgebraicCurve
@@ -153,7 +153,7 @@ theorem le_finrank_adjoin_of_pow_eq (y : F) (hy : Transcendental K y) [FiniteDim
 theorem fieldRange_frobenius_ratFunc (K : Type*) [Field K] (p : ℕ) [Fact p.Prime] [CharP K p]
     [PerfectRing K p] :
     (frobenius (RatFunc K) p).fieldRange = K⟮(RatFunc.X : RatFunc K) ^ p⟯.toSubfield := by
-  haveI : CharP (RatFunc K) p := (Algebra.charP_iff K (RatFunc K) p).mp inferInstance
+  have : CharP (RatFunc K) p := (Algebra.charP_iff K (RatFunc K) p).mp inferInstance
   have halg : ∀ g : K[X], algebraMap K[X] (RatFunc K) g = Polynomial.aeval (RatFunc.X : RatFunc K) g :=
     fun g => by rw [← RatFunc.algebraMap_X, Polynomial.aeval_algebraMap_apply, Polynomial.aeval_X_left_apply]
   apply le_antisymm
@@ -189,7 +189,7 @@ theorem finrank_fieldRange_frobenius_ratFunc (K : Type*) [Field K] (p : ℕ) [Fa
 theorem finrank_fieldRange_frobenius_eq_of_transcendental (p : ℕ) [Fact p.Prime] [CharP K p]
     [CharP F p] [PerfectRing K p] (y : F) (hy : Transcendental K y) [FiniteDimensional K⟮y⟯ F] :
     Module.finrank (frobenius F p).fieldRange F = p := by
-  haveI : CharP (RatFunc K) p := (Algebra.charP_iff K (RatFunc K) p).mp inferInstance
+  have : CharP (RatFunc K) p := (Algebra.charP_iff K (RatFunc K) p).mp inferInstance
   set ψ : RatFunc K →+* F := (ratFuncHom y hy).toRingHom with hψ
   have hcomm : ψ.comp (frobenius (RatFunc K) p) = (frobenius F p).comp ψ :=
     RingHom.ext fun r => by simp only [RingHom.comp_apply, frobenius_def, map_pow]
@@ -260,17 +260,17 @@ theorem Place.mem_range_algebraMap_of_forall_ord_eq_zero_core [IsAlgClosed K]
   by_cases hp : p = 0
   ·
     subst hp
-    haveI := hchar
-    haveI : CharZero F := CharP.charP_to_charZero F
-    haveI : CharZero K⟮x⟯ := (algebraMap K⟮x⟯ F).charZero
-    haveI := hfin x hxt
-    haveI : Algebra.IsAlgebraic K⟮x⟯ F := Algebra.IsAlgebraic.of_finite _ _
+    have := hchar
+    have : CharZero F := CharP.charP_to_charZero F
+    have : CharZero K⟮x⟯ := (algebraMap K⟮x⟯ F).charZero
+    have := hfin x hxt
+    have : Algebra.IsAlgebraic K⟮x⟯ F := Algebra.IsAlgebraic.of_finite _ _
     exact pole x hxt hx Algebra.IsAlgebraic.isSeparable_of_perfectField
   ·
-    haveI := hchar
-    haveI hpp : Fact p.Prime := ⟨(CharP.char_is_prime_or_zero F p).resolve_right hp⟩
-    haveI : CharP K p := (Algebra.charP_iff K F p).mpr hchar
-    haveI : ExpChar K p := ExpChar.prime hpp.out
+    have := hchar
+    have hpp : Fact p.Prime := ⟨(CharP.char_is_prime_or_zero F p).resolve_right hp⟩
+    have : CharP K p := (Algebra.charP_iff K F p).mpr hchar
+    have : ExpChar K p := ExpChar.prime hpp.out
     have step : ∀ n : ℕ, ∃ y : F, y ^ p ^ n = x := by
       intro n
       induction n with
@@ -282,7 +282,7 @@ theorem Place.mem_range_algebraMap_of_forall_ord_eq_zero_core [IsAlgClosed K]
           have h := hx v
           rw [← hy, ← zpow_natCast, v.ord_zpow] at h
           exact (mul_eq_zero.mp h).resolve_left (by exact_mod_cast pow_ne_zero n hpp.out.ne_zero)
-        haveI := hfin y hyt
+        have := hfin y hyt
         by_contra hne
         push Not at hne
         have hyp : y ∉ (frobenius F p).fieldRange := by
@@ -297,10 +297,10 @@ theorem Place.mem_range_algebraMap_of_forall_ord_eq_zero_core [IsAlgClosed K]
             ⟨y, IntermediateField.mem_adjoin_simple_self K y⟩ hyp
         exact pole y hyt hy0 hsep
 
-    haveI := hfin x hxt
+    have := hfin x hxt
     obtain ⟨y, hy⟩ := step (Module.finrank K⟮x⟯ F)
     have hyt : Transcendental K y := transcendental_of_pow_eq hxt hy
-    haveI := hfin y hyt
+    have := hfin y hyt
     have hle := le_finrank_adjoin_of_pow_eq y hyt _ hy
     exact absurd hle (not_le.mpr (Nat.lt_pow_self hpp.out.one_lt))
 
@@ -332,13 +332,13 @@ theorem AlgebraicCurve.Place.exists_ord_neg_of_transcendental_of_isSeparable
   have hψX : ψ RatFunc.X = x := by
     rw [hψ_def, RatFunc.liftAlgHom_apply, RatFunc.num_X, RatFunc.denom_X, Polynomial.aeval_X,
       map_one, div_one]
-  letI : Algebra (RatFunc K) F := ψ.toRingHom.toAlgebra
-  haveI : IsScalarTower K (RatFunc K) F :=
+  let : Algebra (RatFunc K) F := ψ.toRingHom.toAlgebra
+  have : IsScalarTower K (RatFunc K) F :=
     IsScalarTower.of_algebraMap_eq fun c => (ψ.commutes c).symm
 
   have hEle : IntermediateField.adjoin K ({x} : Set F) ≤ ψ.fieldRange :=
     IntermediateField.adjoin_le_iff.mpr (Set.singleton_subset_iff.mpr ⟨RatFunc.X, hψX⟩)
-  haveI : Module.Finite (RatFunc K) F := by
+  have : Module.Finite (RatFunc K) F := by
     obtain ⟨s, hs⟩ := Module.finite_def.mp
       (inferInstance : Module.Finite (IntermediateField.adjoin K ({x} : Set F)) F)
     refine Module.finite_def.mpr ⟨s, ?_⟩
@@ -370,7 +370,7 @@ theorem AlgebraicCurve.Place.exists_ord_neg_of_transcendental_of_isSeparable
   have hfr : ψ.fieldRange = IntermediateField.adjoin K ({x} : Set F) := le_antisymm hle hEle
   let eKx : RatFunc K ≃ₐ[K] ↥(IntermediateField.adjoin K ({x} : Set F)) :=
     (AlgEquiv.ofInjectiveField ψ).trans (IntermediateField.equivOfEq hfr)
-  haveI : Algebra.IsSeparable (RatFunc K) F := by
+  have : Algebra.IsSeparable (RatFunc K) F := by
     refine Algebra.IsSeparable.of_equiv_equiv eKx.symm.toRingEquiv (RingEquiv.refl F) ?_
     refine RingHom.ext fun z => ?_
     show ψ (eKx.symm z) = algebraMap (IntermediateField.adjoin K ({x} : Set F)) F z

@@ -444,8 +444,8 @@ private theorem AlgebraicCurve.Place.ord_dvd_of_forall_hahnSeries_embedding_hasR
   have hψ₀X : ψ₀ (algebraMap K[X] (RatFunc K) Polynomial.X) = HahnSeries.C a + HahnSeries.single (1 : ℚ) (1 : L) := by
     rw [hψ₀]; exact Polynomial.aeval_X _
 
-  haveI : Algebra.IsAlgebraic (RatFunc K) F := Algebra.IsAlgebraic.of_finite (RatFunc K) F
-  haveI : IsAlgClosed (HahnSeries ℚ L) := HahnSeries.isAlgClosed_rat
+  have : Algebra.IsAlgebraic (RatFunc K) F := Algebra.IsAlgebraic.of_finite (RatFunc K) F
+  have : IsAlgClosed (HahnSeries ℚ L) := HahnSeries.isAlgClosed_rat
   obtain ⟨Ψ, hΨ⟩ := IsAlgClosed.surjective_restrictDomain_of_isAlgebraic (K := K) (L := RatFunc K)
     (M := HahnSeries ℚ L) (E := AlgebraicClosure F) ψ₀
   have hΨr : ∀ r : RatFunc K, Ψ (algebraMap (RatFunc K) (AlgebraicClosure F) r) = ψ₀ r := fun r => by
@@ -478,15 +478,15 @@ private theorem AlgebraicCurve.Place.ord_dvd_of_forall_hahnSeries_embedding_hasR
     change Ψ (f (algebraMap (RatFunc K) F (algebraMap K[X] (RatFunc K) Polynomial.X))) = _
     rw [f.commutes, hΨr, hψ₀X]
 
-  haveI : CharZero F := charZero_of_injective_algebraMap (algebraMap K F).injective
-  haveI : IsGalois (RatFunc K) (AlgebraicClosure F) := ⟨⟩
-  haveI : IsScalarTower K F (normalClosure (RatFunc K) F (AlgebraicClosure F)) :=
+  have : CharZero F := charZero_of_injective_algebraMap (algebraMap K F).injective
+  have : IsGalois (RatFunc K) (AlgebraicClosure F) := ⟨⟩
+  have : IsScalarTower K F (normalClosure (RatFunc K) F (AlgebraicClosure F)) :=
     IsScalarTower.of_algebraMap_eq (R := K) (S := F) (A := ↥(normalClosure (RatFunc K) F (AlgebraicClosure F)))
       (fun k => Subtype.ext (show algebraMap K (AlgebraicClosure F) k
         = algebraMap F (AlgebraicClosure F) (algebraMap K F k) from IsScalarTower.algebraMap_apply K F _ k))
-  haveI : Module.Finite F (normalClosure (RatFunc K) F (AlgebraicClosure F)) :=
+  have : Module.Finite F (normalClosure (RatFunc K) F (AlgebraicClosure F)) :=
     Module.Finite.of_restrictScalars_finite (RatFunc K) F _
-  haveI : Algebra.IsAlgebraic F (normalClosure (RatFunc K) F (AlgebraicClosure F)) :=
+  have : Algebra.IsAlgebraic F (normalClosure (RatFunc K) F (AlgebraicClosure F)) :=
     Algebra.IsAlgebraic.of_finite F _
   let ΨM : normalClosure (RatFunc K) F (AlgebraicClosure F) →ₐ[K] HahnSeries ℚ L :=
     Ψ.comp ((normalClosure (RatFunc K) F (AlgebraicClosure F)).val.restrictScalars K)

@@ -32,7 +32,7 @@ def thetaLikeSeries (L m c₀ : ℕ) : PowerSeries ℤ :=
 variable (L : ℕ) [NeZero L]
 
 scoped instance : HasEnoughRootsOfUnity ℂ (Monoid.exponent (ZMod L)ˣ) := by
-  haveI : NeZero ((Monoid.exponent (ZMod L)ˣ : ℕ) : ℂ) :=
+  have : NeZero ((Monoid.exponent (ZMod L)ˣ : ℕ) : ℂ) :=
     ⟨Nat.cast_ne_zero.mpr Monoid.exponent_ne_zero_of_finite⟩
   infer_instance
 
@@ -58,7 +58,7 @@ theorem two_mul_oddCharSum (a : ZMod L) :
   · subst ha
     have hne : (-1 : ZMod L) ≠ 1 ∨ L ≤ 2 := by
       by_cases hL : 2 < L
-      · exact Or.inl (by haveI : Fact (2 < L) := ⟨hL⟩; exact ZMod.neg_one_ne_one)
+      · exact Or.inl (by have : Fact (2 < L) := ⟨hL⟩; exact ZMod.neg_one_ne_one)
       · exact Or.inr (not_lt.mp hL)
     by_cases h' : (-1 : ZMod L) = 1
     · simp [h']
@@ -316,7 +316,7 @@ theorem exists_dvd_four_or_odd_prime {M : ℕ} (hM : 3 ≤ M) :
 
 theorem isPrimitive_of_ne_one_of_prime {p : ℕ} (hp : p.Prime) (χ : DirichletCharacter ℂ p)
     (hχ : χ ≠ 1) : χ.IsPrimitive := by
-  haveI : NeZero p := ⟨hp.ne_zero⟩
+  have : NeZero p := ⟨hp.ne_zero⟩
   rcases (Nat.dvd_prime hp).mp χ.conductor_dvd_level with h | h
   · exact absurd (DirichletCharacter.eq_one_iff_conductor_eq_one.mpr h) hχ
   · exact h
@@ -368,7 +368,7 @@ theorem solution
       (by norm_num) (ModularCurve.isPrimitive_of_ne_one_four) 4 1 (by norm_num)
     refine ModularCurve.nonempty_integralWeightOneForm_of_dvd κ hLM f _ hf 0 ?_
     simp [ModularCurve.WeightOneEisensteinSum.thetaLikeSeries, PowerSeries.coeff_mk]
-  · haveI : NeZero L := ⟨hp.ne_zero⟩
+  · have : NeZero L := ⟨hp.ne_zero⟩
     have hL2 : 2 < L := lt_of_le_of_ne hp.two_le (fun h => by rw [← h] at hodd; exact (by decide : ¬ Odd 2) hodd)
     obtain ⟨f, hf⟩ := ModularCurve.WeightOneEisensteinSum.exists_isIntegralQExp_thetaLikeSeries L
       hL2 (ModularCurve.isPrimitive_of_ne_one_of_prime hp) (2 * L) (L - 2) (by ring)
@@ -380,7 +380,7 @@ theorem solution
       refine ModularCurve.nonempty_integralWeightOneForm_of_dvd κ hLM f _ hf 1 ?_
       have hc1 : PowerSeries.coeff 1 (ModularCurve.WeightOneEisensteinSum.thetaLikeSeries L (2 * L) (L - 2)) =
           2 * L := by
-        haveI : Fact (2 < L) := ⟨hL2⟩
+        have : Fact (2 < L) := ⟨hL2⟩
         have hneg : ¬ ((1 : ZMod L) = -1) := fun h => ZMod.neg_one_ne_one h.symm
         simp [ModularCurve.WeightOneEisensteinSum.thetaLikeSeries, PowerSeries.coeff_mk,
           ModularCurve.WeightOneEisensteinSum.divisorSignCount, Nat.divisors_one,

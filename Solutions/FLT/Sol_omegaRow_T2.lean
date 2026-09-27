@@ -115,7 +115,7 @@ theorem analyticAt_toC (f : 𝒩) (τ : ℍ) : AnalyticAt ℂ (toC f) (τ : ℂ)
 
 theorem nice_of_modularForm {F : Type*} {Γ : Subgroup (GL (Fin 2) ℝ)} {k : ℤ} [FunLike F ℍ ℂ]
     [ModularFormClass F Γ k] (f : F) (h1 : (1 : ℝ) ∈ Γ.strictPeriods) : Nice (f : ℍ → ℂ) := by
-  haveI : Fact (IsCusp OnePoint.infty Γ) := ⟨Subgroup.isCusp_of_mem_strictPeriods one_pos h1⟩
+  have : Fact (IsCusp OnePoint.infty Γ) := ⟨Subgroup.isCusp_of_mem_strictPeriods one_pos h1⟩
   refine ⟨?_, ModularFormClass.holo f, ModularFormClass.bdd_at_infty f⟩
   simpa using SlashInvariantFormClass.periodic_comp_ofComplex (h := 1) f h1
 
@@ -346,7 +346,7 @@ theorem Gamma0_one_eq_top : CongruenceSubgroup.Gamma0 1 = ⊤ := by
 
 theorem rankinCohen_E4_E6 :
     4 * ψ 𝔞 * θ (ψ 𝔟) - 6 * θ (ψ 𝔞) * ψ 𝔟 = -3456 * ψ 𝔡 := by
-  haveI : (CongruenceSubgroup.Gamma0 1).FiniteIndex := by rw [Gamma0_one_eq_top]; infer_instance
+  have : (CongruenceSubgroup.Gamma0 1).FiniteIndex := by rw [Gamma0_one_eq_top]; infer_instance
   obtain ⟨g4, hg4⟩ := ModularForm.exists_gamma0_qExpansion_eq_of_levelOne 1 ModularForm.E₄
   obtain ⟨g6, hg6⟩ := ModularForm.exists_gamma0_qExpansion_eq_of_levelOne 1 ModularForm.E₆
   obtain ⟨RC, -, hRCq⟩ := ModularForm.exists_rankinCohen_one_qExpansion_eq

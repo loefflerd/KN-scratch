@@ -155,7 +155,7 @@ theorem index_pos : (0 : ℝ) < (Γ.normalCore.index : ℝ) := by
 
 theorem slash_bddAtImInfty {k : ℤ} (g : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) (σ : SL(2, ℤ)) :
     IsBoundedAtImInfty (⇑g ∣[k] σ) := by
-  haveI hFact : Fact (IsCusp ∞ (ConjAct.toConjAct ((σ : GL (Fin 2) ℝ))⁻¹ •
+  have hFact : Fact (IsCusp ∞ (ConjAct.toConjAct ((σ : GL (Fin 2) ℝ))⁻¹ •
       ((Γ : Subgroup SL(2, ℤ)) : Subgroup (GL (Fin 2) ℝ)))) :=
     ⟨Subgroup.isCusp_of_mem_strictPeriods index_pos
       (natCast_mem_strictPeriods_of_conj_mem Γ σ _ (conj_T_pow_index_mem Γ σ))⟩

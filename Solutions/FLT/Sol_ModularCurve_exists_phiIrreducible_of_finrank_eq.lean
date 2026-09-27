@@ -53,13 +53,13 @@ private theorem ModularCurve.exists_phiIrreducible_of_finrank_eq (N : ℕ) [NeZe
       (IntermediateField.adjoin (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ)))
         ({jqN N} : Set (LaurentSeries ℚ))) = dedekindPsi N) :
     ∃ data : ModularPolynomialData N, PhiIrreducible data := by
-  letI : Algebra (Polynomial ℤ) ℚ⟮jq⟯ := evalAtJGen.toAlgebra
-  letI : Algebra (Polynomial ℤ) (LaurentSeries ℚ) := evalAtJ.toAlgebra
-  haveI tower : IsScalarTower (Polynomial ℤ) ℚ⟮jq⟯ (LaurentSeries ℚ) :=
+  let : Algebra (Polynomial ℤ) ℚ⟮jq⟯ := evalAtJGen.toAlgebra
+  let : Algebra (Polynomial ℤ) (LaurentSeries ℚ) := evalAtJ.toAlgebra
+  have tower : IsScalarTower (Polynomial ℤ) ℚ⟮jq⟯ (LaurentSeries ℚ) :=
     IsScalarTower.of_algebraMap_eq fun x =>
       (RingHom.congr_fun algebraMap_comp_evalAtJGen x).symm
 
-  haveI : IsFractionRing (Polynomial ℤ) ℚ⟮jq⟯ := by
+  have : IsFractionRing (Polynomial ℤ) ℚ⟮jq⟯ := by
     refine { map_units := ?_, surj := ?_, exists_of_eq := ?_ }
     · rintro ⟨y, hy⟩
       rw [mem_nonZeroDivisors_iff_ne_zero] at hy

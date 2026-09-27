@@ -42,8 +42,8 @@ theorem ord_nonneg_of_mem (w : Place K F) {x : F} (h : x ∈ w.toValuationSubrin
 
 theorem regularDiffs_eq [CharZero K] [Algebra.EssFiniteType K F] [IsCurveOver K F] :
     regularDiffs K F = regularDifferentials K F := by
-  haveI : PerfectField K := inferInstance
-  haveI hgen : ∀ v : Place K F, v.DCoordGenerates := AlgebraicCurve.dCoordGenerates_of_isCurveOver
+  have : PerfectField K := inferInstance
+  have hgen : ∀ v : Place K F, v.DCoordGenerates := AlgebraicCurve.dCoordGenerates_of_isCurveOver
 
   have key : ∀ (ω : Ω[F⁄K]) (v : Place K F),
       0 ≤ v.ordDiff ω ↔ ∃ f ∈ v.toValuationSubring, ω = f • v.dCoord := by
