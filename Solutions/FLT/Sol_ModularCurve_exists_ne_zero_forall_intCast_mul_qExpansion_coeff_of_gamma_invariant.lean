@@ -406,7 +406,7 @@ theorem BddA.coeff_mem {φ : PowerSeries ℂ} (h : BddA N φ) (n : ℕ) : φ.coe
   rw [this]
   refine mul_mem ?_ (AZ_le_kN N _ (hφ n))
   have := ratCast_mem (kN N) ((D : ℚ)⁻¹)
-  simpa using this
+  simp
 
 theorem exists_int_of_bddA_of_isRat {φ : PowerSeries ℂ} (hB : BddA N φ) (hR : IsRat φ) :
     ∃ (D : ℕ) (P : PowerSeries ℤ), D ≠ 0 ∧ P.map (Int.castRingHom ℂ) = (D : ℂ) • φ := by

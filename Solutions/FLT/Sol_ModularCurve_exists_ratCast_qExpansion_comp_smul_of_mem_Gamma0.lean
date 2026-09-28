@@ -268,7 +268,7 @@ theorem qExpansion_disc_rat_one (n : ℕ) : ∃ r : ℚ, (qExpansion 1 (Δ : ℍ
   let B : ModularForm 𝒮ℒ 12 := (E₆.pow 2).mcast (by norm_num)
   have hfun : (Δ : ℍ → ℂ) = ⇑((1728 : ℂ)⁻¹ • (A - B)) := by
     funext z
-    rw [discriminant_eq_E₄_cube_sub_E₆_sq, IsGLPos.smul_apply, sub_apply]
+    rw [discriminant_eq_E₄_cube_sub_E₆_sq, smul_apply, sub_apply]
     simp only [A, B, coe_mcast, coe_pow, Pi.pow_apply, smul_eq_mul]
     ring
   have h4 : ∀ n, ∃ r : ℚ, (qExpansion 1 (E₄ : ℍ → ℂ)).coeff n = (r : ℂ) := by
@@ -291,8 +291,8 @@ theorem qExpansion_disc_rat_one (n : ℕ) : ∃ r : ℚ, (qExpansion 1 (Δ : ℍ
     choose r hr using h6
     exact ⟨PowerSeries.mk r, by ext n; simp [hr n]⟩
   have hq : qExpansion 1 (Δ : ℍ → ℂ) = ((1728 : ℚ)⁻¹ • (p4 ^ 3 - p6 ^ 2)).map (algebraMap ℚ ℂ) := by
-    rw [hfun, IsGLPos.coe_smul, ModularForm.qExpansion_smul one_pos one_mem_strictPeriods_SL,
-      coe_sub, ModularForm.qExpansion_sub one_pos one_mem_strictPeriods_SL]
+    rw [hfun, FunLike.coe_smul, ModularForm.qExpansion_smul one_pos one_mem_strictPeriods_SL,
+      FunLike.coe_sub, ModularForm.qExpansion_sub one_pos one_mem_strictPeriods_SL]
     simp only [A, B, ModularForm.qExpansion_mcast,
       ModularForm.qExpansion_pow one_pos one_mem_strictPeriods_SL]
     rw [PowerSeries.smul_eq_C_mul, PowerSeries.smul_eq_C_mul, map_mul, PowerSeries.map_C, map_sub,
@@ -475,7 +475,7 @@ theorem T_pow_mem_Gamma1 (t : ℤ) : ModularGroup.T ^ t ∈ Gamma1 N := by
   simp
 
 theorem T_mem_Gamma1 : ModularGroup.T ∈ Gamma1 N := by
-  simpa using T_pow_mem_Gamma1 N 1
+  simp
 
 theorem conj_mem_Gamma1 {γ g : SL(2, ℤ)} (hγ : γ ∈ Gamma0 N) (hg : g ∈ Gamma1 N) :
     γ * g * γ⁻¹ ∈ Gamma1 N := by

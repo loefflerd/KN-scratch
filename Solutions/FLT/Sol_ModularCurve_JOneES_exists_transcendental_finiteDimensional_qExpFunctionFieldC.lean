@@ -203,11 +203,11 @@ theorem qExpansion_discriminant :
   have hfun : (CuspForm.discriminant : ℍ → ℂ) = ⇑((1728 : ℂ)⁻¹ • (A - B)) := by
     funext z
     rw [CuspForm.coe_discriminant, discriminant_eq_E₄_cube_sub_E₆_sq]
-    rw [IsGLPos.smul_apply, sub_apply]
+    rw [smul_apply, sub_apply]
     simp only [A, B, coe_mcast, coe_pow, Pi.pow_apply, smul_eq_mul]
     ring
-  rw [hfun, IsGLPos.coe_smul, ModularForm.qExpansion_smul one_pos one_mem_strictPeriods_SL,
-    coe_sub, ModularForm.qExpansion_sub one_pos one_mem_strictPeriods_SL]
+  rw [hfun, FunLike.coe_smul, ModularForm.qExpansion_smul one_pos one_mem_strictPeriods_SL,
+    FunLike.coe_sub, ModularForm.qExpansion_sub one_pos one_mem_strictPeriods_SL]
   simp only [A, B, ModularForm.qExpansion_mcast,
     ModularForm.qExpansion_pow one_pos one_mem_strictPeriods_SL]
 
@@ -221,9 +221,9 @@ theorem qExpansion_mem_monomialSpan (m : ℕ) :
     obtain ⟨c, hc⟩ := ModularFormClass.levelOne_weight_zero_const h
     have hh : h = c • (1 : ModularForm 𝒮ℒ 0) := by
       ext z
-      rw [hc, IsGLPos.smul_apply]
+      rw [hc, smul_apply]
       simp
-    rw [hh, IsGLPos.coe_smul, ModularForm.qExpansion_smul one_pos one_mem_strictPeriods_SL,
+    rw [hh, FunLike.coe_smul, ModularForm.qExpansion_smul one_pos one_mem_strictPeriods_SL,
       ModularForm.qExpansion_one]
     refine Submodule.smul_mem _ _ ?_
     have := monomial_mem 0 0 le_rfl
@@ -239,7 +239,7 @@ theorem qExpansion_mem_monomialSpan (m : ℕ) :
     let g : ModularForm 𝒮ℒ k := h - a₀ • P
     have hg : qExpansion 1 (g : ℍ → ℂ) = qExpansion 1 (h : ℍ → ℂ) - a₀ • q4 ^ (3 * (m + 1)) := by
       simp only [g]
-      rw [coe_sub, ModularForm.qExpansion_sub one_pos one_mem_strictPeriods_SL, IsGLPos.coe_smul,
+      rw [FunLike.coe_sub, ModularForm.qExpansion_sub one_pos one_mem_strictPeriods_SL, FunLike.coe_smul,
         ModularForm.qExpansion_smul one_pos one_mem_strictPeriods_SL, hP]
     have hg0 : PowerSeries.coeff 0 (qExpansion 1 (g : ℍ → ℂ)) = 0 := by
       have h4 : PowerSeries.coeff 0 (q4 ^ (3 * (m + 1))) = 1 := by
@@ -319,7 +319,7 @@ theorem quotientFunc_smul_sub (c : ℂ) (q : (Cos Γ)) :
     obtain ⟨γ, hγ⟩ := r.2
     have hr : (r.val)⁻¹ = ((γ⁻¹ : SL(2, ℤ)) : GL (Fin 2) ℝ) := by rw [← hγ, ← map_inv]; rfl
     rw [hr, ← ModularForm.SL_slash, ← ModularForm.SL_slash, ← ModularForm.SL_slash,
-      FunLike.coe_sub, IsGLPos.coe_smul, sub_eq_add_neg, SlashAction.add_slash,
+      FunLike.coe_sub, FunLike.coe_smul, sub_eq_add_neg, SlashAction.add_slash,
       SlashAction.neg_slash, ModularForm.SL_smul_slash, sub_eq_add_neg]
 
 theorem norm_smul_sub_apply (c : ℂ) (τ : ℍ) :
@@ -402,7 +402,7 @@ theorem coe_finset_sum {ι : Type*} {k' : ℤ} (s : Finset ι) (F : ι → Modul
 theorem coeffForm_apply (i : ℕ) (τ : ℍ) : coeffForm f g i τ = (charPolyAt f g τ).coeff i := by
   rw [coeffForm, coe_finset_sum, Finset.sum_apply, charPolyAt_eq_sum, finsetSum_coeff]
   refine Finset.sum_congr rfl fun j _ => ?_
-  rw [IsGLPos.smul_apply, coeff_C_mul, smul_eq_mul, mul_comm]
+  rw [smul_apply, coeff_C_mul, smul_eq_mul, mul_comm]
 
 theorem coe_coeffForm_card : (coeffForm f g (Nat.card (Cos Γ)) : ℍ → ℂ) = ModularForm.norm 𝒮ℒ g := by
   funext τ

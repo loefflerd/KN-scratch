@@ -158,12 +158,12 @@ theorem coeff_ex_linePow (n m : ℕ) (hm : m ≤ n) (t : K) :
         = monomial (Finsupp.single 0 k + Finsupp.single 1 (n - k)) (t ^ k * (n.choose k : K)) := by
       rw [mul_pow, ← map_pow, X_pow_eq_monomial, X_pow_eq_monomial, C_mul_monomial, monomial_mul, ← map_natCast C,
         mul_comm (monomial _ _) (C _), C_mul_monomial]
-      congr 1 <;> simp [mul_comm]
+      congr 1 ; simp [mul_comm]
     rw [hmon, coeff_monomial]
     by_cases hk' : k = n - m
     · subst hk'
       rw [if_pos, if_pos rfl, Nat.choose_symm hm, mul_comm]
-      ext i; fin_cases i <;> simp [ex] <;> omega
+      ext i; fin_cases i <;> simp [ex] ; omega
     · rw [if_neg, if_neg hk']
       intro h
       apply hk'

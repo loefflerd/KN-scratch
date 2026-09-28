@@ -43,7 +43,7 @@ theorem exists_isCoprime_add_mul (a c : ℤ) {q : ℕ} (hq : q ≠ 0) (hac : IsC
         (Nat.prime_dvd_prime_iff_eq pp (Nat.prime_of_mem_primeFactors hr'.1)).mp hpr
       exact hr'.2 (hreq ▸ hpa)
     ·
-      exact ppZ.not_unit (hac.isUnit_of_dvd' hpa h)
+      exact ppZ.not_isUnit (hac.isUnit_of_dvd' hpa h)
   ·
     have pps : p ∈ ps :=
       Finset.mem_filter.mpr ⟨Nat.mem_primeFactors.mpr ⟨pp, hp2, hq⟩, hpa⟩

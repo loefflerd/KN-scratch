@@ -298,6 +298,7 @@ def act (u : Lˣ) (hu : (u : L) ^ 3 = 1) (N : ℕ) (i : ZMod 3) (H : CycSub L N)
 
 theorem zmod3_cases (i : ZMod 3) : i = 0 ∨ i = 1 ∨ i = 2 := by decide +revert
 
+@[instance_reducible]
 def actC3 (u : Lˣ) (hu : (u : L) ^ 3 = 1) (N : ℕ) : MulAction (Multiplicative (ZMod 3)) (CycSub L N) where
   smul g H := act u hu N (Multiplicative.toAdd g) H
   one_smul H := by

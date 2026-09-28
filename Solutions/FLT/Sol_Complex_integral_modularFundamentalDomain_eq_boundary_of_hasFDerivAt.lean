@@ -79,7 +79,7 @@ lemma isClosed_T : IsClosed T := by
   have h2 : IsClosed {p : ℝ × ℝ | h p.1 ≤ p.2} := by
     refine isClosed_le ?_ continuous_snd
     exact (Real.continuous_sqrt.comp (continuous_const.sub (continuous_fst.pow 2)))
-  simpa [T, setOf_and] using h1.inter h2
+  simpa [T, Set.ofPred_and] using h1.inter h2
 
 lemma measurableSet_T : MeasurableSet T := isClosed_T.measurableSet
 
@@ -136,7 +136,7 @@ lemma setIntegral_T_eq_y_x {G : ℝ × ℝ → ℂ} (hG : IntegrableOn G T) :
   congr 1 with y
   have hm : MeasurableSet {x : ℝ | |x| ≤ 1 / 2 ∧ h x ≤ y} := by
     have : IsClosed {x : ℝ | |x| ≤ 1 / 2 ∧ h x ≤ y} := by
-      rw [setOf_and]
+      rw [Set.ofPred_and]
       exact (isClosed_le continuous_abs continuous_const).inter
         (isClosed_le (Real.continuous_sqrt.comp (continuous_const.sub (continuous_id.pow 2)))
           continuous_const)

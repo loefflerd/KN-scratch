@@ -388,7 +388,7 @@ theorem isTree_two {G : Fin 2 → Type*} [∀ i, Group (G i)] : (graph G).IsTree
   exact Monoid.CoprodI.isTree_cosetGraph
 
 theorem isAcyclic_two {G : Fin 2 → Type*} [∀ i, Group (G i)] : (graph G).IsAcyclic :=
-  isTree_two.IsAcyclic
+  isTree_two.isAcyclic
 
 end GroupTheory.BassSerre
 p2m_reactivate "P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.GroupTheory.Kurosh P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.GroupTheory P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.GroupTheory.BassSerre"

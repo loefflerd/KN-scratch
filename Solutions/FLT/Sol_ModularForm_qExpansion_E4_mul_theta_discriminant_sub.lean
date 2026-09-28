@@ -68,7 +68,7 @@ theorem solution :
     funext τ
     have h2 : M τ = c * E₆ τ := by
       have := DFunLike.congr_fun hc τ
-      rw [IsGLPos.smul_apply, smul_eq_mul] at this
+      rw [smul_apply, smul_eq_mul] at this
       exact this.symm
     have h3 : ModularForm.discriminant τ * M τ = G τ := by
       change ModularForm.discriminant τ * (G τ / ModularForm.discriminant τ) = G τ
@@ -82,7 +82,7 @@ theorem solution :
       exact ModularFormClass.analyticAt_cuspFunction_zero CuspForm.discriminant one_pos
         one_mem_strictPeriods_SL
     · have : (c • (⇑ModularForm.E₆ : ℍ → ℂ)) = ⇑(c • ModularForm.E₆) := by
-        rw [IsGLPos.coe_smul]
+        rw [FunLike.coe_smul]
       rw [this]
       exact ModularFormClass.analyticAt_cuspFunction_zero _ one_pos one_mem_strictPeriods_SL
   have key := hBq.symm.trans hq2

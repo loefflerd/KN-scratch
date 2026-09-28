@@ -90,7 +90,7 @@ theorem T_pow_mem_Gamma1 (M : ℕ) (t : ℤ) : ModularGroup.T ^ t ∈ Gamma1 M :
   simp
 
 theorem T_mem_Gamma1 (M : ℕ) : ModularGroup.T ∈ Gamma1 M := by
-  simpa using T_pow_mem_Gamma1 M 1
+  simp
 
 theorem one_mem_strictPeriods (M : ℕ) : (1 : ℝ) ∈ (Γ₁(M)).strictPeriods := by
   rw [Subgroup.strictPeriods_eq_zmultiples_one_of_T_mem (T_mem_Gamma1 M)]
@@ -475,7 +475,7 @@ theorem main (M : ℕ) [NeZero M] {k : ℤ} (f : ModularForm Γ₁(M) k) (hf : I
   obtain ⟨D, P, hD, hP⟩ := isBdd_of_isRat f hf
   refine ⟨D, P, hD, ?_⟩
   rw [IsIntegralQExp, hP]
-  have : ((D : ℂ) • (⇑f : ℍ → ℂ)) = ⇑((D : ℂ) • f) := by rw [IsGLPos.coe_smul]
+  have : ((D : ℂ) • (⇑f : ℍ → ℂ)) = ⇑((D : ℂ) • f) := by rw [FunLike.coe_smul]
   rw [this, ← ModularForm.qExpansion_smul one_pos (one_mem_strictPeriods M)]
   rfl
 

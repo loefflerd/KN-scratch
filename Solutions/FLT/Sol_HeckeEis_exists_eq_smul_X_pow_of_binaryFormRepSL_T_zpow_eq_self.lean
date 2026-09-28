@@ -43,7 +43,7 @@ theorem degree_eq_iff (d : Fin 2 →₀ ℕ) : d.degree = n ↔ ∃ j ∈ Finset
   · intro h
     refine ⟨d 1, Finset.mem_range.mpr (by omega), ?_⟩
     ext i
-    fin_cases i <;> simp [expo] <;> omega
+    fin_cases i <;> simp [expo] ; omega
   · rintro ⟨j, hj, rfl⟩
     rw [Finset.mem_range] at hj
     simp [expo]

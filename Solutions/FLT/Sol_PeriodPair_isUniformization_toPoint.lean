@@ -79,7 +79,7 @@ p2m_export "PeriodPair" "kw_isPreconnected_compl_lattice"
 
 private theorem _root_.PeriodPair.kw_compl_lattice_mem_nhdsNE_zero : (L.lattice : Set ℂ)ᶜ ∈ 𝓝[≠] (0 : ℂ) := by
   have hcl : IsClosed ((L.lattice : Set ℂ) \ {0}) :=
-    L.isClosed_of_subset_lattice diff_subset
+    L.isClosed_of_subset_lattice Set.sdiff_subset
   have hopen : ((L.lattice : Set ℂ) \ {0})ᶜ ∈ 𝓝 (0 : ℂ) :=
     hcl.isOpen_compl.mem_nhds (by simp)
   filter_upwards [mem_nhdsWithin_of_mem_nhds hopen, self_mem_nhdsWithin] with z hz hzne hzL
@@ -355,7 +355,7 @@ variable (L : PeriodPair)
 
 private theorem _root_.PeriodPair.kw_compl_lattice_mem_nhdsNE (l : ℂ) :
     (L.lattice : Set ℂ)ᶜ ∈ 𝓝[≠] l := by
-  filter_upwards [mem_nhdsWithin_of_mem_nhds (L.compl_lattice_diff_singleton_mem_nhds l),
+  filter_upwards [mem_nhdsWithin_of_mem_nhds (L.compl_lattice_sdiff_singleton_mem_nhds l),
     self_mem_nhdsWithin] with z hz hzne hzL
   exact hz ⟨hzL, hzne⟩
 
@@ -395,10 +395,10 @@ private theorem _root_.PeriodPair.kw_weierstrassP_surjective (x₀ : ℂ) : ∃ 
     by_cases hz : z ∈ L.lattice
     ·
       set s := ((L.lattice : Set ℂ) \ {z})ᶜ with hs_def
-      have hs_nhds : s ∈ 𝓝 z := L.compl_lattice_diff_singleton_mem_nhds z
+      have hs_nhds : s ∈ 𝓝 z := L.compl_lattice_sdiff_singleton_mem_nhds z
 
       have hs_diff : s \ {z} = (L.lattice : Set ℂ)ᶜ := by
-        ext w; simp only [hs_def, mem_diff, mem_compl_iff, mem_singleton_iff]
+        ext w; simp only [hs_def, Set.mem_sdiff, mem_compl_iff, mem_singleton_iff]
         constructor
         · rintro ⟨hw, hwne⟩ hwL; exact hw ⟨hwL, hwne⟩
         · exact fun hwL => ⟨fun ⟨h, _⟩ => hwL h, fun h => hwL (h ▸ hz)⟩
@@ -967,7 +967,7 @@ private theorem _root_.PeriodPair.kw_addΦ_removable_at_neg (hw : w ∉ L.lattic
         ((L.analyticOnNhd_weierstrassPExcept (0 : ℂ) (u + w)
           hu).differentiableAt.comp u (differentiableAt_id.add_const w)).differentiableWithinAt
       exact hd.analyticOnNhd
-        (L.isOpen_compl_lattice_diff.preimage (continuous_id.add continuous_const))
+        (L.isOpen_compl_lattice_sdiff.preimage (continuous_id.add continuous_const))
         (-w) (by simp)
     have hP := L.analyticOnNhd_weierstrassP (-w) hnw
     have hP' := L.analyticOnNhd_derivWeierstrassP (-w) hnw
@@ -1021,10 +1021,10 @@ private theorem _root_.PeriodPair.kw_elliptic_Liouville_zero (hw : w ∉ L.latti
   have hdiff0 : DifferentiableAt ℂ Φext 0 := by
     set s := ((L.lattice : Set ℂ) \ {0})ᶜ ∩ {u | u + w ∉ L.lattice} with hs_def
     have hs_nhds : s ∈ 𝓝 (0 : ℂ) :=
-      Filter.inter_mem (L.compl_lattice_diff_singleton_mem_nhds 0)
+      Filter.inter_mem (L.compl_lattice_sdiff_singleton_mem_nhds 0)
         (L.kw_add_notMem_mem_nhds_zero hw)
     have hs_diff : s \ {(0 : ℂ)} = L.kwAddΦDomain w ∩ s := by
-      ext u; simp only [hs_def, mem_diff, mem_inter_iff, mem_compl_iff, mem_singleton_iff,
+      ext u; simp only [hs_def, Set.mem_sdiff, mem_inter_iff, mem_compl_iff, mem_singleton_iff,
         mem_ofPred_eq, kwAddΦDomain]
       constructor
       · rintro ⟨⟨h1, h2⟩, h3⟩
@@ -1049,15 +1049,15 @@ private theorem _root_.PeriodPair.kw_elliptic_Liouville_zero (hw : w ∉ L.latti
       have hpre : {u : ℂ | u + w ∈ L.lattice} \ {-w} =
           (· + w) ⁻¹' ((L.lattice : Set ℂ) \ {0}) := by
         ext u
-        simp only [mem_diff, mem_preimage, mem_singleton_iff, mem_ofPred_eq, SetLike.mem_coe,
+        simp only [Set.mem_sdiff, mem_preimage, mem_singleton_iff, mem_ofPred_eq, SetLike.mem_coe,
           and_congr_right_iff]
         exact fun _ => ⟨fun h1 h2 => h1 (eq_neg_of_add_eq_zero_left h2),
           fun h1 h2 => h1 (by rw [h2, _root_.neg_add_cancel])⟩
       rw [hpre, ← Set.preimage_compl]
       refine (continuous_add_const w).continuousAt.preimage_mem_nhds ?_
-      rw [_root_.neg_add_cancel]; exact L.compl_lattice_diff_singleton_mem_nhds 0
+      rw [_root_.neg_add_cancel]; exact L.compl_lattice_sdiff_singleton_mem_nhds 0
     have hs_diff : s \ {-w} = L.kwAddΦDomain w ∩ s := by
-      ext u; simp only [hs_def, mem_diff, mem_inter_iff, mem_compl_iff, mem_singleton_iff,
+      ext u; simp only [hs_def, Set.mem_sdiff, mem_inter_iff, mem_compl_iff, mem_singleton_iff,
         mem_ofPred_eq, kwAddΦDomain]
       constructor
       · rintro ⟨⟨h1, h2⟩, h3⟩
@@ -1357,7 +1357,7 @@ private theorem _root_.PeriodPair.kw_countable_analytic_level {f : ℂ → ℂ}
   ·
     have hD : IsDiscrete ({z | f z = 0} ∩ (L.lattice : Set ℂ)ᶜ) := by
       refine isDiscrete_of_codiscreteWithin ?_
-      simp only [compl_setOf] at hne ⊢
+      simp only [Set.compl_ofPred] at hne ⊢
       exact hne
     have := hD.to_subtype
     have hcount : Countable ({z | f z = 0} ∩ (L.lattice : Set ℂ)ᶜ : Set ℂ) :=

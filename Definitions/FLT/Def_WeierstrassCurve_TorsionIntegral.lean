@@ -1055,7 +1055,7 @@ theorem formal_param_nsmul {x y : L} (h : (W.map A.subtype).toAffine.Nonsingular
     exact A.toSubring.neg_mem A.one_mem
   induction j with
   | zero =>
-    refine ⟨fun _ => by simpa using A.nonunits.zero_mem, fun x' y' h' heq => ?_⟩
+    refine ⟨fun _ => by simp, fun x' y' h' heq => ?_⟩
     rw [zero_smul] at heq
     exact absurd heq.symm (some_ne_zero h')
   | succ j ih =>
@@ -1079,7 +1079,7 @@ theorem formal_param_nsmul {x y : L} (h : (W.map A.subtype).toAffine.Nonsingular
       have htj : (xj / yj) / -(x / y) ∈ A := by
         have h1 : -(xj / yj) / -(x / y) ∈ A := by
           have := add_mem (A.nonunits_subset hcong) (show ((j : L)) ∈ A from by
-            simpa using SetLike.coe_mem ((j : ℕ) : A))
+            simp)
           simpa using this
         simpa [neg_div] using A.toSubring.neg_mem h1
       by_cases hcond : xj = x ∧ yj = (W.map A.subtype).toAffine.negY x y

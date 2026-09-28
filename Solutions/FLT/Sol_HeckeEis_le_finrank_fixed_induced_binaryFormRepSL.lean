@@ -322,7 +322,7 @@ theorem finrank_binaryForm (K : Type*) [Field K] (n : ℕ) : Module.finrank K (B
         simp only [S, Set.mem_ofPred_eq, Finsupp.degree_eq_sum, Fin.sum_univ_two] at h
         apply Subtype.ext
         ext j
-        fin_cases j <;> simp <;> omega
+        fin_cases j <;> simp ; omega
       right_inv := fun i => by
         apply Fin.ext
         simp }

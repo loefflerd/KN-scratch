@@ -93,8 +93,8 @@ theorem solution (M : ℕ) [NeZero M] {k : ℤ}
 
   obtain ⟨D, p₁, hD, hint⟩ := ModularCurve.exists_isIntegralQExp_smul_of_ratCast_qExpansion M g hrat'
   refine ⟨D, (D : ℂ) • g, p₁, hD, ?_, ?_⟩
-  · rw [IsGLPos.coe_smul]; exact hint
-  · rw [IsGLPos.coe_smul, hcoe]
+  · rw [FunLike.coe_smul]; exact hint
+  · rw [FunLike.coe_smul, hcoe]
 
 end
 end S_ModularCurve_exists_isIntegralQExp_smul_slash_of_mem_Gamma0

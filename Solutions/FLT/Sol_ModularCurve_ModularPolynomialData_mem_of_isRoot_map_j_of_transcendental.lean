@@ -212,8 +212,8 @@ theorem veluGx_mem (W : WeierstrassCurve F) (L : Subfield F)
     (h₁ : W.a₁ ∈ L) (h₂ : W.a₂ ∈ L) (h₄ : W.a₄ ∈ L) {x₀ y₀ : F} (hx : x₀ ∈ L) (hy : y₀ ∈ L) :
     W.veluGx x₀ y₀ ∈ L := by
   unfold WeierstrassCurve.veluGx
-  have h3 : (3 : F) ∈ L := by simpa using natCast_mem L 3
-  have h2' : (2 : F) ∈ L := by simpa using natCast_mem L 2
+  have h3 : (3 : F) ∈ L := by simp
+  have h2' : (2 : F) ∈ L := by simp
   exact sub_mem (add_mem (add_mem (mul_mem h3 (pow_mem hx 2)) (mul_mem (mul_mem h2' h₂) hx)) h₄)
     (mul_mem h₁ hy)
 
@@ -330,15 +330,15 @@ theorem isoTarget_even_step (M : ℕ) (hM : 0 < M)
 
   have hb₂ : W.b₂ ∈ L := by
     unfold WeierstrassCurve.b₂
-    have h4 : (4 : F) ∈ L := by simpa using natCast_mem L 4
+    have h4 : (4 : F) ∈ L := by simp
     exact add_mem (pow_mem h₁ 2) (mul_mem h4 h₂)
   have h₄' : (W.veluQuotient2 x₀ y₀).a₄ ∈ L := by
     rw [WeierstrassCurve.veluQuotient2_a₄]
-    have h5 : (5 : F) ∈ L := by simpa using natCast_mem L 5
+    have h5 : (5 : F) ∈ L := by simp
     exact sub_mem h₄ (mul_mem h5 hgx)
   have h₆' : (W.veluQuotient2 x₀ y₀).a₆ ∈ L := by
     rw [WeierstrassCurve.veluQuotient2_a₆]
-    have h7 : (7 : F) ∈ L := by simpa using natCast_mem L 7
+    have h7 : (7 : F) ∈ L := by simp
     exact sub_mem (sub_mem h₆ (mul_mem hb₂ hgx)) (mul_mem h7 (mul_mem hx₀L hgx))
 
   obtain ⟨T₂⟩ := ih (W.veluQuotient2 x₀ y₀) L

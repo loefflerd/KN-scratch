@@ -170,7 +170,7 @@ theorem periodic_of_mem {F : ℍ → ℂ} (hF : F ∈ ring N) : Periodic (F ∘ 
     simp only [comp_apply, ofComplex_apply_of_im_pos hw, ofComplex_apply_of_im_pos hw']
     have h := apply_smul_of_mem N (T_pow_mem_Gamma N) hF ⟨w, hw⟩
     rw [modular_T_zpow_smul] at h
-    convert h using 2 <;> try with_reducible_and_instances rfl
+    convert h using 2 ; try with_reducible_and_instances rfl
     ext
     simp [UpperHalfPlane.coe_vadd, add_comm]
   · have hw0 : w.im ≤ 0 := not_lt.mp hw

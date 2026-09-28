@@ -408,7 +408,7 @@ theorem finite_not_squarefree_fiber [IsAlgClosed K] [W.IsElliptic] {n : ℕ}
   set G := (W.baseChange K).ΨSq n with hGdef
   have hWr : derivative F' * G - F' * derivative G ≠ 0 := wronskian_Φ_ΨSq_ne_zero W hn
   have hroots : {x : K | (derivative F' * G - F' * derivative G).IsRoot x}.Finite :=
-    finite_setOf_isRoot hWr
+    Polynomial.finite_setOfPred_isRoot hWr
   refine Set.Finite.subset (hroots.image (fun x => F'.eval x / G.eval x)) ?_
   intro c hc
   rw [Set.mem_ofPred_eq] at hc
@@ -631,7 +631,7 @@ theorem exists_double_fiber_card [W.IsElliptic] {n : ℕ} (hodd : Odd n)
   have hΨ₂ne : (W.baseChange K).Ψ₂Sq ≠ 0 := Ψ₂Sq_ne_zero_of_isElliptic W
   have hB' : ((fun x => F'.eval x / G.eval x) ''
       {x : K | (W.baseChange K).Ψ₂Sq.IsRoot x}).Finite :=
-    (finite_setOf_isRoot hΨ₂ne).image _
+    (Polynomial.finite_setOfPred_isRoot hΨ₂ne).image _
   obtain ⟨c, hc⟩ := (hB.union hB').infinite_compl.nonempty
   rw [Set.mem_compl_iff, Set.mem_union] at hc
   push Not at hc

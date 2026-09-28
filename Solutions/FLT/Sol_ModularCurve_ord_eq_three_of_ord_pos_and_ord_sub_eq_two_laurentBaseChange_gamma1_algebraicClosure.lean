@@ -117,7 +117,7 @@ theorem ModularCurve.NoEllAux.main
     obtain ⟨p, hp0, hp⟩ := (AlgebraicClosure.isAlgebraic ℚ).isAlgebraic x
     refine ⟨p, hp0, ?_⟩
     rw [Polynomial.aeval_def] at hp ⊢
-    convert hp using 2 <;> first | (with_reducible_and_instances rfl) | rfl
+    convert hp using 2 ; first | (with_reducible_and_instances rfl) | rfl
   let ιa : AlgebraicClosure ℚ →ₐ[ℚ] ℂ := IsAlgClosed.lift
   let ι : AlgebraicClosure ℚ →+* ℂ := ιa.toRingHom
   have hΓM : CongruenceSubgroup.Gamma M ≤ CongruenceSubgroup.Gamma1 M := by

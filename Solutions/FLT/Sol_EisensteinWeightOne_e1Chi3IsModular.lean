@@ -2824,7 +2824,7 @@ private theorem exists_nat_prime_dvd_of_dvd_natCast {π : HexInt} (hπ : Prime �
   | _ k ih =>
     intro hk0 hπk
     rcases eq_or_ne k 1 with rfl | hk1
-    · exact absurd (isUnit_of_dvd_one (by simpa using hπk)) hπ.not_unit
+    · exact absurd (isUnit_of_dvd_one (by simpa using hπk)) hπ.not_isUnit
     have hkp : k.minFac.Prime := Nat.minFac_prime hk1
     have hkd : k.minFac ∣ k := Nat.minFac_dvd k
     have hsplit : (k : HexInt) = (k.minFac : HexInt) * ((k / k.minFac : ℕ) : HexInt) := by
@@ -2854,7 +2854,7 @@ theorem norm_eq_of_prime_of_dvd {π : HexInt} (hπ : Prime π) {p : ℕ} (hp : p
     rwa [norm_natCast] at this
 
   have h0 : π.norm ≠ 0 := fun h => hπ.ne_zero (norm_eq_zero_iff.mp h)
-  have h1 : π.norm ≠ 1 := fun h => hπ.not_unit (isUnit_iff_norm_eq_one.mpr h)
+  have h1 : π.norm ≠ 1 := fun h => hπ.not_isUnit (isUnit_iff_norm_eq_one.mpr h)
   have hnn := norm_nonneg π
   have hnat : π.norm.toNat ∣ q ^ 2 := by
     have : ((π.norm.toNat : ℕ) : ℤ) ∣ ((q ^ 2 : ℕ) : ℤ) := by

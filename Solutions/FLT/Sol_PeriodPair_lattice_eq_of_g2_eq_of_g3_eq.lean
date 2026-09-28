@@ -59,11 +59,11 @@ lemma eventuallyEq_zero (L L' : PeriodPair) (h₂ : L.g₂ = L'.g₂) (h₃ : L.
     L'.analyticAt_derivWeierstrassPExcept 0
   have hdP₁ : ∀ᶠ z in 𝓝 (0 : ℂ),
       deriv (L.weierstrassPExcept 0) z = (L.derivWeierstrassPExcept 0) z :=
-    Filter.eventually_of_mem (L.compl_lattice_diff_singleton_mem_nhds 0)
+    Filter.eventually_of_mem (L.compl_lattice_sdiff_singleton_mem_nhds 0)
       (L.eqOn_deriv_weierstrassPExcept_derivWeierstrassPExcept 0)
   have hdP₂ : ∀ᶠ z in 𝓝 (0 : ℂ),
       deriv (L'.weierstrassPExcept 0) z = (L'.derivWeierstrassPExcept 0) z :=
-    Filter.eventually_of_mem (L'.compl_lattice_diff_singleton_mem_nhds 0)
+    Filter.eventually_of_mem (L'.compl_lattice_sdiff_singleton_mem_nhds 0)
       (L'.eqOn_deriv_weierstrassPExcept_derivWeierstrassPExcept 0)
 
   suffices hD0 : ∀ᶠ z in 𝓝 (0 : ℂ),
@@ -105,8 +105,8 @@ lemma eventuallyEq_zero (L L' : PeriodPair) (h₂ : L.g₂ = L'.g₂) (h₃ : L.
           (z ^ 2 * (L.weierstrassPExcept 0) z + 1) *
             (z ^ 2 * (L'.weierstrassPExcept 0) z + 1) +
             (z ^ 2 * (L'.weierstrassPExcept 0) z + 1) ^ 2) - L.g₂ * z ^ 4) := by
-    filter_upwards [mem_nhdsWithin_of_mem_nhds (L.compl_lattice_diff_singleton_mem_nhds 0),
-      mem_nhdsWithin_of_mem_nhds (L'.compl_lattice_diff_singleton_mem_nhds 0),
+    filter_upwards [mem_nhdsWithin_of_mem_nhds (L.compl_lattice_sdiff_singleton_mem_nhds 0),
+      mem_nhdsWithin_of_mem_nhds (L'.compl_lattice_sdiff_singleton_mem_nhds 0),
       mem_nhdsWithin_of_mem_nhds hDE', mem_nhdsWithin_of_mem_nhds hderiv,
       self_mem_nhdsWithin] with z hz1 hz2 hz3 hz4 hz0
     have hz0' : z ≠ 0 := hz0
@@ -174,7 +174,7 @@ lemma lattice_le_of_eqOn (L L' : PeriodPair)
   by_contra hx'
   have hU : ((L.lattice : Set ℂ) ∪ L'.lattice)ᶜ ∈ 𝓝[≠] x := by
     have h1 : ((L.lattice : Set ℂ) \ {x})ᶜ ∈ 𝓝[≠] x :=
-      mem_nhdsWithin_of_mem_nhds (L.compl_lattice_diff_singleton_mem_nhds x)
+      mem_nhdsWithin_of_mem_nhds (L.compl_lattice_sdiff_singleton_mem_nhds x)
     have h2 : (L'.lattice : Set ℂ)ᶜ ∈ 𝓝[≠] x :=
       mem_nhdsWithin_of_mem_nhds (L'.isClosed_lattice.isOpen_compl.mem_nhds hx')
     filter_upwards [h1, h2, self_mem_nhdsWithin] with z hz1 hz2 hz3
@@ -200,9 +200,9 @@ lemma eqOn_of_eventuallyEq_zero (L L' : PeriodPair)
   set U : Set ℂ := ((L.lattice : Set ℂ) ∪ L'.lattice)ᶜ with hU
   have hUmem : ∀ᶠ z in 𝓝[≠] (0 : ℂ), z ∈ U := by
     have h1 : ((L.lattice : Set ℂ) \ {0})ᶜ ∈ 𝓝[≠] (0 : ℂ) :=
-      mem_nhdsWithin_of_mem_nhds (L.compl_lattice_diff_singleton_mem_nhds 0)
+      mem_nhdsWithin_of_mem_nhds (L.compl_lattice_sdiff_singleton_mem_nhds 0)
     have h2 : ((L'.lattice : Set ℂ) \ {0})ᶜ ∈ 𝓝[≠] (0 : ℂ) :=
-      mem_nhdsWithin_of_mem_nhds (L'.compl_lattice_diff_singleton_mem_nhds 0)
+      mem_nhdsWithin_of_mem_nhds (L'.compl_lattice_sdiff_singleton_mem_nhds 0)
     filter_upwards [h1, h2, self_mem_nhdsWithin] with z hz1 hz2 hz3
     simp only [Set.mem_compl_iff, Set.mem_sdiff, Set.mem_singleton_iff, SetLike.mem_coe,
       Set.mem_union, not_or, hU] at hz1 hz2 hz3 ⊢

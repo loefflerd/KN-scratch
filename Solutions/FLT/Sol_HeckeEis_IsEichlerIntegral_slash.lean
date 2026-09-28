@@ -43,7 +43,7 @@ theorem mem_degExps_iff (d : Fin 2 →₀ ℕ) : d ∈ degExps n ↔ d.degree = 
   · intro h
     refine ⟨d 0, by omega, ?_⟩
     ext i
-    fin_cases i <;> simp <;> omega
+    fin_cases i <;> simp ; omega
 
 theorem coeff_eq_zero_of_not_mem_degExps {p : MvPolynomial (Fin 2) K} (hp : p ∈ BinaryForm K n)
     {d : Fin 2 →₀ ℕ} (hd : d ∉ degExps n) : coeff d p = 0 :=

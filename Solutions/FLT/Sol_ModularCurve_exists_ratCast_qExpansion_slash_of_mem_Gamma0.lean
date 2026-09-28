@@ -567,9 +567,9 @@ theorem isRat_slash_of_odd (hk : Odd k) (f : ModularForm Γ₁(M) k) (hf : IsRat
   have key := isRat_slash_of_even hk1 F hFrat hγ'3M
 
   have hFγ : (⇑F : ℍ → ℂ) ∣[k + 1] γ' = ⇑(diamondSlash γ' hγ'3M f3) * ⇑(((ε : ℂ)) • E3) := by
-    rw [hF, coe_mul, ModularForm.mul_slash_SL2, coe_diamondSlash, IsGLPos.coe_smul, coe_res, coe_res, hEγ]
+    rw [hF, coe_mul, ModularForm.mul_slash_SL2, coe_diamondSlash, FunLike.coe_smul, coe_res, coe_res, hEγ]
   rw [hFγ, ModularForm.qExpansion_mul_coe one_pos (one_mem_strictPeriods (3 * M)),
-    IsGLPos.coe_smul, ModularForm.qExpansion_smul one_pos (one_mem_strictPeriods (3 * M)),
+    FunLike.coe_smul, ModularForm.qExpansion_smul one_pos (one_mem_strictPeriods (3 * M)),
     coe_diamondSlash, coe_res, coe_res, ← hfγ] at key
 
   have key' : IsRat (qExpansion 1 ((⇑f : ℍ → ℂ) ∣[k] γ) * qExpansion 1 ⇑E) := by

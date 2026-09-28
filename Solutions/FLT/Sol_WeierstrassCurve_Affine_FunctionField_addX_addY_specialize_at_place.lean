@@ -670,12 +670,6 @@ abbrev kw_hk5f_addSumCoordSeamDataNCAt : Prop :=
 
 end Es1a1
 
-section ElevenA1Gate
-
-open Es1a1
-
-end ElevenA1Gate
-
 end ModularCurve
 
 end
@@ -2987,12 +2981,6 @@ theorem kw_hk5f_addSumCoordSeamDataNCAt_proved : kw_hk5f_addSumCoordSeamDataNCAt
               h1.1 h1.2 h2.1 h2.2
 
 end Es1a1
-
-section ElevenA1Gate
-
-open Es1a1
-
-end ElevenA1Gate
 
 end ModularCurve
 

@@ -187,11 +187,11 @@ lemma coe_R_zpow (n : ℤ) : ((R ^ n : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ)
   | zero => simp [Matrix.one_fin_two]
   | succ n ih =>
     rw [zpow_add_one, Matrix.SpecialLinearGroup.coe_mul, ih, coe_R]
-    ext i j; fin_cases i <;> fin_cases j <;> simp [Matrix.mul_apply, Fin.sum_univ_two] <;> ring
+    ext i j; fin_cases i <;> fin_cases j <;> simp [Matrix.mul_apply, Fin.sum_univ_two] ; ring
   | pred n ih =>
     rw [zpow_sub_one, Matrix.SpecialLinearGroup.coe_mul, ih, Matrix.SpecialLinearGroup.coe_inv, coe_R]
     ext i j; fin_cases i <;> fin_cases j <;>
-      simp [Matrix.mul_apply, Fin.sum_univ_two, Matrix.adjugate_fin_two_of] <;> ring
+      simp [Matrix.mul_apply, Fin.sum_univ_two, Matrix.adjugate_fin_two_of] ; ring
 
 lemma mul_T_zpow_apply (A : SL(2, ℤ)) (n : ℤ) :
     (A * ModularGroup.T ^ n) 1 0 = A 1 0 ∧ (A * ModularGroup.T ^ n) 1 1 = A 1 0 * n + A 1 1 ∧

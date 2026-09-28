@@ -53,7 +53,7 @@ theorem puiseuxRamEmb_section {e : ℕ} (he : 0 < e) {y : HahnSeries ℚ K}
     rfl
   · have hL : (puiseuxRamEmb he (puiseuxRamSection he y)).coeff q = 0 := by
       simp only [puiseuxRamEmb, embDomainRingHom_apply]
-      exact embDomain_notin_range (by simpa [Set.range, ramScale_apply] using hq)
+      exact HahnSeries.embDomain_of_notMem_range (by simpa [Set.range, ramScale_apply] using hq)
     have hR : y.coeff q = 0 := by
       by_contra hne
       exact hq (hy hne)

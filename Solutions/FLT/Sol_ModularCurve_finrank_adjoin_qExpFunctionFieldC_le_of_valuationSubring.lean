@@ -236,7 +236,7 @@ theorem intFormRatiosC_subset_monomials {y : FK k Γ} (hy : (y : LaurentSeries k
   rwa [map_div₀, coeffEmb, coeffMap_intSeriesC, coeffMap_intSeriesC] at h
 
 theorem one_mem_monomials : (1 : FK k Γ) ∈ monomials L k Γ :=
-  ⟨1, 1, by simp, by simpa using (laurentBaseChange L (qExpFunctionFieldC ℚ Γ)).one_mem, by simp⟩
+  ⟨1, 1, by simp, by simp, by simp⟩
 
 theorem mul_mem_monomials {y z : FK k Γ} (hy : y ∈ monomials L k Γ) (hz : z ∈ monomials L k Γ) :
     y * z ∈ monomials L k Γ := by

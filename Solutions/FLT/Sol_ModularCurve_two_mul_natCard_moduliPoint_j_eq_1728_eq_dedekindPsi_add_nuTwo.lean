@@ -275,6 +275,7 @@ theorem map_σ_map_σ (u : Lˣ) (hu : (u : L) ^ 2 = -1) (H : AddSubgroup (W1 L).
 theorem τ_τ (u : Lˣ) (hu : (u : L) ^ 2 = -1) (N : ℕ) (H : CycSub L N) : τ u hu N (τ u hu N H) = H :=
   Subtype.ext (map_σ_map_σ u hu H.1)
 
+@[instance_reducible]
 def actC2 (u : Lˣ) (hu : (u : L) ^ 2 = -1) (N : ℕ) : MulAction (Multiplicative (ZMod 2)) (CycSub L N) where
   smul g H := if Multiplicative.toAdd g = 0 then H else τ u hu N H
   one_smul H := by

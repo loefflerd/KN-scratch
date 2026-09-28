@@ -128,7 +128,7 @@ theorem solution
     obtain ⟨p, hp0, hp⟩ := (AlgebraicClosure.isAlgebraic ℚ).isAlgebraic x
     refine ⟨p, hp0, ?_⟩
     rw [Polynomial.aeval_def] at hp ⊢
-    convert hp using 2 <;> first | rfl
+    convert hp using 2 ; first | rfl
   let τ : AlgebraicClosure ℚ →ₐ[ℚ] K := IsAlgClosed.lift
   let F₀ : IntermediateField ℚ (LaurentSeries ℚ) := ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)
   let Ψ := liftRingHom τ F₀

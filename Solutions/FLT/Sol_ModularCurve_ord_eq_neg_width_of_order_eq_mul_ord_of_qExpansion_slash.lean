@@ -139,7 +139,7 @@ scoped instance zpowers_neg_one_normal : (Subgroup.zpowers (-1 : SL(2, ℤ))).No
   refine ⟨fun n hn g => ?_⟩
   obtain ⟨k, rfl⟩ := Subgroup.mem_zpowers_iff.mp hn
   rcases neg_one_zpow_eq k with h | h <;> rw [h]
-  · simpa using (Subgroup.zpowers (-1 : SL(2, ℤ))).one_mem
+  · simp
   · have : g * -1 * g⁻¹ = (-1 : SL(2, ℤ)) := by simp
     rw [this]; exact Subgroup.mem_zpowers _
 
@@ -710,9 +710,44 @@ def Pl (σ : SL(2, ℤ)) : AlgebraicCurve.Place ℂ (CF (Gamma1 M)) :=
   (ModularCurve.exists_ringHom_place_order_eq_mul_ord_of_qExpansion_slash (Gamma1 M) (T_mem_Gamma1 M)
     (ModularCurve.qExpFunctionFieldC ℚ (Gamma1 M)) rfl σ).choose_spec.choose
 
-def Pl_spec (σ : SL(2, ℤ)) :=
-  (ModularCurve.exists_ringHom_place_order_eq_mul_ord_of_qExpansion_slash (Gamma1 M) (T_mem_Gamma1 M)
-    (ModularCurve.qExpFunctionFieldC ℚ (Gamma1 M)) rfl σ).choose_spec.choose_spec
+lemma Pl_spec (σ : SL(2, ℤ)) :
+    let Φ := Exists.choose
+      (ModularCurve.exists_ringHom_place_order_eq_mul_ord_of_qExpansion_slash
+        (Gamma1 M) (T_mem_Gamma1 M)
+        (ModularCurve.qExpFunctionFieldC ℚ (Gamma1 M)) rfl σ)
+    ∃ e : ℕ,
+      0 < e ∧
+      (∀ x : CF (Gamma1 M), x ∈ (Pl M σ).toValuationSubring ↔ 0 ≤ (Φ x).order) ∧
+      (∀ x : CF (Gamma1 M), x ∈ (Pl M σ).toValuationSubring ↔
+        ∃ L : ℂ, Filter.Tendsto
+          (fun τ : UpperHalfPlane => ModularCurve.realizeOf (Gamma1 M)
+            (x : LaurentSeries ℂ) (σ • τ)) atImInfty (𝓝 L)) ∧
+      (∀ (x : CF (Gamma1 M)) (k : ℤ)
+          (g h : ModularForm (Gamma1 M : Subgroup (GL (Fin 2) ℝ)) k), h ≠ 0 →
+        (x : LaurentSeries ℂ) *
+            ((qExpansion 1 (h : UpperHalfPlane → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) =
+          ((qExpansion 1 (g : UpperHalfPlane → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) →
+        Φ x * ((qExpansion ((Gamma1 M).normalCore.index : ℝ)
+              ((h : UpperHalfPlane → ℂ) ∣[k] σ) : PowerSeries ℂ) : LaurentSeries ℂ) =
+          ((qExpansion ((Gamma1 M).normalCore.index : ℝ)
+              ((g : UpperHalfPlane → ℂ) ∣[k] σ) : PowerSeries ℂ) : LaurentSeries ℂ)) ∧
+      (∀ c : ℂ, Φ (algebraMap ℂ (CF (Gamma1 M)) c) = HahnSeries.C c) ∧
+      (∀ x : CF (Gamma1 M), x ≠ 0 → (Φ x).order = e * (Pl M σ).ord x) ∧
+      (∀ y : CF (Gamma1 M), (y : LaurentSeries ℂ) = ModularCurve.jqModC ℂ →
+        (Φ y).order = -((Gamma1 M).normalCore.index : ℤ) ∧
+          (e : ℤ) * (Pl M σ).ord y = -((Gamma1 M).normalCore.index : ℤ) ∧
+          y ∉ (Pl M σ).toValuationSubring) ∧
+      (∀ x : CF (Gamma1 M), x ≠ 0 → ∃ L : ℂ, L ≠ 0 ∧
+        Filter.Tendsto
+          (fun τ : UpperHalfPlane => ModularCurve.realizeOf (Gamma1 M)
+            (x : LaurentSeries ℂ) (σ • τ) *
+            Complex.exp (-(2 * Real.pi * Complex.I *
+              ((e : ℤ) * (Pl M σ).ord x : ℂ) * (τ : ℂ) /
+                ((Gamma1 M).normalCore.index : ℂ))))
+          atImInfty (𝓝 L)) := by
+  exact (ModularCurve.exists_ringHom_place_order_eq_mul_ord_of_qExpansion_slash
+    (Gamma1 M) (T_mem_Gamma1 M) (ModularCurve.qExpFunctionFieldC ℚ (Gamma1 M))
+      rfl σ).choose_spec.choose_spec
 
 theorem not_mem_of_ord_neg {F : Type*} [Field F] [Algebra ℂ F] (P : AlgebraicCurve.Place ℂ F) {x : F}
     (hx : P.ord x < 0) : x ∉ P.toValuationSubring := fun hmem =>
@@ -751,9 +786,6 @@ theorem ord_Pl_eq_neg_cw (hM : 5 ≤ M) (y : CF (Gamma1 M))
     obtain ⟨L, hL, hten⟩ := hlimσ x hx
     refine ⟨L, hL, ?_⟩
     refine Tendsto.congr (fun τ => ?_) hten
-    change ModularCurve.realizeOf (Gamma1 M) (x : LaurentSeries ℂ) (σ • τ) *
-        Complex.exp (-(2 * Real.pi * Complex.I * ((e : ℤ) * (Pl M σ).ord x : ℂ) * (τ : ℂ) /
-          ((Gamma1 M).normalCore.index : ℂ))) = _
     rw [h0]; simp
   have hsurj : ∀ P : AlgebraicCurve.Place ℂ (CF (Gamma1 M)), P.ord y < 0 → ∃ σ, Pl M σ = P :=
     fun P hP => ModularCurve.exists_apply_eq_of_forall_ord_eq_zero_tendsto_realizeOf (Gamma1 M) hT
@@ -985,8 +1017,41 @@ def PlG (σ : SL(2, ℤ)) : AlgebraicCurve.Place ℂ (CF Γ) :=
   (ModularCurve.exists_ringHom_place_order_eq_mul_ord_of_qExpansion_slash Γ hT
     (ModularCurve.qExpFunctionFieldC ℚ Γ) rfl σ).choose_spec.choose
 
-def PlG_spec (σ : SL(2, ℤ)) :=
-  (ModularCurve.exists_ringHom_place_order_eq_mul_ord_of_qExpansion_slash Γ hT
+lemma PlG_spec (σ : SL(2, ℤ)) :
+    let Φ := Exists.choose
+      (ModularCurve.exists_ringHom_place_order_eq_mul_ord_of_qExpansion_slash Γ hT
+        (ModularCurve.qExpFunctionFieldC ℚ Γ) rfl σ)
+    ∃ e : ℕ,
+      0 < e ∧
+      (∀ x : CF Γ, x ∈ (PlG Γ hT σ).toValuationSubring ↔ 0 ≤ (Φ x).order) ∧
+      (∀ x : CF Γ, x ∈ (PlG Γ hT σ).toValuationSubring ↔
+        ∃ L : ℂ, Filter.Tendsto
+          (fun τ : UpperHalfPlane => ModularCurve.realizeOf Γ
+            (x : LaurentSeries ℂ) (σ • τ)) atImInfty (𝓝 L)) ∧
+      (∀ (x : CF Γ) (k : ℤ) (g h : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k),
+        h ≠ 0 →
+        (x : LaurentSeries ℂ) *
+            ((qExpansion 1 (h : UpperHalfPlane → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) =
+          ((qExpansion 1 (g : UpperHalfPlane → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) →
+        Φ x * ((qExpansion (Γ.normalCore.index : ℝ)
+              ((h : UpperHalfPlane → ℂ) ∣[k] σ) : PowerSeries ℂ) : LaurentSeries ℂ) =
+          ((qExpansion (Γ.normalCore.index : ℝ)
+              ((g : UpperHalfPlane → ℂ) ∣[k] σ) : PowerSeries ℂ) : LaurentSeries ℂ)) ∧
+      (∀ c : ℂ, Φ (algebraMap ℂ (CF Γ) c) = HahnSeries.C c) ∧
+      (∀ x : CF Γ, x ≠ 0 → (Φ x).order = e * (PlG Γ hT σ).ord x) ∧
+      (∀ y : CF Γ, (y : LaurentSeries ℂ) = ModularCurve.jqModC ℂ →
+        (Φ y).order = -(Γ.normalCore.index : ℤ) ∧
+          (e : ℤ) * (PlG Γ hT σ).ord y = -(Γ.normalCore.index : ℤ) ∧
+          y ∉ (PlG Γ hT σ).toValuationSubring) ∧
+      (∀ x : CF Γ, x ≠ 0 → ∃ L : ℂ, L ≠ 0 ∧
+        Filter.Tendsto
+          (fun τ : UpperHalfPlane => ModularCurve.realizeOf Γ
+            (x : LaurentSeries ℂ) (σ • τ) *
+            Complex.exp (-(2 * Real.pi * Complex.I *
+              ((e : ℤ) * (PlG Γ hT σ).ord x : ℂ) * (τ : ℂ) /
+                (Γ.normalCore.index : ℂ))))
+          atImInfty (𝓝 L)) := by
+  exact (ModularCurve.exists_ringHom_place_order_eq_mul_ord_of_qExpansion_slash Γ hT
     (ModularCurve.qExpFunctionFieldC ℚ Γ) rfl σ).choose_spec.choose_spec
 
 theorem ord_PlG_eq_neg_cw (hΓ : CongruenceSubgroup.IsCongruenceSubgroup Γ) (y : CF Γ)
@@ -1016,9 +1081,6 @@ theorem ord_PlG_eq_neg_cw (hΓ : CongruenceSubgroup.IsCongruenceSubgroup Γ) (y 
     obtain ⟨L, hL, hten⟩ := hlimσ x hx
     refine ⟨L, hL, ?_⟩
     refine Tendsto.congr (fun τ => ?_) hten
-    change ModularCurve.realizeOf Γ (x : LaurentSeries ℂ) (σ • τ) *
-        Complex.exp (-(2 * Real.pi * Complex.I * ((e : ℤ) * (PlG Γ hT σ).ord x : ℂ) * (τ : ℂ) /
-          (Γ.normalCore.index : ℂ))) = _
     rw [h0]; simp
   have hsurj : ∀ P : AlgebraicCurve.Place ℂ (CF Γ), P.ord y < 0 → ∃ σ, PlG Γ hT σ = P :=
     fun P hP => ModularCurve.exists_apply_eq_of_forall_ord_eq_zero_tendsto_realizeOf Γ hT

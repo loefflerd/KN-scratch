@@ -2531,7 +2531,7 @@ private theorem _root_.AlgebraicCurve.Place.polynomialAlgebra_algebraMap_X :
   aeval_X _
 
 p2m_export "AlgebraicCurve.Place" "polynomialAlgebra_algebraMap_X"
-@[reducible] private def _root_.AlgebraicCurve.Place.polynomialIsScalarTower :
+private lemma _root_.AlgebraicCurve.Place.polynomialIsScalarTower :
     letI := v.polynomialAlgebra
     IsScalarTower K K[X] v.toValuationSubring := by
   let := v.polynomialAlgebra
