@@ -55,10 +55,12 @@ theorem vcYInv_one (x y : K) : vcYInv (1 : VariableChange K) x y = y := by
 
 variable [DecidableEq K]
 
+omit [DecidableEq K] in
 theorem vcInvFun_some (γ : VariableChange K) (W : WeierstrassCurve.Affine K) {x y : K} (h : W.Nonsingular x y) :
     Point.vcInvFun γ W (Point.some x y h) = Point.some (vcXInv γ x) (vcYInv γ x y)
       ((nonsingular_variableChange_iff (vcXInv γ x) (vcYInv γ x y)).mpr (by rwa [vcX_vcXInv, vcY_vcYInv])) := rfl
 
+omit [DecidableEq K] in
 theorem Point.heq_vcInvFun (γ : VariableChange K) {V V' : WeierstrassCurve.Affine K}
     (hV : V' = V) {S : V'.Point} {T : V.Point} (h : HEq S T) :
     HEq (Point.vcInvFun γ V' S) (Point.vcInvFun γ V T) := by
@@ -80,6 +82,7 @@ theorem vcInvFun_nsmul (γ : VariableChange K) (W : WeierstrassCurve.Affine K) (
     Point.vcInvFun γ W (k • P) = k • Point.vcInvFun γ W P :=
   map_nsmul (vcInvHom γ W) k P
 
+omit [DecidableEq K] in
 theorem vcInvFun_mul_heq (γ₁ γ₂ : VariableChange K) (W : WeierstrassCurve.Affine K) (P : W.Point) :
     HEq (Point.vcInvFun (γ₂ * γ₁) W P)
       (Point.vcInvFun γ₂ ((γ₁ • W : WeierstrassCurve K).toAffine) (Point.vcInvFun γ₁ W P)) := by
@@ -88,6 +91,7 @@ theorem vcInvFun_mul_heq (γ₁ γ₂ : VariableChange K) (W : WeierstrassCurve.
   · simp only [vcInvFun_some]
     exact ModularCurve.Point.heq_some (mul_smul γ₂ γ₁ W) (vcXInv_mul γ₁ γ₂ x) (vcYInv_mul γ₁ γ₂ x y)
 
+omit [DecidableEq K] in
 theorem vcInvFun_inv_heq (γ : VariableChange K) (W : WeierstrassCurve.Affine K) (P : W.Point) :
     HEq (Point.vcInvFun γ⁻¹ ((γ • W : WeierstrassCurve K).toAffine) (Point.vcInvFun γ W P)) P := by
   rcases P with _ | ⟨x, y, h⟩
@@ -97,6 +101,7 @@ theorem vcInvFun_inv_heq (γ : VariableChange K) (W : WeierstrassCurve.Affine K)
     · rw [← vcXInv_mul, inv_mul_cancel, vcXInv_one]
     · rw [← vcYInv_mul, inv_mul_cancel, vcYInv_one]
 
+omit [DecidableEq K] in
 theorem vcInvFun_one_heq (W : WeierstrassCurve.Affine K) (P : W.Point) :
     HEq (Point.vcInvFun (1 : VariableChange K) W P) P := by
   rcases P with _ | ⟨x, y, h⟩

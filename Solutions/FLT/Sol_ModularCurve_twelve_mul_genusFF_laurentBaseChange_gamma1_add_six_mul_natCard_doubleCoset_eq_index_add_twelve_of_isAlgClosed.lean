@@ -36,6 +36,7 @@ variable (K : Type*) [Field K] [Algebra ℚ K] [IsAlgClosed K] (M : ℕ) [NeZero
 local notation "Kb" => AlgebraicClosure ℚ
 local notation "F₀" => (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))
 
+omit [NeZero M] in
 theorem hT : ModularGroup.T ∈ CongruenceSubgroup.Gamma1 M := by
   rw [CongruenceSubgroup.Gamma1_mem]; simp [ModularGroup.T]
 
@@ -43,6 +44,7 @@ noncomputable def ι : Kb →ₐ[ℚ] K :=
   haveI : Algebra.IsAlgebraic ℚ Kb := AlgebraicClosure.isAlgebraic ℚ
   IsAlgClosed.lift
 
+omit [NeZero M] in
 theorem coeffMap_mem (x : LaurentSeries Kb) (hx : x ∈ ModularCurve.laurentBaseChange Kb F₀) :
     ModularCurve.coeffMap ((ι K).toRingHom) x ∈ ModularCurve.laurentBaseChange K F₀ := by
   have hle : (ModularCurve.laurentBaseChange Kb F₀).toSubfield ≤
@@ -73,6 +75,7 @@ noncomputable def φ : ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ)
   ((ModularCurve.coeffMap ((ι K).toRingHom)).comp (ModularCurve.laurentBaseChange Kb F₀).toSubfield.subtype).codRestrict
     (ModularCurve.laurentBaseChange K F₀).toSubfield (fun x => coeffMap_mem K M x.1 x.2)
 
+omit [NeZero M] in
 theorem φ_apply_coe (x : ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) : ((φ K M x : ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) : LaurentSeries K) = ModularCurve.coeffMap ((ι K).toRingHom) x := rfl
 
 end GenusK

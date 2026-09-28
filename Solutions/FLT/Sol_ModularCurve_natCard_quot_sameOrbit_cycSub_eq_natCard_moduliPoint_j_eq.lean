@@ -32,6 +32,7 @@ theorem vcYInv_one (x y : K) : vcYInv (1 : VariableChange K) x y = y := by
 
 variable [DecidableEq K]
 
+omit [DecidableEq K] in
 theorem vcInvFun_some (γ : VariableChange K) (W : WeierstrassCurve.Affine K) {x y : K}
     (h : W.Nonsingular x y) :
     Point.vcInvFun γ W (Point.some x y h) = Point.some (vcXInv γ x) (vcYInv γ x y)
@@ -54,6 +55,7 @@ theorem vcInvFun_nsmul (γ : VariableChange K) (W : WeierstrassCurve.Affine K) (
     Point.vcInvFun γ W (k • P) = k • Point.vcInvFun γ W P :=
   map_nsmul (vcInvHom γ W) k P
 
+omit [DecidableEq K] in
 theorem vcInvFun_one_heq (W : WeierstrassCurve.Affine K) (P : W.Point) :
     HEq (Point.vcInvFun (1 : VariableChange K) W P) P := by
   rcases P with _ | ⟨x, y, h⟩
@@ -66,6 +68,7 @@ theorem addOrderOf_eq_of_heq {V V' : WeierstrassCurve.Affine K} (hV : V' = V)
   subst hV
   rw [eq_of_heq h]
 
+omit [DecidableEq K] in
 theorem exists_heq {V V' : WeierstrassCurve.Affine K} (hV : V' = V) (T : V.Point) :
     ∃ S : V'.Point, HEq S T := by
   subst hV

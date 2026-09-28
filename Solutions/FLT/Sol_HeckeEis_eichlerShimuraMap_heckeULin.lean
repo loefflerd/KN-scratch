@@ -572,6 +572,7 @@ theorem coe_heckeCosetRep (q : Gamma0 N ⧸ heckeUpper N ℓ) :
   rw [heckeCosetRep_def, Units.val_mul, alphaGL_coe, gammaToGL_apply, Matrix.SpecialLinearGroup.mapGL_coe_matrix,
     Matrix.SpecialLinearGroup.map_apply_coe, RingHom.mapMatrix_apply, cosetMat, ← map_int_mul']
 
+omit [NeZero ℓ] in
 theorem adjugate_cosetMat (q : Gamma0 N ⧸ heckeUpper N ℓ) :
     (cosetMat (ℓ := ℓ) q).adjugate
       = (((Quotient.out q : Gamma0 N) : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) * !![(ℓ : ℤ), 0; 0, 1] := by
@@ -581,6 +582,7 @@ theorem adjugate_cosetMat (q : Gamma0 N ⧸ heckeUpper N ℓ) :
   ext i j
   fin_cases i <;> fin_cases j <;> simp
 
+omit [NeZero ℓ] in
 theorem cosetOp_apply_eq (q : Gamma0 N ⧸ heckeUpper N ℓ) (v : ↥(BinaryForm ℂ n)) :
     cosetOp N ℓ n q v = ((binarySubst ℂ (cosetMat (ℓ := ℓ) q).adjugate).toLinearMap.restrict
         (fun _ h => binarySubst_mem ℂ (cosetMat (ℓ := ℓ) q).adjugate h)) v := by

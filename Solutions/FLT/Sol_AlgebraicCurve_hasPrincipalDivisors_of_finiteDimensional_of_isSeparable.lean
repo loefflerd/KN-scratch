@@ -89,6 +89,7 @@ theorem Place.ord_prod' {ι : Type*} (v : Place K F') (s : Finset ι)
         (Finset.prod_ne_zero_iff.mpr fun j hj => hg j (Finset.mem_cons_of_mem hj)),
       ih fun j hj => hg j (Finset.mem_cons_of_mem hj)]
 
+omit [Algebra.IsSeparable F F'] in
 theorem sum_smul_apply_eq_ord_prod {f : F'} (hf : f ≠ 0)
     {D : Divisor K F'} (hD : ∀ w : Place K F', D w = w.ord f) (w : Place K F') :
     (∑ σ : F' ≃ₐ[F] F', (AlgEquiv.restrictScalars K σ) • D) w

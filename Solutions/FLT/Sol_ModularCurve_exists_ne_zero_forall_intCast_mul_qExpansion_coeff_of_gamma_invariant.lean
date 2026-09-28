@@ -99,6 +99,7 @@ scoped instance instFintypeAut : Fintype ((kN N) ≃ₐ[ℚ] (kN N)) := AlgEquiv
 
 def zetaK : kN N := ⟨zetaN N, IntermediateField.subset_adjoin ℚ _ (Set.mem_singleton _)⟩
 
+omit [NeZero N] in
 @[scoped simp] theorem coe_zetaK : ((zetaK N : kN N) : ℂ) = zetaN N := rfl
 
 theorem isPrimitiveRoot_zetaK : IsPrimitiveRoot (zetaK N) N := by
@@ -121,14 +122,17 @@ theorem ratCast_mem (K : IntermediateField ℚ ℂ) (r : ℚ) : ((r : ℂ)) ∈ 
   have : (r : ℂ) = algebraMap ℚ ℂ r := rfl
   rw [this]; exact K.algebraMap_mem r
 
+omit [NeZero N] in
 theorem mem_AZ_iff (x : ℂ) : x ∈ AZ N ↔ ∃ p : Polynomial ℤ, x = Polynomial.aeval (zetaN N) p := by
   rw [AZ, Algebra.adjoin_singleton_eq_range_aeval]
   constructor
   · rintro ⟨p, hp⟩; exact ⟨p, hp.symm⟩
   · rintro ⟨p, hp⟩; exact ⟨p, hp.symm⟩
 
+omit [NeZero N] in
 theorem zetaN_mem_AZ : zetaN N ∈ AZ N := Algebra.subset_adjoin (Set.mem_singleton _)
 
+omit [NeZero N] in
 theorem AZ_le_kN : ∀ x ∈ AZ N, x ∈ kN N := by
   intro x hx
   rw [mem_AZ_iff] at hx
@@ -242,6 +246,7 @@ def nice : Subalgebra ℂ (ℍ → ℂ) where
 
 variable {N}
 
+omit [NeZero N] in
 theorem mem_nice {g : ℍ → ℂ} :
     g ∈ nice N ↔ MDifferentiable 𝓘(ℂ) 𝓘(ℂ) g ∧ Periodic (g ∘ ofComplex) N ∧ IsBoundedAtImInfty g := Iff.rfl
 
@@ -275,16 +280,19 @@ theorem periodic_ofComplex_natCast {g : ℍ → ℂ} (h : Periodic (g ∘ ofComp
     Periodic (g ∘ ofComplex) n := by
   simpa using h.nat_mul n
 
+omit [NeZero N] in
 theorem levelOne_mem {k : ℤ} (f : ModularForm 𝒮ℒ k) : (⇑f : ℍ → ℂ) ∈ nice N :=
   ⟨f.holo', periodic_ofComplex_natCast (SlashInvariantFormClass.periodic_comp_ofComplex f
     one_mem_strictPeriods_SL) N, ModularFormClass.bdd_at_infty f⟩
 
+omit [NeZero N] in
 theorem disc_mem : (Δ : ℍ → ℂ) ∈ nice N := by
   have := levelOne_mem (N := N) (CuspForm.discriminant : ModularForm 𝒮ℒ 12)
   exact this
 
 def dN : nice N := ⟨Δ, disc_mem⟩
 
+omit [NeZero N] in
 @[scoped simp] theorem coe_dN : ((dN : nice N) : ℍ → ℂ) = Δ := rfl
 
 def E4cube : ModularForm 𝒮ℒ 12 := (E₄.pow 3).mcast (by norm_num)
@@ -298,6 +306,7 @@ theorem jf_mul_disc : jf * Δ = ⇑E4cube := by
   simp only [Pi.mul_apply, Pi.pow_apply, jf]
   field_simp [discriminant_ne_zero τ]
 
+omit [NeZero N] in
 theorem jf_disc_mem : jf * Δ ∈ nice N := by rw [jf_mul_disc]; exact levelOne_mem _
 
 theorem fricke_disc_mem {v : Fin 2 → ZMod N} (hv : v ≠ 0) : fricke N v * Δ ∈ nice N := by
@@ -350,6 +359,7 @@ theorem IsRat.pow {φ : PowerSeries ℂ} (h : IsRat φ) (n : ℕ) : IsRat (φ ^ 
 theorem isRat_of_int (P : PowerSeries ℤ) : IsRat (P.map (Int.castRingHom ℂ)) :=
   ⟨P.map (Int.castRingHom ℚ), by ext n; simp [PowerSeries.coeff_map]⟩
 
+omit [NeZero N] in
 theorem BddA.mul {φ ψ : PowerSeries ℂ} (h : BddA N φ) (h' : BddA N ψ) : BddA N (φ * ψ) := by
   obtain ⟨D, hD, hφ⟩ := h
   obtain ⟨D', hD', hψ⟩ := h'
@@ -362,6 +372,7 @@ theorem BddA.mul {φ ψ : PowerSeries ℂ} (h : BddA N φ) (h' : BddA N ψ) : Bd
   rw [this]
   exact mul_mem (hφ _) (hψ _)
 
+omit [NeZero N] in
 theorem BddA.add {φ ψ : PowerSeries ℂ} (h : BddA N φ) (h' : BddA N ψ) : BddA N (φ + ψ) := by
   obtain ⟨D, hD, hφ⟩ := h
   obtain ⟨D', hD', hψ⟩ := h'
@@ -375,16 +386,19 @@ theorem BddA.add {φ ψ : PowerSeries ℂ} (h : BddA N φ) (h' : BddA N ψ) : Bd
   exact add_mem (mul_mem (by exact_mod_cast (AZ N).algebraMap_mem (D' : ℤ)) (hφ n))
     (mul_mem (by exact_mod_cast (AZ N).algebraMap_mem (D : ℤ)) (hψ n))
 
+omit [NeZero N] in
 theorem bddA_one : BddA N (1 : PowerSeries ℂ) := by
   refine ⟨1, one_ne_zero, fun n => ?_⟩
   rw [PowerSeries.coeff_one]
   split_ifs <;> simp [one_mem, zero_mem]
 
+omit [NeZero N] in
 theorem BddA.pow {φ : PowerSeries ℂ} (h : BddA N φ) (n : ℕ) : BddA N (φ ^ n) := by
   induction n with
   | zero => simpa using bddA_one
   | succ n ih => rw [pow_succ]; exact ih.mul h
 
+omit [NeZero N] in
 theorem bddA_of_int (P : PowerSeries ℤ) : BddA N (P.map (Int.castRingHom ℂ)) := by
   refine ⟨1, one_ne_zero, fun n => ?_⟩
   rw [PowerSeries.coeff_map, Nat.cast_one, one_mul]
@@ -398,6 +412,7 @@ theorem bddA_C {κ : ℂ} (hκ : κ ∈ kN N) : BddA N (PowerSeries.C κ) := by
   · exact hDκ
   · simp [zero_mem]
 
+omit [NeZero N] in
 theorem BddA.coeff_mem {φ : PowerSeries ℂ} (h : BddA N φ) (n : ℕ) : φ.coeff n ∈ kN N := by
   obtain ⟨D, hD, hφ⟩ := h
   have hDC : (D : ℂ) ≠ 0 := Nat.cast_ne_zero.mpr hD
@@ -530,6 +545,7 @@ theorem map_DZ : (DZ (N := N)).map (Int.castRingHom ℂ) = qExpansion N (Δ : �
       rw [← ModularCurve.qExpansion_discriminant_eq_map_X_mul_dedekindEtaUnit]; rfl)
   exact this
 
+omit [NeZero N] in
 theorem constantCoeff_UZ : PowerSeries.constantCoeff (UZ (N := N)) = 1 := by
   rw [← PowerSeries.coeff_zero_eq_constantCoeff_apply, UZ, spread, PowerSeries.coeff_mk]
   simp [ModularCurve.constantCoeff_dedekindEtaUnit]
@@ -687,6 +703,7 @@ structure RatAt (M : ℕ) (g : ℍ → ℂ) : Prop where
 
 variable {N K}
 
+omit [NeZero N] in
 theorem ratAt_of_mem_nice {M : ℕ} {g : ℍ → ℂ} (hg : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) g) (hmem : g * Δ ^ M ∈ nice N)
     (hrat : IsRat (qExpansion N (g * Δ ^ M))) : RatAt N K M g where
   mdiff := hg
@@ -882,6 +899,7 @@ theorem bddQ_sum {ι : Type*} (s : Finset ι) (f : ι → PowerSeries ℚ) (h : 
       rw [Finset.sum_insert ha]
       exact (h a (Finset.mem_insert_self a s)).add (ih fun i hi => h i (Finset.mem_insert_of_mem hi))
 
+omit [NeZero N] in
 theorem periodic_of_gamma_invariant {G : ℍ → ℂ}
     (hinv : ∀ γ ∈ CongruenceSubgroup.Gamma N, ∀ τ : ℍ, G (γ • τ) = G τ) : Periodic (G ∘ ofComplex) N := by
   have hT : ModularGroup.T ^ (N : ℤ) ∈ CongruenceSubgroup.Gamma N := by
@@ -1058,12 +1076,15 @@ variable {N}
 def liftK (φ : PowerSeries ℂ) (hφ : ∀ n, φ.coeff n ∈ kN N) : PowerSeries (kN N) :=
   PowerSeries.mk fun n => ⟨φ.coeff n, hφ n⟩
 
+omit [NeZero N] in
 theorem map_liftK (φ : PowerSeries ℂ) (hφ : ∀ n, φ.coeff n ∈ kN N) :
     (liftK φ hφ).map (algebraMap (kN N) ℂ) = φ := by
   ext n; simp [liftK]
 
+omit [NeZero N] in
 theorem coe_algebraMap (x : kN N) : algebraMap (kN N) ℂ x = (x : ℂ) := rfl
 
+omit [NeZero N] in
 theorem map_K_injective : Function.Injective (PowerSeries.map (algebraMap (kN N) ℂ)) := by
   intro a b h
   ext n
@@ -1075,6 +1096,7 @@ theorem map_map' {R S T : Type*} [Semiring R] [Semiring S] [Semiring T] (f : R �
     (φ : PowerSeries R) : (φ.map f).map g = φ.map (g.comp f) := by
   ext n; simp [PowerSeries.coeff_map]
 
+omit [NeZero N] in
 theorem map_rat_K (y : PowerSeries ℚ) :
     (y.map (algebraMap ℚ (kN N))).map (algebraMap (kN N) ℂ) = y.map (algebraMap ℚ ℂ) := by
   rw [map_map']
@@ -1083,6 +1105,7 @@ theorem map_rat_K (y : PowerSeries ℚ) :
 def BddK (ψ : PowerSeries (kN N)) : Prop :=
   ∃ D : ℕ, D ≠ 0 ∧ ∀ n, (((D : kN N) * ψ.coeff n : kN N) : ℂ) ∈ AZ N
 
+omit [NeZero N] in
 theorem bddK_iff_map {ψ : PowerSeries (kN N)} : BddK ψ ↔ BddA N (ψ.map (algebraMap (kN N) ℂ)) := by
   constructor
   · rintro ⟨D, hD, h⟩
@@ -1098,14 +1121,17 @@ theorem bddK_iff_map {ψ : PowerSeries (kN N)} : BddK ψ ↔ BddA N (ψ.map (alg
     push_cast
     exact this
 
+omit [NeZero N] in
 theorem bddK_liftK {φ : PowerSeries ℂ} (h : BddA N φ) (hφ : ∀ n, φ.coeff n ∈ kN N) : BddK (liftK φ hφ) := by
   rw [bddK_iff_map, map_liftK]; exact h
 
+omit [NeZero N] in
 theorem BddK.mul {ψ ψ' : PowerSeries (kN N)} (h : BddK ψ) (h' : BddK ψ') : BddK (ψ * ψ') := by
   rw [bddK_iff_map] at h h' ⊢
   rw [map_mul]
   exact h.mul h'
 
+omit [NeZero N] in
 theorem bddK_one : BddK (1 : PowerSeries (kN N)) := by
   rw [bddK_iff_map, map_one]; exact bddA_one
 
@@ -1122,10 +1148,12 @@ private def _root_.GammaNBounded.autS (σ : (kN N) ≃ₐ[ℚ] (kN N)) : PowerSe
   PowerSeries.map (σ : (kN N) →+* (kN N))
 
 p2m_export "GammaNBounded" "autS"
+omit [NeZero N] in
 theorem coeff_autS (σ : (kN N) ≃ₐ[ℚ] (kN N)) (ψ : PowerSeries (kN N)) (n : ℕ) :
     (autS σ ψ).coeff n = σ (ψ.coeff n) := by
   rw [autS, PowerSeries.coeff_map]; rfl
 
+omit [NeZero N] in
 theorem autS_injective (σ : (kN N) ≃ₐ[ℚ] (kN N)) : Function.Injective (autS σ) := by
   intro a b h
   refine PowerSeries.ext fun n => ?_
@@ -1133,10 +1161,12 @@ theorem autS_injective (σ : (kN N) ≃ₐ[ℚ] (kN N)) : Function.Injective (au
   rw [coeff_autS, coeff_autS] at this
   exact σ.injective this
 
+omit [NeZero N] in
 theorem autS_mul (τ σ : (kN N) ≃ₐ[ℚ] (kN N)) (ψ : PowerSeries (kN N)) : autS τ (autS σ ψ) = autS (τ * σ) ψ := by
   ext n
   rw [coeff_autS, coeff_autS, coeff_autS, AlgEquiv.mul_apply]
 
+omit [NeZero N] in
 theorem autS_one (ψ : PowerSeries (kN N)) : autS 1 ψ = ψ := by
   ext n; rw [coeff_autS, AlgEquiv.one_apply]
 
@@ -1149,6 +1179,7 @@ theorem BddK.autS {ψ : PowerSeries (kN N)} (h : BddK ψ) (σ : (kN N) ≃ₐ[�
   rw [this]
   exact aut_mem_AZ N σ _ (hψ n)
 
+omit [NeZero N] in
 theorem autS_map_rat (σ : (kN N) ≃ₐ[ℚ] (kN N)) (y : PowerSeries ℚ) :
     autS σ (y.map (algebraMap ℚ (kN N))) = y.map (algebraMap ℚ (kN N)) := by
   ext n

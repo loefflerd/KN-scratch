@@ -369,9 +369,9 @@ variable (E : Type*) [Field E] [Algebra K E] [Algebra E F] [IsScalarTower K E F]
 variable [Algebra.IsIntegral E F]
 variable [HasCanonicalLocalResidueKStar K E] [HasCanonicalLocalResidueKStar K F]
 
-def KwF4R1V391aResidueTraceCompletionCommute : Prop :=
-  ∀ [HasPrincipalDivisors K E] [HasPrincipalDivisors K F]
-    [∀ w : Place K F, w.FiniteResidue] [FiniteDimensional E F]
+def KwF4R1V391aResidueTraceCompletionCommute
+    [HasPrincipalDivisors K E] [HasPrincipalDivisors K F] : Prop :=
+  ∀ [∀ w : Place K F, w.FiniteResidue] [FiniteDimensional E F]
     [Nontrivial Ω[E⁄K]] (v : Place K E) [v.DCoordGenerates]
     (w : Place K F) [w.DCoordGenerates] (_ : w ∈ v.fiber F) (g : F),
     kaehlerResidueTerm (kaehlerPullback K F E v.dCoord) (diagonalHom K F g) w
@@ -451,4 +451,3 @@ end KCurrencyRowA
 end AlgebraicCurve
 
 end
-

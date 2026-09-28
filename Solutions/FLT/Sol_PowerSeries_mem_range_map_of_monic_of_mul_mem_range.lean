@@ -16,6 +16,7 @@ open Polynomial
 variable {R K : Type*} [CommRing R] [IsDomain R] [IsPrincipalIdealRing R] [Field K] [Algebra R K]
   [IsFractionRing R K]
 
+omit [IsDomain R] [IsPrincipalIdealRing R] in
 theorem map_injective : Function.Injective (PowerSeries.map (algebraMap R K)) := by
   intro a b h
   ext n

@@ -23,6 +23,7 @@ p2m_open "WeierstrassCurve.Affine.Point WeierstrassCurve.Affine WeierstrassCurve
 
 variable {F : Type*} [Field F] [DecidableEq F]
 
+omit [DecidableEq F] in
 theorem vcInvFun_one_heq' (W : WeierstrassCurve F) (P : W.toAffine.Point) :
     HEq (vcInvFun (1 : VariableChange F) W.toAffine P) P := by
   have hW : ((1 : VariableChange F) • W).toAffine = W.toAffine := one_smul _ _

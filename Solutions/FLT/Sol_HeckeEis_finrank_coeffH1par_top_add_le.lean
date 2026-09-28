@@ -209,6 +209,7 @@ def E : ↥(coeffParabolicCocycles W) →ₗ[ℂ] V × V where
   map_smul' _ _ := rfl
 
 omit hinv hcoinv in
+omit [FiniteDimensional ℂ V] in
 theorem E_injective : Function.Injective (E W) := by
   intro z w h
   rw [← sub_eq_zero]
@@ -226,6 +227,7 @@ def K : Submodule ℂ (V × V) :=
         (LinearMap.snd ℂ V V - LinearMap.fst ℂ V V))
 
 omit hinv hcoinv in
+omit [FiniteDimensional ℂ V] in
 theorem E_mem_K (z : ↥(coeffParabolicCocycles W)) : E W z ∈ K W := by
   have hz := z.2.1
   refine Submodule.mem_inf.mpr ⟨Submodule.mem_prod.mpr ⟨?_, ?_⟩, LinearMap.mem_ker.mpr ?_⟩

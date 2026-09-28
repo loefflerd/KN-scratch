@@ -18,6 +18,7 @@ namespace S12Q
 
 variable (N : ℕ) [NeZero N]
 
+omit [NeZero N] in
 theorem mem_iff_ord_nonneg (w : Place (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N))
     {x : ↥(modularFunctionFieldBar N)} (hx : x ≠ 0) :
     x ∈ w.toValuationSubring ↔ 0 ≤ w.ord x := by

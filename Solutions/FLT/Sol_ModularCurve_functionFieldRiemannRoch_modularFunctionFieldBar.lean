@@ -160,7 +160,7 @@ theorem solution (N : ℕ) [NeZero N] :
   have : ∀ v : Place (AlgebraicClosure ℚ) (RatFunc (AlgebraicClosure ℚ)), v.DCoordGenerates := dCoordGenerates_of_isCurveOver
 
   exact @functionFieldRiemannRoch_of_isAlgClosed (AlgebraicClosure ℚ) (modularFunctionFieldBar N)
-    _ _ (Classical.decEq _) _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+    _ _ (Classical.decEq _) _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 
 end S_ModularCurve_functionFieldRiemannRoch_modularFunctionFieldBar

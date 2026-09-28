@@ -342,6 +342,7 @@ theorem T_mem_Gamma1 : ModularGroup.T ∈ CongruenceSubgroup.Gamma1 M := by
   rw [CongruenceSubgroup.Gamma1_mem]
   simp [ModularGroup.coe_T]
 
+omit [NeZero M] in
 theorem exists_coe_eq_jqModC :
     ∃ y : laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)),
       (y : LaurentSeries ℂ) = jqModC ℂ := by

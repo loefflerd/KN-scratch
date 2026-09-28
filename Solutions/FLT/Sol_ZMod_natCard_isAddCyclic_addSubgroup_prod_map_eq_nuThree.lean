@@ -17,6 +17,7 @@ namespace L3zCore
 
 variable {n : ℕ} [NeZero n]
 
+omit [NeZero n] in
 theorem nsmul_self_eq_zero (v : (ZMod n × ZMod n)) : n • v = 0 := by
   ext <;> simp [nsmul_eq_mul]
 
@@ -38,6 +39,7 @@ def eig (τ : (ZMod n × ZMod n) →+ (ZMod n × ZMod n)) (k : ZMod n) : AddSubg
   neg_mem' ha := by
     simp only [Set.mem_ofPred_eq] at ha ⊢; rw [map_neg, ha, smul_neg]
 
+omit [NeZero n] in
 theorem mem_eig (τ : (ZMod n × ZMod n) →+ (ZMod n × ZMod n)) (k : ZMod n) (v : (ZMod n × ZMod n)) : v ∈ eig τ k ↔ τ v = k • v := Iff.rfl
 
 def shift (τ : (ZMod n × ZMod n) →+ (ZMod n × ZMod n)) (k : ZMod n) : (ZMod n × ZMod n) →+ (ZMod n × ZMod n) where
@@ -45,8 +47,10 @@ def shift (τ : (ZMod n × ZMod n) →+ (ZMod n × ZMod n)) (k : ZMod n) : (ZMod
   map_zero' := by simp only [map_zero, smul_zero, sub_zero]
   map_add' v w := by simp only [map_add, smul_add]; abel
 
+omit [NeZero n] in
 theorem shift_apply (τ : (ZMod n × ZMod n) →+ (ZMod n × ZMod n)) (k : ZMod n) (v : (ZMod n × ZMod n)) : shift τ k v = τ v - k • v := rfl
 
+omit [NeZero n] in
 theorem ker_shift (τ : (ZMod n × ZMod n) →+ (ZMod n × ZMod n)) (k : ZMod n) : (shift τ k).ker = eig τ k := by
   ext v
   rw [AddMonoidHom.mem_ker, shift_apply, sub_eq_zero, mem_eig]
@@ -56,6 +60,7 @@ section Quadratic
 variable (τ : (ZMod n × ZMod n) →+ (ZMod n × ZMod n)) (s : ZMod n) (hτ : ∀ v, τ (τ v) = s • τ v - v)
 include hτ
 
+omit [NeZero n] in
 theorem τ_injective : Function.Injective τ := fun a b h => by
   have ha : a = s • τ a - τ (τ a) := by rw [hτ]; abel
   have hb : b = s • τ b - τ (τ b) := by rw [hτ]; abel
@@ -96,6 +101,7 @@ theorem map_eig_eq (k : ZMod n) : (eig τ k).map τ = eig τ k := by
 
 end Quadratic
 
+omit [NeZero n] in
 theorem card_pTorsion_le {p : ℕ} (hp : p.Prime) :
     Nat.card {v : (ZMod n × ZMod n) // p • v = 0} ≤ p ^ 2 := by
   have key : Nat.card {x : ZMod n // p • x = 0} ≤ p := by

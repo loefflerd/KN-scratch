@@ -18,7 +18,7 @@ namespace Point
 p2m_export "WeierstrassCurve.Affine.Point" "some zero neg_some vcInvFun"
 p2m_open "WeierstrassCurve.Affine.Point WeierstrassCurve.Affine WeierstrassCurve"
 
-variable {F : Type*} [Field F] [DecidableEq F]
+variable {F : Type*} [Field F]
 
 theorem negVariableChange_smul' (W : WeierstrassCurve F) :
     (⟨-1, 0, -W.a₁, -W.a₃⟩ : VariableChange F) • W = W := by

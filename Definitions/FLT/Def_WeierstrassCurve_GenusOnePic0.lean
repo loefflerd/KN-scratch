@@ -33,22 +33,27 @@ abbrev pointEquivPlace : W.Point ≃ AlgebraicCurve.Place F W.FunctionField :=
 def placeOfPoint : W.Point → AlgebraicCurve.Place F W.FunctionField :=
   pointEquivPlace (W := W)
 
+omit [DecidableEq F] in
 @[simp]
 theorem pointEquivPlace_apply (P : W.Point) :
     (pointEquivPlace (W := W)) P = placeOfPoint P := rfl
 
+omit [DecidableEq F] in
 @[simp]
 theorem pointEquivPlace_symm_placeOfPoint (P : W.Point) :
     (pointEquivPlace (W := W)).symm (placeOfPoint P) = P :=
   (pointEquivPlace (W := W)).symm_apply_apply P
 
+omit [DecidableEq F] in
 theorem deg_eq_one (v : AlgebraicCurve.Place F W.FunctionField) : v.deg = 1 :=
   GenusOnePlaceGate.deg_eq_one v
 
+omit [DecidableEq F] in
 @[simp]
 theorem deg_placeOfPoint (P : W.Point) : (placeOfPoint (W := W) P).deg = 1 :=
   deg_eq_one _
 
+omit [DecidableEq F] in
 theorem degree_eq_sum (D : AlgebraicCurve.Divisor F W.FunctionField) :
     Divisor.degree D = D.sum fun _ n => n := by
   rw [Divisor.degree, Finsupp.liftAddHom_apply]
@@ -72,12 +77,14 @@ def pointDivisor (P : W.Point) : Divisor.degZero (K := F) (F := W.FunctionField)
     rw [Divisor.mem_degZero, map_sub, Divisor.degree_single, Divisor.degree_single,
       deg_placeOfPoint, deg_placeOfPoint, sub_self]⟩
 
+omit [DecidableEq F] in
 @[simp]
 theorem coe_pointDivisor (P : W.Point) :
     (pointDivisor P : AlgebraicCurve.Divisor F W.FunctionField)
       = Finsupp.single (placeOfPoint P) 1 - Finsupp.single (placeOfPoint (0 : W.Point)) 1 :=
   rfl
 
+omit [DecidableEq F] in
 @[simp]
 theorem pointDivisor_zero : pointDivisor (0 : W.Point) = 0 :=
   Subtype.ext (sub_self _)
@@ -173,4 +180,3 @@ end AbelTheorem
 end WeierstrassCurve.Affine
 
 end
-

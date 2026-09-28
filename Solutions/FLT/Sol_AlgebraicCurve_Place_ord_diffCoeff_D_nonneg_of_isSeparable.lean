@@ -107,7 +107,7 @@ private theorem isLocalization_valuationSubring {K Φ : Type*} [Field K] [Field 
     exact ⟨1, by rw [IsFractionRing.injective R Φ hΦ]⟩
 
 private theorem isAlgebraic_residue {R S : Type*} [CommRing R] [CommRing S] [Algebra R S]
-    [IsLocalRing R] [IsLocalRing S] [IsLocalHom (algebraMap R S)] [Nontrivial R]
+    [IsLocalRing R] [IsLocalRing S] [IsLocalHom (algebraMap R S)]
     {x : S} (hx : ∃ p : Polynomial R, p.Monic ∧ Polynomial.eval₂ (algebraMap R S) x p = 0) :
     IsAlgebraic (IsLocalRing.ResidueField R) (IsLocalRing.residue S x) := by
   obtain ⟨p, hpm, hpe⟩ := hx

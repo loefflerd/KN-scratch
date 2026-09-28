@@ -3883,11 +3883,12 @@ variable (K F)
 variable {K F}
 variable (K F)
 
-def ResiduePairingSurjective : Prop :=
-  ∀ [HasPrincipalDivisors K F] (W D : Divisor K F)
+def ResiduePairingSurjective [HasPrincipalDivisors K F] : Prop :=
+  ∀  (W D : Divisor K F)
     {φ : Module.Dual K (adeleSpace K F)} (hφ : φ ∈ omegaSpace W) (_hφ0 : φ ≠ 0)
     (_hWmax : ∀ E : Divisor K F, φ ∈ omegaSpace E → E ≤ W),
     Function.Surjective (residuePairing K F W D hφ)
+
 end AlgebraicCurve
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 end
@@ -4712,8 +4713,9 @@ variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 
 theorem residuePairingSurjective_of_weilDifferentialRankOne [HasPrincipalDivisors K F]
     (hRk1 : WeilDifferentialRankOne K F) : ResiduePairingSurjective K F := by
-  intro _ W D φ hφ hφ0 hWmax
+  intro W D φ hφ hφ0 hWmax
   exact residuePairing_surjective hRk1 W D hφ hφ0 hWmax
+
 end AlgebraicCurve
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 end
@@ -4732,6 +4734,7 @@ theorem residuePairingSurjective_of_riemannIndexFormula
     (hRI : RiemannIndexFormula K F) : ResiduePairingSurjective K F :=
   residuePairingSurjective_of_weilDifferentialRankOne
     (weilDifferentialRankOne_of_riemannIndexFormula hRI)
+
 end AlgebraicCurve
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 end
@@ -5537,7 +5540,7 @@ section Headline
 
 variable {K E F : Type*} [Field K] [Field E] [Field F]
   [Algebra K E] [Algebra K F] [Algebra E F] [IsScalarTower K E F]
-variable [FiniteDimensional E F] [Algebra.IsSeparable E F] [HasPrincipalDivisors K F]
+variable [FiniteDimensional E F] [Algebra.IsSeparable E F]
 
 variable (K E F) in
 
@@ -5551,8 +5554,6 @@ theorem linearIndependent_reindex_basis {s : Finset F} (b : Basis s E F) :
     LinearIndependent E (fun i : Fin (Module.finrank E F) =>
       b ((Fintype.equivFinOfCardEq (Module.finrank_eq_card_basis b).symm).symm i)) :=
   b.linearIndependent.comp _ (Equiv.injective _)
-
-omit [HasPrincipalDivisors K F] in
 
 theorem hasIntegralBasisRegularOutside_of_isFractionRing
     {A : Type*} [CommRing A] [IsDomain A] [Algebra A E] [IsFractionRing A E]
@@ -5568,8 +5569,6 @@ theorem hasIntegralBasisRegularOutside_of_isFractionRing
 
   exact T.ord_nonneg_of_isIntegral_of_regularOutside hA (hint (e i)) w hw
 
-omit [HasPrincipalDivisors K F] in
-
 theorem hasIntegralBasisRegularOutside_of_hasRegularFractionSubring
     (T : TranscendenceTower K E F) (h : HasRegularFractionSubring K E F T) :
     HasIntegralBasisRegularOutside K E F T := by
@@ -5579,7 +5578,7 @@ theorem hasIntegralBasisRegularOutside_of_hasRegularFractionSubring
   exact hasIntegralBasisRegularOutside_of_isFractionRing (A := A) T
     (fun u hu a => hreg u hu (a : E) a.property)
 
-theorem hasPoleDivisorPackage_of_hasRegularFractionSubring
+theorem hasPoleDivisorPackage_of_hasRegularFractionSubring [HasPrincipalDivisors K F]
     (T : TranscendenceTower K E F) (h : HasRegularFractionSubring K E F T) :
     HasPoleDivisorPackage K F :=
   hasPoleDivisorPackage_of_hasIntegralBasisRegularOutside T
@@ -5592,7 +5591,7 @@ theorem stichtenothGenusExists_of_hasRegularFractionSubring [IsCurveOver K F]
   stichtenothGenusExists_of_hasPoleDivisorPackage
     (hasPoleDivisorPackage_of_hasRegularFractionSubring T h)
 
-omit [FiniteDimensional E F] [Algebra.IsSeparable E F] [HasPrincipalDivisors K F] in
+omit [FiniteDimensional E F] [Algebra.IsSeparable E F] in
 
 theorem TranscendenceTower.adjoin_x_regularOutside (T : TranscendenceTower K E F) :
     ∀ u : Place K E, u ≠ T.v →
@@ -5610,7 +5609,7 @@ theorem TranscendenceTower.adjoin_x_regularOutside (T : TranscendenceTower K E F
   show T.x ∈ u.toValuationSubring
   exact u.mem_of_ord_nonneg T.x_ne_zero (T.hxreg u hu)
 
-omit [FiniteDimensional E F] [Algebra.IsSeparable E F] [HasPrincipalDivisors K F] in
+omit [FiniteDimensional E F] [Algebra.IsSeparable E F] in
 
 theorem hasRegularFractionSubring_of_adjoin_x_isFractionRing
     (T : TranscendenceTower K E F)
@@ -5734,8 +5733,6 @@ theorem isFractionRing_adjoin_X :
   exact z.num_div_denom.symm
 
 variable [FiniteDimensional (RatFunc K) F] [Algebra.IsSeparable (RatFunc K) F]
-
-variable [HasPrincipalDivisors K F]
 
 variable [IsCurveOver K F] [Nonempty (Place K F)]
   [FiniteDimensional K (LSpace (0 : Divisor K F))]
@@ -6244,14 +6241,14 @@ theorem solution
     [AlgebraicCurve.HasCanonicalDivisor (K := K) (F := F)]
     [∀ w : AlgebraicCurve.Place K F, w.DCoordGenerates]
     [Algebra (RatFunc K) F] [IsScalarTower K (RatFunc K) F]
-    [Algebra.IsIntegral (RatFunc K) F] [Module.Finite (RatFunc K) F]
+    [Algebra.IsIntegral (RatFunc K) F]
     [AlgebraicCurve.HasLocalResidue K F]
     [∀ w : AlgebraicCurve.Place K F, w.FiniteResidue]
     [Nontrivial Ω[F⁄K]]
     [AlgebraicCurve.IsCurveOver K F] [AlgebraicCurve.IsCurveOver K (RatFunc K)]
     [∀ u : AlgebraicCurve.Place K (RatFunc K), u.FiniteResidue]
     [AlgebraicCurve.HasCanonicalLocalResidueKStar K F]
-    [AlgebraicCurve.HasPrincipalDivisors K F] [Algebra.IsSeparable (RatFunc K) F]
+    [Algebra.IsSeparable (RatFunc K) F]
     [Nontrivial Ω[(RatFunc K)⁄K]] [∀ v : AlgebraicCurve.Place K (RatFunc K), v.DCoordGenerates]
     [FiniteDimensional (RatFunc K) F] [AlgebraicCurve.HasSeparableResidue K F]
     (hRTK : AlgebraicCurve.ResidueTheoremK K F) :

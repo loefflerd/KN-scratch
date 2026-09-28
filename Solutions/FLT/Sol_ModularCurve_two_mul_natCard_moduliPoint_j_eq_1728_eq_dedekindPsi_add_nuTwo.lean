@@ -36,10 +36,13 @@ def coords {W : WeierstrassCurve L} : W.toAffine.Point → Option (L × L)
   | 0 => none
   | .some x y _ => some (x, y)
 
+omit [DecidableEq L] in
 @[scoped simp] theorem coords_zero {W : WeierstrassCurve L} : coords (0 : W.toAffine.Point) = none := rfl
+omit [DecidableEq L] in
 @[scoped simp] theorem coords_some {W : WeierstrassCurve L} {x y : L} (h : W.toAffine.Nonsingular x y) :
     coords (Point.some x y h) = some (x, y) := rfl
 
+omit [DecidableEq L] in
 theorem coords_injective {W : WeierstrassCurve L} : Function.Injective (coords (W := W)) := by
   rintro (_ | ⟨x, y, h⟩) (_ | ⟨x', y', h'⟩) hPQ
   · rfl
@@ -49,6 +52,7 @@ theorem coords_injective {W : WeierstrassCurve L} : Function.Injective (coords (
     obtain ⟨rfl, rfl⟩ := hPQ
     rfl
 
+omit [DecidableEq L] in
 theorem coords_eq_of_heq {W₁ W₂ : WeierstrassCurve L} (e : W₁ = W₂) {P : W₁.toAffine.Point} {Q : W₂.toAffine.Point}
     (h : HEq P Q) : coords P = coords Q := by
   subst e; rw [eq_of_heq h]
@@ -98,19 +102,23 @@ theorem coords_autPt {W : WeierstrassCurve L} (v : Lˣ) (hγ : (⟨v, 0, 0, 0⟩
 
 abbrev W1 (L : Type*) [Field L] : WeierstrassCurve L := ⟨0, 0, 0, 1, 0⟩
 
+omit [DecidableEq L] in
 theorem W1_Δ : (W1 L).Δ = -64 := by
   simp only [WeierstrassCurve.Δ, WeierstrassCurve.b₂, WeierstrassCurve.b₄, WeierstrassCurve.b₆, WeierstrassCurve.b₈]; ring
 
+omit [DecidableEq L] in
 theorem coords_neg {x y : L} (h : (W1 L).toAffine.Nonsingular x y) :
     coords (-(Point.some x y h)) = some (x, -y) := by
   rw [Point.neg_some]; show some _ = some _; simp [WeierstrassCurve.Affine.negY]
 
 variable [Algebra ℚ L]
 
+omit [DecidableEq L] in
 theorem isElliptic_W1 : (W1 L).IsElliptic := by
   have : CharZero L := charZero_of_injective_algebraMap (algebraMap ℚ L).injective
   exact ⟨by rw [W1_Δ]; exact isUnit_iff_ne_zero.mpr (by norm_num)⟩
 
+omit [DecidableEq L] in
 theorem j_W1 : haveI := isElliptic_W1 (L := L); (W1 L).j = 1728 := by
   have : CharZero L := charZero_of_injective_algebraMap (algebraMap ℚ L).injective
   have := isElliptic_W1 (L := L)
@@ -124,6 +132,7 @@ theorem j_W1 : haveI := isElliptic_W1 (L := L); (W1 L).j = 1728 := by
   have h64 : (-64 : L) ≠ 0 := by norm_num
   exact sub_eq_zero.mp ((mul_eq_zero.mp this).resolve_left h64)
 
+omit [DecidableEq L] in
 theorem stab_W1 (γ : VariableChange L) (hγ : γ • W1 L = W1 L) :
     γ.r = 0 ∧ γ.s = 0 ∧ γ.t = 0 ∧ (γ.u : L) ^ 4 = 1 := by
   have : CharZero L := charZero_of_injective_algebraMap (algebraMap ℚ L).injective
@@ -131,11 +140,13 @@ theorem stab_W1 (γ : VariableChange L) (hγ : γ • W1 L = W1 L) :
   exact (WeierstrassCurve.mem_stabilizer_variableChange_iff_of_isShortNF_of_a6_eq_zero (F := L)
     two_ne_zero three_ne_zero (W1 L) rfl one_ne_zero γ).mp hγ
 
+omit [DecidableEq L] [Algebra ℚ L] in
 theorem eq_mk_of_rst {γ : VariableChange L} (h : γ.r = 0 ∧ γ.s = 0 ∧ γ.t = 0) : γ = ⟨γ.u, 0, 0, 0⟩ := by
   obtain ⟨u, r, s, t⟩ := γ
   obtain ⟨rfl, rfl, rfl⟩ := h
   rfl
 
+omit [DecidableEq L] [Algebra ℚ L] in
 theorem pow_four_eq_one_cases {u v : L} (hu : u ^ 2 = -1) (hv : v ^ 4 = 1) :
     v = 1 ∨ v = -1 ∨ v = u ∨ v = -u := by
   have : (v - 1) * (v + 1) * (v - u) * (v + u) = 0 := by
@@ -225,13 +236,16 @@ variable [IsAlgClosed L]
 abbrev CycSub (L : Type*) [Field L] [DecidableEq L] (N : ℕ) : Type _ :=
   {H : AddSubgroup (W1 L).toAffine.Point // IsAddCyclic H ∧ Nat.card H = N}
 
+omit [DecidableEq L] [Algebra ℚ L] [IsAlgClosed L] in
 theorem hσW (u : Lˣ) (hu : (u : L) ^ 2 = -1) : (⟨u, 0, 0, 0⟩ : VariableChange L) • W1 L = W1 L :=
   WeierstrassCurve.variableChange_mk_smul_eq_self_of_sq_eq_neg_one u hu 1
 
 def σ (u : Lˣ) (hu : (u : L) ^ 2 = -1) : (W1 L).toAffine.Point →+ (W1 L).toAffine.Point := autPt ⟨u, 0, 0, 0⟩ (hσW u hu)
 
+omit [DecidableEq L] [Algebra ℚ L] [IsAlgClosed L] in
 theorem hui (u : Lˣ) (hu : (u : L) ^ 2 = -1) : ((u⁻¹ : Lˣ) : L) ^ 2 = -1 := by rw [Units.val_inv_eq_inv_val, inv_pow, hu]; norm_num
 
+omit [Algebra ℚ L] [IsAlgClosed L] in
 theorem coords_σ (u : Lˣ) (hu : (u : L) ^ 2 = -1) (P : (W1 L).toAffine.Point) :
     coords (σ u hu P) = (coords P).map (fun q => (-q.1, ((u⁻¹ : Lˣ) : L) ^ 3 * q.2)) := by
   show coords (autPt _ _ P) = _
@@ -240,6 +254,7 @@ theorem coords_σ (u : Lˣ) (hu : (u : L) ^ 2 = -1) (P : (W1 L).toAffine.Point) 
   funext q
   simp
 
+omit [Algebra ℚ L] [IsAlgClosed L] in
 theorem σ_σ (u : Lˣ) (hu : (u : L) ^ 2 = -1) (P : (W1 L).toAffine.Point) : σ u hu (σ u hu P) = -P := by
   apply coords_injective
   rcases P with _ | ⟨x, y, h⟩
@@ -250,6 +265,7 @@ theorem σ_σ (u : Lˣ) (hu : (u : L) ^ 2 = -1) (P : (W1 L).toAffine.Point) : σ
     have h6 : (((u⁻¹ : Lˣ) : L) ^ 3) * (((u⁻¹ : Lˣ) : L) ^ 3 * y) = (((u⁻¹ : Lˣ) : L) ^ 2) ^ 3 * y := by ring
     rw [h6, hui u hu]; norm_num
 
+omit [Algebra ℚ L] [IsAlgClosed L] in
 theorem σ_injective (u : Lˣ) (hu : (u : L) ^ 2 = -1) : Function.Injective (σ u hu) := autPt_injective _ _
 
 def τ (u : Lˣ) (hu : (u : L) ^ 2 = -1) (N : ℕ) (H : CycSub L N) : CycSub L N :=
@@ -260,6 +276,7 @@ def τ (u : Lˣ) (hu : (u : L) ^ 2 = -1) (N : ℕ) (H : CycSub L N) : CycSub L N
       exact isAddCyclic_of_surjective ((σ u hu).addSubgroupMap H.1) ((σ u hu).addSubgroupMap_surjective H.1)
     · exact (Nat.card_congr (H.1.equivMapOfInjective (σ u hu) (σ_injective u hu)).symm.toEquiv).trans hcard⟩
 
+omit [Algebra ℚ L] [IsAlgClosed L] in
 theorem τ_val (u : Lˣ) (hu : (u : L) ^ 2 = -1) (N : ℕ) (H : CycSub L N) : (τ u hu N H).1 = H.1.map (σ u hu) := rfl
 
 theorem map_σ_map_σ (u : Lˣ) (hu : (u : L) ^ 2 = -1) (H : AddSubgroup (W1 L).toAffine.Point) : (H.map (σ u hu)).map (σ u hu) = H := by
@@ -311,6 +328,7 @@ theorem mem_fixedPoints_iff (u : Lˣ) (hu : (u : L) ^ 2 = -1) (N : ℕ) (H : Cyc
     · rfl
     · exact h
 
+omit [Algebra ℚ L] [IsAlgClosed L] in
 theorem τ_eq_iff (u : Lˣ) (hu : (u : L) ^ 2 = -1) (N : ℕ) (hN : N ≠ 0) (H : CycSub L N) :
     τ u hu N H = H ↔ ∀ T ∈ H.1, σ u hu T ∈ H.1 := by
   constructor
@@ -339,6 +357,7 @@ def cyc (T : {T : (W1 L).toAffine.Point // addOrderOf T = N}) : CycSub L N :=
       obtain ⟨n, hn⟩ := AddSubgroup.mem_zmultiples_iff.mp y.2
       exact ⟨n, Subtype.ext (by simpa using hn)⟩⟩, by rw [Nat.card_zmultiples, T.2]⟩
 
+omit [IsAlgClosed L] in
 theorem map_autPt_eq_or (u : Lˣ) (hu : (u : L) ^ 2 = -1) (γ : VariableChange L) (hγ : γ • W1 L = W1 L) (H : AddSubgroup (W1 L).toAffine.Point) :
     H.map (autPt γ hγ) = H ∨ H.map (autPt γ hγ) = H.map (σ u hu) := by
   obtain ⟨hr, hs, ht, hv⟩ := stab_W1 γ hγ
@@ -414,6 +433,7 @@ theorem map_autPt_eq_or (u : Lˣ) (hu : (u : L) ^ 2 = -1) (γ : VariableChange L
     · rintro ⟨Q, hQ, rfl⟩; exact ⟨-Q, H.neg_mem hQ, by rw [map_neg, h]⟩
     · rintro ⟨Q, hQ, rfl⟩; exact ⟨-Q, H.neg_mem hQ, by rw [map_neg, h, neg_neg]⟩
 
+omit [Algebra ℚ L] [IsAlgClosed L] in
 theorem R_iff (T T' : {T : (W1 L).toAffine.Point // addOrderOf T = N}) :
     R N T T' ↔ ∃ γ : VariableChange L, ∃ hγ : γ • W1 L = W1 L, ∃ k : ℕ, k.Coprime N ∧ T'.1 = k • autPt γ hγ T.1 := by
   unfold R
@@ -421,12 +441,14 @@ theorem R_iff (T T' : {T : (W1 L).toAffine.Point // addOrderOf T = N}) :
   rw [autPt_apply, ← map_nsmul (castPt hγ), eq_comm, castPt_eq_iff_heq]
   exact heq_comm
 
+omit [Algebra ℚ L] [IsAlgClosed L] in
 theorem autPt_one (h1 : (1 : VariableChange L) • W1 L = W1 L) (P : (W1 L).toAffine.Point) : autPt 1 h1 P = P := by
   apply coords_injective
   have : autPt 1 h1 P = autPt ⟨1, 0, 0, 0⟩ h1 P := rfl
   rw [this, coords_autPt]
   rcases P with _ | ⟨x, y, h⟩ <;> simp
 
+omit [Algebra ℚ L] [IsAlgClosed L] in
 private theorem _root_.P2MWs13.R2a.exists_generator (hN : N ≠ 0) (H : CycSub L N) :
     ∃ T : (W1 L).toAffine.Point, addOrderOf T = N ∧ AddSubgroup.zmultiples T = H.1 := by
   obtain ⟨hc, hcard⟩ := H.2

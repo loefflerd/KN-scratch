@@ -29,6 +29,7 @@ def xy {W : WeierstrassCurve L} : W.toAffine.Point → Option (L × L)
   | 0 => none
   | .some x y _ => some (x, y)
 
+omit [DecidableEq L] in
 theorem xy_injective {W : WeierstrassCurve L} : Function.Injective (xy (W := W)) := by
   rintro (_ | ⟨x, y, h⟩) (_ | ⟨x', y', h'⟩) hh
   · rfl
@@ -38,12 +39,14 @@ theorem xy_injective {W : WeierstrassCurve L} : Function.Injective (xy (W := W))
     obtain ⟨rfl, rfl⟩ := hh
     rfl
 
+omit [DecidableEq L] in
 theorem xy_neg {W : WeierstrassCurve L} (P : W.toAffine.Point) :
     xy (-P) = (xy P).map (fun q => (q.1, W.toAffine.negY q.1 q.2)) := by
   rcases P with _ | ⟨x, y, h⟩
   · rfl
   · rw [Affine.Point.neg_some]; rfl
 
+omit [DecidableEq L] in
 theorem xy_vcInvFun (γ : VariableChange L) {W : WeierstrassCurve L} (P : W.toAffine.Point) :
     xy (Point.vcInvFun γ W.toAffine P) = (xy P).map (fun q => (vcXInv γ q.1, vcYInv γ q.1 q.2)) := by
   rcases P with _ | ⟨x, y, h⟩ <;> rfl

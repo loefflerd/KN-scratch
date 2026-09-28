@@ -494,6 +494,7 @@ theorem vieta_addX {x₁ y₁ x₂ y₂ : L}
   simp only at hc hd
   exact ⟨by linear_combination -hc, by linear_combination hd⟩
 
+omit [DecidableEq L] in
 theorem secant_slope_identity {x₁ y₁ x₂ y₂ : L}
     (h₁ : (W.map A.subtype).toAffine.Equation x₁ y₁)
     (h₂ : (W.map A.subtype).toAffine.Equation x₂ y₂) :
@@ -519,6 +520,7 @@ theorem secant_slope_identity {x₁ y₁ x₂ y₂ : L}
       - a2*a3*x₁^2 + a2*x₁^2*y₁ + a3^2*y₁ - a3*a4*x₁ - a3*a6 - a3*x₁^3 + a4*x₁*y₁ + a6*y₁
       + x₁^3*y₁) * h₂
 
+omit [DecidableEq L] in
 theorem tangent_slope_identity {x₁ y₁ : L}
     (h₁ : (W.map A.subtype).toAffine.Equation x₁ y₁) :
     -(3*x₁^2 + 2*(W.map A.subtype).toAffine.a₂*x₁ + (W.map A.subtype).toAffine.a₄
@@ -535,6 +537,7 @@ theorem tangent_slope_identity {x₁ y₁ : L}
   linear_combination (3*(W.map A.subtype).toAffine.a₁*y₁ - 6*(W.map A.subtype).toAffine.a₂*x₁
     - 3*(W.map A.subtype).toAffine.a₄ - 9*x₁^2) * h₁
 
+omit [DecidableEq L] in
 theorem tangent_intercept_identity {x₁ y₁ : L}
     (h₁ : (W.map A.subtype).toAffine.Equation x₁ y₁) :
     y₁*(2*y₁ + (W.map A.subtype).toAffine.a₁*x₁ + (W.map A.subtype).toAffine.a₃)
@@ -843,6 +846,7 @@ theorem slope_div_intercept_estimate {x₁ y₁ x₂ y₂ τ : L}
   rw [hline]
   exact add_mem (inv_Y_div_mem_nonunits h₁ hx₁ ht₁) (A.mul_mem_nonunits ht₁ hℓν')
 
+omit [DecidableEq L] in
 theorem collinear_prod_sum {x₁ y₁ x₂ y₂ x₃ y₃ ℓ ν : L}
     (he₁ : x₁ + x₂ + x₃ = ℓ ^ 2 + (W.map A.subtype).toAffine.a₁ * ℓ
       - (W.map A.subtype).toAffine.a₂)

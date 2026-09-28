@@ -242,15 +242,13 @@ def unitIdealOfPoint : W.Point → (FractionalIdeal W.CoordinateRing⁰ W.Functi
 @[scoped simp] theorem unitIdealOfPoint_some {x y : F} (h : W.Nonsingular x y) :
     unitIdealOfPoint (.some x y h) = CoordinateRing.XYIdeal' h := rfl
 
-variable [DecidableEq F]
-
-omit [DecidableEq F] in
-
 theorem placeOfPoint_eq (P : W.Point) : placeOfPoint (W := W) P = placeOfPt P := rfl
 
 theorem pointEquivPlace_symm_placeOfPt (P : W.Point) :
     (pointEquivPlace (W := W)).symm (placeOfPt P) = P :=
   pointEquivPlace_symm_placeOfPoint P
+
+variable [DecidableEq F]
 
 theorem classGroup_mk_unitIdealOfPoint (P : W.Point) :
     ClassGroup.mk W.FunctionField (unitIdealOfPoint P) = Additive.toMul (Point.toClass P) := by
@@ -289,6 +287,7 @@ theorem classGroup_mk_unitIdealOfDivisor (D : AlgebraicCurve.Divisor F W.Functio
         classGroup_mk_unitIdealOfPoint, map_add, divisorSum_single, map_add, toMul_add,
         map_zsmul, toMul_zsmul]
 
+omit [DecidableEq F] in
 theorem count_unitIdealOfDivisor (D : AlgebraicCurve.Divisor F W.FunctionField)
     (w : HeightOneSpectrum W.CoordinateRing) :
     FractionalIdeal.count W.FunctionField w (unitIdealOfDivisor D : _) =

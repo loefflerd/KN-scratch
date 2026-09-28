@@ -133,6 +133,7 @@ theorem periodic_of_slash_T_pow_eq {k : ℤ} (F : ℍ → ℂ) (h : ℕ)
 
 variable [Γ.FiniteIndex]
 
+omit [Γ.FiniteIndex] in
 theorem coe_translate_SL {k : ℤ} (g : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) (σ : SL(2, ℤ)) :
     ⇑(ModularForm.translate g (σ : GL (Fin 2) ℝ)) = ⇑g ∣[k] σ := by
   rw [SL_slash]
@@ -145,6 +146,7 @@ theorem slash_periodic_index {k : ℤ} (g : ModularForm (Γ : Subgroup (GL (Fin 
     (ModularForm.translate g (σ : GL (Fin 2) ℝ))
     (natCast_mem_strictPeriods_of_conj_mem Γ σ _ (conj_T_pow_index_mem Γ σ))
 
+omit [Γ.FiniteIndex] in
 theorem slash_mdiff {k : ℤ} (g : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) (σ : SL(2, ℤ)) :
     MDiff (⇑g ∣[k] σ) := by
   rw [← coe_translate_SL g σ]

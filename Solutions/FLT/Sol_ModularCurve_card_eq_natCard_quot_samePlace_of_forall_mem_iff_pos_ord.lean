@@ -163,6 +163,7 @@ theorem exists_forall_hasRamBound (j₀ : AlgebraicClosure ℚ)
   intro z
   exact (hS _).mp (hle IntermediateField.mem_top)
 
+omit [NeZero N] in
 theorem mem_iff_ord_nonneg (w : Place (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N))
     {x : ↥(modularFunctionFieldBar N)} (hx : x ≠ 0) :
     x ∈ w.toValuationSubring ↔ 0 ≤ w.ord x := by

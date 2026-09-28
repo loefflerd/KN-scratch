@@ -78,12 +78,15 @@ variable (M : ℕ) [NeZero M]
 
 local notation "Γ₁ℝ" => ((CongruenceSubgroup.Gamma1 M : Subgroup SL(2, ℤ)) : Subgroup (GL (Fin 2) ℝ))
 
+omit [NeZero M] in
 theorem one_mem_strictPeriods_gamma1 : (1 : ℝ) ∈ (Γ₁ℝ).strictPeriods := by
   simp
 
+omit [NeZero M] in
 theorem analyticAt_cuspFunction {k : ℤ} (g : ModularForm Γ₁ℝ k) : AnalyticAt ℂ (cuspFunction 1 (⇑g : ℍ → ℂ)) 0 :=
   ModularFormClass.analyticAt_cuspFunction_zero g one_pos (one_mem_strictPeriods_gamma1 M)
 
+omit [NeZero M] in
 theorem qExpansion_sum_smul {k : ℤ} {ι : Type*} (s : Finset ι) (c : ι → ℂ) (f : ι → ModularForm Γ₁ℝ k) :
     qExpansion 1 (⇑(∑ i ∈ s, c i • f i) : ℍ → ℂ) = ∑ i ∈ s, c i • qExpansion 1 (⇑(f i) : ℍ → ℂ) := by
   classical

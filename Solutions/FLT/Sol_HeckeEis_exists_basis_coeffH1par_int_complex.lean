@@ -174,6 +174,7 @@ theorem free_coeffH1par : Module.Free ℤ (coeffH1par ((binaryFormRepSL ℤ n).c
   have := isTorsionFree_coeffH1par n N
   exact Module.free_of_finite_type_torsion_free'
 
+omit [NeZero N] in
 theorem comp_eq_of_clauses
     (ΦC : coeffH1par ((binaryFormRepSL ℤ n).comp (Gamma0 N).subtype) →+ coeffH1par ((binaryFormRepSL ℂ n).comp (Gamma0 N).subtype))
     (hΦC : ∀ z : ↥(coeffParabolicCocycles ((binaryFormRepSL ℤ n).comp (Gamma0 N).subtype)),

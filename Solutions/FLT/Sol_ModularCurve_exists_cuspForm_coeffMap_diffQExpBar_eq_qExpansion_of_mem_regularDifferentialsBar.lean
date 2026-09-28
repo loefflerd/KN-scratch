@@ -58,6 +58,7 @@ theorem coeffMap_algebraMap' (ι₀ : AlgebraicClosure ℚ →+* ℂ) (c : Algeb
       algebraMap ℂ (LaurentSeries ℂ) (ι₀ c) := by
   rw [algebraMap_laurentSeries_eq_single, algebraMap_laurentSeries_eq_single, coeffMap_single]
 
+omit [NeZero N] in
 theorem coeffMap_mem_laurentBaseChange_complex (ι₀ : AlgebraicClosure ℚ →+* ℂ)
     {x : LaurentSeries (AlgebraicClosure ℚ)}
     (hx : x ∈ laurentBaseChange (AlgebraicClosure ℚ) (modularFunctionFieldFull N)) :
@@ -79,9 +80,11 @@ theorem coeffMap_mem_laurentBaseChange_complex (ι₀ : AlgebraicClosure ℚ →
 noncomputable def phi (ι₀ : AlgebraicClosure ℚ →+* ℂ) : modularFunctionFieldBar N →+* LaurentSeries ℂ :=
   (coeffMap ι₀).comp (laurentBaseChange (AlgebraicClosure ℚ) (modularFunctionFieldFull N)).toSubfield.subtype
 
+omit [NeZero N] in
 theorem phi_apply (ι₀ : AlgebraicClosure ℚ →+* ℂ) (x : modularFunctionFieldBar N) :
     phi N ι₀ x = coeffMap ι₀ (x : LaurentSeries (AlgebraicClosure ℚ)) := rfl
 
+omit [NeZero N] in
 theorem phi_algebraMap (ι₀ : AlgebraicClosure ℚ →+* ℂ) (c : AlgebraicClosure ℚ) :
     phi N ι₀ (algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) c) =
       algebraMap ℂ (LaurentSeries ℂ) (ι₀ c) := by
@@ -92,6 +95,7 @@ theorem phi_jB (ι₀ : AlgebraicClosure ℚ →+* ℂ) : phi N ι₀ (jB N) = c
   rw [phi_apply]
   exact coeffMap_coeffEmb' ι₀ jq
 
+omit [NeZero N] in
 theorem isIntegral_phi (ι₀ : AlgebraicClosure ℚ →+* ℂ) (a : modularFunctionFieldBar N)
     {y : modularFunctionFieldBar N}
     (hy : IsIntegral (Algebra.adjoin (AlgebraicClosure ℚ) ({a} : Set (modularFunctionFieldBar N))) y) :

@@ -30,6 +30,7 @@ section Level
 
 variable (M : ℕ) [NeZero M] (H : Subgroup (ZMod M)ˣ)
 
+omit [NeZero M] in
 theorem Gamma1_le_GammaH : CongruenceSubgroup.Gamma1 M ≤ CohCarrier.GammaH M H := by
   intro A hA
   obtain ⟨-, h11, h10⟩ := (CongruenceSubgroup.Gamma1_mem M A).mp hA
@@ -46,9 +47,11 @@ theorem Gamma1_le_GammaH : CongruenceSubgroup.Gamma1 M ≤ CohCarrier.GammaH M H
 scoped instance GammaH_finiteIndex' : (CohCarrier.GammaH M H).FiniteIndex :=
   Subgroup.finiteIndex_of_le (Gamma1_le_GammaH M H)
 
+omit [NeZero M] in
 theorem T_mem_GammaH : ModularGroup.T ∈ CohCarrier.GammaH M H :=
   Gamma1_le_GammaH M H (by simp [CongruenceSubgroup.Gamma1_mem, ModularGroup.T])
 
+omit [NeZero M] in
 theorem one_mem_strictPeriods : (1 : ℝ) ∈ (Γᴴℝ M, H).strictPeriods := by
   have h1 : (1 : ℝ) ∈ (Γ₁ℝ M).strictPeriods := by
     rw [CongruenceSubgroup.strictPeriods_Gamma1]; exact AddSubgroup.mem_zmultiples _
@@ -81,6 +84,7 @@ section QExp
 
 variable {M : ℕ} [NeZero M] {H : Subgroup (ZMod M)ˣ} {k : ℤ}
 
+omit [NeZero M] in
 theorem analyticAt_form (f : ModularForm (Γᴴℝ M, H) k) : AnalyticAt ℂ (cuspFunction 1 (⇑f)) 0 :=
   ModularFormClass.analyticAt_cuspFunction_zero f one_pos (one_mem_strictPeriods M H)
 
@@ -97,6 +101,7 @@ theorem isIntegralQExp_add {f g : ModularForm (Γᴴℝ M, H) k} {p r : PowerSer
   unfold IsIntegralQExp at hf hg ⊢
   rw [FunLike.coe_add, qExpansion_add (analyticAt_form f) (analyticAt_form g), map_add, hf, hg]
 
+omit [NeZero M] in
 theorem isIntegralQExp_zero : IsIntegralQExp (⇑(0 : ModularForm (Γᴴℝ M, H) k)) 0 := by
   unfold IsIntegralQExp
   rw [FunLike.coe_zero, qExpansion_zero, map_zero]
@@ -124,6 +129,7 @@ theorem isIntegralQExp_mul {k₁ k₂ : ℤ} {f : ModularForm (Γᴴℝ M, H) k�
   unfold IsIntegralQExp at hf hg ⊢
   rw [ModularForm.coe_mul, qExpansion_mul (analyticAt_form f) (analyticAt_form g), map_mul, hf, hg]
 
+omit [NeZero M] in
 theorem eq_zero_of_isIntegralQExp_zero (f : ModularForm (Γᴴℝ M, H) k) (hf : IsIntegralQExp (⇑f) 0) :
     f = 0 := by
   apply ModularFormClass.eq_of_forall_qCoeff_eq (one_mem_strictPeriods M H)
@@ -148,6 +154,7 @@ variable {w w₁ w₂ : ℤ}
 
 namespace IDatum
 
+omit [NeZero M] in
 theorem hinv (D : IDatum M H w) (h : SL(2, ℤ)) (hh : h ∈ CohCarrier.GammaH M H) :
     (⇑D.f : ℍ → ℂ) ∣[w] h = ⇑D.f :=
   SlashInvariantForm.slash_action_eqn D.f _ (Subgroup.mem_map_of_mem _ hh)
@@ -200,6 +207,7 @@ theorem smul_SL_slash (k : ℤ) (γ : SL(2, ℤ)) (F : ℍ → ℂ) (c : ℂ) :
     (c • F) ∣[k] γ = c • (F ∣[k] γ) := by
   exact ModularForm.SL_smul_slash k γ F c
 
+omit [NeZero M] in
 theorem slash_invariant_of_invariant (F : ℍ → ℂ) (k : ℤ)
     (hinv : ∀ h : SL(2, ℤ), h ∈ CohCarrier.GammaH M H → F ∣[k] h = F)
     (γ : SL(2, ℤ)) (hγ : γ ∈ CongruenceSubgroup.Gamma0 M)
@@ -246,11 +254,14 @@ variable (K : Type*) [Field K] [CharZero K]
 def redHom : PowerSeries ℤ →+* LaurentSeries K :=
   (HahnSeries.ofPowerSeries ℤ K).comp (PowerSeries.map (Int.castRingHom K))
 
+omit [CharZero K] in
 @[scoped simp] theorem redHom_apply (p : PowerSeries ℤ) : redHom K p = intSeriesC K p := rfl
 
+omit [CharZero K] in
 theorem intSeriesC_zsmul (n : ℤ) (p : PowerSeries ℤ) : intSeriesC K (n • p) = (n : K) • intSeriesC K p := by
   rw [← redHom_apply, map_zsmul, redHom_apply, Int.cast_smul_eq_zsmul]
 
+omit [CharZero K] in
 theorem intSeriesC_add (p r : PowerSeries ℤ) : intSeriesC K (p + r) = intSeriesC K p + intSeriesC K r := by
   rw [← redHom_apply, map_add, redHom_apply, redHom_apply]
 
@@ -332,6 +343,7 @@ variable {M : ℕ} [NeZero M] {H : Subgroup (ZMod M)ˣ} {w : ℤ}
 
 namespace IDatum
 
+omit [NeZero M] in
 @[scoped ext] theorem ext {D E : IDatum M H w} (hf : D.f = E.f) (hp : D.p = E.p) : D = E := by
   cases D; cases E
   cases hf; cases hp
@@ -349,7 +361,9 @@ scoped instance : Neg (IDatum M H w) := ⟨fun D => IDatum.zsmul (-1) D⟩
 
 scoped instance : Sub (IDatum M H w) := ⟨fun D E => D + (-E)⟩
 
+omit [NeZero M] in
 @[scoped simp] theorem zero_f : (0 : IDatum M H w).f = 0 := rfl
+omit [NeZero M] in
 @[scoped simp] theorem zero_p : (0 : IDatum M H w).p = 0 := rfl
 @[scoped simp] theorem add_f' (D E : IDatum M H w) : (D + E).f = D.f + E.f := rfl
 @[scoped simp] theorem add_p' (D E : IDatum M H w) : (D + E).p = D.p + E.p := rfl
@@ -364,6 +378,7 @@ scoped instance : Sub (IDatum M H w) := ⟨fun D E => D + (-E)⟩
 
 def toProd (D : IDatum M H w) : ModularForm (Γᴴℝ M, H) w × PowerSeries ℤ := (D.f, D.p)
 
+omit [NeZero M] in
 theorem toProd_injective : Function.Injective (toProd (M := M) (H := H) (w := w)) := by
   intro D E h
   simp only [toProd, Prod.mk.injEq] at h
@@ -397,6 +412,7 @@ def redD : IDatum M H w →+ LaurentSeries K where
   map_zero' := by simp
   map_add' D E := by simp [intSeriesC_add]
 
+omit [CharZero K] in
 @[scoped simp] theorem redD_apply (D : IDatum M H w) : redD K D = intSeriesC K D.p := rfl
 
 variable {K}
@@ -460,6 +476,7 @@ section Descent
 
 variable {M : ℕ} [NeZero M] {H : Subgroup (ZMod M)ˣ} {w : ℤ} {K : Type*} [Field K] [CharZero K]
 
+omit [CharZero K] in
 theorem exists_intCast_eq_coeff_intSeriesC (p : PowerSeries ℤ) (n : ℤ) :
     ∃ z : ℤ, (intSeriesC K p).coeff n = (z : K) := by
   rcases Int.eq_nat_or_neg n with ⟨m, rfl | rfl⟩
@@ -527,6 +544,7 @@ theorem sum_coe_smul_tRed_eq_zero (s : Finset (IDatum M H w)) (e : IDatum M H w 
   exact this.resolve_left hZ
 
 omit [NeZero M] in
+omit [CharZero K] in
 theorem coeff_finset_sum {ι : Type*} (s : Finset ι) (f : ι → LaurentSeries K) (n : ℤ) :
     (∑ i ∈ s, f i).coeff n = ∑ i ∈ s, (f i).coeff n := by
   classical
@@ -534,6 +552,7 @@ theorem coeff_finset_sum {ι : Type*} (s : Finset ι) (f : ι → LaurentSeries 
   | empty => simp
   | insert a s ha ih => simp [Finset.sum_insert ha, ih]
 
+omit [CharZero K] in
 theorem bot_smul_eq_mul (r : (⊥ : Subfield K)) (x : K) : r • x = (r : K) * x := rfl
 
 theorem sum_smul_tRed_eq_zero (s : Finset (IDatum M H w)) (c : IDatum M H w → K)
@@ -632,9 +651,11 @@ def evT (K : Type*) [Field K] [CharZero K] (w : ℤ) (γ : SL(2, ℤ)) (hγ : γ
 
 omit [NeZero M] in
 
+omit [CharZero K] in
 theorem smul_mul_smul' (a b : K) (x y : LaurentSeries K) : (a • x) * (b • y) = (a * b) • (x * y) := by
   rw [← HahnSeries.C_mul_eq_smul, ← HahnSeries.C_mul_eq_smul, ← HahnSeries.C_mul_eq_smul, map_mul]; ring
 
+omit [NeZero M] in
 @[scoped simp] theorem ev_single (D : IDatum M H w) (c : K) : ev K w (Finsupp.single D c) = c • intSeriesC K D.p := by
   simp [ev]
 
@@ -642,6 +663,7 @@ theorem smul_mul_smul' (a b : K) (x y : LaurentSeries K) : (a • x) * (b • y)
     evT K w γ hγ (Finsupp.single D c) = c • tRed K D γ hγ := by
   simp [evT]
 
+omit [NeZero M] in
 theorem ev_apply (l : IDatum M H w →₀ K) : ev K w l = ∑ D ∈ l.support, l D • intSeriesC K D.p := by
   rw [ev, Finsupp.linearCombination_apply, Finsupp.sum]
 
@@ -786,6 +808,7 @@ def oneD : IDatum M H 0 :=
 @[scoped simp] theorem oneD_f : (⇑(oneD : IDatum M H 0).f : ℍ → ℂ) = 1 := ModularForm.one_coe_eq_one
 
 omit [NeZero M] in
+omit [CharZero K] in
 theorem C_eq_algebraMap' (c : K) : HahnSeries.C c = algebraMap K (LaurentSeries K) c := by
   exact (HahnSeries.ofPowerSeries_C (Γ := ℤ) (R := K) c).symm
 
@@ -831,6 +854,7 @@ def Efield (K : Type*) [Field K] [CharZero K] (M : ℕ) [NeZero M] (H : Subgroup
 theorem mem_Efield_iff {x : LaurentSeries K} :
     x ∈ Efield K M H ↔ ∃ (w : ℤ) (l l' : IDatum M H w →₀ K), IsRep K x w l l' := Iff.rfl
 
+omit [NeZero M] in
 theorem exists_mem_support_ne_zero {l : IDatum M H w →₀ K} (h : ev K w l ≠ 0) :
     ∃ G ∈ l.support, intSeriesC K G.p ≠ 0 := by
   by_contra! hcon
@@ -838,6 +862,7 @@ theorem exists_mem_support_ne_zero {l : IDatum M H w →₀ K} (h : ev K w l ≠
   rw [ev_apply]
   exact Finset.sum_eq_zero fun D hD => by rw [hcon D hD, smul_zero]
 
+omit [NeZero M] in
 theorem ev_div_mem {l : IDatum M H w →₀ K} (G : IDatum M H w) (hG : intSeriesC K G.p ≠ 0) :
     ev K w l / intSeriesC K G.p ∈ qExpFunctionFieldC K (CohCarrier.GammaH M H) := by
   rw [ev_apply, Finset.sum_div]

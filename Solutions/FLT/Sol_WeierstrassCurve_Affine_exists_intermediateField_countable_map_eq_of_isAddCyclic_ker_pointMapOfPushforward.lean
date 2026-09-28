@@ -270,7 +270,7 @@ section CentredGate
 variable [DecidableEq F] [GenusOnePlaceGate W] [GenusOnePlaceGate.IsCentred W]
 
 @[scoped simp]
-theorem placeOfPoint_some [IsDedekindDomain W.CoordinateRing] {x y : F} (h : W.Nonsingular x y) :
+theorem placeOfPoint_some {x y : F} (h : W.Nonsingular x y) :
     placeOfPoint (.some x y h) = placeOfEquation h.left :=
   placeOfPoint_some_eq_ofHeightOneSpectrum h (heightOneSpectrumOfEquation h.left) rfl
 
@@ -287,7 +287,7 @@ theorem not_isFinitePlace [IsAlgClosed F] [W.IsElliptic] :
     ¬ IsFinitePlace (place : AlgebraicCurve.Place F W.FunctionField) := fun h =>
   algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero (W := W) (h _)
 
-theorem eq_of_not_isFinitePlace [IsDedekindDomain W.CoordinateRing]
+theorem eq_of_not_isFinitePlace
     (v : AlgebraicCurve.Place F W.FunctionField) (hv : ¬ IsFinitePlace v) :
     v = place := by
   obtain ⟨P, rfl⟩ : ∃ P : W.Point, placeOfPoint P = v :=
@@ -2892,8 +2892,8 @@ theorem kw_surgehgf4_hfgkd_hKD_of_kerTransport
     (hKT : KwD5BetweenCurvesKerTransportAlongEmbed.{uK})
     (hχB : KwD5BetweenCurvesChiCompChiEqPhi.{uK}) :
     KwD5BetweenCurvesKerDescendAlgClosed.{uK} := by
-  intro K _ _ _ _ E E' _ _ _ _ _ _ _ _ ι hι hfin N _ hcyc hcard
-  intro K₀ E₀ E₀' _ _ hE₀map hE₀'map ι' hι' hfin' hcompat
+  intro K _ _ _ _ E E' _ _ _ _ _ _ _ _ ι hι hfin N _ hcyc hcard K₀ E₀ E₀' _ _
+    hE₀map hE₀'map ι' hι' hfin' hcompat
   let : Algebra ℚ K := DivisionRing.toRatAlgebra
   subst hE₀map; subst hE₀'map
   have : CharZero (AlgebraicClosure (↥K₀)) :=

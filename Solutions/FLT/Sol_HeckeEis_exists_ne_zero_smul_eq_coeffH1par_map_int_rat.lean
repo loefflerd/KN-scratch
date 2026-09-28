@@ -517,6 +517,7 @@ variable (N : ℕ) [NeZero N]
 
 def cuspRep (q : SL(2, ℤ) ⧸ Gamma0 N) : SL(2, ℤ) := (Quotient.out q)⁻¹
 
+omit [NeZero N] in
 theorem mul_cuspRep_inv_mem (σ : SL(2, ℤ)) : σ * (cuspRep N (QuotientGroup.mk σ⁻¹ : SL(2, ℤ) ⧸ Gamma0 N))⁻¹ ∈ Gamma0 N := by
   set q : SL(2, ℤ) ⧸ Gamma0 N := QuotientGroup.mk σ⁻¹ with hq
   have hmk : (QuotientGroup.mk (Quotient.out q) : SL(2, ℤ) ⧸ Gamma0 N) = QuotientGroup.mk σ⁻¹ := by

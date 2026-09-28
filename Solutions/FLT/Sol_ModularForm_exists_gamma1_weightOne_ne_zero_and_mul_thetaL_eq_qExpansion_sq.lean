@@ -34,6 +34,7 @@ variable (M : ℕ) [NeZero M]
 
 local notation "Γ₁ℝ" => ((CongruenceSubgroup.Gamma1 M : Subgroup SL(2, ℤ)) : Subgroup (GL (Fin 2) ℝ))
 
+omit [NeZero M] in
 theorem one_mem_strictPeriods_gamma1 : (1 : ℝ) ∈ (Γ₁ℝ).strictPeriods := by
   simp
 
@@ -43,6 +44,7 @@ theorem isIntegralQExp_mul {a b : ℤ} (f : ModularForm Γ₁ℝ a) (g : Modular
   rw [IsIntegralQExp] at hf hg ⊢
   rw [map_mul, hf, hg, ← ModularForm.qExpansion_mul one_pos (one_mem_strictPeriods_gamma1 M) f g]
 
+omit [NeZero M] in
 theorem isIntegralQExp_mcast {a b : ℤ} (h : a = b) (f : ModularForm Γ₁ℝ a) {p : PowerSeries ℤ}
     (hf : IsIntegralQExp f p) : IsIntegralQExp (ModularForm.mcast h f) p := by
   rw [IsIntegralQExp] at hf ⊢

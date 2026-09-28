@@ -1911,7 +1911,11 @@ p2m_export "AlgebraicCurve.TranscendenceTower" "exists_forall_mem_lSpace_nsmul_p
 end TranscendenceTower
 p2m_reactivate "P2MW.S_AlgebraicCurve_RationalFunctionField_finiteDimensional_lSpace_zero_of_constantsAreBase.AlgebraicCurve"
 
-variable [FiniteDimensional E F] [Algebra.IsSeparable E F] [HasPrincipalDivisors K F]
+variable [FiniteDimensional E F] [Algebra.IsSeparable E F]
+
+section PrincipalDivisors
+
+variable [HasPrincipalDivisors K F]
 
 namespace IntegralBasisInLSpace p2m_export "AlgebraicCurve.IntegralBasisInLSpace" "hu_indep c u mk.injEq hu_mem mk" end IntegralBasisInLSpace
 p2m_open_scoped "AlgebraicCurve.IntegralBasisInLSpace" in
@@ -1978,6 +1982,8 @@ theorem hasPoleDivisorPackage_of_hasIntegralBasisRegularOutside
   hasPoleDivisorPackage_of_hasIntegralBasisInLSpace T
     (hasIntegralBasisInLSpace_of_regularOutside T h)
 
+end PrincipalDivisors
+
 theorem indexOfSpecialtyFinite_of_transcendenceTower [IsCurveOver K F] [Nonempty (Place K F)]
     [FiniteDimensional K (LSpace (0 : Divisor K F))]
     (T : TranscendenceTower K E F) (IB : IntegralBasisInLSpace T) :
@@ -1992,15 +1998,16 @@ theorem stichtenothGenusExists_of_transcendenceTower [IsCurveOver K F] [Nonempty
   stichtenothGenusExists_of_poleDivisorPackage
     (PoleDivisorPackage.ofTranscendenceTower T IB)
 
-theorem gate_ofTranscendenceTower_n_eq (T : TranscendenceTower K E F)
+theorem gate_ofTranscendenceTower_n_eq [HasPrincipalDivisors K F] (T : TranscendenceTower K E F)
     (IB : IntegralBasisInLSpace T) :
     (PoleDivisorPackage.ofTranscendenceTower T IB).n = Module.finrank E F := rfl
 
-theorem gate_ofTranscendenceTower_B_eq (T : TranscendenceTower K E F)
+theorem gate_ofTranscendenceTower_B_eq [HasPrincipalDivisors K F] (T : TranscendenceTower K E F)
     (IB : IntegralBasisInLSpace T) :
     (PoleDivisorPackage.ofTranscendenceTower T IB).B = T.poleDivisor := rfl
 
-theorem gate_ofTranscendenceTower_x_transcendental (T : TranscendenceTower K E F)
+theorem gate_ofTranscendenceTower_x_transcendental [HasPrincipalDivisors K F]
+    (T : TranscendenceTower K E F)
     (IB : IntegralBasisInLSpace T) :
     LinearIndependent K
       (fun j : ℕ => T.xF ^ j *
@@ -2008,7 +2015,8 @@ theorem gate_ofTranscendenceTower_x_transcendental (T : TranscendenceTower K E F
   gate_x_transcendental_of_poleDivisorPackage
     (PoleDivisorPackage.ofTranscendenceTower T IB)
 
-theorem gate_degree_pullback_single_of_deg_eq (v : Place K E) (d : ℕ) (hd : v.deg = d) :
+theorem gate_degree_pullback_single_of_deg_eq [HasPrincipalDivisors K F]
+    (v : Place K E) (d : ℕ) (hd : v.deg = d) :
     Divisor.degree (Divisor.pullback F (Finsupp.single v (1 : ℤ)))
       = (Module.finrank E F : ℤ) * d := by
   rw [Divisor.degree_pullback, Divisor.degree_single, hd]; ring
@@ -2125,7 +2133,7 @@ section Headline
 
 variable {K E F : Type*} [Field K] [Field E] [Field F]
   [Algebra K E] [Algebra K F] [Algebra E F] [IsScalarTower K E F]
-variable [FiniteDimensional E F] [Algebra.IsSeparable E F] [HasPrincipalDivisors K F]
+variable [FiniteDimensional E F] [Algebra.IsSeparable E F]
 
 omit [FiniteDimensional E F] [Algebra.IsSeparable E F] in
 
@@ -2133,8 +2141,6 @@ theorem linearIndependent_reindex_basis {s : Finset F} (b : Basis s E F) :
     LinearIndependent E (fun i : Fin (Module.finrank E F) =>
       b ((Fintype.equivFinOfCardEq (Module.finrank_eq_card_basis b).symm).symm i)) :=
   b.linearIndependent.comp _ (Equiv.injective _)
-
-omit [HasPrincipalDivisors K F] in
 
 theorem hasIntegralBasisRegularOutside_of_isFractionRing
     {A : Type*} [CommRing A] [IsDomain A] [Algebra A E] [IsFractionRing A E]
@@ -2150,8 +2156,6 @@ theorem hasIntegralBasisRegularOutside_of_isFractionRing
 
   exact T.ord_nonneg_of_isIntegral_of_regularOutside hA (hint (e i)) w hw
 
-omit [HasPrincipalDivisors K F] in
-
 theorem hasIntegralBasisRegularOutside_of_hasRegularFractionSubring
     (T : TranscendenceTower K E F) (h : HasRegularFractionSubring K E F T) :
     HasIntegralBasisRegularOutside K E F T := by
@@ -2161,7 +2165,7 @@ theorem hasIntegralBasisRegularOutside_of_hasRegularFractionSubring
   exact hasIntegralBasisRegularOutside_of_isFractionRing (A := A) T
     (fun u hu a => hreg u hu (a : E) a.property)
 
-theorem hasPoleDivisorPackage_of_isFractionRing
+theorem hasPoleDivisorPackage_of_isFractionRing [HasPrincipalDivisors K F]
     {A : Type*} [CommRing A] [IsDomain A] [Algebra A E] [IsFractionRing A E]
     [Algebra A F] [IsScalarTower A E F]
     (T : TranscendenceTower K E F) (hA : T.RegularOutside A) :
@@ -2178,7 +2182,7 @@ theorem stichtenothGenusExists_of_isFractionRing [IsCurveOver K F] [Nonempty (Pl
   stichtenothGenusExists_of_hasPoleDivisorPackage
     (hasPoleDivisorPackage_of_isFractionRing T hA)
 
-theorem hasPoleDivisorPackage_of_hasRegularFractionSubring
+theorem hasPoleDivisorPackage_of_hasRegularFractionSubring [HasPrincipalDivisors K F]
     (T : TranscendenceTower K E F) (h : HasRegularFractionSubring K E F T) :
     HasPoleDivisorPackage K F :=
   hasPoleDivisorPackage_of_hasIntegralBasisRegularOutside T
@@ -2193,7 +2197,7 @@ theorem stichtenothGenusExists_of_hasRegularFractionSubring [IsCurveOver K F]
 
 namespace TranscendenceTower
 p2m_open_scoped "AlgebraicCurve.TranscendenceTower" in
-omit [FiniteDimensional E F] [Algebra.IsSeparable E F] [HasPrincipalDivisors K F] in
+omit [FiniteDimensional E F] [Algebra.IsSeparable E F] in
 
 private theorem _root_.AlgebraicCurve.TranscendenceTower.adjoin_x_regularOutside (T : TranscendenceTower K E F) :
     ∀ u : Place K E, u ≠ T.v →
@@ -2213,15 +2217,13 @@ private theorem _root_.AlgebraicCurve.TranscendenceTower.adjoin_x_regularOutside
 
 end TranscendenceTower
 p2m_export "AlgebraicCurve" "TranscendenceTower.adjoin_x_regularOutside"
-omit [FiniteDimensional E F] [Algebra.IsSeparable E F] [HasPrincipalDivisors K F] in
+omit [FiniteDimensional E F] [Algebra.IsSeparable E F] in
 
 theorem hasRegularFractionSubring_of_adjoin_x_isFractionRing
     (T : TranscendenceTower K E F)
     (hfrac : IsFractionRing (Algebra.adjoin K {T.x}) E) :
     HasRegularFractionSubring K E F T :=
   ⟨Algebra.adjoin K {T.x}, hfrac, T.adjoin_x_regularOutside⟩
-
-omit [HasPrincipalDivisors K F] in
 
 theorem hasIntegralBasisRegularOutside_of_adjoin_x_isFractionRing
     (T : TranscendenceTower K E F)
@@ -2416,12 +2418,16 @@ theorem hasIntegralBasisRegularOutside :
   hasIntegralBasisRegularOutside_of_adjoin_x_isFractionRing
     (transcendenceTower K F) (isFractionRing_adjoin_X K)
 
+section PrincipalDivisors
+
 variable [HasPrincipalDivisors K F]
 
 theorem hasPoleDivisorPackage_of_ratFunc_tower :
     HasPoleDivisorPackage K F :=
   hasPoleDivisorPackage_of_hasRegularFractionSubring
     (transcendenceTower K F) (hasRegularFractionSubring K F)
+
+end PrincipalDivisors
 
 variable [IsCurveOver K F] [Nonempty (Place K F)]
   [FiniteDimensional K (LSpace (0 : Divisor K F))]

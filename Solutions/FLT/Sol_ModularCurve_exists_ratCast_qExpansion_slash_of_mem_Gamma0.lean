@@ -212,6 +212,7 @@ section Weight
 
 variable {M : ℕ} [NeZero M] {k : ℤ}
 
+omit [NeZero M] in
 theorem apply_smul (f : ModularForm Γ₁(M) k) {g : SL(2, ℤ)} (hg : g ∈ Gamma1 M) (τ : ℍ) :
     f (g • τ) = denom (g : GL (Fin 2) ℝ) τ ^ k * f τ := by
   have := SlashInvariantForm.slash_action_eqn'' f (Subgroup.mem_map_of_mem (Matrix.SpecialLinearGroup.mapGL ℝ) hg) τ
@@ -461,6 +462,7 @@ theorem slash_of_neg_mem {L : ℕ} {w : ℤ} (F : ModularForm Γ₁(L) w) {g : S
     _ = ((-1 : ℂ) ^ w) • ((⇑F : ℍ → ℂ) ∣[w] (-g)) := by rw [ModularForm.SL_smul_slash]
     _ = ((-1 : ℂ) ^ w) • (⇑F : ℍ → ℂ) := by rw [h1]
 
+omit [NeZero M] in
 theorem isCoprime_entry {γ : SL(2, ℤ)} (hγ : γ ∈ Gamma0 M) : IsCoprime (γ 1 1 : ℤ) (M : ℤ) := by
   have hc : ((γ 1 0 : ℤ) : ZMod M) = 0 := Gamma0_mem.mp hγ
   obtain ⟨c', hc'⟩ := (ZMod.intCast_zmod_eq_zero_iff_dvd _ M).mp hc
@@ -470,6 +472,7 @@ theorem isCoprime_entry {γ : SL(2, ℤ)} (hγ : γ ∈ Gamma0 M) : IsCoprime (�
   rw [hc'] at h1
   linear_combination h1
 
+omit [NeZero M] in
 theorem exists_lift (d : ℤ) (hd : IsCoprime d (M : ℤ)) :
     ∃ d' : ℤ, IsCoprime d' (3 * M : ℤ) ∧ (∃ t : ℤ, d' = d + t * M) ∧ ((3 : ℤ) ∣ M ∨ (3 : ℤ) ∣ d' - 1) := by
   by_cases h3 : (3 : ℤ) ∣ M

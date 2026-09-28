@@ -100,6 +100,7 @@ scoped instance instFiniteDimensional : FiniteDimensional ℚ (kN N) :=
 
 def zetaK : kN N := ⟨zetaN N, IntermediateField.subset_adjoin ℚ _ (Set.mem_singleton _)⟩
 
+omit [NeZero N] in
 @[scoped simp] theorem coe_zetaK : ((zetaK N : kN N) : ℂ) = zetaN N := rfl
 
 theorem isPrimitiveRoot_zetaK : IsPrimitiveRoot (zetaK N) N := by
@@ -125,16 +126,20 @@ theorem exists_rat_of_fixed (x : kN N) (hx : ∀ σ : (kN N) ≃ₐ[ℚ] (kN N),
 def phiOf (σ : (kN N) ≃ₐ[ℚ] (kN N)) : kN N →+* ℂ :=
   (algebraMap (kN N) ℂ).comp σ.toRingEquiv.toRingHom
 
+omit [NeZero N] in
 theorem phiOf_apply (σ : (kN N) ≃ₐ[ℚ] (kN N)) (z : kN N) : phiOf N σ z = ((σ z : kN N) : ℂ) := rfl
 
+omit [NeZero N] in
 theorem phiOf_mem (σ : (kN N) ≃ₐ[ℚ] (kN N)) (z : kN N) : phiOf N σ z ∈ kN N := (σ z).2
 
+omit [NeZero N] in
 theorem phiOf_zeta (σ : (kN N) ≃ₐ[ℚ] (kN N)) {s : ℕ} (hs : σ (zetaK N) = zetaK N ^ s)
     (z : kN N) (hz : (z : ℂ) = zetaN N) : phiOf N σ z = zetaN N ^ s := by
   have : z = zetaK N := Subtype.ext hz
   rw [phiOf_apply, this, hs]
   rfl
 
+omit [NeZero N] in
 theorem phiOf_ratCast (σ : (kN N) ≃ₐ[ℚ] (kN N)) (r : ℚ) (z : kN N) (hz : (z : ℂ) = (r : ℂ)) :
     phiOf N σ z = r := by
   have : z = algebraMap ℚ (kN N) r := by
@@ -321,6 +326,7 @@ theorem ratCast_mem (r : ℚ) : ((r : ℂ)) ∈ K := by
   have : (r : ℂ) = algebraMap ℚ ℂ r := rfl
   rw [this]; exact K.algebraMap_mem r
 
+omit [NeZero N] in
 theorem RatAt.mdiff_mul {m : ℕ} {g : ℍ → ℂ} (h : RatAt N K m g) :
     MDifferentiable 𝓘(ℂ) 𝓘(ℂ) (g * Δ ^ m) :=
   h.mdiff.mul (mdifferentiable_disc.pow m)
@@ -352,6 +358,7 @@ theorem RatAt.of_le {m m' : ℕ} (hm : m ≤ m') {g : ℍ → ℂ} (h : RatAt N 
   | zero => simpa using h
   | succ d ih => exact (ih (Nat.le_add_right m d)).succ
 
+omit [NeZero N] in
 theorem RatAt.exists_map {m : ℕ} {g : ℍ → ℂ} (h : RatAt N K m g) :
     ∃ p : PowerSeries K, p.map (algebraMap K ℂ) = qExpansion N (g * Δ ^ m) := by
   refine ⟨PowerSeries.mk fun n => ⟨_, h.mem n⟩, ?_⟩
@@ -374,11 +381,11 @@ end Width
 
 section Transport
 
-variable (N : ℕ) [NeZero N] (K : IntermediateField ℚ ℂ) (φ : K →+* ℂ)
+variable (N : ℕ) (K : IntermediateField ℚ ℂ) (φ : K →+* ℂ)
 
 local notation "Δ" => ModularForm.discriminant
 
-def TRel (g g' : ℍ → ℂ) : Prop :=
+def TRel [NeZero N] (g g' : ℍ → ℂ) : Prop :=
   MDifferentiable 𝓘(ℂ) 𝓘(ℂ) g ∧ MDifferentiable 𝓘(ℂ) 𝓘(ℂ) g' ∧
     ∃ m : ℕ,
       (Function.Periodic ((g * ModularForm.discriminant ^ m) ∘ UpperHalfPlane.ofComplex) N ∧
@@ -395,7 +402,7 @@ def TRel (g g' : ℍ → ℂ) : Prop :=
 
 variable {N K φ}
 
-theorem TRel.exists {g g' : ℍ → ℂ} (h : TRel N K φ g g') :
+theorem TRel.exists [NeZero N] {g g' : ℍ → ℂ} (h : TRel N K φ g g') :
     ∃ m : ℕ, RatAt N K m g ∧ RatAt N K m g' ∧
       ∀ (n : ℕ) (z : K), (z : ℂ) = (qExpansion N (g * Δ ^ m)).coeff n →
         (qExpansion N (g' * Δ ^ m)).coeff n = φ z := by
@@ -414,7 +421,7 @@ theorem TRel.map_eq {g g' : ℍ → ℂ} {m : ℕ} (hφK : ∀ z : K, φ z ∈ K
   rw [← hp, PowerSeries.coeff_map]
   rfl
 
-theorem tRel_self_of_rat {g : ℍ → ℂ} {m : ℕ} (hg : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) g)
+theorem tRel_self_of_rat [NeZero N] {g : ℍ → ℂ} {m : ℕ} (hg : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) g)
     (hper : Periodic ((g * Δ ^ m) ∘ ofComplex) N) (hbd : IsBoundedAtImInfty (g * Δ ^ m))
     (hrat : ∀ n, ∃ r : ℚ, (qExpansion N (g * Δ ^ m)).coeff n = (r : ℂ)) : TRel N K φ g g := by
   have hmem : ∀ n, (qExpansion N (g * Δ ^ m)).coeff n ∈ K := by
@@ -791,11 +798,13 @@ theorem cw_evφ (φ : kN N →+* ℂ) (t : (Fin 2 → ZMod N) → (Fin 2 → ZMo
   unfold evφ
   rw [cw_aeval, gen_cw_eq]
 
+omit [NeZero N] in
 theorem gen_id_mem (o : Idx N) : gen N id o ∈ genSet N := by
   cases o with
   | none => exact Set.mem_insert _ _
   | some v => exact Set.mem_insert_of_mem _ ⟨v.1, v.2, rfl⟩
 
+omit [NeZero N] in
 theorem aeval_mem_adjoin (R : MvPolynomial (Idx N) ℂ) :
     MvPolynomial.aeval (gen N id) R ∈ Algebra.adjoin ℂ (genSet N) := by
   induction R using MvPolynomial.induction_on with
@@ -805,6 +814,7 @@ theorem aeval_mem_adjoin (R : MvPolynomial (Idx N) ℂ) :
       rw [map_mul, MvPolynomial.aeval_X]
       exact mul_mem hp (Algebra.subset_adjoin (gen_id_mem o))
 
+omit [NeZero N] in
 theorem ev_mem_adjoin (R : MvPolynomial (Idx N) (kN N)) : ev N id R ∈ Algebra.adjoin ℂ (genSet N) :=
   aeval_mem_adjoin _
 
@@ -879,6 +889,7 @@ theorem exists_rat_combination (K : IntermediateField ℚ ℂ) {n M : ℕ} {Gi :
     exact Submodule.span_subset_span K ℂ b hxK
   exact hle hmem
 
+omit [NeZero N] in
 theorem exists_ev_of_mem_adjoin {x : ℍ → ℂ} (hx : x ∈ Algebra.adjoin (kN N) (genSet N)) :
     ∃ R : MvPolynomial (Idx N) (kN N), ev N id R = x := by
   classical
@@ -897,6 +908,7 @@ theorem exists_ev_of_mem_adjoin {x : ℍ → ℂ} (hx : x ∈ Algebra.adjoin (kN
   rw [this]
   rfl
 
+omit [NeZero N] in
 theorem coeff_map_mem (R : MvPolynomial (Idx N) (kN N)) (m : Idx N →₀ ℕ) :
     (MvPolynomial.map (algebraMap (kN N) ℂ) R).coeff m ∈ kN N := by
   rw [MvPolynomial.coeff_map]; exact (R.coeff m).2
@@ -1054,6 +1066,7 @@ theorem exists_discSeries (K : IntermediateField ℚ ℂ) :
 
 variable (σ : (kN N) ≃ₐ[ℚ] (kN N))
 
+omit [NeZero N] in
 theorem map_phiOf_eq_of_rat {δ : PowerSeries (kN N)}
     (hδ : ∀ n, ∃ r : ℚ, ((PowerSeries.coeff n δ : kN N) : ℂ) = (r : ℂ)) :
     δ.map (phiOf N σ) = δ.map (algebraMap (kN N) ℂ) := by
@@ -1090,6 +1103,7 @@ theorem tσ_lift {g g' : ℍ → ℂ} (h : Tσ σ g g') :
 
 variable {σ}
 
+omit [NeZero N] in
 theorem aeval_relPoly (φ : kN N →+* ℂ) (G : ℍ → ℂ) (t : (Fin 2 → ZMod N) → (Fin 2 → ZMod N))
     (P Q : MvPolynomial (Idx N) (kN N)) :
     MvPolynomial.aeval (fun o : Option (Idx N) => o.elim G (gen N t))
@@ -1099,6 +1113,7 @@ theorem aeval_relPoly (φ : kN N →+* ℂ) (G : ℍ → ℂ) (t : (Fin 2 → ZM
     MvPolynomial.aeval_rename]
   rfl
 
+omit [NeZero N] in
 theorem evφ_algebraMap (t : (Fin 2 → ZMod N) → (Fin 2 → ZMod N)) (R : MvPolynomial (Idx N) (kN N)) :
     evφ N (algebraMap (kN N) ℂ) t R = ev N t R := rfl
 

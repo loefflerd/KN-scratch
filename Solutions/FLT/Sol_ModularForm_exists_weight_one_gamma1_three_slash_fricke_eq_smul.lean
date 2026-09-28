@@ -880,7 +880,7 @@ theorem qExpansion_coeff_thetaForm (n : ℕ) :
   rw [smul_eq_mul, Function.Periodic.qParam, ← Complex.exp_nat_mul]
   congr 1
   push_cast
-  ring
+  ring_nf
 
 theorem thetaForm_slash_fricke (W : GL (Fin 2) ℝ) (hW : (W : Matrix (Fin 2) (Fin 2) ℝ) = !![(0 : ℝ), -1; 3, 0]) :
     (⇑thetaForm : ℍ → ℂ) ∣[(1 : ℤ)] W = (-Complex.I / (Real.sqrt 3 : ℂ)) • (⇑thetaForm : ℍ → ℂ) := by

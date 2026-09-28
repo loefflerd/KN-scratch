@@ -1701,6 +1701,7 @@ def principalDivisorOf {f : F'} (hf : f ≠ 0) : Divisor K F' :=
   ⟨(finite_setOf_ord_ne_zero_of_finiteDimensional hf).toFinset, fun w => w.ord f, fun w => by
     simp [Set.Finite.mem_toFinset]⟩
 
+omit [Algebra.IsSeparable (RatFunc K) F'] in
 theorem degree_eq_zero_of_forall_eq_ord_of_isGalois [IsGalois (RatFunc K) F']
     (H : RamificationInertiaIdentity K (RatFunc K) F')
     {f : F'} {D : Divisor K F'} (hD : ∀ w : Place K F', D w = w.ord f) :
@@ -7988,6 +7989,7 @@ variable [Nontrivial Ω[E⁄K]] [∀ v : Place K E, v.DCoordGenerates]
 variable [Nontrivial Ω[F⁄K]] [∀ w : Place K F, w.DCoordGenerates]
 
 theorem kw_es_fiberKaehlerCotraceResidueIdentity_of_RTCC_CTS
+    [HasPrincipalDivisors K E] [HasPrincipalDivisors K F]
     (hRTCC : KwF4R1V391aResidueTraceCompletionCommute K F E)
     (hCTS : KwHgfV352CompletionTraceSum K F E) :
     FiberKaehlerCotraceResidueIdentity K F E := by
@@ -8141,7 +8143,7 @@ variable [IsCurveOver K F] [IsCurveOver K (RatFunc K)]
 variable [∀ u : Place K (RatFunc K), u.FiniteResidue]
 
 theorem kwTateRR3_residueTheoremK_of_isAlgClosed
-    [HasPrincipalDivisors K F] [Algebra.IsSeparable (RatFunc K) F]
+    [Algebra.IsSeparable (RatFunc K) F]
     [Nontrivial Ω[(RatFunc K)⁄K]] [∀ v : Place K (RatFunc K), v.DCoordGenerates] :
     ResidueTheoremK K F :=
   kw_es_residueTheoremK_of_RTCC_isAlgClosed'
@@ -8176,7 +8178,7 @@ theorem solution
     [AlgebraicCurve.IsCurveOver K F] [AlgebraicCurve.IsCurveOver K (RatFunc K)]
     [∀ u : AlgebraicCurve.Place K (RatFunc K), u.FiniteResidue]
     [AlgebraicCurve.HasCanonicalLocalResidueKStar K F]
-    [AlgebraicCurve.HasPrincipalDivisors K F] [Algebra.IsSeparable (RatFunc K) F]
+    [Algebra.IsSeparable (RatFunc K) F]
     [Nontrivial Ω[(RatFunc K)⁄K]] [∀ v : AlgebraicCurve.Place K (RatFunc K), v.DCoordGenerates] :
     AlgebraicCurve.ResidueTheoremK K F :=
   ModularCurve.KwTateRR3.kwTateRR3_residueTheoremK_of_isAlgClosed

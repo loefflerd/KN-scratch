@@ -36,11 +36,13 @@ lemma three_le (χ : DirichletCharacter ℂ L) (hodd : χ.Odd) : 3 ≤ L := by
   rw [hneg, map_one] at h1
   norm_num at h1
 
+omit [NeZero L] in
 lemma factorsThrough_inv (χ : DirichletCharacter ℂ L) {d : ℕ} (h : χ.FactorsThrough d) :
     χ⁻¹.FactorsThrough d := by
   obtain ⟨hd, χ₀, hχ₀⟩ := h
   exact ⟨hd, χ₀⁻¹, by rw [hχ₀, map_inv]⟩
 
+omit [NeZero L] in
 lemma conductor_inv (χ : DirichletCharacter ℂ L) : χ⁻¹.conductor = χ.conductor := by
   have hset : χ⁻¹.conductorSet = χ.conductorSet := by
     ext d
@@ -51,6 +53,7 @@ lemma conductor_inv (χ : DirichletCharacter ℂ L) : χ⁻¹.conductor = χ.con
     · exact factorsThrough_inv χ
   rw [DirichletCharacter.conductor, DirichletCharacter.conductor, hset]
 
+omit [NeZero L] in
 lemma isPrimitive_inv (χ : DirichletCharacter ℂ L) (hχ : χ.IsPrimitive) : χ⁻¹.IsPrimitive := by
   rw [DirichletCharacter.isPrimitive_def, conductor_inv]
   exact hχ
@@ -83,6 +86,7 @@ lemma gaussSum_ne_zero_of_isPrimitive (φ : DirichletCharacter ℂ L) (hφ : φ.
 lemma gs_ne_zero (χ : DirichletCharacter ℂ L) (hχ : χ.IsPrimitive) : gs χ ≠ 0 :=
   gaussSum_ne_zero_of_isPrimitive χ⁻¹ (isPrimitive_inv χ hχ)
 
+omit [NeZero L] in
 lemma inv_ne_one (χ : DirichletCharacter ℂ L) (hodd : χ.Odd) : χ⁻¹ ≠ 1 := by
   intro h
   have : χ = 1 := by rw [← inv_inv χ, h, inv_one]
@@ -93,11 +97,13 @@ lemma inv_ne_one (χ : DirichletCharacter ℂ L) (hodd : χ.Odd) : χ⁻¹ ≠ 1
 lemma sum_inv_eq_zero (χ : DirichletCharacter ℂ L) (hodd : χ.Odd) : ∑ b : ZMod L, χ⁻¹ b = 0 :=
   MulChar.sum_eq_zero_of_ne_one (inv_ne_one χ hodd)
 
+omit [NeZero L] in
 lemma chi_neg (χ : DirichletCharacter ℂ L) (hodd : χ.Odd) (a : ZMod L) : χ (-a) = -χ a := by
   have h1 : χ (-1) = -1 := hodd
   rw [show -a = -1 * a by ring, map_mul, h1]
   ring
 
+omit [NeZero L] in
 lemma inv_mul_unit (χ : DirichletCharacter ℂ L) (b u : ZMod L) (hu : IsUnit u) :
     χ⁻¹ (b * u) * χ u = χ⁻¹ b := by
   rw [map_mul, mul_assoc]
@@ -105,6 +111,7 @@ lemma inv_mul_unit (χ : DirichletCharacter ℂ L) (b u : ZMod L) (hu : IsUnit u
     rw [← MulChar.mul_apply, inv_mul_cancel, MulChar.one_apply hu]
   rw [this, mul_one]
 
+omit [NeZero L] in
 lemma sum_mul_pow_eq {x : ℂ} (hx1 : x ≠ 1) (hxL : x ^ L = 1) :
     ∑ j ∈ Finset.range L, (j : ℂ) * x ^ j = L / (x - 1) := by
   have hx : x - 1 ≠ 0 := sub_ne_zero.mpr hx1
@@ -196,6 +203,7 @@ lemma vb_not_dvd {b : ZMod L} (hb : b ≠ 0) : ¬ ∀ i, (L : ℤ) ∣ vb L b i 
   have h3 : b.val = 0 := Nat.eq_zero_of_dvd_of_lt h2 (ZMod.val_lt b)
   exact hb ((ZMod.val_eq_zero b).mp h3)
 
+omit [NeZero L] in
 lemma inv_zero_eq (hL : 3 ≤ L) : χ⁻¹ (0 : ZMod L) = 0 := by
   have : Fact (1 < L) := ⟨by omega⟩
   apply MulChar.map_nonunit
@@ -307,6 +315,7 @@ lemma E0_slash (A : SL(2, ℤ)) :
   refine Finset.sum_congr rfl fun b _ => ?_
   field_simp
 
+omit [NeZero L] in
 lemma not_dvd_vecMul {v : Fin 2 → ℤ} (hv : ¬ ∀ i, (L : ℤ) ∣ v i) (A : SL(2, ℤ)) :
     ¬ ∀ i, (L : ℤ) ∣ (v ᵥ* (A : Matrix (Fin 2) (Fin 2) ℤ)) i := by
   intro h
@@ -628,6 +637,7 @@ lemma E1MF_apply (hL : 3 ≤ L) (τ : ℍ) : E1MF L χ hL τ = E1 L χ τ := rfl
 
 lemma coe_E1MF (hL : 3 ≤ L) : ⇑(E1MF L χ hL) = E1 L χ := rfl
 
+omit [NeZero L] in
 lemma T_mem_Gamma1 : ModularGroup.T ∈ CongruenceSubgroup.Gamma1 L := by
   rw [CongruenceSubgroup.Gamma1_mem]
   simp [ModularGroup.coe_T]

@@ -111,7 +111,7 @@ end Formulas
 
 section PointEquiv
 
-variable [DecidableEq K] (C : VariableChange K) (W : WeierstrassCurve.Affine K)
+variable (C : VariableChange K) (W : WeierstrassCurve.Affine K)
 
 namespace Point
 
@@ -162,4 +162,3 @@ end Point
 end PointEquiv
 
 end WeierstrassCurve.Affine
-

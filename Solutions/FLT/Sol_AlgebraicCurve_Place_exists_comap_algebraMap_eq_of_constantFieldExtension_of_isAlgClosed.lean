@@ -104,6 +104,7 @@ theorem Psi_apply (w : ι →₀ P.toValuationSubring) :
   rw [Psi, Finsupp.liftAddHom_apply]
   rfl
 
+omit [Algebra K F'] [IsScalarTower K K' F'] [IsScalarTower K F F'] in
 theorem Psi_smul (s : P.toValuationSubring) (w : ι →₀ P.toValuationSubring) :
     Psi F' B P (s • w) = algebraMap F F' (s : F) * Psi F' B P w := by
   induction w using Finsupp.induction with
@@ -160,6 +161,7 @@ theorem algebraMap_coe_mem_rangePsi (o : P.toValuationSubring) :
     algebraMap F F' (o : F) ∈ rangePsi F' B P :=
   ⟨pureW B P 1 o, by simp [Psi_pureW]⟩
 
+omit [Algebra K F'] [IsScalarTower K K' F'] [IsScalarTower K F F'] in
 theorem Psi_mem {S : Type*} [SetLike S F'] [SubringClass S F'] (V : S)
     (hK : ∀ d : K', algebraMap K' F' d ∈ V)
     (hO : ∀ o : P.toValuationSubring, algebraMap F F' (o : F) ∈ V)

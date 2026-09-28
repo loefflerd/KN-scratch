@@ -5626,6 +5626,7 @@ def principalDivisorOf {f : F'} (hf : f ≠ 0) : Divisor K F' :=
   ⟨(finite_setOf_ord_ne_zero_of_finiteDimensional hf).toFinset, fun w => w.ord f, fun w => by
     simp [Set.Finite.mem_toFinset]⟩
 
+omit [Algebra.IsSeparable (RatFunc K) F'] in
 theorem degree_eq_zero_of_forall_eq_ord_of_isGalois [IsGalois (RatFunc K) F']
     (H : RamificationInertiaIdentity K (RatFunc K) F')
     {f : F'} {D : Divisor K F'} (hD : ∀ w : Place K F', D w = w.ord f) :
@@ -7014,7 +7015,6 @@ p2m_open_scoped "Polynomial P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isA
 p2m_open "AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField"
 
 variable (K : Type*) [Field K] [DecidableEq (RatFunc K)]
-variable [HasCanonicalLocalResidueKStar K (RatFunc K)]
 
 section SurjectiveDegOne
 
@@ -7109,7 +7109,7 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.Alg
 section ComposedEngine
 
 variable [CharZero K]
-variable [HasLocalResidue K (RatFunc K)] [HasCanonicalLocalResidueKStar K (RatFunc K)] [HasCanonicalDivisor (K := K) (F := RatFunc K)]
+variable [HasLocalResidue K (RatFunc K)] [HasCanonicalDivisor (K := K) (F := RatFunc K)]
 variable [∀ v : Place K (RatFunc K), v.DCoordGenerates] [Nontrivial Ω[(RatFunc K)⁄K]]
 
 end ComposedEngine
@@ -7871,7 +7871,7 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.Alg
 
 section AlgClosed
 
-variable [IsAlgClosed K] [HasCanonicalLocalResidueKStar K (RatFunc K)]
+variable [IsAlgClosed K]
 variable [∀ v : Place K (RatFunc K), v.DCoordGenerates] [Nontrivial Ω[(RatFunc K)⁄K]]
 
 omit [DecidableEq (RatFunc K)]
@@ -11224,7 +11224,7 @@ p2m_open "AlgebraicCurve"
 p2m_open_scoped "Polynomial P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.Polynomial"
 p2m_open "AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField"
 
-variable (K : Type*) [Field K] [PerfectField K] [DecidableEq (RatFunc K)]
+variable (K : Type*) [Field K] [PerfectField K]
 
 section EulerPerfectField
 
@@ -11257,6 +11257,7 @@ theorem ag9b12c_trace_root_pow_div_derivative_self_of_perfectField (hpmon : p.Mo
     (by rwa [AdjoinRoot.powerBasis_dim])
   rwa [hmin, AdjoinRoot.powerBasis_gen, AdjoinRoot.powerBasis_dim] at h
 
+omit [PerfectField K] in
 private theorem ag9b12c_aeval_root_eq_sum_range {c : K[X]} {d : ℕ} (hd : c.natDegree < d) :
     (aeval (AdjoinRoot.root p) c : AdjoinRoot p)
       = ∑ k ∈ Finset.range d, c.coeff k • AdjoinRoot.root p ^ k := by
@@ -11302,7 +11303,8 @@ private theorem ag9b12c_differentialCoeff_add (v : Place K (RatFunc K))
   v.differentialCoeff_unique
     (by rw [add_smul, v.differentialCoeff_smul_dCoord, v.differentialCoeff_smul_dCoord])
 
-theorem ag9b12c_differentialCoeff_D_mem_finitePlace {p : K[X]} (hpirr : Irreducible p)
+theorem ag9b12c_differentialCoeff_D_mem_finitePlace [DecidableEq (RatFunc K)]
+    {p : K[X]} (hpirr : Irreducible p)
     {f : RatFunc K} (hf : f ∈ (finitePlace K hpirr).toValuationSubring) :
     (finitePlace K hpirr).differentialCoeff (D K (RatFunc K) f)
       ∈ (finitePlace K hpirr).toValuationSubring := by
@@ -11338,6 +11340,7 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.Alg
 
 section LeibnizCore
 
+omit [PerfectField K] in
 theorem ag9b12c_uniformizer_div_mem_finitePlace {p : K[X]} (hpirr : Irreducible p) :
     (finitePlace K hpirr).uniformizer / algebraMap K[X] (RatFunc K) p
       ∈ (finitePlace K hpirr).toValuationSubring := by
@@ -11382,6 +11385,7 @@ theorem ag9b12c_one_sub_uniformizer_div_mul_differentialCoeff_D
   linear_combination h1
 
 theorem ag9b12c_uniformizer_div_mul_differentialCoeff_D_mem_finitePlace
+    [DecidableEq (RatFunc K)]
     {p : K[X]} (hpirr : Irreducible p) :
     (finitePlace K hpirr).uniformizer / algebraMap K[X] (RatFunc K) p
         * (finitePlace K hpirr).differentialCoeff
@@ -11397,6 +11401,7 @@ theorem ag9b12c_uniformizer_div_mul_differentialCoeff_D_mem_finitePlace
         (PerfectField.separable_of_irreducible hpirr)).ge)
 
 theorem ag9b12c_residue_uniformizer_div_mul_differentialCoeff_D_eq_one
+    [DecidableEq (RatFunc K)]
     {p : K[X]} (hpirr : Irreducible p) :
     IsLocalRing.residue _
         ⟨_, ag9b12c_uniformizer_div_mul_differentialCoeff_D_mem_finitePlace K hpirr⟩
@@ -11458,6 +11463,7 @@ theorem ag9b12c_residue_algebraMap_derivative_ne_zero {p : K[X]} (hpirr : Irredu
     ((PerfectField.separable_of_irreducible hpirr).isUnit_of_dvd' dvd_rfl hlt')
 
 theorem ag9b12c_simplePoleResidueAux_finitePlace_p1PrincipalPartAtom_mOne
+    [DecidableEq (RatFunc K)]
     {p c : K[X]} (hpirr : Irreducible p)
     (hfmem : p1PrincipalPartAtom K p c 1 * (finitePlace K hpirr).differentialCoeff (dX K)
         ∈ (finitePlace K hpirr).simplePoleSubmodule) :
@@ -11511,7 +11517,8 @@ theorem ag9b12c_simplePoleResidueAux_finitePlace_p1PrincipalPartAtom_mOne
     _ = IsLocalRing.residue _ ⟨_, algebraMap_mem_ofHeightOneSpectrum K _ c⟩ := by
         rw [ag9b12c_residue_uniformizer_div_mul_differentialCoeff_D_eq_one K hpirr, mul_one]
 
-theorem ag9b12c_p1FinitePlaceSimplePoleResidueAdjoinRootValue_of_perfectField :
+theorem ag9b12c_p1FinitePlaceSimplePoleResidueAdjoinRootValue_of_perfectField
+    [DecidableEq (RatFunc K)] :
     P1FinitePlaceSimplePoleResidueAdjoinRootValue K := by
   intro p c _ hpirr _
   have : Fact (Irreducible p) := ⟨hpirr⟩
@@ -11527,6 +11534,7 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.Alg
 section TraceValue
 
 theorem ag9b12c_trace_finitePlace_simplePoleResidue_mOne_of_perfectField
+    [DecidableEq (RatFunc K)]
     {p c : K[X]} (hpmon : p.Monic) (hpirr : Irreducible p) (hdeg : c.degree < p.degree)
     (hfmem : p1PrincipalPartAtom K p c 1 * (finitePlace K hpirr).differentialCoeff (dX K)
         ∈ (finitePlace K hpirr).simplePoleSubmodule) :
@@ -11540,6 +11548,7 @@ theorem ag9b12c_trace_finitePlace_simplePoleResidue_mOne_of_perfectField
     ag9b12c_trace_adjoinRoot_mk_div_mk_derivative_of_perfectField K hpmon hdeg]
 
 theorem ag9b12c_p1MOneSimplePoleCancel_dX_of_inftyEulerValue_of_perfectField
+    [DecidableEq (RatFunc K)]
     (hinf : P1PlaceInftySimplePoleResidueEulerValue K) :
     P1PrincipalPartMOneSimplePoleCancel K (dX_ne_zero K) := by
   intro p c hpmon hpirr hdeg hfmem himem

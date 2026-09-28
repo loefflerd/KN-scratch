@@ -30,7 +30,7 @@ namespace W7XEllMapDomain
 variable {K F K' F' : Type*}
   [Field K] [Field F] [Field K'] [Field F'] [Algebra K F] [Algebra K' F']
   [Algebra K K'] [Algebra F F'] [Algebra K F'] [IsScalarTower K K' F'] [IsScalarTower K F F']
-  [IsAlgClosed K] [IsAlgClosed K'] [IsCurveOver K F] [IsCurveOver K' F']
+  [IsAlgClosed K]
 
 theorem algebraMap_mem_of_new
     (hfg : ∃ x : F, Transcendental K x ∧

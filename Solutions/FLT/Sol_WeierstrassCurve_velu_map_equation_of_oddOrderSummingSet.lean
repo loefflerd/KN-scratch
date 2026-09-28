@@ -5675,6 +5675,7 @@ def principalDivisorOf {f : F'} (hf : f ≠ 0) : Divisor K F' :=
   ⟨(finite_setOf_ord_ne_zero_of_finiteDimensional hf).toFinset, fun w => w.ord f, fun w => by
     simp [Set.Finite.mem_toFinset]⟩
 
+omit [Algebra.IsSeparable (RatFunc K) F'] in
 theorem degree_eq_zero_of_forall_eq_ord_of_isGalois [IsGalois (RatFunc K) F']
     (H : RamificationInertiaIdentity K (RatFunc K) F')
     {f : F'} {D : Divisor K F'} (hD : ∀ w : Place K F', D w = w.ord f) :

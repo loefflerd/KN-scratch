@@ -292,7 +292,7 @@ p2m_open "HeckeEis"
 open scoped MatrixGroups
 open MvPolynomial Finset
 
-variable {N n : ℕ} [NeZero N]
+variable {N n : ℕ}
 
 theorem T_mem_Gamma0 : (ModularGroup.T : SL(2, ℤ)) ∈ CongruenceSubgroup.Gamma0 N := by
   rw [CongruenceSubgroup.Gamma0_mem]; simp [ModularGroup.T]
@@ -306,7 +306,7 @@ theorem Sinv_TN_S_mem : (ModularGroup.S : SL(2, ℤ))⁻¹ * ModularGroup.T ^ (N
   rw [Matrix.SpecialLinearGroup.coe_mul, Matrix.SpecialLinearGroup.coe_mul, hS, ModularGroup.coe_T_zpow]
   simp [ModularGroup.S, Matrix.mul_apply, Fin.sum_univ_two]
 
-theorem indRep_invariants (hn0 : n ≠ 0) (f : X0 N → Vn n) (hf : ∀ g : ↥Gt, indRep N n g f = f) : f = 0 := by
+theorem indRep_invariants [NeZero N] (hn0 : n ≠ 0) (f : X0 N → Vn n) (hf : ∀ g : ↥Gt, indRep N n g f = f) : f = 0 := by
   set x0 : X0 N := ((1 : SL(2, ℤ)) : X0 N) with hx0
 
   have hpt : ∀ (g : SL(2, ℤ)) (x : X0 N), f x = ρ n g (f (g⁻¹ • x)) := fun g x => by

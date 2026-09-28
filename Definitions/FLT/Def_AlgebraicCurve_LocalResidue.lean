@@ -130,6 +130,7 @@ theorem Place.differentialCoeff_ne_zero (v : Place K F) [v.DCoordGenerates]
 
 namespace Place
 
+omit [HasCanonicalLocalResidueKStar K F] in
 theorem LocalResidueData.res_eq_zero_of_ord_nonneg {v : Place K F} (R : v.LocalResidueData)
     {f : F} (hf : f = 0 ∨ 0 ≤ v.ord f) : R.res f = 0 := by
   rcases hf with rfl | hf
@@ -138,6 +139,7 @@ theorem LocalResidueData.res_eq_zero_of_ord_nonneg {v : Place K F} (R : v.LocalR
     · exact map_zero _
     · exact R.res_of_mem f (v.mem_of_ord_nonneg_localResidueAux hf0 hf)
 
+omit [HasCanonicalLocalResidueKStar K F] in
 theorem CanonicalLocalResidueDataK.res_eq_zero_of_ord_nonneg {v : Place K F}
     (R : v.CanonicalLocalResidueDataK) {f : F} (hf : f = 0 ∨ 0 ≤ v.ord f) : R.res f = 0 :=
   R.toLocalResidueData.res_eq_zero_of_ord_nonneg hf
@@ -148,6 +150,7 @@ section Single
 
 open scoped Classical in
 
+omit [HasCanonicalLocalResidueKStar K F] in
 theorem single_mem_adeleBdd (v : Place K F) (g : F) (D : Divisor K F)
     (hg : v.adicValuation g ≤ WithZero.exp (D v)) :
     Pi.single v g ∈ adeleBdd D := by
@@ -158,6 +161,7 @@ theorem single_mem_adeleBdd (v : Place K F) (g : F) (D : Divisor K F)
 
 open scoped Classical in
 
+omit [HasCanonicalLocalResidueKStar K F] in
 theorem single_mem_adeleSpace (v : Place K F) (g : F) :
     Pi.single v g ∈ adeleSpace K F := by
   rcases eq_or_ne g 0 with rfl | hg
@@ -172,6 +176,7 @@ def adeleSingle (v : Place K F) (g : F) : adeleSpace K F :=
   ⟨Pi.single v g, single_mem_adeleSpace v g⟩
 
 open scoped Classical in
+omit [HasCanonicalLocalResidueKStar K F] in
 @[simp]
 theorem adeleSingle_coe (v : Place K F) (g : F) :
     (adeleSingle v g : Place K F → F) = Pi.single v g := rfl
@@ -195,12 +200,14 @@ def kaehlerResidueTermKFam (Rfam : ∀ v : Place K F, v.CanonicalLocalResidueDat
     (ω : Ω[F⁄K]) (α : Place K F → F) (v : Place K F) : K :=
   v.kaehlerResidueTermK (Rfam v) ω (α v)
 
+omit [HasCanonicalLocalResidueKStar K F] in
 @[simp]
 theorem kaehlerResidueTermKFam_apply (Rfam : ∀ v : Place K F, v.CanonicalLocalResidueDataK)
     (ω : Ω[F⁄K]) (α : Place K F → F) (v : Place K F) :
     kaehlerResidueTermKFam Rfam ω α v
       = Algebra.trace K v.ResidueField ((Rfam v).res (α v * v.differentialCoeff ω)) := rfl
 
+omit [HasCanonicalLocalResidueKStar K F] in
 theorem kaehlerResidueTermKFam_eq_zero_of_ord_nonneg
     (Rfam : ∀ v : Place K F, v.CanonicalLocalResidueDataK) {ω : Ω[F⁄K]}
     {α : Place K F → F} {v : Place K F}
@@ -310,4 +317,3 @@ end CanonicalKResidueTerm
 end AlgebraicCurve
 
 end
-

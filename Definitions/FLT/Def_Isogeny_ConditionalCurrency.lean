@@ -74,12 +74,16 @@ variable {V W : Affine F} [V.IsElliptic] [W.IsElliptic]
 variable [GenusOnePlaceGate V] [AbelTheorem V] [GenusOnePlaceGate W] [AbelTheorem W]
 variable (ι : V.FunctionField →ₐ[F] W.FunctionField) (hι : ι.toRingHom.IsIntegral)
 
+omit [IsAlgClosed F] [CharZero F] [WeierstrassCurve.IsElliptic V] [WeierstrassCurve.IsElliptic W] [V.AbelTheorem] [W.AbelTheorem] in
+omit [DecidableEq F] in
 theorem inertiaDegAlong_eq_one (w : AlgebraicCurve.Place F W.FunctionField) :
     w.inertiaDegAlong ι hι = 1 := by
   have h := AlgebraicCurve.Place.deg_restrictAlong_mul_inertiaDegAlong ι hι w
   rw [deg_eq_one (W := V) (w.restrictAlong ι hι), deg_eq_one (W := W) w, one_mul] at h
   exact h
 
+omit [IsAlgClosed F] [CharZero F] [WeierstrassCurve.IsElliptic V] [WeierstrassCurve.IsElliptic W] [V.AbelTheorem] [W.AbelTheorem] in
+omit [DecidableEq F] in
 theorem pushforwardAlong_single_eq (w : AlgebraicCurve.Place F W.FunctionField) (n : ℤ) :
     Divisor.pushforwardAlong ι hι (Finsupp.single w n)
       = Finsupp.single (w.restrictAlong ι hι) n := by
@@ -87,6 +91,7 @@ theorem pushforwardAlong_single_eq (w : AlgebraicCurve.Place F W.FunctionField) 
 
 variable (hfin : FiniteAlong F ι) (hN : NormFormulaAlong F ι hfin)
 
+omit [IsAlgClosed F] [CharZero F] [WeierstrassCurve.IsElliptic V] [WeierstrassCurve.IsElliptic W] [V.AbelTheorem] [W.AbelTheorem] in
 theorem pushforwardAlongDegZero_pointDivisor {P : W.Point} {Q : V.Point}
     (hP : (placeOfPoint P).restrictAlong ι hι = placeOfPoint Q)
     (h0 : (placeOfPoint (0 : W.Point)).restrictAlong ι hι = placeOfPoint (0 : V.Point)) :
@@ -108,6 +113,7 @@ def pointMapOfPushforward : W.Point →+ V.Point :=
       (Pic0.pushforwardAlongHom ι hι hfin hN)).comp
     (genusOnePic0Equiv W).symm.toAddMonoidHom
 
+omit [IsAlgClosed F] [CharZero F] [WeierstrassCurve.IsElliptic V] [WeierstrassCurve.IsElliptic W] in
 @[simp]
 theorem pointMapOfPushforward_apply (P : W.Point) :
     pointMapOfPushforward ι hι hfin hN P
@@ -166,6 +172,7 @@ def pointEnd (D : IsogenyEndDatum W) (hN : NormFormulaAlong F D.ι D.hfin) :
     AddMonoid.End W.Point :=
   pointMapOfPushforward D.ι D.hι D.hfin hN
 
+omit [IsAlgClosed F] [CharZero F] [WeierstrassCurve.IsElliptic W] in
 theorem pointEnd_apply (D : IsogenyEndDatum W) (hN : NormFormulaAlong F D.ι D.hfin)
     (P : W.Point) :
     D.pointEnd hN P
@@ -185,6 +192,7 @@ def isogenyEndSubring (hNs : ∀ D : IsogenyEndDatum W, NormFormulaAlong F D.ι 
     Subring (AddMonoid.End W.Point) :=
   Subring.closure (Set.range (fun D => IsogenyEndDatum.pointEnd D (hNs D)))
 
+omit [IsAlgClosed F] [CharZero F] [WeierstrassCurve.IsElliptic W] in
 theorem IsogenyEndDatum.pointEnd_mem_isogenyEndSubring
     (hNs : ∀ D : IsogenyEndDatum W, NormFormulaAlong F D.ι D.hfin) (D : IsogenyEndDatum W) :
     D.pointEnd (hNs D) ∈ isogenyEndSubring W hNs :=
@@ -204,6 +212,7 @@ def pointHom (D : IsogenyHomDatum V₀ V₁) (hN : NormFormulaAlong F D.ι D.hfi
     V₀.Point →+ V₁.Point :=
   pointMapOfPushforward D.ι D.hι D.hfin hN
 
+omit [IsAlgClosed F] [CharZero F] [WeierstrassCurve.IsElliptic V₀] [WeierstrassCurve.IsElliptic V₁] in
 theorem pointHom_apply (D : IsogenyHomDatum V₀ V₁) (hN : NormFormulaAlong F D.ι D.hfin)
     (P : V₀.Point) :
     D.pointHom hN P = genusOnePic0Equiv V₁
@@ -227,4 +236,3 @@ end IsogenyHomDatum
 end WeierstrassCurve.Affine
 
 end IsogenyCurrency
-

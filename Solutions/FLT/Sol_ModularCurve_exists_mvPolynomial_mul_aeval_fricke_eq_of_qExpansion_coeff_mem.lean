@@ -230,6 +230,7 @@ theorem ratCast_mem (r : ℚ) : ((r : ℂ)) ∈ K := by
   have : (r : ℂ) = algebraMap ℚ ℂ r := rfl
   rw [this]; exact K.algebraMap_mem r
 
+omit [NeZero N] in
 theorem RatAt.mdiff_mul {m : ℕ} {g : ℍ → ℂ} (h : RatAt N K m g) :
     MDifferentiable 𝓘(ℂ) 𝓘(ℂ) (g * Δ ^ m) :=
   h.mdiff.mul (mdifferentiable_disc.pow m)
@@ -261,6 +262,7 @@ theorem RatAt.of_le {m m' : ℕ} (hm : m ≤ m') {g : ℍ → ℂ} (h : RatAt N 
   | zero => simpa using h
   | succ d ih => exact (ih (Nat.le_add_right m d)).succ
 
+omit [NeZero N] in
 theorem RatAt.exists_map {m : ℕ} {g : ℍ → ℂ} (h : RatAt N K m g) :
     ∃ p : PowerSeries K, p.map (algebraMap K ℂ) = qExpansion N (g * Δ ^ m) := by
   refine ⟨PowerSeries.mk fun n => ⟨_, h.mem n⟩, ?_⟩
@@ -425,6 +427,7 @@ theorem exists_ev_of_mem_adjoin {x : ℍ → ℂ} (hx : x ∈ Algebra.adjoin (kN
   rw [this]
   rfl
 
+omit [NeZero N] in
 theorem coeff_map_mem (R : MvPolynomial (Idx N) (kN N)) (m : Idx N →₀ ℕ) :
     (MvPolynomial.map (algebraMap (kN N) ℂ) R).coeff m ∈ kN N := by
   rw [MvPolynomial.coeff_map]; exact (R.coeff m).2

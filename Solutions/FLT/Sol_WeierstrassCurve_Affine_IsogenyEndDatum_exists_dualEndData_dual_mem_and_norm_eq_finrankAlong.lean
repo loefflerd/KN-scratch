@@ -267,7 +267,7 @@ section CentredGate
 variable [DecidableEq F] [GenusOnePlaceGate W] [GenusOnePlaceGate.IsCentred W]
 
 @[scoped simp]
-theorem placeOfPoint_some [IsDedekindDomain W.CoordinateRing] {x y : F} (h : W.Nonsingular x y) :
+theorem placeOfPoint_some {x y : F} (h : W.Nonsingular x y) :
     placeOfPoint (.some x y h) = placeOfEquation h.left :=
   placeOfPoint_some_eq_ofHeightOneSpectrum h (heightOneSpectrumOfEquation h.left) rfl
 
@@ -282,7 +282,7 @@ theorem not_isFinitePlace [IsAlgClosed F] [W.IsElliptic] :
     ¬ IsFinitePlace (place : AlgebraicCurve.Place F W.FunctionField) := fun h =>
   algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero (W := W) (h _)
 
-theorem eq_of_not_isFinitePlace [IsDedekindDomain W.CoordinateRing]
+theorem eq_of_not_isFinitePlace
     (v : AlgebraicCurve.Place F W.FunctionField) (hv : ¬ IsFinitePlace v) :
     v = place := by
   obtain ⟨P, rfl⟩ : ∃ P : W.Point, placeOfPoint P = v :=

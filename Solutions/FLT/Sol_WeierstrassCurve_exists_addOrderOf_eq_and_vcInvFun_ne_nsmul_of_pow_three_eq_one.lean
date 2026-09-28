@@ -25,22 +25,22 @@ open WeierstrassCurve WeierstrassCurve.Affine Polynomial
 namespace P2MWs13
 namespace NonScalar
 
-variable {L : Type*} [Field L] [DecidableEq L]
+variable {L : Type*} [Field L]
 
-def xco {W : WeierstrassCurve L} : W.toAffine.Point → Option L
+def xco [DecidableEq L] {W : WeierstrassCurve L} : W.toAffine.Point → Option L
   | 0 => none
   | .some x _ _ => some x
 
-@[scoped simp] theorem xco_zero {W : WeierstrassCurve L} : xco (0 : W.toAffine.Point) = none := rfl
-@[scoped simp] theorem xco_some {W : WeierstrassCurve L} {x y : L} (h : W.toAffine.Nonsingular x y) :
+@[scoped simp] theorem xco_zero [DecidableEq L] {W : WeierstrassCurve L} : xco (0 : W.toAffine.Point) = none := rfl
+@[scoped simp] theorem xco_some [DecidableEq L] {W : WeierstrassCurve L} {x y : L} (h : W.toAffine.Nonsingular x y) :
     xco (Point.some x y h) = some x := rfl
 
-theorem xco_neg {W : WeierstrassCurve L} (P : W.toAffine.Point) : xco (-P) = xco P := by
+theorem xco_neg [DecidableEq L] {W : WeierstrassCurve L} (P : W.toAffine.Point) : xco (-P) = xco P := by
   rcases P with _ | ⟨x, y, h⟩
   · rfl
   · rw [Point.neg_some]; rfl
 
-theorem eq_or_eq_neg_of_xco_eq {W : WeierstrassCurve L} {P Q : W.toAffine.Point} (hPQ : xco P = xco Q) :
+theorem eq_or_eq_neg_of_xco_eq [DecidableEq L] {W : WeierstrassCurve L} {P Q : W.toAffine.Point} (hPQ : xco P = xco Q) :
     P = Q ∨ P = -Q := by
   rcases P with _ | ⟨x, y, h⟩ <;> rcases Q with _ | ⟨x', y', h'⟩
   · exact Or.inl rfl
@@ -61,19 +61,19 @@ theorem eq_or_eq_neg_of_xco_eq {W : WeierstrassCurve L} {P Q : W.toAffine.Point}
     · exact Or.inl rfl
     · right; rw [Point.neg_some]
 
-theorem xco_eq_of_heq {W₁ W₂ : WeierstrassCurve L} (e : W₁ = W₂) {P : W₁.toAffine.Point} {Q : W₂.toAffine.Point}
+theorem xco_eq_of_heq [DecidableEq L] {W₁ W₂ : WeierstrassCurve L} (e : W₁ = W₂) {P : W₁.toAffine.Point} {Q : W₂.toAffine.Point}
     (h : HEq P Q) : xco P = xco Q := by
   subst e
   rw [eq_of_heq h]
 
-def castPt {W₁ W₂ : WeierstrassCurve L} (e : W₁ = W₂) : W₁.toAffine.Point ≃+ W₂.toAffine.Point := by
+def castPt [DecidableEq L] {W₁ W₂ : WeierstrassCurve L} (e : W₁ = W₂) : W₁.toAffine.Point ≃+ W₂.toAffine.Point := by
   subst e; exact AddEquiv.refl _
 
-theorem xco_castPt {W₁ W₂ : WeierstrassCurve L} (e : W₁ = W₂) (P : W₁.toAffine.Point) :
+theorem xco_castPt [DecidableEq L] {W₁ W₂ : WeierstrassCurve L} (e : W₁ = W₂) (P : W₁.toAffine.Point) :
     xco (castPt e P) = xco P := by
   subst e; rfl
 
-theorem xco_vcInvFun (u : Lˣ) (W : WeierstrassCurve L) (P : W.toAffine.Point) :
+theorem xco_vcInvFun [DecidableEq L] (u : Lˣ) (W : WeierstrassCurve L) (P : W.toAffine.Point) :
     xco (Point.vcInvFun (⟨u, 0, 0, 0⟩ : VariableChange L) W.toAffine P) = (xco P).map (fun x => ((u⁻¹ : Lˣ) : L) ^ 2 * x) := by
   rcases P with _ | ⟨x, y, h⟩
   · rfl

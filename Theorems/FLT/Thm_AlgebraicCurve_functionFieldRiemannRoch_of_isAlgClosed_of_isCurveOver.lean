@@ -16,12 +16,12 @@ theorem AlgebraicCurve.functionFieldRiemannRoch_of_isAlgClosed_of_isCurveOver
     [AlgebraicCurve.HasCanonicalDivisor (K := K) (F := F)]
     [∀ w : AlgebraicCurve.Place K F, w.DCoordGenerates]
     [Algebra (RatFunc K) F] [IsScalarTower K (RatFunc K) F]
-    [Algebra.IsIntegral (RatFunc K) F] [Module.Finite (RatFunc K) F]
+    [Algebra.IsIntegral (RatFunc K) F]
     [∀ w : AlgebraicCurve.Place K F, w.FiniteResidue]
     [Nontrivial Ω[F⁄K]]
     [AlgebraicCurve.IsCurveOver K F] [AlgebraicCurve.IsCurveOver K (RatFunc K)]
     [∀ u : AlgebraicCurve.Place K (RatFunc K), u.FiniteResidue]
-    [AlgebraicCurve.HasPrincipalDivisors K F] [Algebra.IsSeparable (RatFunc K) F]
+    [Algebra.IsSeparable (RatFunc K) F]
     [Nontrivial Ω[(RatFunc K)⁄K]] [∀ v : AlgebraicCurve.Place K (RatFunc K), v.DCoordGenerates]
     [FiniteDimensional (RatFunc K) F] :
     AlgebraicCurve.FunctionFieldRiemannRoch K F := by sorry

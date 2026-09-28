@@ -25,6 +25,6 @@ theorem AlgebraicCurve.residueTheoremK_of_isAlgClosed
     [AlgebraicCurve.IsCurveOver K F] [AlgebraicCurve.IsCurveOver K (RatFunc K)]
     [∀ u : AlgebraicCurve.Place K (RatFunc K), u.FiniteResidue]
     [AlgebraicCurve.HasCanonicalLocalResidueKStar K F]
-    [AlgebraicCurve.HasPrincipalDivisors K F] [Algebra.IsSeparable (RatFunc K) F]
+    [Algebra.IsSeparable (RatFunc K) F]
     [Nontrivial Ω[(RatFunc K)⁄K]] [∀ v : AlgebraicCurve.Place K (RatFunc K), v.DCoordGenerates] :
     AlgebraicCurve.ResidueTheoremK K F := by sorry

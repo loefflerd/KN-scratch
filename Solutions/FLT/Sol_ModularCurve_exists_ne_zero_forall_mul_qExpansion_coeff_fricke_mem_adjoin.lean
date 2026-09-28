@@ -23,12 +23,14 @@ def zeta : ℂ := cexp (2 * π * Complex.I / N)
 
 def AZ : Subalgebra ℤ ℂ := Algebra.adjoin ℤ {zeta N}
 
+omit [NeZero N] in
 theorem zeta_mem : zeta N ∈ AZ N := Algebra.subset_adjoin (Set.mem_singleton _)
 
 theorem isPrimitiveRoot_zeta : IsPrimitiveRoot (zeta N) N := Complex.isPrimitiveRoot_exp N (NeZero.ne N)
 
 theorem zeta_pow_N : zeta N ^ N = 1 := (isPrimitiveRoot_zeta N).pow_eq_one
 
+omit [NeZero N] in
 theorem zeta_ne_zero : zeta N ≠ 0 := by unfold zeta; exact exp_ne_zero _
 
 theorem norm_zeta : ‖zeta N‖ = 1 := (isPrimitiveRoot_zeta N).norm'_eq_one (NeZero.ne N)
@@ -40,8 +42,10 @@ theorem zeta_inv_mem : (zeta N)⁻¹ ∈ AZ N := by
       Nat.sub_add_cancel hN, zeta_pow_N]
   rw [this]; exact pow_mem (zeta_mem N) _
 
+omit [NeZero N] in
 theorem intCast_mem (z : ℤ) : (z : ℂ) ∈ AZ N := by exact_mod_cast (AZ N).algebraMap_mem z
 
+omit [NeZero N] in
 theorem natCast_mem (n : ℕ) : (n : ℂ) ∈ AZ N := by exact_mod_cast intCast_mem N n
 
 theorem exists_mul_one_sub_eq {a : ℕ} (ha : 0 < a) (haN : a < N) :
@@ -172,6 +176,8 @@ theorem norm_cT_le (n : ℕ) : ‖cT N a₁ a₂ n‖ ≤ (n + 1) * (n + 1) * 3 
 def cA (n : ℕ) : ℂ :=
   if a₁ = 0 then 0 else if a₁ ∣ n then ((n / a₁ : ℕ) : ℂ) * zeta N ^ (a₂ * (n / a₁)) else 0
 
+omit [Fact (a₁ < N)] in
+omit [NeZero N] in
 theorem cA_mem (n : ℕ) : cA N a₁ a₂ n ∈ AZ N := by
   unfold cA
   split_ifs
@@ -179,6 +185,7 @@ theorem cA_mem (n : ℕ) : cA N a₁ a₂ n ∈ AZ N := by
   · exact mul_mem (natCast_mem N _) (pow_mem (zeta_mem N) _)
   · exact zero_mem _
 
+omit [Fact (a₁ < N)] in
 theorem norm_cA_le (n : ℕ) : ‖cA N a₁ a₂ n‖ ≤ n := by
   unfold cA
   split_ifs with h1 h2
@@ -189,6 +196,7 @@ theorem norm_cA_le (n : ℕ) : ‖cA N a₁ a₂ n‖ ≤ n := by
 
 def c0 : ℂ := 1 / 12 + if a₁ = 0 then zeta N ^ a₂ / (1 - zeta N ^ a₂) ^ 2 else 0
 
+omit [Fact (a₁ < N)] in
 theorem c0_mem (ha₂ : a₂ < N) (h0 : a₁ ≠ 0 ∨ a₂ ≠ 0) : (12 * (N : ℂ) ^ 2) * c0 N a₁ a₂ ∈ AZ N := by
   unfold c0
   split_ifs with h1
@@ -242,10 +250,12 @@ variable (a₁ a₂ : ℕ)
 
 def qq (τ : ℍ) : ℂ := cexp (2 * π * Complex.I * (τ : ℂ) / N)
 
+omit [NeZero N] in
 theorem qq_eq (τ : ℍ) : qq N τ = Periodic.qParam N τ := by
   unfold qq Periodic.qParam
   norm_cast
 
+omit [NeZero N] in
 theorem norm_qq (τ : ℍ) : ‖qq N τ‖ = Real.exp (-2 * π * τ.im / N) := by
   rw [qq_eq, Periodic.norm_qParam]; rfl
 
@@ -256,19 +266,27 @@ theorem norm_qq_lt_one (τ : ℍ) : ‖qq N τ‖ < 1 := by
   have h2 : -2 * π * τ.im / N = -(2 * π * τ.im / N) := by ring
   rw [h2]; linarith
 
+omit [NeZero N] in
 theorem norm_qq_pos (τ : ℍ) : 0 < ‖qq N τ‖ := by rw [norm_qq]; exact Real.exp_pos _
 
 def Gt (τ : ℍ) (i : Idx) : ℂ := coef N a₂ i * qq N τ ^ expo N a₁ i
 
 def Ft (τ : ℍ) (p : ℕ+ × ℕ+) : ℂ := ∑ j : Fin 3, Gt N a₁ a₂ τ (p, j)
 
+omit [NeZero N] in
 theorem coef_zero (p : ℕ+ × ℕ+) : coef N a₂ (p, 0) = ((p.2 : ℕ) : ℂ) * zeta N ^ (a₂ * (p.2 : ℕ)) := rfl
+omit [NeZero N] in
 theorem coef_one (p : ℕ+ × ℕ+) : coef N a₂ (p, 1) = ((p.2 : ℕ) : ℂ) * (zeta N)⁻¹ ^ (a₂ * (p.2 : ℕ)) := rfl
+omit [NeZero N] in
 theorem coef_two (p : ℕ+ × ℕ+) : coef N a₂ (p, 2) = -2 * ((p.2 : ℕ) : ℂ) := rfl
+omit [NeZero N] in
 theorem expo_zero (p : ℕ+ × ℕ+) : expo N a₁ (p, 0) = ((p.1 : ℕ) * N + a₁) * (p.2 : ℕ) := rfl
+omit [NeZero N] in
 theorem expo_one (p : ℕ+ × ℕ+) : expo N a₁ (p, 1) = ((p.1 : ℕ) * N - a₁) * (p.2 : ℕ) := rfl
+omit [NeZero N] in
 theorem expo_two (p : ℕ+ × ℕ+) : expo N a₁ (p, 2) = (p.1 : ℕ) * N * (p.2 : ℕ) := rfl
 
+omit [NeZero N] in
 theorem Ft_eq (τ : ℍ) (p : ℕ+ × ℕ+) : Ft N a₁ a₂ τ p =
     ((p.2 : ℕ) : ℂ) * (zeta N ^ (a₂ * (p.2 : ℕ)) * qq N τ ^ (((p.1 : ℕ) * N + a₁) * (p.2 : ℕ)) +
       (zeta N)⁻¹ ^ (a₂ * (p.2 : ℕ)) * qq N τ ^ (((p.1 : ℕ) * N - a₁) * (p.2 : ℕ)) -
@@ -351,6 +369,7 @@ theorem hasSum_cT (τ : ℍ) : HasSum (fun n => cT N a₁ a₂ n * qq N τ ^ n) 
   rw [h3]
   exact hasSum_fintype _
 
+omit [Fact (a₁ < N)] in
 theorem hasSum_cA (τ : ℍ) (ha0 : a₁ ≠ 0) :
     HasSum (fun n => cA N a₁ a₂ n * qq N τ ^ n)
       (zeta N ^ a₂ * qq N τ ^ a₁ / (1 - zeta N ^ a₂ * qq N τ ^ a₁) ^ 2) := by
@@ -418,6 +437,7 @@ theorem qExpansion_coeff_unique' {h : ℝ} (hh : 0 < h) {g : ℍ → ℂ} {c : �
   simpa [FormalMultilinearSeries.coeff_ofScalars] using
     congr_arg (FormalMultilinearSeries.coeff · m) (h1.eq_formalMultilinearSeries h2)
 
+omit [NeZero N] [Fact (a₁ < N)] in
 theorem summable_bound {r : ℝ} (hr0 : 0 ≤ r) (hr1 : r < 1) :
     Summable (fun n : ℕ => (‖c0 N a₁ a₂‖ + 8 * ((n : ℝ) + 1) ^ 3) * r ^ n) := by
   have hnr : ‖r‖ < 1 := by rw [Real.norm_eq_abs, abs_of_nonneg hr0]; exact hr1
