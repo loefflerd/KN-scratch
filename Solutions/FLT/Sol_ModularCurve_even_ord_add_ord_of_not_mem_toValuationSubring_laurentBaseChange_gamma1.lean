@@ -78,7 +78,7 @@ theorem exists_presentation (M : ℕ) (w : ModularForm (Gamma1 M) 1) (hw : w ≠
     funext z; simp only [hHhdef, ModularForm.coe_mcast, ModularForm.coe_mul, Pi.mul_apply, hE4, hE6]; ring
   have hGvcoe : (Gv : ℍ → ℂ) = fun z => -(w z ^ 2 * ModularForm.discriminant z) := by
     funext z
-    simp only [hGvdef, ModularForm.coe_mcast, ModularForm.coe_neg, ModularForm.coe_mul, Pi.neg_apply, Pi.mul_apply, hDcoe]
+    simp only [hGvdef, ModularForm.coe_mcast, FunLike.coe_neg, ModularForm.coe_mul, Pi.neg_apply, Pi.mul_apply, hDcoe]
     ring
   have hqE4 : qExpansion 1 (E4N : ℍ → ℂ) = qExpansion 1 (ModularForm.E₄ : ℍ → ℂ) := by rw [hE4]
   have hqE6 : qExpansion 1 (E6N : ℍ → ℂ) = qExpansion 1 (ModularForm.E₆ : ℍ → ℂ) := by rw [hE6]
@@ -88,7 +88,7 @@ theorem exists_presentation (M : ℕ) (w : ModularForm (Gamma1 M) 1) (hw : w ≠
     rw [hHhdef, ModularForm.qExpansion_mcast, ModularForm.qExpansion_mul one_pos h1,
       ModularForm.qExpansion_mul one_pos h1, hqE4, hqE6]; ring
   have hqGv : qExpansion 1 (Gv : ℍ → ℂ) = -(qExpansion 1 (w : ℍ → ℂ) ^ 2 * qExpansion 1 ModularForm.discriminant) := by
-    rw [hGvdef, ModularForm.qExpansion_mcast, ModularForm.coe_neg, ModularForm.qExpansion_neg one_pos h1,
+    rw [hGvdef, ModularForm.qExpansion_mcast, FunLike.coe_neg, ModularForm.qExpansion_neg one_pos h1,
       ModularForm.qExpansion_mul one_pos h1, ModularForm.qExpansion_mul one_pos h1, hqD]; ring
   have hT2 := thetaL_jqModC_mul_discriminant
   have hDN0 : DN ≠ 0 := by
@@ -394,7 +394,6 @@ theorem solution
   push_cast
   exact ⟨n, by ring⟩
 
-#print axioms solution
 
 end
 end S_ModularCurve_even_ord_add_ord_of_not_mem_toValuationSubring_laurentBaseChange_gamma1

@@ -79,9 +79,9 @@ theorem WCuspOrdAux.slash_main
     apply hf
     have hc : ((f : ℍ → ℂ) ∣[k] (σ : GL (Fin 2) ℝ)) = 0 := by
       have e1 : ((F : ℍ → ℂ)) = ((0 : ModularForm _ k) : ℍ → ℂ) := congrArg DFunLike.coe h0
-      rw [ModularForm.coe_zero] at e1
+      rw [FunLike.coe_zero] at e1
       exact e1
-    rw [← ModularForm.coe_eq_zero_iff]
+    rw [← FunLike.coe_zero_iff]
     have e : (f : ℍ → ℂ) = ((f : ℍ → ℂ) ∣[k] (σ : GL (Fin 2) ℝ)) ∣[k] ((σ : GL (Fin 2) ℝ))⁻¹ := by
       rw [← SlashAction.slash_mul, mul_inv_cancel, SlashAction.slash_one]
     rw [e, hc, SlashAction.zero_slash]
@@ -97,7 +97,6 @@ theorem solution
         atImInfty (𝓝 a) :=
   WCuspOrdAux.slash_main Γ k f hf σ h hh hper
 
-#print axioms solution
 
 end
 end S_ModularForm_exists_tendsto_slash_div_qParam_pow_of_conj_T_pow_mem

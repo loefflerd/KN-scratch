@@ -38,7 +38,7 @@ theorem solution
     ∃ σ : SL(2, ℤ), Pl σ = P := by
   classical
   by_contra hcon
-  push_neg at hcon
+  push Not at hcon
 
   let Pl' : Quotient (QuotientGroup.rightRel Γ) → AlgebraicCurve.Place ℂ ↥(ModularCurve.laurentBaseChange ℂ F₀) :=
     Quotient.lift Pl (by

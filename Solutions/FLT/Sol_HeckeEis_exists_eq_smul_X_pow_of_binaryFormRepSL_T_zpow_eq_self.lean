@@ -43,10 +43,10 @@ theorem degree_eq_iff (d : Fin 2 →₀ ℕ) : d.degree = n ↔ ∃ j ∈ Finset
   · intro h
     refine ⟨d 1, Finset.mem_range.mpr (by omega), ?_⟩
     ext i
-    fin_cases i <;> simp [expo, Finsupp.single_apply] <;> omega
+    fin_cases i <;> simp [expo] <;> omega
   · rintro ⟨j, hj, rfl⟩
     rw [Finset.mem_range] at hj
-    simp [expo, Finsupp.single_apply]
+    simp [expo]
     omega
 
 theorem eq_sum_range {P : MvPolynomial (Fin 2) R} (hP : P ∈ BinaryForm R n) :
@@ -178,7 +178,6 @@ theorem solution {R : Type*} [CommRing R] [IsDomain R] (n : ℕ)
     ∃ c : R, (P : MvPolynomial (Fin 2) R) = c • MvPolynomial.X 0 ^ n :=
   HeckeEis.SolMain.A2 n hh hn P hP
 
-#print axioms solution
 
 end S_HeckeEis_exists_eq_smul_X_pow_of_binaryFormRepSL_T_zpow_eq_self
 end P2MW

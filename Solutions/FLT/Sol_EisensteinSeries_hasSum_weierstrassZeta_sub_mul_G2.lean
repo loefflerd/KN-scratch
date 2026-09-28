@@ -267,7 +267,7 @@ lemma tsum_azero {z : ℂ} (hzC : z ∈ ℂ_ℤ) (has : Summable (azero z)) :
       simpa using integerComplement_add_ne_zero hzC ((n : ℤ) + 1)
     simp only [azero, if_neg h1, if_neg h2, cotTerm]
     push_cast
-    simp only [sub_neg_eq_add, one_div_neg_eq_neg_one_div, div_neg, one_div]
+    simp only [sub_neg_eq_add, div_neg, one_div]
     ring
   rw [add_assoc, ← hnat1.tsum_add hneg, tsum_congr key, ← cot_series_rep' hzC]
   simp [azero]

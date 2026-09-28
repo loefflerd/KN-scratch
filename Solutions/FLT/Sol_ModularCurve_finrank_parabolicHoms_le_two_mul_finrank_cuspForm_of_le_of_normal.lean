@@ -177,7 +177,7 @@ theorem res_injective [Γ'.FiniteIndex] (hle : Γ' ≤ Γ) : Function.Injective 
     have := congrArg (fun φ : ModularCurve.Period.parabolicHoms ℝ Γ' ℝ =>
       (φ : Additive Γ' →+ ℝ) (Additive.ofMul ⟨((Additive.toMul a : Γ) : SL(2, ℤ)) ^ n, hmem⟩)) hw0
     simp only [res_apply, Submodule.coe_zero, AddMonoidHom.zero_apply] at this
-    convert this using 3 <;> first | rfl | exact Subtype.ext hpow
+    convert this using 3 <;> first | rfl
   rw [ofMul_pow, map_nsmul, nsmul_eq_mul, mul_eq_zero] at hval
   have hn' : (n : ℝ) ≠ 0 := by exact_mod_cast hn.ne'
   have h0 : (w : Additive Γ →+ ℝ) a = 0 := by

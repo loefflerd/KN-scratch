@@ -110,7 +110,7 @@ lemma eventuallyEq_zero (L L' : PeriodPair) (h₂ : L.g₂ = L'.g₂) (h₃ : L.
       mem_nhdsWithin_of_mem_nhds hDE', mem_nhdsWithin_of_mem_nhds hderiv,
       self_mem_nhdsWithin] with z hz1 hz2 hz3 hz4 hz0
     have hz0' : z ≠ 0 := hz0
-    simp only [Set.mem_compl_iff, Set.mem_diff, SetLike.mem_coe, Set.mem_singleton_iff,
+    simp only [Set.mem_compl_iff, Set.mem_sdiff, SetLike.mem_coe, Set.mem_singleton_iff,
       not_and, not_not] at hz1 hz2
     have hzL : z ∉ L.lattice := fun h => hz0' (hz1 h)
     have hzL' : z ∉ L'.lattice := fun h => hz0' (hz2 h)
@@ -178,7 +178,7 @@ lemma lattice_le_of_eqOn (L L' : PeriodPair)
     have h2 : (L'.lattice : Set ℂ)ᶜ ∈ 𝓝[≠] x :=
       mem_nhdsWithin_of_mem_nhds (L'.isClosed_lattice.isOpen_compl.mem_nhds hx')
     filter_upwards [h1, h2, self_mem_nhdsWithin] with z hz1 hz2 hz3
-    simp only [Set.mem_compl_iff, Set.mem_diff, Set.mem_singleton_iff, SetLike.mem_coe,
+    simp only [Set.mem_compl_iff, Set.mem_sdiff, Set.mem_singleton_iff, SetLike.mem_coe,
       Set.mem_union, not_or] at hz1 hz2 hz3 ⊢
     exact ⟨fun h => hz1 ⟨h, hz3⟩, hz2⟩
   have hfeq : ℘[L] =ᶠ[𝓝[≠] x] ℘[L'] := Filter.eventually_of_mem hU heq
@@ -204,7 +204,7 @@ lemma eqOn_of_eventuallyEq_zero (L L' : PeriodPair)
     have h2 : ((L'.lattice : Set ℂ) \ {0})ᶜ ∈ 𝓝[≠] (0 : ℂ) :=
       mem_nhdsWithin_of_mem_nhds (L'.compl_lattice_diff_singleton_mem_nhds 0)
     filter_upwards [h1, h2, self_mem_nhdsWithin] with z hz1 hz2 hz3
-    simp only [Set.mem_compl_iff, Set.mem_diff, Set.mem_singleton_iff, SetLike.mem_coe,
+    simp only [Set.mem_compl_iff, Set.mem_sdiff, Set.mem_singleton_iff, SetLike.mem_coe,
       Set.mem_union, not_or, hU] at hz1 hz2 hz3 ⊢
     exact ⟨fun h => hz1 ⟨h, hz3⟩, fun h => hz2 ⟨h, hz3⟩⟩
 

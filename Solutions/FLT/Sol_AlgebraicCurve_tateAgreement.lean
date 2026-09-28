@@ -1395,7 +1395,7 @@ theorem kwF4R1V410a_exists_sub_mem_completionIdeal_pow (n : ℕ) (y : O_W) :
       WithZero.exp_ne_zero).preimage (continuous_sub_right y.val)
   have hy_mem : y.val ∈ {z : w.adicCompletion |
       Valued.v (z - y.val) ≤ WithZero.exp (-(n : ℤ))} := by
-    simp only [Set.mem_ofPred_eq, sub_self, _root_.map_zero]; exact WithZero.zero_le _
+    simp only [Set.mem_ofPred_eq, sub_self, _root_.map_zero]; exact zero_le
   have hmeet := mem_closure_iff.mp
     ((denseRange_algebraMap F w.heightOneSpectrum) y.val) _ hball_open hy_mem
 
@@ -4205,7 +4205,7 @@ theorem v410a_evalDepth_mul_mem_integers (n : ℕ) (z : lg37_completion u)
     calc Valued.v fh
         = WithZero.exp (n : ℤ) * (WithZero.exp (-(n : ℤ)) * Valued.v fh) := by
           rw [← mul_assoc, ← WithZero.exp_add, add_neg_cancel, WithZero.exp_zero, one_mul]
-      _ ≤ WithZero.exp (n : ℤ) * 1 := mul_le_mul_of_nonneg_left h1 (WithZero.zero_le _)
+      _ ≤ WithZero.exp (n : ℤ) * 1 := mul_le_mul_of_nonneg_left h1 (zero_le)
       _ = WithZero.exp (n : ℤ) := mul_one _
 
   calc Valued.v ((kwF4R1V410a_ringEquiv u z : u.adicCompletionIntegers)
@@ -4635,7 +4635,7 @@ theorem cohenΦ_mem_integers_iff_zero (δ : ℕ →₀ u.ResidueField) :
       (fun a b ha hb => (Valued.v.map_add a b).trans (max_le ha hb))
       ?_ fun j hj => ?_
     · show Valued.v (0 : u.adicCompletion) ≤ _
-      rw [_root_.map_zero]; exact WithZero.zero_le _
+      rw [_root_.map_zero]; exact zero_le
     · have hjJ : j < J := lt_of_le_of_ne
         (δ.support.le_max' j (Finset.mem_of_mem_erase hj)) (Finset.ne_of_mem_erase hj)
       show Valued.v (_ * _) ≤ _

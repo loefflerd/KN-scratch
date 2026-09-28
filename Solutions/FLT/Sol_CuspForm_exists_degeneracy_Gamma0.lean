@@ -90,7 +90,7 @@ theorem exists_modularForm {M N d : ℕ} [NeZero N] (hdiv : d * M ∣ N)
   refine ⟨((d : ℂ) ^ (k - 1))⁻¹ •
     restrictMF (Gamma0_le_conj_Gamma0 hd hdiv) (ModularForm.translate f (heckeDiagMatrix d)), ?_⟩
   funext τ
-  rw [ModularForm.IsGLPos.coe_smul, Pi.smul_apply, coe_restrictMF, ModularForm.coe_translate,
+  rw [FunLike.coe_smul, Pi.smul_apply, coe_restrictMF, ModularForm.coe_translate,
     slash_heckeDiagMatrix_apply k hd, smul_eq_mul, ← mul_assoc, inv_mul_cancel₀ hdk, one_mul]
 
 theorem exists_cuspForm {M N d : ℕ} [NeZero N] (hdiv : d * M ∣ N)
@@ -105,7 +105,7 @@ theorem exists_cuspForm {M N d : ℕ} [NeZero N] (hdiv : d * M ∣ N)
   refine ⟨((d : ℂ) ^ (k - 1))⁻¹ •
     restrictCF (Gamma0_le_conj_Gamma0 hd hdiv) (CuspForm.translate f (heckeDiagMatrix d)), ?_⟩
   funext τ
-  rw [CuspForm.IsGLPos.coe_smul, Pi.smul_apply, coe_restrictCF]
+  rw [FunLike.coe_smul, Pi.smul_apply, coe_restrictCF]
   show ((d : ℂ) ^ (k - 1))⁻¹ • (⇑f ∣[k] heckeDiagMatrix d) τ = _
   rw [slash_heckeDiagMatrix_apply k hd, smul_eq_mul, ← mul_assoc, inv_mul_cancel₀ hdk, one_mul]
 

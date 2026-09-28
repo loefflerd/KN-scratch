@@ -930,7 +930,7 @@ theorem frickeF_integral_over_j_mem_kN (N : ℕ) [NeZero N] :
     intro k
     have hmem : orbitCoeff (fun i : FrickeIdx N => frickeF N i.1) k ∈ levelRingK (kN N) N := by
       have h1 := orbitCoeffOn_frickeF_mem_levelRingK (N := N) Finset.univ k
-      simp [orbitCoeff] at h1
+      simp [] at h1
       exact h1
     exact kPole_invariant_eq_polynomial_j_mem (kPole_of_mem_levelRingK le_rfl hmem)
       (orbitCoeff_slash_invariant (fun i : FrickeIdx N => frickeF N i.1)

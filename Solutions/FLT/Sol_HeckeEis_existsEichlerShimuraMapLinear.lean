@@ -41,7 +41,6 @@ theorem solution (n N : ℕ) [NeZero N] :
       ∀ f : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2), ES f = HeckeEis.eichlerShimuraMap n N f :=
   HeckeEis.SolMain.lin n N
 
-#print axioms solution
 
 end S_HeckeEis_existsEichlerShimuraMapLinear
 end P2MW

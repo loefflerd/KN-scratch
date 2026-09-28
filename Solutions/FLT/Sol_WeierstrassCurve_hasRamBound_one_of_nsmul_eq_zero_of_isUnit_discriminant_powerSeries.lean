@@ -25,7 +25,7 @@ variable {K : Type*} [Field K]
 theorem orderTop_ne_top_of_ne_zero' {x : HahnSeries ℚ K} (hx : x ≠ 0) : x.orderTop ≠ ⊤ := by
   obtain ⟨g, hg⟩ : ∃ g, x.coeff g ≠ 0 := by
     by_contra h
-    push_neg at h
+    push Not at h
     exact hx (by ext g; simp [h g])
   exact ne_top_of_le_ne_top WithTop.coe_ne_top (HahnSeries.orderTop_le_of_coeff_ne_zero hg)
 
@@ -36,7 +36,7 @@ theorem nonneg_orderTop_iff {x : HahnSeries ℚ K} :
     exact HahnSeries.coeff_eq_zero_of_lt_orderTop (lt_of_lt_of_le (by exact_mod_cast hq) h)
   · intro h
     by_contra hlt
-    push_neg at hlt
+    push Not at hlt
     obtain ⟨g, hg⟩ := WithTop.ne_top_iff_exists.mp (ne_top_of_lt hlt)
     have hg0 : g < 0 := by
       have : (g : WithTop ℚ) < 0 := by rw [hg]; exact hlt
@@ -50,7 +50,7 @@ theorem pos_orderTop_iff {x : HahnSeries ℚ K} :
     exact HahnSeries.coeff_eq_zero_of_lt_orderTop (lt_of_le_of_lt (by exact_mod_cast hq) h)
   · intro h
     by_contra hle
-    push_neg at hle
+    push Not at hle
     obtain ⟨g, hg⟩ := WithTop.ne_top_iff_exists.mp (ne_top_of_le_ne_top WithTop.zero_ne_top hle)
     have hg0 : g ≤ 0 := by
       have : (g : WithTop ℚ) ≤ 0 := by rw [hg]; exact hle
@@ -97,9 +97,9 @@ noncomputable def puiseuxVal : ValuationSubring (HahnSeries ℚ K) where
 theorem mem_puiseuxVal_iff {f : HahnSeries ℚ K} : f ∈ puiseuxVal K ↔ 0 ≤ f.orderTop := by
   first
     | rfl
-    | exact Iff.rfl
-    | (unfold puiseuxVal; exact Iff.rfl)
-    | (show f ∈ (puiseuxVal K).carrier ↔ _; exact Iff.rfl)
+
+
+
 
 theorem not_isUnit_of_orderTop_pos {z : puiseuxVal K}
     (hz : 0 < (z : HahnSeries ℚ K).orderTop) : ¬ IsUnit z := by
@@ -107,7 +107,7 @@ theorem not_isUnit_of_orderTop_pos {z : puiseuxVal K}
   have h1 : ((u : puiseuxVal K) : HahnSeries ℚ K) * ((u⁻¹ : (puiseuxVal K)ˣ) : puiseuxVal K) = 1 := by
     first
       | exact congrArg Subtype.val u.mul_inv
-      | exact_mod_cast congrArg Subtype.val u.mul_inv
+
   have h2 := congrArg HahnSeries.orderTop h1
   rw [HahnSeries.orderTop_mul, HahnSeries.orderTop_one] at h2
   have h3 : 0 ≤ (((u⁻¹ : (puiseuxVal K)ˣ) : puiseuxVal K) : HahnSeries ℚ K).orderTop :=
@@ -265,7 +265,7 @@ theorem solution
 
   have hψ : ((E.map ι).ψ (d : ℤ)).evalEval x y = 0 :=
     (WeierstrassCurve.Affine.Point.smul_some_eq_zero_iff (E.map ι) h (d : ℤ)).mp
-      (by first | (rw [natCast_zsmul]; exact htor) | simpa using htor)
+      (by first | (rw [natCast_zsmul]; exact htor) )
 
   have step : ∀ σr : L ≃+* L, (∀ z : L, (σr z).orderTop = z.orderTop) →
       (∀ z : L, HahnSeries.HasRamBound 1 z → σr z = z) → σr x = x ∧ σr y = y := by
@@ -287,7 +287,7 @@ theorem solution
         change Polynomial.evalEval (σr.toRingHom x) (σr.toRingHom y) _ = 0
         rw [Polynomial.map_mapRingHom_evalEval, hψ, map_zero]
       have := (WeierstrassCurve.Affine.Point.smul_some_eq_zero_iff (E.map ι) h' (d : ℤ)).mpr hψ'
-      first | (rw [natCast_zsmul] at this; exact this) | simpa using this
+      first | (rw [natCast_zsmul] at this; exact this)
     exact WeierstrassCurve.fixed_of_mem_inertia_of_nsmul_eq_zero W hVW hΔ'
       (mem_decompositionSubgroup hσv) (mem_inertiaSubgroup hσv hσ1) hn h h' htor hP'
   exact ⟨HahnSeries.hasRamBound_one_of_forall_ringEquiv_apply_eq (fun σ hv h1 => (step σ hv h1).1),

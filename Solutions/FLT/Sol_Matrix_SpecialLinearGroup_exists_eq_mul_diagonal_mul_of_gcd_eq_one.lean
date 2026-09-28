@@ -27,7 +27,7 @@ theorem exists_coprime_mul_add {a b d : ℕ} (hd : d ≠ 0) (hgcd : Nat.gcd a (N
     rw [hP]
     first
       | rw [Prime.dvd_finsetProd_iff (Nat.prime_iff.mp hq)]
-      | rw [Prime.dvd_finset_prod_iff (Nat.prime_iff.mp hq)]
+
     constructor
     · rintro ⟨q', hq', hqq'⟩
       rw [Finset.mem_filter, Nat.mem_primeFactors] at hq'

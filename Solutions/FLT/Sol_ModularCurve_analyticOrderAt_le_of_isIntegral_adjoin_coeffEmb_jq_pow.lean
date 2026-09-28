@@ -287,7 +287,7 @@ theorem order_le_of_identity {p q d₁ d : ℂ → ℂ} {n : ℕ} {C : ℕ → �
   have : ((6 * n * k + 6 : ℕ) : ℕ∞) ≤ ((6 * n * k : ℕ) : ℕ∞) := by
     rw [← hL, heq, analyticOrderAt_neg]
     exact hsum
-  have := ENat.coe_le_coe.mp this
+  have := ENat.natCast_le_natCast.mp this
   omega
 
 end ANb

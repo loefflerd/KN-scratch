@@ -184,7 +184,6 @@ private theorem Polynomial.irreducible_of_transitive_ringAut {F L : Type*} [Fiel
 theorem solution {F L : Type*} [Field F] [Field L] [Algebra F L] (g : Polynomial F) (x : L) (s : Finset L) (hcard : g.natDegree < s.card) (hval : ∀ y ∈ s, Polynomial.aeval y g = x) : x ∈ (algebraMap F L).range :=
   Polynomial.mem_range_of_eval_eq_const g x s hcard hval
 
-#print axioms solution
 
 end S_Polynomial_mem_range_of_eval_eq_const
 end P2MW

@@ -62,7 +62,7 @@ theorem SolMain.esadd (n N : ℕ) [NeZero N] (f g : CuspForm (Gamma0 N) ((n : �
   obtain ⟨F, hEF, hF, hpF⟩ := exists_isEichlerIntegral_isParabolicCocycle N n f
   obtain ⟨G, hEG, hG, hpG⟩ := exists_isEichlerIntegral_isParabolicCocycle N n g
   have hEFG : IsEichlerIntegral n (⇑(f + g)) (F + G) := by
-    rw [CuspForm.coe_add]; exact hEF.add hEG
+    rw [FunLike.coe_add]; exact hEF.add hEG
   have hpFG : IsParabolicCocycle ((binaryFormRepSL ℂ n).comp (Gamma0 N).subtype) (add hF hG).cocycle := by
     intro γ hγ
     rw [cocycle_add hF hG, Pi.add_apply]
@@ -83,7 +83,6 @@ theorem solution (n N : ℕ) [NeZero N]
     HeckeEis.eichlerShimuraMap n N ⇑(f + g) = HeckeEis.eichlerShimuraMap n N f + HeckeEis.eichlerShimuraMap n N g :=
   HeckeEis.SolMain.esadd n N f g
 
-#print axioms solution
 
 end S_HeckeEis_eichlerShimuraMap_add
 end P2MW

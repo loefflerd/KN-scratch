@@ -65,7 +65,7 @@ theorem solution : ModularCurve.jLinePlaceZero.ord ModularCurve.jGen = 1 := by
   have h01 := placeOfPoint_ne_placeInfty ℚ 0
   unfold ModularCurve.jLinePlaceZero
   rw [h]
-  simp [Finsupp.single_apply, h01, h01.symm]
+  simp [h01]
 
 end S_ModularCurve_ord_jLinePlaceZero_jGen
 end P2MW

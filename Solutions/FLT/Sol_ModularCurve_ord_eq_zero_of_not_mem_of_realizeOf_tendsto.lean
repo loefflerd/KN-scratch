@@ -140,7 +140,7 @@ theorem ModularCurve.CuspPlaceGlue.ord_eq_zero_aux
     obtain ⟨L, hL, hL'⟩ := hlim 1
     have : Filter.Tendsto (fun τ : ℍ => (g : ℍ → ℂ) ((1 : SL(2, ℤ)) • τ) / (h : ℍ → ℂ) ((1 : SL(2, ℤ)) • τ))
         atImInfty (𝓝 0) := by
-      simp only [hg, ModularForm.coe_zero, Pi.zero_apply, zero_div]
+      simp only [hg, FunLike.coe_zero, Pi.zero_apply, zero_div]
       exact tendsto_const_nhds
     exact hL (tendsto_nhds_unique hL' this)
   have hz' : E z⁻¹ * qg = qh := by

@@ -57,7 +57,7 @@ theorem solution {𝒢 : Subgroup (GL (Fin 2) ℝ)} [𝒢.IsArithmetic] {k : ℤ
     refine ModularForm.levelOne_eq_zero_of_lt_order_qExpansion M hM F (lt_of_lt_of_le ?_ horder)
     simpa [hrel] using h
   rw [hF, ModularForm.norm_eq_zero_iff] at hF0
-  exact DFunLike.coe_injective (hF0.trans ModularForm.coe_zero.symm)
+  exact DFunLike.coe_injective (hF0.trans FunLike.coe_zero.symm)
 end
 
 end S_ModularForm_eq_zero_of_lt_order_qExpansion_of_isArithmetic

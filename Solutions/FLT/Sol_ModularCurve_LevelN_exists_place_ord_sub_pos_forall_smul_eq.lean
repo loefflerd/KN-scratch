@@ -75,7 +75,7 @@ def ordAt (τ₀ : ℍ) (F : ℍ → ℂ) : ℕ := (analyticOrderAt (ext F) τ�
 
 theorem ordAt_cast {F : ℍ → ℂ} (hF : F ∈ ring N) (hF0 : F ≠ 0) (τ₀ : ℍ) :
     (ordAt τ₀ F : ℕ∞) = analyticOrderAt (ext F) τ₀ :=
-  ENat.coe_toNat (analyticOrderAt_ne_top N hF hF0 τ₀)
+  ENat.natCast_toNat (analyticOrderAt_ne_top N hF hF0 τ₀)
 
 theorem ordAt_mul {F G : ℍ → ℂ} (hF : F ∈ ring N) (hG : G ∈ ring N) (hF0 : F ≠ 0) (hG0 : G ≠ 0)
     (τ₀ : ℍ) : ordAt τ₀ (F * G) = ordAt τ₀ F + ordAt τ₀ G := by

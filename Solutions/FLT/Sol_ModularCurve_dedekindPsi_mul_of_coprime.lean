@@ -473,7 +473,6 @@ open _root_.ModularCurve _root_.P2MW.S_ModularCurve_dedekindPsi_mul_of_coprime.M
 theorem solution (M N : ℕ) (h : Nat.Coprime M N) : dedekindPsi (M * N) = dedekindPsi M * dedekindPsi N :=
   ModularCurve.dedekindPsi_mul_of_coprime M N h
 
-#print axioms solution
 
 end S_ModularCurve_dedekindPsi_mul_of_coprime
 end P2MW

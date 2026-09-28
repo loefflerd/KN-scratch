@@ -446,7 +446,7 @@ private theorem AlgebraicCurve.Place.ord_dvd_of_forall_hahnSeries_embedding_hasR
 
   have : Algebra.IsAlgebraic (RatFunc K) F := Algebra.IsAlgebraic.of_finite (RatFunc K) F
   have : IsAlgClosed (HahnSeries ℚ L) := HahnSeries.isAlgClosed_rat
-  obtain ⟨Ψ, hΨ⟩ := IsAlgClosed.surjective_restrictDomain_of_isAlgebraic (K := K) (L := RatFunc K)
+  obtain ⟨Ψ, hΨ⟩ := IsAlgClosed.surjective_domRestrict_of_isAlgebraic (K := K) (L := RatFunc K)
     (M := HahnSeries ℚ L) (E := AlgebraicClosure F) ψ₀
   have hΨr : ∀ r : RatFunc K, Ψ (algebraMap (RatFunc K) (AlgebraicClosure F) r) = ψ₀ r := fun r => by
     rw [← hΨ]; rfl
@@ -549,7 +549,6 @@ theorem solution (L : Type*) [Field L] [Algebra ℚ L] (N : ℕ) [NeZero N]
         coeffEmb_mem_laurentBaseChange L (jqd_mem_full N (dvd_refl N))⟩) :=
   ModularCurve.isRoot_map_Phi_apply_jBar L N data A φ
 
-#print axioms solution
 
 end S_ModularCurve_isRoot_map_Phi_apply_jBar
 end P2MW

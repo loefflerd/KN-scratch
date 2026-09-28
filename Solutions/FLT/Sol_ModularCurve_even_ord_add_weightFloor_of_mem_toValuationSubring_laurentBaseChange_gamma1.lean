@@ -66,7 +66,7 @@ theorem analyticOrderAt_ne_top {Γ : Subgroup (GL (Fin 2) ℝ)} {k : ℤ} (f : M
     (UpperHalfPlane.mdifferentiable_iff.mp f.holo').analyticAt
       ((isOpen_lt continuous_const Complex.continuous_im).mem_nhds hz)
   have hzero := han.eqOn_zero_of_preconnected_of_eventuallyEq_zero hU τ.im_pos htop
-  rw [← ModularForm.coe_eq_zero_iff]
+  rw [← FunLike.coe_zero_iff]
   funext z
   have := hzero z.im_pos
   simpa [Function.comp_apply, UpperHalfPlane.ofComplex_apply] using this
@@ -134,11 +134,11 @@ theorem solution
       funext z; simp only [hHhdef, ModularForm.coe_mcast, ModularForm.coe_mul, Pi.mul_apply, hE4, hE6]; ring
     have hGvcoe : (Gv : ℍ → ℂ) = fun z => -(w z ^ 2 * ModularForm.discriminant z) := by
       funext z
-      simp only [hGvdef, ModularForm.coe_mcast, ModularForm.coe_neg, ModularForm.coe_mul, Pi.neg_apply, Pi.mul_apply, hDcoe]
+      simp only [hGvdef, ModularForm.coe_mcast, FunLike.coe_neg, ModularForm.coe_mul, Pi.neg_apply, Pi.mul_apply, hDcoe]
       ring
     have hP17coe : (P17 : ℍ → ℂ) = fun z => ModularForm.E₄ z ^ 3 - 1728 * ModularForm.discriminant z := by
       funext z
-      rw [hP17def, ModularForm.coe_sub, ModularForm.IsGLPos.coe_smul, Pi.sub_apply, Pi.smul_apply, hP4coe, hDcoe, smul_eq_mul]
+      rw [hP17def, FunLike.coe_sub, FunLike.coe_smul, Pi.sub_apply, Pi.smul_apply, hP4coe, hDcoe, smul_eq_mul]
 
     have hqE4 : qExpansion 1 (E4N : ℍ → ℂ) = qExpansion 1 (ModularForm.E₄ : ℍ → ℂ) := by rw [hE4]
     have hqE6 : qExpansion 1 (E6N : ℍ → ℂ) = qExpansion 1 (ModularForm.E₆ : ℍ → ℂ) := by rw [hE6]
@@ -151,11 +151,11 @@ theorem solution
       rw [hHhdef, ModularForm.qExpansion_mcast, ModularForm.qExpansion_mul one_pos h1,
         ModularForm.qExpansion_mul one_pos h1, hqE4, hqE6]; ring
     have hqGv : qExpansion 1 (Gv : ℍ → ℂ) = -(qExpansion 1 (w : ℍ → ℂ) ^ 2 * qExpansion 1 ModularForm.discriminant) := by
-      rw [hGvdef, ModularForm.qExpansion_mcast, ModularForm.coe_neg, ModularForm.qExpansion_neg one_pos h1,
+      rw [hGvdef, ModularForm.qExpansion_mcast, FunLike.coe_neg, ModularForm.qExpansion_neg one_pos h1,
         ModularForm.qExpansion_mul one_pos h1, ModularForm.qExpansion_mul one_pos h1, hqD]; ring
     have hqP17 : qExpansion 1 (P17 : ℍ → ℂ) =
         qExpansion 1 (ModularForm.E₄ : ℍ → ℂ) ^ 3 - 1728 * qExpansion 1 ModularForm.discriminant := by
-      rw [hP17def, ModularForm.coe_sub, ModularForm.qExpansion_sub one_pos h1, hqP4, ModularForm.IsGLPos.coe_smul,
+      rw [hP17def, FunLike.coe_sub, ModularForm.qExpansion_sub one_pos h1, hqP4, FunLike.coe_smul,
         ModularForm.qExpansion_smul one_pos h1, hqD, Algebra.smul_def, map_ofNat]
 
     have hT2 : thetaL ℂ (jqModC ℂ) * ofPowerSeries ℤ ℂ (qExpansion 1 ModularForm.discriminant) =
@@ -360,7 +360,6 @@ theorem solution
     refine ⟨n + t, ?_⟩
     omega
 
-#print axioms solution
 
 end
 end S_ModularCurve_even_ord_add_weightFloor_of_mem_toValuationSubring_laurentBaseChange_gamma1

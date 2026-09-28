@@ -416,7 +416,7 @@ theorem sum_qTwist_jqModC_eq_of_aeval_eq (hζ : IsPrimitiveRoot (ζ : K) p)
       · rw [hAB, sub_self, Polynomial.natDegree_zero]
         exact hp.out.pos
       · refine lt_of_lt_of_eq (Polynomial.natDegree_lt_natDegree (sub_ne_zero.mpr hAB) ?_) hAdeg
-        exact Polynomial.degree_sub_lt
+        exact Polynomial.degree_sub_lt_left
           (by rw [Polynomial.degree_eq_natDegree hAmonic.ne_zero, Polynomial.degree_eq_natDegree hBmonic.ne_zero,
             hAdeg, hBdeg])
           hAmonic.ne_zero (by rw [hAmonic.leadingCoeff, hBmonic.leadingCoeff])
@@ -595,7 +595,6 @@ open _root_.ModularCurve _root_.P2MW.S_ModularCurve_jqNModC_prime_not_mem_adjoin
 theorem solution {K : Type*} [Field K] (p : ℕ) [hp : Fact (Nat.Prime p)] (h : ∀ P : Polynomial K, Polynomial.aeval (jqModC K) P ≠ jqNModC K p) : jqNModC K p ∉ IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K)) :=
   ModularCurve.jqNModC_prime_not_mem_adjoin_of_forall_aeval_ne p h
 
-#print axioms solution
 
 end S_ModularCurve_jqNModC_prime_not_mem_adjoin_of_forall_aeval_ne
 end P2MW

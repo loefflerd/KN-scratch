@@ -317,7 +317,6 @@ open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_exists_galoisPerm.Mod
 theorem solution {K : Type*} [Field K] {ℓ : ℕ} [hℓ : Fact (Nat.Prime ℓ)] {ζ : Kˣ} (hζ : IsPrimitiveRoot (ζ : K) ℓ) (σ : K →+* K) : ∃ e : Fin ℓ ≃ Fin ℓ, ∀ b : Fin ℓ, σ ((ζ : K) ^ (b : ℕ)) = (ζ : K) ^ ((e b : Fin ℓ) : ℕ) :=
   ModularCurve.PhiGen.exists_galoisPerm hζ σ
 
-#print axioms solution
 
 end S_ModularCurve_PhiGen_exists_galoisPerm
 end P2MW

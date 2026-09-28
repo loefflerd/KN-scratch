@@ -520,7 +520,7 @@ theorem isIntegral_pair_of_mem_riemannRochSpace (m : ℕ)
       (fun w hw => by have := (hS w).mp hw; show (0 : ℤ) ≤ -w.ord J; omega) ((hS v).mpr hv)
   have hpole : ∃ v₀ : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N), v₀.ord J < 0 := by
     by_contra hno
-    push_neg at hno
+    push Not at hno
     have hSe : S = ∅ := by
       ext v
       simp only [Finset.notMem_empty, iff_false]

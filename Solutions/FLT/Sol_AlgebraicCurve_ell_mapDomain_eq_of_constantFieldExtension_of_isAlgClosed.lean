@@ -69,9 +69,9 @@ theorem algebraMap_mem_lSpace
   · obtain ⟨v, rfl⟩ := hold
     rw [Finsupp.mapDomain_apply hlift_inj, hlift_ord]
     exact (mem_lSpace_iff_ord.mp hf).resolve_left hf0 v
-  · push_neg at hold
+  · push Not at hold
     rw [show (Finsupp.mapDomain lift D) v' = 0 from
-      Finsupp.mapDomain_notin_range D v' (by simpa [Set.range] using hold), neg_zero]
+      Finsupp.mapDomain_of_notMem_range D v' (by simpa [Set.range] using hold), neg_zero]
     have hmem := algebraMap_mem_of_new (K' := K') (F' := F') hfg (hlift_new v' hold) f
     rcases (v'.adicValuation_le_one_iff).mp (v'.adicValuation_le_one_of_mem hmem) with h0 | h
     · exact absurd ((algebraMap F F').injective (h0.trans (map_zero _).symm)) hf0

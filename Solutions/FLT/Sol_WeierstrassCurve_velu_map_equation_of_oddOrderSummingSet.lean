@@ -1597,7 +1597,7 @@ theorem exists_sub_algebraMap_intDegree_neg {x : RatFunc K}
   have hlc : x.num.leadingCoeff = (Polynomial.C c * x.denom).leadingCoeff := by
     rw [Polynomial.leadingCoeff_mul, Polynomial.leadingCoeff_C, hc,
       div_mul_cancel₀ _ (Polynomial.leadingCoeff_ne_zero.mpr hden0)]
-  have hlt := Polynomial.degree_sub_lt hdegeq hnum0 hlc
+  have hlt := Polynomial.degree_sub_lt_left hdegeq hnum0 hlc
   rw [hdegeq, hCdeg] at hlt
   exact_mod_cast Polynomial.natDegree_lt_natDegree hnz hlt
 
@@ -4513,7 +4513,7 @@ theorem ramificationIndex_eq_ramificationIdx_fiberCenter (hw : w.restrict F = v)
     rw [ord_algebraMap_integralClosureAt hw, ValuationSubring.algebraMap_apply,
       v.ord_coe_irreducible hπ, mul_one]
 
-  refine (Ideal.ramificationIdx_spec ?_ ?_).symm
+  refine (Ideal.ramificationIdx'_spec ?_ ?_).symm
   · rw [hmap, Ideal.span_singleton_le_iff_mem,
       ← le_ord_iff_mem_pow_fiberCenter hw hπC, hord]
   · rw [hmap, Ideal.span_singleton_le_iff_mem,
@@ -4641,7 +4641,7 @@ theorem inertiaDeg_eq_inertiaDeg_fiberCenter (hw : w.restrict F = v) :
       (IsLocalRing.maximalIdeal v.toValuationSubring).inertiaDeg'
         (fiberCenter F' v hw).asIdeal := by
   have := fiberCenter_liesOver hw
-  rw [Ideal.inertiaDeg_algebraMap]
+  rw [Ideal.inertiaDeg'_algebraMap]
   show Module.finrank (w.restrict F).ResidueField w.ResidueField = _
   refine Algebra.finrank_eq_of_equiv_equiv (restrictResidueFieldEquiv hw)
     (residueFieldEquivQuotientCenter hw).symm ?_
@@ -6465,8 +6465,42 @@ theorem sum_ramificationIndex_mul_inertiaDeg_of_forall_mem_iff
     ∑ w ∈ s, (w.ramificationIndex F : ℤ) * (w.inertiaDeg F : ℤ)
       = (Module.finrank F F' : ℤ) := by
   classical
-  have hkey := Ideal.sum_ramification_inertia (integralClosureAt F' v) F F'
-    (p := IsLocalRing.maximalIdeal v.toValuationSubring) (maximalIdeal_ne_bot v)
+  have hkey :
+      ∑ P ∈ IsDedekindDomain.primesOverFinset
+          (IsLocalRing.maximalIdeal v.toValuationSubring) (integralClosureAt F' v),
+        Ideal.ramificationIdx' (IsLocalRing.maximalIdeal v.toValuationSubring) P *
+          Ideal.inertiaDeg' (IsLocalRing.maximalIdeal v.toValuationSubring) P =
+            Module.finrank F F' := by
+    let p := IsLocalRing.maximalIdeal v.toValuationSubring
+    let S := integralClosureAt F' v
+    let e : {P // P ∈ IsDedekindDomain.primesOverFinset p S} ≃ p.primesOver S :=
+      Equiv.setCongr (IsDedekindDomain.coe_primesOverFinset (maximalIdeal_ne_bot v) S)
+    change (∑ P ∈ IsDedekindDomain.primesOverFinset p S,
+      p.ramificationIdx' P * p.inertiaDeg' P) = Module.finrank F F'
+    calc
+      _ = ∑ P : {P // P ∈ IsDedekindDomain.primesOverFinset p S},
+          p.ramificationIdx' P.1 * p.inertiaDeg' P.1 := by
+            rw [← Finset.sum_attach, Finset.univ_eq_attach]
+      _ = ∑ P : p.primesOver S,
+          P.1.ramificationIdx v.toValuationSubring *
+            P.1.inertiaDeg v.toValuationSubring := by
+            apply Fintype.sum_equiv e
+            intro P
+            have hmem : P.1 ∈ p.primesOver S := (e P).2
+            let : P.1.IsPrime := hmem.1
+            let : P.1.LiesOver p := hmem.2
+            let : P.1.IsMaximal :=
+              (inferInstance : P.1.IsPrime).isMaximal
+                (Ideal.ne_bot_of_mem_primesOver (maximalIdeal_ne_bot v) hmem)
+            change p.ramificationIdx' P.1 * p.inertiaDeg' P.1 =
+              P.1.ramificationIdx v.toValuationSubring *
+                P.1.inertiaDeg v.toValuationSubring
+            rw [Ideal.ramificationIdx'_eq_ramificationIdx p P.1
+              (maximalIdeal_ne_bot v), Ideal.inertiaDeg'_eq_inertiaDeg]
+      _ = Module.finrank v.toValuationSubring S :=
+        Ideal.sum_ramification_inertia_eq_finrank p S
+      _ = Module.finrank F F' :=
+        IsIntegralClosure.rank v.toValuationSubring F F' S
   rw [← hkey]
   push_cast
   refine Finset.sum_bij
@@ -11483,10 +11517,10 @@ theorem kw_veluX_oddOrderSummingSet_eq_sum_range_odd (hp3 : 3 ≤ p) (hpodd : Od
     refine Finset.sum_nbij' (fun j => p - j) (fun k => p - k)
       (fun j hj => by rw [Finset.mem_Icc] at hj; simp only [Finset.mem_Icc]; omega)
       (fun k hk => by rw [Finset.mem_Icc] at hk; simp only [Finset.mem_Icc]; omega)
-      (fun j hj => by rw [Finset.mem_Icc] at hj; beta_reduce; omega)
-      (fun k hk => by rw [Finset.mem_Icc] at hk; beta_reduce; omega)
+      (fun j hj => by rw [Finset.mem_Icc] at hj; omega)
+      (fun k hk => by rw [Finset.mem_Icc] at hk; omega)
       (fun j hj => ?_)
-    rw [Finset.mem_Icc] at hj; beta_reduce
+    rw [Finset.mem_Icc] at hj
     congr 2
     have hpQ : p • Q = 0 := hord ▸ addOrderOf_nsmul_eq_zero Q
     rw [← sub_nsmul_eq_neg_of_nsmul_eq_zero hpQ (k := p - j) (Nat.sub_le _ _)]
@@ -11599,10 +11633,10 @@ theorem kw_veluY_oddOrderSummingSet_eq_sum_range_odd (hp3 : 3 ≤ p) (hpodd : Od
     refine Finset.sum_nbij' (fun j => p - j) (fun k => p - k)
       (fun j hj => by rw [Finset.mem_Icc] at hj; simp only [Finset.mem_Icc]; omega)
       (fun k hk => by rw [Finset.mem_Icc] at hk; simp only [Finset.mem_Icc]; omega)
-      (fun j hj => by rw [Finset.mem_Icc] at hj; beta_reduce; omega)
-      (fun k hk => by rw [Finset.mem_Icc] at hk; beta_reduce; omega)
+      (fun j hj => by rw [Finset.mem_Icc] at hj; omega)
+      (fun k hk => by rw [Finset.mem_Icc] at hk; omega)
       (fun j hj => ?_)
-    rw [Finset.mem_Icc] at hj; beta_reduce
+    rw [Finset.mem_Icc] at hj
     congr 3
     have hpQ : p • Q = 0 := hord ▸ addOrderOf_nsmul_eq_zero Q
     rw [← sub_nsmul_eq_neg_of_nsmul_eq_zero hpQ (k := p - j) (Nat.sub_le _ _)]

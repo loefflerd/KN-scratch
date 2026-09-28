@@ -76,7 +76,7 @@ theorem exists_sub_algebraMap_intDegree_neg {x : RatFunc K}
   have hlc : x.num.leadingCoeff = (Polynomial.C c * x.denom).leadingCoeff := by
     rw [Polynomial.leadingCoeff_mul, Polynomial.leadingCoeff_C, hc,
       div_mul_cancel₀ _ (Polynomial.leadingCoeff_ne_zero.mpr hden0)]
-  have hlt := Polynomial.degree_sub_lt hdegeq hnum0 hlc
+  have hlt := Polynomial.degree_sub_lt_left hdegeq hnum0 hlc
   rw [hdegeq, hCdeg] at hlt
   exact_mod_cast Polynomial.natDegree_lt_natDegree hnz hlt
 

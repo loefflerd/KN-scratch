@@ -317,7 +317,6 @@ open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_exists_phiGenDescends
 theorem solution {K : Type*} [Field K] [Algebra ℚ K] (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] (ζ : Kˣ) [IsGalois ℚ K] [FiniteDimensional ℚ K] (hζ : IsPrimitiveRoot (ζ : K) ℓ) : ∃ c : ℕ → LaurentSeries ℚ, PhiGenDescends ℓ ζ c :=
   ModularCurve.PhiGen.exists_phiGenDescends ℓ ζ hζ
 
-#print axioms solution
 
 end S_ModularCurve_PhiGen_exists_phiGenDescends
 end P2MW

@@ -97,7 +97,7 @@ theorem hasRamBound_one_ofPowerSeries (p : PowerSeries K) :
   have hq' : q ∈ Set.range ((↑) : ℕ → ℚ) := by
     by_contra h
     rw [HahnSeries.mem_support, HahnSeries.ofPowerSeries_apply] at hq
-    exact hq (HahnSeries.embDomain_notin_range (by simpa using h))
+    exact hq (HahnSeries.embDomain_of_notMem_range (by simpa using h))
   obtain ⟨m, rfl⟩ := hq'
   exact ⟨(m : ℤ), by push_cast; ring⟩
 
@@ -140,7 +140,7 @@ theorem transcendental_rat_of_qbar (x : 𝕂) (h : Transcendental ℚ̄ x) : Tra
 theorem transcendental_1728_add_single_two :
     Transcendental ℚ ((1728 : 𝕂) + HahnSeries.single (2 : ℚ) (1 : ℚ̄)) := by
   refine transcendental_rat_of_qbar _ (fun halg => ?_)
-  have h1728 : IsAlgebraic ℚ̄ ((1728 : ℕ) : 𝕂) := isAlgebraic_nat 1728
+  have h1728 : IsAlgebraic ℚ̄ ((1728 : ℕ) : 𝕂) := isAlgebraic_natCast 1728
   rw [Nat.cast_ofNat] at h1728
   have hsq : IsAlgebraic ℚ̄ (HahnSeries.single (2 : ℚ) (1 : ℚ̄) : 𝕂) := by
     have := (IsIntegral.sub halg.isIntegral h1728.isIntegral).isAlgebraic

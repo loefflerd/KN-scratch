@@ -112,7 +112,6 @@ theorem solution (N : ℕ) [NeZero N] (n : ℕ) :
       exact HeckeEis.eichlerShimuraMap_heckeULin N n hℓ hℓN T hT f
     · rw [hESbar, hESbar, hcomm ℓ T hT, hES, hES, HeckeEis.eichlerShimuraMap_heckeULin N n hℓ hℓN T hT f]
 
-#print axioms solution
 
 end S_HeckeEis_exists_eichlerShimura_coeffH1par_binaryFormRepSL_forall_prime
 end P2MW

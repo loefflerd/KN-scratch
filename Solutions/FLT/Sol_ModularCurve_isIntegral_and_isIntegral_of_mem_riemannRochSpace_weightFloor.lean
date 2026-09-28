@@ -264,7 +264,6 @@ theorem solution
     have : w.ord j ≤ 0 := by have := ord_nonneg_of_mem w hw; rw [Place.ord_inv] at this; omega
     exact (key w).2 this
 
-#print axioms solution
 
 end S_ModularCurve_isIntegral_and_isIntegral_of_mem_riemannRochSpace_weightFloor
 end P2MW

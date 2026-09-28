@@ -123,8 +123,7 @@ theorem solution
     rw [xy_vcHom, xy_vcHom, xy_neg]
     rcases xy P with _ | ⟨x, y⟩
     · rfl
-    · simp only [Option.map_some, hγdef, hWdef, vcXInv, vcYInv, Affine.negY, sub_zero, zero_mul, mul_zero,
-        Option.some.injEq, Prod.mk.injEq]
+    · simp only [Option.map_some, hγdef, hWdef, vcXInv, vcYInv, Affine.negY, sub_zero, zero_mul,         Option.some.injEq, Prod.mk.injEq]
       constructor
       · linear_combination (((u⁻¹ : Lˣ) : L) ^ 2 * x - x) * hi2
       · linear_combination (((u⁻¹ : Lˣ) : L) ^ 4 * y - ((u⁻¹ : Lˣ) : L) ^ 2 * y + y) * hi2

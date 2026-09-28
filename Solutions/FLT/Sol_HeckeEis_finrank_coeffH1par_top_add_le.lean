@@ -395,7 +395,6 @@ theorem solution {V : Type} [AddCommGroup V] [Module ℂ V] [FiniteDimensional �
       ≤ Module.finrank ℂ V :=
   HeckeEis.UASol.main W hneg hinv hcoinv
 
-#print axioms solution
 
 end S_HeckeEis_finrank_coeffH1par_top_add_le
 end P2MW

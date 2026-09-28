@@ -196,7 +196,6 @@ theorem solution (K : Type*) [Field K] [Algebra ℚ K] (N : ℕ) [NeZero N] (ζ 
         -((a / Nat.gcd a (N / a) : ℕ) : ℤ) :=
   ModularCurve.slot_ord_of_algHom_laurentBaseChange K N ζ a b ha ι hι₁ hι₂ w γ hγ hw
 
-#print axioms solution
 
 end S_ModularCurve_slot_ord_of_algHom_laurentBaseChange
 end P2MW

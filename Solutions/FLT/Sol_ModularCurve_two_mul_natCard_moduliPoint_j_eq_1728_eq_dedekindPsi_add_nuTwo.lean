@@ -99,7 +99,7 @@ theorem coords_autPt {W : WeierstrassCurve L} (v : Lˣ) (hγ : (⟨v, 0, 0, 0⟩
 abbrev W1 (L : Type*) [Field L] : WeierstrassCurve L := ⟨0, 0, 0, 1, 0⟩
 
 theorem W1_Δ : (W1 L).Δ = -64 := by
-  simp only [W1, WeierstrassCurve.Δ, WeierstrassCurve.b₂, WeierstrassCurve.b₄, WeierstrassCurve.b₆, WeierstrassCurve.b₈]; ring
+  simp only [WeierstrassCurve.Δ, WeierstrassCurve.b₂, WeierstrassCurve.b₄, WeierstrassCurve.b₆, WeierstrassCurve.b₈]; ring
 
 theorem coords_neg {x y : L} (h : (W1 L).toAffine.Nonsingular x y) :
     coords (-(Point.some x y h)) = some (x, -y) := by
@@ -116,7 +116,7 @@ theorem j_W1 : haveI := isElliptic_W1 (L := L); (W1 L).j = 1728 := by
   have := isElliptic_W1 (L := L)
   have hΔ : (W1 L).Δ ≠ 0 := by rw [W1_Δ]; norm_num
   have hc4 : (W1 L).c₄ = -48 := by
-    simp only [W1, WeierstrassCurve.c₄, WeierstrassCurve.b₂, WeierstrassCurve.b₄]; ring
+    simp only [WeierstrassCurve.c₄, WeierstrassCurve.b₂, WeierstrassCurve.b₄]; ring
   have hj : (W1 L).Δ * (W1 L).j = (W1 L).c₄ ^ 3 := by
     rw [WeierstrassCurve.j, ← WeierstrassCurve.coe_Δ', ← mul_assoc, ← Units.val_mul, mul_inv_cancel, Units.val_one, one_mul]
   rw [W1_Δ, hc4] at hj

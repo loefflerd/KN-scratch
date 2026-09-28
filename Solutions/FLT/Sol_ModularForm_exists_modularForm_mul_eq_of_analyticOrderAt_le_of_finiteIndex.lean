@@ -195,7 +195,6 @@ theorem solution (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ)) [Γ.Fin
   have hc' : IsCusp cc (Matrix.SpecialLinearGroup.mapGL ℝ).range := hc.mono (Subgroup.map_le_range _ _)
   exact (OnePoint.isBoundedAt_iff_forall_SL2Z hc').mpr fun γ _ => hcusp' γ
 
-#print axioms solution
 
 end
 end S_ModularForm_exists_modularForm_mul_eq_of_analyticOrderAt_le_of_finiteIndex

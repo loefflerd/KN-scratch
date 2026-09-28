@@ -80,7 +80,7 @@ theorem S_mul_T_notMem (M : ℕ) (hM : 2 ≤ M) : S * T ∉ Gamma M ⊔ Subgroup
   · have h10 := (Gamma_mem.mp h).2.2.1
     simp [Matrix.SpecialLinearGroup.coe_mul, ModularGroup.coe_S, ModularGroup.coe_T, Matrix.mul_apply, Fin.sum_univ_two] at h10
   · have h10 := (Gamma_mem.mp h).2.2.1
-    simp [Matrix.SpecialLinearGroup.coe_mul, ModularGroup.coe_S, ModularGroup.coe_T, Matrix.mul_apply, Fin.sum_univ_two] at h10
+    simp [Matrix.SpecialLinearGroup.coe_mul, ModularGroup.coe_S, ModularGroup.coe_T] at h10
 
 theorem S_notMem (M : ℕ) (hM : 2 ≤ M) : S ∉ Gamma M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ)) := by
   rw [mem_sup_zpowers_neg_one_iff]
@@ -368,11 +368,9 @@ theorem denom_TinvS_ρ :
     denom (↑(ModularGroup.T⁻¹ * ModularGroup.S) : GL (Fin 2) ℝ) ρ = (ρ : ℂ) := by
   rw [ModularGroup.denom_apply]
   have h10 : (ModularGroup.T⁻¹ * ModularGroup.S) 1 0 = 1 := by
-    change ((ModularGroup.T⁻¹ * ModularGroup.S : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) 1 0 = 1
     rw [Matrix.SpecialLinearGroup.coe_mul, ModularGroup.coe_T_inv, ModularGroup.coe_S]
     simp
   have h11 : (ModularGroup.T⁻¹ * ModularGroup.S) 1 1 = 0 := by
-    change ((ModularGroup.T⁻¹ * ModularGroup.S : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) 1 1 = 0
     rw [Matrix.SpecialLinearGroup.coe_mul, ModularGroup.coe_T_inv, ModularGroup.coe_S]
     simp
   rw [h10, h11]
@@ -483,7 +481,7 @@ theorem analyticOrderAt_jsub (τ₀ : ℍ) :
   induction n using ENat.recTopCoe with
   | top => exact absurd hmero (by simp)
   | coe m =>
-    simp only [ENat.map_coe, WithTop.coe_eq_coe, Nat.cast_inj] at hmero
+    simp only [ENat.map_natCast, WithTop.coe_eq_coe, Nat.cast_inj] at hmero
     exact_mod_cast hmero
 
 theorem coe_algebraMap_ring (c : ℂ) :
@@ -519,7 +517,7 @@ theorem ord_jsub_bounds (τ₀ : ℍ) (W : Place ℂ K) (e : ℕ) (he : 0 < e)
   obtain ⟨hfin, hord⟩ := hW (fun τ : ℍ => LevelN.jAnalytic τ - LevelN.jAnalytic τ₀) (jsub_mem M _) (jAnalytic_sub_ne_zero _)
   rw [algebraMap_jsub] at hord
   rw [analyticOrderAt_jsub] at hord
-  simp only [ENat.toNat_coe] at hord
+  simp only [ENat.toNat_natCast] at hord
   have hpos : 0 < (Nat.card (MulAction.stabilizer SL(2, ℤ) τ₀) / 2 : ℕ) := by
     have h := analyticOrderAt_jsub τ₀
     have hne : analyticOrderAt ((fun τ : ℍ => LevelN.jAnalytic τ - LevelN.jAnalytic τ₀) ∘ ofComplex) (τ₀ : ℂ) ≠ 0 := by

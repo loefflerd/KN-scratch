@@ -484,16 +484,16 @@ def termK (n : ℕ) (φ : ℍ → ℂ) (i : ℕ) (z : ℂ) : ℂ := (-z) ^ i * c
 
 theorem termD_apply (i : ℕ) (z w : ℂ) :
     termD φ ψ A B c i z w = termL ψ A B c i z * w + termK n φ i z * conj w := by
-  simp only [termD, eD, termL, termK, ContinuousLinearMap.add_apply, ContinuousLinearMap.smul_apply,
-    ContinuousLinearMap.sub_apply, ContinuousLinearMap.comp_apply, ContinuousLinearMap.one_apply,
+  simp only [termD, eD, termL, termK, add_apply, smul_apply,
+    sub_apply, ContinuousLinearMap.comp_apply, one_apply_eq_self,
     ContinuousLinearEquiv.coe_coe, conjCLE_apply, smul_eq_mul, map_mul]
   ring
 
 theorem TD_apply (z w : ℂ) :
     TD φ ψ A B c z w = (fC φ z * (∑ i ∈ Finset.range (n + 1), termL ψ A B c i z) + EC A B c z * deriv (fC φ) z) * w
       + (fC φ z * ∑ i ∈ Finset.range (n + 1), termK n φ i z) * conj w := by
-  simp only [TD, ContinuousLinearMap.add_apply, ContinuousLinearMap.smul_apply, ContinuousLinearMap.sum_apply,
-    ContinuousLinearMap.one_apply, smul_eq_mul, termD_apply, Finset.sum_add_distrib, ← Finset.sum_mul]
+  simp only [TD, add_apply, smul_apply, sum_apply,
+    one_apply_eq_self, smul_eq_mul, termD_apply, Finset.sum_add_distrib, ← Finset.sum_mul]
   ring
 
 theorem sum_termK (φ : ℍ → ℂ) (z : ℂ) : ∑ i ∈ Finset.range (n + 1), termK n φ i z = conj (fC φ z) * (conj z - z) ^ n := by
@@ -663,7 +663,7 @@ theorem norm_aC_le {i : ℕ} (hi : i ≤ n) : ∃ K : ℝ, ∀ z ∈ strip, ‖a
           (K₂ * Real.exp (-(c / 2) * t)) t := by
         intro t _
         have := ((hasDerivAt_id t).const_mul (-(c / 2))).exp.const_mul (-(K₂ * (2 / c)))
-        convert this using 1 <;> first | rfl | (simp only [id]; field_simp) | (simp only [id]; ring1)
+        convert this using 1 <;> first | rfl | (simp only [id]; field_simp)
       rw [intervalIntegral.integral_eq_sub_of_hasDerivAt hanti hgi]
       have he1 : Real.exp (-(c / 2) * y) > 0 := Real.exp_pos _
       have he2 : Real.exp (-(c / 2) * 1) ≤ 1 := by

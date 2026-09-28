@@ -87,7 +87,7 @@ theorem solution {K F : Type*} [Field K] [IsAlgClosed K] [Field F] [Algebra K F]
   set B : ℕ → v.toValuationSubring := fun i => ⟨_, hbmem i⟩ with hB
   have hrelO : ∑ i ∈ p.support, B i * x ^ i = 0 := by
     apply Subtype.ext
-    simp only [AddSubmonoidClass.coe_finset_sum, MulMemClass.coe_mul, SubmonoidClass.coe_pow,
+    simp only [AddSubmonoidClass.coe_finsetSum, MulMemClass.coe_mul, SubmonoidClass.coe_pow,
       ZeroMemClass.coe_zero, hB]
     exact hrel
 

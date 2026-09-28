@@ -24,7 +24,6 @@ theorem solution (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ)) {k : �
             holo' := F.holo'
             bdd_at_cusps' := fun hc => F.bdd_at_cusps' (hc.mono hle) }, rfl⟩
 
-#print axioms solution
 
 end S_ModularForm_exists_coe_eq_of_levelOne
 end P2MW

@@ -18,7 +18,7 @@ namespace L3zCore
 variable {n : ℕ} [NeZero n]
 
 theorem nsmul_self_eq_zero (v : (ZMod n × ZMod n)) : n • v = 0 := by
-  ext <;> simp [nsmul_eq_mul, ZMod.natCast_self]
+  ext <;> simp [nsmul_eq_mul]
 
 theorem map_zmod_smul (τ : (ZMod n × ZMod n) →+ (ZMod n × ZMod n)) (c : ZMod n) (v : (ZMod n × ZMod n)) : τ (c • v) = c • τ v := by
   rw [← ZMod.natCast_zmod_val c, Nat.cast_smul_eq_nsmul, Nat.cast_smul_eq_nsmul, map_nsmul]
@@ -188,7 +188,7 @@ theorem card_eig_pTorsion_le (τ : (ZMod n × ZMod n) →+ (ZMod n × ZMod n)) (
 
   let Kp : AddSubgroup (ZMod n × ZMod n) :=
     { carrier := {v | τ v = k • v ∧ p • v = 0}
-      zero_mem' := by simp only [Set.mem_ofPred_eq, map_zero, smul_zero, nsmul_zero, and_self]
+      zero_mem' := by simp only [Set.mem_ofPred_eq, map_zero, smul_zero, and_self]
       add_mem' := fun {a b} ha hb => by
         simp only [Set.mem_ofPred_eq] at ha hb ⊢
         rw [map_add, ha.1, hb.1, smul_add, nsmul_add, ha.2, hb.2, add_zero]; exact ⟨rfl, rfl⟩

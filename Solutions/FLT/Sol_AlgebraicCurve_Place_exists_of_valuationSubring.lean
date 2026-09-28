@@ -209,7 +209,6 @@ end Roots
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] [CharZero K] (x : F) [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F] (A : ValuationSubring F) (hAK : ∀ a : K, algebraMap K F a ∈ A) (hA : A ≠ ⊤) : ∃ v : AlgebraicCurve.Place K F, v.toValuationSubring = A :=
   AlgebraicCurve.Place.exists_of_valuationSubring x A hAK hA
 
-#print axioms solution
 
 end S_AlgebraicCurve_Place_exists_of_valuationSubring
 end P2MW

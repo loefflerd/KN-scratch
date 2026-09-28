@@ -895,7 +895,7 @@ theorem farSide_subset_farSide {p q x y : V} (hx : x ∈ G.farSide p q)
   obtain ⟨W⟩ := hWpv
   have hW : ∀ e ∈ W.edges, e ∈ (G.deleteEdges {s(x, y)}).edgeSet := by
     intro e he
-    rw [edgeSet_deleteEdges, Set.mem_diff, Set.mem_singleton_iff]
+    rw [edgeSet_deleteEdges, Set.mem_sdiff, Set.mem_singleton_iff]
     constructor
     · have hmem := W.edges_subset_edgeSet he
       rw [edgeSet_deleteEdges] at hmem
@@ -1483,9 +1483,9 @@ theorem nat_card_nonTreeRep [H.FiniteIndex]
   have hsub : nonTreeRep H hD ⊆ baseRep H hD := fun g hg => hg.1
   have hdiff : baseRep H hD \ nonTreeRep H hD = treeRep H hD := by
     ext g
-    simp only [Set.mem_diff, baseRep, nonTreeRep, treeRep, Set.mem_ofPred_eq, not_and, not_not]
+    simp only [Set.mem_sdiff, baseRep, nonTreeRep, treeRep, Set.mem_ofPred_eq, not_and, not_not]
     exact ⟨fun ⟨hg, hg'⟩ => ⟨hg, hg' hg⟩, fun ⟨hg, hg'⟩ => ⟨hg, fun _ => hg'⟩⟩
-  have hpart := Set.ncard_diff_add_ncard_of_subset hsub (Set.toFinite _)
+  have hpart := Set.ncard_sdiff_add_ncard_of_subset hsub (Set.toFinite _)
   rw [hdiff] at hpart
   rw [← Nat.card_coe_set_eq, ← Nat.card_coe_set_eq, ← Nat.card_coe_set_eq] at hpart
   have htree := nat_card_treeRep_add_one hD hfree

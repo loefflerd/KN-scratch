@@ -136,9 +136,7 @@ theorem cd2_control (N : ℕ) [NeZero N] :
 end CD
 p2m_reactivate "P2MW.S_AlgebraicCurve_Place_exists_ord_mul_eq_order_of_algHom_laurentSeries.CD"
 
-#check @AlgebraicCurve.Place.exists_ord_mul_eq_order_of_algHom_laurentSeries
 
-#print axioms AlgebraicCurve.Place.exists_ord_mul_eq_order_of_algHom_laurentSeries
 
 open AlgebraicCurve
 open AlgebraicCurve.Place in
@@ -148,7 +146,6 @@ theorem solution (K : Type*) [Field K] {F : Type*} [Field F] [Algebra K F] (ι :
     ∃ (w : Place K F) (γ : ℕ), 0 < γ ∧ ∀ x : F, w.ord x * (γ : ℤ) = (ι x).order :=
   AlgebraicCurve.Place.exists_ord_mul_eq_order_of_algHom_laurentSeries K ι h
 
-#print axioms solution
 
 end
 end S_AlgebraicCurve_Place_exists_ord_mul_eq_order_of_algHom_laurentSeries

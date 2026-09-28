@@ -99,7 +99,7 @@ theorem solution
       rw [← hev]; ext g
       rw [ValuationSubring.mem_comap, mem_iff_ord_nonneg, mem_iff_ord_nonneg, hlift_ord])
     have hD0 : (Finsupp.mapDomain lift D) v' = 0 :=
-      Finsupp.mapDomain_notin_range D v' (by simpa [Set.range] using hnr)
+      Finsupp.mapDomain_of_notMem_range D v' (by simpa [Set.range] using hnr)
     rcases mem_lSpace_iff_ord.mp hf' with rfl | hord
     · exact zero_mem _
     · rw [mem_iff_ord_nonneg]; have := hord v'; rw [hD0, neg_zero] at this; exact this
@@ -117,7 +117,7 @@ theorem solution
         (fun j hj => by
           simp only [Function.mem_support, ne_eq] at hj
           simp only [Set.mem_iUnion, Finset.mem_coe, Finsupp.mem_support_iff, ne_eq]
-          by_contra h; push_neg at h
+          by_contra h; push Not at h
           exact hj (Finset.sum_eq_zero fun f hf => by
             rw [h f (Finsupp.mem_support_iff.mp hf), zero_smul]))))
   have hf'eq : f' = ∑ j ∈ g.support, algebraMap K' F' (B j) * algebraMap F F' (g j) := by
@@ -127,7 +127,7 @@ theorem solution
       intro j hj
       rw [Finsupp.mem_support_iff, hgj] at hj
       simp only [S, Finset.mem_biUnion, Finsupp.mem_support_iff]
-      by_contra h; push_neg at h
+      by_contra h; push Not at h
       exact hj (Finset.sum_eq_zero fun f hf => by
         rw [h f (Finsupp.mem_support_iff.mp hf), zero_smul])
     have hcf_S : ∀ f ∈ c.support, c f = ∑ j ∈ S, B.repr (c f) j • B j := by

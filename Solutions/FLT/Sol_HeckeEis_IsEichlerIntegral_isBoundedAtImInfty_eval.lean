@@ -180,7 +180,6 @@ theorem solution {n : ℕ} {g : UpperHalfPlane → ℂ}
       MvPolynomial.eval ![(1 : ℂ), -(τ : ℂ)] ((G τ : ↥(HeckeEis.BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ)) :=
   HeckeEis.LadderAux2.isBoundedAtImInfty_rung_zero hG hh hper hhol hbdd hT
 
-#print axioms solution
 
 end S_HeckeEis_IsEichlerIntegral_isBoundedAtImInfty_eval
 end P2MW

@@ -225,7 +225,6 @@ theorem fibre_eq_range (a : SL(2, ℤ)) :
       obtain ⟨m, hm⟩ := (mem_KT_iff).mp hk
       refine ⟨m, ?_⟩
       apply Quotient.sound'
-      change QuotientGroup.rightRel (pm Γ) _ _
       rw [QuotientGroup.rightRel_apply]
       rcases hm with rfl | rfl
       · have : γ * a * ModularGroup.T ^ m * (a * ModularGroup.T ^ m)⁻¹ = γ := by group
@@ -947,13 +946,13 @@ theorem place_eq_of_readouts (σ : SL(2, ℤ))
     constructor
     · intro h
       by_contra hlt
-      push_neg at hlt
+      push Not at hlt
       have h3 := mul_neg_of_pos_of_neg he0 hlt
       have h4 := mul_nonneg he0'.le h
       omega
     · intro h
       by_contra hlt
-      push_neg at hlt
+      push Not at hlt
       have h3 := mul_neg_of_pos_of_neg he0' hlt
       have h4 := mul_nonneg he0.le h
       omega

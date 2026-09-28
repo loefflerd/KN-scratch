@@ -189,7 +189,6 @@ theorem solution (N : ℕ) [NeZero N] (j₀ : (AlgebraicClosure ℚ))
     : EMD N j₀ :=
   ModularCurve.emd_of_beta_docks N j₀ hβ hfin hEP hPEO hC535
 
-#print axioms solution
 
 end S_ModularCurve_emd_of_beta_docks
 end P2MW

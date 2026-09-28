@@ -153,7 +153,6 @@ theorem aut_mem_AZ (σ : (kN N) ≃ₐ[ℚ] (kN N)) (x : kN N) (hx : (x : ℂ) �
     rw [map_mul, map_pow, map_intCast, ← hcoe, coe_zetaK]
   have hxK : x = y := by
     apply Subtype.ext
-    change (x : ℂ) = (y : ℂ)
     rw [hp, hyc]
     exact Finset.sum_congr rfl fun i _ => by rw [zsmul_eq_mul]
   have hσy : σ y = ∑ i ∈ Finset.range (p.natDegree + 1), (p.coeff i : kN N) * (zetaK N ^ s) ^ i := by
@@ -260,7 +259,7 @@ def qE : nice N →ₐ[ℂ] PowerSeries ℂ where
   commutes' c := by
     change qExpansion N ((algebraMap ℂ (ℍ → ℂ)) c) = PowerSeries.C c
     have h1 : (algebraMap ℂ (ℍ → ℂ)) c = c • (1 : ℍ → ℂ) := by
-      funext τ; simp [Algebra.algebraMap_eq_smul_one]
+      funext τ; simp []
     rw [h1, qExpansion_smul (analyticAt_of_mem (nice N).one_mem), qExpansion_one, PowerSeries.smul_eq_C_mul,
       mul_one]
 
@@ -1282,7 +1281,7 @@ theorem exists_int_multiple {d : ℕ} (y₀ : PowerSeries ℚ) (c₀ : Fin d →
   have hmul : ι h * g ∈ ι.range := by
     refine ⟨PowerSeries.C ((c * Dh : ℕ) : ℤ) * U, ?_⟩
     rw [hh, map_mul, map_mul, hU, hH, hg, ← hhy]
-    simp only [hι, PowerSeries.map_C, PowerSeries.smul_eq_C_mul, eq_intCast, Int.cast_natCast, Nat.cast_mul,
+    simp only [hι, PowerSeries.smul_eq_C_mul, Nat.cast_mul,
       map_natCast, map_mul]
     ring
 

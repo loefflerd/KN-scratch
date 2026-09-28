@@ -386,9 +386,7 @@ p2m_reactivate "P2MW.S_ModularCurve_one_le_coeff_jq.ModularCurve"
 theorem solution (n : ℕ) : (1 : ℚ) ≤ ModularCurve.jq.coeff (n : ℤ) :=
   ModularCurve.one_le_coeff_jq' n
 
-#print axioms solution
 
-#print axioms solution
 
 end
 end S_ModularCurve_one_le_coeff_jq

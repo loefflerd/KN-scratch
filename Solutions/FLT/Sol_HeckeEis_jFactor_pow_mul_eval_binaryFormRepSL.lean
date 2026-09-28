@@ -76,7 +76,6 @@ theorem solution (n : ℕ) (g : SL(2, ℤ)) (τ : UpperHalfPlane)
       = MvPolynomial.eval ![(1 : ℂ), -(τ : ℂ)] (P : MvPolynomial (Fin 2) ℂ) :=
   HeckeEis.PeriodFnAux.jFactor_pow_mul_eval_binaryFormRepSL n g τ P
 
-#print axioms solution
 
 end S_HeckeEis_jFactor_pow_mul_eval_binaryFormRepSL
 end P2MW

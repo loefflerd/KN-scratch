@@ -132,13 +132,13 @@ variable (F : IntermediateField L (LaurentSeries L))
 def qIntegersBar : ValuationSubring F where
   carrier := {f : F | 0 ≤ (qSeriesBar L F f).order}
   zero_mem' := by
-    simp only [Set.mem_setOf_eq, qSeriesBar_zero, HahnSeries.order_zero, le_refl]
+    simp only [Set.mem_ofPred_eq, qSeriesBar_zero, HahnSeries.order_zero, le_refl]
   one_mem' := by
-    simp only [Set.mem_setOf_eq, qSeriesBar_one]
+    simp only [Set.mem_ofPred_eq, qSeriesBar_one]
     rw [HahnSeries.order_one]
   add_mem' := by
     intro a b ha hb
-    simp only [Set.mem_setOf_eq] at ha hb ⊢
+    simp only [Set.mem_ofPred_eq] at ha hb ⊢
     rcases eq_or_ne (a + b) 0 with h0 | h0
     · simp only [h0, qSeriesBar_zero, HahnSeries.order_zero, le_refl]
     · have h := HahnSeries.min_order_le_order_add (x := qSeriesBar L F a)
@@ -147,7 +147,7 @@ def qIntegersBar : ValuationSubring F where
       exact le_trans (le_min ha hb) h
   mul_mem' := by
     intro a b ha hb
-    simp only [Set.mem_setOf_eq] at ha hb ⊢
+    simp only [Set.mem_ofPred_eq] at ha hb ⊢
     rcases eq_or_ne a 0 with rfl | ha0
     · simp only [zero_mul, qSeriesBar_zero, HahnSeries.order_zero, le_refl]
     rcases eq_or_ne b 0 with rfl | hb0
@@ -156,12 +156,12 @@ def qIntegersBar : ValuationSubring F where
     omega
   neg_mem' := by
     intro a ha
-    simp only [Set.mem_setOf_eq] at ha ⊢
+    simp only [Set.mem_ofPred_eq] at ha ⊢
     rw [qSeriesBar_neg, HahnSeries.order_neg]
     exact ha
   mem_or_inv_mem' := by
     intro f
-    simp only [Set.mem_setOf_eq]
+    simp only [Set.mem_ofPred_eq]
     rcases eq_or_ne f 0 with rfl | hf0
     · left
       simp only [qSeriesBar_zero, HahnSeries.order_zero, le_refl]

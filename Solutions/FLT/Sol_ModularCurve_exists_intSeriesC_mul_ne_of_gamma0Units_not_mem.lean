@@ -146,7 +146,7 @@ theorem solution
     induction s using Finset.induction_on with
     | empty => simp [UpperHalfPlane.qExpansion_zero]
     | insert a s ha ih =>
-      rw [Finset.sum_insert ha, Finset.sum_insert ha, ModularForm.coe_add,
+      rw [Finset.sum_insert ha, Finset.sum_insert ha, FunLike.coe_add,
         ModularForm.qExpansion_add one_pos h1per (Φ a) (∑ c ∈ s, Φ c), ih]
 
   have hslash_sum : ∀ (s : Finset (ZMod M)ˣ) (v : (ZMod M)ˣ) (β : SL(2, ℤ))
@@ -222,7 +222,7 @@ theorem solution
         (PowerSeries.mk fun n => (∑ c ∈ s, faithCoeff M (c * v) n) / 2) := by
     intro s hs v Φ hΦ
     unfold ModularCurve.IsIntegralQExp
-    rw [ModularForm.IsGLPos.coe_smul, hΦ, ModularForm.qExpansion_smul one_pos h1per, hqsum]
+    rw [FunLike.coe_smul, hΦ, ModularForm.qExpansion_smul one_pos h1per, hqsum]
     ext n
     have hterm : ∀ c : (ZMod M)ˣ,
         (PowerSeries.coeff n) (qExpansion 1 (⇑(R (c * v)))) = ((faithCoeff M (c * v) n : ℤ) : ℂ) :=
@@ -307,12 +307,12 @@ theorem solution
     1, one_ne_zero, hint A hnegA 1 fH (hlift _ (hinvA 1)), hint _ hnegU 1 gH (hlift _ hinvU),
     hint A hnegA u⁻¹ f₁H (hlift _ (hinvA u⁻¹)), hint _ hnegU 1 gH (hlift _ hinvU), ?_, ?_, hg0, hg0, ?_⟩
   ·
-    rw [one_smul, ModularForm.IsGLPos.coe_smul, ModularForm.IsGLPos.coe_smul, hlift _ (hinvA u⁻¹),
+    rw [one_smul, FunLike.coe_smul, FunLike.coe_smul, hlift _ (hinvA u⁻¹),
       hlift _ (hinvA 1), key, hslash_sum A 1 γ hγ, ← hu, hcoe_sum]
     congr 1
     exact Finset.sum_congr rfl fun c _ => by rw [mul_one]
   ·
-    rw [one_smul, ModularForm.IsGLPos.coe_smul, hlift _ hinvU, key, hslash_sum _ 1 γ hγ, ← hu,
+    rw [one_smul, FunLike.coe_smul, hlift _ hinvU, key, hslash_sum _ 1 γ hγ, ← hu,
       hreindexU u, hcoe_sum]
   ·
     intro h

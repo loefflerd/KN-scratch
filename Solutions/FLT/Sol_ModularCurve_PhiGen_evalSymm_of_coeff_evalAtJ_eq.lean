@@ -126,7 +126,6 @@ open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_evalSymm_of_coeff_eva
 theorem solution {K : Type*} [Field K] [Algebra ℚ K] {ℓ : ℕ} [hℓ : Fact (Nat.Prime ℓ)] {ζ : Kˣ} {c : ℕ → LaurentSeries ℚ} (hζ : IsPrimitiveRoot (ζ : K) ℓ) (hc : PhiGenDescends ℓ ζ c) (data : ModularPolynomialData ℓ) (hcoeff : ∀ k, evalAtJ (data.Φ.coeff k) = c k) : EvalSymm data.Φ :=
   ModularCurve.PhiGen.evalSymm_of_coeff_evalAtJ_eq hζ hc data hcoeff
 
-#print axioms solution
 
 end S_ModularCurve_PhiGen_evalSymm_of_coeff_evalAtJ_eq
 end P2MW

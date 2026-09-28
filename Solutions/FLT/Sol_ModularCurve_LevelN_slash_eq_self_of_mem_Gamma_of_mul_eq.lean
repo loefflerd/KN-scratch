@@ -66,7 +66,7 @@ theorem jAnalytic_smul (γ : SL(2, ℤ)) (τ : ℍ) : jAnalytic (γ • τ) = jA
 omit [NeZero N] in
 
 def precomp (g : SL(2, ℤ)) : (ℍ → ℂ) →ₐ[ℂ] (ℍ → ℂ) :=
-  Pi.algHom ℂ (fun _ : ℍ => ℂ) (fun τ => Pi.evalAlgHom ℂ (fun _ : ℍ => ℂ) (g • τ))
+  AlgHom.pi (fun τ => Pi.evalAlgHom ℂ (fun _ : ℍ => ℂ) (g • τ))
 
 omit [NeZero N] in
 @[scoped simp]

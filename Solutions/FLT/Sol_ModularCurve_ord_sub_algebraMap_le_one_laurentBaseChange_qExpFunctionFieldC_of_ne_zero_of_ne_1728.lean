@@ -88,7 +88,7 @@ theorem coe_eq_zero_iff {k : ℤ} (f : ModularForm (Γ : Subgroup (GL (Fin 2) �
     (f : ℍ → ℂ) = 0 ↔ f = 0 := by
   constructor
   · intro h
-    exact DFunLike.coe_injective (h.trans (ModularForm.coe_zero).symm)
+    exact DFunLike.coe_injective (h.trans (FunLike.coe_zero).symm)
   · rintro rfl; rfl
 
 theorem eventually_ne_zero {k : ℤ} (f : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k)
@@ -133,7 +133,7 @@ theorem qL_mul (hT : ModularGroup.T ∈ Γ) {a b : ℤ} (f : ModularForm (Γ : S
 
 theorem qL_add (hT : ModularGroup.T ∈ Γ) {a : ℤ} (f g : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) a) :
     qL (f + g) = qL f + qL g := by
-  simp only [qL, ModularForm.coe_add,
+  simp only [qL, FunLike.coe_add,
     ModularForm.qExpansion_add one_pos (one_mem_strictPeriods hT), PowerSeries.coe_add]
 
 theorem qL_one : qL (1 : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) 0) = 1 := by
@@ -141,7 +141,7 @@ theorem qL_one : qL (1 : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) 0) = 1 := 
 
 theorem qL_const (hT : ModularGroup.T ∈ Γ) (c : ℂ) :
     qL (c • (1 : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) 0)) = algebraMap ℂ (LaurentSeries ℂ) c := by
-  rw [qL, ModularForm.IsGLPos.coe_smul,
+  rw [qL, FunLike.coe_smul,
     ModularForm.qExpansion_smul one_pos (one_mem_strictPeriods hT), ModularForm.qExpansion_one,
     Algebra.smul_def, mul_one, HahnSeries.algebraMap_apply']
 
@@ -152,7 +152,7 @@ theorem mul_ne_zero_of_ne_zero {a b : ℤ} (f : ModularForm (Γ : Subgroup (GL (
   obtain ⟨w, hw⟩ := ((eventually_ne_zero f hf UpperHalfPlane.I).and
     (eventually_ne_zero g hg UpperHalfPlane.I)).exists
   have := congrArg (fun F : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) (a + b) => (F : ℍ → ℂ) w) hfg
-  simp only [ModularForm.coe_mul, Pi.mul_apply, ModularForm.coe_zero, Pi.zero_apply,
+  simp only [ModularForm.coe_mul, Pi.mul_apply, FunLike.coe_zero, Pi.zero_apply,
     mul_eq_zero] at this
   exact this.elim hw.1 hw.2
 
@@ -212,7 +212,7 @@ abbrev Pres.neg {x : LaurentSeries ℂ} (P : Pres Γ x) : Pres Γ (-x) where
   h_ne := P.h_ne
   eq := by
     have hneg : qL (-P.g) = -qL P.g := by
-      simp only [qL, ModularForm.coe_neg,
+      simp only [qL, FunLike.coe_neg,
         ModularForm.qExpansion_neg one_pos (one_mem_strictPeriods hT), PowerSeries.coe_neg]
     rw [hneg, ← P.eq]; ring
 
@@ -273,7 +273,7 @@ theorem realizeG_eq_div {k : ℤ} (g h : ModularForm (Γ : Subgroup (GL (Fin 2) 
     ring
   have hAB : (g'.mul h : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) (k' + k)) =
       ModularForm.mcast (add_comm k k') (g.mul h') := by
-    rw [← sub_eq_zero, ← ModularForm.qExpansion_eq_zero_iff one_pos h1, ModularForm.coe_sub,
+    rw [← sub_eq_zero, ← ModularForm.qExpansion_eq_zero_iff one_pos h1, FunLike.coe_sub,
       ModularForm.qExpansion_sub one_pos h1, sub_eq_zero, ModularForm.coe_mcast,
       ModularForm.coe_mul, ModularForm.coe_mul, hq]
   have hτeq : (g' : ℍ → ℂ) τ * (h : ℍ → ℂ) τ = (g : ℍ → ℂ) τ * (h' : ℍ → ℂ) τ := by
@@ -348,7 +348,7 @@ theorem realize_add_eventuallyEq {x y : LaurentSeries ℂ} (P : Pres Γ x) (Q : 
     realize_eventuallyEq hT Q τ, eventually_ne_zero_ofComplex P.h P.h_ne τ,
     eventually_ne_zero_ofComplex Q.h Q.h_ne τ] with z h1 h2 h3 hP hQ
   rw [Pi.add_apply, h2, h3, h1]
-  rw [ModularForm.coe_add, Pi.add_apply, ModularForm.coe_mul, ModularForm.coe_mul,
+  rw [FunLike.coe_add, Pi.add_apply, ModularForm.coe_mul, ModularForm.coe_mul,
     ModularForm.coe_mul, Pi.mul_apply, Pi.mul_apply, Pi.mul_apply, div_add_div _ _ hP hQ,
     mul_comm ((P.h : ℍ → ℂ) (ofComplex z)) ((Q.g : ℍ → ℂ) (ofComplex z))]
 
@@ -357,7 +357,7 @@ theorem realize_const_eventuallyEq (c : ℂ) (τ : ℍ) :
     (fun z : ℂ => realizeG (Γ := Γ) (algebraMap ℂ (LaurentSeries ℂ) c) (ofComplex z)) =ᶠ[𝓝[≠] (τ : ℂ)]
       fun _ => c := by
   filter_upwards [realize_eventuallyEq hT (Pres.const hT c) τ] with z h1
-  rw [h1, ModularForm.IsGLPos.coe_smul, ModularForm.one_coe_eq_one]
+  rw [h1, FunLike.coe_smul, ModularForm.one_coe_eq_one]
   simp
 
 end Presentation
@@ -636,11 +636,9 @@ lemma denom_TinvS_ρ :
     denom (↑(ModularGroup.T⁻¹ * ModularGroup.S) : GL (Fin 2) ℝ) ρ = (ρ : ℂ) := by
   rw [ModularGroup.denom_apply]
   have h10 : (ModularGroup.T⁻¹ * ModularGroup.S) 1 0 = 1 := by
-    change ((ModularGroup.T⁻¹ * ModularGroup.S : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) 1 0 = 1
     rw [Matrix.SpecialLinearGroup.coe_mul, ModularGroup.coe_T_inv, ModularGroup.coe_S]
     simp
   have h11 : (ModularGroup.T⁻¹ * ModularGroup.S) 1 1 = 0 := by
-    change ((ModularGroup.T⁻¹ * ModularGroup.S : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) 1 1 = 0
     rw [Matrix.SpecialLinearGroup.coe_mul, ModularGroup.coe_T_inv, ModularGroup.coe_S]
     simp
   rw [h10, h11]

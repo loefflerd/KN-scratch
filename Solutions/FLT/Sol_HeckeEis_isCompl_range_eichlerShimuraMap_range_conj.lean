@@ -187,7 +187,6 @@ theorem solution (N : ℕ) [NeZero N] (n : ℕ)
       exact_mod_cast this
   exact ISCAsm.isCompl_range_of_finrank_le ES ESbar hESinj hESbar_inj hdisj hdim
 
-#print axioms solution
 
 end S_HeckeEis_isCompl_range_eichlerShimuraMap_range_conj
 end P2MW

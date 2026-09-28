@@ -78,7 +78,6 @@ theorem solution (M : ℕ) (hM : ¬ M ∣ 4)
     norm_num at h3
     exact_mod_cast h3
 
-#print axioms solution
 
 end S_CongruenceSubgroup_conj_T_zpow_mem_Gamma1_of_mem_sup_zpowers_neg_one
 end P2MW

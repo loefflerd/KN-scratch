@@ -37,10 +37,7 @@ theorem algebraMap_hahn_eq_C {K L : Type*} [Field K] [Field L] [Algebra K L] (c 
   | exact HahnSeries.algebraMap_apply
   | rw [HahnSeries.algebraMap_apply', IsScalarTower.algebraMap_apply K L (PowerSeries L),
       PowerSeries.algebraMap_eq, HahnSeries.ofPowerSeries_C]
-  | (rw [HahnSeries.algebraMap_apply']
-     have h2 : algebraMap K (PowerSeries L) c = PowerSeries.C (algebraMap K L c) := by
-       simp [IsScalarTower.algebraMap_apply K L (PowerSeries L)]
-     rw [h2, HahnSeries.ofPowerSeries_C])
+
 
 theorem eval₂_C_single_one {L : Type*} [Field L] (q : L[X]) :
     q.eval₂ (HahnSeries.C : L →+* HahnSeries ℚ L) (HahnSeries.single (1 : ℚ) (1 : L))
@@ -74,7 +71,7 @@ theorem order_ofPowerSeries_eq_one {L : Type*} [Field L] (q : L[X]) (h0 : q.coef
     intro g hg
     by_contra hng
     rw [HahnSeries.mem_support, hx, HahnSeries.ofPowerSeries_apply] at hg
-    exact hg (HahnSeries.embDomain_notin_range (by simpa using hng))
+    exact hg (HahnSeries.embDomain_of_notMem_range (by simpa using hng))
   obtain ⟨n, hn⟩ := hrange hsupp
   have hcn : x.coeff (n : ℚ) = q.coeff n := by
     rw [hx, HahnSeries.ofPowerSeries_apply_coeff, Polynomial.coeff_coe]
@@ -99,7 +96,7 @@ theorem taylor_coeffs {K L : Type*} [Field K] [Field L] [Algebra K L] (p : K[X])
       rw [Polynomial.coeff_derivative]; simp
     rw [hd, Polynomial.derivative_comp]
     simp only [Polynomial.derivative_add, Polynomial.derivative_X, Polynomial.derivative_C,
-      add_zero, mul_one, one_mul]
+      add_zero, one_mul]
     rw [Polynomial.coeff_zero_eq_eval_zero, Polynomial.eval_comp, Polynomial.eval_add,
       Polynomial.eval_X, Polynomial.eval_C, zero_add, hpL, Polynomial.derivative_map,
       Polynomial.eval_map, ← Polynomial.aeval_def]
@@ -207,7 +204,7 @@ theorem solution
   have hW₀pos : 0 < W₀.ord f := by
     have h : 0 < W₀.ord f * k := by rw [hW₀f]; exact_mod_cast hd
     by_contra hle
-    push_neg at hle
+    push Not at hle
     have : W₀.ord f * k ≤ 0 := mul_nonpos_of_nonpos_of_nonneg hle hkpos.le
     omega
 
@@ -217,7 +214,7 @@ theorem solution
     have he := W.ramificationIndex_pos (F := RatFunc K)
     rw [← hf] at h
     by_contra hneg
-    push_neg at hneg
+    push Not at hneg
     have : W.ord f ≤ 0 := by
       rw [h]; exact mul_nonpos_of_nonneg_of_nonpos (by exact_mod_cast he.le) hneg
     omega
@@ -227,7 +224,7 @@ theorem solution
     have he := W₀.ramificationIndex_pos (F := RatFunc K)
     rw [← hf] at h
     by_contra hneg
-    push_neg at hneg
+    push Not at hneg
     have : W₀.ord f ≤ 0 := by
       rw [h]; exact mul_nonpos_of_nonneg_of_nonpos (by exact_mod_cast he.le) hneg
     omega

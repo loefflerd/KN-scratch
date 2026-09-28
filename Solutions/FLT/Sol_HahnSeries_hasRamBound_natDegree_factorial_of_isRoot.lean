@@ -277,9 +277,8 @@ theorem den_le_natDegree [IsAlgClosed K] [CharZero K]
     have hg : Int.gcd q.num (q.den : ℤ) = 1 := by
       first
         | exact q.reduced
-        | (rw [Int.gcd, Int.natAbs_natCast]; exact q.reduced)
-        | (show q.num.natAbs.gcd (q.den : ℤ).natAbs = 1
-           rw [Int.natAbs_natCast]; exact q.reduced)
+
+
     have hbez := Int.gcd_eq_gcd_ab q.num (q.den : ℤ)
     rw [hg, Nat.cast_one] at hbez
     have h1 : ((ζ₁ : Kˣ)) ^ (q.den : ℤ) = 1 := by

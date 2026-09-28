@@ -320,7 +320,7 @@ theorem divOf_ofHeightOneSpectrum (f : W.FunctionField) (w : HeightOneSpectrum W
   rw [Finsupp.add_apply, h1, h2, add_zero, countFinsupp_apply]
 
 theorem divOf_vInf (f : W.FunctionField) : divOf f (vInf W) = (vInf W).ord f := by
-  rw [divOf, Finsupp.add_apply, Finsupp.embDomain_notin_range, zero_add, Finsupp.single_eq_same]
+  rw [divOf, Finsupp.add_apply, Finsupp.embDomain_of_notMem_range, zero_add, Finsupp.single_eq_same]
   rintro ⟨w, hw⟩
   exact vInf_ne_ofHeightOneSpectrum w hw.symm
 
@@ -413,7 +413,6 @@ theorem solution {F : Type*} [Field F] [IsAlgClosed F] (W : WeierstrassCurve.Aff
     [W.IsElliptic] : AlgebraicCurve.HasPrincipalDivisors F W.FunctionField :=
   D5S.hasPrincipalDivisors_impl
 
-#print axioms solution
 
 end S_WeierstrassCurve_Affine_hasPrincipalDivisors_of_isAlgClosed
 end P2MW

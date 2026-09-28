@@ -36,10 +36,7 @@ theorem algebraMap_hahn_eq_C {K L : Type*} [Field K] [Field L] [Algebra K L] (c 
   | exact HahnSeries.algebraMap_apply
   | rw [HahnSeries.algebraMap_apply', IsScalarTower.algebraMap_apply K L (PowerSeries L),
       PowerSeries.algebraMap_eq, HahnSeries.ofPowerSeries_C]
-  | (rw [HahnSeries.algebraMap_apply']
-     have h2 : algebraMap K (PowerSeries L) c = PowerSeries.C (algebraMap K L c) := by
-       simp [IsScalarTower.algebraMap_apply K L (PowerSeries L)]
-     rw [h2, HahnSeries.ofPowerSeries_C])
+
 
 theorem eval₂_C_single_one {L : Type*} [Field L] (q : L[X]) :
     q.eval₂ (HahnSeries.C : L →+* HahnSeries ℚ L) (HahnSeries.single (1 : ℚ) (1 : L))
@@ -61,7 +58,7 @@ theorem hasRamBound_one_ofPowerSeries {L : Type*} [Field L] (x : PowerSeries L) 
   have hg' : g ∈ Set.range ((↑) : ℕ → ℚ) := by
     by_contra h
     rw [HahnSeries.mem_support, HahnSeries.ofPowerSeries_apply] at hg
-    exact hg (HahnSeries.embDomain_notin_range (by simpa using h))
+    exact hg (HahnSeries.embDomain_of_notMem_range (by simpa using h))
   obtain ⟨m, rfl⟩ := hg'
   exact ⟨(m : ℤ), by push_cast; ring⟩
 

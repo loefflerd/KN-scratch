@@ -94,7 +94,7 @@ theorem hasRamBound_one_ofPowerSeries (p : PowerSeries K) :
   have hq' : q ∈ Set.range ((↑) : ℕ → ℚ) := by
     by_contra h
     rw [HahnSeries.mem_support, HahnSeries.ofPowerSeries_apply] at hq
-    exact hq (HahnSeries.embDomain_notin_range (by simpa using h))
+    exact hq (HahnSeries.embDomain_of_notMem_range (by simpa using h))
   obtain ⟨m, rfl⟩ := hq'
   exact ⟨(m : ℤ), by push_cast; ring⟩
 

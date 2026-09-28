@@ -55,7 +55,7 @@ theorem linearIndependent_ringHom_comp_of_linearIndependent' {K L : Type*} [Fiel
       rw [Algebra.smul_def, RingHom.algebraMap_toAlgebra, mul_comm]
     have h2 : B.repr (∑ j, (v j x) • c j) k = 0 := by
       rw [hx', map_zero, Finsupp.zero_apply]
-    rw [map_sum, Finsupp.finset_sum_apply] at h2
+    rw [map_sum, Finsupp.finsetSum_apply] at h2
     rw [← h2]
     refine Finset.sum_congr rfl fun j _ => ?_
     rw [map_smul, Finsupp.smul_apply, smul_eq_mul, mul_comm]
@@ -155,7 +155,7 @@ theorem solution (N : ℕ) [NeZero N] (k : ℕ) (hk : 4 ≤ k) (hke : Even k) :
         funext n
         first
           | rfl
-          | (simp only [Submodule.coe_add, Pi.add_apply]; first | rfl | rw [IntermediateField.coe_add, HahnSeries.coeff_add])
+
       map_smul' := by
         intro d y
         funext n
@@ -170,9 +170,8 @@ theorem solution (N : ℕ) [NeZero N] (k : ℕ) (hk : 4 ≤ k) (hke : Even k) :
                     | rw [HahnSeries.coeff_single_zero_mul]
                     | rw [HahnSeries.single_zero_mul_coeff]
                     | (rw [ModularCurve.algebraMap_laurentSeries_eq_single]
-                       first | rw [HahnSeries.coeff_single_zero_mul] | rw [HahnSeries.single_zero_mul_coeff])
-                    | (rw [show (algebraMap (AlgebraicClosure ℚ) (LaurentSeries (AlgebraicClosure ℚ))) d =
-                          HahnSeries.C d from rfl, HahnSeries.C_mul_eq_smul, HahnSeries.coeff_smul, smul_eq_mul]))) }
+                       first | rw [HahnSeries.coeff_single_zero_mul] )
+                    )) }
   have hE : ∀ y n, E y n = (((y : ↥(riemannRochSpace D)) : ↥(modularFunctionFieldBar N)) : LaurentSeries (AlgebraicClosure ℚ)).coeff n :=
     fun _ _ => rfl
   have hEinj : Function.Injective E := by
@@ -207,18 +206,18 @@ theorem solution (N : ℕ) [NeZero N] (k : ℕ) (hk : 4 ≤ k) (hke : Even k) :
       UpperHalfPlane.qExpansion 1 (⇑φ + ⇑ψ) = UpperHalfPlane.qExpansion 1 ⇑φ + UpperHalfPlane.qExpansion 1 ⇑ψ := by
     intro φ ψ
     first
-      | exact ModularFormClass.qExpansion_add one_pos hΓ φ ψ
       | exact ModularForm.qExpansion_add one_pos hΓ φ ψ
+
   have hqsmul : ∀ (x : ℂ) (φ : CuspForm (CongruenceSubgroup.Gamma0 N) (2 * (m : ℤ))),
       UpperHalfPlane.qExpansion 1 (x • ⇑φ) = x • UpperHalfPlane.qExpansion 1 ⇑φ := by
     intro x φ
     first
-      | exact ModularFormClass.qExpansion_smul one_pos hΓ x φ
       | exact ModularForm.qExpansion_smul one_pos hΓ x φ
+
   have hqzero : UpperHalfPlane.qExpansion 1 (0 : UpperHalfPlane → ℂ) = 0 := by
     first
       | exact UpperHalfPlane.qExpansion_zero 1
-      | simpa using hqsmul 0 0
+
   have hT := thetaL_coeffEmb_jq_pow_ne_zero m
   have hli : LinearIndependent ℂ f := by
     rw [Fintype.linearIndependent_iff]

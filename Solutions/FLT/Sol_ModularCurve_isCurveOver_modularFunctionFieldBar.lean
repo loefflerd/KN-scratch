@@ -164,7 +164,6 @@ theorem solution (N : ℕ) [NeZero N] :
 
 example : ∀ (N : ℕ) [NeZero N], IsCurveOver (AlgebraicClosure ℚ) (modularFunctionFieldBar N) := @solution
 
-#print axioms solution
 
 end S_ModularCurve_isCurveOver_modularFunctionFieldBar
 end P2MW

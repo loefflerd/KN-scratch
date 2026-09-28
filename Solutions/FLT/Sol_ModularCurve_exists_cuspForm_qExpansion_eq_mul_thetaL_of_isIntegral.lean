@@ -79,7 +79,7 @@ theorem solution (N : ℕ) [NeZero N]
     apply hh
     have hfun : (Ψ : ℍ → ℂ) = 0 := by rw [h0]; rfl
     rw [hΨcoe] at hfun
-    rw [← ModularForm.coe_eq_zero_iff]
+    rw [← FunLike.coe_zero_iff]
     funext z
     have := congr_fun hfun z
     simp only [Pi.zero_apply, mul_eq_zero] at this
@@ -173,8 +173,8 @@ theorem solution (N : ℕ) [NeZero N]
     · exact absurd h0 (mul_ne_zero hhq hDq)
 
   have hneg : qExpansion 1 ((-f : CuspForm (CongruenceSubgroup.Gamma0 N) 2) : ℍ → ℂ) = -qExpansion 1 (f : ℍ → ℂ) := by
-    rw [CuspForm.coe_neg]
-    exact ModularFormClass.qExpansion_neg one_pos h1 f
+    rw [FunLike.coe_neg]
+    exact ModularForm.qExpansion_neg one_pos h1 f
   show ((qExpansion 1 ((-f : CuspForm (CongruenceSubgroup.Gamma0 N) 2) : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) = _
   rw [hneg, PowerSeries.coe_neg, eq_neg_of_add_eq_zero_left hsum, neg_neg]
 

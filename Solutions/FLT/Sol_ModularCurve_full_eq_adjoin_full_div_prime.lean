@@ -626,7 +626,6 @@ p2m_open "ModularCurve~coeffEmb_qExpand" in open _root_.P2MW.S_ModularCurve_full
 theorem solution (M : ℕ) [NeZero M] (p : ℕ) [hp : Fact (Nat.Prime p)] (a : ℕ) (hpM : ¬ p ∣ M) : modularFunctionFieldFull (M * p ^ (a + 1)) = IntermediateField.adjoin ℚ (insert (jqN (p ^ (a + 1))) (modularFunctionFieldFull (M * p ^ a) : Set (LaurentSeries ℚ))) :=
   ModularCurve.full_eq_adjoin_full_div_prime M p a hpM
 
-#print axioms solution
 
 end S_ModularCurve_full_eq_adjoin_full_div_prime
 end P2MW

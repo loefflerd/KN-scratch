@@ -606,7 +606,7 @@ theorem exists_sub_algebraMap_intDegree_neg {x : RatFunc K}
   have hlc : x.num.leadingCoeff = (Polynomial.C c * x.denom).leadingCoeff := by
     rw [Polynomial.leadingCoeff_mul, Polynomial.leadingCoeff_C, hc,
       div_mul_cancel₀ _ (Polynomial.leadingCoeff_ne_zero.mpr hden0)]
-  have hlt := Polynomial.degree_sub_lt hdegeq hnum0 hlc
+  have hlt := Polynomial.degree_sub_lt_left hdegeq hnum0 hlc
   rw [hdegeq, hCdeg] at hlt
   exact_mod_cast Polynomial.natDegree_lt_natDegree hnz hlt
 
@@ -1012,7 +1012,7 @@ theorem ramificationIndex_eq_ramificationIdx_fiberCenter (hw : w.restrict F = v)
     rw [ord_algebraMap_integralClosureAt hw, ValuationSubring.algebraMap_apply,
       v.ord_coe_irreducible hπ, mul_one]
 
-  refine (Ideal.ramificationIdx_spec ?_ ?_).symm
+  refine (Ideal.ramificationIdx'_spec ?_ ?_).symm
   · rw [hmap, Ideal.span_singleton_le_iff_mem,
       ← le_ord_iff_mem_pow_fiberCenter hw hπC, hord]
   · rw [hmap, Ideal.span_singleton_le_iff_mem,
@@ -1140,7 +1140,7 @@ theorem inertiaDeg_eq_inertiaDeg_fiberCenter (hw : w.restrict F = v) :
       (IsLocalRing.maximalIdeal v.toValuationSubring).inertiaDeg'
         (fiberCenter F' v hw).asIdeal := by
   have := fiberCenter_liesOver hw
-  rw [Ideal.inertiaDeg_algebraMap]
+  rw [Ideal.inertiaDeg'_algebraMap]
   show Module.finrank (w.restrict F).ResidueField w.ResidueField = _
   refine Algebra.finrank_eq_of_equiv_equiv (restrictResidueFieldEquiv hw)
     (residueFieldEquivQuotientCenter hw).symm ?_
@@ -1184,8 +1184,7 @@ theorem sum_ramificationIndex_mul_inertiaDeg [HasPrincipalDivisors K F'] :
     ∑ w ∈ v.fiber F', (w.ramificationIndex F : ℤ) * (w.inertiaDeg F : ℤ)
       = (Module.finrank F F' : ℤ) := by
   classical
-  have hkey := Ideal.sum_ramification_inertia (integralClosureAt F' v) F F'
-    (p := IsLocalRing.maximalIdeal v.toValuationSubring) (maximalIdeal_ne_bot v)
+  have hkey := sum_ramificationIdx'_mul_inertiaDeg'_integralClosureAt (F' := F') v
   rw [← hkey]
   push_cast
   refine Finset.sum_bij
@@ -1768,8 +1767,7 @@ theorem sum_ramificationIndex_mul_inertiaDeg_of_forall_mem_iff
     ∑ w ∈ s, (w.ramificationIndex F : ℤ) * (w.inertiaDeg F : ℤ)
       = (Module.finrank F F' : ℤ) := by
   classical
-  have hkey := Ideal.sum_ramification_inertia (integralClosureAt F' v) F F'
-    (p := IsLocalRing.maximalIdeal v.toValuationSubring) (maximalIdeal_ne_bot v)
+  have hkey := sum_ramificationIdx'_mul_inertiaDeg'_integralClosureAt (F' := F') v
   rw [← hkey]
   push_cast
   refine Finset.sum_bij
@@ -2055,7 +2053,7 @@ theorem kw_ffgc_adicCompletionComapIntegers_mem_maximalIdeal
     HeightOneSpectrum.mem_completionIdeal_iff, kw_ffgc_adicCompletionComapIntegers_coe,
     kw_ffgc_valued_adicCompletionComap]
   calc Valued.v (x : (W.restrict F).adicCompletion) ^ W.ramificationIndex F
-      < 1 ^ W.ramificationIndex F := pow_lt_pow_left₀ hx (WithZero.zero_le _) hrpos.ne'
+      < 1 ^ W.ramificationIndex F := pow_lt_pow_left₀ hx (zero_le) hrpos.ne'
     _ = 1 := one_pow _
 
 scoped instance kw_ffgc_isLocalHom_adicCompletionComapIntegers :
@@ -7268,7 +7266,7 @@ theorem kwF4R1V384a_semilocalComponent_tmul (v : Place K E) (w' : v.fiber F)
 def kwF4R1V384a_semilocalDiag (v : Place K E) :
     v.adicCompletion ⊗[E] F →ₐ[v.adicCompletion]
       ((w' : v.fiber F) → w'.1.adicCompletion) :=
-  Pi.algHom v.adicCompletion _ (kwF4R1V384a_semilocalComponent F v)
+  AlgHom.pi (kwF4R1V384a_semilocalComponent F v)
 
 variable {F}
 
@@ -7779,7 +7777,7 @@ theorem kwF4R1V386a_ramificationIdx_completion_eq
       kw_ffgc_valued_adicCompletionComap, hπval', ← WithZero.coe_pow, WithZero.coe_inj,
       ← ofAdd_nsmul, nsmul_eq_mul, mul_neg_one, he]
 
-  refine Ideal.ramificationIdx_spec ?_ ?_
+  refine Ideal.ramificationIdx'_spec ?_ ?_
   · rw [hmap, Ideal.span_singleton_le_iff_mem,
       show maximalIdeal (w'.adicCompletionIntegers : Type _)
         = w'.heightOneSpectrum.completionIdeal F from rfl,
@@ -7860,14 +7858,72 @@ theorem kwF4R1V386a_finrankCompletionEF [Algebra.IsSeparable E F] :
       (w'.restrict E).adicCompletion w'.adicCompletion w'.adicCompletionIntegers
   have : Module.Finite (w'.restrict E).adicCompletionIntegers w'.adicCompletionIntegers :=
     Module.IsNoetherian.finite _ _
+  have hinj : Function.Injective
+      (algebraMap (w'.restrict E).adicCompletionIntegers w'.adicCompletion) := by
+    intro x y hxy
+    apply Subtype.ext
+    apply (algebraMap (w'.restrict E).adicCompletion w'.adicCompletion).injective
+    simpa [IsScalarTower.algebraMap_apply
+      (w'.restrict E).adicCompletionIntegers
+      (w'.restrict E).adicCompletion w'.adicCompletion] using hxy
+  let : Module.IsTorsionFree
+      (w'.restrict E).adicCompletionIntegers w'.adicCompletion :=
+    Module.IsTorsionFree.comap
+      (algebraMap (w'.restrict E).adicCompletionIntegers w'.adicCompletion)
+      (fun _ hr => .of_ne_zero <| by simpa using hinj.ne hr.ne_zero)
+      (fun r x => Algebra.smul_def r x)
+  let : Module.IsTorsionFree
+      (w'.restrict E).adicCompletionIntegers w'.adicCompletionIntegers :=
+    IsIntegralClosure.isTorsionFree
+      (w'.restrict E).adicCompletionIntegers w'.adicCompletion
 
   have hpne : maximalIdeal (w'.restrict E).adicCompletionIntegers ≠ ⊥ := by
     intro h
     exact IsDiscreteValuationRing.not_isField _
       ((IsLocalRing.isField_iff_maximalIdeal_eq).mpr h)
 
-  have hef := Ideal.ramificationIdx_mul_inertiaDeg_of_isLocalRing
-    w'.adicCompletionIntegers (w'.restrict E).adicCompletion w'.adicCompletion hpne
+  have hef :
+      (maximalIdeal (w'.restrict E).adicCompletionIntegers).ramificationIdx'
+          (maximalIdeal w'.adicCompletionIntegers) *
+        (maximalIdeal (w'.restrict E).adicCompletionIntegers).inertiaDeg'
+          (maximalIdeal w'.adicCompletionIntegers) =
+            Module.finrank (w'.restrict E).adicCompletion w'.adicCompletion := by
+    rw [Ideal.ramificationIdx'_eq_ramificationIdx
+      (maximalIdeal (w'.restrict E).adicCompletionIntegers)
+      (maximalIdeal w'.adicCompletionIntegers) hpne,
+      Ideal.inertiaDeg'_eq_inertiaDeg]
+    calc
+      _ = ∑ q : (maximalIdeal
+            (w'.restrict E).adicCompletionIntegers).primesOver
+              w'.adicCompletionIntegers,
+          q.1.ramificationIdx (w'.restrict E).adicCompletionIntegers *
+            q.1.inertiaDeg (w'.restrict E).adicCompletionIntegers := by
+              symm
+              let q : (maximalIdeal
+                  (w'.restrict E).adicCompletionIntegers).primesOver
+                    w'.adicCompletionIntegers :=
+                ⟨maximalIdeal w'.adicCompletionIntegers, by
+                  rw [IsLocalRing.primesOver_eq w'.adicCompletionIntegers hpne]
+                  simp⟩
+              apply Finset.sum_eq_single q
+              · intro b _ hb
+                have : b = q := by
+                  apply Subtype.ext
+                  have hb : b.1 ∈ ({maximalIdeal w'.adicCompletionIntegers} :
+                      Set (Ideal w'.adicCompletionIntegers)) := by
+                    rw [← IsLocalRing.primesOver_eq w'.adicCompletionIntegers hpne]
+                    exact b.2
+                  simpa using hb
+                exact (hb this).elim
+              · simp
+      _ = Module.finrank (w'.restrict E).adicCompletionIntegers
+          w'.adicCompletionIntegers :=
+            Ideal.sum_ramification_inertia_eq_finrank
+              (maximalIdeal (w'.restrict E).adicCompletionIntegers)
+              w'.adicCompletionIntegers
+      _ = Module.finrank (w'.restrict E).adicCompletion w'.adicCompletion :=
+        IsIntegralClosure.rank (w'.restrict E).adicCompletionIntegers
+          (w'.restrict E).adicCompletion w'.adicCompletion w'.adicCompletionIntegers
   rw [kwF4R1V386a_ramificationIdx_completion_eq (K := K) w',
     kwF4R1V386a_inertiaDeg_completion_eq (K := K) w'] at hef
   exact_mod_cast hef.symm

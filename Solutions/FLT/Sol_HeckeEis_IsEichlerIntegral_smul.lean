@@ -40,7 +40,6 @@ theorem solution {n : ℕ} {f : UpperHalfPlane → ℂ} {F : UpperHalfPlane → 
     HeckeEis.IsEichlerIntegral n (c • f) (c • F) :=
   HeckeEis.SolMain.smul hF c
 
-#print axioms solution
 
 end S_HeckeEis_IsEichlerIntegral_smul
 end P2MW

@@ -270,7 +270,7 @@ theorem exists_qParam_pow_le_slash [NeZero M] (h : ModularForm (Γ : Subgroup (G
     have h1 : (⇑h ∣[k] A) = 0 := by
       rw [← coe_translateSL M Γ hM h A, h0]; rfl
     rw [SlashAction.slash_eq_zero_iff] at h1
-    exact (ModularForm.coe_eq_zero_iff h).mp h1
+    exact (FunLike.coe_zero_iff h).mp h1
   exact exists_qParam_pow_le (natCast_pos M) (natCast_mem_strictPeriods_Gamma M)
     (translateSL M Γ hM h A) hne
 
@@ -372,7 +372,7 @@ def Δ₁ : ModularForm 𝒮ℒ 12 := restrict le_rfl CuspForm.discriminant
 
 omit [NeZero M] in
 theorem coe_ne_zero {k : ℤ} (h : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) (hh : h ≠ 0) :
-    (h : ℍ → ℂ) ≠ 0 := fun e => hh ((ModularForm.coe_eq_zero_iff h).mp e)
+    (h : ℍ → ℂ) ≠ 0 := fun e => hh ((FunLike.coe_zero_iff h).mp e)
 
 omit [NeZero M] in
 theorem eventually_ne_zero_coe {k : ℤ} (h : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k)

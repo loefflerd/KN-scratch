@@ -29,7 +29,7 @@ theorem mem_range_of_geomSum_eq_zero {V : Type*} [AddCommGroup V] [Module ℂ V]
   have hndvd : ¬ (X - C (1 : ℂ)) ∣ Φ := by
     intro hdvd
     have h1 : Φ.IsRoot 1 := (Polynomial.dvd_iff_isRoot).mp hdvd
-    rw [Polynomial.IsRoot, hΦ, Polynomial.eval_finset_sum] at h1
+    rw [Polynomial.IsRoot, hΦ, Polynomial.eval_finsetSum] at h1
     simp only [Polynomial.eval_pow, Polynomial.eval_X, one_pow, Finset.sum_const, Finset.card_range, nsmul_eq_mul,
       mul_one] at h1
     exact (Nat.cast_ne_zero.mpr hM.ne') h1
@@ -502,7 +502,6 @@ theorem solution (N : ℕ) [NeZero N] (n : ℕ)
       ≤ Module.finrank ℂ (HeckeEis.coeffH1par W) :=
   HeckeEis.UBSol.main W hW
 
-#print axioms solution
 
 end S_HeckeEis_finrank_coeffH1par_gamma0_le_finrank_coeffH1par_top_induced
 end P2MW

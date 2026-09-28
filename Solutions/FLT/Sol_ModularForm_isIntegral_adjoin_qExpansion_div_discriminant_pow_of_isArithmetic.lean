@@ -106,8 +106,8 @@ lemma quotientFunc_sub_smul [𝒢.HasDetOne] (c : ℂ) {w : ℤ} (g₁ h₁ : Mo
   induction q using Quotient.inductionOn with
   | h r =>
     have hA : (r.val)⁻¹ ∈ 𝒮ℒ := inv_mem r.2
-    rw [quotientFunc_mk, quotientFunc_mk, quotientFunc_mk, ModularForm.coe_sub,
-      ModularForm.IsGLPos.coe_smul, sub_eq_add_neg, SlashAction.add_slash,
+    rw [quotientFunc_mk, quotientFunc_mk, quotientFunc_mk, FunLike.coe_sub,
+      FunLike.coe_smul, sub_eq_add_neg, SlashAction.add_slash,
       SlashAction.neg_slash, ModularForm.smul_slash, sigma_eq_id hA]
     simp only [Pi.add_apply, Pi.neg_apply, Pi.smul_apply, smul_eq_mul]
     ring
@@ -306,7 +306,7 @@ theorem solution {𝒢 : Subgroup (GL (Fin 2) ℝ)} [𝒢.IsArithmetic] [𝒢.Ha
       qExpansion 1 (Aform g' D' (r : ℕ) : ℍ → ℂ)
         * (qExpansion 1 (g' : ℍ → ℂ)) ^ (r : ℕ)
         * (qExpansion 1 (D' : ℍ → ℂ)) ^ (Nat.card (𝒮ℒ ⧸ (𝒢 ⊓ 𝒮ℒ).subgroupOf 𝒮ℒ) - (r : ℕ)) = 0 := by
-    rw [← qExpansion_Sform h1'' g' D', Sform_eq_zero g' D', ModularForm.coe_zero, qExpansion_zero]
+    rw [← qExpansion_Sform h1'' g' D', Sform_eq_zero g' D', FunLike.coe_zero, qExpansion_zero]
   have hq0L : ∑ r : Fin (Nat.card (𝒮ℒ ⧸ (𝒢 ⊓ 𝒮ℒ).subgroupOf 𝒮ℒ) + 1),
       ((qExpansion 1 (Aform g' D' (r : ℕ) : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ)
         * ((qExpansion 1 (g' : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) ^ (r : ℕ)
@@ -384,7 +384,7 @@ theorem solution {𝒢 : Subgroup (GL (Fin 2) ℝ)} [𝒢.IsArithmetic] [𝒢.Ha
   have hAn : Aform g' D' (Nat.card (𝒮ℒ ⧸ (𝒢 ⊓ 𝒮ℒ).subgroupOf 𝒮ℒ))
       = ((-1 : ℂ) ^ (Nat.card (𝒮ℒ ⧸ (𝒢 ⊓ 𝒮ℒ).subgroupOf 𝒮ℒ))) • ModularForm.norm 𝒮ℒ D' := by
     ext τ
-    rw [Aform_apply, ModularForm.IsGLPos.smul_apply, norm_apply_eq, smul_eq_mul]
+    rw [Aform_apply, smul_apply, norm_apply_eq, smul_eq_mul]
     unfold Pp
     conv_lhs => rw [← hcard]
     rw [coeff_card_prod_linear, Finset.prod_neg, hcard]
@@ -407,7 +407,7 @@ theorem solution {𝒢 : Subgroup (GL (Fin 2) ℝ)} [𝒢.IsArithmetic] [𝒢.Ha
     have hps : qExpansion 1 (Aform g' D' (Nat.card (𝒮ℒ ⧸ (𝒢 ⊓ 𝒮ℒ).subgroupOf 𝒮ℒ)) : ℍ → ℂ)
         = PowerSeries.C ((-1 : ℂ) ^ (Nat.card (𝒮ℒ ⧸ (𝒢 ⊓ 𝒮ℒ).subgroupOf 𝒮ℒ)))
           * (qExpansion 1 (ModularForm.discriminant : ℍ → ℂ)) ^ (m * Nat.card (𝒮ℒ ⧸ (𝒢 ⊓ 𝒮ℒ).subgroupOf 𝒮ℒ)) := by
-      rw [hAn, ModularForm.IsGLPos.coe_smul,
+      rw [hAn, FunLike.coe_smul,
         ModularForm.qExpansion_smul one_pos one_mem_strictPeriods_SL, hnormD,
         ModularForm.qExpansion_mcast,
         ModularForm.qExpansion_pow one_pos one_mem_strictPeriods_SL, hDSLq, ← pow_mul,

@@ -716,7 +716,7 @@ theorem exists_sub_algebraMap_intDegree_neg {x : RatFunc K}
   have hlc : x.num.leadingCoeff = (Polynomial.C c * x.denom).leadingCoeff := by
     rw [Polynomial.leadingCoeff_mul, Polynomial.leadingCoeff_C, hc,
       div_mul_cancel₀ _ (Polynomial.leadingCoeff_ne_zero.mpr hden0)]
-  have hlt := Polynomial.degree_sub_lt hdegeq hnum0 hlc
+  have hlt := Polynomial.degree_sub_lt_left hdegeq hnum0 hlc
   rw [hdegeq, hCdeg] at hlt
   exact_mod_cast Polynomial.natDegree_lt_natDegree hnz hlt
 
@@ -2403,7 +2403,7 @@ theorem ramificationIndex_eq_ramificationIdx_fiberCenter (hw : w.restrict F = v)
     rw [ord_algebraMap_integralClosureAt hw, ValuationSubring.algebraMap_apply,
       v.ord_coe_irreducible hπ, mul_one]
 
-  refine (Ideal.ramificationIdx_spec ?_ ?_).symm
+  refine (Ideal.ramificationIdx'_spec ?_ ?_).symm
   · rw [hmap, Ideal.span_singleton_le_iff_mem,
       ← le_ord_iff_mem_pow_fiberCenter hw hπC, hord]
   · rw [hmap, Ideal.span_singleton_le_iff_mem,
@@ -2531,7 +2531,7 @@ theorem inertiaDeg_eq_inertiaDeg_fiberCenter (hw : w.restrict F = v) :
       (IsLocalRing.maximalIdeal v.toValuationSubring).inertiaDeg'
         (fiberCenter F' v hw).asIdeal := by
   have := fiberCenter_liesOver hw
-  rw [Ideal.inertiaDeg_algebraMap]
+  rw [Ideal.inertiaDeg'_algebraMap]
   show Module.finrank (w.restrict F).ResidueField w.ResidueField = _
   refine Algebra.finrank_eq_of_equiv_equiv (restrictResidueFieldEquiv hw)
     (residueFieldEquivQuotientCenter hw).symm ?_
@@ -2575,8 +2575,7 @@ theorem sum_ramificationIndex_mul_inertiaDeg [HasPrincipalDivisors K F'] :
     ∑ w ∈ v.fiber F', (w.ramificationIndex F : ℤ) * (w.inertiaDeg F : ℤ)
       = (Module.finrank F F' : ℤ) := by
   classical
-  have hkey := Ideal.sum_ramification_inertia (integralClosureAt F' v) F F'
-    (p := IsLocalRing.maximalIdeal v.toValuationSubring) (maximalIdeal_ne_bot v)
+  have hkey := sum_ramificationIdx'_mul_inertiaDeg'_integralClosureAt (F' := F') v
   rw [← hkey]
   push_cast
   refine Finset.sum_bij

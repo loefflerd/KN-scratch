@@ -8280,10 +8280,10 @@ theorem kw_veluX_oddOrderSummingSet_eq_sum_range_odd (hp3 : 3 ≤ p) (hpodd : Od
     refine Finset.sum_nbij' (fun j => p - j) (fun k => p - k)
       (fun j hj => by rw [Finset.mem_Icc] at hj; simp only [Finset.mem_Icc]; omega)
       (fun k hk => by rw [Finset.mem_Icc] at hk; simp only [Finset.mem_Icc]; omega)
-      (fun j hj => by rw [Finset.mem_Icc] at hj; beta_reduce; omega)
-      (fun k hk => by rw [Finset.mem_Icc] at hk; beta_reduce; omega)
+      (fun j hj => by rw [Finset.mem_Icc] at hj; omega)
+      (fun k hk => by rw [Finset.mem_Icc] at hk; omega)
       (fun j hj => ?_)
-    rw [Finset.mem_Icc] at hj; beta_reduce
+    rw [Finset.mem_Icc] at hj
     congr 2
     have hpQ : p • Q = 0 := hord ▸ addOrderOf_nsmul_eq_zero Q
     rw [← sub_nsmul_eq_neg_of_nsmul_eq_zero hpQ (k := p - j) (Nat.sub_le _ _)]
@@ -8396,10 +8396,10 @@ theorem kw_veluY_oddOrderSummingSet_eq_sum_range_odd (hp3 : 3 ≤ p) (hpodd : Od
     refine Finset.sum_nbij' (fun j => p - j) (fun k => p - k)
       (fun j hj => by rw [Finset.mem_Icc] at hj; simp only [Finset.mem_Icc]; omega)
       (fun k hk => by rw [Finset.mem_Icc] at hk; simp only [Finset.mem_Icc]; omega)
-      (fun j hj => by rw [Finset.mem_Icc] at hj; beta_reduce; omega)
-      (fun k hk => by rw [Finset.mem_Icc] at hk; beta_reduce; omega)
+      (fun j hj => by rw [Finset.mem_Icc] at hj; omega)
+      (fun k hk => by rw [Finset.mem_Icc] at hk; omega)
       (fun j hj => ?_)
-    rw [Finset.mem_Icc] at hj; beta_reduce
+    rw [Finset.mem_Icc] at hj
     congr 3
     have hpQ : p • Q = 0 := hord ▸ addOrderOf_nsmul_eq_zero Q
     rw [← sub_nsmul_eq_neg_of_nsmul_eq_zero hpQ (k := p - j) (Nat.sub_le _ _)]

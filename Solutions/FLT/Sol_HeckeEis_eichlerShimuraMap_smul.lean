@@ -81,7 +81,6 @@ theorem solution (n N : ℕ) [NeZero N] (c : ℂ)
     HeckeEis.eichlerShimuraMap n N ⇑(c • f) = c • HeckeEis.eichlerShimuraMap n N f :=
   HeckeEis.SolMain.essmul n N c f
 
-#print axioms solution
 
 end S_HeckeEis_eichlerShimuraMap_smul
 end P2MW

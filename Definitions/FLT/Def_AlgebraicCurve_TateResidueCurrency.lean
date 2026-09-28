@@ -132,11 +132,11 @@ variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 
 def regularSubmodule (w : Place K F) (ωF : Ω[F⁄K]) : Submodule K F where
   carrier := {f : F | f * w.differentialCoeff ωF ∈ w.toValuationSubring}
-  zero_mem' := by simp only [Set.mem_setOf_eq, zero_mul]; exact zero_mem _
+  zero_mem' := by simp only [Set.mem_ofPred_eq, zero_mul]; exact zero_mem _
   add_mem' {f g} hf hg := by
-    simp only [Set.mem_setOf_eq, add_mul]; exact add_mem hf hg
+    simp only [Set.mem_ofPred_eq, add_mul]; exact add_mem hf hg
   smul_mem' c f hf := by
-    simp only [Set.mem_setOf_eq, Algebra.smul_def, mul_assoc]
+    simp only [Set.mem_ofPred_eq, Algebra.smul_def, mul_assoc]
     exact mul_mem (w.algebraMap_mem' c) hf
 
 end Place

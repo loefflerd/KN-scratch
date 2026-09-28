@@ -21,7 +21,7 @@ theorem solution (N : ℕ) (F : ModularForm 𝒮ℒ (12 * (N : ℤ))) : ∃ P : 
       funext τ
       simp
     have hq : qExpansion 1 (F : ℍ → ℂ) = c • (1 : PowerSeries ℂ) := by
-      rw [hc, hconst, ModularForm.IsGLPos.coe_smul,
+      rw [hc, hconst, FunLike.coe_smul,
         ModularForm.qExpansion_smul one_pos one_mem_strictPeriods_SL,
         ModularForm.qExpansion_one]
     have hbridge : (algebraMap ℂ (LaurentSeries ℂ)) c
@@ -39,8 +39,8 @@ theorem solution (N : ℕ) (F : ModularForm 𝒮ℒ (12 * (N : ℤ))) : ∃ P : 
       EisensteinSeries.E_qExpansion_coeff_zero (by norm_num) ⟨2, rfl⟩
     have hGq : qExpansion 1 (G : ℍ → ℂ) = qExpansion 1 (F : ℍ → ℂ)
         - PowerSeries.C c * (qExpansion 1 (ModularForm.E₄ : ℍ → ℂ)) ^ (3 * (N + 1)) := by
-      rw [hGdef, ModularForm.coe_sub, ModularForm.qExpansion_sub one_pos one_mem_strictPeriods_SL,
-        ModularForm.IsGLPos.coe_smul, ModularForm.qExpansion_smul one_pos one_mem_strictPeriods_SL,
+      rw [hGdef, FunLike.coe_sub, ModularForm.qExpansion_sub one_pos one_mem_strictPeriods_SL,
+        FunLike.coe_smul, ModularForm.qExpansion_smul one_pos one_mem_strictPeriods_SL,
         hEpow, ModularForm.qExpansion_mcast,
         ModularForm.qExpansion_pow one_pos one_mem_strictPeriods_SL, PowerSeries.smul_eq_C_mul]
     have hpow0 : ((qExpansion 1 (ModularForm.E₄ : ℍ → ℂ)) ^ (3 * (N + 1))).coeff 0 = 1 := by

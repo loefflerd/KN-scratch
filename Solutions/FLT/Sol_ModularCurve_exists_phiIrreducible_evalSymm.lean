@@ -64,7 +64,6 @@ open _root_.ModularCurve _root_.P2MW.S_ModularCurve_exists_phiIrreducible_evalSy
 theorem solution (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] : ∃ data : ModularPolynomialData ℓ, PhiIrreducible data ∧ EvalSymm data.Φ :=
   ModularCurve.exists_phiIrreducible_evalSymm ℓ
 
-#print axioms solution
 
 end S_ModularCurve_exists_phiIrreducible_evalSymm
 end P2MW

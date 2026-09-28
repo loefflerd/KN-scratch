@@ -148,7 +148,6 @@ open _root_.ModularCurve _root_.P2MW.S_ModularCurve_TatePoint_fullKernelDiscAt_o
 theorem solution (N : ℕ) [NeZero N] (hN : Odd N) : FullKernelDiscAt N :=
   ModularCurve.TatePoint.fullKernelDiscAt_of_odd_aux N hN
 
-#print axioms solution
 
 end S_ModularCurve_TatePoint_fullKernelDiscAt_of_odd
 end P2MW

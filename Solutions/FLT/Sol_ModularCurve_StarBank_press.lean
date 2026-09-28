@@ -184,7 +184,7 @@ private theorem ModularCurve.StarBank.press {K : Type*} [Field K] (p : ℕ) [Fac
       by_cases hAB : A = B
       · rw [hAB, sub_self, Polynomial.natDegree_zero]; exact hp.out.pos
       · refine lt_of_lt_of_eq (Polynomial.natDegree_lt_natDegree (sub_ne_zero.mpr hAB) ?_) hAdeg
-        exact Polynomial.degree_sub_lt
+        exact Polynomial.degree_sub_lt_left
           (by rw [Polynomial.degree_eq_natDegree hAmonic.ne_zero,
             Polynomial.degree_eq_natDegree hBmonic.ne_zero, hAdeg, hBdeg])
           hAmonic.ne_zero (by rw [hAmonic.leadingCoeff, hBmonic.leadingCoeff])
@@ -211,7 +211,6 @@ theorem solution {K : Type*} [Field K] (p : ℕ) [Fact p.Prime] (ζ : Kˣ)
         ∏ b ∈ Finset.range p, (Polynomial.X - Polynomial.C (qTwist (ζ ^ b) (jqModC K))) :=
   ModularCurve.StarBank.press p ζ hζ hR
 
-#print axioms solution
 
 end
 end S_ModularCurve_StarBank_press

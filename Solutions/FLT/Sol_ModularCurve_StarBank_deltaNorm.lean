@@ -473,7 +473,6 @@ theorem solution {K : Type*} [Field K] (p : ℕ) [Fact p.Prime] (ζ : Kˣ)
         (p + 1) :=
   ModularCurve.StarBank.deltaNorm p ζ hζ
 
-#print axioms solution
 
 end S_ModularCurve_StarBank_deltaNorm
 end P2MW

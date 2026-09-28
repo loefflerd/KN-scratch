@@ -270,7 +270,7 @@ theorem solution (N : ℕ) [NeZero N]
     rw [map_sum]
     refine Finset.sum_congr rfl (fun p _ => ?_)
     show ⇑(c p.1 p.2 • mono e δ eN δN m n p.1 p.2) = _
-    rw [ModularForm.coe_smul]
+    rw [FunLike.coe_smul]
     funext τ
     simp only [Pi.smul_apply, Complex.real_smul, smul_eq_mul]
 
@@ -297,7 +297,7 @@ theorem solution (N : ℕ) [NeZero N]
     rw [Polynomial.eval_map]
     first
     | exact h1
-    | exact h1.symm
+
   have hqH : qExpansion 1 (H : ℍ → ℂ) = 0 := by
     apply HahnSeries.ofPowerSeries_injective (Γ := ℤ) (R := ℂ)
     rw [map_zero]
@@ -305,7 +305,7 @@ theorem solution (N : ℕ) [NeZero N]
     rw [hHcoe]
     obtain ⟨-, hq⟩ := qExpansion_finset_sum_smul idx (fun p => ((c p.1 p.2 : ℝ) : ℂ))
       (fun p => ((mono e δ eN δN m n p.1 p.2) : ℍ → ℂ)) (fun p _ => an_mf' _)
-      (by simpa [ModularForm.coe_zero] using an_of_modularForm hΓ (0 : ModularForm (CongruenceSubgroup.Gamma0 N) 0))
+      (by simpa [FunLike.coe_zero] using an_of_modularForm hΓ (0 : ModularForm (CongruenceSubgroup.Gamma0 N) 0))
     rw [hq, map_sum]
     have hterm : ∀ p ∈ idx, ((((c p.1 p.2 : ℝ) : ℂ) • qExpansion 1 ((mono e δ eN δN m n p.1 p.2) : ℍ → ℂ) : PowerSeries ℂ) :
         LaurentSeries ℂ) = D ^ m * (qExpand ℂ N D) ^ n *

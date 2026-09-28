@@ -20,9 +20,9 @@ theorem solution (K : Type*) [CommRing K] (n : ℕ) (P : ↥(HeckeEis.BinaryForm
   rw [binaryFormRepSL_apply_coe, Submodule.coe_smul]
   have hhom : (P : MvPolynomial (Fin 2) K).IsHomogeneous n := (mem_homogeneousSubmodule n _).mp P.2
   have h0 : binarySubst K ((-1 : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) (X 0) = -X 0 := by
-    rw [binarySubst_X]; simp [Fin.sum_univ_two, Matrix.one_apply]
+    rw [binarySubst_X]; simp [Matrix.one_apply]
   have h1 : binarySubst K ((-1 : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) (X 1) = -X 1 := by
-    rw [binarySubst_X]; simp [Fin.sum_univ_two, Matrix.one_apply]
+    rw [binarySubst_X]; simp [Matrix.one_apply]
   conv_lhs => rw [(P : MvPolynomial (Fin 2) K).as_sum]
   conv_rhs => rw [(P : MvPolynomial (Fin 2) K).as_sum]
   rw [map_sum, Finset.smul_sum]

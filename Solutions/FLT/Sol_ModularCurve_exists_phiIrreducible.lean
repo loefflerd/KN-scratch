@@ -752,7 +752,6 @@ p2m_open "ModularCurve~coeffEmb_qExpand" in open _root_.P2MW.S_ModularCurve_exis
 theorem solution (N : ℕ) [NeZero N] : ∃ data : ModularPolynomialData N, PhiIrreducible data :=
   ModularCurve.exists_phiIrreducible N
 
-#print axioms solution
 
 end S_ModularCurve_exists_phiIrreducible
 end P2MW

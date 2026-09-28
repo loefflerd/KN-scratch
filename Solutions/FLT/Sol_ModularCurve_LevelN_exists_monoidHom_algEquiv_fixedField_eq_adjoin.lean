@@ -142,7 +142,7 @@ theorem vecMul_ne_zero {v : Fin 2 → ZMod N} (hv : v ≠ 0) (γ : SL(2, ℤ)) :
 omit [NeZero N] in
 
 def precomp (g : SL(2, ℤ)) : (ℍ → ℂ) →ₐ[ℂ] (ℍ → ℂ) :=
-  Pi.algHom ℂ (fun _ : ℍ => ℂ) (fun τ => Pi.evalAlgHom ℂ (fun _ : ℍ => ℂ) (g • τ))
+  AlgHom.pi (fun τ => Pi.evalAlgHom ℂ (fun _ : ℍ => ℂ) (g • τ))
 
 omit [NeZero N] in
 @[scoped simp]
@@ -257,7 +257,7 @@ theorem ρHom_eq_one_iff (γ : SL(2, ℤ)) :
     change fricke N v (γ⁻¹ • τ) = fricke N v τ at this
     rwa [fricke_smul] at this
   · intro h
-    apply AlgEquiv.coe_algHom_injective
+    apply AlgEquiv.coe_toAlgHom_injective
     change (res N γ⁻¹ : ring N →ₐ[ℂ] ring N) = AlgHom.id ℂ (ring N)
     refine algHom_eq_id_of_forall N fun G hG => ?_
     apply Subtype.ext

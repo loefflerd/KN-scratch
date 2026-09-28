@@ -136,7 +136,7 @@ theorem solution
     intro x y h
     apply exists_eq_some_of_xy_eq
     rw [xy_vcHom]
-    simp only [xy, Option.map_some, hγdef, vcXInv, vcYInv, sub_zero, zero_mul, mul_zero, hi2, hi3, one_mul]
+    simp only [xy, Option.map_some, hγdef, vcXInv, vcYInv, sub_zero, zero_mul, hi2, hi3, one_mul]
 
   have hσ : ∀ P : W.toAffine.Point, σ (σ P) + σ P + P = 0 := by
     rintro (_ | ⟨x, y, h⟩)
@@ -149,7 +149,7 @@ theorem solution
         have hy0 : y ≠ 0 := by
           have heq := h.left
           rw [WeierstrassCurve.Affine.equation_iff] at heq
-          simp only [hWdef, zero_mul, mul_zero, add_zero, zero_add, ne_eq] at heq
+          simp only [hWdef, zero_mul, mul_zero, add_zero] at heq
           rintro rfl
           apply hB
           simpa using heq.symm

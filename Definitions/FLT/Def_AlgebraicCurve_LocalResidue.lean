@@ -154,7 +154,7 @@ theorem single_mem_adeleBdd (v : Place K F) (g : F) (D : Divisor K F)
   intro w
   rcases eq_or_ne w v with rfl | hw
   · simpa only [Pi.single_eq_same] using hg
-  · rw [Pi.single_eq_of_ne hw, Valuation.map_zero]; exact zero_le'
+  · rw [Pi.single_eq_of_ne hw, Valuation.map_zero]; exact zero_le
 
 open scoped Classical in
 

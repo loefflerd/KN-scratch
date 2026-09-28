@@ -122,7 +122,6 @@ theorem solution (N : ℕ) [NeZero N] (n : ℕ) (hn : 2 ≤ n) (hne : Even n) :
     rw [hg]; ring
   linarith [hQ, key]
 
-#print axioms solution
 
 end S_HeckeEis_finrank_coeffH1par_le_two_mul_dimFormula
 end P2MW

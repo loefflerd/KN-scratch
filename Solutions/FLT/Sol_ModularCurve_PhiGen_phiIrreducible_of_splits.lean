@@ -276,7 +276,7 @@ private theorem sum_conj_succ_eq_ratC_of_aeval_jq_eq (hζ : IsPrimitiveRoot (ζ 
         exact hℓ.out.pos
       · refine lt_of_lt_of_eq
           (Polynomial.natDegree_lt_natDegree (sub_ne_zero.mpr hAB) ?_) hAdeg
-        exact Polynomial.degree_sub_lt
+        exact Polynomial.degree_sub_lt_left
           (by rw [Polynomial.degree_eq_natDegree hAmonic.ne_zero,
                 Polynomial.degree_eq_natDegree hBmonic.ne_zero, hAdeg, hBdeg])
           hAmonic.ne_zero (by rw [hAmonic.leadingCoeff, hBmonic.leadingCoeff])
@@ -890,14 +890,12 @@ p2m_reactivate "P2MW.S_ModularCurve_PhiGen_phiIrreducible_of_splits.ModularCurve
 end
 p2m_reactivate "P2MW.S_ModularCurve_PhiGen_phiIrreducible_of_splits.ModularCurve"
 
-#print axioms ModularCurve.PhiGen.evalSymm_of_splits
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_phiIrreducible_of_splits.ModularCurve _root_.ModularCurve.PhiGen _root_.P2MW.S_ModularCurve_PhiGen_phiIrreducible_of_splits.ModularCurve.PhiGen in
 
 theorem solution {K : Type*} [Field K] [Algebra ℚ K] (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) ℓ) (data : ModularPolynomialData ℓ) (hsplit : data.Φ.map (((coeffEmb K).comp (qExpand ℚ ℓ)).comp evalAtJ) = phiProd ℓ (conj ℓ ζ)) : PhiIrreducible data :=
   ModularCurve.PhiGen.phiIrreducible_of_splits ℓ ζ ModularCurve.one_le_coeff_jq hζ data hsplit
 
-#print axioms solution
 
 end S_ModularCurve_PhiGen_phiIrreducible_of_splits
 end P2MW

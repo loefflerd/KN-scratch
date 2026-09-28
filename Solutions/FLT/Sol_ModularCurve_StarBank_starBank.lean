@@ -291,7 +291,7 @@ theorem hasse_input {ℓ : ℕ} [Fact ℓ.Prime] (hℓ5 : 5 ≤ ℓ) :
         = UpperHalfPlane.qExpansion 1
             ⇑((((_root_.bernoulli (ℓ - 1)).num : ℂ) • ModularForm.E hk).pow 12) := rfl
     rw [h1, ModularForm.qExpansion_pow one_pos one_mem_strictPeriods_SL,
-      ModularForm.IsGLPos.coe_smul,
+      FunLike.coe_smul,
       ModularForm.qExpansion_smul one_pos one_mem_strictPeriods_SL, map_pow, hTmap]
   have h0 : PowerSeries.constantCoeff (T ^ 12) ≠ 0 := by
     rw [hconst12]
@@ -455,7 +455,6 @@ theorem solution {K : Type*} [Field K] {ℓ : ℕ} [Fact ℓ.Prime]
     jqNModC K p ∉ IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K)) :=
   ModularCurve.StarBank.starBank hpℓ
 
-#print axioms solution
 
 end S_ModularCurve_StarBank_starBank
 end P2MW

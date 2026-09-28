@@ -275,7 +275,7 @@ private theorem sum_conj_succ_eq_ratC_of_aeval_jq_eq (hζ : IsPrimitiveRoot (ζ 
         exact hℓ.out.pos
       · refine lt_of_lt_of_eq
           (Polynomial.natDegree_lt_natDegree (sub_ne_zero.mpr hAB) ?_) hAdeg
-        exact Polynomial.degree_sub_lt
+        exact Polynomial.degree_sub_lt_left
           (by rw [Polynomial.degree_eq_natDegree hAmonic.ne_zero,
                 Polynomial.degree_eq_natDegree hBmonic.ne_zero, hAdeg, hBdeg])
           hAmonic.ne_zero (by rw [hAmonic.leadingCoeff, hBmonic.leadingCoeff])
@@ -889,14 +889,12 @@ p2m_reactivate "P2MW.S_ModularCurve_ModularPolynomialData_transposeToAdjoin_moni
 end
 p2m_reactivate "P2MW.S_ModularCurve_ModularPolynomialData_transposeToAdjoin_monic_of_qExpansion.ModularCurve"
 
-#print axioms ModularCurve.PhiGen.evalSymm_of_splits
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_ModularPolynomialData_transposeToAdjoin_monic_of_qExpansion.ModularCurve _root_.ModularCurve.PhiGen _root_.P2MW.S_ModularCurve_ModularPolynomialData_transposeToAdjoin_monic_of_qExpansion.ModularCurve.PhiGen in
 
 theorem solution {N : ℕ} [NeZero N] (data : ModularPolynomialData N) (h0top : (evalAtJ (data.Φ.coeff 0)).coeff (-(dedekindPsi N : ℤ)) = 1) (h0le : ∀ m : ℕ, dedekindPsi N < m → (evalAtJ (data.Φ.coeff 0)).coeff (-(m : ℤ)) = 0) (hk : ∀ k, k ≠ 0 → ∀ m : ℕ, dedekindPsi N ≤ m → (evalAtJ (data.Φ.coeff k)).coeff (-(m : ℤ)) = 0) : ((swapBivar data.Φ).map evalAtJGen).Monic ∧ ((swapBivar data.Φ).map evalAtJGen).natDegree = dedekindPsi N :=
   ModularCurve.ModularPolynomialData.transposeToAdjoin_monic_of_qExpansion data h0top h0le hk
 
-#print axioms solution
 
 end S_ModularCurve_ModularPolynomialData_transposeToAdjoin_monic_of_qExpansion
 end P2MW

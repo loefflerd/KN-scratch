@@ -98,7 +98,6 @@ open ModularCurve ModularCurve.TatePoint in
 theorem solution (N : ℕ) [NeZero N] : FullKernelInjAt N :=
   KernelTower.fullKernelInjAt' N
 
-#print axioms solution
 
 end S_ModularCurve_TatePoint_fullKernelInjAt
 end P2MW

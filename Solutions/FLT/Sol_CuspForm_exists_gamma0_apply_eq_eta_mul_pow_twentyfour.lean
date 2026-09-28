@@ -217,7 +217,7 @@ private lemma finite_twelfthRoots : {x : ℂ | x ^ 12 = 1}.Finite := by
     rw [Set.mem_ofPred_eq] at hx
     rw [hx]
     ring
-  exact (Polynomial.finite_setOf_isRoot
+  exact (Polynomial.finite_setOfPred_isRoot
     (Polynomial.X_pow_sub_C_ne_zero (n := 12) (by norm_num) 1)).subset hsub
 
 private noncomputable def etaRatio (γ : SL(2, ℤ)) (τ : ℍ) : ℂ :=

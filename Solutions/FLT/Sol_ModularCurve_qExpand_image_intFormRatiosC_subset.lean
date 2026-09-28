@@ -99,7 +99,7 @@ def stretch (hℓ : ℓ ≠ 0) (f : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ))
 theorem stretch_apply (hℓ : ℓ ≠ 0) (f : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) (τ : ℍ) :
     stretch hΓ' hℓ f τ = f (heckeDiagMatrix ℓ • τ) := by
   have hpk : ((ℓ : ℂ) ^ (k - 1)) ≠ 0 := zpow_ne_zero _ (Nat.cast_ne_zero.mpr hℓ)
-  rw [stretch, ModularForm.IsGLPos.smul_apply, stretchSlash_apply, smul_eq_mul, ← mul_assoc,
+  rw [stretch, smul_apply, stretchSlash_apply, smul_eq_mul, ← mul_assoc,
     inv_mul_cancel₀ hpk, one_mul]
 
 theorem coe_stretch (hℓ : ℓ ≠ 0) (f : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) :

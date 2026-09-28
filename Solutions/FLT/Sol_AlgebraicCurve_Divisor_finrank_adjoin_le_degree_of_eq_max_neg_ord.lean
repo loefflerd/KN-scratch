@@ -125,7 +125,7 @@ theorem solution
     rcases eq_or_ne (u i) 0 with h0 | h0
     · exact Or.inl h0
     refine Or.inr fun v => ?_
-    simp only [Finsupp.coe_smul, Pi.smul_apply, smul_eq_mul, nsmul_eq_mul]
+    simp only [Finsupp.coe_smul, Pi.smul_apply, nsmul_eq_mul]
     rcases le_or_gt 0 (v.ord x) with hvx | hvx
     ·
       have hDv0 : D v = 0 := by rw [hD]; exact max_eq_left (by omega)
@@ -168,9 +168,9 @@ theorem solution
     have hxj0 : (x : F) ^ j ≠ 0 := pow_ne_zero j hx0
     rw [v.ord_mul hxj0 hui0, show ((x : F) ^ j) = x ^ (j : ℤ) from (zpow_natCast x j).symm,
       v.ord_zpow]
-    simp only [Finsupp.coe_smul, Pi.smul_apply, smul_eq_mul, nsmul_eq_mul]
+    simp only [Finsupp.coe_smul, Pi.smul_apply, nsmul_eq_mul]
     have huiL := (mem_lSpace_iff_ord.mp (hc i)).resolve_left hui0 v
-    simp only [Finsupp.coe_smul, Pi.smul_apply, smul_eq_mul, nsmul_eq_mul] at huiL
+    simp only [Finsupp.coe_smul, Pi.smul_apply, nsmul_eq_mul] at huiL
 
     rcases le_or_gt 0 (v.ord x) with hvx | hvx
     · have hDv0 : D v = 0 := by rw [hD]; exact max_eq_left (by omega)
@@ -216,7 +216,7 @@ theorem solution
     rwa [Divisor.degree.map_nsmul, nsmul_eq_mul] at this
 
   by_contra hlt
-  push_neg at hlt
+  push Not at hlt
   have hngt : (Divisor.degree D : ℤ) + 1 ≤ n := by omega
 
   set m := c + n * c + ell (0 : Divisor K F) + 1 with hmdef

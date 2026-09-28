@@ -198,7 +198,7 @@ private theorem ramificationIndex_eq_ramificationIdx_fiberCenter (hw : w.restric
     rw [ord_algebraMap_integralClosureAt hw, ValuationSubring.algebraMap_apply,
       v.ord_coe_irreducible hπ, mul_one]
 
-  refine (Ideal.ramificationIdx_spec ?_ ?_).symm
+  refine (Ideal.ramificationIdx'_spec ?_ ?_).symm
   · rw [hmap, Ideal.span_singleton_le_iff_mem,
       ← le_ord_iff_mem_pow_fiberCenter hw hπC, hord]
   · rw [hmap, Ideal.span_singleton_le_iff_mem,

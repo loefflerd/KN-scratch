@@ -90,8 +90,8 @@ theorem iterate_pderiv_one_eq_zero_of_lt {n : ℕ} {P : MvPolynomial (Fin 2) K} 
 
 abbrev ex (n m : ℕ) : Fin 2 →₀ ℕ := Finsupp.single 0 (n - m) + Finsupp.single 1 m
 
-@[scoped simp] theorem ex_zero (n m : ℕ) : ex n m 0 = n - m := by simp [ex, Finsupp.single_apply]
-@[scoped simp] theorem ex_one (n m : ℕ) : ex n m 1 = m := by simp [ex, Finsupp.single_apply]
+@[scoped simp] theorem ex_zero (n m : ℕ) : ex n m 0 = n - m := by simp [ex]
+@[scoped simp] theorem ex_one (n m : ℕ) : ex n m 1 = m := by simp [ex]
 
 theorem eq_ex_of_degree {m : ℕ} {d : Fin 2 →₀ ℕ} (hd : d.degree = m) : d = ex m (d 1) := by
   rw [Finsupp.degree_eq_sum, Fin.sum_univ_two] at hd
@@ -139,8 +139,8 @@ theorem eval_iterate_pderiv_eq_sum {n : ℕ} {P : MvPolynomial (Fin 2) K} (hP : 
     have hex : ex (n - i) k + Finsupp.single 1 i = ex n (k + i) := by
       ext t
       fin_cases t
-      · simp [ex, Finsupp.single_apply]; omega
-      · simp [ex, Finsupp.single_apply]
+      · simp [ex]; omega
+      · simp [ex]
     rw [hex]
   · rw [iterate_pderiv_one_eq_zero_of_lt hP hi, map_zero, show n + 1 - i = 0 by omega, Finset.range_zero,
       Finset.sum_empty]
@@ -158,7 +158,7 @@ theorem coeff_ex_linePow (n m : ℕ) (hm : m ≤ n) (t : K) :
         = monomial (Finsupp.single 0 k + Finsupp.single 1 (n - k)) (t ^ k * (n.choose k : K)) := by
       rw [mul_pow, ← map_pow, X_pow_eq_monomial, X_pow_eq_monomial, C_mul_monomial, monomial_mul, ← map_natCast C,
         mul_comm (monomial _ _) (C _), C_mul_monomial]
-      congr 1 <;> simp [mul_comm, mul_left_comm]
+      congr 1 <;> simp [mul_comm]
     rw [hmon, coeff_monomial]
     by_cases hk' : k = n - m
     · subst hk'
@@ -168,7 +168,7 @@ theorem coeff_ex_linePow (n m : ℕ) (hm : m ≤ n) (t : K) :
       intro h
       apply hk'
       have := congrArg (fun f => f 0) h
-      simp [ex, Finsupp.single_apply] at this
+      simp [ex] at this
       omega
   rw [Finset.sum_congr rfl hterm, Finset.sum_ite_eq' (Finset.range (n + 1)) (n - m),
     if_pos (Finset.mem_range.mpr (by omega))]
@@ -307,7 +307,6 @@ theorem solution {n : ℕ} {g : UpperHalfPlane → ℂ}
       (τ : ℂ) :=
   HeckeEis.BolAux.hasDerivAt_eval_iterate_pderiv hG hj τ
 
-#print axioms solution
 
 end S_HeckeEis_IsEichlerIntegral_hasDerivAt_eval_iterate_pderiv
 end P2MW

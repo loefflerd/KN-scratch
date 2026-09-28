@@ -737,7 +737,6 @@ p2m_open "ModularCurve~coeffEmb_qExpand" in open _root_.P2MW.S_ModularCurve_modu
 theorem solution (N : ℕ) [NeZero N] (hstep : ∀ (M : ℕ) [NeZero M] (p : ℕ), p.Prime → M * p = N → jqN M ∈ modularFunctionField N) (hgen' : ∀ (M : ℕ) [NeZero M] (p : ℕ), p.Prime → M * p = N → modularFunctionField M = modularFunctionFieldFull M) : modularFunctionField N = modularFunctionFieldFull N :=
   ModularCurve.modularFunctionField_eq_full_of N hstep hgen'
 
-#print axioms solution
 
 end S_ModularCurve_modularFunctionField_eq_full_of
 end P2MW

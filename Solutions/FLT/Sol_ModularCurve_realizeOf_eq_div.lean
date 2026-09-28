@@ -53,7 +53,7 @@ theorem solution
     ring
 
   have hAB : (g'.mul h : ModularForm Γ (k' + k)) = ModularForm.mcast (add_comm k k') (g.mul h') := by
-    rw [← sub_eq_zero, ← ModularForm.qExpansion_eq_zero_iff one_pos h1, ModularForm.coe_sub,
+    rw [← sub_eq_zero, ← ModularForm.qExpansion_eq_zero_iff one_pos h1, FunLike.coe_sub,
       ModularForm.qExpansion_sub one_pos h1, sub_eq_zero, ModularForm.coe_mcast,
       ModularForm.coe_mul, ModularForm.coe_mul, hq]
   have hτeq : (g' : ℍ → ℂ) τ * (h : ℍ → ℂ) τ = (g : ℍ → ℂ) τ * (h' : ℍ → ℂ) τ := by

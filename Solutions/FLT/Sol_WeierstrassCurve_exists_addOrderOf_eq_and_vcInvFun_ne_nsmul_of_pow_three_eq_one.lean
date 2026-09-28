@@ -110,7 +110,7 @@ theorem exists_common_scalar {p : ℕ} [Fact p.Prime] (e : ZMod p × ZMod p ≃+
     intro v
     obtain ⟨w, rfl⟩ := e.surjective v
     rw [← map_zsmul, show (p : ℤ) • w = 0 from ?_, map_zero]
-    ext <;> simp [zsmul_eq_mul, ZMod.natCast_self]
+    ext <;> simp [zsmul_eq_mul]
 
   have hzs : ∀ (m n : ℤ) (v : V), (m : ZMod p) = n → m • v = n • v := by
     intro m n v hmn
@@ -120,7 +120,7 @@ theorem exists_common_scalar {p : ℕ} [Fact p.Prime] (e : ZMod p × ZMod p ≃+
   refine ⟨c, fun v => ?_⟩
   obtain ⟨⟨s, t⟩, rfl⟩ := e.surjective v
   have hv : e (s, t) = (s.val : ℤ) • e (1, 0) + (t.val : ℤ) • e (0, 1) := by
-    rw [← map_zsmul, ← map_zsmul, ← map_add]; congr 1; ext <;> simp [ZMod.natCast_zmod_val]
+    rw [← map_zsmul, ← map_zsmul, ← map_add]; congr 1; ext <;> simp []
   rw [hv, map_add, map_zsmul, map_zsmul, ha, hb, smul_add, smul_comm c (s.val : ℤ), smul_comm c (t.val : ℤ),
     hzs a c _ hca.symm, hzs b c _ hcb.symm]
 
@@ -203,7 +203,7 @@ theorem solution
     refine ⟨Point.some x y h, hord, fun k hheq => hk k ?_⟩
     have := xco_eq_of_heq hW hheq
     rw [xco_vcInvFun] at this
-    rw [← this]; simp [huinv2, hu2inv]
+    rw [← this]; simp [hu2inv]
 
   obtain ⟨e, he⟩ := WeierstrassCurve.exists_addEquiv_point_variableChange W γ
   let σ : W.toAffine.Point →+ W.toAffine.Point := (castPt hW).toAddMonoidHom.comp e.toAddMonoidHom
@@ -212,7 +212,7 @@ theorem solution
     obtain ⟨h', he'⟩ := he x y h
     show xco (castPt hW (e (Point.some x y h))) = _
     rw [xco_castPt, he', xco_some]
-    simp [hγdef, huinv2, hu2inv]
+    simp [hγdef, hu2inv]
   have hσ0 : ∀ P : W.toAffine.Point, σ P = 0 ↔ P = 0 := fun P =>
     ⟨fun h0 => by
       have : castPt hW (e P) = castPt hW (e 0) := by rw [map_zero, map_zero]; exact h0
@@ -269,7 +269,7 @@ theorem solution
       rw [hb] at h
       exact h
     by_contra hcon
-    push_neg at hcon
+    push Not at hcon
 
     have heig : ∀ T : W.toAffine.Point, (p : ℤ) • T = 0 → ∃ a : ℤ, σ T = a • T := by
       intro T hpT

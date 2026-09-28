@@ -180,8 +180,7 @@ theorem solution
     intro c e γ
     ext i
     fin_cases i <;>
-      simp [Matrix.vecMul, dotProduct, Fin.sum_univ_two, Matrix.SpecialLinearGroup.map_apply_coe,
-        RingHom.mapMatrix_apply, Matrix.map_apply]
+      simp [Matrix.vecMul, dotProduct, Fin.sum_univ_two,         ]
   have hrow_slash : ∀ (c : ZMod M) (γ : SL(2, ℤ)), γ ∈ CongruenceSubgroup.Gamma0 M →
       S c ∣[(4 : ℤ)] γ = S (c * ((γ 0 0 : ℤ) : ZMod M)) := by
     intro c γ hγ
@@ -229,7 +228,7 @@ theorem solution
     fun c => C • lift (c : ZMod M)
   have hRcoe : ∀ c : (ZMod M)ˣ, (⇑(R c) : ℍ → ℂ) = C • S c := fun c => by
     simp only [R]
-    rw [ModularForm.IsGLPos.coe_smul, hlift]
+    rw [FunLike.coe_smul, hlift]
   refine ⟨R, fun c => ?_, fun c γ hγ => ?_⟩
   ·
     refine eisRc_isIntegralQExp_of_apply_eq M hM c (R c) fun z => ?_

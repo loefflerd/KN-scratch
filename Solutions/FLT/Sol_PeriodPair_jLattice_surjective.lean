@@ -108,7 +108,7 @@ def kw_E4cube_sub_E6sq : ModularForm 𝒮ℒ 12 := kw_E4cube - kw_E6sq
 
 @[scoped simp] theorem kw_E4cube_sub_E6sq_apply (τ : ℍ) :
     kw_E4cube_sub_E6sq τ = E₄ τ ^ 3 - E₆ τ ^ 2 := by
-  simp [kw_E4cube_sub_E6sq, ModularForm.sub_apply]
+  simp [kw_E4cube_sub_E6sq]
 
 private theorem kw_qExpansion_E4cube :
     qExpansion 1 (kw_E4cube : ℍ → ℂ) = qExpansion 1 (E₄ : ℍ → ℂ) ^ 3 := by
@@ -128,7 +128,7 @@ private theorem kw_qExpansion_E4cube_sub_E6sq :
       = qExpansion 1 (E₄ : ℍ → ℂ) ^ 3 - qExpansion 1 (E₆ : ℍ → ℂ) ^ 2 := by
   rw [show (kw_E4cube_sub_E6sq : ℍ → ℂ) = (kw_E4cube : ℍ → ℂ) - (kw_E6sq : ℍ → ℂ) from
       rfl,
-    ModularFormClass.qExpansion_sub one_pos one_mem_strictPeriods_SL,
+    ModularForm.qExpansion_sub one_pos one_mem_strictPeriods_SL,
     kw_qExpansion_E4cube, kw_qExpansion_E6sq]
 
 private theorem kw_E4_coeff_zero : (qExpansion 1 (E₄ : ℍ → ℂ)).coeff 0 = 1 :=
@@ -185,7 +185,7 @@ theorem kw_exists_smul_discriminant_eq_E4cube_sub_E6sq :
 
   have hpt : ∀ τ : ℍ, E₄ τ ^ 3 - E₆ τ ^ 2 = c * discriminant τ := fun τ => by
     have h := DFunLike.congr_fun hc τ
-    simp only [CuspForm.smul_apply, CuspForm.coe_discriminant, smul_eq_mul,
+    simp only [smul_apply, CuspForm.coe_discriminant, smul_eq_mul,
       kw_E4cube_sub_E6sq_cuspForm_apply] at h
     exact h.symm
 
@@ -195,7 +195,7 @@ theorem kw_exists_smul_discriminant_eq_E4cube_sub_E6sq :
       exact_mod_cast congrArg DFunLike.coe hc.symm
     have := kw_E4cube_sub_E6sq_coeff_one
     rw [show (kw_E4cube_sub_E6sq : ℍ → ℂ) = (kw_E4cube_sub_E6sq_cuspForm : ℍ → ℂ) from rfl,
-      hfun, ModularFormClass.qExpansion_smul one_pos one_mem_strictPeriods_SL,
+      hfun, ModularForm.qExpansion_smul one_pos one_mem_strictPeriods_SL,
       PowerSeries.coeff_smul, smul_eq_mul, CuspForm.coe_discriminant] at this
     exact this
 
@@ -469,7 +469,7 @@ theorem kw_riemannZeta_six : riemannZeta 6 = (π : ℂ) ^ 6 / 945 := by
     rw [bernoulli_eq_bernoulli'_of_ne_one (by norm_num), hb6]
 
   have h := riemannZeta_two_mul_nat (k := 3) (by norm_num)
-  simp only [show 2 * 3 = 6 from rfl, Nat.reduceMul, Nat.cast_ofNat, hb,
+  simp only [show 2 * 3 = 6 from rfl, Nat.cast_ofNat, hb,
     show (6 : ℕ).factorial = 720 from by decide] at h
   rw [show (2 * (3 : ℂ) : ℂ) = (6 : ℂ) by ring] at h
   push_cast at h

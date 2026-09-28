@@ -449,7 +449,7 @@ theorem qExpansion_eq_of_hasSum (X : ℍ → ℂ) (hmd : MDifferentiable 𝓘(�
     · have hw' : 0 < im (w + N) := by simp [hw]
       simp only [comp_apply, ofComplex_apply_of_im_pos hw', ofComplex_apply_of_im_pos hw]
       have hq : qq N ⟨w + N, hw'⟩ = qq N ⟨w, hw⟩ := by
-        simp only [qq, UpperHalfPlane.coe_mk]
+        simp only [qq]
         have hN : (N : ℂ) ≠ 0 := Nat.cast_ne_zero.mpr (NeZero.ne N)
         rw [show 2 * (π : ℂ) * Complex.I * (w + N) / N = 2 * π * Complex.I * w / N + 2 * π * Complex.I by
           field_simp, Complex.exp_add, Complex.exp_two_pi_mul_I, mul_one]

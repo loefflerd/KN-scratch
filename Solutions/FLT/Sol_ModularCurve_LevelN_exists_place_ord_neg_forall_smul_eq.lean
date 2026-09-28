@@ -116,7 +116,7 @@ def ordB (h : ℝ) (G : ℍ → ℂ) : ℕ := (analyticOrderAt (cuspFunction h G
 
 theorem ordB_cast (hG : Good h G) (hh : 0 < h) (hG0 : G ≠ 0) :
     (ordB h G : ℕ∞) = analyticOrderAt (cuspFunction h G) 0 :=
-  ENat.coe_toNat (hG.analyticOrderAt_ne_top hh hG0)
+  ENat.natCast_toNat (hG.analyticOrderAt_ne_top hh hG0)
 
 theorem ordB_mul (hh : 0 < h) (h₁ : Good h G₁) (h₂ : Good h G₂) (h₁0 : G₁ ≠ 0) (h₂0 : G₂ ≠ 0) :
     ordB h (G₁ * G₂) = ordB h G₁ + ordB h G₂ := by
@@ -365,7 +365,7 @@ theorem jAnalytic_smul (γ : SL(2, ℤ)) (τ : ℍ) : jAnalytic (γ • τ) = jA
   field_simp
 
 def precomp (g : SL(2, ℤ)) : (ℍ → ℂ) →ₐ[ℂ] (ℍ → ℂ) :=
-  Pi.algHom ℂ (fun _ : ℍ => ℂ) (fun τ => Pi.evalAlgHom ℂ (fun _ : ℍ => ℂ) (g • τ))
+  AlgHom.pi (fun τ => Pi.evalAlgHom ℂ (fun _ : ℍ => ℂ) (g • τ))
 
 omit [NeZero N] in
 @[scoped simp]

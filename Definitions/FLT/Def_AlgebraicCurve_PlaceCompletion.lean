@@ -95,7 +95,7 @@ theorem kw_ffgc_uniformContinuous_withValMapAlgebraMap :
     rw [ne_eq, Valuation.restrict_eq_zero_iff, hx₀v]
     exact hc0
   refine ⟨Units.mk0 _ hδ0, fun x hx => ?_⟩
-  simp only [Set.mem_setOf_eq, Units.val_mk0] at hx ⊢
+  simp only [Set.mem_ofPred_eq, Units.val_mk0] at hx ⊢
   rw [Valuation.restrict_lt_iff, hx₀v] at hx
 
   rw [Valuation.restrict_lt_iff_lt_embedding, kw_ffgc_valued_withValMapAlgebraMap F W x]
@@ -429,7 +429,7 @@ theorem kwHgfV352_valued_algebraMap_adicCompletion (v : Place K E) (x : E) :
     (K := E) v.heightOneSpectrum x
   first
     | exact h
-    | (rw [IsDedekindDomain.HeightOneSpectrum.algebraMap_adicCompletion]; exact h)
+
 
 namespace Place
 

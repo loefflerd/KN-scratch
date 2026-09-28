@@ -2284,7 +2284,6 @@ theorem solution (N : ℕ) [NeZero N]
     Nat.card {v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N) // v.ord (jBar N) = 1} = nuThree N :=
   ModularCurve.natCard_ord_jBar_eq_one_eq_nuThree N h1 hcount
 
-#print axioms solution
 
 end S_ModularCurve_natCard_ord_jBar_eq_one_eq_nuThree
 end P2MW

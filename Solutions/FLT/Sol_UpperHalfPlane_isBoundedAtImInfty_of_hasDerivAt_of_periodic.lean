@@ -108,7 +108,7 @@ theorem isBoundedAtImInfty_of_hasDerivAt_of_periodic {h : ℝ} (hh : 0 < h) {u v
     intro σ
     have := ((hv σ).sub (hG σ)).sub ((hasDerivAt_id (σ : ℂ)).const_mul L)
     convert this using 1
-    all_goals first | rfl | simp | (funext z; simp)
+    all_goals first | rfl | simp
   have hconst : ∀ τ : ℍ, v τ - G ↑τ - L * ↑τ = v I - G ↑I - L * ↑I := by
     intro τ
     have := apply_eq_apply_of_hasDerivAt_zero hD τ I
@@ -177,7 +177,6 @@ theorem solution {h : ℝ} (hh : 0 < h) {u v : UpperHalfPlane → ℂ}
     UpperHalfPlane.IsBoundedAtImInfty v :=
   UpperHalfPlane.PrimBddAux.isBoundedAtImInfty_of_hasDerivAt_of_periodic hh hu_per hu_hol hu_bdd hv hv_per
 
-#print axioms solution
 
 end S_UpperHalfPlane_isBoundedAtImInfty_of_hasDerivAt_of_periodic
 end P2MW

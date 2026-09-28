@@ -33,7 +33,7 @@ theorem map_binarySubst_int (φ : ℤ →+* R) (M : Matrix (Fin 2) (Fin 2) ℤ) 
     MvPolynomial.map φ (binarySubst ℤ M P) = binarySubst R M (MvPolynomial.map φ P) := by
   have key : (MvPolynomial.map φ).comp (binarySubst ℤ M : MvPolynomial (Fin 2) ℤ →ₐ[ℤ] MvPolynomial (Fin 2) ℤ).toRingHom
       = (binarySubst R M : MvPolynomial (Fin 2) R →ₐ[R] MvPolynomial (Fin 2) R).toRingHom.comp (MvPolynomial.map φ) :=
-    MvPolynomial.ringHom_ext (fun a => by simp [binarySubst_C]) (fun j => by simp [binarySubst_X, map_sum])
+    MvPolynomial.ringHom_ext (fun a => by simp []) (fun j => by simp [binarySubst_X])
   exact RingHom.congr_fun key P
 
 def substCoeff (M : Matrix (Fin 2) (Fin 2) ℤ) (d d' : Fin 2 →₀ ℕ) : ℤ :=
@@ -334,7 +334,6 @@ theorem solution (n : ℕ) (Γ : Subgroup SL(2, ℤ)) :
   · rw [HeckeEis.ConjAux.conjH1par_apply, HeckeEis.ConjAux.pushH1par_mk]
   · rw [HeckeEis.ConjAux.conjH1par_apply, HeckeEis.ConjAux.conjH1par_apply, HeckeEis.ConjAux.pushH1par_cj_cj]
 
-#print axioms solution
 
 end S_HeckeEis_exists_coeffH1par_semilinearMap_starRingEnd
 end P2MW

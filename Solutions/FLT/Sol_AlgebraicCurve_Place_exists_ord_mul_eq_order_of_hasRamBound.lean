@@ -55,10 +55,7 @@ theorem order_map_algebraMap (c : K) : (φ (algebraMap K F c)).order = 0 := by
     | exact HahnSeries.algebraMap_apply
     | rw [HahnSeries.algebraMap_apply', IsScalarTower.algebraMap_apply K L (PowerSeries L),
         PowerSeries.algebraMap_eq, HahnSeries.ofPowerSeries_C]
-    | (rw [HahnSeries.algebraMap_apply']
-       have h2 : algebraMap K (PowerSeries L) c = PowerSeries.C (algebraMap K L c) := by
-         simp [IsScalarTower.algebraMap_apply K L (PowerSeries L)]
-       rw [h2, HahnSeries.ofPowerSeries_C])
+
   rw [φ.commutes, h, HahnSeries.order_C]
 
 def valuationSubring : ValuationSubring F where
@@ -233,7 +230,7 @@ theorem exists_nat_of_mem {x : F} (hx0 : x ≠ 0) (hx : x ∈ valuationSubring �
   obtain ⟨n, hn⟩ := hgen x hx0
   have hn0 : 0 ≤ n := by
     by_contra h
-    push_neg at h
+    push Not at h
     have : (φ x).order < 0 := by
       rw [hn]
       exact mul_neg_of_neg_of_pos (by exact_mod_cast h) hπpos

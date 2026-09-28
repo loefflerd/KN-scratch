@@ -80,7 +80,7 @@ theorem coe_eq_zero_iff {k : ℤ} (f : ModularForm Γ k) :
     (f : ℍ → ℂ) = 0 ↔ f = 0 := by
   constructor
   · intro h
-    exact DFunLike.coe_injective (h.trans (ModularForm.coe_zero).symm)
+    exact DFunLike.coe_injective (h.trans (FunLike.coe_zero).symm)
   · rintro rfl; rfl
 
 theorem eventually_ne_zero {k : ℤ} (f : ModularForm Γ k)
@@ -150,7 +150,7 @@ theorem qL_mul {a b : ℤ} (f : ModularForm Γ a)
 
 theorem qL_add {a : ℤ} (f g : ModularForm Γ a) :
     qL (f + g) = qL f + qL g := by
-  simp only [qL, ModularForm.coe_add,
+  simp only [qL, FunLike.coe_add,
     ModularForm.qExpansion_add one_pos (one_mem_strictPeriods hT.out), PowerSeries.coe_add]
 
 theorem qL_one : qL (1 : ModularForm Γ 0) = 1 := by
@@ -158,7 +158,7 @@ theorem qL_one : qL (1 : ModularForm Γ 0) = 1 := by
 
 theorem qL_const (c : ℂ) :
     qL (c • (1 : ModularForm Γ 0)) = algebraMap ℂ (LaurentSeries ℂ) c := by
-  rw [qL, ModularForm.IsGLPos.coe_smul,
+  rw [qL, FunLike.coe_smul,
     ModularForm.qExpansion_smul one_pos (one_mem_strictPeriods hT.out), ModularForm.qExpansion_one,
     Algebra.smul_def, mul_one, HahnSeries.algebraMap_apply']
 
@@ -169,7 +169,7 @@ theorem mul_ne_zero_of_ne_zero {a b : ℤ} (f : ModularForm Γ a)
   obtain ⟨w, hw⟩ := ((eventually_ne_zero f hf UpperHalfPlane.I).and
     (eventually_ne_zero g hg UpperHalfPlane.I)).exists
   have := congrArg (fun F : ModularForm Γ (a + b) => (F : ℍ → ℂ) w) hfg
-  simp only [ModularForm.coe_mul, Pi.mul_apply, ModularForm.coe_zero, Pi.zero_apply,
+  simp only [ModularForm.coe_mul, Pi.mul_apply, FunLike.coe_zero, Pi.zero_apply,
     mul_eq_zero] at this
   exact this.elim hw.1 hw.2
 
@@ -221,7 +221,7 @@ theorem realize_add_eventuallyEq {x y : LaurentSeries ℂ} (P : Pres Γ x) (Q : 
     realize_eventuallyEq Q τ, eventually_ne_zero_ofComplex P.h P.h_ne τ,
     eventually_ne_zero_ofComplex Q.h Q.h_ne τ] with z h1 h2 h3 hP hQ
   rw [Pi.add_apply, h2, h3, h1]
-  rw [ModularForm.coe_add, Pi.add_apply, ModularForm.coe_mul, ModularForm.coe_mul,
+  rw [FunLike.coe_add, Pi.add_apply, ModularForm.coe_mul, ModularForm.coe_mul,
     ModularForm.coe_mul, Pi.mul_apply, Pi.mul_apply, Pi.mul_apply, div_add_div _ _ hP hQ,
     mul_comm ((P.h : ℍ → ℂ) (ofComplex z)) ((Q.g : ℍ → ℂ) (ofComplex z))]
 
@@ -229,7 +229,7 @@ theorem realize_const_eventuallyEq (c : ℂ) (τ : ℍ) :
     (fun z : ℂ => realizeOf Γ (algebraMap ℂ (LaurentSeries ℂ) c) (ofComplex z)) =ᶠ[𝓝[≠] (τ : ℂ)]
       fun _ => c := by
   filter_upwards [realize_eventuallyEq (Pres.const Γ c) τ] with z h1
-  rw [h1, ModularForm.IsGLPos.coe_smul, ModularForm.one_coe_eq_one]
+  rw [h1, FunLike.coe_smul, ModularForm.one_coe_eq_one]
   simp
 
 theorem realize_smul_eventuallyEq {x : LaurentSeries ℂ} (P : Pres Γ x)

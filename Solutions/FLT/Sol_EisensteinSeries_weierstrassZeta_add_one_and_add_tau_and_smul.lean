@@ -203,7 +203,7 @@ lemma NotLat.add_intCast_mul {z : ℂ} (hz : NotLat τ z) (n : ℤ) : NotLat τ 
   intro v hv
   apply hz (v - ![n, 0])
   simp only [Pi.sub_apply, Matrix.cons_val_zero, Matrix.cons_val_one, sub_zero, Int.cast_sub,
-    Int.cast_zero]
+    ]
   linear_combination hv
 
 variable (τ)

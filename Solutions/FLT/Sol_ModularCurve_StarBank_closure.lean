@@ -306,7 +306,6 @@ theorem solution {K : Type*} [Field K] [IsAlgClosed K] (p : ℕ) [Fact p.Prime]
     ∃ c : K, c ≠ 0 ∧ G.comp R ∣ Polynomial.C c * G ^ (p + 1) :=
   ModularCurve.StarBank.closure p ζ hstar hR hpress hnorm
 
-#print axioms solution
 
 end S_ModularCurve_StarBank_closure
 end P2MW

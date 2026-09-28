@@ -95,11 +95,11 @@ theorem isIntegralQExp_add {f g : ModularForm (Γᴴℝ M, H) k} {p r : PowerSer
     (hf : IsIntegralQExp (⇑f) p) (hg : IsIntegralQExp (⇑g) r) :
     IsIntegralQExp (⇑(f + g)) (p + r) := by
   unfold IsIntegralQExp at hf hg ⊢
-  rw [ModularForm.coe_add, qExpansion_add (analyticAt_form f) (analyticAt_form g), map_add, hf, hg]
+  rw [FunLike.coe_add, qExpansion_add (analyticAt_form f) (analyticAt_form g), map_add, hf, hg]
 
 theorem isIntegralQExp_zero : IsIntegralQExp (⇑(0 : ModularForm (Γᴴℝ M, H) k)) 0 := by
   unfold IsIntegralQExp
-  rw [ModularForm.coe_zero, qExpansion_zero, map_zero]
+  rw [FunLike.coe_zero, qExpansion_zero, map_zero]
 
 theorem qExpansion_intCast_smul (f : ModularForm (Γᴴℝ M, H) k) (n : ℤ) {p : PowerSeries ℤ}
     (hf : IsIntegralQExp (⇑f) p) :
@@ -109,7 +109,7 @@ theorem qExpansion_intCast_smul (f : ModularForm (Γᴴℝ M, H) k) (n : ℤ) {p
 theorem isIntegralQExp_intCast_smul (f : ModularForm (Γᴴℝ M, H) k) (n : ℤ) {p : PowerSeries ℤ}
     (hf : IsIntegralQExp (⇑f) p) : IsIntegralQExp (⇑((n : ℂ) • f)) (n • p) := by
   unfold IsIntegralQExp
-  rw [ModularForm.IsGLPos.coe_smul]
+  rw [FunLike.coe_smul]
   exact (qExpansion_intCast_smul f n hf).symm
 
 theorem smul_eq_smul_of_coe (f₁ f₂ : ModularForm (Γᴴℝ M, H) k) {p₁ p₂ : PowerSeries ℤ}
@@ -130,7 +130,7 @@ theorem eq_zero_of_isIntegralQExp_zero (f : ModularForm (Γᴴℝ M, H) k) (hf :
   intro n
   have h0 : qExpansion 1 (⇑f : ℍ → ℂ) = 0 := by rw [← hf, map_zero]
   show (qExpansion 1 ⇑f).coeff n = (qExpansion 1 ⇑(0 : ModularForm (Γᴴℝ M, H) k)).coeff n
-  rw [h0, ModularForm.coe_zero, qExpansion_zero]
+  rw [h0, FunLike.coe_zero, qExpansion_zero]
 
 end QExp
 
@@ -299,7 +299,7 @@ theorem tRed_eq_zero_of_red_eq_zero (D : IDatum M H w) (γ : SL(2, ℤ)) (hγ : 
   have hf0 : D.f = 0 := eq_zero_of_isIntegralQExp_zero D.f (hp0 ▸ D.hp)
   have ht : (trans D γ hγ).p = 0 := by
     apply map_intCast_injective
-    rw [(trans D γ hγ).hp, trans_f, hf0, ModularForm.coe_zero, SlashAction.zero_slash, smul_zero,
+    rw [(trans D γ hγ).hp, trans_f, hf0, FunLike.coe_zero, SlashAction.zero_slash, smul_zero,
       map_zero, qExpansion_zero]
   rw [tRed, ht, intSeriesC_zero, smul_zero]
 
@@ -412,7 +412,7 @@ theorem tRed_add (D E : IDatum M H w) (γ : SL(2, ℤ)) (hγ : γ ∈ Congruence
   let T : IDatum M H w := (texp E γ hγ) • trans D γ hγ + (texp D γ hγ) • trans E γ hγ
   have hT : (⇑T.f : ℍ → ℂ) =
       ((texp D γ hγ * texp E γ hγ : ℤ) : ℂ) • ((⇑(D + E).f : ℍ → ℂ) ∣[w] γ) := by
-    simp only [T, IDatum.add_f', IDatum.zsmul_f', ModularForm.coe_add, ModularForm.IsGLPos.coe_smul,
+    simp only [T, IDatum.add_f', IDatum.zsmul_f', FunLike.coe_add, FunLike.coe_smul,
       trans_f, SlashAction.add_slash, smul_add, smul_smul]
     push_cast
     rw [mul_comm ((texp E γ hγ : ℤ) : ℂ)]
@@ -470,7 +470,7 @@ theorem exists_intCast_eq_coeff_intSeriesC (p : PowerSeries ℤ) (n : ℤ) :
         rw [Nat.cast_zero, neg_zero, show (0 : ℤ) = ((0 : ℕ) : ℤ) from rfl, intSeriesC,
           HahnSeries.ofPowerSeries_apply_coeff, PowerSeries.coeff_map, eq_intCast]⟩
     · refine ⟨0, ?_⟩
-      rw [Int.cast_zero, intSeriesC, HahnSeries.ofPowerSeries_apply, HahnSeries.embDomain_notin_range]
+      rw [Int.cast_zero, intSeriesC, HahnSeries.ofPowerSeries_apply, HahnSeries.embDomain_of_notMem_range]
       rintro ⟨a, ha⟩
       simp only [Nat.castOrderEmbedding_apply] at ha
       omega
@@ -1080,7 +1080,7 @@ theorem cast_sgn (w : ℤ) : ((sgn w : ℤ) : ℂ) = (-1 : ℂ) ^ w := by
 theorem tRed_neg_one (D : IDatum M H w) (h1 : (-1 : SL(2, ℤ)) ∈ CongruenceSubgroup.Gamma0 M) :
     tRed K D (-1) h1 = ((sgn w : ℤ) : K) • intSeriesC K D.p := by
   have hE : (⇑((sgn w) • D).f : ℍ → ℂ) = ((1 : ℤ) : ℂ) • ((⇑D.f : ℍ → ℂ) ∣[w] (-1 : SL(2, ℤ))) := by
-    rw [IDatum.zsmul_f', ModularForm.IsGLPos.coe_smul, Int.cast_one, one_smul, slash_neg_one, cast_sgn]
+    rw [IDatum.zsmul_f', FunLike.coe_smul, Int.cast_one, one_smul, slash_neg_one, cast_sgn]
   rw [tRed_eq_of D (-1) h1 1 one_ne_zero _ hE, IDatum.zsmul_p', intSeriesC_zsmul]
   simp
 

@@ -70,7 +70,7 @@ theorem solution (M : ℕ) (hM : 0 < M) {k : ℤ} (F : ModularForm 𝒮ℒ k) (h
     exact_mod_cast hlt
   have hcoeff : (qExpansion 1 F).coeff n ≠ 0 := by
     have := PowerSeries.coeff_order hq1
-    rwa [← hn, ENat.toNat_coe] at this
+    rwa [← hn, ENat.toNat_natCast] at this
 
   have hper := periodic_comp_ofComplex F one_mem_strictPeriods_SL
   have : Fact (IsCusp OnePoint.infty 𝒮ℒ) := ⟨(𝒮ℒ).isCusp_of_mem_strictPeriods one_pos

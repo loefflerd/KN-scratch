@@ -303,14 +303,12 @@ p2m_reactivate "P2MW.S_ModularCurve_PhiGen_aeval_jq_intCoeffs_descent.ModularCur
 end
 p2m_reactivate "P2MW.S_ModularCurve_PhiGen_aeval_jq_intCoeffs_descent.ModularCurve.PhiGen P2MW.S_ModularCurve_PhiGen_aeval_jq_intCoeffs_descent.ModularCurve"
 
-#print axioms ModularCurve.PhiGen.aeval_jq_intCoeffs_descent
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_aeval_jq_intCoeffs_descent.ModularCurve _root_.ModularCurve.PhiGen _root_.P2MW.S_ModularCurve_PhiGen_aeval_jq_intCoeffs_descent.ModularCurve.PhiGen in
 
 theorem solution (P : Polynomial ℚ) (hP : IntCoeffs (Polynomial.aeval jq P)) (k : ℕ) : ∃ z : ℤ, P.coeff k = (z : ℚ) :=
   ModularCurve.PhiGen.aeval_jq_intCoeffs_descent P hP k
 
-#print axioms solution
 
 end S_ModularCurve_PhiGen_aeval_jq_intCoeffs_descent
 end P2MW

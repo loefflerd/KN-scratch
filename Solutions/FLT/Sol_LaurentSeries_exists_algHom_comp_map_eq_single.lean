@@ -301,7 +301,6 @@ theorem solution {K F : Type*} [Field K] [IsAlgClosed K] [CharZero K]
       (∀ x : F, (φ' x).order = (φ x).order) ∧ φ' f = single (φ f).order 1 :=
   LaurentSeries.exists_algHom_comp_map_eq_single φ f hf
 
-#print axioms solution
 
 end S_LaurentSeries_exists_algHom_comp_map_eq_single
 end P2MW

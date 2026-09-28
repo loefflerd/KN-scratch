@@ -120,7 +120,7 @@ theorem coeff_qExpansion_eisensteinOdd (χ : DirichletCharacter ℂ L) (n : ℕ)
       exact hE.2.2 n (Nat.pos_of_ne_zero hn)
   · have hdef : eisensteinOdd L χ = 0 := by
       simp only [eisensteinOdd, dif_neg (fun h : χ.Odd ∧ χ.IsPrimitive => hodd h.1)]
-    rw [if_neg hodd, hdef, ModularForm.coe_zero, qExpansion_zero, map_zero]
+    rw [if_neg hodd, hdef, FunLike.coe_zero, qExpansion_zero, map_zero]
 
 omit hL hprim in
 theorem qExpansion_oddEisensteinSum :
@@ -242,7 +242,7 @@ theorem ModularForm.exists_weightOne_qExpansion_coeff_eq_card_filter_of_forall_i
   have hφ : (L.totient : ℂ) ≠ 0 := Nat.cast_ne_zero.mpr (Nat.totient_pos.mpr (NeZero.pos L)).ne'
   have hL0 : (L : ℂ) ≠ 0 := Nat.cast_ne_zero.mpr (NeZero.ne L)
   refine ⟨((2 * m : ℂ) / L.totient) • oddEisensteinSum L, ?_, ?_⟩
-  · rw [ModularForm.IsGLPos.coe_smul,
+  · rw [FunLike.coe_smul,
       ModularForm.qExpansion_smul one_pos (one_mem_strictPeriods_Gamma1 L) _ (oddEisensteinSum L),
       map_smul, smul_eq_mul]
     have h0 := coeff_zero_oddEisensteinSum L hL hprim
@@ -261,7 +261,7 @@ theorem ModularForm.exists_weightOne_qExpansion_coeff_eq_card_filter_of_forall_i
     rw [hX, div_eq_iff (mul_ne_zero two_ne_zero hL0)]
     exact hmc'.symm
   · intro n hn
-    rw [ModularForm.IsGLPos.coe_smul,
+    rw [FunLike.coe_smul,
       ModularForm.qExpansion_smul one_pos (one_mem_strictPeriods_Gamma1 L) _ (oddEisensteinSum L),
       map_smul, smul_eq_mul]
     have h1 := coeff_pos_oddEisensteinSum L hprim hn

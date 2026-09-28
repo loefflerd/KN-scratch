@@ -393,7 +393,6 @@ theorem solution {F : Type*} [Field F] [DecidableEq F] [IsAlgClosed F]
         @WeierstrassCurve.Affine.AbelTheorem F _ _ W g :=
   D5S.main_impl
 
-#print axioms solution
 
 end S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_abelTheorem
 end P2MW

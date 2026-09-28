@@ -288,7 +288,7 @@ theorem order_le_of_identity {p q d : ℂ → ℂ} {n m : ℕ} {C : ℕ → ℂ 
   have : ((6 * n * k + 6 : ℕ) : ℕ∞) ≤ ((6 * n * k : ℕ) : ℕ∞) := by
     rw [← hL, heq, analyticOrderAt_neg]
     exact hsum
-  have := ENat.coe_le_coe.mp this
+  have := ENat.natCast_le_natCast.mp this
   omega
 
 end ANb
@@ -779,7 +779,6 @@ theorem solution (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ)) [Γ.Fin
       _ = (Cf * Q) ^ 2 := by ring
   exact (pow_le_pow_iff_left₀ hPnn (mul_nonneg hCf0 hQnn) two_ne_zero).mp hsq
 
-#print axioms solution
 
 end
 end S_ModularCurve_eventually_norm_slash_le_mul_of_isIntegral_adjoin_jqModC_inv_sq

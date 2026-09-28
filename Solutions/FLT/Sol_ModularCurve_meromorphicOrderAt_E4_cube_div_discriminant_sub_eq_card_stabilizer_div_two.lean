@@ -102,11 +102,9 @@ lemma E₆_I : E₆ UpperHalfPlane.I = 0 := by
 lemma denom_TinvS_ρ : denom (↑(ModularGroup.T⁻¹ * ModularGroup.S) : GL (Fin 2) ℝ) ρ = (ρ : ℂ) := by
   rw [ModularGroup.denom_apply]
   have h10 : (ModularGroup.T⁻¹ * ModularGroup.S) 1 0 = 1 := by
-    change ((ModularGroup.T⁻¹ * ModularGroup.S : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) 1 0 = 1
     rw [Matrix.SpecialLinearGroup.coe_mul, ModularGroup.coe_T_inv, ModularGroup.coe_S]
     simp
   have h11 : (ModularGroup.T⁻¹ * ModularGroup.S) 1 1 = 0 := by
-    change ((ModularGroup.T⁻¹ * ModularGroup.S : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) 1 1 = 0
     rw [Matrix.SpecialLinearGroup.coe_mul, ModularGroup.coe_T_inv, ModularGroup.coe_S]
     simp
   rw [h10, h11]
@@ -504,7 +502,7 @@ lemma case_E₄_eq_zero {τ : ℍ} (h4 : E₄ τ = 0) :
   have hk1 : k = 1 := by
     simp only [nsmul_eq_mul] at hrel
     have : ((2 * k + 1 : ℕ) : ℕ∞) = ((3 * k : ℕ) : ℕ∞) := by push_cast; exact_mod_cast hrel
-    have := ENat.coe_inj.mp this
+    have := ENat.natCast_inj.mp this
     omega
   refine ⟨?_, ?_⟩
   · rw [hordF, hk1]; rfl
@@ -544,7 +542,7 @@ lemma case_E₆_eq_zero {τ : ℍ} (h6 : E₆ τ = 0) :
   have hk1 : k = 1 := by
     simp only [nsmul_eq_mul] at hrel
     have : ((k + 1 : ℕ) : ℕ∞) = ((2 * k : ℕ) : ℕ∞) := by push_cast; exact_mod_cast hrel
-    have := ENat.coe_inj.mp this
+    have := ENat.natCast_inj.mp this
     omega
   refine ⟨?_, ?_⟩
   · rw [hordF, hk1]; rfl

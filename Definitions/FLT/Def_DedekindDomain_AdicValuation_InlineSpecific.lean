@@ -35,7 +35,7 @@ private lemma intValuation_eq_coe_neg_multiplicity {A : Type*} [CommRing A] [IsD
   have hnb : Ideal.span {a} ≠ ⊥ := by
     rwa [ne_eq, Ideal.span_singleton_eq_bot]
 
-  rw [intValuation_if_neg _ hnz, count_associates_factors_eq hnb v.isPrime v.ne_bot]
+  rw [intValuation_if_neg _ hnz, Ideal.count_associates_factors_eq hnb v.isPrime v.ne_bot]
   nth_rw 1 [← normalize_eq v.asIdeal]
   congr
   symm
@@ -135,7 +135,7 @@ lemma emultiplicity_eq_of_valuation_eq_ofAdd {a : A} {k : ℕ}
   simp only [intValuation_if_neg _ hnz, WithZero.exp, ofAdd_neg, WithZero.coe_inv, inv_inj,
     WithZero.coe_inj, EmbeddingLike.apply_eq_iff_eq, Nat.cast_inj] at hv
   rw [← hv, UniqueFactorizationMonoid.emultiplicity_eq_count_normalizedFactors v.irreducible hnb,
-    count_associates_factors_eq hnb v.isPrime v.ne_bot, normalize_eq]
+    Ideal.count_associates_factors_eq hnb v.isPrime v.ne_bot, normalize_eq]
 
 lemma exists_adicValued_mul_sub_le {a b : A} {γ : WithZero (Multiplicative ℤ)} (hγ : γ ≠ 0)
     (hle : γ ≤ v.intValuation a)
@@ -156,11 +156,11 @@ lemma exists_adicValued_mul_sub_le {a b : A} {γ : WithZero (Multiplicative ℤ)
   have hm : emultiplicity v.asIdeal (Ideal.span {a}) ≤ n :=
     le_of_eq_of_le
       (emultiplicity_eq_of_valuation_eq_ofAdd v <| intValuation_eq_coe_neg_multiplicity v hnz)
-      (ENat.coe_le_coe.mpr hle)
+      (ENat.natCast_le_natCast.mpr hle)
   have hb : b ∈ v.asIdeal ^ multiplicity v.asIdeal (Ideal.span {a}) := by
     rwa [← intValuation_le_pow_iff_mem, ← intValuation_eq_coe_neg_multiplicity _ hnz]
 
-  rw [← irreducible_pow_sup_of_ge hnb (irreducible v) n hm] at hb
+  rw [← Ideal.irreducible_pow_sup_of_ge hnb (irreducible v) n hm] at hb
 
   obtain ⟨x, hx, z, hz, hxz⟩ := Submodule.mem_sup.mp hb
   obtain ⟨y, hy⟩ := Ideal.mem_span_singleton'.mp hz
@@ -259,7 +259,7 @@ theorem closureAlgebraMapIntegers_eq_integers :
     · use a
       rfl
     · apply hγ
-      simp only [sub_zero, WithVal.equiv_symm_apply, Set.mem_setOf_eq]
+      simp only [sub_zero, WithVal.equiv_symm_apply, Set.mem_ofPred_eq]
       rwa [← (valueGroup₀_equiv_withZeroMulInt_strictMono _).lt_iff_lt,
         valueGroup₀_equiv_withZeroMulInt_restrict_apply_of_surjective
         (valuedAdicCompletion_surjective K v)]

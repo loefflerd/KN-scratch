@@ -790,7 +790,7 @@ theorem frobeniusPushforwardGeomLevel_apply_of_notMem_range
     frobeniusPushforwardGeomLevel K N data hKr D v = 0 := by
   rw [show frobeniusPushforwardGeomLevel K N data hKr D
       = Finsupp.mapDomain (frobOnPlacesGeomLevel K N data hKr) D from rfl]
-  exact Finsupp.mapDomain_notin_range D v hv
+  exact Finsupp.mapDomain_of_notMem_range D v hv
 
 include data hKr in
 

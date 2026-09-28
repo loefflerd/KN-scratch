@@ -66,7 +66,6 @@ theorem solution (M : ℕ) [NeZero M] :
   have hle : ((Gamma1 M : Subgroup SL(2, ℤ)) : Subgroup (GL (Fin 2) ℝ)) ≤ 𝒮ℒ := Subgroup.map_le_range _ _
   exact ⟨restrictForm hle ModularForm.E₄, restrictForm hle ModularForm.E₆, isIntegralQExp_E4, isIntegralQExp_E6⟩
 
-#print axioms solution
 
 end S_ModularForm_exists_gamma1_isIntegralQExp_eisenstein_four_six
 end P2MW

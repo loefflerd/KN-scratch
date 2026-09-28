@@ -1,6 +1,6 @@
 import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
 import Mathlib.RingTheory.DedekindDomain.IntegralClosure
-import Mathlib.NumberTheory.RamificationInertia.Basic
+import Mathlib.RingTheory.RamificationInertia.Basic
 import Mathlib.RingTheory.DedekindDomain.Factorization
 import Mathlib.Algebra.Polynomial.Lifts
 
@@ -195,7 +195,7 @@ theorem finite_setOf_forall_mem_and_ord_pos {r₀ : R} (hr₀ : r₀ ≠ 0) :
   refine Finite.of_injective
     (fun w => (⟨centerHeightOneSpectrum R w.1 w.2.1, ?_⟩ :
       {p : HeightOneSpectrum R | p.asIdeal ∣ Ideal.span {r₀}})) ?_
-  · rw [Set.mem_setOf_eq, centerHeightOneSpectrum_asIdeal, Ideal.dvd_span_singleton]
+  · rw [Set.mem_ofPred_eq, centerHeightOneSpectrum_asIdeal, Ideal.dvd_span_singleton]
     exact (mem_center_iff_ord_pos w.1 w.2.1 hr₀).mpr w.2.2
   · intro w w' h
     have hcenter : centerHeightOneSpectrum R w.1 w.2.1
@@ -260,6 +260,43 @@ theorem maximalIdeal_ne_bot :
   intro h
   exact ValuationSubring.not_isField_of_ne_top F v.ne_top'
     (IsLocalRing.isField_iff_maximalIdeal_eq.mpr h)
+
+omit [Algebra K F'] [IsScalarTower K F F'] in
+theorem sum_ramificationIdx'_mul_inertiaDeg'_integralClosureAt :
+    ∑ P ∈ IsDedekindDomain.primesOverFinset
+        (IsLocalRing.maximalIdeal v.toValuationSubring) (integralClosureAt F' v),
+      Ideal.ramificationIdx' (IsLocalRing.maximalIdeal v.toValuationSubring) P *
+        Ideal.inertiaDeg' (IsLocalRing.maximalIdeal v.toValuationSubring) P =
+          Module.finrank F F' := by
+  classical
+  let p := IsLocalRing.maximalIdeal v.toValuationSubring
+  let S := integralClosureAt F' v
+  let e : {P // P ∈ IsDedekindDomain.primesOverFinset p S} ≃ p.primesOver S :=
+    Equiv.setCongr (IsDedekindDomain.coe_primesOverFinset (maximalIdeal_ne_bot v) S)
+  change (∑ P ∈ IsDedekindDomain.primesOverFinset p S,
+    p.ramificationIdx' P * p.inertiaDeg' P) = Module.finrank F F'
+  calc
+    _ = ∑ P : {P // P ∈ IsDedekindDomain.primesOverFinset p S},
+        p.ramificationIdx' P.1 * p.inertiaDeg' P.1 := by
+          rw [← Finset.sum_attach, Finset.univ_eq_attach]
+    _ = ∑ P : p.primesOver S,
+        P.1.ramificationIdx v.toValuationSubring * P.1.inertiaDeg v.toValuationSubring := by
+          apply Fintype.sum_equiv e
+          intro P
+          have hmem : P.1 ∈ p.primesOver S := (e P).2
+          let : P.1.IsPrime := hmem.1
+          let : P.1.LiesOver p := hmem.2
+          let : P.1.IsMaximal :=
+            (inferInstance : P.1.IsPrime).isMaximal
+              (Ideal.ne_bot_of_mem_primesOver (maximalIdeal_ne_bot v) hmem)
+          change p.ramificationIdx' P.1 * p.inertiaDeg' P.1 =
+            P.1.ramificationIdx v.toValuationSubring * P.1.inertiaDeg v.toValuationSubring
+          rw [Ideal.ramificationIdx'_eq_ramificationIdx p P.1 (maximalIdeal_ne_bot v),
+            Ideal.inertiaDeg'_eq_inertiaDeg]
+    _ = Module.finrank v.toValuationSubring S :=
+      Ideal.sum_ramification_inertia_eq_finrank p S
+    _ = Module.finrank F F' :=
+      IsIntegralClosure.rank v.toValuationSubring F F' S
 
 end Setup
 
@@ -459,7 +496,7 @@ def fiberOver : Finset (Place K F') :=
 
 @[simp]
 theorem mem_fiberOver {w : Place K F'} : w ∈ v.fiberOver F' ↔ w.restrict F = v := by
-  rw [fiberOver, Set.Finite.mem_toFinset, Set.mem_setOf_eq]
+  rw [fiberOver, Set.Finite.mem_toFinset, Set.mem_ofPred_eq]
 
 theorem restrict_mem_fiberOver (w : Place K F') : w ∈ (w.restrict F).fiberOver F' :=
   (mem_fiberOver _).mpr rfl
@@ -508,4 +545,3 @@ end Place
 end AlgebraicCurve
 
 end
-

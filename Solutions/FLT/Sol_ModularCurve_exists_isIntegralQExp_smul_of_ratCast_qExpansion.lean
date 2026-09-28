@@ -221,7 +221,7 @@ theorem isBdd_mul (f : ModularForm Γ₁(M) k) (m : ℕ) {kE : ℤ} (E : Modular
     rw [← hHF_coe]; exact SlashInvariantFormClass.periodic_comp_ofComplex HF (one_mem_strictPeriods M)
   have hbdH : IsBoundedAtImInfty H := by
     have := (isBoundedAtImInfty_slash f 1).mul (ModularFormClass.bdd_at_infty E)
-    first | exact this | simpa only [SlashAction.slash_one, IsBoundedAtImInfty] using this | simpa only [SlashAction.slash_one] using this
+    first | exact this | simpa only [SlashAction.slash_one, IsBoundedAtImInfty] using this
   have hmdΔ : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) (Δ : ℍ → ℂ) := by
     rw [← CuspForm.coe_discriminant]; exact CuspForm.discriminant.holo'
   have hmdG : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) G := by

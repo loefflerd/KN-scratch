@@ -158,7 +158,6 @@ theorem solution {ℓ : ℕ} [Fact ℓ.Prime] (hℓ5 : 5 ≤ ℓ) :
     ¬ (ℓ : ℤ) ∣ (bernoulli (ℓ - 1)).num :=
   ModularCurve.StarBank.eisInt_not_dvd_num hℓ5
 
-#print axioms solution
 
 end S_ModularCurve_StarBank_eisInt_not_dvd_num
 end P2MW

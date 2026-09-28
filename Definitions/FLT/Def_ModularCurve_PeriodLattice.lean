@@ -144,9 +144,9 @@ theorem range_cuspHeckeGen : Set.range (cuspHeckeGen N) =
   constructor
   · rintro ⟨ℓ, rfl⟩
     by_cases h : (ℓ : ℕ) ∣ N
-    · rw [Set.mem_setOf_eq, cuspHeckeGen_of_dvd N ℓ h]
+    · rw [Set.mem_ofPred_eq, cuspHeckeGen_of_dvd N ℓ h]
       exact CuspForm.heckeULin_mem_heckeGenerators ℓ.prop h (Set.notMem_empty _)
-    · rw [Set.mem_setOf_eq, cuspHeckeGen_of_not_dvd N ℓ h]
+    · rw [Set.mem_ofPred_eq, cuspHeckeGen_of_not_dvd N ℓ h]
       exact CuspForm.heckeTLin_mem_heckeGenerators ℓ.prop h (Set.notMem_empty _)
   · rintro (⟨ℓ, hℓ, hℓN, -, hx⟩ | ⟨q, hqN, hq, -, hx⟩)
     · refine ⟨⟨ℓ, hℓ⟩, Subtype.ext ?_⟩

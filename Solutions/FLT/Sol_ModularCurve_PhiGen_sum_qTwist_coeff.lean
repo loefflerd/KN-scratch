@@ -636,7 +636,6 @@ p2m_open "ModularCurve~coeffEmb_qExpand" in open _root_.P2MW.S_ModularCurve_PhiG
 theorem solution {K : Type*} [Field K] [Algebra ℚ K] (ℓ : ℕ) (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) ℓ) (f : LaurentSeries K) (k : ℤ) : (∑ b ∈ Finset.range ℓ, qTwist (ζ ^ b) f).coeff k = if (ℓ : ℤ) ∣ k then (ℓ : K) * f.coeff k else 0 :=
   ModularCurve.PhiGen.sum_qTwist_coeff ℓ ζ hζ f k
 
-#print axioms solution
 
 end S_ModularCurve_PhiGen_sum_qTwist_coeff
 end P2MW

@@ -323,14 +323,12 @@ end ModularCurve
 
 end
 
-#print axioms ModularCurve.PhiGen.evalAtJ_injective
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_PhiGenDescends_c_eq_zero.ModularCurve _root_.ModularCurve.PhiGen _root_.P2MW.S_ModularCurve_PhiGen_PhiGenDescends_c_eq_zero.ModularCurve.PhiGen in
 
 theorem solution {K : Type*} [Field K] [Algebra ℚ K] {ℓ : ℕ} [hℓ : Fact (Nat.Prime ℓ)] {ζ : Kˣ} {c : ℕ → LaurentSeries ℚ} (hc : PhiGenDescends ℓ ζ c) {k : ℕ} (hk : ℓ + 1 < k) : c k = 0 :=
   ModularCurve.PhiGen.PhiGenDescends.c_eq_zero hc hk
 
-#print axioms solution
 
 end S_ModularCurve_PhiGen_PhiGenDescends_c_eq_zero
 end P2MW

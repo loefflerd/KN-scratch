@@ -255,7 +255,6 @@ theorem solution (L : Type*) [Field L] [Algebra ℚ L] (N : ℕ) [NeZero N]
         coeffEmb_mem_laurentBaseChange L (jqd_mem_full N (dvd_refl N))⟩ = y :=
   ModularCurve.exists_algHom_of_isRoot L N data c y hc hy
 
-#print axioms solution
 
 end S_ModularCurve_exists_algHom_of_isRoot
 end P2MW

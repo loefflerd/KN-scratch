@@ -34,7 +34,6 @@ theorem solution
   · exact ModularForm.exists_linearIndependent_gamma1_dimFormula_le_card_of_even M hM k hk hke
   · exact ModularForm.exists_linearIndependent_gamma1_dimFormula_le_card_of_odd M hM k hk hko
 
-#print axioms solution
 
 end S_ModularForm_exists_linearIndependent_gamma1_dimFormula_le_card
 end P2MW

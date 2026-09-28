@@ -492,7 +492,6 @@ theorem solution {F : Type*} [Field F] (W : WeierstrassCurve.Affine F) :
           algebraMap W.CoordinateRing W.FunctionField r ∈ v.toValuationSubring) → v = vInf :=
   D5S.exists_infinitePlace_deg_eq_one_impl W
 
-#print axioms solution
 
 end S_WeierstrassCurve_Affine_exists_infinitePlace_deg_eq_one
 end P2MW

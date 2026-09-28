@@ -515,7 +515,6 @@ open _root_.ModularCurve _root_.P2MW.S_ModularCurve_nonempty_modularPolynomialDa
 theorem solution (N : ℕ) [NeZero N] (hsf : Squarefree N) (hN : 1 < N) : Nonempty (ModularPolynomialData N) :=
   ModularCurve.nonempty_modularPolynomialData_of_squarefree N hsf hN
 
-#print axioms solution
 
 end S_ModularCurve_nonempty_modularPolynomialData_of_squarefree
 end P2MW

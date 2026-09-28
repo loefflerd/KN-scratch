@@ -44,7 +44,7 @@ theorem constantsAreBase {K F : Type*} [Field K] [Field F] [Algebra K F] [IsAlgC
     have := (mem_riemannRochSpace_iff.mp hf v).resolve_left hf0; simpa using this
   obtain ⟨Df, hDord, hDdeg⟩ := HasPrincipalDivisors.exists_divisor (K := K) (F := F) f hf0
   have hdiv : ∀ v : Place K F, v.ord f = 0 := by
-    by_contra hne; push_neg at hne; obtain ⟨v, hv⟩ := hne
+    by_contra hne; push Not at hne; obtain ⟨v, hv⟩ := hne
     refine absurd hDdeg (ne_of_gt ?_)
     rw [Divisor.degree_eq_sum_support]
     refine Finset.sum_pos' (fun w _ => mul_nonneg (by rw [hDord w]; exact hord w)

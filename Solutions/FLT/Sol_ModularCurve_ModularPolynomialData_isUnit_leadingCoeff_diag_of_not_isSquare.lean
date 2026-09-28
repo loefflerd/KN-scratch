@@ -726,7 +726,6 @@ p2m_open "ModularCurve~coeffEmb_qExpand" in open _root_.P2MW.S_ModularCurve_Modu
 theorem solution (N : ℕ) [NeZero N] (hN : ¬ IsSquare N) (data : ModularCurve.ModularPolynomialData N) : IsUnit (data.Φ.eval₂ (RingHom.id (Polynomial ℤ)) Polynomial.X).leadingCoeff :=
   ModularCurve.ModularPolynomialData.isUnit_leadingCoeff_diag_of_not_isSquare N hN data
 
-#print axioms solution
 
 end S_ModularCurve_ModularPolynomialData_isUnit_leadingCoeff_diag_of_not_isSquare
 end P2MW

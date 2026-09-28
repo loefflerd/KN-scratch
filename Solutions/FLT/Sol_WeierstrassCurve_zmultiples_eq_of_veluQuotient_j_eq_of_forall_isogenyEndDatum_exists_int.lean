@@ -62,7 +62,7 @@ theorem cmm5_dp_natCard_ker_comp {A B C : Type*} [AddCommGroup A] [AddCommGroup 
         (AddMonoidHom.codRestrict (f.domRestrict (AddMonoidHom.ker (g.comp f)))
           (AddMonoidHom.ker g) hmem))
       = Nat.card (AddMonoidHom.ker f) := by
-    rw [AddMonoidHom.ker_codRestrict, AddMonoidHom.ker_restrict]
+    rw [AddMonoidHom.ker_codRestrict, AddMonoidHom.ker_domRestrict]
     exact Nat.card_congr (AddSubgroup.addSubgroupOfEquivOfLe hle).toEquiv
 
   have hφsurj : Function.Surjective

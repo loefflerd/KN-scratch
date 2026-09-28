@@ -163,7 +163,6 @@ theorem solution {ℓ : ℕ} [Fact ℓ.Prime] (hℓ5 : 5 ≤ ℓ)
       ∧ ∀ m, 1 ≤ m → (ℓ : ℤ) ∣ T.coeff m :=
   ModularCurve.StarBank.eisInt_series hℓ5 hk
 
-#print axioms solution
 
 end S_ModularCurve_StarBank_eisInt_series
 end P2MW

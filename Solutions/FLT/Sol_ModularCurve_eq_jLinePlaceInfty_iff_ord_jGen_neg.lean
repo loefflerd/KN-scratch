@@ -70,14 +70,14 @@ theorem solution (v : AlgebraicCurve.Place ℚ ↥ℚ⟮ModularCurve.jq⟯) :
   constructor
   · intro hv
     rw [injective_congr hv]
-    simp [Finsupp.single_apply, h01, h01.symm]
+    simp [h01.symm]
   · intro hlt
     by_contra hne
     have hne' : v' ≠ placeInfty ℚ := fun h' => hne (by rw [h'])
     rcases eq_or_ne v' (placeOfPoint ℚ 0) with h0 | h0
     · subst h0
-      simp [Finsupp.single_apply, h01, h01.symm] at hlt
-    · simp [Finsupp.single_apply, hne', hne'.symm, h0, h0.symm] at hlt
+      simp [h01] at hlt
+    · simp [hne', h0] at hlt
 
 end S_ModularCurve_eq_jLinePlaceInfty_iff_ord_jGen_neg
 end P2MW

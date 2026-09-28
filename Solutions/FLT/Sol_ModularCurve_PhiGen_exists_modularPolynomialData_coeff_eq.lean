@@ -193,7 +193,6 @@ open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_exists_modularPolynom
 theorem solution {K : Type*} [Field K] [Algebra ℚ K] {ℓ : ℕ} [hℓ : Fact (Nat.Prime ℓ)] {ζ : Kˣ} {c : ℕ → LaurentSeries ℚ} (hc : PhiGenDescends ℓ ζ c) (hint : ∀ k, IntCoeffs (c k)) (hmem : ∀ k, c k ∈ Algebra.adjoin ℚ {jq}) : ∃ data : ModularPolynomialData ℓ, ∀ k, evalAtJ (data.Φ.coeff k) = c k :=
   ModularCurve.PhiGen.exists_modularPolynomialData_coeff_eq hc hint hmem
 
-#print axioms solution
 
 end S_ModularCurve_PhiGen_exists_modularPolynomialData_coeff_eq
 end P2MW

@@ -99,10 +99,10 @@ theorem coords_autPt {W : WeierstrassCurve L} (v : Lˣ) (hγ : (⟨v, 0, 0, 0⟩
 abbrev W0 (L : Type*) [Field L] : WeierstrassCurve L := ⟨0, 0, 0, 0, 1⟩
 
 theorem W0_Δ : (W0 L).Δ = -432 := by
-  simp only [W0, WeierstrassCurve.Δ, WeierstrassCurve.b₂, WeierstrassCurve.b₄, WeierstrassCurve.b₆, WeierstrassCurve.b₈]; ring
+  simp only [WeierstrassCurve.Δ, WeierstrassCurve.b₂, WeierstrassCurve.b₄, WeierstrassCurve.b₆, WeierstrassCurve.b₈]; ring
 
 theorem W0_c₄ : (W0 L).c₄ = 0 := by
-  simp only [W0, WeierstrassCurve.c₄, WeierstrassCurve.b₂, WeierstrassCurve.b₄]; ring
+  simp only [WeierstrassCurve.c₄, WeierstrassCurve.b₂, WeierstrassCurve.b₄]; ring
 
 theorem coords_neg (P : (W0 L).toAffine.Point) :
     coords (-P) = (coords P).map (fun q => (q.1, -q.2)) := by
@@ -318,7 +318,7 @@ def actC3 (u : Lˣ) (hu : (u : L) ^ 3 = 1) (N : ℕ) : MulAction (Multiplicative
     have h21' : (2 : ZMod 3) + 1 = 0 := by decide
     have h22 : (2 : ZMod 3) + 2 = 1 := by decide
     rcases zmod3_cases i with rfl | rfl | rfl <;> rcases zmod3_cases j with rfl | rfl | rfl <;>
-      simp [act, hτ, hτ', h10, h20, h21, h11, h12, h21', h22]
+      simp [act, hτ, h10, h20, h21, h11, h12, h21', h22]
 
 theorem natCard_C3 : Nat.card (Multiplicative (ZMod 3)) = 3 := by
   simp [Nat.card_eq_fintype_card, ZMod.card]

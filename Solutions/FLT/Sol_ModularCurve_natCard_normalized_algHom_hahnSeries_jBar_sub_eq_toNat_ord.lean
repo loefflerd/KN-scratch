@@ -145,7 +145,7 @@ private theorem order_puiseuxAlgEmb {e : ℕ} (he : 0 < e) {z : LaurentSeries K}
       exact (div_le_div_iff_of_pos_right he').mpr (by exact_mod_cast hle)
     · exfalso
       apply hne
-      apply HahnSeries.embDomain_notin_range
+      apply HahnSeries.embDomain_of_notMem_range
       intro hcon
       apply hmem
       obtain ⟨k, hk⟩ := hcon
@@ -569,7 +569,6 @@ theorem solution (N : ℕ) [NeZero N]
       (w.ord (jBar N - algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) j₀)).toNat :=
   B2Peo.natCard_normalized_algHom_hahnSeries_jBar_sub_eq_toNat_ord N j₀ S hS hsum hP1
 
-#print axioms solution
 
 end S_ModularCurve_natCard_normalized_algHom_hahnSeries_jBar_sub_eq_toNat_ord
 end P2MW

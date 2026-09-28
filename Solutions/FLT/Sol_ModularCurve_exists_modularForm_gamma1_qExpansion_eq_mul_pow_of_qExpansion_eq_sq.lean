@@ -54,12 +54,12 @@ theorem le_of_add_eq_two {e x y : ℕ∞} (h : e + (x + x) = y + y) : x ≤ y :=
   have hx : x ≠ ⊤ := by
     rintro rfl
     simp only [add_top] at h
-    exact ENat.coe_ne_top (y + y) (by push_cast; exact h.symm)
+    exact ENat.natCast_ne_top (y + y) (by push_cast; exact h.symm)
   lift x to ℕ using hx
   have he : e ≠ ⊤ := by
     rintro rfl
     simp only [top_add] at h
-    exact ENat.coe_ne_top (y + y) (by push_cast; exact h.symm)
+    exact ENat.natCast_ne_top (y + y) (by push_cast; exact h.symm)
   lift e to ℕ using he
   have h' : e + (x + x) = y + y := by exact_mod_cast h
   exact_mod_cast (show x ≤ y by omega)
@@ -184,7 +184,6 @@ theorem solution
     ring
   exact sub_eq_zero.mp ((mul_eq_zero.mp key).resolve_right hHh0)
 
-#print axioms solution
 
 end
 end S_ModularCurve_exists_modularForm_gamma1_qExpansion_eq_mul_pow_of_qExpansion_eq_sq

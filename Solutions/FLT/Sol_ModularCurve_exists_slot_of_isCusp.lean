@@ -1175,7 +1175,6 @@ p2m_alias "P2MW.S_ModularCurve_exists_slot_of_isCusp.ModularCurve.exists_slot_of
 end CD
 p2m_reactivate "P2MW.S_ModularCurve_exists_slot_of_isCusp.Row2.CD P2MW.S_ModularCurve_exists_slot_of_isCusp.Row2 P2MW.S_ModularCurve_exists_slot_of_isCusp.Row3.CD P2MW.S_ModularCurve_exists_slot_of_isCusp.Row3"
 
-#check @ModularCurve.exists_slot_of_isCusp
 
 open ModularCurve AlgebraicCurve in
 
@@ -1192,7 +1191,6 @@ theorem solution (K : Type*) [Field K] [Algebra ℚ K] (N : ℕ) [NeZero N] (ζ 
         ∀ x, w.ord x * ((a * Nat.gcd a (N / a) : ℕ) : ℤ) = (ι x).order :=
   ModularCurve.exists_slot_of_isCusp K N ζ hζ w hc
 
-#print axioms solution
 
 end
 end S_ModularCurve_exists_slot_of_isCusp

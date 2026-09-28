@@ -258,7 +258,7 @@ theorem orderTop_twist (χ : Multiplicative ℚ →* Kˣ) (z : HahnSeries ℚ K)
 
     first
       | rw [HahnSeries.orderTop_of_ne_zero hz, HahnSeries.orderTop_of_ne_zero hz', WithTop.coe_eq_coe]
-      | rw [HahnSeries.orderTop_of_ne hz, HahnSeries.orderTop_of_ne hz', WithTop.coe_eq_coe]
+
     apply le_antisymm
     · exact Set.IsWF.min_le _ _ (by rw [support_twist]; exact Set.IsWF.min_mem _ _)
     · exact Set.IsWF.min_le _ _ (by rw [← support_twist χ z]; exact Set.IsWF.min_mem _ _)
@@ -280,7 +280,7 @@ theorem solution
 
   obtain ⟨μ, hμ⟩ := HasEnoughRootsOfUnity.exists_primitiveRoot K q.den
   obtain ⟨ζ, rfl⟩ : IsUnit μ := by
-    first | exact hμ.isUnit q.den_nz | exact hμ.isUnit hb
+    first | exact hμ.isUnit q.den_nz
   have hζ : IsPrimitiveRoot ζ q.den := IsPrimitiveRoot.coe_units_iff.mp hμ
   have hζ1 : ζ ^ q.den = 1 := hζ.pow_eq_one
 

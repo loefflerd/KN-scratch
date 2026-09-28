@@ -1911,7 +1911,6 @@ theorem solution {K : Type*} [Field K] (M : ℕ) [NeZero M]
       {x : LaurentSeries K | ∃ (d' : ℕ) (_ : NeZero d'), d' ∣ M ∧ x = jqNModC K d'} :=
   ModularCurve.jqNModC_prime_not_mem_fullC M p hpM ζ hζ hall hbase
 
-#print axioms solution
 
 end S_ModularCurve_jqNModC_prime_not_mem_fullC
 end P2MW

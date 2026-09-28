@@ -60,7 +60,6 @@ end
 
 theorem solution : ModularCurve.ModularPolynomialFamily := ModularCurve.modularPolynomialFamily'
 
-#print axioms solution
 
 end S_ModularCurve_modularPolynomialFamily
 end P2MW

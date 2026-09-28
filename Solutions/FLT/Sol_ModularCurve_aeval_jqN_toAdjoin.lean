@@ -39,14 +39,12 @@ end ModularCurve
 end
 
 set_option pp.universes true in
-#check @ModularCurve.finrank_adjoin_jqN_eq
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_aeval_jqN_toAdjoin.ModularCurve ModularCurve.PhiGen in
 
 theorem solution {N : ℕ} [NeZero N] (data : ModularPolynomialData N) : Polynomial.aeval (jqN N) data.toAdjoin = 0 :=
   ModularCurve.aeval_jqN_toAdjoin data
 
-#print axioms solution
 
 end S_ModularCurve_aeval_jqN_toAdjoin
 end P2MW

@@ -86,7 +86,7 @@ def eCubeSubESq : ModularForm 𝒮ℒ 12 :=
 lemma eCubeSubESq_qExpansion :
     qExpansion 1 eCubeSubESq = qExpansion 1 E₄ * qExpansion 1 E₄ * qExpansion 1 E₄ -
       qExpansion 1 E₆ * qExpansion 1 E₆ := by
-  simp only [eCubeSubESq, ModularForm.coe_sub, ModularForm.coe_mcast,
+  simp only [eCubeSubESq, FunLike.coe_sub, ModularForm.coe_mcast,
     ModularForm.qExpansion_sub one_pos one_mem_strictPeriods_SL,
     ModularForm.qExpansion_pow one_pos one_mem_strictPeriods_SL]
   ring
@@ -95,7 +95,7 @@ lemma discriminant_eq_smul_eCubeSubESq :
     ModularForm.discriminant = (1 / 1728 : ℂ) • eCubeSubESq := by
   ext z
   have h := discriminant_eq_E₄_cube_sub_E₆_sq z
-  simp only [Pi.smul_apply, eCubeSubESq, ModularForm.coe_sub, Pi.sub_apply,
+  simp only [Pi.smul_apply, eCubeSubESq, FunLike.coe_sub, Pi.sub_apply,
     ModularForm.coe_mcast, ModularForm.coe_pow, Pi.pow_apply, smul_eq_mul]
   rw [h]
   ring
@@ -178,10 +178,10 @@ theorem levelOne_ratSpan (k : ℤ) :
   rintro f -
   set c₀ := (qExpansion 1 f).coeff 0 with hc₀
   have hcoe_sub : (⇑(f - c₀ • Ek) : ℍ → ℂ) = ⇑f - ⇑(c₀ • Ek) := by
-    simp [ModularForm.coe_sub]
+    simp []
   have hcusp : (qExpansion 1 (⇑(f - c₀ • Ek) : ℍ → ℂ)).coeff 0 = 0 := by
     rw [hcoe_sub, ModularForm.qExpansion_sub one_pos one_mem_strictPeriods_SL,
-      ModularForm.IsGLPos.coe_smul, ModularForm.qExpansion_smul one_pos one_mem_strictPeriods_SL,
+      FunLike.coe_smul, ModularForm.qExpansion_smul one_pos one_mem_strictPeriods_SL,
       map_sub, PowerSeries.coeff_smul, hEkdef, ModularForm.qExpansion_mcast,
       E_qExpansion_coeff_zero hm3 hm2, ← hc₀]
     simp
@@ -266,10 +266,10 @@ theorem modularForm_eq_poly_j_mul_discriminant_pow (m : ℕ) (F : ModularForm �
         E_qExpansion_coeff_zero (by norm_num) ⟨2, rfl⟩, one_pow]
     set c₀ := (qExpansion 1 F).coeff 0 with hc₀
     have hcoe_sub : (⇑(F - c₀ • G) : ℍ → ℂ) = ⇑F - ⇑(c₀ • G) :=
-      ModularForm.coe_sub F (c₀ • G)
+      FunLike.coe_sub F (c₀ • G)
     have hcusp : (qExpansion 1 (⇑(F - c₀ • G) : ℍ → ℂ)).coeff 0 = 0 := by
       rw [hcoe_sub, ModularForm.qExpansion_sub one_pos one_mem_strictPeriods_SL,
-        ModularForm.IsGLPos.coe_smul, ModularForm.qExpansion_smul one_pos one_mem_strictPeriods_SL,
+        FunLike.coe_smul, ModularForm.qExpansion_smul one_pos one_mem_strictPeriods_SL,
         map_sub, PowerSeries.coeff_smul, hG0, ← hc₀]
       simp
     set F' : ModularForm 𝒮ℒ (12 * (m : ℤ)) :=
@@ -534,7 +534,7 @@ theorem j_surjective : Function.Surjective j := by
       c • CuspForm.toModularFormₗ CuspForm.discriminant with hFdef
   have hFapp : ∀ z : ℍ, Fc z = E₄ z ^ 3 - c * ModularForm.discriminant z := by
     intro z
-    rw [hFdef, ModularForm.sub_apply, ModularForm.IsGLPos.smul_apply, smul_eq_mul,
+    rw [hFdef, sub_apply, smul_apply, smul_eq_mul,
       CuspForm.toModularFormₗ_apply, congrFun CuspForm.coe_discriminant z,
       show (ModularForm.mcast (by decide) (E₄.pow 3) : ModularForm 𝒮ℒ 12) z = E₄ z ^ 3 from
         (congrFun (ModularForm.coe_pow E₄ 3) z).trans (Pi.pow_apply _ _ _)]
@@ -545,9 +545,9 @@ theorem j_surjective : Function.Surjective j := by
     show E₄ z ^ 3 / ModularForm.discriminant z = c
     rw [h0, mul_div_cancel_right₀ _ (ModularForm.discriminant_ne_zero z)]
   have hF0 : (qExpansion 1 Fc).coeff 0 = 1 := by
-    rw [hFdef, ModularForm.coe_sub,
+    rw [hFdef, FunLike.coe_sub,
       ModularForm.qExpansion_sub one_pos one_mem_strictPeriods_SL,
-      ModularForm.IsGLPos.coe_smul, ModularForm.qExpansion_smul one_pos one_mem_strictPeriods_SL,
+      FunLike.coe_smul, ModularForm.qExpansion_smul one_pos one_mem_strictPeriods_SL,
       map_sub, PowerSeries.coeff_smul, ModularForm.qExpansion_mcast,
       ModularForm.qExpansion_pow one_pos one_mem_strictPeriods_SL,
       PowerSeries.coeff_zero_eq_constantCoeff, map_pow,
@@ -843,7 +843,7 @@ lemma polyDiscForm_term_apply {m i : ℕ} (c : ℂ)
     (h : ((3 * i : ℕ) : ℤ) * 4 + 12 * ((m - i : ℕ) : ℤ) = 12 * (m : ℤ)) (τ : ℍ) :
     (c • ModularForm.mcast h ((E₄.pow (3 * i)).mul (discPowForm (m - i)))) τ =
       c * (E₄ τ ^ (3 * i) * CuspForm.discriminant τ ^ (m - i)) := by
-  rw [ModularForm.IsGLPos.smul_apply, smul_eq_mul,
+  rw [smul_apply, smul_eq_mul,
     congrFun (ModularForm.coe_mcast h _) τ,
     congrFun (ModularForm.coe_mul _ _) τ, Pi.mul_apply,
     congrFun (ModularForm.coe_pow E₄ (3 * i)) τ, Pi.pow_apply,
@@ -897,7 +897,7 @@ theorem qExpansion_polyDiscForm (m : ℕ) (P : Polynomial ℂ) :
       (fun i => PowerSeries.C (P.coeff i) * (qExpansion 1 E₄) ^ (3 * i) *
         (qExpansion 1 ModularForm.discriminant) ^ (m - i))]
   refine Finset.sum_congr rfl fun i _ => ?_
-  rw [ModularForm.IsGLPos.coe_smul,
+  rw [FunLike.coe_smul,
     ModularForm.qExpansion_smul one_pos one_mem_strictPeriods_SL,
     ModularForm.qExpansion_mcast,
     ModularForm.qExpansion_mul one_pos one_mem_strictPeriods_SL,

@@ -997,7 +997,6 @@ p2m_open "ModularCurve~coeffEmb_qExpand" in open _root_.P2MW.S_ModularCurve_jqN_
 theorem solution (M : ℕ) [NeZero M] (p : ℕ) [hp : Fact (Nat.Prime p)] (a : ℕ) (hF : jqN p ∉ modularFunctionFieldFull M) : jqN (p ^ (a + 2)) ∉ IntermediateField.adjoin ℚ ((modularFunctionFieldFull M : Set (LaurentSeries ℚ)) ∪ {x : LaurentSeries ℚ | ∃ i : ℕ, i ≤ a + 1 ∧ x = jqN (p ^ i)}) :=
   ModularCurve.jqN_pow_not_mem_adjoin_full M p a hF
 
-#print axioms solution
 
 end S_ModularCurve_jqN_pow_not_mem_adjoin_full
 end P2MW

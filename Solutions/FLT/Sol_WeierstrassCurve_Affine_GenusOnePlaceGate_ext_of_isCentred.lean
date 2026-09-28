@@ -61,8 +61,8 @@ theorem solution
       rw [Equiv.apply_symm_apply] at this
       first
         | exact this.symm
-        | (rw [← Point.zero_def]; exact this.symm)
-        | (rw [← Point.zero_def] at this; exact this.symm)
+
+
 
   cases g₁ with
   | mk e₁ d₁ =>

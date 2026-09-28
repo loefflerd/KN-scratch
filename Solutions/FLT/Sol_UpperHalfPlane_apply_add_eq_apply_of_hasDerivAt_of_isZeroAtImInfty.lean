@@ -106,7 +106,7 @@ theorem solution {h : ℝ} (hh : 0 < h) {g : UpperHalfPlane → ℂ}
   obtain ⟨G, hG, hGper⟩ := exists_periodic_primitive hh hper hhol hzero
   have hD : ∀ σ : ℍ, HasDerivAt (fun z => φ z - G z) 0 ↑σ := fun σ => by
     convert (hφ σ).sub (hG σ) using 1
-    all_goals first | rfl | simp | (funext z; simp)
+    all_goals first | rfl | simp
   have key := apply_eq_apply_of_hasDerivAt_zero hD (h +ᵥ τ) τ
   simp only [coe_vadd] at key
 

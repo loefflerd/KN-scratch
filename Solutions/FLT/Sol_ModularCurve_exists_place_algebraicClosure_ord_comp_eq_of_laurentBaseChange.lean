@@ -164,7 +164,7 @@ theorem solution
   have hwx : ∃ y : ↥(laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)), Ψ y ∉ P.toValuationSubring := by
     obtain ⟨f, hf⟩ := hP
     by_contra hall
-    push_neg at hall
+    push Not at hall
     apply hf
     have hf0 : Ψ f ≠ 0 := by
       intro h0; apply hf; rw [h0, Place.ord_zero]

@@ -317,7 +317,6 @@ open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_mem_range_coeffEmb_qE
 theorem solution {K : Type*} [Field K] [Algebra ℚ K] {ℓ : ℕ} [hℓ : Fact (Nat.Prime ℓ)] {f : LaurentSeries K} (h1 : f ∈ Set.range (ModularCurve.qExpand K ℓ)) (h2 : f ∈ Set.range (coeffEmb K)) : ∃ g : LaurentSeries ℚ, f = coeffEmb K (ModularCurve.qExpand ℚ ℓ g) :=
   ModularCurve.PhiGen.mem_range_coeffEmb_qExpand_of_mem_inter h1 h2
 
-#print axioms solution
 
 end S_ModularCurve_PhiGen_mem_range_coeffEmb_qExpand_of_mem_inter
 end P2MW

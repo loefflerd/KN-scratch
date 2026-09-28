@@ -525,7 +525,7 @@ def fiber (v : Place K F) : Finset (Place K F') :=
 @[simp]
 theorem mem_fiber {v : Place K F} {w : Place K F'} :
     w ∈ v.fiber F' ↔ w.restrict F = v := by
-  simp only [fiber, Set.Finite.mem_toFinset, Set.mem_setOf_eq]
+  simp only [fiber, Set.Finite.mem_toFinset, Set.mem_ofPred_eq]
 
 theorem restrict_mem_fiber (w : Place K F') : w ∈ (w.restrict F).fiber F' :=
   mem_fiber.mpr rfl

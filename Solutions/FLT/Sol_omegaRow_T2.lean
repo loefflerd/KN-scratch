@@ -211,7 +211,7 @@ theorem ψ𝔡_ne_zero : ψ 𝔡 ≠ 0 := by
   have h0 : (𝔡 : 𝒩) = 0 := (ψ_eq_zero_iff _).mp h
   have : ModularForm.discriminant UpperHalfPlane.I = 0 := by
     have := congrArg (fun f : 𝒩 => (f : ℍ → ℂ) UpperHalfPlane.I) h0
-    first | exact this | simpa using this | (simp at this; exact this)
+    first | exact this
   exact ModularForm.discriminant_ne_zero _ this
 
 theorem coeffEmb_jq : coeffEmb ℂ jq = jqModC ℂ := by
@@ -299,7 +299,7 @@ theorem order_le_of_identity {p q d : ℂ → ℂ} {n m : ℕ} {C : ℕ → ℂ 
   have : ((6 * n * k + 6 : ℕ) : ℕ∞) ≤ ((6 * n * k : ℕ) : ℕ∞) := by
     rw [← hL, heq, analyticOrderAt_neg]
     exact hsum
-  have := ENat.coe_le_coe.mp this
+  have := ENat.natCast_le_natCast.mp this
   omega
 
 end ANb
@@ -360,7 +360,7 @@ theorem rankinCohen_E4_E6 :
   have hZcoe : (Z : ℍ → ℂ) = (RC : ℍ → ℂ) := by
     first
     | rfl
-    | simp [Z, ModularForm.coe_mcast]
+
   have hZq : qExpansion 1 (Z : ℍ → ℂ) =
       PowerSeries.C (4 : ℂ) * qExpansion 1 ⇑ModularForm.E₄ *
           PowerSeries.mk (fun n : ℕ => (n : ℂ) * (qExpansion 1 ⇑ModularForm.E₆).coeff n)

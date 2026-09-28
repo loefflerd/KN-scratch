@@ -114,10 +114,7 @@ theorem thetaL_jqModC_ne_zero : thetaL ℂ (jqModC ℂ) ≠ 0 := by
 theorem ofPowerSeries_smul (a : ℂ) (p : PowerSeries ℂ) :
     HahnSeries.ofPowerSeries ℤ ℂ (a • p) = algebraMap ℂ (LaurentSeries ℂ) a * HahnSeries.ofPowerSeries ℤ ℂ p := by
   rw [PowerSeries.smul_eq_C_mul, map_mul]
-  congr 1 <;> first
-    | rfl
-    | (rw [HahnSeries.algebraMap_apply', PowerSeries.algebraMap_apply]; simp)
-    | simp [HahnSeries.algebraMap_apply', PowerSeries.algebraMap_apply]
+  congr 1
 
 end DimLBEven
 
@@ -201,12 +198,12 @@ theorem solution
         (laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))).val ((riemannRochSpace D).subtype v) := fun v => rfl
     have h3 : (((∑ i, g i • b i : ↥(riemannRochSpace D)) : ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) : LaurentSeries ℂ) =
         ∑ i, algebraMap ℂ (LaurentSeries ℂ) (g i) * (((b i : ↥(riemannRochSpace D)) : ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) : LaurentSeries ℂ) := by
-      rw [Submodule.coe_sum, AddSubmonoidClass.coe_finset_sum]
+      rw [Submodule.coe_sum, AddSubmonoidClass.coe_finsetSum]
       refine Finset.sum_congr rfl fun i _ => ?_
       rw [Submodule.coe_smul, IntermediateField.coe_smul]
       first
         | rw [Algebra.smul_def]
-        | (rw [← HahnSeries.C_mul_eq_smul, HahnSeries.C_eq_algebraMap])
+
     have hL : (((∑ i, g i • b i : ↥(riemannRochSpace D)) : ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) : LaurentSeries ℂ) * thetaL ℂ (jqModC ℂ) ^ m = 0 := by
       have h1 := congrArg (HahnSeries.ofPowerSeries ℤ ℂ) hq
       rw [map_sum, map_zero] at h1
@@ -226,10 +223,8 @@ theorem solution
     have h12 : (12 : ℤ) * d = 2 * m * μ - μ + 6 * cc := by
       rw [← hell, hRR]; linarith [hdeg, hgZ]
     zify [show 1 ≤ m + m by omega]
-    push_cast
     nlinarith [h12, hμZ]
 
-#print axioms solution
 
 end S_ModularForm_exists_linearIndependent_gamma1_dimFormula_le_card_of_even
 end P2MW

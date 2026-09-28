@@ -762,13 +762,13 @@ theorem map_negEquiv_zsmul_genericPoint (n : ℤ) :
 
 theorem negEquiv_mulPull_genericX' {n : ℤ} (h : MulGood W K n) :
     negEquiv W K (mulPull W K n (genericX W K)) = (n • genericPoint W K).xc := by
-  rw [mulPull_genericX' W K h, ← AlgEquiv.coe_algHom, ← Point.xc_map (W := W) (K := K),
+  rw [mulPull_genericX' W K h, ← AlgEquiv.coe_toAlgHom, ← Point.xc_map (W := W) (K := K),
     map_negEquiv_zsmul_genericPoint, Point.eq_some_xc_yc h.1, Point.neg_some, Point.xc_some, Point.xc_some]
 
 theorem negEquiv_mulPull_genericY' {n : ℤ} (h : MulGood W K n) :
     negEquiv W K (mulPull W K n (genericY W K)) =
       (W⁄(W⁄K).FunctionField).negY (n • genericPoint W K).xc (n • genericPoint W K).yc := by
-  rw [mulPull_genericY' W K h, ← AlgEquiv.coe_algHom, ← Point.yc_map (W := W) (K := K),
+  rw [mulPull_genericY' W K h, ← AlgEquiv.coe_toAlgHom, ← Point.yc_map (W := W) (K := K),
     map_negEquiv_zsmul_genericPoint]
   conv_lhs => rw [Point.eq_some_xc_yc h.1, Point.neg_some, Point.yc_some]
 

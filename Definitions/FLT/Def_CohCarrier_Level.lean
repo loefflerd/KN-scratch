@@ -96,14 +96,14 @@ def Gamma0Upper (ℓ : ℕ) : Subgroup SL(2, ℤ) where
   one_mem' := by simp
   mul_mem' := by
     intro a b ha hb
-    simp only [Set.mem_setOf_eq] at *
+    simp only [Set.mem_ofPred_eq] at *
     have h := (Matrix.two_mul_expl a.1 b.1).2.1
     simp only [coe_mul] at *
     rw [h]
     simp [ha, hb]
   inv_mem' := by
     intro a ha
-    simp only [Set.mem_setOf_eq] at *
+    simp only [Set.mem_ofPred_eq] at *
     rw [SL2_inv_expl a]
     simp only [cons_val_zero, cons_val_one, Int.cast_neg, neg_eq_zero] at *
     exact ha

@@ -256,7 +256,6 @@ theorem solution (K : Type*) [CommRing K] {ℓ : ℕ} [Fact ℓ.Prime]
         HahnSeries.ofPowerSeries ℤ K (PowerSeries.map (Int.castRingHom K) etaProd) ^ 24) :=
   ModularCurve.StarBank.delta_pow_ne K hpℓ γ
 
-#print axioms solution
 
 end S_ModularCurve_StarBank_delta_pow_ne
 end P2MW

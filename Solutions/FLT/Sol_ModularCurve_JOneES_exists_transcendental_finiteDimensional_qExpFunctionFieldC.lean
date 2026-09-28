@@ -319,7 +319,7 @@ theorem quotientFunc_smul_sub (c : ℂ) (q : (Cos Γ)) :
     obtain ⟨γ, hγ⟩ := r.2
     have hr : (r.val)⁻¹ = ((γ⁻¹ : SL(2, ℤ)) : GL (Fin 2) ℝ) := by rw [← hγ, ← map_inv]; rfl
     rw [hr, ← ModularForm.SL_slash, ← ModularForm.SL_slash, ← ModularForm.SL_slash,
-      ModularForm.coe_sub, IsGLPos.coe_smul, sub_eq_add_neg, SlashAction.add_slash,
+      FunLike.coe_sub, IsGLPos.coe_smul, sub_eq_add_neg, SlashAction.add_slash,
       SlashAction.neg_slash, ModularForm.SL_smul_slash, sub_eq_add_neg]
 
 theorem norm_smul_sub_apply (c : ℂ) (τ : ℍ) :
@@ -695,7 +695,7 @@ theorem add_mem_intFormRatiosC {a b : LaurentSeries ℚ} (ha : a ∈ intFormRati
   obtain ⟨k₁, f₁, g₁, pf₁, pg₁, hf₁, hg₁, hg₁0, rfl⟩ := ha
   obtain ⟨k₂, f₂, g₂, pf₂, pg₂, hf₂, hg₂, hg₂0, rfl⟩ := hb
   refine ⟨k₁ + k₂, f₁.mul g₂ + (g₁.mul f₂), g₁.mul g₂, pf₁ * pg₂ + pg₁ * pf₂, pg₁ * pg₂, ?_, ?_, ?_, ?_⟩
-  · rw [IsIntegralQExp, map_add, map_mul, map_mul, hf₁, hf₂, hg₁, hg₂, ModularForm.coe_add,
+  · rw [IsIntegralQExp, map_add, map_mul, map_mul, hf₁, hf₂, hg₁, hg₂, FunLike.coe_add,
       ModularForm.qExpansion_add one_pos (hper hT), ModularForm.coe_mul, ModularForm.coe_mul,
       ModularForm.qExpansion_mul_coe one_pos (hper hT), ModularForm.qExpansion_mul_coe one_pos (hper hT)]
   · rw [IsIntegralQExp, map_mul, hg₁, hg₂, ModularForm.coe_mul]
@@ -709,7 +709,7 @@ theorem neg_mem_intFormRatiosC {a : LaurentSeries ℚ} (ha : a ∈ intFormRatios
     -a ∈ intFormRatiosC ℚ Γ := by
   obtain ⟨k, f, g, pf, pg, hf, hg, hg0, rfl⟩ := ha
   refine ⟨k, -f, g, -pf, pg, ?_, hg, hg0, ?_⟩
-  · rw [IsIntegralQExp, map_neg, hf, ModularForm.coe_neg]
+  · rw [IsIntegralQExp, map_neg, hf, FunLike.coe_neg]
     exact (ModularForm.qExpansion_neg one_pos (hper hT) f).symm
   · rw [intSeriesC_neg, neg_div]
 
@@ -833,7 +833,7 @@ theorem exists_rat_relation {k : ℤ} (f g : ModularForm (Γ : Subgroup (GL (Fin
     apply hg0
     have : pg = 0 := by
       apply PowerSeries.map_injective (Int.castRingHom ℂ) Int.cast_injective
-      rw [hg, h0, ModularForm.coe_zero, qExpansion_zero, map_zero]
+      rw [hg, h0, FunLike.coe_zero, qExpansion_zero, map_zero]
     rw [this, intSeriesC_zero]
   have hk : 0 ≤ k := by
     by_contra hlt
@@ -852,7 +852,7 @@ theorem exists_rat_relation {k : ℤ} (f g : ModularForm (Γ : Subgroup (GL (Fin
     rwa [Ne, ModularForm.qExpansion_eq_zero_iff one_pos (hper hT)]
   have hg'ne : g' ≠ 0 := by
     intro h0
-    have : qExpansion 1 (g' : ℍ → ℂ) = 0 := by rw [h0, ModularForm.coe_zero, qExpansion_zero]
+    have : qExpansion 1 (g' : ℍ → ℂ) = 0 := by rw [h0, FunLike.coe_zero, qExpansion_zero]
     rw [hqg'] at this
     exact (mul_ne_zero (pow_ne_zero _ hqg) hqg) this
 

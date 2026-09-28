@@ -246,8 +246,8 @@ theorem uniformizer_mem : v.uniformizer ∈ v.toValuationSubring :=
 def simplePoleSubmodule : Submodule K F where
   carrier := {f | v.uniformizer * f ∈ v.toValuationSubring}
   add_mem' {f g} hf hg := by
-    simpa only [Set.mem_setOf_eq, mul_add] using add_mem hf hg
-  zero_mem' := by simpa only [Set.mem_setOf_eq, mul_zero] using zero_mem _
+    simpa only [Set.mem_ofPred_eq, mul_add] using add_mem hf hg
+  zero_mem' := by simpa only [Set.mem_ofPred_eq, mul_zero] using zero_mem _
   smul_mem' c f hf := by
     show v.uniformizer * (c • f) ∈ v.toValuationSubring
     rw [Algebra.smul_def, mul_left_comm]
@@ -344,8 +344,8 @@ variable (v : Place K F)
 def poleSubmodule (n : ℕ) : Submodule K F where
   carrier := {f | v.uniformizer ^ n * f ∈ v.toValuationSubring}
   add_mem' {f g} hf hg := by
-    simpa only [Set.mem_setOf_eq, mul_add] using add_mem hf hg
-  zero_mem' := by simpa only [Set.mem_setOf_eq, mul_zero] using zero_mem _
+    simpa only [Set.mem_ofPred_eq, mul_add] using add_mem hf hg
+  zero_mem' := by simpa only [Set.mem_ofPred_eq, mul_zero] using zero_mem _
   smul_mem' c f hf := by
     show v.uniformizer ^ n * (c • f) ∈ v.toValuationSubring
     rw [Algebra.smul_def, mul_left_comm]
@@ -1682,7 +1682,7 @@ theorem section_unique (v : Place K F)
   refine AlgHom.ext (fun a => ?_)
   obtain ⟨b, rfl⟩ := (residueFieldAdjoinRootEquiv v hint htop).surjective a
   have hb := DFunLike.congr_fun hcomp b
-  simpa only [AlgHom.comp_apply, AlgEquiv.coe_algHom] using hb
+  simpa only [AlgHom.comp_apply, AlgEquiv.coe_toAlgHom] using hb
 
 noncomputable def aCoeff (v : Place K F) (S : Lg37CompletionSection v)
     (n : ℕ) (x : lg37_completion v) : v.ResidueField :=

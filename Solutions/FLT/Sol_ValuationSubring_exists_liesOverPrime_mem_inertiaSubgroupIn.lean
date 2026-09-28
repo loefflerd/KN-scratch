@@ -302,7 +302,7 @@ theorem solution (𝔔 : Ideal (integralClosure ℤ (AlgebraicClosure ℚ))) [�
   rw [ValuationSubring.inertiaSubgroup, MonoidHom.mem_ker]
   ext r
   obtain ⟨a, rfl⟩ := IsLocalRing.residue_surjective r
-  rw [MulSemiringAction.toRingAut_apply, MulSemiringAction.toRingEquiv_apply,
+  rw [MulSemiringAction.toRingAut_apply, MulSemiringAction.toRingEquiv_apply_apply,
     ← IsLocalRing.ResidueField.residue_smul, RingAut.one_apply, IsLocalRing.residue_def,
     IsLocalRing.residue_def]
   apply Ideal.Quotient.eq.mpr

@@ -217,7 +217,7 @@ theorem ne_zero_of_notMem_nonunits {a : L} (ha : a ∉ A.nonunits) : a ≠ 0 := 
 
 theorem inv_mem_of_notMem_nonunits {a : L} (ha : a ∉ A.nonunits) : a⁻¹ ∈ A := by
   rw [mem_nonunits_iff_or] at ha
-  push_neg at ha
+  push Not at ha
   exact ha.2
 
 theorem inv_mem_nonunits_of_notMem {a : L} (ha : a ∉ A) : a⁻¹ ∈ A.nonunits :=
@@ -243,7 +243,7 @@ theorem mul_notMem_nonunits {a b : L} (ha : a ∉ A.nonunits) (hb : b ∉ A.nonu
 theorem inv_notMem_nonunits_of_notMem_nonunits {a : L} (ha : a ∈ A) (ha' : a ∉ A.nonunits) :
     a⁻¹ ∉ A.nonunits := by
   rw [mem_nonunits_iff_or]
-  push_neg
+  push Not
   exact ⟨inv_ne_zero (A.ne_zero_of_notMem_nonunits ha'), by rwa [inv_inv]⟩
 
 theorem one_add_notMem_nonunits {a : L} (ha : a ∈ A.nonunits) : 1 + a ∉ A.nonunits :=
@@ -398,8 +398,7 @@ theorem inv_X_mul_div_mem_nonunits {x y τ : L} (h : (W.map A.subtype).toAffine.
   have hy0 : y ≠ 0 := Y_ne_zero_of_X_notMem W h hx
   have key : x⁻¹ / τ = (y ^ 2 / x ^ 3) * ((x / y) / τ) * (x / y) := by
     first
-    | (field_simp; ring1)
-    | field_simp
+    | (field_simp)
   rw [key]
   refine A.mul_mem_nonunits (mul_mem ?_ ht) (X_div_Y_mem_nonunits W h hx)
   rw [show y ^ 2 / x ^ 3 = (x ^ 3 / y ^ 2)⁻¹ by rw [inv_div]]
@@ -421,7 +420,7 @@ theorem neg_formal_param_add {x y : L} (hy0 : y ≠ 0)
           - (W.map A.subtype).toAffine.a₃ * x) / (y * y') := by
     first
     | (field_simp; ring1)
-    | field_simp
+
   rw [key, div_eq_zero_iff]
   left
   linear_combination (-x) * hsum
@@ -815,7 +814,7 @@ theorem slope_div_intercept_estimate {x₁ y₁ x₂ y₂ τ : L}
         rw [hVU]
         first
         | (field_simp; ring1)
-        | field_simp
+
       rw [hℓν, hVsplit]
       refine A.mul_mem_nonunits hUinvA (A.nonunits.neg_mem
         (add_mem (add_mem (A.mul_mem_nonunits ?_ hs₂) (A.mul_mem_nonunits ht₁ hT₁))
@@ -840,7 +839,7 @@ theorem slope_div_intercept_estimate {x₁ y₁ x₂ y₂ τ : L}
             / (y₁ - (W.map A.subtype).toAffine.slope x₁ x₂ y₁ y₂ * x₁)) := by
     first
     | (field_simp; ring1)
-    | field_simp
+
   rw [hline]
   exact add_mem (inv_Y_div_mem_nonunits h₁ hx₁ ht₁) (A.mul_mem_nonunits ht₁ hℓν')
 
@@ -1013,8 +1012,7 @@ theorem add_formal_param_estimate {x₁ y₁ x₂ y₂ τ : L}
     have hν_alt : ν = y₃ - ℓ * x₃ := by linear_combination -hy₃_line
     have expand : (1 : L) / ν - ℓ / ν * (x₃ / y₃) = (y₃ - ℓ * x₃) / (ν * y₃) := by
       first
-      | (field_simp; ring1)
-      | field_simp
+      | (field_simp)
     have key : y₃⁻¹ = (1 : L) / ν - ℓ / ν * (x₃ / y₃) := by
       rw [expand, ← hν_alt, eq_div_iff (mul_ne_zero hν0 hy₃0), mul_comm ν y₃, ← mul_assoc,
         inv_mul_cancel₀ hy₃0, one_mul]
@@ -1097,7 +1095,7 @@ theorem formal_param_nsmul {x y : L} (h : (W.map A.subtype).toAffine.Nonsingular
               + (1 - (-(x / y)) / -(x / y)) := by
           first
           | (field_simp; ring1)
-          | field_simp
+
         rw [Nat.cast_succ, key]
         have h1 : (1 : L) - (-(x / y)) / -(x / y) = 0 := by
           rw [div_self hτ0]; ring
@@ -1139,7 +1137,7 @@ theorem formal_param_nsmul {x y : L} (h : (W.map A.subtype).toAffine.Nonsingular
             + ((-(x / y)) / -(x / y) - 1) := by
           first
           | (field_simp; ring1)
-          | field_simp
+
         rw [Nat.cast_succ, key]
         refine add_mem (add_mem hadd2 ?_) ?_
         · exact hcong
@@ -1235,4 +1233,3 @@ theorem fixed_of_mem_inertia_of_nsmul_eq_zero [DecidableEq L] {V : WeierstrassCu
   rwa [Affine.Point.some.injEq] at key
 
 end WeierstrassCurve
-

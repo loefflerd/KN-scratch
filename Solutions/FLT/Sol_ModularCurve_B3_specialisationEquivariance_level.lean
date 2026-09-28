@@ -192,7 +192,7 @@ theorem coeff_zero_ofPowerSeries (f : PowerSeries Qbar) :
 
 theorem coeff_ofPowerSeries_of_neg (f : PowerSeries Qbar) {q : ℚ} (hq : q < 0) :
     (ι f).coeff q = 0 := by
-  rw [HahnSeries.ofPowerSeries_apply, HahnSeries.embDomain_notin_range]
+  rw [HahnSeries.ofPowerSeries_apply, HahnSeries.embDomain_of_notMem_range]
   rintro ⟨n, hn⟩
   exact (not_le.mpr hq) (le_of_le_of_eq (Nat.cast_nonneg n) hn)
 
@@ -1358,7 +1358,7 @@ theorem monodromy_fixes_ofPowerSeries {m : H ≃ₐ[Qbar] H} (hm : m ∈ HahnSer
   rw [not_exists] at hn
   refine ha ?_
   rw [HahnSeries.ofPowerSeries_apply]
-  exact HahnSeries.embDomain_notin_range fun hmem => by
+  exact HahnSeries.embDomain_of_notMem_range fun hmem => by
     obtain ⟨n, hna⟩ := hmem
     exact hn n hna.symm
 

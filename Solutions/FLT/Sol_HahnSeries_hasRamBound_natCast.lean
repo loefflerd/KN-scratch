@@ -142,7 +142,6 @@ open _root_.HahnSeries _root_.P2MW.S_HahnSeries_hasRamBound_natCast.HahnSeries i
 theorem solution {K : Type*} [Field K] {e : ℕ} (n : ℕ) : HasRamBound e ((n : HahnSeries ℚ K)) :=
   HahnSeries.hasRamBound_natCast n
 
-#print axioms solution
 
 end S_HahnSeries_hasRamBound_natCast
 end P2MW

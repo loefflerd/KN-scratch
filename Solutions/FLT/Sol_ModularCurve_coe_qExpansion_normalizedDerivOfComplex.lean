@@ -229,8 +229,8 @@ private theorem coe_qExpansion_normalizedDerivOfComplex
   · have hL : ∀ φ : PowerSeries ℂ, ((φ : PowerSeries ℂ) : LaurentSeries ℂ).coeff k = 0 := by
       intro φ
       show (HahnSeries.ofPowerSeries ℤ ℂ φ).coeff k = 0
-      rw [HahnSeries.ofPowerSeries_apply, HahnSeries.embDomain_notin_range]
-      simp only [Set.mem_range, RelEmbedding.coe_mk, Function.Embedding.coeFn_mk, not_exists]
+      rw [HahnSeries.ofPowerSeries_apply, HahnSeries.embDomain_of_notMem_range]
+      simp only [Set.mem_range, not_exists]
       intro n hn
       simp only [Nat.castOrderEmbedding_apply] at hn
       omega
@@ -249,7 +249,6 @@ theorem solution (F : ℍ → ℂ) (hper : Function.Periodic (F ∘ UpperHalfPla
         ((UpperHalfPlane.qExpansion 1 F : PowerSeries ℂ) : LaurentSeries ℂ) :=
   ModularCurve.coe_qExpansion_normalizedDerivOfComplex F hper hhol hbdd
 
-#print axioms solution
 
 end S_ModularCurve_coe_qExpansion_normalizedDerivOfComplex
 end P2MW

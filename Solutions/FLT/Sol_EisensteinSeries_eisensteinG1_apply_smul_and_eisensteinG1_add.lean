@@ -32,7 +32,7 @@ lemma om_smul (γ : SL(2, ℤ)) (v : Fin 2 → ℤ) :
 lemma coe_smul_eq (γ : SL(2, ℤ)) :
     ((γ • τ : ℍ) : ℂ) = (((γ 0 0 : ℤ) : ℂ) * τ + ((γ 0 1 : ℤ) : ℂ)) / denom γ τ := by
   have := om_smul τ γ ![1, 0]
-  simp [om, Matrix.vecMul, Matrix.vec2_dotProduct] at this
+  simp [om, Matrix.vecMul] at this
   exact this
 
 lemma denom_eq (γ : SL(2, ℤ)) :
@@ -108,7 +108,7 @@ lemma NotLat.add_intCast_mul {z : ℂ} (hz : NotLat τ z) (n : ℤ) : NotLat τ 
   intro v hv
   apply hz (v - ![n, 0])
   simp only [Pi.sub_apply, Matrix.cons_val_zero, Matrix.cons_val_one, sub_zero, Int.cast_sub,
-    Int.cast_zero]
+    ]
   linear_combination hv
 
 variable (τ)

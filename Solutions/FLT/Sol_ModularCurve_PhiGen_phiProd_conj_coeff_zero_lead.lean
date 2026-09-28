@@ -386,14 +386,12 @@ end ModularCurve
 
 end
 
-#print axioms ModularCurve.PhiGen.phiProd_conj_coeff_eq_zero_of_le
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_phiProd_conj_coeff_zero_lead.ModularCurve _root_.ModularCurve.PhiGen _root_.P2MW.S_ModularCurve_PhiGen_phiProd_conj_coeff_zero_lead.ModularCurve.PhiGen in
 
 theorem solution {K : Type*} [Field K] [Algebra ℚ K] (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) ℓ) : ((phiProd ℓ (conj ℓ ζ)).coeff 0).coeff (-((ℓ * ℓ + ℓ : ℕ) : ℤ)) = 1 :=
   ModularCurve.PhiGen.phiProd_conj_coeff_zero_lead ℓ ζ hζ
 
-#print axioms solution
 
 end S_ModularCurve_PhiGen_phiProd_conj_coeff_zero_lead
 end P2MW

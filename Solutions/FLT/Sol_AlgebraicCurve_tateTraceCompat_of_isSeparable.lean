@@ -1469,7 +1469,7 @@ theorem kwF4R1V410a_exists_sub_mem_completionIdeal_pow (n : ℕ) (y : O_W) :
       WithZero.exp_ne_zero).preimage (continuous_sub_right y.val)
   have hy_mem : y.val ∈ {z : w.adicCompletion |
       Valued.v (z - y.val) ≤ WithZero.exp (-(n : ℤ))} := by
-    simp only [Set.mem_ofPred_eq, sub_self, _root_.map_zero]; exact WithZero.zero_le _
+    simp only [Set.mem_ofPred_eq, sub_self, _root_.map_zero]; exact zero_le
   have hmeet := mem_closure_iff.mp
     ((denseRange_algebraMap F w.heightOneSpectrum) y.val) _ hball_open hy_mem
 

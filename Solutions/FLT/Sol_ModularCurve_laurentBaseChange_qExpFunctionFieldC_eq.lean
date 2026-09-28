@@ -24,7 +24,7 @@ theorem ofPowerSeries_coeff_int {A : Type*} [CommRing A] (x : PowerSeries A) (k 
   split_ifs with h
   · obtain ⟨n, rfl⟩ := Int.eq_ofNat_of_zero_le h
     rw [Int.toNat_natCast, HahnSeries.ofPowerSeries_apply_coeff]
-  · rw [HahnSeries.ofPowerSeries_apply, HahnSeries.embDomain_notin_range]
+  · rw [HahnSeries.ofPowerSeries_apply, HahnSeries.embDomain_of_notMem_range]
     rintro ⟨n, hn⟩
     apply h
     rw [← hn]

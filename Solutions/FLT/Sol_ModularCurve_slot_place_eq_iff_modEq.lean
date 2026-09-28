@@ -254,7 +254,6 @@ theorem solution (K : Type*) [Field K] [Algebra ℚ K] (N : ℕ) [NeZero N] (ζ 
     w = w' ↔ a = a' ∧ b ≡ b' [MOD Nat.gcd a (N / a)] :=
   ModularCurve.slot_place_eq_iff_modEq K N ζ hζ a b ha a' b' ha' ι ι' hι₁ hι₂ hι'₁ hι'₂ w w' γ γ' hγ hγ' hw hw'
 
-#print axioms solution
 
 end S_ModularCurve_slot_place_eq_iff_modEq
 end P2MW

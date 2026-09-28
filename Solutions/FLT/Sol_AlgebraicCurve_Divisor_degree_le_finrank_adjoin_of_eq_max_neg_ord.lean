@@ -315,7 +315,7 @@ theorem solution
     rw [Fintype.linearIndependent_iff]
     intro φ hsum
     by_contra hex
-    push_neg at hex
+    push Not at hex
     obtain ⟨i₁, hφi₁⟩ := hex
     set supp := (Finset.univ : Finset ι).filter (fun i => φ i ≠ 0) with hsupp
     have hi₁supp : i₁ ∈ supp := Finset.mem_filter.mpr ⟨Finset.mem_univ _, hφi₁⟩
@@ -426,7 +426,7 @@ theorem solution
         simp [this]
     have hsum_O : (∑ i, (⟨_, hμψT_mem i⟩ : vv.toValuationSubring)) = 0 := by
       refine Subtype.ext ?_
-      simp only [AddSubmonoidClass.coe_finset_sum, ZeroMemClass.coe_zero]
+      simp only [AddSubmonoidClass.coe_finsetSum, ZeroMemClass.coe_zero]
       simp only [mul_assoc]
       rw [← Finset.mul_sum, ← Finset.mul_sum, hsumF, mul_zero, mul_zero]
     have hres_sum : ∑ i, IsLocalRing.residue _ (⟨_, hμψT_mem i⟩ : vv.toValuationSubring) = 0 := by

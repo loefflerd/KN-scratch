@@ -57,7 +57,7 @@ theorem solution :
   have hGB : (G : ℍ → ℂ) = (B : ℍ → ℂ) := by
     funext τ
     have := DFunLike.congr_fun hG τ
-    first | exact this | simpa [CuspForm.toModularFormₗ_apply] using this | simpa +zetaDelta [CuspForm.toModularFormₗ_apply] using this
+    first | exact this
 
   set M : ModularForm 𝒮ℒ 6 := (CuspForm.discriminantEquiv G).mcast (by norm_num) with hM
   obtain ⟨c, hc⟩ : ∃ c : ℂ, c • E₆ = M :=
@@ -92,8 +92,8 @@ theorem solution :
     simp [PowerSeries.coeff_mul, Finset.Nat.antidiagonal_succ, h40, h60, hD0, hD1] at this
     first
       | exact this.symm
-      | exact this
-      | (norm_num at this; first | exact this.symm | exact this)
+
+
   subst hc4
 
   have h4 : (PowerSeries.C (4 : ℂ)) ≠ 0 := by simp

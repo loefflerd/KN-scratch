@@ -143,7 +143,6 @@ theorem solution (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ)) [Γ.Fin
       ≤ Module.finrank K (Additive Γ →+ K) + 1 :=
   BassSerreCuspDim.main Γ K hneg
 
-#print axioms solution
 
 end
 end S_ModularCurve_Period_finrank_parabolicHoms_add_natCard_le_finrank_addMonoidHom_add_one

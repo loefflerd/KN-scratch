@@ -58,7 +58,7 @@ def adeleBdd (D : Divisor K F) : Submodule K (Place K F → F) where
   carrier := {α | ∀ v : Place K F, v.adicValuation (α v) ≤ WithZero.exp (D v)}
   add_mem' := fun {α β} hα hβ v =>
     (v.adicValuation.map_add (α v) (β v)).trans (max_le (hα v) (hβ v))
-  zero_mem' := fun v => by rw [Pi.zero_apply, Valuation.map_zero]; exact zero_le'
+  zero_mem' := fun v => by rw [Pi.zero_apply, Valuation.map_zero]; exact zero_le
   smul_mem' := fun c α hα v => by
     rw [Pi.smul_apply, Algebra.smul_def, Valuation.map_mul]
     calc v.adicValuation (algebraMap K F c) * v.adicValuation (α v)
@@ -329,7 +329,7 @@ theorem weilSmul_mem_omegaSpace_of_mem_lSpace [HasPrincipalDivisors K F]
       refine omegaSpace_vanishBdd hφ ?_
       intro v
       simp only [adeleSpaceMul_coe, mulAdele_apply, zero_mul, Valuation.map_zero]
-      exact zero_le'
+      exact zero_le
     rw [h0]; exact (omegaSpace D).zero_mem
   ·
     obtain ⟨P, hPord, _⟩ := HasPrincipalDivisors.exists_divisor (K := K) g hg0

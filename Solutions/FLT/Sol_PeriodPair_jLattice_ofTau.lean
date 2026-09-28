@@ -138,7 +138,7 @@ theorem kw_riemannZeta_six : riemannZeta 6 = (π : ℂ) ^ 6 / 945 := by
     rw [bernoulli_eq_bernoulli'_of_ne_one (by norm_num), hb6]
 
   have h := riemannZeta_two_mul_nat (k := 3) (by norm_num)
-  simp only [show 2 * 3 = 6 from rfl, Nat.reduceMul, Nat.cast_ofNat, hb,
+  simp only [show 2 * 3 = 6 from rfl, Nat.cast_ofNat, hb,
     show (6 : ℕ).factorial = 720 from by decide] at h
   rw [show (2 * (3 : ℂ) : ℂ) = (6 : ℂ) by ring] at h
   push_cast at h

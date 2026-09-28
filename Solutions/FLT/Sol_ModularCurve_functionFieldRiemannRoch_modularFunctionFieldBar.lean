@@ -162,7 +162,6 @@ theorem solution (N : ℕ) [NeZero N] :
   exact @functionFieldRiemannRoch_of_isAlgClosed (AlgebraicClosure ℚ) (modularFunctionFieldBar N)
     _ _ (Classical.decEq _) _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
-#print axioms solution
 
 end S_ModularCurve_functionFieldRiemannRoch_modularFunctionFieldBar
 end P2MW

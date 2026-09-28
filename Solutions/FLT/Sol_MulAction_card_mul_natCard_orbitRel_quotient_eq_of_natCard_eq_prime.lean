@@ -53,7 +53,7 @@ theorem solution
   rw [Nat.card_eq_fintype_card, Nat.card_eq_fintype_card, Nat.card_eq_fintype_card]
 
   convert hB.symm using 1
-  all_goals (first | exact mul_comm _ _ | rfl | simp [mul_comm])
+  all_goals (first | exact mul_comm _ _  )
 
 end S_MulAction_card_mul_natCard_orbitRel_quotient_eq_of_natCard_eq_prime
 end P2MW

@@ -233,7 +233,7 @@ theorem jAnalytic_smul (γ : SL(2, ℤ)) (τ : ℍ) : jAnalytic (γ • τ) = jA
   field_simp
 
 def precomp (g : SL(2, ℤ)) : (ℍ → ℂ) →ₐ[ℂ] (ℍ → ℂ) :=
-  Pi.algHom ℂ (fun _ : ℍ => ℂ) (fun τ => Pi.evalAlgHom ℂ (fun _ : ℍ => ℂ) (g • τ))
+  AlgHom.pi (fun τ => Pi.evalAlgHom ℂ (fun _ : ℍ => ℂ) (g • τ))
 
 omit [NeZero N] in
 @[scoped simp]
@@ -574,7 +574,7 @@ theorem order_eq_of_tendsto_div {N : ℕ} [NeZero N] {G H : ℍ → ℂ} (hG : G
 
   have hfinG : (qExpansion (N : ℝ) G).order ≠ ⊤ := fun h => hG0 (PowerSeries.order_eq_top.mp h)
   have hfinH : (qExpansion (N : ℝ) H).order ≠ ⊤ := fun h => hH0 (PowerSeries.order_eq_top.mp h)
-  rw [← ENat.coe_toNat hfinG, ← ENat.coe_toNat hfinH]
+  rw [← ENat.natCast_toNat hfinG, ← ENat.natCast_toNat hfinH]
   exact congrArg _ hab
 
 end Chart

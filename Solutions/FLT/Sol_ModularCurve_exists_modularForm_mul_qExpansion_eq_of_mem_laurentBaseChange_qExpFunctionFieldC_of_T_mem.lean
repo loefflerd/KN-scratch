@@ -47,7 +47,7 @@ theorem qL_mul {a b : ℤ} (f : ModularForm Γ a) (g : ModularForm Γ b) : qL (f
     ModularForm.qExpansion_mul_coe one_pos (one_mem_strictPeriods hT), PowerSeries.coe_mul]
 
 theorem qL_add {a : ℤ} (f g : ModularForm Γ a) : qL (f + g) = qL f + qL g := by
-  simp only [qL, ModularForm.coe_add,
+  simp only [qL, FunLike.coe_add,
     ModularForm.qExpansion_add one_pos (one_mem_strictPeriods hT), PowerSeries.coe_add]
 
 omit hT in
@@ -56,7 +56,7 @@ theorem qL_one : qL (1 : ModularForm Γ 0) = 1 := by
 
 theorem qL_const (c : ℂ) :
     qL (c • (1 : ModularForm Γ 0)) = algebraMap ℂ (LaurentSeries ℂ) c := by
-  rw [qL, ModularForm.IsGLPos.coe_smul,
+  rw [qL, FunLike.coe_smul,
     ModularForm.qExpansion_smul one_pos (one_mem_strictPeriods hT), ModularForm.qExpansion_one,
     Algebra.smul_def, mul_one, HahnSeries.algebraMap_apply']
 
@@ -72,7 +72,7 @@ theorem mul_ne_zero' {a b : ℤ} (f : ModularForm Γ a) (g : ModularForm Γ b) (
   have h := congrArg (qL (Γ := Γ)) hfg
   rw [qL_mul hT] at h
   have h0 : qL (0 : ModularForm Γ (a + b)) = 0 := by
-    simp only [qL, ModularForm.coe_zero, UpperHalfPlane.qExpansion_zero (1 : ℝ), PowerSeries.coe_zero]
+    simp only [qL, FunLike.coe_zero, UpperHalfPlane.qExpansion_zero (1 : ℝ), PowerSeries.coe_zero]
   rw [h0] at h
   exact (mul_ne_zero (qL_ne_zero hT f hf) (qL_ne_zero hT g hg)) h
 
@@ -117,7 +117,7 @@ theorem IsRatio.inv {x : LaurentSeries ℂ} (hx : IsRatio Γ x) : IsRatio Γ x�
   have hg : g ≠ 0 := by
     intro hg0
     have : qL g = 0 := by
-      simp only [hg0, qL, ModularForm.coe_zero, UpperHalfPlane.qExpansion_zero (1 : ℝ),
+      simp only [hg0, qL, FunLike.coe_zero, UpperHalfPlane.qExpansion_zero (1 : ℝ),
         PowerSeries.coe_zero]
     rw [this] at hxe
     exact (mul_ne_zero hx0 (qL_ne_zero hT h hh)) hxe
@@ -169,7 +169,7 @@ theorem isRatio_coeffEmb_of_mem_intFormRatiosC {y : LaurentSeries ℚ} (hy : y �
     intro h0
     apply hgC
     rw [intSeriesC_eq_qL hg, h0]
-    simp only [qL, ModularForm.coe_zero, UpperHalfPlane.qExpansion_zero (1 : ℝ), PowerSeries.coe_zero]
+    simp only [qL, FunLike.coe_zero, UpperHalfPlane.qExpansion_zero (1 : ℝ), PowerSeries.coe_zero]
   refine ⟨k, f, g, hgne, ?_⟩
   rw [map_div₀, coeffEmb_intSeriesC, coeffEmb_intSeriesC, intSeriesC_eq_qL hf, intSeriesC_eq_qL hg,
     div_mul_cancel₀ _ (by rw [← intSeriesC_eq_qL hg]; exact hgC)]

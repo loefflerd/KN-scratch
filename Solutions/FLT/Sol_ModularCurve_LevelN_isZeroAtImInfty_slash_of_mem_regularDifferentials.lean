@@ -115,7 +115,7 @@ theorem vecMul_ne_zero {v : Fin 2 → ZMod N} (hv : v ≠ 0) (γ : SL(2, ℤ)) :
 omit [NeZero N] in
 
 def precomp (g : SL(2, ℤ)) : (ℍ → ℂ) →ₐ[ℂ] (ℍ → ℂ) :=
-  Pi.algHom ℂ (fun _ : ℍ => ℂ) (fun τ => Pi.evalAlgHom ℂ (fun _ : ℍ => ℂ) (g • τ))
+  AlgHom.pi (fun τ => Pi.evalAlgHom ℂ (fun _ : ℍ => ℂ) (g • τ))
 
 omit [NeZero N] in
 @[scoped simp]
@@ -184,7 +184,7 @@ theorem isBoundedAtImInfty_discriminant : IsBoundedAtImInfty ModularForm.discrim
 theorem isBoundedAtImInfty_discriminant_pow (m : ℕ) :
     IsBoundedAtImInfty (ModularForm.discriminant ^ m) := by
   induction m with
-  | zero => first | simpa using Filter.const_boundedAtFilter atImInfty (1 : ℂ) | (simp only [pow_zero]; exact Filter.const_boundedAtFilter atImInfty (1 : ℂ)) | (simp; exact Filter.const_boundedAtFilter atImInfty (1 : ℂ))
+  | zero => first | simpa using Filter.const_boundedAtFilter atImInfty (1 : ℂ) | (simp only [pow_zero]; exact Filter.const_boundedAtFilter atImInfty (1 : ℂ))
   | succ m ih => rw [pow_succ]; exact ih.mul isBoundedAtImInfty_discriminant
 
 theorem exists_isBoundedAtImInfty {F : ℍ → ℂ} (hF : F ∈ ring N) :
@@ -537,7 +537,7 @@ theorem cf_G_zero : cf N G 0 = 1 := by
       | (simpa [G] using ((tendsto_E4_atImInfty).pow 3 :))
       | (simpa [Function.comp_def] using (tendsto_E4_atImInfty).pow 3)
       | exact (tendsto_E4_atImInfty).pow 3
-      | (have h__ := (tendsto_E4_atImInfty).pow 3; (try simp [G] at h__); (try simp [G]); exact h__)
+      | (have h__ := (tendsto_E4_atImInfty).pow 3; (try simp [] at h__); exact h__)
   exact this.limUnder_eq
 
 theorem meromorphicOrderAt_cf_G : meromorphicOrderAt (cf N G) 0 = 0 := by
@@ -707,8 +707,8 @@ theorem hasDerivAt_qParam (h : ℝ) (z : ℂ) :
     simp only [id_eq, mul_one] at h0
     first
       | exact h0
-      | (simp only [Function.Periodic.qParam]; exact h0)
-      | (refine h0.congr_deriv ?_; simp [Function.Periodic.qParam])
+
+
   exact qdiff.hasDerivAt
 
 variable (δ : SL(2, ℤ))

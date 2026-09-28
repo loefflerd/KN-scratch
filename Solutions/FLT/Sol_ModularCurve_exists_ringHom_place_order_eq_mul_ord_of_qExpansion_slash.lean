@@ -592,7 +592,7 @@ private theorem slash_ne_zero {k : ℤ} {h : ModularForm Γ k} (hh : h ≠ 0) : 
   have key : ⇑h = (⇑h ∣[k] σ) ∣[k] σ⁻¹ := by
     rw [← SlashAction.slash_mul, mul_inv_cancel, SlashAction.slash_one]
   rw [H, SlashAction.zero_slash] at key
-  exact DFunLike.coe_injective (key.trans ModularForm.coe_zero.symm)
+  exact DFunLike.coe_injective (key.trans FunLike.coe_zero.symm)
 
 variable (hN : (N : ℝ) ∈ (ConjAct.toConjAct (σ : GL (Fin 2) ℝ)⁻¹ • Γ).strictPeriods)
 
@@ -606,10 +606,10 @@ private theorem translate_ne_zero_iff {k : ℤ} (h : ModularForm Γ k) :
   · intro H rfl
     apply H
     have key : ⇑(ModularForm.translate (0 : ModularForm Γ k) (σ : GL (Fin 2) ℝ)) = 0 := by
-      rw [coe_translate_SL, ModularForm.coe_zero, SlashAction.zero_slash]
-    exact DFunLike.coe_injective (key.trans ModularForm.coe_zero.symm)
+      rw [coe_translate_SL, FunLike.coe_zero, SlashAction.zero_slash]
+    exact DFunLike.coe_injective (key.trans FunLike.coe_zero.symm)
   · intro H H'
-    exact slash_ne_zero σ H (by rw [← coe_translate_SL, H', ModularForm.coe_zero])
+    exact slash_ne_zero σ H (by rw [← coe_translate_SL, H', FunLike.coe_zero])
 
 include hN in
 private theorem Lq_slash_ne_zero {k : ℤ} {h : ModularForm Γ k} (hh : h ≠ 0) : Lq N (⇑h ∣[k] σ) ≠ 0 :=
@@ -630,7 +630,7 @@ include hN in
 private theorem Lq_slash_add {k : ℤ} (A B : ModularForm Γ k) :
     Lq N (⇑(A + B) ∣[k] σ) = Lq N (⇑A ∣[k] σ) + Lq N (⇑B ∣[k] σ) := by
   have hN0 : (0 : ℝ) < N := by exact_mod_cast Nat.pos_of_ne_zero (NeZero.ne N)
-  rw [ModularForm.coe_add, SlashAction.add_slash, Lq, Lq, Lq, ← map_add, ← coe_translate_SL,
+  rw [FunLike.coe_add, SlashAction.add_slash, Lq, Lq, Lq, ← map_add, ← coe_translate_SL,
     ← coe_translate_SL,
     ← ModularForm.qExpansion_add hN0 hN (ModularForm.translate A (σ : GL (Fin 2) ℝ))
       (ModularForm.translate B (σ : GL (Fin 2) ℝ))]
@@ -640,7 +640,7 @@ include hN in
 private theorem Lq_slash_smul [Γ.HasDetOne] {k : ℤ} (c : ℂ) (A : ModularForm Γ k) :
     Lq N (⇑(c • A) ∣[k] σ) = HahnSeries.C c * Lq N (⇑A ∣[k] σ) := by
   have hN0 : (0 : ℝ) < N := by exact_mod_cast Nat.pos_of_ne_zero (NeZero.ne N)
-  rw [ModularForm.IsGLPos.coe_smul, SL_smul_slash, Lq, Lq, ← coe_translate_SL,
+  rw [FunLike.coe_smul, SL_smul_slash, Lq, Lq, ← coe_translate_SL,
     ModularForm.qExpansion_smul hN0 hN c (ModularForm.translate A (σ : GL (Fin 2) ℝ)),
     PowerSeries.smul_eq_C_mul, map_mul, HahnSeries.ofPowerSeries_C]
 
@@ -654,16 +654,16 @@ private theorem Lq_one_mul [Γ.HasDetOne] {k k' : ℤ} (A : ModularForm Γ k) (B
 include h1 in
 private theorem Lq_one_add {k : ℤ} (A B : ModularForm Γ k) :
     Lq 1 ⇑(A + B) = Lq 1 ⇑A + Lq 1 ⇑B := by
-  rw [Lq, Lq, Lq, ← map_add, ModularForm.coe_add, ← ModularForm.qExpansion_add one_pos h1 A B]
+  rw [Lq, Lq, Lq, ← map_add, FunLike.coe_add, ← ModularForm.qExpansion_add one_pos h1 A B]
 
 include h1 in
 private theorem Lq_one_smul [Γ.HasDetOne] {k : ℤ} (c : ℂ) (A : ModularForm Γ k) :
     Lq 1 ⇑(c • A) = HahnSeries.C c * Lq 1 ⇑A := by
-  rw [Lq, Lq, ModularForm.IsGLPos.coe_smul, ModularForm.qExpansion_smul one_pos h1 c A,
+  rw [Lq, Lq, FunLike.coe_smul, ModularForm.qExpansion_smul one_pos h1 c A,
     PowerSeries.smul_eq_C_mul, map_mul, HahnSeries.ofPowerSeries_C]
 
 private theorem Lq_one_zero {k : ℤ} : Lq 1 ⇑(0 : ModularForm Γ k) = 0 := by
-  rw [ModularForm.coe_zero]
+  rw [FunLike.coe_zero]
   exact Lq_zero_fun 1
 
 include h1 in
@@ -671,7 +671,7 @@ include h1 in
 private theorem eq_of_Lq_one_eq {k : ℤ} {A B : ModularForm Γ k} (H : Lq 1 ⇑A = Lq 1 ⇑B) : A = B := by
   have hsub : qExpansion 1 ⇑(A - B) = 0 := by
     have := ModularForm.qExpansion_sub one_pos h1 A B
-    rw [ModularForm.coe_sub]
+    rw [FunLike.coe_sub]
     rw [this, sub_eq_zero]
     exact HahnSeries.ofPowerSeries_injective H
   have := (ModularForm.qExpansion_eq_zero_iff one_pos h1 (A - B)).1 hsub
@@ -722,7 +722,7 @@ private theorem cuspRatio_add [Γ.HasDetOne] {k k' : ℤ} {g h : ModularForm Γ 
 omit [NeZero N] in
 private theorem cuspRatio_zero_left {k : ℤ} (h : ModularForm Γ k) :
     cuspRatio σ N (0 : ModularForm Γ k) h = 0 := by
-  rw [cuspRatio, ModularForm.coe_zero, SlashAction.zero_slash, Lq_zero_fun, zero_div]
+  rw [cuspRatio, FunLike.coe_zero, SlashAction.zero_slash, Lq_zero_fun, zero_div]
 
 include hN in
 private theorem cuspRatio_self {k : ℤ} {h : ModularForm Γ k} (hh : h ≠ 0) : cuspRatio σ N h h = 1 :=
@@ -1120,7 +1120,7 @@ private theorem order_Φ_eq_sub {x : S3c.CF Γ} (hx : x ≠ 0) {k : ℤ} {g h : 
     apply Subtype.ext
     have h1 : (x : LaurentSeries ℂ) * S3c.Lq 1 ⇑h = 0 := by
       rw [show (x : LaurentSeries ℂ) * S3c.Lq 1 ⇑h = S3c.Lq 1 ⇑g from hxgh, hc, S3c.Lq_def,
-        ModularForm.coe_zero, qExpansion_zero, map_zero]
+        FunLike.coe_zero, qExpansion_zero, map_zero]
     exact (mul_eq_zero.mp h1).resolve_right (S3c.Lq_one_ne_zero (S3c.one_mem_strictPeriods_Gamma0 Γ) hh)
   have hgq : qExpansion (S3CuspLimit.wd Γ : ℝ) (⇑g ∣[k] σ) ≠ 0 := S3CuspLimit.qExpansion_slash_ne_zero g σ hg
   have hhq : qExpansion (S3CuspLimit.wd Γ : ℝ) (⇑h ∣[k] σ) ≠ 0 := S3CuspLimit.qExpansion_slash_ne_zero h σ hh
@@ -1146,7 +1146,7 @@ private theorem leading_term {x : S3c.CF Γ} (hx : x ≠ 0) :
     intro hc; apply hx; apply Subtype.ext
     have h1 : (x : LaurentSeries ℂ) * S3c.Lq 1 ⇑h = 0 := by
       rw [show (x : LaurentSeries ℂ) * S3c.Lq 1 ⇑h = S3c.Lq 1 ⇑g from hxgh, hc, S3c.Lq_def,
-        ModularForm.coe_zero, qExpansion_zero, map_zero]
+        FunLike.coe_zero, qExpansion_zero, map_zero]
     exact (mul_eq_zero.mp h1).resolve_right (S3c.Lq_one_ne_zero (S3c.one_mem_strictPeriods_Gamma0 Γ) hh)
   obtain ⟨L, hL, hT⟩ := S3CuspLimit.tendsto_div_mul_qParam_zpow
     (S3CuspLimit.slash_periodic g σ) (S3CuspLimit.slash_mdiff g σ) (S3CuspLimit.slash_bddAtImInfty g σ)
@@ -1166,7 +1166,7 @@ private theorem mem_P_iff_tendsto {x : S3c.CF Γ} (hx : x ≠ 0) :
     intro hc; apply hx; apply Subtype.ext
     have h1 : (x : LaurentSeries ℂ) * S3c.Lq 1 ⇑h = 0 := by
       rw [show (x : LaurentSeries ℂ) * S3c.Lq 1 ⇑h = S3c.Lq 1 ⇑g from hxgh, hc, S3c.Lq_def,
-        ModularForm.coe_zero, qExpansion_zero, map_zero]
+        FunLike.coe_zero, qExpansion_zero, map_zero]
     exact (mul_eq_zero.mp h1).resolve_right (S3c.Lq_one_ne_zero (S3c.one_mem_strictPeriods_Gamma0 Γ) hh)
   have hgq := S3CuspLimit.qExpansion_slash_ne_zero g σ hg
   have hhq := S3CuspLimit.qExpansion_slash_ne_zero h σ hh
@@ -1192,11 +1192,11 @@ private theorem tendsto_realizeOf_zero :
   set h₀ := S3c.presDen Γ (S3glue.presN Γ) 1
   have hh₀ : h₀ ≠ 0 := S3c.presDen_ne_zero Γ (S3glue.presN Γ) 1
   have hpres : (0 : LaurentSeries ℂ) * S3c.Lq 1 ⇑h₀ = S3c.Lq 1 ⇑(0 : ModularForm (S3c.Γ0 Γ) (S3c.presWt Γ (S3glue.presN Γ) 1)) := by
-    rw [zero_mul, S3c.Lq_def, ModularForm.coe_zero, qExpansion_zero, map_zero]
+    rw [zero_mul, S3c.Lq_def, FunLike.coe_zero, qExpansion_zero, map_zero]
   have hne := S3glue.eventually_apply_smul_ne_zero Γ σ h₀ hh₀
   refine (tendsto_const_nhds (x := (0 : ℂ))).congr' ?_
   filter_upwards [hne] with τ hτ
-  rw [realizeOf_eq_div Γ hTΓ.out 0 h₀ 0 hpres (σ • τ) hτ, ModularForm.coe_zero, Pi.zero_apply, zero_div]
+  rw [realizeOf_eq_div Γ hTΓ.out 0 h₀ 0 hpres (σ • τ) hτ, FunLike.coe_zero, Pi.zero_apply, zero_div]
 
 private theorem qParam_zpow_neg_eq_exp (N : ℕ) (a b : ℤ) (τ : ℍ) :
     Periodic.qParam (N : ℝ) (τ : ℂ) ^ (-(a * b)) =

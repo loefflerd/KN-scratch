@@ -81,13 +81,13 @@ theorem mem_adeleSpace_iff_mem_repartitions [HasPrincipalDivisors K F] {α : Pla
           intro h0
           have : ¬v.adicValuation (β v) ≤ 1 := by simpa [S] using hv
           apply this; simp [h0]
-        rw [v.adicValuation_eq_exp_neg_ord hβv, exp_le_exp, Finsupp.finset_sum_apply,
+        rw [v.adicValuation_eq_exp_neg_ord hβv, exp_le_exp, Finsupp.finsetSum_apply,
           Finset.sum_eq_single v (fun w _ hw => Finsupp.single_eq_of_ne (Ne.symm hw)) (fun h => (h hv).elim),
           Finsupp.single_eq_same]
       · have : v.adicValuation (β v) ≤ 1 := by
           by_contra h; exact hv (by simpa [S] using h)
         refine this.trans ?_
-        rw [Finsupp.finset_sum_apply, Finset.sum_eq_zero (fun w hw => ?_), exp_zero]
+        rw [Finsupp.finsetSum_apply, Finset.sum_eq_zero (fun w hw => ?_), exp_zero]
         exact Finsupp.single_eq_of_ne (fun h => hv (h ▸ hw))
     obtain ⟨D, hD⟩ := h hα
     exact adeleBdd_le_adeleSpace (D := D) hD

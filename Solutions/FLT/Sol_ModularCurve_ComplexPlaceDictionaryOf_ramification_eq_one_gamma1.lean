@@ -83,11 +83,9 @@ lemma E₆_I : E₆ UpperHalfPlane.I = 0 := by
 lemma denom_TinvS_ρ : denom (↑(ModularGroup.T⁻¹ * ModularGroup.S) : GL (Fin 2) ℝ) ρ = (ρ : ℂ) := by
   rw [ModularGroup.denom_apply]
   have h10 : (ModularGroup.T⁻¹ * ModularGroup.S) 1 0 = 1 := by
-    change ((ModularGroup.T⁻¹ * ModularGroup.S : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) 1 0 = 1
     rw [Matrix.SpecialLinearGroup.coe_mul, ModularGroup.coe_T_inv, ModularGroup.coe_S]
     simp
   have h11 : (ModularGroup.T⁻¹ * ModularGroup.S) 1 1 = 0 := by
-    change ((ModularGroup.T⁻¹ * ModularGroup.S : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) 1 1 = 0
     rw [Matrix.SpecialLinearGroup.coe_mul, ModularGroup.coe_T_inv, ModularGroup.coe_S]
     simp
   rw [h10, h11]
@@ -296,8 +294,8 @@ theorem jqModC_mul_qL_H [hT : Fact (ModularGroup.T ∈ Γ)] :
 theorem qL_G_sub_smul_H [hT : Fact (ModularGroup.T ∈ Γ)] (c : ℂ) :
     qL Γ (G Γ - c • H Γ) = qL Γ (G Γ) - HahnSeries.C c * qL Γ (H Γ) := by
   simp only [qL]
-  rw [ModularForm.coe_sub, ModularForm.qExpansion_sub one_pos (one_mem_strictPeriods Γ) (G Γ) (c • H Γ),
-    PowerSeries.coe_sub, ModularForm.IsGLPos.coe_smul,
+  rw [FunLike.coe_sub, ModularForm.qExpansion_sub one_pos (one_mem_strictPeriods Γ) (G Γ) (c • H Γ),
+    PowerSeries.coe_sub, FunLike.coe_smul,
     ModularForm.qExpansion_smul one_pos (one_mem_strictPeriods Γ) c (H Γ), PowerSeries.coe_smul,
     HahnSeries.C_mul_eq_smul]
 
@@ -311,7 +309,7 @@ theorem realizeOf_jqModC_sub [hT : Fact (ModularGroup.T ∈ Γ)] (c : ℂ) (z : 
     (H_apply_ne_zero Γ z)]
   have hH : (H Γ : ℍ → ℂ) z ≠ 0 := H_apply_ne_zero Γ z
   rw [show ((G Γ - c • H Γ : ModularForm _ 12) : ℍ → ℂ) z = (G Γ : ℍ → ℂ) z - c * (H Γ : ℍ → ℂ) z by
-    rw [ModularForm.coe_sub, Pi.sub_apply, ModularForm.IsGLPos.coe_smul, Pi.smul_apply, smul_eq_mul],
+    rw [FunLike.coe_sub, Pi.sub_apply, FunLike.coe_smul, Pi.smul_apply, smul_eq_mul],
     sub_div, mul_div_cancel_right₀ _ hH, G_apply, coe_H]
 
 end JREG
@@ -450,7 +448,6 @@ theorem solution
     have h1 : (D.ramification τ : ℤ) = 1 := Int.eq_one_of_mul_eq_one_right (by positivity) hkey
     exact_mod_cast h1
 
-#print axioms solution
 
 end S_ModularCurve_ComplexPlaceDictionaryOf_ramification_eq_one_gamma1
 end P2MW

@@ -100,7 +100,7 @@ theorem eval_binarySubst (M : Matrix (Fin 2) (Fin 2) ℤ) (v : Fin 2 → ℂ) (P
     eval v (binarySubst ℂ M P) = eval (fun j => ∑ i : Fin 2, ((M i j : ℤ) : ℂ) * v i) P := by
   have key : (eval v).comp (binarySubst ℂ M : MvPolynomial (Fin 2) ℂ →ₐ[ℂ] MvPolynomial (Fin 2) ℂ).toRingHom
       = eval (fun j => ∑ i : Fin 2, ((M i j : ℤ) : ℂ) * v i) :=
-    MvPolynomial.ringHom_ext (fun r => by simp [binarySubst_C]) (fun j => by simp [binarySubst_X, map_sum])
+    MvPolynomial.ringHom_ext (fun r => by simp []) (fun j => by simp [binarySubst_X])
   exact RingHom.congr_fun key P
 
 theorem eval_one_eq_of_T_zpow_fixed (m : ℤ) (P : Vn n) (hP : ρ n (ModularGroup.T ^ m) P = P) (k : ℕ) :
@@ -154,7 +154,7 @@ theorem coeff_dehom_of_isHomogeneous {P : MvPolynomial (Fin 2) ℂ} (hP : P.IsHo
     · rw [mul_zero]
   have hsum : (dehom P).coeff a = ∑ d ∈ P.support, (if d 1 = a then coeff d P else 0) := by
     conv_lhs => rw [P.as_sum, dehom, map_sum]
-    rw [Polynomial.finset_sum_coeff]
+    rw [Polynomial.finsetSum_coeff]
     exact Finset.sum_congr rfl fun d _ => hmono d _
   rw [hsum]
   by_cases hmem : da ∈ P.support
@@ -502,7 +502,7 @@ theorem sup_range_eq_top (hn0 : n ≠ 0) :
   rw [← this, eq_top_iff]
   intro f _ m hm
   rw [(Submodule.mem_bot ℂ).mp hm]
-  exact LinearMap.BilinForm.isOrtho_zero_left _
+  simp
 
 end Coinv
 p2m_reactivate "P2MW.S_HeckeEis_exists_induced_binaryFormRepSL_top.HeckeEis P2MW.S_HeckeEis_exists_induced_binaryFormRepSL_top.HeckeEis.UH3Sol"
@@ -532,7 +532,6 @@ theorem solution (N : ℕ) [NeZero N] (n : ℕ) (hn : Even n) (hn0 : n ≠ 0) :
   obtain ⟨y, ⟨a, rfl⟩, z, ⟨b, rfl⟩, hyz⟩ := hf
   exact ⟨a, b, by rw [← hyz]; rfl⟩
 
-#print axioms solution
 
 end S_HeckeEis_exists_induced_binaryFormRepSL_top
 end P2MW

@@ -94,7 +94,6 @@ theorem solution {n : ℕ} {g : UpperHalfPlane → ℂ}
     g = 0 :=
   funext fun τ => HeckeEis.LadderAux.eq_zero_of_rung_zero_const hG hc τ
 
-#print axioms solution
 
 end S_HeckeEis_IsEichlerIntegral_eq_zero_of_eval_eq_const
 end P2MW

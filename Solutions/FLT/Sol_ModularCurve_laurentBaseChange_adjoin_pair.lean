@@ -573,7 +573,6 @@ p2m_open "ModularCurve~coeffEmb_qExpand" in open _root_.P2MW.S_ModularCurve_laur
 theorem solution (L : Type*) [Field L] [Algebra ℚ L] (M : ℕ) [NeZero M] (hgenQ : FunctionFieldGeneration M) : laurentBaseChange L (modularFunctionFieldFull M) = IntermediateField.adjoin L {jqModC L, jqNModC L M} :=
   ModularCurve.laurentBaseChange_adjoin_pair L M hgenQ
 
-#print axioms solution
 
 end S_ModularCurve_laurentBaseChange_adjoin_pair
 end P2MW

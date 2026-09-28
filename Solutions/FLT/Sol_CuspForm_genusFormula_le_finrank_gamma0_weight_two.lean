@@ -54,7 +54,7 @@ theorem linearIndependent_ringHom_comp_of_linearIndependent {K L : Type*} [Field
       rw [Algebra.smul_def, RingHom.algebraMap_toAlgebra, mul_comm]
     have h2 : B.repr (∑ j, (v j x) • c j) k = 0 := by
       rw [hx', map_zero, Finsupp.zero_apply]
-    rw [map_sum, Finsupp.finset_sum_apply] at h2
+    rw [map_sum, Finsupp.finsetSum_apply] at h2
     rw [← h2]
     refine Finset.sum_congr rfl fun j _ => ?_
     rw [map_smul, Finsupp.smul_apply, smul_eq_mul, mul_comm]
@@ -80,7 +80,7 @@ theorem solution (N : ℕ) [NeZero N] :
 
   suffices key : Module.finrank (AlgebraicClosure ℚ) ↥(regularDifferentialsBar N)
       ≤ Module.finrank ℂ (CuspForm (CongruenceSubgroup.Gamma0 N) 2) by
-    first | exact Nat.cast_le.mpr key | exact_mod_cast key
+    first | exact Nat.cast_le.mpr key
 
   let b := Module.finBasis (AlgebraicClosure ℚ) ↥(regularDifferentialsBar N)
 
@@ -129,7 +129,7 @@ theorem solution (N : ℕ) [NeZero N] :
     have hzero : ((∑ i, d i • b i : ↥(regularDifferentialsBar N)) : Ω[modularFunctionFieldBar N⁄AlgebraicClosure ℚ]) = 0 :=
       ModularCurve.diffQExpBar_injective_of_neZero N (by rw [hsum, map_zero])
     have hzero' : (∑ i, d i • b i) = 0 := by
-      first | exact (Submodule.coe_eq_zero).mp hzero | exact Subtype.ext hzero | exact_mod_cast hzero
+      first | exact (Submodule.coe_eq_zero).mp hzero
     exact Fintype.linearIndependent_iff.mp b.linearIndependent d hzero'
 
   have hvC : LinearIndependent ℂ (fun i n => ι₀ (v i n)) :=
@@ -145,18 +145,18 @@ theorem solution (N : ℕ) [NeZero N] :
       UpperHalfPlane.qExpansion 1 (⇑φ + ⇑ψ) = UpperHalfPlane.qExpansion 1 ⇑φ + UpperHalfPlane.qExpansion 1 ⇑ψ := by
     intro φ ψ
     first
-      | exact ModularFormClass.qExpansion_add one_pos hΓ φ ψ
       | exact ModularForm.qExpansion_add one_pos hΓ φ ψ
+
   have hqsmul : ∀ (x : ℂ) (φ : CuspForm (CongruenceSubgroup.Gamma0 N) 2),
       UpperHalfPlane.qExpansion 1 (x • ⇑φ) = x • UpperHalfPlane.qExpansion 1 ⇑φ := by
     intro x φ
     first
-      | exact ModularFormClass.qExpansion_smul one_pos hΓ x φ
       | exact ModularForm.qExpansion_smul one_pos hΓ x φ
+
   have hqzero : UpperHalfPlane.qExpansion 1 (0 : UpperHalfPlane → ℂ) = 0 := by
     first
       | exact UpperHalfPlane.qExpansion_zero 1
-      | simpa using hqsmul 0 0
+
   have hli : LinearIndependent ℂ f := by
     rw [Fintype.linearIndependent_iff]
     intro c hc
@@ -187,11 +187,11 @@ theorem solution (N : ℕ) [NeZero N] :
         rw [← h1]
         refine Finset.sum_congr rfl fun i _ => ?_
         rw [map_smul, smul_eq_mul]
-        first | rw [Int.ofNat_eq_natCast] | rw [Int.ofNat_eq_coe] | skip
+        first | rw [Int.ofNat_eq_natCast]
         rw [HahnSeries.ofPowerSeries_apply_coeff]
       ·
         refine Finset.sum_eq_zero fun i _ => ?_
-        rw [HahnSeries.ofPowerSeries_apply, HahnSeries.embDomain_notin_range, mul_zero]
+        rw [HahnSeries.ofPowerSeries_apply, HahnSeries.embDomain_of_notMem_range, mul_zero]
         rintro ⟨k, hk⟩
         exact absurd hk (by simp)
     exact Fintype.linearIndependent_iff.mp hvC c hrel

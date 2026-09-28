@@ -47,14 +47,12 @@ end ModularCurve
 end
 
 set_option pp.universes true in
-#check @ModularCurve.finrank_adjoin_jqN_eq
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_finrank_adjoin_jqN_eq_of_prime.ModularCurve ModularCurve.PhiGen in
 
 theorem solution (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] : Module.finrank (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) (IntermediateField.adjoin (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) ({jqN ℓ} : Set (LaurentSeries ℚ))) = ℓ + 1 :=
   ModularCurve.finrank_adjoin_jqN_eq_of_prime ℓ
 
-#print axioms solution
 
 end S_ModularCurve_finrank_adjoin_jqN_eq_of_prime
 end P2MW

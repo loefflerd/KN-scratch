@@ -48,7 +48,7 @@ theorem constantsAreBase {K F : Type*} [Field K] [Field F] [Algebra K F] [IsAlgC
 
   obtain ⟨D, hDord, hDdeg⟩ := HasPrincipalDivisors.exists_divisor (K := K) (F := F) f hf0
   have hdiv : ∀ v : Place K F, v.ord f = 0 := by
-    by_contra hne; push_neg at hne; obtain ⟨v, hv⟩ := hne
+    by_contra hne; push Not at hne; obtain ⟨v, hv⟩ := hne
     have hpos : 0 < v.ord f := (hord v).lt_of_ne' hv
     refine absurd hDdeg (ne_of_gt ?_)
     rw [Divisor.degree_eq_sum_support]

@@ -409,7 +409,6 @@ theorem solution {N : ℕ}
               * HahnSeries.ofPowerSeries ℤ ℤ ModularCurve.etaProd ^ 24) ^ N :=
   ModularCurve.StarBank.hassePolyDescent F hT h0
 
-#print axioms solution
 
 end S_ModularCurve_StarBank_hassePolyDescent
 end P2MW

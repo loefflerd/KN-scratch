@@ -81,7 +81,7 @@ lemma hasSum_pi_cot_add {w : ℂ} (hw : 0 < w.im) :
   have hgeom : Summable fun n : ℕ => cexp (2 * π * I * w) ^ n :=
     summable_geometric_of_norm_lt_one hq1
   have h := pi_mul_cot_pi_q_exp ⟨w, hw⟩
-  simp only [UpperHalfPlane.coe_mk] at h
+  simp only [] at h
   rw [hgeom.tsum_eq_zero_add, ← tsum_pnat_eq_tsum_succ (f := fun n => cexp (2 * π * I * w) ^ n)]
     at h
   have hs : Summable fun k : ℕ+ => -2 * π * I * cexp (2 * π * I * w) ^ (k : ℕ) :=

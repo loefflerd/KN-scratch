@@ -149,7 +149,7 @@ theorem solution
   let P : Divisor k F := ∑ v ∈ T, Finsupp.single v (-(v.ord y))
   have hP : ∀ v : Place k F, P v = max 0 (-v.ord y) := by
     intro v
-    simp only [P, Finsupp.coe_finset_sum, Finset.sum_apply, Finsupp.single_apply]
+    simp only [P, Finsupp.coe_finsetSum, Finset.sum_apply, Finsupp.single_apply]
     rw [Finset.sum_ite_eq' T v]
     by_cases hv : v ∈ T
     · rw [if_pos hv, max_eq_right]; have := (hT v).1 hv; omega
@@ -237,11 +237,11 @@ theorem solution
   have hcnt0 : 3 * (S0.card : ℤ) = n := by
     rw [← hS0sum, show ∑ v ∈ S0, v.ord y = ∑ v ∈ S0, (3 : ℤ) from
       Finset.sum_congr rfl fun v hv => h0 v ((hS0 v).1 hv)]
-    simp only [Finset.sum_const, smul_eq_mul]; ring
+    simp only [Finset.sum_const]; ring
   have hcnt1 : 2 * (S1.card : ℤ) = n := by
     rw [← hS1sum, show ∑ v ∈ S1, v.ord (y - algebraMap k F 1728) = ∑ v ∈ S1, (2 : ℤ) from
       Finset.sum_congr rfl fun v hv => h1728' v ((hS1 v).1 hv)]
-    simp only [Finset.sum_const, smul_eq_mul]; ring
+    simp only [Finset.sum_const]; ring
 
   have hDval : ∀ v : Place k F, D v =
       (if v ∈ S0 then 2 * (m : ℤ) else 0) + (if v ∈ S1 then (m : ℤ) else 0) + (if v ∈ T then (m : ℤ) * v.ord y else 0) := by
@@ -284,7 +284,6 @@ theorem solution
   rw [hDdeg, hsumD, Finset.sum_add_distrib, Finset.sum_add_distrib, hA, hB, hC, hTsum]
   linear_combination (4 * (m : ℤ)) * hcnt0 + (3 * (m : ℤ)) * hcnt1
 
-#print axioms solution
 
 end S_AlgebraicCurve_six_mul_degree_eq_mul_finrank_of_forall_eq_weightFloor_of_ord_eq_three_two
 end P2MW

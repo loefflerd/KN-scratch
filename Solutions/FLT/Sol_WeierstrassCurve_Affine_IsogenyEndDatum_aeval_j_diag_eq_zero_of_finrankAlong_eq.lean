@@ -558,11 +558,10 @@ theorem s13_aeval_diag_eq_eval_map {R : Type*} [CommRing R] (Φ : Polynomial (Po
     (Polynomial.evalRingHom a).comp (Polynomial.mapRingHom (Polynomial.eval₂RingHom (Int.castRingHom R) a))
   have h : lhs = rhs := by
     refine Polynomial.ringHom_ext (fun c => ?_) ?_
-    · simp only [lhs, rhs, RingHom.comp_apply, Polynomial.coe_eval₂RingHom, Polynomial.eval₂_C,
-        RingHom.id_apply, Polynomial.coe_mapRingHom, Polynomial.map_C, Polynomial.coe_evalRingHom,
+    · simp only [lhs, rhs, RingHom.comp_apply, Polynomial.coe_eval₂RingHom,         RingHom.id_apply, Polynomial.coe_mapRingHom, Polynomial.map_C, Polynomial.coe_evalRingHom,
         Polynomial.eval_C, AlgHom.toRingHom_eq_coe, RingHom.coe_coe, Polynomial.aeval_def,
         Polynomial.eval₂_eq_eval_map]
-      simp [Polynomial.eval₂_eq_eval_map]
+      simp []
     · simp [lhs, rhs]
   exact RingHom.congr_fun h Φ
 

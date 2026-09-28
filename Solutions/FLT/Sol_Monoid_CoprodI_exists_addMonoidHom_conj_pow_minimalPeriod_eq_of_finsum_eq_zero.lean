@@ -336,7 +336,7 @@ theorem enum_injOn_range (g : Gp) :
   have hw := wd_pos H (g : X H)
   rcases hdvd with ⟨m, hm⟩
   have hbound : |(k : ℤ) - j| < wd H (g : X H) := by
-    rw [abs_sub_lt_iff]; constructor <;> · push_cast; omega
+    rw [abs_sub_lt_iff]; constructor <;> · omega
   rw [hm, abs_mul, Nat.abs_cast] at hbound
   have hm0 : m = 0 := by
     by_contra hm0
@@ -545,7 +545,6 @@ theorem solution
   obtain ⟨φ, hφ⟩ := BassSerreCusp.engine H R a ha
   exact ⟨φ, fun g hg => hφ g⟩
 
-#print axioms solution
 
 end
 end S_Monoid_CoprodI_exists_addMonoidHom_conj_pow_minimalPeriod_eq_of_finsum_eq_zero

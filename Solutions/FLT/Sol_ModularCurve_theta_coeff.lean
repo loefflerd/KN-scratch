@@ -187,7 +187,6 @@ open _root_.ModularCurve _root_.P2MW.S_ModularCurve_theta_coeff.ModularCurve _ro
 theorem solution {R : Type*} [CommRing R] (f : LaurentSeries R) (k : ℤ) : ((HahnSeries.single (1 : ℤ) (1 : R) : LaurentSeries R) * LaurentSeries.derivative R f).coeff k = k • f.coeff k :=
   ModularCurve.theta_coeff f k
 
-#print axioms solution
 
 end S_ModularCurve_theta_coeff
 end P2MW

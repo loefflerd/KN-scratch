@@ -28,7 +28,7 @@ theorem map_binarySubst (M : Matrix (Fin 2) (Fin 2) ℤ) (p : MvPolynomial (Fin 
   have h : (MvPolynomial.map φ).comp (binarySubst R M : MvPolynomial (Fin 2) R →ₐ[R] MvPolynomial (Fin 2) R).toRingHom
       = (binarySubst R' M : MvPolynomial (Fin 2) R' →ₐ[R'] MvPolynomial (Fin 2) R').toRingHom.comp (MvPolynomial.map φ) := by
     refine MvPolynomial.ringHom_ext (fun r => ?_) (fun j => ?_)
-    · simp [binarySubst_C]
+    · simp []
     · simp [binarySubst_X, Fin.sum_univ_two, map_add, map_mul]
   exact RingHom.congr_fun h p
 
@@ -115,7 +115,6 @@ theorem solution {R R' : Type*} [CommRing R] [CommRing R'] (φ : R →+* R') (n 
     T' (Φ x) = Φ (T x) :=
   HeckeEis.SolMain.C1 φ n N ℓ Φ hΦ T hT T' hT' x
 
-#print axioms solution
 
 end S_HeckeEis_coeffH1par_map_heckeT_comm
 end P2MW

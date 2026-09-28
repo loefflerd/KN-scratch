@@ -73,7 +73,6 @@ theorem solution (K : Type*) [Field K] (h2 : (2 : K) ≠ 0) (N n : ℕ) (hn : Od
   rw [map_neg, LinearMap.map_smul, key g, smul_sub, smul_neg, smul_neg, smul_smul, smul_smul, mul_inv_cancel₀ h2, one_smul, one_smul]
   abel
 
-#print axioms solution
 
 end S_HeckeEis_coeffH1par_binaryFormRepSL_eq_zero_of_odd
 end P2MW

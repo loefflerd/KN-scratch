@@ -47,7 +47,7 @@ theorem upperTriangularGL_eq {N a b d : ℕ} (hN : N ≠ 0) (had : a * d = N) (�
   have hmap := congrArg (fun M : Matrix (Fin 2) (Fin 2) ℤ => M.map (Int.castRingHom ℝ)) hM
   simp only [Matrix.map_mul] at hmap
   rw [Units.val_mul, Units.val_mul, ModularForm.val_upperTriangularGL, ModularForm.val_heckeDiagMatrix hN]
-  convert hmap using 3 <;> first | rfl | (ext i j; fin_cases i <;> fin_cases j <;> simp) | (ext i j; fin_cases i <;> fin_cases j <;> rfl)
+  convert hmap using 3 <;> first | rfl | (ext i j; fin_cases i <;> fin_cases j <;> simp)
 
 theorem coe_upperTriangularGL_smul {a b d : ℕ} (ha : 0 < a) (hd : 0 < d) (had' : (a : ℝ) * d ≠ 0) (τ : ℍ) :
     ((ModularForm.upperTriangularGL a b d had' • τ : ℍ) : ℂ) = ((a : ℂ) * τ + b) / d := by

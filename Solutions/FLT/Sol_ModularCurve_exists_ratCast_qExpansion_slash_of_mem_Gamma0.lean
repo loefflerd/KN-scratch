@@ -274,7 +274,7 @@ theorem isRat_slash_mul (f : ModularForm Γ₁(M) k) (m : ℕ) {kE : ℤ} (E : M
       exact SlashInvariantFormClass.slash_action_eq f _ (Subgroup.mem_map_of_mem _ hg)
     rw [h2] at h1
     have h3 : G τ * Δ τ ^ m = f τ * E τ := by
-      have := congrFun hGΔ τ; first | exact this | simpa only [Pi.mul_apply, Pi.pow_apply] using this | (simp only [Pi.mul_apply, Pi.pow_apply] at this; exact this) | (simp only [Pi.mul_apply, Pi.pow_apply]; exact this) | (simp only [Pi.mul_apply, Pi.pow_apply] at this ⊢; exact this)
+      have := congrFun hGΔ τ; first | exact this
     exact mul_right_cancel₀ (hΔ τ) (h1.trans h3.symm)
 
   have hbd : ∀ α : SL(2, ℤ), IsBoundedAtImInfty ((fun τ => G (α • τ)) * Δ ^ m) := by

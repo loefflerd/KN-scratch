@@ -323,14 +323,12 @@ end ModularCurve
 
 end
 
-#print axioms ModularCurve.PhiGen.evalAtJ_injective
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_evalAtJ_injective.ModularCurve _root_.ModularCurve.PhiGen _root_.P2MW.S_ModularCurve_PhiGen_evalAtJ_injective.ModularCurve.PhiGen in
 
 theorem solution : Function.Injective evalAtJ :=
   ModularCurve.PhiGen.evalAtJ_injective
 
-#print axioms solution
 
 end S_ModularCurve_PhiGen_evalAtJ_injective
 end P2MW

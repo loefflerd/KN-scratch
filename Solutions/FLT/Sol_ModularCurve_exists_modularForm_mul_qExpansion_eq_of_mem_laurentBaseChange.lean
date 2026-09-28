@@ -47,7 +47,7 @@ theorem qL_mul {a b : ℤ} (f : ModularForm (CongruenceSubgroup.Gamma0 N) a)
 
 theorem qL_add {a : ℤ} (f g : ModularForm (CongruenceSubgroup.Gamma0 N) a) :
     qL (f + g) = qL f + qL g := by
-  simp only [qL, ModularForm.coe_add,
+  simp only [qL, FunLike.coe_add,
     ModularForm.qExpansion_add one_pos (one_mem_strictPeriods N), PowerSeries.coe_add]
 
 theorem qL_one : qL (1 : ModularForm (CongruenceSubgroup.Gamma0 N) 0) = 1 := by
@@ -56,7 +56,7 @@ theorem qL_one : qL (1 : ModularForm (CongruenceSubgroup.Gamma0 N) 0) = 1 := by
 theorem qL_const (c : ℂ) :
     qL (c • (1 : ModularForm (CongruenceSubgroup.Gamma0 N) 0)) =
       algebraMap ℂ (LaurentSeries ℂ) c := by
-  rw [qL, ModularForm.IsGLPos.coe_smul,
+  rw [qL, FunLike.coe_smul,
     ModularForm.qExpansion_smul one_pos (one_mem_strictPeriods N), ModularForm.qExpansion_one,
     Algebra.smul_def, mul_one, HahnSeries.algebraMap_apply']
 
@@ -73,7 +73,7 @@ theorem mul_ne_zero' {a b : ℤ} (f : ModularForm (CongruenceSubgroup.Gamma0 N) 
   have h := congrArg (qL (N := N)) hfg
   rw [qL_mul] at h
   have h0 : qL (0 : ModularForm (CongruenceSubgroup.Gamma0 N) (a + b)) = 0 := by
-    simp only [qL, ModularForm.coe_zero, UpperHalfPlane.qExpansion_zero (1 : ℝ), PowerSeries.coe_zero]
+    simp only [qL, FunLike.coe_zero, UpperHalfPlane.qExpansion_zero (1 : ℝ), PowerSeries.coe_zero]
   rw [h0] at h
   exact (mul_ne_zero (qL_ne_zero f hf) (qL_ne_zero g hg)) h
 
@@ -117,7 +117,7 @@ theorem IsRatio.inv {x : LaurentSeries ℂ} (hx : IsRatio N x) : IsRatio N x⁻�
   have hg : g ≠ 0 := by
     intro hg0
     have : qL g = 0 := by
-      simp only [hg0, qL, ModularForm.coe_zero, UpperHalfPlane.qExpansion_zero (1 : ℝ),
+      simp only [hg0, qL, FunLike.coe_zero, UpperHalfPlane.qExpansion_zero (1 : ℝ),
         PowerSeries.coe_zero]
     rw [this] at hxe
     exact (mul_ne_zero hx0 (qL_ne_zero h hh)) hxe

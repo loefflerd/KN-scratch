@@ -464,7 +464,7 @@ private def eCubeSubESq : ModularForm 𝒮ℒ 12 :=
 private lemma eCubeSubESq_qExpansion :
     qExpansion 1 eCubeSubESq = qExpansion 1 E₄ * qExpansion 1 E₄ * qExpansion 1 E₄ -
       qExpansion 1 E₆ * qExpansion 1 E₆ := by
-  simp only [eCubeSubESq, ModularForm.coe_sub, ModularForm.coe_mcast,
+  simp only [eCubeSubESq, FunLike.coe_sub, ModularForm.coe_mcast,
     ModularForm.qExpansion_sub one_pos one_mem_strictPeriods_SL,
     ModularForm.qExpansion_pow one_pos one_mem_strictPeriods_SL]
   ring
@@ -473,7 +473,7 @@ private lemma discriminant_eq_smul_eCubeSubESq :
     ModularForm.discriminant = (1 / 1728 : ℂ) • eCubeSubESq := by
   ext z
   have h := discriminant_eq_E₄_cube_sub_E₆_sq z
-  simp only [Pi.smul_apply, eCubeSubESq, ModularForm.coe_sub, Pi.sub_apply,
+  simp only [Pi.smul_apply, eCubeSubESq, FunLike.coe_sub, Pi.sub_apply,
     ModularForm.coe_mcast, ModularForm.coe_pow, Pi.pow_apply, smul_eq_mul]
   rw [h]
   ring

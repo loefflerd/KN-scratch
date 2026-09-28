@@ -114,7 +114,6 @@ theorem solution (N : ℕ) [NeZero N] :
   rw [Nat.card_congr (BassSerreCuspCount.orbitEquivCuspSpace N)]
   exact ModularCurve.CuspSpace.card_cuspSpace_eq_cuspCount (NeZero.ne N)
 
-#print axioms solution
 
 end S_ModularCurve_natCard_orbitRelQuotient_zpowers_T_gamma0_eq_cuspCount
 end P2MW

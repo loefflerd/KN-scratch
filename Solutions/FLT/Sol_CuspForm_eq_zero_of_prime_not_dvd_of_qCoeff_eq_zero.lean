@@ -303,7 +303,7 @@ def lift (hp : p.Prime) (hpm : ¬ p ∣ m) (F : CuspForm (CongruenceSubgroup.Gam
 theorem coe_lift (hp : p.Prime) (hpm : ¬ p ∣ m) (F : CuspForm (CongruenceSubgroup.Gamma0 m) 2)
     (hF : ∀ n : ℕ, ¬ p ∣ n → ModularFormClass.qCoeff F n = 0) :
     ⇑(lift hp hpm F hF) = ⇑F ∣[(2 : ℤ)] B p := by
-  rw [lift, CuspForm.coe_sub, CuspForm.IsGLPos.coe_smul, CuspForm.coe_heckeTLin_apply,
+  rw [lift, FunLike.coe_sub, FunLike.coe_smul, CuspForm.coe_heckeTLin_apply,
     heckeT_eq_heckeU_add, heckeU_eq hp F hF]
   abel
 
@@ -380,13 +380,13 @@ def qCoeffLin (m n : ℕ) [NeZero m] : CuspForm (CongruenceSubgroup.Gamma0 m) 2 
         Subgroup (GL (Fin 2) ℝ)).strictPeriods := by simp
     show ModularFormClass.qCoeff (⇑(f + g)) n = _
     unfold ModularFormClass.qCoeff
-    rw [CuspForm.coe_add, ModularForm.qExpansion_add one_pos hΓ f g, map_add]
+    rw [FunLike.coe_add, ModularForm.qExpansion_add one_pos hΓ f g, map_add]
   map_smul' c f := by
     have hΓ : (1 : ℝ) ∈ ((CongruenceSubgroup.Gamma0 m : Subgroup SL(2, ℤ)) :
         Subgroup (GL (Fin 2) ℝ)).strictPeriods := by simp
     show ModularFormClass.qCoeff (⇑(c • f)) n = _
     unfold ModularFormClass.qCoeff
-    rw [CuspForm.IsGLPos.coe_smul, ModularForm.qExpansion_smul one_pos hΓ, _root_.map_smul]
+    rw [FunLike.coe_smul, ModularForm.qExpansion_smul one_pos hΓ, _root_.map_smul]
     rfl
 
 theorem qCoeffLin_apply (m n : ℕ) [NeZero m] (G : CuspForm (CongruenceSubgroup.Gamma0 m) 2) :

@@ -1357,7 +1357,7 @@ private theorem _root_.PeriodPair.kw_countable_analytic_level {f : ℂ → ℂ}
   ·
     have hD : IsDiscrete ({z | f z = 0} ∩ (L.lattice : Set ℂ)ᶜ) := by
       refine isDiscrete_of_codiscreteWithin ?_
-      simp only [compl_setOf, not_not] at hne ⊢
+      simp only [compl_setOf] at hne ⊢
       exact hne
     have := hD.to_subtype
     have hcount : Countable ({z | f z = 0} ∩ (L.lattice : Set ℂ)ᶜ : Set ℂ) :=

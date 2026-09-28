@@ -104,7 +104,7 @@ lemma nonsingular_variableChange_iff (x' y' : K) :
     (C • W).toAffine.Nonsingular x' y' ↔ W.Nonsingular (vcX C x') (vcY C x' y') := by
   rw [nonsingular_iff', nonsingular_iff', equation_variableChange_iff x' y']
   refine and_congr_right fun _ => not_iff_not.mp ?_
-  push_neg
+  push Not
   exact partials_zero_iff x' y'
 
 end Formulas

@@ -236,7 +236,7 @@ theorem phiAtSeed_jqNModC_eval {R : Type*} [CommRing R] (n : ℕ) [NeZero n] (da
   convert h using 2 <;>
     first
       | rfl
-      | exact Polynomial.ringHom_ext' (RingHom.ext_int _ _) (by first | simp | rfl)
+      | exact Polynomial.ringHom_ext' (RingHom.ext_int _ _) (by first | simp )
 
 theorem phiAtSeed_jqNModC_eval_symm {R : Type*} [CommRing R] (n : ℕ) [NeZero n] (data : ModularPolynomialData n)
     (hsymm : EvalSymm data.Φ) (d : ℕ) [NeZero d] :
@@ -246,7 +246,7 @@ theorem phiAtSeed_jqNModC_eval_symm {R : Type*} [CommRing R] (n : ℕ) [NeZero n
   convert h using 2 <;>
     first
       | rfl
-      | exact Polynomial.ringHom_ext' (RingHom.ext_int _ _) (by first | simp | rfl)
+      | exact Polynomial.ringHom_ext' (RingHom.ext_int _ _) (by first | simp )
 
 theorem phiAtSeed_TS_eval {K : Type*} [Field K] (A : ℕ) [NeZero A] (n : ℕ) [NeZero n]
     (data : ModularPolynomialData n) (d : ℕ) [NeZero d] :
@@ -609,7 +609,6 @@ open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_splits_prime_at_slot_
 theorem solution {K : Type*} [Field K] (p : ℕ) [hp : Fact (Nat.Prime p)] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) p) (data : ModularPolynomialData p) (e : ℕ) [NeZero e] (u : Kˣ) : data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (LaurentSeries K)) (qExpand K (p * e) (qTwist (u ^ p) (jqModC K)))) = (Polynomial.X - Polynomial.C (qExpand K (p * (p * e)) (qTwist (u ^ (p * p)) (jqModC K)))) * ∏ b ∈ Finset.range p, (Polynomial.X - Polynomial.C (qExpand K e (qTwist (u * ζ ^ b) (jqModC K)))) :=
   ModularCurve.PhiGen.splits_prime_at_slot_of_isPrimitiveRoot p ζ hζ data e u
 
-#print axioms solution
 
 end S_ModularCurve_PhiGen_splits_prime_at_slot_of_isPrimitiveRoot
 end P2MW

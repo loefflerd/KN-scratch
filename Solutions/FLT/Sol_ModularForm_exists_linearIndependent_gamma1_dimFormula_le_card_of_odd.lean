@@ -108,10 +108,7 @@ theorem eq_zero_of_qExpansion_eq_zero {k : ℤ} (g : ModularForm Γ₁ℝ k) (h 
 theorem ofPowerSeries_smul (a : ℂ) (p : PowerSeries ℂ) :
     HahnSeries.ofPowerSeries ℤ ℂ (a • p) = algebraMap ℂ (LaurentSeries ℂ) a * HahnSeries.ofPowerSeries ℤ ℂ p := by
   rw [PowerSeries.smul_eq_C_mul, map_mul]
-  congr 1 <;> first
-    | rfl
-    | (rw [HahnSeries.algebraMap_apply', PowerSeries.algebraMap_apply]; simp)
-    | simp [HahnSeries.algebraMap_apply', PowerSeries.algebraMap_apply]
+  congr 1
 
 end DimLBOddE96
 
@@ -304,12 +301,12 @@ theorem solution
         ∑ i, algebraMap ℂ (LaurentSeries ℂ) (g i) *
           (((b i : ↥(riemannRochSpace (k • Dw))) :
             ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) : LaurentSeries ℂ) := by
-      rw [Submodule.coe_sum, AddSubmonoidClass.coe_finset_sum]
+      rw [Submodule.coe_sum, AddSubmonoidClass.coe_finsetSum]
       refine Finset.sum_congr rfl fun i _ => ?_
       rw [Submodule.coe_smul, IntermediateField.coe_smul]
       first
         | rw [Algebra.smul_def]
-        | (rw [← HahnSeries.C_mul_eq_smul, HahnSeries.C_eq_algebraMap])
+
     have hL : (((∑ i, g i • b i : ↥(riemannRochSpace (k • Dw))) :
           ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) : LaurentSeries ℂ) * W ^ k = 0 := by
       have h1 := congrArg (HahnSeries.ofPowerSeries ℤ ℂ) hq
@@ -331,7 +328,6 @@ theorem solution
     have h12 : (12 : ℤ) * d = k * μ - μ + 6 * cc := by
       rw [← hell, hRR]; linarith [hdegw, hgZ]
     zify [show 1 ≤ k by omega]
-    push_cast
     nlinarith [h12, hμZ]
 
 end S_ModularForm_exists_linearIndependent_gamma1_dimFormula_le_card_of_odd

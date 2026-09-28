@@ -47,7 +47,7 @@ theorem qL_mul (hT : ModularGroup.T ∈ Γ) {a b : ℤ} (f : ModularForm (Γ : S
 
 theorem qL_add (hT : ModularGroup.T ∈ Γ) {a : ℤ} (f g : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) a) :
     qL (f + g) = qL f + qL g := by
-  simp only [qL, ModularForm.coe_add,
+  simp only [qL, FunLike.coe_add,
     ModularForm.qExpansion_add one_pos (one_mem_strictPeriods hT), PowerSeries.coe_add]
 
 theorem qL_one : qL (1 : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) 0) = 1 := by
@@ -56,7 +56,7 @@ theorem qL_one : qL (1 : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) 0) = 1 := 
 theorem qL_const (hT : ModularGroup.T ∈ Γ) (c : ℂ) :
     qL (c • (1 : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) 0)) =
       algebraMap ℂ (LaurentSeries ℂ) c := by
-  rw [qL, ModularForm.IsGLPos.coe_smul,
+  rw [qL, FunLike.coe_smul,
     ModularForm.qExpansion_smul one_pos (one_mem_strictPeriods hT), ModularForm.qExpansion_one,
     Algebra.smul_def, mul_one, HahnSeries.algebraMap_apply']
 
@@ -73,7 +73,7 @@ theorem mul_ne_zero' (hT : ModularGroup.T ∈ Γ) {a b : ℤ} (f : ModularForm (
   have h := congrArg (qL (Γ := Γ)) hfg
   rw [qL_mul hT] at h
   have h0 : qL (0 : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) (a + b)) = 0 := by
-    simp only [qL, ModularForm.coe_zero, UpperHalfPlane.qExpansion_zero (1 : ℝ), PowerSeries.coe_zero]
+    simp only [qL, FunLike.coe_zero, UpperHalfPlane.qExpansion_zero (1 : ℝ), PowerSeries.coe_zero]
   rw [h0] at h
   exact (mul_ne_zero (qL_ne_zero hT f hf) (qL_ne_zero hT g hg)) h
 
@@ -117,7 +117,7 @@ theorem IsRatio.inv (hT : ModularGroup.T ∈ Γ) {x : LaurentSeries ℂ} (hx : I
   have hg : g ≠ 0 := by
     intro hg0
     have : qL g = 0 := by
-      simp only [hg0, qL, ModularForm.coe_zero, UpperHalfPlane.qExpansion_zero (1 : ℝ),
+      simp only [hg0, qL, FunLike.coe_zero, UpperHalfPlane.qExpansion_zero (1 : ℝ),
         PowerSeries.coe_zero]
     rw [this] at hxe
     exact (mul_ne_zero hx0 (qL_ne_zero hT h hh)) hxe
@@ -136,7 +136,7 @@ theorem isRatio_of_mem_intFormRatiosC (hT : ModularGroup.T ∈ Γ) {x : LaurentS
     intro h0
     apply hg0
     rw [intSeriesC_eq_qL hg, h0]
-    simp only [qL, ModularForm.coe_zero, UpperHalfPlane.qExpansion_zero (1 : ℝ), PowerSeries.coe_zero]
+    simp only [qL, FunLike.coe_zero, UpperHalfPlane.qExpansion_zero (1 : ℝ), PowerSeries.coe_zero]
   refine ⟨k, f, g, hg', ?_⟩
   rw [intSeriesC_eq_qL hf, intSeriesC_eq_qL hg, div_mul_cancel₀ _ (qL_ne_zero hT g hg')]
 
@@ -168,7 +168,6 @@ theorem solution (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ)) [Γ.Fin
         ((qExpansion 1 (g : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) :=
   ModularCurve.RatioFieldOfLevelG.isRatio_of_mem hT hx
 
-#print axioms solution
 
 end S_ModularCurve_exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange_qExpFunctionFieldC
 end P2MW

@@ -424,7 +424,7 @@ private theorem order_ofPowerSeries_expPS (w : Place K F) (hw : w.deg = 1)
     rcases lt_or_ge (HahnSeries.ofPowerSeries ℤ K (expPS w hw hπ y)).order 0 with hneg | hpos
     · apply horder
       rw [HahnSeries.ofPowerSeries_apply]
-      refine HahnSeries.embDomain_notin_range ?_
+      refine HahnSeries.embDomain_of_notMem_range ?_
       rintro ⟨j, hj⟩
       have hj' : ((j : ℤ))
           = (HahnSeries.ofPowerSeries ℤ K (expPS w hw hπ y)).order := hj
@@ -523,7 +523,6 @@ theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (w : Place K F)
     ∃ φ : F →ₐ[K] LaurentSeries K, ∀ x : F, (φ x).order = w.ord x :=
   AlgebraicCurve.Place.exists_algHom_laurentSeries_order_eq_ord w hw
 
-#print axioms solution
 
 end S_AlgebraicCurve_Place_exists_algHom_laurentSeries_order_eq_ord
 end P2MW

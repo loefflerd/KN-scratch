@@ -71,18 +71,18 @@ theorem coeff_zero_pow_of_integral {x : H} (hx : 0 ≤ x.orderTop) (k : ℕ) :
 def integralO : Subring H where
   carrier := {x : H | 0 ≤ x.orderTop}
   zero_mem' := by
-    simp only [Set.mem_setOf_eq, HahnSeries.orderTop_zero]
+    simp only [Set.mem_ofPred_eq, HahnSeries.orderTop_zero]
     exact le_top
   one_mem' := by
-    simp only [Set.mem_setOf_eq, HahnSeries.orderTop_one, le_refl]
+    simp only [Set.mem_ofPred_eq, HahnSeries.orderTop_one, le_refl]
   add_mem' := fun {a b} ha hb => by
-    simp only [Set.mem_setOf_eq] at ha hb ⊢
+    simp only [Set.mem_ofPred_eq] at ha hb ⊢
     exact le_trans (le_min ha hb) HahnSeries.min_orderTop_le_orderTop_add
   mul_mem' := fun {a b} ha hb => by
-    simp only [Set.mem_setOf_eq, HahnSeries.orderTop_mul]
+    simp only [Set.mem_ofPred_eq, HahnSeries.orderTop_mul]
     exact add_nonneg ha hb
   neg_mem' := fun {a} ha => by
-    simpa only [Set.mem_setOf_eq, HahnSeries.orderTop_neg] using ha
+    simpa only [Set.mem_ofPred_eq, HahnSeries.orderTop_neg] using ha
 
 theorem mem_integralO {x : H} : x ∈ integralO ↔ 0 ≤ x.orderTop := by exact Iff.rfl
 
