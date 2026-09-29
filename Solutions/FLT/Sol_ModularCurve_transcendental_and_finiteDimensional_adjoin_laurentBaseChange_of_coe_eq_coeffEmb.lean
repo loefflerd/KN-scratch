@@ -76,7 +76,7 @@ private theorem span_range_emb_eq_top [Algebra.IsAlgebraic ℚ L] :
   have h := span_range_one_tmul_eq_top ℚ L ↥F₀
   apply_fun Submodule.map (baseChangeEquiv L F₀).toLinearEquiv.toLinearMap at h
   rw [Submodule.map_top, LinearEquiv.range, Submodule.map_span, ← Set.range_comp] at h
-  convert h using 3 <;> try rfl
+  convert h using 3; try rfl
   funext f
   simp only [Function.comp_apply, LinearEquiv.coe_coe, AlgEquiv.toLinearEquiv_apply,
     emb_eq_baseChangeEquiv_one_tmul]

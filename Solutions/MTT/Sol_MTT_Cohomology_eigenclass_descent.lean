@@ -199,7 +199,8 @@ theorem descent (S : Finset α) (c : α → ℂ)
     have := congrArg (fun F => AddMonoidAlgebra.coeff (F D) d) h0
     simp only [Finset.sum_apply, Pi.smul_apply, Pi.zero_apply,
       MvPolynomial.coeff_sum, MvPolynomial.coeff_smul, smul_eq_mul,
-      MvPolynomial.coeff_zero] at this
+      AddMonoidAlgebra.coeff_zero] at this
+    change (∑ i ∈ S, c i * AddMonoidAlgebra.coeff (w i D) d) = 0 at this
     rw [← this]
     exact Finset.sum_congr rfl fun i hi => by rw [hq i hi]
   have hπ : ∑ i ∈ S, q i * π (c i) = 0 := by
@@ -213,7 +214,8 @@ theorem descent (S : Finset α) (c : α → ℂ)
     simpa using this
   simp only [Finset.sum_apply, Pi.smul_apply, Pi.zero_apply,
     MvPolynomial.coeff_sum, MvPolynomial.coeff_smul, smul_eq_mul,
-    MvPolynomial.coeff_zero]
+    AddMonoidAlgebra.coeff_zero]
+  change (∑ i ∈ S, ι (π (c i)) * AddMonoidAlgebra.coeff (w i D) d) = 0
   rw [← hι]
   exact Finset.sum_congr rfl fun i hi => by rw [hq i hi, mul_comm]
 

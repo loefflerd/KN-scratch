@@ -1,3 +1,6 @@
+import Mathlib.NumberTheory.Cyclotomic.Gal
+import Mathlib.RingTheory.RootsOfUnity.Complex
+
 import Theorems.FLT.Thm_ModularCurve_exists_mvPolynomial_mul_aeval_fricke_eq_of_qExpansion_coeff_mem
 import Theorems.FLT.Thm_ModularCurve_exists_ne_zero_forall_mul_qExpansion_coeff_fricke_mem_adjoin
 import Theorems.FLT.Thm_ModularCurve_qExpansion_discriminant_eq_map_X_mul_dedekindEtaUnit
@@ -100,6 +103,7 @@ theorem exists_pow_of_aut (σ : (kN N) ≃ₐ[ℚ] (kN N)) : ∃ s : ℕ, σ (ze
   have hμ := isPrimitiveRoot_zetaK N
   exact ⟨((hμ.autToPow ℚ σ : (ZMod N)ˣ) : ZMod N).val, by rw [hμ.autToPow_spec ℚ σ]⟩
 
+set_option linter.unusedSectionVars false in
 theorem exists_rat_of_fixed (x : kN N) (hx : ∀ σ : (kN N) ≃ₐ[ℚ] (kN N), σ x = x) :
     ∃ r : ℚ, x = algebraMap ℚ (kN N) r := by
   have := (IsGalois.mem_bot_iff_fixed x).2 hx
@@ -163,7 +167,7 @@ theorem exists_int_of_mem_AZ_of_rat (r : ℚ) (hr : ((r : ℂ)) ∈ AZ N) : ∃ 
     exact hle hr
   have hint' : IsIntegral ℤ r := by
     have hint2 : IsIntegral ℤ (algebraMap ℚ ℂ r) := hint
-    exact (isIntegral_algebraMap_iff (algebraMap ℚ ℂ).injective).mp hint2
+    exact (isIntegral_algebraMap_iff (A := ℚ) (B := ℂ)).mp hint2
   obtain ⟨z, hz⟩ := IsIntegrallyClosed.algebraMap_eq_of_integral hint'
   refine ⟨z, ?_⟩
   rw [← hz]

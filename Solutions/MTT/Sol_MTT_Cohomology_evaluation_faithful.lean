@@ -42,7 +42,7 @@ theorem val_infty_eq_zero (φ : Hc N n R)
   have hhom : (φ.val (OnePoint.infty, (r : Cusp))).IsHomogeneous n :=
     (MvPolynomial.mem_homogeneousSubmodule _ _).mp (φ.2.1 _ _)
   refine MvPolynomial.ext _ _ fun d => ?_
-  rw [MvPolynomial.coeff_zero]
+  change AddMonoidAlgebra.coeff (φ.val (OnePoint.infty, (r : Cusp))) d = 0
   by_cases hd : d.degree = n
   · have hle : d 0 ≤ n := by rw [deg_eq] at hd; omega
     rw [eq_mono d (d 0) rfl hd]

@@ -377,7 +377,7 @@ lemma hasSum_Fterm_row {z : ℂ} (hz : z.im = 0) (m : ℕ+) :
   have h2 := hasSum_pi_cot_add hw2
   have h2' : HasSum (fun k : ℕ+ => -(-2 * π * I * cexp (2 * π * I * (((m : ℕ) : ℂ) * τ - z)) ^ (k : ℕ)))
       (π * Complex.cot (π * (z - ((m : ℕ) : ℂ) * τ)) - π * I) := by
-    convert h2.neg using 1 <;> try with_reducible_and_instances rfl
+    convert h2.neg using 1; try with_reducible_and_instances rfl
     rw [show π * (((m : ℕ) : ℂ) * τ - z) = -(π * (z - ((m : ℕ) : ℂ) * τ)) by ring, cot_neg]
     ring
   have h3 := h1.add h2'

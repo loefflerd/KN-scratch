@@ -37,7 +37,6 @@ theorem solution {K F' M : Type*} [Field K] [Field F'] [Field M]
     ValuationSubring.mem_comap, SemilinearAut.smul_toValuationSubring,
     ValuationSubring.mem_pointwise_smul_iff_inv_smul_mem, SemilinearAut.inv_smul_def,
     SemilinearAut.toRingAut_ofAlgAut]
-  change ((σ.restrictScalars K : M ≃+* M).symm (algebraMap F' M x)) ∈ _ ↔ _
   have : ((σ.restrictScalars K : M ≃+* M).symm (algebraMap F' M x)) = algebraMap F' M x := by
     rw [RingEquiv.symm_apply_eq]
     exact (σ.commutes x).symm

@@ -19,9 +19,10 @@ theorem evaluation_extends {R : Type*} [CommRing R]
     (φ : Hc N n ℤ) (Φ : Hc N n R) (h : Extends (Int.castRingHom R) φ Φ)
     (j : ℕ) (r : ℚ) :
     evaluation j r Φ = ((evaluation j r φ : ℤ) : R) := by
-  simp only [evaluation, LinearMap.coe_mk, AddHom.coe_mk]
-  rw [h OnePoint.infty ((r : Cusp)), MvPolynomial.coeff_map]
-  simp
+  show AddMonoidAlgebra.coeff (Φ.val (OnePoint.infty, (r : Cusp))) _ =
+    Int.castRingHom R (AddMonoidAlgebra.coeff (φ.val (OnePoint.infty, (r : Cusp))) _)
+  rw [h OnePoint.infty (r : Cusp)]
+  exact MvPolynomial.coeff_map _ _ _
 
 end P2MLat
 

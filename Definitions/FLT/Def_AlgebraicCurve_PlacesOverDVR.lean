@@ -266,18 +266,18 @@ theorem sum_ramificationIdx'_mul_inertiaDeg'_integralClosureAt :
     ∑ P ∈ IsDedekindDomain.primesOverFinset
         (IsLocalRing.maximalIdeal v.toValuationSubring) (integralClosureAt F' v),
       Ideal.ramificationIdx' (IsLocalRing.maximalIdeal v.toValuationSubring) P *
-        Ideal.inertiaDeg (IsLocalRing.maximalIdeal v.toValuationSubring) P =
+        Ideal.inertiaDeg P v.toValuationSubring =
           Module.finrank F F' := by
   classical
   let p := IsLocalRing.maximalIdeal v.toValuationSubring
   let S := integralClosureAt F' v
   let e : {P // P ∈ IsDedekindDomain.primesOverFinset p S} ≃ p.primesOver S :=
-    Equiv.setCongr (IsDedekindDomain.coe_primesOverFinset (maximalIdeal_ne_bot v) S)
+    Set.equivOfEq (IsDedekindDomain.coe_primesOverFinset (maximalIdeal_ne_bot v) S)
   change (∑ P ∈ IsDedekindDomain.primesOverFinset p S,
-    p.ramificationIdx' P * p.inertiaDeg' P) = Module.finrank F F'
+    p.ramificationIdx' P * P.inertiaDeg v.toValuationSubring) = Module.finrank F F'
   calc
     _ = ∑ P : {P // P ∈ IsDedekindDomain.primesOverFinset p S},
-        p.ramificationIdx' P.1 * p.inertiaDeg' P.1 := by
+        p.ramificationIdx' P.1 * P.1.inertiaDeg v.toValuationSubring := by
           rw [← Finset.sum_attach, Finset.univ_eq_attach]
     _ = ∑ P : p.primesOver S,
         P.1.ramificationIdx v.toValuationSubring * P.1.inertiaDeg v.toValuationSubring := by
@@ -289,10 +289,9 @@ theorem sum_ramificationIdx'_mul_inertiaDeg'_integralClosureAt :
           let : P.1.IsMaximal :=
             (inferInstance : P.1.IsPrime).isMaximal
               (Ideal.ne_bot_of_mem_primesOver (maximalIdeal_ne_bot v) hmem)
-          change p.ramificationIdx' P.1 * p.inertiaDeg' P.1 =
+          change p.ramificationIdx' P.1 * P.1.inertiaDeg v.toValuationSubring =
             P.1.ramificationIdx v.toValuationSubring * P.1.inertiaDeg v.toValuationSubring
-          rw [Ideal.ramificationIdx'_eq_ramificationIdx p P.1 (maximalIdeal_ne_bot v),
-            Ideal.inertiaDeg'_eq_inertiaDeg]
+          rw [Ideal.ramificationIdx'_eq_ramificationIdx p P.1 (maximalIdeal_ne_bot v)]
     _ = Module.finrank v.toValuationSubring S :=
       Ideal.sum_ramification_inertia_eq_finrank p S
     _ = Module.finrank F F' :=
