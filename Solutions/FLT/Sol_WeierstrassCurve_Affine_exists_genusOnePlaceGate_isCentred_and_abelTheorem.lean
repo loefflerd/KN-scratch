@@ -1,23 +1,12 @@
-import Mathlib
-import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
-import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
 import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
 import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
-import Theorems.FLT.Thm_AlgebraicCurve_Place_ord_eq_neg_log_of_valuationSubring_eq
-import Definitions.FLT.Def_WeierstrassCurve_GenusOnePic0
 import Definitions.FLT.Def_WeierstrassCurve_GenusOnePlaceGateCentred
+import Theorems.FLT.Thm_AlgebraicCurve_Place_ord_eq_neg_log_of_valuationSubring_eq
 import Definitions.FLT.Def_P2M_Util
-
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem
 
 set_option autoImplicit false
-
-set_option synthInstance.maxHeartbeats 800000
-set_option maxHeartbeats 6400000
 
 section
 section
@@ -2259,8 +2248,7 @@ theorem solution
     [IsDedekindDomain W.CoordinateRing] [AlgebraicCurve.HasPrincipalDivisors F W.FunctionField] :
     ∃ g : WeierstrassCurve.Affine.GenusOnePlaceGate W,
       @WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred F _ W g
-        ∧ @WeierstrassCurve.Affine.AbelTheorem F _ _ W g := by
-
+        ∧ @WeierstrassCurve.Affine.AbelTheorem F _ _ g _ := by
   let g : WeierstrassCurve.Affine.GenusOnePlaceGate W :=
     { pointEquivPlace := WeierstrassCurve.Affine.geomPointEquivPlace
       deg_eq_one := fun v => by
@@ -2268,8 +2256,7 @@ theorem solution
         exact WeierstrassCurve.Affine.deg_geomPlaceOfPoint P }
   let := g
   refine ⟨g, ⟨?_, ?_⟩, ⟨?_⟩⟩
-  ·
-    intro x y h
+  · intro x y h
     change algebraMap W.CoordinateRing W.FunctionField (CoordinateRing.XClass W x)
       ∈ (WeierstrassCurve.Affine.geomPlaceOfPoint (Point.some x y h)).toValuationSubring.nonunits
     rw [WeierstrassCurve.Affine.geomPlaceOfPoint_some, WeierstrassCurve.Affine.placeOfEquation,
@@ -2278,8 +2265,7 @@ theorem solution
     rw [IsDedekindDomain.HeightOneSpectrum.valuation_lt_one_iff_mem,
       WeierstrassCurve.Affine.CoordinateRing.heightOneSpectrumOfEquation_asIdeal]
     exact Ideal.subset_span (Set.mem_insert _ _)
-  ·
-    intro x y h
+  · intro x y h
     change algebraMap W.CoordinateRing W.FunctionField (CoordinateRing.YClass W (Polynomial.C y))
       ∈ (WeierstrassCurve.Affine.geomPlaceOfPoint (Point.some x y h)).toValuationSubring.nonunits
     rw [WeierstrassCurve.Affine.geomPlaceOfPoint_some, WeierstrassCurve.Affine.placeOfEquation,
@@ -2288,8 +2274,7 @@ theorem solution
     rw [IsDedekindDomain.HeightOneSpectrum.valuation_lt_one_iff_mem,
       WeierstrassCurve.Affine.CoordinateRing.heightOneSpectrumOfEquation_asIdeal]
     exact Ideal.subset_span (Set.mem_insert_of_mem _ (Set.mem_singleton _))
-  ·
-    intro D hD
+  · intro D hD
     exact WeierstrassCurve.Affine.GeomAbelTheorem.isPrincipal_iff_geomDivisorSum_eq_zero D hD
 
 end

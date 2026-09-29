@@ -617,7 +617,7 @@ section S13GlobalGate
 variable {F : Type*} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F] (W : Affine F) [W.IsElliptic]
 
 theorem s13_exists_gate : ∃ (g : GenusOnePlaceGate W),
-    @GenusOnePlaceGate.IsCentred F _ W g ∧ @AbelTheorem F _ _ W g := by
+    @GenusOnePlaceGate.IsCentred F _ W g ∧ @AbelTheorem F _ _ g _ := by
   have : IsDedekindDomain W.CoordinateRing := CoordinateRing.isDedekindDomain W
   have : AlgebraicCurve.HasPrincipalDivisors F W.FunctionField := hasPrincipalDivisors_functionField W
   exact exists_genusOnePlaceGate_isCentred_and_abelTheorem (W := W)

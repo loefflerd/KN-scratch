@@ -1,10 +1,5 @@
-import Mathlib
 import Definitions.FLT.Def_AlgebraicCurve_Correspondence
 import Definitions.FLT.Def_WeierstrassCurve_GenusOnePic0
-
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 set_option autoImplicit false
 
@@ -91,7 +86,8 @@ theorem pushforwardAlong_single_eq (w : AlgebraicCurve.Place F W.FunctionField) 
 
 variable (hfin : FiniteAlong F ι) (hN : NormFormulaAlong F ι hfin)
 
-omit [IsAlgClosed F] [CharZero F] [WeierstrassCurve.IsElliptic V] [WeierstrassCurve.IsElliptic W] [V.AbelTheorem] [W.AbelTheorem] in
+omit [IsAlgClosed F] [CharZero F] [WeierstrassCurve.IsElliptic V] [WeierstrassCurve.IsElliptic W]
+  [V.AbelTheorem] [W.AbelTheorem] [DecidableEq F] in
 theorem pushforwardAlongDegZero_pointDivisor {P : W.Point} {Q : V.Point}
     (hP : (placeOfPoint P).restrictAlong ι hι = placeOfPoint Q)
     (h0 : (placeOfPoint (0 : W.Point)).restrictAlong ι hι = placeOfPoint (0 : V.Point)) :
@@ -100,6 +96,8 @@ theorem pushforwardAlongDegZero_pointDivisor {P : W.Point} {Q : V.Point}
   rw [Pic0.coe_pushforwardAlongDegZero, coe_pointDivisor, coe_pointDivisor, map_sub,
     pushforwardAlong_single_eq ι hι, pushforwardAlong_single_eq ι hι, hP, h0]
 
+omit [IsAlgClosed F] [CharZero F] [WeierstrassCurve.IsElliptic V] [WeierstrassCurve.IsElliptic W]
+  [V.AbelTheorem] [W.AbelTheorem] [DecidableEq F] in
 theorem pushforwardAlongHom_pointClass {P : W.Point} {Q : V.Point}
     (hP : (placeOfPoint P).restrictAlong ι hι = placeOfPoint Q)
     (h0 : (placeOfPoint (0 : W.Point)).restrictAlong ι hι = placeOfPoint (0 : V.Point)) :
@@ -121,6 +119,7 @@ theorem pointMapOfPushforward_apply (P : W.Point) :
   rw [← genusOnePic0Equiv_symm_apply]
   rfl
 
+omit [IsAlgClosed F] [CharZero F] [WeierstrassCurve.IsElliptic V] [WeierstrassCurve.IsElliptic W] in
 theorem pointMapOfPushforward_eq_of_seam (g : W.Point → V.Point) (hg0 : g 0 = 0)
     (hg : ∀ P, (placeOfPoint P).restrictAlong ι hι = placeOfPoint (g P)) (P : W.Point) :
     pointMapOfPushforward ι hι hfin hN P = g P := by
@@ -129,7 +128,7 @@ theorem pointMapOfPushforward_eq_of_seam (g : W.Point → V.Point) (hg0 : g 0 = 
     genusOnePic0Equiv_apply, pic0ToPoint_pointClass]
 
 include hfin hN in
-
+omit [IsAlgClosed F] [CharZero F] [WeierstrassCurve.IsElliptic V] [WeierstrassCurve.IsElliptic W] in
 theorem map_add_of_seam (g : W.Point → V.Point) (hg0 : g 0 = 0)
     (hg : ∀ P, (placeOfPoint P).restrictAlong ι hι = placeOfPoint (g P)) (P Q : W.Point) :
     g (P + Q) = g P + g Q := by
@@ -137,6 +136,7 @@ theorem map_add_of_seam (g : W.Point → V.Point) (hg0 : g 0 = 0)
     ← pointMapOfPushforward_eq_of_seam ι hι hfin hN g hg0 hg P,
     ← pointMapOfPushforward_eq_of_seam ι hι hfin hN g hg0 hg Q, map_add]
 
+omit [IsAlgClosed F] [CharZero F] [WeierstrassCurve.IsElliptic V] [WeierstrassCurve.IsElliptic W] in
 theorem eq_zero_iff_of_seam (g : W.Point → V.Point) (hg0 : g 0 = 0)
     (hg : ∀ P, (placeOfPoint P).restrictAlong ι hι = placeOfPoint (g P)) (P : W.Point) :
     g P = 0 ↔ Pic0.pushforwardAlongHom ι hι hfin hN (pointClass P) = 0 := by
@@ -180,6 +180,7 @@ theorem pointEnd_apply (D : IsogenyEndDatum W) (hN : NormFormulaAlong F D.ι D.h
           (Pic0.pushforwardAlongHom D.ι D.hι D.hfin hN (pointClass P)) :=
   pointMapOfPushforward_apply D.ι D.hι D.hfin hN P
 
+omit [IsAlgClosed F] [CharZero F] [WeierstrassCurve.IsElliptic W] in
 theorem pointEnd_eq_of_seam (D : IsogenyEndDatum W) (hN : NormFormulaAlong F D.ι D.hfin)
     (g : W.Point → W.Point) (hg0 : g 0 = 0)
     (hg : ∀ P, (placeOfPoint P).restrictAlong D.ι D.hι = placeOfPoint (g P)) (P : W.Point) :
@@ -219,6 +220,7 @@ theorem pointHom_apply (D : IsogenyHomDatum V₀ V₁) (hN : NormFormulaAlong F 
       (Pic0.pushforwardAlongHom D.ι D.hι D.hfin hN (pointClass P)) :=
   pointMapOfPushforward_apply D.ι D.hι D.hfin hN P
 
+omit [IsAlgClosed F] [CharZero F] [WeierstrassCurve.IsElliptic V₀] [WeierstrassCurve.IsElliptic V₁] in
 theorem pointHom_eq_of_seam (D : IsogenyHomDatum V₀ V₁) (hN : NormFormulaAlong F D.ι D.hfin)
     (g : V₀.Point → V₁.Point) (hg0 : g 0 = 0)
     (hg : ∀ P, (placeOfPoint P).restrictAlong D.ι D.hι = placeOfPoint (g P))

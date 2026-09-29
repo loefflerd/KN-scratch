@@ -1,9 +1,5 @@
 import Definitions.FLT.Def_WeierstrassCurve_ReductionMap
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
 set_option autoImplicit false
 
 open IsLocalRing
@@ -426,7 +422,7 @@ theorem neg_formal_param_add {x y : L} (hy0 : y ≠ 0)
   linear_combination (-x) * hsum
 
 theorem neg_formal_param_estimate {x y τ : L}
-    (h : (W.map A.subtype).toAffine.Equation x y) (hx : x ∉ A) (hτ0 : τ ≠ 0)
+    (h : (W.map A.subtype).toAffine.Equation x y) (hx : x ∉ A)
     (ht : (x / y) / τ ∈ A) :
     ((-(x / y)) + (-(x / (W.map A.subtype).toAffine.negY x y))) / τ ∈ A.nonunits := by
   have h' : (W.map A.subtype).toAffine.Equation x ((W.map A.subtype).toAffine.negY x y) :=
@@ -1026,7 +1022,7 @@ theorem add_formal_param_estimate {x₁ y₁ x₂ y₂ τ : L}
   have hx₃notA : x₃ ∉ A := fun hmem => hy₃notA (Y_mem_of_X_mem W hR hmem)
   refine ⟨hx₃notA, ?_⟩
 
-  have hneg := neg_formal_param_estimate (W := W) hR hx₃notA hτ0 hT₃τ
+  have hneg := neg_formal_param_estimate (W := W) hR hx₃notA hT₃τ
 
   have key : (-(x₃ / (W.map A.subtype).toAffine.negY x₃ y₃) - -(x₁ / y₁) - -(x₂ / y₂)) / τ
       = (-(x₃ / y₃) + -(x₃ / (W.map A.subtype).toAffine.negY x₃ y₃)) / τ
@@ -1091,7 +1087,7 @@ theorem formal_param_nsmul {x y : L} (h : (W.map A.subtype).toAffine.Nonsingular
         rw [add_of_Y_eq hcond.1 hcond.2]
         refine ⟨fun _ => ?_, fun x' y' h' heq => absurd heq.symm (some_ne_zero h')⟩
 
-        have hneg := Affine.neg_formal_param_estimate (W := W) h.1 hx hτ0 hself
+        have hneg := Affine.neg_formal_param_estimate (W := W) h.1 hx hself
         rw [hcond.1, hcond.2] at hcong
         have key : ((j : L) + 1) =
             ((-(x / y)) + (-(x / (W.map A.subtype).toAffine.negY x y))) / -(x / y)
@@ -1163,7 +1159,7 @@ theorem X_mem_of_nsmul_eq_zero' [DecidableEq L] {n : ℕ}
   rw [← A.natCast_mem_nonunits_iff_residue_eq_zero]
   exact (formal_param_nsmul (W := W) h hx n).1 hP
 
-theorem X_mem_of_nsmul_eq_zero'' [DecidableEq L] (hΔ : (W.map (residue A)).Δ ≠ 0) {n : ℕ}
+theorem X_mem_of_nsmul_eq_zero'' [DecidableEq L] {n : ℕ}
     (hn : (n : ResidueField A) ≠ 0) {x y : L}
     (h : (W.map A.subtype).toAffine.Nonsingular x y)
     (hP : n • (Affine.Point.some x y h : (W.map A.subtype).toAffine.Point) = 0) : x ∈ A :=

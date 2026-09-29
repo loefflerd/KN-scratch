@@ -1,25 +1,18 @@
-import Mathlib
-import Definitions.FLT.Def_WeierstrassCurve_GenusOnePic0
-import Definitions.FLT.Def_WeierstrassCurve_GenusOnePlaceGateCentred
-import Theorems.FLT.Thm_WeierstrassCurve_Affine_CoordinateRing_isDedekindDomain
 import Definitions.FLT.Def_EllipticCurve_FunctionFieldPullback
-import Theorems.FLT.Thm_WeierstrassCurve_Affine_FunctionField_exists_eq_valuationSubring_of_X_mem
-import Theorems.FLT.Thm_WeierstrassCurve_Affine_CoordinateRing_XYIdeal_eq_XYIdeal_iff
+import Definitions.FLT.Def_WeierstrassCurve_GenusOnePlaceGateCentred
 import Theorems.FLT.Thm_AlgebraicCurve_Place_ord_eq_neg_log_of_valuationSubring_eq
-import Theorems.FLT.Thm_WeierstrassCurve_Affine_exists_infinitePlace_deg_eq_one
+import Theorems.FLT.Thm_WeierstrassCurve_Affine_CoordinateRing_XYIdeal_eq_XYIdeal_iff
+import Theorems.FLT.Thm_WeierstrassCurve_Affine_CoordinateRing_isDedekindDomain
+import Theorems.FLT.Thm_WeierstrassCurve_Affine_FunctionField_exists_eq_valuationSubring_of_X_mem
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_deg_ofHeightOneSpectrum_eq_one
+import Theorems.FLT.Thm_WeierstrassCurve_Affine_exists_infinitePlace_deg_eq_one
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_hasPrincipalDivisors_of_isAlgClosed
-import Definitions.FLT.Def_P2M_Util
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
+import Definitions.FLT.Def_P2M_Util
 
 namespace P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_abelTheorem
 p2m_attr_erase "instance" "AlgebraicCurve.Place.instIsRankOneDiscreteWithZeroMultiplicativeIntAdicValuation AlgebraicCurve.Place.instIsTrivialOnWithZeroMultiplicativeIntAdicValuation"
 p2m_attr_erase "simp" "AlgebraicCurve.Place.congrEquiv_symm_apply AlgebraicCurve.RationalFunctionField.heightOneSpectrumOfIrreducible_asIdeal AlgebraicCurve.Place.congrRingEquiv_toValuationSubring AlgebraicCurve.Place.congrEquiv_apply AlgebraicCurve.Place.coe_comapSymmRingEquiv_apply AlgebraicCurve.RationalFunctionField.deg_placeOfPoint"
-
-set_option Elab.async false
 
 set_option autoImplicit false
 
@@ -374,7 +367,7 @@ theorem abel_geomGate : AbelTheorem W :=
   ⟨fun _D h0 => ⟨divisorSum_eq_zero_of_isPrincipal', isPrincipal_of_divisorSum_eq_zero' h0⟩⟩
 
 theorem main_impl : ∃ g : GenusOnePlaceGate W,
-    @GenusOnePlaceGate.IsCentred F _ W g ∧ @AbelTheorem F _ _ W g :=
+    @GenusOnePlaceGate.IsCentred F _ W g ∧ @AbelTheorem F _ _ g _ :=
   ⟨geomGate, isCentred_geomGate, abel_geomGate⟩
 
 end Closed
@@ -389,7 +382,7 @@ theorem solution {F : Type*} [Field F] [DecidableEq F] [IsAlgClosed F]
     (W : WeierstrassCurve.Affine F) [W.IsElliptic] :
     ∃ g : WeierstrassCurve.Affine.GenusOnePlaceGate W,
       @WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred F _ W g ∧
-        @WeierstrassCurve.Affine.AbelTheorem F _ _ W g :=
+        @WeierstrassCurve.Affine.AbelTheorem F _ _ g _ :=
   D5S.main_impl
 
 

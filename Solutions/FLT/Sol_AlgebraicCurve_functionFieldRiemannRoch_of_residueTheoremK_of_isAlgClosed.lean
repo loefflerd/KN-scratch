@@ -4762,6 +4762,7 @@ variable [HasCanonicalDivisor (K := K) (F := F)] [∀ v : Place K F, v.DCoordGen
 variable (K F)
 variable {K F}
 
+omit [HasCanonicalLocalResidueKStar K F] in
 theorem weilOfKaehlerK_mem_omegaSpace_of_residueTheoremK [HasPrincipalDivisors K F]
     (hRT : ResidueTheoremK K F) (Rfam : ∀ v : Place K F, v.CanonicalLocalResidueDataK)
     {ω : Ω[F⁄K]} (hω : ω ≠ 0) :
@@ -4773,7 +4774,9 @@ theorem weilOfKaehlerK_mem_omegaSpace_of_residueTheoremK [HasPrincipalDivisors K
   obtain ⟨f, hf⟩ := Submodule.mem_comap.mp hγ
   have hγ' : γ = ⟨diagonalHom K F f, diagonal_mem_adeleSpace f⟩ := Subtype.ext hf.symm
   rw [hγ', hRT Rfam hω f, add_zero]
+
 end SupportMachinery
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 end CanonicalKResidueTerm
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
@@ -4832,13 +4835,13 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheorem
 variable [HasCanonicalDivisor (K := K) (F := F)] [∀ v : Place K F, v.DCoordGenerates]
   [Nontrivial Ω[F⁄K]]
 
-def simplePoleProbe {ω : Ω[F⁄K]} (_hω : ω ≠ 0) (v : Place K F)
+def simplePoleProbe [DecidableEq (Place K F)] {ω : Ω[F⁄K]} (_hω : ω ≠ 0) (v : Place K F)
     (c : v.toValuationSubring) : adeleSpace K F :=
   adeleSingle v ((c : F) * v.uniformizer⁻¹ * (v.differentialCoeff ω)⁻¹)
 
 open scoped _root_.Classical _root_.P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.Classical in
-omit [Nontrivial Ω[F⁄K]] in
 
+omit [Nontrivial Ω[F⁄K]] [HasCanonicalLocalResidueKStar K F] in
 theorem simplePoleProbe_mem_adeleBdd {ω : Ω[F⁄K]} (hω : ω ≠ 0) (v : Place K F)
     (c : v.toValuationSubring) {D : Divisor K F} (hDv : canonicalDivisorOf hω v < D v) :
     (simplePoleProbe hω v c : Place K F → F) ∈ adeleBdd D := by
@@ -6003,10 +6006,11 @@ theorem p0n25_wkc_weilOfKaehlerK_single
 theorem p0n25_wkc_weilOfKaehlerK_simplePoleProbe
     (Rfam : ∀ v : Place K F, v.CanonicalLocalResidueDataK)
     {ω : Ω[F⁄K]} (hω : ω ≠ 0) (v : Place K F) (c : v.toValuationSubring) :
+    letI := Classical.propDecidable
     weilOfKaehlerK Rfam hω (simplePoleProbe hω v c)
       = Algebra.trace K v.ResidueField (IsLocalRing.residue _ c) := by
   unfold simplePoleProbe
-  rw [p0n25_wkc_weilOfKaehlerK_single Rfam hω,
+  rw [p0n25_wkc_weilOfKaehlerK_single Rfam hω v,
     mul_assoc, inv_mul_cancel₀ (v.differentialCoeff_ne_zero hω), mul_one,
     p0n25_wkc_localResidueData_res_mul_uniformizer_inv (Rfam v).toLocalResidueData c]
 

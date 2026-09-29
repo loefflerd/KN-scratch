@@ -1,9 +1,6 @@
-import Mathlib
 import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
-
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
+import Mathlib.AlgebraicGeometry.EllipticCurve.Affine.Point
+import Mathlib.RingTheory.SimpleRing.Principal
 
 set_option autoImplicit false
 
@@ -15,7 +12,7 @@ namespace WeierstrassCurve.Affine
 
 universe u
 
-variable {F : Type u} [Field F] [DecidableEq F]
+variable {F : Type u} [Field F]
 
 variable (W : Affine F) in
 
@@ -33,42 +30,40 @@ abbrev pointEquivPlace : W.Point ≃ AlgebraicCurve.Place F W.FunctionField :=
 def placeOfPoint : W.Point → AlgebraicCurve.Place F W.FunctionField :=
   pointEquivPlace (W := W)
 
-omit [DecidableEq F] in
 @[simp]
 theorem pointEquivPlace_apply (P : W.Point) :
     (pointEquivPlace (W := W)) P = placeOfPoint P := rfl
 
-omit [DecidableEq F] in
 @[simp]
 theorem pointEquivPlace_symm_placeOfPoint (P : W.Point) :
     (pointEquivPlace (W := W)).symm (placeOfPoint P) = P :=
   (pointEquivPlace (W := W)).symm_apply_apply P
 
-omit [DecidableEq F] in
 theorem deg_eq_one (v : AlgebraicCurve.Place F W.FunctionField) : v.deg = 1 :=
   GenusOnePlaceGate.deg_eq_one v
 
-omit [DecidableEq F] in
 @[simp]
 theorem deg_placeOfPoint (P : W.Point) : (placeOfPoint (W := W) P).deg = 1 :=
   deg_eq_one _
 
-omit [DecidableEq F] in
 theorem degree_eq_sum (D : AlgebraicCurve.Divisor F W.FunctionField) :
     Divisor.degree D = D.sum fun _ n => n := by
   rw [Divisor.degree, Finsupp.liftAddHom_apply]
   exact Finsupp.sum_congr fun v _ => by
     rw [AddMonoidHom.mulRight_apply, deg_eq_one v, Nat.cast_one, mul_one]
 
-def divisorSum : AlgebraicCurve.Divisor F W.FunctionField →+ W.Point :=
+def divisorSum [DecidableEq F] :
+    AlgebraicCurve.Divisor F W.FunctionField →+ W.Point :=
   Finsupp.liftAddHom fun v => zmultiplesHom W.Point ((pointEquivPlace (W := W)).symm v)
 
 @[simp]
-theorem divisorSum_single (v : AlgebraicCurve.Place F W.FunctionField) (n : ℤ) :
+theorem divisorSum_single [DecidableEq F]
+    (v : AlgebraicCurve.Place F W.FunctionField) (n : ℤ) :
     divisorSum (Finsupp.single v n) = n • (pointEquivPlace (W := W)).symm v :=
   Finsupp.liftAddHom_apply_single _ v n
 
-theorem divisorSum_single_placeOfPoint (P : W.Point) (n : ℤ) :
+theorem divisorSum_single_placeOfPoint  [DecidableEq F]
+    (P : W.Point) (n : ℤ) :
     divisorSum (Finsupp.single (placeOfPoint P) n) = n • P := by
   rw [divisorSum_single, pointEquivPlace_symm_placeOfPoint]
 
@@ -77,19 +72,17 @@ def pointDivisor (P : W.Point) : Divisor.degZero (K := F) (F := W.FunctionField)
     rw [Divisor.mem_degZero, map_sub, Divisor.degree_single, Divisor.degree_single,
       deg_placeOfPoint, deg_placeOfPoint, sub_self]⟩
 
-omit [DecidableEq F] in
 @[simp]
 theorem coe_pointDivisor (P : W.Point) :
     (pointDivisor P : AlgebraicCurve.Divisor F W.FunctionField)
       = Finsupp.single (placeOfPoint P) 1 - Finsupp.single (placeOfPoint (0 : W.Point)) 1 :=
   rfl
 
-omit [DecidableEq F] in
 @[simp]
 theorem pointDivisor_zero : pointDivisor (0 : W.Point) = 0 :=
   Subtype.ext (sub_self _)
 
-theorem divisorSum_pointDivisor (P : W.Point) :
+theorem divisorSum_pointDivisor [DecidableEq F] (P : W.Point) :
     divisorSum (pointDivisor P : AlgebraicCurve.Divisor F W.FunctionField) = P := by
   rw [coe_pointDivisor, map_sub, divisorSum_single_placeOfPoint, divisorSum_single_placeOfPoint,
     one_smul, one_smul, sub_zero]
@@ -102,16 +95,14 @@ theorem pointClass_zero : pointClass (0 : W.Point) = 0 := by
   rw [pointClass, pointDivisor_zero, Pic0.mk_zero]
 
 variable (W) in
-
-class AbelTheorem : Prop where
-
+class AbelTheorem [DecidableEq F] : Prop where
   isPrincipal_iff_divisorSum_eq_zero :
     ∀ D : AlgebraicCurve.Divisor F W.FunctionField, Divisor.degree D = 0 →
       (Divisor.IsPrincipal D ↔ divisorSum D = 0)
 
 section AbelTheorem
 
-variable [AbelTheorem W]
+variable [DecidableEq F] [AbelTheorem W]
 
 theorem divisorSum_eq_zero_of_isPrincipal {D : AlgebraicCurve.Divisor F W.FunctionField}
     (h0 : Divisor.degree D = 0) (hD : Divisor.IsPrincipal D) : divisorSum D = 0 :=
