@@ -207,8 +207,8 @@ theorem charZero_L (L : Type*) [Field L] [Algebra ℚ L] : CharZero L :=
   charZero_of_injective_algebraMap (algebraMap ℚ L).injective
 
 theorem intSeriesC_injective (K : Type*) [Field K] [CharZero K] : Function.Injective (intSeriesC K) :=
-  fun p q h => PowerSeries.map_injective (Int.castRingHom K) Int.cast_injective
-    (HahnSeries.ofPowerSeries_injective h)
+  HahnSeries.ofPowerSeries_injective.comp
+    (PowerSeries.map_injective (Int.castRingHom K) Int.cast_injective)
 
 variable (L) in
 

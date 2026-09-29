@@ -1,27 +1,18 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_ModuliPoint
-import Definitions.FLT.Def_ModularCurve_GenusNumerics
 import Theorems.FLT.Thm_ModularCurve_natCard_moduliPoint_j_eq_eq_natCard_quot_addOrderOf_eq
-import Theorems.FLT.Thm_WeierstrassCurve_natCard_isAddCyclic_addSubgroup_card_eq_fixed_vcInvFun_eq_nuTwo
-import Theorems.FLT.Thm_WeierstrassCurve_natCard_addSubgroup_isAddCyclic_card_eq_dedekindPsi_of_isAlgClosed
 import Theorems.FLT.Thm_MulAction_card_mul_natCard_orbitRel_quotient_eq_of_natCard_eq_prime
-import Theorems.FLT.Thm_WeierstrassCurve_mem_stabilizer_variableChange_iff_of_isShortNF_of_a6_eq_zero
-import Theorems.FLT.Thm_WeierstrassCurve_variableChange_mk_smul_eq_self_of_sq_eq_neg_one
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_Point_vcInvFun_add
 import Theorems.FLT.Thm_WeierstrassCurve_card_torsion_of_isAlgClosed
+import Theorems.FLT.Thm_WeierstrassCurve_mem_stabilizer_variableChange_iff_of_isShortNF_of_a6_eq_zero
+import Theorems.FLT.Thm_WeierstrassCurve_natCard_addSubgroup_isAddCyclic_card_eq_dedekindPsi_of_isAlgClosed
+import Theorems.FLT.Thm_WeierstrassCurve_natCard_isAddCyclic_addSubgroup_card_eq_fixed_vcInvFun_eq_nuTwo
+import Theorems.FLT.Thm_WeierstrassCurve_variableChange_mk_smul_eq_self_of_sq_eq_neg_one
 import Definitions.FLT.Def_P2M_Util
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_two_mul_natCard_moduliPoint_j_eq_1728_eq_dedekindPsi_add_nuTwo
 p2m_attr_erase "instance" "WeierstrassCurve.instIsEllipticBaseChange WeierstrassCurve.Univ.Affine.instAddGroupPointFieldBaseChangeMvPolynomialCoeffIntCurve WeierstrassCurve.Univ.instIsEllipticFieldPointedCurve WeierstrassCurve.Univ.instCommRingPoly ModularCurve.instFiniteProjectiveLine ModularCurve.unimodularRowSetoid ModularCurve.PhiGen.instNeZeroPhiGenCosetA"
 p2m_attr_erase "simp" "compl₂EDSAux_neg_two compl₂EDSAux_zero WeierstrassCurve.ωe_zero WeierstrassCurve.Univ.pointedCurve_a₁ WeierstrassCurve.Univ.polyToField_polynomial WeierstrassCurve.Coeff.A₁.sizeOf_spec compl₂EDS_zero compl₂EDS_one WeierstrassCurve.Univ.Affine.smulY_zero Param.C.sizeOf_spec EllSequence.redInvarDenom_zero compl₂EDSAux_two compl₂EDSAux_neg_one compl₂EDSAux_one WeierstrassCurve.Coeff.A₆.sizeOf_spec WeierstrassCurve.ψc_neg WeierstrassCurve.Univ.Affine.smulY_one WeierstrassCurve.Univ.Affine.smulX_one WeierstrassCurve.Coeff.A₂.sizeOf_spec WeierstrassCurve.Univ.pointedCurve_a₄ compl₂EDS_neg WeierstrassCurve.Univ.pointedCurve_a₃ EllSequence.redInvarDenom_two WeierstrassCurve.Univ.pointedCurve_a₆ Param.D.sizeOf_spec WeierstrassCurve.ωe_one WeierstrassCurve.Univ.Affine.smulX_zero WeierstrassCurve.Coeff.A₃.sizeOf_spec EllSequence.redInvarDenom_one WeierstrassCurve.Coeff.A₄.sizeOf_spec WeierstrassCurve.Univ.pointedCurve_a₂ Param.B.sizeOf_spec compl₂EDS_two ModularCurve.ProjectiveLine.map_mk ModularCurve.evalAtJqN_X ModularCurve.qTwistFun_coeff ModularCurve.swapBivar_C_X ModularCurve.PhiGen.cosetA_succ ModularCurve.qTwist_coeff ModularCurve.PhiGen.cosetB_zero"
 p2m_attr_erase "simp" "ModularCurve.PhiGen.cosetA_zero ModularCurve.qTwist_single ModularCurve.swapBivar_X ModularCurve.aeval_toRingHom_X ModularCurve.PhiGen.cosetB_succ ModularCurve.coeffEmb_coeff ModularCurve.coeffMap_coeff ModularCurve.coeffMap_id ModularCurve.coeffMap_single"
-
-set_option autoImplicit false
-set_option maxHeartbeats 6400000
 
 open WeierstrassCurve WeierstrassCurve.Affine ModularCurve
 
@@ -279,6 +270,7 @@ def τ (u : Lˣ) (hu : (u : L) ^ 2 = -1) (N : ℕ) (H : CycSub L N) : CycSub L N
 omit [Algebra ℚ L] [IsAlgClosed L] in
 theorem τ_val (u : Lˣ) (hu : (u : L) ^ 2 = -1) (N : ℕ) (H : CycSub L N) : (τ u hu N H).1 = H.1.map (σ u hu) := rfl
 
+omit [Algebra ℚ L] [IsAlgClosed L] in
 theorem map_σ_map_σ (u : Lˣ) (hu : (u : L) ^ 2 = -1) (H : AddSubgroup (W1 L).toAffine.Point) : (H.map (σ u hu)).map (σ u hu) = H := by
   rw [AddSubgroup.map_map]
   ext P
@@ -289,6 +281,7 @@ theorem map_σ_map_σ (u : Lˣ) (hu : (u : L) ^ 2 = -1) (H : AddSubgroup (W1 L).
   · intro hP
     exact ⟨-P, H.neg_mem hP, by show σ u hu (σ u hu (-P)) = P; rw [σ_σ, neg_neg]⟩
 
+omit [Algebra ℚ L] [IsAlgClosed L] in
 theorem τ_τ (u : Lˣ) (hu : (u : L) ^ 2 = -1) (N : ℕ) (H : CycSub L N) : τ u hu N (τ u hu N H) = H :=
   Subtype.ext (map_σ_map_σ u hu H.1)
 
@@ -314,6 +307,7 @@ def actC2 (u : Lˣ) (hu : (u : L) ^ 2 = -1) (N : ℕ) : MulAction (Multiplicativ
 theorem natCard_C2 : Nat.card (Multiplicative (ZMod 2)) = 2 := by
   simp [Nat.card_eq_fintype_card, ZMod.card]
 
+omit [Algebra ℚ L] [IsAlgClosed L] in
 theorem mem_fixedPoints_iff (u : Lˣ) (hu : (u : L) ^ 2 = -1) (N : ℕ) (H : CycSub L N) :
     (letI := actC2 u hu N; H ∈ MulAction.fixedPoints (Multiplicative (ZMod 2)) (CycSub L N)) ↔ τ u hu N H = H := by
   let := actC2 u hu N
@@ -463,6 +457,8 @@ private theorem _root_.P2MWs13.R2a.exists_generator (hN : N ≠ 0) (H : CycSub L
   rw [hcard, Nat.card_zmultiples, AddSubgroup.addOrderOf_coe, hog]
 
 p2m_export "P2MWs13.R2a" "exists_generator"
+
+omit [Algebra ℚ L] [IsAlgClosed L] in
 theorem cyc_eq_cyc_iff_or (u : Lˣ) (hu : (u : L) ^ 2 = -1) {T T' : {T : (W1 L).toAffine.Point // addOrderOf T = N}} (hN : N ≠ 0) :
     (cyc N T' = cyc N T ∨ cyc N T' = τ u hu N (cyc N T)) → R N T T' := by
   rw [R_iff]
@@ -481,6 +477,7 @@ theorem cyc_eq_cyc_iff_or (u : Lˣ) (hu : (u : L) ^ 2 = -1) {T T' : {T : (W1 L).
     obtain ⟨k, hk, hkT⟩ := exists_coprime_nsmul_of_zmultiples_eq hN hordσ T'.2 h'
     exact ⟨⟨u, 0, 0, 0⟩, hσW u hu, k, hk, hkT⟩
 
+omit [IsAlgClosed L] in
 theorem R_imp_or (u : Lˣ) (hu : (u : L) ^ 2 = -1) {T T' : {T : (W1 L).toAffine.Point // addOrderOf T = N}} (h : R N T T') :
     cyc N T' = cyc N T ∨ cyc N T' = τ u hu N (cyc N T) := by
   rw [R_iff] at h
@@ -493,6 +490,7 @@ theorem R_imp_or (u : Lˣ) (hu : (u : L) ^ 2 = -1) {T T' : {T : (W1 L).toAffine.
   · left; apply Subtype.ext; show AddSubgroup.zmultiples T'.1 = AddSubgroup.zmultiples T.1; rw [hz, h]
   · right; apply Subtype.ext; show AddSubgroup.zmultiples T'.1 = (AddSubgroup.zmultiples T.1).map (σ u hu); rw [hz, h]
 
+omit [IsAlgClosed L] in
 theorem natCard_quot_R_eq (u : Lˣ) (hu : (u : L) ^ 2 = -1) (hN : N ≠ 0) :
     Nat.card (Quot (R (L := L) N)) =
       (letI := actC2 u hu N; Nat.card (MulAction.orbitRel.Quotient (Multiplicative (ZMod 2)) (CycSub L N))) := by

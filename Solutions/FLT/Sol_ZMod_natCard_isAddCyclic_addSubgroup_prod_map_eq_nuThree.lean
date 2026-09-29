@@ -1,15 +1,13 @@
-import Mathlib
 import Definitions.FLT.Def_ModularCurve_GenusNumerics
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Data.Int.ConditionallyCompleteOrder
+import Mathlib.Data.Int.Star
+import Mathlib.Order.CompletePartialOrder
 import Definitions.FLT.Def_P2M_Util
-
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ZMod_natCard_isAddCyclic_addSubgroup_prod_map_eq_nuThree
 
 set_option autoImplicit false
-set_option maxHeartbeats 6400000
 
 open ModularCurve
 
@@ -249,6 +247,7 @@ variable (τ : (ZMod n × ZMod n) →+ (ZMod n × ZMod n)) (s : ZMod n) (hτ : �
   (hns : ∀ p : ℕ, p.Prime → p ∣ n → ∃ v : (ZMod n × ZMod n), addOrderOf v = p ∧ ∀ m : ℕ, τ v ≠ m • v)
 include hτ hns
 
+omit hτ in
 theorem eig_cyclic_card_le (k : ZMod n) : IsAddCyclic (eig τ k) ∧ Nat.card (eig τ k) ≤ n := by
   have step1 : ∀ p : ℕ, p.Prime → Nat.card {g : eig τ k // p • g = 0} ≤ p := by
     intro p hp
@@ -278,8 +277,8 @@ theorem eig_cyclic_card_le (k : ZMod n) : IsAddCyclic (eig τ k) ∧ Nat.card (e
 
 theorem eig_cyclic_card_eq {k : ZMod n} (hk : k * k = s * k - 1) :
     IsAddCyclic (eig τ k) ∧ Nat.card (eig τ k) = n := by
-  obtain ⟨hc, hle⟩ := eig_cyclic_card_le τ s hτ hns k
-  obtain ⟨_, hle'⟩ := eig_cyclic_card_le τ s hτ hns (s - k)
+  obtain ⟨hc, hle⟩ := eig_cyclic_card_le τ hns k
+  obtain ⟨_, hle'⟩ := eig_cyclic_card_le τ hns (s - k)
   have hge := sq_le_card_mul_card τ s hτ hk
   refine ⟨hc, le_antisymm hle ?_⟩
   have hmul := Nat.mul_le_mul hle hle'

@@ -79,7 +79,7 @@ theorem ord_pow' (v : Place K F) (f : F) (n : ℕ) : v.ord (f ^ n) = n * v.ord f
   have := v.ord_zpow f (n : ℤ)
   rwa [zpow_natCast] at this
 
-theorem ord_algebraMap (v : Place K F) {c : K} (hc : c ≠ 0) : v.ord (algebraMap K F c) = 0 := by
+theorem ord_algebraMap (v : Place K F) {c : K} : v.ord (algebraMap K F c) = 0 := by
   have h1 : 0 ≤ v.ord (algebraMap K F c) := v.ord_nonneg_of_mem (v.algebraMap_mem' c)
   have h2 : 0 ≤ v.ord (algebraMap K F c⁻¹) := v.ord_nonneg_of_mem (v.algebraMap_mem' c⁻¹)
   rw [map_inv₀, v.ord_inv] at h2
@@ -218,28 +218,28 @@ theorem main (x : 𝔽) (hx : x • D 𝕂 𝔽 (jB N) ∈ regularDifferentialsB
   have hJne1728 : J - algebraMap 𝕂 𝔽 1728 ≠ 0 := by
     intro h
     rw [sub_eq_zero] at h
-    have := ord_algebraMap v₀ (c := (1728 : 𝕂)) (by norm_num)
+    have := ord_algebraMap v₀ (c := (1728 : 𝕂))
     rw [← h] at this
     omega
 
-  have h1728_0 : v₀.ord (algebraMap 𝕂 𝔽 1728) = 0 := ord_algebraMap v₀ (by norm_num)
+  have h1728_0 : v₀.ord (algebraMap 𝕂 𝔽 1728) = 0 := ord_algebraMap v₀
   have hordJsub_of_pos : ∀ v : Place 𝕂 𝔽, 0 < v.ord J → v.ord (J - algebraMap 𝕂 𝔽 1728) = 0 := by
     intro v hv
-    have hc : v.ord (-(algebraMap 𝕂 𝔽 1728)) = 0 := by rw [ord_neg]; exact ord_algebraMap v (by norm_num)
+    have hc : v.ord (-(algebraMap 𝕂 𝔽 1728)) = 0 := by rw [ord_neg]; exact ord_algebraMap v
     have := v.ord_add_eq_of_lt (f := -(algebraMap 𝕂 𝔽 1728)) (g := J)
       (neg_ne_zero.mpr (by rw [Ne, map_eq_zero]; norm_num)) hJ0 (by rw [hc]; exact hv)
     rw [hc] at this
     rwa [sub_eq_add_neg, add_comm]
   have hordJsub_of_neg : ∀ v : Place 𝕂 𝔽, v.ord J < 0 → v.ord (J - algebraMap 𝕂 𝔽 1728) = v.ord J := by
     intro v hv
-    have hc : v.ord (-(algebraMap 𝕂 𝔽 1728)) = 0 := by rw [ord_neg]; exact ord_algebraMap v (by norm_num)
+    have hc : v.ord (-(algebraMap 𝕂 𝔽 1728)) = 0 := by rw [ord_neg]; exact ord_algebraMap v
     have := v.ord_add_eq_of_lt (f := J) (g := -(algebraMap 𝕂 𝔽 1728)) hJ0
       (neg_ne_zero.mpr (by rw [Ne, map_eq_zero]; norm_num)) (by rw [hc]; exact hv)
     rwa [← sub_eq_add_neg] at this
   have hordJ_of_sub_pos : ∀ (v : Place 𝕂 𝔽) (c : 𝕂), c ≠ 0 → 0 < v.ord (J - algebraMap 𝕂 𝔽 c) →
       v.ord J = 0 := by
     intro v c hc hv
-    have h1 : v.ord (algebraMap 𝕂 𝔽 c) = 0 := ord_algebraMap v hc
+    have h1 : v.ord (algebraMap 𝕂 𝔽 c) = 0 := ord_algebraMap v
     have hne : J - algebraMap 𝕂 𝔽 c ≠ 0 := by
       intro h; rw [h, v.ord_zero] at hv; exact lt_irrefl _ hv
     have := v.ord_add_eq_of_lt (f := algebraMap 𝕂 𝔽 c) (g := J - algebraMap 𝕂 𝔽 c)
@@ -261,7 +261,7 @@ theorem main (x : 𝔽) (hx : x • D 𝕂 𝔽 (jB N) ∈ regularDifferentialsB
       rcases hc with hc | hc
       · exfalso
         rw [sub_eq_zero] at hc
-        have := ord_algebraMap v₀ (c := c) (by rintro rfl; rw [map_zero] at hc; exact hJ0 hc)
+        have := ord_algebraMap v₀ (c := c)
         rw [← hc] at this
         omega
       · exact hc
@@ -283,7 +283,7 @@ theorem main (x : 𝔽) (hx : x • D 𝕂 𝔽 (jB N) ∈ regularDifferentialsB
       rw [h1] at hb
       refine ⟨by omega, ?_⟩
 
-      have hcc : v.ord (algebraMap 𝕂 𝔽 (c - 1728)) = 0 := ord_algebraMap v (sub_ne_zero.mpr hc1728)
+      have hcc : v.ord (algebraMap 𝕂 𝔽 (c - 1728)) = 0 := ord_algebraMap v
       have := v.ord_add_eq_of_lt (f := algebraMap 𝕂 𝔽 (c - 1728)) (g := J - algebraMap 𝕂 𝔽 c)
         (by rw [Ne, map_eq_zero]; exact sub_ne_zero.mpr hc1728)
         (by intro h; rw [h, v.ord_zero] at hcpos; exact lt_irrefl _ hcpos) (by rw [hcc]; exact hcpos)

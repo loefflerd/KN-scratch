@@ -409,7 +409,7 @@ theorem TRel.exists [NeZero N] {g g' : ℍ → ℂ} (h : TRel N K φ g g') :
   obtain ⟨hg, hg', m, ⟨h1, h2, h3⟩, ⟨h1', h2', h3'⟩, h4⟩ := h
   exact ⟨m, ⟨hg, h1, h2, h3⟩, ⟨hg', h1', h2', h3'⟩, h4⟩
 
-theorem TRel.map_eq {g g' : ℍ → ℂ} {m : ℕ} (hφK : ∀ z : K, φ z ∈ K)
+theorem TRel.map_eq {g g' : ℍ → ℂ} {m : ℕ}
     (h4 : ∀ (n : ℕ) (z : K), (z : ℂ) = (qExpansion N (g * Δ ^ m)).coeff n →
         (qExpansion N (g' * Δ ^ m)).coeff n = φ z)
     {p : PowerSeries K} (hp : p.map (algebraMap K ℂ) = qExpansion N (g * Δ ^ m)) :
@@ -736,7 +736,7 @@ theorem transportPkg :
     (∀ g g' : ℍ → ℂ, Tσ σ g g' → (g = 0 ↔ g' = 0)) ∧
     ∀ jf' : ℍ → ℂ, (∀ τ : ℍ, jf' τ = ModularForm.E₄ τ ^ 3 / ModularForm.discriminant τ) → Tσ σ jf' jf' :=
   WLight.qExpansion_sigmaTransport_package N (kN N) (phiOf N σ) (phiOf_mem N σ) (Tσ σ)
-    (fun g g' => Iff.rfl)
+    (by simp [Tσ, TRel])
 
 theorem tσ_jf : Tσ σ jf jf := (transportPkg σ).2.2 jf (jf_spec)
 
@@ -1085,7 +1085,7 @@ theorem tσ_lift {g g' : ℍ → ℂ} (h : Tσ σ g g') :
   intro M hM
   obtain ⟨d, rfl⟩ := Nat.exists_eq_add_of_le hM
   obtain ⟨p₀, hp₀⟩ := hg.exists_map
-  have hp₀' := TRel.map_eq (phiOf_mem N σ) h4 hp₀
+  have hp₀' := TRel.map_eq h4 hp₀
   obtain ⟨δ, hδrat, hδ⟩ := exists_discSeries (N := N) (kN N)
   refine ⟨p₀ * δ ^ d, ?_, ?_⟩
   · induction d with

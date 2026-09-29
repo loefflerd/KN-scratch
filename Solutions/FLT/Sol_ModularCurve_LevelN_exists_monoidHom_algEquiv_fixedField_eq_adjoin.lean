@@ -104,7 +104,8 @@ theorem eq_zero_of_eval_jAnalytic (P : Polynomial ℂ) (hP : ∀ τ : ℍ, P.eva
 
 theorem fricke_smul (v : Fin 2 → ZMod N) (γ : SL(2, ℤ)) (τ : ℍ) :
     fricke N v (γ • τ) = fricke N (Matrix.vecMul v (redMat N γ)) τ :=
-  (WLight.frickeFunction_modularity_package N PeriodPair.ofTau (fun τ => ⟨rfl, rfl⟩)).1 v γ τ
+  (WLight.frickeFunction_modularity_package N PeriodPair.ofTau
+    (by simp [PeriodPair.ofTau])).1 v γ τ
 
 omit [NeZero N] in
 

@@ -55,7 +55,7 @@ p2m_open "ModularCurve P2MW.S_ModularCurve_exists_divisor_degree_weight_and_isIn
 section Generic
 variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 
-theorem ord_algebraMap (v : Place K F) {c : K} (hc : c ≠ 0) : v.ord (algebraMap K F c) = 0 := by
+theorem ord_algebraMap (v : Place K F) {c : K} : v.ord (algebraMap K F c) = 0 := by
   have h1 : 0 ≤ v.ord (algebraMap K F c) := v.ord_nonneg_of_mem (v.algebraMap_mem' c)
   have h2 : 0 ≤ v.ord (algebraMap K F c⁻¹) := v.ord_nonneg_of_mem (v.algebraMap_mem' c⁻¹)
   rw [map_inv₀, v.ord_inv] at h2
@@ -112,7 +112,7 @@ theorem ord_sub_nonneg {v : Place ℚb 𝔽} (hv : 0 ≤ v.ord (jBar N)) (c : �
 
 theorem ord_eq_zero_of_pos_1728 {v : Place ℚb 𝔽} (hv : 0 < v.ord (jBar N - algebraMap ℚb 𝔽 1728)) :
     v.ord (jBar N) = 0 := by
-  have h1728 : v.ord (algebraMap ℚb 𝔽 1728) = 0 := ord_algebraMap v (by norm_num)
+  have h1728 : v.ord (algebraMap ℚb 𝔽 1728) = 0 := ord_algebraMap v
   have hne : (algebraMap ℚb 𝔽 1728) ≠ 0 := by
     rw [Ne, map_eq_zero_iff _ (algebraMap ℚb 𝔽).injective]; norm_num
   rcases lt_trichotomy (v.ord (jBar N)) 0 with hlt | heq | hgt
@@ -130,7 +130,7 @@ theorem ord_eq_zero_of_pos_1728 {v : Place ℚb 𝔽} (hv : 0 < v.ord (jBar N - 
 
 theorem ord_1728_eq_zero_of_pos {v : Place ℚb 𝔽} (hv : 0 < v.ord (jBar N)) :
     v.ord (jBar N - algebraMap ℚb 𝔽 1728) = 0 := by
-  have h1728 : v.ord (algebraMap ℚb 𝔽 1728) = 0 := ord_algebraMap v (by norm_num)
+  have h1728 : v.ord (algebraMap ℚb 𝔽 1728) = 0 := ord_algebraMap v
   have hne : (algebraMap ℚb 𝔽 1728) ≠ 0 := by
     rw [Ne, map_eq_zero_iff _ (algebraMap ℚb 𝔽).injective]; norm_num
   have h : v.ord (-(algebraMap ℚb 𝔽 1728) + jBar N) = v.ord (-(algebraMap ℚb 𝔽 1728)) :=
@@ -165,7 +165,7 @@ theorem recipe_eq_zero {v : Place ℚb 𝔽} (h0 : v.ord (jBar N) = 0)
   rw [recipe_of_nonneg N m h0.ge, h0, he]
   simp
 
-theorem exists_weightDivisor (hm : 1 ≤ m) :
+theorem exists_weightDivisor :
     ∃ D : AlgebraicCurve.Divisor (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar N),
       ((D.degree : ℚ) + 1 - ModularCurve.genusFormula N =
         (2 * (m : ℚ) - 1) * (ModularCurve.genusFormula N - 1) + ((m / 2 : ℕ) : ℚ) * (ModularCurve.nuTwo N : ℚ)
@@ -429,7 +429,7 @@ theorem ord_pow' (v : Place K F) (f : F) (n : ℕ) : v.ord (f ^ n) = n * v.ord f
   have := v.ord_zpow f (n : ℤ)
   rwa [zpow_natCast] at this
 
-theorem ord_algebraMap (v : Place K F) {c : K} (hc : c ≠ 0) : v.ord (algebraMap K F c) = 0 := by
+theorem ord_algebraMap (v : Place K F) {c : K} : v.ord (algebraMap K F c) = 0 := by
   have h1 : 0 ≤ v.ord (algebraMap K F c) := v.ord_nonneg_of_mem (v.algebraMap_mem' c)
   have h2 : 0 ≤ v.ord (algebraMap K F c⁻¹) := v.ord_nonneg_of_mem (v.algebraMap_mem' c⁻¹)
   rw [map_inv₀, v.ord_inv] at h2
@@ -546,7 +546,7 @@ theorem isIntegral_pair_of_mem_riemannRochSpace (m : ℕ)
   have hJne1728 : J - c1728 ≠ 0 := by
     intro h
     rw [sub_eq_zero] at h
-    have := ord_algebraMap v₀ (c := (1728 : AlgebraicClosure ℚ)) h1728ne
+    have := ord_algebraMap v₀ (c := (1728 : AlgebraicClosure ℚ))
     rw [hc] at h
     rw [← h] at this
     omega
@@ -554,7 +554,7 @@ theorem isIntegral_pair_of_mem_riemannRochSpace (m : ℕ)
   have hordJsub_of_neg : ∀ v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N), v.ord J < 0 →
       v.ord (J - c1728) = v.ord J := by
     intro v hv
-    have hc0 : v.ord (-c1728) = 0 := by rw [ord_neg]; exact ord_algebraMap v h1728ne
+    have hc0 : v.ord (-c1728) = 0 := by rw [ord_neg]; exact ord_algebraMap v
     have := v.ord_add_eq_of_lt (f := J) (g := -c1728) hJ0
       (neg_ne_zero.mpr (by rw [hc, Ne, map_eq_zero]; norm_num)) (by rw [hc0]; exact hv)
     rwa [← sub_eq_add_neg] at this
@@ -635,9 +635,11 @@ theorem solution (N : ℕ) [NeZero N] (m : ℕ) (hm : 1 ≤ m) :
         IsIntegral (Algebra.adjoin (AlgebraicClosure ℚ) ({ModularCurve.jBar N} : Set ↥(ModularCurve.modularFunctionFieldBar N)))
             (x ^ 6 * ModularCurve.jBar N ^ (4 * m) * (ModularCurve.jBar N - algebraMap (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar N) 1728) ^ (3 * m)) ∧
           IsIntegral (Algebra.adjoin (AlgebraicClosure ℚ) ({(ModularCurve.jBar N)⁻¹} : Set ↥(ModularCurve.modularFunctionFieldBar N)))
-            (x ^ (2 * ModularCurve.dedekindPsi N) * ModularCurve.jBar N ^ (m * ModularCurve.dedekindPsi N + 1) *
+              (x ^ (2 * ModularCurve.dedekindPsi N) * ModularCurve.jBar N ^ (m * ModularCurve.dedekindPsi N + 1) *
               (ModularCurve.jBar N - algebraMap (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar N) 1728) ^ (m * ModularCurve.dedekindPsi N)) := by
-  obtain ⟨D, hdeg, hDfin, hDcusp⟩ := ModularCurve.LDivDegree.exists_weightDivisor N m hm
+  have hm_copy := hm
+  clear hm_copy
+  obtain ⟨D, hdeg, hDfin, hDcusp⟩ := ModularCurve.LDivDegree.exists_weightDivisor N m
   exact ⟨D, hdeg, fun x hx =>
     ModularCurve.LDivIntegral.isIntegral_pair_of_mem_riemannRochSpace N m D hDfin hDcusp x hx⟩
 

@@ -1,5 +1,3 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_X1
 import Definitions.FLT.Def_CohCarrier_Level
 import Theorems.FLT.Thm_ModularCurve_exists_isIntegralQExp_smul_slash_of_mem_Gamma0
 import Theorems.FLT.Thm_ModularFormClass_eq_of_forall_qCoeff_eq
@@ -95,6 +93,7 @@ theorem map_intCast_injective : Function.Injective (PowerSeries.map (Int.castRin
   simp only [PowerSeries.coeff_map, eq_intCast] at this
   exact_mod_cast this
 
+omit [NeZero M] in
 theorem isIntegralQExp_add {f g : ModularForm (Γᴴℝ M, H) k} {p r : PowerSeries ℤ}
     (hf : IsIntegralQExp (⇑f) p) (hg : IsIntegralQExp (⇑g) r) :
     IsIntegralQExp (⇑(f + g)) (p + r) := by
@@ -106,17 +105,20 @@ theorem isIntegralQExp_zero : IsIntegralQExp (⇑(0 : ModularForm (Γᴴℝ M, H
   unfold IsIntegralQExp
   rw [FunLike.coe_zero, qExpansion_zero, map_zero]
 
+omit [NeZero M] in
 theorem qExpansion_intCast_smul (f : ModularForm (Γᴴℝ M, H) k) (n : ℤ) {p : PowerSeries ℤ}
     (hf : IsIntegralQExp (⇑f) p) :
     qExpansion 1 ((n : ℂ) • (⇑f : ℍ → ℂ)) = (n • p).map (Int.castRingHom ℂ) := by
   rw [qExpansion_smul (analyticAt_form f), ← hf, map_zsmul, Int.cast_smul_eq_zsmul]
 
+omit [NeZero M] in
 theorem isIntegralQExp_intCast_smul (f : ModularForm (Γᴴℝ M, H) k) (n : ℤ) {p : PowerSeries ℤ}
     (hf : IsIntegralQExp (⇑f) p) : IsIntegralQExp (⇑((n : ℂ) • f)) (n • p) := by
   unfold IsIntegralQExp
   rw [FunLike.coe_smul]
   exact (qExpansion_intCast_smul f n hf).symm
 
+omit [NeZero M] in
 theorem smul_eq_smul_of_coe (f₁ f₂ : ModularForm (Γᴴℝ M, H) k) {p₁ p₂ : PowerSeries ℤ}
     (h₁ : IsIntegralQExp (⇑f₁) p₁) (h₂ : IsIntegralQExp (⇑f₂) p₂) (m n : ℤ)
     (h : (m : ℂ) • (⇑f₁ : ℍ → ℂ) = (n : ℂ) • (⇑f₂ : ℍ → ℂ)) : m • p₁ = n • p₂ := by
@@ -361,9 +363,10 @@ scoped instance : Neg (IDatum M H w) := ⟨fun D => IDatum.zsmul (-1) D⟩
 
 scoped instance : Sub (IDatum M H w) := ⟨fun D E => D + (-E)⟩
 
-omit [NeZero M] in
+section
+omit [NeZero M]
+
 @[scoped simp] theorem zero_f : (0 : IDatum M H w).f = 0 := rfl
-omit [NeZero M] in
 @[scoped simp] theorem zero_p : (0 : IDatum M H w).p = 0 := rfl
 @[scoped simp] theorem add_f' (D E : IDatum M H w) : (D + E).f = D.f + E.f := rfl
 @[scoped simp] theorem add_p' (D E : IDatum M H w) : (D + E).p = D.p + E.p := rfl
@@ -375,6 +378,8 @@ omit [NeZero M] in
 @[scoped simp] theorem neg_p' (D : IDatum M H w) : (-D).p = (-1 : ℤ) • D.p := rfl
 @[scoped simp] theorem sub_f' (D E : IDatum M H w) : (D - E).f = D.f + ((-1 : ℤ) : ℂ) • E.f := rfl
 @[scoped simp] theorem sub_p' (D E : IDatum M H w) : (D - E).p = D.p + (-1 : ℤ) • E.p := rfl
+
+end
 
 def toProd (D : IDatum M H w) : ModularForm (Γᴴℝ M, H) w × PowerSeries ℤ := (D.f, D.p)
 
@@ -412,7 +417,7 @@ def redD : IDatum M H w →+ LaurentSeries K where
   map_zero' := by simp
   map_add' D E := by simp [intSeriesC_add]
 
-omit [CharZero K] in
+omit [NeZero M] [CharZero K] in
 @[scoped simp] theorem redD_apply (D : IDatum M H w) : redD K D = intSeriesC K D.p := rfl
 
 variable {K}
@@ -1175,7 +1180,7 @@ theorem rho_apply_eq_self_of_mem_gamma0 (γ : CongruenceSubgroup.Gamma0 M)
   exact hx' ⟨_, Subgroup.mem_zpowers _⟩
 
 theorem rho_apply_generator (γ : CongruenceSubgroup.Gamma0 M) {k : ℤ}
-    (f g f₁ g₁ : ModularForm (Γᴴℝ M, H) k) {pf pg pf₁ pg₁ : PowerSeries ℤ} (c : ℂ) (hc : c ≠ 0)
+    (f g f₁ g₁ : ModularForm (Γᴴℝ M, H) k) {pf pg pf₁ pg₁ : PowerSeries ℤ} (c : ℂ)
     (hf : IsIntegralQExp (⇑f) pf) (hg : IsIntegralQExp (⇑g) pg)
     (hf₁ : IsIntegralQExp (⇑f₁) pf₁) (hg₁ : IsIntegralQExp (⇑g₁) pg₁)
     (ef : (⇑f₁ : ℍ → ℂ) = c • ((⇑f : ℍ → ℂ) ∣[k] ((γ : SL(2, ℤ)) : GL (Fin 2) ℝ)))
@@ -1243,8 +1248,9 @@ theorem main (K : Type*) [Field K] [CharZero K] (M : ℕ) [NeZero M] (H : Subgro
               qExpFunctionFieldC K (CohCarrier.GammaH M H)) : LaurentSeries K) =
             intSeriesC K pf₁ / intSeriesC K pg₁) := by
   refine ⟨rho, fun γ hγH => ?_, fun γ hγ1 => ?_, fun γ x hx => rho_apply_eq_self_of_mem_gamma0 γ x hx,
-    fun γ k f g f₁ g₁ pf pg pf₁ pg₁ c hc hf hg hf₁ hg₁ ef eg hg0 hg₁0 =>
-      rho_apply_generator γ f g f₁ g₁ c hc hf hg hf₁ hg₁ ef eg hg0 hg₁0⟩
+    fun γ k f g f₁ g₁ pf pg pf₁ pg₁ c => by
+      intro
+      exact rho_apply_generator γ f g f₁ g₁ c⟩
   · refine AlgEquiv.ext fun x => Subtype.ext ?_
     rw [AlgEquiv.one_apply]
     exact rhoVal_of_mem_GammaH x.2 γ.1 γ.2 hγH

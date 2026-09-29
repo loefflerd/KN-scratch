@@ -1,25 +1,15 @@
-import Definitions.FLT.Def_ModularCurve_ArithmeticGalois
-import Definitions.FLT.Def_AlgebraicCurve_RiemannRochRows
-import Definitions.FLT.Def_AlgebraicCurve_CanonicalLocalResidueInstance
-import Definitions.FLT.Def_ModularCurve_JqCoeff
-import Theorems.FLT.Thm_AlgebraicCurve_functionFieldRiemannRoch_of_isAlgClosed
-import Theorems.FLT.Thm_ModularCurve_isCurveOver_modularFunctionFieldBar
-import Theorems.FLT.Thm_ModularCurve_hasCanonicalDivisor_modularFunctionFieldBar
+import Definitions.FLT.Def_AlgebraicCurve_CanonicalLocalResidueInstanceV2
 import Theorems.FLT.Thm_AlgebraicCurve_dCoordGenerates_of_isCurveOver
-import Theorems.FLT.Thm_ModularCurve_essFiniteType_modularFunctionFieldBar
+import Theorems.FLT.Thm_AlgebraicCurve_functionFieldRiemannRoch_of_isAlgClosed
 import Theorems.FLT.Thm_AlgebraicCurve_instIsCurveOverRatFunc
-import Theorems.FLT.Thm_ModularCurve_laurentBaseChange_adjoin_pair
+import Theorems.FLT.Thm_ModularCurve_essFiniteType_modularFunctionFieldBar
 import Theorems.FLT.Thm_ModularCurve_functionFieldGeneration
-import Theorems.FLT.Thm_ModularCurve_transcendental_jqModC
+import Theorems.FLT.Thm_ModularCurve_hasCanonicalDivisor_modularFunctionFieldBar
+import Theorems.FLT.Thm_ModularCurve_isCurveOver_modularFunctionFieldBar
 import Theorems.FLT.Thm_ModularCurve_isIntegral_jqNModC_all
-import Mathlib.FieldTheory.Perfect
-import Mathlib.Algebra.CharP.Algebra
-import Mathlib.RingTheory.EssentialFiniteness
+import Theorems.FLT.Thm_ModularCurve_laurentBaseChange_adjoin_pair
+import Theorems.FLT.Thm_ModularCurve_transcendental_jqModC
 import Definitions.FLT.Def_P2M_Util
-
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_functionFieldRiemannRoch_modularFunctionFieldBar
 p2m_attr_erase "instance" "AlgebraicCurve.Place.instIsPrimeCenter AlgebraicCurve.Place.instIsFractionRingIntegralClosureAt AlgebraicCurve.Place.instIsTorsionFreeSubtypeMemValuationSubringToValuationSubringIntegralClosureAt AlgebraicCurve.Place.instIsDedekindDomainIntegralClosureAt AlgebraicCurve.Place.instFiniteSubtypeMemValuationSubringToValuationSubringIntegralClosureAt ModularCurve.PhiGen.instNeZeroPhiGenCosetA instDecEqAlgebraicClosureRat WeierstrassCurve.Affine.Point.instDistribMulActionAlgEquiv WeierstrassCurve.Affine.Point.instModuleZModTorsionBy WeierstrassCurve.Affine.Point.instSMulTorsionBy WeierstrassCurve.Affine.Point.instDistribMulActionTorsionBy WeierstrassCurve.Affine.Point.instSMulAlgEquiv WeierstrassCurve.Affine.Point.instSMulCommClassAlgEquivZModTorsionBy AlgebraicCurve.RationalFunctionField.instNontrivialSubtypeUnitsWithZeroMultiplicativeIntMemSubgroupValueGroupRatFuncValuationInftyValuation_definitions"
@@ -160,7 +150,7 @@ theorem solution (N : ℕ) [NeZero N] :
   have : ∀ v : Place (AlgebraicClosure ℚ) (RatFunc (AlgebraicClosure ℚ)), v.DCoordGenerates := dCoordGenerates_of_isCurveOver
 
   exact @functionFieldRiemannRoch_of_isAlgClosed (AlgebraicClosure ℚ) (modularFunctionFieldBar N)
-    _ _ (Classical.decEq _) _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+    _ _ (Classical.decEq _) _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 
 end S_ModularCurve_functionFieldRiemannRoch_modularFunctionFieldBar

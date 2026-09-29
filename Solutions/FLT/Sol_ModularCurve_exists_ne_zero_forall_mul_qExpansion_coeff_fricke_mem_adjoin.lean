@@ -348,8 +348,10 @@ theorem summable_norm_Gt (ha : a₁ < N) (τ : ℍ) : Summable (fun i : Idx => �
 
 theorem summable_Gt (ha : a₁ < N) (τ : ℍ) : Summable (Gt N a₁ a₂ τ) := (summable_norm_Gt N a₁ a₂ ha τ).of_norm
 
-theorem hasSum_Ft (ha : a₁ < N) (τ : ℍ) : HasSum (Ft N a₁ a₂ τ) (∑' i, Gt N a₁ a₂ τ i) :=
-  (summable_Gt N a₁ a₂ ha τ).hasSum.prod_fiberwise fun p => hasSum_fintype _
+theorem hasSum_Ft (ha : a₁ < N) (τ : ℍ) : HasSum (Ft N a₁ a₂ τ) (∑' i, Gt N a₁ a₂ τ i) := by
+  apply (summable_Gt N a₁ a₂ ha τ).hasSum.prod_fiberwise
+  intro
+  exact hasSum_fintype _
 
 variable [Fact (a₁ < N)]
 

@@ -1,15 +1,7 @@
-import Mathlib
-import Definitions.FLT.Def_WeierstrassCurve_VariableChangePointEquiv
-import Definitions.FLT.Def_ModularCurve_ModuliPoint
 import Definitions.FLT.Def_ModularCurve_EMD
-import Definitions.FLT.Def_ModularCurve_GenusNumerics
-import Theorems.FLT.Thm_WeierstrassCurve_Affine_Point_vcInvFun_add
 import Theorems.FLT.Thm_ModularCurve_natCard_moduliPoint_j_eq_eq_natCard_quot_addOrderOf_eq
+import Theorems.FLT.Thm_WeierstrassCurve_Affine_Point_vcInvFun_add
 import Definitions.FLT.Def_P2M_Util
-
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_natCard_quot_sameOrbit_cycSub_eq_natCard_moduliPoint_j_eq
 
@@ -43,6 +35,7 @@ noncomputable def vcInvHom (γ : VariableChange K) (W : WeierstrassCurve.Affine 
     W.Point →+ (γ • W).toAffine.Point :=
   AddMonoidHom.mk' (Point.vcInvFun γ W) (WeierstrassCurve.Affine.Point.vcInvFun_add γ W)
 
+omit [DecidableEq K] in
 theorem vcInvFun_injective (γ : VariableChange K) (W : WeierstrassCurve.Affine K) :
     Function.Injective (Point.vcInvFun γ W) :=
   (Point.vcFun_rightInverse (C := γ) (W := W)).injective

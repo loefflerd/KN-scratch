@@ -202,7 +202,7 @@ theorem eq_of_adj_imp_eq_of_walk {G : SimpleGraph V} {f : V → α}
   | cons h _ ih => exact (hf h).trans ih
 
 theorem isBridge_of_separating {G : SimpleGraph V} (f : V → α) {a b : V}
-    (hab : G.Adj a b) (hfab : f a ≠ f b)
+    (hfab : f a ≠ f b)
     (hconst : ∀ ⦃v w : V⦄, G.Adj v w → s(v, w) ≠ s(a, b) → f v = f w) :
     G.IsBridge s(a, b) := by
   refine isBridge_iff.mpr fun hr => hfab ?_
@@ -320,7 +320,7 @@ theorem sym2_mk_eq_sym2_mk (htwo : ∀ a b c : ι, a = b ∨ a = c ∨ b = c) {i
 
 theorem isBridge_mk_mk (htwo : ∀ a b c : ι, a = b ∨ a = c ∨ b = c) {i j : ι} (hij : i ≠ j)
     (g : CoprodI G) : (graph G).IsBridge s(Vertex.mk i g, Vertex.mk j g) := by
-  refine isBridge_of_separating (fun v => side (g⁻¹ • v)) (adj_mk hij g) ?_ ?_
+  refine isBridge_of_separating (fun v => side (g⁻¹ • v)) ?_ ?_
   · show side (g⁻¹ • Vertex.mk i g) ≠ side (g⁻¹ • Vertex.mk j g)
     rw [smul_mk, smul_mk, inv_mul_cancel, side_mk_one, side_mk_one]
     exact hij

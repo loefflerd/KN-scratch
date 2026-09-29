@@ -140,7 +140,7 @@ theorem Sh_mem_coeffCoboundaries {z : ↥(Γ0 N) → Vn n} (hz : z ∈ coeffCobo
   show _ = ρ n x.out (ρ n ((tr (g : SL(2, ℤ)) x : ↥(Γ0 N)) : SL(2, ℤ)) v)
   rw [← Module.End.mul_apply (ρ n x.out), ← map_mul, out_mul_tr, map_mul, Module.End.mul_apply]
 
-theorem mem_coeffCoboundaries_of_Sh {z : ↥(Γ0 N) → Vn n} (hz : z ∈ coeffCocycles (ρΓ N n))
+theorem mem_coeffCoboundaries_of_Sh {z : ↥(Γ0 N) → Vn n}
     (h : Sh z ∈ coeffCoboundaries W) : z ∈ coeffCoboundaries (ρΓ N n) := by
   rw [mem_coeffCoboundaries_iff] at h ⊢
   obtain ⟨F, hF⟩ := h
@@ -475,7 +475,7 @@ theorem Ψ_injective : Function.Injective (Ψ W hW) := by
   obtain ⟨z, rfl⟩ := coeffH1parMk_surjective _ x
   rw [Ψ_mk, coeffH1parMk_eq_zero_iff, coe_ShPC] at hx
   rw [coeffH1parMk_eq_zero_iff]
-  exact mem_coeffCoboundaries_of_Sh W hW z.2.1 hx
+  exact mem_coeffCoboundaries_of_Sh W hW hx
 
 theorem main :
     Module.finrank ℂ (coeffH1par (ρΓ N n)) ≤ Module.finrank ℂ (coeffH1par W) := by

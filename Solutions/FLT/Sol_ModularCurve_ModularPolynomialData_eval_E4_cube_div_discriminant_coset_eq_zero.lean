@@ -39,7 +39,7 @@ theorem jt_smul (γ : SL(2, ℤ)) (z : ℍ) : jt ((γ : GL (Fin 2) ℝ) • z) =
   rw [show (ModularForm.E₄ : ℍ → ℂ) ((γ : GL (Fin 2) ℝ) • z) = ModularForm.E₄ ((γ : GL (Fin 2) ℝ) • z) from rfl, h4, h12]
   field_simp
 
-theorem upperTriangularGL_eq {N a b d : ℕ} (hN : N ≠ 0) (had : a * d = N) (γ₁ γ₂ : SL(2, ℤ))
+theorem upperTriangularGL_eq {N a b d : ℕ} (hN : N ≠ 0) (γ₁ γ₂ : SL(2, ℤ))
     (hM : !![(a : ℤ), b; 0, d] = (γ₁ : Matrix (Fin 2) (Fin 2) ℤ) * !![(N : ℤ), 0; 0, 1] * (γ₂ : Matrix (Fin 2) (Fin 2) ℤ))
     (had' : (a : ℝ) * d ≠ 0) :
     ModularForm.upperTriangularGL a b d had' = (γ₁ : GL (Fin 2) ℝ) * ModularForm.heckeDiagMatrix N * (γ₂ : GL (Fin 2) ℝ) := by
@@ -76,7 +76,7 @@ theorem solution (N : ℕ) [NeZero N]
   obtain ⟨γ₁, γ₂, hM⟩ := Matrix.SpecialLinearGroup.exists_eq_mul_diagonal_mul_of_gcd_eq_one hN had hgcd
   set g : GL (Fin 2) ℝ := ModularForm.upperTriangularGL a b d had' with hg
   have hgeq : g = (γ₁ : GL (Fin 2) ℝ) * ModularForm.heckeDiagMatrix N * (γ₂ : GL (Fin 2) ℝ) :=
-    upperTriangularGL_eq hN had γ₁ γ₂ hM had'
+    upperTriangularGL_eq hN γ₁ γ₂ hM had'
   have hτ'pt : τ' = g • τ := UpperHalfPlane.ext (by rw [hτ', hg, coe_upperTriangularGL_smul ha hd had'])
   set σ : ℍ := (γ₂ : GL (Fin 2) ℝ) • τ with hσ
   have h1 : τ' = (γ₁ : GL (Fin 2) ℝ) • (ModularForm.heckeDiagMatrix N • σ) := by

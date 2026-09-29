@@ -1,15 +1,13 @@
-import Mathlib
 import Definitions.FLT.Def_ModularCurve_GenusNumerics
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Data.Int.ConditionallyCompleteOrder
+import Mathlib.Data.Int.Star
+import Mathlib.Order.CompletePartialOrder
 import Definitions.FLT.Def_P2M_Util
-
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ZMod_natCard_isAddCyclic_addSubgroup_prod_map_eq_nuTwo
 
 set_option autoImplicit false
-set_option maxHeartbeats 6400000
 
 open ModularCurve
 
@@ -62,9 +60,7 @@ include hτ
 
 omit [NeZero n] in
 theorem τ_injective : Function.Injective τ := fun a b h => by
-  have ha : a = s • τ a - τ (τ a) := by rw [hτ]; abel
-  have hb : b = s • τ b - τ (τ b) := by rw [hτ]; abel
-  rw [ha, hb, h]
+  grind
 
 theorem root_of_eigen {v : (ZMod n × ZMod n)} (hv : addOrderOf v = n) {k : ZMod n} (hk : τ v = k • v) :
     k * k = s * k - 1 := by
@@ -77,7 +73,7 @@ theorem range_shift_le {k : ZMod n} (hk : k * k = s * k - 1) :
     (shift τ k).range ≤ eig τ (s - k) := by
   rintro w ⟨v, rfl⟩
   rw [mem_eig, shift_apply, map_sub, map_zmod_smul, hτ, smul_sub, smul_smul,
-    show (s - k) * k = 1 by rw [sub_mul, hk]; ring, one_smul, sub_smul]
+    show (s - k) * k = 1 by grind, one_smul, sub_smul]
   abel
 
 theorem sq_le_card_mul_card {k : ZMod n} (hk : k * k = s * k - 1) :
@@ -120,8 +116,8 @@ theorem card_pTorsion_le {p : ℕ} (hp : p.Prime) :
   have e : {v : (ZMod n × ZMod n) // p • v = 0} ≃ {x : ZMod n // p • x = 0} × {y : ZMod n // p • y = 0} := by
     refine ⟨fun v => (⟨v.1.1, (Prod.mk_inj.mp v.2).1⟩, ⟨v.1.2, (Prod.mk_inj.mp v.2).2⟩),
       fun z => ⟨(z.1.1, z.2.1), Prod.ext z.1.2 z.2.2⟩, ?_, ?_⟩
-    · intro v; exact Subtype.ext rfl
-    · intro z; exact Prod.ext (Subtype.ext rfl) (Subtype.ext rfl)
+    · grind
+    · grind
   rw [Nat.card_congr e, Nat.card_prod, sq]
   exact Nat.mul_le_mul key key
 
@@ -166,9 +162,7 @@ theorem isAddCyclic_of_card_pTorsion_le {G : Type*} [AddCommGroup G]
       have hψ : ∀ g : φ.ker, (m/p) • (g.1.1 : G) = 0 := fun g =>
         congrArg Subtype.val (φ.mem_ker.mp g.2)
       let ψ : φ.ker → T (m/p) := fun g => ⟨g.1.1, hψ g⟩
-      have hψinj : Function.Injective ψ := fun a b hab => by
-        have hv : (a.1.1 : G) = b.1.1 := congrArg (fun x : T (m/p) => (x : G)) hab
-        exact Subtype.ext (Subtype.ext hv)
+      have hψinj : Function.Injective ψ := fun a b hab => by grind
       exact le_trans (Nat.card_le_card_of_injective ψ hψinj) (ih (m/p) hmpm hmp)
     have himφ : Nat.card φ.range ≤ p :=
       le_trans (Nat.card_le_card_of_injective (AddSubgroup.subtype φ.range)
@@ -249,6 +243,7 @@ variable (τ : (ZMod n × ZMod n) →+ (ZMod n × ZMod n)) (s : ZMod n) (hτ : �
   (hns : ∀ p : ℕ, p.Prime → p ∣ n → ∃ v : (ZMod n × ZMod n), addOrderOf v = p ∧ ∀ m : ℕ, τ v ≠ m • v)
 include hτ hns
 
+omit hτ in
 theorem eig_cyclic_card_le (k : ZMod n) : IsAddCyclic (eig τ k) ∧ Nat.card (eig τ k) ≤ n := by
   have step1 : ∀ p : ℕ, p.Prime → Nat.card {g : eig τ k // p • g = 0} ≤ p := by
     intro p hp
@@ -278,8 +273,8 @@ theorem eig_cyclic_card_le (k : ZMod n) : IsAddCyclic (eig τ k) ∧ Nat.card (e
 
 theorem eig_cyclic_card_eq {k : ZMod n} (hk : k * k = s * k - 1) :
     IsAddCyclic (eig τ k) ∧ Nat.card (eig τ k) = n := by
-  obtain ⟨hc, hle⟩ := eig_cyclic_card_le τ s hτ hns k
-  obtain ⟨_, hle'⟩ := eig_cyclic_card_le τ s hτ hns (s - k)
+  obtain ⟨hc, hle⟩ := eig_cyclic_card_le τ hns k
+  obtain ⟨_, hle'⟩ := eig_cyclic_card_le τ hns (s - k)
   have hge := sq_le_card_mul_card τ s hτ hk
   refine ⟨hc, le_antisymm hle ?_⟩
   have hmul := Nat.mul_le_mul hle hle'
