@@ -47,13 +47,12 @@ theorem heckeOperatorAlong_eq (hα : HeckeAlphaBarIntegral L N ℓ) (hβ : Hecke
     (hN : NormFormulaAlong L (heckeAlphaBar L N ℓ) hfin) :
     heckeOperatorAlong L N ℓ = heckePic0Bar hα hβ hFI hfin hN := by
   have h : HeckeInputsAlong L N ℓ := heckeInputsAlong_intro hα hβ hFI hfin hN
-  rw [heckeOperatorAlong, dif_pos h]
+  rw [heckeOperatorAlong, dite_eq_left h]
 
 theorem heckeOperatorAlong_of_not (h : ¬ HeckeInputsAlong L N ℓ) :
     heckeOperatorAlong L N ℓ = 0 := by
-  rw [heckeOperatorAlong, dif_neg h]
+  rw [heckeOperatorAlong, dite_eq_right h]
 
 end ModularCurve
 
 end
-

@@ -35,7 +35,7 @@ noncomputable def mono (b : ℕ) : ↥(BinaryForm K n) :=
   if hb : b ≤ n then ⟨X 0 ^ (n - b) * X 1 ^ b, X_pow_mul_X_pow_mem K n (by omega)⟩ else 0
 
 theorem coe_mono {b : ℕ} (hb : b ≤ n) : (mono K n b : MvPolynomial (Fin 2) K) = X 0 ^ (n - b) * X 1 ^ b := by
-  rw [mono, dif_pos hb]
+  rw [mono, dite_eq_left hb]
 
 theorem binaryFormRepSL_T_zpow_mono (h : ℤ) {b : ℕ} (hb : b ≤ n) :
     binaryFormRepSL K n (ModularGroup.T ^ h) (mono K n b)

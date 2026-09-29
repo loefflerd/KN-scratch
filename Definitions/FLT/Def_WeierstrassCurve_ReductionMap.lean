@@ -180,12 +180,12 @@ lemma reducePoint_some_of_mem {x y : L} (h : (W.map A.subtype).toAffine.Nonsingu
       .some (residue A ⟨x, hx⟩) (residue A ⟨y, Affine.Y_mem_of_X_mem W h.1 hx⟩)
         (Affine.nonsingular_residue W hΔ h.1) := by
   simp only [reducePoint]
-  exact dif_pos hx
+  exact dite_eq_left hx
 
 lemma reducePoint_some_of_notMem {x y : L} (h : (W.map A.subtype).toAffine.Nonsingular x y)
     (hx : x ∉ A) : reducePoint hΔ (.some x y h) = 0 := by
   simp only [reducePoint]
-  exact dif_neg hx
+  exact dite_eq_right hx
 
 theorem reducePoint_neg (P : (W.map A.subtype).toAffine.Point) :
     reducePoint hΔ (-P) = -reducePoint hΔ P := by
@@ -255,4 +255,3 @@ theorem reducePoint_some_apply_of_mem_inertia {σ : L ≃ₐ[K] L}
 end Inertia
 
 end WeierstrassCurve
-

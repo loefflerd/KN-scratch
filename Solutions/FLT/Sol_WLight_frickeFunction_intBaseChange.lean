@@ -368,7 +368,7 @@ theorem qExpansion_coeff_width (f : ℍ → ℂ) {N : ℕ} (hN : N ≠ 0)
       have : ¬ N ∣ x := fun ⟨k, hk⟩ ↦ hx ⟨k, hk.symm⟩
       simp [hc, this]
     · refine h1.congr_fun fun m ↦ ?_
-      simp only [Function.comp_apply, hc, Nat.dvd_mul_right, if_true,
+      simp only [Function.comp_apply, hc, Nat.dvd_mul_right, ite_true,
         Nat.mul_div_cancel_left _ (Nat.pos_of_ne_zero hN), qParam_one_eq_pow hN, ← pow_mul]
   exact (qExpansion_coeff_unique f' hN' hfan hf n).symm
 

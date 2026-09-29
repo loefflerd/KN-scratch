@@ -513,9 +513,9 @@ theorem main (hN : 2 ≤ N) :
     inferInstance (T₀ ∪ T₁) (fun P => if P ∈ T₀ then 0 else 1728)
     (fun P hP => by
       rcases Finset.mem_union.mp hP with h | h
-      · simp only [h, if_true]; rw [hT₀ P h]; exact_mod_cast he₀
+      · simp only [h, ite_true]; rw [hT₀ P h]; exact_mod_cast he₀
       · have h' : P ∉ T₀ := fun h' => Finset.disjoint_left.mp hdisj h' h
-        simp only [h', if_false]; rw [hT₁ P h]; exact_mod_cast he₁)
+        simp only [h', ite_false]; rw [hT₁ P h]; exact_mod_cast he₁)
     T₂ (fun P hP => by
       have := hT₂ P hP
       rw [map_zero, sub_zero, AlgebraicCurve.Place.ord_inv] at this
@@ -526,7 +526,7 @@ theorem main (hN : 2 ≤ N) :
     rw [← Finset.sum_const]
     apply Finset.sum_congr rfl
     intro P hP
-    simp only [hP, if_true]
+    simp only [hP, ite_true]
     rw [hT₀ P hP]
   have hs₁ : ∑ P ∈ T₁, (P.ord (jK - algebraMap ℂ K (if P ∈ T₀ then 0 else 1728)) - 1) =
       T₁.card • ((e₁ : ℤ) - 1) := by
@@ -534,7 +534,7 @@ theorem main (hN : 2 ≤ N) :
     apply Finset.sum_congr rfl
     intro P hP
     have h' : P ∉ T₀ := fun h' => Finset.disjoint_left.mp hdisj h' hP
-    simp only [h', if_false]
+    simp only [h', ite_false]
     rw [hT₁ P hP]
   have hs₂ : ∑ P ∈ T₂, (-P.ord jK - 1) = T₂.card • ((e₂ : ℤ) - 1) := by
     rw [← Finset.sum_const]

@@ -29,7 +29,6 @@ theorem periodMap_def (N : ℕ) (f : CuspForm (Gamma0 N) 2) {F : ℍ → ℂ}
     ∃ (F₀ : ℍ → ℂ) (h₀ : HasEquivariantPrimitive N f F₀), periodMap N f = h₀.2.2.1.periodHom := by
   classical
   have h : ∃ F : ℍ → ℂ, HasEquivariantPrimitive N f F := ⟨F, hF⟩
-  exact ⟨h.choose, h.choose_spec, dif_pos h⟩
+  exact ⟨h.choose, h.choose_spec, dite_eq_left h⟩
 
 end ModularCurve
-

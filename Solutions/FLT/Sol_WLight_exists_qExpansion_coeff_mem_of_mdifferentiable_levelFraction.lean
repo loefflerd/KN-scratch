@@ -264,7 +264,7 @@ theorem qExpansion_coeff_width (f : ℍ → ℂ) {N : ℕ} (hN : N ≠ 0)
       have : ¬ N ∣ x := fun ⟨k, hk⟩ ↦ hx ⟨k, hk.symm⟩
       simp [hc, this]
     · refine h1.congr_fun fun m ↦ ?_
-      simp only [Function.comp_apply, hc, Nat.dvd_mul_right, if_true,
+      simp only [Function.comp_apply, hc, Nat.dvd_mul_right, ite_true,
         Nat.mul_div_cancel_left _ (Nat.pos_of_ne_zero hN), qParam_one_eq_pow hN, ← pow_mul]
   exact (qExpansion_coeff_unique f' hN' hfan hf n).symm
 
@@ -932,7 +932,7 @@ theorem exists_qExpansion_coeff_mem_of_mdifferentiable_levelFraction_of_deps
         (fun τ => (p ⟨n, hn⟩).eval (jf τ)) * ⇑CuspForm.discriminant ^ (M₀ * (d - n)) else 0)
       (d := d) ?_ ?_
     · intro n hn
-      simp only [dif_pos hn]
+      simp only [dite_eq_left hn]
       have h1 : IsBoundedAtImInfty ((fun τ => (p ⟨n, hn⟩).eval (jf τ)) *
           ⇑CuspForm.discriminant ^ mc ⟨n, hn⟩) := (hmc ⟨n, hn⟩).2.1
       refine IsBoundedAtImInfty.mul_discPow_mono ?_ h1
@@ -961,7 +961,7 @@ theorem exists_qExpansion_coeff_mem_of_mdifferentiable_levelFraction_of_deps
                 ⇑CuspForm.discriminant ^ (M₀ * (d - n)))
             else 0) τ) * (G τ * CuspForm.discriminant τ ^ M₀) ^ n) d]
           refine Finset.sum_congr rfl fun i _ => ?_
-          rw [dif_pos i.isLt]
+          rw [dite_eq_left i.isLt]
           simp only [Pi.mul_apply, Pi.pow_apply]
           rw [mul_pow, ← pow_mul]
           have hexp : M₀ * (d - (i : ℕ)) + M₀ * (i : ℕ) = M₀ * d := by

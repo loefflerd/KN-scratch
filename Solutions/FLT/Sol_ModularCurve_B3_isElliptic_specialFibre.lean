@@ -676,7 +676,7 @@ theorem redPoint_some (W : WeierstrassCurve H) (hW : IntegralCoeffs W)
     redPoint W hW hΔ (WeierstrassCurve.Affine.Point.some x y h) =
       WeierstrassCurve.Affine.Point.some (x.coeff 0) (y.coeff 0)
         (nonsingular_specialFibre W hW hΔ hx hy h) := by
-  simp only [redPoint, dif_pos (And.intro hx hy)]
+  simp only [redPoint, dite_eq_left (And.intro hx hy)]
 
 theorem redPoint_some_ne_zero (W : WeierstrassCurve H) (hW : IntegralCoeffs W)
     (hΔ : W.Δ.orderTop = 0) {x y : H} (hx : 0 ≤ x.orderTop) (hy : 0 ≤ y.orderTop)

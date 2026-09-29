@@ -1,14 +1,7 @@
 import Mathlib.AlgebraicGeometry.EllipticCurve.Affine.Point
 import Mathlib.RingTheory.DedekindDomain.Dvr
-import Mathlib.RingTheory.DiscreteValuationRing.TFAE
-import Mathlib.RingTheory.Jacobson.Ring
 import Mathlib.FieldTheory.IsAlgClosed.Basic
-import Mathlib.Tactic.LinearCombination
 import Definitions.FLT.Def_P2M_Util
-
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WeierstrassCurve_Affine_CoordinateRing_isDedekindDomain
 
@@ -48,7 +41,7 @@ lemma mk_mem_XYIdeal_iff' {x y : F} (h : W.Equation x y) (p : F[X][Y]) :
   obtain ⟨r, hr⟩ := AdjoinRoot.mk_eq_mk.mp hqp
   have hW : W.polynomial ∈ Ideal.span {C (X - C x), Y - C (C y)} :=
     mem_span_C_X_sub_C_X_sub_C_iff_eval_eval_eq_zero.mpr h
-  have : p = q - W.polynomial * r := by rw [← hr]; ring
+  have : p = q - W.polynomial * r := by grind
   rw [this]
   exact mem_span_C_X_sub_C_X_sub_C_iff_eval_eval_eq_zero.mp
     (Ideal.sub_mem _ hq (Ideal.mul_mem_right _ _ hW))
@@ -114,7 +107,6 @@ theorem isPrincipal_maximalIdeal_localization {x y : F} (h : W.Nonsingular x y)
   have hI : maximalIdeal L =
       Ideal.span {algebraMap _ L (XClass W x), algebraMap _ L (YClass W (C y))} := by
     rw [← Localization.AtPrime.map_eq_maximalIdeal, map_XYIdeal]
-
   set g : F[X][Y] := C (X ^ 2 + C (x + W.a₂) * X + C (x ^ 2 + W.a₂ * x + W.a₄)) - C (C W.a₁) * Y
     with hg
   have key : YClass W (C y) * YClass W (C (W.negY x y)) = XClass W x * mk W g := by
@@ -128,8 +120,7 @@ theorem isPrincipal_maximalIdeal_localization {x y : F} (h : W.Nonsingular x y)
   have hmem : ∀ p : F[X][Y], mk W p ∈ XYIdeal W x (C y) ↔ p.evalEval x y = 0 :=
     mk_mem_XYIdeal_iff' h.left
   rcases h.right with hx | hy
-  ·
-    have hgu : IsUnit (algebraMap _ L (mk W g)) := by
+  · have hgu : IsUnit (algebraMap _ L (mk W g)) := by
       rw [IsLocalization.AtPrime.isUnit_to_map_iff L (XYIdeal W x (C y))]
       intro (hgI : mk W g ∈ XYIdeal W x (C y))
       apply hx
@@ -141,15 +132,12 @@ theorem isPrincipal_maximalIdeal_localization {x y : F} (h : W.Nonsingular x y)
     refine ⟨⟨algebraMap _ L (YClass W (C y)), ?_⟩⟩
     rw [hI, Ideal.span_insert, sup_comm, ← Ideal.span_insert]
     exact span_pair_eq_span_singleton_of_mul_eq hgu key'.symm
-  ·
-    have hyu : IsUnit (algebraMap _ L (YClass W (C (W.negY x y)))) := by
+  · have hyu : IsUnit (algebraMap _ L (YClass W (C (W.negY x y)))) := by
       rw [IsLocalization.AtPrime.isUnit_to_map_iff L (XYIdeal W x (C y))]
       intro (hyI : mk W (Y - C (C (W.negY x y))) ∈ XYIdeal W x (C y))
       apply hy
       have h0 := (hmem _).mp hyI
-      rw [evalEval_polynomialY]
-      simp only [evalEval_sub, evalEval_CC, evalEval_X, negY] at h0
-      linear_combination h0
+      grind [evalEval_polynomialY, evalEval_sub, evalEval_CC, evalEval_X, negY]
     refine ⟨⟨algebraMap _ L (XClass W x), ?_⟩⟩
     rw [hI]
     exact span_pair_eq_span_singleton_of_mul_eq hyu key'
@@ -161,24 +149,23 @@ theorem isDiscreteValuationRing_localization_XYIdeal' {x y : F} (h : W.Nonsingul
     (Localization.AtPrime (XYIdeal W x (C y)))
   have : IsNoetherianRing (Localization.AtPrime (XYIdeal W x (C y))) :=
     IsLocalization.isNoetherianRing (XYIdeal W x (C y)).primeCompl _ inferInstance
-  exact ((IsDiscreteValuationRing.TFAE _ hnf).out 0 4).mpr
+  exact ((IsDiscreteValuationRing.TFAE _ hnf).out 1 5).mpr
     (isPrincipal_maximalIdeal_localization h)
 
 scoped instance : Module.Finite F[X] W.CoordinateRing := Module.Finite.of_basis (CoordinateRing.basis W)
 
 lemma isMaximal_of_isPrime_of_ne_bot (P : Ideal W.CoordinateRing) [P.IsPrime] (hP : P ≠ ⊥) :
     P.IsMaximal :=
-  Ideal.isMaximal_of_isIntegral_of_isMaximal_comap (R := F[X]) P <|
+  Ideal.isMaximal_of_isIntegral_of_isMaximal_under (R := F[X]) P <|
     IsPrime.to_maximal_ideal (Ideal.under_ne_bot F[X] hP)
 
 theorem isDedekindDomain_of_isAlgClosed' [IsAlgClosed F] [W.IsElliptic] :
     IsDedekindDomain W.CoordinateRing := by
-  have : IsDedekindDomainDvr W.CoordinateRing := by
-    refine ⟨fun P hP hPp => ?_⟩
-    have hmax : P.IsMaximal := isMaximal_of_isPrime_of_ne_bot P hP
-    obtain ⟨x, y, hxy, rfl⟩ := (isMaximal_iff_exists_eq_XYIdeal' P).mp hmax
-    exact isDiscreteValuationRing_localization_XYIdeal' (equation_iff_nonsingular.mp hxy)
-  infer_instance
+  rw [isDedekindDomain_iff_isDiscreteValuationRing_atPrime]
+  refine ⟨inferInstance, fun P hP hPp => ?_⟩
+  have hmax : P.IsMaximal := isMaximal_of_isPrime_of_ne_bot P hP
+  obtain ⟨x, y, hxy, rfl⟩ := (isMaximal_iff_exists_eq_XYIdeal' P).mp hmax
+  exact isDiscreteValuationRing_localization_XYIdeal' (equation_iff_nonsingular.mp hxy)
 
 end WeierstrassCurve.Affine.CoordinateRing.DetInfra
 p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_CoordinateRing_isDedekindDomain.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_CoordinateRing_isDedekindDomain.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_CoordinateRing_isDedekindDomain.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_CoordinateRing_isDedekindDomain.WeierstrassCurve.Affine.CoordinateRing.DetInfra"

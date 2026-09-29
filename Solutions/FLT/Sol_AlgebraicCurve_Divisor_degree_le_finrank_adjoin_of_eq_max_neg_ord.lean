@@ -333,7 +333,7 @@ theorem solution
       (fun i => if hi : i ∈ supp then q i hi else 0) hsupp_ne
     set q₂ := q i₂ hi₂ with hq₂def
     have hq₂le : ∀ (i) (hi : i ∈ supp), q₂ ≤ q i hi := by
-      intro i hi; have := hq₂min i hi; rwa [dif_pos hi₂, dif_pos hi] at this
+      intro i hi; have := hq₂min i hi; rwa [dite_eq_left hi₂, dite_eq_left hi] at this
     set v₀ := i₂.1.1 with hv₀def
     have hv₀ : v₀ ∈ S := i₂.1.2
     have hψord : ∀ (i) (hi : i ∈ supp), ∀ v ∈ S,
@@ -357,7 +357,7 @@ theorem solution
       (fun i => if hi : i ∈ supp then v₀.ord (x ^ q₂ * ((φ i : E) : F) * T i) else 0) hsupp_ne
     set m := v₀.ord (x ^ q₂ * ((φ i₃ : E) : F) * T i₃) with hmdef
     have hmle : ∀ (i) (hi : i ∈ supp), m ≤ v₀.ord (x ^ q₂ * ((φ i : E) : F) * T i) := by
-      intro i hi; have := hmmin i hi; rwa [dif_pos hi₃, dif_pos hi] at this
+      intro i hi; have := hmmin i hi; rwa [dite_eq_left hi₃, dite_eq_left hi] at this
     have hm_neg : m < 0 := by
       have h2 := hmle i₂ hi₂
       rw [v₀.ord_mul (mul_ne_zero (zpow_ne_zero _ hx0) (hφne i₂ hi₂)) (hT_ne0 i₂),
@@ -523,11 +523,11 @@ theorem solution
             = ((xE ^ (q (j k) hjk.1) * φ (j k) : E) : F) * z vv i₃.1.2 k
           rw [hjk_simp k hjk.1 hjk.2, hEgk k hjk.1]
         rw [hsplit, map_mul]
-        simp only [γ, dif_pos hjk, Algebra.smul_def]
+        simp only [γ, dite_eq_left hjk, Algebra.smul_def]
         congr 1
         exact (Classical.choose_spec
           (hres_E vv hv₀ _ (hEgk_ne0 k hjk.1) (hEgk_ord0 k hjk.1))).2 hgmem
-      · rw [hres_zero (j k) hjk]; simp only [γ, dif_neg hjk, zero_smul]
+      · rw [hres_zero (j k) hjk]; simp only [γ, dite_eq_right hjk, zero_smul]
     rw [show (∑ k, IsLocalRing.residue _ (⟨_, hμψT_mem (j k)⟩ : vv.toValuationSubring))
         = ∑ k, γ k • IsLocalRing.residue _
             (⟨z vv i₃.1.2 k, hz_reg vv i₃.1.2 k vv hv₀⟩ : vv.toValuationSubring) from
@@ -537,7 +537,7 @@ theorem solution
     have hi₃cond : j i₃.2.2 ∈ supp ∧
         vv.ord (x ^ q₂ * ((φ (j i₃.2.2) : E) : F) * T (j i₃.2.2)) = m := by
       rw [hji₃]; exact ⟨hi₃, hmdef.symm⟩
-    simp only [γ, dif_pos hi₃cond] at hγk0
+    simp only [γ, dite_eq_left hi₃cond] at hγk0
     exact (Classical.choose_spec
       (hres_E vv hv₀ _ (hEgk_ne0 i₃.2.2 hi₃cond.1) (hEgk_ord0 i₃.2.2 hi₃cond.1))).1 hγk0
 

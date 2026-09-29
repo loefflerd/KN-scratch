@@ -10,7 +10,7 @@ namespace P2MW.S_MvPolynomial_IsHomogeneous_iterate_pderiv_eq_zero_of_lt
 set_option autoImplicit false
 
 namespace MvPolynomial
-p2m_export "MvPolynomial" "coeff R pderiv_C totalDegree_eq_zero_iff_eq_C C IsHomogeneous pderiv"
+p2m_export "MvPolynomial" "R pderiv_C totalDegree_eq_zero_iff_eq_C C IsHomogeneous pderiv"
 namespace DegAux
 p2m_open "MvPolynomial"
 
@@ -30,7 +30,7 @@ theorem iterate_pderiv_eq_zero_of_lt {σ R : Type*} [CommSemiring R] {φ : MvPol
   rw [show n + m + 1 = m + 1 + n by ring, Function.iterate_add_apply, Function.iterate_succ_apply]
   have h0 : ((pderiv k)^[n] φ).IsHomogeneous 0 := by
     simpa using isHomogeneous_iterate_pderiv k hφ n
-  have hC : (pderiv k)^[n] φ = C (coeff 0 ((pderiv k)^[n] φ)) :=
+  have hC : (pderiv k)^[n] φ = C (AddMonoidAlgebra.coeff ((pderiv k)^[n] φ) 0) :=
     totalDegree_eq_zero_iff_eq_C.mp (Nat.eq_zero_of_le_zero h0.totalDegree_le)
   rw [hC, pderiv_C]
   exact Function.iterate_fixed (map_zero _) m

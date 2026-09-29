@@ -560,7 +560,7 @@ private theorem root_shape (M : ℕ) [NeZero M] (p : ℕ) [hp : Fact (Nat.Prime 
   obtain ⟨b, hb, hy⟩ := Finset.prod_eq_zero_iff.mp hy
   rw [Polynomial.eval₂_sub, Polynomial.eval₂_X, Polynomial.eval₂_C, sub_eq_zero] at hy
   have ha0 : a ≠ 0 := Nat.ne_of_gt (Nat.pos_of_mem_divisors ha)
-  rw [dif_neg ha0] at hy
+  rw [dite_eq_right ha0] at hy
   have : NeZero a := ⟨ha0⟩
   refine ⟨a, ⟨ha0⟩, Nat.dvd_of_mem_divisors ha, b, (Finset.mem_range.mp (Finset.mem_filter.mp hb).1), ?_⟩
   rw [hy]

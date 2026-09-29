@@ -1,19 +1,10 @@
-import Mathlib.NumberTheory.ModularForms.QExpansion
-import Mathlib.NumberTheory.ModularForms.BoundedAtCusp
 import Mathlib.RingTheory.RootsOfUnity.Complex
-import Mathlib.Algebra.Lie.OfAssociative
-import Mathlib.Algebra.Algebra.Rat
-import Definitions.FLT.Def_ModularForm_HeckeOperator
+
 import Definitions.FLT.Def_FLTPrelim_Modularity
+import Definitions.FLT.Def_ModularForm_HeckeOperator
 import Definitions.FLT.Def_P2M_Util
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
 namespace P2MW.S_ModularFormClass_eq_of_forall_qCoeff_eq
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -256,15 +247,13 @@ theorem hasSum_average (τ : ℍ) :
     refine hasSum_sum fun j _ => ?_
     have := hF (heckeMatrix p j • τ)
     rwa [qParam_heckeMatrix_smul hp j τ] at this
-
   have h2 : (fun m ↦ ∑ j ∈ Finset.range p,
       qCoeff f m • (exp (2 * π * I * τ / p) * exp (2 * π * I / p) ^ j) ^ m)
       = fun m ↦ if p ∣ m then (p : ℂ) * qCoeff f m * exp (2 * π * I * τ / p) ^ m else 0 := by
     funext m
     simp only [mul_pow, smul_eq_mul, ← Finset.mul_sum, sum_rootOfUnity_pow hp m]
-    split_ifs <;> ring
+    grind
   rw [h2] at h1
-
   have hinj : Function.Injective (fun l : ℕ ↦ l * p) := mul_left_injective₀ hp
   have h3 := (hinj.hasSum_iff (f := fun m ↦
       if p ∣ m then (p : ℂ) * qCoeff f m * exp (2 * π * I * τ / p) ^ m else 0)
@@ -291,7 +280,7 @@ theorem hasSum_diag (k : ℤ) (τ : ℍ) :
   rw [qParam_heckeDiagMatrix_smul hp τ] at hD
   have hinj : Function.Injective (fun l : ℕ ↦ l * p) := mul_left_injective₀ hp
   refine (hinj.hasSum_iff (fun m hm => by simp [not_dvd_of_not_mem_range hm])).mp ?_
-  convert hD using 1 <;> try rfl
+  convert hD using 1
   funext l
   simp only [comp_apply, ite_eq_left (dvd_mul_left p l), Nat.mul_div_cancel _ (Nat.pos_of_ne_zero hp),
     smul_eq_mul]
@@ -311,9 +300,7 @@ theorem hasSum_heckeT (k : ℤ) (τ : ℍ) :
     HasSum (fun n : ℕ ↦ coeffHeckeT k p (qCoeff f) n • Periodic.qParam 1 τ ^ n) (heckeT k p f τ) := by
   rw [heckeT_apply k hp]
   convert (hasSum_average hp hper hhol hbdd τ).add (hasSum_diag hp hper hhol hbdd k τ) using 1
-  funext n
-  rw [coeffHeckeT_apply, smul_eq_mul]
-  split_ifs <;> ring
+  grind [coeffHeckeT_apply, smul_eq_mul]
 
 include hp hper hhol hbdd in
 theorem qCoeff_heckeU_bare (k : ℤ) (n : ℕ) :

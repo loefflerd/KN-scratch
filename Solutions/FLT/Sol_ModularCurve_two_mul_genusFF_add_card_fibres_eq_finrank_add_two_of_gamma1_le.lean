@@ -147,21 +147,21 @@ theorem solution
     (by
       intro P hP
       rcases Finset.mem_union.mp hP with h | h
-      · simp only [h, if_true, map_zero, sub_zero]; exact (hS0mem P).mp h
+      · simp only [h, ite_true, map_zero, sub_zero]; exact (hS0mem P).mp h
       · have hn : P ∉ S0 := fun h' => Finset.disjoint_left.mp hdisj h' h
-        simp only [hn, if_false]; exact (hS1mem P).mp h)
+        simp only [hn, ite_false]; exact (hS1mem P).mp h)
     Si (fun P hP => (hSimem P).mp hP)
 
   have eA : ∀ P ∈ S0, (P.ord (y - algebraMap (AlgebraicClosure ℚ) _
         ((fun P => if P ∈ S0 then (0 : AlgebraicClosure ℚ) else 1728) P)) - 1) = P.ord y - 1 := by
     intro P hP
-    simp only [hP, if_true, map_zero, sub_zero]
+    simp only [hP, ite_true, map_zero, sub_zero]
   have eB : ∀ P ∈ S1, (P.ord (y - algebraMap (AlgebraicClosure ℚ) _
         ((fun P => if P ∈ S0 then (0 : AlgebraicClosure ℚ) else 1728) P)) - 1) =
       P.ord (y - algebraMap (AlgebraicClosure ℚ) _ (1728 : AlgebraicClosure ℚ)) - 1 := by
     intro P hP
     have hn : P ∉ S0 := fun h' => Finset.disjoint_left.mp hdisj h' hP
-    simp only [hn, if_false]
+    simp only [hn, ite_false]
   rw [Finset.sum_union hdisj, Finset.sum_congr rfl eA, Finset.sum_congr rfl eB] at hst
   simp only [Finset.sum_sub_distrib, Finset.sum_const, nsmul_eq_mul, mul_one] at hst
   rw [hS0sum, hS1sum, hSisum] at hst

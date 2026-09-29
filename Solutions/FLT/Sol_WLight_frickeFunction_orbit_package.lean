@@ -1,38 +1,9 @@
-import Mathlib.NumberTheory.ModularForms.EisensteinSeries.QExpansion
-import Mathlib.NumberTheory.ModularForms.LevelOne.GradedRing
-import Mathlib.Geometry.Manifold.Notation
-import Mathlib.Analysis.SpecialFunctions.Elliptic.Weierstrass
-import Mathlib.RingTheory.DedekindDomain.IntegralClosure
-import Mathlib.RingTheory.DedekindDomain.Ideal.Lemmas
-import Mathlib.RingTheory.Unramified.Field
-import Mathlib.Analysis.Meromorphic.NormalForm
-import Mathlib.RingTheory.Discriminant
-import Mathlib.RingTheory.Adjoin.PowerBasis
-import Mathlib.FieldTheory.PrimitiveElement
-import Mathlib.RingTheory.RootsOfUnity.Complex
-import Mathlib.Analysis.Complex.Polynomial.Basic
-import Mathlib.LinearAlgebra.Lagrange
-import Mathlib.FieldTheory.LinearDisjoint
-import Mathlib.FieldTheory.Galois.Infinite
-import Mathlib.RingTheory.AlgebraicIndependent.TranscendenceBasis
-import Mathlib.RingTheory.AlgebraicIndependent.AlgebraicClosure
-import Mathlib.RingTheory.AlgebraicIndependent.Adjoin
-import Mathlib.RingTheory.Polynomial.RationalRoot
-import Mathlib.Analysis.Analytic.Order
-import Mathlib.RingTheory.PowerSeries.Order
-import Mathlib.RingTheory.Polynomial.IsIntegral
-import Theorems.FLT.Thm_WLight_levelOne_hauptmodul_package
-import Theorems.FLT.Thm_WLight_frickeFunction_modularity_package
 import Theorems.FLT.Thm_ModularForm_weierstrassP_torsion_qExpansion_package
+import Theorems.FLT.Thm_WLight_frickeFunction_modularity_package
+import Theorems.FLT.Thm_WLight_levelOne_hauptmodul_package
 import Definitions.FLT.Def_P2M_Util
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
 namespace P2MW.S_WLight_frickeFunction_orbit_package
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -628,11 +599,11 @@ theorem orbitCoeff_slash_invariant
   funext τ
   simp only [SL_slash_apply, neg_zero, zpow_zero, mul_one]
   show (∏ i, (X - C (h i (γ • τ)))).coeff k = (∏ i, (X - C (h i τ))).coeff k
-  congr 1
+  congr 2
   calc ∏ i, (X - C (h i (γ • τ)))
-      = ∏ i, (X - C (h (σ i) τ)) := by
-        refine Finset.prod_congr rfl fun i _ => ?_
-        rw [hσ i τ]
+    _ = ∏ i, (X - C (h (σ i) τ)) := by
+      refine Finset.prod_congr rfl fun i _ => ?_
+      rw [hσ i τ]
     _ = ∏ i, (X - C (h i τ)) := Equiv.prod_comp σ (fun i' => X - C (h i' τ))
 
 theorem exists_poly_j_orbitCoeff
@@ -901,7 +872,7 @@ lemma orbitCoeffOn_frickeF_mem_levelRingK [NeZero N] (s : Finset (FrickeIdx N)) 
           (∏ i ∈ Finset.cons a s ha, (X - C (frickeF N i.1 τ))).coeff 0) =
           -(frickeF N a.1 * fun τ : ℍ => (∏ i ∈ s, (X - C (frickeF N i.1 τ))).coeff 0) := by
         funext τ
-        simp only [Finset.prod_cons, coeff_X_sub_C_mul, if_true, Pi.neg_apply, Pi.mul_apply]
+        simp only [Finset.prod_cons, coeff_X_sub_C_mul, ite_true, Pi.neg_apply, Pi.mul_apply]
         ring
       rw [hrw]
       exact neg_mem (mul_mem (frickeF_mem_levelRingK a) (ih 0))
@@ -1023,19 +994,16 @@ theorem solution
     rw [h1, h2] at h3
     exact h3
   refine ⟨?_, ?_, ?_⟩
-  ·
-    obtain ⟨h1, m, h2⟩ := poleBounded_j
+  · obtain ⟨h1, m, h2⟩ := poleBounded_j
     refine ⟨by rw [hjeq]; exact h1, m, ?_⟩
     rw [hjeq, ← CuspForm.coe_discriminant]
     exact h2
-  ·
-    intro v hv
+  · intro v hv
     obtain ⟨h1, m, h2⟩ := poleBounded_frickeF (⟨v, hv⟩ : FrickeIdx N)
     refine ⟨by rw [hfr]; exact h1, m, ?_⟩
     rw [hfr, ← CuspForm.coe_discriminant]
     exact h2
-  ·
-    obtain ⟨P, hPmem, hPrel⟩ := frickeF_integral_over_j_mem_kN N
+  · obtain ⟨P, hPmem, hPrel⟩ := frickeF_integral_over_j_mem_kN N
     refine ⟨P, fun k i => hPmem k i, fun v hv τ => ?_⟩
     have h := hPrel ⟨v, hv⟩ τ
     rw [hfr v, hjeq, ← hcard]

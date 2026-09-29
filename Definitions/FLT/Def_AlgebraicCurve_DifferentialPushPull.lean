@@ -57,7 +57,7 @@ theorem traceAlong_smul_pullbackAlong (φ : F →ₐ[K] F') (h : SeparableAlong 
   have := isScalarTower_along φ
   have : Algebra.IsSeparable F F' := h
   have : Algebra.FormallyEtale F F' := Algebra.FormallyEtale.of_isSeparable F F'
-  rw [traceAlong, dif_pos h]
+  rw [traceAlong, dite_eq_left h]
   simp only [LinearMap.coe_restrictScalars, LinearMap.coe_comp, LinearEquiv.coe_coe,
     Function.comp_apply]
   have hsymm : (KaehlerDifferential.tensorKaehlerEquivOfFormallyEtale K F F').symm
@@ -68,7 +68,7 @@ theorem traceAlong_smul_pullbackAlong (φ : F →ₐ[K] F') (h : SeparableAlong 
   rw [hsymm, LinearMap.rTensor_tmul, TensorProduct.lid_tmul]
 
 theorem traceAlong_of_not (φ : F →ₐ[K] F') (h : ¬ SeparableAlong K φ) : traceAlong φ = 0 := by
-  rw [traceAlong, dif_neg h]
+  rw [traceAlong, dite_eq_right h]
 
 def correspondence (φ ψ : F →ₐ[K] F') : Ω[F⁄K] →ₗ[K] Ω[F⁄K] :=
   traceAlong φ ∘ₗ pullbackAlong ψ
@@ -81,4 +81,3 @@ end Differential
 end AlgebraicCurve
 
 end
-

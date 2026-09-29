@@ -99,10 +99,10 @@ theorem solution
       omega
 
   let c' : ι → K := fun j => if hj : j ∈ g.support then c j hj else 0
-  have hc'eq : ∀ j (hj : j ∈ g.support), c' j = c j hj := fun j hj => dif_pos hj
+  have hc'eq : ∀ j (hj : j ∈ g.support), c' j = c j hj := fun j hj => dite_eq_left hj
   let e' : ι → F := fun j => if hj : j ∈ g.support then ((o' j hj : v.toValuationSubring) : F) else 0
   have he'eq : ∀ j (hj : j ∈ g.support), e' j = ((o' j hj : v.toValuationSubring) : F) :=
-    fun j hj => dif_pos hj
+    fun j hj => dite_eq_left hj
   have he'mem : ∀ j ∈ g.support, e' j ∈ v.toValuationSubring := fun j hj =>
     (he'eq j hj) ▸ (o' j hj).2
 

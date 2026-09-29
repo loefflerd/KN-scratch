@@ -1238,7 +1238,7 @@ private def _root_.AlgebraicCurve.Place.evalAt (f : F) : K :=
 p2m_export "AlgebraicCurve.Place" "evalAt"
 private theorem _root_.AlgebraicCurve.Place.evalAt_of_mem {f : F} (hf : f ∈ v.toValuationSubring) :
     v.evalAt f = v.residueInv (residue v.toValuationSubring ⟨f, hf⟩) :=
-  dif_pos hf
+  dite_eq_left hf
 
 p2m_export "AlgebraicCurve.Place" "evalAt_of_mem"
 private theorem _root_.AlgebraicCurve.Place.algebraMap_evalAt (hv : v.IsRational) {f : F} (hf : f ∈ v.toValuationSubring) :
@@ -4049,7 +4049,7 @@ theorem genus_eq_degree_div :
       genus K F = (Divisor.degree (canonicalDivisorOf hω₀) + 2).toNat / 2 := by
   have hne : ∃ ω : Ω[F⁄K], ω ≠ 0 := exists_ne 0
   refine ⟨hne.choose, hne.choose_spec, ?_⟩
-  rw [genus, dif_pos hne]
+  rw [genus, dite_eq_left hne]
 
 end Identification
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"

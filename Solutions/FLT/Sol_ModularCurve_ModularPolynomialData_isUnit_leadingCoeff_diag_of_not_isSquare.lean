@@ -604,7 +604,7 @@ private theorem w1_diag_lc_pow (N : ℕ) [NeZero N] (hN : ¬ IsSquare N)
     have : NeZero a := ⟨ha0⟩
     have hdval : ∀ b : ℕ, (if h : a = 0 then (0 : LaurentSeries K) else
         letI : NeZero a := ⟨h⟩; qExpand K (a * a) (qTwist (ζ ^ (b * a)) (coeffEmb K jq))) =
-        TS K (a * a) (ζ ^ (b * a)) := fun b => by rw [dif_neg ha0]; rfl
+        TS K (a * a) (ζ ^ (b * a)) := fun b => by rw [dite_eq_right ha0]; rfl
     simp only [hdval]
     obtain ⟨hne, hlc⟩ := w1_prod_ne_zero_leadingCoeff (K := K)
       ((Finset.range (N / a)).filter (fun b => Nat.gcd (Nat.gcd a b) (N / a) = 1))

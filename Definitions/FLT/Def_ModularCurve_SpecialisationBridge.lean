@@ -79,7 +79,7 @@ theorem redPoint_some (W : WeierstrassCurve H) (hW : IntegralCoeffs W)
     redPoint W hW hΔ (WeierstrassCurve.Affine.Point.some x y h) =
       WeierstrassCurve.Affine.Point.some (x.coeff 0) (y.coeff 0)
         (nonsingular_specialFibre W hW hΔ hx hy h) := by
-  simp only [redPoint, dif_pos (And.intro hx hy)]
+  simp only [redPoint, dite_eq_left (And.intro hx hy)]
 
 universe u
 
@@ -292,4 +292,3 @@ theorem b3Act_zmultiples (j₀ : Qbar) (m : HahnSeries.monodromy Qbar)
 end ModularCurve.B3
 
 end
-

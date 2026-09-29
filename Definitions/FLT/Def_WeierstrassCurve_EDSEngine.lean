@@ -812,10 +812,10 @@ lemma IsEllSequence'.mul_compl_eq_apply_mul_of_mem_nonZeroDivisors (mem : W m �
     rw [EllSequence.compl, Int.sign_eq_one_of_pos (by omega),
       Int.natAbs_natCast, compl', Int.cast_one, one_mul]
     obtain ⟨k, rfl|rfl⟩ := n.even_or_odd'
-    · rw [dif_pos (even_two_mul _), k.mul_div_cancel_left zero_lt_two, mul_comm (compl₂ _),
+    · rw [dite_eq_left (even_two_mul _), k.mul_div_cancel_left zero_lt_two, mul_comm (compl₂ _),
         ← mul_assoc, ← compl_ofNat, ih _ (by omega), h₂, ← mul_assoc, add_assoc, ← two_mul,
         ← left_distrib, Nat.cast_mul]; rfl
-    simp_rw [dif_neg (Nat.not_even_two_mul_add_one _), show (2 * k + 1) / 2 = k by omega]
+    simp_rw [dite_eq_right (Nat.not_even_two_mul_add_one _), show (2 * k + 1) / 2 = k by omega]
     rw [← mul_cancel_right_mem_nonZeroDivisors (mul_mem mem <| pow_mem one 2)]
     have := (ellW ((k + 1 + 1) * m) ((k + 1) * m) 1).symm
     simp_rw [← right_distrib, ← mul_sub_right_distrib, add_sub_cancel_left,
@@ -1541,7 +1541,7 @@ theorem zsmul_point_eq_smulX_smulY : n ≠ 0 →
     all_goals obtain ⟨ns, eq⟩ := ih 1 (by omega) one_ne_zero
     · erw [← addX_smul_one_smul_one, ← addY_smul_one_smul_one, zero_add, add_zsmul _ 1 1, eq]
       exact ⟨Affine.nonsingular_add ns ns fun h ↦ smulY_one_ne_negY h.2,
-        dif_neg fun h ↦ smulY_one_ne_negY h.2⟩
+        dite_eq_right fun h ↦ smulY_one_ne_negY h.2⟩
     set n2 := n + 1 + 1
     obtain ⟨ns1, eq1⟩ := ih (n + 1) (by omega) (by omega)
     obtain ⟨ns2, eq2⟩ := ih n2 (by omega) (by omega)
@@ -1871,4 +1871,3 @@ theorem smul_eq_zero_iff_evalEval_ψ {x y : F} (h : W.toAffine.Nonsingular x y) 
 end WeierstrassCurve
 
 end PortEllSequenceAffineBridge
-

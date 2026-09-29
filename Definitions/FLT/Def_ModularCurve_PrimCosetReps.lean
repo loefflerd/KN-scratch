@@ -43,7 +43,7 @@ noncomputable def cosetConj (ζ : Kˣ) (J : LaurentSeries K) (t : ℕ × ℕ × 
 theorem cosetConj_eq (ζ : Kˣ) (J : LaurentSeries K) (a b d : ℕ) [NeZero a] :
     cosetConj ζ J (a, b, d) = cosetSubst ζ a b J := by
   unfold cosetConj
-  rw [dif_neg (NeZero.ne a)]
+  rw [dite_eq_right (NeZero.ne a)]
 
 noncomputable def cosetTwoVarPoly (ζ : Kˣ) (N : ℕ) (J : LaurentSeries K) : Polynomial (LaurentSeries K) :=
   (primCosetReps N).prod fun t => Polynomial.X - Polynomial.C (cosetConj ζ J t)
@@ -51,4 +51,3 @@ noncomputable def cosetTwoVarPoly (ζ : Kˣ) (N : ℕ) (J : LaurentSeries K) : P
 end Conjugates
 
 end ModularCurve
-

@@ -448,7 +448,7 @@ theorem A_zero (hχ : χ.IsPrimitive) (hodd : χ.Odd) :
     by_cases hb : b = 0
     · subst hb; simp [inv_zero_eq χ hL3]
     · have := pi_cot_eq_sum b hb
-      simp only [cb, if_true]
+      simp only [cb, ite_true]
       rw [Int.cast_natCast, show π / (L : ℂ) * Complex.cot (π * (b.val : ℂ) / L) =
         1 / L * (π * Complex.cot (π * (b.val : ℂ) / L)) by ring, this]
       ring

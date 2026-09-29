@@ -87,7 +87,7 @@ theorem periodMapOf_def (f : CuspForm Γ 2) {F : ℍ → ℂ} (hF : HasEquivaria
     ∃ (F₀ : ℍ → ℂ) (h₀ : HasEquivariantPrimitiveOf Γ f F₀), periodMapOf Γ f = h₀.2.2.1.periodHom := by
   classical
   have h : ∃ F : ℍ → ℂ, HasEquivariantPrimitiveOf Γ f F := ⟨F, hF⟩
-  exact ⟨h.choose, h.choose_spec, dif_pos h⟩
+  exact ⟨h.choose, h.choose_spec, dite_eq_left h⟩
 
 theorem periodAlongOf_gamma0 (N : ℕ) (τ₀ τ₁ : ℍ) :
     periodAlongOf (CongruenceSubgroup.Gamma0 N) τ₀ τ₁ = periodAlong N τ₀ τ₁ := rfl
@@ -134,4 +134,3 @@ theorem peterssonOf_gamma0 {N : ℕ} (f g : CuspForm (CongruenceSubgroup.Gamma0 
 end CuspForm
 
 end
-

@@ -39,7 +39,7 @@ theorem solution
     ⟨⟨k, g, h⟩, hτ, hx⟩
   have hval : ModularCurve.realizeOf Γ x τ = (H.choose.2.1 : ℍ → ℂ) τ / (H.choose.2.2 : ℍ → ℂ) τ := by
     rw [ModularCurve.realizeOf_def]
-    exact dif_pos H
+    exact dite_eq_left H
   rw [hval]
   obtain ⟨hτ', hx'⟩ := H.choose_spec
   set p := H.choose with hp

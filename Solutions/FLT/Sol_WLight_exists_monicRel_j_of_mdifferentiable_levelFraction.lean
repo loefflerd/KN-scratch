@@ -1,19 +1,8 @@
-import Mathlib.Analysis.SpecialFunctions.Elliptic.Weierstrass
-import Mathlib.NumberTheory.ModularForms.Discriminant
-import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
-import Mathlib.Analysis.Meromorphic.NormalForm
-import Mathlib.Geometry.Manifold.Notation
-import Theorems.FLT.Thm_WLight_levelOne_hauptmodul_package
 import Theorems.FLT.Thm_WLight_frickeFunction_modularity_package
+import Theorems.FLT.Thm_WLight_levelOne_hauptmodul_package
 import Definitions.FLT.Def_P2M_Util
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
 namespace P2MW.S_WLight_exists_monicRel_j_of_mdifferentiable_levelFraction
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -447,7 +436,7 @@ theorem orbitCoeff_slash_invariant
   funext τ
   simp only [ModularForm.SL_slash_apply, neg_zero, zpow_zero, mul_one]
   show (∏ i, (X - C (h i (γ • τ)))).coeff k = (∏ i, (X - C (h i τ))).coeff k
-  congr 1
+  congr 2
   calc ∏ i, (X - C (h i (γ • τ)))
       = ∏ i, (X - C (h (σ i) τ)) := by
         refine Finset.prod_congr rfl fun i _ => ?_

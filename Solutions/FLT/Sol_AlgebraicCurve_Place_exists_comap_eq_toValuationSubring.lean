@@ -50,7 +50,7 @@ theorem rowMain (v : Place K F) :
   have hPne : P ≠ ⊥ := by
     intro hbot
     apply IsDiscreteValuationRing.not_a_field A
-    rw [← hP, hbot, Ideal.comap_bot_of_injective _ hinj]
+    rw [← hP, hbot, Ideal.under_def, Ideal.comap_bot_of_injective _ hinj]
   let w₀ : HeightOneSpectrum C := ⟨P, hPmax.isPrime, hPne⟩
   refine ⟨Place.ofHeightOneSpectrum (K := K) w₀, ?_⟩
   ext f
@@ -75,7 +75,7 @@ theorem rowMain (v : Place K F) :
         simpa [← mul_assoc, mul_inv_cancel₀ hf0] using this
       exact hfA (hbf ▸ b.2)
     have hP' : algebraMap A C ⟨f⁻¹, hinvA⟩ ∈ P := by
-      rw [← Ideal.mem_comap, hP]
+      rw [← Ideal.mem_comap, ← Ideal.under_def, hP]
       exact hnu
     have hlt : w₀.valuation F' (algebraMap F F' f⁻¹) < 1 := by
       rw [show algebraMap F F' f⁻¹ = algebraMap C F' (algebraMap A C ⟨f⁻¹, hinvA⟩) from

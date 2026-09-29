@@ -301,7 +301,7 @@ theorem cuspOrder_spec (φ : ℍ → ℂ)
       C * ‖Periodic.qParam (wd Γ) (τ : ℂ)‖ ^ n ≤ ‖φ τ‖) :
     ∃ C : ℝ, 0 < C ∧ ∀ᶠ τ : ℍ in atImInfty,
       C * ‖Periodic.qParam (wd Γ) (τ : ℂ)‖ ^ (cuspOrder Γ φ) ≤ ‖φ τ‖ := by
-  rw [cuspOrder, dif_pos H]
+  rw [cuspOrder, dite_eq_left H]
   exact H.choose_spec
 
 theorem exists_forall_cuspOrder_le [Γ.FiniteIndex] (h : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) :

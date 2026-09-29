@@ -401,7 +401,7 @@ theorem IsBallChain.pseudoLimitCoeff_eq {ι : Type*} [LinearOrder ι]
     {g : Γ} {i : ι} (hgi : (g : WithTop Γ) < δ i) :
     pseudoLimitCoeff r δ g = (r i).coeff g := by
   unfold pseudoLimitCoeff
-  rw [dif_pos ⟨i, hgi⟩]
+  rw [dite_eq_left ⟨i, hgi⟩]
   exact h.coeff_eq_of_lt (Exists.choose_spec (p := fun i => (g : WithTop Γ) < δ i) ⟨i, hgi⟩) hgi
 
 theorem IsBallChain.isPWO_support_pseudoLimitCoeff {ι : Type*} [LinearOrder ι]
@@ -415,7 +415,7 @@ theorem IsBallChain.isPWO_support_pseudoLimitCoeff {ι : Type*} [LinearOrder ι]
   have hf0 : pseudoLimitCoeff r δ (f 0) ≠ 0 := hf 0
   have hex : ∃ i, ((f 0 : Γ) : WithTop Γ) < δ i := by
     by_contra hnone
-    rw [pseudoLimitCoeff, dif_neg hnone] at hf0; exact hf0 rfl
+    rw [pseudoLimitCoeff, dite_eq_right hnone] at hf0; exact hf0 rfl
   obtain ⟨i₀, hi₀⟩ := hex
 
   have hfk : ∀ k, f k ∈ (r i₀).support := by
@@ -864,7 +864,7 @@ theorem kaplanskyLimitCoeff_eq {C : Set (HahnSeries ℚ K)} (hC : IsChain (Kapla
     {a : HahnSeries ℚ K} (ha : a ∈ C) {g : ℚ} (hga : KaplanskyBelowSlope f a g) :
     kaplanskyLimitCoeff (f := f) C g = a.coeff g := by
   unfold kaplanskyLimitCoeff
-  rw [dif_pos ⟨a, ha, hga⟩]
+  rw [dite_eq_left ⟨a, ha, hga⟩]
   obtain ⟨hb, hgb⟩ := (⟨a, ha, hga⟩ : ∃ a ∈ C, KaplanskyBelowSlope f a g).choose_spec
   exact kaplanskyChain_coeff_eq hC hb ha hgb hga
 
@@ -876,7 +876,7 @@ theorem kaplanskyLimitCoeff_isPWO_support {C : Set (HahnSeries ℚ K)}
   intro s hanti hs
   have hf0 : kaplanskyLimitCoeff (f := f) C (s 0) ≠ 0 := hs 0
   have hex : ∃ a ∈ C, KaplanskyBelowSlope f a (s 0) := by
-    by_contra hnone; rw [kaplanskyLimitCoeff, dif_neg hnone] at hf0; exact hf0 rfl
+    by_contra hnone; rw [kaplanskyLimitCoeff, dite_eq_right hnone] at hf0; exact hf0 rfl
   obtain ⟨a₀, ha₀, hga₀⟩ := hex
 
   have hsk : ∀ k, s k ∈ a₀.support := by

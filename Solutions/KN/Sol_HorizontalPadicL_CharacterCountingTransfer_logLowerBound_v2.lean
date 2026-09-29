@@ -21,7 +21,7 @@ lemma count_le {S T : Set DirichletCharacterWithLevel} (F : CharacterCountingTra
   have hB := hT (F.scale * Y)
   let f : DirichletCharacterWithLevel → DirichletCharacterWithLevel :=
     fun χ => if h : χ ∈ S then (F.map ⟨χ, h⟩).val else χ
-  have hfA : ∀ χ ∈ A, ∃ h : χ ∈ S, f χ = (F.map ⟨χ, h⟩).val := fun χ hχ => ⟨hχ.1, dif_pos hχ.1⟩
+  have hfA : ∀ χ ∈ A, ∃ h : χ ∈ S, f χ = (F.map ⟨χ, h⟩).val := fun χ hχ => ⟨hχ.1, dite_eq_left hχ.1⟩
   have himg : hA.toFinset.image f ⊆ hB.toFinset := by
     intro θ hθ
     rw [Finset.mem_image] at hθ

@@ -3,7 +3,6 @@ import Mathlib.NumberTheory.NumberField.Discriminant.Different
 import Mathlib.FieldTheory.IntermediateField.Adjoin.Basic
 
 set_option autoImplicit false
-set_option linter.style.haveILetI false
 
 noncomputable section
 
@@ -13,30 +12,32 @@ namespace AgentLDisc
 
 theorem dvr_of_fu (A B : Type*) [CommRing A] [CommRing B] [Algebra A B] [Module.Finite A B]
     [IsDedekindDomain A] [IsDomain B] [Algebra.FormallyUnramified A B] :
-    IsDedekindDomainDvr B where
-  __ := IsNoetherianRing.of_finite A B
-  is_dvr_at_nonzero_prime := by
-    intro q hq hqp
-    let q' := IsLocalRing.maximalIdeal (Localization.AtPrime q)
-    suffices q'.IsPrincipal from ((IsDiscreteValuationRing.TFAE (Localization.AtPrime q)
-      (IsLocalization.AtPrime.not_isField B hq (Localization.AtPrime q))).out 4 0).mp this
-    let p := q.under A
-    let := Localization.AtPrime.algebraOfLiesOver p q
-    have : p.IsMaximal := (hqp.under A).isMaximal (q.under_ne_bot A hq)
-    let : Field (A ⧸ p) := Ideal.Quotient.field p
-    have := IsArtinianRing.of_finite (A ⧸ p) (B ⧸ p.map (algebraMap A B))
-    suffices q' = (p.map (algebraMap A B)).map (algebraMap B (Localization.AtPrime q)) by
-      rw [this, Ideal.map_map, ← IsScalarTower.algebraMap_eq,
-        IsScalarTower.algebraMap_eq A (Localization.AtPrime p) (Localization.AtPrime q),
-        ← Ideal.map_map]
-      infer_instance
-    rw [← (Algebra.FormallyUnramified.isRadical_map_isMaximal A B p).radical,
-      IsLocalization.map_radical q.primeCompl,
-      IsLocalization.AtPrime.radical_map_of_mem_minimalPrimes (Localization.AtPrime q) q,
-      Localization.AtPrime.map_eq_maximalIdeal]
-    rw [Ideal.minimalPrimes_eq_comap]
-    exact ⟨q.map (Ideal.Quotient.mk (p.map (algebraMap A B))),
-      IsArtinianRing.mem_minimalPrimes bot_le, Ideal.comap_map_mk Ideal.map_comap_le⟩
+    IsDedekindDomain B := by
+  rw [isDedekindDomain_iff_isDiscreteValuationRing_atPrime]
+  refine ⟨IsNoetherianRing.of_finite A B, ?_⟩
+  intro q hq hqp
+  let q' := IsLocalRing.maximalIdeal (Localization.AtPrime q)
+  have : IsNoetherianRing (Localization.AtPrime q) :=
+    IsLocalization.isNoetherianRing q.primeCompl (Localization.AtPrime q) (.of_finite A B)
+  suffices q'.IsPrincipal from ((IsDiscreteValuationRing.TFAE (Localization.AtPrime q)
+    (IsLocalization.AtPrime.not_isField B hq (Localization.AtPrime q))).out 5 1).mp this
+  let p := q.under A
+  let := Localization.AtPrime.algebraOfLiesOver p q
+  have : p.IsMaximal := (hqp.under A).isMaximal (q.under_ne_bot A hq)
+  let : Field (A ⧸ p) := Ideal.Quotient.field p
+  have := IsArtinianRing.of_finite (A ⧸ p) (B ⧸ p.map (algebraMap A B))
+  suffices q' = (p.map (algebraMap A B)).map (algebraMap B (Localization.AtPrime q)) by
+    rw [this, Ideal.map_map, ← IsScalarTower.algebraMap_eq,
+      IsScalarTower.algebraMap_eq A (Localization.AtPrime p) (Localization.AtPrime q),
+      ← Ideal.map_map]
+    infer_instance
+  rw [← (Algebra.FormallyUnramified.isRadical_map_isMaximal A B p).radical,
+    IsLocalization.map_radical q.primeCompl,
+    IsLocalization.AtPrime.radical_map_of_mem_minimalPrimes (Localization.AtPrime q) q,
+    Localization.AtPrime.map_eq_maximalIdeal]
+  rw [Ideal.minimalPrimes_eq_comap]
+  exact ⟨q.map (Ideal.Quotient.mk (p.map (algebraMap A B))),
+    IsArtinianRing.mem_minimalPrimes bot_le, Ideal.comap_map_mk Ideal.map_comap_le⟩
 
 lemma fu_away (K : Type*) [Field K] [NumberField K] (N : ℤ) (hN : discr K ∣ N) :
     Algebra.FormallyUnramified ℤ
@@ -102,29 +103,29 @@ lemma fu_L (K1 K2 L : Type*) [Field K1] [Field K2] [Field L] [NumberField K1] [N
   let B2 := Localization (Algebra.algebraMapSubmonoid (𝓞 K2) M)
   let O := Localization (Algebra.algebraMapSubmonoid (𝓞 L) M)
   have hM : M ≤ nonZeroDivisors ℤ := powers_le_nonZeroDivisors_of_noZeroDivisors hN0
-  haveI : IsDomain Z := IsLocalization.isDomain_localization hM
-  haveI : IsDedekindDomain Z := IsLocalization.isDedekindDomain ℤ hM Z
+  have : IsDomain Z := IsLocalization.isDomain_localization hM
+  have : IsDedekindDomain Z := IsLocalization.isDedekindDomain ℤ hM Z
   have hMO : Algebra.algebraMapSubmonoid (𝓞 L) M ≤ nonZeroDivisors (𝓞 L) :=
     algebraMapSubmonoid_le_nonZeroDivisors_of_faithfulSMul _ hM
-  haveI : IsDomain O := IsLocalization.isDomain_localization hMO
-  haveI : Module.Finite Z B1 := Module.Finite.of_isLocalization ℤ (𝓞 K1) M
-  haveI : Module.Finite Z B2 := Module.Finite.of_isLocalization ℤ (𝓞 K2) M
-  haveI : Module.Finite Z O := Module.Finite.of_isLocalization ℤ (𝓞 L) M
-  haveI : Algebra.FormallyUnramified ℤ B1 := fu_away K1 N hN1
-  haveI : Algebra.FormallyUnramified ℤ B2 := fu_away K2 N hN2
-  haveI : Algebra.FormallyUnramified Z B1 := .of_restrictScalars ℤ Z B1
-  haveI : Algebra.FormallyUnramified Z B2 := .of_restrictScalars ℤ Z B2
-  haveI : Algebra.FormallyUnramified Z (TensorProduct Z B1 B2) :=
+  have : IsDomain O := IsLocalization.isDomain_localization hMO
+  have : Module.Finite Z B1 := Module.Finite.of_isLocalization ℤ (𝓞 K1) M
+  have : Module.Finite Z B2 := Module.Finite.of_isLocalization ℤ (𝓞 K2) M
+  have : Module.Finite Z O := Module.Finite.of_isLocalization ℤ (𝓞 L) M
+  have : Algebra.FormallyUnramified ℤ B1 := fu_away K1 N hN1
+  have : Algebra.FormallyUnramified ℤ B2 := fu_away K2 N hN2
+  have : Algebra.FormallyUnramified Z B1 := .of_restrictScalars ℤ Z B1
+  have : Algebra.FormallyUnramified Z B2 := .of_restrictScalars ℤ Z B2
+  have : Algebra.FormallyUnramified Z (TensorProduct Z B1 B2) :=
     Algebra.FormallyUnramified.comp Z B1 (TensorProduct Z B1 B2)
   let φ1 : B1 →ₐ[Z] O := IsLocalization.mapₐ M Z B1 O g1.toIntAlgHom
   let φ2 : B2 →ₐ[Z] O := IsLocalization.mapₐ M Z B2 O g2.toIntAlgHom
   let Φ := Algebra.TensorProduct.productMap φ1 φ2
   let C : Subalgebra Z O := Φ.range
-  haveI : Algebra.FormallyUnramified Z C :=
+  have : Algebra.FormallyUnramified Z C :=
     .of_surjective Φ.rangeRestrict Φ.rangeRestrict_surjective
-  haveI : Module.Finite Z C :=
+  have : Module.Finite Z C :=
     Module.Finite.of_surjective Φ.rangeRestrict.toLinearMap Φ.rangeRestrict_surjective
-  haveI : IsDedekindDomainDvr C := dvr_of_fu Z C
+  have : IsDedekindDomain C := dvr_of_fu Z C
   -- images of the rings of integers lie in C
   have hC1 : ∀ a : 𝓞 K1, algebraMap (𝓞 L) O (g1 a) ∈ C := by
     intro a
@@ -178,7 +179,7 @@ lemma fu_L (K1 K2 L : Type*) [Field K1] [Field K2] [Field L] [NumberField K1] [N
       simp only at this ⊢
       rw [this]
       exact hC0 _ hmx
-  haveI : Algebra.FormallyUnramified Z O :=
+  have : Algebra.FormallyUnramified Z O :=
     .of_surjective Φ (fun y => by
       have : y ∈ C := by rw [htop]; exact Algebra.mem_top
       exact this)
@@ -209,11 +210,11 @@ theorem main_abs (K1 K2 L : Type*) [Field K1] [Field K2] [Field L] [NumberField 
       ((Ideal.span_singleton_prime hl.ne_zero).mpr hl).isMaximal
         (by simpa using hl.ne_zero)
     have heq := hmax.eq_of_le hcomap.ne_top hle
-    have hNmem : N ∈ Ideal.span {l} := by rw [heq]; exact hNP
+    have hNmem : N ∈ Ideal.span {l} := by
+      rw [heq]
+      exact hNP
     rw [Ideal.mem_span_singleton] at hNmem
-    rcases hl.dvd_or_dvd hNmem with h | h
-    · exact h₁ h
-    · exact h₂ h
+    grind [hl.dvd_or_dvd hNmem]
   exact hFU (show (⟨P, hP⟩ : PrimeSpectrum (𝓞 L)) ∈ PrimeSpectrum.basicOpen _ from hNP)
 
 end AgentLDisc

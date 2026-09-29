@@ -130,7 +130,7 @@ theorem finite_doubleCoset_quotient {G : Type*} [Group G]
       intro a b hab
       change (QuotientGroup.leftRel H) a b at hab
       rw [QuotientGroup.leftRel_apply] at hab
-      apply (DoubleCoset.eq H K _ _).mpr
+      apply DoubleCoset.eq.mpr
       exact ⟨b⁻¹ * a, by simpa using H.inv_mem hab, 1, K.one_mem, by simp⟩)
   refine Finite.of_surjective f ?_
   intro q

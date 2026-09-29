@@ -44,7 +44,7 @@ theorem exists_isRoot_and_constantCoeff_eq {K : Type*} [Field K]
     (hderiv : (f.map PowerSeries.constantCoeff).derivative.eval a₀ ≠ 0) :
     ∃ a : PowerSeries K, f.IsRoot a ∧ PowerSeries.constantCoeff a = a₀ := by
   have tfae := HenselianLocalRing.TFAE (PowerSeries K)
-  have h3 := tfae.out 0 2
+  have h3 := tfae.out 1 3
   have H := h3.mp inferInstance PowerSeries.constantCoeff surjective_constantCoeff f hf a₀
   rw [Polynomial.IsRoot, Polynomial.eval_map] at hroot
   rw [Polynomial.derivative_map, Polynomial.eval_map] at hderiv

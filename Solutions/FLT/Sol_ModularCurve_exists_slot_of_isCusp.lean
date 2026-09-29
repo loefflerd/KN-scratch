@@ -149,7 +149,7 @@ theorem eval₂_minpoly_slot (N : ℕ) [NeZero N] (ζ : Kˣ) (hζ : IsPrimitiveR
   refine Finset.prod_eq_zero (Nat.mem_divisors.mpr ⟨ha, NeZero.ne N⟩) ?_
   rw [eval_prod]
   refine Finset.prod_eq_zero (Finset.mem_filter.mpr ⟨Finset.mem_range.mpr hb, hg⟩) ?_
-  simp only [eval_sub, eval_X, eval_C, dif_neg (NeZero.ne a), sub_self]
+  simp only [eval_sub, eval_X, eval_C, dite_eq_right (NeZero.ne a), sub_self]
 
 private theorem cd1_slotEmbedding (N : ℕ) [NeZero N] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) N)
     (a b : ℕ) (ha : a ∣ N) (hb : b < N / a) (hg : Nat.gcd (Nat.gcd a b) (N / a) = 1) [NeZero a] :

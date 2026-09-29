@@ -574,7 +574,7 @@ theorem glue_eq {m : Gm N K} {z : ℂ} (hz : z ∈ 𝕌) {g G : ℂ → ℂ} (hg
     (hG : AnalyticAt ℂ G z) (hgG : g =ᶠ[𝓝[≠] z] G) : glue N K m z = G z := by
   have h : z ∈ 𝕌 ∧ ∃ g G : ℂ → ℂ, germ N K g = m ∧ AnalyticAt ℂ G z ∧ g =ᶠ[𝓝[≠] z] G :=
     ⟨hz, g, G, hg, hG, hgG⟩
-  rw [glue, dif_pos h]
+  rw [glue, dite_eq_left h]
   obtain ⟨hg', hG', hgG'⟩ := h.2.choose_spec.choose_spec
   exact value_unique N hz hg' hG'.continuousAt hgG' hg hG.continuousAt hgG
 

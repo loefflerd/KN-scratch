@@ -136,7 +136,7 @@ theorem eichlerShimuraMap_def (f : ℍ → ℂ) {F : ℍ → ↥(BinaryForm ℂ 
   have h : ∃ F : ℍ → ↥(BinaryForm ℂ n), IsEichlerIntegral n f F ∧
       ∃ hF : IsEquivariantPrimitiveWith ((binaryFormRepSL ℂ n).comp (Gamma0 N).subtype) F,
         IsParabolicCocycle ((binaryFormRepSL ℂ n).comp (Gamma0 N).subtype) hF.cocycle := ⟨F, hEI, hF, hpar⟩
-  exact ⟨h.choose, h.choose_spec.1, h.choose_spec.2.choose, h.choose_spec.2.choose_spec, dif_pos h⟩
+  exact ⟨h.choose, h.choose_spec.1, h.choose_spec.2.choose, h.choose_spec.2.choose_spec, dite_eq_left h⟩
 
 theorem eichlerShimuraMap_of_not_exists (f : ℍ → ℂ)
     (h : ¬ ∃ F : ℍ → ↥(BinaryForm ℂ n), IsEichlerIntegral n f F ∧
@@ -144,7 +144,7 @@ theorem eichlerShimuraMap_of_not_exists (f : ℍ → ℂ)
         IsParabolicCocycle ((binaryFormRepSL ℂ n).comp (Gamma0 N).subtype) hF.cocycle) :
     eichlerShimuraMap n N f = 0 := by
   classical
-  exact dif_neg h
+  exact dite_eq_right h
 
 end EichlerIntegral
 

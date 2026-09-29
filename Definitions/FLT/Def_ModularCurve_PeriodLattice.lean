@@ -122,12 +122,12 @@ def cuspHeckeGen (ℓ : Nat.Primes) : CuspForm.heckeAlgebra N 2 (∅ : Set ℕ) 
 theorem cuspHeckeGen_of_dvd (ℓ : Nat.Primes) (h : (ℓ : ℕ) ∣ N) :
     (cuspHeckeGen N ℓ : Module.End ℂ (CuspForm (CongruenceSubgroup.Gamma0 N) 2)) =
       CuspForm.heckeULin 2 h := by
-  rw [cuspHeckeGen, dif_pos h]; rfl
+  rw [cuspHeckeGen, dite_eq_left h]; rfl
 
 theorem cuspHeckeGen_of_not_dvd (ℓ : Nat.Primes) (h : ¬ (ℓ : ℕ) ∣ N) :
     (cuspHeckeGen N ℓ : Module.End ℂ (CuspForm (CongruenceSubgroup.Gamma0 N) 2)) =
       CuspForm.heckeTLin 2 ℓ.prop h := by
-  rw [cuspHeckeGen, dif_neg h]; rfl
+  rw [cuspHeckeGen, dite_eq_right h]; rfl
 
 def cuspHeckeAeval : HeckeAlg →ₐ[ℤ] CuspForm.heckeAlgebra N 2 (∅ : Set ℕ) :=
   MvPolynomial.aeval (cuspHeckeGen N)
@@ -272,14 +272,14 @@ variable {N}
 theorem coe_periodLatticeHeckeEnd_apply (h : PeriodLatticeHeckeStable N) (t : HeckeAlg)
     (x : periodLattice N) :
     ((periodLatticeHeckeEnd N t x : periodLattice N) : Module.Dual ℂ _) = dualHeckeRep N t x := by
-  have e : periodLatticeHeckeEnd N = periodLatticeRestrictHom N h := dif_pos h
+  have e : periodLatticeHeckeEnd N = periodLatticeRestrictHom N h := dite_eq_left h
   rw [e]; rfl
 
 theorem periodLatticeHeckeEnd_of_not (h : ¬ PeriodLatticeHeckeStable N) (t : HeckeAlg)
     (x : periodLattice N) :
     periodLatticeHeckeEnd N t x = MvPolynomial.constantCoeff t • x := by
   have e : periodLatticeHeckeEnd N = (Int.castRingHom (Module.End ℤ (periodLattice N))).comp
-      (MvPolynomial.eval₂Hom (Int.castRingHom ℤ) (0 : Nat.Primes → ℤ)) := dif_neg h
+      (MvPolynomial.eval₂Hom (Int.castRingHom ℤ) (0 : Nat.Primes → ℤ)) := dite_eq_right h
   rw [e, RingHom.comp_apply, MvPolynomial.eval₂Hom_zero_apply]
   simp only [eq_intCast, Int.cast_id, Module.End.intCast_apply]
 
@@ -300,4 +300,3 @@ end Hecke
 end ModularCurve
 
 end
-

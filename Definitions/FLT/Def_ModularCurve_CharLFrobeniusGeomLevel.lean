@@ -313,7 +313,7 @@ def verOnPlacesGeomLevel (u : Place K (modularFunctionFieldC K N)) :
 theorem verOnPlacesGeomLevel_frobOnPlacesGeomLevel
     (w : Place K (modularFunctionFieldC K N)) :
     verOnPlacesGeomLevel K N data hKr (frobOnPlacesGeomLevel K N data hKr w) = w := by
-  rw [verOnPlacesGeomLevel, dif_pos ⟨w, rfl⟩]
+  rw [verOnPlacesGeomLevel, dite_eq_left ⟨w, rfl⟩]
   exact frobOnPlacesGeomLevel_injective K N data hKr
     (Exists.choose_spec (⟨w, rfl⟩ : ∃ w', frobOnPlacesGeomLevel K N data hKr w'
       = frobOnPlacesGeomLevel K N data hKr w))

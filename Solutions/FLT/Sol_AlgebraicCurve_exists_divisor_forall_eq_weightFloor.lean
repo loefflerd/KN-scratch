@@ -47,7 +47,7 @@ theorem solution
     rw [Finset.mem_union, not_or, Finsupp.mem_support_iff, Finsupp.mem_support_iff, not_not, not_not,
       hDj w, hDc w] at hmem
     apply hw
-    simp only [R, hmem.1, hmem.2, lt_irrefl, if_false, add_zero]
+    simp only [R, hmem.1, hmem.2, lt_irrefl, ite_false, add_zero]
   refine ⟨Finsupp.onFinset (Dj.support ∪ Dc.support) R hsupp, fun w => ?_⟩
   rw [Finsupp.onFinset_apply]
 

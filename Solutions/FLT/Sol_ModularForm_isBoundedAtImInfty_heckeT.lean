@@ -1,19 +1,9 @@
-import Mathlib.NumberTheory.ModularForms.QExpansion
-import Mathlib.NumberTheory.ModularForms.BoundedAtCusp
-import Mathlib.RingTheory.RootsOfUnity.Complex
-import Mathlib.Algebra.Lie.OfAssociative
-import Mathlib.Algebra.Algebra.Rat
-import Definitions.FLT.Def_ModularForm_HeckeOperator
 import Definitions.FLT.Def_FLTPrelim_Modularity
+import Definitions.FLT.Def_ModularForm_HeckeOperator
+import Mathlib.RingTheory.RootsOfUnity.Complex
 import Definitions.FLT.Def_P2M_Util
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
 namespace P2MW.S_ModularForm_isBoundedAtImInfty_heckeT
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -292,7 +282,6 @@ theorem hasSum_diag (k : ℤ) (τ : ℍ) :
   have hinj : Function.Injective (fun l : ℕ ↦ l * p) := mul_left_injective₀ hp
   refine (hinj.hasSum_iff (fun m hm => by simp [not_dvd_of_not_mem_range hm])).mp ?_
   convert hD using 1
-  · rfl
   funext l
   simp only [comp_apply, ite_eq_left (dvd_mul_left p l), Nat.mul_div_cancel _ (Nat.pos_of_ne_zero hp),
     smul_eq_mul]

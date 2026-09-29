@@ -542,12 +542,12 @@ def kwQepw123c_pencil (c z : ℂ) : ℂ :=
 theorem kwQepw123c_E₄cubeExt_coe (tau : UpperHalfPlane) :
     kwQepw123c_E₄cubeExt (tau : ℂ) = ModularForm.E₄ tau ^ 3 := by
   have _ := kwQepw123c_axiomAnchor
-  exact dif_pos tau.coe_im_pos
+  exact dite_eq_left tau.coe_im_pos
 
 theorem kwQepw123c_ΔExt_coe (tau : UpperHalfPlane) :
     kwQepw123c_ΔExt (tau : ℂ) = ModularForm.discriminant tau := by
   have _ := kwQepw123c_axiomAnchor
-  exact dif_pos tau.coe_im_pos
+  exact dite_eq_left tau.coe_im_pos
 
 theorem kwQepw123c_pencil_coe (c : ℂ) (tau : UpperHalfPlane) :
     kwQepw123c_pencil c (tau : ℂ)
@@ -851,7 +851,7 @@ theorem kwQepw117c_E₄cubeExt_analyticAt (tau : UpperHalfPlane) :
   refine (hE.pow 3).congr ?_
   filter_upwards [UpperHalfPlane.isOpen_upperHalfPlaneSet.mem_nhds
     tau.im_pos] with z hz
-  simp only [kwQepw123c_E₄cubeExt, dif_pos hz, Pi.pow_apply,
+  simp only [kwQepw123c_E₄cubeExt, dite_eq_left hz, Pi.pow_apply,
     Function.comp_apply, UpperHalfPlane.ofComplex_apply_of_im_pos hz]
 
 theorem kwQepw117c_ΔExt_analyticAt (tau : UpperHalfPlane) :
@@ -862,7 +862,7 @@ theorem kwQepw117c_ΔExt_analyticAt (tau : UpperHalfPlane) :
   refine hΔ.congr ?_
   filter_upwards [UpperHalfPlane.isOpen_upperHalfPlaneSet.mem_nhds
     tau.im_pos] with z hz
-  simp only [kwQepw123c_ΔExt, dif_pos hz, Function.comp_apply,
+  simp only [kwQepw123c_ΔExt, dite_eq_left hz, Function.comp_apply,
     UpperHalfPlane.ofComplex_apply_of_im_pos hz,
     CuspForm.coe_discriminant]
 

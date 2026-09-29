@@ -1,13 +1,10 @@
-import Mathlib
+import Mathlib.Algebra.Order.Star.Real
+import Mathlib.Analysis.CStarAlgebra.Classes
+import Mathlib.Analysis.Complex.HasPrimitives
+import Mathlib.NumberTheory.ModularForms.QExpansion
 import Definitions.FLT.Def_P2M_Util
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
 namespace P2MW.S_UpperHalfPlane_isBoundedAtImInfty_of_hasDerivAt_of_periodic
-
-set_option autoImplicit false
 
 namespace UpperHalfPlane
 p2m_export "UpperHalfPlane" "cuspFunction isOpen_upperHalfPlaneSet ofComplex_apply_of_im_pos σ differentiableOn_cuspFunction_ball I ofComplex_apply im_pos isBoundedAtImInfty_iff eq_cuspFunction IsBoundedAtImInfty im coe_vadd ofComplex"
@@ -83,7 +80,6 @@ theorem isBoundedAtImInfty_of_hasDerivAt_of_periodic {h : ℝ} (hh : 0 < h) {u v
             have := τ.im_pos
             nlinarith [Real.pi_pos])
       _ = 1 := Real.exp_zero
-
   set G : ℂ → ℂ := fun z => ↑h / (2 * π * Complex.I) * Ψ (𝕢 h z) with hGdef
   have hG : ∀ τ : ℍ, HasDerivAt G (u τ - L) ↑τ := by
     intro τ
@@ -92,8 +88,6 @@ theorem isBoundedAtImInfty_of_hasDerivAt_of_periodic {h : ℝ} (hh : 0 < h) {u v
       (hΨ _ (hqball τ)).comp (↑τ : ℂ) (hasDerivAt_qParam h ↑τ)
     have h2 := h1.const_mul (↑h / (2 * π * Complex.I))
     convert h2 using 1
-    · rfl
-    · rfl
     have hne : (↑h : ℂ) ≠ 0 := ofReal_ne_zero.mpr hh.ne'
     have h3 : ↑h / (2 * ↑π * Complex.I) * (Φ₁ (𝕢 h ↑τ) * (2 * ↑π * Complex.I / ↑h * 𝕢 h ↑τ))
         = 𝕢 h ↑τ * Φ₁ (𝕢 h ↑τ) := by
@@ -103,7 +97,6 @@ theorem isBoundedAtImInfty_of_hasDerivAt_of_periodic {h : ℝ} (hh : 0 < h) {u v
   have hGper : ∀ z : ℂ, G (z + h) = G z := fun z => by
     simp only [hGdef]
     rw [qParam_add_period h hh.ne' z]
-
   have hD : ∀ σ : ℍ, HasDerivAt (fun z : ℂ => (v ∘ ofComplex) z - G z - L * z) 0 ↑σ := by
     intro σ
     have := ((hv σ).sub (hG σ)).sub ((hasDerivAt_id (σ : ℂ)).const_mul L)
@@ -114,7 +107,6 @@ theorem isBoundedAtImInfty_of_hasDerivAt_of_periodic {h : ℝ} (hh : 0 < h) {u v
     have := apply_eq_apply_of_hasDerivAt_zero hD τ I
     simp only [Function.comp_apply, ofComplex_apply] at this
     exact this
-
   have hL0 : L = 0 := by
     have h1 := hconst ((h : ℝ) +ᵥ I)
     have hvper : v ((h : ℝ) +ᵥ I) = v I := by

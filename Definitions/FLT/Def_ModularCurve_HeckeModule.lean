@@ -91,7 +91,7 @@ variable {N}
 
 theorem heckeModuleBar_smul_def (h : HeckeOperatorsCommuteBar N) (t : HeckeAlg) (x : JZero N) :
     (letI := heckeModuleBar N; t • x) = heckeEvalBar h t x := by
-  have e : heckeModuleBar N = Module.compHom (JZero N) (heckeEvalBar h) := dif_pos h
+  have e : heckeModuleBar N = Module.compHom (JZero N) (heckeEvalBar h) := dite_eq_left h
   rw [e]
   rfl
 
@@ -104,7 +104,7 @@ theorem heckeModuleBar_smul_of_not (h : ¬ HeckeOperatorsCommuteBar N) (t : Heck
   have e : heckeModuleBar N =
       Module.compHom (JZero N)
         (MvPolynomial.eval₂Hom (Int.castRingHom ℤ) (0 : Nat.Primes → ℤ)) :=
-    dif_neg h
+    dite_eq_right h
   rw [e]
   show (MvPolynomial.eval₂Hom (Int.castRingHom ℤ) (0 : Nat.Primes → ℤ) t) • x = _
   rw [MvPolynomial.eval₂Hom_zero_apply, eq_intCast, Int.cast_id]
@@ -124,4 +124,3 @@ end TheModule
 end ModularCurve
 
 end
-

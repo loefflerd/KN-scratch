@@ -300,7 +300,7 @@ noncomputable def Phi (φ : Additive Γ →+ K) (g : SL(2, ℤ)) : K :=
   if h : g ∈ Γ then φ (Additive.ofMul ⟨g, h⟩) else 0
 
 theorem Phi_of_mem (φ : Additive Γ →+ K) {g : SL(2, ℤ)} (h : g ∈ Γ) :
-    Phi Γ φ g = φ (Additive.ofMul ⟨g, h⟩) := dif_pos h
+    Phi Γ φ g = φ (Additive.ofMul ⟨g, h⟩) := dite_eq_left h
 
 theorem Phi_mul (φ : Additive Γ →+ K) {g h : SL(2, ℤ)} (hg : g ∈ Γ) (hh : h ∈ Γ) :
     Phi Γ φ (g * h) = Phi Γ φ g + Phi Γ φ h := by

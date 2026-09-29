@@ -27,7 +27,7 @@ theorem dcMap_apply (q : DoubleCoset.Quotient (Γ : Set G) (K : Set G)) (k : K) 
 theorem dcMap_surjective : Function.Surjective (dcMap Γ K) := by
   intro x
   refine Quotient.inductionOn' x (fun g => ?_)
-  obtain ⟨h, k, hh, hk, he⟩ := DoubleCoset.mk_out_eq_mul Γ K g
+  obtain ⟨h, hh, k, hk, he⟩ := DoubleCoset.mk_out_eq_mul Γ K g
   refine ⟨(DoubleCoset.mk Γ K g, ⟨k⁻¹, K.inv_mem hk⟩), ?_⟩
   rw [dcMap_apply]
   refine Quotient.sound' (QuotientGroup.rightRel_apply.mpr ?_)
@@ -43,7 +43,7 @@ theorem dcMap_injective (hfree : ∀ g : G, ∀ k ∈ K, g * k * g⁻¹ ∈ Γ �
   have h' : (q₂.out * (k₂ : G)) * (q₁.out * (k₁ : G))⁻¹ ∈ Γ :=
     QuotientGroup.rightRel_apply.mp (Quotient.exact' h)
   have hq : DoubleCoset.mk Γ K q₁.out = DoubleCoset.mk Γ K q₂.out :=
-    (DoubleCoset.eq Γ K _ _).2 ⟨(q₂.out * (k₂ : G)) * (q₁.out * (k₁ : G))⁻¹, h', (k₁ : G) * (k₂ : G)⁻¹,
+    DoubleCoset.eq.mpr ⟨(q₂.out * (k₂ : G)) * (q₁.out * (k₁ : G))⁻¹, h', (k₁ : G) * (k₂ : G)⁻¹,
       K.mul_mem k₁.2 (K.inv_mem k₂.2), by group⟩
   rw [DoubleCoset.out_eq', DoubleCoset.out_eq'] at hq
   subst hq

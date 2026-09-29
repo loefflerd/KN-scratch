@@ -220,7 +220,7 @@ theorem test_sigma_injective
     if h : z.1.1 ∣ n * m₁ then z.2.changeLevel h else 1
   have hrecovered := congrArg recover hout
   dsimp only [recover] at hrecovered
-  rw [dif_pos hdiv₁, dif_pos hdiv₂] at hrecovered
+  rw [dite_eq_left hdiv₁, dite_eq_left hdiv₂] at hrecovered
   have hlcm : Nat.lcm n m₁ ∣ n * m₁ := by rw [hcop₁.lcm_eq_mul]
   have hleft : DirichletCharacter.changeLevel hdiv₁
       (χ.mul ξ₁).primitiveCharacter =

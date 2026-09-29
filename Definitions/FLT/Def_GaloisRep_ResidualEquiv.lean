@@ -46,8 +46,7 @@ noncomputable def baseChangeAlong {k' : Type} [Field k'] (ψ : k →+* k')
     map_apply := fun σ x => by
       show e.toLinearEquiv.baseChange k k' ρ₁.V ρ₂.V ((ρ₁.ρ σ).baseChange k' x) =
         (ρ₂.ρ σ).baseChange k' (e.toLinearEquiv.baseChange k k' ρ₁.V ρ₂.V x)
-      induction x using TensorProduct.induction_on with
-      | zero => simp only [map_zero]
+      induction x using TensorProduct.inductionOn with
       | tmul b v =>
         rw [LinearMap.baseChange_tmul, LinearEquiv.baseChange_tmul, LinearEquiv.baseChange_tmul,
           LinearMap.baseChange_tmul, e.map_apply]
@@ -56,4 +55,3 @@ noncomputable def baseChangeAlong {k' : Type} [Field k'] (ψ : k →+* k')
 end Equiv
 
 end ResidualGaloisRep
-

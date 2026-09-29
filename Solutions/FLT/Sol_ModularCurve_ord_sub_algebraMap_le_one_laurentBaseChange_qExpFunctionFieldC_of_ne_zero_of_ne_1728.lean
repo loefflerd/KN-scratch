@@ -258,7 +258,7 @@ theorem realizeG_eq_div {k : ℤ} (g h : ModularForm (Γ : Subgroup (GL (Fin 2) 
       (p.2.2 : ℍ → ℂ) τ ≠ 0 ∧ x * qL p.2.2 = qL p.2.1 :=
     ⟨⟨k, g, h⟩, hτ, hx⟩
   have hval : realizeG (Γ := Γ) x τ = (H.choose.2.1 : ℍ → ℂ) τ / (H.choose.2.2 : ℍ → ℂ) τ := by
-    simp only [realizeG, dif_pos H]
+    simp only [realizeG, dite_eq_left H]
   rw [hval]
   obtain ⟨hτ', hx'⟩ := H.choose_spec
   set p := H.choose with hp

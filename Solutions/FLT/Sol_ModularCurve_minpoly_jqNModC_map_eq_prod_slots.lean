@@ -689,7 +689,7 @@ private def sv (K : Type*) [Field K] (ζ : Kˣ) (a b : ℕ) : LaurentSeries K :=
 private theorem sv_eq (ζ : Kˣ) (a b : ℕ) [NeZero a] :
     sv K ζ a b = qExpand K (a * a) (qTwist (ζ ^ (b * a)) (jqModC K)) := by
   unfold sv
-  rw [dif_neg (NeZero.ne a)]
+  rw [dite_eq_right (NeZero.ne a)]
 
 private theorem sv_eq_TS (ζ : Kˣ) (a b : ℕ) [NeZero a] :
     sv K ζ a b = TS K (a * a) (ζ ^ (b * a)) :=

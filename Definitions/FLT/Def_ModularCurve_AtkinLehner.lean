@@ -29,13 +29,13 @@ def frickeInvolution : modularFunctionField N ≃ₐ[ℚ] modularFunctionField N
 theorem isFrickeAut_frickeInvolution
     (h : ∃ σ : modularFunctionField N ≃ₐ[ℚ] modularFunctionField N, IsFrickeAut N σ) :
     IsFrickeAut N (frickeInvolution N) := by
-  rw [frickeInvolution, dif_pos h]
+  rw [frickeInvolution, dite_eq_left h]
   exact h.choose_spec
 
 theorem frickeInvolution_eq_refl
     (h : ¬ ∃ σ : modularFunctionField N ≃ₐ[ℚ] modularFunctionField N, IsFrickeAut N σ) :
     frickeInvolution N = AlgEquiv.refl := by
-  rw [frickeInvolution, dif_neg h]
+  rw [frickeInvolution, dite_eq_right h]
 
 def cuspZero : Place ℚ (modularFunctionField N) := frickeInvolution N • cuspInfty N
 
@@ -62,14 +62,14 @@ theorem isFrickeAutFull_frickeInvolutionFull (N : ℕ) [NeZero N]
     (h : ∃ σ : modularFunctionFieldFull N ≃ₐ[ℚ] modularFunctionFieldFull N,
       IsFrickeAutFull N σ) :
     IsFrickeAutFull N (frickeInvolutionFull N) := by
-  rw [frickeInvolutionFull, dif_pos h]
+  rw [frickeInvolutionFull, dite_eq_left h]
   exact h.choose_spec
 
 theorem frickeInvolutionFull_eq_refl (N : ℕ) [NeZero N]
     (h : ¬ ∃ σ : modularFunctionFieldFull N ≃ₐ[ℚ] modularFunctionFieldFull N,
       IsFrickeAutFull N σ) :
     frickeInvolutionFull N = AlgEquiv.refl := by
-  rw [frickeInvolutionFull, dif_neg h]
+  rw [frickeInvolutionFull, dite_eq_right h]
 
 variable (N : ℕ) [NeZero N]
 
@@ -109,4 +109,3 @@ end Bar
 end ModularCurve
 
 end
-

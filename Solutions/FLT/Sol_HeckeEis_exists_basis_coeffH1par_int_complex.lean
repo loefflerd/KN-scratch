@@ -252,11 +252,11 @@ theorem main (n N : ℕ) [NeZero N]
       rw [map_sum]
       have : ∀ j ∈ s, ΦQ ((if hj : j ∈ s then m j hj else 0) • b j) = (D : ℚ) • (r j • ΦQ (b j)) := by
         intro j hj
-        rw [dif_pos hj, map_zsmul, ← mul_smul, hm j hj, Int.cast_smul_eq_zsmul]
+        rw [dite_eq_left hj, map_zsmul, ← mul_smul, hm j hj, Int.cast_smul_eq_zsmul]
       rw [Finset.sum_congr rfl this, ← Finset.smul_sum, hr, smul_zero]
     have h2 : (∑ j ∈ s, (if hj : j ∈ s then m j hj else 0) • b j) = 0 := hinjQ (h1.trans (map_zero ΦQ).symm)
     have h3 := (linearIndependent_iff'.mp b.linearIndependent) s _ h2 i hi
-    rw [dif_pos hi] at h3
+    rw [dite_eq_left hi] at h3
     have h4 := hm i hi
     rw [h3, Int.cast_zero, mul_eq_zero] at h4
     exact h4.resolve_left (Int.cast_ne_zero.mpr hD)

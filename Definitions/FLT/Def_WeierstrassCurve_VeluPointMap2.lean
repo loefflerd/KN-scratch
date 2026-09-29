@@ -108,15 +108,14 @@ noncomputable def veluPointMap2 :
 lemma veluPointMap2_some_of_eq {x y : F} (h : W.toAffine.Nonsingular x y) (hx : x = x₀) :
     veluPointMap2 hchar hQ hgy hΔ (.some x y h) = .zero := by
   simp only [veluPointMap2]
-  exact dif_pos hx
+  exact dite_eq_left hx
 
 lemma veluPointMap2_some_of_ne {x y : F} (h : W.toAffine.Nonsingular x y) (hx : x ≠ x₀) :
     veluPointMap2 hchar hQ hgy hΔ (.some x y h)
       = .some _ _ (velu2_map_nonsingular hchar h.1 hQ hgy hx hΔ) := by
   simp only [veluPointMap2]
-  exact dif_neg hx
+  exact dite_eq_right hx
 
 end Field
 
 end WeierstrassCurve
-

@@ -151,7 +151,7 @@ theorem exists_reduced_relation (A : ValuationSubring L) (π : A →+* k)
     exact (div_le_one₀ hv₁).mpr (hmax j hj)
   set δ : J → A := fun j => if hj : j ∈ s then ⟨α j / α j₁, hmemA j hj⟩ else 0 with hδ
   have hδval : ∀ j ∈ s, ((δ j : A) : L) = α j / α j₁ := fun j hj => by
-    rw [hδ]; simp only [dif_pos hj]
+    rw [hδ]; simp only [dite_eq_left hj]
   have hδ₁ : δ j₁ = 1 := Subtype.ext (by rw [hδval j₁ hj₁s, div_self hα₁]; rfl)
 
   have hrel' : ∑ j ∈ s, algebraMap L (LaurentSeries L) (α j / α j₁) * intSeriesC L (w j) = 0 := by

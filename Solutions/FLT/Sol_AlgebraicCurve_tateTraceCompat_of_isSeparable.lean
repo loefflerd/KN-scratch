@@ -4257,8 +4257,7 @@ theorem kwF4R1V386a_isSeparable_fiberCompletion
     rw [Algebra.eq_top_iff]
     intro y
     obtain ⟨x, rfl⟩ := kwF4R1V384a_semilocalComponent_surjective v w' y
-    induction x using TensorProduct.induction_on with
-    | zero => simp only [_root_.map_zero]; exact zero_mem _
+    induction x using TensorProduct.inductionOn with
     | tmul c g =>
       rw [kwF4R1V384a_semilocalComponent_tmul, ← Algebra.smul_def]
       exact Subalgebra.smul_mem _ (Algebra.subset_adjoin (Set.mem_range_self g)) c

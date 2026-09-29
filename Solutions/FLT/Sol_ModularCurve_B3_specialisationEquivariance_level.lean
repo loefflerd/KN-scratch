@@ -1918,7 +1918,7 @@ theorem specialise_eq_redPoint (W : WeierstrassCurve H) (hW : IntegralCoeffs W)
       rw [specialise_some_of_nonneg W hW _ h hx, redPoint_some W hW hΔ hx hy h]
     · have hxy : ¬ (0 ≤ x.orderTop ∧ 0 ≤ y.orderTop) := fun hxy => hx hxy.1
       rw [specialise_some_of_neg W hW _ h hx]
-      simp only [redPoint, dif_neg hxy]
+      simp only [redPoint, dite_eq_right hxy]
 
 theorem cycScale_zmultiples (N : ℕ) (j₀ : Qbar) (g : (nearCurve j₀).toAffine.Point)
     (hg : addOrderOf g = N) :

@@ -1,22 +1,15 @@
-import Mathlib.Data.ZMod.Units
-import Mathlib.NumberTheory.Padics.Complex
-import Mathlib.NumberTheory.Padics.RingHoms
-import Mathlib.NumberTheory.Padics.Measure.Basic
-import Mathlib.NumberTheory.Padics.ProperSpace
-import Mathlib.Topology.Algebra.Group.Basic
 import Mathlib.Analysis.Normed.Operator.Extend
+import Mathlib.Data.ZMod.Units
+import Mathlib.NumberTheory.Padics.ProperSpace
+import Mathlib.Topology.Algebra.Group.Units
 import Mathlib.Topology.ContinuousMap.Compact
+import Mathlib.Topology.Instances.ZMod
 import Mathlib.Topology.MetricSpace.Ultra.TotallySeparated
-import Mathlib.RingTheory.Coprime.Lemmas
-import Theorems.MTT.Thm_ProfiniteMeasure_ext_of_clopen_masses
 import Theorems.MTT.Thm_PadicMeasure_compatible_disk_values_vanish_of_decay
+import Theorems.MTT.Thm_ProfiniteMeasure_ext_of_clopen_masses
 
-set_option autoImplicit false
 noncomputable section
 open Set Filter TopologicalSpace
-
-local instance zmodTopology (m : ℕ) : TopologicalSpace (ZMod m) := ⊥
-local instance zmodDiscrete (m : ℕ) : DiscreteTopology (ZMod m) := ⟨rfl⟩
 
 private lemma reduction_continuous {p : ℕ} [Fact p.Prime] (n : ℕ) :
     Continuous (PadicInt.toZModPow n : ℤ_[p] → ZMod (p^n)) := by
@@ -68,16 +61,9 @@ private lemma clopen_depth {p : ℕ} [Fact p.Prime] (U : Clopens (ℤ_[p])ˣ) :
     obtain ⟨m,hm,hxy⟩ := mem_iUnion₂.mp (hS (a := (x,y)) ⟨hx,hy⟩)
     have hmn : m ≤ n := (Finset.le_sup (f := id) hm).trans (Nat.le_succ _)
     have hem := congrArg (fun z : ZMod (p^n) => (ZMod.cast z : ZMod (p^m))) he
-    rw [PadicInt.cast_toZModPow m n hmn,PadicInt.cast_toZModPow m n hmn] at hem
+    rw [PadicInt.cast_toZModPow m n hmn, PadicInt.cast_toZModPow m n hmn] at hem
     exact hxy hem
-  refine ⟨n,Nat.succ_pos _,fun x y hxy => ?_⟩
-  constructor
-  · intro hx
-    by_contra hy
-    exact hsep x y hx hy hxy
-  · intro hy
-    by_contra hx
-    exact hsep y x hy hx hxy.symm
+  exact ⟨n, Nat.succ_pos _, by grind⟩
 
 private def diskChar {p : ℕ} [Fact p.Prime] (n : ℕ) (a : ZMod (p^n)) :
     C((ℤ_[p])ˣ,ℂ_[p]) :=
@@ -151,10 +137,7 @@ private lemma refinement_residue_unique {p : ℕ} [Fact p.Prime]
     rw [Int.cast_natCast,ZMod.natCast_val]
     exact hx.symm
   obtain ⟨q,hq⟩ := (ZMod.intCast_eq_intCast_iff_dvd_sub a (x.val : ℤ) (p^n)).mp hcast
-  let b : Fin p := ⟨(q % (p : ℤ)).toNat,by
-    have ht := Int.emod_lt_of_pos q hpZ
-    have hnon := Int.emod_nonneg q (ne_of_gt hpZ)
-    omega⟩
+  let b : Fin p := ⟨(q % (p : ℤ)).toNat, by grind [Int.emod_lt_of_pos q hpZ]⟩
   have hb : (b.val : ℤ) = q % (p : ℤ) := by
     dsimp [b]
     exact Int.toNat_of_nonneg (Int.emod_nonneg q (ne_of_gt hpZ))
@@ -182,9 +165,7 @@ private lemma refinement_residue_unique {p : ℕ} [Fact p.Prime]
     refine ⟨t,?_⟩
     have hpn : (p : ℤ)^n ≠ 0 := pow_ne_zero _ (by exact_mod_cast hp.ne_zero)
     apply mul_left_cancel₀ hpn
-    push_cast at ht
-    rw [pow_succ (p : ℤ)] at ht
-    linear_combination ht
+    grind
   have hemod : (b.val : ZMod p) = (c.val : ZMod p) := by
     simpa only [Int.cast_natCast] using
       (ZMod.intCast_eq_intCast_iff_dvd_sub (b.val : ℤ) (c.val : ℤ) p).mpr hdp
@@ -218,13 +199,10 @@ private lemma diskPoly_refinement {p : ℕ} [Fact p.Prime] (j n : ℕ) (a : ℤ)
   · obtain ⟨b,hb,hbu⟩ := refinement_residue_unique n a (PadicInt.toZModPow (n+1) x.val)
       (by rwa [PadicInt.cast_toZModPow n (n+1) (Nat.le_succ n)])
     rw [Finset.sum_eq_single b]
-    · simp only [hx,hb,ite_true]
-    · intro c _ hcb
-      have hc : PadicInt.toZModPow (n+1) x.val ≠
-          ((a + (c.val : ℤ)*(p : ℤ)^n : ℤ) : ZMod (p^(n+1))) := fun hc => hcb (hbu c hc)
-      simp only [hc,ite_false]
+    · simp [hx, hb]
+    · grind
     · simp
-  · simp only [hx,ite_false]
+  · simp only [hx, ite_false]
     apply Finset.sum_eq_zero
     intro b _
     have hb : PadicInt.toZModPow (n+1) x.val ≠
@@ -255,8 +233,8 @@ private lemma centeredDisk_apply {p : ℕ} [Fact p.Prime] (j n : ℕ) (a : ℤ)
   simp only [centeredDisk,ContinuousMap.sum_apply,ContinuousMap.smul_apply,
     smul_eq_mul,diskPoly_apply]
   by_cases hx : PadicInt.toZModPow n x.val = (a : ZMod (p^n))
-  · simp only [hx,ite_true]
-    rw [sub_eq_add_neg,add_pow]
+  · simp only [hx, ite_true]
+    rw [sub_eq_add_neg, add_pow]
     apply Finset.sum_congr rfl
     intro t _
     ring
@@ -329,8 +307,7 @@ private lemma higher_moments_of_masses {p : ℕ} [Fact p.Prime] (d : ℕ)
             ((j.choose t : ℂ_[p]) * (-(a : ℂ_[p]))^(j-t) * M t n a -
               ((j.choose t : ℂ_[p]) * (-(a : ℂ_[p]))^(j-t)) * μ (diskPoly t n a))) = 0 := by
           apply Finset.sum_eq_zero
-          intro t ht
-          rw [ih t (Finset.mem_range.mp ht) ((Nat.le_of_lt (Finset.mem_range.mp ht)).trans hj) n hn a ha,sub_self]
+          grind
         rw [hz]
         simp only [zero_add,Nat.choose_self,Nat.cast_one,one_mul,Nat.sub_self,pow_zero]
       have hA : ‖μ (centeredDisk (p := p) j n a)‖ ≤ ‖A‖ * ‖(p : ℂ_[p])^(n*j)‖ :=
@@ -453,7 +430,7 @@ private def intSample {p : ℕ} [Fact p.Prime] (a : ℤ) : (ℤ_[p])ˣ :=
 
 private lemma intSample_val {p : ℕ} [Fact p.Prime] (a : ℤ)
     (ha : IsCoprime a (p : ℤ)) : (intSample (p := p) a).val = (a : ℤ_[p]) := by
-  simp only [intSample,dif_pos ha,IsUnit.unit_spec]
+  simp only [intSample,dite_eq_left ha,IsUnit.unit_spec]
 
 private lemma sum_range_product {R : Type*} [AddCommMonoid R] (q r : ℕ) (f : ℕ → R) :
     (∑ a ∈ Finset.range (q*r), f a) =
@@ -461,14 +438,9 @@ private lemma sum_range_product {R : Type*} [AddCommMonoid R] (q r : ℕ) (f : �
   induction r with
   | zero => simp
   | succ r ih =>
-    rw [Nat.mul_succ,Finset.sum_range_add,ih]
-    simp_rw [Finset.sum_range_succ]
-    rw [Finset.sum_add_distrib]
-    congr 1
-    apply Finset.sum_congr rfl
-    intro a _
-    congr 1
-    ring
+    rw [Nat.mul_succ, Finset.sum_range_add,ih]
+    simp_rw [Finset.sum_range_succ, Finset.sum_add_distrib]
+    grind
 
 private lemma coprime_child_iff {p : ℕ} (n : ℕ) (hn : 0 < n) (a b : ℤ) :
     IsCoprime (a+b*(p : ℤ)^n) (p : ℤ) ↔ IsCoprime a (p : ℤ) := by

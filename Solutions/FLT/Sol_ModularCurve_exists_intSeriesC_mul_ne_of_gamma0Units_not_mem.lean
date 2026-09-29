@@ -27,7 +27,7 @@ private theorem faithCoeff_neg (M : ℕ) (c : (ZMod M)ˣ) (n : ℕ) :
     faithCoeff M (-c) n = faithCoeff M c n := by
   by_cases hn : n = 0
   · simp [faithCoeff, hn]
-  · simp only [faithCoeff, hn, if_false, Units.val_neg, neg_neg]
+  · simp only [faithCoeff, hn, ite_false, Units.val_neg, neg_neg]
     exact Finset.sum_congr rfl fun d _ => if_congr or_comm rfl rfl
 
 private theorem faithCoeff_one (M : ℕ) (c : (ZMod M)ˣ) :

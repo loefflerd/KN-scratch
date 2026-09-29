@@ -35,8 +35,8 @@ private theorem close_boundary_packet
   · intro m
     by_cases hm : m.Prime
     · by_cases hmN : (m : ZMod N) = 1
-      · simp only [hm, if_true, ArithmeticFunction.vonMangoldt.residueClass,
-          Set.indicator_apply, Set.mem_ofPred_eq, hmN, if_true, ArithmeticFunction.vonMangoldt_apply_prime hm]
+      · simp only [hm, ite_true, ArithmeticFunction.vonMangoldt.residueClass,
+          Set.indicator_apply, Set.mem_ofPred_eq, hmN, ite_true, ArithmeticFunction.vonMangoldt_apply_prime hm]
         rw [heigen m hm hmN, Complex.norm_natCast, Nat.cast_add, Nat.cast_one, Nat.cast_pow]
         have hm0 : (0 : ℝ) < m := Nat.cast_pos.mpr hm.pos
         have hm1 : (1 : ℝ) ≤ m := by exact_mod_cast hm.one_lt.le
@@ -49,10 +49,10 @@ private theorem close_boundary_packet
         calc
           Real.log (m : ℝ) * ((m : ℝ)^k * m) = (m : ℝ)^k * Real.log m * m := by ring
           _ ≤ (1 + (m : ℝ)^(k-1))^2 * Real.log m * m := by gcongr
-      · simp only [hm, if_true, ArithmeticFunction.vonMangoldt.residueClass,
-          Set.indicator_apply, Set.mem_ofPred_eq, hmN, if_false, zero_div]
+      · simp only [hm, ite_true, ArithmeticFunction.vonMangoldt.residueClass,
+          Set.indicator_apply, Set.mem_ofPred_eq, hmN, ite_false, zero_div]
         exact div_nonneg (mul_nonneg (sq_nonneg _) (Real.log_nonneg (by exact_mod_cast hm.one_lt.le))) (pow_nonneg (Nat.cast_nonneg _) _)
-    · simp only [hm, if_false, zero_div]
+    · simp only [hm, ite_false, zero_div]
       by_cases hm0 : m = 0
       · subst m; simp
       · exact div_nonneg (mul_nonneg (sq_nonneg _) (Real.log_nonneg (by exact_mod_cast Nat.one_le_iff_ne_zero.mpr hm0))) (pow_nonneg (Nat.cast_nonneg _) _)

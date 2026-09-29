@@ -1063,7 +1063,7 @@ theorem trace_levelOneAction_ST (a b : ℂ) (hab : a ≠ b)
   rw [LinearMap.trace_eq_matrix_trace ℂ (ellipticEigenbasis a b hab n), Matrix.trace]
   simp only [Matrix.diag, LinearMap.toMatrix_apply,
     levelOneAction_ST_eigenbasis a b hab ha hb, map_smul,
-    Module.Basis.repr_self_apply, Finsupp.smul_apply, smul_eq_mul, if_true, mul_one]
+    Module.Basis.repr_self_apply, Finsupp.smul_apply, smul_eq_mul, ite_true, mul_one]
 
 theorem trace_levelOneAction_ST_sq (a b : ℂ) (hab : a ≠ b)
     (ha : a ^ 2 - a + 1 = 0) (hb : b ^ 2 - b + 1 = 0) (n : ℕ) :
@@ -1074,7 +1074,7 @@ theorem trace_levelOneAction_ST_sq (a b : ℂ) (hab : a ≠ b)
   rw [LinearMap.trace_eq_matrix_trace ℂ (ellipticEigenbasis a b hab n), Matrix.trace]
   simp only [Matrix.diag, LinearMap.toMatrix_apply, pow_two, Module.End.mul_apply,
     levelOneAction_ST_eigenbasis a b hab ha hb, map_smul,
-    Module.Basis.repr_self_apply, Finsupp.smul_apply, smul_eq_mul, if_true, mul_one]
+    Module.Basis.repr_self_apply, Finsupp.smul_apply, smul_eq_mul, ite_true, mul_one]
 
 theorem binaryGeometricSum_mul_sub (a b : ℂ) (n : ℕ) :
     (∑ j : Fin (n + 1), a ^ j.val * b ^ (n - j.val)) * (a - b) =

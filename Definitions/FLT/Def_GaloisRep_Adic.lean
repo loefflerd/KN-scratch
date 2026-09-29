@@ -80,8 +80,7 @@ noncomputable def baseChangeAlong {B : Type} [CommRing B] [IsLocalRing B] (φ : 
           rw [TensorProduct.tmul_add]
           exact Submodule.add_mem _ hx hy
       intro w
-      induction w using TensorProduct.induction_on with
-      | zero => rw [map_zero, sub_zero]; exact Submodule.zero_mem _
+      induction w using TensorProduct.inductionOn with
       | tmul b v => exact hpure b v
       | add x y hx hy =>
         rw [map_add, add_sub_add_comm]
@@ -111,8 +110,7 @@ noncomputable def residual (ρ : GaloisRepAdic A) :
           rw [TensorProduct.tmul_add, hx, hy, add_zero]
       refine LinearMap.ext fun w => ?_
       rw [MonoidHom.coe_mk, OneHom.coe_mk]
-      induction w using TensorProduct.induction_on with
-      | zero => rw [map_zero, map_zero]
+      induction w using TensorProduct.inductionOn with
       | tmul c v =>
         rw [LinearMap.baseChange_tmul, Module.End.one_apply, ← sub_eq_zero,
           ← TensorProduct.tmul_sub]
@@ -153,8 +151,7 @@ noncomputable def baseChangeAlong {B : Type} [CommRing B] [IsLocalRing B] (φ : 
     map_apply := fun σ x => by
       show e.toLinearEquiv.baseChange A B ρ₁.V ρ₂.V ((ρ₁.ρ σ).baseChange B x) =
         (ρ₂.ρ σ).baseChange B (e.toLinearEquiv.baseChange A B ρ₁.V ρ₂.V x)
-      induction x using TensorProduct.induction_on with
-      | zero => simp only [map_zero]
+      induction x using TensorProduct.inductionOn with
       | tmul b v =>
         rw [LinearMap.baseChange_tmul, LinearEquiv.baseChange_tmul, LinearEquiv.baseChange_tmul,
           LinearMap.baseChange_tmul, e.map_apply]
@@ -177,8 +174,7 @@ noncomputable def Equiv.residual {ρ₁ ρ₂ : GaloisRepAdic A} (e : Equiv ρ�
           ((ρ₁.ρ σ).baseChange (IsLocalRing.ResidueField A) x) =
         (ρ₂.ρ σ).baseChange (IsLocalRing.ResidueField A)
           (e.toLinearEquiv.baseChange A (IsLocalRing.ResidueField A) ρ₁.V ρ₂.V x)
-      induction x using TensorProduct.induction_on with
-      | zero => simp only [map_zero]
+      induction x using TensorProduct.inductionOn with
       | tmul b v =>
         rw [LinearMap.baseChange_tmul, LinearEquiv.baseChange_tmul, LinearEquiv.baseChange_tmul,
           LinearMap.baseChange_tmul, e.map_apply]
@@ -209,4 +205,3 @@ def ofResidualGaloisRep {k : Type} [Field k] (ρ : ResidualGaloisRep k) : Galois
       exact Submodule.zero_mem _ }
 
 end GaloisRepAdic
-

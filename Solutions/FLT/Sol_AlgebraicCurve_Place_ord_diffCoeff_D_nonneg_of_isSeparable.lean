@@ -476,8 +476,7 @@ private theorem engine {K : Type*} [Field K] [PerfectField K] {F : Type*} [Field
     obtain ⟨ξ, hξ⟩ := (hexact ω).mp h0
     rw [← hξ]
     clear hξ
-    induction ξ using TensorProduct.induction_on with
-    | zero => simp
+    induction ξ using TensorProduct.inductionOn with
     | tmul b ω' =>
       rw [KaehlerDifferential.mapBaseChange_tmul]
       have hω' : ω' = ((KaehlerDifferential.polynomialEquiv K) ω')

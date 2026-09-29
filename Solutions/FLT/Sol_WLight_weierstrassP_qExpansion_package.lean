@@ -218,13 +218,13 @@ theorem lipschitz_two_closed {x : ℂ} (hx : x ∈ Complex.integerComplement) :
     have hpos : 0 < ‖y + n‖ := norm_pos_iff.mpr (hne y hy n)
     rw [norm_div, norm_one, norm_pow]
     by_cases hn : n ∈ Finset.Icc (-(K : ℤ)) K
-    · simp only [hudef, hn, if_true]
+    · simp only [hudef, hn, ite_true]
       have h1 : 1 / ‖y + ↑n‖ ^ 2 ≤ 4 / ε ^ 2 := by
         rw [div_le_div_iff₀ (by positivity) (by positivity), one_mul]
         nlinarith [hsep y hy n, norm_nonneg (y + n)]
       have h2 : (0 : ℝ) ≤ 4 * (1 / (n : ℝ) ^ 2) := by positivity
       linarith
-    · simp only [hudef, hn, if_false, zero_add]
+    · simp only [hudef, hn, ite_false, zero_add]
 
       have hnK : (K : ℝ) < |(n : ℝ)| := by
         simp only [Finset.mem_Icc, not_and_or, not_le] at hn

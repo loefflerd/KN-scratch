@@ -63,8 +63,7 @@ private theorem span_range_one_tmul_eq_top (k K E : Type) [Field k] [Field K] [A
     [AddCommGroup E] [Module k E] :
     Submodule.span K (Set.range fun f : E => (1 : K) ⊗ₜ[k] f) = ⊤ := by
   refine Submodule.eq_top_iff'.mpr fun x => ?_
-  induction x using TensorProduct.induction_on with
-  | zero => exact zero_mem _
+  induction x using TensorProduct.inductionOn with
   | tmul c f =>
     have h : c ⊗ₜ[k] f = c • ((1 : K) ⊗ₜ[k] f) := by
       rw [TensorProduct.smul_tmul', smul_eq_mul, mul_one]

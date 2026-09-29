@@ -57,7 +57,7 @@ theorem realizeOf_smul (Γ : Subgroup SL(2, ℤ)) (hT : ModularGroup.T ∈ Γ) (
       apply hγτ
       show (h : ℍ → ℂ) (γ • τ) = 0
       rw [hden k h, h0, mul_zero]
-    rw [realizeOf_def, realizeOf_def, dif_neg H, dif_neg H']
+    rw [realizeOf_def, realizeOf_def, dite_eq_right H, dite_eq_right H']
 
 end L2aGlue
 

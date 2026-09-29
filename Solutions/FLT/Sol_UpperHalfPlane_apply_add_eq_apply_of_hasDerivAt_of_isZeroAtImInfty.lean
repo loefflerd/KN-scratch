@@ -1,13 +1,10 @@
-import Mathlib
+import Mathlib.Algebra.Order.Star.Real
+import Mathlib.Analysis.CStarAlgebra.Classes
+import Mathlib.Analysis.Complex.HasPrimitives
+import Mathlib.NumberTheory.ModularForms.QExpansion
 import Definitions.FLT.Def_P2M_Util
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
 namespace P2MW.S_UpperHalfPlane_apply_add_eq_apply_of_hasDerivAt_of_isZeroAtImInfty
-
-set_option autoImplicit false
 
 open scoped Manifold Topology
 
@@ -72,8 +69,6 @@ theorem exists_periodic_primitive {h : ℝ} {g : ℍ → ℂ} (hh : 0 < h) (hper
       (hΨ _ (hqball τ)).comp (↑τ : ℂ) (hasDerivAt_qParam h ↑τ)
     have h2 := h1.const_mul (↑h / (2 * π * Complex.I))
     convert h2 using 1
-    · rfl
-    · rfl
     have hne : (↑h : ℂ) ≠ 0 := ofReal_ne_zero.mpr hh.ne'
     have h3 : ↑h / (2 * ↑π * Complex.I) * (Φ₁ (𝕢 h ↑τ) * (2 * ↑π * Complex.I / ↑h * 𝕢 h ↑τ))
         = 𝕢 h ↑τ * Φ₁ (𝕢 h ↑τ) := by

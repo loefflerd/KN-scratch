@@ -46,7 +46,7 @@ theorem realizeOf_of_not (Γ : Subgroup SL(2, ℤ)) (x : LaurentSeries ℂ) (τ 
     realizeOf Γ x τ = 0 := by
   classical
   rw [realizeOf_def]
-  exact dif_neg h
+  exact dite_eq_right h
 
 structure ComplexPlaceDictionaryOf (Γ : Subgroup SL(2, ℤ))
     (F₀ : IntermediateField ℚ (LaurentSeries ℚ)) where
@@ -118,4 +118,3 @@ theorem ComplexPlaceDictionaryOf.pt_toGamma0 {N : ℕ} [NeZero N]
 end ModularCurve
 
 end
-

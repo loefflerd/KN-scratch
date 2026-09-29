@@ -1,15 +1,7 @@
-import Mathlib.FieldTheory.LinearDisjoint
-import Mathlib.RingTheory.TensorProduct.Free
 import Mathlib.Algebra.Algebra.Hom.Rat
 import Mathlib.Algebra.Module.LinearMap.Rat
+import Mathlib.FieldTheory.LinearDisjoint
 import Definitions.FLT.Def_ModularCurve_LaurentCoeff
-import Definitions.FLT.Def_FieldTheory_RatAlgClosureGalois
-
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -122,8 +114,7 @@ theorem baseChangeHom_injective : Function.Injective (baseChangeHom L F₀) :=
 
 theorem baseChangeHom_mem (x : L ⊗[ℚ] F₀) :
     baseChangeHom L F₀ x ∈ laurentBaseChange L F₀ := by
-  induction x using TensorProduct.induction_on with
-  | zero => rw [map_zero]; exact zero_mem _
+  induction x using TensorProduct.inductionOn with
   | tmul c f =>
       rw [baseChangeHom_tmul]
       exact mul_mem ((laurentBaseChange L F₀).algebraMap_mem c)
@@ -199,8 +190,7 @@ def geomAut : (F₀ ≃ₐ[ℚ] F₀) →* (laurentBaseChange L F₀ ≃ₐ[L] l
               ((baseChangeEquiv L F₀).symm x)))))
       rw [AlgEquiv.symm_apply_apply]
       congr 1
-      induction (baseChangeEquiv L F₀).symm x using TensorProduct.induction_on with
-      | zero => simp only [map_zero]
+      induction (baseChangeEquiv L F₀).symm x using TensorProduct.inductionOn with
       | tmul c f => rfl
       | add y z hy hz => simp only [map_add, hy, hz])
 
@@ -229,4 +219,3 @@ end BaseChange
 end ModularCurve
 
 end
-

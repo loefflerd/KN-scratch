@@ -525,10 +525,10 @@ theorem hasSum_wpMon {N a₁ a₂ : ℕ} (ha₁ : a₁ < N) {τ : ℂ} (hτ : 0 
 
   have h2 : HasSum (G ∘ Sum.inr ∘ Sum.inl) (if a₁ = 0 then 0 else r / (1 - r) ^ 2) := by
     by_cases ha : a₁ = 0
-    · simp only [ha, if_true]
+    · simp only [ha, ite_true]
       convert hasSum_zero with m
       simp [hG, wpMonCoeff, ha]
-    · simp only [ha, if_false]
+    · simp only [ha, ite_false]
       have hr1 : ‖r‖ < 1 := by
         rw [hr, norm_mul, norm_pow, norm_zetaN, one_pow, one_mul, norm_pow]
         exact pow_lt_one₀ (norm_nonneg _) hq ha
@@ -539,7 +539,7 @@ theorem hasSum_wpMon {N a₁ a₂ : ℕ} (ha₁ : a₁ < N) {τ : ℂ} (hτ : 0 
         rw [hs.hasSum_iff, ← hgeo.tsum_eq, ← tsum_zero_pnat_eq_tsum_nat hgeo.summable]
         simp
       refine h2'.congr_fun fun m ↦ ?_
-      simp only [hG, Function.comp_apply, wpMonCoeff, wpMonExp, ha, if_false, hr]
+      simp only [hG, Function.comp_apply, wpMonCoeff, wpMonExp, ha, ite_false, hr]
       rw [mul_pow, ← pow_mul, ← pow_mul]
       ring
 
@@ -657,7 +657,7 @@ private theorem _root_.WLightR2.qExpansion_coeff_width (f : ℍ → ℂ) {N : �
       have : ¬ N ∣ x := fun ⟨k, hk⟩ ↦ hx ⟨k, hk.symm⟩
       simp [hc, this]
     · refine h1.congr_fun fun m ↦ ?_
-      simp only [Function.comp_apply, hc, Nat.dvd_mul_right, if_true,
+      simp only [Function.comp_apply, hc, Nat.dvd_mul_right, ite_true,
         Nat.mul_div_cancel_left _ (Nat.pos_of_ne_zero hN), qParam_one_eq_pow hN, ← pow_mul]
   exact (qExpansion_coeff_unique f' hN' hfan hf n).symm
 
@@ -756,15 +756,15 @@ theorem wpQCoeff_of_lt {N a₁ : ℕ} (ha₁ : a₁ < N) (a₂ : ℕ) {n : ℕ} 
         · have hq : 0 < n / a₁ := Nat.div_pos (Nat.le_of_dvd hn0 hd) (Nat.pos_of_ne_zero ha)
           have hm₁v : (m₁ : ℕ) = n / a₁ := by rw [hm₁, Nat.toPNat'_coe, ite_eq_left hq]
           have hE : wpMonExp N a₁ (Sum.inr (Sum.inl m₁)) = n := by
-            simp only [wpMonExp, ha, if_false, hm₁v, Nat.mul_div_cancel' hd]
+            simp only [wpMonExp, ha, ite_false, hm₁v, Nat.mul_div_cancel' hd]
           simp [wpFib, hE, wpMonCoeff, ha, hd, hm₁v]
         · have hE : wpMonExp N a₁ (Sum.inr (Sum.inl m₁)) ≠ n := by
-            simp only [wpMonExp, ha, if_false]
+            simp only [wpMonExp, ha, ite_false]
             exact fun h ↦ hd ⟨m₁, h.symm⟩
           simp [wpFib, hE, ha, hd]
       · intro m hm
         have hE : wpMonExp N a₁ (Sum.inr (Sum.inl m)) ≠ n := by
-          simp only [wpMonExp, ha, if_false]
+          simp only [wpMonExp, ha, ite_false]
           intro h
           apply hm
           apply PNat.coe_injective
@@ -1293,7 +1293,7 @@ theorem solution (N : ℕ) (hN : N ≠ 0) (L : ℍ → PeriodPair)
     refine ⟨fun a₁ a₂ ↦ if ha₁ : a₁ < N then PowerSeries.mk (wpQCoeffK ha₁ a₂) else 0, ?_, ?_⟩
     · intro a₁ a₂ ha₁ ha₂ h0
       simp only
-      rw [dif_pos ha₁, hW]
+      rw [dite_eq_left ha₁, hW]
       refine PowerSeries.ext fun n ↦ ?_
       rw [PowerSeries.coeff_map, PowerSeries.coeff_mk,
         qExpansion_wpNorm_coeff ha₁ ha₂ h0]
@@ -1306,7 +1306,7 @@ theorem solution (N : ℕ) (hN : N ≠ 0) (L : ℍ → PeriodPair)
         rw [← Nat.dvd_iff_mod_eq_zero] at hc
         exact Nat.eq_zero_of_dvd_of_lt (hs.symm.dvd_of_dvd_mul_left hc) ha₂
       simp only
-      rw [dif_pos ha₁, hW]
+      rw [dite_eq_left ha₁, hW]
       refine PowerSeries.ext fun n ↦ ?_
       rw [PowerSeries.coeff_map, PowerSeries.coeff_mk]
       exact (ringHom_wpQCoeffK ha₁ φ hφ' a₂ n).trans

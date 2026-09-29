@@ -445,7 +445,7 @@ theorem jqNModC_mem_mffC_mul_prime_of_prod (M : ℕ) [NeZero M] (p : ℕ) [hp : 
     have ha0 : a ≠ 0 := fun h0 => NeZero.ne M (Nat.eq_zero_of_zero_dvd (h0 ▸ haM))
     have : NeZero a := ⟨ha0⟩
     refine ⟨a, haM, b, hb, inferInstance, ?_⟩
-    rw [hy, dif_neg ha0]
+    rw [hy, dite_eq_right ha0]
     show qExpand K p (qExpand K (a * a) (qTwist (ζ₁ ^ (b * a)) (jqModC K)))
       = qExpand K (p * (a * a)) (qTwist (ζ₁ ^ (b * a)) (jqModC K))
     rw [qExpand_qExpand]

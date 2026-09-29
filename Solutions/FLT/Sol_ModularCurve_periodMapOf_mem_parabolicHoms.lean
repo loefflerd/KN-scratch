@@ -85,7 +85,7 @@ theorem main (Γ : Subgroup SL(2, ℤ)) (f : CuspForm Γ 2) :
     obtain ⟨F₀, h₀, hp⟩ := ModularCurve.periodMapOf_def Γ f hF
     rw [hp]
     exact isParabolicHom_periodHom h₀
-  · have : ModularCurve.periodMapOf Γ f = 0 := dif_neg h
+  · have : ModularCurve.periodMapOf Γ f = 0 := dite_eq_right h
     rw [this]
     exact Submodule.zero_mem _
 

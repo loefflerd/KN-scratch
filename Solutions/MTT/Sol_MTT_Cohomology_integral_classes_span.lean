@@ -153,7 +153,7 @@ def qc (i : Fin m) (r : R) : ℤ := if h : r ∈ A then b.repr ⟨r, h⟩ i else
 
 theorem qc_mem (i : Fin m) {r : R} (h : r ∈ A) : qc A b i r = b.repr ⟨r, h⟩ i := by
   classical
-  simp only [qc, dif_pos h]
+  simp only [qc, dite_eq_left h]
 
 theorem qc_zero (i : Fin m) : qc A b i 0 = 0 := by
   rw [qc_mem A b i A.zero_mem]

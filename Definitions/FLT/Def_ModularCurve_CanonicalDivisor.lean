@@ -56,7 +56,7 @@ theorem exists_eq_smul_dCoord [v.DCoordGenerates] (ω : Ω[F⁄K]) :
 
 theorem differentialCoeff_smul_dCoord [v.DCoordGenerates] (ω : Ω[F⁄K]) :
     v.differentialCoeff ω • v.dCoord = ω := by
-  rw [differentialCoeff, dif_pos (v.exists_eq_smul_dCoord ω)]
+  rw [differentialCoeff, dite_eq_left (v.exists_eq_smul_dCoord ω)]
   exact (v.exists_eq_smul_dCoord ω).choose_spec.symm
 
 theorem differentialCoeff_unique [v.DCoordGenerates] [Nontrivial Ω[F⁄K]]
@@ -99,4 +99,3 @@ end Place
 end AlgebraicCurve
 
 end
-

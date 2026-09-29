@@ -130,7 +130,6 @@ theorem solution
       rw [Polynomial.hom_eval₂, map_zero, hy]
       convert hp0 using 2
       rfl
-      rfl
     refine ⟨⟨y, hyint⟩, Subtype.ext ?_⟩
     rw [hf_coe]
     exact hy⟩
@@ -145,9 +144,9 @@ theorem solution
     rw [hx0]
     exact Q.zero_mem)
   have h𝔔prime : 𝔔.IsPrime := h𝔔max.isPrime
-  have h𝔔lies : 𝔔.LiesOver Q := ⟨by rw [Ideal.under_def, h𝔔Q]⟩
+  have h𝔔lies : 𝔔.LiesOver Q := ⟨h𝔔Q.symm⟩
   have hmemQ : ∀ x : 𝓞 L, algebraMap (𝓞 L) 𝔅 x ∈ 𝔔 ↔ x ∈ Q := fun x => by
-    rw [← Ideal.mem_comap, h𝔔Q]
+    rw [← Ideal.mem_under, h𝔔Q]
 
   obtain ⟨σ₀, hσ₀⟩ := AlgEquiv.restrictNormalHom_surjective (K₁ := L) ℚ̄ τ
   have hunder : Ideal.under (𝓞 L) (σ₀ • 𝔔 : Ideal 𝔅) = Ideal.under (𝓞 L) 𝔔 := by

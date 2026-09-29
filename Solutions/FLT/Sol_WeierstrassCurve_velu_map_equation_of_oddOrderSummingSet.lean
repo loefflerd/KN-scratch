@@ -2295,7 +2295,7 @@ def evalAt (f : F) : K :=
 
 theorem evalAt_of_mem {f : F} (hf : f ∈ v.toValuationSubring) :
     v.evalAt f = v.residueInv (residue v.toValuationSubring ⟨f, hf⟩) :=
-  dif_pos hf
+  dite_eq_left hf
 
 theorem algebraMap_evalAt (hv : v.IsRational) {f : F} (hf : f ∈ v.toValuationSubring) :
     algebraMap K v.ResidueField (v.evalAt f)

@@ -87,7 +87,7 @@ theorem hasSum_heckePrime_upper {p : ℕ} (hp : Nat.Prime p) (f : ℍ → ℂ) (
       simp [show ¬ p ∣ x from fun ⟨c, hc⟩ ↦ hx c (by omega)])).mpr h_ind
     convert this using 1
     funext m
-    simp only [Function.comp_def, dvd_mul_right, if_true, pow_mul, hw_pow_p]
+    simp only [Function.comp_def, dvd_mul_right, ite_true, pow_mul, hw_pow_p]
   have hS : (∑ b : Fin p, f (ofComplex (((τ : ℂ) + (b.val : ℂ)) / (p : ℂ)))) =
       ∑ b ∈ Finset.range p, f (σ b) := by
     rw [Fin.sum_univ_eq_sum_range (fun b : ℕ ↦ f (ofComplex (((τ : ℂ) + (b : ℂ)) / (p : ℂ)))) p]
@@ -110,7 +110,7 @@ theorem hasSum_heckePrime_lower {p : ℕ} (hp : Nat.Prime p) (f : ℍ → ℂ) (
   · have := hf pτ
     convert this using 1
     funext n
-    simp only [Function.comp_def, dvd_mul_right, if_true, Nat.mul_div_cancel_left _ hp.pos]
+    simp only [Function.comp_def, dvd_mul_right, ite_true, Nat.mul_div_cancel_left _ hp.pos]
     show a n • q ^ (p * n) = a n • Function.Periodic.qParam (1 : ℝ) ((p : ℂ) * (τ : ℂ)) ^ n
     rw [qParam_mul_nat, ← pow_mul]
 

@@ -2618,8 +2618,7 @@ theorem kw_surgehgf4_hfgkd_bcTensorFracIotaSeam (hfin' : FiniteAlong F ι') :
   let bFr : Fin D → FrT := fun i => algebraMap T FrT (e i)
   have hspanT : ∀ t : T, ∃ c : Fin D → T', t = ∑ i, ιT (c i) * e i := by
     intro t
-    induction t using TensorProduct.induction_on with
-    | zero => exact ⟨0, by simp⟩
+    induction t using TensorProduct.inductionOn with
     | add x y hx hy =>
       obtain ⟨cx, hx⟩ := hx; obtain ⟨cy, hy⟩ := hy
       exact ⟨cx + cy, by simp only [Pi.add_apply, map_add, add_mul,
@@ -2652,8 +2651,7 @@ theorem kw_surgehgf4_hfgkd_bcTensorFracIotaSeam (hfin' : FiniteAlong F ι') :
     have hEj_key : ∀ (a : T') (i : Fin D),
         Ej (ιT a * e i) = if i = j then a else 0 := by
       intro a i
-      induction a using TensorProduct.induction_on with
-      | zero => simp
+      induction a using TensorProduct.inductionOn with
       | add x y hx hy =>
         simp only [map_add, add_mul, hx, hy]; split_ifs <;> simp
       | tmul x c' =>
@@ -2669,7 +2667,7 @@ theorem kw_surgehgf4_hfgkd_bcTensorFracIotaSeam (hfin' : FiniteAlong F ι') :
           rw [hrepr_mul, b.repr_self, Finsupp.single_apply]
           split_ifs with h <;> simp [h]
     have hc' : Ej (∑ i, ιT (c i) * e i) = 0 := by rw [hc, _root_.map_zero]
-    simpa only [map_sum, hEj_key, Finset.sum_ite_eq', Finset.mem_univ, if_true] using hc'
+    simpa only [map_sum, hEj_key, Finset.sum_ite_eq', Finset.mem_univ, ite_true] using hc'
   have hint : ∀ s : T, s ≠ 0 → ∃ (u : T) (s₀ : T'), s₀ ≠ 0 ∧ s * u = ιT s₀ := by
     intro s hs
     obtain ⟨p, hp_monic, hp_eval⟩ : ιT.IsIntegralElem s := hιT_fin.to_isIntegral s

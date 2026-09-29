@@ -9205,7 +9205,7 @@ theorem kw_dcao_ord_aSubX_formula {a b : F} (h : W.Nonsingular a b) (Q : W.Point
         rcases hsb with rfl | rfl
         · rw [ite_eq_left rfl, ite_eq_right hbne, add_zero]
         · rw [ite_eq_right (Ne.symm hbne), ite_eq_left rfl, zero_add]
-    · simp only [hra, false_and, if_false, add_zero]
+    · simp only [hra, false_and, ite_false, add_zero]
       exact (ord_polyToFunctionField_eq_zero_iff h'.left (X_sub_C_ne_zero a)).mpr
         (by simp [sub_ne_zero, hra])
 

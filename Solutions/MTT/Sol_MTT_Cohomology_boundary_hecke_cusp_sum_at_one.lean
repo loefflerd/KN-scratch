@@ -30,7 +30,7 @@ lemma det_map_ne_zero {A : Matrix (Fin 2) (Fin 2) ℤ} (h : A.det ≠ 0) :
 
 lemma toGLQ_val {A : Matrix (Fin 2) (Fin 2) ℤ} (h : A.det ≠ 0) :
     (toGLQ A : Matrix (Fin 2) (Fin 2) ℚ) = (Int.castRingHom ℚ).mapMatrix A := by
-  rw [toGLQ, dif_pos (det_map_ne_zero h)]; rfl
+  rw [toGLQ, dite_eq_left (det_map_ne_zero h)]; rfl
 
 lemma toGL_apply {A : Matrix (Fin 2) (Fin 2) ℤ} (h : A.det ≠ 0) (i j : Fin 2) :
     (toGL A : Matrix (Fin 2) (Fin 2) ℝ) i j = (A i j : ℝ) := by
@@ -782,7 +782,7 @@ lemma count_sum {l : ℕ} (hl : l.Prime) {v0 v1 : ℤ} (hv : IsCoprime v0 v1) (n
       push_cast at hb
       rw [h1, mul_zero, add_zero] at hb
       exact hv0 hb
-    simp only [hno, if_false, Finset.sum_const, Finset.card_univ, Fintype.card_fin, nsmul_eq_mul]
+    simp only [hno, ite_false, Finset.sum_const, Finset.card_univ, Fintype.card_fin, nsmul_eq_mul]
     push_cast
     ring
   · rw [ite_eq_right (fun h => h1 ((hdvd v1).mp h))]
@@ -809,7 +809,7 @@ lemma count_sum {l : ℕ} (hl : l.Prime) {v0 v1 : ℤ} (hv : IsCoprime v0 v1) (n
         = (l : ℂ) ^ n + (if z = -(v0 : ZMod l) * ((v1 : ZMod l))⁻¹ then 1 - (l : ℂ) ^ n else 0) := by
       intro z; split_ifs <;> ring
     simp only [hsplit, Finset.sum_add_distrib, Finset.sum_const, Finset.card_univ, ZMod.card,
-      nsmul_eq_mul, Finset.sum_ite_eq', Finset.mem_univ, if_true]
+      nsmul_eq_mul, Finset.sum_ite_eq', Finset.mem_univ, ite_true]
     push_cast
     ring
 

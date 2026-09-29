@@ -23,7 +23,7 @@ def uniformizer_alt : F :=
   if h : ∃ t : F, v.ord t = 1 then h.choose else 0
 
 theorem ord_uniformizer_alt (h : ∃ t : F, v.ord t = 1) : v.ord v.uniformizer_alt = 1 := by
-  rw [uniformizer_alt, dif_pos h]
+  rw [uniformizer_alt, dite_eq_left h]
   exact h.choose_spec
 
 open Classical in
@@ -33,12 +33,12 @@ def diffCoeff (t : F) (ω : Ω[F⁄K]) : F :=
 
 theorem diffCoeff_smul_D {t : F} {ω : Ω[F⁄K]} (h : ∃ g : F, ω = g • D K F t) :
     diffCoeff t ω • D K F t = ω := by
-  rw [diffCoeff, dif_pos h]
+  rw [diffCoeff, dite_eq_left h]
   exact h.choose_spec.symm
 
 theorem diffCoeff_of_not_exists {t : F} {ω : Ω[F⁄K]} (h : ¬ ∃ g : F, ω = g • D K F t) :
     diffCoeff t ω = 0 := by
-  rw [diffCoeff, dif_neg h]
+  rw [diffCoeff, dite_eq_right h]
 
 def ordDiff (ω : Ω[F⁄K]) : ℤ :=
   v.ord (diffCoeff v.uniformizer_alt ω)
@@ -87,4 +87,3 @@ end Pullback
 end AlgebraicCurve
 
 end
-

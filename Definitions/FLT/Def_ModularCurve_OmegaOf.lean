@@ -81,7 +81,7 @@ theorem omegaOf_eq_smul_D_of_coeffMap_eq (f : ℍ → ℂ)
           thetaL (AlgebraicClosure ℚ) (coeffEmb (AlgebraicClosure ℚ) jq)) =
         ((qExpansion 1 f : PowerSeries ℂ) : LaurentSeries ℂ) := ⟨x, hx⟩
   unfold omegaOf
-  rw [dif_pos h, omegaOf_witness_unique N f σ h.choose_spec hx]
+  rw [dite_eq_left h, omegaOf_witness_unique N f σ h.choose_spec hx]
 
 theorem omegaOf_eq_zero_of_not_exists (f : ℍ → ℂ)
     (σ : AlgebraicClosure ℚ →+* ℂ)
@@ -91,9 +91,8 @@ theorem omegaOf_eq_zero_of_not_exists (f : ℍ → ℂ)
           ((qExpansion 1 f : PowerSeries ℂ) : LaurentSeries ℂ)) :
     omegaOf N f σ = 0 := by
   unfold omegaOf
-  rw [dif_neg h]
+  rw [dite_eq_right h]
 
 end ModularCurve
 
 end
-

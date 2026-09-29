@@ -429,7 +429,7 @@ lemma normPrim_spec {F : ℂ → ℂ} (hF : DifferentiableOn ℂ F UHP) (hd : De
     (∀ z ∈ UHP, HasDerivAt (normPrim F) (F z) z) ∧
       ∀ x : ℝ, Tendsto (fun T : ℝ => normPrim F ((x : ℂ) + T * I)) atTop (𝓝 0) := by
   classical
-  rw [normPrim, dif_pos ⟨hF, hd⟩]
+  rw [normPrim, dite_eq_left ⟨hF, hd⟩]
   exact Classical.choose_spec (exists_normalized_primitive hF hd)
 
 /-! ### Part 4: Möbius transport of the vector-valued primitives -/
@@ -452,7 +452,7 @@ lemma det_map_ne_zero {A : Matrix (Fin 2) (Fin 2) ℤ} (h : A.det ≠ 0) :
 
 lemma toGLQ_val {A : Matrix (Fin 2) (Fin 2) ℤ} (h : A.det ≠ 0) :
     (toGLQ A : Matrix (Fin 2) (Fin 2) ℚ) = (Int.castRingHom ℚ).mapMatrix A := by
-  rw [toGLQ, dif_pos (det_map_ne_zero h)]; rfl
+  rw [toGLQ, dite_eq_left (det_map_ne_zero h)]; rfl
 
 lemma toGL_apply {A : Matrix (Fin 2) (Fin 2) ℤ} (h : A.det ≠ 0) (i j : Fin 2) :
     (toGL A : Matrix (Fin 2) (Fin 2) ℝ) i j = (A i j : ℝ) := by
@@ -716,9 +716,9 @@ lemma hasDerivAt_coeff_vecOfFun {n : ℕ} {φ φ' : ℕ → ℂ → ℂ} {z : �
   apply hasDerivAt_finset_sum'
   intro j hj
   by_cases hp : binaryExponent n j = m
-  · simp only [hp, if_true]
+  · simp only [hp, ite_true]
     exact (hφ j hj).const_mul _
-  · simp only [hp, if_false]
+  · simp only [hp, ite_false]
     exact hasDerivAt_const _ _
 
 lemma hasDerivAt_coeff_act_vecOfFun (σ : Matrix (Fin 2) (Fin 2) ℤ) {n : ℕ} {φ φ' : ℕ → ℂ → ℂ}
@@ -747,11 +747,11 @@ lemma hasDerivAt_coeff_vecOfFun_comp {n : ℕ} {φ φ' : ℕ → ℂ → ℂ} {g
   apply hasDerivAt_finset_sum'
   intro j hj
   by_cases hp : binaryExponent n j = m
-  · simp only [hp, if_true]
+  · simp only [hp, ite_true]
     have := ((hφ j hj).comp z hg).const_mul (n.choose j : ℂ)
     refine this.congr_deriv ?_
     ring
-  · simp only [hp, if_false, mul_zero]
+  · simp only [hp, ite_false, mul_zero]
     exact hasDerivAt_const _ _
 
 /-! #### The transport theorem -/
@@ -859,8 +859,8 @@ lemma tendsto_coeff_vecOfFun {n : ℕ} {φ : ℕ → ℂ → ℂ} {z : ℕ → �
   apply tendsto_finsetSum
   intro j hj
   by_cases hp : binaryExponent n j = e
-  · simp only [hp, if_true]; exact (hφ j hj).const_mul _
-  · simp only [hp, if_false]; exact tendsto_const_nhds
+  · simp only [hp, ite_true]; exact (hφ j hj).const_mul _
+  · simp only [hp, ite_false]; exact tendsto_const_nhds
 
 lemma tendsto_coeff_act_vecOfFun (σ : Matrix (Fin 2) (Fin 2) ℤ) {n : ℕ} {φ : ℕ → ℂ → ℂ}
     {z : ℕ → ℂ} (hφ : ∀ j ∈ Finset.range (n + 1), Tendsto (fun m => φ j (z m)) atTop (𝓝 0))

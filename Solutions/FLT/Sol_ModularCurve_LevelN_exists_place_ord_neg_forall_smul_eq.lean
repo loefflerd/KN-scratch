@@ -507,7 +507,7 @@ theorem ordInf_eq {F : ℍ → ℂ} (hF : F ∈ ring N) (hF0 : F ≠ 0) {m : ℕ
     ordInf N F = ordAux N F m := by
   classical
   have hex : ∃ m : ℕ, PB F m := ⟨m, hm⟩
-  rw [ordInf, dif_pos hex]
+  rw [ordInf, dite_eq_left hex]
   exact ordAux_eq_ordAux N hF hF0 (Nat.find_spec hex) hm
 
 theorem ordInf_mul {F G : ℍ → ℂ} (hF : F ∈ ring N) (hG : G ∈ ring N) (hF0 : F ≠ 0) (hG0 : G ≠ 0) :

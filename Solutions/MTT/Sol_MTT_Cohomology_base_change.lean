@@ -203,8 +203,7 @@ theorem square (x : R ⊗[ℤ] Hc N n ℤ) (z : Idx N n) :
     TensorProduct.finsuppScalarRight ℤ ℤ R (Idx N n)
         (LinearMap.lTensor R (ThetaF N n ℤ) x) z
       = ThetaF N n R (beta N n R x) z := by
-  induction x using TensorProduct.induction_on with
-  | zero => simp
+  induction x using TensorProduct.inductionOn with
   | tmul r φ =>
       rw [LinearMap.lTensor_tmul, TensorProduct.finsuppScalarRight_apply_tmul_apply,
         beta, LinearMap.liftBaseChange_tmul, map_smul, Finsupp.smul_apply,

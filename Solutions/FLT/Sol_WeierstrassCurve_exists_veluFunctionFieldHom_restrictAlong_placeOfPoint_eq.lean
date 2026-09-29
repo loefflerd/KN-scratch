@@ -758,7 +758,7 @@ lemma kwVeluPointMap_some_of_mem {x y : F} (h : W.toAffine.Nonsingular x y)
     kwVeluPointMap hmapeq hΔ (.some x y h) = 0 := by
   classical
   simp only [kwVeluPointMap]
-  exact dif_neg (fun hall => hall Q hQ hx)
+  exact dite_eq_right (fun hall => hall Q hQ hx)
 
 lemma kwVeluPointMap_some_of_ne {x y : F} (h : W.toAffine.Nonsingular x y)
     (hx : ∀ Q ∈ S, x ≠ Q.1) :
@@ -766,7 +766,7 @@ lemma kwVeluPointMap_some_of_ne {x y : F} (h : W.toAffine.Nonsingular x y)
       = .some _ _ (kw_velu_map_nonsingular hmapeq hΔ h.1 hx) := by
   classical
   simp only [kwVeluPointMap]
-  exact dif_pos hx
+  exact dite_eq_left hx
 
 end PointMap
 p2m_reactivate "P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.WeierstrassCurve P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.WeierstrassCurve.Affine"

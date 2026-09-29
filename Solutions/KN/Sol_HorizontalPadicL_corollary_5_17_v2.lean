@@ -541,7 +541,7 @@ theorem HorizontalPadicL.seededInverseThetaSystem_exists_forSign
           (η.2 (L.primeAt n)) ^ 2 - f.epsilon (L.primeAt n))‖ := by
     intro A n
     by_cases hn : n ∉ A
-    · simp only [E, dif_pos hn, horizontalAugmentation, map_sub, MonoidAlgebra.lift_single,
+    · simp only [E, dite_eq_left hn, horizontalAugmentation, map_sub, MonoidAlgebra.lift_single,
         MonoidHom.one_apply, smul_eq_mul, mul_one]
       obtain ⟨-, hdvd, he, hε, hA⟩ := key n
       have hL1 : ‖(L.primeAt n : ℂ_[p]) ^ (k / 2 - 1) - 1‖ < 1 := by
@@ -558,7 +558,7 @@ theorem HorizontalPadicL.seededInverseThetaSystem_exists_forSign
       have := norm_augmentation_eq he hA (hj n) hL1 hx
       rw [← map_inv₀] at this
       exact this
-    · simp only [E, dif_neg hn, horizontalAugmentation, MonoidAlgebra.lift_single,
+    · simp only [E, dite_eq_right hn, horizontalAugmentation, MonoidAlgebra.lift_single,
         MonoidHom.one_apply, smul_eq_mul, mul_one]
   refine ⟨{ coefficientRing := O p
             coefficientRing_eq := rfl
@@ -582,7 +582,7 @@ theorem HorizontalPadicL.seededInverseThetaSystem_exists_forSign
     push_cast [apply_ite]
     simp only [summand, Nat.cast_mul]
   · intro A n hn
-    simp only [E, dif_pos hn, map_sub, MonoidAlgebra.mapRingHom_single, inverseSeedEulerFactorCp, Subring.subtype_apply]
+    simp only [E, dite_eq_left hn, map_sub, MonoidAlgebra.mapRingHom_single, inverseSeedEulerFactorCp, Subring.subtype_apply]
 
 
 open scoped BigOperators
@@ -624,7 +624,7 @@ private theorem horizontalRestrictionHom_surjective
   refine ⟨y, ?_⟩
   ext i
   change (if hi : i.1 ∈ C then x ⟨i.1, hi⟩ else 1) = x i
-  rw [dif_pos i.2]
+  rw [dite_eq_left i.2]
 
 private theorem mapDomain_coefficient_of_formula
     {R S H K U : Type*} [AddCommMonoid R] [AddCommMonoid S]
@@ -656,7 +656,7 @@ private theorem mapDomain_coefficient_of_formula
             apply Finset.sum_congr rfl
             intro a _
             by_cases hag : r a = g
-            · simp only [hag, and_true, if_true]
+            · simp only [hag, and_true, ite_true]
             · simp [hag]
     _ = ∑ u : U, ∑ a : H,
           if π u = a ∧ r a = g then w u else 0 := Finset.sum_comm
@@ -1115,7 +1115,7 @@ theorem projection_relation
             by_cases hCa : C a
             · obtain ⟨b₀, c, hb₀, hlift, hadm⟩ :=
                 exists_unique_nonunit_lift a.val.val ℓ q hℓ hcopq
-              simp only [hCa, if_true]
+              simp only [hCa, ite_true]
               rw [sum_admissible_lifts_eq_erase a.val.val ℓ q b₀ hadm]
               have hc_lt : c < q := by
                 apply (Nat.mul_lt_mul_left hℓ.pos).mp
@@ -1515,7 +1515,7 @@ theorem eval_ne_zero_iff
       congrArg (· * χ.toMonoidHom g) (hc g)).trans ?_
     rw [Finset.sum_congr rfl fun g _ => Finset.sum_mul _ _ _]
     rw [Finset.sum_comm]
-    simp only [ite_mul, zero_mul, Finset.sum_ite_eq, Finset.mem_univ, if_true]
+    simp only [ite_mul, zero_mul, Finset.sum_ite_eq, Finset.mem_univ, ite_true]
     rw [Finset.mul_sum, map_sum]
     refine Finset.sum_congr rfl fun u _ => ?_
     rw [hχval u, ← map_mul]

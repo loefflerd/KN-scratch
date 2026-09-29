@@ -1,14 +1,11 @@
-import Mathlib
+import Mathlib.NumberTheory.ModularForms.Discriminant
+import Mathlib.RingTheory.RootsOfUnity.Complex
+import Mathlib.Topology.UniformSpace.Uniformizable
+
 import Theorems.FLT.Thm_WLight_weierstrassP_qExpansion_package
 import Definitions.FLT.Def_P2M_Util
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
 namespace P2MW.S_ModularCurve_exists_ne_zero_forall_mul_qExpansion_coeff_fricke_mem_adjoin
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -386,7 +383,7 @@ theorem hasSum_cA (τ : ℍ) (ha0 : a₁ ≠ 0) :
     have : ¬ a₁ ∣ n := by rintro ⟨k, rfl⟩; exact hn ⟨k, rfl⟩
     simp [cA, ha0, this]
   refine (hinj.hasSum_iff hsupp).1 ?_
-  convert h1 using 1 <;> try rfl
+  convert h1 using 1
   funext k
   simp only [comp_apply, cA, ha0, ↓reduceIte, dvd_mul_right, Nat.mul_div_cancel_left _ (Nat.pos_of_ne_zero ha0), hx]
   rw [mul_pow, ← pow_mul, ← pow_mul]

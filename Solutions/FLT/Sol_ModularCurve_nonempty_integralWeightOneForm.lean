@@ -110,7 +110,7 @@ theorem coeff_qExpansion_eisensteinOdd (χ : DirichletCharacter ℂ L) (n : ℕ)
       hcond.2 hcond.1).choose_spec
     have hdef : eisensteinOdd L χ = (ModularForm.exists_weightOne_eisenstein_qCoeff_eq_of_isPrimitive_of_odd
         L χ hcond.2 hcond.1).choose := by
-      simp only [eisensteinOdd, dif_pos hcond]
+      simp only [eisensteinOdd, dite_eq_left hcond]
     rw [ite_eq_left hodd, hdef]
     by_cases hn : n = 0
     · subst hn
@@ -119,7 +119,7 @@ theorem coeff_qExpansion_eisensteinOdd (χ : DirichletCharacter ℂ L) (n : ℕ)
     · rw [ite_eq_right hn]
       exact hE.2.2 n (Nat.pos_of_ne_zero hn)
   · have hdef : eisensteinOdd L χ = 0 := by
-      simp only [eisensteinOdd, dif_neg (fun h : χ.Odd ∧ χ.IsPrimitive => hodd h.1)]
+      simp only [eisensteinOdd, dite_eq_right (fun h : χ.Odd ∧ χ.IsPrimitive => hodd h.1)]
     rw [ite_eq_right hodd, hdef, FunLike.coe_zero, qExpansion_zero, map_zero]
 
 omit hL hprim in

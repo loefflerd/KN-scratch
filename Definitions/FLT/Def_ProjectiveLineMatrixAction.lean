@@ -83,7 +83,7 @@ noncomputable def projLineAct (N : ℕ) (M : Matrix (Fin 2) (Fin 2) ℤ) :
 theorem projLineAct_of_isUnit (N : ℕ) (M : Matrix (Fin 2) (Fin 2) ℤ) (h : IsUnit (redMat N M).det) :
     projLineAct N M = ProjectiveLine.vecMul (redMat N M) h := by
   classical
-  rw [projLineAct, dif_pos h]
+  rw [projLineAct, dite_eq_left h]
 
 theorem isUnit_det_redMat_coe (N : ℕ) (g : SL(2, ℤ)) : IsUnit (redMat N (g : Matrix (Fin 2) (Fin 2) ℤ)).det := by
   have : (redMat N (g : Matrix (Fin 2) (Fin 2) ℤ)).det = 1 := by
@@ -184,4 +184,3 @@ noncomputable def fixedCuspCount (N : ℕ) (M : Matrix (Fin 2) (Fin 2) ℤ) : �
     ∀ P : ProjectiveLine (ZMod N), projLineCuspMk N P = c → projLineCuspMk N (projLineAct N M P) = c}
 
 end HeckeEis
-

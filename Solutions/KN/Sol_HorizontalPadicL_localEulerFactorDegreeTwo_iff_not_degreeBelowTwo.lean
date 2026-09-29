@@ -113,7 +113,7 @@ lemma rec_linear (c : ℤ) (F : PowerSeries ℤ)
   have := congrArg (coeff (n + 1)) h
   simp only [Polynomial.coe_sub, Polynomial.coe_one, Polynomial.coe_mul, Polynomial.coe_C,
     Polynomial.coe_X, sub_mul, one_mul, mul_assoc, map_sub, coeff_C_mul, coeff_succ_X_mul,
-    coeff_one, Nat.succ_ne_zero, if_false] at this
+    coeff_one, Nat.succ_ne_zero, ite_false] at this
   linarith
 
 lemma rec_quad (a q : ℤ) (F : PowerSeries ℤ)
