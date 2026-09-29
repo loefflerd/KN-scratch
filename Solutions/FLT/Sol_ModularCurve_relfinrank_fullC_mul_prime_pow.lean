@@ -1067,7 +1067,7 @@ theorem relfinrank_fullC_step (M : ℕ) [NeZero M] (p : ℕ) [hp : Fact (Nat.Pri
     exact relfinrank_fullC_insert_eq_natDegree _ hint
   rcases a with _ | b
   ·
-    rw [if_pos rfl, hd_eq]
+    rw [ite_eq_left rfl, hd_eq]
     have hF : fullC K (M * p ^ 0) = fullC K M := by rw [pow_zero, Nat.mul_one]
     have hpF : jqNModC K p ∉ fullC K (M * p ^ 0) := by
       rw [hF]
@@ -1078,7 +1078,7 @@ theorem relfinrank_fullC_step (M : ℕ) [NeZero M] (p : ℕ) [hp : Fact (Nat.Pri
     exact finrank_adjoin_jqNModC_prime_of_not_mem' _ (jqModC_mem_fullC _) p _
       (isPrimitiveRoot_pow_div hζ (Dvd.dvd.mul_left (dvd_pow_self p (Nat.succ_ne_zero 0)) M)) hpF
   ·
-    rw [if_neg (Nat.succ_ne_zero b)]
+    rw [ite_eq_right (Nat.succ_ne_zero b)]
     have hL0 : M * p ^ (b + 1) = M * p ^ b * p := by ring
     have hL1 : M * p ^ (b + 1 + 1) = M * p ^ (b + 1) * p := by ring
     have hpL1 : p ∣ M * p ^ (b + 1 + 1) := Dvd.dvd.mul_left (dvd_pow_self p (Nat.succ_ne_zero _)) M
@@ -1115,9 +1115,9 @@ theorem relfinrank_fullC_step (M : ℕ) [NeZero M] (p : ℕ) [hp : Fact (Nat.Pri
         ≤ IntermediateField.relfinrank (eFull K p (M * p ^ b)) (eFull K p (M * p ^ (b + 1))) := by
       rw [hδ, hL0, relfinrank_eFull_fullC_eq_natDegree (M * p ^ b) p _ hζ0]
       by_cases hb : b = 0
-      · rw [if_pos hb]
+      · rw [ite_eq_left hb]
         exact natDegree_minpoly_jqModC_eFull_le (M * p ^ b) p
-      · rw [if_neg hb]
+      · rw [ite_eq_right hb]
         exact natDegree_minpoly_jqModC_eFull_le_of_dvd (M * p ^ b) p (Dvd.dvd.mul_left (dvd_pow_self p hb) M)
 
     have hy : p ≤ IntermediateField.relfinrank (eFull K p (M * p ^ (b + 1))) (fullC K (M * p ^ (b + 1 + 1))) := by

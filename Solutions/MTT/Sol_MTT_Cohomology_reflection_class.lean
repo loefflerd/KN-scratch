@@ -93,8 +93,8 @@ theorem frac_upper_comp (a b : ℤ) (g : Matrix (Fin 2) (Fin 2) ℤ) (x : Cusp) 
   | infty =>
       rw [frac_infty g, frac_infty (!![a, b; 0, 1] * g), e00, e10]
       by_cases h : g 1 0 = 0
-      · rw [if_pos h, if_pos h, frac_infty, u10, if_pos rfl]
-      · rw [if_neg h, if_neg h, frac_coe, u10, u11, u00, u01, if_neg (by norm_num)]
+      · rw [ite_eq_left h, ite_eq_left h, frac_infty, u10, ite_eq_left rfl]
+      · rw [ite_eq_right h, ite_eq_right h, frac_coe, u10, u11, u00, u01, ite_eq_right (by norm_num)]
         have hq : ((g 1 0 : ℤ) : ℚ) ≠ 0 := Int.cast_ne_zero.mpr h
         congr 1
         push_cast
@@ -103,9 +103,9 @@ theorem frac_upper_comp (a b : ℤ) (g : Matrix (Fin 2) (Fin 2) ℤ) (x : Cusp) 
   | coe r =>
       rw [frac_coe g r, frac_coe (!![a, b; 0, 1] * g) r, e00, e01, e10, e11]
       by_cases h : ((g 1 0 : ℤ) : ℚ) * r + ((g 1 1 : ℤ) : ℚ) = 0
-      · rw [if_pos h, if_pos h, frac_infty, u10, if_pos rfl]
+      · rw [ite_eq_left h, ite_eq_left h, frac_infty, u10, ite_eq_left rfl]
       · have hD : ((g 1 0 : ℤ) : ℚ) * r + ((g 1 1 : ℤ) : ℚ) ≠ 0 := h
-        rw [if_neg h, if_neg h, frac_coe, u10, u11, u00, u01, if_neg (by norm_num)]
+        rw [ite_eq_right h, ite_eq_right h, frac_coe, u10, u11, u00, u01, ite_eq_right (by norm_num)]
         congr 1
         push_cast
         rw [zero_mul, zero_add, div_one, eq_div_iff hD, add_mul, mul_assoc,
@@ -128,8 +128,8 @@ theorem frac_comp_J (g : Matrix (Fin 2) (Fin 2) ℤ) (x : Cusp) :
       norm_num [Jm]
       rw [frac_infty g, frac_infty (g * Jm), e00, e10]
       by_cases h : g 1 0 = 0
-      · rw [if_pos h, if_pos (by simp [h])]
-      · rw [if_neg h, if_neg (by simpa using h)]
+      · rw [ite_eq_left h, ite_eq_left (by simp [h])]
+      · rw [ite_eq_right h, ite_eq_right (by simpa using h)]
         push_cast
         rw [neg_div_neg_eq]
   | coe r =>
@@ -137,8 +137,8 @@ theorem frac_comp_J (g : Matrix (Fin 2) (Fin 2) ℤ) (x : Cusp) :
       norm_num [Jm]
       rw [frac_coe g (-r), frac_coe (g * Jm) r, e00, e01, e10, e11]
       by_cases h : ((g 1 0 : ℤ) : ℚ) * (-r) + ((g 1 1 : ℤ) : ℚ) = 0
-      · rw [if_pos h, if_pos (by push_cast; linear_combination h)]
-      · rw [if_neg h, if_neg (by push_cast; intro hc; exact h (by
+      · rw [ite_eq_left h, ite_eq_left (by push_cast; linear_combination h)]
+      · rw [ite_eq_right h, ite_eq_right (by push_cast; intro hc; exact h (by
           linear_combination hc))]
         congr 1
         push_cast
@@ -357,7 +357,7 @@ theorem sigmaFin_involutive (l : ℕ) : Function.Involutive (sigmaFin l) := by
   rw [sigmaFin_val, sigmaFin_val]
   by_cases h : b.val = 0
   · simp [h]
-  · rw [if_neg h, if_neg (by omega : ¬ (l - b.val = 0))]
+  · rw [ite_eq_right h, ite_eq_right (by omega : ¬ (l - b.val = 0))]
     omega
 
 def sigmaEquiv (l : ℕ) : Fin l ≃ Fin l :=
@@ -391,13 +391,13 @@ theorem refl_slash_b (φ : Hc N n R) (l : ℕ) (b : Fin l) :
   by_cases h : b.val = 0
   · have hb0 : ((b.val : ℕ) : ℤ) = 0 := by rw [h]; rfl
     have hs0 : (((sigmaFin l b).val : ℕ) : ℤ) = 0 := by
-      rw [sigmaFin_val, if_pos h]; rfl
+      rw [sigmaFin_val, ite_eq_left h]; rfl
     rw [hb0, hs0]
     refine slash_refl_key φ 0 _ _ ?_ ?_ <;>
       (ext i j; fin_cases i <;> fin_cases j <;>
         simp [Jm, Um, Matrix.mul_apply, Fin.sum_univ_two, Matrix.adjugate_fin_two_of])
   · have hs : (((sigmaFin l b).val : ℕ) : ℤ) = (l : ℤ) - ((b.val : ℕ) : ℤ) := by
-      rw [sigmaFin_val, if_neg h]
+      rw [sigmaFin_val, ite_eq_right h]
       have hb := b.isLt
       omega
     rw [hs]

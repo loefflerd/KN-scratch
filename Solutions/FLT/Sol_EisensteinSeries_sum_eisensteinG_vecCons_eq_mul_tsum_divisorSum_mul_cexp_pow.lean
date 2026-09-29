@@ -49,20 +49,20 @@ theorem solution
     simp only [Set.indicator_apply, Set.mem_ofPred_eq]
     by_cases hv : v ∈ S
     · have hv' : ((v 0 : ℤ) : ZMod N) = a := hv
-      rw [if_pos hv, Finset.sum_eq_single ((v 1 : ℤ) : ZMod N)]
-      · rw [if_pos]
+      rw [ite_eq_left hv, Finset.sum_eq_single ((v 1 : ℤ) : ZMod N)]
+      · rw [ite_eq_left]
         funext i
         fin_cases i <;> simp [hv']
       · intro e _ hne
-        rw [if_neg]
+        rw [ite_eq_right]
         intro h
         apply hne
         have := congrFun h 1
         simpa using this.symm
       · intro h; exact absurd (Finset.mem_univ _) h
-    · rw [if_neg hv]
+    · rw [ite_eq_right hv]
       refine Finset.sum_eq_zero fun e _ => ?_
-      rw [if_neg]
+      rw [ite_eq_right]
       intro h
       apply hv
       show ((v 0 : ℤ) : ZMod N) = a
@@ -147,7 +147,7 @@ theorem solution
       have h0 : ¬ ((0 : ℕ) : ZMod N) = -a := by
         rw [Nat.cast_zero, eq_comm, neg_eq_zero]
         exact ha
-      rw [if_neg h0, zero_mul, zero_add]
+      rw [ite_eq_right h0, zero_mul, zero_add]
       push_cast
       rfl
     rw [hB', ← hsumA.tsum_add hsumB]
@@ -162,7 +162,7 @@ theorem solution
       rw [Nat.cast_zero, eq_comm, neg_eq_zero]; exact ha
     rw [hw]
     dsimp only
-    rw [if_neg h1, if_neg h2, add_zero]
+    rw [ite_eq_right h1, ite_eq_right h2, add_zero]
   have hwnorm : ∀ m, ‖w m‖ ≤ 2 := fun m => by
     rw [hw]
     dsimp only

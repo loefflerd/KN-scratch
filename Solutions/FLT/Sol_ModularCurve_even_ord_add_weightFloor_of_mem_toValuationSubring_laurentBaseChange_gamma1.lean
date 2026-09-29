@@ -340,7 +340,7 @@ theorem solution
     exact ⟨a6, (aw : ℤ) - a4, hoy', hov⟩
 
   have t3 : (if (D.pt τ).ord y < 0 then (D.pt τ).ord y else 0) = 0 := by
-    rw [if_neg (not_lt.mpr hoy)]
+    rw [ite_eq_right (not_lt.mpr hoy)]
   have t1 : Even (if 0 < (D.pt τ).ord y then (2 * (D.pt τ).ord y) / 3 else 0) := by
     split_ifs with h
     · rw [hell1 _ h]; decide
@@ -349,12 +349,12 @@ theorem solution
   by_cases h6 : 0 < (D.pt τ).ord (y - 1728)
   · have h2 : (D.pt τ).ord (y - 1728) = 2 := hell2 _ h6
     have ha6 : (a6 : ℤ) = 1 := by omega
-    rw [if_pos h6, h2]
+    rw [ite_eq_left h6, h2]
     obtain ⟨t, ht⟩ := t1
     refine ⟨n + t, ?_⟩
     norm_num
     omega
-  · rw [if_neg h6, add_zero]
+  · rw [ite_eq_right h6, add_zero]
     have ha6 : (a6 : ℤ) = 0 := by omega
     obtain ⟨t, ht⟩ := t1
     refine ⟨n + t, ?_⟩

@@ -53,17 +53,17 @@ lemma normalizedEigenform_hecke_recurrence {N : ℕ} {hN : 0 < N}
         simp [hf.qCoeff_one, hpm]
     | succ r =>
         have hdiv : p ∣ p ^ (r + 1) * m := ⟨p ^ r * m, by ring⟩
-        rw [if_pos hdiv]
+        rw [ite_eq_left hdiv]
         have hquot : (p ^ (r + 1) * m) / p = p ^ r * m := by
           simp [pow_succ, hp.ne_zero, mul_assoc, mul_left_comm]
         rw [hquot]
         by_cases hpN : p ∣ N
-        · rw [if_pos hpN]
+        · rw [ite_eq_left hpN]
           simp only [zero_mul, add_zero]
           rw [show r + 1 + 1 = r + 2 by omega]
           rw [hf.qCoeff_prime_pow_of_dvd p r hp hpN]
           ring
-        · rw [if_neg hpN]
+        · rw [ite_eq_right hpN]
           rw [hf.qCoeff_mul_of_coprime _ _ ((hp.coprime_iff_not_dvd.mpr hpm).pow_left r)]
           rw [show r + 1 + 1 = r + 2 by omega]
           rw [hf.qCoeff_prime_pow_of_not_dvd p r hp hpN]
@@ -127,12 +127,12 @@ def attachedEigenformCandidate (E : WeierstrassCurve ℚ) [E.IsElliptic]
     have heps : iota ((1 : DirichletCharacter MTT.Qbar (modularConductor E hmod)) p) =
         if p ∣ modularConductor E hmod then 0 else 1 := by
       by_cases hpN : p ∣ modularConductor E hmod
-      · rw [if_pos hpN]
+      · rw [ite_eq_left hpN]
         have hnonunit : ¬ IsUnit (p : ZMod (modularConductor E hmod)) := by
           exact fun hunit => ((ZMod.isUnit_prime_iff_not_dvd hp).mp hunit) hpN
         change iota (MulChar.trivial (ZMod (modularConductor E hmod)) MTT.Qbar p) = 0
         simp [MulChar.trivial, hnonunit]
-      · rw [if_neg hpN]
+      · rw [ite_eq_right hpN]
         have hunit : IsUnit (p : ZMod (modularConductor E hmod)) := by
           exact (ZMod.isUnit_prime_iff_not_dvd hp).mpr hpN
         simp [MulChar.one_apply hunit]

@@ -88,7 +88,7 @@ theorem evaluation_extends {N n : ℕ} {R S : Type*} [CommRing R] [CommRing S]
     (f : R →+* S) (ψ : Hc N n R) (φ : Hc N n S) (h : Extends f ψ φ)
     (j : ℕ) (r : ℚ) :
     evaluation j r φ = f (evaluation j r ψ) := by
-  show MvPolynomial.coeff _ (φ.val (OnePoint.infty, (r : Cusp))) = _
+  show AddMonoidAlgebra.coeff (φ.val (OnePoint.infty, (r : Cusp))) _ = _
   rw [h OnePoint.infty ((r : ℚ) : Cusp), MvPolynomial.coeff_map]
   rfl
 
@@ -124,7 +124,7 @@ theorem homogeneous_expansion {R : Type*} [CommRing R] {n : ℕ}
     (P : Binary R) (hP : P ∈ MTT.Cohomology.Sym R n) :
     P = ∑ j ∈ Finset.range (n + 1),
       MvPolynomial.monomial (binaryExponent n j)
-        (MvPolynomial.coeff (binaryExponent n j) P) := by
+        (AddMonoidAlgebra.coeff P (binaryExponent n j)) := by
   apply MvPolynomial.ext
   intro d
   rw [MvPolynomial.coeff_sum]
@@ -133,15 +133,15 @@ theorem homogeneous_expansion {R : Type*} [CommRing R] {n : ℕ}
     rw [heq, Finset.sum_eq_single (d 0)]
     · simp
     · intro j hjmem hne
-      rw [MvPolynomial.coeff_monomial, if_neg]
+      rw [MvPolynomial.coeff_monomial, ite_eq_right]
       exact fun h => hne (binaryExponent_inj h)
     · exact fun h => (h (Finset.mem_range.mpr (Nat.lt_succ_of_le hj))).elim
-  · have hzero : MvPolynomial.coeff d P = 0 :=
+  · have hzero : AddMonoidAlgebra.coeff P d = 0 :=
       ((MvPolynomial.mem_homogeneousSubmodule n P).mp hP).coeff_eq_zero hd
     rw [hzero]
     symm
     refine Finset.sum_eq_zero fun j hj => ?_
-    rw [MvPolynomial.coeff_monomial, if_neg]
+    rw [MvPolynomial.coeff_monomial, ite_eq_right]
     intro h
     apply hd
     rw [← h]
@@ -149,7 +149,7 @@ theorem homogeneous_expansion {R : Type*} [CommRing R] {n : ℕ}
 
 def DividedMem (L : Submodule ℤ MTT.Qbar) (n : ℕ) (P : Binary MTT.Qbar) : Prop :=
   ∀ j, j ≤ n →
-    MvPolynomial.coeff (binaryExponent n j) P / (n.choose j : MTT.Qbar) ∈ L
+    AddMonoidAlgebra.coeff P (binaryExponent n j) / (n.choose j : MTT.Qbar) ∈ L
 
 theorem dividedMem_pair {N n : ℕ} (ψ : Hc N n MTT.Qbar)
     (L : Submodule ℤ MTT.Qbar)
@@ -164,8 +164,7 @@ theorem dividedMem_pair {N n : ℕ} (ψ : Hc N n MTT.Qbar)
     cases z with
     | none =>
         intro j hj
-        change MvPolynomial.coeff (binaryExponent n j)
-          (ψ.val (OnePoint.infty, OnePoint.infty)) / _ ∈ L
+        change AddMonoidAlgebra.coeff (ψ.val (OnePoint.infty, OnePoint.infty)) (binaryExponent n j) / _ ∈ L
         rw [hdiag, MvPolynomial.coeff_zero, zero_div]
         exact L.zero_mem
     | some r =>
@@ -273,12 +272,12 @@ theorem dividedMem_sum {L : Submodule ℤ MTT.Qbar} {n : ℕ}
 theorem divided_expansion {n : ℕ} (P : Binary MTT.Qbar)
     (hP : P ∈ MTT.Cohomology.Sym MTT.Qbar n) :
     P = ∑ j ∈ Finset.range (n + 1),
-      (MvPolynomial.coeff (binaryExponent n j) P /
+      (AddMonoidAlgebra.coeff P (binaryExponent n j) /
         (n.choose j : MTT.Qbar)) • basisVec n j := by
   calc
     P = ∑ j ∈ Finset.range (n + 1),
         MvPolynomial.monomial (binaryExponent n j)
-          (MvPolynomial.coeff (binaryExponent n j) P) := homogeneous_expansion P hP
+          (AddMonoidAlgebra.coeff P (binaryExponent n j)) := homogeneous_expansion P hP
     _ = _ := by
       refine Finset.sum_congr rfl fun j hjmem => ?_
       have hj : j ≤ n := Nat.lt_succ_iff.mp (Finset.mem_range.mp hjmem)

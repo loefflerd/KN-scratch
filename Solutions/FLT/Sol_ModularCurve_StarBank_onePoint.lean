@@ -33,7 +33,7 @@ theorem leadingCoeff_laurent_pow (x : LaurentSeries K) (n : ℕ) :
   induction n with
   | zero =>
     rw [pow_zero, pow_zero, HahnSeries.leadingCoeff_eq, HahnSeries.order_one,
-      ← HahnSeries.single_zero_one, HahnSeries.coeff_single, if_pos rfl]
+      ← HahnSeries.single_zero_one, HahnSeries.coeff_single, ite_eq_left rfl]
   | succ n ih =>
     rw [pow_succ, pow_succ, HahnSeries.leadingCoeff_mul, ih]
 
@@ -57,7 +57,7 @@ theorem coeff_C_mul (c : K) (y : LaurentSeries K) (g : ℤ) :
 theorem coeff_C_of_ne (c : K) {g : ℤ} (hg : g ≠ 0) :
     (HahnSeries.C c : LaurentSeries K).coeff g = 0 := by
   rw [show (HahnSeries.C c : LaurentSeries K) = HahnSeries.single 0 c from rfl,
-    HahnSeries.coeff_single, if_neg hg]
+    HahnSeries.coeff_single, ite_eq_right hg]
 
 theorem eq_C_of_pow_eq_C {x : LaurentSeries K} {γ₀ : K} {M : ℕ}
     (hM : (M : K) ≠ 0) (hγ₀ : γ₀ ≠ 0) (hx : x ^ M = HahnSeries.C γ₀) :
@@ -69,7 +69,7 @@ theorem eq_C_of_pow_eq_C {x : LaurentSeries K} {γ₀ : K} {M : ℕ}
     apply hγ₀
     have h1 := congrArg (fun z : LaurentSeries K => z.coeff 0) hx.symm
     rw [show (HahnSeries.C γ₀ : LaurentSeries K) = HahnSeries.single 0 γ₀ from rfl,
-      HahnSeries.coeff_single, if_pos rfl] at h1
+      HahnSeries.coeff_single, ite_eq_left rfl] at h1
     exact h1.trans rfl
 
   have horder : x.order = 0 := by
@@ -98,7 +98,7 @@ theorem eq_C_of_pow_eq_C {x : LaurentSeries K} {γ₀ : K} {M : ℕ}
         coeff_C_of_ne γ (ne_of_lt hk0), sub_zero]
     · rw [hydef, HahnSeries.coeff_sub, hk0,
         show (HahnSeries.C γ : LaurentSeries K) = HahnSeries.single 0 γ from rfl,
-        HahnSeries.coeff_single, if_pos rfl, ← hγdef, sub_self]
+        HahnSeries.coeff_single, ite_eq_left rfl, ← hγdef, sub_self]
   have hr1 : 1 ≤ r := by
     by_contra hr0
     exact hyr (hylow r (by omega))
@@ -201,7 +201,7 @@ example : (((1 : LaurentSeries (ZMod 2)) + HahnSeries.single (1 : ℤ) 1) ^ 2).c
   decide
 
 example : (((1 : LaurentSeries (ZMod 2)) + HahnSeries.single (1 : ℤ) 1) - 1).coeff 1 ≠ 0 := by
-  rw [add_sub_cancel_left, HahnSeries.coeff_single, if_pos rfl]
+  rw [add_sub_cancel_left, HahnSeries.coeff_single, ite_eq_left rfl]
   decide
 
 open Polynomial HahnSeries _root_.ModularCurve _root_.P2MW.S_ModularCurve_StarBank_onePoint.ModularCurve in

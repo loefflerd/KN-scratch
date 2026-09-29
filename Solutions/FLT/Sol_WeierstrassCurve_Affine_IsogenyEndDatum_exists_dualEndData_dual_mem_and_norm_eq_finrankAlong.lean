@@ -2291,10 +2291,10 @@ theorem kw_ipfd_pullbackAlong_single_placeOfPoint_apply (D : IsogenyEndDatum W)
   rw [Finset.sum_ite_eq' (Place.fiberAlong D.ι D.hι (placeOfPoint Q))
     (placeOfPoint P) (fun w => (w.ramificationIndexAlong D.ι : ℤ))]
   by_cases hm : D.geomMorph P = Q
-  · rw [if_pos ((kw_ipfd_mem_fiberAlong_placeOfPoint_iff D P Q).mpr hm),
-      if_pos hm]
-  · rw [if_neg (fun h => hm ((kw_ipfd_mem_fiberAlong_placeOfPoint_iff D P Q).mp h)),
-      if_neg hm]
+  · rw [ite_eq_left ((kw_ipfd_mem_fiberAlong_placeOfPoint_iff D P Q).mpr hm),
+      ite_eq_left hm]
+  · rw [ite_eq_right (fun h => hm ((kw_ipfd_mem_fiberAlong_placeOfPoint_iff D P Q).mp h)),
+      ite_eq_right hm]
 
 abbrev kw_ipfd_unramified (D : IsogenyEndDatum W) : Prop :=
   ∀ P : W.Point, (placeOfPoint P).ramificationIndexAlong D.ι = 1
@@ -3378,7 +3378,7 @@ theorem inertiaDeg_eq_inertiaDeg_fiberCenter (hw : w.restrict F = v) :
       (IsLocalRing.maximalIdeal v.toValuationSubring).inertiaDeg'
         (fiberCenter F' v hw).asIdeal := by
   have := fiberCenter_liesOver hw
-  rw [Ideal.inertiaDeg'_algebraMap]
+  rw [Ideal.inertiaDeg_eq_of_isMaximal]
   show Module.finrank (w.restrict F).ResidueField w.ResidueField = _
   refine Algebra.finrank_eq_of_equiv_equiv (restrictResidueFieldEquiv hw)
     (residueFieldEquivQuotientCenter hw).symm ?_
@@ -9164,9 +9164,9 @@ theorem kw_dcao_ord_aSubX_formula {a b : F} (h : W.Nonsingular a b) (Q : W.Point
       = polyToFunctionField W (X - C a) by rw [map_sub, polyToFunctionField_C]]
   rcases Q with _ | ⟨r, s, h'⟩
   · rw [show (Point.zero : W.Point) = 0 from rfl,
-      if_neg (Point.some_ne_zero h).symm,
-      if_neg (Point.some_ne_zero ((Affine.nonsingular_neg a b).mpr h)).symm,
-      if_pos rfl,
+      ite_eq_right (Point.some_ne_zero h).symm,
+      ite_eq_right (Point.some_ne_zero ((Affine.nonsingular_neg a b).mpr h)).symm,
+      ite_eq_left rfl,
       show placeOfPoint (0 : W.Point) = InfinitePlace.place from rfl,
       (InfinitePlace.place (W := W)).ord_ringHom_eq_natDegree_mul
         polyToFunctionField_injective polyToFunctionField_C
@@ -9175,7 +9175,7 @@ theorem kw_dcao_ord_aSubX_formula {a b : F} (h : W.Nonsingular a b) (Q : W.Point
       natDegree_X_sub_C,
       ord_X_eq_neg_two_of_not_isFinitePlace _ InfinitePlace.not_isFinitePlace]
     ring
-  · simp only [placeOfPoint_some h', if_neg (Point.some_ne_zero h'), mul_zero, sub_zero,
+  · simp only [placeOfPoint_some h', ite_eq_right (Point.some_ne_zero h'), mul_zero, sub_zero,
       Point.some.injEq]
     by_cases hra : r = a
     · subst r
@@ -9191,8 +9191,8 @@ theorem kw_dcao_ord_aSubX_formula {a b : F} (h : W.Nonsingular a b) (Q : W.Point
           rw [Affine.evalEval_polynomialY] at hYs
           unfold Affine.negY; linear_combination hYs
         rcases hsb with rfl | rfl
-        · rw [if_pos rfl, if_pos hss]; rfl
-        · rw [if_pos (hss.trans (Affine.negY_negY a b)), if_pos rfl]; rfl
+        · rw [ite_eq_left rfl, ite_eq_left hss]; rfl
+        · rw [ite_eq_left (hss.trans (Affine.negY_negY a b)), ite_eq_left rfl]; rfl
       · rw [kw_dcao_ord_XsubA_eq_one h' hYs]
         have hbne : b ≠ W.toAffine.negY a b := by
           intro hbb
@@ -9203,8 +9203,8 @@ theorem kw_dcao_ord_aSubX_formula {a b : F} (h : W.Nonsingular a b) (Q : W.Point
           have hbb' := hbb; unfold Affine.negY at hbb'
           linear_combination hbb'
         rcases hsb with rfl | rfl
-        · rw [if_pos rfl, if_neg hbne, add_zero]
-        · rw [if_neg (Ne.symm hbne), if_pos rfl, zero_add]
+        · rw [ite_eq_left rfl, ite_eq_right hbne, add_zero]
+        · rw [ite_eq_right (Ne.symm hbne), ite_eq_left rfl, zero_add]
     · simp only [hra, false_and, if_false, add_zero]
       exact (ord_polyToFunctionField_eq_zero_iff h'.left (X_sub_C_ne_zero a)).mpr
         (by simp [sub_ne_zero, hra])
@@ -9322,10 +9322,10 @@ theorem kw_dcao_specLineOrdMatch_hgm_of_allAffine
       refine ⟨?_, by split_ifs <;> omega, by split_ifs <;> omega,
         by split_ifs <;> omega⟩
       by_cases hQL : Q = L
-      · rw [if_pos hQL, if_neg (hQL ▸ hLneL'), if_neg (hQL ▸ hLne0)]; omega
+      · rw [ite_eq_left hQL, ite_eq_right (hQL ▸ hLneL'), ite_eq_right (hQL ▸ hLne0)]; omega
       · by_cases hQL' : Q = -L
-        · rw [if_neg hQL, if_pos hQL', if_neg (hQL' ▸ hL'ne0)]; omega
-        · rw [if_neg hQL, if_neg hQL']; split_ifs <;> omega
+        · rw [ite_eq_right hQL, ite_eq_left hQL', ite_eq_right (hQL' ▸ hL'ne0)]; omega
+        · rw [ite_eq_right hQL, ite_eq_right hQL']; split_ifs <;> omega
     have hb1 : l₁ + m₁ + e₁ ≤ 1 ∧ 0 ≤ l₁ ∧ 0 ≤ m₁ ∧ 0 ≤ e₁ := by
       rw [hl1d, hm1d, he1d]; exact hbnd Q₁
     have hb2 : l₂ + m₂ + e₂ ≤ 1 ∧ 0 ≤ l₂ ∧ 0 ≤ m₂ ∧ 0 ≤ e₂ := by
@@ -9333,19 +9333,19 @@ theorem kw_dcao_specLineOrdMatch_hgm_of_allAffine
     have hb12 : l₁₂ + m₁₂ + e₁₂ ≤ 1 ∧ 0 ≤ l₁₂ ∧ 0 ≤ m₁₂ ∧ 0 ≤ e₁₂ := by
       rw [hl12d, hm12d, he12d]; exact hbnd (Q₁+Q₂)
     by_cases hQ1z : Q₁ = 0
-    · have hge : e₁ = 1 := by rw [he1d, if_pos hQ1z]
+    · have hge : e₁ = 1 := by rw [he1d, ite_eq_left hQ1z]
       have hgl12 : l₁₂ = l₂ := by rw [hl12d, hl2d, hQ1z, zero_add]
       have hgm12 : m₁₂ = m₂ := by rw [hm12d, hm2d, hQ1z, zero_add]
       have hge12 : e₁₂ = e₂ := by rw [he12d, he2d, hQ1z, zero_add]
       omega
     by_cases hQ2z : Q₂ = 0
-    · have hge : e₂ = 1 := by rw [he2d, if_pos hQ2z]
+    · have hge : e₂ = 1 := by rw [he2d, ite_eq_left hQ2z]
       have hgl12 : l₁₂ = l₁ := by rw [hl12d, hl1d, hQ2z, add_zero]
       have hgm12 : m₁₂ = m₁ := by rw [hm12d, hm1d, hQ2z, add_zero]
       have hge12 : e₁₂ = e₁ := by rw [he12d, he1d, hQ2z, add_zero]
       omega
     by_cases hQ12z : Q₁ + Q₂ = 0
-    · have hge : e₁₂ = 1 := by rw [he12d, if_pos hQ12z]
+    · have hge : e₁₂ = 1 := by rw [he12d, ite_eq_left hQ12z]
       have hQ2neg : Q₂ = -Q₁ := (neg_eq_of_add_eq_zero_right hQ12z).symm
       have hgl2 : l₂ = m₁ := by
         rw [hl2d, hm1d]; congr 1
@@ -9725,10 +9725,10 @@ theorem kw_dcao_specLineOrdMatch_allAffine_proved :
   rw [kw_dcao_ord_aSubX_formula h (D₁.geomMorph P),
     kw_dcao_ord_aSubX_formula h (D₂.geomMorph P),
     kw_dcao_ord_aSubX_formula h (D₁.geomMorph P + D₂.geomMorph P)] at hSum
-  simp only [if_neg hQ1, if_neg hQ2, if_neg hQ12, mul_zero, sub_zero,
+  simp only [ite_eq_right hQ1, ite_eq_right hQ2, ite_eq_right hQ12, mul_zero, sub_zero,
     ← hb'd] at hSum
   rw [kw_dcao_ord_aSubX_formula h (D₁.geomMorph P + D₂.geomMorph P),
-    if_neg hQ1, if_neg hQ2, if_neg hQ12]
+    ite_eq_right hQ1, ite_eq_right hQ2, ite_eq_right hQ12]
   simp only [mul_zero, sub_zero, ← hLdef, ← hud, ← hvd] at hSum ⊢
   set l₁ : ℤ := if D₁.geomMorph P = L then 1 else 0 with hl1d
   set m₁ : ℤ := if D₁.geomMorph P = -L then 1 else 0 with hm1d
@@ -9736,12 +9736,12 @@ theorem kw_dcao_specLineOrdMatch_allAffine_proved :
   set m₂ : ℤ := if D₂.geomMorph P = -L then 1 else 0 with hm2d
   set l₁₂ : ℤ := if D₁.geomMorph P + D₂.geomMorph P = L then 1 else 0 with hl12d
   set m₁₂ : ℤ := if D₁.geomMorph P + D₂.geomMorph P = -L then 1 else 0 with hm12d
-  have hF1 : l₁ = 0 ∨ 0 < u := hZF1.imp (fun h => by rw [hl1d, if_neg h]) id
-  have hF2 : l₂ = 0 ∨ 0 < u := hZF2.imp (fun h => by rw [hl2d, if_neg h]) id
-  have hF1' : m₁ = 0 ∨ 0 < v := hZF1'.imp (fun h => by rw [hm1d, if_neg h]) id
-  have hF2' : m₂ = 0 ∨ 0 < v := hZF2'.imp (fun h => by rw [hm2d, if_neg h]) id
-  have hF12 : l₁₂ = 0 ∨ 0 < v := hZF12.imp (fun h => by rw [hl12d, if_neg h]) id
-  have hF12' : m₁₂ = 0 ∨ 0 < u := hZF12'.imp (fun h => by rw [hm12d, if_neg h]) id
+  have hF1 : l₁ = 0 ∨ 0 < u := hZF1.imp (fun h => by rw [hl1d, ite_eq_right h]) id
+  have hF2 : l₂ = 0 ∨ 0 < u := hZF2.imp (fun h => by rw [hl2d, ite_eq_right h]) id
+  have hF1' : m₁ = 0 ∨ 0 < v := hZF1'.imp (fun h => by rw [hm1d, ite_eq_right h]) id
+  have hF2' : m₂ = 0 ∨ 0 < v := hZF2'.imp (fun h => by rw [hm2d, ite_eq_right h]) id
+  have hF12 : l₁₂ = 0 ∨ 0 < v := hZF12.imp (fun h => by rw [hl12d, ite_eq_right h]) id
+  have hF12' : m₁₂ = 0 ∨ 0 < u := hZF12'.imp (fun h => by rw [hm12d, ite_eq_right h]) id
   have hb1 : 0 ≤ l₁ ∧ 0 ≤ m₁ := ⟨by rw [hl1d]; split_ifs <;> omega,
     by rw [hm1d]; split_ifs <;> omega⟩
   have hb2 : 0 ≤ l₂ ∧ 0 ≤ m₂ := ⟨by rw [hl2d]; split_ifs <;> omega,

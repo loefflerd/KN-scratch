@@ -206,7 +206,7 @@ def dedekindPsi (N : ℕ) : ℕ := ∑ d ∈ N.divisors with Squarefree d, N / d
 
 @[simp]
 theorem dedekindPsi_one : dedekindPsi 1 = 1 := by
-  rw [dedekindPsi, Nat.divisors_one, Finset.filter_singleton, if_pos squarefree_one]
+  rw [dedekindPsi, Nat.divisors_one, Finset.filter_singleton, ite_eq_left squarefree_one]
   simp
 
 def evalAtJ : Polynomial ℤ →+* LaurentSeries ℚ :=

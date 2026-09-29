@@ -984,7 +984,7 @@ theorem finrank_adjoin_wq_le :
     rw [Finset.sum_eq_single_of_mem i (Finset.mem_univ i)]
     · simp
     · intro j _ hji
-      rw [if_neg]
+      rw [ite_eq_right]
       exact fun h => hji (Fin.ext h)
   refine ⟨p, ?_, ?_, ?_⟩
   ·
@@ -998,7 +998,7 @@ theorem finrank_adjoin_wq_le :
       simp only [r, finsetSum_coeff, coeff_monomial, Polynomial.coeff_zero] at this
       rw [Finset.sum_eq_single_of_mem ib₀.2 (Finset.mem_univ _)] at this
       · simp only [↓reduceIte] at this; exact hib₀ this
-      · intro j _ hji; rw [if_neg]; exact fun h => hji (Fin.ext h)
+      · intro j _ hji; rw [ite_eq_right]; exact fun h => hji (Fin.ext h)
     refine ⟨r, hr0, ?_⟩
     have h2 : (((coef ib₀.1 : K₀) : F) : LaurentSeries ℚ) = 0 := by rw [h1]; rfl
     rw [hcoef] at h2

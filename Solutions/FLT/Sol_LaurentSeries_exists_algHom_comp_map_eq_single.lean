@@ -149,7 +149,7 @@ theorem order_coe_eq_zero {q : PowerSeries K} (hq : PowerSeries.constantCoeff q 
   · by_contra hlt
     rw [not_le] at hlt
     have h := mt coeff_order_eq_zero.mp hq0
-    rw [PowerSeries.coeff_coe, if_pos hlt] at h
+    rw [PowerSeries.coeff_coe, ite_eq_left hlt] at h
     exact h rfl
 
 theorem order_inv' {x : LaurentSeries K} (hx : x ≠ 0) : x⁻¹.order = -x.order := by

@@ -65,7 +65,7 @@ theorem symmetricPowerBasis_repr (R : Type*) [CommRing R] (n : ℕ) :
 theorem symmetricPowerCoordinates_apply {R : Type*} [CommRing R] {n : ℕ}
     (P : Sym R n) (j : Fin (n + 1)) :
     symmetricPowerCoordinates R n P j =
-      MvPolynomial.coeff (homogeneousExponentEquiv n |>.symm j).val P.val := by
+      AddMonoidAlgebra.coeff P.val (homogeneousExponentEquiv n |>.symm j).val := by
   rfl
 
 theorem symmetricPowerBasis_val {R : Type*} [CommRing R] {n : ℕ} (j : Fin (n + 1)) :
@@ -864,7 +864,7 @@ theorem finrank_inversionFixed (m : ℕ) :
   rw [trace_levelOneAction_S, show Module.finrank ℂ (gammaOneRep 1 (2 * m)) = 2 * m + 1
     from finrank_sym (2 * m)] at h
   by_cases hm : Even m
-  · rw [if_pos hm]
+  · rw [ite_eq_left hm]
     rw [hm.neg_one_pow] at h
     push_cast at h
     have hc : (Module.finrank ℂ (generatorDifference (2 * m) ModularGroup.S).ker : ℂ) =
@@ -872,7 +872,7 @@ theorem finrank_inversionFixed (m : ℕ) :
       dsimp only [generatorDifference]
       linear_combination (norm := ring1!) h / 2
     exact_mod_cast hc
-  · rw [if_neg hm, add_zero]
+  · rw [ite_eq_right hm, add_zero]
     rw [(Nat.not_even_iff_odd.mp hm).neg_one_pow] at h
     push_cast at h
     have hc : (Module.finrank ℂ (generatorDifference (2 * m) ModularGroup.S).ker : ℂ) =
@@ -1219,7 +1219,7 @@ namespace MTT.Cohomology
 
 theorem act_homogeneous_zero {R : Type*} [CommRing R]
     (A : Matrix (Fin 2) (Fin 2) ℤ) {P : Binary R} (hP : P ∈ Sym R 0) : act A P = P := by
-  have hconst : P = MvPolynomial.C (MvPolynomial.coeff 0 P) :=
+  have hconst : P = MvPolynomial.C (AddMonoidAlgebra.coeff P 0) :=
     (MvPolynomial.homogeneousComponent_eq_self hP).symm.trans
       (MvPolynomial.homogeneousComponent_zero P)
   rw [hconst]
@@ -1330,11 +1330,11 @@ theorem levelOne_cusp_finrank_formula (m : ℕ) (hm : 0 < m) :
     simp only [Nat.ModEq, show 2 % 12 = 2 from rfl] at h
     exact_mod_cast h
   by_cases hp : Even m
-  · rw [if_pos hp]
+  · rw [ite_eq_left hp]
     obtain ⟨r, hr⟩ := hp
     have hd : m % 2 = 0 := by omega
     split_ifs at h' <;> omega
-  · rw [if_neg hp]
+  · rw [ite_eq_right hp]
     have hd : m % 2 = 1 := Nat.mod_two_ne_zero.mp (fun h => hp (even_iff_two_dvd.mpr
       (Nat.dvd_of_mod_eq_zero h)))
     split_ifs at h' <;> omega
@@ -1381,4 +1381,3 @@ theorem solution {k : ℕ} (hk : 2 ≤ k) :
     Module.finrank ℂ (MTT.Cohomology.ParabolicH1 1 (k - 2)) ≤
       2 * Module.finrank ℂ (CuspForm (MTT.GammaOne 1) (k : ℤ)) :=
   MTT.Cohomology.parabolicH1_dimension_bound_levelOne hk
-

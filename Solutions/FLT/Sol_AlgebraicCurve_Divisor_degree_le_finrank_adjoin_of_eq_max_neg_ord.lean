@@ -252,7 +252,7 @@ theorem solution
       rw [← v.adicValuation_coe_eq_one_iff,
           show v.adicValuation (cv:F) = WithZero.exp (-(v.ord c)) from by
             rw [Place.ord, neg_neg, WithZero.exp_log (v.adicValuation_ne_zero hc0)],
-          hcord v hv, if_pos rfl, neg_zero, WithZero.exp_zero]
+          hcord v hv, ite_eq_left rfl, neg_zero, WithZero.exp_zero]
     have hresc_ne : IsLocalRing.residue _ cv ≠ 0 := (hunit_iff v _).mp hcunit
     have hreg : ∀ k, ∀ v' ∈ S, c * zF k ∈ v'.toValuationSubring := by
       intro k v' hv'

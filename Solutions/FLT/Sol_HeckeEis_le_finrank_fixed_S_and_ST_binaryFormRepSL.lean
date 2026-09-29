@@ -128,8 +128,8 @@ theorem finite_binaryForm (n : ℕ) : Module.Finite ℂ ↥(HeckeEis.BinaryForm 
       fin_cases j
       · simp
       · simp; omega
-    have hmono : MvPolynomial.monomial d (MvPolynomial.coeff d F) =
-        MvPolynomial.coeff d F • (X 0 ^ (d 0) * X 1 ^ (n - d 0) : MvPolynomial (Fin 2) ℂ) := by
+    have hmono : MvPolynomial.monomial d (AddMonoidAlgebra.coeff F d) =
+        AddMonoidAlgebra.coeff F d • (X 0 ^ (d 0) * X 1 ^ (n - d 0) : MvPolynomial (Fin 2) ℂ) := by
       rw [hXX, MvPolynomial.smul_monomial, smul_eq_mul, mul_one, ← hd']
     rw [hmono]
     refine Submodule.smul_mem _ _ (Submodule.subset_span ?_)

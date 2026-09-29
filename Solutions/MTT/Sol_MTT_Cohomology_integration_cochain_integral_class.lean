@@ -14,14 +14,14 @@ lemma binaryExponent_apply_zero (n j : ℕ) : binaryExponent n j 0 = j := by
 vertical modular integral. -/
 lemma coeff_cuspPeriodPolynomial {N k : ℕ} (hk : 2 ≤ k) (f : CuspForm (MTT.GammaOne N) (k : ℤ))
     (r : ℚ) {j : ℕ} (hj : j ≤ k - 2) :
-    MvPolynomial.coeff (binaryExponent (k - 2) j) (cuspPeriodPolynomial f r) =
+    AddMonoidAlgebra.coeff (cuspPeriodPolynomial f r) (binaryExponent (k - 2) j) =
       ((k - 2).choose j : ℂ) * MTT.modularIntegral f (Polynomial.X ^ j) r := by
   rw [cuspPeriodPolynomial, MvPolynomial.coeff_sum]
   simp only [MvPolynomial.coeff_monomial]
   rw [Finset.sum_eq_single j]
   · simp
   · intro i _ hij
-    rw [if_neg]
+    rw [ite_eq_right]
     intro h
     exact hij (by simpa [binaryExponent_apply_zero] using congrArg (fun v => v 0) h)
   · intro hj'
@@ -37,7 +37,7 @@ lemma evaluation_of_integrationCochain {N k : ℕ} (hk : 2 ≤ k)
     (f : CuspForm (MTT.GammaOne N) (k : ℤ))
     (φ : Hc N (k - 2) ℂ) (hφ : φ.val = integrationCochain f) {j : ℕ} (hj : j ≤ k - 2) (r : ℚ) :
     evaluation j r φ = ((k - 2).choose j : ℂ) * MTT.modularIntegral f (Polynomial.X ^ j) r := by
-  change MvPolynomial.coeff (binaryExponent (k - 2) j) (φ.val (OnePoint.infty, (r : Cusp))) = _
+  change AddMonoidAlgebra.coeff (φ.val (OnePoint.infty, (r : Cusp))) (binaryExponent (k - 2) j) = _
   rw [hφ, integrationCochain_infty]
   exact coeff_cuspPeriodPolynomial hk f r hj
 

@@ -791,12 +791,12 @@ private theorem Lq_natCast_eq_qExpand (N : ℕ) [NeZero N] {F : ℍ → ℂ}
     · obtain ⟨n, rfl⟩ := Int.eq_ofNat_of_zero_le hk
       rw [show ((N : ℤ) * (n : ℤ)) = ((N * n : ℕ) : ℤ) by push_cast; ring,
         HahnSeries.ofPowerSeries_apply_coeff, HahnSeries.ofPowerSeries_apply_coeff, hcoeff,
-        if_pos (dvd_mul_right N n), Nat.mul_div_cancel_left n (Nat.pos_of_ne_zero (NeZero.ne N))]
+        ite_eq_left (dvd_mul_right N n), Nat.mul_div_cancel_left n (Nat.pos_of_ne_zero (NeZero.ne N))]
   · rw [ModularCurve.qExpand_coeff_of_not_dvd N _ hdvd]
     rcases lt_or_ge m 0 with hm | hm
     · exact ModularCurve.ofPowerSeries_coeff_of_neg _ hm
     · obtain ⟨n, rfl⟩ := Int.eq_ofNat_of_zero_le hm
-      rw [HahnSeries.ofPowerSeries_apply_coeff, hcoeff, if_neg]
+      rw [HahnSeries.ofPowerSeries_apply_coeff, hcoeff, ite_eq_right]
       exact fun h => hdvd (by exact_mod_cast h)
 
 private theorem order_ofPowerSeries {R : Type*} [CommRing R] {p : PowerSeries R} (hp : p ≠ 0) :

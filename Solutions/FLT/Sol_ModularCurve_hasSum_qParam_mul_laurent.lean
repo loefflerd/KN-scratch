@@ -43,7 +43,7 @@ theorem hasSum_single_mul_coe_iff (k : ℤ) (P : PowerSeries ℂ) {q : ℂ} (hq 
       by_contra hge
       push Not at hge
       exact hm ⟨(m - k).toNat, by simp only; omega⟩
-    rw [← sub_add_cancel m k, HahnSeries.coeff_single_mul_add, one_mul, PowerSeries.coeff_coe, if_pos hmk,
+    rw [← sub_add_cancel m k, HahnSeries.coeff_single_mul_add, one_mul, PowerSeries.coeff_coe, ite_eq_left hmk,
       zero_mul]
 
 theorem hasSum_qParam_mul_laurent' (h : ℝ) (hh : 0 < h) (A B : LaurentSeries ℂ) (F G : ℍ → ℂ)

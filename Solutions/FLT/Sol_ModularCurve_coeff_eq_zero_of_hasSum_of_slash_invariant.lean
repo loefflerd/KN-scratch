@@ -186,7 +186,7 @@ theorem solution {F : UpperHalfPlane → ℂ} {c : ℕ → ℂ} (hF : ∀ τ : U
     · subst hn; simp
     · simp [hn]
   have heq := Realized.coeff_unique one_pos hF hF'
-  rw [heq, Pi.single_apply, if_neg hm]
+  rw [heq, Pi.single_apply, ite_eq_right hm]
 
 end
 

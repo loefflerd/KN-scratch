@@ -348,17 +348,17 @@ theorem ell_eq {i : ℕ} (hi : i ≤ n) (z : ℂ) : ell n i z = (n.choose (n - i
     rw [hmon, coeff_monomial]
     by_cases h : m = n - i
     · subst h
-      rw [if_pos, if_pos rfl, mul_comm]
+      rw [ite_eq_left, ite_eq_left rfl, mul_comm]
       simp only [expo]
       congr 2
       omega
-    · rw [if_neg, if_neg h]
+    · rw [ite_eq_right, ite_eq_right h]
       intro heq
       apply h
       have := congrArg (fun d => d 0) heq
       simpa [expo] using this
   rw [Finset.sum_congr rfl hterm, Finset.sum_ite_eq' (Finset.range (n + 1)) (n - i)]
-  rw [if_pos (Finset.mem_range.mpr (by omega))]
+  rw [ite_eq_left (Finset.mem_range.mpr (by omega))]
 
 theorem continuous_ell {i : ℕ} (hi : i ≤ n) : Continuous (ell n i) := by
   have : ell n i = fun z => (n.choose (n - i) : ℂ) * z ^ (n - i) := funext (ell_eq hi)

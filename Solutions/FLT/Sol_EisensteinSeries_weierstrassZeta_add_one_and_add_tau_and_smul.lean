@@ -66,7 +66,7 @@ lemma zterm_smul (γ : SL(2, ℤ)) (z : ℂ) (v : Fin 2 → ℤ) :
     simp [zterm]
   · have hv' : v ᵥ* (γ : Matrix (Fin 2) (Fin 2) ℤ) ≠ 0 := by
       rwa [Ne, vecMul_eq_zero_iff]
-    rw [zterm, if_neg hv, zterm, if_neg hv', om_smul]
+    rw [zterm, ite_eq_right hv, zterm, ite_eq_right hv', om_smul]
     set D : ℂ := denom (γ : GL (Fin 2) ℝ) τ with hDdef
     set w : ℂ := om τ (v ᵥ* (γ : Matrix (Fin 2) (Fin 2) ℤ))
     rw [show z / D - w / D = (z - w) / D by ring, one_div_div, one_div_div,

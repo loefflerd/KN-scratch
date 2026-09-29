@@ -892,8 +892,8 @@ theorem isAlgebraic_of_sum_aeval_mul_pow_eq_zero {x t : F} (ht : Transcendental 
     have hcm := congrArg (fun p : K[X] => p.coeff (i₁ : ℕ)) hzero
     simp only [finsetSum_coeff, coeff_C_mul, coeff_X_pow, coeff_zero] at hcm
     rw [Finset.sum_eq_single i₁ (fun j _ hj => by
-        rw [if_neg (fun h => hj (Fin.ext h.symm)), mul_zero]) (fun h => absurd (Finset.mem_univ _) h),
-      if_pos rfl, mul_one] at hcm
+        rw [ite_eq_right (fun h => hj (Fin.ext h.symm)), mul_zero]) (fun h => absurd (Finset.mem_univ _) h),
+      ite_eq_left rfl, mul_one] at hcm
     exact hm hcm
   · have h1 : (aeval x q : F) = ∑ i : Fin n, aeval x (c i) * t ^ (i : ℕ) := by
       simp only [q, map_sum, map_mul, aeval_C, map_pow]

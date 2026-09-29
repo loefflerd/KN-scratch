@@ -263,7 +263,7 @@ theorem qExpansion_widthOne_rat {g : ℍ → ℂ} (hg : MDifferentiable 𝓘(ℂ
     (hrat : ∀ n, ∃ r : ℚ, (qExpansion N g).coeff n = (r : ℂ)) (n : ℕ) :
     ∃ r : ℚ, (qExpansion 1 g).coeff n = (r : ℂ) := by
   obtain ⟨r, hr⟩ := hrat (N * n)
-  rw [qExpansion_coeff_widthN N hg hper hbd, if_pos (dvd_mul_right N n),
+  rw [qExpansion_coeff_widthN N hg hper hbd, ite_eq_left (dvd_mul_right N n),
     Nat.mul_div_cancel_left _ (NeZero.pos N)] at hr
   exact ⟨r, hr⟩
 
@@ -1023,7 +1023,7 @@ theorem exists_of_mul_eq {K : Type*} [Field K] (ι φ : K →+* ℂ)
     rw [PowerSeries.X_pow_dvd_iff]
     intro n hn
     have hcoef : PowerSeries.coeff n (A.map ι) = 0 := by
-      rw [hAι, PowerSeries.coeff_X_pow_mul', if_neg (not_le.mpr hn)]
+      rw [hAι, PowerSeries.coeff_X_pow_mul', ite_eq_right (not_le.mpr hn)]
     rw [PowerSeries.coeff_map] at hcoef
     exact ι.injective (by rw [hcoef, map_zero])
   obtain ⟨A', hA'⟩ := hAdvd

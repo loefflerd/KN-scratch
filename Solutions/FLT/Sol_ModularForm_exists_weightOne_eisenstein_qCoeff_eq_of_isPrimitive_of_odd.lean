@@ -420,7 +420,7 @@ lemma cst_ne_zero (hχ : χ.IsPrimitive) : cst χ ≠ 0 := by
 theorem A_of_ne_zero (hχ : χ.IsPrimitive) (hodd : χ.Odd) {n : ℕ} (hn : n ≠ 0) :
     A χ n = cst χ * ∑ d ∈ n.divisors, χ (d : ZMod L) := by
   unfold A
-  simp only [cb, if_neg hn]
+  simp only [cb, ite_eq_right hn]
   have hterm : ∀ b : ZMod L, χ⁻¹ b * (-(2 * π * I) / L * ∑ k ∈ n.divisors,
       (cexp (2 * π * I * ((b.val : ℤ) : ℂ) * k / L) - cexp (-(2 * π * I * ((b.val : ℤ) : ℂ) * k / L)))) =
       -(2 * π * I) / L * ∑ k ∈ n.divisors,
@@ -486,7 +486,7 @@ lemma norm_cb_le (b : ZMod L) (n : ℕ) : ‖cb b n‖ ≤ ‖cb b 0‖ + 4 * π
   · have hLpos : (0 : ℝ) < L := by exact_mod_cast Nat.pos_of_ne_zero (NeZero.ne L)
     have hL1 : (1 : ℝ) ≤ L := by exact_mod_cast Nat.pos_of_ne_zero (NeZero.ne L)
     have h0 : 0 ≤ ‖cb b 0‖ := norm_nonneg _
-    rw [cb, if_neg hn, norm_mul, norm_div, norm_neg, norm_mul, norm_mul, Complex.norm_two,
+    rw [cb, ite_eq_right hn, norm_mul, norm_div, norm_neg, norm_mul, norm_mul, Complex.norm_two,
       Complex.norm_real, Real.norm_of_nonneg Real.pi_pos.le, Complex.norm_I, mul_one,
       Complex.norm_natCast]
     have hsum : ‖∑ k ∈ n.divisors, (cexp (2 * π * I * ((b.val : ℤ) : ℂ) * k / L) -

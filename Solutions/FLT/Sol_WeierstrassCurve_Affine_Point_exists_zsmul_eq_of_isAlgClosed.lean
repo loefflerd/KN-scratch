@@ -226,13 +226,13 @@ theorem isCoprime_Φ_ΨSq [IsAlgClosed K] [W.IsElliptic] {n : ℕ} (hn : 0 < n) 
       exact eval_ne_of_isCoprime hA hb hΨ0
   ·
     by_cases hev : Even (n : ℤ)
-    · rw [if_pos hev] at hG
+    · rw [ite_eq_left hev] at hG
       exact one_ne_zero hG
-    · rw [if_neg hev] at hG
+    · rw [ite_eq_right hev] at hG
       have hnodd : ¬Even n := fun h => hev (by exact_mod_cast h)
       have hb : ((W.baseChange K).ΨSq ((n : ℤ) + 1)).eval x₀ = 0 := by
         have h2 : ((W.baseChange K).ΨSq ((n + 1 : ℕ) : ℤ)).eval x₀ = 0 := by
-          rw [ΨSq_ofNat, if_pos (Nat.even_add_one.mpr hnodd), eval_mul, hG, mul_zero]
+          rw [ΨSq_ofNat, ite_eq_left (Nat.even_add_one.mpr hnodd), eval_mul, hG, mul_zero]
         rwa [Nat.cast_add, Nat.cast_one] at h2
       exact eval_ne_of_isCoprime (isCoprime_ΨSq_succ W n) hΨ0 hb
 
@@ -246,7 +246,7 @@ omit [DecidableEq K] in
 
 theorem ΨSq_odd_eq_sq {n : ℕ} (hodd : Odd n) :
     (W.baseChange K).ΨSq n = ((W.baseChange K).preΨ' n) ^ 2 := by
-  rw [ΨSq_ofNat, if_neg (Nat.not_even_iff_odd.mpr hodd), mul_one]
+  rw [ΨSq_ofNat, ite_eq_right (Nat.not_even_iff_odd.mpr hodd), mul_one]
 
 theorem smul_eq_zero_iff_preΨ'_eval [W.IsElliptic] {n : ℕ} (hodd : Odd n)
     (hn : 0 < n) {x y : K} (h : (W.baseChange K).toAffine.Nonsingular x y) :

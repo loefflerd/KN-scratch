@@ -799,7 +799,7 @@ theorem eq_sum_trace_mul {x : F} {n : ℕ}
     split_ifs with h
     · subst h
       simp
-    · rw [map_zero, Finsupp.single_apply, if_neg h]
+    · rw [map_zero, Finsupp.single_apply, ite_eq_right h]
   exact LinearMap.congr_fun hL z
 
 end BaseChange

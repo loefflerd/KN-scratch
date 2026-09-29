@@ -38,7 +38,7 @@ theorem tPoleOrderLE_zero {K : Type*} [Field K] (n : ℕ) :
 
 theorem tPoleOrderLE_one {K : Type*} [Field K] : TPoleOrderLE (1 : LaurentSeries K) 0 := by
   intro m hm
-  rw [HahnSeries.coeff_one, if_neg (by omega)]
+  rw [HahnSeries.coeff_one, ite_eq_right (by omega)]
 
 namespace TPoleOrderLE
 private theorem _root_.ModularCurve.PhiGen.TPoleOrderLE.neg {K : Type*} [Field K] {f : LaurentSeries K} {n : ℕ}
@@ -105,11 +105,11 @@ private def conjPoleBound (ℓ : ℕ) : Fin (ℓ + 1) → ℕ :=
   fun i => if i = 0 then ℓ * ℓ else 1
 
 @[scoped simp]
-private theorem conjPoleBound_zero (ℓ : ℕ) : conjPoleBound ℓ 0 = ℓ * ℓ := if_pos rfl
+private theorem conjPoleBound_zero (ℓ : ℕ) : conjPoleBound ℓ 0 = ℓ * ℓ := ite_eq_left rfl
 
 @[scoped simp]
 private theorem conjPoleBound_succ (ℓ : ℕ) (b : Fin ℓ) : conjPoleBound ℓ b.succ = 1 :=
-  if_neg (Fin.succ_ne_zero b)
+  ite_eq_right (Fin.succ_ne_zero b)
 
 private theorem sum_conjPoleBound (ℓ : ℕ) :
     ∑ i : Fin (ℓ + 1), conjPoleBound ℓ i = ℓ * ℓ + ℓ := by
@@ -155,11 +155,11 @@ theorem tPoleOrderLE_coeff_X_sub_C {K : Type*} [Field K] {a : LaurentSeries K} {
     exact ha.neg
   | 1 =>
     simp only [Polynomial.coeff_sub, Polynomial.coeff_X_one, Polynomial.coeff_C,
-      if_neg (one_ne_zero), sub_zero]
+      ite_eq_right (one_ne_zero), sub_zero]
     exact tPoleOrderLE_one.mono (Nat.zero_le _)
   | (k + 2) =>
     simp only [Polynomial.coeff_sub, Polynomial.coeff_X, Polynomial.coeff_C]
-    rw [if_neg (by omega), if_neg (by omega), sub_zero]
+    rw [ite_eq_right (by omega), ite_eq_right (by omega), sub_zero]
     exact tPoleOrderLE_zero _
 
 theorem tPoleOrderLE_coeff_mul {K : Type*} [Field K] {p q : Polynomial (LaurentSeries K)}
@@ -180,7 +180,7 @@ theorem tPoleOrderLE_coeff_prod {K : Type*} [Field K] {ι : Type*} (s : Finset �
     simp only [Finset.prod_empty, Finset.sum_empty]
     rcases Nat.eq_zero_or_pos k with rfl | hk
     · simpa using tPoleOrderLE_one
-    · rw [Polynomial.coeff_one, if_neg (by omega)]
+    · rw [Polynomial.coeff_one, ite_eq_right (by omega)]
       exact tPoleOrderLE_zero 0
   | cons a s ha ih =>
     intro k
@@ -274,7 +274,7 @@ private theorem aeval_jq_intCoeffs_descent (P : Polynomial ℚ)
     set Q : Polynomial ℚ := P - Polynomial.C (P.coeff d) * Polynomial.X ^ d with hQ
     have hQcoeff : Q.coeff k = P.coeff k := by
       rw [hQ, Polynomial.coeff_sub, Polynomial.coeff_C_mul, Polynomial.coeff_X_pow,
-        if_neg (by omega), mul_zero, sub_zero]
+        ite_eq_right (by omega), mul_zero, sub_zero]
     have hQdeg : Q.natDegree < d := by
       rcases eq_or_ne Q 0 with hQ0 | hQ0
       · rw [hQ0, Polynomial.natDegree_zero]; omega
@@ -285,7 +285,7 @@ private theorem aeval_jq_intCoeffs_descent (P : Polynomial ℚ)
       · intro hcon
         apply hQ0
         rw [← Polynomial.leadingCoeff_eq_zero, Polynomial.leadingCoeff, hcon, hQ,
-          Polynomial.coeff_sub, Polynomial.coeff_C_mul, Polynomial.coeff_X_pow, if_pos rfl,
+          Polynomial.coeff_sub, Polynomial.coeff_C_mul, Polynomial.coeff_X_pow, ite_eq_left rfl,
           mul_one, sub_self]
     have hQint : IntCoeffs (Polynomial.aeval jq Q) := by
       rw [hQ, map_sub, map_mul, Polynomial.aeval_C, map_pow, Polynomial.aeval_X, hlead]

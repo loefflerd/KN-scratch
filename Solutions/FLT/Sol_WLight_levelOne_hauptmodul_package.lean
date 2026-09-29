@@ -76,7 +76,7 @@ lemma ratCoeff_E {k : ℕ} (hk : 3 ≤ k) (hk2 : Even k) :
   by_cases hn : n = 0
   · exact ⟨1, by simp [hn]⟩
   · refine ⟨-(2 * k / bernoulli k) * (σ (k - 1) n : ℚ), ?_⟩
-    rw [if_neg hn]
+    rw [ite_eq_right hn]
     push_cast
     ring
 
@@ -1109,7 +1109,7 @@ theorem kPole_invariant_eq_polynomial_j_mem {K : IntermediateField ℚ ℂ} [NeZ
     have hw := qExpansion_coeff_width (⇑(polyDiscForm m P) : ℍ → ℂ) (NeZero.ne N)
       (SlashInvariantFormClass.periodic_comp_ofComplex _ one_mem_strictPeriods_SL)
       (polyDiscForm m P).holo' (ModularFormClass.bdd_at_infty _) (N * n)
-    rw [if_pos ⟨n, rfl⟩, Nat.mul_div_cancel_left n (Nat.pos_of_ne_zero (NeZero.ne N))] at hw
+    rw [ite_eq_left ⟨n, rfl⟩, Nat.mul_div_cancel_left n (Nat.pos_of_ne_zero (NeZero.ne N))] at hw
     rw [← hw]
     have hm := hmem (N * n)
     rwa [hfn] at hm

@@ -67,7 +67,7 @@ theorem algebraMap_mem_lSpace
   refine mem_lSpace_iff_ord.mpr (Or.inr fun v' => ?_)
   by_cases hold : ∃ v, lift v = v'
   · obtain ⟨v, rfl⟩ := hold
-    rw [Finsupp.mapDomain_apply hlift_inj, hlift_ord]
+    rw [Finsupp.mapDomain_apply_of_injective hlift_inj, hlift_ord]
     exact (mem_lSpace_iff_ord.mp hf).resolve_left hf0 v
   · push Not at hold
     rw [show (Finsupp.mapDomain lift D) v' = 0 from

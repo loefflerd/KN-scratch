@@ -61,15 +61,15 @@ private theorem eisRc_isIntegralQExp_of_apply_eq (M : ℕ) [NeZero M] (hM : 3 �
     by_cases hn : n = 0
     · subst hn
       simp [T]
-    · rw [if_neg hn]
+    · rw [ite_eq_right hn]
       push_cast
       refine Finset.sum_congr rfl fun d _ => ?_
       by_cases hP : ((n / d : ℕ) : ZMod M) = (c : ZMod M)
       · have hQ : ¬ ((n / d : ℕ) : ZMod M) = -(c : ZMod M) := fun hQ => hcneg (hP.symm.trans hQ)
-        rw [if_pos hP, if_neg hQ, if_pos (Or.inl hP), add_zero]
+        rw [ite_eq_left hP, ite_eq_right hQ, ite_eq_left (Or.inl hP), add_zero]
       · by_cases hQ : ((n / d : ℕ) : ZMod M) = -(c : ZMod M)
-        · rw [if_neg hP, if_pos hQ, if_pos (Or.inr hQ), zero_add]
-        · rw [if_neg hP, if_neg hQ, if_neg (not_or.mpr ⟨hP, hQ⟩), add_zero]
+        · rw [ite_eq_right hP, ite_eq_left hQ, ite_eq_left (Or.inr hQ), zero_add]
+        · rw [ite_eq_right hP, ite_eq_right hQ, ite_eq_right (not_or.mpr ⟨hP, hQ⟩), add_zero]
 
   have hTnorm : ∀ n : ℕ, ‖T n‖ ≤ 2 * (n : ℝ) ^ 4 := by
     intro n

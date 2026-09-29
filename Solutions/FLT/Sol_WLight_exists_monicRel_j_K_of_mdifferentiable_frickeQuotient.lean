@@ -684,7 +684,7 @@ private lemma ratCoeff_E {k : ℕ} (hk : 3 ≤ k) (hk2 : Even k) :
   by_cases hn : n = 0
   · exact ⟨1, by simp [hn]⟩
   · refine ⟨-(2 * k / _root_.bernoulli k) * (σ (k - 1) n : ℚ), ?_⟩
-    rw [if_neg hn]
+    rw [ite_eq_right hn]
     push_cast
     ring
 

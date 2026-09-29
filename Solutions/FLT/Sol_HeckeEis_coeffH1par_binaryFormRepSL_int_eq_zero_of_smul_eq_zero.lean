@@ -44,7 +44,7 @@ theorem binaryFormRepSL_apply_of_zero {R : Type*} [CommRing R] (g : SL(2, ℤ)) 
     binaryFormRepSL R 0 g P = P := by
   apply Subtype.ext
   rw [binaryFormRepSL_apply_coe]
-  have hP : (P : MvPolynomial (Fin 2) R) = MvPolynomial.C (MvPolynomial.coeff 0 (P : MvPolynomial (Fin 2) R)) := by
+  have hP : (P : MvPolynomial (Fin 2) R) = MvPolynomial.C (AddMonoidAlgebra.coeff (P : MvPolynomial (Fin 2) R) 0) := by
     have h := (MvPolynomial.mem_homogeneousSubmodule 0 (P : MvPolynomial (Fin 2) R)).mp P.2
     rw [← MvPolynomial.totalDegree_zero_iff_isHomogeneous] at h
     exact (MvPolynomial.totalDegree_eq_zero_iff_eq_C.mp h)
@@ -117,11 +117,11 @@ theorem SolMain.A4 (n N : ℕ) [NeZero N] (m : ℤ) (hm : m ≠ 0)
     have hc₁' : v - m • w₁ = c₁ • e := Subtype.ext (by rw [hc₁]; rfl)
 
     set cf : ↥(BinaryForm ℤ n) →ₗ[ℤ] ℤ := (MvPolynomial.lcoeff ℤ (Finsupp.single 0 n)).comp (BinaryForm ℤ n).subtype with hcf
-    have hcf_apply : ∀ Q : ↥(BinaryForm ℤ n), cf Q = MvPolynomial.coeff (Finsupp.single 0 n) (Q : MvPolynomial (Fin 2) ℤ) :=
+    have hcf_apply : ∀ Q : ↥(BinaryForm ℤ n), cf Q = AddMonoidAlgebra.coeff (Q : MvPolynomial (Fin 2) ℤ) (Finsupp.single 0 n) :=
       fun Q => rfl
     have hcfe : cf e = 1 := by rw [hcf_apply]; simp [e, MvPolynomial.coeff_X_pow]
     have h2 : cf (v - m • w₂) = 0 := by
-      rw [hcf_apply, hc₂, MvPolynomial.coeff_smul, MvPolynomial.coeff_X_pow, if_neg, smul_zero]
+      rw [hcf_apply, hc₂, MvPolynomial.coeff_smul, MvPolynomial.coeff_X_pow, ite_eq_right, smul_zero]
       intro h; have := congrArg (fun d : Fin 2 →₀ ℕ => d 0) h; simp at this; omega
     have hvm := aux_div cf.toAddMonoidHom m c₁ v w₁ w₂ e hcfe hc₁' h2
     have hinj : ∀ y : ↥(BinaryForm ℤ n), m • y = 0 → y = 0 := fun y hy => (smul_eq_zero.mp hy).resolve_left hm

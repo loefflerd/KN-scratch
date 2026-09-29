@@ -287,10 +287,10 @@ lemma modularIntegral_heckePrime {l : ℕ} (hl : 0 < l) (k : ℕ) (e : ℂ) (f g
 
 /-- Apply a linear functional to the coefficients of a polynomial with coefficients in `ℂ[z]`. -/
 def hat (Λ : Polynomial ℂ →ₗ[ℂ] ℂ) (R : MvPolynomial (Fin 2) (Polynomial ℂ)) : Binary ℂ :=
-  ∑ m ∈ R.support, MvPolynomial.monomial m (Λ (MvPolynomial.coeff m R))
+  ∑ m ∈ R.support, MvPolynomial.monomial m (Λ (AddMonoidAlgebra.coeff R m))
 
 lemma coeff_hat (Λ : Polynomial ℂ →ₗ[ℂ] ℂ) (R : MvPolynomial (Fin 2) (Polynomial ℂ))
-    (m : Fin 2 →₀ ℕ) : MvPolynomial.coeff m (hat Λ R) = Λ (MvPolynomial.coeff m R) := by
+    (m : Fin 2 →₀ ℕ) : AddMonoidAlgebra.coeff (hat Λ R) m = Λ (AddMonoidAlgebra.coeff R m) := by
   unfold hat
   rw [MvPolynomial.coeff_sum]
   simp only [MvPolynomial.coeff_monomial]

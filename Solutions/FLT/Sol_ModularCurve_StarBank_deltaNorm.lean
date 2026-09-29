@@ -254,23 +254,23 @@ variable (K : Type*) [CommRing K] [TopologicalSpace K] [DiscreteTopology K]
 
 theorem tprod_gFam {p : ℕ} (hp : 0 < p) : ∏' n, gFam K p n = (∏' n, uFam K p n) ^ p := by
   have hsupp := mulSupport_subset_range (gFam K p) fun n hd => by
-    unfold gFam; rw [if_neg hd]
+    unfold gFam; rw [ite_eq_right hd]
   rw [← (index_injective hp).tprod_eq hsupp, ← (multipliable_uFam K hp).tprod_pow]
   exact tprod_congr fun m => by
     show gFam K p (p * (m + 1) - 1) = uFam K p m ^ p
     unfold gFam uFam
-    rw [Nat.sub_add_cancel (one_le_index hp m), if_pos (dvd_mul_right p (m + 1))]
+    rw [Nat.sub_add_cancel (one_le_index hp m), ite_eq_left (dvd_mul_right p (m + 1))]
 
 omit [DiscreteTopology K] in
 
 theorem tprod_g'Fam {p : ℕ} (hp : 0 < p) : ∏' n, g'Fam K p n = ∏' n, uFam K (p * p) n := by
   have hsupp := mulSupport_subset_range (g'Fam K p) fun n hd => by
-    unfold g'Fam; rw [if_neg hd]
+    unfold g'Fam; rw [ite_eq_right hd]
   rw [← (index_injective hp).tprod_eq hsupp]
   exact tprod_congr fun m => by
     show g'Fam K p (p * (m + 1) - 1) = uFam K (p * p) m
     unfold g'Fam uFam
-    rw [Nat.sub_add_cancel (one_le_index hp m), if_pos (dvd_mul_right p (m + 1)), mul_assoc]
+    rw [Nat.sub_add_cancel (one_le_index hp m), ite_eq_left (dvd_mul_right p (m + 1)), mul_assoc]
 
 theorem regroup {p : ℕ} (hp : 0 < p) :
     (∏' n, cFam K p n) * (∏' n, uFam K (p * p) n) = (∏' n, uFam K p n) ^ (p + 1) := by

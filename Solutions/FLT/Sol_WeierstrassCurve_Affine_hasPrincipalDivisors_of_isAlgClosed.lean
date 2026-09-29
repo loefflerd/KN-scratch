@@ -314,7 +314,7 @@ theorem divOf_ofHeightOneSpectrum (f : W.FunctionField) (w : HeightOneSpectrum W
   have h2 : (Finsupp.single (vInf W) ((vInf W).ord f) : Divisor F W.FunctionField)
       (Place.ofHeightOneSpectrum (K := F) (F := W.FunctionField) w) = 0 := by
     classical
-    rw [Finsupp.single_apply, if_neg (vInf_ne_ofHeightOneSpectrum w)]
+    rw [Finsupp.single_apply, ite_eq_right (vInf_ne_ofHeightOneSpectrum w)]
   show ((countFinsupp f).embDomain ofHOSEmb + Finsupp.single (vInf W) ((vInf W).ord f))
     (Place.ofHeightOneSpectrum (K := F) (F := W.FunctionField) w) = _
   rw [Finsupp.add_apply, h1, h2, add_zero, countFinsupp_apply]

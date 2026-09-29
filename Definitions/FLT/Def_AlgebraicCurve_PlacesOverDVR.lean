@@ -266,7 +266,7 @@ theorem sum_ramificationIdx'_mul_inertiaDeg'_integralClosureAt :
     ∑ P ∈ IsDedekindDomain.primesOverFinset
         (IsLocalRing.maximalIdeal v.toValuationSubring) (integralClosureAt F' v),
       Ideal.ramificationIdx' (IsLocalRing.maximalIdeal v.toValuationSubring) P *
-        Ideal.inertiaDeg' (IsLocalRing.maximalIdeal v.toValuationSubring) P =
+        Ideal.inertiaDeg (IsLocalRing.maximalIdeal v.toValuationSubring) P =
           Module.finrank F F' := by
   classical
   let p := IsLocalRing.maximalIdeal v.toValuationSubring

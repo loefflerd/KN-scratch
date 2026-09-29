@@ -374,8 +374,8 @@ private theorem _root_.PeriodPair.kw_weierstrassP_surjective (x₀ : ℂ) : ∃ 
   classical
 
   let G : ℂ → ℂ := fun z => if z ∈ L.lattice then 0 else (℘[L] z - x₀)⁻¹
-  have hGcompl : ∀ z ∉ L.lattice, G z = (℘[L] z - x₀)⁻¹ := fun z hz => if_neg hz
-  have hGmem : ∀ z ∈ L.lattice, G z = 0 := fun z hz => if_pos hz
+  have hGcompl : ∀ z ∉ L.lattice, G z = (℘[L] z - x₀)⁻¹ := fun z hz => ite_eq_right hz
+  have hGmem : ∀ z ∈ L.lattice, G z = 0 := fun z hz => ite_eq_left hz
 
   have hGper : ∀ l ∈ L.lattice, ∀ z, G (z + l) = G z := by
     intro l hl z
@@ -1000,17 +1000,17 @@ private theorem _root_.PeriodPair.kw_elliptic_Liouville_zero (hw : w ∉ L.latti
   let Φext : ℂ → ℂ := fun u => if u ∈ L.lattice then B₀ 0
     else if u + w ∈ L.lattice then B₁ (-w) else H u
   have hΦD : ∀ u ∈ L.kwAddΦDomain w, Φext u = H u := fun u ⟨h1, h2⟩ => by
-    simp only [Φext, if_neg h1, if_neg h2]
+    simp only [Φext, ite_eq_right h1, ite_eq_right h2]
 
   have hper : ∀ l ∈ L.lattice, ∀ u, Φext (u + l) = Φext u := by
     intro l hl u
     by_cases h1 : u ∈ L.lattice
-    · simp only [Φext, if_pos h1, if_pos (add_mem h1 hl)]
+    · simp only [Φext, ite_eq_left h1, ite_eq_left (add_mem h1 hl)]
     have h1' : u + l ∉ L.lattice := fun h => h1 (by simpa using sub_mem h hl)
     by_cases h2 : u + w ∈ L.lattice
     · have h2' : u + l + w ∈ L.lattice := by
         rw [show u + l + w = u + w + l from by ring]; exact add_mem h2 hl
-      simp only [Φext, if_neg h1, if_neg h1', if_pos h2, if_pos h2']
+      simp only [Φext, ite_eq_right h1, ite_eq_right h1', ite_eq_left h2, ite_eq_left h2']
     · have h2' : u + l + w ∉ L.lattice := fun h => h2 (by
         rw [show u + l + w = u + w + l from by ring] at h; simpa using sub_mem h hl)
       rw [hΦD u ⟨h1, h2⟩, hΦD (u + l) ⟨h1', h2'⟩, hHper l hl u]
@@ -1033,7 +1033,7 @@ private theorem _root_.PeriodPair.kw_elliptic_Liouville_zero (hw : w ∉ L.latti
         exact ⟨h3, fun h => h1 (h ▸ zero_mem _)⟩
     have hcont : ContinuousAt Φext 0 := by
       rw [← continuousWithinAt_compl_self, ContinuousWithinAt,
-        show Φext 0 = B₀ 0 from if_pos (zero_mem _)]
+        show Φext 0 = B₀ 0 from ite_eq_left (zero_mem _)]
       refine Tendsto.congr' ?_ (hB₀_an.continuousAt.continuousWithinAt)
       filter_upwards [mem_nhdsWithin_of_mem_nhds hs_nhds, self_mem_nhdsWithin, hB₀_eq]
         with u ⟨h1, h2⟩ h3 h4
@@ -1067,7 +1067,7 @@ private theorem _root_.PeriodPair.kw_elliptic_Liouville_zero (hw : w ∉ L.latti
     have hcont : ContinuousAt Φext (-w) := by
       rw [← continuousWithinAt_compl_self, ContinuousWithinAt,
         show Φext (-w) = B₁ (-w) from by
-          simp only [Φext, if_neg hnw, _root_.neg_add_cancel, if_pos (zero_mem _)]]
+          simp only [Φext, ite_eq_right hnw, _root_.neg_add_cancel, ite_eq_left (zero_mem _)]]
       refine Tendsto.congr' ?_ (hB₁_an.continuousAt.continuousWithinAt)
       filter_upwards [mem_nhdsWithin_of_mem_nhds hs_nhds, self_mem_nhdsWithin, hB₁_eq]
         with u ⟨h1, h2⟩ h3 h4

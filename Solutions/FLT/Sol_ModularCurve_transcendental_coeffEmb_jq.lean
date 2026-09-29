@@ -173,11 +173,11 @@ theorem smul_cuspidalDivisor_apply (hmem : modularUnitSeries ℓ ∈ modularFunc
   simp only [cuspidalDivisor_def, Finsupp.smul_apply, Finsupp.sub_apply, Finsupp.single_apply, smul_eq_mul]
   by_cases hc : IsCusp (jb ℓ) v
   · rcases eq_cuspInftyBar_or_eq_cuspZeroBar ℓ v hc with rfl | rfl
-    · rw [if_neg hne, if_pos rfl, ord_inf]; ring
-    · rw [if_pos rfl, if_neg hne.symm, ord_zero]; ring
+    · rw [ite_eq_right hne, ite_eq_left rfl, ord_inf]; ring
+    · rw [ite_eq_left rfl, ite_eq_right hne.symm, ord_zero]; ring
   · have h1 : cuspZeroBar ℓ ≠ v := fun h => hc (h ▸ isCusp_zero ℓ)
     have h2 : cuspInftyBar ℓ ≠ v := fun h => hc (h ▸ isCusp_inf ℓ)
-    rw [if_neg h1, if_neg h2, ord_of_not_isCusp ℓ hmem v hc]; ring
+    rw [ite_eq_right h1, ite_eq_right h2, ord_of_not_isCusp ℓ hmem v hc]; ring
 
 theorem isPrincipal_smul_cuspidalDivisor : Divisor.IsPrincipal (((ℓ : ℤ) - 1) • cuspidalDivisor ℓ) :=
   ⟨ubar ℓ (modularUnitSeries_mem_modularFunctionFieldFull ℓ), ubar_ne_zero ℓ _,

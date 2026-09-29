@@ -50,16 +50,16 @@ theorem degree_eq_iff (d : Fin 2 →₀ ℕ) : d.degree = n ↔ ∃ j ∈ Finset
     omega
 
 theorem eq_sum_range {P : MvPolynomial (Fin 2) R} (hP : P ∈ BinaryForm R n) :
-    P = ∑ j ∈ Finset.range (n + 1), MvPolynomial.monomial (expo n j) (MvPolynomial.coeff (expo n j) P) := by
+    P = ∑ j ∈ Finset.range (n + 1), MvPolynomial.monomial (expo n j) (AddMonoidAlgebra.coeff P (expo n j)) := by
   classical
   refine MvPolynomial.ext _ _ fun d => ?_
   rw [MvPolynomial.coeff_sum]
   simp only [MvPolynomial.coeff_monomial]
   by_cases hd : d.degree = n
   · obtain ⟨j, hj, rfl⟩ := (degree_eq_iff d).mp hd
-    rw [Finset.sum_eq_single j (fun i hi hne => if_neg fun h => hne (expo_injOn hi hj h)) (fun h => (h hj).elim),
-      if_pos rfl]
-  · rw [Finset.sum_eq_zero fun i hi => if_neg fun h => hd ((degree_eq_iff d).mpr ⟨i, hi, h⟩)]
+    rw [Finset.sum_eq_single j (fun i hi hne => ite_eq_right fun h => hne (expo_injOn hi hj h)) (fun h => (h hj).elim),
+      ite_eq_left rfl]
+  · rw [Finset.sum_eq_zero fun i hi => ite_eq_right fun h => hd ((degree_eq_iff d).mpr ⟨i, hi, h⟩)]
     exact ((MvPolynomial.mem_homogeneousSubmodule n P).mp hP).coeff_eq_zero hd
 
 noncomputable def dehom : MvPolynomial (Fin 2) R →ₐ[R] R[X] := MvPolynomial.aeval ![1, Polynomial.X]
@@ -71,22 +71,22 @@ theorem dehom_monomial (j : ℕ) (c : R) :
   simp [dehom, Polynomial.C_mul']
 
 theorem dehom_eq_sum {P : MvPolynomial (Fin 2) R} (hP : P ∈ BinaryForm R n) :
-    dehom P = ∑ j ∈ Finset.range (n + 1), Polynomial.C (MvPolynomial.coeff (expo n j) P) * Polynomial.X ^ j := by
+    dehom P = ∑ j ∈ Finset.range (n + 1), Polynomial.C (AddMonoidAlgebra.coeff P (expo n j)) * Polynomial.X ^ j := by
   conv_lhs => rw [eq_sum_range hP, map_sum]
   exact Finset.sum_congr rfl fun j _ => dehom_monomial j _
 
 theorem coeff_dehom {P : MvPolynomial (Fin 2) R} (hP : P ∈ BinaryForm R n) (j : ℕ) :
-    (dehom P).coeff j = if j ∈ Finset.range (n + 1) then MvPolynomial.coeff (expo n j) P else 0 := by
+    (dehom P).coeff j = if j ∈ Finset.range (n + 1) then AddMonoidAlgebra.coeff P (expo n j) else 0 := by
   rw [dehom_eq_sum hP, Polynomial.finsetSum_coeff]
   simp only [Polynomial.coeff_C_mul_X_pow]
   split_ifs with h
-  · rw [Finset.sum_eq_single j (fun i _ hne => if_neg hne.symm) (fun h' => (h' h).elim), if_pos rfl]
-  · exact Finset.sum_eq_zero fun i hi => if_neg fun h' => h (by rw [h']; exact hi)
+  · rw [Finset.sum_eq_single j (fun i _ hne => ite_eq_right hne.symm) (fun h' => (h' h).elim), ite_eq_left rfl]
+  · exact Finset.sum_eq_zero fun i hi => ite_eq_right fun h' => h (by rw [h']; exact hi)
 
 theorem natDegree_dehom_le {P : MvPolynomial (Fin 2) R} (hP : P ∈ BinaryForm R n) : (dehom P).natDegree ≤ n := by
   rw [Polynomial.natDegree_le_iff_coeff_eq_zero]
   intro j hj
-  rw [coeff_dehom hP, if_neg]
+  rw [coeff_dehom hP, ite_eq_right]
   rw [Finset.mem_range]; omega
 
 theorem dehom_binarySubst_T_zpow (h : ℤ) (P : MvPolynomial (Fin 2) R) :
@@ -158,13 +158,13 @@ theorem SolMain.A2 {R : Type*} [CommRing R] [IsDomain R] (n : ℕ) {h : ℤ}
   have hq : (dehom (P : MvPolynomial (Fin 2) R)).comp (Polynomial.X + Polynomial.C (h : R)) = dehom (P : MvPolynomial (Fin 2) R) := by
     rw [← dehom_binarySubst_T_zpow, hsub]
   have hconst := eq_C_of_comp_X_add_C_eq (natDegree_dehom_le P.2) hh hn hq
-  refine ⟨MvPolynomial.coeff (expo n 0) (P : MvPolynomial (Fin 2) R), ?_⟩
+  refine ⟨AddMonoidAlgebra.coeff (P : MvPolynomial (Fin 2) R) (expo n 0), ?_⟩
 
-  have hcoeff : ∀ j ∈ Finset.range (n + 1), j ≠ 0 → MvPolynomial.coeff (expo n j) (P : MvPolynomial (Fin 2) R) = 0 := by
+  have hcoeff : ∀ j ∈ Finset.range (n + 1), j ≠ 0 → AddMonoidAlgebra.coeff (P : MvPolynomial (Fin 2) R) (expo n j) = 0 := by
     intro j hj hj0
     have := congrArg (fun r : R[X] => r.coeff j) hconst
-    simp only [Polynomial.coeff_C, if_neg hj0] at this
-    rwa [coeff_dehom P.2, if_pos hj] at this
+    simp only [Polynomial.coeff_C, ite_eq_right hj0] at this
+    rwa [coeff_dehom P.2, ite_eq_left hj] at this
   conv_lhs => rw [eq_sum_range P.2]
   rw [Finset.sum_eq_single 0 (fun j hj hj0 => by rw [hcoeff j hj hj0, map_zero]) (fun h0 => (h0 (by simp)).elim)]
   rw [expo, Nat.sub_zero, Finsupp.single_zero, add_zero, ← MvPolynomial.C_mul_X_pow_eq_monomial, MvPolynomial.smul_eq_C_mul]

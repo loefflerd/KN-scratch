@@ -387,13 +387,13 @@ theorem rel₄_of_anti_oddRec_evenRec (one : W 1 ∈ R⁰) (two : W 2 ∈ R⁰)
     linarith only [hba]
   obtain ⟨m, rfl|rfl⟩ := b.even_or_odd'
   · have ea : Even a := by rw [← ha']; exact (even_two_mul _).add even_two
-    simp_rw [cMin, dMin, if_pos ea]
+    simp_rw [cMin, dMin, ite_eq_left ea]
     have hm : m ≥ 2 := by linarith only [h6, ha']
     convert (rel₃_iff₄ W (m + 1) m 1).mp ((rel₃_iff_oddRec W m).mpr <| oddRec _ hm) using 2
     all_goals ring
   · have nea : ¬ Even a := by
       rw [← ha', Int.not_even_iff_odd]; convert odd_two_mul_add_one (m + 1) using 1; ring
-    simp_rw [cMin, dMin, if_neg nea]
+    simp_rw [cMin, dMin, ite_eq_right nea]
     have hm : m + 1 ≥ 3 := by linarith only [h6, ha']
     convert (rel₄_iff_evenRec W (m + 1)).mpr (evenRec _ hm) using 2
     all_goals ring
@@ -610,9 +610,9 @@ lemma compl₂EDS_mul_b : letI W := normEDS b c d
   exact complEDS₂_mul_b b c d m
 
 lemma normEDS_six_eq_mul : normEDS b c d 6 = (normEDS b c d 5 - d ^ 2) * b * c := by
-  rw [show (6 : ℤ) = 2 * 3 by rfl, ← normEDS_mul_compl₂EDS, compl₂EDS, if_neg (by decide)]
+  rw [show (6 : ℤ) = 2 * 3 by rfl, ← normEDS_mul_compl₂EDS, compl₂EDS, ite_eq_right (by decide)]
   simp_rw [Int.reduceAdd, Int.reduceSub, normEDS_three, normEDS]
-  rw [preNormEDS_one, preNormEDS_two, preNormEDS_four, if_neg (by decide)]
+  rw [preNormEDS_one, preNormEDS_two, preNormEDS_four, ite_eq_right (by decide)]
   ring
 
 namespace EllSequence

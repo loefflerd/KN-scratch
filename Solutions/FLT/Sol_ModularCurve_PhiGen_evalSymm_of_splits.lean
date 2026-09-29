@@ -283,7 +283,7 @@ private theorem sum_conj_succ_eq_ratC_of_aeval_jq_eq (hζ : IsPrimitiveRoot (ζ 
   have hcoeff := congrArg (fun p => Polynomial.coeff p (ℓ - 1)) key
   have hℓ2 : 2 ≤ ℓ := hℓ.out.two_le
   simp only [Polynomial.coeff_sub, Polynomial.coeff_C,
-    if_neg (by omega : ¬(ℓ - 1 = 0))] at hcoeff
+    ite_eq_right (by omega : ¬(ℓ - 1 = 0))] at hcoeff
   have hBcoeff : B.coeff (ℓ - 1) = -∑ b : Fin ℓ, conj ℓ ζ b.succ := by
     have hv := Polynomial.prod_X_sub_C_coeff_card_pred (Finset.univ : Finset (Fin ℓ))
       (fun b => conj ℓ ζ b.succ) (by simp [hℓ.out.pos])

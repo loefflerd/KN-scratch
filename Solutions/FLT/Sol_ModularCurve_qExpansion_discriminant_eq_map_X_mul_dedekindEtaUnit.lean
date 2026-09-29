@@ -35,7 +35,7 @@ private lemma coeff_mul_factor_eq' {R : Type*} [CommRing R] {m n : ℕ} (hmn : m
       1 + PowerSeries.X ^ (n + 1) * S := by
     rw [← hS]; ring
   rw [hS, mul_add, mul_one, map_add, ← mul_assoc, mul_comm Q, mul_assoc,
-    PowerSeries.coeff_X_pow_mul', if_neg (not_le.mpr hmn), add_zero]
+    PowerSeries.coeff_X_pow_mul', ite_eq_right (not_le.mpr hmn), add_zero]
 
 private lemma coeff_trunc_eq_coeff_tprod (R : Type*) [CommRing R] [TopologicalSpace R]
     [IsTopologicalRing R] [T2Space R] (m : ℕ) {N : ℕ} (hN : m < N) :

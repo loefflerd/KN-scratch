@@ -46,7 +46,7 @@ lemma zterm_eq_of_ne (z : ℂ) {v : Fin 2 → ℤ} (hv : v ≠ 0) (hz : z ≠ om
     zterm τ z v = z ^ 2 / (om τ v ^ 2 * (z - om τ v)) := by
   have h1 : om τ v ≠ 0 := om_ne_zero τ hv
   have h2 : z - om τ v ≠ 0 := sub_ne_zero.mpr hz
-  rw [zterm, if_neg hv]
+  rw [zterm, ite_eq_right hv]
   field_simp
   ring
 
@@ -236,7 +236,7 @@ lemma row_of_ne_zero {z : ℂ} (hz : ¬ IsLatticePt τ z) {m : ℤ} (hm : m ≠ 
   have key : ∀ n : ℤ, zterm τ z ![m, n] =
       (1 / ((m : ℂ) * τ + n) - 1 / ((m : ℂ) * τ - z + n)) + z * (1 / ((m : ℂ) * τ + n) ^ 2) := by
     intro n
-    rw [zterm, if_neg (hv n)]
+    rw [zterm, ite_eq_right (hv n)]
     simp only [om, Matrix.cons_val_zero, Matrix.cons_val_one]
     have e1 : z - ((m : ℂ) * τ + n) = -((m : ℂ) * τ - z + n) := by ring
     rw [e1, one_div_neg_eq_neg_one_div]
@@ -265,7 +265,7 @@ lemma tsum_azero {z : ℂ} (hzC : z ∈ ℂ_ℤ) (has : Summable (azero z)) :
       simpa [sub_eq_add_neg] using integerComplement_add_ne_zero hzC (-(n + 1) : ℤ)
     have h5 : z + ((n : ℂ) + 1) ≠ 0 := by
       simpa using integerComplement_add_ne_zero hzC ((n : ℤ) + 1)
-    simp only [azero, if_neg h1, if_neg h2, cotTerm]
+    simp only [azero, ite_eq_right h1, ite_eq_right h2, cotTerm]
     push_cast
     simp only [sub_neg_eq_add, div_neg, one_div]
     ring
@@ -281,11 +281,11 @@ lemma row_zero {z : ℂ} (hz : ¬ IsLatticePt τ z) :
     · subst hn
       have h00 : (![0, 0] : Fin 2 → ℤ) = 0 := by
         funext i; fin_cases i <;> rfl
-      rw [zterm, if_pos h00]
+      rw [zterm, ite_eq_left h00]
       simp [azero]
     · have hv : (![0, n] : Fin 2 → ℤ) ≠ 0 := by
         intro h; exact hn (by simpa using congr_fun h 1)
-      rw [zterm, if_neg hv, azero, if_neg hn]
+      rw [zterm, ite_eq_right hv, azero, ite_eq_right hn]
       simp only [om, Matrix.cons_val_zero, Matrix.cons_val_one, Int.cast_zero, zero_mul,
         zero_add]
       ring
@@ -353,8 +353,8 @@ def crow (z : ℂ) (m : ℤ) : ℂ :=
 lemma row_eq_crow_add {z : ℂ} (hz : ¬ IsLatticePt τ z) (m : ℤ) :
     row τ z m = crow τ z m + z * E2row τ m := by
   by_cases hm : m = 0
-  · subst hm; rw [row_zero τ hz, crow, if_pos rfl]
-  · rw [row_of_ne_zero τ hz hm, crow, if_neg hm]
+  · subst hm; rw [row_zero τ hz, crow, ite_eq_left rfl]
+  · rw [row_of_ne_zero τ hz hm, crow, ite_eq_right hm]
 
 lemma im_int_mul (m : ℤ) : ((m : ℂ) * τ).im = m * τ.im := by simp
 
@@ -375,7 +375,7 @@ lemma summable_crow_nat (z : ℂ) : Summable fun n : ℕ => crow τ z n := by
   have hn1 : 1 ≤ n := le_of_max_le_right hn
   have hn0 : (n : ℤ) ≠ 0 := by omega
   have hnN : (N₀ : ℝ) ≤ n := by exact_mod_cast le_of_max_le_left hn
-  rw [crow, if_neg hn0]
+  rw [crow, ite_eq_right hn0]
   have hIm1 : τ.im ≤ (((n : ℤ) : ℂ) * τ).im := by
     rw [im_int_mul]; push_cast
     have : (1 : ℝ) ≤ n := by exact_mod_cast hn1
@@ -418,7 +418,7 @@ lemma summable_crow_neg (z : ℂ) : Summable fun n : ℕ => crow τ z (-n) := by
   have hn1 : 1 ≤ n := le_of_max_le_right hn
   have hn0 : (-(n : ℤ)) ≠ 0 := by omega
   have hnN : (N₀ : ℝ) ≤ n := by exact_mod_cast le_of_max_le_left hn
-  rw [crow, if_neg hn0]
+  rw [crow, ite_eq_right hn0]
   have hIm1 : τ.im ≤ (((n : ℤ) : ℂ) * τ).im := by
     rw [im_int_mul]; push_cast
     have : (1 : ℝ) ≤ n := by exact_mod_cast hn1
@@ -517,7 +517,7 @@ theorem hasSum_weierstrassZeta_sub {z : ℂ} (hz : ¬ IsLatticePt τ z) :
     intro n
     have h1 : ((n + 1 : ℕ) : ℤ) ≠ 0 := by omega
     have h2 : (-(n + 1 : ℤ)) ≠ 0 := by omega
-    rw [crow, if_neg h1, crow, if_neg h2]
+    rw [crow, ite_eq_right h1, crow, ite_eq_right h2]
     push_cast
     rw [show π * (-((n : ℂ) + 1) * τ) = -(π * (((n : ℂ) + 1) * τ)) by ring, cot_neg]
     ring_nf

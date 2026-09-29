@@ -1,6 +1,6 @@
 import Mathlib.LinearAlgebra.Matrix.SpecialLinearGroup
 import Mathlib.GroupTheory.GroupAction.Quotient
-import Mathlib.Data.Finite.Prod
+import Mathlib.Basic.Finite.Prod
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000

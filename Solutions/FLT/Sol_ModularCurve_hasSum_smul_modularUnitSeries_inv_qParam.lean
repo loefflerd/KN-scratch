@@ -80,7 +80,7 @@ private theorem hasSum_single_mul_coe_iff (k : ℤ) (P : PowerSeries ℂ) {q : �
       by_contra hge
       push Not at hge
       exact hm ⟨(m - k).toNat, by simp only; omega⟩
-    rw [← sub_add_cancel m k, HahnSeries.coeff_single_mul_add, one_mul, PowerSeries.coeff_coe, if_pos hmk,
+    rw [← sub_add_cancel m k, HahnSeries.coeff_single_mul_add, one_mul, PowerSeries.coeff_coe, ite_eq_left hmk,
       zero_mul]
 
 private theorem hasSum_theta_deltaSeries (τ : ℍ) :

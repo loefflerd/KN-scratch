@@ -55,8 +55,8 @@ theorem eq_sum_degExps {p : MvPolynomial (Fin 2) K} (hp : p ∈ BinaryForm K n) 
   rw [coeff_sum]
   simp only [coeff_monomial]
   by_cases hd : d ∈ degExps n
-  · rw [Finset.sum_eq_single d (fun e _ hne => if_neg hne) (fun h => (h hd).elim), if_pos rfl]
-  · rw [Finset.sum_eq_zero (fun e he => if_neg (fun h : e = d => hd (h ▸ he))),
+  · rw [Finset.sum_eq_single d (fun e _ hne => ite_eq_right hne) (fun h => (h hd).elim), ite_eq_left rfl]
+  · rw [Finset.sum_eq_zero (fun e he => ite_eq_right (fun h : e = d => hd (h ▸ he))),
       coeff_eq_zero_of_not_mem_degExps hp hd]
 
 theorem coeff_binaryFormRepSL_eq_sum (g : SL(2, ℤ)) (v : ↥(BinaryForm K n)) (d : Fin 2 →₀ ℕ) :

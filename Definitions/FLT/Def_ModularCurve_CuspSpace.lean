@@ -15,12 +15,12 @@ noncomputable section
 def ratPoint (a c : ℤ) : OnePoint ℚ :=
   if c = 0 then ∞ else (((a : ℚ) / (c : ℚ) : ℚ) : OnePoint ℚ)
 
-@[simp] lemma ratPoint_zero_right (a : ℤ) : ratPoint a 0 = ∞ := if_pos rfl
+@[simp] lemma ratPoint_zero_right (a : ℤ) : ratPoint a 0 = ∞ := ite_eq_left rfl
 
 lemma ratPoint_of_ne_zero (a : ℤ) {c : ℤ} (hc : c ≠ 0) :
-    ratPoint a c = (((a : ℚ) / (c : ℚ) : ℚ) : OnePoint ℚ) := if_neg hc
+    ratPoint a c = (((a : ℚ) / (c : ℚ) : ℚ) : OnePoint ℚ) := ite_eq_right hc
 
-@[simp] lemma ratPoint_one_zero : ratPoint 1 0 = ∞ := if_pos rfl
+@[simp] lemma ratPoint_one_zero : ratPoint 1 0 = ∞ := ite_eq_left rfl
 
 @[simp] lemma ratPoint_zero_one : ratPoint 0 1 = ((0 : ℚ) : OnePoint ℚ) := by
   simp [ratPoint]
@@ -60,7 +60,7 @@ lemma mapGL_smul_infty (γ : SL(2, ℤ)) :
   rw [smul_infty_eq_ite, mapGL_apply_coe, mapGL_apply_coe]
   rcases eq_or_ne (γ 1 0) 0 with h | h
   · simp [h]
-  · rw [if_neg (by exact_mod_cast h), ratPoint_of_ne_zero _ h]
+  · rw [ite_eq_right (by exact_mod_cast h), ratPoint_of_ne_zero _ h]
 
 lemma mapGL_smul_ratPoint (γ : SL(2, ℤ)) {a c : ℤ} (h : a ≠ 0 ∨ c ≠ 0) :
     mapGL ℚ γ • ratPoint a c =
@@ -87,8 +87,8 @@ lemma mapGL_smul_ratPoint (γ : SL(2, ℤ)) {a c : ℤ} (h : a ≠ 0 ∨ c ≠ 0
       push_cast
       ring
     rcases eq_or_ne (γ 1 0 * a + γ 1 1 * c) 0 with h0 | h0
-    · rw [if_pos (by rw [hden, h0]; simp), h0, ratPoint_zero_right]
-    · rw [if_neg (by rw [hden]; exact div_ne_zero (by exact_mod_cast h0) hcQ),
+    · rw [ite_eq_left (by rw [hden, h0]; simp), h0, ratPoint_zero_right]
+    · rw [ite_eq_right (by rw [hden]; exact div_ne_zero (by exact_mod_cast h0) hcQ),
         ratPoint_of_ne_zero _ h0, hnum, hden, OnePoint.coe_eq_coe,
         div_div_div_cancel_right₀ hcQ]
 

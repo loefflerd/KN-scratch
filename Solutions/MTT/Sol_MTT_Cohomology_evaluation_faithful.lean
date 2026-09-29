@@ -19,7 +19,7 @@ def mono (n j : ℕ) : Fin 2 →₀ ℕ :=
 theorem mono_apply (n j : ℕ) (i : Fin 2) : mono n j i = if i = 0 then j else n - j := rfl
 
 theorem evaluation_apply (j : ℕ) (r : ℚ) (φ : Hc N n R) :
-    evaluation j r φ = MvPolynomial.coeff (mono n j) (φ.val (OnePoint.infty, (r : Cusp))) :=
+    evaluation j r φ = AddMonoidAlgebra.coeff (φ.val (OnePoint.infty, (r : Cusp))) (mono n j) :=
   rfl
 
 theorem deg_eq (d : Fin 2 →₀ ℕ) : d.degree = d 0 + d 1 := by

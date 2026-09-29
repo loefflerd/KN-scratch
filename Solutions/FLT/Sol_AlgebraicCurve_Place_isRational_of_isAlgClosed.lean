@@ -111,7 +111,7 @@ theorem solution {K F : Type*} [Field K] [IsAlgClosed K] [Field F] [Algebra K F]
   have hRj : R.coeff j = 1 := by
     rw [hR, finsetSum_coeff]
     simp only [coeff_C_mul_X_pow]
-    rw [Finset.sum_ite_eq p.support j, if_pos hj, hcj]
+    rw [Finset.sum_ite_eq p.support j, ite_eq_left hj, hcj]
   have hR0 : R ≠ 0 := fun h => by
     have := hRj
     rw [h, coeff_zero] at this

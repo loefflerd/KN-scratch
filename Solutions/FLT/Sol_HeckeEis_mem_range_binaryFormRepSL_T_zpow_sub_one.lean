@@ -83,7 +83,7 @@ end HeckeEis.RangeTzpowSol
 open _root_.HeckeEis _root_.P2MW.S_HeckeEis_mem_range_binaryFormRepSL_T_zpow_sub_one.HeckeEis HeckeEis.RangeTzpowSol MvPolynomial in
 theorem solution {K : Type*} [Field K] [CharZero K] (n : ℕ) {h : ℤ}
     (hh : h ≠ 0) (P : ↥(HeckeEis.BinaryForm K n))
-    (hP : MvPolynomial.coeff (Finsupp.single 1 n) (P : MvPolynomial (Fin 2) K) = 0) :
+    (hP : AddMonoidAlgebra.coeff (P : MvPolynomial (Fin 2) K) (Finsupp.single 1 n) = 0) :
     P ∈ LinearMap.range (HeckeEis.binaryFormRepSL K n (ModularGroup.T ^ h) - 1) := by
   classical
   have hhom : (P : MvPolynomial (Fin 2) K).IsHomogeneous n := (mem_homogeneousSubmodule n _).mp P.2
@@ -104,7 +104,7 @@ theorem solution {K : Type*} [Field K] [CharZero K] (n : ℕ) {h : ℤ}
     rw [this]
     exact hP
   have hrepr : P = ∑ d ∈ (P : MvPolynomial (Fin 2) K).support,
-      MvPolynomial.coeff d (P : MvPolynomial (Fin 2) K) • mono K n (d 1) := by
+      AddMonoidAlgebra.coeff (P : MvPolynomial (Fin 2) K) d • mono K n (d 1) := by
     apply Subtype.ext
     rw [Submodule.coe_sum]
     conv_lhs => rw [(P : MvPolynomial (Fin 2) K).as_sum]

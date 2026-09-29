@@ -30,7 +30,7 @@ variable {n : ℕ}
 theorem slash_apply_of_det_pos (f : ℍ → ℂ) (k : ℤ) {β : GL (Fin 2) ℝ} (hβ : 0 < β.val.det) (τ : ℍ) :
     (f ∣[k] β) τ = f (β • τ) * (↑β.val.det) ^ (k - 1) * denom β ↑τ ^ (-k) := by
   have hβ' : 0 < β.det.val := by rwa [Matrix.GeneralLinearGroup.val_det_apply]
-  rw [ModularForm.slash_apply, σ, if_pos hβ', ContinuousAlgEquiv.refl_apply]
+  rw [ModularForm.slash_apply, σ, ite_eq_left hβ', ContinuousAlgEquiv.refl_apply]
   have habs : |β.det.val| = β.val.det := by
     rw [abs_of_pos hβ', Matrix.GeneralLinearGroup.val_det_apply]
   rw [habs]
@@ -74,8 +74,8 @@ theorem eq_sum_degExps {K : Type*} [CommRing K] {p : MvPolynomial (Fin 2) K} (hp
   rw [coeff_sum]
   simp only [coeff_monomial]
   by_cases hd : d ∈ degExps n
-  · rw [Finset.sum_eq_single d (fun e _ hne => if_neg hne) (fun h => (h hd).elim), if_pos rfl]
-  · rw [Finset.sum_eq_zero (fun e he => if_neg (fun h : e = d => hd (h ▸ he)))]
+  · rw [Finset.sum_eq_single d (fun e _ hne => ite_eq_right hne) (fun h => (h hd).elim), ite_eq_left rfl]
+  · rw [Finset.sum_eq_zero (fun e he => ite_eq_right (fun h : e = d => hd (h ▸ he)))]
     exact ((mem_homogeneousSubmodule n p).mp hp).coeff_eq_zero (by rwa [mem_degExps_iff] at hd)
 
 theorem coeff_binarySubst_eq_sum {K : Type*} [CommRing K] (M : Matrix (Fin 2) (Fin 2) ℤ) (v : ↥(BinaryForm K n))

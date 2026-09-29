@@ -74,7 +74,7 @@ lemma eulerProduct_ofPowerSeries_apply_prime_pow {ι R : Type*} [CommSemiring R]
       by_cases hii : i = i₀
       · simp [hii]
       · simpa [hii] using hunit i hii d hd)]
-  rw [Finset.prod_eq_single i₀ (by intros; simp_all) (by simp), if_pos rfl]
+  rw [Finset.prod_eq_single i₀ (by intros; simp_all) (by simp), ite_eq_left rfl]
   exact ofPowerSeries_apply_pow (hq i₀).one_lt (f i₀) r
 
 lemma IsMultiplicative.prime_mul_recurrence {R : Type*} [CommRing R]
@@ -95,7 +95,7 @@ lemma IsMultiplicative.prime_mul_recurrence {R : Type*} [CommRing R]
       rw [pow_succ', Nat.mul_assoc, Nat.mul_div_cancel_left _ hp.pos]
     have hmul : p * (p ^ (r + 1) * u) = p ^ (r + 2) * u := by
       rw [← Nat.mul_assoc, ← pow_succ']
-    rw [if_pos hd, hdiv, hmul, hf.2 (hpu.pow_left (r + 2)),
+    rw [ite_eq_left hd, hdiv, hmul, hf.2 (hpu.pow_left (r + 2)),
       hf.2 (hpu.pow_left (r + 1)), hf.2 (hpu.pow_left r), hrec]
     ring
 
@@ -391,7 +391,7 @@ theorem slash_Tq_apply {q : ℕ} (f : ℍ → ℂ) (τ : ℍ) :
     simp [Tq, Matrix.det_fin_two_of]
   have hdetpos : 0 < ((Tq q).det : ℝ) := by rw [hdet]; exact one_pos
   have hσ : UpperHalfPlane.σ (Tq q) = .refl ℝ ℂ := by
-    rw [UpperHalfPlane.σ, if_pos hdetpos]
+    rw [UpperHalfPlane.σ, ite_eq_left hdetpos]
   have hdenom : UpperHalfPlane.denom (Tq q) τ = 1 := by
     simp [UpperHalfPlane.denom, Tq]
   have hsmul : (Tq q • τ : ℍ) = (q : ℝ)⁻¹ +ᵥ τ := by
@@ -576,7 +576,7 @@ theorem CuspForm.exists_qExpansion_descent_of_prime_support
   have hperiod : (1 : ℝ) ∈ ((CongruenceSubgroup.Gamma0 (N / p) : Subgroup SL(2, ℤ)) :
       Subgroup (GL (Fin 2) ℝ)).strictPeriods := by simp
   have hc := ModularFormClass.qCoeff_comp_heckeDiagMatrix_smul F hperiod hp.ne_zero (p * n)
-  rw [hfun, if_pos (dvd_mul_right p n), Nat.mul_div_cancel_left n hp.pos] at hc
+  rw [hfun, ite_eq_left (dvd_mul_right p n), Nat.mul_div_cancel_left n hp.pos] at hc
   exact hc.symm
 
 end
@@ -766,7 +766,7 @@ lemma modularConductor_recurrence_parameter
       exact_mod_cast hrec n
     rw [hr]
     by_cases hn : p ∣ n
-    · simp only [if_pos hn]
+    · simp only [ite_eq_left hn]
       change c⁻¹ * (_ + _ - _) = _
       have heq : (E.LFunction p : ℂ) * (E.LFunction n : ℂ) -
           (b : ℂ) * (E.LFunction (n / p) : ℂ) +
@@ -783,7 +783,7 @@ lemma modularConductor_recurrence_parameter
     simp [hg, hn])
   have hmodM : Nonempty (ModularFormAtLevel E (N / p)) := by
     refine ⟨⟨hM, fM, fun n ↦ ?_⟩⟩
-    rw [hfM, hg, if_pos (dvd_mul_right p n), Nat.mul_div_cancel_left n hp.pos]
+    rw [hfM, hg, ite_eq_left (dvd_mul_right p n), Nat.mul_div_cancel_left n hp.pos]
   have hmin : N ≤ N / p := Nat.find_min' hmod hmodM
   exact (not_le_of_gt (Nat.div_lt_self F.level_pos hp.one_lt)) hmin
 
@@ -812,12 +812,12 @@ theorem solution (E : WeierstrassCurve ℚ) [E.IsElliptic] (hmod : IsModular E)
     rcases localEulerFactorDegree_dichotomy E hp with hlin | hquad
     · exact hlin
     · have hb := hparameter p (fun n ↦ hquad.LFunction_prime_mul hp n)
-      simp only [Int.cast_natCast, if_pos hdiv] at hb
+      simp only [Int.cast_natCast, ite_eq_left hdiv] at hb
       exact False.elim (hp.ne_zero (by exact_mod_cast hb))
   · intro hlin
     have hb := hparameter 0 (by simpa using hlin.LFunction_prime_mul hp)
     by_contra hnot
-    simp only [Int.cast_zero, if_neg hnot] at hb
+    simp only [Int.cast_zero, ite_eq_right hnot] at hb
     exact hp.ne_zero (by exact_mod_cast hb.symm)
 
 end

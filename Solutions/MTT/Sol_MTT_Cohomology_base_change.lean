@@ -128,7 +128,7 @@ def mono (n j : ℕ) : Fin 2 →₀ ℕ :=
 theorem mono_apply (n j : ℕ) (i : Fin 2) : mono n j i = if i = 0 then j else n - j := rfl
 
 theorem hom_eq_zero (P : Binary R) (hP : P ∈ MTT.Cohomology.Sym R n)
-    (h : ∀ j : Fin (n + 1), MvPolynomial.coeff (mono n j.val) P = 0) : P = 0 := by
+    (h : ∀ j : Fin (n + 1), AddMonoidAlgebra.coeff P (mono n j.val) = 0) : P = 0 := by
   rw [MvPolynomial.mem_homogeneousSubmodule] at hP
   ext d
   rw [MvPolynomial.coeff_zero]
@@ -158,17 +158,15 @@ to a fixed set of coset representatives. -/
 def ThetaF (N n : ℕ) [NeZero N] (R : Type*) [CommRing R] :
     Hc N n R →ₗ[R] (Idx N n →₀ R) where
   toFun φ := Finsupp.equivFunOnFinite.symm fun z : Idx N n =>
-    MvPolynomial.coeff (mono n z.2.val)
-      (φ.val (cuspAct z.1.out ((0 : ℚ) : Cusp), cuspAct z.1.out OnePoint.infty))
+    AddMonoidAlgebra.coeff (φ.val (cuspAct z.1.out ((0 : ℚ) : Cusp), cuspAct z.1.out OnePoint.infty)) (mono n z.2.val)
   map_add' φ ψ := by ext z; simp
   map_smul' c φ := by
     ext z
-    show MvPolynomial.coeff _ ((c • φ).val _) = c * MvPolynomial.coeff _ (φ.val _)
+    show AddMonoidAlgebra.coeff ((c • φ).val _) _ = c * AddMonoidAlgebra.coeff (φ.val _) _
     exact MvPolynomial.coeff_smul _ _ _
 
 @[simp] theorem ThetaF_apply (φ : Hc N n R) (z : Idx N n) :
-    ThetaF N n R φ z = MvPolynomial.coeff (mono n z.2.val)
-      (φ.val (cuspAct z.1.out ((0 : ℚ) : Cusp), cuspAct z.1.out OnePoint.infty)) := rfl
+    ThetaF N n R φ z = AddMonoidAlgebra.coeff (φ.val (cuspAct z.1.out ((0 : ℚ) : Cusp), cuspAct z.1.out OnePoint.infty)) (mono n z.2.val) := rfl
 
 theorem ThetaF_injective : Function.Injective (ThetaF N n R) := by
   rw [injective_iff_map_eq_zero]

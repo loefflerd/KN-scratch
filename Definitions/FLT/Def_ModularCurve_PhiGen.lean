@@ -210,17 +210,17 @@ def cosetA (i : Fin (ℓ + 1)) : ℕ := if i = 0 then ℓ else 1
 def cosetB (i : Fin (ℓ + 1)) : ℕ := if i = 0 then 0 else (i : ℕ) - 1
 
 @[simp]
-theorem cosetA_zero : cosetA ℓ (0 : Fin (ℓ + 1)) = ℓ := if_pos rfl
+theorem cosetA_zero : cosetA ℓ (0 : Fin (ℓ + 1)) = ℓ := ite_eq_left rfl
 
 @[simp]
-theorem cosetB_zero : cosetB ℓ (0 : Fin (ℓ + 1)) = 0 := if_pos rfl
+theorem cosetB_zero : cosetB ℓ (0 : Fin (ℓ + 1)) = 0 := ite_eq_left rfl
 
 @[simp]
-theorem cosetA_succ (b : Fin ℓ) : cosetA ℓ b.succ = 1 := if_neg (Fin.succ_ne_zero b)
+theorem cosetA_succ (b : Fin ℓ) : cosetA ℓ b.succ = 1 := ite_eq_right (Fin.succ_ne_zero b)
 
 @[simp]
 theorem cosetB_succ (b : Fin ℓ) : cosetB ℓ b.succ = (b : ℕ) := by
-  rw [cosetB, if_neg (Fin.succ_ne_zero b), Fin.val_succ, Nat.add_sub_cancel]
+  rw [cosetB, ite_eq_right (Fin.succ_ne_zero b), Fin.val_succ, Nat.add_sub_cancel]
 
 instance instNeZeroPhiGenCosetA [hℓ : Fact (Nat.Prime ℓ)] (i : Fin (ℓ + 1)) :
     NeZero (cosetA ℓ i) :=

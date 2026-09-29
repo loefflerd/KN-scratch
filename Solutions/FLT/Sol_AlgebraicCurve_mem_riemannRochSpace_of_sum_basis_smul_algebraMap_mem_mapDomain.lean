@@ -47,7 +47,7 @@ theorem solution
   have hordSig : -(Finsupp.mapDomain lift D) (lift v) ≤
       (lift v).ord (∑ j ∈ g.support, algebraMap K' F' (B j) * algebraMap F F' (g j)) :=
     (mem_lSpace_iff_ord.mp hmem).resolve_left hne (lift v)
-  rw [Finsupp.mapDomain_apply hlift_inj] at hordSig
+  rw [Finsupp.mapDomain_apply_of_injective hlift_inj] at hordSig
   exact hordSig.trans (hle j₀ hj0supp)
 
 end S_AlgebraicCurve_mem_riemannRochSpace_of_sum_basis_smul_algebraMap_mem_mapDomain

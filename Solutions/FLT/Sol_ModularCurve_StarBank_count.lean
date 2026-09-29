@@ -144,7 +144,7 @@ private theorem _root_.ModularCurve.StarBank.count {K : Type*} [Field K] [IsAlgC
     intro β hβ
     have e := (hfact β hβ).2
     rw [sub_eq_iff_eq_add] at e
-    rw [e, coeff_add, hcoeff, coeff_C, if_neg (by omega : ¬(p - 1 = 0)), add_zero]
+    rw [e, coeff_add, hcoeff, coeff_C, ite_eq_right (by omega : ¬(p - 1 = 0)), add_zero]
   have huniq : ∀ β : K, G.IsRoot β → β = β₀ := by
     intro β hβ
     have h1 := hRcoeff β (hmemS.mpr hβ)

@@ -416,7 +416,7 @@ private theorem sum_pow_of_pow_eq_one {K : Type*} [Field K] {x : K} {ℓ : ℕ} 
   by_cases h1 : x = 1
   · subst h1
     simp
-  · rw [if_neg h1]
+  · rw [ite_eq_right h1]
     have h2 := geom_telescope x ℓ
     rw [hx, sub_self] at h2
     rcases mul_eq_zero.mp h2 with h | h
@@ -457,8 +457,8 @@ private theorem ModularCurve.PhiGen.sum_qTwist_coeff {K : Type*} [Field K] [Alge
     rw [Units.val_zpow_eq_zpow_val]
     exact hζ.zpow_eq_one_iff_dvd k
   by_cases hd : (ℓ : ℤ) ∣ k
-  · rw [if_pos hd, if_pos (hiff.mpr hd)]
-  · rw [if_neg hd, if_neg (fun h => hd (hiff.mp h)), zero_mul]
+  · rw [ite_eq_left hd, ite_eq_left (hiff.mpr hd)]
+  · rw [ite_eq_right hd, ite_eq_right (fun h => hd (hiff.mp h)), zero_mul]
 
 p2m_open_scoped "ModularCurve ModularCurve.PhiGen" in
 private theorem ModularCurve.PhiGen.coeff_sum_slots {K : Type*} [Field K] [Algebra ℚ K] (ℓ : ℕ)
@@ -466,14 +466,14 @@ private theorem ModularCurve.PhiGen.coeff_sum_slots {K : Type*} [Field K] [Algeb
     (qExpand K (ℓ * ℓ) f + ∑ b ∈ Finset.range ℓ, qTwist (ζ ^ b) f).coeff ((ℓ : ℤ) * n)
       = (if (ℓ : ℤ) ∣ n then f.coeff (n / ℓ) else 0) + (ℓ : K) * f.coeff ((ℓ : ℤ) * n) := by
   have hℓ0 : (ℓ : ℤ) ≠ 0 := Int.natCast_ne_zero.mpr (NeZero.ne ℓ)
-  rw [HahnSeries.coeff_add, sum_qTwist_coeff ℓ ζ hζ, if_pos (Dvd.intro n rfl)]
+  rw [HahnSeries.coeff_add, sum_qTwist_coeff ℓ ζ hζ, ite_eq_left (Dvd.intro n rfl)]
   congr 1
   by_cases hd : (ℓ : ℤ) ∣ n
   · obtain ⟨n', rfl⟩ := hd
-    rw [if_pos (Dvd.intro n' rfl)]
+    rw [ite_eq_left (Dvd.intro n' rfl)]
     have h1 : (ℓ : ℤ) * ((ℓ : ℤ) * n') = ((ℓ * ℓ : ℕ) : ℤ) * n' := by push_cast; ring
     rw [h1, qExpand_coeff_mul, Int.mul_ediv_cancel_left n' hℓ0]
-  · rw [if_neg hd]
+  · rw [ite_eq_right hd]
     refine qExpand_coeff_of_not_dvd (R := K) (N := ℓ * ℓ) f ?_
     intro hcon
     refine hd ?_
@@ -488,7 +488,7 @@ private theorem ModularCurve.PhiGen.coeff_sum_slots_not_dvd {K : Type*} [Field K
     (ℓ : ℕ) [NeZero ℓ] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) ℓ) (f : LaurentSeries K)
     {k : ℤ} (hk : ¬ (ℓ : ℤ) ∣ k) :
     (qExpand K (ℓ * ℓ) f + ∑ b ∈ Finset.range ℓ, qTwist (ζ ^ b) f).coeff k = 0 := by
-  rw [HahnSeries.coeff_add, sum_qTwist_coeff ℓ ζ hζ, if_neg hk]
+  rw [HahnSeries.coeff_add, sum_qTwist_coeff ℓ ζ hζ, ite_eq_right hk]
   rw [qExpand_coeff_of_not_dvd (R := K) (N := ℓ * ℓ) f (fun hcon => hk ?_), add_zero]
   obtain ⟨c, hc⟩ := hcon
   exact ⟨(ℓ : ℤ) * c, by rw [hc]; push_cast; ring⟩

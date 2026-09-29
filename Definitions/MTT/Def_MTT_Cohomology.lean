@@ -2,15 +2,23 @@ import Definitions.MTT.Def_MTT_Arithmetic
 import Mathlib.RingTheory.MvPolynomial.Homogeneous
 import Mathlib.Topology.Compactification.OnePoint.ProjectiveLine
 import Mathlib.LinearAlgebra.TensorProduct.Basic
+
 set_option autoImplicit false
+
 noncomputable section
+
 open scoped BigOperators TensorProduct
+
 namespace MTT.Cohomology
+
 abbrev Cusp := OnePoint ℚ
+
 abbrev Binary (R : Type*) [CommRing R] := MvPolynomial (Fin 2) R
+
 /-- Homogeneous-polynomial model of Sym^n(R²). -/
 abbrev Sym (R : Type*) [CommRing R] (n : ℕ) :=
   MvPolynomial.homogeneousSubmodule (Fin 2) R n
+
 /-- Left coefficient action P(X,Y) ↦ P((X,Y)γ). -/
 def act {R : Type*} [CommRing R] (γ : Matrix (Fin 2) (Fin 2) ℤ) :
     Binary R →ₗ[R] Binary R :=
@@ -19,6 +27,7 @@ def act {R : Type*} [CommRing R] (γ : Matrix (Fin 2) (Fin 2) ℤ) :
 
 def cuspAct (γ : Matrix.SpecialLinearGroup (Fin 2) ℤ) (x : Cusp) : Cusp :=
   Matrix.SpecialLinearGroup.mapGL ℚ γ • x
+
 /-- Relative group cohomology in the modular-symbol model
 Hom_Γ(Div⁰(P¹(ℚ)), Sym^n(R²)). Pairs represent [x] − [y].
 This is not coarse-quotient cohomology with integral coefficients. -/
@@ -47,19 +56,23 @@ def compactSupport (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ))
     · intro γ x y
       change a • φ _ = act γ.val.val (a • φ _)
       rw [map_smul, eφ]
+
 abbrev Hc (N n : ℕ) (R : Type*) [CommRing R] :=
   compactSupport (CongruenceSubgroup.Gamma1 N) n R
+
 /-- Integral coefficient evaluation on [∞] − [r]. -/
 def evaluation {N n : ℕ} {R : Type*} [CommRing R] (j : ℕ) (r : ℚ) :
     Hc N n R →ₗ[R] R where
-  toFun φ := MvPolynomial.coeff (Finsupp.equivFunOnFinite.symm
-    (fun i : Fin 2 => if i = 0 then j else n-j)) (φ.val (OnePoint.infty, (r : Cusp)))
+  toFun φ := AddMonoidAlgebra.coeff (φ.val (OnePoint.infty, (r : Cusp)))
+    (Finsupp.equivFunOnFinite.symm (fun i : Fin 2 => if i = 0 then j else n-j))
   map_add' _ _ := by simp
   map_smul' _ _ := by simp
+
 /-- Coefficientwise extension, without presupposing base change. -/
 def Extends {N n : ℕ} {R S : Type*} [CommRing R] [CommRing S]
     (ι : R →+* S) (φ : Hc N n R) (ψ : Hc N n S) : Prop :=
   ∀ x y, ψ.val (x,y) = MvPolynomial.map ι (φ.val (x,y))
+
 /-- Canonical base-change isomorphism specified on pure tensors. -/
 def BaseChange (N n : ℕ) (R : Type*) [CommRing R] : Prop :=
   ∃ e : (R ⊗[ℤ] Hc N n ℤ) ≃ₗ[R] Hc N n R,

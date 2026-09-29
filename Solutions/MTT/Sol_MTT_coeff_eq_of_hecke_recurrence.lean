@@ -1,5 +1,5 @@
 import Mathlib.Data.Nat.Prime.Basic
-import Mathlib.Data.Complex.Basic
+import Mathlib.Basic.Complex.Basic
 import Mathlib.Tactic.Linarith
 set_option autoImplicit false
 

@@ -34,7 +34,7 @@ theorem coeff_pderiv_one (P : MvPolynomial (Fin 2) K) (d : Fin 2 →₀ ℕ) :
       simp only [add_tsub_cancel_right, ↓reduceIte, Finsupp.coe_add, Pi.add_apply, Finsupp.single_eq_same]
       push_cast
       ring
-    · rw [if_neg hs, mul_zero]
+    · rw [ite_eq_right hs, mul_zero]
       split_ifs with h
       ·
         have hs1 : s 1 = 0 := by
@@ -162,16 +162,16 @@ theorem coeff_ex_linePow (n m : ℕ) (hm : m ≤ n) (t : K) :
     rw [hmon, coeff_monomial]
     by_cases hk' : k = n - m
     · subst hk'
-      rw [if_pos, if_pos rfl, Nat.choose_symm hm, mul_comm]
+      rw [ite_eq_left, ite_eq_left rfl, Nat.choose_symm hm, mul_comm]
       ext i; fin_cases i <;> simp [ex] ; omega
-    · rw [if_neg, if_neg hk']
+    · rw [ite_eq_right, ite_eq_right hk']
       intro h
       apply hk'
       have := congrArg (fun f => f 0) h
       simp [ex] at this
       omega
   rw [Finset.sum_congr rfl hterm, Finset.sum_ite_eq' (Finset.range (n + 1)) (n - m),
-    if_pos (Finset.mem_range.mpr (by omega))]
+    ite_eq_left (Finset.mem_range.mpr (by omega))]
 
 theorem sum_descFactorial_mul_choose_mul_neg_one_pow (n j : ℕ) (hj : j ≤ n) :
     ∑ k ∈ Finset.range (n + 1 - j), ((k + j).descFactorial j : K) * (n.choose (k + j) : K) * (-1 : K) ^ k
@@ -199,7 +199,7 @@ theorem sum_descFactorial_mul_choose_mul_neg_one_pow (n j : ℕ) (hj : j ≤ n) 
   rw [halt]
   by_cases hjn : j = n
   · subst hjn; simp [Nat.descFactorial_self]
-  · rw [if_neg (by omega), if_neg hjn, mul_zero]
+  · rw [ite_eq_right (by omega), ite_eq_right hjn, mul_zero]
 
 theorem hasDerivAt_eval_iterate_pderiv {n : ℕ} {g : ℍ → ℂ} {G : ℍ → ↥(BinaryForm ℂ n)}
     (hG : IsEichlerIntegral n g G) {j : ℕ} (hj : j ≤ n) (τ : ℍ) :

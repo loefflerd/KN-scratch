@@ -474,7 +474,7 @@ theorem mu_algebraMap (τ : ℍ) (c : ℂ) (hc : c ≠ 0) : mu τ (algebraMap �
   show meromorphicOrderAt
       (fun z : ℂ => realizeG (Γ := Γ) (algebraMap ℂ (LaurentSeries ℂ) c) (ofComplex z)) (τ : ℂ) = 0
   rw [meromorphicOrderAt_congr (realize_const_eventuallyEq hT c τ), meromorphicOrderAt_const,
-    if_neg hc]
+    ite_eq_right hc]
 
 include hT in
 theorem mu_eq_top_iff (τ : ℍ) (x : CF Γ) : mu τ x = ⊤ ↔ x = 0 := by

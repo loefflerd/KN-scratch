@@ -35,8 +35,8 @@ theorem eq_be (m : ℕ) (d : Fin 2 →₀ ℕ) (hd : d.degree = m) : d = binaryE
 
 theorem hom_ext {m : ℕ} {R : Type*} [CommRing R] {P Q : Binary R}
     (hP : P.IsHomogeneous m) (hQ : Q.IsHomogeneous m)
-    (h : ∀ j, j ≤ m → MvPolynomial.coeff (binaryExponent m j) P
-        = MvPolynomial.coeff (binaryExponent m j) Q) : P = Q := by
+    (h : ∀ j, j ≤ m → AddMonoidAlgebra.coeff P (binaryExponent m j)
+        = AddMonoidAlgebra.coeff Q (binaryExponent m j)) : P = Q := by
   refine MvPolynomial.ext _ _ fun d => ?_
   by_cases hd : d.degree = m
   · have hle : d 0 ≤ m := by rw [deg_eq] at hd; omega
@@ -55,13 +55,13 @@ theorem cpp_hom (hk : 2 ≤ k) (f : CuspForm (MTT.GammaOne N) (k : ℤ)) (r : �
 
 theorem coeff_cpp (hk : 2 ≤ k) (f : CuspForm (MTT.GammaOne N) (k : ℤ)) (r : ℚ)
     (j : ℕ) (hj : j ≤ k - 2) :
-    MvPolynomial.coeff (binaryExponent (k - 2) j) (cuspPeriodPolynomial f r)
+    AddMonoidAlgebra.coeff (cuspPeriodPolynomial f r) (binaryExponent (k - 2) j)
       = ((k - 2).choose j : ℂ) * MTT.modularIntegral f (Polynomial.X ^ j) r := by
   rw [cuspPeriodPolynomial, MvPolynomial.coeff_sum]
   rw [Finset.sum_eq_single j]
-  · rw [MvPolynomial.coeff_monomial, if_pos rfl]
+  · rw [MvPolynomial.coeff_monomial, ite_eq_left rfl]
   · intro b _ hbj
-    rw [MvPolynomial.coeff_monomial, if_neg]
+    rw [MvPolynomial.coeff_monomial, ite_eq_right]
     exact fun h => hbj (be_inj h)
   · intro hj'
     exact absurd (Finset.mem_range.mpr (by omega)) hj'

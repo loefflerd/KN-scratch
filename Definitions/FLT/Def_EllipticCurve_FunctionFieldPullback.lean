@@ -29,16 +29,14 @@ theorem algebraMap_eq_mk_C (p : K[X]) : algebraMap K[X] W.CoordinateRing p = mk 
 theorem isMaximal_of_isPrime {P : Ideal W.CoordinateRing} (hP : P ≠ ⊥) [P.IsPrime] :
     P.IsMaximal := by
   have hc : (P.comap (algebraMap K[X] W.CoordinateRing)) ≠ ⊥ := fun h =>
-    hP (Ideal.eq_bot_of_comap_eq_bot h)
-  have : (P.comap (algebraMap K[X] W.CoordinateRing)).IsMaximal :=
-    IsPrime.to_maximal_ideal hc
-  exact Ideal.isMaximal_of_isIntegral_of_isMaximal_comap (R := K[X]) P inferInstance
+    hP (Ideal.eq_bot_of_under_eq_bot h)
+  exact P.isMaximal_of_isIntegral_of_isMaximal_under (IsPrime.to_maximal_ideal hc)
 
 theorem exists_comap_eq_span [IsAlgClosed K] {P : Ideal W.CoordinateRing} (hP : P ≠ ⊥)
     [P.IsPrime] :
     ∃ a : K, P.comap (algebraMap K[X] W.CoordinateRing) = Ideal.span {X - C a} := by
   set p := P.comap (algebraMap K[X] W.CoordinateRing) with hp
-  have hp0 : p ≠ ⊥ := fun h => hP (Ideal.eq_bot_of_comap_eq_bot h)
+  have hp0 : p ≠ ⊥ := fun h => hP (Ideal.eq_bot_of_under_eq_bot h)
   have : p.IsPrime := Ideal.comap_isPrime _ P
   have hpmax : p.IsMaximal := IsPrime.to_maximal_ideal hp0
   set g := Submodule.IsPrincipal.generator p with hg
@@ -672,7 +670,7 @@ noncomputable def mulPull (n : ℤ) : (W⁄K).FunctionField →ₐ[K] (W⁄K).Fu
 
 theorem mulPull_eq {n : ℤ} (h : MulGood W K n) :
     mulPull W K n = pointPull (n • genericPoint W K) h.1 (mulHom_injective W K h) := by
-  rw [mulPull, dif_pos h]
+  grind [mulPull]
 
 theorem mulPull_algebraMap {n : ℤ} (h : MulGood W K n) (g : (W⁄K).CoordinateRing) :
     mulPull W K n (algebraMap _ _ g) = pointHom (n • genericPoint W K) h.1 g := by
@@ -1220,4 +1218,3 @@ theorem valuation_mulPull_le {n : ℤ} (hgood : MulGood W K n) (Φ Ψ : K[X]) (�
 end Transport
 
 end WeierstrassCurve.Affine
-

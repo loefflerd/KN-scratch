@@ -54,9 +54,9 @@ def Alg (ι : MTT.Qbar →+* ℂ) (v : (Cusp × Cusp) → Binary ℂ) : Prop :=
 variable {ι : MTT.Qbar →+* ℂ}
 
 theorem Alg.coeff {v : (Cusp × Cusp) → Binary ℂ} (h : Alg ι v) (D : Cusp × Cusp)
-    (d : Fin 2 →₀ ℕ) : MvPolynomial.coeff d (v D) ∈ Set.range ι := by
+    (d : Fin 2 →₀ ℕ) : AddMonoidAlgebra.coeff (v D) d ∈ Set.range ι := by
   obtain ⟨u, hu⟩ := h
-  exact ⟨MvPolynomial.coeff d (u D), by rw [hu D, MvPolynomial.coeff_map]⟩
+  exact ⟨AddMonoidAlgebra.coeff (u D) d, by rw [hu D, MvPolynomial.coeff_map]⟩
 
 theorem Alg.zero : Alg ι 0 := ⟨0, by simp⟩
 
@@ -188,7 +188,7 @@ theorem descent (S : Finset α) (c : α → ℂ)
   funext D
   ext d
   have hq : ∀ i : α, ∃ q : MTT.Qbar,
-      i ∈ S → MvPolynomial.coeff d (w i D) = ι q := by
+      i ∈ S → AddMonoidAlgebra.coeff (w i D) d = ι q := by
     intro i
     by_cases hi : i ∈ S
     · obtain ⟨y, hy⟩ := (halg i hi).coeff D d
@@ -196,7 +196,7 @@ theorem descent (S : Finset α) (c : α → ℂ)
     · exact ⟨0, fun h => absurd h hi⟩
   choose q hq using hq
   have h0' : ∑ i ∈ S, c i * ι (q i) = 0 := by
-    have := congrArg (fun F => MvPolynomial.coeff d (F D)) h0
+    have := congrArg (fun F => AddMonoidAlgebra.coeff (F D) d) h0
     simp only [Finset.sum_apply, Pi.smul_apply, Pi.zero_apply,
       MvPolynomial.coeff_sum, MvPolynomial.coeff_smul, smul_eq_mul,
       MvPolynomial.coeff_zero] at this

@@ -248,7 +248,7 @@ theorem heckeRep_mul {N : ℕ} (hpN : ¬ p ∣ N) (g : SL(2, ℤ)) (hg : (N : �
     rw [OnePoint.smul_infty_eq_ite]
     by_cases hc : ((g 1 0 : ℤ) : ZMod p) = 0
     ·
-      rw [if_pos (by simpa using hc), heckeRep_infty]
+      rw [ite_eq_left (by simpa using hc), heckeRep_infty]
       obtain ⟨e, he⟩ := (ZMod.intCast_zmod_eq_zero_iff_dvd _ _).mp hc
       obtain ⟨g', hg', hmul⟩ := heckeDiagMatrix_mul_of_eq' hp g e he
       refine ⟨g', ?_, hmul⟩
@@ -257,7 +257,7 @@ theorem heckeRep_mul {N : ℕ} (hpN : ¬ p ∣ N) (g : SL(2, ℤ)) (hg : (N : �
         Nat.isCoprime_iff_coprime.mpr ((Nat.Prime.coprime_iff_not_dvd Fact.out).mpr hpN).symm
       exact hcop.dvd_of_dvd_mul_left (he ▸ hg)
     ·
-      rw [if_neg (by simpa using hc), heckeRep_infty, heckeRep_coe]
+      rw [ite_eq_right (by simpa using hc), heckeRep_infty, heckeRep_coe]
       set y : ZMod p := redMatrix p g 0 0 / redMatrix p g 1 0
         with hy
       obtain ⟨e, he⟩ : (p : ℤ) ∣ g 1 1 - g 1 0 * y.val := by
@@ -271,7 +271,7 @@ theorem heckeRep_mul {N : ℕ} (hpN : ¬ p ∣ N) (g : SL(2, ℤ)) (hg : (N : �
     rw [OnePoint.smul_some_eq_ite]
     by_cases h : redMatrix p g 1 0 * j + redMatrix p g 1 1 = 0
     ·
-      rw [if_pos h, heckeRep_infty, heckeRep_coe]
+      rw [ite_eq_left h, heckeRep_infty, heckeRep_coe]
       rw [redMatrix_apply_one_zero, redMatrix_apply_one_one] at h
       obtain ⟨e, he⟩ : (p : ℤ) ∣ g 0 0 + j.val * g 1 0 := by
         rw [← ZMod.intCast_zmod_eq_zero_iff_dvd]
@@ -281,7 +281,7 @@ theorem heckeRep_mul {N : ℕ} (hpN : ¬ p ∣ N) (g : SL(2, ℤ)) (hg : (N : �
       obtain ⟨g', hg', hmul⟩ := heckeMatrix_mul_of_eq' hp g j.val e he
       exact ⟨g', hg' ▸ hg, hmul⟩
     ·
-      rw [if_neg h, heckeRep_coe, heckeRep_coe]
+      rw [ite_eq_right h, heckeRep_coe, heckeRep_coe]
       set y : ZMod p := (redMatrix p g 0 0 * j + redMatrix p g 0 1) /
         (redMatrix p g 1 0 * j + redMatrix p g 1 1) with hy
       obtain ⟨e, he⟩ : (p : ℤ) ∣ g 0 1 + j.val * g 1 1 - y.val * (g 0 0 + j.val * g 1 0) := by

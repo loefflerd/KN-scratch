@@ -67,13 +67,13 @@ theorem jFactor_of_nonneg {v : Place (AlgebraicClosure ℚ) (modularFunctionFiel
     (hv : 0 ≤ v.ord (⟨coeffEmb (AlgebraicClosure ℚ) jq,
       coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (jq_mem_full N)⟩ : modularFunctionFieldBar N)) :
     jFactor N v = X - C (jCoord N v) :=
-  if_pos hv
+  ite_eq_left hv
 
 theorem jFactor_of_neg {v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N)}
     (hv : v.ord (⟨coeffEmb (AlgebraicClosure ℚ) jq,
       coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (jq_mem_full N)⟩ : modularFunctionFieldBar N) < 0) :
     jFactor N v = 1 :=
-  if_neg (not_le.mpr hv)
+  ite_eq_right (not_le.mpr hv)
 
 @[simp]
 theorem symPoly_zero : symPoly N 0 = 1 :=

@@ -1104,8 +1104,8 @@ theorem sgn_ne_zero (w : ℤ) : sgn w ≠ 0 := by unfold sgn; split_ifs <;> deci
 theorem cast_sgn (w : ℤ) : ((sgn w : ℤ) : ℂ) = (-1 : ℂ) ^ w := by
   unfold sgn
   rcases Int.even_or_odd w with hw | hw
-  · rw [if_pos hw, hw.neg_one_zpow]; simp
-  · rw [if_neg (Int.not_even_iff_odd.mpr hw), hw.neg_one_zpow]; simp
+  · rw [ite_eq_left hw, hw.neg_one_zpow]; simp
+  · rw [ite_eq_right (Int.not_even_iff_odd.mpr hw), hw.neg_one_zpow]; simp
 
 theorem tRed_neg_one (D : IDatum M H w) (h1 : (-1 : SL(2, ℤ)) ∈ CongruenceSubgroup.Gamma0 M) :
     tRed K D (-1) h1 = ((sgn w : ℤ) : K) • intSeriesC K D.p := by

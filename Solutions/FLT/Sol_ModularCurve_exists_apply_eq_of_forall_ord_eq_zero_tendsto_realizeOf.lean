@@ -60,10 +60,10 @@ theorem solution
     (fun v => if v = P then (1 : ℤ) else 0)
   have hPg : P.ord g = 1 := by
     have h := hg P (Finset.mem_insert_self P S₀)
-    rwa [if_pos rfl] at h
+    rwa [ite_eq_left rfl] at h
   have hσg : ∀ σ : SL(2, ℤ), (Pl σ).ord g = 0 := fun σ => by
     have h := hg (Pl σ) (Finset.mem_insert_of_mem (hS₀ σ))
-    rwa [if_neg (hcon σ)] at h
+    rwa [ite_eq_right (hcon σ)] at h
 
   have hcusp : ∀ σ : SL(2, ℤ), ∃ L : ℂ, L ≠ 0 ∧
       Filter.Tendsto (fun τ : UpperHalfPlane => ModularCurve.realizeOf Γ (g : LaurentSeries ℂ) (σ • τ)) UpperHalfPlane.atImInfty (nhds L) :=

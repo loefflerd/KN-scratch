@@ -108,8 +108,8 @@ variable (n : ℕ)
 
 def IsEichlerIntegral (f : ℍ → ℂ) (F : ℍ → ↥(BinaryForm ℂ n)) : Prop :=
   ∀ (d : Fin 2 →₀ ℕ) (τ : ℍ),
-    HasDerivAt (fun z : ℂ => MvPolynomial.coeff d ((F (ofComplex z) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ))
-      (f τ * MvPolynomial.coeff d ((linePow n (τ : ℂ) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ)) (τ : ℂ)
+    HasDerivAt (fun z : ℂ => AddMonoidAlgebra.coeff ((F (ofComplex z) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) d)
+      (f τ * AddMonoidAlgebra.coeff ((linePow n (τ : ℂ) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) d) (τ : ℂ)
 
 variable (N : ℕ)
 
@@ -151,4 +151,3 @@ end EichlerIntegral
 end HeckeEis
 
 end
-

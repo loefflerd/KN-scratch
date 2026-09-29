@@ -671,7 +671,7 @@ private theorem mapDomain_coefficient_of_formula
                 · intro h
                   subst a
                   exact ⟨rfl, hug⟩
-              simp [hc, if_pos hug]
+              simp [hc, ite_eq_left hug]
             · have hnone : ∀ a : H, ¬(π u = a ∧ r a = g) := by
                 rintro a ⟨rfl, ha⟩
                 exact hug ha

@@ -197,36 +197,36 @@ theorem solution
       have hc0 : 0 ≤ w.ord (j - algebraMap K _ 1728) :=
         ord_nonneg_of_mem w (w.toValuationSubring.sub_mem (hjm hj) (w.algebraMap_mem' _))
       have hneg : ¬ w.ord j < 0 := not_lt.2 hj
-      rw [if_neg hneg, add_zero] at hDw
+      rw [ite_eq_right hneg, add_zero] at hDw
       by_cases h0 : 0 < w.ord j <;> by_cases h1 : 0 < w.ord (j - algebraMap K _ 1728)
-      · rw [if_pos h0, if_pos h1] at hDw
+      · rw [ite_eq_left h0, ite_eq_left h1] at hDw
         have e1 := Int.ediv_mul_le (2 * (m : ℤ) * w.ord j) (by norm_num : (3 : ℤ) ≠ 0)
         have e2 := Int.ediv_mul_le ((m : ℤ) * w.ord (j - algebraMap K _ 1728)) (by norm_num : (2 : ℤ) ≠ 0)
         push_cast; nlinarith
-      · rw [if_pos h0, if_neg h1, add_zero] at hDw
+      · rw [ite_eq_left h0, ite_eq_right h1, add_zero] at hDw
         have e1 := Int.ediv_mul_le (2 * (m : ℤ) * w.ord j) (by norm_num : (3 : ℤ) ≠ 0)
         push_cast; nlinarith
-      · rw [if_neg h0, if_pos h1, zero_add] at hDw
+      · rw [ite_eq_right h0, ite_eq_left h1, zero_add] at hDw
         have e2 := Int.ediv_mul_le ((m : ℤ) * w.ord (j - algebraMap K _ 1728)) (by norm_num : (2 : ℤ) ≠ 0)
         have : w.ord j = 0 := le_antisymm (not_lt.1 h0) hj
         rw [this]; push_cast; nlinarith
-      · rw [if_neg h0, if_neg h1, add_zero] at hDw
+      · rw [ite_eq_right h0, ite_eq_right h1, add_zero] at hDw
         have : w.ord j = 0 := le_antisymm (not_lt.1 h0) hj
         rw [this]; push_cast; nlinarith
     · intro hj
       rcases lt_or_eq_of_le hj with hneg | hzero
       · have hc : w.ord (j - algebraMap K _ 1728) = w.ord j := ord_sub_algebraMap_eq_of_ord_neg w hj0 1728 hneg
-        rw [if_neg (show ¬ 0 < w.ord j from by omega), if_neg (show ¬ 0 < w.ord (j - algebraMap K _ 1728) from by omega),
-          if_pos hneg, zero_add, zero_add] at hDw
+        rw [ite_eq_right (show ¬ 0 < w.ord j from by omega), ite_eq_right (show ¬ 0 < w.ord (j - algebraMap K _ 1728) from by omega),
+          ite_eq_left hneg, zero_add, zero_add] at hDw
         rw [hc]; nlinarith
       · have hc0 : 0 ≤ w.ord (j - algebraMap K _ 1728) :=
           ord_nonneg_of_mem w (w.toValuationSubring.sub_mem (hjm hzero.ge) (w.algebraMap_mem' _))
-        rw [if_neg (show ¬ 0 < w.ord j from by omega), if_neg (show ¬ w.ord j < 0 from by omega), zero_add, add_zero] at hDw
+        rw [ite_eq_right (show ¬ 0 < w.ord j from by omega), ite_eq_right (show ¬ w.ord j < 0 from by omega), zero_add, add_zero] at hDw
         by_cases h1 : 0 < w.ord (j - algebraMap K _ 1728)
-        · rw [if_pos h1] at hDw
+        · rw [ite_eq_left h1] at hDw
           have e2 := Int.ediv_mul_le ((m : ℤ) * w.ord (j - algebraMap K _ 1728)) (by norm_num : (2 : ℤ) ≠ 0)
           rw [hzero]; nlinarith
-        · rw [if_neg h1] at hDw
+        · rw [ite_eq_right h1] at hDw
           rw [hzero]; nlinarith
 
   have hjc : ∀ w : Place K ↥F, True := fun _ => trivial

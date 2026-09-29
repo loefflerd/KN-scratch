@@ -380,9 +380,9 @@ theorem rankinCohen_E4_E6 :
     simp only [ModularFormClass.qCoeff, hZq, map_sub, coeff_one_mul, coeff_zero_mul', hmk0, hmk1,
       PowerSeries.coeff_zero_C, qA0, qA1, qB0, qB1]
     have hC4 : PowerSeries.coeff 1 (PowerSeries.C (4 : ℂ)) = 0 := by
-      rw [PowerSeries.coeff_C, if_neg one_ne_zero]
+      rw [PowerSeries.coeff_C, ite_eq_right one_ne_zero]
     have hC6 : PowerSeries.coeff 1 (PowerSeries.C (6 : ℂ)) = 0 := by
-      rw [PowerSeries.coeff_C, if_neg one_ne_zero]
+      rw [PowerSeries.coeff_C, ite_eq_right one_ne_zero]
     rw [hC4, hC6]
     norm_num
   have hW := ModularForm.levelOne_weight_twelve_qCoeff_eq_qCoeff_one_mul_discriminant Z h0

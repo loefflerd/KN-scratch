@@ -158,9 +158,9 @@ theorem IsFrobeniusEndo.normFormulaAlong (h : IsFrobeniusEndo ℓ φ)
   have hcollapse : (∑ w ∈ D.support,
       if Place.restrict F w = v then D w * (Place.inertiaDeg F w : ℤ) else 0)
         = D w₀ * (Place.inertiaDeg F w₀ : ℤ) := by
-    refine (Finset.sum_eq_single w₀ ?_ ?_).trans (if_pos hw₀')
+    refine (Finset.sum_eq_single w₀ ?_ ?_).trans (ite_eq_left hw₀')
     · intro w _ hwne
-      rw [if_neg]
+      rw [ite_eq_right]
       intro hwv
       exact hwne (h.restrictAlong_injective hℓ hφ
         ((show Place.restrictAlong φ hφ w = v from hwv).trans hw₀.symm))

@@ -111,7 +111,7 @@ theorem ModularCurve.StarBank.eisInt_coeff {ℓ : ℕ} [Fact ℓ.Prime] (hℓ5 :
     rw [hcoeff]; simp
   ·
     have hm1' : m ≠ 0 := hm1.ne'
-    rw [hcoeff, if_neg hm1']
+    rw [hcoeff, ite_eq_right hm1']
     refine ⟨-(2 * (↑(ℓ - 1) : ℤ) * (↑B.den : ℤ) * (↑(σ (ℓ - 1 - 1) m) : ℤ)), ?_, ?_, ?_⟩
     ·
       have hnum : (B.num : ℂ) ≠ 0 := by

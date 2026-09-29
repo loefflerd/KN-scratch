@@ -124,11 +124,11 @@ private theorem coeffsIntegral_coeff_X_sub_C {a : LaurentSeries K}
     exact CoeffsIntegral.neg ha
   | 1 =>
     simp only [Polynomial.coeff_sub, Polynomial.coeff_X_one, Polynomial.coeff_C,
-      if_neg (one_ne_zero), sub_zero]
+      ite_eq_right (one_ne_zero), sub_zero]
     exact coeffsIntegral_one
   | (k + 2) =>
     simp only [Polynomial.coeff_sub, Polynomial.coeff_X, Polynomial.coeff_C]
-    rw [if_neg (by omega), if_neg (by omega), sub_zero]
+    rw [ite_eq_right (by omega), ite_eq_right (by omega), sub_zero]
     exact coeffsIntegral_zero
 
 private theorem coeffsIntegral_coeff_mul {p q : Polynomial (LaurentSeries K)}
@@ -149,7 +149,7 @@ private theorem coeffsIntegral_coeff_prod {ι : Type*} (s : Finset ι)
     simp only [Finset.prod_empty]
     rcases Nat.eq_zero_or_pos k with rfl | hk
     · simpa using coeffsIntegral_one
-    · rw [Polynomial.coeff_one, if_neg (by omega)]
+    · rw [Polynomial.coeff_one, ite_eq_right (by omega)]
       exact coeffsIntegral_zero
   | cons a s _ha ih =>
     intro k

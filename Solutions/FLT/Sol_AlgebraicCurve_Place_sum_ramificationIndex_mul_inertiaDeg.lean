@@ -813,7 +813,7 @@ theorem inertiaDeg_eq_inertiaDeg_fiberCenter (hw : w.restrict F = v) :
       (IsLocalRing.maximalIdeal v.toValuationSubring).inertiaDeg'
         (fiberCenter F' v hw).asIdeal := by
   have := fiberCenter_liesOver hw
-  rw [Ideal.inertiaDeg'_algebraMap]
+  rw [Ideal.inertiaDeg_eq_of_isMaximal]
   show Module.finrank (w.restrict F).ResidueField w.ResidueField = _
   refine Algebra.finrank_eq_of_equiv_equiv (restrictResidueFieldEquiv hw)
     (residueFieldEquivQuotientCenter hw).symm ?_
@@ -927,7 +927,7 @@ theorem sum_ramificationIndex_mul_inertiaDeg_infra [HasPrincipalDivisors K F'] :
       ∑ P ∈ IsDedekindDomain.primesOverFinset
           (IsLocalRing.maximalIdeal v.toValuationSubring) (integralClosureAt F' v),
         Ideal.ramificationIdx' (IsLocalRing.maximalIdeal v.toValuationSubring) P *
-          Ideal.inertiaDeg' (IsLocalRing.maximalIdeal v.toValuationSubring) P =
+          Ideal.inertiaDeg (IsLocalRing.maximalIdeal v.toValuationSubring) P =
             Module.finrank F F' := by
     let p := IsLocalRing.maximalIdeal v.toValuationSubring
     let S := integralClosureAt F' v

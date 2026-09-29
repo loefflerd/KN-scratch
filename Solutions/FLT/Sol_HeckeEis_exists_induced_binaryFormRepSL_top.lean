@@ -159,14 +159,14 @@ theorem coeff_dehom_of_isHomogeneous {P : MvPolynomial (Fin 2) ℂ} (hP : P.IsHo
   rw [hsum]
   by_cases hmem : da ∈ P.support
   · rw [Finset.sum_eq_single_of_mem da hmem]
-    · rw [if_pos]; rw [hda]; simp
+    · rw [ite_eq_left]; rw [hda]; simp
     · intro d hd hne
-      rw [if_neg]
+      rw [ite_eq_right]
       intro h; exact hne (hkey d hd h)
   · rw [Finset.sum_eq_zero, eq_comm]
     · exact notMem_support_iff.mp hmem
     · intro d hd
-      rw [if_neg]
+      rw [ite_eq_right]
       intro h
       exact hmem (hkey d hd h ▸ hd)
 
@@ -225,7 +225,7 @@ theorem coeff_eq_zero_of_T_zpow_fixed {m : ℤ} (hm : m ≠ 0) (P : Vn n) (hP : 
   have hcoeff : q.coeff a = 0 := by
     have := congrArg (fun p => Polynomial.coeff p a) hconst
     simp only [Polynomial.coeff_sub, Polynomial.coeff_C, Polynomial.coeff_zero] at this
-    rw [if_neg hd] at this
+    rw [ite_eq_right hd] at this
     simpa using this
   rw [hq, coeff_dehom_of_isHomogeneous hPh a (by omega)] at hcoeff
   rw [hda, dv] at hne
@@ -266,7 +266,7 @@ theorem eq_zero_of_T_fixed_of_S_T_fixed (hn0 : n ≠ 0) (v : Vn n)
     simp [ModularGroup.S, Fin.sum_univ_two, C_mul_X_pow_eq_monomial]
   have hc0 : c = 0 := by
     have := congrArg (coeff (Finsupp.single 1 n)) e2
-    rw [hSv, coeff_monomial, coeff_monomial, if_pos rfl, if_neg] at this
+    rw [hSv, coeff_monomial, coeff_monomial, ite_eq_left rfl, ite_eq_right] at this
     · exact this
     · intro h
       have := congrArg (fun d => d 0) h

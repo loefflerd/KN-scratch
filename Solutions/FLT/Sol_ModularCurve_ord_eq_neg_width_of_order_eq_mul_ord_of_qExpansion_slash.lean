@@ -408,7 +408,7 @@ theorem dvd_order_Lq_of_periodic {f : ℍ → ℂ} (h m' : ℕ) (hh : 0 < h) (hm
   by_contra hnd
   have hnd' : ¬ m' ∣ (qExpansion ((m' : ℝ) * h) f).order.toNat := by
     intro hd; exact hnd (by exact_mod_cast hd)
-  rw [if_neg hnd'] at h35
+  rw [ite_eq_right hnd'] at h35
   exact hc h35
 
 end order

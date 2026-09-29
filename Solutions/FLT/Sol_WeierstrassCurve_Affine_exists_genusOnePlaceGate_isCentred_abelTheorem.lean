@@ -301,7 +301,7 @@ theorem count_unitIdealOfDivisor (D : AlgebraicCurve.Divisor F W.FunctionField)
       cases P with
       | zero =>
           rw [unitIdealOfPoint_zero, Units.val_one, FractionalIdeal.count_one, mul_zero,
-            placeOfPt_zero', if_neg (vInf_ne_ofHeightOneSpectrum w)]
+            placeOfPt_zero', ite_eq_right (vInf_ne_ofHeightOneSpectrum w)]
       | some x y h =>
           rw [unitIdealOfPoint_some, CoordinateRing.XYIdeal'_eq,
             show (CoordinateRing.XYIdeal W x (Polynomial.C y) :
@@ -353,7 +353,7 @@ theorem isPrincipal_of_divisorSum_eq_zero' {D : AlgebraicCurve.Divisor F W.Funct
         rw [placeOfPt_zero', Finsupp.single_eq_same]
     | some x y h =>
         rw [Finsupp.sub_apply, placeOfPt_some, hfin, hDf, sub_self, Finsupp.single_apply,
-          if_neg (vInf_ne_ofHeightOneSpectrum _)]
+          ite_eq_right (vInf_ne_ofHeightOneSpectrum _)]
   have hdeg : Divisor.degree (D - Df) = 0 := by rw [map_sub, h0, hDf0, sub_zero]
   rw [hsub, Divisor.degree_single, vInf_deg, Nat.cast_one, mul_one, Finsupp.sub_apply,
     sub_eq_zero] at hdeg

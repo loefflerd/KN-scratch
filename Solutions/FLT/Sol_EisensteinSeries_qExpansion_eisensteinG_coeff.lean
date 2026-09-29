@@ -578,7 +578,7 @@ theorem qExpansion_coeff_formula (hk : 3 ≤ k) (a : Fin 2 → ZMod N) (n : ℕ)
   · subst hn
     rfl
   ·
-    rw [dif_neg hn, if_neg hn]
+    rw [dif_neg hn, ite_eq_right hn]
     have hN : (N : ℂ) ≠ 0 := by exact_mod_cast NeZero.ne N
     simp only [kappa, Splus, Sminus]
     rw [Nat.sum_divisorsAntidiagonal' (fun i j : ℕ =>

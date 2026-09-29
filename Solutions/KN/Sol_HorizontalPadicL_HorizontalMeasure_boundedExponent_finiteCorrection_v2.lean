@@ -28,7 +28,7 @@ theorem solution
     unfold HorizontalMeasure.truncatedFiniteLevel
     have h : truncateHorizontalCoordinates (p := p) m he ∅ 1 = 1 :=
       Subsingleton.elim _ _
-    rw [← h, Finsupp.mapDomain_apply (fun a b _ ↦ Subsingleton.elim a b)]
+    rw [← h, Finsupp.mapDomain_apply_of_injective (fun a b _ ↦ Subsingleton.elim a b)]
   let S : Set ℝ := {b | ∃ (A : Finset ℕ)
     (x : HorizontalFiniteGroup p (fun _ ↦ m) A),
     ‖(μ.truncatedFiniteLevel m he A x : ℂ_[p])‖ = b}

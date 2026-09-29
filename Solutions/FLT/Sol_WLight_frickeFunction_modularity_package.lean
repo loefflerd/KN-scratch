@@ -766,7 +766,7 @@ lemma qExpansion_E4E6_coeff_zero {N : ℕ} (hN : N ≠ 0) :
   rw [qExpansion_coeff_width _ hN hper (ModularForm.E₄.holo'.mul ModularForm.E₆.holo')
     ((ModularFormClass.bdd_at_infty ModularForm.E₄).mul
       (ModularFormClass.bdd_at_infty ModularForm.E₆)) 0,
-    if_pos (dvd_zero N), Nat.zero_div,
+    ite_eq_left (dvd_zero N), Nat.zero_div,
     ModularForm.qExpansion_mul_coe one_pos one_mem_strictPeriods_SL,
     PowerSeries.coeff_zero_eq_constantCoeff, map_mul, ← PowerSeries.coeff_zero_eq_constantCoeff,
     EisensteinSeries.E_qExpansion_coeff_zero (by norm_num) (by decide),
@@ -822,7 +822,7 @@ lemma qExpansion_E4E6_rat {N : ℕ} (hN : N ≠ 0) (n : ℕ) :
     ((ModularFormClass.bdd_at_infty ModularForm.E₄).mul
       (ModularFormClass.bdd_at_infty ModularForm.E₆)) n]
   by_cases hdvd : N ∣ n
-  · rw [if_pos hdvd, ModularForm.qExpansion_mul_coe one_pos one_mem_strictPeriods_SL,
+  · rw [ite_eq_left hdvd, ModularForm.qExpansion_mul_coe one_pos one_mem_strictPeriods_SL,
       PowerSeries.coeff_mul]
     refine ⟨∑ p ∈ Finset.HasAntidiagonal.antidiagonal (n / N),
       (qExpansion_one_E4_rat p.1).choose * (qExpansion_one_E6_rat p.2).choose, ?_⟩
@@ -830,7 +830,7 @@ lemma qExpansion_E4E6_rat {N : ℕ} (hN : N ≠ 0) (n : ℕ) :
     exact Finset.sum_congr rfl fun p _ =>
       congrArg₂ (· * ·) (qExpansion_one_E4_rat p.1).choose_spec
         (qExpansion_one_E6_rat p.2).choose_spec
-  · exact ⟨0, by rw [if_neg hdvd]; norm_num⟩
+  · exact ⟨0, by rw [ite_eq_right hdvd]; norm_num⟩
 
 theorem qExpansion_frickeH_coeff_mem_kN {N a₁ a₂ : ℕ} (ha₁ : a₁ < N) (ha₂ : a₂ < N)
     (h0 : a₁ ≠ 0 ∨ a₂ ≠ 0) (n : ℕ) :

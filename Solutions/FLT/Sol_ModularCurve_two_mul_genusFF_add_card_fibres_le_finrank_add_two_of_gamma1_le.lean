@@ -456,7 +456,7 @@ theorem sum_ord_sub_algebraMap_eq_finrank {x : F} (hx : Transcendental K x)
     · intro h; exact h.2
   rw [hTeq, ← hdegpos]
   refine Finset.sum_congr rfl fun v hv => ?_
-  rw [Finsupp.filter_apply, if_pos (Finset.mem_filter.mp hv).2, hD v]
+  rw [Finsupp.filter_apply, ite_eq_left (Finset.mem_filter.mp hv).2, hD v]
 
 theorem sum_neg_ord_eq_finrank {x : F} (hx : Transcendental K x)
     [FiniteDimensional K⟮x⟯ F]

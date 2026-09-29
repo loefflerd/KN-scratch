@@ -540,15 +540,15 @@ theorem DZ_eq : DZ (N := N) = PowerSeries.X ^ N * UZ (N := N) := by
   have hN : 0 < N := NeZero.pos N
   by_cases hdvd : (N : ℕ) ∣ n
   · obtain ⟨k, rfl⟩ := hdvd
-    rw [if_pos (dvd_mul_right N k), Nat.mul_div_cancel_left _ hN]
+    rw [ite_eq_left (dvd_mul_right N k), Nat.mul_div_cancel_left _ hN]
     cases k with
     | zero => aesop
     | succ k =>
         have hle : N ≤ N * (k + 1) := Nat.le_mul_of_pos_right N (Nat.succ_pos k)
-        rw [if_pos hle]
+        rw [ite_eq_left hle]
         have h1 : N * (k + 1) - N = N * k := by grind
-        rw [h1, if_pos (dvd_mul_right N k), Nat.mul_div_cancel_left _ hN, PowerSeries.coeff_succ_X_mul]
-  · rw [if_neg hdvd]
+        rw [h1, ite_eq_left (dvd_mul_right N k), Nat.mul_div_cancel_left _ hN, PowerSeries.coeff_succ_X_mul]
+  · rw [ite_eq_right hdvd]
     by_cases hle : N ≤ n
     · have : ¬ (N : ℕ) ∣ n - N := by
         intro h; apply hdvd
@@ -1315,7 +1315,7 @@ theorem main (m : ℕ) (G : ℍ → ℂ) (hG : MDifferentiable 𝓘(ℂ) 𝓘(�
     rw [PowerSeries.X_pow_dvd_iff]
     intro k hk
     have h1 := congrArg (PowerSeries.coeff k) hC
-    rw [PowerSeries.coeff_map, mul_comm, PowerSeries.coeff_X_pow_mul', if_neg (not_le.mpr hk), eq_intCast] at h1
+    rw [PowerSeries.coeff_map, mul_comm, PowerSeries.coeff_X_pow_mul', ite_eq_right (not_le.mpr hk), eq_intCast] at h1
     exact_mod_cast h1
   obtain ⟨g', hg'⟩ := hdvd
   have hC' : g'.map (Int.castRingHom ℂ) = PowerSeries.C (c : ℂ) * Ghat * ((UZ (N := N)) ^ L).map (Int.castRingHom ℂ) := by

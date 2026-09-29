@@ -238,7 +238,7 @@ lemma ratCoeff_E {k : ℕ} (hk : 3 ≤ k) (hk2 : Even k) :
   by_cases hn : n = 0
   · exact ⟨1, by simp [hn]⟩
   · refine ⟨-(2 * k / bernoulli k) * (σ (k - 1) n : ℚ), ?_⟩
-    rw [if_neg hn]
+    rw [ite_eq_right hn]
     push_cast
     ring
 
@@ -580,11 +580,11 @@ theorem hasSum_wpMon {N a₁ a₂ : ℕ} (ha₁ : a₁ < N) {τ : ℂ} (hτ : 0 
       wpNormSeries N a₁ a₂ τ := by
     by_cases ha : a₁ = 0
     · subst ha
-      rw [if_pos rfl, if_pos rfl]
+      rw [ite_eq_left rfl, ite_eq_left rfl]
       unfold wpNormSeries
       rw [← hqdef, pow_zero, mul_one]
       ring
-    · rw [if_neg ha, if_neg ha]
+    · rw [ite_eq_right ha, ite_eq_right ha]
       unfold wpNormSeries
       rw [← hqdef, ← hr]
       ring
@@ -685,7 +685,7 @@ lemma summable_wpFib_all {N a₁ : ℕ} (ha₁ : a₁ < N) (a₂ n : ℕ) :
   by_contra h'
   apply hi
   show (if wpMonExp N a₁ i = n then wpMonCoeff N a₁ a₂ i else 0) = 0
-  rw [if_neg h']
+  rw [ite_eq_right h']
 
 lemma summable_wpFib {N a₁ : ℕ} (ha₁ : a₁ < N) (a₂ n : ℕ) {ι : Type} (e : ι → WpIdx)
     (he : Function.Injective e) : Summable (wpFib N a₁ a₂ n ∘ e) :=
@@ -754,7 +754,7 @@ theorem wpQCoeff_of_lt {N a₁ : ℕ} (ha₁ : a₁ < N) (a₂ : ℕ) {n : ℕ} 
       rw [tsum_eq_single m₁]
       · by_cases hd : a₁ ∣ n
         · have hq : 0 < n / a₁ := Nat.div_pos (Nat.le_of_dvd hn0 hd) (Nat.pos_of_ne_zero ha)
-          have hm₁v : (m₁ : ℕ) = n / a₁ := by rw [hm₁, Nat.toPNat'_coe, if_pos hq]
+          have hm₁v : (m₁ : ℕ) = n / a₁ := by rw [hm₁, Nat.toPNat'_coe, ite_eq_left hq]
           have hE : wpMonExp N a₁ (Sum.inr (Sum.inl m₁)) = n := by
             simp only [wpMonExp, ha, if_false, hm₁v, Nat.mul_div_cancel' hd]
           simp [wpFib, hE, wpMonCoeff, ha, hd, hm₁v]
@@ -770,7 +770,7 @@ theorem wpQCoeff_of_lt {N a₁ : ℕ} (ha₁ : a₁ < N) (a₂ : ℕ) {n : ℕ} 
           apply PNat.coe_injective
           have : (m : ℕ) = n / a₁ := by
             rw [← h, Nat.mul_div_cancel_left _ (Nat.pos_of_ne_zero ha)]
-          rw [this, hm₁, Nat.toPNat'_coe, if_pos]
+          rw [this, hm₁, Nat.toPNat'_coe, ite_eq_left]
           rw [← this]; exact m.pos
         simp [wpFib, hE]
 
@@ -806,18 +806,18 @@ theorem wpQCoeff_of_lt {N a₁ : ℕ} (ha₁ : a₁ < N) (a₂ : ℕ) {n : ℕ} 
         congr
         · exact PNat.coe_injective hc1
         · apply PNat.coe_injective
-          rw [hmv, hm₀, Nat.toPNat'_coe, if_pos (hmv ▸ hm)]
+          rw [hmv, hm₀, Nat.toPNat'_coe, ite_eq_left (hmv ▸ hm)]
       · exfalso
         simp only [wpMonExp, Fin.reduceFinMk, Matrix.cons_val] at hE
         nlinarith
     rw [tsum_eq_single x₀]
     · by_cases hd : (N - a₁) ∣ n
       · have hq : 0 < n / (N - a₁) := Nat.div_pos (Nat.le_of_dvd hn0 hd) hNa
-        have hm₀v : (m₀ : ℕ) = n / (N - a₁) := by rw [hm₀, Nat.toPNat'_coe, if_pos hq]
+        have hm₀v : (m₀ : ℕ) = n / (N - a₁) := by rw [hm₀, Nat.toPNat'_coe, ite_eq_left hq]
         have hE : wpMonExp N a₁ (Sum.inr (Sum.inr x₀)) = n := by
           simp only [wpMonExp, hx₀, PNat.one_coe, one_mul, Matrix.cons_val_one,
             Matrix.cons_val_zero, hm₀v, Nat.mul_div_cancel' hd]
-        rw [wpFib, if_pos hE, if_pos hd, hx₀]
+        rw [wpFib, ite_eq_left hE, ite_eq_left hd, hx₀]
         simp only [wpMonCoeff, Matrix.cons_val_one, Matrix.cons_val_zero, hm₀v]
       · have hE : wpMonExp N a₁ (Sum.inr (Sum.inr x₀)) ≠ n := fun h ↦ hd (key x₀ h).2
         simp [wpFib, hE, hd]
@@ -880,10 +880,10 @@ theorem wpQCoeff_eq_iff_neg {N a₁ a₂ b₁ b₂ : ℕ} (ha₁ : a₁ < N) (ha
     have ha₂0 : 0 < a₂ := Nat.pos_of_ne_zero (ha0.resolve_left (not_not.mpr hA))
     have hB : b₁ = 0 := by
       by_contra hB
-      rw [if_pos hA, if_neg hB] at h0
+      rw [ite_eq_left hA, ite_eq_right hB] at h0
       exact Kne ha₂0 ha₂ h0
     have hb₂0 : 0 < b₂ := Nat.pos_of_ne_zero (hb0.resolve_left (not_not.mpr hB))
-    rw [if_pos hA, if_pos hB] at h0
+    rw [ite_eq_left hA, ite_eq_left hB] at h0
     subst hA; subst hB
     set t := ζ ^ a₂ with ht
     set u := ζ ^ b₂ with hu
@@ -899,7 +899,7 @@ theorem wpQCoeff_eq_iff_neg {N a₁ a₂ b₁ b₂ : ℕ} (ha₁ : a₁ < N) (ha
   · have hB : b₁ ≠ 0 := by
       intro hB
       have hb₂0 : 0 < b₂ := Nat.pos_of_ne_zero (hb0.resolve_left (not_not.mpr hB))
-      rw [if_neg hA, if_pos hB] at h0
+      rw [ite_eq_right hA, ite_eq_left hB] at h0
       exact Kne hb₂0 hb₂ h0.symm
     have hmodA : (N - a₁) % N = N - a₁ := Nat.mod_eq_of_lt (by omega)
     rw [hmodA]
@@ -926,17 +926,17 @@ theorem wpQCoeff_eq_iff_neg {N a₁ a₂ b₁ b₂ : ℕ} (ha₁ : a₁ < N) (ha
         · have : ¬ (x₁ ∣ n) := fun hd ↦ e (le_antisymm (Nat.le_of_dvd hn0 hd) hn1)
           simp [e, this]
       · by_cases e : N - x₁ = n
-        · rw [if_pos e, if_pos (e ▸ dvd_refl _), e, Nat.div_self hn0]
+        · rw [ite_eq_left e, ite_eq_left (e ▸ dvd_refl _), e, Nat.div_self hn0]
           simp
         · have : ¬ (N - x₁ ∣ n) := fun hd ↦ e (le_antisymm (Nat.le_of_dvd hn0 hd) hn2)
-          rw [if_neg e, if_neg this]
+          rw [ite_eq_right e, ite_eq_right this]
 
     have hkk : ka = kb := by
       by_contra hne
       rcases lt_or_gt_of_ne hne with hlt | hlt
       ·
         have hb := eval b₂ hb₁ hB hka0 hlt.le
-        rw [if_neg (by omega : ¬ b₁ = ka), if_neg (by omega : ¬ N - b₁ = ka), add_zero] at hb
+        rw [ite_eq_right (by omega : ¬ b₁ = ka), ite_eq_right (by omega : ¬ N - b₁ = ka), add_zero] at hb
         have ha := eval a₂ ha₁ hA hka0 le_rfl
         rw [h ka, hb] at ha
 
@@ -944,25 +944,25 @@ theorem wpQCoeff_eq_iff_neg {N a₁ a₂ b₁ b₂ : ℕ} (ha₁ : a₁ < N) (ha
         rcases this with e | e
         · by_cases e' : N - a₁ = ka
           · omega
-          · rw [if_pos e, if_neg e', add_zero] at ha
+          · rw [ite_eq_left e, ite_eq_right e', add_zero] at ha
             exact pow_ne_zero _ hζ0 ha.symm
         · by_cases e' : a₁ = ka
           · omega
-          · rw [if_neg e', if_pos e, zero_add] at ha
+          · rw [ite_eq_right e', ite_eq_left e, zero_add] at ha
             exact pow_ne_zero _ (inv_ne_zero hζ0) ha.symm
       · have ha := eval a₂ ha₁ hA hkb0 hlt.le
-        rw [if_neg (by omega : ¬ a₁ = kb), if_neg (by omega : ¬ N - a₁ = kb), add_zero] at ha
+        rw [ite_eq_right (by omega : ¬ a₁ = kb), ite_eq_right (by omega : ¬ N - a₁ = kb), add_zero] at ha
         have hb := eval b₂ hb₁ hB hkb0 le_rfl
         rw [← h kb, ha] at hb
         have : b₁ = kb ∨ N - b₁ = kb := by omega
         rcases this with e | e
         · by_cases e' : N - b₁ = kb
           · omega
-          · rw [if_pos e, if_neg e', add_zero] at hb
+          · rw [ite_eq_left e, ite_eq_right e', add_zero] at hb
             exact pow_ne_zero _ hζ0 hb.symm
         · by_cases e' : b₁ = kb
           · omega
-          · rw [if_neg e', if_pos e, zero_add] at hb
+          · rw [ite_eq_right e', ite_eq_left e, zero_add] at hb
             exact pow_ne_zero _ (inv_ne_zero hζ0) hb.symm
 
     have ha := eval a₂ ha₁ hA hka0 le_rfl
@@ -975,7 +975,7 @@ theorem wpQCoeff_eq_iff_neg {N a₁ a₂ b₁ b₂ : ℕ} (ha₁ : a₁ < N) (ha
     ·
       obtain ⟨e1, e2⟩ := hmid
       have hb12 : b₁ = ka ∧ N - b₁ = ka := by omega
-      rw [if_pos e1, if_pos e2, if_pos hb12.1, if_pos hb12.2] at hb
+      rw [ite_eq_left e1, ite_eq_left e2, ite_eq_left hb12.1, ite_eq_left hb12.2] at hb
 
       set u := ζ ^ a₂ with hu
       set u' := ζ ^ b₂ with hu'
@@ -991,22 +991,22 @@ theorem wpQCoeff_eq_iff_neg {N a₁ a₂ b₁ b₂ : ℕ} (ha₁ : a₁ < N) (ha
       · right; exact ⟨by omega, powmul ha₂ hb₂ (by rw [← hu, ← hu']; linear_combination e)⟩
     · rcases haon with e1 | e2
       · have e2 : ¬ N - a₁ = ka := fun e2 ↦ hmid ⟨e1, e2⟩
-        rw [if_pos e1, if_neg e2, add_zero] at hb
+        rw [ite_eq_left e1, ite_eq_right e2, add_zero] at hb
         rcases hbon with f1 | f2
         · have f2 : ¬ N - b₁ = ka := by omega
-          rw [if_pos f1, if_neg f2, add_zero] at hb
+          rw [ite_eq_left f1, ite_eq_right f2, add_zero] at hb
           left; exact ⟨by omega, match_uu hb⟩
         · have f1 : ¬ b₁ = ka := by omega
-          rw [if_neg f1, if_pos f2, zero_add] at hb
+          rw [ite_eq_right f1, ite_eq_left f2, zero_add] at hb
           right; exact ⟨by omega, match_uv hb⟩
       · have e1 : ¬ a₁ = ka := fun e1 ↦ hmid ⟨e1, e2⟩
-        rw [if_neg e1, if_pos e2, zero_add] at hb
+        rw [ite_eq_right e1, ite_eq_left e2, zero_add] at hb
         rcases hbon with f1 | f2
         · have f2 : ¬ N - b₁ = ka := by omega
-          rw [if_pos f1, if_neg f2, add_zero] at hb
+          rw [ite_eq_left f1, ite_eq_right f2, add_zero] at hb
           right; exact ⟨by omega, match_vu hb⟩
         · have f1 : ¬ b₁ = ka := by omega
-          rw [if_neg f1, if_pos f2, zero_add] at hb
+          rw [ite_eq_right f1, ite_eq_left f2, zero_add] at hb
           left; exact ⟨by omega, match_vv hb⟩
 
 theorem wpNorm_eq_imp {N a₁ a₂ b₁ b₂ : ℕ} (ha₁ : a₁ < N) (ha₂ : a₂ < N)

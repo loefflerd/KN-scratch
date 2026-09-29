@@ -129,7 +129,7 @@ private lemma measures_eq_of_disk_masses {p : ℕ} [Fact p.Prime]
         · intro hx
           exact ⟨x,hx,rfl⟩
       have hb : PadicInt.toZModPow n x.val = (b : ZMod (p^n)) := rfl
-      rw [if_pos hb,mul_one]
+      rw [ite_eq_left hb,mul_one]
       change c b = (if x ∈ U then 1 else 0)
       simp only [c,he]
     · intro a _ hab
@@ -564,11 +564,11 @@ private lemma approxCLM_disk {p : ℕ} [Fact p.Prime] (m : ℕ → ℤ → ℂ_[
   have hre : (r : ZMod (p^n)) = (a : ZMod (p^n)) := ZMod.natCast_zmod_val _
   have hrm : m n r = m n a := hres n hn r a hr ha (by simpa only [Int.cast_natCast] using hre)
   rw [approxCLM_apply,Finset.sum_eq_single r]
-  · rw [if_pos hr,diskPoly_apply,intSample_val _ hr,map_intCast,Int.cast_natCast,if_pos hre]
+  · rw [ite_eq_left hr,diskPoly_apply,intSample_val _ hr,map_intCast,Int.cast_natCast,ite_eq_left hre]
     simpa only [pow_zero,mul_one] using hrm
   · intro b hb hbr
     by_cases hbc : IsCoprime (b : ℤ) (p : ℤ)
-    · rw [if_pos hbc,diskPoly_apply,intSample_val _ hbc,map_intCast,Int.cast_natCast]
+    · rw [ite_eq_left hbc,diskPoly_apply,intSample_val _ hbc,map_intCast,Int.cast_natCast]
       have hne : (b : ZMod (p^n)) ≠ (a : ZMod (p^n)) := by
         intro he
         have hv := congrArg ZMod.val he

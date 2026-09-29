@@ -2,7 +2,8 @@ import Definitions.KN.Def_MTT_EigenformCoefficientPrime
 import Theorems.KN.Thm_MTT_Eigenform_coefficientPrime_isMaximal
 import Theorems.KN.Thm_MTT_Eigenform_coefficientPrime_ne_bot
 import Theorems.KN.Thm_MTT_numberField_coefficientField
-import Mathlib.RingTheory.Ideal.Quotient.HasFiniteQuotients
+import Mathlib.RingTheory.Ideal.Quotient.HasFiniteQuotients.Basic
+import Mathlib.RingTheory.Ideal.Quotient.HasFiniteQuotients.Norm
 
 set_option autoImplicit false
 noncomputable section

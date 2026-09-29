@@ -136,7 +136,7 @@ theorem solution (K F K' F' : Type*)
       Finsupp.mapDomain_support_of_injective hlift_inj,
       Finset.sum_image (fun a _ b _ h => hlift_inj h)]
     refine Finset.sum_congr rfl fun v _ => ?_
-    rw [Finsupp.mapDomain_apply hlift_inj,
+    rw [Finsupp.mapDomain_apply_of_injective hlift_inj,
       show ((lift v).deg : ℤ) = 1 from by
         exact_mod_cast Place.deg_eq_one_of_isAlgClosed_of_finite (lift v),
       show ((v.deg : ℤ)) = 1 from by exact_mod_cast Place.deg_eq_one_of_isAlgClosed_of_finite v]

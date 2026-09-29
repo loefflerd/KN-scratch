@@ -126,7 +126,7 @@ theorem coeff_e1Chi3 (n : ℕ) :
 
 theorem coeff_e1Chi3_of_ne_zero {n : ℕ} (hn : n ≠ 0) :
     PowerSeries.coeff n e1Chi3 = 6 * sigmaChi n := by
-  rw [coeff_e1Chi3, if_neg hn]
+  rw [coeff_e1Chi3, ite_eq_right hn]
 
 theorem coeff_one_e1Chi3 : PowerSeries.coeff 1 e1Chi3 = 6 := by
   rw [coeff_e1Chi3]
@@ -161,7 +161,7 @@ theorem three_dvd_coeff_e1Chi3_sub_one (n : ℕ) :
   rw [map_sub, PowerSeries.coeff_one]
   rcases eq_or_ne n 0 with rfl | hn
   · simp [coeff_e1Chi3]
-  · rw [if_neg hn, sub_zero]
+  · rw [ite_eq_right hn, sub_zero]
     exact three_dvd_coeff_e1Chi3_of_ne_zero hn
 
 def E1Chi3IsModular : Prop :=
@@ -938,19 +938,19 @@ theorem mul_inv_repOfLabel_mem_iff (g : SL(2, ℤ)) (l : Option (ZMod 3)) :
     rw [repOfLabel_none, one_apply_one_one, one_apply_one_zero, Int.cast_one, mul_one,
       Int.cast_zero, mul_zero]
     by_cases hc : (g 1 0 : ZMod 3) = 0
-    · rw [if_pos hc]
+    · rw [ite_eq_left hc]
       exact iff_of_true hc rfl
-    · rw [if_neg hc]
+    · rw [ite_eq_right hc]
       exact iff_of_false hc (by simp)
   | some k =>
     rw [repOfLabel_some_one_one, repOfLabel_some_one_zero, Int.cast_one, mul_one,
       intCast_val]
     by_cases hc : (g 1 0 : ZMod 3) = 0
-    · rw [if_pos hc]
+    · rw [ite_eq_left hc]
       refine iff_of_false (fun hcontra => ?_) (by simp)
       rw [hc, zero_mul] at hcontra
       exact apply_one_one_ne_zero g hc hcontra.symm
-    · rw [if_neg hc, Option.some_inj, eq_div_iff hc]
+    · rw [ite_eq_right hc, Option.some_inj, eq_div_iff hc]
       constructor <;> intro h <;> linear_combination h
 
 theorem isComplement_transversal :
@@ -2091,7 +2091,7 @@ theorem nuThree_prime (hp : p.Prime) (hp3 : p ≠ 3) :
   by_cases h1 : p % 3 = 1
   ·
 
-    rw [if_pos h1]
+    rw [ite_eq_left h1]
     obtain ⟨ζ, hζord⟩ := exists_orderOf_eq_three hp h1
     have hζ : ζ ^ 2 + ζ + 1 = 0 :=
       (sq_add_self_add_one_eq_zero_iff_orderOf_eq_three hp hp3 ζ).mpr hζord
@@ -2108,7 +2108,7 @@ theorem nuThree_prime (hp : p.Prime) (hp3 : p ≠ 3) :
       exact (sq_add_self_add_one_eq_zero_iff_of_prime hp hζ).mp hx
   ·
 
-    rw [if_neg h1]
+    rw [ite_eq_right h1]
     have hempty : IsEmpty {x : ZMod p // x ^ 2 + x + 1 = 0} := by
       refine ⟨fun z => ?_⟩
       obtain ⟨x, hx⟩ := z
@@ -2128,12 +2128,12 @@ theorem nuThree_eq_zero_of_mod_three_eq_two (hp : p.Prime) (h2 : p % 3 = 2) :
     nuThree p = 0 := by
   have hp3 : p ≠ 3 := by rintro rfl; omega
   have hne1 : ¬p % 3 = 1 := by omega
-  rw [nuThree_prime hp hp3, if_neg hne1]
+  rw [nuThree_prime hp hp3, ite_eq_right hne1]
 
 theorem nuThree_eq_two_of_mod_three_eq_one (hp : p.Prime) (h1 : p % 3 = 1) :
     nuThree p = 2 := by
   have hp3 : p ≠ 3 := by rintro rfl; omega
-  rw [nuThree_prime hp hp3, if_pos h1]
+  rw [nuThree_prime hp hp3, ite_eq_left h1]
 
 end Prime
 p2m_reactivate "P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.EisensteinWeightOne P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.LatticeSum P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.Gamma0Three"
@@ -2411,8 +2411,8 @@ theorem sigmaChi_inert_pow {p : ℕ} (hp : p.Prime) (h2 : p % 3 = 2) (k : ℕ) :
     simp [chiNegThree, h2]
   rw [hchi, neg_one_geom_sum]
   rcases Nat.even_or_odd k with hk | hk
-  · rw [if_pos hk, if_neg (Nat.not_even_iff_odd.mpr hk.add_one)]
-  · rw [if_neg (Nat.not_even_iff_odd.mpr hk), if_pos hk.add_one]
+  · rw [ite_eq_left hk, ite_eq_right (Nat.not_even_iff_odd.mpr hk.add_one)]
+  · rw [ite_eq_right (Nat.not_even_iff_odd.mpr hk), ite_eq_left hk.add_one]
 
 theorem reprCount_three_pow (k : ℕ) : reprCount (3 ^ k) = 6 := by
   induction k with
@@ -2437,9 +2437,9 @@ theorem reprCount_inert_pow {p : ℕ} (hp : p.Prime) (h2 : p % 3 = 2) (k : ℕ) 
       rw [hstep, reprCount_sq_mul_of_inert hp h2, ih]
   rcases Nat.even_or_odd k with hk | hk
   · obtain ⟨j, hj⟩ := hk
-    rw [if_pos ⟨j, hj⟩, hj, ← two_mul, heven]
+    rw [ite_eq_left ⟨j, hj⟩, hj, ← two_mul, heven]
   · obtain ⟨j, hj⟩ := hk
-    rw [if_neg (Nat.not_even_iff_odd.mpr ⟨j, hj⟩), hj, hodd]
+    rw [ite_eq_right (Nat.not_even_iff_odd.mpr ⟨j, hj⟩), hj, hodd]
 
 theorem exists_dvd_hexForm_of_split {p : ℕ} (hp : p.Prime) (h1 : p % 3 = 1) :
     ∃ a : ℤ, (p : ℤ) ∣ hexForm a 1 := by
@@ -2493,9 +2493,9 @@ theorem reprCountEqCoeffE1Chi3_of_residuals
     ·
       rw [reprCount_inert_pow hp' h2, sigmaChi_inert_pow hp' h2]
       rcases Nat.even_or_odd k with hk' | hk'
-      · rw [if_pos hk', if_pos hk']; norm_num
-      · rw [if_neg (Nat.not_even_iff_odd.mpr hk'),
-          if_neg (Nat.not_even_iff_odd.mpr hk')]
+      · rw [ite_eq_left hk', ite_eq_left hk']; norm_num
+      · rw [ite_eq_right (Nat.not_even_iff_odd.mpr hk'),
+          ite_eq_right (Nat.not_even_iff_odd.mpr hk')]
         norm_num
   | coprime a b ha hb hab iha ihb =>
     have ha0 : a ≠ 0 := by omega

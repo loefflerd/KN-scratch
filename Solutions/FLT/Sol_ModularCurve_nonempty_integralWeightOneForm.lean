@@ -51,8 +51,8 @@ theorem two_mul_oddCharSum (a : ZMod L) :
     rw [oddCharSum, Finset.mul_sum]
     refine Finset.sum_congr rfl fun χ _ => ?_
     rcases χ.even_or_odd with hev | hodd
-    · rw [hev.eval_neg, sub_self, if_neg hev.not_odd, mul_zero]
-    · rw [hodd.eval_neg, if_pos hodd]; ring
+    · rw [hev.eval_neg, sub_self, ite_eq_right hev.not_odd, mul_zero]
+    · rw [hodd.eval_neg, ite_eq_left hodd]; ring
   rw [← key, Finset.sum_sub_distrib, h1, h2]
   by_cases ha : a = 1
   · subst ha
@@ -111,16 +111,16 @@ theorem coeff_qExpansion_eisensteinOdd (χ : DirichletCharacter ℂ L) (n : ℕ)
     have hdef : eisensteinOdd L χ = (ModularForm.exists_weightOne_eisenstein_qCoeff_eq_of_isPrimitive_of_odd
         L χ hcond.2 hcond.1).choose := by
       simp only [eisensteinOdd, dif_pos hcond]
-    rw [if_pos hodd, hdef]
+    rw [ite_eq_left hodd, hdef]
     by_cases hn : n = 0
     · subst hn
-      rw [if_pos rfl]
+      rw [ite_eq_left rfl]
       exact hE.2.1
-    · rw [if_neg hn]
+    · rw [ite_eq_right hn]
       exact hE.2.2 n (Nat.pos_of_ne_zero hn)
   · have hdef : eisensteinOdd L χ = 0 := by
       simp only [eisensteinOdd, dif_neg (fun h : χ.Odd ∧ χ.IsPrimitive => hodd h.1)]
-    rw [if_neg hodd, hdef, FunLike.coe_zero, qExpansion_zero, map_zero]
+    rw [ite_eq_right hodd, hdef, FunLike.coe_zero, qExpansion_zero, map_zero]
 
 omit hL hprim in
 theorem qExpansion_oddEisensteinSum :
@@ -136,7 +136,7 @@ theorem coeff_zero_oddEisensteinSum :
   rw [qExpansion_oddEisensteinSum L, map_sum]
   have hterm : ∀ χ : DirichletCharacter ℂ L, (qExpansion 1 ⇑(eisensteinOdd L χ)).coeff 0 =
       (if χ.Odd then -(∑ a ∈ Finset.range L, (a : ℂ) * χ (a : ZMod L)) / (2 * L) else 0) := fun χ => by
-    rw [coeff_qExpansion_eisensteinOdd L hprim, if_pos rfl]
+    rw [coeff_qExpansion_eisensteinOdd L hprim, ite_eq_left rfl]
   rw [Finset.sum_congr rfl (fun χ _ => hterm χ)]
 
   have hswap : ∑ χ : DirichletCharacter ℂ L,
@@ -185,7 +185,7 @@ theorem coeff_zero_oddEisensteinSum :
       split_ifs <;> ring
     rw [Finset.sum_congr rfl this, ← Finset.mul_sum, Finset.sum_sub_distrib,
       Finset.sum_ite_eq' (Finset.range L), Finset.sum_ite_eq' (Finset.range L),
-      if_pos (Finset.mem_range.mpr (by omega)), if_pos (Finset.mem_range.mpr (by omega)),
+      ite_eq_left (Finset.mem_range.mpr (by omega)), ite_eq_left (Finset.mem_range.mpr (by omega)),
       Nat.cast_sub (by omega)]
     push_cast
     ring
@@ -202,7 +202,7 @@ theorem coeff_pos_oddEisensteinSum {n : ℕ} (hn : 0 < n) :
     2 * (qExpansion 1 ⇑(oddEisensteinSum L)).coeff n = (L.totient : ℂ) * (divisorSignCount L n : ℂ) := by
   classical
   rw [qExpansion_oddEisensteinSum L, map_sum]
-  simp_rw [coeff_qExpansion_eisensteinOdd L hprim, if_neg (Nat.pos_iff_ne_zero.mp hn)]
+  simp_rw [coeff_qExpansion_eisensteinOdd L hprim, ite_eq_right (Nat.pos_iff_ne_zero.mp hn)]
   have : ∀ χ : DirichletCharacter ℂ L,
       (if χ.Odd then ∑ d ∈ n.divisors, χ (d : ZMod L) else 0) =
         ∑ d ∈ n.divisors, (if χ.Odd then χ (d : ZMod L) else 0) := by
@@ -290,8 +290,8 @@ theorem exists_isIntegralQExp_thetaLikeSeries (L : ℕ) [NeZero L] (hL : 2 < L)
   rw [PowerSeries.coeff_map, thetaLikeSeries, PowerSeries.coeff_mk]
   by_cases hn : n = 0
   · subst hn
-    rw [if_pos rfl, eq_intCast, Int.cast_natCast, h0]
-  · rw [if_neg hn, eq_intCast, hpos n (Nat.pos_of_ne_zero hn), divisorSignCount]
+    rw [ite_eq_left rfl, eq_intCast, Int.cast_natCast, h0]
+  · rw [ite_eq_right hn, eq_intCast, hpos n (Nat.pos_of_ne_zero hn), divisorSignCount]
     push_cast
     ring
 

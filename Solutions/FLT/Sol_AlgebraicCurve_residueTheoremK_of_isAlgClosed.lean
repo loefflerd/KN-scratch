@@ -1140,7 +1140,7 @@ theorem inertiaDeg_eq_inertiaDeg_fiberCenter (hw : w.restrict F = v) :
       (IsLocalRing.maximalIdeal v.toValuationSubring).inertiaDeg'
         (fiberCenter F' v hw).asIdeal := by
   have := fiberCenter_liesOver hw
-  rw [Ideal.inertiaDeg'_algebraMap]
+  rw [Ideal.inertiaDeg_eq_of_isMaximal]
   show Module.finrank (w.restrict F).ResidueField w.ResidueField = _
   refine Algebra.finrank_eq_of_equiv_equiv (restrictResidueFieldEquiv hw)
     (residueFieldEquivQuotientCenter hw).symm ?_
@@ -7822,7 +7822,7 @@ theorem kwF4R1V386a_inertiaDeg_completion_eq
       ((IsLocalRing.local_hom_TFAE (algebraMap (w'.restrict E).adicCompletionIntegers
         w'.adicCompletionIntegers)).out 0 4).mp ‹IsLocalHom _›
     exact ⟨hcomap.symm⟩
-  rw [Ideal.inertiaDeg'_algebraMap]
+  rw [Ideal.inertiaDeg_eq_of_isMaximal]
 
   symm
   refine Algebra.finrank_eq_of_equiv_equiv

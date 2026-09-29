@@ -151,8 +151,8 @@ theorem solution
     simp only [P, Finsupp.coe_finsetSum, Finset.sum_apply, Finsupp.single_apply]
     rw [Finset.sum_ite_eq' T v]
     by_cases hv : v ∈ T
-    · rw [if_pos hv, max_eq_right]; have := (hT v).1 hv; omega
-    · rw [if_neg hv, max_eq_left]; have := (hT v).not.1 hv; omega
+    · rw [ite_eq_left hv, max_eq_right]; have := (hT v).1 hv; omega
+    · rw [ite_eq_right hv, max_eq_left]; have := (hT v).not.1 hv; omega
   have hPdeg := degree_poleDivisor_eq_finrank_adjoin_of_isAlgClosed_of_transcendental y hy P hP
   have hPdeg' : Divisor.degree P = ∑ v ∈ T, -(v.ord y) := by
     simp only [P, map_sum, Divisor.degree_single, hdeg1, Nat.cast_one, mul_one]
@@ -249,14 +249,14 @@ theorem solution
     congr 1
     congr 1
     · by_cases h : 0 < v.ord y
-      · rw [if_pos h, if_pos ((hS0 v).2 h), h0 v h]; omega
-      · rw [if_neg h, if_neg (fun h' => h ((hS0 v).1 h'))]
+      · rw [ite_eq_left h, ite_eq_left ((hS0 v).2 h), h0 v h]; omega
+      · rw [ite_eq_right h, ite_eq_right (fun h' => h ((hS0 v).1 h'))]
     · by_cases h : 0 < v.ord (y - algebraMap k F 1728)
-      · rw [if_pos h, if_pos ((hS1 v).2 h), h1728' v h]; omega
-      · rw [if_neg h, if_neg (fun h' => h ((hS1 v).1 h'))]
+      · rw [ite_eq_left h, ite_eq_left ((hS1 v).2 h), h1728' v h]; omega
+      · rw [ite_eq_right h, ite_eq_right (fun h' => h ((hS1 v).1 h'))]
     · by_cases h : v.ord y < 0
-      · rw [if_pos h, if_pos ((hT v).2 h)]
-      · rw [if_neg h, if_neg (fun h' => h ((hT v).1 h'))]
+      · rw [ite_eq_left h, ite_eq_left ((hT v).2 h)]
+      · rw [ite_eq_right h, ite_eq_right (fun h' => h ((hT v).1 h'))]
   have hDsupp : D.support ⊆ S0 ∪ S1 ∪ T := by
     intro v hv
     rw [Finsupp.mem_support_iff, hDval v] at hv
@@ -264,7 +264,7 @@ theorem solution
     by_contra hnot
     push Not at hnot
     obtain ⟨⟨h1, h2⟩, h3⟩ := hnot
-    rw [if_neg h1, if_neg h2, if_neg h3] at hv
+    rw [ite_eq_right h1, ite_eq_right h2, ite_eq_right h3] at hv
     exact hv (by ring)
   have hDdeg : Divisor.degree D = ∑ v ∈ S0 ∪ S1 ∪ T, D v := by
     rw [hdegsum D]

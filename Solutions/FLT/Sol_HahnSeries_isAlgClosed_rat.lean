@@ -30,7 +30,7 @@ theorem newtonInitialForm_coeff (f : (HahnSeries ℚ K)[X]) (γ : ℚ) (k : ℕ)
   rw [Finset.sum_eq_single k]
   · simp
   · intro j _ hj
-    simp only [Polynomial.coeff_C_mul, Polynomial.coeff_X_pow, if_neg (Ne.symm hj), mul_zero]
+    simp only [Polynomial.coeff_C_mul, Polynomial.coeff_X_pow, ite_eq_right (Ne.symm hj), mul_zero]
   · intro h
     exact absurd (Finset.mem_range.mpr (Nat.lt_succ_of_le hk)) h
 
@@ -195,7 +195,7 @@ theorem exists_ne_zero_root_of_coeff_ne_zero [IsAlgClosed K] {p : K[X]} (hp : p.
   simp only [Multiset.map_replicate, map_zero, sub_zero, Multiset.prod_replicate] at hprod
 
   rw [hprod, Polynomial.coeff_X_pow] at hcoeff
-  exact hcoeff (if_neg (Nat.ne_of_lt hj))
+  exact hcoeff (ite_eq_right (Nat.ne_of_lt hj))
 
 theorem exists_newtonFirstApprox [IsAlgClosed K] {f : (HahnSeries ℚ K)[X]} (hf : f.Monic)
     (hdeg : 1 ≤ f.natDegree) (h0 : f.coeff 0 ≠ 0) :
@@ -285,7 +285,7 @@ theorem evalEdgeForm_coeff (f : (HahnSeries ℚ K)[X]) (γ : ℚ) (k : ℕ) (hk 
   rw [Finset.sum_eq_single k]
   · simp
   · intro j _ hj
-    simp only [Polynomial.coeff_C_mul, Polynomial.coeff_X_pow, if_neg (Ne.symm hj), mul_zero]
+    simp only [Polynomial.coeff_C_mul, Polynomial.coeff_X_pow, ite_eq_right (Ne.symm hj), mul_zero]
   · intro h
     exact absurd (Finset.mem_range.mpr (Nat.lt_succ_of_le hk)) h
 
@@ -561,9 +561,9 @@ theorem eval_sub_eval_eq_sum_taylor (f : (HahnSeries ℚ K)[X]) (r h : HahnSerie
   rw [← Finset.add_sum_erase _ (fun j => (Polynomial.taylor r f).coeff j * h ^ j) h0mem,
     ← Finset.add_sum_erase _
       (fun j => if j = 0 then 0 else (Polynomial.taylor r f).coeff j * h ^ j) h0mem]
-  rw [pow_zero, mul_one, add_sub_cancel_left, if_pos rfl, zero_add]
+  rw [pow_zero, mul_one, add_sub_cancel_left, ite_eq_left rfl, zero_add]
   refine Finset.sum_congr rfl fun j hj => ?_
-  rw [if_neg (Finset.ne_of_mem_erase hj)]
+  rw [ite_eq_right (Finset.ne_of_mem_erase hj)]
 
 def KaplanskySlope (f : (HahnSeries ℚ K)[X]) (r r' : HahnSeries ℚ K) : Prop :=
   ∀ j, 1 ≤ j → j ≤ f.natDegree →
@@ -587,7 +587,7 @@ theorem KaplanskySlope.addVal_eval_le {f : (HahnSeries ℚ K)[X]} {r r' : HahnSe
     refine (HahnSeries.addVal ℚ K).map_le_sum fun j hj => ?_
     rcases Nat.eq_zero_or_pos j with rfl | hpos
     · simp
-    · rw [if_neg hpos.ne', (HahnSeries.addVal ℚ K).map_mul, (HahnSeries.addVal ℚ K).map_pow]
+    · rw [ite_eq_right hpos.ne', (HahnSeries.addVal ℚ K).map_mul, (HahnSeries.addVal ℚ K).map_pow]
       exact h j hpos (Nat.lt_succ_iff.mp (Finset.mem_range.mp hj))
   calc HahnSeries.addVal ℚ K (f.eval r)
       ≤ min (HahnSeries.addVal ℚ K (f.eval r)) (HahnSeries.addVal ℚ K (f.eval r' - f.eval r)) :=
@@ -622,7 +622,7 @@ theorem exists_addVal_taylor_coeff_of_addVal_eval_lt {f : (HahnSeries ℚ K)[X]}
     refine (HahnSeries.addVal ℚ K).map_lt_sum (ne_of_lt (lt_of_lt_of_le hlt le_top)) fun j hj => ?_
     rcases Nat.eq_zero_or_pos j with rfl | hpos
     · simpa using lt_of_lt_of_le hlt le_top
-    · rw [if_neg hpos.ne', (HahnSeries.addVal ℚ K).map_mul, (HahnSeries.addVal ℚ K).map_pow,
+    · rw [ite_eq_right hpos.ne', (HahnSeries.addVal ℚ K).map_mul, (HahnSeries.addVal ℚ K).map_pow,
         show r - r' = -(r' - r) by ring, (HahnSeries.addVal ℚ K).map_neg]
       exact habs j hpos (Nat.lt_succ_iff.mp (Finset.mem_range.mp hj))
   rw [show r' + (r - r') = r by ring] at hsum

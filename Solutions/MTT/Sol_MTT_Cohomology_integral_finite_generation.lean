@@ -90,11 +90,11 @@ theorem manin_aux (φ : Hc N n ℤ)
     have hg10 : (g : Matrix (Fin 2) (Fin 2) ℤ) 1 0 = q := by simp [hgdef]
     have hg11 : (g : Matrix (Fin 2) (Fin 2) ℤ) 1 1 = q' := by simp [hgdef]
     have hU' := hU g
-    rw [cuspAct_infty, hg10, hg00, if_neg hq.ne', cuspAct_zero, hg11, hg01] at hU'
+    rw [cuspAct_infty, hg10, hg00, ite_eq_right hq.ne', cuspAct_zero, hg11, hg01] at hU'
     by_cases hq'0 : q' = 0
-    · rw [if_pos hq'0] at hU'
+    · rw [ite_eq_left hq'0] at hU'
       exact hU'
-    · rw [if_neg hq'0] at hU'
+    · rw [ite_eq_right hq'0] at hU'
       have hq'pos : 0 < q' := lt_of_le_of_ne (Int.emod_nonneg u hq.ne') (Ne.symm hq'0)
       have hq'lt : q' < q := Int.emod_lt_of_pos u hq
       have hcop' : IsCoprime p' q' := ⟨-q, p, by linear_combination hdet⟩
@@ -171,7 +171,7 @@ def mono (n j : ℕ) : Fin 2 →₀ ℕ :=
 theorem mono_apply (n j : ℕ) (i : Fin 2) : mono n j i = if i = 0 then j else n - j := rfl
 
 theorem hom_eq_zero (P : Binary ℤ) (hP : P ∈ MTT.Cohomology.Sym ℤ n)
-    (h : ∀ j : Fin (n + 1), MvPolynomial.coeff (mono n j.val) P = 0) : P = 0 := by
+    (h : ∀ j : Fin (n + 1), AddMonoidAlgebra.coeff P (mono n j.val) = 0) : P = 0 := by
   rw [MvPolynomial.mem_homogeneousSubmodule] at hP
   ext d
   rw [MvPolynomial.coeff_zero]
@@ -196,8 +196,7 @@ theorem hom_eq_zero (P : Binary ℤ) (hP : P ∈ MTT.Cohomology.Sym ℤ n)
 
 /-- Evaluation of a class on the unimodular paths attached to coset representatives. -/
 def Theta (N n : ℕ) : Hc N n ℤ →ₗ[ℤ] ((Cos N × Fin (n + 1)) → ℤ) where
-  toFun φ := fun z => MvPolynomial.coeff (mono n z.2.val)
-    (φ.val (cuspAct z.1.out ((0 : ℚ) : Cusp), cuspAct z.1.out OnePoint.infty))
+  toFun φ := fun z => AddMonoidAlgebra.coeff (φ.val (cuspAct z.1.out ((0 : ℚ) : Cusp), cuspAct z.1.out OnePoint.infty)) (mono n z.2.val)
   map_add' φ ψ := by funext z; simp
   map_smul' c φ := by funext z; exact MvPolynomial.coeff_smul _ _ _
 

@@ -73,11 +73,11 @@ theorem eq_zero_of_rung_zero_const (hG : IsEichlerIntegral n g G) {c : ℂ} (hc 
       intro hj
       refine ⟨0, fun τ => ?_⟩
       have := hstep j (by omega) (ih (by omega)) τ
-      rw [if_neg (by omega), zero_sub, neg_eq_zero] at this
+      rw [ite_eq_right (by omega), zero_sub, neg_eq_zero] at this
       exact this
   intro τ
   have := hstep n le_rfl (hconst n le_rfl) τ
-  rw [if_pos rfl, rung_succ_n, sub_zero] at this
+  rw [ite_eq_left rfl, rung_succ_n, sub_zero] at this
   have hn : ((n.factorial : ℕ) : ℂ) ≠ 0 := by exact_mod_cast Nat.factorial_ne_zero n
   exact (mul_eq_zero.mp this).resolve_left hn
 

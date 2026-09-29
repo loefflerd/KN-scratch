@@ -226,7 +226,7 @@ theorem dvd_order_qExpansion {F : ℍ → ℂ} {N : ℕ} (hN : 0 < N) (h : ℕ) 
   intro i hi
   have key := UpperHalfPlane.qExpansion_coeff_mul_width F (d : ℝ) (by exact_mod_cast hdpos) pd dF bF m hmpos i
   rw [hmd] at key
-  rw [key, if_neg hi]
+  rw [key, ite_eq_right hi]
 
 theorem dvd_order_qExpansion_slash {k : ℤ} (hk : Even k)
     (G : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) (σ : SL(2, ℤ))

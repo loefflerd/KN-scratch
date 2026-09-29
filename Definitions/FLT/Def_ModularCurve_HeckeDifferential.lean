@@ -57,7 +57,7 @@ def qEuler : Derivation R (LaurentSeries R) (LaurentSeries R) where
     simp only [LinearMap.coe_mk, AddHom.coe_mk, qEulerFun_coeff, coeff_zero]
     by_cases hn : n = 0
     · subst hn; simp
-    · rw [coeff_one, if_neg hn, mul_zero]
+    · rw [coeff_one, ite_eq_right hn, mul_zero]
   leibniz' x y := by
     ext a
     simp only [LinearMap.coe_mk, AddHom.coe_mk, qEulerFun_coeff, coeff_add', Pi.add_apply,

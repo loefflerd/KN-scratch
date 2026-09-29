@@ -814,7 +814,7 @@ theorem inertiaDeg_eq_inertiaDeg_fiberCenter (hw : w.restrict F = v) :
       (IsLocalRing.maximalIdeal v.toValuationSubring).inertiaDeg'
         (fiberCenter F' v hw).asIdeal := by
   have := fiberCenter_liesOver hw
-  rw [Ideal.inertiaDeg'_algebraMap]
+  rw [Ideal.inertiaDeg_eq_of_isMaximal]
   show Module.finrank (w.restrict F).ResidueField w.ResidueField = _
   refine Algebra.finrank_eq_of_equiv_equiv (restrictResidueFieldEquiv hw)
     (residueFieldEquivQuotientCenter hw).symm ?_
@@ -928,7 +928,7 @@ theorem sum_ramificationIndex_mul_inertiaDeg_infra [HasPrincipalDivisors K F'] :
       ∑ P ∈ IsDedekindDomain.primesOverFinset
           (IsLocalRing.maximalIdeal v.toValuationSubring) (integralClosureAt F' v),
         Ideal.ramificationIdx' (IsLocalRing.maximalIdeal v.toValuationSubring) P *
-          Ideal.inertiaDeg' (IsLocalRing.maximalIdeal v.toValuationSubring) P =
+          Ideal.inertiaDeg (IsLocalRing.maximalIdeal v.toValuationSubring) P =
             Module.finrank F F' := by
     let p := IsLocalRing.maximalIdeal v.toValuationSubring
     let S := integralClosureAt F' v
@@ -1258,10 +1258,10 @@ theorem pushforwardNormFormula_infra [HasPrincipalDivisors K F'] :
           rw [Finsupp.notMem_support_iff.mp hw, zero_mul, ite_self]
     _ = ∑ w ∈ v.fiber F', (if w.restrict F = v then D w * (w.inertiaDeg F : ℤ) else 0) := by
           refine (Finset.sum_subset Finset.subset_union_right fun w _ hw => ?_).symm
-          rw [if_neg fun h => hw (Place.mem_fiber.mpr h)]
+          rw [ite_eq_right fun h => hw (Place.mem_fiber.mpr h)]
     _ = ∑ w ∈ v.fiber F', (w.inertiaDeg F : ℤ) * w.ord f := by
           refine Finset.sum_congr rfl fun w hw => ?_
-          rw [if_pos (Place.mem_fiber.mp hw), hD w, mul_comm]
+          rw [ite_eq_left (Place.mem_fiber.mp hw), hD w, mul_comm]
 
 variable (F) in
 

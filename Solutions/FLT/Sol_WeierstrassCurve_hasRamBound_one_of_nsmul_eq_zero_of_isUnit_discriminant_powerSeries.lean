@@ -221,7 +221,7 @@ theorem mem_inertiaSubgroup :
     intro q hq
     rw [HahnSeries.coeff_sub, HahnSeries.C_apply, HahnSeries.coeff_single]
     rcases lt_or_eq_of_le hq with hq' | rfl
-    · rw [(nonneg_orderTop_iff.mp (mem_puiseuxVal_iff.mp a.2)) q hq', if_neg (ne_of_lt hq')]
+    · rw [(nonneg_orderTop_iff.mp (mem_puiseuxVal_iff.mp a.2)) q hq', ite_eq_right (ne_of_lt hq')]
       simp
     · simp [ha0]
   have heq : σr (a : HahnSeries ℚ K) - (a : HahnSeries ℚ K) = σr ((a : HahnSeries ℚ K) - HahnSeries.C a0)

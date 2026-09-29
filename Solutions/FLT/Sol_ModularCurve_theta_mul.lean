@@ -86,15 +86,15 @@ p2m_open_scoped "ModularCurve ModularCurve.PhiGen" in
 private theorem ModularCurve.PhiGen.weightTwo_coeff_sum_slots {K : Type*} [Field K] [Algebra ℚ K] (ℓ : ℕ) [NeZero ℓ] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) ℓ) (f : LaurentSeries K) (n : ℤ) : ((ℓ * ℓ) • qExpand K (ℓ * ℓ) f + ∑ b ∈ Finset.range ℓ, qTwist (ζ ^ b) f).coeff ((ℓ : ℤ) * n) = (ℓ : K) * (f.coeff ((ℓ : ℤ) * n) + if (ℓ : ℤ) ∣ n then (ℓ : K) * f.coeff (n / ℓ) else 0) := by
   have hℓ : (ℓ : ℤ) ≠ 0 := by exact_mod_cast NeZero.ne ℓ
   rw [HahnSeries.coeff_add, HahnSeries.coeff_nsmul, Pi.smul_apply, sum_qTwist_coeff ℓ ζ hζ f,
-    if_pos (dvd_mul_right _ _)]
+    ite_eq_left (dvd_mul_right _ _)]
   by_cases hn : (ℓ : ℤ) ∣ n
   · obtain ⟨m, rfl⟩ := hn
-    rw [if_pos (dvd_mul_right _ _),
+    rw [ite_eq_left (dvd_mul_right _ _),
       show (ℓ : ℤ) * ((ℓ : ℤ) * m) = ((ℓ * ℓ : ℕ) : ℤ) * m by push_cast; ring,
       qExpand_coeff_mul, Int.mul_ediv_cancel_left _ hℓ, nsmul_eq_mul]
     push_cast
     ring
-  · rw [if_neg hn, qExpand_coeff_of_not_dvd (ℓ * ℓ) f, smul_zero, zero_add, add_zero]
+  · rw [ite_eq_right hn, qExpand_coeff_of_not_dvd (ℓ * ℓ) f, smul_zero, zero_add, add_zero]
     intro h
     apply hn
     push_cast at h
@@ -106,14 +106,14 @@ private theorem ModularCurve.PhiGen.weightTwo_coeff_sum_slots_inv {K : Type*} [F
   have : CharZero K := charZero_of_injective_algebraMap (algebraMap ℚ K).injective
   have hℓK : (ℓ : K) ≠ 0 := by exact_mod_cast NeZero.ne ℓ
   rw [HahnSeries.coeff_add, HahnSeries.coeff_smul, HahnSeries.coeff_smul, sum_qTwist_coeff ℓ ζ hζ f,
-    if_pos (dvd_mul_right _ _), smul_eq_mul, smul_eq_mul, inv_mul_cancel_left₀ hℓK]
+    ite_eq_left (dvd_mul_right _ _), smul_eq_mul, smul_eq_mul, inv_mul_cancel_left₀ hℓK]
   by_cases hn : (ℓ : ℤ) ∣ n
   · obtain ⟨m, rfl⟩ := hn
-    rw [if_pos (dvd_mul_right _ _),
+    rw [ite_eq_left (dvd_mul_right _ _),
       show (ℓ : ℤ) * ((ℓ : ℤ) * m) = ((ℓ * ℓ : ℕ) : ℤ) * m by push_cast; ring,
       qExpand_coeff_mul, Int.mul_ediv_cancel_left _ hℓ]
     ring
-  · rw [if_neg hn, qExpand_coeff_of_not_dvd (ℓ * ℓ) f, mul_zero, zero_add, add_zero]
+  · rw [ite_eq_right hn, qExpand_coeff_of_not_dvd (ℓ * ℓ) f, mul_zero, zero_add, add_zero]
     intro h
     apply hn
     push_cast at h
@@ -122,7 +122,7 @@ private theorem ModularCurve.PhiGen.weightTwo_coeff_sum_slots_inv {K : Type*} [F
 p2m_open_scoped "ModularCurve ModularCurve.PhiGen" in
 private theorem ModularCurve.PhiGen.weightTwo_coeff_sum_slots_not_dvd {K : Type*} [Field K] [Algebra ℚ K] (ℓ : ℕ) [NeZero ℓ] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) ℓ) (f : LaurentSeries K) {k : ℤ} (hk : ¬ (ℓ : ℤ) ∣ k) : ((ℓ * ℓ) • qExpand K (ℓ * ℓ) f + ∑ b ∈ Finset.range ℓ, qTwist (ζ ^ b) f).coeff k = 0 := by
   rw [HahnSeries.coeff_add, HahnSeries.coeff_nsmul, Pi.smul_apply, sum_qTwist_coeff ℓ ζ hζ f,
-    if_neg hk, qExpand_coeff_of_not_dvd (ℓ * ℓ) f, smul_zero, add_zero]
+    ite_eq_right hk, qExpand_coeff_of_not_dvd (ℓ * ℓ) f, smul_zero, add_zero]
   intro h
   apply hk
   push_cast at h
@@ -139,14 +139,14 @@ p2m_open_scoped "ModularCurve ModularCurve.PhiGen" in
 private theorem ModularCurve.PhiGen.weightTwo_theta_coeff {R : Type*} [CommRing R] (ℓ : ℕ) (f : LaurentSeries R) (n : ℤ) : ((HahnSeries.single (1 : ℤ) (1 : R) : LaurentSeries R) * LaurentSeries.derivative R f).coeff ((ℓ : ℤ) * n) + (if (ℓ : ℤ) ∣ n then (ℓ : R) * ((HahnSeries.single (1 : ℤ) (1 : R) : LaurentSeries R) * LaurentSeries.derivative R f).coeff (n / ℓ) else 0) = n • ((if (ℓ : ℤ) ∣ n then f.coeff (n / ℓ) else 0) + (ℓ : R) * f.coeff ((ℓ : ℤ) * n)) := by
   rw [theta_coeff]
   by_cases hn : (ℓ : ℤ) ∣ n
-  · rw [if_pos hn, if_pos hn, theta_coeff]
+  · rw [ite_eq_left hn, ite_eq_left hn, theta_coeff]
     obtain ⟨m, rfl⟩ := hn
     rcases eq_or_ne (ℓ : ℤ) 0 with hℓ | hℓ
     · simp [hℓ]
     · rw [Int.mul_ediv_cancel_left _ hℓ]
       simp only [zsmul_eq_mul, Int.cast_mul, Int.cast_natCast]
       ring
-  · rw [if_neg hn, if_neg hn]
+  · rw [ite_eq_right hn, ite_eq_right hn]
     simp only [zsmul_eq_mul, Int.cast_mul, Int.cast_natCast, add_zero, zero_add]
     ring
 

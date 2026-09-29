@@ -96,7 +96,7 @@ theorem solution
     have h1728 : P.ord (y - 1728) = P.ord y := by
       rw [e1728, sub_eq_add_neg, ← map_neg]
       exact AlgebraicCurve.Place.ord_add_eq_of_lt P hy0 hc0 (by rw [hc]; exact hneg)
-    rw [if_neg (not_lt.2 hneg.le), if_neg (by rw [h1728]; exact not_lt.2 hneg.le), if_pos hneg,
+    rw [ite_eq_right (not_lt.2 hneg.le), ite_eq_right (by rw [h1728]; exact not_lt.2 hneg.le), ite_eq_left hneg,
       zero_add, zero_add]
     exact h2
 

@@ -405,7 +405,7 @@ private lemma ratCoeff_E {k : ℕ} (hk : 3 ≤ k) (hk2 : Even k) :
   by_cases hn : n = 0
   · exact ⟨1, by simp [hn]⟩
   · refine ⟨-(2 * k / _root_.bernoulli k) * (σ (k - 1) n : ℚ), ?_⟩
-    rw [if_neg hn]
+    rw [ite_eq_right hn]
     push_cast
     ring
 
@@ -771,9 +771,9 @@ theorem eq_zero_of_const_relation (hg : GenMD jf fricke)
     have hP0 : P = 0 := (transcendental_iff.mp hc) P haeval
     have hcoeffP : P.coeff (i : ℕ) = z i := by
       rw [hP, Polynomial.finsetSum_coeff, Finset.sum_eq_single i]
-      · rw [Polynomial.coeff_C_mul, Polynomial.coeff_X_pow, if_pos rfl, mul_one]
+      · rw [Polynomial.coeff_C_mul, Polynomial.coeff_X_pow, ite_eq_left rfl, mul_one]
       · intro i' _ hne
-        rw [Polynomial.coeff_C_mul, Polynomial.coeff_X_pow, if_neg (fun h => hne (Fin.ext h).symm),
+        rw [Polynomial.coeff_C_mul, Polynomial.coeff_X_pow, ite_eq_right (fun h => hne (Fin.ext h).symm),
           mul_zero]
       · intro h; exact absurd (Finset.mem_univ i) h
     have hzi : z i = 0 := by rw [← hcoeffP, hP0, Polynomial.coeff_zero]

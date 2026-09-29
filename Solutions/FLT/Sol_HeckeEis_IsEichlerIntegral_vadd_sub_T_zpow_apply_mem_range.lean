@@ -39,14 +39,13 @@ theorem eval_binarySubst_T_zpow (h : ℤ) (P : MvPolynomial (Fin 2) ℂ) :
   rw [binarySubst, MvPolynomial.aeval_eq_bind₁, MvPolynomial.eval, MvPolynomial.eval₂Hom_bind₁, key]
 
 theorem coeff_single_one_binaryFormRepSL_T_zpow (n : ℕ) (h : ℤ) (P : ↥(BinaryForm ℂ n)) :
-    MvPolynomial.coeff (Finsupp.single 1 n)
-        ((binaryFormRepSL ℂ n (ModularGroup.T ^ h) P : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ)
-      = MvPolynomial.coeff (Finsupp.single 1 n) (P : MvPolynomial (Fin 2) ℂ) := by
+    AddMonoidAlgebra.coeff ((binaryFormRepSL ℂ n (ModularGroup.T ^ h) P : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) (Finsupp.single 1 n)
+      = AddMonoidAlgebra.coeff (P : MvPolynomial (Fin 2) ℂ) (Finsupp.single 1 n) := by
   rw [coeff_single_one_eq_eval_of_mem_binaryForm (binaryFormRepSL ℂ n _ P).2,
     coeff_single_one_eq_eval_of_mem_binaryForm P.2, binaryFormRepSL_apply_coe, eval_binarySubst_T_zpow]
 
 theorem coeff_single_one_linePow (n : ℕ) (z : ℂ) :
-    MvPolynomial.coeff (Finsupp.single 1 n) ((linePow n z : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) = 1 := by
+    AddMonoidAlgebra.coeff ((linePow n z : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) (Finsupp.single 1 n) = 1 := by
   rw [coeff_single_one_eq_eval_of_mem_binaryForm (linePow n z).2, coe_linePow]
   simp
 
@@ -62,7 +61,7 @@ theorem solution {n : ℕ} {h : ℤ} (hh : h ≠ 0)
   apply mem_range_binaryFormRepSL_T_zpow_sub_one n hh
   rw [Submodule.coe_sub, coeff_sub, coeff_single_one_binaryFormRepSL_T_zpow, sub_eq_zero]
   set φ : ℂ → ℂ := fun z =>
-    MvPolynomial.coeff (Finsupp.single 1 n) ((G (ofComplex z) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) with hφdef
+    AddMonoidAlgebra.coeff ((G (ofComplex z) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) (Finsupp.single 1 n) with hφdef
   have hφ : ∀ σ : ℍ, HasDerivAt φ (g σ) ↑σ := fun σ => by
     have := hG (Finsupp.single 1 n) σ
     rw [coeff_single_one_linePow, mul_one] at this

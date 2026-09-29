@@ -34,7 +34,7 @@ private lemma dvd_primeSel {c d : ℤ} {p : ℕ} (hc : c ≠ 0) (hp : p.Prime)
   have hmem : p ∈ c.natAbs.primeFactors :=
     Nat.mem_primeFactors.mpr ⟨hp, natCast_dvd_int.mp hpc, Int.natAbs_ne_zero.mpr hc⟩
   have h := Finset.dvd_prod_of_mem (fun q : ℕ => if q ∣ d.natAbs then 1 else q) hmem
-  simp only [if_neg (fun hcontra => hpd (natCast_dvd_int.mpr hcontra))] at h
+  simp only [ite_eq_right (fun hcontra => hpd (natCast_dvd_int.mpr hcontra))] at h
   exact h
 
 private lemma not_dvd_primeSel {c d : ℤ} {p : ℕ} (hp : p.Prime) (hpd : (p : ℤ) ∣ d) :
@@ -42,9 +42,9 @@ private lemma not_dvd_primeSel {c d : ℤ} {p : ℕ} (hp : p.Prime) (hpd : (p : 
   intro hdvd
   obtain ⟨q, hq, hpq⟩ := (Nat.Prime.prime hp).dvd_finsetProd_iff _ |>.mp hdvd
   by_cases hqd : q ∣ d.natAbs
-  · rw [if_pos hqd] at hpq
+  · rw [ite_eq_left hqd] at hpq
     exact hp.one_lt.ne' (Nat.dvd_one.mp hpq)
-  · rw [if_neg hqd] at hpq
+  · rw [ite_eq_right hqd] at hpq
     have hq' : q.Prime := (Nat.mem_primeFactors.mp hq).1
     exact hqd (((Nat.prime_dvd_prime_iff_eq hp hq').mp hpq) ▸ natCast_dvd_int.mp hpd)
 
@@ -67,7 +67,7 @@ private theorem exists_coprime_lift (N : ℕ) [NeZero N] {c₀ d₀ : ℤ}
     rw [hγ_def] at hpγ
     by_cases h : c₀ = 0
     · simp [h]
-    · rwa [if_neg h] at hpγ
+    · rwa [ite_eq_right h] at hpγ
   refine ⟨γ, d₀ + (primeSel γ d₀ : ℤ) * (N : ℤ), ?_, hγc, ?_⟩
   · by_contra hne
     obtain ⟨p, pp, hpdvd⟩ := Nat.exists_prime_and_dvd hne

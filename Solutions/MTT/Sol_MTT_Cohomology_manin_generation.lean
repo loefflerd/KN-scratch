@@ -89,11 +89,11 @@ theorem manin_aux (φ : Hc N n R)
     have hg10 : (g : Matrix (Fin 2) (Fin 2) ℤ) 1 0 = q := by simp [hgdef]
     have hg11 : (g : Matrix (Fin 2) (Fin 2) ℤ) 1 1 = q' := by simp [hgdef]
     have hU' := hU g
-    rw [cuspAct_infty, hg10, hg00, if_neg hq.ne', cuspAct_zero, hg11, hg01] at hU'
+    rw [cuspAct_infty, hg10, hg00, ite_eq_right hq.ne', cuspAct_zero, hg11, hg01] at hU'
     by_cases hq'0 : q' = 0
-    · rw [if_pos hq'0] at hU'
+    · rw [ite_eq_left hq'0] at hU'
       exact hU'
-    · rw [if_neg hq'0] at hU'
+    · rw [ite_eq_right hq'0] at hU'
       have hq'pos : 0 < q' := lt_of_le_of_ne (Int.emod_nonneg u hq.ne') (Ne.symm hq'0)
       have hq'lt : q' < q := Int.emod_lt_of_pos u hq
       have hcop' : IsCoprime p' q' := ⟨-q, p, by linear_combination hdet⟩

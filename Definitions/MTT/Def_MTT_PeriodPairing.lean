@@ -20,8 +20,8 @@ def periodPower (n : ℕ) (z : ℂ) : Binary ℂ :=
 /-- Determinant contraction, normalized to B((zX+Y)^n,(wX+Y)^n)=(z-w)^n. -/
 def periodContraction (n : ℕ) (P Q : Binary ℂ) : ℂ :=
   ∑ j ∈ Finset.range (n + 1),
-    (-1 : ℂ) ^ (n - j) * MvPolynomial.coeff (binaryExponent n j) P *
-      MvPolynomial.coeff (binaryExponent n (n - j)) Q / (n.choose j : ℂ)
+    (-1 : ℂ) ^ (n - j) * AddMonoidAlgebra.coeff P (binaryExponent n j) *
+      AddMonoidAlgebra.coeff Q (binaryExponent n (n - j)) / (n.choose j : ℂ)
 
 /-- Complex-valued real-linear differential a dz + b d(conj z). -/
 def periodDifferential (a b : ℂ) : ℂ →L[ℝ] ℂ :=
@@ -36,15 +36,15 @@ def IsMixedPeriodPrimitive {N k : ℕ}
   (∀ (γ : CongruenceSubgroup.Gamma1 N) (z : UpperHalfPlane),
     U (γ.val • z : UpperHalfPlane) = act γ.val.val (U z)) ∧
   (∀ (z : UpperHalfPlane) (e : Fin 2 →₀ ℕ),
-    HasFDerivAt (fun w : ℂ => MvPolynomial.coeff e (U w))
+    HasFDerivAt (fun w : ℂ => AddMonoidAlgebra.coeff (U w) e)
       (periodDifferential
-        (MvPolynomial.coeff e (g z • periodPower (k - 2) z))
-        (-MvPolynomial.coeff e (conj (v z) • periodPower (k - 2) (conj (z : ℂ)))))
+        (AddMonoidAlgebra.coeff (g z • periodPower (k - 2) z) e)
+        (-AddMonoidAlgebra.coeff (conj (v z) • periodPower (k - 2) (conj (z : ℂ))) e))
       (z : ℂ)) ∧
   (∀ (δ : Matrix.SpecialLinearGroup (Fin 2) ℤ) (e : Fin 2 →₀ ℕ)
       (W : ℝ), 0 < W → ∃ (C : ℝ) (A : ℕ), 0 ≤ C ∧
     ∀ z : UpperHalfPlane, 1 ≤ z.im → |z.re| ≤ W →
-      ‖MvPolynomial.coeff e (act (δ⁻¹).val (U (δ • z : UpperHalfPlane)))‖ ≤
+      ‖AddMonoidAlgebra.coeff (act (δ⁻¹).val (U (δ • z : UpperHalfPlane))) e‖ ≤
         C * (1 + z.im) ^ A)
 
 /-- Integrate an invariant scalar density by summing over right-coset representatives
@@ -66,4 +66,3 @@ def periodPetersson (N k : ℕ) (f q : UpperHalfPlane → ℂ) : ℂ :=
   periodDomainIntegral N (fun z => f z * conj (q z) * (z.im : ℂ) ^ k)
 
 end MTT.Cohomology
-

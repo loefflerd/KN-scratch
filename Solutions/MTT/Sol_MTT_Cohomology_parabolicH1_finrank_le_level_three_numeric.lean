@@ -195,7 +195,7 @@ theorem symmetricPowerBasis_repr (R : Type*) [CommRing R] (n : ℕ) :
 theorem symmetricPowerCoordinates_apply {R : Type*} [CommRing R] {n : ℕ}
     (P : Sym R n) (j : Fin (n + 1)) :
     symmetricPowerCoordinates R n P j =
-      MvPolynomial.coeff (homogeneousExponentEquiv n |>.symm j).val P.val := by
+      AddMonoidAlgebra.coeff P.val (homogeneousExponentEquiv n |>.symm j).val := by
   rfl
 
 theorem symmetricPowerBasis_val {R : Type*} [CommRing R] {n : ℕ} (j : Fin (n + 1)) :
@@ -894,4 +894,3 @@ end MTT.Cohomology
 theorem solution {n : ℕ} (hn : 0 < n) (hno : Odd n) :
     Module.finrank ℂ (MTT.Cohomology.ParabolicH1 3 n) ≤ 2 * ((n + 2) / 3 - 1) :=
   MTT.Cohomology.parabolicH1_finrank_le_level_three_numeric hn hno
-

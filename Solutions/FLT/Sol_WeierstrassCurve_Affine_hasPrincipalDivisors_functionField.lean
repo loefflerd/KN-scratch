@@ -1990,7 +1990,7 @@ theorem count_unitIdealOfDivisor (D : AlgebraicCurve.Divisor F W.FunctionField)
       cases P with
       | zero =>
           rw [unitIdealOfPoint_zero, Units.val_one, FractionalIdeal.count_one, mul_zero,
-            if_neg]
+            ite_eq_right]
           exact infinitePlace_ne_ofHeightOneSpectrum w
       | some x y h =>
           rw [unitIdealOfPoint_some, CoordinateRing.XYIdeal'_eq,
@@ -2056,7 +2056,7 @@ theorem isPrincipal_of_geomDivisorSum_eq_zero' [HasPrincipalDivisors F W.Functio
         rw [geomPlaceOfPoint_zero, Finsupp.single_eq_same]
     | some x y h =>
         rw [Finsupp.sub_apply, geomPlaceOfPoint_some, placeOfEquation, hfin, hDf, sub_self,
-          Finsupp.single_apply, if_neg]
+          Finsupp.single_apply, ite_eq_right]
         exact infinitePlace_ne_ofHeightOneSpectrum _
 
   have hdeg : Divisor.degree (D - Df) = 0 := by rw [map_sub, h0, hDf0, sub_zero]

@@ -80,8 +80,8 @@ private theorem powerSeries_map_eq_C_of_dvd {K : Type*} [CommRing K] {ℓ : ℕ}
   ext m
   rw [PowerSeries.coeff_map, PowerSeries.coeff_C]
   rcases Nat.eq_zero_or_pos m with rfl | hm
-  · rw [if_pos rfl, ← PowerSeries.coeff_zero_eq_constantCoeff_apply, eq_intCast]
-  · rw [if_neg hm.ne']
+  · rw [ite_eq_left rfl, ← PowerSeries.coeff_zero_eq_constantCoeff_apply, eq_intCast]
+  · rw [ite_eq_right hm.ne']
     exact_mod_cast (CharP.intCast_eq_zero_iff K ℓ _).mpr (hT m hm)
 
 private theorem eisenstein4_map_of_240 {K : Type*} [CommRing K] (h240 : (240 : K) = 0) :
@@ -90,7 +90,7 @@ private theorem eisenstein4_map_of_240 {K : Type*} [CommRing K] (h240 : (240 : K
   rw [PowerSeries.coeff_map, ModularCurve.eisenstein4, PowerSeries.coeff_mk, PowerSeries.coeff_one]
   rcases Nat.eq_zero_or_pos n with rfl | hn
   · simp
-  · rw [if_neg hn.ne', if_neg hn.ne']
+  · rw [ite_eq_right hn.ne', ite_eq_right hn.ne']
     have h240Z : (Int.castRingHom K) (240 : ℤ) = 0 := by
       simp only [eq_intCast]; exact_mod_cast h240
     rw [map_mul, h240Z, zero_mul]

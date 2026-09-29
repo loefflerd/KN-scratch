@@ -265,13 +265,13 @@ theorem towerX_poleDivisor_apply (w : Place k F) :
   by_cases hw : w.restrict (RatFunc k) = RationalFunctionField.placeInfty k
   · rw [hw, RationalFunctionField.ord_placeInfty_X, mul_neg, mul_one] at hres
     have hepos : 0 < Place.ramificationIndex (F := RatFunc k) w := w.ramificationIndex_pos
-    rw [happ, hw, Finsupp.single_eq_same, mul_one, hres, neg_neg, if_pos]
+    rw [happ, hw, Finsupp.single_eq_same, mul_one, hres, neg_neg, ite_eq_left]
     rw [neg_lt_zero]
     exact_mod_cast hepos
   · have hnn := RationalFunctionField.ord_X_nonneg_of_ne_placeInfty k hw
     have h0 : 0 ≤ w.ord (algebraMap (RatFunc k) F RatFunc.X) := by
       rw [hres]; positivity
-    rw [happ, Finsupp.single_eq_of_ne hw, mul_zero, if_neg (not_lt.mpr h0)]
+    rw [happ, Finsupp.single_eq_of_ne hw, mul_zero, ite_eq_right (not_lt.mpr h0)]
 
 omit [DecidableEq (RatFunc k)] [Algebra (RatFunc k) F] [IsScalarTower k (RatFunc k) F]
   [FiniteDimensional (RatFunc k) F] [Algebra.IsSeparable (RatFunc k) F]
@@ -335,9 +335,9 @@ theorem sum_bound {ι : Type*} [DecidableEq ι] (f m : ι → ℤ)
   have hg2 : ∑ P ∈ Poles, g P = ∑ P ∈ U \ T, g P := by
     refine Finset.sum_subset hPU fun P _ hP => ?_
     show (if m P < 0 then m P - 1 else 0) = 0
-    rw [if_neg (fun h => hP ((hPoles P).mpr h))]
+    rw [ite_eq_right (fun h => hP ((hPoles P).mpr h))]
   have hg3 : ∑ P ∈ Poles, g P = ∑ P ∈ Poles, (m P - 1) :=
-    Finset.sum_congr rfl fun P hP => if_pos ((hPoles P).mp hP)
+    Finset.sum_congr rfl fun P hP => ite_eq_left ((hPoles P).mp hP)
 
   have hcard : ∑ P ∈ Poles, (1 : ℤ) = Poles.card := by simp
   have hsum1 : ∑ P ∈ Poles, (m P - 1) = -n - Poles.card := by

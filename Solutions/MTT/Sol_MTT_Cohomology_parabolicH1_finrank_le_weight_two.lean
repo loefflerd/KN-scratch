@@ -45,7 +45,7 @@ theorem exists_cusp_fixed_of_trace_sq (g : SpecialLinearGroup (Fin 2) ℤ)
     linear_combination -htrace + 4 * hdet
 
 theorem degreeZero_eq_constant (N : ℕ) (P : gammaOneRep N 0) :
-    P.val = MvPolynomial.C (MvPolynomial.coeff 0 P.val) :=
+    P.val = MvPolynomial.C (AddMonoidAlgebra.coeff P.val 0) :=
   (MvPolynomial.homogeneousComponent_eq_self P.property).symm.trans
     (MvPolynomial.homogeneousComponent_zero P.val)
 
@@ -58,18 +58,18 @@ theorem degreeZero_action (N : ℕ) (g : CongruenceSubgroup.Gamma1 N)
 
 def degreeZeroCocycleHom (N : ℕ) (c : parabolicCocycles N 0) :
     Additive (CongruenceSubgroup.Gamma1 N) →+ ℂ where
-  toFun g := MvPolynomial.coeff 0 (c.val (Additive.toMul g)).val
+  toFun g := AddMonoidAlgebra.coeff (c.val (Additive.toMul g)).val 0
   map_zero' := by
     have hc := groupCohomology.cocycles₁_map_one ⟨c.val, c.property.1⟩
     change c.val 1 = 0 at hc
-    change MvPolynomial.coeff 0 (c.val 1).val = 0
+    change AddMonoidAlgebra.coeff (c.val 1).val 0 = 0
     rw [hc]
     rfl
   map_add' g h := by
-    change MvPolynomial.coeff 0 (c.val (Additive.toMul g * Additive.toMul h)).val = _
+    change AddMonoidAlgebra.coeff (c.val (Additive.toMul g * Additive.toMul h)).val 0 = _
     rw [((mem_parabolicCocycles_iff _).mp c.property).1, degreeZero_action]
-    change MvPolynomial.coeff 0 ((c.val (Additive.toMul h)).val +
-      (c.val (Additive.toMul g)).val) = _
+    change AddMonoidAlgebra.coeff ((c.val (Additive.toMul h)).val +
+      (c.val (Additive.toMul g)).val) 0 = _
     rw [MvPolynomial.coeff_add, add_comm]
 
 theorem degreeZeroCocycleHom_parabolic (N : ℕ) (c : parabolicCocycles N 0) :
@@ -79,7 +79,7 @@ theorem degreeZeroCocycleHom_parabolic (N : ℕ) (c : parabolicCocycles N 0) :
   obtain ⟨x, hx⟩ := exists_cusp_fixed_of_trace_sq g.val hg
   obtain ⟨P, hP⟩ := ((mem_parabolicCocycles_iff _).mp c.property).2 x g hx
   have hc : c.val g = 0 := by simpa only [degreeZero_action, sub_self] using hP
-  change MvPolynomial.coeff 0 (c.val g).val = 0
+  change AddMonoidAlgebra.coeff (c.val g).val 0 = 0
   rw [hc]
   rfl
 

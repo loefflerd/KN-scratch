@@ -502,7 +502,7 @@ theorem hasSum_eisensteinG1 (b : ℤ) (hb : ¬ (N : ℤ) ∣ b) :
       f n = 1 / (N : ℂ) * (coef ((b : ℂ) / N) n * cexp (2 * π * I * τ) ^ (n : ℕ)) := by
     intro n
     have hn : (n : ℕ) ≠ 0 := n.ne_zero
-    simp only [hf, if_neg hn, coef_eq N]
+    simp only [hf, ite_eq_right hn, coef_eq N]
     field_simp
   have htail : HasSum (fun n : ℕ+ => f n) (1 / (N : ℂ) * pval τ ((b : ℂ) / N)) :=
     (hmain.mul_left (1 / (N : ℂ))).congr_fun hfpos

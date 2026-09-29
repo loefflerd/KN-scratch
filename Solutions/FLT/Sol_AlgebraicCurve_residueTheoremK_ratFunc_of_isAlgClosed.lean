@@ -219,7 +219,7 @@ theorem trace_pow_div_aeval_derivative_minpoly_of_lt (pb : PowerBasis K L) {k : 
   have hlt : pb.dim - 1 < pb.dim := by omega
   have key := pb.basis.trace_mul_traceDual ⟨k, hk'⟩ ⟨pb.dim - 1, hlt⟩
   rw [traceDual_eq_one_div_of_val_eq pb rfl, pb.basis_eq_pow, mul_one_div] at key
-  rw [key, if_neg]
+  rw [key, ite_eq_right]
   simp only [Fin.mk.injEq]
   omega
 
@@ -230,7 +230,7 @@ theorem trace_pow_div_aeval_derivative_minpoly_self (pb : PowerBasis K L)
   have hlt : pb.dim - 1 < pb.dim := by omega
   have key := pb.basis.trace_mul_traceDual ⟨pb.dim - 1, hlt⟩ ⟨pb.dim - 1, hlt⟩
   rw [traceDual_eq_one_div_of_val_eq pb rfl, pb.basis_eq_pow, mul_one_div] at key
-  rw [key, if_pos rfl]
+  rw [key, ite_eq_left rfl]
 
 variable {F : Type*} [Field F] [CharZero F] {g : F[X]} [Fact (Irreducible g)]
 
@@ -3952,7 +3952,7 @@ theorem inertiaDeg_eq_inertiaDeg_fiberCenter (hw : w.restrict F = v) :
       (IsLocalRing.maximalIdeal v.toValuationSubring).inertiaDeg'
         (fiberCenter F' v hw).asIdeal := by
   have := fiberCenter_liesOver hw
-  rw [Ideal.inertiaDeg'_algebraMap]
+  rw [Ideal.inertiaDeg_eq_of_isMaximal]
   show Module.finrank (w.restrict F).ResidueField w.ResidueField = _
   refine Algebra.finrank_eq_of_equiv_equiv (restrictResidueFieldEquiv hw)
     (residueFieldEquivQuotientCenter hw).symm ?_
@@ -4606,10 +4606,10 @@ private theorem _root_.ModularCurve.MilneAvAg9bRd15UnitNormalFormLaurentSeed.ag9
         algebraMap K F (if j = n then ctop else c' j) * (v.uniformizer ^ (j + 1))⁻¹
         = (∑ j ∈ Finset.range n, algebraMap K F (c' j) * (v.uniformizer ^ (j + 1))⁻¹)
           + algebraMap K F ctop * (v.uniformizer ^ (n + 1))⁻¹ := by
-      rw [Finset.sum_range_succ, if_pos rfl]
+      rw [Finset.sum_range_succ, ite_eq_left rfl]
       congr 1
       refine Finset.sum_congr rfl fun j hj => ?_
-      rw [if_neg (Finset.mem_range.mp hj).ne]
+      rw [ite_eq_right (Finset.mem_range.mp hj).ne]
     rw [hstep, show f - ((∑ j ∈ Finset.range n,
           algebraMap K F (c' j) * (v.uniformizer ^ (j + 1))⁻¹)
           + algebraMap K F ctop * (v.uniformizer ^ (n + 1))⁻¹)
@@ -12375,7 +12375,7 @@ theorem p0n22_cpf_exists_laurent_expansion_one
         = algebraMap K (RatFunc K) (c0 j)
             * (v.uniformizer ^ (j + 1))⁻¹ := by
     intro j _
-    rw [if_neg (by omega : ¬(-((j : ℤ) + 1) = (0 : ℤ))),
+    rw [ite_eq_right (by omega : ¬(-((j : ℤ) + 1) = (0 : ℤ))),
       show (-(-((j : ℤ) + 1) + 1)).toNat = j from by omega,
       Algebra.smul_def, _root_.zpow_neg,
       show ((j : ℤ) + 1) = ((j + 1 : ℕ) : ℤ) from by push_cast; ring, zpow_natCast]
@@ -12486,7 +12486,7 @@ theorem p0n22_cpf_res_geom_core
   rw [hterm, map_sum]
   simp only [map_smul]
   by_cases hdvd : k ∣ q
-  · rw [if_pos hdvd, htail, add_zero]
+  · rw [ite_eq_left hdvd, htail, add_zero]
     obtain ⟨e, rfl⟩ := hdvd
     rcases Nat.eq_zero_or_pos e with rfl | he1
     · simp at hq
@@ -12514,7 +12514,7 @@ theorem p0n22_cpf_res_geom_core
           ring,
         _root_.zpow_neg, zpow_one, gate_canonicalLocalResidueDataK_uniformizer_inv v R,
         ← Algebra.algebraMap_eq_smul_one]
-  · rw [if_neg hdvd, htail, add_zero]
+  · rw [ite_eq_right hdvd, htail, add_zero]
     refine Finset.sum_eq_zero fun t _ => ?_
     have hne : (k : ℤ) * ((t : ℤ) + 1) - 1 - (q : ℤ) ≠ -1 := by
       intro hcontra
@@ -12646,7 +12646,7 @@ theorem p0n22_cpf_res_logDeriv_elementary_cartier
   rw [p0n22_cpf_res_logDeriv_elementary v R a hk (Nat.mul_pos hp.out.pos hn),
     p0n22_cpf_res_logDeriv_elementary v R a hk hn]
   by_cases hdn : k ∣ n
-  · rw [if_pos (hdn.mul_left p), if_pos hdn]
+  · rw [ite_eq_left (hdn.mul_left p), ite_eq_left hdn]
     obtain ⟨e, rfl⟩ := hdn
     rcases Nat.eq_zero_or_pos e with rfl | he1
     · simp at hn
@@ -12675,7 +12675,7 @@ theorem p0n22_cpf_res_logDeriv_elementary_cartier
         exact hdn ((((hp.out.coprime_iff_not_dvd).mpr hpk).symm).dvd_mul_left.mp hdp)
       have hk0 : ((k : ℕ) : K) = 0 := (CharP.cast_eq_zero_iff K p k).mpr hpk
       rw [hk0, zero_smul, zero_smul, zero_pow hp.out.ne_zero]
-    · rw [if_neg hdp, if_neg hdn, smul_zero, zero_pow hp.out.ne_zero]
+    · rw [ite_eq_right hdp, ite_eq_right hdn, smul_zero, zero_pow hp.out.ne_zero]
 
 theorem p0n22_cpf_res_logDeriv_principalUnit_cartier_aux [PerfectField K]
     (v : Place K (RatFunc K)) [v.DCoordGenerates]

@@ -85,7 +85,7 @@ theorem slash_Tq_apply {q : ℕ} (f : ℍ → ℂ) (τ : ℍ) :
     simp [Tq, Matrix.det_fin_two_of]
   have hdetpos : 0 < ((Tq q).det : ℝ) := by rw [hdet]; exact one_pos
   have hσ : UpperHalfPlane.σ (Tq q) = .refl ℝ ℂ := by
-    rw [UpperHalfPlane.σ, if_pos hdetpos]
+    rw [UpperHalfPlane.σ, ite_eq_left hdetpos]
   have hdenom : UpperHalfPlane.denom (Tq q) τ = 1 := by
     simp [UpperHalfPlane.denom, Tq]
   have hsmul : (Tq q • τ : ℍ) = (q : ℝ)⁻¹ +ᵥ τ := by
@@ -242,7 +242,7 @@ theorem slash_Sc {p : ℕ} (hp : p ≠ 0) (f : ℍ → ℂ) : f ∣[(2 : ℤ)] S
     simp [Sc, Matrix.det_fin_two_of]
   have hdetpos : 0 < ((Sc p hp).det : ℝ) := by rw [hdet]; positivity
   have hσ : UpperHalfPlane.σ (Sc p hp) = .refl ℝ ℂ := by
-    rw [UpperHalfPlane.σ, if_pos hdetpos]
+    rw [UpperHalfPlane.σ, ite_eq_left hdetpos]
   funext τ
   have hdenom : UpperHalfPlane.denom (Sc p hp) τ = p := by
     simp [UpperHalfPlane.denom, Sc]
@@ -341,7 +341,7 @@ def Supp (m p : ℕ) : Type :=
   {G : CuspForm (CongruenceSubgroup.Gamma0 m) 2 // ∀ n : ℕ, ¬ p ∣ n → ModularFormClass.qCoeff G n = 0}
 
 def step (hp : p.Prime) (hpm : ¬ p ∣ m) (G : Supp m p) : Supp m p :=
-  ⟨lift hp hpm G.1 G.2, fun n hn => by rw [qCoeff_lift, if_neg hn]⟩
+  ⟨lift hp hpm G.1 G.2, fun n hn => by rw [qCoeff_lift, ite_eq_right hn]⟩
 
 def iter (hp : p.Prime) (hpm : ¬ p ∣ m) (G : Supp m p) (a : ℕ) : Supp m p :=
   (step hp hpm)^[a] G
@@ -356,22 +356,22 @@ theorem qCoeff_iter (hp : p.Prime) (hpm : ¬ p ∣ m) (G : Supp m p) (a n : ℕ)
     change ModularFormClass.qCoeff (lift hp hpm (iter hp hpm G a).1 (iter hp hpm G a).2) n = _
     rw [qCoeff_lift]
     by_cases hpn : p ∣ n
-    · rw [if_pos hpn, ih (n / p)]
+    · rw [ite_eq_left hpn, ih (n / p)]
       by_cases hpa : p ^ a ∣ n / p
       · have h' : p ^ (a + 1) ∣ n := by
           rw [pow_succ]
           have := Nat.mul_dvd_of_dvd_div hpn hpa
           rwa [mul_comm] at this
-        rw [if_pos hpa, if_pos h', Nat.div_div_eq_div_mul, mul_comm p (p ^ a), ← pow_succ]
+        rw [ite_eq_left hpa, ite_eq_left h', Nat.div_div_eq_div_mul, mul_comm p (p ^ a), ← pow_succ]
         ring
       · have h' : ¬ p ^ (a + 1) ∣ n := by
           intro h
           apply hpa
           rw [Nat.dvd_div_iff_mul_dvd hpn, mul_comm, ← pow_succ]
           exact h
-        rw [if_neg hpa, if_neg h', mul_zero]
+        rw [ite_eq_right hpa, ite_eq_right h', mul_zero]
     · have h' : ¬ p ^ (a + 1) ∣ n := fun h => hpn ((dvd_pow_self p (Nat.succ_ne_zero a)).trans h)
-      rw [if_neg hpn, if_neg h']
+      rw [ite_eq_right hpn, ite_eq_right h']
 
 def qCoeffLin (m n : ℕ) [NeZero m] : CuspForm (CongruenceSubgroup.Gamma0 m) 2 →ₗ[ℂ] ℂ where
   toFun G := ModularFormClass.qCoeff G n
@@ -434,9 +434,9 @@ theorem solution {m p : ℕ} [NeZero m] (hp : p.Prime) (hpm : ¬ p ∣ m)
         if b < a then ModularFormClass.qCoeff (iter hp hpm G₀ b).1 (n₀ * p ^ a) else 0 := by
     intro a b
     rcases lt_trichotomy b a with hlt | rfl | hgt
-    · rw [if_neg hlt.ne, if_pos hlt]
-    · rw [if_pos rfl, qCoeff_iter, if_pos (dvd_mul_left _ _), Nat.mul_div_cancel _ (pow_pos hp.pos _)]
-    · rw [if_neg hgt.ne', if_neg (not_lt.mpr hgt.le), qCoeff_iter]
+    · rw [ite_eq_right hlt.ne, ite_eq_left hlt]
+    · rw [ite_eq_left rfl, qCoeff_iter, ite_eq_left (dvd_mul_left _ _), Nat.mul_div_cancel _ (pow_pos hp.pos _)]
+    · rw [ite_eq_right hgt.ne', ite_eq_right (not_lt.mpr hgt.le), qCoeff_iter]
       split_ifs with hdvd
       ·
         have hq : n₀ * p ^ a / p ^ b < n₀ := by
@@ -458,7 +458,7 @@ theorem solution {m p : ℕ} [NeZero m] (hp : p.Prime) (hpm : ¬ p ∣ m)
       rw [map_sum, map_zero] at happ
       simp only [_root_.map_smul, qCoeffLin_apply, smul_eq_mul] at happ
       rw [Finset.sum_eq_single a] at happ
-      · rw [hcoef k a, if_pos hak] at happ
+      · rw [hcoef k a, ite_eq_left hak] at happ
         rcases mul_eq_zero.mp happ with h | h
         · exact h
         · exfalso
@@ -466,7 +466,7 @@ theorem solution {m p : ℕ} [NeZero m] (hp : p.Prime) (hpm : ¬ p ∣ m)
       · intro b _ hba
         rcases lt_or_gt_of_ne (fun h : (b : ℕ) = a => hba (Fin.ext h)) with hlt | hgt
         · rw [ih b (hak ▸ hlt) b rfl, zero_mul]
-        · rw [hcoef k b, if_neg (by omega), if_neg (by omega), mul_zero]
+        · rw [hcoef k b, ite_eq_right (by omega), ite_eq_right (by omega), mul_zero]
       · intro ha; exact absurd (Finset.mem_univ a) ha
   have hcard := hli.fintype_card_le_finrank
   rw [Fintype.card_fin] at hcard

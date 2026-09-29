@@ -178,7 +178,7 @@ private lemma ratCoeff_E {k : ℕ} (hk : 3 ≤ k) (hk2 : Even k) :
   by_cases hn : n = 0
   · exact ⟨1, by simp [hn]⟩
   · refine ⟨-(2 * k / _root_.bernoulli k) * (σ (k - 1) n : ℚ), ?_⟩
-    rw [if_neg hn]
+    rw [ite_eq_right hn]
     push_cast
     ring
 
@@ -609,11 +609,11 @@ private lemma transAt_const [NeZero N] (hφK : ∀ z : ↥K, φ z ∈ K) (c : �
     rw [qExpansion_const_coeff]
     split at hz
     · rename_i hn
-      rw [if_pos hn]
+      rw [ite_eq_left hn]
       have hzc : z = c := Subtype.ext hz
       rw [hzc]
     · rename_i hn
-      rw [if_neg hn]
+      rw [ite_eq_right hn]
       have hz0 : z = 0 := Subtype.ext (by rw [hz]; rfl)
       rw [hz0, map_zero]
 

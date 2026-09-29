@@ -156,10 +156,10 @@ private theorem ModularCurve.StarBank.hassePolyDescent {N : ℕ}
       rw [ModularCurve.W1.coeff_single_zero_mul]
       congr 1
       by_cases hia : i ≤ a
-      · rw [if_pos hia, show ((N : ℤ) - i) = ((N : ℤ) - a) + ((a - i : ℕ) : ℤ) from by omega,
+      · rw [ite_eq_left hia, show ((N : ℤ) - i) = ((N : ℤ) - a) + ((a - i : ℕ) : ℤ) from by omega,
           ModularCurve.W1.coeff_single_mul_ofPowerSeries_nonneg, PowerSeries.coeff_map,
           Int.coe_castRingHom]
-      · rw [if_neg hia]
+      · rw [ite_eq_right hia]
         exact ModularCurve.W1.coeff_single_mul_ofPowerSeries_neg _ _ (by omega)
     rw [hL, hR] at h1
     exact h1
@@ -177,10 +177,10 @@ private theorem ModularCurve.StarBank.hassePolyDescent {N : ℕ}
     have hdiagN : (if N ≤ N
         then ((PowerSeries.coeff (N - N) (jNum ^ N * dedekindEtaUnit ^ N) : ℤ) : ℂ)
         else 0) = 1 := by
-      rw [if_pos le_rfl, Nat.sub_self, hdiag N, Int.cast_one]
+      rw [ite_eq_left le_rfl, Nat.sub_self, hdiag N, Int.cast_one]
     rw [Finset.sum_eq_single_of_mem N (Finset.mem_range.mpr (Nat.lt_succ_self N))
       (fun a ha hne => by
-        rw [if_neg (show ¬N ≤ a from by
+        rw [ite_eq_right (show ¬N ≤ a from by
           have := Finset.mem_range.mp ha
           omega), mul_zero]), hdiagN, mul_one, Nat.sub_self] at hk
     rw [← hk]
@@ -196,7 +196,7 @@ private theorem ModularCurve.StarBank.hassePolyDescent {N : ℕ}
     have hdiagterm : (if i ≤ i
         then ((PowerSeries.coeff (i - i) (jNum ^ i * dedekindEtaUnit ^ N) : ℤ) : ℂ)
         else 0) = 1 := by
-      rw [if_pos le_rfl, Nat.sub_self, hdiag i, Int.cast_one]
+      rw [ite_eq_left le_rfl, Nat.sub_self, hdiag i, Int.cast_one]
     rw [← Finset.add_sum_erase _ _ hmem, hdiagterm, mul_one] at hk
     have hPi : P.coeff i
         = ((PowerSeries.coeff (N - i) T : ℤ) : ℂ)
@@ -218,12 +218,12 @@ private theorem ModularCurve.StarBank.hassePolyDescent {N : ℕ}
           omega
         have hlt : i < a := lt_of_le_of_ne hia (Ne.symm (Finset.ne_of_mem_erase ha))
         obtain ⟨z, hz⟩ := hIH a haN hlt
-        rw [if_pos hia, ← hz]
+        rw [ite_eq_left hia, ← hz]
         refine Subring.mul_mem _ (RingHom.mem_range.mpr ⟨z, rfl⟩)
           (RingHom.mem_range.mpr
             ⟨PowerSeries.coeff (a - i) (jNum ^ a * dedekindEtaUnit ^ N),
               by rw [Int.coe_castRingHom]⟩)
-      · rw [if_neg hia, mul_zero]
+      · rw [ite_eq_right hia, mul_zero]
         exact Subring.zero_mem _
     obtain ⟨zS, hzS⟩ := RingHom.mem_range.mp hSmem
     exact ⟨PowerSeries.coeff (N - i) T - zS, by rw [map_sub, hzS, Int.coe_castRingHom]⟩

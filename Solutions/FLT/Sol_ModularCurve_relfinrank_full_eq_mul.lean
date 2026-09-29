@@ -62,7 +62,7 @@ private theorem ModularCurve.relfinrank_full_eq_mul (M : ℕ) [NeZero M] (p : �
       (modularFunctionFieldFull (M * p ^ (a + 1))) = if a = 0 then p + 1 else p := by
   rw [hup, ModularCurve.W1.w1_relfinrank_insert]
   rcases Nat.eq_zero_or_pos a with rfl | ha
-  · rw [if_pos rfl]
+  · rw [ite_eq_left rfl]
     have e1 : p ^ (0 + 1) = p := by rw [zero_add, pow_one]
     have hj : jq ∈ modularFunctionFieldFull (M * p ^ 0) := by
       have h1 := jqd_mem_full (M * p ^ 0) (one_dvd _)
@@ -71,7 +71,7 @@ private theorem ModularCurve.relfinrank_full_eq_mul (M : ℕ) [NeZero M] (p : �
     rw [ModularCurve.W1.jqN_congr' e1] at hnm
     exact ModularCurve.finrank_adjoin_jqN_prime_of_not_mem _ hj p hnm
   · obtain ⟨k, rfl⟩ := Nat.exists_eq_succ_of_ne_zero ha.ne'
-    rw [if_neg (Nat.succ_ne_zero k)]
+    rw [ite_eq_right (Nat.succ_ne_zero k)]
     refine ModularCurve.finrank_adjoin_jqN_pow_succ_of_not_mem _ p k ?_ ?_ hnm
     · exact jqd_mem_full _ (Dvd.dvd.mul_left (pow_dvd_pow p (Nat.le_succ k)) M)
     · exact jqd_mem_full _ (dvd_mul_left _ _)

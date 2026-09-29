@@ -50,8 +50,8 @@ def linePowPoly : MvPolynomial (Fin 2) ℂ[X] :=
   (C Polynomial.X * X 0 + X 1) ^ n
 
 theorem coeff_linePow_eq_eval (d : Fin 2 →₀ ℕ) (z : ℂ) :
-    MvPolynomial.coeff d ((C z * X 0 + X 1 : MvPolynomial (Fin 2) ℂ) ^ n)
-      = Polynomial.eval z (MvPolynomial.coeff d (linePowPoly n)) := by
+    AddMonoidAlgebra.coeff ((C z * X 0 + X 1 : MvPolynomial (Fin 2) ℂ) ^ n) d
+      = Polynomial.eval z (AddMonoidAlgebra.coeff (linePowPoly n) d) := by
   have h : ((C z * X 0 + X 1 : MvPolynomial (Fin 2) ℂ) ^ n)
       = MvPolynomial.map (Polynomial.evalRingHom z) (linePowPoly n) := by
     simp [linePowPoly, MvPolynomial.map_X, MvPolynomial.map_C]
@@ -63,8 +63,8 @@ def assemble (g : (Fin 2 →₀ ℕ) → ℂ → ℂ) (τ : ℍ) : ↥(BinaryFor
     (mem_homogeneousSubmodule n _).mpr (isHomogeneous_monomial _ ((mem_degExps_iff n d).mp hd))⟩
 
 theorem coeff_assemble (g : (Fin 2 →₀ ℕ) → ℂ → ℂ) (τ : ℍ) (d : Fin 2 →₀ ℕ) :
-    MvPolynomial.coeff d (assemble n g τ : MvPolynomial (Fin 2) ℂ) = if d ∈ degExps n then g d (τ : ℂ) else 0 := by
-  show MvPolynomial.coeff d (∑ e ∈ degExps n, monomial e (g e (τ : ℂ))) = _
+    AddMonoidAlgebra.coeff (assemble n g τ : MvPolynomial (Fin 2) ℂ) d = if d ∈ degExps n then g d (τ : ℂ) else 0 := by
+  show AddMonoidAlgebra.coeff (∑ e ∈ degExps n, monomial e (g e (τ : ℂ))) d = _
   simp only [coeff_sum, coeff_monomial, Finset.sum_ite_eq']
 
 end EichlerIntegralExistence
@@ -81,7 +81,7 @@ theorem solution (n : ℕ) {f : UpperHalfPlane → ℂ}
   have hstar : StarConvex ℝ ((I : ℍ) : ℂ) U := (convex_halfSpace_im_gt 0).starConvex hI
   have hfd : DifferentiableOn ℂ (f ∘ ofComplex) U := UpperHalfPlane.mdifferentiable_iff.mp hf
   have key : ∀ d : Fin 2 →₀ ℕ, ∃ g : ℂ → ℂ, ∀ z ∈ U,
-      HasDerivAt g ((f ∘ ofComplex) z * (MvPolynomial.coeff d (linePowPoly n)).eval z) z := by
+      HasDerivAt g ((f ∘ ofComplex) z * (AddMonoidAlgebra.coeff (linePowPoly n) d).eval z) z := by
     intro d
     obtain ⟨g, -, hg⟩ := Complex.exists_hasDerivAt_of_starConvex hU hI hstar
       (hfd.mul (Polynomial.differentiable _).differentiableOn)
@@ -90,16 +90,16 @@ theorem solution (n : ℕ) {f : UpperHalfPlane → ℂ}
   refine ⟨assemble n g, fun d τ => ?_⟩
   simp only [coeff_assemble]
   by_cases hd : d ∈ degExps n
-  · simp only [if_pos hd]
-    have h2 : (f ∘ ofComplex) (τ : ℂ) * (MvPolynomial.coeff d (linePowPoly n)).eval (τ : ℂ)
-        = f τ * MvPolynomial.coeff d ((linePow n (τ : ℂ) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) := by
+  · simp only [ite_eq_left hd]
+    have h2 : (f ∘ ofComplex) (τ : ℂ) * (AddMonoidAlgebra.coeff (linePowPoly n) d).eval (τ : ℂ)
+        = f τ * AddMonoidAlgebra.coeff ((linePow n (τ : ℂ) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) d := by
       rw [Function.comp_apply, ofComplex_apply, coe_linePow, coeff_linePow_eq_eval]
     rw [← h2]
     refine (hg d (τ : ℂ) τ.im_pos).congr_of_eventuallyEq ?_
     filter_upwards [hU.mem_nhds τ.im_pos] with z hz
     rw [ofComplex_apply_of_im_pos hz]
-  · simp only [if_neg hd]
-    have h0 : MvPolynomial.coeff d ((linePow n (τ : ℂ) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) = 0 :=
+  · simp only [ite_eq_right hd]
+    have h0 : AddMonoidAlgebra.coeff ((linePow n (τ : ℂ) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) d = 0 :=
       (isHomogeneous_linePow n τ).coeff_eq_zero (by rwa [mem_degExps_iff] at hd)
     rw [h0, mul_zero]
     exact hasDerivAt_const _ _

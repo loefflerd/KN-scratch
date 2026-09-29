@@ -376,7 +376,7 @@ theorem mem_span_RSet_of_adjoin_simple (hBS : B ⊆ S) {c : ℂ} (hc : IsIntegra
     rw [Finset.sum_eq_single i]
     · simp
     · intro j _ hji
-      rw [if_neg (fun h ↦ hji (Fin.ext h.symm))]
+      rw [ite_eq_right (fun h ↦ hji (Fin.ext h.symm))]
     · intro h; exact absurd (Finset.mem_univ i) h
 
   have hZ4 : ∀ i : Fin pb.dim, IsIntegral ↥(TRng F B) (y i : K) := by

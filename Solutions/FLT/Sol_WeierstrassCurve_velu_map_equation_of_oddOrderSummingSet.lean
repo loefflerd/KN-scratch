@@ -470,7 +470,7 @@ theorem smul_single (σ : F ≃ₐ[K] F) (v : Place K F) (n : ℤ) :
 theorem smul_apply_smul (σ : F ≃ₐ[K] F) (D : Divisor K F) (v : Place K F) :
     (σ • D) (σ • v) = D v := by
   rw [smul_def]
-  exact Finsupp.mapDomain_apply (MulAction.injective σ) D v
+  exact Finsupp.mapDomain_apply_of_injective (MulAction.injective σ) D v
 
 theorem smul_apply (σ : F ≃ₐ[K] F) (D : Divisor K F) (w : Place K F) :
     (σ • D) w = D (σ⁻¹ • w) := by
@@ -4641,7 +4641,7 @@ theorem inertiaDeg_eq_inertiaDeg_fiberCenter (hw : w.restrict F = v) :
       (IsLocalRing.maximalIdeal v.toValuationSubring).inertiaDeg'
         (fiberCenter F' v hw).asIdeal := by
   have := fiberCenter_liesOver hw
-  rw [Ideal.inertiaDeg'_algebraMap]
+  rw [Ideal.inertiaDeg_eq_of_isMaximal]
   show Module.finrank (w.restrict F).ResidueField w.ResidueField = _
   refine Algebra.finrank_eq_of_equiv_equiv (restrictResidueFieldEquiv hw)
     (residueFieldEquivQuotientCenter hw).symm ?_
@@ -6470,7 +6470,7 @@ theorem sum_ramificationIndex_mul_inertiaDeg_of_forall_mem_iff
       ∑ P ∈ IsDedekindDomain.primesOverFinset
           (IsLocalRing.maximalIdeal v.toValuationSubring) (integralClosureAt F' v),
         Ideal.ramificationIdx' (IsLocalRing.maximalIdeal v.toValuationSubring) P *
-          Ideal.inertiaDeg' (IsLocalRing.maximalIdeal v.toValuationSubring) P =
+          Ideal.inertiaDeg (IsLocalRing.maximalIdeal v.toValuationSubring) P =
             Module.finrank F F' := by
     let p := IsLocalRing.maximalIdeal v.toValuationSubring
     let S := integralClosureAt F' v
@@ -7744,7 +7744,7 @@ theorem wqDiscPoly_ne_zero (h : (2 : F) ≠ 0 ∨ W.a₁ ≠ 0 ∨ W.a₃ ≠ 0)
     rcases ha with ha | ha
     · have h1 := congrArg (·.coeff 1) hcon
       simp only [coeff_add, coeff_C_mul, coeff_X_one, mul_one, coeff_C,
-        if_neg one_ne_zero, add_zero, coeff_zero] at h1
+        ite_eq_right one_ne_zero, add_zero, coeff_zero] at h1
       exact ha h1
     · have h0 := congrArg (·.coeff 0) hcon
       simp only [coeff_add, coeff_C_mul, coeff_X_zero, mul_zero, zero_add,

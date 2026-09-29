@@ -26,14 +26,14 @@ namespace MTT.IntegralClass
 
 private lemma coeff_cusp_period_polynomial {N k : ℕ} (hk : 2 ≤ k)
     (f : CuspForm (GammaOne N) (k : ℤ)) (r : ℚ) {j : ℕ} (hj : j ≤ k - 2) :
-    MvPolynomial.coeff (binaryExponent (k - 2) j) (cuspPeriodPolynomial f r) =
+    AddMonoidAlgebra.coeff (cuspPeriodPolynomial f r) (binaryExponent (k - 2) j) =
       ((k - 2).choose j : ℂ) * modularIntegral f (Polynomial.X ^ j) r := by
   rw [cuspPeriodPolynomial, MvPolynomial.coeff_sum]
   simp only [MvPolynomial.coeff_monomial]
   rw [Finset.sum_eq_single j]
   · simp
   · intro i _ hij
-    rw [if_neg]
+    rw [ite_eq_right]
     intro h
     exact hij (by simpa [binaryExponent] using congrArg (fun v => v 0) h)
   · intro hj'
@@ -53,11 +53,11 @@ private lemma cusp_period_polynomial_mem_sym {N k : ℕ} (hk : 2 ≤ k)
 
 private lemma sym_ext {n : ℕ} {P Q : Binary ℂ}
     (hP : P ∈ MTT.Cohomology.Sym ℂ n) (hQ : Q ∈ MTT.Cohomology.Sym ℂ n)
-    (h : ∀ j ≤ n, MvPolynomial.coeff (binaryExponent n j) P =
-      MvPolynomial.coeff (binaryExponent n j) Q) : P = Q := by
+    (h : ∀ j ≤ n, AddMonoidAlgebra.coeff P (binaryExponent n j) =
+      AddMonoidAlgebra.coeff Q (binaryExponent n j)) : P = Q := by
   rw [MvPolynomial.mem_homogeneousSubmodule] at hP hQ
   ext m
-  by_cases hm : MvPolynomial.coeff m P = 0 ∧ MvPolynomial.coeff m Q = 0
+  by_cases hm : AddMonoidAlgebra.coeff P m = 0 ∧ AddMonoidAlgebra.coeff Q m = 0
   · rw [hm.1, hm.2]
   · have hdeg : m.degree = n := by
       rw [Finsupp.degree_eq_weight_one]
@@ -324,4 +324,3 @@ theorem solution
   obtain ⟨I, _, _, hI⟩ := MTT.Cohomology.integration_map hN hk
   exact MTT.Cohomology.parabolic_period_cocycle_surjective_of_finrank_le hN hk I hI
     (MTT.Cohomology.parabolicH1_finrank_le hN hk) c hsym hcoc hpar
-

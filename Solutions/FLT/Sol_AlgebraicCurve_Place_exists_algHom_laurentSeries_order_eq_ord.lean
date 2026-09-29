@@ -157,9 +157,9 @@ private theorem sum_single_coeff (w : Place K F) {π : w.toValuationSubring} (M 
         algebraMap K w.toValuationSubring (if k = j then a else 0) * π ^ k)
       = algebraMap K w.toValuationSubring a * π ^ j := by
   rw [Finset.sum_eq_single j]
-  · rw [if_pos rfl]
+  · rw [ite_eq_left rfl]
   · intro k _ hk
-    rw [if_neg hk, map_zero, zero_mul]
+    rw [ite_eq_right hk, map_zero, zero_mul]
   · intro hj'
     exact absurd (Finset.mem_range.mpr hj) hj'
 
@@ -189,8 +189,8 @@ private def expPS (w : Place K F) (hw : w.deg = 1) {π : w.toValuationSubring}
       rw [Polynomial.coeff_mul, PowerSeries.coeff_mul]
       refine Finset.sum_congr rfl fun x hx => ?_
       rw [Finset.HasAntidiagonal.mem_antidiagonal] at hx
-      rw [PowerSeries.coeff_trunc, PowerSeries.coeff_trunc, if_pos (by omega),
-        if_pos (by omega)]
+      rw [PowerSeries.coeff_trunc, PowerSeries.coeff_trunc, ite_eq_left (by omega),
+        ite_eq_left (by omega)]
     obtain ⟨Q, hQ⟩ : ∃ Q : Polynomial K,
         PowerSeries.trunc (n + 1) (PowerSeries.mk (expCoeff w hw hπ y))
             * PowerSeries.trunc (n + 1) (PowerSeries.mk (expCoeff w hw hπ z))
@@ -205,7 +205,7 @@ private def expPS (w : Place K F) (hw : w.deg = 1) {π : w.toValuationSubring}
                   * PowerSeries.mk (expCoeff w hw hπ z))) := by
         rw [Polynomial.X_pow_dvd_iff]
         intro d hd
-        rw [Polynomial.coeff_sub, hprod d hd, PowerSeries.coeff_trunc, if_pos hd, sub_self]
+        rw [Polynomial.coeff_sub, hprod d hd, PowerSeries.coeff_trunc, ite_eq_left hd, sub_self]
       obtain ⟨Q, hQ⟩ := hdvd
       refine ⟨Q, ?_⟩
       rw [← hQ]

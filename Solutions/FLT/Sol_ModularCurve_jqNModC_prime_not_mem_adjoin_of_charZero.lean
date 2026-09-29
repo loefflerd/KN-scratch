@@ -422,7 +422,7 @@ theorem sum_qTwist_jqModC_eq_of_aeval_eq (hζ : IsPrimitiveRoot (ζ : K) p)
           hAmonic.ne_zero (by rw [hAmonic.leadingCoeff, hBmonic.leadingCoeff])
   have hcoeff := congrArg (fun Q : Polynomial (LaurentSeries K) => Q.coeff (p - 1)) key
   have hp2 : 2 ≤ p := hp.out.two_le
-  simp only [Polynomial.coeff_sub, Polynomial.coeff_C, if_neg (by omega : ¬(p - 1 = 0))] at hcoeff
+  simp only [Polynomial.coeff_sub, Polynomial.coeff_C, ite_eq_right (by omega : ¬(p - 1 = 0))] at hcoeff
   have hBcoeff : B.coeff (p - 1) = -∑ b : Fin p, qTwist (ζ ^ (b : ℕ)) (jqModC K) := by
     have hv := Polynomial.prod_X_sub_C_coeff_card_pred (Finset.univ : Finset (Fin p))
       (fun b => qTwist (ζ ^ (b : ℕ)) (jqModC K)) (by simp [hp.out.pos])

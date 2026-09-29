@@ -53,7 +53,7 @@ lemma degree_norm_add_le (f g : W.CoordinateRing) :
 
 noncomputable def valuationInftyInt : Valuation W.CoordinateRing ℤᵐ⁰ where
   toFun := valuationInftyDef W
-  map_zero' := if_pos rfl
+  map_zero' := ite_eq_left rfl
   map_one' := by
     simp [valuationInftyDef]
   map_mul' f g := by
@@ -62,7 +62,7 @@ noncomputable def valuationInftyInt : Valuation W.CoordinateRing ℤᵐ⁰ where
     · simp [valuationInftyDef, hf]
     by_cases hg : g = 0
     · simp [valuationInftyDef, hg]
-    simp only [valuationInftyDef, if_neg hf, if_neg hg, if_neg (mul_ne_zero hf hg), map_mul,
+    simp only [valuationInftyDef, ite_eq_right hf, ite_eq_right hg, ite_eq_right (mul_ne_zero hf hg), map_mul,
       natDegree_mul (norm_ne_zero W hf) (norm_ne_zero W hg), Nat.cast_add, WithZero.exp_add]
   map_add_le_max' f g := by
     classical
@@ -72,7 +72,7 @@ noncomputable def valuationInftyInt : Valuation W.CoordinateRing ℤᵐ⁰ where
     · simp [valuationInftyDef, hf]
     by_cases hg : g = 0
     · simp [valuationInftyDef, hg]
-    simp only [valuationInftyDef, if_neg hf, if_neg hg, if_neg hfg, le_max_iff,
+    simp only [valuationInftyDef, ite_eq_right hf, ite_eq_right hg, ite_eq_right hfg, le_max_iff,
       WithZero.exp_le_exp, Nat.cast_le]
     have h := degree_norm_add_le W f g
     rw [degree_eq_natDegree (norm_ne_zero W hfg), degree_eq_natDegree (norm_ne_zero W hf),
@@ -102,7 +102,7 @@ lemma valuationInfty_algebraMap (f : W.CoordinateRing) :
 lemma valuationInfty_algebraMap_of_ne_zero {f : W.CoordinateRing} (hf : f ≠ 0) :
     valuationInfty W (algebraMap W.CoordinateRing W.FunctionField f) =
       WithZero.exp ((Algebra.norm K[X] f).natDegree : ℤ) := by
-  rw [valuationInfty_algebraMap, CoordinateRing.valuationInftyDef, if_neg hf]
+  rw [valuationInfty_algebraMap, CoordinateRing.valuationInftyDef, ite_eq_right hf]
 
 end WeierstrassCurve.Affine
 

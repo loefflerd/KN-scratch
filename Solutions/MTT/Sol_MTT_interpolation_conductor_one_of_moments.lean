@@ -308,7 +308,7 @@ private lemma weighted_moment_neg {N k m : ℕ} [NeZero m]
       verticalMoment f ((a.val : ℚ)/m) j := by
     by_cases ha : a = 0
     · simp [ha]
-    · rw [ZMod.neg_val, if_neg ha]
+    · rw [ZMod.neg_val, ite_eq_right ha]
       have hval : a.val ≤ m := (ZMod.val_lt a).le
       push_cast [Nat.cast_sub hval]
       have hm : (m : ℚ) ≠ 0 := by exact_mod_cast NeZero.ne m

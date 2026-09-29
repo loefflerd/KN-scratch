@@ -368,7 +368,7 @@ lemma mdiff_orbitCoeff_prod (hhol : ∀ i, MDifferentiable 𝓘(ℂ) 𝓘(ℂ) (
     | zero =>
       exact mdifferentiable_const.sub ((hhol a).mul (ih 0))
     | succ k' =>
-      simp only [if_neg (Nat.succ_ne_zero k'), Nat.add_sub_cancel]
+      simp only [ite_eq_right (Nat.succ_ne_zero k'), Nat.add_sub_cancel]
       exact (ih k').sub ((hhol a).mul (ih (k' + 1)))
 
 omit [Fintype I] in
@@ -395,7 +395,7 @@ lemma bounded_orbitCoeff_prod
             ((∏ i ∈ s, (X - C (h i τ))).coeff 0 *
               CuspForm.discriminant τ ^ ((s.card - 0) * m))) := by
         funext τ
-        rw [Finset.prod_cons, coeff_X_sub_C_mul, if_pos rfl, Finset.card_cons, Nat.sub_zero,
+        rw [Finset.prod_cons, coeff_X_sub_C_mul, ite_eq_left rfl, Finset.card_cons, Nat.sub_zero,
           Nat.sub_zero, zero_sub, show (s.card + 1) * m = m + s.card * m by ring, pow_add]
         ring
       rw [hshape]
@@ -411,7 +411,7 @@ lemma bounded_orbitCoeff_prod
             (∏ i ∈ s, (X - C (h i τ))).coeff k' *
               CuspForm.discriminant τ ^ ((s.card - k') * m) := by
           funext τ
-          rw [Finset.prod_cons, coeff_X_sub_C_mul, if_neg (Nat.succ_ne_zero k'),
+          rw [Finset.prod_cons, coeff_X_sub_C_mul, ite_eq_right (Nat.succ_ne_zero k'),
             Nat.add_sub_cancel, hzero τ, mul_zero, sub_zero, Finset.card_cons,
             Nat.succ_sub_succ]
         rw [hshape]
@@ -430,7 +430,7 @@ lemma bounded_orbitCoeff_prod
               ((∏ i ∈ s, (X - C (h i τ))).coeff (k' + 1) *
                 CuspForm.discriminant τ ^ ((s.card - (k' + 1)) * m))) := by
           funext τ
-          rw [Finset.prod_cons, coeff_X_sub_C_mul, if_neg (Nat.succ_ne_zero k'),
+          rw [Finset.prod_cons, coeff_X_sub_C_mul, ite_eq_right (Nat.succ_ne_zero k'),
             Nat.add_sub_cancel, Finset.card_cons, Nat.succ_sub_succ, sub_mul]
           congr 1
           rw [he2, pow_add]

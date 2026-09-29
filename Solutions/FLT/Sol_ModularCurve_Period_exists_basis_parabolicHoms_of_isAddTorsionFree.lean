@@ -206,7 +206,7 @@ theorem exists_coord_eq_single (j : Fin D.n) :
   rw [hγ, coord_sect, Finsupp.single_apply]
   by_cases h : i = j
   · subst h; simp
-  · rw [if_neg (Ne.symm h), if_neg h]
+  · rw [ite_eq_right (Ne.symm h), ite_eq_right h]
 
 theorem Θ_injective : Function.Injective (Θ D R) := by
   intro c c' h

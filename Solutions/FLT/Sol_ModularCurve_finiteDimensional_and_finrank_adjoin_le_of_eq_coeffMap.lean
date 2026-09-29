@@ -184,7 +184,7 @@ theorem linearIndependent_pow_smul {ι : Type*} [Fintype ι] (v : ι → E₀)
   rw [Finset.sum_eq_single m] at this
   · simpa using this
   · intro m' _ hm'
-    rw [if_neg]
+    rw [ite_eq_right]
     exact fun h => hm' (Fin.ext h)
   · intro h; exact absurd (Finset.mem_univ m) h
 

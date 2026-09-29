@@ -80,7 +80,7 @@ private lemma _root_.Valuation.map_aeval_eq_pow_of_one_lt {K L Γ : Type*} [Fiel
   rw [aeval_eq_sum_range]
   have hlc : p.coeff p.natDegree ≠ 0 := mt leadingCoeff_eq_zero.mp hp
   have hn : w (p.coeff p.natDegree • z ^ p.natDegree) = w z ^ p.natDegree := by
-    rw [hterm, if_neg hlc]
+    rw [hterm, ite_eq_right hlc]
   rw [← hn]
   apply w.map_sum_eq_of_lt (Finset.self_mem_range_succ _)
   intro i hi

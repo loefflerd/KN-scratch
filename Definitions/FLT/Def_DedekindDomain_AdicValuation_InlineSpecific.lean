@@ -1,26 +1,13 @@
-import Mathlib.Topology.Algebra.Valued.ValuationTopology
-import Mathlib.RingTheory.LocalRing.MaximalIdeal.Basic
-import Mathlib.RingTheory.LocalRing.MaximalIdeal.Defs
-import Mathlib.RingTheory.DedekindDomain.AdicValuation
-import Mathlib.Analysis.Normed.Ring.Lemmas
-import Mathlib.NumberTheory.RamificationInertia.Inertia
-import Mathlib.RingTheory.Valuation.Discrete.Basic
-import Mathlib.Topology.Path
 import Mathlib.Algebra.Group.Int.TypeTags
+import Mathlib.RingTheory.DedekindDomain.AdicValuation
+import Mathlib.RingTheory.RamificationInertia.Inertia
 import Mathlib.RingTheory.Valuation.Discrete.RankOne
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
-
-set_option maxHeartbeats 1200000
-set_option synthInstance.maxHeartbeats 400000
 
 section
 
 namespace IsDedekindDomain.HeightOneSpectrum
-
-open IsDedekindDomain
 
 private instance {R : Type*} [CommRing R] [IsDedekindDomain R] (K : Type*) [Field K] [Countable K]
     [Algebra R K] [IsFractionRing R K] (v : HeightOneSpectrum R) :
@@ -141,7 +128,6 @@ lemma exists_adicValued_mul_sub_le {a b : A} {γ : WithZero (Multiplicative ℤ)
     (hle : γ ≤ v.intValuation a)
     (hle' : v.intValuation b ≤ v.intValuation a) :
     ∃ y, v.intValuation (y * a - b) ≤ γ := by
-
   have hγ' : γ ≤ 1 := by
     apply hle.trans
     apply intValuation_le_one
@@ -150,7 +136,6 @@ lemma exists_adicValued_mul_sub_le {a b : A} {γ : WithZero (Multiplicative ℤ)
   have hnz : a ≠ 0 := ne_zero_of_some_le_intValuation _ hle
   have hnb : Ideal.span {a} ≠ ⊥ := by
     rwa [ne_eq, Ideal.span_singleton_eq_bot]
-
   rw [intValuation_eq_coe_neg_multiplicity _ hnz, WithZero.exp_le_exp, neg_le_neg_iff,
     Int.ofNat_le] at hle
   have hm : emultiplicity v.asIdeal (Ideal.span {a}) ≤ n :=
@@ -159,13 +144,10 @@ lemma exists_adicValued_mul_sub_le {a b : A} {γ : WithZero (Multiplicative ℤ)
       (ENat.natCast_le_natCast.mpr hle)
   have hb : b ∈ v.asIdeal ^ multiplicity v.asIdeal (Ideal.span {a}) := by
     rwa [← intValuation_le_pow_iff_mem, ← intValuation_eq_coe_neg_multiplicity _ hnz]
-
   rw [← Ideal.irreducible_pow_sup_of_ge hnb (irreducible v) n hm] at hb
-
   obtain ⟨x, hx, z, hz, hxz⟩ := Submodule.mem_sup.mp hb
   obtain ⟨y, hy⟩ := Ideal.mem_span_singleton'.mp hz
   use y
-
   rwa [hy, ← hxz, sub_add_cancel_right, intValuation_le_pow_iff_mem, neg_mem_iff]
 
 open MonoidWithZeroHom in
@@ -175,7 +157,6 @@ lemma exists_adicValued_sub_lt_of_adicValued_le_one {x : (WithVal (v.valuation K
 
   obtain ⟨⟨n, d, hd⟩, hnd⟩ := IsLocalization.surj (nonZeroDivisors A) x
   dsimp only at hnd
-
   have hnd' := congr_arg Valued.v hnd
   simp only [map_mul] at hnd'
   have hge : Valued.v ((algebraMap A (WithVal (v.valuation K))) d) ≥
@@ -189,16 +170,13 @@ lemma exists_adicValued_sub_lt_of_adicValued_le_one {x : (WithVal (v.valuation K
   simp only [valuation_of_algebraMap] at hge
   have hdz : (algebraMap A (WithVal (v.valuation K)) d) ≠ 0 :=
     IsLocalization.to_map_ne_zero_of_mem_nonZeroDivisors _ (fun _ ↦ id) hd
-
   have hv : Valued.v ((algebraMap A (WithVal (v.valuation K)) d)) ≠ 0 := by
-    rw [Valuation.ne_zero_iff]
-    exact hdz
+    grind [Valuation.ne_zero_iff]
   let hu : Valued.v ((algebraMap A (WithVal (v.valuation K)) d)) * γ.val ≠ 0 := by
     rw [mul_ne_zero_iff]
     exact ⟨hv, γ.ne_zero⟩
   obtain ⟨γ', hγ, hγu, hγv⟩ := WithZero.exists_ne_zero_and_lt_and_lt hu hv
   simp only [WithVal.algebraMap_right_apply, WithVal.valued_toVal, valuation_of_algebraMap] at hγv
-
   obtain ⟨a, hval⟩ := exists_adicValued_mul_sub_le v hγ hγv.le hge
   use a
   rw [← eq_div_iff_mul_eq hdz] at hnd
@@ -208,10 +186,9 @@ lemma exists_adicValued_sub_lt_of_adicValued_le_one {x : (WithVal (v.valuation K
     ← UniformSpace.Completion.coe_sub, Valued.extensionValuation_apply_coe, hnd, sub_div' hdz,
     map_div₀]
   rw [← Valuation.pos_iff Valued.v, WithVal.algebraMap_right_apply, WithVal.valued_toVal] at hdz
-  simp only [WithVal.algebraMap_right_apply, WithVal.equiv_symm_apply,
+  simp only [WithVal.algebraMap_right_apply,
     ← WithVal.toVal_mul, ← WithVal.toVal_sub, WithVal.valued_toVal, ← map_mul, ← map_sub] at hγu ⊢
-  rw [div_lt_iff₀' hdz, valuation_of_algebraMap]
-  exact lt_of_le_of_lt hval hγu
+  grind [div_lt_iff₀' hdz, valuation_of_algebraMap]
 
 open scoped WithZero
 
@@ -224,16 +201,13 @@ instance : Valuation.IsRankOneDiscrete vK where
       h.generator_lt_one⟩
 
 open Valuation.IsRankOneDiscrete in
-
 theorem closureAlgebraMapIntegers_eq_integers :
     closure (algebraMap A (v.adicCompletion K)).range =
     SetLike.coe (v.adicCompletionIntegers K) := by
   apply subset_antisymm
-
   · apply closure_minimal _ (Valued.isClosed_valuationSubring _)
     rintro b ⟨a, rfl⟩
     exact coe_mem_adicCompletionIntegers v a
-
   · let f := fun (k : WithVal (v.valuation K)) => (k : v.adicCompletion K)
     suffices h : closure (f '' (f ⁻¹' (adicCompletionIntegers K v))) ⊆
         closure (algebraMap A (adicCompletion K v)).range by
@@ -242,7 +216,6 @@ theorem closureAlgebraMapIntegers_eq_integers :
         ((adicCompletion.ofCompletion_surjective K v).denseRange.comp
           UniformSpace.Completion.denseRange_coe (adicCompletion.continuous_ofCompletion K v))
         (Valued.isOpen_valuationSubring _)
-
     apply closure_minimal _ isClosed_closure
     rintro k ⟨x, hx, rfl⟩
     unfold f at hx
@@ -259,7 +232,7 @@ theorem closureAlgebraMapIntegers_eq_integers :
     · use a
       rfl
     · apply hγ
-      simp only [sub_zero, WithVal.equiv_symm_apply, Set.mem_ofPred_eq]
+      simp only [sub_zero, Set.mem_ofPred_eq]
       rwa [← (valueGroup₀_equiv_withZeroMulInt_strictMono _).lt_iff_lt,
         valueGroup₀_equiv_withZeroMulInt_restrict_apply_of_surjective
         (valuedAdicCompletion_surjective K v)]
@@ -340,7 +313,6 @@ noncomputable def ResidueFieldEquivCompletionResidueField :
     refine ⟨a, ha⟩
   change ∃ a, Ideal.Quotient.mk (maximalIdeal (v.adicCompletionIntegers K)) _ = _
   simp_rw [Ideal.Quotient.mk_eq_mk_iff_sub_mem, mem_maximalIdeal, mem_nonunits_iff]
-
   conv =>
     pattern ¬(IsUnit _)
     rw [Valuation.Integer.not_isUnit_iff_valuation_lt_one]
@@ -348,8 +320,8 @@ noncomputable def ResidueFieldEquivCompletionResidueField :
 
 attribute [local instance 9999] Algebra.toModule in
 theorem inertiaDeg_asIdeal_completionIdeal :
-    Ideal.inertiaDeg' v.asIdeal (v.completionIdeal K) = 1 := by
-  rw [Ideal.inertiaDeg'_algebraMap]
+    Ideal.inertiaDeg (v.completionIdeal K) A = 1 := by
+  rw [v.asIdeal.inertiaDeg_eq_of_isMaximal]
   have f : (A ⧸ v.asIdeal) ≃ₗ[A ⧸ v.asIdeal]
       ((adicCompletionIntegers K v) ⧸ completionIdeal K v) := {
     __ := ResidueFieldEquivCompletionResidueField K v
@@ -378,7 +350,6 @@ theorem exists_forall_adicValued_sub_lt {ι : Type*} (s : Finset ι)
       (fun i ↦ (valuation i).asIdeal) i ≠ (fun i ↦ (valuation i).asIdeal) j := by
     intro _ _ _ _
     exact mt <| fun hij ↦ injective (HeightOneSpectrum.ext hij)
-
   obtain ⟨a, ha⟩ := IsDedekindDomain.exists_forall_sub_mem_ideal (s := s)
     (fun i => (valuation i).asIdeal) e' (fun i hi => (valuation i).prime) hinj f
   use a
@@ -567,4 +538,3 @@ lemma completionIdeal_ne_bot : completionIdeal K v ≠ ⊥ := IsDiscreteValuatio
 end IsDedekindDomain.HeightOneSpectrum
 
 end
-

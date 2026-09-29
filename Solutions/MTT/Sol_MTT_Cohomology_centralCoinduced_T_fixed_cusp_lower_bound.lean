@@ -234,7 +234,7 @@ theorem orbitSeed_out (H J : Subgroup G) (v : V) (c : orbitRel.Quotient J X → 
     (d : orbitRel.Quotient J X) : orbitSeed H J v c d.out = c d • v := by
   classical
   have hd : (Quotient.mk'' d.out : orbitRel.Quotient J X) = d := Quotient.out_eq d
-  rw [orbitSeed_apply, hd, if_pos rfl]
+  rw [orbitSeed_apply, hd, ite_eq_left rfl]
 
 theorem orbitSeed_smul (H J : Subgroup G) (hHJ : H ≤ J) (v : V)
     (c : orbitRel.Quotient J X → K) {g : G} (hg : g ∈ H) (x : X) :
@@ -248,7 +248,7 @@ theorem orbitSeed_smul_out_eq_zero (H J : Subgroup G) (v : V)
     (d : orbitRel.Quotient J X) : orbitSeed H J v c (z • d.out) = 0 := by
   classical
   have hd : (Quotient.mk'' d.out : orbitRel.Quotient J X) = d := Quotient.out_eq d
-  rw [orbitSeed_apply, orbit_mk_smul J hz, hd, if_neg (hfree d.out)]
+  rw [orbitSeed_apply, orbit_mk_smul J hz, hd, ite_eq_right (hfree d.out)]
 
 end MulAction
 

@@ -108,7 +108,7 @@ theorem endgame_read (p : ℕ) [NeZero p] (hp1 : 1 ≤ p) {β₀ γ : K} (hγ : 
     apply hγ
     have h1 := congrArg (fun z : LaurentSeries K => z.coeff 0) h
     rw [show (HahnSeries.C γ : LaurentSeries K) = HahnSeries.single 0 γ from rfl,
-      HahnSeries.coeff_single, if_pos rfl] at h1
+      HahnSeries.coeff_single, ite_eq_left rfl] at h1
     exact h1.trans rfl
 
   have hq := congrArg (qExpand K p) honept
@@ -256,9 +256,9 @@ theorem hasse_input {ℓ : ℕ} [Fact ℓ.Prime] (hℓ5 : 5 ≤ ℓ) :
     rw [PowerSeries.coeff_map, PowerSeries.coeff_C]
     rcases Nat.eq_zero_or_pos n with hn | hn
     · subst hn
-      rw [if_pos rfl, PowerSeries.coeff_zero_eq_constantCoeff_apply, hTconst]
+      rw [ite_eq_left rfl, PowerSeries.coeff_zero_eq_constantCoeff_apply, hTconst]
       rfl
-    · rw [if_neg (by omega)]
+    · rw [ite_eq_right (by omega)]
       exact (ZMod.intCast_zmod_eq_zero_iff_dvd _ _).mpr (hTdvd n hn)
   have hmapZ12 : (T ^ 12).map (Int.castRingHom (ZMod ℓ))
       = PowerSeries.C ((((_root_.bernoulli (ℓ - 1)).num : ZMod ℓ)) ^ 12) := by
@@ -270,7 +270,7 @@ theorem hasse_input {ℓ : ℕ} [Fact ℓ.Prime] (hℓ5 : 5 ≤ ℓ) :
     intro m hm
     have h1 := congrArg (fun u : PowerSeries (ZMod ℓ) => PowerSeries.coeff m u) hmapZ12
     simp only [PowerSeries.coeff_map, PowerSeries.coeff_C] at h1
-    rw [if_neg (by omega : ¬ m = 0)] at h1
+    rw [ite_eq_right (by omega : ¬ m = 0)] at h1
     exact (ZMod.intCast_zmod_eq_zero_iff_dvd _ _).mp h1
 
   have hconst12 : PowerSeries.constantCoeff (T ^ 12) = (_root_.bernoulli (ℓ - 1)).num ^ 12 := by

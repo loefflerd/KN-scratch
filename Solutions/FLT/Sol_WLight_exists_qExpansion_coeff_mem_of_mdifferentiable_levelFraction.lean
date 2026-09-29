@@ -76,7 +76,7 @@ theorem powerSeries_coeff_mem_of_mul_eq' {K : Type*} [Field K] (k : Subfield K)
     intro habs
     refine (PowerSeries.coeff_order hg0) ?_
     show PowerSeries.coeff r g = 0
-    rw [hg', PowerSeries.coeff_X_pow_mul', if_pos le_rfl, Nat.sub_self, habs]
+    rw [hg', PowerSeries.coeff_X_pow_mul', ite_eq_left le_rfl, Nat.sub_self, habs]
   obtain ⟨f', hf'⟩ : PowerSeries.X ^ r ∣ f := ⟨g' * h, by rw [← heq, hg', mul_assoc]⟩
   have hf'_coeff : ∀ n, PowerSeries.coeff n f' ∈ k := fun n ↦ by
     have h1 := hf (n + r); rwa [hf', PowerSeries.coeff_X_pow_mul f' r n] at h1
@@ -440,7 +440,7 @@ private lemma ratCoeff_E {k : ℕ} (hk : 3 ≤ k) (hk2 : Even k) :
   by_cases hn : n = 0
   · exact ⟨1, by simp [hn]⟩
   · refine ⟨-(2 * k / _root_.bernoulli k) * (σ (k - 1) n : ℚ), ?_⟩
-    rw [if_neg hn]
+    rw [ite_eq_right hn]
     push_cast
     ring
 

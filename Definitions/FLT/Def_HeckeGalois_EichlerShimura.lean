@@ -161,10 +161,10 @@ def eisensteinSystem (N : ℕ) : Nat.Primes → ℤ :=
   fun ℓ => if (ℓ : ℕ) ∣ N then 1 else 1 + (ℓ : ℕ)
 
 @[simp] lemma eisensteinSystem_of_not_dvd {N : ℕ} {ℓ : Nat.Primes} (h : ¬ (ℓ : ℕ) ∣ N) :
-    eisensteinSystem N ℓ = 1 + (ℓ : ℕ) := if_neg h
+    eisensteinSystem N ℓ = 1 + (ℓ : ℕ) := ite_eq_right h
 
 @[simp] lemma eisensteinSystem_of_dvd {N : ℕ} {ℓ : Nat.Primes} (h : (ℓ : ℕ) ∣ N) :
-    eisensteinSystem N ℓ = 1 := if_pos h
+    eisensteinSystem N ℓ = 1 := ite_eq_left h
 
 def eisensteinIdeal (N : ℕ) : Ideal HeckeAlg :=
   eigenIdeal (eisensteinSystem N)

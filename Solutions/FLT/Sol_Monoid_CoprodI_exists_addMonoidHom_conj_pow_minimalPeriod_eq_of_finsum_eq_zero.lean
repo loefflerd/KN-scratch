@@ -390,7 +390,7 @@ theorem sum_ite_enum_eq (g : Gp) (y : X H) :
     (∑ j ∈ Finset.range (wd H (g : X H)), if enum H g j = y then (1 : ℤ) else 0)
       = if cusp H y = cusp H (g : X H) then 1 else 0 := by
   by_cases h : cusp H y = cusp H (g : X H)
-  · rw [if_pos h]
+  · rw [ite_eq_left h]
     obtain ⟨j, hj, hjy⟩ := exists_enum_eq_of_cusp_eq H g h
     have hfilt : (Finset.range (wd H (g : X H))).filter (fun k => enum H g k = y) = {j} := by
       refine Finset.eq_singleton_iff_unique_mem.mpr ⟨Finset.mem_filter.mpr ⟨hj, hjy⟩, ?_⟩
@@ -398,8 +398,8 @@ theorem sum_ite_enum_eq (g : Gp) (y : X H) :
       obtain ⟨hk1, hk2⟩ := Finset.mem_filter.mp hk
       exact enum_injOn_range H g hk1 hj (hk2.trans hjy.symm)
     rw [← Finset.sum_filter, hfilt, Finset.sum_singleton]
-  · rw [if_neg h]
-    refine Finset.sum_eq_zero fun j _ => if_neg fun hjy => h ?_
+  · rw [ite_eq_right h]
+    refine Finset.sum_eq_zero fun j _ => ite_eq_right fun hjy => h ?_
     rw [← hjy, cusp_enum]
 
 theorem edgeChainHom_genAt_apply (g : Gp) (e : X H) :
@@ -511,13 +511,13 @@ theorem engine (H : Subgroup Gp) [H.FiniteIndex] (R : Type*) [AddCommGroup R]
     rw [AddMonoidHom.comp_apply, hφ, zmultiplesHom_apply, Pi.sub_apply, Pi.single_apply,
       Pi.single_apply, sub_smul, ite_smul, ite_smul, one_smul, zero_smul]
   rw [Finset.sum_congr rfl fun c _ => hterm c, Finset.sum_sub_distrib, Finset.sum_ite_eq,
-    if_pos (Finset.mem_univ _)]
+    ite_eq_left (Finset.mem_univ _)]
   by_cases h : cusp H (g : X H) = c₀
   · have h2 : (∑ c, if cusp H (g : X H) = c₀ then a c else 0) = ∑ c, a c :=
-      Finset.sum_congr rfl fun c _ => if_pos h
+      Finset.sum_congr rfl fun c _ => ite_eq_left h
     rw [h2, ha, sub_zero]
   · have h2 : (∑ c, if cusp H (g : X H) = c₀ then a c else 0) = 0 :=
-      Finset.sum_eq_zero fun c _ => if_neg h
+      Finset.sum_eq_zero fun c _ => ite_eq_right h
     rw [h2, sub_zero]
 
 end BassSerreCusp

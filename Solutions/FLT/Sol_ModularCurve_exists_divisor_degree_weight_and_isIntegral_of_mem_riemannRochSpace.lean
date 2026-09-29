@@ -143,11 +143,11 @@ noncomputable def recipe (v : Place ℚb 𝔽) : ℤ :=
   else (m : ℤ) * v.ord (jBar N - algebraMap ℚb 𝔽 1728) / 2 + 2 * (m : ℤ) * v.ord (jBar N) / 3
 
 theorem recipe_of_neg {v : Place ℚb 𝔽} (h : v.ord (jBar N) < 0) :
-    recipe N m v = (m : ℤ) * v.ord (jBar N) - 1 := if_pos h
+    recipe N m v = (m : ℤ) * v.ord (jBar N) - 1 := ite_eq_left h
 
 theorem recipe_of_nonneg {v : Place ℚb 𝔽} (h : 0 ≤ v.ord (jBar N)) :
     recipe N m v = (m : ℤ) * v.ord (jBar N - algebraMap ℚb 𝔽 1728) / 2 + 2 * (m : ℤ) * v.ord (jBar N) / 3 :=
-  if_neg (not_lt.mpr h)
+  ite_eq_right (not_lt.mpr h)
 
 theorem recipe_of_pos {v : Place ℚb 𝔽} (h : 0 < v.ord (jBar N)) :
     recipe N m v = 2 * (m : ℤ) * v.ord (jBar N) / 3 := by

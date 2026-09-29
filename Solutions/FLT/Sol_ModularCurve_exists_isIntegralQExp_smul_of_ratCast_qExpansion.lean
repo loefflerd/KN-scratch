@@ -182,7 +182,7 @@ theorem qExpansion_coeff_widthN {g : ℍ → ℂ} (hg : MDifferentiable 𝓘(ℂ
 theorem coeff_widthN_mul {g : ℍ → ℂ} (hg : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) g)
     (hper : Periodic (g ∘ ofComplex) 1) (hbd : IsBoundedAtImInfty g) (n : ℕ) :
     (qExpansion N g).coeff (N * n) = (qExpansion 1 g).coeff n := by
-  rw [qExpansion_coeff_widthN N hg hper hbd, if_pos (dvd_mul_right N n),
+  rw [qExpansion_coeff_widthN N hg hper hbd, ite_eq_left (dvd_mul_right N n),
     Nat.mul_div_cancel_left _ (NeZero.pos N)]
 
 end Width

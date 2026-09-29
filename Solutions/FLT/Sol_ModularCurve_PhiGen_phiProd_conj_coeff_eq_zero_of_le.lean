@@ -51,7 +51,7 @@ private theorem tPoleOrderLE_zero {K : Type*} [Field K] (n : ℕ) :
 private theorem tPoleOrderLE_one {K : Type*} [Field K] :
     TPoleOrderLE (1 : LaurentSeries K) 0 := by
   intro m hm
-  rw [HahnSeries.coeff_one, if_neg (by omega)]
+  rw [HahnSeries.coeff_one, ite_eq_right (by omega)]
 
 namespace TPoleOrderLE
 private theorem _root_.ModularCurve.PhiGen.TPoleOrderLE.neg {K : Type*} [Field K] {f : LaurentSeries K} {n : ℕ}
@@ -113,10 +113,10 @@ private theorem tPoleOrderLE_of_jSimplePole {K : Type*} [Field K] (J : LaurentSe
 private def conjPoleBound (ℓ : ℕ) : Fin (ℓ + 1) → ℕ :=
   fun i => if i = 0 then ℓ * ℓ else 1
 
-private theorem conjPoleBound_zero (ℓ : ℕ) : conjPoleBound ℓ 0 = ℓ * ℓ := if_pos rfl
+private theorem conjPoleBound_zero (ℓ : ℕ) : conjPoleBound ℓ 0 = ℓ * ℓ := ite_eq_left rfl
 
 private theorem conjPoleBound_succ (ℓ : ℕ) (b : Fin ℓ) : conjPoleBound ℓ b.succ = 1 :=
-  if_neg (Fin.succ_ne_zero b)
+  ite_eq_right (Fin.succ_ne_zero b)
 
 private theorem sum_conjPoleBound (ℓ : ℕ) :
     ∑ i : Fin (ℓ + 1), conjPoleBound ℓ i = ℓ * ℓ + ℓ := by
@@ -162,11 +162,11 @@ private theorem tPoleOrderLE_coeff_X_sub_C {K : Type*} [Field K] {a : LaurentSer
     exact ha.neg
   | 1 =>
     simp only [Polynomial.coeff_sub, Polynomial.coeff_X_one, Polynomial.coeff_C,
-      if_neg (one_ne_zero), sub_zero]
+      ite_eq_right (one_ne_zero), sub_zero]
     exact tPoleOrderLE_one.mono (Nat.zero_le _)
   | (k + 2) =>
     simp only [Polynomial.coeff_sub, Polynomial.coeff_X, Polynomial.coeff_C]
-    rw [if_neg (by omega), if_neg (by omega), sub_zero]
+    rw [ite_eq_right (by omega), ite_eq_right (by omega), sub_zero]
     exact tPoleOrderLE_zero _
 
 private theorem phiProd_def {K : Type*} [Field K] (ℓ : ℕ)
@@ -302,7 +302,7 @@ theorem tPoleOrderLE_coeff_prod_X_sub_C_card {K : Type*} [Field K] {ι : Type*}
     intro k
     rcases Nat.eq_zero_or_pos k with rfl | hk
     · simpa using tPoleOrderLE_one
-    · rw [Finset.prod_empty, Polynomial.coeff_one, if_neg (by omega)]
+    · rw [Finset.prod_empty, Polynomial.coeff_one, ite_eq_right (by omega)]
       exact tPoleOrderLE_zero _
   | cons a₀ s ha₀ ih =>
     intro k

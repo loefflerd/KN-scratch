@@ -77,7 +77,7 @@ theorem solution (M : ℕ) (hM : 0 < M) {k : ℤ} (F : ModularForm 𝒮ℒ k) (h
     one_mem_strictPeriods_SL⟩
   have hM' := W26.qExpansion_coeff_nat_mul one_pos hper (holo F) (bdd_at_infty F)
     hM (M * n)
-  rw [mul_one, if_pos (dvd_mul_right M n), Nat.mul_div_cancel_left _ hM] at hM'
+  rw [mul_one, ite_eq_left (dvd_mul_right M n), Nat.mul_div_cancel_left _ hM] at hM'
   have hordM : (qExpansion (M : ℝ) F).order ≤ (M * n : ℕ) :=
     PowerSeries.order_le _ (by rwa [hM'])
   have : ((M * n : ℕ) : ℕ∞) ≤ (M * (k.toNat / 12) : ℕ) := by

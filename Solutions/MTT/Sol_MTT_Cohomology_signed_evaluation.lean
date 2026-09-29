@@ -15,14 +15,14 @@ lemma binaryExponent_apply_zero (n j : ℕ) : binaryExponent n j 0 = j := by
 
 lemma coeff_cuspPeriodPolynomial {N k : ℕ} (hk : 2 ≤ k) (f : CuspForm (MTT.GammaOne N) (k : ℤ))
     (r : ℚ) {j : ℕ} (hj : j ≤ k - 2) :
-    MvPolynomial.coeff (binaryExponent (k - 2) j) (cuspPeriodPolynomial f r) =
+    AddMonoidAlgebra.coeff (cuspPeriodPolynomial f r) (binaryExponent (k - 2) j) =
       ((k - 2).choose j : ℂ) * MTT.modularIntegral f (Polynomial.X ^ j) r := by
   rw [cuspPeriodPolynomial, MvPolynomial.coeff_sum]
   simp only [MvPolynomial.coeff_monomial]
   rw [Finset.sum_eq_single j]
   · simp
   · intro i _ hij
-    rw [if_neg]
+    rw [ite_eq_right]
     intro h
     exact hij (by simpa [binaryExponent_apply_zero] using congrArg (fun v => v 0) h)
   · intro hj'
@@ -41,11 +41,11 @@ lemma cuspPeriodPolynomial_mem_Sym {N k : ℕ} (hk : 2 ≤ k) (f : CuspForm (MTT
 
 /-- Two homogeneous polynomials of degree `n` with the same `X^j Y^(n-j)`-coefficients agree. -/
 lemma Sym_ext {n : ℕ} {P Q : Binary ℂ} (hP : P ∈ Sym ℂ n) (hQ : Q ∈ Sym ℂ n)
-    (h : ∀ j ≤ n, MvPolynomial.coeff (binaryExponent n j) P =
-      MvPolynomial.coeff (binaryExponent n j) Q) : P = Q := by
+    (h : ∀ j ≤ n, AddMonoidAlgebra.coeff P (binaryExponent n j) =
+      AddMonoidAlgebra.coeff Q (binaryExponent n j)) : P = Q := by
   rw [MvPolynomial.mem_homogeneousSubmodule] at hP hQ
   ext m
-  by_cases hm : MvPolynomial.coeff m P = 0 ∧ MvPolynomial.coeff m Q = 0
+  by_cases hm : AddMonoidAlgebra.coeff P m = 0 ∧ AddMonoidAlgebra.coeff Q m = 0
   · rw [hm.1, hm.2]
   · have hdeg : m.degree = n := by
       rw [Finsupp.degree_eq_weight_one]
@@ -67,7 +67,7 @@ lemma binaryExponent_apply_one (n j : ℕ) : binaryExponent n j 1 = n - j := by
 /-- A homogeneous polynomial of degree `n` is the sum of its `X^j Y^(n-j)` parts. -/
 lemma Sym_as_sum {n : ℕ} {P : Binary ℂ} (hP : P ∈ Sym ℂ n) :
     P = ∑ j ∈ Finset.range (n + 1),
-      MvPolynomial.monomial (binaryExponent n j) (MvPolynomial.coeff (binaryExponent n j) P) := by
+      MvPolynomial.monomial (binaryExponent n j) (AddMonoidAlgebra.coeff P (binaryExponent n j)) := by
   apply Sym_ext hP
   · refine Submodule.sum_mem _ fun j hj => ?_
     rw [MvPolynomial.mem_homogeneousSubmodule]
@@ -82,7 +82,7 @@ lemma Sym_as_sum {n : ℕ} {P : Binary ℂ} (hP : P ∈ Sym ℂ n) :
     rw [Finset.sum_eq_single j]
     · simp
     · intro i _ hij
-      rw [if_neg]
+      rw [ite_eq_right]
       intro h
       exact hij (by simpa [binaryExponent_apply_zero] using congrArg (fun v => v 0) h)
     · intro hj'
@@ -122,8 +122,8 @@ lemma act_refl_monomial (n j : ℕ) (c : ℂ) :
   ring
 
 lemma coeff_act_refl {n : ℕ} {P : Binary ℂ} (hP : P ∈ Sym ℂ n) (j : ℕ) (hj : j ≤ n) :
-    MvPolynomial.coeff (binaryExponent n j) (act !![-1, 0; 0, 1] P) =
-      (-1 : ℂ) ^ j * MvPolynomial.coeff (binaryExponent n j) P := by
+    AddMonoidAlgebra.coeff (act !![-1, 0; 0, 1] P) (binaryExponent n j) =
+      (-1 : ℂ) ^ j * AddMonoidAlgebra.coeff P (binaryExponent n j) := by
   conv_lhs => rw [Sym_as_sum hP]
   rw [map_sum]
   simp only [act_refl_monomial, MvPolynomial.coeff_sum, MvPolynomial.coeff_smul,
@@ -131,7 +131,7 @@ lemma coeff_act_refl {n : ℕ} {P : Binary ℂ} (hP : P ∈ Sym ℂ n) (j : ℕ)
   rw [Finset.sum_eq_single j]
   · simp
   · intro i _ hij
-    rw [if_neg, mul_zero]
+    rw [ite_eq_right, mul_zero]
     intro h
     exact hij (by simpa [binaryExponent_apply_zero] using congrArg (fun v => v 0) h)
   · intro hj'
@@ -208,7 +208,7 @@ theorem solution
   have hevψ : ∀ j r, j ≤ k - 2 → evaluation j r ψ =
       (-1 : ℂ) ^ j * (((k-2).choose j : ℂ) * MTT.modularIntegral f.form (Polynomial.X ^ j) (-r)) := by
     intro j r hj
-    change MvPolynomial.coeff (binaryExponent (k-2) j) (ψ.val (OnePoint.infty, (r : Cusp))) = _
+    change AddMonoidAlgebra.coeff (ψ.val (OnePoint.infty, (r : Cusp))) (binaryExponent (k-2) j) = _
     rw [hψ]
     simp only [reflection]
     rw [fractional_refl_infty, fractional_refl_coe,

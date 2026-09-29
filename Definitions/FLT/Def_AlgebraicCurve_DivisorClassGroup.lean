@@ -1,19 +1,4 @@
-import Mathlib.RingTheory.DedekindDomain.AdicValuation
-import Mathlib.RingTheory.Valuation.Discrete.Basic
 import Mathlib.RingTheory.Valuation.Discrete.IsDiscreteValuationRing
-import Mathlib.RingTheory.LocalRing.ResidueField.Basic
-import Mathlib.Data.Finsupp.SMul
-import Mathlib.Algebra.BigOperators.Finsupp.Basic
-import Mathlib.Algebra.Module.Torsion.Basic
-import Mathlib.Algebra.Ring.Subring.Pointwise
-import Mathlib.LinearAlgebra.FiniteDimensional.Defs
-import Mathlib.RingTheory.Bezout
-
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -24,13 +9,9 @@ namespace AlgebraicCurve
 variable (K F : Type*) [Field K] [Field F] [Algebra K F]
 
 structure Place where
-
   toValuationSubring : ValuationSubring F
-
   algebraMap_mem' : ∀ a : K, algebraMap K F a ∈ toValuationSubring
-
   ne_top' : toValuationSubring ≠ ⊤
-
   isPrincipalIdealRing' : IsPrincipalIdealRing toValuationSubring
 
 theorem _root_.ValuationSubring.not_isField_of_ne_top {A : ValuationSubring F} (hA : A ≠ ⊤) :
@@ -40,9 +21,7 @@ theorem _root_.ValuationSubring.not_isField_of_ne_top {A : ValuationSubring F} (
   refine SetLike.ext fun x => ⟨fun _ => ValuationSubring.mem_top x, fun _ => ?_⟩
   by_cases hx : x ∈ A
   · exact hx
-  ·
-
-    exfalso
+  · exfalso
     have hx0 : x ≠ 0 := fun h => hx (h ▸ A.zero_mem)
     have hxi : x⁻¹ ∈ A := (A.mem_or_inv_mem x).resolve_left hx
     have hxi0 : (⟨x⁻¹, hxi⟩ : A) ≠ 0 := by
@@ -52,10 +31,7 @@ theorem _root_.ValuationSubring.not_isField_of_ne_top {A : ValuationSubring F} (
     have hb' : x⁻¹ * (b : F) = 1 := by
       have h := congrArg (Subtype.val) hb
       simpa using h
-    have hbx : (b : F) = x := by
-      field_simp at hb'
-      exact hb'
-    exact hx (hbx ▸ b.2)
+    grind
 
 namespace Place
 
@@ -175,8 +151,10 @@ theorem exists_unit_mul_zpow {f : F} (hf : f ≠ 0) {π : v.toValuationSubring}
       = ((u : v.toValuationSubring) : F) := rfl
   have hcoe' : algebraMap v.toValuationSubring F π = (π : F) := rfl
   rw [hcoe, hcoe'] at hu
-  have hn : v.ord f = n := by rw [hu]; exact v.ord_unit_smul_zpow u hπ n
-  exact ⟨u, by rw [hn, hu]⟩
+  have hn : v.ord f = n := by
+    rw [hu]
+    exact v.ord_unit_smul_zpow u hπ n
+  grind
 
 end Place
 
@@ -373,7 +351,7 @@ theorem smul_single (σ : F ≃ₐ[K] F) (v : Place K F) (n : ℤ) :
 theorem smul_apply_smul (σ : F ≃ₐ[K] F) (D : Divisor K F) (v : Place K F) :
     (σ • D) (σ • v) = D v := by
   rw [smul_def]
-  exact Finsupp.mapDomain_apply (MulAction.injective σ) D v
+  exact Finsupp.mapDomain_apply_of_injective (MulAction.injective σ) D v
 
 theorem smul_apply (σ : F ≃ₐ[K] F) (D : Divisor K F) (w : Place K F) :
     (σ • D) w = D (σ⁻¹ • w) := by
@@ -395,11 +373,9 @@ theorem smul_mem_degZero (σ : F ≃ₐ[K] F) {D : Divisor K F}
 theorem smul_mem_principal (σ : F ≃ₐ[K] F) {D : Divisor K F}
     (hD : D ∈ principal (K := K) (F := F)) : σ • D ∈ principal (K := K) (F := F) := by
   obtain ⟨f, hf, hD⟩ := hD
-  refine ⟨σ f, by simpa using hf, fun w => ?_⟩
-  rw [smul_apply, hD (σ⁻¹ • w)]
-  have h := Place.ord_smul σ (σ⁻¹ • w) f
-  rw [smul_inv_smul] at h
-  exact h.symm
+  refine ⟨σ f, by simpa, fun w ↦ ?_⟩
+  have := Place.ord_smul σ (σ⁻¹ • w) f
+  grind [smul_apply, smul_inv_smul]
 
 end Divisor
 
@@ -440,7 +416,7 @@ instance : DistribMulAction (F ≃ₐ[K] F) (Pic0 K F) where
   smul_zero σ := by
     show σ • mk 0 = mk 0
     rw [smul_mk]
-    exact congrArg mk (map_zero _)
+    grind
   smul_add σ x y := by
     obtain ⟨D, rfl⟩ := mk_surjective x
     obtain ⟨E, rfl⟩ := mk_surjective y
@@ -486,4 +462,3 @@ theorem ofHeightOneSpectrum_toValuationSubring [Algebra K R] [IsScalarTower K R 
 end Place
 
 end AlgebraicCurve
-

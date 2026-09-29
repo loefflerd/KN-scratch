@@ -3494,8 +3494,8 @@ theorem finrankTrace_blockSum (T : Fin n → Fin n → (V →ₗ[K] V))
     apply LinearMap.ext; intro y
     simp only [LinearMap.comp_apply, LinearMap.proj_apply, LinearMap.single_apply]
     by_cases hji : j = i
-    · subst hji; rw [if_pos rfl, Pi.single_eq_same]
-    · rw [if_neg hji, Pi.single_eq_of_ne hji, LinearMap.zero_apply]
+    · subst hji; rw [ite_eq_left rfl, Pi.single_eq_same]
+    · rw [ite_eq_right hji, Pi.single_eq_of_ne hji, LinearMap.zero_apply]
   rw [Finset.sum_eq_single i (fun j _ hj => ?_) (fun h => absurd (Finset.mem_univ i) h)]
   ·
     have hfi : FiniteDimensional K (LinearMap.range
@@ -3504,7 +3504,7 @@ theorem finrankTrace_blockSum (T : Fin n → Fin n → (V →ₗ[K] V))
     have hgi : FiniteDimensional K (LinearMap.range
         ((LinearMap.proj i : (Fin n → V) →ₗ[K] V)
           ∘ₗ (LinearMap.single K (fun _ : Fin n => V) i ∘ₗ T i i))) := by
-      rw [hswap i, if_pos rfl]; exact hT i i
+      rw [hswap i, ite_eq_left rfl]; exact hT i i
     calc finrankTrace (LinearMap.single K (fun _ : Fin n => V) i ∘ₗ T i i
             ∘ₗ (LinearMap.proj i : (Fin n → V) →ₗ[K] V))
         = finrankTrace ((LinearMap.single K (fun _ : Fin n => V) i ∘ₗ T i i)
@@ -3512,7 +3512,7 @@ theorem finrankTrace_blockSum (T : Fin n → Fin n → (V →ₗ[K] V))
       _ = finrankTrace ((LinearMap.proj i : (Fin n → V) →ₗ[K] V)
             ∘ₗ (LinearMap.single K (fun _ : Fin n => V) i ∘ₗ T i i)) :=
           finrankTrace_comp_comm _ _
-      _ = finrankTrace (T i i) := finrankTrace_congr (by rw [hswap i, if_pos rfl])
+      _ = finrankTrace (T i i) := finrankTrace_congr (by rw [hswap i, ite_eq_left rfl])
   ·
     have hfj : FiniteDimensional K (LinearMap.range
         ((LinearMap.single K (fun _ : Fin n => V) i ∘ₗ T i j)
@@ -3520,7 +3520,7 @@ theorem finrankTrace_blockSum (T : Fin n → Fin n → (V →ₗ[K] V))
     have hgj : FiniteDimensional K (LinearMap.range
         ((LinearMap.proj j : (Fin n → V) →ₗ[K] V)
           ∘ₗ (LinearMap.single K (fun _ : Fin n => V) i ∘ₗ T i j))) := by
-      rw [hswap j, if_neg hj]; exact instFinDimRangeZero
+      rw [hswap j, ite_eq_right hj]; exact instFinDimRangeZero
     calc finrankTrace (LinearMap.single K (fun _ : Fin n => V) i ∘ₗ T i j
             ∘ₗ (LinearMap.proj j : (Fin n → V) →ₗ[K] V))
         = finrankTrace ((LinearMap.single K (fun _ : Fin n => V) i ∘ₗ T i j)
@@ -3528,7 +3528,7 @@ theorem finrankTrace_blockSum (T : Fin n → Fin n → (V →ₗ[K] V))
       _ = finrankTrace ((LinearMap.proj j : (Fin n → V) →ₗ[K] V)
             ∘ₗ (LinearMap.single K (fun _ : Fin n => V) i ∘ₗ T i j)) :=
           finrankTrace_comp_comm _ _
-      _ = finrankTrace (0 : V →ₗ[K] V) := finrankTrace_congr (by rw [hswap j, if_neg hj])
+      _ = finrankTrace (0 : V →ₗ[K] V) := finrankTrace_congr (by rw [hswap j, ite_eq_right hj])
       _ = 0 := finrankTrace_zero
 
 end BlockTrace

@@ -780,7 +780,7 @@ theorem isIntegral_of_data : IsIntegral (Algebra.adjoin ℚ {jq}) f := by
   · refine Polynomial.monic_of_natDegree_le_of_coeff_eq_one (ℓ + 1) ?_ ?_
     · exact Polynomial.natDegree_sum_le_of_forall_le _ _ fun k hk =>
         (Polynomial.natDegree_C_mul_X_pow_le _ k).trans (Nat.lt_succ_iff.mp (Finset.mem_range.mp hk))
-    · rw [hcoeffp, if_pos (by omega)]
+    · rw [hcoeffp, ite_eq_left (by omega)]
       refine Subtype.ext ?_
       apply iota_injective (K := K) ℓ
       rw [iota_apply, ← hπ (ℓ + 1), ← hdeg, hmon.coeff_natDegree]

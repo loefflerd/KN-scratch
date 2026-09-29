@@ -83,14 +83,14 @@ lemma binaryExponent_apply_zero (n j : ℕ) : binaryExponent n j 0 = j := by
 
 lemma coeff_cuspPeriodPolynomial {N k : ℕ} (hk : 2 ≤ k) (f : CuspForm (MTT.GammaOne N) (k : ℤ))
     (r : ℚ) {j : ℕ} (hj : j ≤ k - 2) :
-    MvPolynomial.coeff (binaryExponent (k - 2) j) (cuspPeriodPolynomial f r) =
+    AddMonoidAlgebra.coeff (cuspPeriodPolynomial f r) (binaryExponent (k - 2) j) =
       ((k - 2).choose j : ℂ) * MTT.modularIntegral f (Polynomial.X ^ j) r := by
   rw [cuspPeriodPolynomial, MvPolynomial.coeff_sum]
   simp only [MvPolynomial.coeff_monomial]
   rw [Finset.sum_eq_single j]
   · simp
   · intro i _ hij
-    rw [if_neg]
+    rw [ite_eq_right]
     intro h
     exact hij (by simpa [binaryExponent_apply_zero] using congrArg (fun v => v 0) h)
   · intro hj'
@@ -109,11 +109,11 @@ lemma cuspPeriodPolynomial_mem_Sym {N k : ℕ} (hk : 2 ≤ k) (f : CuspForm (MTT
 
 /-- Two homogeneous polynomials of degree `n` with the same `X^j Y^(n-j)`-coefficients agree. -/
 lemma Sym_ext {n : ℕ} {P Q : Binary ℂ} (hP : P ∈ Sym ℂ n) (hQ : Q ∈ Sym ℂ n)
-    (h : ∀ j ≤ n, MvPolynomial.coeff (binaryExponent n j) P =
-      MvPolynomial.coeff (binaryExponent n j) Q) : P = Q := by
+    (h : ∀ j ≤ n, AddMonoidAlgebra.coeff P (binaryExponent n j) =
+      AddMonoidAlgebra.coeff Q (binaryExponent n j)) : P = Q := by
   rw [MvPolynomial.mem_homogeneousSubmodule] at hP hQ
   ext m
-  by_cases hm : MvPolynomial.coeff m P = 0 ∧ MvPolynomial.coeff m Q = 0
+  by_cases hm : AddMonoidAlgebra.coeff P m = 0 ∧ AddMonoidAlgebra.coeff Q m = 0
   · rw [hm.1, hm.2]
   · have hdeg : m.degree = n := by
       rw [Finsupp.degree_eq_weight_one]
@@ -170,7 +170,7 @@ lemma binaryExponent_apply_one (n j : ℕ) : binaryExponent n j 1 = n - j := by
 /-- A homogeneous polynomial of degree `n` is the sum of its `X^j Y^(n-j)` parts. -/
 lemma Sym_as_sum {n : ℕ} {P : Binary ℂ} (hP : P ∈ Sym ℂ n) :
     P = ∑ j ∈ Finset.range (n + 1),
-      MvPolynomial.monomial (binaryExponent n j) (MvPolynomial.coeff (binaryExponent n j) P) := by
+      MvPolynomial.monomial (binaryExponent n j) (AddMonoidAlgebra.coeff P (binaryExponent n j)) := by
   apply Sym_ext hP
   · refine Submodule.sum_mem _ fun j hj => ?_
     rw [MvPolynomial.mem_homogeneousSubmodule]
@@ -185,7 +185,7 @@ lemma Sym_as_sum {n : ℕ} {P : Binary ℂ} (hP : P ∈ Sym ℂ n) :
     rw [Finset.sum_eq_single j]
     · simp
     · intro i _ hij
-      rw [if_neg]
+      rw [ite_eq_right]
       intro h
       exact hij (by simpa [binaryExponent_apply_zero] using congrArg (fun v => v 0) h)
     · intro hj'
@@ -235,7 +235,7 @@ lemma act_mem_Sym {n : ℕ} (γ : Matrix (Fin 2) (Fin 2) ℤ) {P : Binary ℂ} (
   have hj' := Finset.mem_range.mp hj
   rw [monomial_binaryExponent, act_eq_actAlg, map_mul, map_mul, map_pow, map_pow, actAlg_C,
     MvPolynomial.mem_homogeneousSubmodule]
-  have := ((MvPolynomial.isHomogeneous_C (Fin 2) (MvPolynomial.coeff (binaryExponent n j) P)).mul
+  have := ((MvPolynomial.isHomogeneous_C (Fin 2) (AddMonoidAlgebra.coeff P (binaryExponent n j))).mul
     ((actAlg_X_isHomogeneous γ 0).pow j)).mul ((actAlg_X_isHomogeneous γ 1).pow (n - j))
   have e : 0 + 1 * j + 1 * (n - j) = n := by omega
   rw [e] at this
@@ -319,27 +319,27 @@ lemma mob_injective (A B C D : K) (h : A * D - B * C = 1) :
   · rfl
   · exfalso
     by_cases hC : C = 0
-    · simp only [mob, if_pos hC] at hxy
+    · simp only [mob, ite_eq_left hC] at hxy
       split_ifs at hxy with hs
       all_goals first
         | exact Option.noConfusion hxy
         | (rw [hC, mul_zero, add_zero] at hs; rw [hs, hC] at h; simp at h)
     · by_cases hs : A + s * C = 0
       · simp [mob, hC, hs] at hxy
-      · simp only [mob, if_neg hC, if_neg hs, Option.some.injEq] at hxy
+      · simp only [mob, ite_eq_right hC, ite_eq_right hs, Option.some.injEq] at hxy
         rw [div_eq_div_iff hC hs] at hxy
         have : A * D - B * C = 0 := by linear_combination hxy
         rw [h] at this; exact one_ne_zero this
   · exfalso
     by_cases hC : C = 0
-    · simp only [mob, if_pos hC] at hxy
+    · simp only [mob, ite_eq_left hC] at hxy
       split_ifs at hxy with ht
       all_goals first
         | exact Option.noConfusion hxy
         | (rw [hC, mul_zero, add_zero] at ht; rw [ht, hC] at h; simp at h)
     · by_cases ht : A + t * C = 0
       · simp [mob, hC, ht] at hxy
-      · simp only [mob, if_neg hC, if_neg ht, Option.some.injEq] at hxy
+      · simp only [mob, ite_eq_right hC, ite_eq_right ht, Option.some.injEq] at hxy
         rw [div_eq_div_iff ht hC] at hxy
         have : A * D - B * C = 0 := by linear_combination -hxy
         rw [h] at this; exact one_ne_zero this
@@ -354,7 +354,7 @@ lemma mob_injective (A B C D : K) (h : A * D - B * C = 1) :
       · exfalso; simp [mob, ht, hs] at hxy
     · by_cases hs : A + s * C = 0
       · exfalso; simp [mob, ht, hs] at hxy
-      · simp only [mob, if_neg ht, if_neg hs, Option.some.injEq] at hxy
+      · simp only [mob, ite_eq_right ht, ite_eq_right hs, Option.some.injEq] at hxy
         rw [div_eq_div_iff ht hs] at hxy
         have : (t - s) * (A * D - B * C) = 0 := by linear_combination hxy
         rw [h, mul_one] at this

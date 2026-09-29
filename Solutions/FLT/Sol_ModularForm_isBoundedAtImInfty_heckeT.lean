@@ -272,7 +272,7 @@ theorem hasSum_average (τ : ℍ) :
   have h4 : ((fun m ↦ if p ∣ m then (p : ℂ) * qCoeff f m * exp (2 * π * I * τ / p) ^ m else 0) ∘
       fun l : ℕ ↦ l * p) = fun l ↦ (p : ℂ) * (qCoeff f (l * p) * Periodic.qParam 1 τ ^ l) := by
     funext l
-    simp only [comp_apply, if_pos (dvd_mul_left p l)]
+    simp only [comp_apply, ite_eq_left (dvd_mul_left p l)]
     rw [mul_comm l p, pow_mul, exp_div_pow hp τ]
     ring
   rw [h4] at h3
@@ -294,7 +294,7 @@ theorem hasSum_diag (k : ℤ) (τ : ℍ) :
   convert hD using 1
   · rfl
   funext l
-  simp only [comp_apply, if_pos (dvd_mul_left p l), Nat.mul_div_cancel _ (Nat.pos_of_ne_zero hp),
+  simp only [comp_apply, ite_eq_left (dvd_mul_left p l), Nat.mul_div_cancel _ (Nat.pos_of_ne_zero hp),
     smul_eq_mul]
   rw [← pow_mul, mul_comm l p, mul_assoc]
   rfl

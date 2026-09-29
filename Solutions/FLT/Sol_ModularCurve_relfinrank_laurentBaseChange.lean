@@ -189,7 +189,7 @@ theorem linearIndependent_pow_mul (ht : t ∈ F₀) (htr : Transcendental ℚ t)
     simp_rw [h1]
     rw [Finset.sum_comm]
     refine Eq.trans (Finset.sum_congr rfl fun q hq => ?_) hS
-    rw [Finset.sum_ite_eq, if_pos (Finset.mem_image_of_mem Prod.snd hq), ← HahnSeries.single_zero_mul_eq_smul,
+    rw [Finset.sum_ite_eq, ite_eq_left (Finset.mem_image_of_mem Prod.snd hq), ← HahnSeries.single_zero_mul_eq_smul,
       algebraMap_laurentSeries_eq_single, mul_assoc]
   have hci : (⟨c p.2, hcmem p.2⟩ : K₀ t) = 0 := hv _ _ hrel p.2 (Finset.mem_image_of_mem Prod.snd hp)
   have hc0 : c p.2 = 0 := congrArg Subtype.val hci
@@ -204,10 +204,10 @@ theorem linearIndependent_pow_mul (ht : t ∈ F₀) (htr : Transcendental ℚ t)
   · simpa using hco
   · intro q _ hqp
     by_cases h2 : q.2 = p.2
-    · rw [if_pos h2, coeff_monomial, if_neg]
+    · rw [ite_eq_left h2, coeff_monomial, ite_eq_right]
       intro h1
       exact hqp (Prod.ext h1 h2)
-    · rw [if_neg h2, coeff_zero]
+    · rw [ite_eq_right h2, coeff_zero]
   · intro hpS
     exact absurd hp hpS
 

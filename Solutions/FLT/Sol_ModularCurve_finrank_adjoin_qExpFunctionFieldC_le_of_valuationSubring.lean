@@ -101,7 +101,7 @@ theorem coeff_eq_zero_of_linearIndependent {ι : Type*} [Fintype ι] {α : E} (h
   have hPi0 : P i = 0 := transcendental_iff_injective.mp hα (by rw [hPi, map_zero])
   have := congrArg (fun p : K[X] => p.coeff m) hPi0
   simp only [hP, finsetSum_coeff, coeff_C_mul_X_pow, Polynomial.coeff_zero, Finset.sum_ite_eq,
-    if_pos hm] at this
+    ite_eq_left hm] at this
   exact this
 
 end PolyLinear
@@ -113,10 +113,10 @@ def zcoeff (w : PowerSeries ℤ) (n : ℤ) : ℤ := if n < 0 then 0 else PowerSe
 theorem coeff_intSeriesC (K : Type*) [Field K] (w : PowerSeries ℤ) (n : ℤ) :
     (intSeriesC K w).coeff n = (zcoeff w n : K) := by
   rcases lt_or_ge n 0 with hn | hn
-  · rw [intSeriesC, ofPowerSeries_coeff_of_neg _ hn, zcoeff, if_pos hn, Int.cast_zero]
+  · rw [intSeriesC, ofPowerSeries_coeff_of_neg _ hn, zcoeff, ite_eq_left hn, Int.cast_zero]
   · lift n to ℕ using hn with n
     rw [intSeriesC, HahnSeries.ofPowerSeries_apply_coeff, PowerSeries.coeff_map, eq_intCast, zcoeff,
-      if_neg (by omega), Int.toNat_natCast]
+      ite_eq_right (by omega), Int.toNat_natCast]
 
 def ι (K : Type*) [Field K] : PowerSeries ℤ →+* LaurentSeries K :=
   (HahnSeries.ofPowerSeries ℤ K).comp (PowerSeries.map (Int.castRingHom K))
@@ -418,7 +418,7 @@ theorem transcendental_upstairs (A : ValuationSubring L) (π : A →+* k)
   have hQ0 : Q = 0 := transcendental_iff_injective.mp htr (by rw [hQx, map_zero])
   apply hβ0
   have := congrArg (fun p : k[X] => p.coeff m₁) hQ0
-  simp only [hQ, finsetSum_coeff, coeff_C_mul_X_pow, Polynomial.coeff_zero, Finset.sum_ite_eq, if_pos hm₁] at this
+  simp only [hQ, finsetSum_coeff, coeff_C_mul_X_pow, Polynomial.coeff_zero, Finset.sum_ite_eq, ite_eq_left hm₁] at this
   exact this
 
 set_option synthInstance.maxHeartbeats 1600000 in

@@ -100,9 +100,9 @@ theorem coeff_linePow {i : ℕ} (hi : i ≤ n) (τ : ℂ) :
     coeff (ex n i) ((linePow n τ : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) = (n.choose i : ℂ) * τ ^ i := by
   rw [coe_linePow, linePow_expand, coeff_sum]
   rw [sum_eq_single i]
-  · rw [coeff_monomial, if_pos rfl]
+  · rw [coeff_monomial, ite_eq_left rfl]
   · intro m _ hmi
-    rw [coeff_monomial, if_neg (fun h => hmi (ex_inj n h))]
+    rw [coeff_monomial, ite_eq_right (fun h => hmi (ex_inj n h))]
   · intro h; exact absurd (mem_range.mpr (Nat.lt_succ_of_le hi)) h
 
 theorem pairing_linePow (τ σ : ℂ) : pairing n (linePow n τ) (linePow n σ) = (τ - σ) ^ n := by
@@ -137,7 +137,7 @@ theorem pairing_monomial (P : ↥(BinaryForm ℂ n)) {i : ℕ} (hi : i ≤ n) :
   · simp
   · intro j hj hji
     have hj' : j ≤ n := Nat.lt_succ_iff.mp (mem_range.mp hj)
-    rw [Subtype.coe_mk, coeff_monomial, if_neg, mul_zero]
+    rw [Subtype.coe_mk, coeff_monomial, ite_eq_right, mul_zero]
     intro h
     have := ex_inj n h
     omega
@@ -270,8 +270,8 @@ theorem monomial_mem_lineSpan {k : ℕ} (hk : k ≤ n) :
       exact Finset.sum_congr rfl fun j _ => by ring
     simp only [inner]
     rw [Finset.sum_eq_single kk]
-    · rw [if_pos rfl, mul_one, C_mul_monomial, mul_one]
-    · intro m _ hm; rw [if_neg hm, mul_zero, monomial_zero]
+    · rw [ite_eq_left rfl, mul_one, C_mul_monomial, mul_one]
+    · intro m _ hm; rw [ite_eq_right hm, mul_zero, monomial_zero]
     · intro h; exact absurd (Finset.mem_univ kk) h
 
   have hne : (n.choose k : ℂ) ≠ 0 := choose_ne_zero n hk

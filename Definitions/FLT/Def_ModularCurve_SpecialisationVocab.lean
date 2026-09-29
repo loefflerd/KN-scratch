@@ -89,7 +89,7 @@ theorem mem_integralO {x : H} : x ∈ integralO ↔ 0 ≤ x.orderTop := by exact
 def resO : integralO →+* Qbar where
   toFun x := (x : H).coeff 0
   map_one' := by
-    rw [OneMemClass.coe_one, HahnSeries.coeff_one, if_pos rfl]
+    rw [OneMemClass.coe_one, HahnSeries.coeff_one, ite_eq_left rfl]
   map_mul' x y := by
     rw [Subring.coe_mul]
     exact coeff_zero_mul_of_integral (mem_integralO.mp x.2) (mem_integralO.mp y.2)
@@ -130,13 +130,13 @@ def goodModel (j₀ : Qbar) : WeierstrassCurve H := scaleVC j₀ • nearCurve j
 theorem scaleVC_zero : scaleVC 0 =
     ⟨sU (2 / 12), -(jNear 0 - 1728) ^ 2 / 12, -(jNear 0 - 1728) / 2,
       (jNear 0 - 1728) ^ 3 / 24⟩ := by
-  rw [scaleVC, if_pos rfl]
+  rw [scaleVC, ite_eq_left rfl]
 
 theorem scaleVC_1728 : scaleVC 1728 = ⟨sU (9 / 12), 0, 0, 0⟩ := by
-  rw [scaleVC, if_neg (by norm_num), if_pos rfl]
+  rw [scaleVC, ite_eq_right (by norm_num), ite_eq_left rfl]
 
 theorem scaleVC_of_ne {j₀ : Qbar} (h0 : j₀ ≠ 0) (h1728 : j₀ ≠ 1728) : scaleVC j₀ = 1 := by
-  rw [scaleVC, if_neg h0, if_neg h1728]
+  rw [scaleVC, ite_eq_right h0, ite_eq_right h1728]
 
 theorem goodModel_eq_nearCurve {j₀ : Qbar} (h0 : j₀ ≠ 0) (h1728 : j₀ ≠ 1728) :
     goodModel j₀ = nearCurve j₀ := by

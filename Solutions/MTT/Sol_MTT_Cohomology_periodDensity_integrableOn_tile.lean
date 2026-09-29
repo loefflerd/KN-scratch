@@ -121,14 +121,13 @@ private lemma single_add_single_eq (n j : ℕ) :
   fin_cases i <;> simp [binaryExponent_apply]
 
 lemma coeff_periodPower (n j : ℕ) (hj : j ≤ n) (z : ℂ) :
-    MvPolynomial.coeff (binaryExponent n j) (periodPower n z) =
+    AddMonoidAlgebra.coeff (periodPower n z) (binaryExponent n j) =
       (n.choose j : ℂ) * z ^ j := by
   unfold periodPower
   rw [add_pow, MvPolynomial.coeff_sum]
   have key : ∀ m ∈ Finset.range (n + 1),
-      MvPolynomial.coeff (binaryExponent n j)
-        ((MvPolynomial.C z * MvPolynomial.X 0) ^ m * MvPolynomial.X 1 ^ (n - m) *
-          (n.choose m : MvPolynomial (Fin 2) ℂ))
+      AddMonoidAlgebra.coeff ((MvPolynomial.C z * MvPolynomial.X 0) ^ m * MvPolynomial.X 1 ^ (n - m) *
+          (n.choose m : MvPolynomial (Fin 2) ℂ)) (binaryExponent n j)
         = if m = j then (n.choose j : ℂ) * z ^ j else 0 := by
     intro m _
     have hmono : (MvPolynomial.C z * MvPolynomial.X 0) ^ m * MvPolynomial.X 1 ^ (n - m) *
@@ -145,14 +144,14 @@ lemma coeff_periodPower (n j : ℕ) (hj : j ≤ n) (z : ℂ) :
     rw [hmono, MvPolynomial.coeff_monomial]
     by_cases hmj : m = j
     · subst hmj
-      rw [if_pos (single_add_single_eq n m), if_pos rfl]
+      rw [ite_eq_left (single_add_single_eq n m), ite_eq_left rfl]
     · have hne : Finsupp.single (0 : Fin 2) m + Finsupp.single 1 (n - m) ≠
           binaryExponent n j := by
         intro h
         apply hmj
         have := DFunLike.congr_fun h 0
         simpa [binaryExponent_apply] using this
-      rw [if_neg hne, if_neg hmj]
+      rw [ite_eq_right hne, ite_eq_right hmj]
   rw [Finset.sum_congr rfl key]
   simp [Finset.sum_ite_eq', Nat.lt_succ_of_le hj]
 

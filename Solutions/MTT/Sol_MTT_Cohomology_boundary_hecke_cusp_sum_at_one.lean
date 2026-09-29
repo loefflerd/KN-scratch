@@ -86,14 +86,14 @@ lemma binaryExponent_apply_zero (n j : ℕ) : binaryExponent n j 0 = j := by
 
 lemma coeff_cuspPeriodPolynomial {N k : ℕ} (hk : 2 ≤ k) (f : CuspForm (MTT.GammaOne N) (k : ℤ))
     (r : ℚ) {j : ℕ} (hj : j ≤ k - 2) :
-    MvPolynomial.coeff (binaryExponent (k - 2) j) (cuspPeriodPolynomial f r) =
+    AddMonoidAlgebra.coeff (cuspPeriodPolynomial f r) (binaryExponent (k - 2) j) =
       ((k - 2).choose j : ℂ) * MTT.modularIntegral f (Polynomial.X ^ j) r := by
   rw [cuspPeriodPolynomial, MvPolynomial.coeff_sum]
   simp only [MvPolynomial.coeff_monomial]
   rw [Finset.sum_eq_single j]
   · simp
   · intro i _ hij
-    rw [if_neg]
+    rw [ite_eq_right]
     intro h
     exact hij (by simpa [binaryExponent_apply_zero] using congrArg (fun v => v 0) h)
   · intro hj'
@@ -112,11 +112,11 @@ lemma cuspPeriodPolynomial_mem_Sym {N k : ℕ} (hk : 2 ≤ k) (f : CuspForm (MTT
 
 /-- Two homogeneous polynomials of degree `n` with the same `X^j Y^(n-j)`-coefficients agree. -/
 lemma Sym_ext {n : ℕ} {P Q : Binary ℂ} (hP : P ∈ Sym ℂ n) (hQ : Q ∈ Sym ℂ n)
-    (h : ∀ j ≤ n, MvPolynomial.coeff (binaryExponent n j) P =
-      MvPolynomial.coeff (binaryExponent n j) Q) : P = Q := by
+    (h : ∀ j ≤ n, AddMonoidAlgebra.coeff P (binaryExponent n j) =
+      AddMonoidAlgebra.coeff Q (binaryExponent n j)) : P = Q := by
   rw [MvPolynomial.mem_homogeneousSubmodule] at hP hQ
   ext m
-  by_cases hm : MvPolynomial.coeff m P = 0 ∧ MvPolynomial.coeff m Q = 0
+  by_cases hm : AddMonoidAlgebra.coeff P m = 0 ∧ AddMonoidAlgebra.coeff Q m = 0
   · rw [hm.1, hm.2]
   · have hdeg : m.degree = n := by
       rw [Finsupp.degree_eq_weight_one]
@@ -173,7 +173,7 @@ lemma binaryExponent_apply_one (n j : ℕ) : binaryExponent n j 1 = n - j := by
 /-- A homogeneous polynomial of degree `n` is the sum of its `X^j Y^(n-j)` parts. -/
 lemma Sym_as_sum {n : ℕ} {P : Binary ℂ} (hP : P ∈ Sym ℂ n) :
     P = ∑ j ∈ Finset.range (n + 1),
-      MvPolynomial.monomial (binaryExponent n j) (MvPolynomial.coeff (binaryExponent n j) P) := by
+      MvPolynomial.monomial (binaryExponent n j) (AddMonoidAlgebra.coeff P (binaryExponent n j)) := by
   apply Sym_ext hP
   · refine Submodule.sum_mem _ fun j hj => ?_
     rw [MvPolynomial.mem_homogeneousSubmodule]
@@ -188,7 +188,7 @@ lemma Sym_as_sum {n : ℕ} {P : Binary ℂ} (hP : P ∈ Sym ℂ n) :
     rw [Finset.sum_eq_single j]
     · simp
     · intro i _ hij
-      rw [if_neg]
+      rw [ite_eq_right]
       intro h
       exact hij (by simpa [binaryExponent_apply_zero] using congrArg (fun v => v 0) h)
     · intro hj'
@@ -238,7 +238,7 @@ lemma act_mem_Sym {n : ℕ} (γ : Matrix (Fin 2) (Fin 2) ℤ) {P : Binary ℂ} (
   have hj' := Finset.mem_range.mp hj
   rw [monomial_binaryExponent, act_eq_actAlg, map_mul, map_mul, map_pow, map_pow, actAlg_C,
     MvPolynomial.mem_homogeneousSubmodule]
-  have := ((MvPolynomial.isHomogeneous_C (Fin 2) (MvPolynomial.coeff (binaryExponent n j) P)).mul
+  have := ((MvPolynomial.isHomogeneous_C (Fin 2) (AddMonoidAlgebra.coeff P (binaryExponent n j))).mul
     ((actAlg_X_isHomogeneous γ 0).pow j)).mul ((actAlg_X_isHomogeneous γ 1).pow (n - j))
   have e : 0 + 1 * j + 1 * (n - j) = n := by omega
   rw [e] at this
@@ -313,9 +313,9 @@ lemma fractional_eq_cuspOf {M : Matrix (Fin 2) (Fin 2) ℤ} (_hM : M.det ≠ 0) 
     simp only [fractional, cuspOf, vecOf, Matrix.mulVec, dotProduct, Fin.sum_univ_two,
       Matrix.cons_val_zero, Matrix.cons_val_one]
     by_cases h : (M 1 0 : ℚ) * r + M 1 1 = 0
-    · rw [if_pos h, if_pos ((key _ _).mp h)]
+    · rw [ite_eq_left h, ite_eq_left ((key _ _).mp h)]
     · have h' : ¬ (M 1 0 * r.num + M 1 1 * (r.den : ℤ) = 0) := fun h' => h ((key _ _).mpr h')
-      rw [if_neg h, if_neg h']
+      rw [ite_eq_right h, ite_eq_right h']
       change ((((M 0 0 : ℚ) * r + M 0 1) / ((M 1 0 : ℚ) * r + M 1 1) : ℚ) : Cusp) =
         ((((M 0 0 * r.num + M 0 1 * (r.den : ℤ) : ℤ) : ℚ) /
           ((M 1 0 * r.num + M 1 1 * (r.den : ℤ) : ℤ) : ℚ) : ℚ) : Cusp)
@@ -775,7 +775,7 @@ lemma count_sum {l : ℕ} (hl : l.Prime) {v0 v1 : ℤ} (hv : IsCoprime v0 v1) (n
       push_cast at this
       rw [h0, h1] at this
       simp at this
-    rw [if_pos ((hdvd v1).mpr h1)]
+    rw [ite_eq_left ((hdvd v1).mpr h1)]
     have hno : ∀ b : Fin l, ¬ ((l : ℤ) ∣ v0 + (b.val : ℤ) * v1) := by
       intro b hb
       rw [hdvd] at hb
@@ -785,7 +785,7 @@ lemma count_sum {l : ℕ} (hl : l.Prime) {v0 v1 : ℤ} (hv : IsCoprime v0 v1) (n
     simp only [hno, if_false, Finset.sum_const, Finset.card_univ, Fintype.card_fin, nsmul_eq_mul]
     push_cast
     ring
-  · rw [if_neg (fun h => h1 ((hdvd v1).mp h))]
+  · rw [ite_eq_right (fun h => h1 ((hdvd v1).mp h))]
     have hcond : ∀ b : Fin l, ((l : ℤ) ∣ v0 + (b.val : ℤ) * v1) ↔
         ((b.val : ℕ) : ZMod l) = -(v0 : ZMod l) * ((v1 : ZMod l))⁻¹ := by
       intro b

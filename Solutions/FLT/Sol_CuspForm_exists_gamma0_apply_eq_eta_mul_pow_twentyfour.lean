@@ -460,19 +460,19 @@ theorem mul_inv_repOfLabel_mem_iff (g : SL(2, ℤ)) (l : Option (ZMod 11)) :
     rw [repOfLabel_none, one_apply_one_one, one_apply_one_zero, Int.cast_one, mul_one,
       Int.cast_zero, mul_zero]
     by_cases hc : (g 1 0 : ZMod 11) = 0
-    · rw [if_pos hc]
+    · rw [ite_eq_left hc]
       exact iff_of_true hc rfl
-    · rw [if_neg hc]
+    · rw [ite_eq_right hc]
       exact iff_of_false hc (by simp)
   | some k =>
     rw [repOfLabel_some_one_one, repOfLabel_some_one_zero, Int.cast_one, mul_one,
       intCast_val]
     by_cases hc : (g 1 0 : ZMod 11) = 0
-    · rw [if_pos hc]
+    · rw [ite_eq_left hc]
       refine iff_of_false (fun hcontra => ?_) (by simp)
       rw [hc, zero_mul] at hcontra
       exact apply_one_one_ne_zero g hc hcontra.symm
-    · rw [if_neg hc, Option.some_inj, eq_div_iff hc]
+    · rw [ite_eq_right hc, Option.some_inj, eq_div_iff hc]
       constructor <;> intro h <;> linear_combination h
 
 theorem isComplement_transversal :

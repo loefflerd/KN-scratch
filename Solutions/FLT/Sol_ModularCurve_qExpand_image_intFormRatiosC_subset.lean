@@ -158,13 +158,13 @@ theorem intSeriesC_expandPS (K : Type*) [Field K] (ℓ : ℕ) [NeZero ℓ] (p : 
     by_cases hm' : m' < 0
     · have : (ℓ : ℤ) * m' < 0 :=
         mul_neg_of_pos_of_neg (by exact_mod_cast Nat.pos_of_ne_zero hℓ) hm'
-      rw [if_pos this, if_pos hm']
+      rw [ite_eq_left this, ite_eq_left hm']
     · have hm'0 : 0 ≤ m' := le_of_not_gt hm'
       have hprod : ¬ (ℓ : ℤ) * m' < 0 := not_lt.mpr (mul_nonneg (by positivity) hm'0)
-      rw [if_neg hprod, if_neg hm', PowerSeries.coeff_map, PowerSeries.coeff_map, coeff_expandPS]
+      rw [ite_eq_right hprod, ite_eq_right hm', PowerSeries.coeff_map, PowerSeries.coeff_map, coeff_expandPS]
       have habs : ((ℓ : ℤ) * m').natAbs = ℓ * m'.natAbs := by
         rw [Int.natAbs_mul, Int.natAbs_natCast]
-      rw [habs, if_pos (dvd_mul_right ℓ _), Nat.mul_div_cancel_left _ (Nat.pos_of_ne_zero hℓ)]
+      rw [habs, ite_eq_left (dvd_mul_right ℓ _), Nat.mul_div_cancel_left _ (Nat.pos_of_ne_zero hℓ)]
   · rw [ModularCurve.qExpand_coeff_of_not_dvd ℓ _ hdvd, PowerSeries.coeff_coe]
     split_ifs with hm
     · rfl
@@ -175,7 +175,7 @@ theorem intSeriesC_expandPS (K : Type*) [Field K] (ℓ : ℕ) [NeZero ℓ] (p : 
         have hm0 : 0 ≤ m := le_of_not_gt hm
         rw [← Int.natAbs_of_nonneg hm0]
         exact_mod_cast h
-      rw [if_neg this, map_zero]
+      rw [ite_eq_right this, map_zero]
 
 end Form
 

@@ -883,12 +883,12 @@ theorem relfinrank_fullC_prime_pow_tower (M : ℕ) [NeZero M] (p : ℕ) [hp : Fa
     | zero =>
       intro _
       have h0 := hstep 0 (Nat.zero_le a)
-      rw [if_pos rfl, fullC_congr' (show M * p ^ 0 = M by rw [pow_zero, Nat.mul_one])] at h0
+      rw [ite_eq_left rfl, fullC_congr' (show M * p ^ 0 = M by rw [pow_zero, Nat.mul_one])] at h0
       rw [h0, pow_zero, Nat.mul_one]
     | succ i ihi =>
       intro hi
       have h1 := hstep (i + 1) hi
-      rw [if_neg (Nat.succ_ne_zero i)] at h1
+      rw [ite_eq_right (Nat.succ_ne_zero i)] at h1
       have hle1 : fullC K M ≤ fullC K (M * p ^ (i + 1)) := fullC_mono (Dvd.intro _ rfl)
       have hle2 : fullC K (M * p ^ (i + 1)) ≤ fullC K (M * p ^ (i + 1 + 1)) :=
         fullC_mono (mul_dvd_mul_left M (pow_dvd_pow p (Nat.le_succ _)))

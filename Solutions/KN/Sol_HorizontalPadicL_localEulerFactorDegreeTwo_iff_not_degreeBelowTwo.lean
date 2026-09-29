@@ -18,11 +18,11 @@ lemma mul_apply_prime_pow_of_delta {p : ℕ} (hp : p.Prime) (A B : ArithmeticFun
     rw [Nat.div_self (pow_pos hp.pos k)]
     have h0 := hB 0
     rw [pow_zero] at h0
-    rw [h0, if_pos rfl, mul_one]
+    rw [h0, ite_eq_left rfl, mul_one]
   · intro i hi hik
     simp only [Function.Embedding.coeFn_mk]
     have hik' : i < k := lt_of_le_of_ne (Nat.lt_succ_iff.mp (Finset.mem_range.mp hi)) hik
-    rw [Nat.pow_div hik'.le hp.pos, hB, if_neg (by omega), mul_zero]
+    rw [Nat.pow_div hik'.le hp.pos, hB, ite_eq_right (by omega), mul_zero]
   · intro h
     exact absurd (Finset.mem_range.mpr (Nat.lt_succ_self k)) h
 
@@ -73,7 +73,7 @@ lemma factor_delta (E : WeierstrassCurve ℚ) (v w : HeightOneSpectrum (𝓞 ℚ
   rw [card_residue]
   rcases Nat.eq_zero_or_pos j with rfl | hj
   · simp [constantCoeff_Fv E w]
-  · rw [if_neg hj.ne', ofPowerSeries_apply hpw.one_lt, Function.extend_apply']
+  · rw [ite_eq_right hj.ne', ofPowerSeries_apply hpw.one_lt, Function.extend_apply']
     · rfl
     rintro ⟨i, hi⟩
     rcases Nat.eq_zero_or_pos i with rfl | hi0
@@ -129,11 +129,11 @@ lemma rec_quad (a q : ℤ) (F : PowerSeries ℤ)
       mul_assoc, map_sub, map_add, coeff_C_mul]
   refine ⟨?_, fun r => ?_⟩
   · have := congrArg (coeff (0 + 1)) h
-    rw [e, coeff_succ_X_mul, coeff_succ_X_mul, coeff_one, if_neg (by omega)] at this
+    rw [e, coeff_succ_X_mul, coeff_succ_X_mul, coeff_one, ite_eq_right (by omega)] at this
     simp only [coeff_zero_X_mul, mul_zero, add_zero, zero_add] at this
     linarith
   · have := congrArg (coeff (r + 1 + 1)) h
-    rw [e, coeff_succ_X_mul, coeff_succ_X_mul, coeff_succ_X_mul, coeff_one, if_neg (by omega)] at this
+    rw [e, coeff_succ_X_mul, coeff_succ_X_mul, coeff_succ_X_mul, coeff_one, ite_eq_right (by omega)] at this
     linarith
 
 lemma dichotomy (E : WeierstrassCurve ℚ) (v : HeightOneSpectrum (𝓞 ℚ)) :

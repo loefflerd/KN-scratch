@@ -10,5 +10,5 @@ set_option autoImplicit false
 open scoped MatrixGroups
 theorem HeckeEis.mem_range_binaryFormRepSL_T_zpow_sub_one {K : Type*} [Field K] [CharZero K] (n : ℕ) {h : ℤ}
     (hh : h ≠ 0) (P : ↥(HeckeEis.BinaryForm K n))
-    (hP : MvPolynomial.coeff (Finsupp.single 1 n) (P : MvPolynomial (Fin 2) K) = 0) :
+    (hP : AddMonoidAlgebra.coeff (P : MvPolynomial (Fin 2) K) (Finsupp.single 1 n) = 0) :
     P ∈ LinearMap.range (HeckeEis.binaryFormRepSL K n (ModularGroup.T ^ h) - 1) := by sorry

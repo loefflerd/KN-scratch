@@ -16,14 +16,14 @@ lemma binaryExponent_apply_zero (n j : ℕ) : binaryExponent n j 0 = j := by
 
 lemma coeff_cuspPeriodPolynomial {N k : ℕ} (hk : 2 ≤ k) (f : CuspForm (MTT.GammaOne N) (k : ℤ))
     (r : ℚ) {j : ℕ} (hj : j ≤ k - 2) :
-    MvPolynomial.coeff (binaryExponent (k - 2) j) (cuspPeriodPolynomial f r) =
+    AddMonoidAlgebra.coeff (cuspPeriodPolynomial f r) (binaryExponent (k - 2) j) =
       ((k - 2).choose j : ℂ) * MTT.modularIntegral f (Polynomial.X ^ j) r := by
   rw [cuspPeriodPolynomial, MvPolynomial.coeff_sum]
   simp only [MvPolynomial.coeff_monomial]
   rw [Finset.sum_eq_single j]
   · simp
   · intro i _ hij
-    rw [if_neg]
+    rw [ite_eq_right]
     intro h
     exact hij (by simpa [binaryExponent_apply_zero] using congrArg (fun v => v 0) h)
   · intro hj'
@@ -42,11 +42,11 @@ lemma cuspPeriodPolynomial_mem_Sym {N k : ℕ} (hk : 2 ≤ k) (f : CuspForm (MTT
 
 /-- Two homogeneous polynomials of degree `n` with the same `X^j Y^(n-j)`-coefficients agree. -/
 lemma Sym_ext {n : ℕ} {P Q : Binary ℂ} (hP : P ∈ Sym ℂ n) (hQ : Q ∈ Sym ℂ n)
-    (h : ∀ j ≤ n, MvPolynomial.coeff (binaryExponent n j) P =
-      MvPolynomial.coeff (binaryExponent n j) Q) : P = Q := by
+    (h : ∀ j ≤ n, AddMonoidAlgebra.coeff P (binaryExponent n j) =
+      AddMonoidAlgebra.coeff Q (binaryExponent n j)) : P = Q := by
   rw [MvPolynomial.mem_homogeneousSubmodule] at hP hQ
   ext m
-  by_cases hm : MvPolynomial.coeff m P = 0 ∧ MvPolynomial.coeff m Q = 0
+  by_cases hm : AddMonoidAlgebra.coeff P m = 0 ∧ AddMonoidAlgebra.coeff Q m = 0
   · rw [hm.1, hm.2]
   · have hdeg : m.degree = n := by
       rw [Finsupp.degree_eq_weight_one]
@@ -162,7 +162,7 @@ theorem solution
     apply MTT.Cohomology.evaluation_faithful
     intro j r hj
     rw [map_smul, smul_eq_mul, hI g' j r hj, hI g j r hj]
-    have := congrArg (MvPolynomial.coeff (binaryExponent (k - 2) j)) (hpoly r)
+    have := congrArg ((fun p => AddMonoidAlgebra.coeff p (binaryExponent (k - 2) j))) (hpoly r)
     rw [coeff_cuspPeriodPolynomial hk g' r hj, MvPolynomial.coeff_smul,
       coeff_cuspPeriodPolynomial hk g r hj, smul_eq_mul] at this
     linear_combination this

@@ -22,13 +22,12 @@ lemma single_add_single_eq (n j : ℕ) :
   fin_cases i <;> simp [binaryExponent_apply]
 
 lemma coeff_periodPower (n j : ℕ) (hj : j ≤ n) (z : ℂ) :
-    MvPolynomial.coeff (binaryExponent n j) (periodPower n z) = (n.choose j : ℂ) * z ^ j := by
+    AddMonoidAlgebra.coeff (periodPower n z) (binaryExponent n j) = (n.choose j : ℂ) * z ^ j := by
   unfold periodPower
   rw [add_pow, MvPolynomial.coeff_sum]
   have key : ∀ m ∈ Finset.range (n + 1),
-      MvPolynomial.coeff (binaryExponent n j)
-        ((MvPolynomial.C z * MvPolynomial.X 0) ^ m * MvPolynomial.X 1 ^ (n - m) *
-          (n.choose m : MvPolynomial (Fin 2) ℂ))
+      AddMonoidAlgebra.coeff ((MvPolynomial.C z * MvPolynomial.X 0) ^ m * MvPolynomial.X 1 ^ (n - m) *
+          (n.choose m : MvPolynomial (Fin 2) ℂ)) (binaryExponent n j)
         = if m = j then (n.choose j : ℂ) * z ^ j else 0 := by
     intro m _
     have hmono : (MvPolynomial.C z * MvPolynomial.X 0) ^ m * MvPolynomial.X 1 ^ (n - m) *
@@ -44,13 +43,13 @@ lemma coeff_periodPower (n j : ℕ) (hj : j ≤ n) (z : ℂ) :
     rw [hmono, MvPolynomial.coeff_monomial]
     by_cases hmj : m = j
     · subst hmj
-      rw [if_pos (single_add_single_eq n m), if_pos rfl]
+      rw [ite_eq_left (single_add_single_eq n m), ite_eq_left rfl]
     · have hne : Finsupp.single (0 : Fin 2) m + Finsupp.single 1 (n - m) ≠ binaryExponent n j := by
         intro h
         apply hmj
         have := DFunLike.congr_fun h 0
         simpa [binaryExponent_apply] using this
-      rw [if_neg hne, if_neg hmj]
+      rw [ite_eq_right hne, ite_eq_right hmj]
   rw [Finset.sum_congr rfl key]
   simp [Finset.sum_ite_eq', Nat.lt_succ_of_le hj]
 
@@ -116,7 +115,7 @@ lemma mixed_wirtinger {F : ℂ → ℂ} {a b z : ℂ}
 lemma coeff_cusp_holomorphic {N k : ℕ}
     (q : CuspForm (MTT.GammaOne N) (k : ℤ)) (n j : ℕ) (hj : j ≤ n) :
     DifferentiableOn ℂ (fun w : ℂ =>
-      MvPolynomial.coeff (binaryExponent n j) (((↑ₕ(fun τ : ℍ => q τ)) w) • periodPower n w))
+      AddMonoidAlgebra.coeff (((↑ₕ(fun τ : ℍ => q τ)) w) • periodPower n w) (binaryExponent n j))
       upperHalfPlaneSet := by
   simp only [MvPolynomial.coeff_smul, smul_eq_mul, coeff_periodPower n j hj]
   exact (UpperHalfPlane.mdifferentiable_iff.mp q.holo').mul
@@ -124,10 +123,8 @@ lemma coeff_cusp_holomorphic {N k : ℕ}
 
 lemma coeff_conj_cusp {N k : ℕ}
     (q : CuspForm (MTT.GammaOne N) (k : ℤ)) (n j : ℕ) (hj : j ≤ n) (w : ℂ) :
-    MvPolynomial.coeff (binaryExponent n j)
-      (conj ((↑ₕ(fun τ : ℍ => q τ)) w) • periodPower n (conj w)) =
-    conj (MvPolynomial.coeff (binaryExponent n j)
-      (((↑ₕ(fun τ : ℍ => q τ)) w) • periodPower n w)) := by
+    AddMonoidAlgebra.coeff (conj ((↑ₕ(fun τ : ℍ => q τ)) w) • periodPower n (conj w)) (binaryExponent n j) =
+    conj (AddMonoidAlgebra.coeff (((↑ₕ(fun τ : ℍ => q τ)) w) • periodPower n w) (binaryExponent n j)) := by
   simp [MvPolynomial.coeff_smul, coeff_periodPower n j hj]
 
 
@@ -135,13 +132,11 @@ lemma coeff_primitive_contDiff {N k : ℕ}
     (g v : CuspForm (MTT.GammaOne N) (k : ℤ))
     (U : ℂ → Binary ℂ) (hU : IsMixedPeriodPrimitive g v U)
     (j : ℕ) (hj : j ≤ k - 2) :
-    ContDiffOn ℝ 1 (fun w => MvPolynomial.coeff (binaryExponent (k - 2) j) (U w))
+    ContDiffOn ℝ 1 (fun w => AddMonoidAlgebra.coeff (U w) (binaryExponent (k - 2) j))
       upperHalfPlaneSet := by
   let e := binaryExponent (k - 2) j
-  let a := fun w : ℂ => MvPolynomial.coeff e
-    (((↑ₕ(fun τ : ℍ => g τ)) w) • periodPower (k - 2) w)
-  let b := fun w : ℂ => -MvPolynomial.coeff e
-    (conj ((↑ₕ(fun τ : ℍ => v τ)) w) • periodPower (k - 2) (conj w))
+  let a := fun w : ℂ => AddMonoidAlgebra.coeff (((↑ₕ(fun τ : ℍ => g τ)) w) • periodPower (k - 2) w) e
+  let b := fun w : ℂ => -AddMonoidAlgebra.coeff (conj ((↑ₕ(fun τ : ℍ => v τ)) w) • periodPower (k - 2) (conj w)) e
   have ha : ContinuousOn a upperHalfPlaneSet :=
     (coeff_cusp_holomorphic g (k - 2) j hj).continuousOn
   have hb : ContinuousOn b upperHalfPlaneSet := by
@@ -180,7 +175,7 @@ lemma mixed_sum {ι : Type*} (s : Finset ι) {F : ι → ℂ → ℂ} {a b : ι 
 lemma coeff_cusp_contDiff {N k : ℕ}
     (q : CuspForm (MTT.GammaOne N) (k : ℤ)) (n j : ℕ) (hj : j ≤ n) :
     ContDiffOn ℝ 1 (fun w : ℂ =>
-      MvPolynomial.coeff (binaryExponent n j) (((↑ₕ(fun τ : ℍ => q τ)) w) • periodPower n w))
+      AddMonoidAlgebra.coeff (((↑ₕ(fun τ : ℍ => q τ)) w) • periodPower n w) (binaryExponent n j))
       upperHalfPlaneSet := by
   exact ((coeff_cusp_holomorphic q n j hj).contDiffOn
     isOpen_upperHalfPlaneSet).restrict_scalars ℝ
@@ -228,7 +223,7 @@ open MTT.Cohomology
 
 lemma exponent_eq_of_coeff_ne_zero {n : ℕ} {P : Binary ℂ}
     (hP : P ∈ MTT.Cohomology.Sym ℂ n) {e : Fin 2 →₀ ℕ}
-    (he : MvPolynomial.coeff e P ≠ 0) : binaryExponent n (e 0) = e := by
+    (he : AddMonoidAlgebra.coeff P e ≠ 0) : binaryExponent n (e 0) = e := by
   have hd := (show P.IsHomogeneous n from hP).degree_eq_sum_deg_support
     (MvPolynomial.mem_support_iff.mpr he)
   have hs : e 0 + e 1 = n := by
@@ -240,19 +235,19 @@ lemma exponent_eq_of_coeff_ne_zero {n : ℕ} {P : Binary ℂ}
 lemma homogeneous_expansion {n : ℕ} {P : Binary ℂ}
     (hP : P ∈ MTT.Cohomology.Sym ℂ n) :
     P = ∑ j ∈ Finset.range (n + 1),
-      MvPolynomial.monomial (binaryExponent n j) (MvPolynomial.coeff (binaryExponent n j) P) := by
+      MvPolynomial.monomial (binaryExponent n j) (AddMonoidAlgebra.coeff P (binaryExponent n j)) := by
   ext e
   rw [MvPolynomial.coeff_sum]
   rw [Finset.sum_eq_single (e 0)]
   · rw [MvPolynomial.coeff_monomial]
     split_ifs with he
     · rw [he]
-    · have hc : MvPolynomial.coeff e P = 0 := by
+    · have hc : AddMonoidAlgebra.coeff P e = 0 := by
         by_contra hc
         exact he (exponent_eq_of_coeff_ne_zero hP hc)
       exact hc
   · intro j hj hje
-    rw [MvPolynomial.coeff_monomial, if_neg]
+    rw [MvPolynomial.coeff_monomial, ite_eq_right]
     intro he
     apply hje
     simpa [binaryExponent_apply] using DFunLike.congr_fun he 0
@@ -260,7 +255,7 @@ lemma homogeneous_expansion {n : ℕ} {P : Binary ℂ}
     rw [MvPolynomial.coeff_monomial]
     split_ifs with he
     · have hn : n < e 0 := Nat.lt_of_not_ge (by simpa using hj)
-      have hc : MvPolynomial.coeff e P = 0 := by
+      have hc : AddMonoidAlgebra.coeff P e = 0 := by
         by_contra hc
         have hd := (show P.IsHomogeneous n from hP).degree_eq_sum_deg_support
           (MvPolynomial.mem_support_iff.mpr hc)
@@ -274,7 +269,7 @@ lemma homogeneous_expansion {n : ℕ} {P : Binary ℂ}
 lemma eval_homogeneous {n : ℕ} {P : Binary ℂ}
     (hP : P ∈ MTT.Cohomology.Sym ℂ n) (x y : ℂ) :
     MvPolynomial.eval ![x,y] P = ∑ j ∈ Finset.range (n + 1),
-      MvPolynomial.coeff (binaryExponent n j) P * x ^ j * y ^ (n - j) := by
+      AddMonoidAlgebra.coeff P (binaryExponent n j) * x ^ j * y ^ (n - j) := by
   conv_lhs => rw [homogeneous_expansion hP]
   rw [map_sum]
   apply Finset.sum_congr rfl
@@ -285,7 +280,7 @@ lemma eval_homogeneous {n : ℕ} {P : Binary ℂ}
 lemma contraction_pure_right (n : ℕ) (P : Binary ℂ) (w : ℂ) :
     periodContraction n P (periodPower n w) =
       ∑ j ∈ Finset.range (n + 1),
-        MvPolynomial.coeff (binaryExponent n j) P * (-w) ^ (n - j) := by
+        AddMonoidAlgebra.coeff P (binaryExponent n j) * (-w) ^ (n - j) := by
   unfold periodContraction
   apply Finset.sum_congr rfl
   intro j hj
@@ -342,7 +337,7 @@ lemma contraction_eval_left {n : ℕ} {P : Binary ℂ}
     periodContraction n (periodPower n w) P = MvPolynomial.eval ![-1,w] P := by
   rw [periodContraction, eval_homogeneous hP]
   rw [← Finset.sum_range_reflect (fun j =>
-    MvPolynomial.coeff (binaryExponent n j) P * (-1 : ℂ) ^ j * w ^ (n - j)) (n + 1)]
+    AddMonoidAlgebra.coeff P (binaryExponent n j) * (-1 : ℂ) ^ j * w ^ (n - j)) (n + 1)]
   apply Finset.sum_congr rfl
   intro j hj
   have hj' : j ≤ n := Nat.le_of_lt_succ (Finset.mem_range.mp hj)
@@ -396,13 +391,11 @@ lemma first_test_derivative {N k : ℕ}
       periodContraction (k - 2) (g z • periodPower (k - 2) z)
         (conj (q z) • periodPower (k - 2) (conj (z : ℂ))) := by
   let n := k - 2
-  let H := fun j w => MvPolynomial.coeff (binaryExponent n (n - j))
-    (((↑ₕ(fun τ : ℍ => q τ)) w) • periodPower n w)
-  let a := fun j => MvPolynomial.coeff (binaryExponent n j) (g z • periodPower n z)
-  let b := fun j => -MvPolynomial.coeff (binaryExponent n j)
-    (conj (v z) • periodPower n (conj (z : ℂ)))
+  let H := fun j w => AddMonoidAlgebra.coeff (((↑ₕ(fun τ : ℍ => q τ)) w) • periodPower n w) (binaryExponent n (n - j))
+  let a := fun j => AddMonoidAlgebra.coeff (g z • periodPower n z) (binaryExponent n j)
+  let b := fun j => -AddMonoidAlgebra.coeff (conj (v z) • periodPower n (conj (z : ℂ))) (binaryExponent n j)
   let c := fun j => (-1 : ℂ) ^ (n - j) / (n.choose j : ℂ)
-  let F := fun j w => c j * (MvPolynomial.coeff (binaryExponent n j) (U w) * conj (H j w))
+  let F := fun j w => c j * (AddMonoidAlgebra.coeff (U w) (binaryExponent n j) * conj (H j w))
   have hH (j : ℕ) : HasDerivAt (H j) (deriv (H j) z) z :=
     ((coeff_cusp_holomorphic q n (n - j) (Nat.sub_le _ _)) z z.im_pos).differentiableAt
       (isOpen_upperHalfPlaneSet.mem_nhds z.im_pos) |>.hasDerivAt
@@ -410,7 +403,7 @@ lemma first_test_derivative {N k : ℕ}
       (periodDifferential
         (c j * (a j * conj (H j z)))
         (c j * (b j * conj (H j z) +
-          MvPolynomial.coeff (binaryExponent n j) (U z) * conj (deriv (H j) z)))) z := by
+          AddMonoidAlgebra.coeff (U z) (binaryExponent n j) * conj (deriv (H j) z)))) z := by
     simpa only [F, map_zero, mul_zero, add_zero] using
       mixed_const_mul (c j) (mixed_mul (hU.2.2.1 z (binaryExponent n j))
         (mixed_conj (mixed_of_complex (hH j))))
@@ -445,19 +438,17 @@ lemma second_test_derivative {N k : ℕ}
       -conj (periodContraction (k - 2) (q z • periodPower (k - 2) z)
         (conj (v z) • periodPower (k - 2) (conj (z : ℂ)))) := by
   let n := k - 2
-  let H := fun j w => MvPolynomial.coeff (binaryExponent n j)
-    (((↑ₕ(fun τ : ℍ => q τ)) w) • periodPower n w)
-  let a := fun j => MvPolynomial.coeff (binaryExponent n (n - j)) (g z • periodPower n z)
-  let b := fun j => -MvPolynomial.coeff (binaryExponent n (n - j))
-    (conj (v z) • periodPower n (conj (z : ℂ)))
+  let H := fun j w => AddMonoidAlgebra.coeff (((↑ₕ(fun τ : ℍ => q τ)) w) • periodPower n w) (binaryExponent n j)
+  let a := fun j => AddMonoidAlgebra.coeff (g z • periodPower n z) (binaryExponent n (n - j))
+  let b := fun j => -AddMonoidAlgebra.coeff (conj (v z) • periodPower n (conj (z : ℂ))) (binaryExponent n (n - j))
   let c := fun j => (-1 : ℂ) ^ (n - j) / (n.choose j : ℂ)
-  let F := fun j w => c j * (H j w * MvPolynomial.coeff (binaryExponent n (n - j)) (U w))
+  let F := fun j w => c j * (H j w * AddMonoidAlgebra.coeff (U w) (binaryExponent n (n - j)))
   have hH (j : ℕ) (hj : j ∈ Finset.range (n + 1)) : HasDerivAt (H j) (deriv (H j) z) z :=
     ((coeff_cusp_holomorphic q n j (Nat.le_of_lt_succ (Finset.mem_range.mp hj))) z
       z.im_pos).differentiableAt (isOpen_upperHalfPlaneSet.mem_nhds z.im_pos) |>.hasDerivAt
   have hF (j : ℕ) (hj : j ∈ Finset.range (n + 1)) : HasFDerivAt (F j)
       (periodDifferential
-        (c j * (deriv (H j) z * MvPolynomial.coeff (binaryExponent n (n - j)) (U z) + H j z * a j))
+        (c j * (deriv (H j) z * AddMonoidAlgebra.coeff (U z) (binaryExponent n (n - j)) + H j z * a j))
         (c j * (H j z * b j))) z := by
     simpa only [F, zero_mul, zero_add] using
       mixed_const_mul (c j) (mixed_mul (mixed_of_complex (hH j hj))
