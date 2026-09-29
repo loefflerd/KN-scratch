@@ -1,4 +1,6 @@
-import Mathlib
+import Mathlib.AlgebraicGeometry.EllipticCurve.Affine.Point
+import Mathlib.RingTheory.DedekindDomain.AdicValuation
+import Mathlib.RingTheory.SimpleRing.Principal
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000

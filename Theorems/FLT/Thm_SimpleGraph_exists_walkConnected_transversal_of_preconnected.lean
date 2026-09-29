@@ -1,4 +1,5 @@
-import Mathlib
+import Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected
+import Mathlib.GroupTheory.GroupAction.Defs
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000

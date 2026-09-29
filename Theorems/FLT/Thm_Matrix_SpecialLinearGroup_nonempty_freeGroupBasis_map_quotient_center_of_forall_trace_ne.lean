@@ -1,4 +1,6 @@
-import Mathlib
+import Mathlib.GroupTheory.FreeGroup.IsFreeGroup
+import Mathlib.LinearAlgebra.Matrix.SpecialLinearGroup
+import Mathlib.LinearAlgebra.Matrix.Trace
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000

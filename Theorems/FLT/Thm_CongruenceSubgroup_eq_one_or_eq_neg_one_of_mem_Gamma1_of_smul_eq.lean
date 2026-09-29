@@ -1,4 +1,5 @@
-import Mathlib
+import Mathlib.Analysis.Complex.UpperHalfPlane.MoebiusAction
+import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000

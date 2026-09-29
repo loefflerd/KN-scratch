@@ -1,4 +1,5 @@
-import Mathlib
+import Mathlib.GroupTheory.DoubleCoset
+import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000

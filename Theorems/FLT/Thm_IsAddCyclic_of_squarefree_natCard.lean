@@ -1,4 +1,5 @@
-import Mathlib
+import Mathlib.Algebra.Squarefree.Basic
+import Mathlib.SetTheory.Cardinal.Finite
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000

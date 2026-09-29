@@ -1,4 +1,6 @@
-import Mathlib
+import Mathlib.Analysis.CStarAlgebra.Classes
+import Mathlib.Analysis.Complex.Periodic
+import Mathlib.NumberTheory.ModularForms.Basic
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000

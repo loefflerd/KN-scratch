@@ -1,4 +1,5 @@
-import Mathlib
+import Mathlib.RingTheory.Localization.FractionRing
+import Mathlib.RingTheory.PowerSeries.Basic
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000

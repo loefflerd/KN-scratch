@@ -1,4 +1,6 @@
-import Mathlib
+import Mathlib.Data.Nat.Prime.Defs
+import Mathlib.GroupTheory.GroupAction.Defs
+import Mathlib.SetTheory.Cardinal.Finite
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000

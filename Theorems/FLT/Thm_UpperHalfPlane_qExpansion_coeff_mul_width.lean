@@ -1,4 +1,5 @@
-import Mathlib
+import Mathlib.Analysis.CStarAlgebra.Classes
+import Mathlib.NumberTheory.ModularForms.QExpansion
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000

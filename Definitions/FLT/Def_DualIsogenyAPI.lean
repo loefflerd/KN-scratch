@@ -1,4 +1,7 @@
-import Mathlib
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Analysis.Normed.Ring.Lemmas
+import Mathlib.Data.Int.Star
+import Mathlib.Tactic.NoncommRing
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -318,4 +321,3 @@ theorem gate_intLinComb_disc_scaling :
     AddMonoid.End.DualEndData.ofCharPoly_norm]
 
 end SatGates
-

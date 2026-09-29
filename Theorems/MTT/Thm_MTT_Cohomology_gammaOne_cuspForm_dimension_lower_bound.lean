@@ -1,4 +1,5 @@
-import Mathlib
+import Mathlib.GroupTheory.DoubleCoset
+import Mathlib.NumberTheory.ModularForms.Basic
 open scoped MatrixGroups
 
 theorem MTT.Cohomology.gammaOne_cuspForm_dimension_lower_bound {N k : ℕ} (hN : 5 ≤ N) (hk : 3 ≤ k) :

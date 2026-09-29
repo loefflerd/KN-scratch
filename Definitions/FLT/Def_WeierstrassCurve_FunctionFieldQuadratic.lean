@@ -1,4 +1,8 @@
-import Mathlib
+import Mathlib.AlgebraicGeometry.EllipticCurve.Affine.Point
+import Mathlib.FieldTheory.RatFunc.Basic
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -152,4 +156,3 @@ theorem isIntegral_yCoord : _root_.IsIntegral (RatFunc F) (yCoord W) :=
 end WeierstrassCurve.Affine
 
 end
-

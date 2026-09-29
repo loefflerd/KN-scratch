@@ -1,4 +1,7 @@
-import Mathlib
+import Mathlib.Analysis.CStarAlgebra.Classes
+import Mathlib.Analysis.Complex.UpperHalfPlane.Measure
+import Mathlib.NumberTheory.Modular
+import Mathlib.Order.CompletePartialOrder
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -131,4 +134,3 @@ theorem not_isFiniteMeasure_volume : ¬ IsFiniteMeasure (volume : Measure ℍ) :
 
 end FLT.HyperbolicMeasure
 end
-

@@ -1,4 +1,7 @@
-import Mathlib
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Data.Int.Star
+import Mathlib.NumberTheory.Modular
+import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -115,4 +118,3 @@ theorem gate_S_not_mem_gamma0_two : ModularGroup.S ∉ Gamma0 2 := by
   exact absurd hmem (by decide)
 
 end FLT.SiegelSetCover
-

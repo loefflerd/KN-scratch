@@ -1,4 +1,4 @@
-import Mathlib
+import Mathlib.NumberTheory.ModularForms.EisensteinSeries.E2.Defs
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -16,4 +16,3 @@ noncomputable def eisensteinG1 (N : ℕ) (v : Fin 2 → ℤ) (τ : UpperHalfPlan
       ((v 0 : ℂ) * ((τ : ℂ) * G2 τ - 2 * Real.pi * Complex.I) + (v 1 : ℂ) * G2 τ) / N)
 
 end EisensteinSeries
-

@@ -1,4 +1,5 @@
-import Mathlib
+import Mathlib.FieldTheory.IsAlgClosed.Basic
+import Mathlib.RingTheory.HahnSeries.Summable
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000

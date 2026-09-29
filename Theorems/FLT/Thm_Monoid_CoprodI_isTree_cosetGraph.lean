@@ -1,4 +1,5 @@
-import Mathlib
+import Mathlib.Combinatorics.SimpleGraph.Acyclic
+import Mathlib.GroupTheory.CoprodI
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000

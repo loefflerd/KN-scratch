@@ -1,4 +1,5 @@
-import Mathlib
+import Mathlib.GroupTheory.CoprodI
+import Mathlib.LinearAlgebra.Matrix.SpecialLinearGroup
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000

@@ -1,4 +1,4 @@
-import Mathlib
+import Mathlib.NumberTheory.ModularForms.Cusps
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -377,4 +377,3 @@ end CuspSpace
 end
 
 end ModularCurve
-

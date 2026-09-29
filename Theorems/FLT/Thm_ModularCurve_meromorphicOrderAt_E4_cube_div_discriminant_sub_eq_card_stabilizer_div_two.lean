@@ -1,4 +1,4 @@
-import Mathlib
+import Mathlib.NumberTheory.ModularForms.Discriminant
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000

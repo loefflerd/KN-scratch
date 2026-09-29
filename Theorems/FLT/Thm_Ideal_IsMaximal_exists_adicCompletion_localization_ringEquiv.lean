@@ -1,4 +1,5 @@
-import Mathlib
+import Mathlib.RingTheory.AdicCompletion.Algebra
+import Mathlib.RingTheory.Localization.AtPrime.Basic
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000

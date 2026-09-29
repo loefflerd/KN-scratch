@@ -1,4 +1,6 @@
-import Mathlib
+import Mathlib.FieldTheory.IntermediateField.Adjoin.Defs
+import Mathlib.FieldTheory.Separable
+import Mathlib.RingTheory.Kaehler.Basic
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000

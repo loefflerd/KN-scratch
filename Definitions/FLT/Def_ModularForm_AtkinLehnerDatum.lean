@@ -1,4 +1,5 @@
-import Mathlib
+import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
+import Mathlib.NumberTheory.ModularForms.SlashActions
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
