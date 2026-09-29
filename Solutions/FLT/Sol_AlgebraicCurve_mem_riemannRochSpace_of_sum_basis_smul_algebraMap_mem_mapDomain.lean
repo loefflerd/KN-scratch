@@ -26,11 +26,6 @@ theorem solution
     [Field K] [Field F] [Field K'] [Field F'] [Algebra K F] [Algebra K' F']
     [Algebra K K'] [Algebra F F'] [Algebra K F'] [IsScalarTower K K' F'] [IsScalarTower K F F']
     [IsAlgClosed K] [IsAlgClosed K'] [IsCurveOver K F] [IsCurveOver K' F']
-    (hfg : ∃ x : F, Transcendental K x ∧
-      FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F)
-    (hfg' : ∃ x : F', Transcendental K' x ∧
-      FiniteDimensional (IntermediateField.adjoin K' ({x} : Set F')) F')
-    (hgen : IntermediateField.adjoin K' (Set.range (algebraMap F F')) = ⊤)
     (lift : Place K F → Place K' F')
     (hlift_ord : ∀ (P : Place K F) (f : F), (lift P).ord (algebraMap F F' f) = P.ord f)
     (hlift_inj : Function.Injective lift)
@@ -48,7 +43,7 @@ theorem solution
   refine mem_lSpace_iff_ord.mpr (Or.inr fun v => ?_)
   obtain ⟨hne, hle⟩ :=
     Place.ord_sum_algebraMap_mul_le_ord_of_linearIndependent_of_constantFieldExtension
-      K F K' F' hfg hfg' hgen lift hlift_ord v B hB g hgne
+      K F K' F' lift hlift_ord v B hB g hgne
   have hordSig : -(Finsupp.mapDomain lift D) (lift v) ≤
       (lift v).ord (∑ j ∈ g.support, algebraMap K' F' (B j) * algebraMap F F' (g j)) :=
     (mem_lSpace_iff_ord.mp hmem).resolve_left hne (lift v)

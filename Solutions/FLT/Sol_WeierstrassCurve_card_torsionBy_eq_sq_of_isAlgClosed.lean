@@ -12,7 +12,7 @@ p2m_attr_erase "simp" "compl₂EDSAux_neg_two compl₂EDSAux_zero WeierstrassCur
 open WeierstrassCurve
 
 theorem solution {F : Type*} [Field F] [DecidableEq F] [IsAlgClosed F]
-    (W : WeierstrassCurve F) [W.IsElliptic] {n : ℕ} (hn : (n : F) ≠ 0) (h2 : (2 : F) ≠ 0) :
+    (W : WeierstrassCurve F) [W.IsElliptic] {n : ℕ} (hn : (n : F) ≠ 0) :
     Nat.card (Submodule.torsionBy ℤ W.toAffine.Point n) = n ^ 2 :=
   WeierstrassCurve.card_torsion_of_isAlgClosed_light (F := F) (K := F) W hn
 

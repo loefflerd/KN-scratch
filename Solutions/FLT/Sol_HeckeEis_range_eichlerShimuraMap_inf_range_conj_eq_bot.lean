@@ -1119,7 +1119,7 @@ theorem tile_green (σ : SL(2, ℤ)) :
     exact hCT z (Ubox_subset_strip hz)
   refine ⟨⟨c / 2, CT, by positivity, hΦbd⟩, ?_⟩
   have hE := Complex.integral_modularFundamentalDomain_eq_boundary_of_hasFDerivAt (tileΦ f F G v σ)
-    (TD φ ψ (trV σ F) (trV σ G) c₀) Ubox (c / 2) (by positivity) isOpen_Ubox fdC_subset_Ubox
+    (TD φ ψ (trV σ F) (trV σ G) c₀) Ubox (c / 2) (by positivity) fdC_subset_Ubox
     (fun z hz => (hasFDerivAt_TC c₀ hA hB hφ (im_pos_of_mem_Ubox hz)).congr_of_eventuallyEq
       (Filter.eventually_of_mem (Ubox_mem_nhds hz) fun w hw => tileΦ_eq f F G v σ hw))
     ((continuousOn_TD c₀ hA hB hφ hψ).mono fun z hz => im_pos_of_mem_Ubox hz)

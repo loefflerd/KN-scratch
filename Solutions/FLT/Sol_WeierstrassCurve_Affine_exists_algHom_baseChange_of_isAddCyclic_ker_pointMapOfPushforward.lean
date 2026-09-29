@@ -335,7 +335,7 @@ theorem WeierstrassCurve.nonempty_pointTorsionBy_zmod {K : Type*} [Field K] [Dec
   obtain ⟨e⟩ := AddCommGroup.nonempty_zmod_prod_addEquiv_torsionBy_of_card_torsionBy_eq_sq
     (A := W.toAffine.Point) (n := n) (by omega)
     (fun d hd => WeierstrassCurve.card_torsionBy_eq_sq_of_isAlgClosed W (n := d)
-      (by exact_mod_cast (Nat.pos_of_dvd_of_pos hd (by omega)).ne') two_ne_zero)
+      (by exact_mod_cast (Nat.pos_of_dvd_of_pos hd (by omega)).ne'))
   exact ⟨e.symm.trans (LinearEquiv.piFinTwo ℤ (fun _ : Fin 2 => ZMod n)).toAddEquiv.symm⟩
 
 section

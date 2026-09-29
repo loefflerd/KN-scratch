@@ -247,9 +247,8 @@ open WidthLE UpperHalfPlane in
 set_option maxHeartbeats 3200000 in
 theorem solution
     (Γ : Subgroup SL(2, ℤ)) [Γ.FiniteIndex] (hT : ModularGroup.T ∈ Γ)
-    (hΓ : CongruenceSubgroup.IsCongruenceSubgroup Γ)
     (F₀ : IntermediateField ℚ (LaurentSeries ℚ)) (hF : F₀ = ModularCurve.qExpFunctionFieldC ℚ Γ)
-    (y : ↥(ModularCurve.laurentBaseChange ℂ F₀)) (hy : (y : LaurentSeries ℂ) = ModularCurve.jqModC ℂ)
+    (y : ↥(ModularCurve.laurentBaseChange ℂ F₀))
     (σ : SL(2, ℤ))
     (Φ : ModularCurve.laurentBaseChange ℂ F₀ →+* LaurentSeries ℂ)
     (P : AlgebraicCurve.Place ℂ (ModularCurve.laurentBaseChange ℂ F₀)) (e : ℕ) (he : 0 < e)

@@ -146,7 +146,7 @@ theorem charZero_addMonoidEnd_point : CharZero (AddMonoid.End W.Point) := by
     intro k hk hk0
     have h : Nat.card (Submodule.torsionBy ℤ W.Point (k : ℤ)) = k ^ 2 :=
       WeierstrassCurve.card_torsionBy_eq_sq_of_isAlgClosed W (n := k)
-        (Nat.cast_ne_zero.mpr hk0) two_ne_zero
+        (Nat.cast_ne_zero.mpr hk0)
     rw [htop k hk] at h
     rwa [Nat.card_congr (Submodule.topEquiv (R := ℤ) (M := W.Point)).toEquiv] at h
   have h1 := hcard n dvd_rfl hn0

@@ -70,10 +70,7 @@ theorem solution
     (hfg' : ∃ x : F', Transcendental K' x ∧
       FiniteDimensional (IntermediateField.adjoin K' ({x} : Set F')) F')
     [IsCurveOver K F] [IsCurveOver K' F']
-    (hgen : IntermediateField.adjoin K' (Set.range (algebraMap F F')) = ⊤)
-    (lift : Place K F → Place K' F')
-    (hlift_ord : ∀ (P : Place K F) (f : F), (lift P).ord (algebraMap F F' f) = P.ord f)
-    (hlift_inj : Function.Injective lift) :
+    (lift : Place K F → Place K' F') :
     ∃ D : Divisor K F, indexOfSpecialty (K := K') (Finsupp.mapDomain lift D) = 0 := by
   classical
 

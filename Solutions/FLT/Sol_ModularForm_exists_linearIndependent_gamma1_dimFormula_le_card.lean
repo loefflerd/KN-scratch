@@ -32,7 +32,7 @@ theorem solution
         ≤ 12 * d := by
   rcases Nat.even_or_odd k with hke | hko
   · exact ModularForm.exists_linearIndependent_gamma1_dimFormula_le_card_of_even M hM k hk hke
-  · exact ModularForm.exists_linearIndependent_gamma1_dimFormula_le_card_of_odd M hM k hk hko
+  · exact ModularForm.exists_linearIndependent_gamma1_dimFormula_le_card_of_odd M hM k hk
 
 
 end S_ModularForm_exists_linearIndependent_gamma1_dimFormula_le_card

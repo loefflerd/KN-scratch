@@ -119,7 +119,7 @@ theorem solution (K F K' F' : Type*)
 
   obtain ⟨D, hiD'⟩ :=
     exists_indexOfSpecialty_mapDomain_eq_zero_of_constantFieldExtension_of_isAlgClosed
-      K F K' F' hfg hfg' hgen lift hlift_ord hlift_inj
+      K F K' F' hfg hfg' lift
   set D' : Divisor K' F' := Finsupp.mapDomain lift D with hD'def
 
   have hdegEq : Divisor.degree D' = Divisor.degree D := by

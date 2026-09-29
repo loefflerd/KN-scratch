@@ -96,7 +96,7 @@ theorem solution (N : ℕ) [NeZero N]
       ‖((Φ : ℍ → ℂ) ∣[k + (4 + 4) + 6] (A : GL (Fin 2) ℝ)) τ‖ ≤ ε * ‖((Ψ : ℍ → ℂ) ∣[k + 12] (A : GL (Fin 2) ℝ)) τ‖ := by
     intro A ε hε
     rw [hΦcoe, hΨcoe, show k + (4 + 4) + 6 = k + 14 by ring]
-    exact ModularCurve.eventually_norm_slash_le_of_isIntegral_adjoin_coeffEmb_jq_inv N g h hh X hXh M h₂ A ε hε
+    exact ModularCurve.eventually_norm_slash_le_of_isIntegral_adjoin_coeffEmb_jq_inv N g h X hXh M h₂ A ε hε
   obtain ⟨f, hf⟩ := ModularForm.exists_cuspForm_mul_eq_of_analyticOrderAt_le N 2 (by ring) Φ Ψ hΨ0 hord hcusp
   refine ⟨-f, ?_⟩
 

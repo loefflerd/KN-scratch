@@ -20,8 +20,6 @@ theorem AlgebraicCurve.lSpace_mapDomain_subset_span_image_lSpace_of_constantFiel
     (lift : Place K F → Place K' F')
     (hlift_ord : ∀ (P : Place K F) (f : F), (lift P).ord (algebraMap F F' f) = P.ord f)
     (hlift_inj : Function.Injective lift)
-    (hlift_new : ∀ v' : Place K' F', (∀ v, lift v ≠ v') →
-      ∀ v : Place K F, v'.toValuationSubring.comap (algebraMap F F') ≠ v.toValuationSubring)
     (D : Divisor K F) {f' : F'}
     (hf' : f' ∈ LSpace (K := K') (Finsupp.mapDomain lift D)) :
     f' ∈ Submodule.span K' ((algebraMap F F') '' (LSpace (K := K) D : Set F)) := by sorry

@@ -127,14 +127,14 @@ theorem solution (N : ℕ) [NeZero N] (m : ℕ) (hm : 1 ≤ m)
       analyticOrderAt ((Φ : ℍ → ℂ) ∘ ofComplex) (τ : ℂ) := by
     intro τ
     rw [hΦcoe, hΨcoe]
-    exact ModularCurve.analyticOrderAt_le_of_isIntegral_adjoin_coeffEmb_jq_pow N (m + 1) hm1 g h X hXh h₁ τ
+    exact ModularCurve.analyticOrderAt_le_of_isIntegral_adjoin_coeffEmb_jq_pow N (m + 1) g h X hXh h₁ τ
   have hcusp : ∀ (A : SL(2, ℤ)) (ε : ℝ), 0 < ε → ∀ᶠ τ : ℍ in atImInfty,
       ‖((Φ : ℍ → ℂ) ∣[k + ((m + 1 : ℕ) : ℤ) * ((4 + 4) + 6)] (A : GL (Fin 2) ℝ)) τ‖ ≤
         ε * ‖((Ψ : ℍ → ℂ) ∣[k + ((m + 1 : ℕ) : ℤ) * 12] (A : GL (Fin 2) ℝ)) τ‖ := by
     intro A ε hε
     rw [hΦcoe, hΨcoe, show k + ((m + 1 : ℕ) : ℤ) * ((4 + 4) + 6) = k + 14 * ((m + 1 : ℕ) : ℤ) by ring,
       show k + ((m + 1 : ℕ) : ℤ) * 12 = k + 12 * ((m + 1 : ℕ) : ℤ) by ring]
-    exact ModularCurve.eventually_norm_slash_le_of_isIntegral_adjoin_coeffEmb_jq_inv_pow N (m + 1) hm1 g h hh X hXh M h₂ A ε hε
+    exact ModularCurve.eventually_norm_slash_le_of_isIntegral_adjoin_coeffEmb_jq_inv_pow N (m + 1) g h X hXh M h₂ A ε hε
   obtain ⟨f, hf⟩ := ModularForm.exists_cuspForm_mul_eq_of_analyticOrderAt_le N (2 * ((m + 1 : ℕ) : ℤ))
     (by push_cast; ring) Φ Ψ hΨ0 hord hcusp
 

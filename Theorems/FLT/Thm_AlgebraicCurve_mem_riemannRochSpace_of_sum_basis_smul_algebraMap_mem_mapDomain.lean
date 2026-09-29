@@ -12,11 +12,6 @@ theorem AlgebraicCurve.mem_riemannRochSpace_of_sum_basis_smul_algebraMap_mem_map
     [Field K] [Field F] [Field K'] [Field F'] [Algebra K F] [Algebra K' F']
     [Algebra K K'] [Algebra F F'] [Algebra K F'] [IsScalarTower K K' F'] [IsScalarTower K F F']
     [IsAlgClosed K] [IsAlgClosed K'] [IsCurveOver K F] [IsCurveOver K' F']
-    (hfg : ∃ x : F, Transcendental K x ∧
-      FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F)
-    (hfg' : ∃ x : F', Transcendental K' x ∧
-      FiniteDimensional (IntermediateField.adjoin K' ({x} : Set F')) F')
-    (hgen : IntermediateField.adjoin K' (Set.range (algebraMap F F')) = ⊤)
     (lift : Place K F → Place K' F')
     (hlift_ord : ∀ (P : Place K F) (f : F), (lift P).ord (algebraMap F F' f) = P.ord f)
     (hlift_inj : Function.Injective lift)

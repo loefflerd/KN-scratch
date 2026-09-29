@@ -21,8 +21,6 @@ theorem solution
     [IsAlgClosed K]
     (hfg : ∃ x : F, Transcendental K x ∧
       FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F)
-    (hfg' : ∃ x : F', Transcendental K' x ∧
-      FiniteDimensional (IntermediateField.adjoin K' ({x} : Set F')) F')
     (hgen : IntermediateField.adjoin K' (Set.range (algebraMap F F')) = ⊤) :
     ∃ t' : F', FiniteDimensional (IntermediateField.adjoin K' ({t'} : Set F')) F' ∧
       Algebra.IsSeparable (IntermediateField.adjoin K' ({t'} : Set F')) F' := by

@@ -7,7 +7,7 @@ set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
 open ModularCurve
-theorem ModularCurve.analyticOrderAt_le_of_isIntegral_adjoin_coeffEmb_jq_pow (N : ℕ) {k : ℤ} (m : ℕ) (hm : 1 ≤ m)
+theorem ModularCurve.analyticOrderAt_le_of_isIntegral_adjoin_coeffEmb_jq_pow (N : ℕ) {k : ℤ} (m : ℕ)
     (g h : ModularForm (CongruenceSubgroup.Gamma0 N) k) (X : LaurentSeries ℂ)
     (hX : X * ((UpperHalfPlane.qExpansion 1 (h : UpperHalfPlane → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) = ((UpperHalfPlane.qExpansion 1 (g : UpperHalfPlane → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ))
     (h₁ : IsIntegral (Algebra.adjoin ℂ ({ModularCurve.coeffEmb ℂ ModularCurve.jq} : Set (LaurentSeries ℂ)))

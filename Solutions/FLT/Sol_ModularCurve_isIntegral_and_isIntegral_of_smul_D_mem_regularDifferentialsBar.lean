@@ -293,7 +293,7 @@ theorem main (x : 𝔽) (hx : x • D 𝕂 𝔽 (jB N) ∈ regularDifferentialsB
       ring
   refine ⟨?_, ?_⟩
   ·
-    refine AlgebraicCurve.isIntegral_adjoin_of_forall_ord_nonneg (K := 𝕂) (F := 𝔽) J htr _ ?_
+    refine AlgebraicCurve.isIntegral_adjoin_of_forall_ord_nonneg (K := 𝕂) (F := 𝔽) J _ ?_
     intro v hvJ
     have hne : x ^ 6 * J ^ 4 * (J - algebraMap 𝕂 𝔽 1728) ^ 3 ≠ 0 :=
       mul_ne_zero (mul_ne_zero (pow_ne_zero _ hx0) (pow_ne_zero _ hJ0)) (pow_ne_zero _ hJne1728)
@@ -324,7 +324,7 @@ theorem main (x : 𝔽) (hx : x • D 𝕂 𝔽 (jB N) ∈ regularDifferentialsB
         rwa [inv_inv] at h2
     have : FiniteDimensional (IntermediateField.adjoin 𝕂 ({J⁻¹} : Set 𝔽)) 𝔽 := by
       rw [hadj]; exact hFD
-    refine AlgebraicCurve.isIntegral_adjoin_of_forall_ord_nonneg (K := 𝕂) (F := 𝔽) J⁻¹ htr' _ ?_
+    refine AlgebraicCurve.isIntegral_adjoin_of_forall_ord_nonneg (K := 𝕂) (F := 𝔽) J⁻¹ _ ?_
     intro v hvJinv
     rw [v.ord_inv] at hvJinv
     have hvJ : v.ord J ≤ 0 := by omega

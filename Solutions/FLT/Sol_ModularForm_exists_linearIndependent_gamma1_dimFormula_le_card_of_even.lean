@@ -159,7 +159,7 @@ theorem solution
   have : IsCurveOver ℂ ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) :=
     ModularCurve.isCurveOver_laurentBaseChange_qExpFunctionFieldC_gamma1 ℂ M
   obtain ⟨D, hD⟩ := AlgebraicCurve.exists_divisor_forall_eq_weightFloor ℂ y m
-  have hdeg := AlgebraicCurve.six_mul_degree_eq_mul_finrank_of_forall_eq_weightFloor_of_ord_eq_three_two ℂ y htr hfin hsep h0 h1728 m D hD
+  have hdeg := AlgebraicCurve.six_mul_degree_eq_mul_finrank_of_forall_eq_weightFloor_of_ord_eq_three_two ℂ y htr hfin h0 h1728 m D hD
   rw [hfull] at hdeg
   have hg := ModularCurve.twelve_mul_genusFF_laurentBaseChange_gamma1_add_six_mul_natCard_doubleCoset_eq_index_add_twelve_of_isAlgClosed ℂ M hM
 

@@ -566,7 +566,7 @@ theorem isIntegral_pair_of_mem_riemannRochSpace (m : ℕ)
   refine ⟨?_, ?_⟩
   ·
     refine AlgebraicCurve.isIntegral_adjoin_of_forall_ord_nonneg (K := AlgebraicClosure ℚ)
-      (F := modularFunctionFieldBar N) J htr _ ?_
+      (F := modularFunctionFieldBar N) J _ ?_
     intro v hvJ
     have ha := hordJsub_nonneg v hvJ
     have hD := hDfin v hvJ
@@ -595,7 +595,7 @@ theorem isIntegral_pair_of_mem_riemannRochSpace (m : ℕ)
         ({J⁻¹} : Set (modularFunctionFieldBar N))) (modularFunctionFieldBar N) := by
       rw [hadj]; exact hFD
     refine AlgebraicCurve.isIntegral_adjoin_of_forall_ord_nonneg (K := AlgebraicClosure ℚ)
-      (F := modularFunctionFieldBar N) J⁻¹ htr' _ ?_
+      (F := modularFunctionFieldBar N) J⁻¹ _ ?_
     intro v hvJinv
     rw [v.ord_inv] at hvJinv
     have hvJ : v.ord J ≤ 0 := by omega

@@ -134,14 +134,14 @@ theorem solution (M : ℕ) [NeZero M] (m : ℕ) (hm : 1 ≤ m)
       analyticOrderAt ((Φ : ℍ → ℂ) ∘ ofComplex) (τ : ℂ) := by
     intro τ
     rw [hΦcoe, hΨcoe]
-    exact ModularCurve.analyticOrderAt_le_of_isIntegral_adjoin_jqModC_pow (CongruenceSubgroup.Gamma1 M) hT (m + 1) hm1 g h X hXh h₁ τ
+    exact ModularCurve.analyticOrderAt_le_of_isIntegral_adjoin_jqModC_pow (CongruenceSubgroup.Gamma1 M) hT (m + 1) g h X hXh h₁ τ
   have hcusp : ∀ A : SL(2, ℤ), ∃ C : ℝ, ∀ᶠ τ : ℍ in atImInfty,
       ‖((Φ : ℍ → ℂ) ∣[k + ((m + 1 : ℕ) : ℤ) * ((4 + 4) + 6)] (A : GL (Fin 2) ℝ)) τ‖ ≤
         C * ‖((Ψ : ℍ → ℂ) ∣[k + ((m + 1 : ℕ) : ℤ) * 12] (A : GL (Fin 2) ℝ)) τ‖ := by
     intro A
     rw [hΦcoe, hΨcoe, show k + ((m + 1 : ℕ) : ℤ) * ((4 + 4) + 6) = k + 14 * ((m + 1 : ℕ) : ℤ) by ring,
       show k + ((m + 1 : ℕ) : ℤ) * 12 = k + 12 * ((m + 1 : ℕ) : ℤ) by ring]
-    exact ModularCurve.eventually_norm_slash_le_mul_of_isIntegral_adjoin_jqModC_inv_sq (CongruenceSubgroup.Gamma1 M) hT (m + 1) hm1 g h hh X hXh h₂ A
+    exact ModularCurve.eventually_norm_slash_le_mul_of_isIntegral_adjoin_jqModC_inv_sq (CongruenceSubgroup.Gamma1 M) hT (m + 1) g h X hXh h₂ A
   obtain ⟨f, hf⟩ := ModularForm.exists_modularForm_mul_eq_of_analyticOrderAt_le_of_finiteIndex (CongruenceSubgroup.Gamma1 M) (2 * ((m + 1 : ℕ) : ℤ))
     (by push_cast; ring) Φ Ψ hΨ0 hord hcusp
 

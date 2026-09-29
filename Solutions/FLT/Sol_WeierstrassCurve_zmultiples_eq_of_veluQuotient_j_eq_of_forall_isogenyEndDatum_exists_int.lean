@@ -145,7 +145,7 @@ theorem charZero_addMonoidEnd_point : CharZero (AddMonoid.End W.Point) := by
     intro k hk hk0
     have h : Nat.card (Submodule.torsionBy ℤ W.Point (k : ℤ)) = k ^ 2 :=
       WeierstrassCurve.card_torsionBy_eq_sq_of_isAlgClosed W (n := k)
-        (Nat.cast_ne_zero.mpr hk0) two_ne_zero
+        (Nat.cast_ne_zero.mpr hk0)
     rw [htop k hk] at h
     rwa [Nat.card_congr (Submodule.topEquiv (R := ℤ) (M := W.Point)).toEquiv] at h
   have h1 := hcard n dvd_rfl hn0
@@ -181,7 +181,7 @@ theorem kw_point_infinite : Infinite W.Point := by
     intro k hk hk0
     have h : Nat.card (Submodule.torsionBy ℤ W.Point (k : ℤ)) = k ^ 2 :=
       WeierstrassCurve.card_torsionBy_eq_sq_of_isAlgClosed W (n := k)
-        (Nat.cast_ne_zero.mpr hk0) two_ne_zero
+        (Nat.cast_ne_zero.mpr hk0)
     rw [htop k hk] at h
     rwa [Nat.card_congr (Submodule.topEquiv (R := ℤ) (M := W.Point)).toEquiv, ← hN] at h
   have h1 := hcard N dvd_rfl hNpos.ne'
@@ -209,7 +209,7 @@ theorem kw_nat_card_ker_of_zsmul {f : W.Point →+ W.Point} {N : ℤ}
       · rw [h, neg_zsmul, neg_eq_zero]; exact hP
   rw [Nat.card_congr (Equiv.subtypeEquivRight hsets)]
   exact WeierstrassCurve.card_torsionBy_eq_sq_of_isAlgClosed W (n := N.natAbs)
-    (Nat.cast_ne_zero.mpr (Int.natAbs_ne_zero.mpr hN)) two_ne_zero
+    (Nat.cast_ne_zero.mpr (Int.natAbs_ne_zero.mpr hN))
 
 variable {W} in
 

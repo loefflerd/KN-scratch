@@ -1158,11 +1158,11 @@ private theorem exists_torsionBy_reduction_addEquiv (W : WeierstrassCurve H) [W.
     exact HahnSeries.single_ne_zero (Nat.cast_ne_zero.mpr hm)
   have h2H : (2 : H) ≠ 0 := by exact_mod_cast hne 2 (by norm_num)
   have hcard₁ : Nat.card (Submodule.torsionBy ℤ W.toAffine.Point (p : ℤ)) = p ^ 2 :=
-    WeierstrassCurve.card_torsionBy_eq_sq_of_isAlgClosed W (hne p hp) h2H
+    WeierstrassCurve.card_torsionBy_eq_sq_of_isAlgClosed W (hne p hp)
   have hcard₂ :
       Nat.card (Submodule.torsionBy ℤ (specialFibre W).toAffine.Point (p : ℤ)) = p ^ 2 :=
     WeierstrassCurve.card_torsionBy_eq_sq_of_isAlgClosed (specialFibre W)
-      (Nat.cast_ne_zero.mpr hp) (by norm_num)
+      (Nat.cast_ne_zero.mpr hp)
   have : Finite (Submodule.torsionBy ℤ (specialFibre W).toAffine.Point (p : ℤ)) :=
     Nat.finite_of_card_ne_zero (by rw [hcard₂]; exact pow_ne_zero 2 hp)
   have hbij : Function.Bijective f :=

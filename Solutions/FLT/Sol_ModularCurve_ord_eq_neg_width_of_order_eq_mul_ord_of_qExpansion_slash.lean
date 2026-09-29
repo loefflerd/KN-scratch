@@ -1092,7 +1092,7 @@ theorem ord_PlG_eq_neg_cw (hΓ : CongruenceSubgroup.IsCongruenceSubgroup Γ) (y 
     have hwpos := width_pos (pm Γ) σ ModularGroup.T
     have hmem : σ * ModularGroup.T ^ (cw Γ σ) * σ⁻¹ ∈ Γ ⊔ Subgroup.zpowers (-1 : SL(2, ℤ)) :=
       conj_pow_width_mem (pm Γ) σ ModularGroup.T
-    have hle := ModularCurve.neg_width_le_ord_of_order_eq_mul_ord_of_qExpansion_slash Γ hT hΓ _ rfl y hy σ
+    have hle := ModularCurve.neg_width_le_ord_of_order_eq_mul_ord_of_qExpansion_slash Γ hT _ rfl y σ
       _ (PlG Γ hT σ) e he hpres hord hΦy (cw Γ σ) hwpos hmem
     have hepos : (0 : ℤ) < e := by exact_mod_cast he
     have hNpos : (0 : ℤ) < (Γ.normalCore.index : ℤ) := by

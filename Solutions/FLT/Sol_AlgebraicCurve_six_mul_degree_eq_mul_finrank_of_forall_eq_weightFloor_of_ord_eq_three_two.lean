@@ -105,7 +105,6 @@ theorem solution
     (k : Type*) [Field k] [IsAlgClosed k] {F : Type*} [Field F] [Algebra k F]
     (y : F) (hy : Transcendental k y)
     (hfin : FiniteDimensional ↥(IntermediateField.adjoin k ({y} : Set F)) F)
-    (hsep : Algebra.IsSeparable ↥(IntermediateField.adjoin k ({y} : Set F)) F)
     (h0 : ∀ w : AlgebraicCurve.Place k F, 0 < w.ord y → w.ord y = 3)
     (h1728 : ∀ w : AlgebraicCurve.Place k F, 0 < w.ord (y - 1728) → w.ord (y - 1728) = 2)
     (m : ℕ) (D : AlgebraicCurve.Divisor k F)

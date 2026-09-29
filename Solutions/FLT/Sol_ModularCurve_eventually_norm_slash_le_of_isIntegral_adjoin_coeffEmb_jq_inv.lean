@@ -496,7 +496,7 @@ p2m_reactivate "P2MW.S_ModularCurve_eventually_norm_slash_le_of_isIntegral_adjoi
 open ANb in
 set_option maxHeartbeats 3200000 in
 theorem solution (N : ℕ) {k : ℤ}
-    (g h : ModularForm (CongruenceSubgroup.Gamma0 N) k) (hh : h ≠ 0) (X : LaurentSeries ℂ)
+    (g h : ModularForm (CongruenceSubgroup.Gamma0 N) k) (X : LaurentSeries ℂ)
     (hX : X * ((UpperHalfPlane.qExpansion 1 (h : UpperHalfPlane → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) = ((UpperHalfPlane.qExpansion 1 (g : UpperHalfPlane → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ)) (M : ℕ)
     (h₂ : IsIntegral (Algebra.adjoin ℂ ({(ModularCurve.coeffEmb ℂ ModularCurve.jq)⁻¹} : Set (LaurentSeries ℂ)))
       (X ^ (2 * M) * ModularCurve.coeffEmb ℂ ModularCurve.jq ^ (M + 1) * (ModularCurve.coeffEmb ℂ ModularCurve.jq - algebraMap ℂ (LaurentSeries ℂ) 1728) ^ M))

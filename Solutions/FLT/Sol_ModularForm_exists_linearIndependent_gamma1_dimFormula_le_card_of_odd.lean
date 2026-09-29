@@ -119,7 +119,7 @@ end
 
 open DimLBOddE96 in
 theorem solution
-    (M : ℕ) [NeZero M] (hM : 5 ≤ M) (k : ℕ) (hk : 3 ≤ k) (hko : Odd k) :
+    (M : ℕ) [NeZero M] (hM : 5 ≤ M) (k : ℕ) (hk : 3 ≤ k) :
     ∃ (d : ℕ) (f : Fin d → ModularForm (Gamma1 M) (k : ℤ)), LinearIndependent ℂ f ∧
       (k - 1) * (CongruenceSubgroup.Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index +
           6 * Nat.card (DoubleCoset.Quotient (CongruenceSubgroup.Gamma1 M : Set SL(2, ℤ))
@@ -156,7 +156,7 @@ theorem solution
 
   obtain ⟨Dk, hDk⟩ := AlgebraicCurve.exists_divisor_forall_eq_weightFloor ℂ y k
   have hdegk := AlgebraicCurve.six_mul_degree_eq_mul_finrank_of_forall_eq_weightFloor_of_ord_eq_three_two
-    ℂ y htr hfin hsep h0 h1728 k Dk hDk
+    ℂ y htr hfin h0 h1728 k Dk hDk
   rw [hfull] at hdegk
 
   set W : LaurentSeries ℂ := HahnSeries.ofPowerSeries ℤ ℂ (qExpansion 1 w) with hWdef
@@ -176,7 +176,7 @@ theorem solution
   obtain ⟨Pv, hPv, hdegPv⟩ := AlgebraicCurve.HasPrincipalDivisors.exists_divisor (K := ℂ) v hvne
   obtain ⟨D1, hD1⟩ := AlgebraicCurve.exists_divisor_forall_eq_weightFloor ℂ y 1
   have hdeg1 := AlgebraicCurve.six_mul_degree_eq_mul_finrank_of_forall_eq_weightFloor_of_ord_eq_three_two
-    ℂ y htr hfin hsep h0 h1728 1 D1 hD1
+    ℂ y htr hfin h0 h1728 1 D1 hD1
   rw [hfull] at hdeg1
   have h2Dw : (2 : ℕ) • Dw = Pv + D1 := by
     ext P

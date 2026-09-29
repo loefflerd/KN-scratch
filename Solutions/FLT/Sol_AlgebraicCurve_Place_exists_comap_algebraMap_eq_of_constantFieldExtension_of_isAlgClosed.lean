@@ -590,7 +590,7 @@ theorem solution (K F K' F' : Type*)
 
   obtain ⟨t', hfin', hsep'⟩ :=
     AlgebraicCurve.exists_finiteDimensional_isSeparable_adjoin_of_constantFieldExtension_of_isAlgClosed
-      K F K' F' hfg hfg' hgen
+      K F K' F' hfg hgen
   have := hfin'; have := hsep'
   obtain ⟨P', hP'⟩ :=
     AlgebraicCurve.Place.exists_toValuationSubring_eq_comap_ringHom_of_isSeparable
