@@ -171,10 +171,10 @@ private theorem restrictResidueFieldEquiv_residue (hw : w.restrict F = v)
 
 private theorem inertiaDeg_eq_inertiaDeg_fiberCenter (hw : w.restrict F = v) :
     w.inertiaDeg F =
-      (IsLocalRing.maximalIdeal v.toValuationSubring).inertiaDeg'
-        (fiberCenter F' v hw).asIdeal := by
+      (fiberCenter F' v hw).asIdeal.inertiaDeg v.toValuationSubring := by
   have := fiberCenter_liesOver hw
-  rw [Ideal.inertiaDeg_eq_of_isMaximal]
+  rw [Ideal.inertiaDeg_eq_of_isMaximal (IsLocalRing.maximalIdeal v.toValuationSubring)
+    (fiberCenter F' v hw).asIdeal]
   show Module.finrank (w.restrict F).ResidueField w.ResidueField = _
   refine Algebra.finrank_eq_of_equiv_equiv (restrictResidueFieldEquiv hw)
     (residueFieldEquivQuotientCenter hw).symm ?_
@@ -216,7 +216,7 @@ p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_Place_inertiaDeg_pos.AlgebraicCur
 theorem solution {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F'] [Algebra F F'] [IsScalarTower K F F'] [FiniteDimensional F F'] [Algebra.IsSeparable F F'] (w : Place K F') : 0 < w.inertiaDeg F := by
   have := Place.fiberCenter_liesOver (F' := F') (v := w.restrict F) rfl
   rw [Place.inertiaDeg_eq_inertiaDeg_fiberCenter rfl]
-  exact Ideal.inertiaDeg'_pos _ _
+  exact Ideal.inertiaDeg_pos _ _
 
 end S_AlgebraicCurve_Place_inertiaDeg_pos
 end P2MW

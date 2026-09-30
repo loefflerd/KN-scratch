@@ -477,7 +477,7 @@ theorem natCard_doubleCoset_le (t : L) (L₀ : IntermediateField ℂ L) (hL₀ :
     fun p => DoubleCoset.mk Γ Kst p.2.choose
   have hπ : Function.Surjective π := by
     intro r
-    obtain ⟨γ, rfl⟩ : ∃ γ, DoubleCoset.mk Γ Kst γ = r := ⟨r.out, DoubleCoset.out_eq' Γ Kst r⟩
+    obtain ⟨γ, rfl⟩ : ∃ γ, DoubleCoset.mk Γ Kst γ = r := ⟨r.out, DoubleCoset.out_eq' r⟩
     refine ⟨⟨f γ, γ, rfl⟩, ?_⟩
     change DoubleCoset.mk _ _ _ = _
     have hch : f (Exists.choose (⟨γ, rfl⟩ : ∃ y, f y = f γ)) = f γ :=

@@ -39,7 +39,7 @@ variable {N : ℕ} [NeZero N]
 theorem isMulCommutative_adjoin_heckeOperatorBar (h : HeckeOperatorsCommuteBar N) :
     IsMulCommutative (Algebra.adjoin ℤ (Set.range (heckeOperatorBar N))) :=
   Algebra.isMulCommutative_adjoin ℤ (by
-    rintro _ ⟨ℓ, rfl⟩ _ ⟨ℓ', rfl⟩
+    rintro _ ⟨ℓ, rfl⟩ _ ⟨ℓ', rfl⟩ _
     exact h ℓ ℓ')
 
 open scoped IsMulCommutative in

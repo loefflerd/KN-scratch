@@ -143,7 +143,7 @@ lemma coeff_periodPower (n j : ℕ) (hj : j ≤ n) (z : ℂ) :
             ((n.choose m : ℂ) * z ^ m) := by
       rw [mul_pow, ← MvPolynomial.C_pow, MvPolynomial.X_pow_eq_monomial,
         MvPolynomial.X_pow_eq_monomial, ← map_natCast MvPolynomial.C (n.choose m),
-        MvPolynomial.C_mul_monomial, MvPolynomial.monomial_mul,
+        MvPolynomial.C_mul_monomial, MvPolynomial.monomial_mul_monomial,
         mul_comm (MvPolynomial.monomial _ _) (MvPolynomial.C _),
         MvPolynomial.C_mul_monomial]
       congr 1
@@ -257,12 +257,13 @@ open MTT.Cohomology MvPolynomial
 /-- Coefficient bounds survive any fixed linear map on a homogeneous binary space. -/
 theorem stripGrowth_linear_coeff {W : ℝ} {n : ℕ} (P : ℍ → Binary ℂ)
     (hP : ∀ z, P z ∈ MTT.Cohomology.Sym ℂ n) (L : Binary ℂ →ₗ[ℂ] Binary ℂ)
-    (hb : ∀ e, StripGrowth W (fun z => coeff e (P z))) (e : Fin 2 →₀ ℕ) :
-    StripGrowth W (fun z => coeff e (L (P z))) := by
+    (hb : ∀ e, StripGrowth W (fun z => AddMonoidAlgebra.coeff (P z) e))
+    (e : Fin 2 →₀ ℕ) :
+    StripGrowth W (fun z => AddMonoidAlgebra.coeff (L (P z)) e) := by
   classical
-  have heq (z : ℍ) : coeff e (L (P z)) = ∑ j : Fin (n + 1),
-      coeff ((homogeneousExponentEquiv n).symm j).val (P z) *
-        coeff e (L (X 0 ^ j.val * X 1 ^ (n - j.val))) := by
+  have heq (z : ℍ) : AddMonoidAlgebra.coeff (L (P z)) e = ∑ j : Fin (n + 1),
+      AddMonoidAlgebra.coeff (P z) ((homogeneousExponentEquiv n).symm j).val *
+        AddMonoidAlgebra.coeff (L (X 0 ^ j.val * X 1 ^ (n - j.val))) e := by
     have hex := symmetricPower_expansion (⟨P z, hP z⟩ : MTT.Cohomology.Sym ℂ n)
     change P z = _ at hex
     conv_lhs => rw [hex]
@@ -277,8 +278,8 @@ theorem stripGrowth_linear_coeff {W : ℝ} {n : ℕ} (P : ℍ → Binary ℂ)
 theorem stripGrowth_coeff_of_inverse_action {W : ℝ} {n : ℕ}
     (P : ℍ → Binary ℂ) (hP : ∀ z, P z ∈ MTT.Cohomology.Sym ℂ n)
     (σ : Matrix.SpecialLinearGroup (Fin 2) ℤ)
-    (hb : ∀ e, StripGrowth W (fun z => coeff e (act (σ⁻¹).val (P z))))
-    (e : Fin 2 →₀ ℕ) : StripGrowth W (fun z => coeff e (P z)) := by
+    (hb : ∀ e, StripGrowth W (fun z => AddMonoidAlgebra.coeff (act (σ⁻¹).val (P z)) e))
+    (e : Fin 2 →₀ ℕ) : StripGrowth W (fun z => AddMonoidAlgebra.coeff (P z) e) := by
   have h := stripGrowth_linear_coeff (fun z => act (σ⁻¹).val (P z))
     (fun z => act_mem_sym _ (hP z)) (act σ.val) hb e
   simpa only [← act_matrix_mul, ← Matrix.SpecialLinearGroup.coe_mul, mul_inv_cancel,
@@ -498,8 +499,8 @@ open MTT.Cohomology
 
 /-- A finite coefficient contraction preserves polynomial strip growth. -/
 theorem stripGrowth_contraction {W : ℝ} (n : ℕ) (P Q : ℍ → Binary ℂ)
-    (hP : ∀ j, j ≤ n → StripGrowth W (fun z => coeff (binaryExponent n j) (P z)))
-    (hQ : ∀ j, j ≤ n → StripGrowth W (fun z => coeff (binaryExponent n j) (Q z))) :
+    (hP : ∀ j, j ≤ n → StripGrowth W (fun z => AddMonoidAlgebra.coeff (P z) (binaryExponent n j)))
+    (hQ : ∀ j, j ≤ n → StripGrowth W (fun z => AddMonoidAlgebra.coeff (Q z) (binaryExponent n j))) :
     StripGrowth W (fun z => periodContraction n (P z) (Q z)) := by
   unfold periodContraction
   apply StripGrowth.sum
@@ -511,7 +512,7 @@ theorem stripGrowth_contraction {W : ℝ} (n : ℕ) (P Q : ℍ → Binary ℂ)
 /-- Every coefficient of a pure power has polynomial strip growth. -/
 theorem stripGrowth_power_coeff {W : ℝ} {f : ℍ → ℂ} (hf : StripGrowth W f)
     (n j : ℕ) (hj : j ≤ n) :
-    StripGrowth W (fun z => coeff (binaryExponent n j) (periodPower n (f z))) := by
+    StripGrowth W (fun z => AddMonoidAlgebra.coeff (periodPower n (f z)) (binaryExponent n j)) := by
   simpa only [MTT.PeriodMeasure.coeff_periodPower n j hj] using
     (StripGrowth.const (n.choose j : ℂ)).mul (hf.pow j)
 
@@ -520,7 +521,7 @@ theorem stripGrowth_primitive_coeff {N k : ℕ}
     {g v : CuspForm (MTT.GammaOne N) (k : ℤ)} {U : ℂ → Binary ℂ}
     (hU : IsMixedPeriodPrimitive g v U) (σ : SL(2, ℤ)) {W : ℝ} (hW : 0 < W)
     (e : Fin 2 →₀ ℕ) :
-    StripGrowth W (fun z => coeff e (U (σ • z : ℍ))) := by
+    StripGrowth W (fun z => AddMonoidAlgebra.coeff (U (σ • z : ℍ)) e) := by
   apply stripGrowth_coeff_of_inverse_action (fun z => U (σ • z : ℍ))
     (fun z => hU.1 (σ • z)) σ
   intro e

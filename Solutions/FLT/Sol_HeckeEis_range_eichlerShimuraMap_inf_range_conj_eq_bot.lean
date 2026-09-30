@@ -39,7 +39,7 @@ theorem conjP_conjP (Q : MvPolynomial (Fin 2) ℂ) : conjP (conjP Q) = Q := by
   rw [this, MvPolynomial.map_id]
 
 theorem coeff_conjP (Q : MvPolynomial (Fin 2) ℂ) (d : Fin 2 →₀ ℕ) :
-    coeff d (conjP Q) = conj (coeff d Q) := coeff_map _ _ _
+    AddMonoidAlgebra.coeff (conjP Q) d = conj (AddMonoidAlgebra.coeff Q d) := coeff_map _ _ _
 
 theorem conjP_binarySubst (M : Matrix (Fin 2) (Fin 2) ℤ) (Q : MvPolynomial (Fin 2) ℂ) :
     conjP (binarySubst ℂ M Q) = binarySubst ℂ M (conjP Q) := by
@@ -144,10 +144,11 @@ theorem eq_expo_of_degree {n : ℕ} {d : Fin 2 →₀ ℕ} (hd : Finsupp.weight 
   · simp [expo]
 
 theorem ev_eq_sum {n : ℕ} (z : ℂ) {Q : MvPolynomial (Fin 2) ℂ} (hQ : Q ∈ BinaryForm ℂ n) :
-    ev z Q = ∑ i ∈ Finset.range (n + 1), coeff (expo n i) Q * (-z) ^ i := by
+    ev z Q = ∑ i ∈ Finset.range (n + 1), AddMonoidAlgebra.coeff Q (expo n i) * (-z) ^ i := by
   rw [mem_homogeneousSubmodule] at hQ
   rw [ev, eval_eq']
-  have hterm : ∀ d : Fin 2 →₀ ℕ, coeff d Q * ∏ i, (![(1 : ℂ), -z] i) ^ d i = coeff d Q * (-z) ^ (d 1) := by
+  have hterm : ∀ d : Fin 2 →₀ ℕ, AddMonoidAlgebra.coeff Q d * ∏ i,
+      (![(1 : ℂ), -z] i) ^ d i = AddMonoidAlgebra.coeff Q d * (-z) ^ (d 1) := by
     intro d
     simp [Fin.prod_univ_two]
   simp_rw [hterm]
@@ -162,12 +163,14 @@ theorem ev_eq_sum {n : ℕ} (z : ℂ) {Q : MvPolynomial (Fin 2) ℂ} (hQ : Q ∈
     have hsum : d 0 + d 1 = n := add_eq_of_weight (hQ (mem_support_iff.mp hd))
     rw [Finset.mem_range]
     omega
-  calc ∑ d ∈ Q.support, coeff d Q * (-z) ^ (d 1)
-      = ∑ d ∈ (Finset.range (n + 1)).image (expo n), coeff d Q * (-z) ^ (d 1) := by
+  calc ∑ d ∈ Q.support, AddMonoidAlgebra.coeff Q d * (-z) ^ (d 1)
+      = ∑ d ∈ (Finset.range (n + 1)).image (expo n),
+          AddMonoidAlgebra.coeff Q d * (-z) ^ (d 1) := by
         apply Finset.sum_subset hsub
         intro d _ hd
         rw [notMem_support_iff.mp hd, zero_mul]
-    _ = ∑ i ∈ Finset.range (n + 1), coeff (expo n i) Q * (-z) ^ ((expo n i) 1) := by
+    _ = ∑ i ∈ Finset.range (n + 1),
+        AddMonoidAlgebra.coeff Q (expo n i) * (-z) ^ ((expo n i) 1) := by
         rw [Finset.sum_image (fun i _ j _ h => expo_injective n h)]
     _ = _ := by simp_rw [expo_one]
 
@@ -328,11 +331,13 @@ variable {n : ℕ}
 theorem coe_ofComplex {z : ℂ} (hz : 0 < z.im) : ((ofComplex z : ℍ) : ℂ) = z := by
   rw [ofComplex_apply_of_im_pos hz]
 
-def ell (n i : ℕ) (z : ℂ) : ℂ := coeff (expo n i) ((linePow n z : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ)
+def ell (n i : ℕ) (z : ℂ) : ℂ := AddMonoidAlgebra.coeff
+  ((linePow n z : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) (expo n i)
 
 theorem ell_eq {i : ℕ} (hi : i ≤ n) (z : ℂ) : ell n i z = (n.choose (n - i) : ℂ) * z ^ (n - i) := by
   rw [ell, coe_linePow, add_pow, coeff_sum]
-  have hterm : ∀ m ∈ Finset.range (n + 1), coeff (expo n i) ((C z * X 0) ^ m * X 1 ^ (n - m) * (n.choose m : MvPolynomial (Fin 2) ℂ))
+  have hterm : ∀ m ∈ Finset.range (n + 1), AddMonoidAlgebra.coeff
+      ((C z * X 0) ^ m * X 1 ^ (n - m) * (n.choose m : MvPolynomial (Fin 2) ℂ)) (expo n i)
       = if m = n - i then (n.choose (n - i) : ℂ) * z ^ (n - i) else 0 := by
     intro m hm
     rw [Finset.mem_range] at hm
@@ -341,7 +346,7 @@ theorem ell_eq {i : ℕ} (hi : i ≤ n) (z : ℂ) : ell n i z = (n.choose (n - i
       have h1 : (n.choose m : MvPolynomial (Fin 2) ℂ) = C (n.choose m : ℂ) := (map_natCast C _).symm
       have h2 : (X 0 : MvPolynomial (Fin 2) ℂ) ^ m * X 1 ^ (n - m)
           = monomial (Finsupp.single 0 m + Finsupp.single 1 (n - m)) 1 := by
-        rw [X_pow_eq_monomial, X_pow_eq_monomial, monomial_mul, one_mul]
+        rw [X_pow_eq_monomial, X_pow_eq_monomial, monomial_mul_monomial, one_mul]
       rw [h1, mul_pow, ← C_pow, mul_assoc (C (z ^ m)), h2, C_mul_monomial, mul_comm, C_mul_monomial]
       congr 1
       ring
@@ -377,9 +382,11 @@ variable (φ ψ : ℍ → ℂ) (A B : ℍ → ↥(BinaryForm ℂ n)) (c : ↥(Bi
 
 def fC (φ : ℍ → ℂ) (z : ℂ) : ℂ := φ (ofComplex z)
 
-def aC (A : ℍ → ↥(BinaryForm ℂ n)) (i : ℕ) (z : ℂ) : ℂ := coeff (expo n i) ((A (ofComplex z) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ)
+def aC (A : ℍ → ↥(BinaryForm ℂ n)) (i : ℕ) (z : ℂ) : ℂ := AddMonoidAlgebra.coeff
+  ((A (ofComplex z) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) (expo n i)
 
-def cc (c : ↥(BinaryForm ℂ n)) (i : ℕ) : ℂ := coeff (expo n i) (c : MvPolynomial (Fin 2) ℂ)
+def cc (c : ↥(BinaryForm ℂ n)) (i : ℕ) : ℂ :=
+  AddMonoidAlgebra.coeff (c : MvPolynomial (Fin 2) ℂ) (expo n i)
 
 def eC (i : ℕ) (z : ℂ) : ℂ := conj (aC A i z) - aC B i z + conj (cc c i)
 

@@ -1986,8 +1986,8 @@ theorem pointPullbackCoordHom_injective {xP yP : W.FunctionField}
   have hker : RingHom.ker (pointPullbackCoordHom h).toRingHom = ⊥ := by
     have : Module.Finite F[X] W.CoordinateRing :=
       Module.Finite.of_basis (CoordinateRing.basis W)
-    refine Ideal.eq_bot_of_comap_eq_bot (R := F[X]) ?_
-    rw [RingHom.comap_ker, pointPullbackCoordHom_comp_algebraMap,
+    refine Ideal.eq_bot_of_under_eq_bot (R := F[X]) ?_
+    rw [Ideal.under_def, RingHom.comap_ker, pointPullbackCoordHom_comp_algebraMap,
       ← RingHom.injective_iff_ker_eq_bot]
     exact hx
   exact (RingHom.injective_iff_ker_eq_bot (pointPullbackCoordHom h).toRingHom).mpr hker

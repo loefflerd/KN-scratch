@@ -26,9 +26,7 @@ theorem hasDerivAt_affine (a b : ℂ) (t : ℝ) :
   have h3 : HasDerivAt (fun s : ℝ => (s : ℂ) * b) (1 * b) t := h1.mul_const b
   have := h2.add h3
   convert this using 1
-  · rfl
-  · rfl
-  ring
+  · ring
 
 theorem segmentPoint_eq_of_mem {τ₀ τ₁ : ℍ} {t : ℝ} (ht : t ∈ Set.Icc (0 : ℝ) 1) :
     ModularCurve.segmentPoint τ₀ τ₁ t = (1 - (t : ℂ)) * (τ₀ : ℂ) + (t : ℂ) * (τ₁ : ℂ) := by

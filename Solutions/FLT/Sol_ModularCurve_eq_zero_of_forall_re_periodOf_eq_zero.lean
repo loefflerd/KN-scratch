@@ -39,7 +39,6 @@ theorem hasDerivAt_smul_ofComplex (γ : SL(2, ℤ)) (τ : ℍ) :
     rw [MulAction.compHom_smul_def]
   rw [h2] at h1
   convert h1 using 1
-  all_goals try rfl
   rw [hdet]
   push_cast
   rw [zpow_neg, one_div]
@@ -58,7 +57,6 @@ theorem hasDerivAt_comp_smul {G : ℍ → ℂ} {g : ℍ → ℂ}
   have hcomp := houter.comp (↑τ : ℂ) (hasDerivAt_smul_ofComplex γ τ)
   rw [← hfun] at hcomp
   convert hcomp using 1
-  all_goals try rfl
   exact ModularForm.SL_slash_apply (g : ℍ → ℂ) γ τ
 
 theorem tendsto_vadd_atImInfty (x : ℝ) :

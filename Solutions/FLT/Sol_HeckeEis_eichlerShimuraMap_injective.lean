@@ -120,8 +120,9 @@ theorem solution (N : ℕ) [NeZero N] (n : ℕ) :
   set F₁ : ℍ → ↥(BinaryForm ℂ n) := fun τ => F τ + v with hF₁
   have hEI₁ : IsEichlerIntegral n f F₁ := by
     intro d τ
-    have := (hEI d τ).add_const (coeff d ((v : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ))
-    simpa [hF₁, Submodule.coe_add, coeff_add] using this
+    have := (hEI d τ).add_const
+      (AddMonoidAlgebra.coeff ((v : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) d)
+    simpa [hF₁, Submodule.coe_add, AddMonoidAlgebra.coeff_add, Finsupp.add_apply] using this
   have hEq : ∀ γ ∈ Gamma0 N, ∀ τ : ℍ, F₁ (γ • τ) = R γ (F₁ τ) := by
     intro γ hγ τ
     have h1 := hF.sub_eq_cocycle ⟨γ, hγ⟩ τ

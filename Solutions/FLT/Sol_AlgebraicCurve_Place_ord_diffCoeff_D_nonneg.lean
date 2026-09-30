@@ -328,7 +328,7 @@ private theorem engine {K : Type*} [Field K] [CharZero K] {F : Type*} [Field F] 
         = IsLocalRing.maximalIdeal v.toValuationSubring := by
     apply le_antisymm
     · exact ((IsLocalRing.local_hom_TFAE
-        (algebraMap u.toValuationSubring v.toValuationSubring)).out 0 2 rfl rfl).mp instLH
+        (algebraMap u.toValuationSubring v.toValuationSubring)).out 1 3).mp instLH
     · intro z hz
       rcases eq_or_ne z 0 with rfl | hz0
       · exact zero_mem _

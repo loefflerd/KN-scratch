@@ -110,7 +110,7 @@ private theorem kaehler_free_rank_one_adjoin (x : LF) (hx : Transcendental K x) 
         (R := A) (S := LF) (T := K⟮x⟯) (U := LF) (e : A →+* K⟮x⟯) (RingHom.id LF) hcomp
     have h2 : IsSeparable A ((z : F) : LF) :=
       IsSeparable.of_equiv_equiv (e.symm : K⟮x⟯ ≃+* A) (RingEquiv.refl LF) hcomp' (hsep _ hzLF)
-    exact IsSeparable.of_algHom (IsScalarTower.toAlgHom A F LF) h2⟩
+    exact _root_.IsSeparable.of_algHom A (IsScalarTower.toAlgHom A F LF) h2⟩
   exact kaehler_free_rank_one K x' hx't
 
 end Adjoin

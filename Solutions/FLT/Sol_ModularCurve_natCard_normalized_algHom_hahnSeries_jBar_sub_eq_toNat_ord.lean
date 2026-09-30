@@ -1,3 +1,5 @@
+import Mathlib.RingTheory.Polynomial.Cyclotomic.Roots
+
 import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 import Definitions.FLT.Def_HahnSeries_RamificationBound
 import Definitions.FLT.Def_ModularCurve_PhiGen
@@ -393,7 +395,9 @@ theorem natCard_normalized_algHom_eq_toNat_ord
     set e : ℕ := (v.ord (t - algebraMap K F c)).toNat with he'
     have he : 0 < e := by omega
     have : NeZero e := ⟨he.ne'⟩
-    obtain ⟨ζ, hζ⟩ := HasEnoughRootsOfUnity.exists_primitiveRoot K e
+    obtain ⟨ζ, hζroot⟩ := IsAlgClosed.exists_root (cyclotomic e K)
+      (degree_cyclotomic_pos e K he).ne'
+    have hζ : IsPrimitiveRoot ζ e := isRoot_cyclotomic_iff.mp hζroot
     have hun : IsUnit ζ := hζ.isUnit he.ne'
     have huζval : (hun.unit : K) = ζ := hun.unit_spec
     have hmem : ∀ i : Fin e,

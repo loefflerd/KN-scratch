@@ -715,7 +715,6 @@ theorem finiteDimensional_torsionField (n : ℕ)
 
   exact IntermediateField.finiteDimensional_adjoin fun z _ => by
     convert ((AlgebraicClosure.isAlgebraic ℚ).isAlgebraic z).isIntegral
-    exact Subsingleton.elim _ _
 
 omit [Fact p.Prime] in
 
@@ -885,4 +884,3 @@ theorem tateModuleRepOfBasis_eq_tateModuleRep (W : WeierstrassCurve ℚ) (p : �
     W.tateModuleRepOfBasis p hcard b = W.tateModuleRep p hcard := rfl
 
 end WeierstrassCurve
-

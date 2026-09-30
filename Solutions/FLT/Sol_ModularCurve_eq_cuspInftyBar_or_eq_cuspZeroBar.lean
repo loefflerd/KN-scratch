@@ -84,7 +84,8 @@ def jTr : (𝕂⟮jqModC 𝕂⟯⟮jqNModC 𝕂 ℓ⟯) ≃+* modularFunctionFie
 
 theorem coe_jTr (x : 𝕂⟮jqModC 𝕂⟯⟮jqNModC 𝕂 ℓ⟯) :
     ((jTr ℓ x : modularFunctionFieldBar ℓ) : LaurentSeries 𝕂) = x := by
-  unfold jTr; rfl
+  ext
+  rfl
 
 def φ : RatFunc 𝕂 →+* modularFunctionFieldBar ℓ :=
   (jTr ℓ).toRingHom.comp
@@ -95,14 +96,16 @@ theorem φ_apply (x : RatFunc 𝕂) :
 
 theorem coe_algebraMap_tower (y : 𝕂⟮jqModC 𝕂⟯) :
     ((algebraMap (𝕂⟮jqModC 𝕂⟯) (𝕂⟮jqModC 𝕂⟯⟮jqNModC 𝕂 ℓ⟯) y : 𝕂⟮jqModC 𝕂⟯⟮jqNModC 𝕂 ℓ⟯) :
-      LaurentSeries 𝕂) = y := rfl
+      LaurentSeries 𝕂) = y := by
+  ext
+  rfl
 
 theorem coe_φ (x : RatFunc 𝕂) :
     ((φ ℓ x : modularFunctionFieldBar ℓ) : LaurentSeries 𝕂) = (σa x : LaurentSeries 𝕂) := by
   rw [φ_apply, coe_jTr, coe_algebraMap_tower]
 
 theorem φ_algebraMap (k : 𝕂) : φ ℓ (algebraMap 𝕂 (RatFunc 𝕂) k) = algebraMap 𝕂 (modularFunctionFieldBar ℓ) k := by
-  apply Subtype.ext
+  ext
   rw [coe_φ, AlgEquiv.commutes]
   rfl
 

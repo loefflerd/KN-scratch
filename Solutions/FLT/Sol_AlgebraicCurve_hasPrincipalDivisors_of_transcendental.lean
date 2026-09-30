@@ -361,10 +361,10 @@ private theorem restrictResidueFieldEquiv_residue (hw : w.restrict F = v)
 
 private theorem inertiaDeg_eq_inertiaDeg_fiberCenter (hw : w.restrict F = v) :
     w.inertiaDeg F =
-      (IsLocalRing.maximalIdeal v.toValuationSubring).inertiaDeg'
-        (fiberCenter F' v hw).asIdeal := by
+      (fiberCenter F' v hw).asIdeal.inertiaDeg v.toValuationSubring := by
   have := fiberCenter_liesOver hw
-  rw [Ideal.inertiaDeg_eq_of_isMaximal]
+  rw [Ideal.inertiaDeg_eq_of_isMaximal (IsLocalRing.maximalIdeal v.toValuationSubring)
+    (fiberCenter F' v hw).asIdeal]
   show Module.finrank (w.restrict F).ResidueField w.ResidueField = _
   refine Algebra.finrank_eq_of_equiv_equiv (restrictResidueFieldEquiv hw)
     (residueFieldEquivQuotientCenter hw).symm ?_
@@ -536,8 +536,7 @@ private theorem relNorm_fiberCenter (hw : w.restrict F = v) :
   have : (fiberCenter F' v hw).asIdeal.LiesOver
       (IsLocalRing.maximalIdeal v.toValuationSubring) := fiberCenter_liesOver hw
   rw [Ideal.relNorm_eq_pow_of_isMaximal (fiberCenter F' v hw).asIdeal
-    (IsLocalRing.maximalIdeal v.toValuationSubring), inertiaDeg_eq_inertiaDeg_fiberCenter hw,
-    Ideal.inertiaDeg'_eq_inertiaDeg]
+    (IsLocalRing.maximalIdeal v.toValuationSubring), inertiaDeg_eq_inertiaDeg_fiberCenter hw]
 
 omit [CharZero F] in
 
@@ -599,15 +598,15 @@ private theorem relNorm_span_singleton {c : integralClosureAt F' v}
           rw [map_prod]
           exact Finset.prod_congr rfl fun Q _ => map_pow _ Q _
     _ = ∏ Q ∈ S.toFinset, IsLocalRing.maximalIdeal v.toValuationSubring
-          ^ ((IsLocalRing.maximalIdeal v.toValuationSubring).inertiaDeg' Q * S.count Q) := by
+          ^ (Q.inertiaDeg v.toValuationSubring * S.count Q) := by
           refine Finset.prod_congr rfl fun Q hQ => ?_
           obtain ⟨w', hw', rfl⟩ := hfactor Q hQ
           rw [relNorm_fiberCenter hw', ← pow_mul, inertiaDeg_eq_inertiaDeg_fiberCenter hw']
     _ = IsLocalRing.maximalIdeal v.toValuationSubring
           ^ (∑ Q ∈ S.toFinset,
-              (IsLocalRing.maximalIdeal v.toValuationSubring).inertiaDeg' Q * S.count Q) :=
+              Q.inertiaDeg v.toValuationSubring * S.count Q) :=
           Finset.prod_pow_eq_pow_sum S.toFinset
-            (fun Q => (IsLocalRing.maximalIdeal v.toValuationSubring).inertiaDeg' Q * S.count Q)
+            (fun Q => Q.inertiaDeg v.toValuationSubring * S.count Q)
             (IsLocalRing.maximalIdeal v.toValuationSubring)
     _ = IsLocalRing.maximalIdeal v.toValuationSubring
           ^ (∑ w ∈ v.fiberOver F',
@@ -616,16 +615,15 @@ private theorem relNorm_span_singleton {c : integralClosureAt F' v}
 
           calc
             ∑ Q ∈ S.toFinset,
-                (IsLocalRing.maximalIdeal v.toValuationSubring).inertiaDeg' Q * S.count Q
+                Q.inertiaDeg v.toValuationSubring * S.count Q
                 = ∑ Q ∈ T,
-                    (IsLocalRing.maximalIdeal v.toValuationSubring).inertiaDeg' Q
-                      * S.count Q := by
+                    Q.inertiaDeg v.toValuationSubring * S.count Q := by
                   refine Finset.sum_subset hsub fun Q _ hQ => ?_
                   rw [Multiset.count_eq_zero_of_notMem
                     (fun h => hQ (Multiset.mem_toFinset.mpr h)), mul_zero]
             _ = ∑ w' ∈ (v.fiberOver F').attach,
-                  (IsLocalRing.maximalIdeal v.toValuationSubring).inertiaDeg'
-                      (fiberCenter F' v ((mem_fiberOver v).mp w'.2)).asIdeal
+                  (fiberCenter F' v ((mem_fiberOver v).mp w'.2)).asIdeal.inertiaDeg
+                      v.toValuationSubring
                     * S.count (fiberCenter F' v ((mem_fiberOver v).mp w'.2)).asIdeal := by
                   rw [hT, Finset.sum_image hinj]
             _ = ∑ w' ∈ (v.fiberOver F').attach, (w'.1.inertiaDeg F

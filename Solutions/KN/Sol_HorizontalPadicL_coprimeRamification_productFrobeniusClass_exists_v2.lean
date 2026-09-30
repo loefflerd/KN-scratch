@@ -6,6 +6,7 @@ import Mathlib.FieldTheory.Galois.Basic
 import Mathlib.FieldTheory.IntermediateField.Adjoin.Basic
 
 set_option autoImplicit false
+set_option maxHeartbeats 4000000
 noncomputable section
 
 open NumberField Ideal FrobeniusDensity
@@ -268,7 +269,7 @@ same fact for the standard `RingOfIntegers` action used by Frobenius. -/
 theorem ringOfIntegers_isInvariant_galois
     (L : Type*) [Field L] [NumberField L] [h : IsGalois ℚ L] :
     Algebra.IsInvariant ℤ (𝓞 L) (L ≃ₐ[ℚ] L) := by
-  replace h := ((IsGalois.tfae (F := ℚ) (E := L)).out 0 1).mp h
+  replace h := ((IsGalois.tfae (F := ℚ) (E := L)).out 1 2).mp h
   refine ⟨fun b hb ↦ ?_⟩
   replace hb : algebraMap (𝓞 L) L b ∈
       IntermediateField.fixedField (⊤ : Subgroup (L ≃ₐ[ℚ] L)) := by
@@ -277,10 +278,8 @@ theorem ringOfIntegers_isInvariant_galois
   rw [h, IntermediateField.mem_bot] at hb
   obtain ⟨q, hq⟩ := hb
   have hb : IsIntegral ℤ b := IsIntegralClosure.isIntegral ℤ L b
-  rw [← isIntegral_algebraMap_iff
-      (FaithfulSMul.algebraMap_injective (𝓞 L) L),
-    ← hq, isIntegral_algebraMap_iff
-      (FaithfulSMul.algebraMap_injective ℚ L)] at hb
+  rw [← isIntegral_algebraMap_iff (R := ℤ) (A := 𝓞 L) (B := L),
+    ← hq, isIntegral_algebraMap_iff (R := ℤ) (A := ℚ) (B := L)] at hb
   obtain ⟨z, rfl⟩ := IsIntegrallyClosed.algebraMap_eq_of_integral hb
   rw [← IsScalarTower.algebraMap_apply,
     IsScalarTower.algebraMap_apply ℤ (𝓞 L) L,

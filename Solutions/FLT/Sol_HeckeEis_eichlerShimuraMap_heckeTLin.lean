@@ -818,8 +818,10 @@ theorem isEichlerIntegral_sum {ι : Type*} (s : Finset ι) {f : ι → ℍ → �
     (h : ∀ i ∈ s, IsEichlerIntegral n (f i) (F i)) :
     IsEichlerIntegral n (∑ i ∈ s, f i) (fun z => ∑ i ∈ s, F i z) := by
   intro d τ
-  have hfun : (fun z : ℂ => coeff d ((∑ i ∈ s, F i (ofComplex z) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ))
-      = fun z : ℂ => ∑ i ∈ s, coeff d ((F i (ofComplex z) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) := by
+  have hfun : (fun z : ℂ => AddMonoidAlgebra.coeff
+      ((∑ i ∈ s, F i (ofComplex z) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) d)
+      = fun z : ℂ => ∑ i ∈ s, AddMonoidAlgebra.coeff
+        ((F i (ofComplex z) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) d := by
     funext z
     rw [Submodule.coe_sum, coeff_sum]
   rw [hfun, Finset.sum_apply, Finset.sum_mul]

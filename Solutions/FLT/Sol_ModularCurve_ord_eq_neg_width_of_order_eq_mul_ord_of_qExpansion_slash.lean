@@ -285,14 +285,16 @@ theorem index_pm_eq_sum_cw [Fintype (Cusp Γ)] :
   rw [h1, ← Nat.card_congr (Equiv.sigmaFiberEquiv (toCusp Γ)), Nat.card_sigma]
   refine Finset.sum_congr rfl fun c _ => ?_
   have hc : c = toCusp Γ (Quotient.mk'' c.out) := by
-    rw [toCusp_mk]; exact (DoubleCoset.out_eq' _ _ c).symm
+    rw [toCusp_mk]
+    exact (DoubleCoset.out_eq' c).symm
   conv_lhs => rw [hc]
   exact natCard_fibre Γ c.out
 
 omit [Γ.FiniteIndex] in
 theorem check_DoubleCoset_eq (a b : SL(2, ℤ)) :
     DoubleCoset.mk (Γ : Subgroup SL(2, ℤ)) KT a = DoubleCoset.mk (Γ : Subgroup SL(2, ℤ)) KT b ↔
-      ∃ h ∈ Γ, ∃ k ∈ KT, b = h * a * k := DoubleCoset.eq _ _ a b
+      ∃ h ∈ Γ, ∃ k ∈ KT, b = h * a * k :=
+  DoubleCoset.eq (H := Γ) (K := KT) (a := a) (b := b)
 
 end cusp
 
@@ -669,7 +671,7 @@ theorem ord_eq_neg_cw_of_squeeze
   have hout : ∀ τ : SL(2, ℤ),
       Pl (DoubleCoset.mk (Γ : Subgroup SL(2, ℤ)) KT τ : Cusp Γ).out = Pl τ := by
     intro τ
-    obtain ⟨h, k, hh, hk, he⟩ := DoubleCoset.mk_out_eq_mul (Γ : Subgroup SL(2, ℤ)) KT τ
+    obtain ⟨h, hh, k, hk, he⟩ := DoubleCoset.mk_out_eq_mul (Γ : Subgroup SL(2, ℤ)) KT τ
     exact hinv τ _ ⟨h, hh, k, hk, he⟩
   have hΨsurj : Function.Surjective
       (fun c : Cusp Γ => (⟨Pl c.out, (hbound c.out).1⟩ : {P : Place ℂ F // P.ord y < 0})) := by
@@ -691,7 +693,7 @@ theorem ord_eq_neg_cw_of_squeeze
 
   have h1 := heq (DoubleCoset.mk (Γ : Subgroup SL(2, ℤ)) KT σ) (Finset.mem_univ _)
   rw [hout σ] at h1
-  obtain ⟨h, k, hh, hk, he⟩ := DoubleCoset.mk_out_eq_mul (Γ : Subgroup SL(2, ℤ)) KT σ
+  obtain ⟨h, hh, k, hk, he⟩ := DoubleCoset.mk_out_eq_mul (Γ : Subgroup SL(2, ℤ)) KT σ
   rw [he, cw_mul_mul_eq Γ hh hk] at h1
   omega
 
@@ -852,7 +854,7 @@ theorem ord_eq_neg_cw_of_squeeze'
   have hout : ∀ τ : SL(2, ℤ),
       Pl (DoubleCoset.mk (Γ : Subgroup SL(2, ℤ)) KT τ : Cusp Γ).out = Pl τ := by
     intro τ
-    obtain ⟨h, k, hh, hk, he⟩ := DoubleCoset.mk_out_eq_mul (Γ : Subgroup SL(2, ℤ)) KT τ
+    obtain ⟨h, hh, k, hk, he⟩ := DoubleCoset.mk_out_eq_mul (Γ : Subgroup SL(2, ℤ)) KT τ
     exact hinv τ _ ⟨h, hh, k, hk, he⟩
   have hS_eq : S = (Finset.univ : Finset (Cusp Γ)).image (fun c => Pl c.out) := by
     ext P
@@ -880,7 +882,7 @@ theorem ord_eq_neg_cw_of_squeeze'
 
   have h2 := heq (DoubleCoset.mk (Γ : Subgroup SL(2, ℤ)) KT σ) (Finset.mem_univ _)
   rw [hout σ] at h2
-  obtain ⟨h, k, hh, hk, he⟩ := DoubleCoset.mk_out_eq_mul (Γ : Subgroup SL(2, ℤ)) KT σ
+  obtain ⟨h, hh, k, hk, he⟩ := DoubleCoset.mk_out_eq_mul (Γ : Subgroup SL(2, ℤ)) KT σ
   rw [he, cw_mul_mul_eq Γ hh hk] at h2
   omega
 

@@ -290,8 +290,6 @@ theorem isAlgebraic_residueField :
   have hyQ : IsAlgebraic ℚ (y : AlgebraicClosure ℚ) := by
     have h := (AlgebraicClosure.isAlgebraic ℚ).isAlgebraic (y : AlgebraicClosure ℚ)
     convert h using 2
-    rfl
-    rfl
   have hyalg : IsAlgebraic ℤ (y : AlgebraicClosure ℚ) :=
     (IsFractionRing.isAlgebraic_iff ℤ ℚ (AlgebraicClosure ℚ)).mpr hyQ
   obtain ⟨P, hP0, hPy⟩ := hyalg

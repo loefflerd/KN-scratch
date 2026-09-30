@@ -218,7 +218,8 @@ def jTr : (𝕂⟮jqModC 𝕂⟯⟮jqNModC 𝕂 ℓ⟯) ≃+* modularFunctionFie
 
 theorem coe_jTr (x : 𝕂⟮jqModC 𝕂⟯⟮jqNModC 𝕂 ℓ⟯) :
     ((jTr ℓ x : modularFunctionFieldBar ℓ) : LaurentSeries 𝕂) = x := by
-  unfold jTr; rfl
+  ext
+  rfl
 
 def e₁ : (𝕂⟮jb ℓ⟯ : IntermediateField 𝕂 (modularFunctionFieldBar ℓ)) ≃ₐ[𝕂] 𝕂⟮jqModC 𝕂⟯ :=
   (liftAlgEquiv 𝕂⟮jb ℓ⟯).trans (equivOfEq (by rw [lift_adjoin_simple, coe_jb, coeffEmb_jq]))

@@ -1137,10 +1137,10 @@ def restrictResidueFieldEquiv (hw : w.restrict F = v) :
 
 theorem inertiaDeg_eq_inertiaDeg_fiberCenter (hw : w.restrict F = v) :
     w.inertiaDeg F =
-      (IsLocalRing.maximalIdeal v.toValuationSubring).inertiaDeg'
-        (fiberCenter F' v hw).asIdeal := by
+      (fiberCenter F' v hw).asIdeal.inertiaDeg v.toValuationSubring := by
   have := fiberCenter_liesOver hw
-  rw [Ideal.inertiaDeg_eq_of_isMaximal]
+  rw [Ideal.inertiaDeg_eq_of_isMaximal (IsLocalRing.maximalIdeal v.toValuationSubring)
+    (fiberCenter F' v hw).asIdeal]
   show Module.finrank (w.restrict F).ResidueField w.ResidueField = _
   refine Algebra.finrank_eq_of_equiv_equiv (restrictResidueFieldEquiv hw)
     (residueFieldEquivQuotientCenter hw).symm ?_
@@ -7806,8 +7806,8 @@ set_option synthInstance.maxHeartbeats 8000000 in
 
 theorem kwF4R1V386a_inertiaDeg_completion_eq
     (w' : Place K F) :
-    (maximalIdeal (w'.restrict E).adicCompletionIntegers).inertiaDeg'
-      (maximalIdeal w'.adicCompletionIntegers) = w'.inertiaDeg E := by
+    (maximalIdeal w'.adicCompletionIntegers).inertiaDeg
+      (w'.restrict E).adicCompletionIntegers = w'.inertiaDeg E := by
 
   have : IsLocalHom (algebraMap (w'.restrict E).adicCompletionIntegers
       w'.adicCompletionIntegers) :=
@@ -7818,9 +7818,11 @@ theorem kwF4R1V386a_inertiaDeg_completion_eq
         (algebraMap (w'.restrict E).adicCompletionIntegers w'.adicCompletionIntegers)
         = maximalIdeal (w'.restrict E).adicCompletionIntegers :=
       ((IsLocalRing.local_hom_TFAE (algebraMap (w'.restrict E).adicCompletionIntegers
-        w'.adicCompletionIntegers)).out 0 4).mp ‹IsLocalHom _›
+        w'.adicCompletionIntegers)).out 1 5).mp ‹IsLocalHom _›
     exact ⟨hcomap.symm⟩
-  rw [Ideal.inertiaDeg_eq_of_isMaximal]
+  rw [Ideal.inertiaDeg_eq_of_isMaximal
+    (maximalIdeal (w'.restrict E).adicCompletionIntegers)
+    (maximalIdeal w'.adicCompletionIntegers)]
 
   symm
   refine Algebra.finrank_eq_of_equiv_equiv
@@ -7884,13 +7886,12 @@ theorem kwF4R1V386a_finrankCompletionEF [Algebra.IsSeparable E F] :
   have hef :
       (maximalIdeal (w'.restrict E).adicCompletionIntegers).ramificationIdx'
           (maximalIdeal w'.adicCompletionIntegers) *
-        (maximalIdeal (w'.restrict E).adicCompletionIntegers).inertiaDeg'
-          (maximalIdeal w'.adicCompletionIntegers) =
+        (maximalIdeal w'.adicCompletionIntegers).inertiaDeg
+          (w'.restrict E).adicCompletionIntegers =
             Module.finrank (w'.restrict E).adicCompletion w'.adicCompletion := by
     rw [Ideal.ramificationIdx'_eq_ramificationIdx
       (maximalIdeal (w'.restrict E).adicCompletionIntegers)
-      (maximalIdeal w'.adicCompletionIntegers) hpne,
-      Ideal.inertiaDeg'_eq_inertiaDeg]
+      (maximalIdeal w'.adicCompletionIntegers) hpne]
     calc
       _ = ∑ q : (maximalIdeal
             (w'.restrict E).adicCompletionIntegers).primesOver

@@ -132,7 +132,8 @@ theorem dehom_monomial (d : Fin 2 →₀ ℕ) (c : ℂ) : dehom (monomial d c) =
   simp [Polynomial.C_eq_algebraMap]
 
 theorem coeff_dehom_of_isHomogeneous {P : MvPolynomial (Fin 2) ℂ} (hP : P.IsHomogeneous n) (a : ℕ) (ha : a ≤ n) :
-    (dehom P).coeff a = coeff (Finsupp.single 0 (n - a) + Finsupp.single 1 a) P := by
+    (dehom P).coeff a = AddMonoidAlgebra.coeff P
+      (Finsupp.single 0 (n - a) + Finsupp.single 1 a) := by
   classical
   set da : Fin 2 →₀ ℕ := Finsupp.single 0 (n - a) + Finsupp.single 1 a with hda
   have hkey : ∀ d ∈ P.support, d 1 = a → d = da := by
@@ -152,7 +153,8 @@ theorem coeff_dehom_of_isHomogeneous {P : MvPolynomial (Fin 2) ℂ} (hP : P.IsHo
     · exact absurd h1.symm h2
     · exact absurd h2.symm h1
     · rw [mul_zero]
-  have hsum : (dehom P).coeff a = ∑ d ∈ P.support, (if d 1 = a then coeff d P else 0) := by
+  have hsum : (dehom P).coeff a =
+      ∑ d ∈ P.support, (if d 1 = a then AddMonoidAlgebra.coeff P d else 0) := by
     conv_lhs => rw [P.as_sum, dehom, map_sum]
     rw [Polynomial.finsetSum_coeff]
     exact Finset.sum_congr rfl fun d _ => hmono d _
@@ -195,7 +197,8 @@ def dv (n a : ℕ) : Fin 2 →₀ ℕ := Finsupp.single 0 (n - a) + Finsupp.sing
 @[scoped simp] theorem dv_one' (n a : ℕ) : dv n a 1 = a := by simp [dv]
 
 theorem coeff_eq_zero_of_T_zpow_fixed {m : ℤ} (hm : m ≠ 0) (P : Vn n) (hP : ρ n (ModularGroup.T ^ m) P = P)
-    (d : Fin 2 →₀ ℕ) (hd : d 1 ≠ 0) : coeff d (P : MvPolynomial (Fin 2) ℂ) = 0 := by
+    (d : Fin 2 →₀ ℕ) (hd : d 1 ≠ 0) :
+    AddMonoidAlgebra.coeff (P : MvPolynomial (Fin 2) ℂ) d = 0 := by
   classical
   by_contra hne
   have hPh : (P : MvPolynomial (Fin 2) ℂ).IsHomogeneous n := (mem_homogeneousSubmodule n _).mp P.2
@@ -232,7 +235,8 @@ theorem coeff_eq_zero_of_T_zpow_fixed {m : ℤ} (hm : m ≠ 0) (P : Vn n) (hP : 
   exact hne hcoeff
 
 theorem eq_of_T_zpow_fixed {m : ℤ} (hm : m ≠ 0) (P : Vn n) (hP : ρ n (ModularGroup.T ^ m) P = P) :
-    (P : MvPolynomial (Fin 2) ℂ) = monomial (Finsupp.single 0 n) (coeff (Finsupp.single 0 n) (P : MvPolynomial (Fin 2) ℂ)) := by
+    (P : MvPolynomial (Fin 2) ℂ) = monomial (Finsupp.single 0 n)
+      (AddMonoidAlgebra.coeff (P : MvPolynomial (Fin 2) ℂ) (Finsupp.single 0 n)) := by
   classical
   ext d
   rw [coeff_monomial]
@@ -260,12 +264,13 @@ theorem eq_zero_of_T_fixed_of_S_T_fixed (hn0 : n ≠ 0) (v : Vn n)
     ((congrArg (fun g => ρ n g v) (zpow_one ModularGroup.T)).trans h1)
   have e2 := eq_of_T_zpow_fixed hm _ h2
 
-  set c := coeff (Finsupp.single 0 n) (v : MvPolynomial (Fin 2) ℂ) with hc
+  set c := AddMonoidAlgebra.coeff (v : MvPolynomial (Fin 2) ℂ) (Finsupp.single 0 n) with hc
   have hSv : ((ρ n ModularGroup.S v : Vn n) : MvPolynomial (Fin 2) ℂ) = monomial (Finsupp.single 1 n) c := by
     rw [binaryFormRepSL_apply_coe, e1, ← C_mul_X_pow_eq_monomial, map_mul, binarySubst_C, map_pow, binarySubst_X]
     simp [ModularGroup.S, Fin.sum_univ_two, C_mul_X_pow_eq_monomial]
   have hc0 : c = 0 := by
-    have := congrArg (coeff (Finsupp.single 1 n)) e2
+    have := congrArg (fun P : MvPolynomial (Fin 2) ℂ =>
+      AddMonoidAlgebra.coeff P (Finsupp.single 1 n)) e2
     rw [hSv, coeff_monomial, coeff_monomial, ite_eq_left rfl, ite_eq_right] at this
     · exact this
     · intro h

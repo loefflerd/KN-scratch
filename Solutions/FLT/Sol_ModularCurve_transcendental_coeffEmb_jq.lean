@@ -218,27 +218,20 @@ def jTr : (𝕂⟮jqModC 𝕂⟯⟮jqNModC 𝕂 ℓ⟯) ≃+* modularFunctionFie
 
 theorem coe_jTr (x : 𝕂⟮jqModC 𝕂⟯⟮jqNModC 𝕂 ℓ⟯) :
     ((jTr ℓ x : modularFunctionFieldBar ℓ) : LaurentSeries 𝕂) = x := by
-  unfold jTr; rfl
+  ext; rfl
 
 def e₁ : (𝕂⟮jb ℓ⟯ : IntermediateField 𝕂 (modularFunctionFieldBar ℓ)) ≃ₐ[𝕂] 𝕂⟮jqModC 𝕂⟯ :=
   (liftAlgEquiv 𝕂⟮jb ℓ⟯).trans (equivOfEq (by rw [lift_adjoin_simple, coe_jb, coeffEmb_jq]))
 
 theorem coe_e₁ (x : (𝕂⟮jb ℓ⟯ : IntermediateField 𝕂 (modularFunctionFieldBar ℓ))) :
     ((e₁ ℓ x : 𝕂⟮jqModC 𝕂⟯) : LaurentSeries 𝕂) = ((x : modularFunctionFieldBar ℓ) : LaurentSeries 𝕂) := by
-  unfold e₁; rfl
+  ext; rfl
 
 theorem compat :
     (algebraMap (𝕂⟮jb ℓ⟯ : IntermediateField 𝕂 (modularFunctionFieldBar ℓ)) (modularFunctionFieldBar ℓ)).comp
         (e₁ ℓ).symm.toRingEquiv.toRingHom =
       (jTr ℓ).toRingHom.comp (algebraMap (𝕂⟮jqModC 𝕂⟯) (𝕂⟮jqModC 𝕂⟯⟮jqNModC 𝕂 ℓ⟯)) := by
-  apply RingHom.ext
-  intro y
-  apply Subtype.ext
-  show ((((e₁ ℓ).symm y : (𝕂⟮jb ℓ⟯ : IntermediateField 𝕂 (modularFunctionFieldBar ℓ))) :
-      modularFunctionFieldBar ℓ) : LaurentSeries 𝕂) = ((jTr ℓ (algebraMap _ _ y) : modularFunctionFieldBar ℓ) :
-        LaurentSeries 𝕂)
-  rw [coe_jTr, ← coe_e₁, AlgEquiv.apply_symm_apply]
-  rfl
+  ext; rfl
 
 theorem finiteDimensional_adjoin_jb :
     FiniteDimensional (IntermediateField.adjoin 𝕂 ({jb ℓ} : Set (modularFunctionFieldBar ℓ)))

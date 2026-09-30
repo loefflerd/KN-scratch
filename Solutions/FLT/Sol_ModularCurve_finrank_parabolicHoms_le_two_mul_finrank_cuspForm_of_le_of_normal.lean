@@ -177,7 +177,7 @@ theorem res_injective [Γ'.FiniteIndex] (hle : Γ' ≤ Γ) : Function.Injective 
     have := congrArg (fun φ : ModularCurve.Period.parabolicHoms ℝ Γ' ℝ =>
       (φ : Additive Γ' →+ ℝ) (Additive.ofMul ⟨((Additive.toMul a : Γ) : SL(2, ℤ)) ^ n, hmem⟩)) hw0
     simp only [res_apply, Submodule.coe_zero, AddMonoidHom.zero_apply] at this
-    convert this using 3 ; first | rfl
+    convert this using 3
   rw [ofMul_pow, map_nsmul, nsmul_eq_mul, mul_eq_zero] at hval
   have hn' : (n : ℝ) ≠ 0 := by exact_mod_cast hn.ne'
   have h0 : (w : Additive Γ →+ ℝ) a = 0 := by
@@ -252,7 +252,7 @@ theorem hasDerivAt_smul_ofComplex (γ : SL(2, ℤ)) (τ : ℍ) :
     funext z
     rw [MulAction.compHom_smul_def]
   rw [h2] at h1
-  convert h1 using 1 <;> try rfl
+  convert h1 using 1; try rfl
   rw [hdet]
   push_cast
   rw [zpow_neg, one_div]
@@ -270,7 +270,7 @@ theorem hasDerivAt_comp_smul {G : ℍ → ℂ} {g : ℍ → ℂ}
     simpa only [ofComplex_apply] using hG (γ • τ)
   have hcomp := houter.comp (↑τ : ℂ) (hasDerivAt_smul_ofComplex γ τ)
   rw [← hfun] at hcomp
-  convert hcomp using 1 <;> try rfl
+  convert hcomp using 1; try rfl
   exact ModularForm.SL_slash_apply (g : ℍ → ℂ) γ τ
 
 theorem hasEquivariantPrimitiveOf_act (δ : Γ) (g : CuspForm Γ' 2) {G : ℍ → ℂ}
