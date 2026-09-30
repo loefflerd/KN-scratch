@@ -1,38 +1,26 @@
-import Definitions.FLT.Def_ModularCurve_PhiGen
-import Definitions.FLT.Def_ModularCurve_QAdicPlace
 import Definitions.FLT.Def_ModularCurve_AtkinLehner
-import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
-import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
-import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
-import Theorems.FLT.Thm_ModularCurve_transcendental_jqModC
-import Theorems.FLT.Thm_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg_le_finrank
+import Definitions.FLT.Def_ModularCurve_CharLFrobeniusGeomLevel
+import Theorems.FLT.Thm_AlgebraicCurve_Place_exists_ord_mul_eq_order_of_hasRamBound
 import Theorems.FLT.Thm_AlgebraicCurve_Place_inertiaDeg_pos
+import Theorems.FLT.Thm_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg_le_finrank
 import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_subsingleton_setOf_forall_ne_ofHeightOneSpectrum
-import Theorems.FLT.Thm_ModularCurve_isCusp_iff_ord_neg
-import Theorems.FLT.Thm_ModularCurve_minpoly_jqN_map_eq_prod_slots
-import Theorems.FLT.Thm_ModularCurve_finrank_adjoin_jqN_eq_dedekindPsi
-import Theorems.FLT.Thm_ModularCurve_modularFunctionField_eq_full
-import Theorems.FLT.Thm_ModularCurve_functionFieldGeneration
-import Theorems.FLT.Thm_ModularCurve_laurentBaseChange_adjoin_pair
-import Theorems.FLT.Thm_ModularCurve_relfinrank_laurentBaseChange_modularFunctionFieldFull
-import Theorems.FLT.Thm_ModularCurve_relfinrank_full_eq_dedekindPsi
 import Theorems.FLT.Thm_ModularCurve_coeffEmb_jq
 import Theorems.FLT.Thm_ModularCurve_coeffEmb_jqN
-import Theorems.FLT.Thm_ModularCurve_laurentBaseChange_adjoin
 import Theorems.FLT.Thm_ModularCurve_dedekindPsi_pos
-import Theorems.FLT.Thm_AlgebraicCurve_Place_exists_ord_mul_eq_order_of_hasRamBound
+import Theorems.FLT.Thm_ModularCurve_finrank_adjoin_jqN_eq_dedekindPsi
+import Theorems.FLT.Thm_ModularCurve_functionFieldGeneration
+import Theorems.FLT.Thm_ModularCurve_isCusp_iff_ord_neg
+import Theorems.FLT.Thm_ModularCurve_laurentBaseChange_adjoin
+import Theorems.FLT.Thm_ModularCurve_laurentBaseChange_adjoin_pair
+import Theorems.FLT.Thm_ModularCurve_minpoly_jqN_map_eq_prod_slots
+import Theorems.FLT.Thm_ModularCurve_modularFunctionField_eq_full
 import Theorems.FLT.Thm_ModularCurve_order_qExpand
-import Theorems.FLT.Thm_P2M_Dup_AlgebraicCurve_Place_mem_iff_ord_nonneg
-import Mathlib.RingTheory.RootsOfUnity.PrimitiveRoots
-import Mathlib.FieldTheory.RatFunc.AsPolynomial
-import Mathlib.FieldTheory.Relrank
-import Mathlib.FieldTheory.IntermediateField.Adjoin.Basic
-import Mathlib.Tactic.LinearCombination
-import Mathlib.Data.Int.CardIntervalMod
+import Theorems.FLT.Thm_ModularCurve_relfinrank_full_eq_dedekindPsi
+import Theorems.FLT.Thm_ModularCurve_relfinrank_laurentBaseChange_modularFunctionFieldFull
+import Theorems.FLT.Thm_ModularCurve_transcendental_jqModC
 import Definitions.FLT.Def_P2M_Util
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
+set_option synthInstance.maxHeartbeats 50000 -- was 400k, 50k seems to suffice
 set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_exists_slot_of_isCusp
@@ -47,8 +35,6 @@ noncomputable section
 open ModularCurve AlgebraicCurve
 
 namespace Row1
-
-set_option synthInstance.maxHeartbeats 320000
 
 open ModularCurve AlgebraicCurve Polynomial IntermediateField
 
@@ -85,11 +71,13 @@ theorem finrank_adjoin_adjoin (N : ℕ) [NeZero N] :
 
 theorem isIntegral_jqN (N : ℕ) [NeZero N] :
     IsIntegral (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) (jqN N) := by
+  have : Module.Free ℚ⟮jq⟯ ℚ⟮jq⟯⟮jqN N⟯ := .of_divisionRing _ _
   have hfin : FiniteDimensional (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ)))
       (IntermediateField.adjoin (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ)))
         ({jqN N} : Set (LaurentSeries ℚ))) :=
-    Module.finite_of_finrank_pos
-      (by rw [finrank_adjoin_jqN_eq_dedekindPsi]; exact dedekindPsi_pos N (NeZero.ne N))
+    Module.finite_of_finrank_pos (by
+        rw [finrank_adjoin_jqN_eq_dedekindPsi];
+        exact dedekindPsi_pos N (NeZero.ne N))
   have h := IsIntegral.of_finite (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ)))
     (AdjoinSimple.gen (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) (jqN N))
   rwa [isIntegral_iff, AdjoinSimple.coe_gen] at h
@@ -196,10 +184,6 @@ end CD
 end Row1
 
 namespace Row2
-
-set_option synthInstance.maxHeartbeats 320000
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -332,8 +316,6 @@ end Row2
 p2m_reactivate "P2MW.S_ModularCurve_exists_slot_of_isCusp.Row2.CD P2MW.S_ModularCurve_exists_slot_of_isCusp.Row2"
 
 namespace Row3
-
-set_option synthInstance.maxHeartbeats 320000
 
 open ModularCurve AlgebraicCurve
 
@@ -502,8 +484,6 @@ end Row3
 p2m_reactivate "P2MW.S_ModularCurve_exists_slot_of_isCusp.Row2.CD P2MW.S_ModularCurve_exists_slot_of_isCusp.Row2 P2MW.S_ModularCurve_exists_slot_of_isCusp.Row3.CD P2MW.S_ModularCurve_exists_slot_of_isCusp.Row3"
 
 namespace Row4
-
-set_option synthInstance.maxHeartbeats 320000
 
 open ModularCurve AlgebraicCurve Polynomial IntermediateField
 
@@ -833,8 +813,6 @@ section Tower
 
 open IntermediateField
 
-set_option synthInstance.maxHeartbeats 320000
-
 variable (K : Type*) [Field K] [Algebra ℚ K] (N : ℕ) [NeZero N]
 
 theorem transcendental_coeffEmb_jq_ambient : Transcendental K (coeffEmb K jq) := by
@@ -868,7 +846,8 @@ noncomputable def jTr :
 
 theorem coe_jTr (x : K⟮coeffEmb K jq⟯⟮coeffEmb K (jqN N)⟯) :
     ((jTr K N x : laurentBaseChange K (modularFunctionFieldFull N)) : LaurentSeries K) = x := by
-  unfold jTr; rfl
+  ext
+  rfl
 
 noncomputable def phiRF : RatFunc K →+* laurentBaseChange K (modularFunctionFieldFull N) :=
   (jTr K N).toRingHom.comp
@@ -894,7 +873,7 @@ theorem coe_phiRF (x : RatFunc K) :
 theorem phiRF_algebraMap (k : K) :
     phiRF K N (algebraMap K (RatFunc K) k) =
       algebraMap K (laurentBaseChange K (modularFunctionFieldFull N)) k := by
-  apply Subtype.ext
+  ext
   rw [coe_phiRF, AlgEquiv.commutes]
   rfl
 
@@ -929,6 +908,8 @@ theorem he_compat :
 
 theorem finite_ratFunc :
     Module.Finite (RatFunc K) (laurentBaseChange K (modularFunctionFieldFull N)) := by
+  have : Module.Free (K⟮coeffEmb K jq⟯) (K⟮coeffEmb K jq⟯⟮coeffEmb K (jqN N)⟯) :=
+    Module.Free.of_divisionRing _ _ -- not needed but gives considerable speedup
   have : FiniteDimensional (K⟮coeffEmb K jq⟯) (K⟮coeffEmb K jq⟯⟮coeffEmb K (jqN N)⟯) :=
     Module.finite_of_finrank_pos
       (by rw [Row1.CD.finrank_adjoin_adjoin K N]; exact dedekindPsi_pos N (NeZero.ne N))
