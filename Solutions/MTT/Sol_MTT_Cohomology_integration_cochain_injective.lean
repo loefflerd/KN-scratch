@@ -56,7 +56,8 @@ theorem solution
     have h1 : cuspPeriodPolynomial (f - g) r = 0 := by
       rw [← integrationCochain_infty, hval]; rfl
     have h2 := coeff_cuspPeriodPolynomial hk (f - g) r hj
-    rw [h1, MvPolynomial.coeff_zero] at h2
+    rw [h1] at h2
+    change 0 = ((k - 2).choose j : ℂ) * MTT.modularIntegral (f - g) (Polynomial.X ^ j) r at h2
     have hch : (((k - 2).choose j : ℕ) : ℂ) ≠ 0 := by exact_mod_cast (Nat.choose_pos hj).ne'
     exact (mul_eq_zero.mp h2.symm).resolve_left hch)
   exact sub_eq_zero.mp hzero

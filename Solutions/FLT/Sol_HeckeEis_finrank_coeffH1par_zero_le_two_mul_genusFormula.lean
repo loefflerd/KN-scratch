@@ -35,7 +35,8 @@ variable (N : ℕ)
 
 abbrev ρ0 : Representation ℂ (Gamma0 N) ↥(BinaryForm ℂ 0) := (binaryFormRepSL ℂ 0).comp (Gamma0 N).subtype
 
-theorem coe_eq_C (P : ↥(BinaryForm ℂ 0)) : (P : MvPolynomial (Fin 2) ℂ) = C (coeff 0 (P : MvPolynomial (Fin 2) ℂ)) := by
+theorem coe_eq_C (P : ↥(BinaryForm ℂ 0)) :
+    (P : MvPolynomial (Fin 2) ℂ) = C (AddMonoidAlgebra.coeff (P : MvPolynomial (Fin 2) ℂ) 0) := by
   have hP : (P : MvPolynomial (Fin 2) ℂ).IsHomogeneous 0 := (mem_homogeneousSubmodule 0 _).mp P.2
   ext d
   rw [coeff_C]
@@ -47,7 +48,9 @@ theorem coe_eq_C (P : ↥(BinaryForm ℂ 0)) : (P : MvPolynomial (Fin 2) ℂ) = 
     rw [Finsupp.degree_eq_zero_iff] at hdeg
     exact hd hdeg.symm
 
-theorem ext0 {P Q : ↥(BinaryForm ℂ 0)} (h : coeff 0 (P : MvPolynomial (Fin 2) ℂ) = coeff 0 (Q : MvPolynomial (Fin 2) ℂ)) :
+theorem ext0 {P Q : ↥(BinaryForm ℂ 0)}
+    (h : AddMonoidAlgebra.coeff (P : MvPolynomial (Fin 2) ℂ) 0 =
+      AddMonoidAlgebra.coeff (Q : MvPolynomial (Fin 2) ℂ) 0) :
     P = Q := by
   apply Subtype.ext
   rw [coe_eq_C P, coe_eq_C Q, h]
@@ -61,7 +64,9 @@ theorem rho0_apply (g : Gamma0 N) (P : ↥(BinaryForm ℂ 0)) : ρ0 N g P = P :=
 variable {N}
 
 def toHom (z : ↥(coeffParabolicCocycles (ρ0 N))) : Additive (Gamma0 N) →+ ℂ where
-  toFun a := coeff 0 (((z : Gamma0 N → ↥(BinaryForm ℂ 0)) (Additive.toMul a) : ↥(BinaryForm ℂ 0)) : MvPolynomial (Fin 2) ℂ)
+  toFun a := AddMonoidAlgebra.coeff
+    (((z : Gamma0 N → ↥(BinaryForm ℂ 0)) (Additive.toMul a) : ↥(BinaryForm ℂ 0)) :
+      MvPolynomial (Fin 2) ℂ) 0
   map_zero' := by
     have h := (mem_coeffCocycles_iff (ρ0 N) _).mp z.2.1 1 1
     rw [mul_one, rho0_apply] at h
@@ -70,16 +75,27 @@ def toHom (z : ↥(coeffParabolicCocycles (ρ0 N))) : Additive (Gamma0 N) →+ �
       have := congrArg (fun v => v - (z : Gamma0 N → ↥(BinaryForm ℂ 0)) 1) h
       have h0' : (0 : ↥(BinaryForm ℂ 0)) = (z : Gamma0 N → ↥(BinaryForm ℂ 0)) 1 := by simpa using this
       exact h0'.symm
-    show coeff 0 (((z : Gamma0 N → ↥(BinaryForm ℂ 0)) 1 : ↥(BinaryForm ℂ 0)) : MvPolynomial (Fin 2) ℂ) = 0
+    show AddMonoidAlgebra.coeff
+      (((z : Gamma0 N → ↥(BinaryForm ℂ 0)) 1 : ↥(BinaryForm ℂ 0)) :
+        MvPolynomial (Fin 2) ℂ) 0 = 0
     rw [h0]; rfl
   map_add' a b := by
-    show coeff 0 (((z : Gamma0 N → ↥(BinaryForm ℂ 0)) (Additive.toMul a * Additive.toMul b) : ↥(BinaryForm ℂ 0)) : MvPolynomial (Fin 2) ℂ)
-      = coeff 0 (((z : Gamma0 N → ↥(BinaryForm ℂ 0)) (Additive.toMul a) : ↥(BinaryForm ℂ 0)) : MvPolynomial (Fin 2) ℂ)
-        + coeff 0 (((z : Gamma0 N → ↥(BinaryForm ℂ 0)) (Additive.toMul b) : ↥(BinaryForm ℂ 0)) : MvPolynomial (Fin 2) ℂ)
-    rw [(mem_coeffCocycles_iff (ρ0 N) _).mp z.2.1, rho0_apply, Submodule.coe_add, coeff_add]
+    show AddMonoidAlgebra.coeff
+      (((z : Gamma0 N → ↥(BinaryForm ℂ 0)) (Additive.toMul a * Additive.toMul b) :
+        ↥(BinaryForm ℂ 0)) : MvPolynomial (Fin 2) ℂ) 0 =
+      AddMonoidAlgebra.coeff
+          (((z : Gamma0 N → ↥(BinaryForm ℂ 0)) (Additive.toMul a) : ↥(BinaryForm ℂ 0)) :
+            MvPolynomial (Fin 2) ℂ) 0 +
+        AddMonoidAlgebra.coeff
+          (((z : Gamma0 N → ↥(BinaryForm ℂ 0)) (Additive.toMul b) : ↥(BinaryForm ℂ 0)) :
+            MvPolynomial (Fin 2) ℂ) 0
+    rw [(mem_coeffCocycles_iff (ρ0 N) _).mp z.2.1, rho0_apply, Submodule.coe_add,
+      AddMonoidAlgebra.coeff_add, Finsupp.add_apply]
 
 @[scoped simp] theorem toHom_apply (z : ↥(coeffParabolicCocycles (ρ0 N))) (g : Gamma0 N) :
-    toHom z (Additive.ofMul g) = coeff 0 (((z : Gamma0 N → ↥(BinaryForm ℂ 0)) g : ↥(BinaryForm ℂ 0)) : MvPolynomial (Fin 2) ℂ) := rfl
+    toHom z (Additive.ofMul g) = AddMonoidAlgebra.coeff
+      (((z : Gamma0 N → ↥(BinaryForm ℂ 0)) g : ↥(BinaryForm ℂ 0)) :
+        MvPolynomial (Fin 2) ℂ) 0 := rfl
 
 theorem toHom_mem (z : ↥(coeffParabolicCocycles (ρ0 N))) : toHom z ∈ parabolicHoms ℂ (Gamma0 N) ℂ := by
   intro γ hγ
@@ -92,18 +108,25 @@ def φ : ↥(coeffParabolicCocycles (ρ0 N)) →ₗ[ℂ] ↥(parabolicHoms ℂ (
   toFun z := ⟨toHom z, toHom_mem z⟩
   map_add' z w := by
     apply Subtype.ext; apply AddMonoidHom.ext; intro a
-    show coeff 0 ((((z + w : ↥(coeffParabolicCocycles (ρ0 N))) : Gamma0 N → ↥(BinaryForm ℂ 0)) (Additive.toMul a) : ↥(BinaryForm ℂ 0)) : MvPolynomial (Fin 2) ℂ) = _
-    rw [Submodule.coe_add, Pi.add_apply, Submodule.coe_add, coeff_add]
+    show AddMonoidAlgebra.coeff
+      ((((z + w : ↥(coeffParabolicCocycles (ρ0 N))) : Gamma0 N → ↥(BinaryForm ℂ 0))
+        (Additive.toMul a) : ↥(BinaryForm ℂ 0)) : MvPolynomial (Fin 2) ℂ) 0 = _
+    rw [Submodule.coe_add, Pi.add_apply, Submodule.coe_add, AddMonoidAlgebra.coeff_add,
+      Finsupp.add_apply]
     rfl
   map_smul' c z := by
     apply Subtype.ext; apply AddMonoidHom.ext; intro a
-    show coeff 0 ((((c • z : ↥(coeffParabolicCocycles (ρ0 N))) : Gamma0 N → ↥(BinaryForm ℂ 0)) (Additive.toMul a) : ↥(BinaryForm ℂ 0)) : MvPolynomial (Fin 2) ℂ) = _
+    show AddMonoidAlgebra.coeff
+      ((((c • z : ↥(coeffParabolicCocycles (ρ0 N))) : Gamma0 N → ↥(BinaryForm ℂ 0))
+        (Additive.toMul a) : ↥(BinaryForm ℂ 0)) : MvPolynomial (Fin 2) ℂ) 0 = _
     rw [Submodule.coe_smul, Pi.smul_apply, Submodule.coe_smul, coeff_smul]
     rfl
 
 theorem φ_apply_coe (z : ↥(coeffParabolicCocycles (ρ0 N))) (g : Gamma0 N) :
     ((φ z : ↥(parabolicHoms ℂ (Gamma0 N) ℂ)) : Additive (Gamma0 N) →+ ℂ) (Additive.ofMul g)
-      = coeff 0 (((z : Gamma0 N → ↥(BinaryForm ℂ 0)) g : ↥(BinaryForm ℂ 0)) : MvPolynomial (Fin 2) ℂ) := rfl
+      = AddMonoidAlgebra.coeff
+        (((z : Gamma0 N → ↥(BinaryForm ℂ 0)) g : ↥(BinaryForm ℂ 0)) :
+          MvPolynomial (Fin 2) ℂ) 0 := rfl
 
 theorem φ_injective : Function.Injective (φ (N := N)) := by
   intro z w h

@@ -242,7 +242,6 @@ theorem phiAtSeed_jq_eval (n : ℕ) [NeZero n] (data : ModularPolynomialData n) 
   have h := data.eval_eq_zero
   rw [phiAtSeed, Polynomial.eval_map]
   convert h using 2
-  all_goals try rfl
   refine Polynomial.ringHom_ext' (RingHom.ext_int _ _) ?_
   simp [evalAtJ_X]
 

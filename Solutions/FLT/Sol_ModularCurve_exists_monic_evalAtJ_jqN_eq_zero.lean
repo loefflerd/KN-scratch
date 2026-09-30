@@ -44,7 +44,6 @@ theorem phiAtSeed_jq_eval (n : ℕ) [NeZero n] (data : ModularPolynomialData n) 
   have h := data.eval_eq_zero
   rw [phiAtSeed, Polynomial.eval_map]
   convert h using 2
-  all_goals try rfl
   refine Polynomial.ringHom_ext' (RingHom.ext_int _ _) ?_
   simp [evalAtJ_X]
 
@@ -92,7 +91,7 @@ private theorem ModularCurve.exists_monic_evalAtJ_jqN_eq_zero (N : ℕ) [NeZero 
     set A := Algebra.adjoin (Polynomial ℤ) ({jqN a} : Set (LaurentSeries ℚ)) with hA
     have hmem : jqN a ∈ A := Algebra.self_mem_adjoin_singleton _ _
     have : Algebra.IsIntegral (Polynomial ℤ) ↥A :=
-      ⟨fun x => (isIntegral_algebraMap_iff (fun _ _ huv => Subtype.ext huv)).mp
+      ⟨fun x => isIntegral_algebraMap_iff.mp
         (IsIntegral.of_mem_of_fg A hia.fg_adjoin_singleton _ x.2)⟩
     have hroot : Polynomial.eval₂ (algebraMap ↥A (LaurentSeries ℚ)) (jqN (a * p))
         (W1.phiAtSeed data (⟨jqN a, hmem⟩ : ↥A)) = 0 := by

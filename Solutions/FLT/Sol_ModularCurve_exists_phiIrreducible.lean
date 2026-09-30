@@ -382,7 +382,9 @@ theorem phiAtSeed_jq_eval (n : ℕ) [NeZero n] (data : ModularPolynomialData n) 
     (phiAtSeed data jq).eval (jqN n) = 0 := by
   have h := data.eval_eq_zero
   rw [phiAtSeed, Polynomial.eval_map]
-  convert h using 2 <;> first | rfl | (refine Polynomial.ringHom_ext' (RingHom.ext_int _ _) ?_; simp [evalAtJ_X])
+  convert h using 2
+  refine Polynomial.ringHom_ext' (RingHom.ext_int _ _) ?_
+  simp [evalAtJ_X]
 
 theorem phiAtSeed_eval_map {R S : Type*} [CommRing R] [CommRing S] {n : ℕ} [NeZero n]
     (data : ModularPolynomialData n) (x y : R) (f : R →+* S) (h : (phiAtSeed data x).eval y = 0) :

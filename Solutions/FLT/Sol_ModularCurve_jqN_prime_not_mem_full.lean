@@ -378,7 +378,7 @@ theorem phiAtSeed_jq_eval (n : ℕ) [NeZero n] (data : ModularPolynomialData n) 
     (phiAtSeed data jq).eval (jqN n) = 0 := by
   have h := data.eval_eq_zero
   rw [phiAtSeed, Polynomial.eval_map]
-  convert h using 2 <;> try rfl
+  convert h using 2
   refine Polynomial.ringHom_ext' ?_ ?_
   · exact RingHom.ext_int _ _
   · simp [evalAtJ_X]

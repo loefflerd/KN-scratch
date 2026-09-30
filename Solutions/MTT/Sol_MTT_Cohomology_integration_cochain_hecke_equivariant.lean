@@ -303,7 +303,8 @@ lemma coeff_hat (Λ : Polynomial ℂ →ₗ[ℂ] ℂ) (R : MvPolynomial (Fin 2) 
 def hatL (Λ : Polynomial ℂ →ₗ[ℂ] ℂ) : MvPolynomial (Fin 2) (Polynomial ℂ) →ₗ[ℂ] Binary ℂ where
   toFun := hat Λ
   map_add' R S := by
-    ext m; simp only [coeff_hat, MvPolynomial.coeff_add, map_add]
+    ext m
+    simp only [coeff_hat, AddMonoidAlgebra.coeff_add, Finsupp.add_apply, map_add]
   map_smul' c R := by
     ext m; simp only [coeff_hat, MvPolynomial.coeff_smul, map_smul, RingHom.id_apply]
 
@@ -314,7 +315,8 @@ lemma hat_add (Λ : Polynomial ℂ →ₗ[ℂ] ℂ) (R S : MvPolynomial (Fin 2) 
 
 lemma hat_add_left (Λ₁ Λ₂ : Polynomial ℂ →ₗ[ℂ] ℂ) (R) :
     hat (Λ₁ + Λ₂) R = hat Λ₁ R + hat Λ₂ R := by
-  ext m; simp only [coeff_hat, MvPolynomial.coeff_add, LinearMap.add_apply]
+  ext m
+  simp only [coeff_hat, AddMonoidAlgebra.coeff_add, Finsupp.add_apply, LinearMap.add_apply]
 
 lemma hat_smul_left (c : ℂ) (Λ : Polynomial ℂ →ₗ[ℂ] ℂ) (R) :
     hat (c • Λ) R = c • hat Λ R := by
@@ -408,7 +410,8 @@ lemma kernel_eq (n : ℕ) : kernel n = ∑ j ∈ Finset.range (n + 1),
   refine Finset.sum_congr rfl fun j _ => ?_
   rw [mul_pow, ← MvPolynomial.C_pow, MvPolynomial.C_mul_X_pow_eq_monomial,
     MvPolynomial.X_pow_eq_monomial, ← MvPolynomial.C_eq_coe_nat, MvPolynomial.C_apply,
-    MvPolynomial.monomial_mul, MvPolynomial.monomial_mul, binaryExponent_eq, add_zero]
+    MvPolynomial.monomial_mul_monomial, MvPolynomial.monomial_mul_monomial,
+    binaryExponent_eq, add_zero]
   congr 1
   rw [Polynomial.smul_eq_C_mul, mul_one, mul_comm, map_natCast]
 

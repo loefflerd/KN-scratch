@@ -680,7 +680,7 @@ lemma coeff_vecOfConst (n : ℕ) (a : ℕ → ℂ) (m : Fin 2 →₀ ℕ) :
     AddMonoidAlgebra.coeff (vecOfConst n a) m =
       ∑ j ∈ Finset.range (n + 1),
         if binaryExponent n j = m then (n.choose j : ℂ) * a j else 0 := by
-  simp [vecOfConst, MvPolynomial.coeff_sum, MvPolynomial.coeff_monomial]
+  simp [vecOfConst, MvPolynomial.coeff_monomial]
 
 lemma coeff_act_vecOfConst (σ : Matrix (Fin 2) (Fin 2) ℤ) (n : ℕ) (a : ℕ → ℂ) (m : Fin 2 →₀ ℕ) :
     AddMonoidAlgebra.coeff (act σ (vecOfConst n a)) m =
@@ -788,7 +788,8 @@ theorem transport (σ : SL(2, ℤ)) {h h' : ℍ → ℂ} {n : ℕ}
     field_simp
     ring
   ext m
-  rw [MvPolynomial.coeff_add, Kconst, MvPolynomial.coeff_sub]
+  rw [AddMonoidAlgebra.coeff_add, Finsupp.add_apply, Kconst,
+    AddMonoidAlgebra.coeff_sub, Finsupp.sub_apply]
   have := hconst m z hz
   linear_combination this
 
@@ -879,7 +880,9 @@ lemma Kconst_eq_of_tendsto {σ : SL(2, ℤ)} {h h' : ℍ → ℂ} {n : ℕ}
   have hlim := (h1 e).sub (h2 e)
   have hc : ∀ m, AddMonoidAlgebra.coeff (Gvec h n (mob σ (z m))) e -
       AddMonoidAlgebra.coeff (act σ (Gvec h' n (z m))) e = AddMonoidAlgebra.coeff (Kconst σ h h' n) e := by
-    intro m; rw [hK (z m) (hz m), MvPolynomial.coeff_add]; ring
+    intro m
+    rw [hK (z m) (hz m), AddMonoidAlgebra.coeff_add, Finsupp.add_apply]
+    ring
   simp only [hc, sub_zero] at hlim
   exact tendsto_nhds_unique tendsto_const_nhds hlim
 

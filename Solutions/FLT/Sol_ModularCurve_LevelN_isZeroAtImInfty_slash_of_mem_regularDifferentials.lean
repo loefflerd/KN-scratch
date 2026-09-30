@@ -689,7 +689,7 @@ theorem hasDerivAt_moeb (γ : SL(2, ℤ)) (τ : ℍ) :
     funext z
     rw [moeb, MulAction.compHom_smul_def]
   rw [h2] at h1
-  convert h1 using 1 <;> try with_reducible_and_instances rfl
+  convert h1 using 1
   rw [hdet]
   push_cast
   rw [zpow_neg, one_div]

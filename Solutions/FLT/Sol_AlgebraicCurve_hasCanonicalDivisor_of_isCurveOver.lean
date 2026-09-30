@@ -110,7 +110,6 @@ private theorem _root_.AlgebraicCurve.Place.range_mapBaseChange_le_span_D_unifor
   let := v.polynomialIsScalarTower
   rintro _ ⟨t, rfl⟩
   induction t with
-  | zero => simp
   | add x y hx hy => rw [map_add]; exact add_mem hx hy
   | tmul b ω =>
     rw [KaehlerDifferential.mapBaseChange_tmul,
@@ -1565,7 +1564,6 @@ private theorem _root_.AlgebraicCurve.Place.span_D_eq_top_of_isUnramifiedAt_s12 
           ⟨t, hT (hRT (Algebra.self_mem_adjoin_singleton K t))⟩} : Set Ω[v.toValuationSubring⁄K]) := by
     rintro _ ⟨x, rfl⟩
     induction x with
-    | zero => simp
     | add x y hx hy => rw [map_add]; exact add_mem hx hy
     | tmul b ω =>
       rw [KaehlerDifferential.mapBaseChange_tmul]

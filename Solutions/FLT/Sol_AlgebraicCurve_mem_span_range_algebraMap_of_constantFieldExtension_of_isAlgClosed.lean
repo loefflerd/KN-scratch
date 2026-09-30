@@ -686,7 +686,7 @@ theorem exists_basis [IsAlgClosed K] [IsAlgClosed K']
         exact hx
       have h1 := linearIndependent_pow_of_transcendental hxk
       have h2 := linearIndependent_smul h1 y.linearIndependent
-      convert h2 using 1 <;> first | rfl
+      convert h2 using 1
     have hK'ind := AlgebraicCurve.linearIndependent_of_constantFieldExtension_of_isAlgClosed
       K F K' F' hfg hfg' hgen hKind
     have hrel' : ∑ p ∈ Finset.range N ×ˢ s,

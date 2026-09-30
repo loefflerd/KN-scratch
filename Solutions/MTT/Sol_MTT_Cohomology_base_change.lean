@@ -131,7 +131,7 @@ theorem hom_eq_zero (P : Binary R) (hP : P ∈ MTT.Cohomology.Sym R n)
     (h : ∀ j : Fin (n + 1), AddMonoidAlgebra.coeff P (mono n j.val) = 0) : P = 0 := by
   rw [MvPolynomial.mem_homogeneousSubmodule] at hP
   ext d
-  rw [MvPolynomial.coeff_zero]
+  change AddMonoidAlgebra.coeff P d = 0
   by_cases hdeg : d.degree = n
   · have hsum : d 0 + d 1 = n := by
       have hds := Finsupp.degree_eq_sum d

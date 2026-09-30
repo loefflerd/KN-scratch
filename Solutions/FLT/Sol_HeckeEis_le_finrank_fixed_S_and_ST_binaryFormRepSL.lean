@@ -87,12 +87,11 @@ theorem linearIndependent_monomials {ι : Type*} (n : ℕ) (a : ι → ℕ) (ha 
   have hmon : ∀ t, (X 0 ^ a t * X 1 ^ (n - a t) : MvPolynomial (Fin 2) ℂ) = MvPolynomial.monomial (d t) 1 := by
     intro t
     simp only [d]
-    rw [MvPolynomial.X_pow_eq_monomial, MvPolynomial.X_pow_eq_monomial, MvPolynomial.monomial_mul, mul_one]
+    rw [MvPolynomial.X_pow_eq_monomial, MvPolynomial.X_pow_eq_monomial,
+      MvPolynomial.monomial_mul_monomial, mul_one]
   convert hb using 1
   funext t
   rw [Function.comp_apply, MvPolynomial.coe_basisMonomials, hmon]
-  rfl
-  rfl
 
 theorem linearIndependent_bvec {ι : Type*} (c₁ c₂ : ℂ) (hc : c₁ ≠ c₂) (n : ℕ) (a : ι → ℕ) (ha : Function.Injective a) :
     LinearIndependent ℂ (fun t => bvec c₁ c₂ n (a t)) := by
@@ -101,9 +100,6 @@ theorem linearIndependent_bvec {ι : Type*} (c₁ c₂ : ℂ) (hc : c₁ ≠ c�
   convert h using 1
   funext t
   simp [Function.comp_apply, bvec_eq_tau]
-  rfl
-  rfl
-  rfl
 
 theorem finite_binaryForm (n : ℕ) : Module.Finite ℂ ↥(HeckeEis.BinaryForm ℂ n) := by
   classical
@@ -122,7 +118,8 @@ theorem finite_binaryForm (n : ℕ) : Module.Finite ℂ ↥(HeckeEis.BinaryForm 
       exact Finset.sum_subset (Finset.subset_univ _) (fun x _ hx => by simpa using hx)
     have hXX : (X 0 ^ (d 0) * X 1 ^ (n - d 0) : MvPolynomial (Fin 2) ℂ) =
         MvPolynomial.monomial (Finsupp.single 0 (d 0) + Finsupp.single 1 (n - d 0)) 1 := by
-      rw [MvPolynomial.X_pow_eq_monomial, MvPolynomial.X_pow_eq_monomial, MvPolynomial.monomial_mul, mul_one]
+      rw [MvPolynomial.X_pow_eq_monomial, MvPolynomial.X_pow_eq_monomial,
+        MvPolynomial.monomial_mul_monomial, mul_one]
     have hd' : d = Finsupp.single 0 (d 0) + Finsupp.single 1 (n - d 0) := by
       refine Finsupp.ext fun j => ?_
       fin_cases j

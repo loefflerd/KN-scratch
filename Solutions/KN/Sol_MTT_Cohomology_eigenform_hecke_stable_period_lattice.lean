@@ -165,7 +165,9 @@ theorem dividedMem_pair {N n : ℕ} (ψ : Hc N n MTT.Qbar)
     | none =>
         intro j hj
         change AddMonoidAlgebra.coeff (ψ.val (OnePoint.infty, OnePoint.infty)) (binaryExponent n j) / _ ∈ L
-        rw [hdiag, MvPolynomial.coeff_zero, zero_div]
+        rw [hdiag]
+        change 0 / (n.choose j : MTT.Qbar) ∈ L
+        rw [zero_div]
         exact L.zero_mem
     | some r =>
         intro j hj
@@ -176,7 +178,7 @@ theorem dividedMem_pair {N n : ℕ} (ψ : Hc N n MTT.Qbar)
       ψ.val (OnePoint.infty, x) := by
     rw [← hcoc]
     abel
-  rw [heq, MvPolynomial.coeff_sub, sub_div]
+  rw [heq, AddMonoidAlgebra.coeff_sub, Finsupp.sub_apply, sub_div]
   exact L.sub_mem (hend y j hj) (hend x j hj)
 
 def mono (n b : ℕ) : Binary MTT.Qbar :=
@@ -246,15 +248,15 @@ theorem dividedMem_basis_smul {L : Submodule ℤ MTT.Qbar} {n j : ℕ}
     subst q
     have hc : ((n.choose j : ℕ) : MTT.Qbar) ≠ 0 := by
       exact_mod_cast Nat.choose_ne_zero hj
-    simp [basisVec, MvPolynomial.coeff_smul, hc, hv]
+    simp [basisVec, hc, hv]
   · have he' : binaryExponent n q ≠ binaryExponent n j := Ne.symm he
-    simp [basisVec, MvPolynomial.coeff_smul, MvPolynomial.coeff_monomial, he, L.zero_mem]
+    simp [basisVec, MvPolynomial.coeff_monomial, he, L.zero_mem]
 
 theorem dividedMem_add {L : Submodule ℤ MTT.Qbar} {n : ℕ}
     {P Q : Binary MTT.Qbar} (hP : DividedMem L n P) (hQ : DividedMem L n Q) :
     DividedMem L n (P + Q) := by
   intro j hj
-  rw [MvPolynomial.coeff_add, add_div]
+  rw [AddMonoidAlgebra.coeff_add, Finsupp.add_apply, add_div]
   exact L.add_mem (hP j hj) (hQ j hj)
 
 theorem dividedMem_sum {L : Submodule ℤ MTT.Qbar} {n : ℕ}
@@ -882,9 +884,9 @@ theorem solution
       rw [heig] at hT
       have hjmem := hT j hj
       change f.coeff l *
-        (evaluation j r (ψ s) / ((k - 2).choose j : MTT.Qbar)) ∈ L
-      simpa [MvPolynomial.coeff_smul, evaluation, binaryExponent, smul_eq_mul,
-        mul_div_assoc]
+        (AddMonoidAlgebra.coeff ((ψ s).val (OnePoint.infty, (r : Cusp)))
+          (binaryExponent (k - 2) j) / ((k - 2).choose j : MTT.Qbar)) ∈ L
+      simpa [MvPolynomial.coeff_smul, smul_eq_mul, mul_div_assoc]
         using hjmem
     · simp only [mul_zero]
       exact Submodule.zero_mem (Submodule.span ℤ

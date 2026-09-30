@@ -45,7 +45,10 @@ theorem act_monomial_int (g : Matrix (Fin 2) (Fin 2) ℤ) (d e : Fin 2 →₀ �
 def CIn (A : Submodule ℤ R) : Submodule ℤ (Binary R) where
   carrier := {P | ∀ d, AddMonoidAlgebra.coeff P d ∈ A}
   zero_mem' := by intro d; simp
-  add_mem' := by intro P Q hP hQ d; rw [MvPolynomial.coeff_add]; exact A.add_mem (hP d) (hQ d)
+  add_mem' := by
+    intro P Q hP hQ d
+    rw [AddMonoidAlgebra.coeff_add, Finsupp.add_apply]
+    exact A.add_mem (hP d) (hQ d)
   smul_mem' := by
     intro c P hP d
     rw [MvPolynomial.coeff_smul]

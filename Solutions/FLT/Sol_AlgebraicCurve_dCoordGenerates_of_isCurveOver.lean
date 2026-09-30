@@ -106,7 +106,6 @@ private theorem _root_.AlgebraicCurve.Place.range_mapBaseChange_le_span_D_unifor
   let := v.polynomialIsScalarTower
   rintro _ ⟨t, rfl⟩
   induction t with
-  | zero => simp
   | add x y hx hy => rw [map_add]; exact add_mem hx hy
   | tmul b ω =>
     rw [KaehlerDifferential.mapBaseChange_tmul,

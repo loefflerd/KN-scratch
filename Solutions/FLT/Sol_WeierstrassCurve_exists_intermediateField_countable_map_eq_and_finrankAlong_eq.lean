@@ -350,8 +350,8 @@ theorem pointPullbackCoordHomTo_injective {xP yP : L}
   have hker : RingHom.ker (pointPullbackCoordHomTo h).toRingHom = ⊥ := by
     have : Module.Finite F[X] W.CoordinateRing :=
       Module.Finite.of_basis (CoordinateRing.basis W)
-    refine Ideal.eq_bot_of_comap_eq_bot (R := F[X]) ?_
-    rw [RingHom.comap_ker, pointPullbackCoordHomTo_comp_algebraMap,
+    refine Ideal.eq_bot_of_under_eq_bot (R := F[X]) ?_
+    rw [Ideal.under_def, RingHom.comap_ker, pointPullbackCoordHomTo_comp_algebraMap,
       ← RingHom.injective_iff_ker_eq_bot]
     exact hx
   exact (RingHom.injective_iff_ker_eq_bot (pointPullbackCoordHomTo h).toRingHom).mpr hker
@@ -1088,7 +1088,6 @@ theorem kw_functionFieldTensorFracHomGeneralNoAC_bijective :
       algebraMap ((W⁄F).FunctionField ⊗[F] F') (FractionRing _) t ∈ ψ.toRingHom.fieldRange := by
     intro t
     induction t with
-    | zero => simp only [_root_.map_zero]; exact zero_mem _
     | add _ _ hx hy => simp only [map_add]; exact add_mem hx hy
     | tmul a c =>
       rw [show (a ⊗ₜ[F] c : (W⁄F).FunctionField ⊗[F] F') = (a ⊗ₜ[F] 1) * (1 ⊗ₜ[F] c) from

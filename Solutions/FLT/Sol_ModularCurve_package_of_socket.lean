@@ -239,7 +239,7 @@ theorem phiAtSeed_jqNModC_eval {R : Type*} [CommRing R] (n : ℕ) [NeZero n] (da
     (d : ℕ) [NeZero d] : (phiAtSeed data (jqNModC R d)).eval (jqNModC R (d * n)) = 0 := by
   have h := data.eval_jqNModC_mul_eq_zero R d
   rw [phiAtSeed, Polynomial.eval_map]
-  convert h using 2 <;> try rfl
+  convert h using 2
   refine Polynomial.ringHom_ext' ?_ ?_
   · exact RingHom.ext_int _ _
   · simp
@@ -249,7 +249,7 @@ theorem phiAtSeed_jqNModC_eval_symm {R : Type*} [CommRing R] (n : ℕ) [NeZero n
     (phiAtSeed data (jqNModC R (d * n))).eval (jqNModC R d) = 0 := by
   have h := data.eval_jqNModC_of_mul_eq_zero hsymm R d
   rw [phiAtSeed, Polynomial.eval_map]
-  convert h using 2 <;> try rfl
+  convert h using 2
   refine Polynomial.ringHom_ext' ?_ ?_
   · exact RingHom.ext_int _ _
   · simp

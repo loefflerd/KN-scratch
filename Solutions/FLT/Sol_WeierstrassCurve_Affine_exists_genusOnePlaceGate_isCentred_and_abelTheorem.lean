@@ -6,8 +6,6 @@ import Definitions.FLT.Def_P2M_Util
 
 namespace P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem
 
-set_option autoImplicit false
-
 section
 section
 
@@ -62,15 +60,12 @@ theorem exists_eq_XYIdeal_of_isMaximal [IsAlgClosed F] (𝔪 : Ideal W.Coordinat
       (algebraMap F (W.CoordinateRing ⧸ 𝔪)).comp
         ((Polynomial.evalRingHom x).comp (Polynomial.evalRingHom (Polynomial.C y))) := by
     refine Polynomial.ringHom_ext' (Polynomial.ringHom_ext (fun a => ?_) ?_) ?_
-    ·
-      simp only [RingHom.comp_apply, Polynomial.coe_evalRingHom, Polynomial.eval_C]
+    · simp only [RingHom.comp_apply, Polynomial.coe_evalRingHom, Polynomial.eval_C]
       exact hconst a
-    ·
-      simp only [RingHom.comp_apply, Polynomial.coe_evalRingHom, Polynomial.eval_X,
+    · simp only [RingHom.comp_apply, Polynomial.coe_evalRingHom, Polynomial.eval_X,
         Polynomial.eval_C]
       exact hx.symm
-    ·
-      simp only [RingHom.comp_apply, Polynomial.coe_evalRingHom, Polynomial.eval_X,
+    · simp only [RingHom.comp_apply, Polynomial.coe_evalRingHom, Polynomial.eval_X,
         Polynomial.eval_C]
       exact hy.symm
 
@@ -331,7 +326,6 @@ private lemma xCount_add_yCount (n : ℕ) (hn : 1 ≤ n) : n / 2 + 1 + (n - 1) /
   omega
 
 variable (W) in
-
 noncomputable def rrParam (n : ℕ) :
     (degreeLT F (n / 2 + 1) × degreeLT F ((n - 1) / 2)) →ₗ[F] W.CoordinateRing :=
   LinearMap.coprod
@@ -353,7 +347,6 @@ lemma rrParam_injective (n : ℕ) : Function.Injective (rrParam W n) := by
   exact Prod.ext (Subtype.ext hp) (Subtype.ext hq)
 
 variable (W) in
-
 noncomputable def RRSpace (n : ℕ) : Submodule F W.CoordinateRing :=
   LinearMap.range (rrParam W n)
 
@@ -409,7 +402,6 @@ lemma one_le_RRSpace (n : ℕ) : (1 : Submodule F W.CoordinateRing) ≤ RRSpace 
 namespace RRSpace
 
 variable (W) in
-
 noncomputable def basisAux (n : ℕ) :
     Basis (Fin (n / 2 + 1 + (n - 1) / 2)) F (RRSpace W n) :=
   (degreeLT.basisProd F (n / 2 + 1) ((n - 1) / 2)).map
@@ -420,7 +412,6 @@ theorem finrank_eq (n : ℕ) (hn : 1 ≤ n) : finrank F (RRSpace W n) = n := by
   exact xCount_add_yCount n hn
 
 variable (W) in
-
 noncomputable def finBasis (n : ℕ) (hn : 1 ≤ n) : Basis (Fin n) F (RRSpace W n) :=
   (basisAux W n).reindex (finCongr (xCount_add_yCount n hn))
 
@@ -735,11 +726,7 @@ theorem eq_of_XYIdeal_eq {x₁ y₁ x₂ y₂ : F} (h₂ : W.Equation x₂ y₂)
     apply hne
     have hsub : XClass W x₁ - XClass W x₂ = algebraMap F W.CoordinateRing (x₂ - x₁) := by
       rw [XClass, XClass, ← map_sub, algebraMap_eq_mk_C_C]
-      congr 1
-      rw [← map_sub]
-      congr 1
-      rw [map_sub]
-      ring
+      grind
     have hmem := (XYIdeal W x₂ (C y₂)).sub_mem hX₁ hX₂
     rw [hsub] at hmem
     exact Ideal.eq_top_of_isUnit_mem _ hmem
@@ -749,9 +736,7 @@ theorem eq_of_XYIdeal_eq {x₁ y₁ x₂ y₂ : F} (h₂ : W.Equation x₂ y₂)
     apply hne
     have hsub : YClass W (C y₁) - YClass W (C y₂) = algebraMap F W.CoordinateRing (y₂ - y₁) := by
       rw [YClass, YClass, ← map_sub, algebraMap_eq_mk_C_C]
-      congr 1
-      simp only [map_sub]
-      ring
+      grind
     have hmem := (XYIdeal W x₂ (C y₂)).sub_mem hY₁ hY₂
     rw [hsub] at hmem
     exact Ideal.eq_top_of_isUnit_mem _ hmem
@@ -876,15 +861,13 @@ theorem isFinitePlace_iff_exists_placeOfEquation [IsAlgClosed F]
     have hSP : A.ofPrime (A.idealOfLE v.toValuationSubring hle) = v.toValuationSubring :=
       ValuationSubring.ofPrime_idealOfLE A v.toValuationSubring hle
     rcases eq_or_ne (A.idealOfLE v.toValuationSubring hle) ⊥ with hP | hP
-    ·
-      exfalso
+    · exfalso
       apply v.ne_top'
       have h2 : A.ofPrime ⊥ ≤ A.ofPrime (A.idealOfLE v.toValuationSubring hle) :=
         ValuationSubring.ofPrime_le_of_le (h := hP.le)
       rw [ValuationSubring.ofPrime_bot] at h2
       exact top_le_iff.mp (le_trans h2 hSP.le)
-    ·
-      have hPmax : (A.idealOfLE v.toValuationSubring hle).IsMaximal :=
+    · have hPmax : (A.idealOfLE v.toValuationSubring hle).IsMaximal :=
         Ideal.IsPrime.isMaximal inferInstance hP
       have hPeq : A.idealOfLE v.toValuationSubring hle = IsLocalRing.maximalIdeal A :=
         IsLocalRing.eq_maximalIdeal hPmax
@@ -903,15 +886,10 @@ theorem isFinitePlace_iff_exists_placeOfEquation [IsAlgClosed F]
     exact isFinitePlace_placeOfEquation h
 
 variable (W) in
-
 class InfinitePlace : Type _ where
-
   place : AlgebraicCurve.Place F W.FunctionField
-
   not_isFinitePlace : ¬ IsFinitePlace place
-
   deg_eq_one : place.deg = 1
-
   eq_of_not_isFinitePlace : ∀ v : AlgebraicCurve.Place F W.FunctionField,
     ¬ IsFinitePlace v → v = place
 
@@ -934,25 +912,11 @@ theorem deg_geomPlaceOfPoint [InfinitePlace W] (P : W.Point) : (geomPlaceOfPoint
 
 theorem geomPlaceOfPoint_injective [InfinitePlace W] :
     Function.Injective (geomPlaceOfPoint (W := W)) := by
-  intro P Q h
-  cases P with
-  | zero => cases Q with
-    | zero => rfl
-    | some xQ yQ hQ =>
-        rw [geomPlaceOfPoint_zero, geomPlaceOfPoint_some] at h
-        exact absurd (h ▸ InfinitePlace.not_isFinitePlace) (not_not.mpr
-          (isFinitePlace_placeOfEquation hQ.left))
-  | some xP yP hP => cases Q with
-    | zero =>
-        rw [geomPlaceOfPoint_some, geomPlaceOfPoint_zero] at h
-        exact absurd (h ▸ isFinitePlace_placeOfEquation hP.left)
-          InfinitePlace.not_isFinitePlace
-    | some xQ yQ hQ =>
-        rw [geomPlaceOfPoint_some, geomPlaceOfPoint_some] at h
-        obtain ⟨hx, hy⟩ := placeOfEquation_injective hP.left hQ.left h
-        subst hx
-        subst hy
-        rfl
+  intro P Q
+  cases P <;>
+  cases Q <;>
+  grind [geomPlaceOfPoint_zero, geomPlaceOfPoint_some, InfinitePlace.not_isFinitePlace,
+    isFinitePlace_placeOfEquation, placeOfEquation_injective]
 
 theorem geomPlaceOfPoint_surjective [InfinitePlace W] [IsAlgClosed F] (hΔ : W.Δ ≠ 0) :
     Function.Surjective (geomPlaceOfPoint (W := W)) := by
@@ -995,7 +959,6 @@ variable {F : Type u} [Field F] [DecidableEq F] {W : Affine F}
 variable [IsAlgClosed F] [W.IsElliptic] [InfinitePlace W]
 
 omit [DecidableEq F] [IsAlgClosed F] [InfinitePlace W] in
-
 theorem isElliptic_Δ_ne_zero : W.Δ ≠ 0 := W.coe_Δ' ▸ W.Δ'.ne_zero
 
 def geomPointEquivPlace : W.Point ≃ AlgebraicCurve.Place F W.FunctionField :=
@@ -1084,7 +1047,8 @@ private theorem _root_.AlgebraicCurve.Place.min_ord_le_ord_add {f g : F} (hfg : 
 
 p2m_export "AlgebraicCurve.Place" "min_ord_le_ord_add"
 
-private theorem _root_.AlgebraicCurve.Place.ord_add_eq_min {f g : F} (hf : f ≠ 0) (hg : g ≠ 0) (h : v.ord f ≠ v.ord g) :
+private theorem _root_.AlgebraicCurve.Place.ord_add_eq_min {f g : F} (hf : f ≠ 0) (hg : g ≠ 0)
+    (h : v.ord f ≠ v.ord g) :
     v.ord (f + g) = min (v.ord f) (v.ord g) := by
   have hval : v.adicValuation f ≠ v.adicValuation g := by
     intro hcon
@@ -1100,8 +1064,7 @@ private theorem _root_.AlgebraicCurve.Place.ord_add_eq_min {f g : F} (hf : f ≠
     · exact v.adicValuation_ne_zero hg h1.symm
   rcases max_cases (v.adicValuation f) (v.adicValuation g) with ⟨hmax, hle⟩ | ⟨hmax, hlt⟩ <;>
     rw [hmax] at h1
-  ·
-    have hlog := (WithZero.log_le_log (v.adicValuation_ne_zero hg)
+  · have hlog := (WithZero.log_le_log (v.adicValuation_ne_zero hg)
       (v.adicValuation_ne_zero hf)).mpr hle
     have h2 : v.ord (f + g) = v.ord f := by simp only [ord, h1]
     simp only [ord] at hlog h2 ⊢
@@ -1152,11 +1115,9 @@ private theorem _root_.AlgebraicCurve.Place.ord_ringHom_eq_natDegree_mul {φ : K
     intro hp
     subst hd
     rcases eq_or_ne p.eraseLead 0 with he | he
-    ·
-      conv_lhs => rw [← p.eraseLead_add_C_mul_X_pow, he, zero_add]
+    · conv_lhs => rw [← p.eraseLead_add_C_mul_X_pow, he, zero_add]
       exact hmono _ _ (leadingCoeff_ne_zero.mpr hp)
-    ·
-      have hlt : p.eraseLead.natDegree < p.natDegree := by
+    · have hlt : p.eraseLead.natDegree < p.natDegree := by
         rcases p.eraseLead_natDegree_lt_or_eraseLead_eq_zero with h | h
         · exact h
         · exact absurd h he
@@ -1323,17 +1284,14 @@ theorem isFinitePlace_of_mem
     rw [map_mul, algebraMap_smul_basis, _root_.map_neg, neg_mul, ← sub_eq_add_neg] at h2
     exact h2
   have hy : η ∈ v.toValuationSubring := by
-
     refine v.mem_of_eval_monic_eq_zero (P := Polynomial.X ^ 2
       + (Polynomial.C (polyToFunctionField W c₁) * Polynomial.X
         - Polynomial.C (polyToFunctionField W cb))) ?_ ?_ (x := η) ?_
-    ·
-      refine Polynomial.monic_X_pow_add (n := 2) ?_
+    · refine Polynomial.monic_X_pow_add (n := 2) ?_
       rw [sub_eq_add_neg, ← Polynomial.C_neg]
       refine lt_of_le_of_lt Polynomial.degree_linear_le ?_
       exact_mod_cast Nat.one_lt_two
-    ·
-      intro i
+    · intro i
       rw [show (Polynomial.C (polyToFunctionField W c₁) * Polynomial.X : Polynomial _)
           = Polynomial.C (polyToFunctionField W c₁) * Polynomial.X ^ 1 by ring]
       simp only [Polynomial.coeff_add, Polynomial.coeff_sub, Polynomial.coeff_X_pow,
@@ -1346,8 +1304,7 @@ theorem isFinitePlace_of_mem
       · split
         · exact hpoly _
         · exact v.toValuationSubring.zero_mem
-    ·
-      simp only [Polynomial.eval_add, Polynomial.eval_sub, Polynomial.eval_pow,
+    · simp only [Polynomial.eval_add, Polynomial.eval_sub, Polynomial.eval_pow,
         Polynomial.eval_mul, Polynomial.eval_C, Polynomial.eval_X]
       rw [sq]
       linear_combination hrel
@@ -1372,7 +1329,6 @@ theorem two_mul_ord_Y_eq_three_mul_ord_X (hv : ¬ IsFinitePlace v) :
   have hη0 : η ≠ 0 := Y_image_ne_zero
   set c₁ : F[X] := C W.a₁ * X + C W.a₃ with hc₁def
   set cb : F[X] := X ^ 3 + C W.a₂ * X ^ 2 + C W.a₄ * X + C W.a₆ with hcbdef
-
   have hrel : η * η = polyToFunctionField W cb - polyToFunctionField W c₁ * η := by
     have h1 := smul_basis_mul_Y (W' := W) 0 1
     rw [zero_smul, zero_add, one_smul, one_mul, one_mul, zero_sub] at h1
@@ -1382,7 +1338,6 @@ theorem two_mul_ord_Y_eq_three_mul_ord_X (hv : ¬ IsFinitePlace v) :
   have hrelL : (η + polyToFunctionField W c₁) * η = polyToFunctionField W cb := by
     rw [add_mul]
     linear_combination hrel
-
   have hcbdeg : cb.natDegree = 3 := by
     rw [hcbdef, ← one_mul (X ^ 3 : F[X]), ← C_1]
     exact Polynomial.natDegree_cubic one_ne_zero
@@ -1395,7 +1350,6 @@ theorem two_mul_ord_Y_eq_three_mul_ord_X (hv : ¬ IsFinitePlace v) :
       hcb0, hcbdeg]
     push_cast
     ring
-
   have hc₁ord : (1 : ℤ) * v.ord (polyToFunctionField W X)
       ≤ v.ord (polyToFunctionField W c₁) := by
     refine v.le_ord_ringHom_of_natDegree_le polyToFunctionField_injective polyToFunctionField_C
@@ -1405,48 +1359,29 @@ theorem two_mul_ord_Y_eq_three_mul_ord_X (hv : ¬ IsFinitePlace v) :
     simp only [Polynomial.natDegree_C, max_le_iff]
     refine ⟨le_trans (Polynomial.natDegree_C_mul_le _ _) (by simp), by omega⟩
   rw [one_mul] at hc₁ord
-
   have hfac0 : η + polyToFunctionField W c₁ ≠ 0 := by
     intro h
     rw [h, zero_mul] at hrelL
     exact polyToFunctionField_ne_zero hcb0 hrelL.symm
-
   have hLHS : v.ord (η + polyToFunctionField W c₁) + v.ord η
       = 3 * v.ord (polyToFunctionField W X) := by
     rw [← hcbord, ← hrelL, v.ord_mul hfac0 hη0]
-
   rcases eq_or_ne (polyToFunctionField W c₁) 0 with hc₁0 | hc₁0
-  · rw [hc₁0, add_zero] at hLHS
-    omega
+  · grind
   · by_cases hBc : v.ord η = v.ord (polyToFunctionField W c₁)
-    ·
-
-      exfalso
-      have hmin : min (v.ord η) (v.ord (polyToFunctionField W c₁))
+    · have hmin : min (v.ord η) (v.ord (polyToFunctionField W c₁))
           ≤ v.ord (η + polyToFunctionField W c₁) := v.min_ord_le_ord_add hfac0
-      rw [← hBc, min_self] at hmin
-      have hBA : v.ord (polyToFunctionField W X) ≤ v.ord η := hBc ▸ hc₁ord
-      omega
+      grind
     · have hsum : v.ord (η + polyToFunctionField W c₁)
           = min (v.ord η) (v.ord (polyToFunctionField W c₁)) :=
         v.ord_add_eq_min hη0 hc₁0 hBc
-      rcases min_cases (v.ord η) (v.ord (polyToFunctionField W c₁)) with
-        ⟨hm, hle⟩ | ⟨hm, hlt⟩ <;> rw [hm] at hsum
-      · rw [hsum] at hLHS
-        omega
-      ·
-
-        exfalso
-        rw [hsum] at hLHS
-        omega
+      grind
 
 private theorem ne_arith {A B s t : ℤ} (hA : A < 0) (hY : 2 * B = 3 * A) :
     s * A ≠ t * A + B := by
   intro hcon
   have h4 : (2 * s - (2 * t + 3)) * A = 0 := by linear_combination 2 * hcon + hY
-  rcases mul_eq_zero.mp h4 with h5 | h5
-  · omega
-  · omega
+  grind [mul_eq_zero.mp h4]
 
 private theorem two_mul_min_arith {A B s t : ℤ} (hA : A < 0) (hY : 2 * B = 3 * A) :
     2 * min (s * A) (t * A + B) = A * max (2 * s) (2 * t + 3) := by
@@ -1466,21 +1401,18 @@ theorem two_mul_ord_eq_of_not_isFinitePlace (hv : ¬ IsFinitePlace v)
   have hYord := two_mul_ord_Y_eq_three_mul_ord_X v hv
   obtain ⟨p, q, rfl⟩ := exists_smul_basis_eq f
   by_cases hq : q = 0
-  ·
-    subst hq
+  · subst hq
     have hp : p ≠ 0 := fun h => hf (by rw [h, zero_smul, zero_smul, add_zero])
     rw [natDegree_norm_smul_basis_left hp, algebraMap_smul_basis, _root_.map_zero, zero_mul, add_zero,
       v.ord_ringHom_eq_natDegree_mul polyToFunctionField_injective polyToFunctionField_C hA hp]
     ring
   · by_cases hp : p = 0
-    ·
-      subst hp
+    · subst hp
       rw [natDegree_norm_smul_basis_right hq, algebraMap_smul_basis, _root_.map_zero, zero_add,
         v.ord_mul (polyToFunctionField_ne_zero hq) hη0,
         v.ord_ringHom_eq_natDegree_mul polyToFunctionField_injective polyToFunctionField_C hA hq]
       linear_combination hYord
-    ·
-      rw [natDegree_norm_smul_basis_max hp hq, algebraMap_smul_basis]
+    · rw [natDegree_norm_smul_basis_max hp hq, algebraMap_smul_basis]
       have hordp : v.ord (polyToFunctionField W p)
           = (p.natDegree : ℤ) * v.ord (polyToFunctionField W X) :=
         v.ord_ringHom_eq_natDegree_mul polyToFunctionField_injective polyToFunctionField_C hA hp
@@ -1491,7 +1423,6 @@ theorem two_mul_ord_eq_of_not_isFinitePlace (hv : ¬ IsFinitePlace v)
         rw [v.ord_mul (polyToFunctionField_ne_zero hq) hη0,
           v.ord_ringHom_eq_natDegree_mul polyToFunctionField_injective polyToFunctionField_C hA
             hq]
-
       have hne : v.ord (polyToFunctionField W p) ≠ v.ord (polyToFunctionField W q
           * algebraMap W.CoordinateRing W.FunctionField (CoordinateRing.mk W Y)) := by
         rw [hordp, hordqy]
@@ -1546,37 +1477,28 @@ theorem exists_smul_sub_natDegree_norm_lt {a b : W.CoordinateRing} (hb : b ≠ 0
     ∃ c : F, a - c • b = 0 ∨
       (Algebra.norm F[X] (a - c • b)).natDegree < (Algebra.norm F[X] b).natDegree := by
   set n := (Algebra.norm F[X] b).natDegree with hndef
-
   have hbn : b ∈ RRSpace W n :=
     mem_RRSpace_iff_degree_norm_le.mpr (Polynomial.natDegree_le_iff_degree_le.mp le_rfl)
   have han : a ∈ RRSpace W n :=
     mem_RRSpace_iff_degree_norm_le.mpr (Polynomial.natDegree_le_iff_degree_le.mp hab)
-
   rcases Nat.eq_zero_or_pos n with hn0 | hnpos
   · rw [hn0] at hbn han
     rw [RRSpace_zero] at hbn han
     obtain ⟨α, hα⟩ := Submodule.mem_one.mp han
     obtain ⟨β, hβ⟩ := Submodule.mem_one.mp hbn
-    have hβ0 : β ≠ 0 := by
-      rintro rfl
-      rw [_root_.map_zero] at hβ
-      exact hb hβ.symm
+    have hβ0 : β ≠ 0 := by grind
     refine ⟨α / β, Or.inl ?_⟩
     rw [← hα, ← hβ, Algebra.smul_def, ← map_mul, div_mul_cancel₀ _ hβ0, sub_self]
-
   rcases eq_or_ne n 1 with hn1 | hn1
   · exact absurd (hndef.symm.trans hn1) (natDegree_norm_ne_one b)
-
   have hn2 : 2 ≤ n := by omega
   have hn1' : 1 ≤ n - 1 := by omega
   have : FiniteDimensional F (RRSpace W n) :=
     Module.Finite.of_basis (RRSpace.finBasis W n (by omega))
-
   have hbnot : b ∉ RRSpace W (n - 1) := by
     intro hcon
     rw [mem_RRSpace_iff_degree_norm_le, ← Polynomial.natDegree_le_iff_degree_le] at hcon
     omega
-
   have hsup : RRSpace W (n - 1) ⊔ Submodule.span F {b} = RRSpace W n := by
     have hle : RRSpace W (n - 1) ⊔ Submodule.span F {b} ≤ RRSpace W n := by
       refine sup_le (RRSpace_mono (by omega)) ?_
@@ -1595,7 +1517,6 @@ theorem exists_smul_sub_natDegree_norm_lt {a b : W.CoordinateRing} (hb : b ≠ 0
     rw [RRSpace.finrank_eq (n - 1) hn1'] at h1
     rw [RRSpace.finrank_eq n (by omega)]
     omega
-
   obtain ⟨ℓ, hℓ, z, hz, hsum⟩ := Submodule.mem_sup.mp (hsup ▸ han)
   obtain ⟨c, rfl⟩ := Submodule.mem_span_singleton.mp hz
   refine ⟨c, ?_⟩
@@ -1654,8 +1575,7 @@ theorem deg_eq_one_of_not_isFinitePlace (hv : ¬ IsFinitePlace v) : v.deg = 1 :=
       map_mul, ← IsScalarTower.algebraMap_apply F W.CoordinateRing W.FunctionField]
 
   rcases eq_or_ne (a - c • b) 0 with hzero | hzero
-  ·
-    have h1 : c • b - a = 0 := by rw [← neg_sub a (c • b), hzero, _root_.neg_zero]
+  · have h1 : c • b - a = 0 := by rw [← neg_sub a (c • b), hzero, _root_.neg_zero]
     have h2 : (algebraMap F v.toValuationSubring c - g : v.toValuationSubring)
         = (0 : v.toValuationSubring) := by
       ext
@@ -1663,8 +1583,7 @@ theorem deg_eq_one_of_not_isFinitePlace (hv : ¬ IsFinitePlace v) : v.deg = 1 :=
       rfl
     rw [h2]
     exact (IsLocalRing.maximalIdeal v.toValuationSubring).zero_mem
-  ·
-    replace hc : (Algebra.norm F[X] (a - c • b)).natDegree
+  · replace hc : (Algebra.norm F[X] (a - c • b)).natDegree
         < (Algebra.norm F[X] b).natDegree := hc.resolve_left hzero
     have hsub0 : c • b - a ≠ 0 := fun h =>
       hzero (by rw [show a - c • b = -(c • b - a) by ring, h, _root_.neg_zero])
@@ -1774,7 +1693,6 @@ theorem exists_not_isFinitePlace [IsAlgClosed F] [IsDedekindDomain W.CoordinateR
   omega
 
 variable (W) in
-
 scoped instance instInfinitePlace [IsAlgClosed F] [IsDedekindDomain W.CoordinateRing]
     [AlgebraicCurve.HasPrincipalDivisors F W.FunctionField] : InfinitePlace W where
   place := (exists_not_isFinitePlace (W := W)).choose
@@ -1897,14 +1815,11 @@ variable [IsAlgClosed F] [W.IsElliptic] [InfinitePlace W]
 p2m_open "WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing AlgebraicCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.AlgebraicCurve"
 
 omit [DecidableEq F] [InfinitePlace W] in
-
 theorem isFinitePlace_ofHeightOneSpectrum (w : HeightOneSpectrum W.CoordinateRing) :
-    IsFinitePlace (W := W)
-      (AlgebraicCurve.Place.ofHeightOneSpectrum (K := F) (F := W.FunctionField) w) := fun r =>
-  w.valuation_le_one r
+    IsFinitePlace (AlgebraicCurve.Place.ofHeightOneSpectrum (F := W.FunctionField) w) :=
+  w.valuation_le_one
 
 omit [DecidableEq F] in
-
 theorem infinitePlace_ne_ofHeightOneSpectrum (w : HeightOneSpectrum W.CoordinateRing) :
     (InfinitePlace.place : AlgebraicCurve.Place F W.FunctionField)
       ≠ AlgebraicCurve.Place.ofHeightOneSpectrum (K := F) w := fun h =>
@@ -1914,17 +1829,16 @@ def unitIdealOfPoint : W.Point → (FractionalIdeal W.CoordinateRing⁰ W.Functi
   | .zero => 1
   | .some _ _ h => CoordinateRing.XYIdeal' h
 
-omit [DecidableEq F] [InfinitePlace W] in
+omit [DecidableEq F] [InfinitePlace W] [IsAlgClosed F] [WeierstrassCurve.IsElliptic W] in
 @[scoped simp]
 theorem unitIdealOfPoint_zero : unitIdealOfPoint (.zero : W.Point) = 1 := rfl
 
-omit [DecidableEq F] [InfinitePlace W] in
+omit [DecidableEq F] [InfinitePlace W] [IsAlgClosed F] [WeierstrassCurve.IsElliptic W] in
 @[scoped simp]
 theorem unitIdealOfPoint_some {x y : F} (h : W.Nonsingular x y) :
     unitIdealOfPoint (.some x y h) = CoordinateRing.XYIdeal' h := rfl
 
-omit [InfinitePlace W] in
-
+omit [InfinitePlace W] [IsAlgClosed F] [WeierstrassCurve.IsElliptic W] in
 theorem classGroup_mk_unitIdealOfPoint (P : W.Point) :
     ClassGroup.mk (K := W.FunctionField) (unitIdealOfPoint P) = Additive.toMul (Point.toClass P) := by
   cases P with
@@ -1952,7 +1866,8 @@ theorem unitIdealOfDivisor_single (v : AlgebraicCurve.Place F W.FunctionField) (
   Finsupp.prod_single_index (zpow_zero _)
 
 theorem classGroup_mk_unitIdealOfDivisor (D : AlgebraicCurve.Divisor F W.FunctionField) :
-    ClassGroup.mk (K := W.FunctionField) (unitIdealOfDivisor D) = Additive.toMul (Point.toClass (geomDivisorSum D)) := by
+    ClassGroup.mk (K := W.FunctionField) (unitIdealOfDivisor D) =
+      Additive.toMul (Point.toClass (geomDivisorSum D)) := by
   induction D using Finsupp.induction with
   | zero =>
       rw [unitIdealOfDivisor_zero, map_one, _root_.map_zero, _root_.map_zero]
@@ -1963,7 +1878,6 @@ theorem classGroup_mk_unitIdealOfDivisor (D : AlgebraicCurve.Divisor F W.Functio
         map_zsmul, toMul_zsmul]
 
 omit [DecidableEq F] in
-
 theorem count_unitIdealOfDivisor (D : AlgebraicCurve.Divisor F W.FunctionField)
     (w : HeightOneSpectrum W.CoordinateRing) :
     FractionalIdeal.count W.FunctionField w (unitIdealOfDivisor D : _) =
@@ -2110,7 +2024,6 @@ theorem algebraMap_polynomial_injective :
   exact polyToFunctionField_injective
 
 variable (W) in
-
 def ratFuncToFunctionField : RatFunc F →+* W.FunctionField :=
   IsFractionRing.lift algebraMap_polynomial_injective
 
@@ -2134,12 +2047,10 @@ scoped instance : IsScalarTower F (RatFunc F) W.FunctionField := by
   exact (polyToFunctionField_C c).symm
 
 variable (W) in
-
 def yCoord : W.FunctionField :=
   algebraMap W.CoordinateRing W.FunctionField (CoordinateRing.mk W Y)
 
 variable (W) in
-
 def weierstrassQuadratic : Polynomial (RatFunc F) :=
   X ^ 2 + (C (algebraMap F[X] (RatFunc F) (C W.a₁ * X + C W.a₃)) * X
     - C (algebraMap F[X] (RatFunc F) (X ^ 3 + C W.a₂ * X ^ 2 + C W.a₄ * X + C W.a₆)))
@@ -2242,7 +2153,11 @@ end
 p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
 
 universe u in
-open _root_.WeierstrassCurve _root_.P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve _root_.WeierstrassCurve.Affine _root_.P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine _root_.AlgebraicCurve _root_.P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.AlgebraicCurve in
+open _root_.WeierstrassCurve _root_.WeierstrassCurve.Affine
+  _root_.P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve
+  _root_.P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine
+  _root_.AlgebraicCurve _root_.P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.AlgebraicCurve
+  in
 theorem solution
     {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] {W : WeierstrassCurve.Affine F} [W.IsElliptic]
     [IsDedekindDomain W.CoordinateRing] [AlgebraicCurve.HasPrincipalDivisors F W.FunctionField] :

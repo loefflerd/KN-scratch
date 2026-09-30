@@ -70,7 +70,7 @@ def degreeZeroCocycleHom (N : ℕ) (c : parabolicCocycles N 0) :
     rw [((mem_parabolicCocycles_iff _).mp c.property).1, degreeZero_action]
     change AddMonoidAlgebra.coeff ((c.val (Additive.toMul h)).val +
       (c.val (Additive.toMul g)).val) 0 = _
-    rw [MvPolynomial.coeff_add, add_comm]
+    rw [AddMonoidAlgebra.coeff_add, Finsupp.add_apply, add_comm]
 
 theorem degreeZeroCocycleHom_parabolic (N : ℕ) (c : parabolicCocycles N 0) :
     ModularCurve.Period.IsParabolicHom (CongruenceSubgroup.Gamma1 N)
@@ -90,7 +90,7 @@ def degreeZeroToScalarParabolic (N : ℕ) : parabolicCocycles N 0 →ₗ[ℂ]
     apply Subtype.ext
     apply AddMonoidHom.ext
     intro g
-    exact MvPolynomial.coeff_add _ _ _
+    exact DFunLike.congr_fun (AddMonoidAlgebra.coeff_add _ _) 0
   map_smul' a c := by
     apply Subtype.ext
     apply AddMonoidHom.ext
