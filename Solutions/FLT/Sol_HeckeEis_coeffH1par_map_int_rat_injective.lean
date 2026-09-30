@@ -38,26 +38,26 @@ theorem map_binarySubst_int (φ : ℤ →+* R) (M : Matrix (Fin 2) (Fin 2) ℤ) 
   exact RingHom.congr_fun key P
 
 def substCoeff (M : Matrix (Fin 2) (Fin 2) ℤ) (d d' : Fin 2 →₀ ℕ) : ℤ :=
-  coeff d (binarySubst ℤ M (monomial d' 1))
+  AddMonoidAlgebra.coeff (binarySubst ℤ M (monomial d' 1)) d
 
 theorem binarySubst_monomial_one (M : Matrix (Fin 2) (Fin 2) ℤ) (d' : Fin 2 →₀ ℕ) :
     binarySubst R M (monomial d' 1) = MvPolynomial.map (Int.castRingHom R) (binarySubst ℤ M (monomial d' 1)) := by
   rw [map_binarySubst_int, map_monomial, (Int.castRingHom R).map_one]
 
 theorem coeff_binarySubst (M : Matrix (Fin 2) (Fin 2) ℤ) (P : MvPolynomial (Fin 2) R) (d : Fin 2 →₀ ℕ) :
-    coeff d (binarySubst R M P) = ∑ d' ∈ P.support, (substCoeff M d d' : R) * coeff d' P := by
+    AddMonoidAlgebra.coeff (binarySubst R M P) d = ∑ d' ∈ P.support, (substCoeff M d d' : R) * AddMonoidAlgebra.coeff P d' := by
   conv_lhs => rw [P.as_sum, map_sum, coeff_sum]
   refine Finset.sum_congr rfl fun d' _ => ?_
-  rw [show monomial d' (coeff d' P) = C (coeff d' P) * monomial d' 1 by rw [C_mul_monomial, mul_one], map_mul, binarySubst_C,
+  rw [show monomial d' (AddMonoidAlgebra.coeff P d') = C (AddMonoidAlgebra.coeff P d') * monomial d' 1 by rw [C_mul_monomial, mul_one], map_mul, binarySubst_C,
     coeff_C_mul, binarySubst_monomial_one, coeff_map, substCoeff, mul_comm]
   rfl
 
 variable (f : R →+ R')
 
 def pushCoeff (P : MvPolynomial (Fin 2) R) : MvPolynomial (Fin 2) R' :=
-  ∑ d ∈ P.support, monomial d (f (coeff d P))
+  ∑ d ∈ P.support, monomial d (f (AddMonoidAlgebra.coeff P d))
 
-@[scoped simp] theorem coeff_pushCoeff (P : MvPolynomial (Fin 2) R) (d : Fin 2 →₀ ℕ) : coeff d (pushCoeff f P) = f (coeff d P) := by
+@[scoped simp] theorem coeff_pushCoeff (P : MvPolynomial (Fin 2) R) (d : Fin 2 →₀ ℕ) : AddMonoidAlgebra.coeff (pushCoeff f P) d = f (AddMonoidAlgebra.coeff P d) := by
   classical
   rw [pushCoeff, coeff_sum]
   simp only [coeff_monomial]
@@ -87,7 +87,7 @@ theorem pushCoeff_zero : pushCoeff f (0 : MvPolynomial (Fin 2) R) = 0 := by
   ext d; simp
 
 theorem eq_pushCoeff_iff (P : MvPolynomial (Fin 2) R) (Q : MvPolynomial (Fin 2) R') :
-    Q = pushCoeff f P ↔ ∀ d, coeff d Q = f (coeff d P) := by
+    Q = pushCoeff f P ↔ ∀ d, AddMonoidAlgebra.coeff Q d = f (AddMonoidAlgebra.coeff P d) := by
   constructor
   · rintro rfl d; exact coeff_pushCoeff f P d
   · intro h; ext d; rw [h d, coeff_pushCoeff]
@@ -264,18 +264,18 @@ theorem exists_common_den (s : Finset ℚ) : ∃ D : ℤ, D ≠ 0 ∧ ∀ x ∈ 
     push_cast
     rw [mul_comm ((x.den : ℚ)) _, mul_assoc, Rat.den_mul_eq_num]
 
-def IsInt (P : MvPolynomial (Fin 2) ℚ) : Prop := ∀ d, ∃ m : ℤ, coeff d P = m
+def IsInt (P : MvPolynomial (Fin 2) ℚ) : Prop := ∀ d, ∃ m : ℤ, AddMonoidAlgebra.coeff P d = m
 
 theorem IsInt.zero : IsInt 0 := fun d => ⟨0, by simp⟩
 theorem IsInt.add {P Q : MvPolynomial (Fin 2) ℚ} (hP : IsInt P) (hQ : IsInt Q) : IsInt (P + Q) := fun d => by
-  obtain ⟨a, ha⟩ := hP d; obtain ⟨b, hb⟩ := hQ d; exact ⟨a + b, by rw [coeff_add, ha, hb]; push_cast; rfl⟩
+  obtain ⟨a, ha⟩ := hP d; obtain ⟨b, hb⟩ := hQ d; exact ⟨a + b, by rw [AddMonoidAlgebra.coeff_add, Finsupp.add_apply, ha, hb]; push_cast; rfl⟩
 theorem IsInt.neg {P : MvPolynomial (Fin 2) ℚ} (hP : IsInt P) : IsInt (-P) := fun d => by
   obtain ⟨a, ha⟩ := hP d; exact ⟨-a, by rw [coeff_neg, ha]; push_cast; rfl⟩
 theorem IsInt.zsmul {P : MvPolynomial (Fin 2) ℚ} (hP : IsInt P) (m : ℤ) : IsInt (m • P) := fun d => by
   obtain ⟨a, ha⟩ := hP d
   exact ⟨m * a, by rw [← Int.cast_smul_eq_zsmul ℚ m P, coeff_smul, ha, smul_eq_mul]; push_cast; rfl⟩
 theorem IsInt.map (P : MvPolynomial (Fin 2) ℤ) : IsInt (MvPolynomial.map (Int.castRingHom ℚ) P) := fun d =>
-  ⟨coeff d P, by rw [coeff_map]; rfl⟩
+  ⟨AddMonoidAlgebra.coeff P d, by rw [coeff_map]; rfl⟩
 
 theorem IsInt.binarySubst {P : MvPolynomial (Fin 2) ℚ} (hP : IsInt P) (M : Matrix (Fin 2) (Fin 2) ℤ) :
     IsInt (HeckeEis.binarySubst ℚ M P) := by
@@ -287,9 +287,9 @@ theorem IsInt.binarySubst {P : MvPolynomial (Fin 2) ℚ} (hP : IsInt P) (M : Mat
   push_cast
   exact Finset.sum_congr rfl fun d' _ => by rw [hm d']
 
-def intModel (P : MvPolynomial (Fin 2) ℚ) : MvPolynomial (Fin 2) ℤ := ∑ d ∈ P.support, monomial d (coeff d P).num
+def intModel (P : MvPolynomial (Fin 2) ℚ) : MvPolynomial (Fin 2) ℤ := ∑ d ∈ P.support, monomial d (AddMonoidAlgebra.coeff P d).num
 
-theorem coeff_intModel (P : MvPolynomial (Fin 2) ℚ) (d : Fin 2 →₀ ℕ) : coeff d (intModel P) = (coeff d P).num := by
+theorem coeff_intModel (P : MvPolynomial (Fin 2) ℚ) (d : Fin 2 →₀ ℕ) : AddMonoidAlgebra.coeff (intModel P) d = (AddMonoidAlgebra.coeff P d).num := by
   classical
   rw [intModel, coeff_sum]
   simp only [coeff_monomial]
@@ -315,7 +315,7 @@ theorem intModel_mem (n : ℕ) {P : MvPolynomial (Fin 2) ℚ} (hP : P ∈ Binary
 
 theorem exists_isInt_zsmul (P : MvPolynomial (Fin 2) ℚ) : ∃ D : ℤ, D ≠ 0 ∧ IsInt (D • P) := by
   classical
-  obtain ⟨D, hD, h⟩ := exists_common_den (P.support.image fun d => coeff d P)
+  obtain ⟨D, hD, h⟩ := exists_common_den (P.support.image fun d => AddMonoidAlgebra.coeff P d)
   refine ⟨D, hD, fun d => ?_⟩
   by_cases hd : d ∈ P.support
   · obtain ⟨m, hm⟩ := h _ (Finset.mem_image_of_mem _ hd)
@@ -325,7 +325,7 @@ theorem exists_isInt_zsmul (P : MvPolynomial (Fin 2) ℚ) : ∃ D : ℤ, D ≠ 0
 theorem exists_isInt_zsmul_family {ι : Type*} (s : Finset ι) (P : ι → MvPolynomial (Fin 2) ℚ) :
     ∃ D : ℤ, D ≠ 0 ∧ ∀ i ∈ s, IsInt (D • P i) := by
   classical
-  obtain ⟨D, hD, h⟩ := exists_common_den (s.biUnion fun i => (P i).support.image fun d => coeff d (P i))
+  obtain ⟨D, hD, h⟩ := exists_common_den (s.biUnion fun i => (P i).support.image fun d => AddMonoidAlgebra.coeff (P i) d)
   refine ⟨D, hD, fun i hi d => ?_⟩
   by_cases hd : d ∈ (P i).support
   · obtain ⟨m, hm⟩ := h _ (Finset.mem_biUnion.mpr ⟨i, hi, Finset.mem_image_of_mem _ hd⟩)
@@ -338,7 +338,7 @@ theorem pushForm_ι_injective (n : ℕ) : Function.Injective (pushForm ιZQ n : 
   intro P Q h
   apply Subtype.ext
   ext d
-  have := congrArg (fun S : ↥(BinaryForm ℚ n) => coeff d (S : MvPolynomial (Fin 2) ℚ)) h
+  have := congrArg (fun S : ↥(BinaryForm ℚ n) => AddMonoidAlgebra.coeff (S : MvPolynomial (Fin 2) ℚ) d) h
   simp only [coe_pushForm, coeff_pushCoeff] at this
   exact Int.cast_injective this
 

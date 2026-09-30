@@ -2973,8 +2973,9 @@ theorem translationCoordHom_injective : Function.Injective (translationCoordHom 
   have hker : RingHom.ker (translationCoordHom hA).toRingHom = ⊥ := by
     have : Module.Finite F[X] W.CoordinateRing :=
       Module.Finite.of_basis (CoordinateRing.basis W)
-    refine Ideal.eq_bot_of_comap_eq_bot (R := F[X]) ?_
-    rw [RingHom.comap_ker, translationCoordHom_comp_algebraMap, ← RingHom.injective_iff_ker_eq_bot]
+    refine Ideal.eq_bot_of_under_eq_bot (R := F[X]) ?_
+    rw [Ideal.under_def, RingHom.comap_ker, translationCoordHom_comp_algebraMap,
+      ← RingHom.injective_iff_ker_eq_bot]
     exact (injective_iff_map_eq_zero _).mpr fun p hp => transcendental_iff.mp htr p hp
   exact (RingHom.injective_iff_ker_eq_bot (translationCoordHom hA).toRingHom).mpr hker
 

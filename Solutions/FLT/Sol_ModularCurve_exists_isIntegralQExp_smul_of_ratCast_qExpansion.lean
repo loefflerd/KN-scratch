@@ -425,7 +425,7 @@ theorem exists_E1 : ∃ E : ModularForm Γ₁(3) 1,
     have hS : Summable (fun n : ℕ => ((c n : ℤ) : ℂ) • Periodic.qParam 1 z ^ n) := by
       apply Summable.of_norm_bounded (g := fun n : ℕ => (6 * n + 1) * ‖Periodic.qParam 1 z‖ ^ n)
       · have h1 := summable_pow_mul_geometric_of_norm_lt_one 1 (r := ‖Periodic.qParam 1 z‖) (by simpa using hq)
-        have h2 := summable_geometric_of_norm_lt_one (K := ℝ) (by simpa using hq : ‖‖Periodic.qParam 1 z‖‖ < 1)
+        have h2 := summable_geometric_of_norm_lt_one (R := ℝ) (by simpa using hq : ‖‖Periodic.qParam 1 z‖‖ < 1)
         have := (h1.mul_left 6).add h2
         refine this.congr fun n => ?_
         simp only [pow_one]; ring

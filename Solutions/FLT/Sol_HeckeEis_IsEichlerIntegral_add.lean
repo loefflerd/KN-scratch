@@ -30,7 +30,7 @@ private theorem _root_.HeckeEis.SolMain.add {n : ℕ} {f g : ℍ → ℂ} {F G :
   have h := (hF d τ).add (hG d τ)
   simp only [← add_mul] at h
   refine h.congr_of_eventuallyEq (Filter.Eventually.of_forall fun z => ?_)
-  simp only [Pi.add_apply, Submodule.coe_add, coeff_add]
+  simp only [Pi.add_apply, Submodule.coe_add, AddMonoidAlgebra.coeff_add, Finsupp.add_apply]
 
 end SolMain
 p2m_export "HeckeEis" "SolMain.add"

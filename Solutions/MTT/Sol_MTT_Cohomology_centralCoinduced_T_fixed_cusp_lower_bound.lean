@@ -434,7 +434,7 @@ def ofLeftCoset : G ⧸ H → Quotient (H : Set G) (K : Set G) :=
     intro a b hab
     change (QuotientGroup.leftRel H) a b at hab
     rw [QuotientGroup.leftRel_apply] at hab
-    apply (eq H K _ _).mpr
+    apply (eq (H := H) (K := K)).mpr
     exact ⟨b⁻¹ * a, by simpa using H.inv_mem hab, 1, K.one_mem, by simp⟩)
 
 theorem ofLeftCoset_smul {g : G} (hg : g ∈ K) (x : G ⧸ H) :
@@ -443,7 +443,7 @@ theorem ofLeftCoset_smul {g : G} (hg : g ∈ K) (x : G ⧸ H) :
   | h a =>
       change mk H K (g * a)⁻¹ = mk H K a⁻¹
       symm
-      apply (eq H K _ _).mpr
+      apply (eq (H := H) (K := K)).mpr
       exact ⟨1, H.one_mem, g⁻¹, K.inv_mem hg, by simp⟩
 
 def ofLeftCosetOrbit : MulAction.orbitRel.Quotient K (G ⧸ H) →

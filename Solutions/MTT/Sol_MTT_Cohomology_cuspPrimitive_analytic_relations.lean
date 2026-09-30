@@ -201,7 +201,7 @@ lemma law_of_gamma1 {N k : ℕ} (f : CuspForm (GammaOne N) (k : ℤ)) (γ : Gamm
   have h := SlashInvariantFormClass.slash_action_eq f (Matrix.SpecialLinearGroup.mapGL ℝ γ.val)
     (Subgroup.mem_map.mpr ⟨γ.val, γ.2, rfl⟩)
   have hz := congrFun h z
-  rw [slash_mapGL_apply, zpow_neg, zpow_natCast] at hz
+  rw [slash_mapGL_apply, _root_.zpow_neg, zpow_natCast] at hz
   have hd := denom_SL_ne_zero γ.val z
   calc f (Matrix.SpecialLinearGroup.mapGL ℝ γ.val • z)
       = f (Matrix.SpecialLinearGroup.mapGL ℝ γ.val • z) *

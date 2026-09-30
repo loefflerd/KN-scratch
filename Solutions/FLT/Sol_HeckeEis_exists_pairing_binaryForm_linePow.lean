@@ -63,41 +63,42 @@ theorem wt_mul_choose {i : ℕ} (hi : i ≤ n) : wt n i * (n.choose i : ℂ) = (
 
 def rawPairing : MvPolynomial (Fin 2) ℂ →ₗ[ℂ] MvPolynomial (Fin 2) ℂ →ₗ[ℂ] ℂ :=
   LinearMap.mk₂ ℂ
-    (fun P Q => ∑ i ∈ range (n + 1), wt n i * coeff (ex n i) P * coeff (ex n (n - i)) Q)
+    (fun P Q => ∑ i ∈ range (n + 1), wt n i * AddMonoidAlgebra.coeff P (ex n i) * AddMonoidAlgebra.coeff Q (ex n (n - i)))
     (fun P P' Q => by
       rw [← sum_add_distrib]
-      exact sum_congr rfl fun i _ => by rw [coeff_add]; ring)
+      exact sum_congr rfl fun i _ => by rw [AddMonoidAlgebra.coeff_add, Finsupp.add_apply]; ring)
     (fun c P Q => by
       rw [smul_eq_mul, mul_sum]
       exact sum_congr rfl fun i _ => by rw [coeff_smul, smul_eq_mul]; ring)
     (fun P Q Q' => by
       rw [← sum_add_distrib]
-      exact sum_congr rfl fun i _ => by rw [coeff_add]; ring)
+      exact sum_congr rfl fun i _ => by rw [AddMonoidAlgebra.coeff_add, Finsupp.add_apply]; ring)
     (fun c P Q => by
       rw [smul_eq_mul, mul_sum]
       exact sum_congr rfl fun i _ => by rw [coeff_smul, smul_eq_mul]; ring)
 
 @[scoped simp] theorem rawPairing_apply (P Q : MvPolynomial (Fin 2) ℂ) :
-    rawPairing n P Q = ∑ i ∈ range (n + 1), wt n i * coeff (ex n i) P * coeff (ex n (n - i)) Q := rfl
+    rawPairing n P Q = ∑ i ∈ range (n + 1), wt n i * AddMonoidAlgebra.coeff P (ex n i) * AddMonoidAlgebra.coeff Q (ex n (n - i)) := rfl
 
 def pairing : ↥(BinaryForm ℂ n) →ₗ[ℂ] ↥(BinaryForm ℂ n) →ₗ[ℂ] ℂ :=
   (rawPairing n).compl₁₂ (BinaryForm ℂ n).subtype (BinaryForm ℂ n).subtype
 
 theorem pairing_apply (P Q : ↥(BinaryForm ℂ n)) :
     pairing n P Q = ∑ i ∈ range (n + 1),
-      wt n i * coeff (ex n i) (P : MvPolynomial (Fin 2) ℂ) * coeff (ex n (n - i)) (Q : MvPolynomial (Fin 2) ℂ) := rfl
+      wt n i * AddMonoidAlgebra.coeff (P : MvPolynomial (Fin 2) ℂ) (ex n i) * AddMonoidAlgebra.coeff (Q : MvPolynomial (Fin 2) ℂ) (ex n (n - i)) := rfl
 
 theorem linePow_expand (τ : ℂ) :
     ((C τ * X 0 + X 1 : MvPolynomial (Fin 2) ℂ)) ^ n
       = ∑ m ∈ range (n + 1), monomial (ex n m) ((n.choose m : ℂ) * τ ^ m) := by
   rw [(Commute.all (C τ * X 0) (X 1 : MvPolynomial (Fin 2) ℂ)).add_pow]
   refine sum_congr rfl fun m hm => ?_
-  rw [mul_pow, ← map_pow, X_pow_eq_monomial, X_pow_eq_monomial, C_mul_monomial, monomial_mul, ex]
+  rw [mul_pow, ← map_pow, X_pow_eq_monomial, X_pow_eq_monomial, C_mul_monomial,
+    monomial_mul_monomial, ex]
   rw [mul_comm (monomial _ _) ((n.choose m : MvPolynomial (Fin 2) ℂ)), ← C_eq_coe_nat, C_mul_monomial]
   simp only [mul_one]
 
 theorem coeff_linePow {i : ℕ} (hi : i ≤ n) (τ : ℂ) :
-    coeff (ex n i) ((linePow n τ : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) = (n.choose i : ℂ) * τ ^ i := by
+    AddMonoidAlgebra.coeff ((linePow n τ : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) (ex n i) = (n.choose i : ℂ) * τ ^ i := by
   rw [coe_linePow, linePow_expand, coeff_sum]
   rw [sum_eq_single i]
   · rw [coeff_monomial, ite_eq_left rfl]
@@ -132,7 +133,7 @@ theorem monomial_ex_mem {i : ℕ} (hi : i ≤ n) : monomial (ex n i) (1 : ℂ) �
 
 theorem pairing_monomial (P : ↥(BinaryForm ℂ n)) {i : ℕ} (hi : i ≤ n) :
     pairing n P ⟨monomial (ex n (n - i)) 1, monomial_ex_mem n (Nat.sub_le n i)⟩
-      = wt n i * coeff (ex n i) (P : MvPolynomial (Fin 2) ℂ) := by
+      = wt n i * AddMonoidAlgebra.coeff (P : MvPolynomial (Fin 2) ℂ) (ex n i) := by
   rw [pairing_apply, sum_eq_single i]
   · simp
   · intro j hj hji
@@ -144,7 +145,7 @@ theorem pairing_monomial (P : ↥(BinaryForm ℂ n)) {i : ℕ} (hi : i ≤ n) :
   · intro h; exact absurd (mem_range.mpr (Nat.lt_succ_of_le hi)) h
 
 theorem eq_zero_of_pairing_eq_zero (P : ↥(BinaryForm ℂ n)) (h : ∀ Q, pairing n P Q = 0) : P = 0 := by
-  have hc : ∀ i ≤ n, coeff (ex n i) (P : MvPolynomial (Fin 2) ℂ) = 0 := by
+  have hc : ∀ i ≤ n, AddMonoidAlgebra.coeff (P : MvPolynomial (Fin 2) ℂ) (ex n i) = 0 := by
     intro i hi
     have := h ⟨monomial (ex n (n - i)) 1, monomial_ex_mem n (Nat.sub_le n i)⟩
     rw [pairing_monomial n P hi] at this
@@ -152,7 +153,7 @@ theorem eq_zero_of_pairing_eq_zero (P : ↥(BinaryForm ℂ n)) (h : ∀ Q, pairi
   apply Subtype.ext
   show (P : MvPolynomial (Fin 2) ℂ) = 0
   ext d
-  rw [coeff_zero]
+  rw [AddMonoidAlgebra.coeff_zero, Finsupp.zero_apply]
   by_contra hd
   have hP : (P : MvPolynomial (Fin 2) ℂ).IsHomogeneous n := (mem_homogeneousSubmodule n _).mp P.2
   have hdeg : d.degree = n := by

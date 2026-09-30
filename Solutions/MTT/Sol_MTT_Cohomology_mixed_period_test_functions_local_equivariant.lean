@@ -36,7 +36,7 @@ lemma coeff_periodPower (n j : ℕ) (hj : j ≤ n) (z : ℂ) :
             ((n.choose m : ℂ) * z ^ m) := by
       rw [mul_pow, ← MvPolynomial.C_pow, MvPolynomial.X_pow_eq_monomial,
         MvPolynomial.X_pow_eq_monomial, ← map_natCast MvPolynomial.C (n.choose m),
-        MvPolynomial.C_mul_monomial, MvPolynomial.monomial_mul,
+        MvPolynomial.C_mul_monomial, MvPolynomial.monomial_mul_monomial,
         mul_comm (MvPolynomial.monomial _ _) (MvPolynomial.C _), MvPolynomial.C_mul_monomial]
       congr 1
       ring
@@ -125,7 +125,7 @@ lemma coeff_conj_cusp {N k : ℕ}
     (q : CuspForm (MTT.GammaOne N) (k : ℤ)) (n j : ℕ) (hj : j ≤ n) (w : ℂ) :
     AddMonoidAlgebra.coeff (conj ((↑ₕ(fun τ : ℍ => q τ)) w) • periodPower n (conj w)) (binaryExponent n j) =
     conj (AddMonoidAlgebra.coeff (((↑ₕ(fun τ : ℍ => q τ)) w) • periodPower n w) (binaryExponent n j)) := by
-  simp [MvPolynomial.coeff_smul, coeff_periodPower n j hj]
+  simp [coeff_periodPower n j hj]
 
 
 lemma coeff_primitive_contDiff {N k : ℕ}

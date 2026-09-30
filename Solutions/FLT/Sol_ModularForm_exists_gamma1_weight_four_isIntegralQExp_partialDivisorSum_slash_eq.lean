@@ -102,7 +102,8 @@ private theorem eisRc_isIntegralQExp_of_apply_eq (M : ℕ) [NeZero M] (hM : 3 �
     have hqn : ‖Complex.exp (2 * π * Complex.I * τ)‖ < 1 := UpperHalfPlane.norm_exp_two_pi_I_lt_one τ
     have hsum : Summable fun m : ℕ => T m * Complex.exp (2 * π * Complex.I * τ) ^ m := by
       have hg : Summable fun m : ℕ => 2 * ((m : ℝ) ^ 4 * ‖Complex.exp (2 * π * Complex.I * τ)‖ ^ m) :=
-        (summable_pow_mul_geometric_of_norm_lt_one 4 (by rwa [norm_norm])).mul_left 2
+        (summable_pow_mul_geometric_of_norm_lt_one (R := ℝ)
+          (r := ‖Complex.exp (2 * π * Complex.I * τ)‖) 4 (by simpa using hqn)).mul_left 2
       refine Summable.of_norm_bounded hg fun m => ?_
       rw [norm_mul, norm_pow, ← mul_assoc]
       gcongr

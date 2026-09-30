@@ -3375,10 +3375,10 @@ def restrictResidueFieldEquiv (hw : w.restrict F = v) :
 
 theorem inertiaDeg_eq_inertiaDeg_fiberCenter (hw : w.restrict F = v) :
     w.inertiaDeg F =
-      (IsLocalRing.maximalIdeal v.toValuationSubring).inertiaDeg'
-        (fiberCenter F' v hw).asIdeal := by
+      (fiberCenter F' v hw).asIdeal.inertiaDeg v.toValuationSubring := by
   have := fiberCenter_liesOver hw
-  rw [Ideal.inertiaDeg_eq_of_isMaximal]
+  rw [Ideal.inertiaDeg_eq_of_isMaximal (IsLocalRing.maximalIdeal v.toValuationSubring)
+    (fiberCenter F' v hw).asIdeal]
   show Module.finrank (w.restrict F).ResidueField w.ResidueField = _
   refine Algebra.finrank_eq_of_equiv_equiv (restrictResidueFieldEquiv hw)
     (residueFieldEquivQuotientCenter hw).symm ?_
@@ -4886,8 +4886,8 @@ theorem pointPullbackCoordHom_injective {xP yP : W.FunctionField}
   have hker : RingHom.ker (pointPullbackCoordHom h).toRingHom = ⊥ := by
     have : Module.Finite F[X] W.CoordinateRing :=
       Module.Finite.of_basis (CoordinateRing.basis W)
-    refine Ideal.eq_bot_of_comap_eq_bot (R := F[X]) ?_
-    rw [RingHom.comap_ker, pointPullbackCoordHom_comp_algebraMap,
+    refine Ideal.eq_bot_of_under_eq_bot (R := F[X]) ?_
+    rw [Ideal.under_def, RingHom.comap_ker, pointPullbackCoordHom_comp_algebraMap,
       ← RingHom.injective_iff_ker_eq_bot]
     exact hx
   exact (RingHom.injective_iff_ker_eq_bot (pointPullbackCoordHom h).toRingHom).mpr hker

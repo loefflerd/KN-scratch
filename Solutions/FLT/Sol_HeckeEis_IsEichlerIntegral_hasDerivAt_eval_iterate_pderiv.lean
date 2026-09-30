@@ -25,7 +25,7 @@ open scoped MatrixGroups
 variable {K : Type*} [CommRing K]
 
 theorem coeff_pderiv_one (P : MvPolynomial (Fin 2) K) (d : Fin 2 →₀ ℕ) :
-    coeff d (pderiv 1 P) = ((d 1 + 1 : ℕ) : K) * coeff (d + Finsupp.single 1 1) P := by
+    AddMonoidAlgebra.coeff (pderiv 1 P) d = ((d 1 + 1 : ℕ) : K) * AddMonoidAlgebra.coeff P (d + Finsupp.single 1 1) := by
   induction P using MvPolynomial.induction_on' with
   | monomial s a =>
     rw [pderiv_monomial, coeff_monomial, coeff_monomial]
@@ -50,10 +50,10 @@ theorem coeff_pderiv_one (P : MvPolynomial (Fin 2) K) (d : Fin 2 →₀ ℕ) :
         simp [hs1]
       · rfl
   | add p q hp hq =>
-    rw [map_add, coeff_add, coeff_add, hp, hq, mul_add]
+    rw [map_add, AddMonoidAlgebra.coeff_add, Finsupp.add_apply, AddMonoidAlgebra.coeff_add, Finsupp.add_apply, hp, hq, mul_add]
 
 theorem coeff_iterate_pderiv_one (P : MvPolynomial (Fin 2) K) (j : ℕ) (d : Fin 2 →₀ ℕ) :
-    coeff d ((pderiv 1)^[j] P) = ((d 1 + j).descFactorial j : K) * coeff (d + Finsupp.single 1 j) P := by
+    AddMonoidAlgebra.coeff ((pderiv 1)^[j] P) d = ((d 1 + j).descFactorial j : K) * AddMonoidAlgebra.coeff P (d + Finsupp.single 1 j) := by
   induction j generalizing d with
   | zero => simp
   | succ j ih =>
@@ -79,8 +79,8 @@ theorem isHomogeneous_iterate_pderiv {σ : Type*} {P : MvPolynomial σ K} {n : �
 theorem iterate_pderiv_one_eq_zero_of_lt {n : ℕ} {P : MvPolynomial (Fin 2) K} (hP : P.IsHomogeneous n) {i : ℕ}
     (hi : n < i) : (pderiv 1)^[i] P = 0 := by
   ext d
-  rw [coeff_iterate_pderiv_one, coeff_zero]
-  have : coeff (d + Finsupp.single 1 i) P = 0 := by
+  rw [coeff_iterate_pderiv_one, AddMonoidAlgebra.coeff_zero, Finsupp.zero_apply]
+  have : AddMonoidAlgebra.coeff P (d + Finsupp.single 1 i) = 0 := by
     apply hP.coeff_eq_zero
     rw [Finsupp.degree_eq_sum, Fin.sum_univ_two]
     simp only [Finsupp.coe_add, Pi.add_apply, Finsupp.single_eq_same, Finsupp.single_apply]
@@ -101,9 +101,9 @@ theorem eq_ex_of_degree {m : ℕ} {d : Fin 2 →₀ ℕ} (hd : d.degree = m) : d
   · simp
 
 theorem eval_one_eq_sum {m : ℕ} {Q : MvPolynomial (Fin 2) K} (hQ : Q.IsHomogeneous m) (w : K) :
-    eval ![1, w] Q = ∑ k ∈ Finset.range (m + 1), coeff (ex m k) Q * w ^ k := by
+    eval ![1, w] Q = ∑ k ∈ Finset.range (m + 1), AddMonoidAlgebra.coeff Q (ex m k) * w ^ k := by
   classical
-  have hF : ∀ d : Fin 2 →₀ ℕ, coeff d Q * ∏ i, (![1, w] : Fin 2 → K) i ^ d i = coeff d Q * w ^ (d 1) := by
+  have hF : ∀ d : Fin 2 →₀ ℕ, AddMonoidAlgebra.coeff Q d * ∏ i, (![1, w] : Fin 2 → K) i ^ d i = AddMonoidAlgebra.coeff Q d * w ^ (d 1) := by
     intro d
     simp [Fin.prod_univ_two]
   rw [eval_eq', Finset.sum_congr rfl (fun d _ => hF d)]
@@ -111,8 +111,8 @@ theorem eval_one_eq_sum {m : ℕ} {Q : MvPolynomial (Fin 2) K} (hQ : Q.IsHomogen
     intro a _ b _ h
     have := congrArg (fun f => f 1) h
     simpa using this
-  rw [show (∑ k ∈ Finset.range (m + 1), coeff (ex m k) Q * w ^ k)
-      = ∑ d ∈ (Finset.range (m + 1)).image (ex m), coeff d Q * w ^ (d 1) by
+  rw [show (∑ k ∈ Finset.range (m + 1), AddMonoidAlgebra.coeff Q (ex m k) * w ^ k)
+      = ∑ d ∈ (Finset.range (m + 1)).image (ex m), AddMonoidAlgebra.coeff Q d * w ^ (d 1) by
     rw [Finset.sum_image hinj]
     simp]
   apply Finset.sum_subset
@@ -129,7 +129,7 @@ theorem eval_one_eq_sum {m : ℕ} {Q : MvPolynomial (Fin 2) K} (hQ : Q.IsHomogen
 
 theorem eval_iterate_pderiv_eq_sum {n : ℕ} {P : MvPolynomial (Fin 2) K} (hP : P.IsHomogeneous n) (i : ℕ) (w : K) :
     eval ![1, w] ((pderiv 1)^[i] P)
-      = ∑ k ∈ Finset.range (n + 1 - i), ((k + i).descFactorial i : K) * coeff (ex n (k + i)) P * w ^ k := by
+      = ∑ k ∈ Finset.range (n + 1 - i), ((k + i).descFactorial i : K) * AddMonoidAlgebra.coeff P (ex n (k + i)) * w ^ k := by
   rcases Nat.lt_or_ge n i with hi | hi
   swap
   · rw [eval_one_eq_sum (isHomogeneous_iterate_pderiv 1 hP i), show n + 1 - i = n - i + 1 by omega]
@@ -146,17 +146,18 @@ theorem eval_iterate_pderiv_eq_sum {n : ℕ} {P : MvPolynomial (Fin 2) K} (hP : 
       Finset.sum_empty]
 
 theorem coeff_ex_linePow (n m : ℕ) (hm : m ≤ n) (t : K) :
-    coeff (ex n m) ((C t * X 0 + X 1) ^ n) = (n.choose m : K) * t ^ (n - m) := by
+    AddMonoidAlgebra.coeff ((C t * X 0 + X 1) ^ n) (ex n m) = (n.choose m : K) * t ^ (n - m) := by
   classical
   rw [add_pow, coeff_sum]
   have hterm : ∀ k ∈ Finset.range (n + 1),
-      coeff (ex n m) ((C t * X 0) ^ k * X 1 ^ (n - k) * (n.choose k : MvPolynomial (Fin 2) K))
+      AddMonoidAlgebra.coeff ((C t * X 0) ^ k * X 1 ^ (n - k) * (n.choose k : MvPolynomial (Fin 2) K)) (ex n m)
         = if k = n - m then (n.choose m : K) * t ^ (n - m) else 0 := by
     intro k hk
     rw [Finset.mem_range] at hk
     have hmon : (C t * X 0) ^ k * X 1 ^ (n - k) * (n.choose k : MvPolynomial (Fin 2) K)
         = monomial (Finsupp.single 0 k + Finsupp.single 1 (n - k)) (t ^ k * (n.choose k : K)) := by
-      rw [mul_pow, ← map_pow, X_pow_eq_monomial, X_pow_eq_monomial, C_mul_monomial, monomial_mul, ← map_natCast C,
+      rw [mul_pow, ← map_pow, X_pow_eq_monomial, X_pow_eq_monomial, C_mul_monomial,
+        monomial_mul_monomial, ← map_natCast C,
         mul_comm (monomial _ _) (C _), C_mul_monomial]
       congr 1 ; simp [mul_comm]
     rw [hmon, coeff_monomial]
@@ -212,7 +213,7 @@ theorem hasDerivAt_eval_iterate_pderiv {n : ℕ} {g : ℍ → ℂ} {G : ℍ → 
   have hhom : ∀ σ : ℍ, ((G σ : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ).IsHomogeneous n := fun σ =>
     (mem_homogeneousSubmodule n _).mp (G σ).2
 
-  set c : ℕ → ℂ → ℂ := fun m z => coeff (ex n m) ((G (ofComplex z) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ)
+  set c : ℕ → ℂ → ℂ := fun m z => AddMonoidAlgebra.coeff ((G (ofComplex z) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) (ex n m)
     with hcdef
   have hc : ∀ m, m ≤ n → HasDerivAt (c m) (g τ * ((n.choose m : ℂ) * (τ : ℂ) ^ (n - m))) (τ : ℂ) := by
     intro m hm
@@ -274,7 +275,7 @@ theorem hasDerivAt_eval_iterate_pderiv {n : ℕ} {g : ℍ → ℂ} {G : ℍ → 
     rw [← Finset.sum_neg_distrib]
     refine Finset.sum_congr rfl fun k hk => ?_
     rw [Finset.mem_range] at hk
-    have hcτ : c (k + 1 + j) (τ : ℂ) = coeff (ex n (k + 1 + j)) ((G τ : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) := by
+    have hcτ : c (k + 1 + j) (τ : ℂ) = AddMonoidAlgebra.coeff ((G τ : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) (ex n (k + 1 + j)) := by
       simp only [hcdef, ofComplex_apply]
     have hidx : k + (j + 1) = k + 1 + j := by ring
     have hdesc : (((k + 1 + j).descFactorial (j + 1) : ℕ) : ℂ) = (((k + 1 + j).descFactorial j : ℕ) : ℂ) * ((k : ℂ) + 1) := by

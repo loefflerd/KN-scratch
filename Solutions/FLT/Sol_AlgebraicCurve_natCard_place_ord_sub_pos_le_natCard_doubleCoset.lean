@@ -89,7 +89,7 @@ theorem finite_doubleCosetQuotient {Γ₀ : Type*} [Group Γ₀] (Γ Kst : Subgr
       exact ⟨b * a⁻¹, hab', 1, Kst.one_mem, by group⟩)
   refine Finite.of_surjective π ?_
   intro q
-  obtain ⟨γ, rfl⟩ : ∃ γ, DoubleCoset.mk Γ Kst γ = q := ⟨q.out, DoubleCoset.out_eq' Γ Kst q⟩
+  obtain ⟨γ, rfl⟩ : ∃ γ, DoubleCoset.mk Γ Kst γ = q := ⟨q.out, DoubleCoset.out_eq' q⟩
   exact ⟨Quotient.mk _ γ, rfl⟩
 
 end AlgebraicCurve.PlacesLeDoubleCoset

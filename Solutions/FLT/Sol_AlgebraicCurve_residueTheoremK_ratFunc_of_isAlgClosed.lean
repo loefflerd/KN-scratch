@@ -2444,7 +2444,6 @@ private theorem _root_.AlgebraicCurve.Place.range_mapBaseChange_le_span_D_unifor
   let := v.polynomialIsScalarTower
   rintro _ ⟨t, rfl⟩
   induction t with
-  | zero => simp
   | add x y hx hy => rw [map_add]; exact add_mem hx hy
   | tmul b ω =>
     rw [KaehlerDifferential.mapBaseChange_tmul,
@@ -3949,10 +3948,10 @@ def restrictResidueFieldEquiv (hw : w.restrict F = v) :
 
 theorem inertiaDeg_eq_inertiaDeg_fiberCenter (hw : w.restrict F = v) :
     w.inertiaDeg F =
-      (IsLocalRing.maximalIdeal v.toValuationSubring).inertiaDeg'
-        (fiberCenter F' v hw).asIdeal := by
+      (fiberCenter F' v hw).asIdeal.inertiaDeg v.toValuationSubring := by
   have := fiberCenter_liesOver hw
-  rw [Ideal.inertiaDeg_eq_of_isMaximal]
+  rw [Ideal.inertiaDeg_eq_of_isMaximal (IsLocalRing.maximalIdeal v.toValuationSubring)
+    (fiberCenter F' v hw).asIdeal]
   show Module.finrank (w.restrict F).ResidueField w.ResidueField = _
   refine Algebra.finrank_eq_of_equiv_equiv (restrictResidueFieldEquiv hw)
     (residueFieldEquivQuotientCenter hw).symm ?_

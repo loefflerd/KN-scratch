@@ -54,7 +54,7 @@ lemma coeff_periodPower (n j : ℕ) (hj : j ≤ n) (z : ℂ) :
             ((n.choose m : ℂ) * z ^ m) := by
       rw [mul_pow, ← MvPolynomial.C_pow, MvPolynomial.X_pow_eq_monomial,
         MvPolynomial.X_pow_eq_monomial, ← map_natCast MvPolynomial.C (n.choose m),
-        MvPolynomial.C_mul_monomial, MvPolynomial.monomial_mul,
+        MvPolynomial.C_mul_monomial, MvPolynomial.monomial_mul_monomial,
         mul_comm (MvPolynomial.monomial _ _) (MvPolynomial.C _), MvPolynomial.C_mul_monomial]
       congr 1
       ring

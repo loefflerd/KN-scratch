@@ -684,7 +684,7 @@ lemma coeff_vecOfConst (n : ℕ) (a : ℕ → ℂ) (m : Fin 2 →₀ ℕ) :
     AddMonoidAlgebra.coeff (vecOfConst n a) m =
       ∑ j ∈ Finset.range (n + 1),
         if binaryExponent n j = m then (n.choose j : ℂ) * a j else 0 := by
-  simp [vecOfConst, MvPolynomial.coeff_sum, MvPolynomial.coeff_monomial]
+  simp [vecOfConst, MvPolynomial.coeff_monomial]
 
 lemma coeff_act_vecOfConst (σ : Matrix (Fin 2) (Fin 2) ℤ) (n : ℕ) (a : ℕ → ℂ) (m : Fin 2 →₀ ℕ) :
     AddMonoidAlgebra.coeff (act σ (vecOfConst n a)) m =
@@ -792,7 +792,8 @@ theorem transport (σ : SL(2, ℤ)) {h h' : ℍ → ℂ} {n : ℕ}
     field_simp
     ring
   ext m
-  rw [MvPolynomial.coeff_add, Kconst, MvPolynomial.coeff_sub]
+  rw [AddMonoidAlgebra.coeff_add, Finsupp.add_apply, Kconst,
+    AddMonoidAlgebra.coeff_sub, Finsupp.sub_apply]
   have := hconst m z hz
   linear_combination this
 
@@ -883,7 +884,9 @@ lemma Kconst_eq_of_tendsto {σ : SL(2, ℤ)} {h h' : ℍ → ℂ} {n : ℕ}
   have hlim := (h1 e).sub (h2 e)
   have hc : ∀ m, AddMonoidAlgebra.coeff (Gvec h n (mob σ (z m))) e -
       AddMonoidAlgebra.coeff (act σ (Gvec h' n (z m))) e = AddMonoidAlgebra.coeff (Kconst σ h h' n) e := by
-    intro m; rw [hK (z m) (hz m), MvPolynomial.coeff_add]; ring
+    intro m
+    rw [hK (z m) (hz m), AddMonoidAlgebra.coeff_add, Finsupp.add_apply]
+    ring
   simp only [hc, sub_zero] at hlim
   exact tendsto_nhds_unique tendsto_const_nhds hlim
 
@@ -1328,7 +1331,7 @@ lemma coeff_Gvec_cusp_bound {N k : ℕ} (hN : 0 < N) (hk : 2 ≤ k)
   simp only [UpperHalfPlane.ofComplex_apply] at ht
   change Gvec f (k-2) (δ • z : UpperHalfPlane) = act δ.val (Gvec f' (k-2) z) + K at ht
   rw [ht, map_add, act_act, ← Matrix.SpecialLinearGroup.coe_mul, inv_mul_cancel, Matrix.SpecialLinearGroup.coe_one,
-    act_one, MvPolynomial.coeff_add]
+    act_one, AddMonoidAlgebra.coeff_add, Finsupp.add_apply]
   apply (norm_add_le _ _).trans
   exact add_le_add (by simpa only [act_one] using hC z hz hzr) le_rfl
 
@@ -1480,7 +1483,8 @@ theorem solution
     intro z hz hzr
     change ‖AddMonoidAlgebra.coeff (act (δ⁻¹).val
       (Gvec g (k-2) (δ • z : UpperHalfPlane) - conjugatePolynomial (Gvec v (k-2) (δ • z : UpperHalfPlane)) + Q)) e‖ ≤ _
-    rw [map_add, map_sub, ← conjugate_act, MvPolynomial.coeff_add, MvPolynomial.coeff_sub]
+    rw [map_add, map_sub, ← conjugate_act, AddMonoidAlgebra.coeff_add, Finsupp.add_apply,
+      AddMonoidAlgebra.coeff_sub, Finsupp.sub_apply]
     simp only [pow_zero, mul_one]
     apply (norm_add_le _ _).trans
     apply add_le_add _ le_rfl

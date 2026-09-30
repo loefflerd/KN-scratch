@@ -288,8 +288,9 @@ theorem coordHom_injective : Function.Injective (coordHom hQ hgy) := by
   have hker : RingHom.ker (coordHom hQ hgy).toRingHom = ⊥ := by
     have : Module.Finite F[X] (W.veluQuotient2 x₀ y₀).toAffine.CoordinateRing :=
       Module.Finite.of_basis (CoordinateRing.basis (W.veluQuotient2 x₀ y₀).toAffine)
-    refine Ideal.eq_bot_of_comap_eq_bot (R := F[X]) ?_
-    rw [RingHom.comap_ker, coordHom_comp_algebraMap, ← RingHom.injective_iff_ker_eq_bot]
+    refine Ideal.eq_bot_of_under_eq_bot (R := F[X]) ?_
+    rw [Ideal.under_def, RingHom.comap_ker, coordHom_comp_algebraMap,
+      ← RingHom.injective_iff_ker_eq_bot]
     exact aeval_ξ_injective (W := W) x₀ y₀
   exact (RingHom.injective_iff_ker_eq_bot (coordHom hQ hgy).toRingHom).mpr hker
 

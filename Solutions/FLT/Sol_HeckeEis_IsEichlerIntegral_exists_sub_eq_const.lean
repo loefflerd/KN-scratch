@@ -46,11 +46,11 @@ theorem mem_degExps_iff (d : Fin 2 →₀ ℕ) : d ∈ degExps n ↔ d.degree = 
     fin_cases i <;> simp ; omega
 
 theorem coeff_eq_zero_of_not_mem_degExps {p : MvPolynomial (Fin 2) K} (hp : p ∈ BinaryForm K n)
-    {d : Fin 2 →₀ ℕ} (hd : d ∉ degExps n) : coeff d p = 0 :=
+    {d : Fin 2 →₀ ℕ} (hd : d ∉ degExps n) : AddMonoidAlgebra.coeff p d = 0 :=
   ((mem_homogeneousSubmodule n p).mp hp).coeff_eq_zero (by rwa [mem_degExps_iff] at hd)
 
 theorem eq_sum_degExps {p : MvPolynomial (Fin 2) K} (hp : p ∈ BinaryForm K n) :
-    p = ∑ e ∈ degExps n, monomial e (coeff e p) := by
+    p = ∑ e ∈ degExps n, monomial e (AddMonoidAlgebra.coeff p e) := by
   refine MvPolynomial.ext _ _ fun d => ?_
   rw [coeff_sum]
   simp only [coeff_monomial]
@@ -60,13 +60,13 @@ theorem eq_sum_degExps {p : MvPolynomial (Fin 2) K} (hp : p ∈ BinaryForm K n) 
       coeff_eq_zero_of_not_mem_degExps hp hd]
 
 theorem coeff_binaryFormRepSL_eq_sum (g : SL(2, ℤ)) (v : ↥(BinaryForm K n)) (d : Fin 2 →₀ ℕ) :
-    coeff d ((binaryFormRepSL K n g v : ↥(BinaryForm K n)) : MvPolynomial (Fin 2) K)
-      = ∑ e ∈ degExps n, coeff e (v : MvPolynomial (Fin 2) K)
-          * coeff d (binarySubst K (g : Matrix (Fin 2) (Fin 2) ℤ) (monomial e 1)) := by
+    AddMonoidAlgebra.coeff ((binaryFormRepSL K n g v : ↥(BinaryForm K n)) : MvPolynomial (Fin 2) K) d
+      = ∑ e ∈ degExps n, AddMonoidAlgebra.coeff (v : MvPolynomial (Fin 2) K) e
+          * AddMonoidAlgebra.coeff (binarySubst K (g : Matrix (Fin 2) (Fin 2) ℤ) (monomial e 1)) d := by
   rw [binaryFormRepSL_apply_coe]
   conv_lhs => rw [eq_sum_degExps v.2, map_sum, coeff_sum]
   refine Finset.sum_congr rfl fun e _ => ?_
-  rw [show monomial e (coeff e (v : MvPolynomial (Fin 2) K)) = coeff e (v : MvPolynomial (Fin 2) K) • monomial e (1 : K) by
+  rw [show monomial e (AddMonoidAlgebra.coeff (v : MvPolynomial (Fin 2) K) e) = AddMonoidAlgebra.coeff (v : MvPolynomial (Fin 2) K) e • monomial e (1 : K) by
       rw [smul_monomial, smul_eq_mul, mul_one],
     map_smul, coeff_smul, smul_eq_mul]
 
@@ -100,7 +100,7 @@ theorem hasDerivAt_smul_ofComplex (γ : SL(2, ℤ)) (τ : ℍ) :
     funext z
     rw [MulAction.compHom_smul_def]
   rw [h2] at h1
-  convert h1 using 1 <;> try rfl
+  convert h1 using 1; try rfl
   rw [hdet]
   push_cast
   rw [zpow_neg, one_div]
@@ -127,20 +127,20 @@ section RepDeriv
 variable {n : ℕ}
 
 theorem hasDerivAt_coeff_binaryFormRepSL {H : ℂ → ↥(BinaryForm ℂ n)} {w : ↥(BinaryForm ℂ n)} {z₀ : ℂ}
-    (hH : ∀ e : Fin 2 →₀ ℕ, HasDerivAt (fun z : ℂ => coeff e ((H z : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ))
-      (coeff e ((w : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ)) z₀)
+    (hH : ∀ e : Fin 2 →₀ ℕ, HasDerivAt (fun z : ℂ => AddMonoidAlgebra.coeff ((H z : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) e)
+      (AddMonoidAlgebra.coeff ((w : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) e) z₀)
     (g : SL(2, ℤ)) (d : Fin 2 →₀ ℕ) :
     HasDerivAt
-      (fun z : ℂ => coeff d ((binaryFormRepSL ℂ n g (H z) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ))
-      (coeff d ((binaryFormRepSL ℂ n g w : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ)) z₀ := by
-  have hfun : (fun z : ℂ => coeff d ((binaryFormRepSL ℂ n g (H z) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ))
+      (fun z : ℂ => AddMonoidAlgebra.coeff ((binaryFormRepSL ℂ n g (H z) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) d)
+      (AddMonoidAlgebra.coeff ((binaryFormRepSL ℂ n g w : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) d) z₀ := by
+  have hfun : (fun z : ℂ => AddMonoidAlgebra.coeff ((binaryFormRepSL ℂ n g (H z) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) d)
       = fun z : ℂ => ∑ e ∈ degExps n,
-          coeff e ((H z : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ)
-            * coeff d (binarySubst ℂ (g : Matrix (Fin 2) (Fin 2) ℤ) (monomial e 1)) :=
+          AddMonoidAlgebra.coeff ((H z : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) e
+            * AddMonoidAlgebra.coeff (binarySubst ℂ (g : Matrix (Fin 2) (Fin 2) ℤ) (monomial e 1)) d :=
     funext fun z => coeff_binaryFormRepSL_eq_sum g (H z) d
   rw [hfun, coeff_binaryFormRepSL_eq_sum g w d]
   exact HasDerivAt.fun_sum fun e _ =>
-    (hH e).mul_const (coeff d (binarySubst ℂ (g : Matrix (Fin 2) (Fin 2) ℤ) (monomial e 1)))
+    (hH e).mul_const (AddMonoidAlgebra.coeff (binarySubst ℂ (g : Matrix (Fin 2) (Fin 2) ℤ) (monomial e 1)) d)
 
 end RepDeriv
 
@@ -155,10 +155,10 @@ theorem SolMain.const {n : ℕ} {f : ℍ → ℂ} {F G : ℍ → ↥(BinaryForm 
   apply Subtype.ext
   rw [AddSubgroupClass.coe_sub, AddSubgroupClass.coe_sub]
   refine MvPolynomial.ext _ _ fun d => ?_
-  rw [coeff_sub, coeff_sub]
+  rw [AddMonoidAlgebra.coeff_sub, Finsupp.sub_apply, AddMonoidAlgebra.coeff_sub, Finsupp.sub_apply]
   have key : ∀ σ : ℍ, HasDerivAt
-      (fun z : ℂ => coeff d ((F (ofComplex z) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ)
-        - coeff d ((G (ofComplex z) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ)) 0 ↑σ :=
+      (fun z : ℂ => AddMonoidAlgebra.coeff ((F (ofComplex z) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) d
+        - AddMonoidAlgebra.coeff ((G (ofComplex z) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) d) 0 ↑σ :=
     fun σ => ((hF d σ).sub (hG d σ)).congr_deriv (sub_self _)
   have hc := apply_eq_apply_of_hasDerivAt_zero key τ I
   simpa only [ofComplex_apply] using hc

@@ -1,4 +1,5 @@
 import Mathlib.Algebra.MvPolynomial.Polynomial
+import Mathlib.Algebra.MvPolynomial.CommRing
 import Definitions.MTT.Def_MTT_Cohomology
 import Mathlib.Algebra.MonoidAlgebra.Module
 import Mathlib.LinearAlgebra.Dimension.Constructions

@@ -1920,16 +1920,16 @@ def unitIdealOfPoint : W.Point → (FractionalIdeal W.CoordinateRing⁰ W.Functi
   | .zero => 1
   | .some _ _ h => CoordinateRing.XYIdeal' h
 
-omit [DecidableEq F] [InfinitePlace W] in
+omit [DecidableEq F] [InfinitePlace W] [IsAlgClosed F] [WeierstrassCurve.IsElliptic W] in
 @[scoped simp]
 theorem unitIdealOfPoint_zero : unitIdealOfPoint (.zero : W.Point) = 1 := rfl
 
-omit [DecidableEq F] [InfinitePlace W] in
+omit [DecidableEq F] [InfinitePlace W] [IsAlgClosed F] [WeierstrassCurve.IsElliptic W] in
 @[scoped simp]
 theorem unitIdealOfPoint_some {x y : F} (h : W.Nonsingular x y) :
     unitIdealOfPoint (.some x y h) = CoordinateRing.XYIdeal' h := rfl
 
-omit [InfinitePlace W] in
+omit [InfinitePlace W] [IsAlgClosed F] [WeierstrassCurve.IsElliptic W] in
 
 theorem classGroup_mk_unitIdealOfPoint (P : W.Point) :
     ClassGroup.mk (K := W.FunctionField) (unitIdealOfPoint P) = Additive.toMul (Point.toClass P) := by

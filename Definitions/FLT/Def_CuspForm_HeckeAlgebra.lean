@@ -61,7 +61,7 @@ theorem commute_of_mem_heckeGenerators {T T' : Module.End ℂ (CuspForm (Congrue
 variable (N k S)
 
 instance heckeAlgebra.instIsMulCommutative : IsMulCommutative (heckeAlgebra N k S) :=
-  Algebra.isMulCommutative_adjoin ℤ fun _ hT _ hT' => commute_of_mem_heckeGenerators hT hT'
+  Algebra.isMulCommutative_adjoin ℤ fun _ hT _ hT' _ => commute_of_mem_heckeGenerators hT hT'
 
 open scoped IsMulCommutative in
 
@@ -95,4 +95,3 @@ def heckeAlgebra.U {q : ℕ} (hq : q.Prime) (hqN : q ∣ N) (hqS : q ∉ S) : he
 end CuspForm
 
 end
-
