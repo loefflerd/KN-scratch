@@ -3,6 +3,7 @@ import Mathlib.NumberTheory.Height.NumberField
 import Mathlib.NumberTheory.Height.Projectivization
 import Mathlib.Order.Northcott
 import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
+import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaceClassification
 import Theorems.FLT.Thm_ModularCurve_finiteDimensional_adjoin_coeffEmb_jq_full
 import Theorems.FLT.Thm_AlgebraicCurve_Place_exists_toValuationSubring_eq_comap
 import Theorems.FLT.Thm_AlgebraicCurve_Place_exists_ord_algebraMap_eq_mul_ord
