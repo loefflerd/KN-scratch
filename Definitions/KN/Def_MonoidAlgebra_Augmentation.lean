@@ -1,8 +1,9 @@
-import Mathlib.Algebra.MonoidAlgebra.Basic
-import Mathlib.RingTheory.Valuation.ValuationSubring
+module
 
-set_option autoImplicit false
-noncomputable section
+public import Mathlib.Algebra.MonoidAlgebra.Basic
+public import Mathlib.RingTheory.Valuation.ValuationSubring
+
+@[expose] public noncomputable section
 
 namespace MonoidAlgebra
 
