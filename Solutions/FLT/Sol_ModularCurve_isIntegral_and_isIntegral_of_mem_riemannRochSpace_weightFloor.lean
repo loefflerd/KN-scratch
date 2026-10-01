@@ -1,9 +1,10 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_JqCoeff
-import Definitions.FLT.Def_AlgebraicCurve_Repartitions
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Data.Int.Star
+
 import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
-import Theorems.FLT.Thm_ModularCurve_transcendental_jqModC
+import Definitions.FLT.Def_AlgebraicCurve_Repartitions
 import Theorems.FLT.Thm_AlgebraicCurve_isIntegral_adjoin_of_forall_mem_toValuationSubring
+import Theorems.FLT.Thm_ModularCurve_transcendental_jqModC
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

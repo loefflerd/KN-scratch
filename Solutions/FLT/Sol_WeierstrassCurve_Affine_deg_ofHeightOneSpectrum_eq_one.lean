@@ -1,4 +1,7 @@
-import Mathlib
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
+
 import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 import Definitions.FLT.Def_EllipticCurve_FunctionFieldPullback
 import Definitions.FLT.Def_P2M_Util

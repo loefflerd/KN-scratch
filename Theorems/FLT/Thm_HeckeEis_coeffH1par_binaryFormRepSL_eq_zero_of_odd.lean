@@ -1,4 +1,3 @@
-import Mathlib
 import Definitions.FLT.Def_Gamma0CoeffCohomology
 import Definitions.FLT.Def_HeckeEis_BinaryFormRep
 

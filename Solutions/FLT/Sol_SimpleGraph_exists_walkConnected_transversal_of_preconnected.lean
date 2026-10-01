@@ -1,4 +1,7 @@
-import Mathlib
+import Mathlib.Combinatorics.SimpleGraph.Connectivity.Connected
+import Mathlib.GroupTheory.GroupAction.Defs
+import Mathlib.Order.CompletePartialOrder
+
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

@@ -1,4 +1,5 @@
 import Mathlib.FieldTheory.RatFunc.AsPolynomial
+import Mathlib.NumberTheory.RatFunc.Ostrowski
 import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaceInfty
 import Definitions.FLT.Def_P2M_Util
 

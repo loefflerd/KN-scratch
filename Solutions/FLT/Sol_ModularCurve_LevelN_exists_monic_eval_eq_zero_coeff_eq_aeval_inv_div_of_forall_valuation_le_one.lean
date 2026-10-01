@@ -1,6 +1,5 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_LevelNFunctionField
 import Definitions.FLT.Def_ModularCurve_JqCoeff
+import Definitions.FLT.Def_ModularCurve_LevelNFunctionField
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

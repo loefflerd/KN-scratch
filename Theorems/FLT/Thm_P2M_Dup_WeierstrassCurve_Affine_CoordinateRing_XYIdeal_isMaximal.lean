@@ -1,5 +1,4 @@
-import Mathlib
-import Definitions.FLT.Def_EllipticCurve_FunctionFieldPullback
+import Mathlib.AlgebraicGeometry.EllipticCurve.Affine.Point
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000

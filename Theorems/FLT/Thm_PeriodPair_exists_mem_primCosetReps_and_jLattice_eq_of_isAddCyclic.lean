@@ -1,5 +1,3 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_X0
 import Definitions.FLT.Def_ModularCurve_PrimCosetReps
 import Definitions.FLT.Def_PeriodPair_Uniformization
 

@@ -1,5 +1,5 @@
-import Mathlib
-import Definitions.FLT.Def_EisensteinSeries_WeierstrassZeta
+import Mathlib.NumberTheory.ModularForms.EisensteinSeries.E2.Transform
+
 import Theorems.FLT.Thm_EisensteinSeries_weierstrassZeta_add_one_and_add_tau_and_smul
 import Definitions.FLT.Def_P2M_Util
 

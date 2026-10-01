@@ -1,4 +1,3 @@
-import Mathlib
 import Definitions.FLT.Def_AlgebraicCurve_Correspondence
 import Theorems.FLT.Thm_AlgebraicCurve_Place_exists_restrict_eq
 import Definitions.FLT.Def_P2M_Util

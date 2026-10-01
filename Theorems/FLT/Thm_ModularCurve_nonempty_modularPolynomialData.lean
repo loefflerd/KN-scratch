@@ -1,4 +1,3 @@
-import Mathlib
 import Definitions.FLT.Def_ModularCurve_X0
 
 set_option maxHeartbeats 4000000

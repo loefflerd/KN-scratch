@@ -1,4 +1,8 @@
-import Mathlib
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.RootsOfUnity.AlgebraicallyClosed
+import Mathlib.RingTheory.SimpleRing.Principal
+
 import Definitions.FLT.Def_HahnSeries_RamificationBound
 import Definitions.FLT.Def_P2M_Util
 

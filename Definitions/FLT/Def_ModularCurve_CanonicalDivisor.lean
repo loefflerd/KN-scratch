@@ -1,4 +1,8 @@
-import Mathlib
+import Mathlib.RingTheory.Flat.FaithfullyFlat.Basic
+import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.RingTheory.Kaehler.Basic
+import Mathlib.RingTheory.SimpleRing.Principal
+
 import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 
 set_option maxHeartbeats 4000000

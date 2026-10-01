@@ -1,8 +1,5 @@
-import Mathlib
-import Definitions.FLT.Def_AlgebraicCurve_Differentials
-import Definitions.FLT.Def_AlgebraicCurve_RegularDifferentials
-import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
 import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
+import Definitions.FLT.Def_AlgebraicCurve_RegularDifferentials
 import Theorems.FLT.Thm_AlgebraicCurve_Place_ordDiff_eq_ordDifferential
 import Theorems.FLT.Thm_AlgebraicCurve_dCoordGenerates_of_isCurveOver
 import Definitions.FLT.Def_P2M_Util

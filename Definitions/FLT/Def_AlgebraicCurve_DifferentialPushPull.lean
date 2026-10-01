@@ -1,4 +1,5 @@
-import Mathlib
+import Mathlib.RingTheory.Etale.Field
+
 import Definitions.FLT.Def_AlgebraicCurve_Correspondence
 
 set_option maxHeartbeats 4000000

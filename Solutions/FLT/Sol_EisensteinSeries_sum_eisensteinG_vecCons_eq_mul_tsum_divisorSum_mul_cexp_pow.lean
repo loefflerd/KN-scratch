@@ -1,4 +1,6 @@
-import Mathlib
+import Mathlib.NumberTheory.ModularForms.EisensteinSeries.QExpansion
+import Mathlib.Topology.Separation.CompletelyRegular
+
 import Definitions.FLT.Def_EisensteinSeries_EisensteinG
 import Definitions.FLT.Def_P2M_Util
 

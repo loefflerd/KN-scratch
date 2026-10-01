@@ -1,5 +1,9 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_LaurentCoeff
+import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.PicardGroup
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
+
 import Definitions.FLT.Def_ModularCurve_GeometricBaseChange
 import Definitions.FLT.Def_P2M_Util
 

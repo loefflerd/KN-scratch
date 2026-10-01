@@ -1,6 +1,9 @@
-import Mathlib
-import Definitions.FLT.Def_WeierstrassCurve_VeluQuotientMap
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
+
 import Definitions.FLT.Def_WeierstrassCurve_OddOrderSummingSet
+import Definitions.FLT.Def_WeierstrassCurve_VeluQuotientMap
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

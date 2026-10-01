@@ -1,4 +1,10 @@
-import Mathlib
+import Mathlib.Algebra.Field.ZMod
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Analysis.PSeries
+import Mathlib.Data.Int.Star
+import Mathlib.NumberTheory.Chebyshev
+import Mathlib.Tactic.NormNum.Prime
+
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

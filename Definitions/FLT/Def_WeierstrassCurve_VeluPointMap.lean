@@ -1,4 +1,3 @@
-import Mathlib
 import Definitions.FLT.Def_WeierstrassCurve_VeluQuotientMap
 
 set_option maxHeartbeats 4000000
@@ -88,4 +87,3 @@ theorem velu_singleton_map_equation {x₀ y₀ x y : F}
 end Field
 
 end WeierstrassCurve
-

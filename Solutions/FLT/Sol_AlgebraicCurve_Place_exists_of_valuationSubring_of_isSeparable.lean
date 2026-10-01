@@ -1,12 +1,9 @@
-import Mathlib
-import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
-
-import Mathlib.RingTheory.DedekindDomain.IntegralClosure
-import Mathlib.RingTheory.DedekindDomain.Dvr
-import Mathlib.RingTheory.DiscreteValuationRing.TFAE
-import Mathlib.RingTheory.Localization.Integral
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.RingTheory.Valuation.LocalSubring
-import Mathlib.FieldTheory.IntermediateField.Adjoin.Algebra
+
+import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

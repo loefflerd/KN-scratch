@@ -1,4 +1,5 @@
-import Mathlib
+import Mathlib.RingTheory.HahnSeries.PowerSeries
+
 import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 import Definitions.FLT.Def_HahnSeries_RamificationBound
 

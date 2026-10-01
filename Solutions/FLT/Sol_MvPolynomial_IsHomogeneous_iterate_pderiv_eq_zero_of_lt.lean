@@ -1,4 +1,5 @@
-import Mathlib
+import Mathlib.RingTheory.MvPolynomial.EulerIdentity
+
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

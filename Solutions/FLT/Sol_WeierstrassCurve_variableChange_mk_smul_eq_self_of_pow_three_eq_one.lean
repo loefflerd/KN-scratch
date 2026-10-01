@@ -1,4 +1,5 @@
-import Mathlib
+import Mathlib.AlgebraicGeometry.EllipticCurve.VariableChange
+
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

@@ -1,4 +1,12 @@
-import Mathlib
+import Mathlib.Algebra.CharP.Invertible
+import Mathlib.Basic.Complex.Basic
+import Mathlib.LinearAlgebra.FreeModule.PID
+import Mathlib.LinearAlgebra.Matrix.FixedDetMatrices
+import Mathlib.RingTheory.Finiteness.Prod
+import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
+
 import Definitions.FLT.Def_Gamma0CoeffCohomology
 import Definitions.FLT.Def_P2M_Util
 

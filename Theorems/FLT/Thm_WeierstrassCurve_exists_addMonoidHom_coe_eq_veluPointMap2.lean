@@ -1,6 +1,3 @@
-import Mathlib
-import Definitions.FLT.Def_WeierstrassCurve_Velu
-import Definitions.FLT.Def_WeierstrassCurve_VeluOrderTwo
 import Definitions.FLT.Def_WeierstrassCurve_VeluPointMap2
 
 set_option maxHeartbeats 4000000

@@ -1,4 +1,5 @@
-import Mathlib
+import Mathlib.Analysis.Normed.Ring.Lemmas
+
 import Theorems.FLT.Thm_ModularGroup_exists_mulEquiv_freeProduct_quotient_center
 import Theorems.FLT.Thm_Monoid_CoprodI_exists_addMonoidHom_conj_pow_minimalPeriod_eq_of_finsum_eq_zero
 import Definitions.FLT.Def_P2M_Util

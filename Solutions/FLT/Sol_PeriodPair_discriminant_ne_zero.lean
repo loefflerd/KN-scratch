@@ -1,4 +1,5 @@
-import Mathlib
+import Mathlib.NumberTheory.ModularForms.LevelOne.DimensionFormula
+
 import Definitions.FLT.Def_PeriodPair_Uniformization
 import Definitions.FLT.Def_P2M_Util
 

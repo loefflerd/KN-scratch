@@ -1,4 +1,3 @@
-import Mathlib
 import Definitions.FLT.Def_ModularCurve_KroneckerTransport
 
 set_option maxHeartbeats 4000000
@@ -55,4 +54,3 @@ theorem C_sub_X_pow_eq_neg_pow (a : k) :
 end Factorization
 
 end ModularCurve
-

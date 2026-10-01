@@ -1,6 +1,5 @@
-import Mathlib
-import Theorems.FLT.Thm_WeierstrassCurve_card_torsion_of_isAlgClosed
 import Theorems.FLT.Thm_AddCommGroup_nonempty_zmod_prod_addEquiv_torsionBy_of_card_torsionBy_eq_sq
+import Theorems.FLT.Thm_WeierstrassCurve_card_torsion_of_isAlgClosed
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

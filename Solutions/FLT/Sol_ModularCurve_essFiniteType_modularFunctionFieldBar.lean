@@ -1,6 +1,4 @@
-import Mathlib
 import Definitions.FLT.Def_ModularCurve_ArithmeticGalois
-import Definitions.FLT.Def_ModularCurve_QAdicPlace
 import Theorems.FLT.Thm_ModularCurve_adjoin_jBar_jNBar_eq_top
 import Definitions.FLT.Def_P2M_Util
 

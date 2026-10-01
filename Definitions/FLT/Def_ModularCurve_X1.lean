@@ -1,4 +1,8 @@
-import Mathlib
+import Mathlib.NumberTheory.ModularForms.QExpansion
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
+
 import Definitions.FLT.Def_ModularCurve_ArithmeticGalois
 
 set_option maxHeartbeats 4000000
@@ -220,4 +224,3 @@ end Jacobian
 end ModularCurve
 
 end
-

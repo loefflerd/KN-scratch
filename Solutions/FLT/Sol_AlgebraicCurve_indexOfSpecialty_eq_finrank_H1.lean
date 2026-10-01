@@ -1,6 +1,3 @@
-import Mathlib
-import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
-import Definitions.FLT.Def_AlgebraicCurve_Repartitions
 import Definitions.FLT.Def_AlgebraicCurve_AdelicIndex
 import Definitions.FLT.Def_P2M_Util
 

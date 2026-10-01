@@ -1,5 +1,3 @@
-import Mathlib
-import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
 import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaceInfty
 import Theorems.FLT.Thm_AlgebraicCurve_Place_exists_restrict_eq
 import Definitions.FLT.Def_P2M_Util

@@ -1,7 +1,6 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_RouteBCoordRing
-import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
 import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaceInfty
+import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
+import Definitions.FLT.Def_ModularCurve_RouteBCoordRing
 import Theorems.FLT.Thm_ModularCurve_transcendental_jq
 
 set_option maxHeartbeats 4000000
@@ -66,4 +65,3 @@ def jLinePlaceInfty : Place ℚ ℚ⟮jq⟯ :=
 end ModularCurve
 
 end
-

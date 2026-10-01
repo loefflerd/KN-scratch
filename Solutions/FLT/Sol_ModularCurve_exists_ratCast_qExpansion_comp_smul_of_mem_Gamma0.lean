@@ -1,12 +1,17 @@
-import Mathlib
-import Theorems.FLT.Thm_WLight_frickeFunction_modularity_package
-import Theorems.FLT.Thm_WLight_qExpansion_sigmaTransport_package
-import Theorems.FLT.Thm_WLight_levelN_structure_package
+import Mathlib.Algebra.CharP.Pi
+import Mathlib.NumberTheory.Cyclotomic.Basic
+import Mathlib.NumberTheory.ModularForms.LevelOne.GradedRing
+import Mathlib.RingTheory.MvPolynomial.IrreducibleQuadratic
+import Mathlib.RingTheory.SimpleRing.Principal
+
 import Theorems.FLT.Thm_WLight_exists_levelFraction_of_stable_family
 import Theorems.FLT.Thm_WLight_exists_monicRel_j_of_mdifferentiable_levelFraction
-import Theorems.FLT.Thm_WLight_frickeFunction_intBaseChange
 import Theorems.FLT.Thm_WLight_exists_qExpansion_coeff_mem_of_mdifferentiable_levelFraction
+import Theorems.FLT.Thm_WLight_frickeFunction_intBaseChange
+import Theorems.FLT.Thm_WLight_frickeFunction_modularity_package
+import Theorems.FLT.Thm_WLight_levelN_structure_package
 import Theorems.FLT.Thm_WLight_linearIndependent_complex_of_qExpansion_rational
+import Theorems.FLT.Thm_WLight_qExpansion_sigmaTransport_package
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

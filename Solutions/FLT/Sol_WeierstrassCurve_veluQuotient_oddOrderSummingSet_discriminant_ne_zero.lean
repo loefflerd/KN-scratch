@@ -1,9 +1,9 @@
-import Mathlib
-import Definitions.FLT.Def_WeierstrassCurve_Velu
-import Definitions.FLT.Def_WeierstrassCurve_OddOrderSummingSet
-import Definitions.FLT.Def_WeierstrassCurve_VeluQuotientMap
-import Theorems.FLT.Thm_WeierstrassCurve_veluX_oddOrderSummingSet_injOn_psi2Sq_roots
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
+
 import Theorems.FLT.Thm_WeierstrassCurve_eval_psi2Sq_veluQuotient_veluX_eq_zero_of_eval_psi2Sq_eq_zero
+import Theorems.FLT.Thm_WeierstrassCurve_veluX_oddOrderSummingSet_injOn_psi2Sq_roots
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

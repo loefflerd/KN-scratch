@@ -1,6 +1,13 @@
-import Mathlib
-import Theorems.FLT.Thm_AlgebraicCurve_finrank_frobeniusSubfield_eq_of_transcendental
+import Mathlib.Algebra.CharP.IntermediateField
+import Mathlib.FieldTheory.Relrank
+import Mathlib.RingTheory.AlgebraicIndependent.AlgebraicClosure
+import Mathlib.RingTheory.AlgebraicIndependent.TranscendenceBasis
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
+
 import Theorems.FLT.Thm_Algebra_IsSeparable_of_finrank_fieldRange_frobenius_eq
+import Theorems.FLT.Thm_AlgebraicCurve_finrank_frobeniusSubfield_eq_of_transcendental
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

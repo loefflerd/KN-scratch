@@ -1,5 +1,11 @@
-import Mathlib
-import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
+import Mathlib.FieldTheory.SeparableClosure
+import Mathlib.LinearAlgebra.FreeModule.PID
+import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.PicardGroup
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
+
 import Theorems.FLT.Thm_AlgebraicCurve_exists_separating_transcendental_of_perfectField
 import Definitions.FLT.Def_P2M_Util
 

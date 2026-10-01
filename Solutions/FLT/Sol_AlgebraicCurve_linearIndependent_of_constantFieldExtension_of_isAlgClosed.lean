@@ -1,4 +1,12 @@
-import Mathlib
+import Mathlib.Algebra.Polynomial.Eval.Irreducible
+import Mathlib.FieldTheory.RatFunc.AsPolynomial
+import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.Nullstellensatz
+import Mathlib.RingTheory.Polynomial.IsIntegral
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
+
 import Theorems.FLT.Thm_AlgebraicCurve_exists_separating_transcendental_of_perfectField
 import Definitions.FLT.Def_P2M_Util
 

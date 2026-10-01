@@ -1,4 +1,5 @@
-import Mathlib
+import Mathlib.Order.CompletePartialOrder
+
 import Definitions.FLT.Def_HahnSeries_RamificationBound
 import Definitions.FLT.Def_P2M_Util
 

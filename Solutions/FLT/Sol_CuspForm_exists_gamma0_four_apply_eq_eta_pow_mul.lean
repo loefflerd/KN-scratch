@@ -1,4 +1,6 @@
-import Mathlib
+import Mathlib.Data.Int.Star
+import Mathlib.NumberTheory.ModularForms.Discriminant
+
 import Theorems.FLT.Thm_CuspForm_exists_gamma0_apply_eq_eta_mul_pow_twentyfour
 import Definitions.FLT.Def_P2M_Util
 

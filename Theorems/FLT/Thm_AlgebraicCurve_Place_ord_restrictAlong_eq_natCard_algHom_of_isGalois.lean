@@ -1,6 +1,4 @@
-import Mathlib
 import Definitions.FLT.Def_AlgebraicCurve_Correspondence
-import Definitions.FLT.Def_AlgebraicCurve_BaseChangeGalois
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000

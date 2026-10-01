@@ -1,6 +1,11 @@
-import Mathlib
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Data.Int.Star
+import Mathlib.Data.ZMod.QuotientGroup
+import Mathlib.GroupTheory.CoprodI
+import Mathlib.GroupTheory.GroupAction.Ring
+import Mathlib.GroupTheory.SemidirectProduct
+
 import Definitions.FLT.Def_P2M_Util
-import Definitions.FLT.Def_Compat_Mathlib430
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000

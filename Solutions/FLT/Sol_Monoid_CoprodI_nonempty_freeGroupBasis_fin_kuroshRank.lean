@@ -1,7 +1,14 @@
-import Mathlib
+import Mathlib.Algebra.BigOperators.Fin
+import Mathlib.Algebra.Group.Action.Sigma
+import Mathlib.Algebra.Torsor.Defs
+import Mathlib.Data.Nat.Cast.Field
+import Mathlib.GroupTheory.FreeGroup.Reduce
+import Mathlib.Order.CompletePartialOrder
+import Mathlib.Tactic.Group
+
 import Theorems.FLT.Thm_Monoid_CoprodI_isTree_cosetGraph
-import Theorems.FLT.Thm_Subgroup_card_orbitRelQuotient_mul_card_eq_index
 import Theorems.FLT.Thm_SimpleGraph_exists_walkConnected_transversal_of_preconnected
+import Theorems.FLT.Thm_Subgroup_card_orbitRelQuotient_mul_card_eq_index
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

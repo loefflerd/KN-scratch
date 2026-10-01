@@ -1,4 +1,11 @@
-import Mathlib
+import Mathlib.Analysis.Normed.Ring.Lemmas
+import Mathlib.GroupTheory.CoprodI
+import Mathlib.LinearAlgebra.Matrix.FixedDetMatrices
+import Mathlib.NumberTheory.Real.Irrational
+import Mathlib.Order.CompletePartialOrder
+import Mathlib.Tactic.LinearCombination
+import Mathlib.Tactic.LinearCombination.Lemmas
+
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

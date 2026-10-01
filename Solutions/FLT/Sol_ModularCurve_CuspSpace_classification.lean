@@ -1,6 +1,5 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_CuspSpace
-import Definitions.FLT.Def_ModularCurve_GenusNumerics
+import Mathlib.Data.ZMod.Units
+
 import Theorems.FLT.Thm_ModularCurve_CuspSpace_exists_normalForm
 import Theorems.FLT.Thm_ModularCurve_CuspSpace_normalFormCriterion
 import Definitions.FLT.Def_P2M_Util

@@ -1,6 +1,7 @@
-import Mathlib
-import Definitions.FLT.Def_ModularForm_HeckeOperator
+import Mathlib.NumberTheory.ModularForms.Basic
+
 import Definitions.FLT.Def_ModularForm_AtkinLehnerDatum
+import Definitions.FLT.Def_ModularForm_HeckeOperator
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000

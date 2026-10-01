@@ -1,8 +1,9 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_LevelNFunctionField
+import Mathlib.Algebra.CharP.Pi
+
 import Definitions.FLT.Def_AlgebraicCurve_RegularDifferentials
-import Theorems.FLT.Thm_WLight_levelN_structure_package
+import Definitions.FLT.Def_ModularCurve_LevelNFunctionField
 import Theorems.FLT.Thm_AlgebraicCurve_Place_exists_of_orderMap
+import Theorems.FLT.Thm_WLight_levelN_structure_package
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

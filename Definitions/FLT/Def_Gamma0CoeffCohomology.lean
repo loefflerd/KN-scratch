@@ -1,4 +1,5 @@
-import Mathlib
+import Mathlib.RepresentationTheory.Basic
+
 import Definitions.FLT.Def_Gamma0HeckeOperatorHom
 
 set_option maxHeartbeats 4000000
@@ -155,4 +156,3 @@ theorem coeffHeckeFun_trivial (φ : Additive (Gamma0 N) →+ K) (g : Gamma0 N) :
 end Hecke
 
 end HeckeEis
-

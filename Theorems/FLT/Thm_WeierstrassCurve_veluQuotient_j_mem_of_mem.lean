@@ -1,4 +1,3 @@
-import Mathlib
 import Definitions.FLT.Def_WeierstrassCurve_Velu
 
 set_option maxHeartbeats 4000000

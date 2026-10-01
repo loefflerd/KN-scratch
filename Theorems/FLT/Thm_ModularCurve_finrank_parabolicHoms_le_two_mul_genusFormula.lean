@@ -1,6 +1,7 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_PeriodMap
+import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
+
 import Definitions.FLT.Def_ModularCurve_GenusNumerics
+import Definitions.FLT.Def_ModularCurve_PeriodMap
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000

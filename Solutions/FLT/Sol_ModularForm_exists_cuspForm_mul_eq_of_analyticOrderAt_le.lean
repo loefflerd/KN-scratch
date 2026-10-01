@@ -1,4 +1,7 @@
-import Mathlib
+import Mathlib.Algebra.Order.Star.Real
+import Mathlib.Analysis.CStarAlgebra.Classes
+import Mathlib.NumberTheory.ModularForms.Basic
+
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

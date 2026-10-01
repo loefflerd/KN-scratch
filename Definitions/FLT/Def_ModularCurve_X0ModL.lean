@@ -1,11 +1,7 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_JqCoeff
-import Definitions.FLT.Def_ModularCurve_LaurentCoeff
 import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 import Theorems.FLT.Thm_ModularCurve_coeffMap_qExpand
-import Theorems.FLT.Thm_ModularCurve_coeff_jqModC_pow_self
-import Theorems.FLT.Thm_ModularCurve_coeff_jqModC_pow_of_lt
 import Theorems.FLT.Thm_ModularCurve_coeff_jqModC_neg_one
+import Theorems.FLT.Thm_ModularCurve_coeff_jqModC_pow_of_lt
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -158,4 +154,3 @@ end Jacobian
 end ModularCurve
 
 end
-

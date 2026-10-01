@@ -1,5 +1,6 @@
-import Mathlib
-import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
+import Mathlib.FieldTheory.RatFunc.AsPolynomial
+import Mathlib.RingTheory.SimpleRing.Principal
+
 import Theorems.FLT.Thm_AlgebraicCurve_hasPrincipalDivisors_of_finiteDimensional_of_isSeparable
 import Definitions.FLT.Def_P2M_Util
 

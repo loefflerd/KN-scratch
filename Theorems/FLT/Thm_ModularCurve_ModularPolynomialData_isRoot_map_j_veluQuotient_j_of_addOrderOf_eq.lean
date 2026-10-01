@@ -1,7 +1,6 @@
-import Mathlib
 import Definitions.FLT.Def_ModularCurve_X0
-import Definitions.FLT.Def_WeierstrassCurve_Velu
 import Definitions.FLT.Def_WeierstrassCurve_OddOrderSummingSet
+import Definitions.FLT.Def_WeierstrassCurve_Velu
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000

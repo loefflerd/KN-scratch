@@ -1,4 +1,5 @@
-import Mathlib
+import Mathlib.RingTheory.RegularLocalRing.Defs
+
 import Definitions.FLT.Def_AdicCompletionLocalRing
 import Definitions.FLT.Def_P2M_Util
 

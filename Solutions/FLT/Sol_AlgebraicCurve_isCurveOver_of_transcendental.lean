@@ -1,8 +1,9 @@
-import Mathlib
-import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
-import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
-import Theorems.FLT.Thm_AlgebraicCurve_hasPrincipalDivisors_of_transcendental_of_isSeparable
+import Mathlib.FieldTheory.RatFunc.AsPolynomial
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.RegularLocalRing.Defs
+
 import Theorems.FLT.Thm_AlgebraicCurve_Place_finite_residueField_of_finiteDimensional
+import Theorems.FLT.Thm_AlgebraicCurve_hasPrincipalDivisors_of_transcendental_of_isSeparable
 import Theorems.FLT.Thm_AlgebraicCurve_instIsCurveOverRatFunc
 import Theorems.FLT.Thm_AlgebraicCurve_kaehlerRankOne_of_transcendental
 import Definitions.FLT.Def_P2M_Util

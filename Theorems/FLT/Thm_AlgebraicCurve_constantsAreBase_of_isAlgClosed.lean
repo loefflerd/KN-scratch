@@ -1,4 +1,5 @@
-import Mathlib
+import Mathlib.FieldTheory.RatFunc.Basic
+
 import Definitions.FLT.Def_AlgebraicCurve_AdelicIndex
 import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
 

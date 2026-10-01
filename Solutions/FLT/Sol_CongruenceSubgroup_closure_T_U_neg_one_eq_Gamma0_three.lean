@@ -1,4 +1,11 @@
-import Mathlib
+import Mathlib.Algebra.Field.ZMod
+import Mathlib.Analysis.Complex.UpperHalfPlane.Manifold
+import Mathlib.GroupTheory.Schreier
+import Mathlib.LinearAlgebra.Matrix.FixedDetMatrices
+import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
+import Mathlib.NumberTheory.ModularForms.SlashActions
+import Mathlib.Tactic.NormNum.Prime
+
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

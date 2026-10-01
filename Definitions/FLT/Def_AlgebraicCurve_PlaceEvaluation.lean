@@ -1,4 +1,7 @@
-import Mathlib
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
+
 import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 
 set_option maxHeartbeats 4000000

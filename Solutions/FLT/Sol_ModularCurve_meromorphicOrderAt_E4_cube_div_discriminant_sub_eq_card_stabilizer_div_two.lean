@@ -1,4 +1,7 @@
-import Mathlib
+import Mathlib.Analysis.Real.Pi.Bounds
+import Mathlib.NumberTheory.ModularForms.Derivative
+import Mathlib.NumberTheory.ModularForms.LevelOne.GradedRing
+
 import Theorems.FLT.Thm_ModularCurve_exists_smul_eq_of_E4_cube_div_discriminant_eq
 import Definitions.FLT.Def_P2M_Util
 

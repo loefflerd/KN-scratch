@@ -1,6 +1,5 @@
-import Mathlib
-import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
 import Definitions.FLT.Def_AlgebraicCurve_AdelicIndex
+import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -103,4 +102,3 @@ def HasRegularFractionSubring (T : TranscendenceTower K E F) : Prop :=
 end AlgebraicCurve
 
 end
-

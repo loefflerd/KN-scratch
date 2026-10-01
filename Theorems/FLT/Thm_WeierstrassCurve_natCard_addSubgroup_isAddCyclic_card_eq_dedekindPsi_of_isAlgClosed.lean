@@ -1,4 +1,5 @@
-import Mathlib
+import Mathlib.AlgebraicGeometry.EllipticCurve.Affine.Point
+
 import Definitions.FLT.Def_ModularCurve_X0
 
 set_option maxHeartbeats 4000000

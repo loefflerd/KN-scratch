@@ -1,5 +1,6 @@
-import Mathlib
-import Definitions.FLT.Def_PeriodPair_Uniformization
+import Mathlib.AlgebraicGeometry.EllipticCurve.IsomOfJ
+import Mathlib.Analysis.Complex.Polynomial.Basic
+
 import Theorems.FLT.Thm_PeriodPair_jLattice_surjective
 import Definitions.FLT.Def_P2M_Util
 

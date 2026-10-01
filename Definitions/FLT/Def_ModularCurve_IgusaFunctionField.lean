@@ -1,4 +1,6 @@
-import Mathlib
+import Mathlib.Algebra.Field.ZMod
+import Mathlib.Algebra.Lie.OfAssociative
+
 import Definitions.FLT.Def_AlgebraicCurve_Correspondence
 import Definitions.FLT.Def_AlgebraicCurve_Differentials
 
@@ -78,4 +80,3 @@ end IgusaDiamondData
 end ModularCurve.IgusaCover
 
 end
-

@@ -1,5 +1,3 @@
-import Mathlib
-import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
 import Theorems.FLT.Thm_AlgebraicCurve_exists_separating_transcendental_of_perfectField
 import Theorems.FLT.Thm_AlgebraicCurve_isCurveOver_of_transcendental
 import Definitions.FLT.Def_P2M_Util

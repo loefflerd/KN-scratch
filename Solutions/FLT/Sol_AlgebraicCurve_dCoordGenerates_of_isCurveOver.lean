@@ -1,5 +1,8 @@
-import Mathlib
-import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.Unramified.Field
+import Mathlib.RingTheory.Valuation.LocalSubring
+
 import Definitions.FLT.Def_ModularCurve_CanonicalDivisor
 import Theorems.FLT.Thm_AlgebraicCurve_IsCurveOver_exists_separating_transcendental
 import Definitions.FLT.Def_P2M_Util

@@ -1,6 +1,7 @@
-import Mathlib
-import Definitions.FLT.Def_WeierstrassCurve_Velu
+import Mathlib.FieldTheory.IsAlgClosed.Basic
+
 import Definitions.FLT.Def_WeierstrassCurve_OddOrderSummingSet
+import Definitions.FLT.Def_WeierstrassCurve_Velu
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000

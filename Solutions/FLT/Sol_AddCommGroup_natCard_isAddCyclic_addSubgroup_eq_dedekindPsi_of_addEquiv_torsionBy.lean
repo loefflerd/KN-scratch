@@ -1,5 +1,3 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_X0
 import Theorems.FLT.Thm_ZMod_natCard_isAddCyclic_addSubgroup_prod_eq_dedekindPsi
 import Definitions.FLT.Def_P2M_Util
 

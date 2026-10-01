@@ -1,4 +1,5 @@
-import Mathlib
+import Mathlib.NumberTheory.ModularForms.Discriminant
+
 import Definitions.FLT.Def_ModularCurve_JqCoeff
 
 set_option maxHeartbeats 4000000

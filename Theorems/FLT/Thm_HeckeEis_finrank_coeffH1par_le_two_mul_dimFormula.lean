@@ -1,4 +1,5 @@
-import Mathlib
+import Mathlib.Basic.Complex.Basic
+
 import Definitions.FLT.Def_Gamma0CoeffCohomology
 import Definitions.FLT.Def_HeckeEis_BinaryFormRep
 import Definitions.FLT.Def_ModularCurve_GenusNumerics

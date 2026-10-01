@@ -1,4 +1,7 @@
-import Mathlib
+import Mathlib.Data.Int.Star
+import Mathlib.NumberTheory.ModularForms.EisensteinSeries.E2.Summable
+import Mathlib.Topology.Separation.CompletelyRegular
+
 import Definitions.FLT.Def_EisensteinSeries_WeierstrassZeta
 import Definitions.FLT.Def_P2M_Util
 

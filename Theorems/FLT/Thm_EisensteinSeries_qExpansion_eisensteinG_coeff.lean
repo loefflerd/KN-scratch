@@ -1,4 +1,6 @@
-import Mathlib
+import Mathlib.Analysis.SpecialFunctions.Complex.CircleAddChar
+import Mathlib.NumberTheory.ModularForms.QExpansion
+
 import Definitions.FLT.Def_EisensteinSeries_EisensteinG
 
 set_option maxHeartbeats 4000000

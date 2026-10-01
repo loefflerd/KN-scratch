@@ -1,5 +1,5 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_PeriodMap
+import Mathlib.LinearAlgebra.Matrix.FixedDetMatrices
+
 import Theorems.FLT.Thm_ModularCurve_six_mul_level_mul_finrank_parabolicHoms_Gamma_add_eq
 import Theorems.FLT.Thm_ModularCurve_twelve_mul_add_mul_index_le_finrank_cuspForm_Gamma
 import Definitions.FLT.Def_P2M_Util

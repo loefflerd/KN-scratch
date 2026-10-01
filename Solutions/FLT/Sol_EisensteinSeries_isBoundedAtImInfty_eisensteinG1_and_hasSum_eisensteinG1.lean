@@ -1,7 +1,11 @@
-import Mathlib
-import Definitions.FLT.Def_EisensteinSeries_WeierstrassZeta
-import Theorems.FLT.Thm_EisensteinSeries_hasSum_weierstrassZeta_sub_mul_G2
+import Mathlib.Analysis.Complex.UpperHalfPlane.FunctionsBoundedAtInfty
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.Cotangent
+import Mathlib.Data.Int.Star
+import Mathlib.NumberTheory.TsumDivisorsAntidiagonal
+import Mathlib.Topology.UniformSpace.Uniformizable
+
 import Theorems.FLT.Thm_EisensteinSeries_eisensteinG1_apply_smul_and_eisensteinG1_add
+import Theorems.FLT.Thm_EisensteinSeries_hasSum_weierstrassZeta_sub_mul_G2
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

@@ -1,9 +1,11 @@
-import Mathlib
-import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
-import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
-import Definitions.FLT.Def_HahnSeries_RamificationBound
-import Theorems.FLT.Thm_AlgebraicCurve_Place_ord_dvd_of_hahnSeries_embedding_of_isGalois
+import Mathlib.Algebra.Algebra.IsSimpleRing
+import Mathlib.Algebra.Lie.OfAssociative
+import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.RegularLocalRing.Defs
+
 import Theorems.FLT.Thm_AlgebraicCurve_Place_exists_restrict_eq
+import Theorems.FLT.Thm_AlgebraicCurve_Place_ord_dvd_of_hahnSeries_embedding_of_isGalois
 import Theorems.FLT.Thm_HahnSeries_isAlgClosed_rat
 import Theorems.FLT.Thm_HahnSeries_mem_puiseuxRamSubfield_iff
 import Definitions.FLT.Def_P2M_Util

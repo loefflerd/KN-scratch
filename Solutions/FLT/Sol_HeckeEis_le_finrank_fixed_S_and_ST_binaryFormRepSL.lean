@@ -1,4 +1,8 @@
-import Mathlib
+import Mathlib.Algebra.MvPolynomial.Monad
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Analysis.CStarAlgebra.Classes
+import Mathlib.RingTheory.RootsOfUnity.Complex
+
 import Definitions.FLT.Def_HeckeEis_BinaryFormRep
 import Definitions.FLT.Def_P2M_Util
 

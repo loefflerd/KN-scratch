@@ -1,5 +1,10 @@
-import Mathlib
-import Definitions.FLT.Def_ModularForm_HeckeOperator
+import Mathlib.AlgebraicTopology.FundamentalGroupoid.SimplyConnected
+import Mathlib.Data.Int.Star
+import Mathlib.GroupTheory.Schreier
+import Mathlib.NumberTheory.ModularForms.Discriminant
+import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.Tactic.NormNum.Prime
+
 import Theorems.FLT.Thm_CuspForm_exists_degeneracy_Gamma0
 import Definitions.FLT.Def_P2M_Util
 

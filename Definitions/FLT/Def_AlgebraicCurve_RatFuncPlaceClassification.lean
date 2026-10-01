@@ -1,6 +1,7 @@
-import Mathlib
-import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
+import Mathlib.NumberTheory.RatFunc.Ostrowski
+
 import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaceInfty
+import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -126,4 +127,3 @@ theorem placeEquivOption_placeInfty [IsAlgClosed K] [DecidableEq (RatFunc K)] :
 end RationalFunctionField
 
 end AlgebraicCurve
-

@@ -1,6 +1,5 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_PeriodMap
 import Definitions.FLT.Def_ModularCurve_CuspSpace
+import Definitions.FLT.Def_ModularCurve_PeriodMap
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000

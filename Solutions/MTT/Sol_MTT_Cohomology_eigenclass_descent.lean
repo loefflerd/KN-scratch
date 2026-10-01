@@ -1,6 +1,12 @@
-import Mathlib
+import Mathlib.Analysis.CStarAlgebra.Classes
+import Mathlib.Analysis.Complex.Polynomial.Basic
+import Mathlib.RingTheory.Etale.Weakly
+import Mathlib.RingTheory.Finiteness.ModuleFinitePresentation
+import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.TotallySplit
+
 import Definitions.MTT.Def_MTT_Cohomology
-import Mathlib.RingTheory.Flat.Basic
 set_option autoImplicit false
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000

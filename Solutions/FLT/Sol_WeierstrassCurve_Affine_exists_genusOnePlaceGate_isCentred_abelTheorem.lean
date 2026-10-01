@@ -1,3 +1,5 @@
+import Mathlib.RingTheory.DedekindDomain.Factorization
+
 import Definitions.FLT.Def_EllipticCurve_FunctionFieldPullback
 import Definitions.FLT.Def_WeierstrassCurve_GenusOnePlaceGateCentred
 import Theorems.FLT.Thm_AlgebraicCurve_Place_ord_eq_neg_log_of_valuationSubring_eq

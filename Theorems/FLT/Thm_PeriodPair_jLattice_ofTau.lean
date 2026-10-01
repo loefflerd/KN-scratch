@@ -1,4 +1,5 @@
-import Mathlib
+import Mathlib.NumberTheory.ModularForms.Discriminant
+
 import Definitions.FLT.Def_PeriodPair_Uniformization
 
 set_option maxHeartbeats 4000000

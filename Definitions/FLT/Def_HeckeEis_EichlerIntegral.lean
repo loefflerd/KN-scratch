@@ -1,6 +1,9 @@
-import Mathlib
-import Definitions.FLT.Def_HeckeEis_BinaryFormRep
+import Mathlib.Analysis.CStarAlgebra.Classes
+import Mathlib.Analysis.Calculus.Deriv.Basic
+import Mathlib.Analysis.Complex.UpperHalfPlane.Topology
+
 import Definitions.FLT.Def_Gamma0CoeffCohomology
+import Definitions.FLT.Def_HeckeEis_BinaryFormRep
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000

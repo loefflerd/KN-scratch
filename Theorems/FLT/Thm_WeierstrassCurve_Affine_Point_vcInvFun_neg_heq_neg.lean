@@ -1,5 +1,4 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_ModuliPoint
+import Definitions.FLT.Def_WeierstrassCurve_VariableChangePointEquiv
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000

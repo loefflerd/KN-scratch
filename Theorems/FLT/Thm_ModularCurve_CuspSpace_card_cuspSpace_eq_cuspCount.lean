@@ -1,4 +1,3 @@
-import Mathlib
 import Definitions.FLT.Def_ModularCurve_CuspSpace
 import Definitions.FLT.Def_ModularCurve_GenusNumerics
 

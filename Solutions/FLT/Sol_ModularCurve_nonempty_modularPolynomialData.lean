@@ -1,9 +1,12 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_X0
+import Mathlib.Algebra.AffineMonoid.Basic
+import Mathlib.Analysis.Normed.Field.Lemmas
+import Mathlib.RingTheory.Polynomial.IsIntegral
+import Mathlib.RingTheory.SimpleRing.Principal
+
 import Definitions.FLT.Def_ModularCurve_RouteBCoordRing
-import Theorems.FLT.Thm_ModularCurve_finrank_adjoin_jqN_eq_dedekindPsi
 import Theorems.FLT.Thm_ModularCurve_evalAtJGen_injective
 import Theorems.FLT.Thm_ModularCurve_exists_monic_evalAtJ_jqN_eq_zero
+import Theorems.FLT.Thm_ModularCurve_finrank_adjoin_jqN_eq_dedekindPsi
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

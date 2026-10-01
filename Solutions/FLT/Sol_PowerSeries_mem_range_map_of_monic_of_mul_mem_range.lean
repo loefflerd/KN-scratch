@@ -1,4 +1,9 @@
-import Mathlib
+import Mathlib.FieldTheory.PurelyInseparable.Basic
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.PowerSeries.Ideal
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
+
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

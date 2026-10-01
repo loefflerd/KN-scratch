@@ -1,4 +1,3 @@
-import Mathlib
 import Definitions.FLT.Def_PeriodPair_Uniformization
 
 set_option maxHeartbeats 4000000

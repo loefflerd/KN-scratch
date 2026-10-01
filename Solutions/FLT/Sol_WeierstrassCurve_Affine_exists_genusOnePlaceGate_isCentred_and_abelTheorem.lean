@@ -1,3 +1,5 @@
+import Mathlib.RingTheory.Polynomial.DegreeLT
+
 import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
 import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
 import Definitions.FLT.Def_WeierstrassCurve_GenusOnePlaceGateCentred

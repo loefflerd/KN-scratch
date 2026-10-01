@@ -1,6 +1,7 @@
-import Mathlib
+import Mathlib.Data.Int.Star
+import Mathlib.NumberTheory.ModularForms.LevelOne.DimensionFormula
+
 import Definitions.FLT.Def_PeriodPair_Uniformization
-import Theorems.FLT.Thm_PeriodPair_discriminant_ne_zero
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

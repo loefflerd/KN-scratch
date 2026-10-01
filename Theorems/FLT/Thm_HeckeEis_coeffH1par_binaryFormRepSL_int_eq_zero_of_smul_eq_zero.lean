@@ -1,6 +1,5 @@
-import Mathlib
-import Definitions.FLT.Def_HeckeEis_BinaryFormRep
 import Definitions.FLT.Def_Gamma0CoeffCohomology
+import Definitions.FLT.Def_HeckeEis_BinaryFormRep
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000

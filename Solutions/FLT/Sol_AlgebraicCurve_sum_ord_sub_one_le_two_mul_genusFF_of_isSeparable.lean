@@ -1,8 +1,8 @@
-import Mathlib
-import Definitions.FLT.Def_AlgebraicCurve_Repartitions
-import Definitions.FLT.Def_AlgebraicCurve_Differentials
-import Theorems.FLT.Thm_AlgebraicCurve_sum_ordDiff_D_le_two_mul_genusFF_of_isSeparable
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Data.Int.Star
+
 import Theorems.FLT.Thm_AlgebraicCurve_Place_ord_sub_one_le_ordDiff_D_of_perfectField
+import Theorems.FLT.Thm_AlgebraicCurve_sum_ordDiff_D_le_two_mul_genusFF_of_isSeparable
 import Theorems.FLT.Thm_KaehlerDifferential_D_ne_zero_of_transcendental
 import Definitions.FLT.Def_P2M_Util
 

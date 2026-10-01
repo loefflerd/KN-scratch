@@ -1,9 +1,7 @@
-import Mathlib
+import Mathlib.Analysis.CStarAlgebra.Classes
+
 import Definitions.FLT.Def_Gamma0CoeffCohomology
 import Definitions.FLT.Def_HeckeEis_BinaryFormRep
-import Definitions.FLT.Def_ModularCurve_GenusNumerics
-import Definitions.FLT.Def_ModularCurve_PeriodMap
-
 import Theorems.FLT.Thm_ModularCurve_Period_exists_basis_parabolicHoms_castAddHom_comp
 import Theorems.FLT.Thm_ModularCurve_finrank_parabolicHoms_le_two_mul_genusFormula
 import Definitions.FLT.Def_P2M_Util

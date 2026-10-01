@@ -1,4 +1,6 @@
-import Mathlib
+import Mathlib.AlgebraicGeometry.EllipticCurve.Affine.Point
+import Mathlib.RingTheory.SimpleRing.Principal
+
 import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 
 set_option maxHeartbeats 4000000

@@ -1,5 +1,8 @@
-import Mathlib
-import Definitions.FLT.Def_ProjectiveLineMatrixAction
+import Mathlib.FieldTheory.Finite.Basic
+import Mathlib.RepresentationTheory.Basic
+import Mathlib.RingTheory.MvPolynomial.IrreducibleQuadratic
+
+import Definitions.FLT.Def_ModularCurve_ProjectiveLine
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000

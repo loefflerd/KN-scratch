@@ -1,6 +1,6 @@
-import Mathlib
+import Mathlib.NumberTheory.ModularForms.LevelOne.GradedRing
+
 import Definitions.FLT.Def_PeriodPair_Uniformization
-import Theorems.FLT.Thm_PeriodPair_discriminant_ne_zero
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

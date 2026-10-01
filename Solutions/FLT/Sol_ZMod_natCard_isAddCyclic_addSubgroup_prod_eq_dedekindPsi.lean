@@ -1,6 +1,3 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_X0
-import Definitions.FLT.Def_ModularCurve_ProjectiveLine
 import Theorems.FLT.Thm_ModularCurve_card_projectiveLine_zmod
 import Definitions.FLT.Def_P2M_Util
 

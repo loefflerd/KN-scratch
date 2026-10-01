@@ -1,6 +1,12 @@
-import Mathlib
-import Theorems.FLT.Thm_HexagonalLattice_summable_thetaTerm_and_tsum_neg_inv_three_mul
+import Mathlib.Algebra.Field.ZMod
+import Mathlib.Analysis.Complex.LocallyUniformLimit
+import Mathlib.Data.Int.Star
+import Mathlib.NumberTheory.ModularForms.JacobiTheta.TwoVariable
+import Mathlib.NumberTheory.ModularForms.QExpansion
+import Mathlib.Tactic.NormNum.Prime
+
 import Theorems.FLT.Thm_CongruenceSubgroup_closure_T_U_neg_one_eq_Gamma0_three
+import Theorems.FLT.Thm_HexagonalLattice_summable_thetaTerm_and_tsum_neg_inv_three_mul
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

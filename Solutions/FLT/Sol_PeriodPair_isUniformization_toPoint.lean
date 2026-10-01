@@ -1,5 +1,3 @@
-import Mathlib
-import Definitions.FLT.Def_PeriodPair_Uniformization
 import Theorems.FLT.Thm_PeriodPair_discriminant_ne_zero
 import Definitions.FLT.Def_P2M_Util
 

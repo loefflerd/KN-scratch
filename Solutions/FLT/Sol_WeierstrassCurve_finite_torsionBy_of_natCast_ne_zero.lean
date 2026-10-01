@@ -1,4 +1,9 @@
-import Mathlib
+import Mathlib.Algebra.Order.Star.Basic
+import Mathlib.FieldTheory.IsAlgClosed.AlgebraicClosure
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
+
 import Theorems.FLT.Thm_WeierstrassCurve_card_torsion_of_isAlgClosed
 import Definitions.FLT.Def_P2M_Util
 

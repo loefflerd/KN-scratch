@@ -1,7 +1,6 @@
-import Mathlib
+import Mathlib.NumberTheory.ModularForms.Discriminant
+
 import Definitions.FLT.Def_ModularCurve_X0
-import Definitions.FLT.Def_ModularCurve_JqCoeff
-import Definitions.FLT.Def_ModularCurve_PrimCosetReps
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000

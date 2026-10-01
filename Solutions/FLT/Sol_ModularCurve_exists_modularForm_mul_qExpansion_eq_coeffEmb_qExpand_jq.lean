@@ -1,7 +1,4 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_X0
 import Definitions.FLT.Def_ModularCurve_LaurentCoeff
-import Definitions.FLT.Def_ModularCurve_JqCoeff
 import Theorems.FLT.Thm_ModularCurve_exists_gamma0_qExpansion_div_eq_jqNModC
 import Definitions.FLT.Def_P2M_Util
 

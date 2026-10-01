@@ -1,5 +1,5 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_PeriodMap
+import Mathlib.GroupTheory.FiniteAbelian.Basic
+
 import Definitions.FLT.Def_ModularCurve_HeckeAlgebraHom
 import Definitions.FLT.Def_P2M_Util
 

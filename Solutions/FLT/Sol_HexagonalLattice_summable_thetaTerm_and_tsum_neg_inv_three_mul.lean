@@ -1,4 +1,7 @@
-import Mathlib
+import Mathlib.Analysis.SpecialFunctions.Gaussian.PoissonSummation
+import Mathlib.LinearAlgebra.Complex.FiniteDimensional
+import Mathlib.Topology.Separation.CompletelyRegular
+
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

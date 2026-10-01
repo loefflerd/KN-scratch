@@ -1,4 +1,5 @@
-import Mathlib
+import Mathlib.RingTheory.SimpleRing.Principal
+
 import Definitions.FLT.Def_ModularCurve_FibrePoly
 
 set_option maxHeartbeats 4000000

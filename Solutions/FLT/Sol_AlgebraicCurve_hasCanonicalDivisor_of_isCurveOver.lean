@@ -1,11 +1,12 @@
-import Mathlib
-import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
-import Definitions.FLT.Def_ModularCurve_CanonicalDivisor
-import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
+import Mathlib.RingTheory.DedekindDomain.Different
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.RegularLocalRing.Defs
+
 import Definitions.FLT.Def_AlgebraicCurve_CanonicalDivisor
+import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
 import Theorems.FLT.Thm_AlgebraicCurve_IsCurveOver_exists_separating_transcendental
-import Theorems.FLT.Thm_KaehlerDifferential_span_D_eq_top_of_transcendental
 import Theorems.FLT.Thm_KaehlerDifferential_D_ne_zero_of_transcendental
+import Theorems.FLT.Thm_KaehlerDifferential_span_D_eq_top_of_transcendental
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

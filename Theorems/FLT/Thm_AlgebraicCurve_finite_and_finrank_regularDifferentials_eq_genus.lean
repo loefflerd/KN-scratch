@@ -1,6 +1,5 @@
-import Mathlib
-import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
 import Definitions.FLT.Def_AlgebraicCurve_CanonicalDivisor
+import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
 import Definitions.FLT.Def_AlgebraicCurve_RegularDifferentials
 
 set_option maxHeartbeats 4000000

@@ -1,4 +1,9 @@
-import Mathlib
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Data.Int.Star
+import Mathlib.NumberTheory.ModularForms.Basic
+import Mathlib.NumberTheory.ModularForms.EisensteinSeries.IsBoundedAtImInfty
+import Mathlib.NumberTheory.ModularForms.EisensteinSeries.MDifferentiable
+
 import Definitions.FLT.Def_EisensteinSeries_EisensteinG
 import Definitions.FLT.Def_P2M_Util
 

@@ -1,5 +1,3 @@
-import Mathlib
-import Definitions.FLT.Def_ModularForm_HeckeOperator
 import Definitions.FLT.Def_FLTPrelim_Modularity
 
 set_option maxHeartbeats 4000000

@@ -1,7 +1,6 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_ArithmeticGalois
-import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
 import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaceInfty
+import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
+import Definitions.FLT.Def_ModularCurve_ArithmeticGalois
 import Theorems.FLT.Thm_ModularCurve_transcendental_coeffEmb_jq
 
 set_option maxHeartbeats 4000000
@@ -68,4 +67,3 @@ def jLineBarPlaceInfty : Place (AlgebraicClosure ℚ) ↥(jLineBar N) :=
 end ModularCurve
 
 end
-

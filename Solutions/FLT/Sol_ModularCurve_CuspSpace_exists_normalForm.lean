@@ -1,6 +1,6 @@
-import Mathlib
+import Mathlib.Data.ZMod.Units
+
 import Definitions.FLT.Def_ModularCurve_CuspSpace
-import Definitions.FLT.Def_ModularCurve_GenusNumerics
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

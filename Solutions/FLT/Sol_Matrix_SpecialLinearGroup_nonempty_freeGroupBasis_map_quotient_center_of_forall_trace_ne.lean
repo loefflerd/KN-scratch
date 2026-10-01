@@ -1,4 +1,6 @@
-import Mathlib
+import Mathlib.Analysis.Normed.Ring.Lemmas
+import Mathlib.LinearAlgebra.Matrix.Trace
+
 import Theorems.FLT.Thm_ModularGroup_exists_mulEquiv_freeProduct_quotient_center
 import Theorems.FLT.Thm_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank
 import Theorems.FLT.Thm_Subgroup_card_orbitRelQuotient_mul_card_eq_index

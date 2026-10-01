@@ -1,7 +1,5 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_PeriodMap
-import Theorems.FLT.Thm_ModularCurve_finrank_parabolicHoms_le_two_mul_finrank_cuspForm_of_le_of_normal
 import Theorems.FLT.Thm_ModularCurve_finrank_parabolicHoms_Gamma_le_two_mul_finrank_cuspForm
+import Theorems.FLT.Thm_ModularCurve_finrank_parabolicHoms_le_two_mul_finrank_cuspForm_of_le_of_normal
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

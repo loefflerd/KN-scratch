@@ -1,4 +1,3 @@
-import Mathlib
 import Definitions.FLT.Def_ModularCurve_CanonicalDivisor
 
 set_option maxHeartbeats 4000000
@@ -48,4 +47,3 @@ theorem mem_regularDifferentials_iff {ω : Ω[F⁄K]} :
 end AlgebraicCurve
 
 end
-

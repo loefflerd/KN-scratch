@@ -1,4 +1,10 @@
-import Mathlib
+import Mathlib.GroupTheory.Schreier
+import Mathlib.LinearAlgebra.Matrix.FixedDetMatrices
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.PicardGroup
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
+
 import Definitions.FLT.Def_ModularCurve_PeriodMap
 import Theorems.FLT.Thm_Matrix_SpecialLinearGroup_exists_addMonoidHom_conj_T_pow_minimalPeriod_eq_of_finsum_eq_zero
 import Definitions.FLT.Def_P2M_Util

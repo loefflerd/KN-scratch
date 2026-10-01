@@ -1,4 +1,7 @@
-import Mathlib
+import Mathlib.FieldTheory.RatFunc.Basic
+import Mathlib.RingTheory.HahnSeries.PowerSeries
+import Mathlib.RingTheory.SimpleRing.Principal
+
 import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 import Definitions.FLT.Def_HahnSeries_RamificationBound
 

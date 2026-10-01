@@ -1,6 +1,7 @@
-import Mathlib
-import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
-import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaceInfty
+import Mathlib.FieldTheory.RatFunc.Basic
+import Mathlib.RingTheory.SimpleRing.Principal
+
+import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000

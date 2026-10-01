@@ -1,7 +1,12 @@
-import Mathlib
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Data.Int.Star
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.Polynomial.DegreeLT
+import Mathlib.RingTheory.RegularLocalRing.Defs
+
 import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
-import Theorems.FLT.Thm_WeierstrassCurve_Affine_FunctionField_exists_valuation_eq_exp_natDegree_norm
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_FunctionField_eq_valuationSubring_of_X_not_mem
+import Theorems.FLT.Thm_WeierstrassCurve_Affine_FunctionField_exists_valuation_eq_exp_natDegree_norm
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

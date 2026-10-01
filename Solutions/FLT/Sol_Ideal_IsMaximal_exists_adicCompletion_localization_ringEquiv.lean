@@ -1,4 +1,6 @@
-import Mathlib
+import Mathlib.RingTheory.AdicCompletion.Algebra
+import Mathlib.RingTheory.Localization.AtPrime.Basic
+
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

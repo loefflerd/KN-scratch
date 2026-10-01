@@ -1,7 +1,6 @@
-import Mathlib
 import Definitions.FLT.Def_AlgebraicCurve_Differentials
-import Definitions.FLT.Def_AlgebraicCurve_RegularDifferentials
 import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
+import Definitions.FLT.Def_AlgebraicCurve_RegularDifferentials
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000

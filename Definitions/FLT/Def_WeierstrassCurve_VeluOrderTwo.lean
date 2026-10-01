@@ -1,4 +1,3 @@
-import Mathlib
 import Definitions.FLT.Def_WeierstrassCurve_Velu
 
 set_option maxHeartbeats 4000000
@@ -51,4 +50,3 @@ lemma map_velu2QuadDisc {S : Type*} [CommRing S] (f : R →+* S) (x₀ : R) :
 end CommRing
 
 end WeierstrassCurve
-

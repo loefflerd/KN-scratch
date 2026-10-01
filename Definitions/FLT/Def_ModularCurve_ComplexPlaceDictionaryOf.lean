@@ -1,6 +1,5 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_LaurentCoeff
-import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
+import Mathlib.Analysis.CStarAlgebra.Classes
+
 import Definitions.FLT.Def_ModularCurve_ComplexPlaceDictionary
 
 set_option maxHeartbeats 4000000

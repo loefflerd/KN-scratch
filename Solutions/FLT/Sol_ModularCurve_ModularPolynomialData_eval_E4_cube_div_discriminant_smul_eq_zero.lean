@@ -1,11 +1,9 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_X0
-import Definitions.FLT.Def_ModularCurve_JqCoeff
-import Definitions.FLT.Def_ModularCurve_PrimCosetReps
-import Definitions.FLT.Def_ModularForm_HeckeOperator
+import Mathlib.RingTheory.SimpleRing.Principal
+
+import Definitions.FLT.Def_ModularCurve_LaurentCoeff
 import Theorems.FLT.Thm_ModularCurve_jqModC_eq_qExpansion_E4_cube_div_discriminant
-import Theorems.FLT.Thm_ModularForm_qExpansion_heckeDiagMatrix_smul_eq_qExpand_of_levelOne
 import Theorems.FLT.Thm_ModularForm_exists_degeneracy_Gamma0
+import Theorems.FLT.Thm_ModularForm_qExpansion_heckeDiagMatrix_smul_eq_qExpand_of_levelOne
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

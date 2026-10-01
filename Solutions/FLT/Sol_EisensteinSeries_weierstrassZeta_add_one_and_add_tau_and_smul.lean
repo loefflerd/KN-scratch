@@ -1,5 +1,5 @@
-import Mathlib
-import Definitions.FLT.Def_EisensteinSeries_WeierstrassZeta
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.Cotangent
+
 import Theorems.FLT.Thm_EisensteinSeries_hasSum_weierstrassZeta_sub_mul_G2
 import Definitions.FLT.Def_P2M_Util
 

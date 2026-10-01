@@ -1,6 +1,5 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_TateFormal
 import Definitions.FLT.Def_ModularCurve_QExpansionDiff
+import Definitions.FLT.Def_ModularCurve_TateFormal
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000

@@ -1,4 +1,6 @@
-import Mathlib
+import Mathlib.FieldTheory.RatFunc.Basic
+import Mathlib.RingTheory.SimpleRing.Principal
+
 import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
 
 set_option maxHeartbeats 4000000

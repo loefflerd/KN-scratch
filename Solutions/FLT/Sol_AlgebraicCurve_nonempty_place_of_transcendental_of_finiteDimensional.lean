@@ -1,6 +1,7 @@
-import Mathlib
-import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
-import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaceInfty
+import Mathlib.Algebra.Lie.OfAssociative
+import Mathlib.FieldTheory.RatFunc.AsPolynomial
+import Mathlib.RingTheory.PicardGroup
+
 import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_nonempty_place_of_ratFunc_tower
 import Definitions.FLT.Def_P2M_Util
 

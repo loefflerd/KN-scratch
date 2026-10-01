@@ -1,8 +1,9 @@
-import Mathlib
-import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
-import Definitions.FLT.Def_AlgebraicCurve_Repartitions
-import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
+import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
+import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.RingTheory.PicardGroup
+
 import Definitions.FLT.Def_AlgebraicCurve_AdelicIndex
+import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

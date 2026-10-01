@@ -1,6 +1,15 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_PeriodMap
+import Mathlib.LinearAlgebra.FreeModule.PID
+import Mathlib.LinearAlgebra.Matrix.FixedDetMatrices
+import Mathlib.RingTheory.Etale.Weakly
+import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.PicardGroup
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.TotallySplit
+
 import Definitions.FLT.Def_ModularCurve_CuspSpace
+import Definitions.FLT.Def_ModularCurve_PeriodMap
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

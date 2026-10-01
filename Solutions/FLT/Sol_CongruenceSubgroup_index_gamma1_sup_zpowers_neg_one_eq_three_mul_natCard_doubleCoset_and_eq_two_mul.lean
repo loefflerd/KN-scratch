@@ -1,4 +1,8 @@
-import Mathlib
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Data.Int.Star
+import Mathlib.GroupTheory.DoubleCoset
+import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
+
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

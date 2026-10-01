@@ -1,4 +1,5 @@
-import Mathlib
+import Mathlib.NumberTheory.ModularForms.Discriminant
+
 import Definitions.FLT.Def_PeriodPair_Uniformization
 
 set_option maxHeartbeats 4000000
@@ -55,4 +56,3 @@ theorem coe_jGen (N : ℕ) : ((jGen N : ring N) : ℍ → ℂ) = jAnalytic :=
 end ModularCurve.LevelN
 
 end
-

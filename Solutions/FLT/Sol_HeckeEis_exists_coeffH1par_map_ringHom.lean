@@ -1,6 +1,7 @@
-import Mathlib
-import Definitions.FLT.Def_HeckeEis_BinaryFormRep
+import Mathlib.Algebra.MvPolynomial.Monad
+
 import Definitions.FLT.Def_Gamma0CoeffCohomology
+import Definitions.FLT.Def_HeckeEis_BinaryFormRep
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

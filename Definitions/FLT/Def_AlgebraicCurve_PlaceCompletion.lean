@@ -1,5 +1,15 @@
-import Mathlib
-import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Algebra.Order.Star.Real
+import Mathlib.Data.Int.Star
+import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.PicardGroup
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.Topology.Algebra.Module.FiniteDimension
+import Mathlib.Topology.Algebra.Valued.NormedValued
+import Mathlib.Topology.UniformSpace.Uniformizable
+
 import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
 import Definitions.FLT.Def_DedekindDomain_AdicValuation_InlineSpecific
 
@@ -531,4 +541,3 @@ end PoleWindowShift
 end ModularCurve.KwF4gRRTate
 
 end
-

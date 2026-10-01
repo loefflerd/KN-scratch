@@ -1,10 +1,8 @@
+import Mathlib.AlgebraicGeometry.EllipticCurve.ModelsWithJ
+
 import Definitions.FLT.Def_ModularCurve_TateFormal
 import Definitions.FLT.Def_ModularCurve_PhiGen
 import Definitions.FLT.Def_WeierstrassCurve_VeluQuotientMap
-
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 set_option autoImplicit false
 
@@ -21,7 +19,6 @@ abbrev H : Type := HahnSeries ℚ Qbar
 def jNear (j₀ : Qbar) : H := HahnSeries.C j₀ + HahnSeries.single (1 : ℚ) (1 : Qbar)
 
 open scoped Classical in
-
 def nearCurve (j₀ : Qbar) : WeierstrassCurve H := WeierstrassCurve.ofJ (jNear j₀)
 
 open scoped Classical in
@@ -29,7 +26,6 @@ instance instIsElliptic_nearCurve (j₀ : Qbar) : (nearCurve j₀).IsElliptic :=
   unfold nearCurve; infer_instance
 
 open scoped Classical in
-
 def CycSubH (E : WeierstrassCurve H) (N : ℕ) : Type :=
   {G : AddSubgroup E.toAffine.Point //
     ∃ g : E.toAffine.Point, addOrderOf g = N ∧ G = AddSubgroup.zmultiples g}
@@ -38,7 +34,6 @@ def RootsAt {p : ℕ} [NeZero p] (data : ModularPolynomialData p) (jv : H) : Typ
   {y : H // (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom H) jv)).IsRoot y}
 
 open scoped Classical in
-
 theorem nearCurve_j (j₀ : Qbar) : (nearCurve j₀).j = jNear j₀ :=
   WeierstrassCurve.ofJ_j (jNear j₀)
 
@@ -70,26 +65,19 @@ def slotQuotient (i : Fin (p + 1)) : WeierstrassCurve (LaurentSeries K) :=
 variable (instQ : ∀ i, (slotQuotient K p veluSlotSet i).IsElliptic)
 
 structure W4Conclusions (data : ModularPolynomialData p) : Prop where
-
   oddVeluSet : ∀ i, (basePoint K p).IsOddVeluSet (veluSlotSet i)
-
   slotCurve_succ : ∀ b : Fin p,
     ((tateLaurent K).map (qTwist (ζ ^ (b : ℕ)))).j = PhiGen.conj p ζ b.succ
-
   slotCurve_zero : ((tateLaurent K).map (qExpand K (p * p))).j = PhiGen.conj p ζ 0
-
   nonToric : ∀ b : Fin p,
     slotQuotient K p veluSlotSet b.succ = (tateLaurent K).map (qTwist (ζ ^ (b : ℕ)))
-
   dictionary : data.Φ.map (((coeffEmb K).comp (qExpand ℚ p)).comp evalAtJ) =
     ∏ i : Fin (p + 1),
       (X - C (@WeierstrassCurve.j _ _ (slotQuotient K p veluSlotSet i) (instQ i)))
-
   distinct : Function.Injective fun i : Fin (p + 1) =>
     @WeierstrassCurve.j _ _ (slotQuotient K p veluSlotSet i) (instQ i)
 
 open scoped Classical in
-
 def W3Proper : Prop :=
   ∀ i, (veluSlotSet i).card = (p - 1) / 2 ∧
     ∃ g : (basePoint K p).toAffine.Point, addOrderOf g = p ∧
@@ -99,7 +87,6 @@ def W3Proper : Prop :=
 end TatePoint
 
 open scoped Classical in
-
 def ModuliDictionary (p : ℕ) [NeZero p] (data : ModularPolynomialData p) : Prop :=
   ∀ (E : WeierstrassCurve H) [E.IsElliptic], Transcendental Qbar E.j →
     Nonempty {e : RootsAt data E.j ≃ CycSubH E p //
@@ -113,4 +100,3 @@ def ModuliDictionary (p : ℕ) [NeZero p] (data : ModularPolynomialData p) : Pro
 end ModularCurve.TatePoint
 
 end
-

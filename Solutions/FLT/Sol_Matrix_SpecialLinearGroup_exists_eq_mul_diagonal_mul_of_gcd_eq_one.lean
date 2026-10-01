@@ -1,4 +1,8 @@
-import Mathlib
+import Mathlib.Algebra.BigOperators.Associated
+import Mathlib.LinearAlgebra.Matrix.SpecialLinearGroup
+import Mathlib.Tactic.LinearCombination
+import Mathlib.Tactic.LinearCombination.Lemmas
+
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

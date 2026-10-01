@@ -1,4 +1,8 @@
-import Mathlib
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Algebra.Quaternion
+import Mathlib.Data.Int.Star
+import Mathlib.NumberTheory.ModularForms.Basic
+
 import Definitions.FLT.Def_ModularCurve_PrimCosetReps
 import Definitions.FLT.Def_PeriodPair_Uniformization
 import Definitions.FLT.Def_P2M_Util

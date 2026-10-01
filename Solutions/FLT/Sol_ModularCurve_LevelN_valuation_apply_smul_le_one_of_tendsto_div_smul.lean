@@ -1,9 +1,10 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_LevelNFunctionField
+import Mathlib.Data.Int.Star
+
 import Definitions.FLT.Def_ModularCurve_JqCoeff
-import Theorems.FLT.Thm_WLight_levelN_structure_package
+import Definitions.FLT.Def_ModularCurve_LevelNFunctionField
 import Theorems.FLT.Thm_WLight_frickeFunction_modularity_package
 import Theorems.FLT.Thm_WLight_frickeFunction_orbit_package
+import Theorems.FLT.Thm_WLight_levelN_structure_package
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

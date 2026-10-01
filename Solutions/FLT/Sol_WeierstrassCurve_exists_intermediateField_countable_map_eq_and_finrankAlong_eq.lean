@@ -1,7 +1,12 @@
-import Mathlib
+import Mathlib.Algebra.Polynomial.Basis
+import Mathlib.AlgebraicGeometry.EllipticCurve.DivisionPolynomial.Basic
+import Mathlib.Data.Rat.Encodable
+import Mathlib.FieldTheory.RatFunc.IntermediateField
+import Mathlib.LinearAlgebra.Countable
+import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.RingTheory.PicardGroup
+
 import Definitions.FLT.Def_AlgebraicCurve_Correspondence
-import Definitions.FLT.Def_WeierstrassCurve_FunctionFieldQuadratic
-import Theorems.FLT.Thm_WeierstrassCurve_Affine_adjoin_yCoord_eq_top
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_finiteDimensional_ratFunc_functionField
 import Definitions.FLT.Def_P2M_Util
 

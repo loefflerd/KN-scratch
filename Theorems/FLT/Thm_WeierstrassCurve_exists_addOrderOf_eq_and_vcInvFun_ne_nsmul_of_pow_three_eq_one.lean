@@ -1,4 +1,5 @@
-import Mathlib
+import Mathlib.FieldTheory.IsAlgClosed.Basic
+
 import Definitions.FLT.Def_WeierstrassCurve_VariableChangePointEquiv
 
 set_option maxHeartbeats 4000000

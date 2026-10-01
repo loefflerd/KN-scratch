@@ -1,4 +1,12 @@
-import Mathlib
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Algebra.Ring.IsFormallyReal
+import Mathlib.Analysis.Normed.Ring.Lemmas
+import Mathlib.Data.Int.Star
+import Mathlib.LinearAlgebra.Matrix.SpecialLinearGroup
+import Mathlib.LinearAlgebra.Matrix.Trace
+import Mathlib.Tactic.LinearCombination
+import Mathlib.Tactic.LinearCombination.Lemmas
+
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

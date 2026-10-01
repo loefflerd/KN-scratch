@@ -1,7 +1,10 @@
-import Mathlib
+import Mathlib.Analysis.CStarAlgebra.Classes
+import Mathlib.LinearAlgebra.Matrix.FixedDetMatrices
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
+
 import Definitions.FLT.Def_Gamma0CoeffCohomology
 import Definitions.FLT.Def_HeckeEis_BinaryFormRep
-
 import Theorems.FLT.Thm_ModularGroup_exists_eq_conj_T_zpow_of_trace_sq_eq_four
 import Definitions.FLT.Def_P2M_Util
 

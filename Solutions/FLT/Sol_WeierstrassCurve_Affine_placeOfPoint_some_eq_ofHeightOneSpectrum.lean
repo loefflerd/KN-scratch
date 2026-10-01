@@ -1,4 +1,3 @@
-import Mathlib
 import Definitions.FLT.Def_WeierstrassCurve_GenusOnePlaceGateCentred
 import Theorems.FLT.Thm_AlgebraicCurve_Place_eq_ofHeightOneSpectrum_of_XClass_mem_nonunits_of_YClass_mem_nonunits
 import Definitions.FLT.Def_P2M_Util

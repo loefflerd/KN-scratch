@@ -1,6 +1,9 @@
-import Mathlib
+import Mathlib.Analysis.Fourier.ZMod
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.Cotangent
+import Mathlib.NumberTheory.DirichletCharacter.Bounds
+import Mathlib.RingTheory.SimpleRing.Principal
+
 import Definitions.FLT.Def_FLTPrelim_Modularity
-import Definitions.FLT.Def_EisensteinSeries_WeierstrassZeta
 import Theorems.FLT.Thm_EisensteinSeries_eisensteinG1_apply_smul_and_eisensteinG1_add
 import Theorems.FLT.Thm_EisensteinSeries_isBoundedAtImInfty_eisensteinG1_and_hasSum_eisensteinG1
 import Definitions.FLT.Def_P2M_Util

@@ -1,5 +1,5 @@
-import Mathlib
-import Definitions.FLT.Def_AlgebraicCurve_Correspondence
+import Mathlib.GroupTheory.DoubleCoset
+
 import Definitions.FLT.Def_AlgebraicCurve_BaseChangeGalois
 
 set_option maxHeartbeats 4000000

@@ -1,4 +1,8 @@
-import Mathlib
+import Mathlib.Combinatorics.SimpleGraph.Acyclic
+import Mathlib.GroupTheory.CoprodI
+import Mathlib.Order.CompletePartialOrder
+import Mathlib.Tactic.Group
+
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

@@ -1,5 +1,6 @@
-import Mathlib
-import Definitions.FLT.Def_FLTPrelim_GaloisRep
+import Mathlib.Algebra.Module.Torsion.Basic
+import Mathlib.AlgebraicGeometry.EllipticCurve.Affine.Point
+import Mathlib.FieldTheory.IsAlgClosed.Basic
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000

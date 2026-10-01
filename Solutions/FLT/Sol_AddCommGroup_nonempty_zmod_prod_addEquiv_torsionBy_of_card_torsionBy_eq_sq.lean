@@ -1,4 +1,12 @@
-import Mathlib
+import Mathlib.Algebra.Field.ZMod
+import Mathlib.Algebra.Module.StablyFree.Basic
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Data.Int.Star
+import Mathlib.FieldTheory.Finiteness
+import Mathlib.LinearAlgebra.FreeModule.PID
+import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.RingTheory.SimpleRing.Principal
+
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

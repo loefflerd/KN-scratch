@@ -1,4 +1,6 @@
-import Mathlib
+import Mathlib.Basic.Complex.Basic
+import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
+
 import Definitions.FLT.Def_HeckeEis_BinaryFormRep
 
 set_option maxHeartbeats 4000000

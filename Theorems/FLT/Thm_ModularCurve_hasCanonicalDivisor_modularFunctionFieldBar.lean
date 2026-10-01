@@ -1,6 +1,5 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_ArithmeticGalois
 import Definitions.FLT.Def_AlgebraicCurve_CanonicalDivisor
+import Definitions.FLT.Def_ModularCurve_ArithmeticGalois
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000

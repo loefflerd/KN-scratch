@@ -1,4 +1,5 @@
-import Mathlib
+import Mathlib.FieldTheory.IntermediateField.Adjoin.Defs
+
 import Definitions.FLT.Def_WeierstrassCurve_FunctionFieldQuadratic
 
 set_option maxHeartbeats 4000000

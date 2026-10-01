@@ -1,8 +1,5 @@
-import Mathlib
-import Mathlib.NumberTheory.ModularForms.LevelOne.DimensionFormula
-import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
-import Mathlib.NumberTheory.ModularForms.QExpansion
-import Mathlib.RingTheory.LaurentSeries
+import Mathlib.NumberTheory.ModularForms.Basic
+
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

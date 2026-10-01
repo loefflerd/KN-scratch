@@ -1,4 +1,3 @@
-import Mathlib
 import Definitions.FLT.Def_AlgebraicCurve_AdelicIndex
 import Definitions.FLT.Def_AlgebraicCurve_CanonicalDivisor
 import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
@@ -68,4 +67,3 @@ theorem weilDuality_of_riemannIndex_of_adelic
 end AlgebraicCurve
 
 end
-

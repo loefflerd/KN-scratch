@@ -1,4 +1,9 @@
-import Mathlib
+import Mathlib.GroupTheory.Schreier
+import Mathlib.LinearAlgebra.Matrix.FixedDetMatrices
+import Mathlib.NumberTheory.LegendreSymbol.ZModChar
+import Mathlib.RingTheory.PowerSeries.Order
+import Mathlib.Tactic.NormNum.IsCoprime
+
 import Definitions.MTT.Def_MTT_Arithmetic
 import Theorems.FLT.Thm_ModularForm_exists_weightOne_eisenstein_qCoeff_eq_of_isPrimitive_of_odd
 

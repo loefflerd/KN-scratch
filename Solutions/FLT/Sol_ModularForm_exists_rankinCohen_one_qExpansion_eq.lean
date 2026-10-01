@@ -1,5 +1,3 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_QExpansionDiff
 import Theorems.FLT.Thm_ModularCurve_coe_qExpansion_normalizedDerivOfComplex
 import Definitions.FLT.Def_P2M_Util
 

@@ -1,4 +1,5 @@
-import Mathlib
+import Mathlib.NumberTheory.DirichletCharacter.Basic
+
 import Definitions.FLT.Def_FLTPrelim_Modularity
 
 set_option maxHeartbeats 4000000

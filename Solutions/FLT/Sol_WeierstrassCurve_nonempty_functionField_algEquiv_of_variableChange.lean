@@ -1,8 +1,8 @@
-import Mathlib
+import Mathlib.AlgebraicGeometry.EllipticCurve.DivisionPolynomial.Basic
+import Mathlib.FieldTheory.IsAlgClosed.AlgebraicClosure
+
 import Definitions.FLT.Def_WeierstrassCurve_FunctionFieldQuadratic
 import Definitions.FLT.Def_WeierstrassCurve_VariableChangePointEquiv
-import Theorems.FLT.Thm_WeierstrassCurve_Affine_adjoin_yCoord_eq_top
-import Theorems.FLT.Thm_WeierstrassCurve_Affine_finiteDimensional_ratFunc_functionField
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

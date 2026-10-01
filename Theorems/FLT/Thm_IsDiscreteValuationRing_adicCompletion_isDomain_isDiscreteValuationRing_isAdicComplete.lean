@@ -1,4 +1,5 @@
-import Mathlib
+import Mathlib.RingTheory.RegularLocalRing.Defs
+
 import Definitions.FLT.Def_AdicCompletionLocalRing
 
 set_option maxHeartbeats 4000000

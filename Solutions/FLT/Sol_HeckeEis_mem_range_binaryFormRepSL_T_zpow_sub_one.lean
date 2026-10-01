@@ -1,4 +1,5 @@
-import Mathlib
+import Mathlib.RingTheory.SimpleRing.Principal
+
 import Definitions.FLT.Def_HeckeEis_BinaryFormRep
 import Definitions.FLT.Def_P2M_Util
 

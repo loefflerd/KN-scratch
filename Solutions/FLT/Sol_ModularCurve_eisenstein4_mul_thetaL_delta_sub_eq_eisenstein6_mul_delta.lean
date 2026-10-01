@@ -1,11 +1,10 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_TateFormal
 import Definitions.FLT.Def_ModularCurve_QExpansionDiff
-import Theorems.FLT.Thm_ModularForm_qExpansion_E4_mul_theta_discriminant_sub
+import Definitions.FLT.Def_ModularCurve_TateFormal
 import Theorems.FLT.Thm_ModularCurve_qExpansion_E4_eq_map_eisenstein4
 import Theorems.FLT.Thm_ModularCurve_qExpansion_E6_eq_map_mk
 import Theorems.FLT.Thm_ModularCurve_qExpansion_discriminant_eq_map_X_mul_dedekindEtaUnit
 import Theorems.FLT.Thm_ModularCurve_theta_coeff
+import Theorems.FLT.Thm_ModularForm_qExpansion_E4_mul_theta_discriminant_sub
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

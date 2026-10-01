@@ -1,4 +1,3 @@
-import Mathlib
 import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 import Definitions.FLT.Def_WeierstrassCurve_FunctionFieldQuadratic
 

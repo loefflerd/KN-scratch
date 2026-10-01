@@ -1,6 +1,3 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_CuspSpace
-import Definitions.FLT.Def_ModularCurve_GenusNumerics
 import Theorems.FLT.Thm_ModularCurve_ratPoint_eq_ratPoint_iff_of_isCoprime
 import Definitions.FLT.Def_P2M_Util
 

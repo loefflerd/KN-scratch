@@ -1,4 +1,6 @@
-import Mathlib
+import Mathlib.Analysis.CStarAlgebra.Classes
+import Mathlib.NumberTheory.ModularForms.QExpansion
+
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

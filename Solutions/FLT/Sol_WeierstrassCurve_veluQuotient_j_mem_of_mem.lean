@@ -1,4 +1,3 @@
-import Mathlib
 import Definitions.FLT.Def_WeierstrassCurve_Velu
 import Theorems.FLT.Thm_WeierstrassCurve_j_mem_of_a_mem
 import Definitions.FLT.Def_P2M_Util

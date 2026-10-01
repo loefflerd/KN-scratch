@@ -1,4 +1,6 @@
-import Mathlib
+import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
+import Mathlib.RepresentationTheory.Basic
+
 import Definitions.FLT.Def_ModularCurve_ProjectiveLine
 
 set_option maxHeartbeats 4000000

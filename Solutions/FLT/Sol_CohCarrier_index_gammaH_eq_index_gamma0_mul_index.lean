@@ -1,4 +1,6 @@
-import Mathlib
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Data.Int.Star
+
 import Definitions.FLT.Def_CohCarrier_Level
 import Definitions.FLT.Def_P2M_Util
 

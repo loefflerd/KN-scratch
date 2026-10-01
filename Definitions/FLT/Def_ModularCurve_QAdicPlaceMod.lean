@@ -1,6 +1,9 @@
-import Mathlib
+import Mathlib.Algebra.Field.ZMod
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
+
 import Definitions.FLT.Def_ModularCurve_QAdicPlace
-import Definitions.FLT.Def_ModularCurve_JqCoeff
 import Theorems.FLT.Thm_ModularCurve_coeff_jqModC_neg_one
 import Theorems.FLT.Thm_ModularCurve_coeff_jqModC_pow_of_lt
 
@@ -365,4 +368,3 @@ theorem gate_ord_cuspInftyGeom_fbar_two_ne_zero :
 end Gates
 
 end ModularCurve
-

@@ -1,5 +1,7 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_X0
+import Mathlib.AlgebraicGeometry.EllipticCurve.Affine.Point
+import Mathlib.FieldTheory.IsAlgClosed.AlgebraicClosure
+import Mathlib.RingTheory.HahnSeries.PowerSeries
+
 import Definitions.FLT.Def_HahnSeries_RamificationBound
 
 set_option maxHeartbeats 4000000

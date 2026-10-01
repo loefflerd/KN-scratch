@@ -1,4 +1,10 @@
-import Mathlib
+import Mathlib.LinearAlgebra.FreeModule.PID
+import Mathlib.RepresentationTheory.Coinduced
+import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
+
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

@@ -1,6 +1,11 @@
-import Mathlib
+import Mathlib.Algebra.Lie.OfAssociative
+import Mathlib.FieldTheory.SeparablyGenerated
+import Mathlib.RingTheory.Etale.Field
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
+
 import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
-import Definitions.FLT.Def_ModularCurve_CanonicalDivisor
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

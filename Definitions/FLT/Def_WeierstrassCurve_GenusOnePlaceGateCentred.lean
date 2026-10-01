@@ -1,4 +1,3 @@
-import Mathlib
 import Definitions.FLT.Def_WeierstrassCurve_GenusOnePic0
 
 set_option maxHeartbeats 4000000
@@ -42,4 +41,3 @@ theorem algebraMap_YClass_mem_nonunits {x y : F} (h : W.Nonsingular x y) :
 end GenusOnePlaceGate.IsCentred
 
 end WeierstrassCurve.Affine
-

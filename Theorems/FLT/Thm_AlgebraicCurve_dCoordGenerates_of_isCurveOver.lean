@@ -1,4 +1,3 @@
-import Mathlib
 import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
 import Definitions.FLT.Def_ModularCurve_CanonicalDivisor
 

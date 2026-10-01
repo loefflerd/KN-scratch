@@ -1,4 +1,6 @@
-import Mathlib
+import Mathlib.RingTheory.DedekindDomain.Factorization
+import Mathlib.RingTheory.Flat.TorsionFree
+
 import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
 import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaceClassification
 import Definitions.FLT.Def_P2M_Util

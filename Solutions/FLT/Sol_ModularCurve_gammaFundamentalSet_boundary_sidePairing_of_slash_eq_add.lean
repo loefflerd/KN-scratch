@@ -1,5 +1,7 @@
-import Mathlib
-import Definitions.FLT.Def_AutomorphicForm_Gamma0FundamentalSet
+import Mathlib.Analysis.CStarAlgebra.Classes
+import Mathlib.Analysis.Complex.UpperHalfPlane.Topology
+import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
+
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

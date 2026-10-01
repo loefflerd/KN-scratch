@@ -1,5 +1,5 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_CuspSpace
+import Mathlib.Data.ZMod.Units
+
 import Definitions.FLT.Def_ModularCurve_GenusNumerics
 import Theorems.FLT.Thm_ModularCurve_CuspSpace_classification
 import Definitions.FLT.Def_P2M_Util

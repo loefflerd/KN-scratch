@@ -1,5 +1,7 @@
-import Mathlib
-import Definitions.FLT.Def_HahnSeries_RamificationBound
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
+
 import Theorems.FLT.Thm_HahnSeries_mem_puiseuxRamSubfield_iff
 import Definitions.FLT.Def_P2M_Util
 
