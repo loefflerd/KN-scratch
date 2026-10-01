@@ -8,11 +8,6 @@ import Definitions.FLT.Def_P2M_Util
 
 namespace P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem
 
-section
-section
-
-section
-
 p2m_open "Ideal~map_mul"
 
 open Module Polynomial
@@ -20,9 +15,7 @@ open Module Polynomial
 open scoped nonZeroDivisors Polynomial.Bivariate
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine Affine.Point.toClass a₃ a₁ map Affine.CoordinateRing coe_Δ' mk a₄ Jacobian a₂ a₆ reduction Affine.CoordinateRing.XYIdeal' IsIntegral Affine.Point Δ j Δ' Affine.GenusOnePlaceGate Affine.AbelTheorem Affine.genusOnePic0Equiv Affine.GenusOnePlaceGate.IsCentred"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Equation Point.toClass CoordinateRing.XYIdeal CoordinateRing.XYIdeal'_eq equation_iff_nonsingular_of_Δ_ne_zero CoordinateRing map CoordinateRing.YClass Point.some Nonsingular CoordinateRing.XYIdeal' FunctionField Point CoordinateRing.mk Point.toClass_injective CoordinateRing.XClass equation_iff polynomial GenusOnePlaceGate pointEquivPlace placeOfPoint deg_eq_one divisorSum AbelTheorem genusOnePic0Equiv GenusOnePlaceGate.IsCentred"
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
 universe u
@@ -30,7 +23,6 @@ universe u
 variable {F : Type u} [Field F] {W : Affine F}
 
 namespace CoordinateRing
-p2m_export "WeierstrassCurve.Affine.CoordinateRing" "smul_basis_eq_zero XYIdeal XYIdeal'_eq quotientXYIdealEquiv XClass_ne_zero smul YClass XYIdeal' natDegree_norm_ne_one mk map degree_norm_smul_basis exists_smul_basis_eq XClass smul_basis_mul_Y YClass_ne_zero"
 p2m_open "WeierstrassCurve.Affine.CoordinateRing"
 
 scoped instance : Algebra.FiniteType F W.CoordinateRing :=
@@ -49,10 +41,11 @@ theorem exists_eq_XYIdeal_of_isMaximal [IsAlgClosed F] (𝔪 : Ideal W.Coordinat
   obtain ⟨x, hx⟩ := he.2 (Ideal.Quotient.mk 𝔪 (mk W (Polynomial.C Polynomial.X)))
   obtain ⟨y, hy⟩ := he.2 (Ideal.Quotient.mk 𝔪 (mk W Y))
 
-  have hconst : ∀ a : F, Ideal.Quotient.mk 𝔪 ((mk W) (Polynomial.C (Polynomial.C a)))
+  have hconst : ∀ a : F, Ideal.Quotient.mk 𝔪 ((CoordinateRing.mk W) (Polynomial.C (Polynomial.C a)))
       = algebraMap F (W.CoordinateRing ⧸ 𝔪) a := by
     intro a
-    have h1 : (mk W) (Polynomial.C (Polynomial.C a)) = algebraMap F W.CoordinateRing a := by
+    have h1 : (CoordinateRing.mk W) (Polynomial.C (Polynomial.C a))
+        = algebraMap F W.CoordinateRing a := by
       rw [AdjoinRoot.algebraMap_eq', RingHom.comp_apply, Polynomial.algebraMap_apply,
         Algebra.algebraMap_self_apply]
       rfl
@@ -70,13 +63,11 @@ theorem exists_eq_XYIdeal_of_isMaximal [IsAlgClosed F] (𝔪 : Ideal W.Coordinat
     · simp only [RingHom.comp_apply, Polynomial.coe_evalRingHom, Polynomial.eval_X,
         Polynomial.eval_C]
       exact hy.symm
-
   have heval : W.Equation x y := by
     have h0 := DFunLike.congr_fun key W.polynomial
     simp only [RingHom.comp_apply, AdjoinRoot.mk_self, _root_.map_zero,
       Polynomial.coe_evalRingHom] at h0
     exact (map_eq_zero_iff (algebraMap F (W.CoordinateRing ⧸ 𝔪)) he.1).mp h0.symm
-
   have hXmem : XClass W x ∈ 𝔪 := by
     have h2 : ((Ideal.Quotient.mk 𝔪).comp (mk W))
         (Polynomial.C (Polynomial.X - Polynomial.C x)) = 0 := by
@@ -92,7 +83,6 @@ theorem exists_eq_XYIdeal_of_isMaximal [IsAlgClosed F] (𝔪 : Ideal W.Coordinat
     rw [← Ideal.Quotient.eq_zero_iff_mem]
     exact h2
   refine ⟨x, y, heval, ?_⟩
-
   have hXY_le : XYIdeal W x (Polynomial.C y) ≤ 𝔪 := by
     rw [XYIdeal, Ideal.span_le]
     rintro _ (rfl | rfl)
@@ -105,27 +95,9 @@ theorem exists_eq_XYIdeal_of_isMaximal [IsAlgClosed F] (𝔪 : Ideal W.Coordinat
   exact hXY_max.eq_of_le h𝔪.ne_top hXY_le
 
 end CoordinateRing
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing"
-
-namespace Point
-p2m_export "WeierstrassCurve.Affine.Point" "add toClass some neg_zero map_zero map toClass_injective zero mk neg"
-p2m_open "WeierstrassCurve.Affine.Point"
-
-p2m_open "WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing"
-
-variable [DecidableEq F] [IsAlgClosed F] [IsDedekindDomain W.CoordinateRing]
-
-end Point
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing"
 
 end WeierstrassCurve.Affine
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve"
 
-end
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
-
-end
 p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
 
 section
@@ -136,11 +108,9 @@ noncomputable section
 open IsDedekindDomain WithZero IsLocalRing
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place Place.ext Place.adicValuation Place.ord Place.ord_zero Divisor Divisor.degree Divisor.degree_single Divisor.IsPrincipal HasPrincipalDivisors Pic Pic0 Pic0.torsion AbelJacobiCard Place.ofHeightOneSpectrum Place.ofHeightOneSpectrum_toValuationSubring HasPrincipalDivisors.exists_divisor Place.ne_top' Place.ramificationIndex Place.restrict Place.ord_restrict Place.restrict_fiber_finite Place.ofHeightOneSpectrum_injective Place.ord_ofHeightOneSpectrum_ne_zero_iff Place.ord_eq_neg_log_of_valuationSubring_eq"
 p2m_open "AlgebraicCurve"
 
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ext coe_algebraMap ResidueField deg adicValuation adicValuation_ne_zero ord ord_zero ord_mul ord_inv ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ofHeightOneSpectrum ofHeightOneSpectrum_toValuationSubring ne_top' algebraMap_mem' toValuationSubring mk ramificationIndex ramificationIndex_pos ramificationIndex_dvd_ord restrict ord_restrict ord_algebraMap_ne_zero_of_restrict_eq restrict_fiber_finite fiber ord_neg mem_of_eval_monic_eq_zero mem_maximalIdeal_iff_ord_pos ofHeightOneSpectrum_injective ord_ofHeightOneSpectrum_ne_zero_iff ord_eq_neg_log_of_valuationSubring_eq"
 p2m_open "AlgebraicCurve.Place"
 
 section SinglePlace
@@ -162,8 +132,6 @@ private theorem _root_.AlgebraicCurve.Place.ord_nonneg_of_mem {f : F} (hf : f �
   rw [hcoe, v.ord_unit_smul_zpow u hπ (n : ℤ)]
   exact Int.natCast_nonneg n
 
-p2m_export "AlgebraicCurve.Place" "ord_nonneg_of_mem"
-
 private theorem _root_.AlgebraicCurve.Place.mem_of_ord_nonneg {f : F} (hf : f ≠ 0) (h : 0 ≤ v.ord f) :
     f ∈ v.toValuationSubring := by
   obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible v.toValuationSubring
@@ -172,48 +140,18 @@ private theorem _root_.AlgebraicCurve.Place.mem_of_ord_nonneg {f : F} (hf : f �
     zpow_natCast]
   exact mul_mem (u : v.toValuationSubring).2 (pow_mem (π : v.toValuationSubring).2 _)
 
-p2m_export "AlgebraicCurve.Place" "mem_of_ord_nonneg"
-
 private theorem _root_.AlgebraicCurve.Place.mem_iff_ord_nonneg {f : F} (hf : f ≠ 0) :
     f ∈ v.toValuationSubring ↔ 0 ≤ v.ord f :=
   ⟨v.ord_nonneg_of_mem, v.mem_of_ord_nonneg hf⟩
 
-p2m_export "AlgebraicCurve.Place" "mem_iff_ord_nonneg"
 end SinglePlace
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
-
-section Restrict
-
-variable {K F F' : Type*} [Field K] [Field F] [Field F']
-  [Algebra K F'] [Algebra F F']
-
-variable (w : Place K F')
-
-variable [Algebra.IsIntegral F F']
-
-section RestrictDef
-
-variable [Algebra K F] [IsScalarTower K F F']
-
-end RestrictDef
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
-
-end Restrict
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
 
 end Place
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
 
 end AlgebraicCurve
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
-
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
-
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
 
 section
 section
@@ -224,7 +162,6 @@ open IsDedekindDomain WithZero IsLocalRing
 open scoped Polynomial
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place Place.ext Place.adicValuation Place.ord Place.ord_zero Divisor Divisor.degree Divisor.degree_single Divisor.IsPrincipal HasPrincipalDivisors Pic Pic0 Pic0.torsion AbelJacobiCard Place.ofHeightOneSpectrum Place.ofHeightOneSpectrum_toValuationSubring HasPrincipalDivisors.exists_divisor Place.ne_top' Place.ramificationIndex Place.restrict Place.ord_restrict Place.restrict_fiber_finite Place.ofHeightOneSpectrum_injective Place.ord_ofHeightOneSpectrum_ne_zero_iff Place.ord_eq_neg_log_of_valuationSubring_eq"
 p2m_open "AlgebraicCurve"
 
 theorem le_exp_neg_one_of_lt_one {x : ℤᵐ⁰} (hx : x < 1) : x ≤ exp (-1 : ℤ) := by
@@ -236,47 +173,16 @@ theorem le_exp_neg_one_of_lt_one {x : ℤᵐ⁰} (hx : x < 1) : x ≤ exp (-1 : 
     omega
 
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ext coe_algebraMap ResidueField deg adicValuation adicValuation_ne_zero ord ord_zero ord_mul ord_inv ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ofHeightOneSpectrum ofHeightOneSpectrum_toValuationSubring ne_top' algebraMap_mem' toValuationSubring mk ramificationIndex ramificationIndex_pos ramificationIndex_dvd_ord restrict ord_restrict ord_algebraMap_ne_zero_of_restrict_eq restrict_fiber_finite fiber ord_neg mem_of_eval_monic_eq_zero mem_maximalIdeal_iff_ord_pos ofHeightOneSpectrum_injective ord_ofHeightOneSpectrum_ne_zero_iff ord_eq_neg_log_of_valuationSubring_eq"
 p2m_open "AlgebraicCurve.Place"
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
 
 end Place
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
-
-namespace RationalFunctionField
-p2m_export "AlgebraicCurve.RationalFunctionField" "placeOfPoint"
-p2m_open "AlgebraicCurve.RationalFunctionField"
-
-variable {K : Type*} [Field K]
-
-section PlaceInftyOrd
-
-variable [DecidableEq (RatFunc K)]
-
-end PlaceInftyOrd
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
-
-section IrreducibleDivisor
-
-variable [DecidableEq (RatFunc K)]
-
-end IrreducibleDivisor
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
-
-end RationalFunctionField
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
 
 end AlgebraicCurve
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
-
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
-
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
 
 section
 section
@@ -286,11 +192,8 @@ open Module Polynomial
 open scoped Polynomial.Bivariate
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine Affine.Point.toClass a₃ a₁ map Affine.CoordinateRing coe_Δ' mk a₄ Jacobian a₂ a₆ reduction Affine.CoordinateRing.XYIdeal' IsIntegral Affine.Point Δ j Δ' Affine.GenusOnePlaceGate Affine.AbelTheorem Affine.genusOnePic0Equiv Affine.GenusOnePlaceGate.IsCentred"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Equation Point.toClass CoordinateRing.XYIdeal CoordinateRing.XYIdeal'_eq equation_iff_nonsingular_of_Δ_ne_zero CoordinateRing map CoordinateRing.YClass Point.some Nonsingular CoordinateRing.XYIdeal' FunctionField Point CoordinateRing.mk Point.toClass_injective CoordinateRing.XClass equation_iff polynomial GenusOnePlaceGate pointEquivPlace placeOfPoint deg_eq_one divisorSum AbelTheorem genusOnePic0Equiv GenusOnePlaceGate.IsCentred"
 namespace CoordinateRing
-p2m_export "WeierstrassCurve.Affine.CoordinateRing" "smul_basis_eq_zero XYIdeal XYIdeal'_eq quotientXYIdealEquiv XClass_ne_zero smul YClass XYIdeal' natDegree_norm_ne_one mk map degree_norm_smul_basis exists_smul_basis_eq XClass smul_basis_mul_Y YClass_ne_zero"
 p2m_open "WeierstrassCurve.Affine.CoordinateRing WeierstrassCurve.Affine WeierstrassCurve"
 
 universe u
@@ -418,7 +321,6 @@ noncomputable def finBasis (n : ℕ) (hn : 1 ≤ n) : Basis (Fin n) F (RRSpace W
   (basisAux W n).reindex (finCongr (xCount_add_yCount n hn))
 
 end RRSpace
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
 
 theorem RRSpace_zero : RRSpace W 0 = (1 : Submodule F W.CoordinateRing) := by
   refine le_antisymm ?_ (one_le_RRSpace 0)
@@ -435,15 +337,8 @@ theorem RRSpace_zero : RRSpace W 0 = (1 : Submodule F W.CoordinateRing) := by
   exact Submodule.mem_one.mpr ⟨p.coeff 0, rfl⟩
 
 end WeierstrassCurve.Affine.CoordinateRing
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
-
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
-
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
 
 section
 section
@@ -455,7 +350,6 @@ p2m_open "FractionalIdeal P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGat
 open scoped nonZeroDivisors Polynomial.Bivariate
 
 namespace FractionalIdeal
-p2m_export "FractionalIdeal" "mul_inv_cancel_iff_isUnit count_mul coeIdeal_span_singleton count zero_mem ext count_zpow map_eq_zero_iff count_well_defined mul coeIdeal_inj count_maximal map isPrincipal_iff spanSingleton_mul_spanSingleton count_one spanSingleton_one exists_eq_spanSingleton_mul coeIdeal_mul spanSingleton spanSingleton_zero le_one_iff_exists_coeIdeal spanSingleton_ne_zero_iff num coeIdeal_top finprod_heightOneSpectrum_factorization"
 p2m_open "FractionalIdeal"
 
 variable {R : Type*} (K : Type*) [CommRing R] [IsDomain R] [Field K] [Algebra R K]
@@ -519,7 +413,6 @@ theorem isUnit_of_forall_isMaximal [IsNoetherianRing R]
     simp at hI
 
 end FractionalIdeal
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
 
 theorem isDedekindDomain_of_forall_isMaximal_isUnit {R : Type*} (K : Type*) [CommRing R]
     [IsDomain R] [Field K] [Algebra R K] [IsFractionRing R K] [IsNoetherianRing R]
@@ -529,9 +422,7 @@ theorem isDedekindDomain_of_forall_isMaximal_isUnit {R : Type*} (K : Type*) [Com
     (mul_inv_cancel_iff_isUnit K).mpr (isUnit_of_forall_isMaximal K hmax I hI)
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine Affine.Point.toClass a₃ a₁ map Affine.CoordinateRing coe_Δ' mk a₄ Jacobian a₂ a₆ reduction Affine.CoordinateRing.XYIdeal' IsIntegral Affine.Point Δ j Δ' Affine.GenusOnePlaceGate Affine.AbelTheorem Affine.genusOnePic0Equiv Affine.GenusOnePlaceGate.IsCentred"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Equation Point.toClass CoordinateRing.XYIdeal CoordinateRing.XYIdeal'_eq equation_iff_nonsingular_of_Δ_ne_zero CoordinateRing map CoordinateRing.YClass Point.some Nonsingular CoordinateRing.XYIdeal' FunctionField Point CoordinateRing.mk Point.toClass_injective CoordinateRing.XClass equation_iff polynomial GenusOnePlaceGate pointEquivPlace placeOfPoint deg_eq_one divisorSum AbelTheorem genusOnePic0Equiv GenusOnePlaceGate.IsCentred"
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
 universe u
@@ -539,7 +430,6 @@ universe u
 variable {F : Type u} [Field F] {W : Affine F}
 
 namespace CoordinateRing
-p2m_export "WeierstrassCurve.Affine.CoordinateRing" "smul_basis_eq_zero XYIdeal XYIdeal'_eq quotientXYIdealEquiv XClass_ne_zero smul YClass XYIdeal' natDegree_norm_ne_one mk map degree_norm_smul_basis exists_smul_basis_eq XClass smul_basis_mul_Y YClass_ne_zero"
 p2m_open "WeierstrassCurve.Affine.CoordinateRing"
 
 theorem isUnit_coeIdeal_of_isMaximal [IsAlgClosed F] (hΔ : W.Δ ≠ 0)
@@ -558,24 +448,15 @@ scoped instance [IsAlgClosed F] [W.IsElliptic] : IsDedekindDomain W.CoordinateRi
   isDedekindDomain_of_Δ_ne_zero (W.coe_Δ' ▸ W.Δ'.ne_zero)
 
 end CoordinateRing
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
 
 namespace Point
-p2m_export "WeierstrassCurve.Affine.Point" "add toClass some neg_zero map_zero map toClass_injective zero mk neg"
 p2m_open "WeierstrassCurve.Affine.Point"
 
 end Point
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
 
 end WeierstrassCurve.Affine
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
-
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
-
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
 
 section
 section
@@ -587,9 +468,7 @@ open IsDedekindDomain Polynomial
 open scoped Polynomial.Bivariate
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place Place.ext Place.adicValuation Place.ord Place.ord_zero Divisor Divisor.degree Divisor.degree_single Divisor.IsPrincipal HasPrincipalDivisors Pic Pic0 Pic0.torsion AbelJacobiCard Place.ofHeightOneSpectrum Place.ofHeightOneSpectrum_toValuationSubring HasPrincipalDivisors.exists_divisor Place.ne_top' Place.ramificationIndex Place.restrict Place.ord_restrict Place.restrict_fiber_finite Place.ofHeightOneSpectrum_injective Place.ord_ofHeightOneSpectrum_ne_zero_iff Place.ord_eq_neg_log_of_valuationSubring_eq"
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ext coe_algebraMap ResidueField deg adicValuation adicValuation_ne_zero ord ord_zero ord_mul ord_inv ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ofHeightOneSpectrum ofHeightOneSpectrum_toValuationSubring ne_top' algebraMap_mem' toValuationSubring mk ramificationIndex ramificationIndex_pos ramificationIndex_dvd_ord restrict ord_restrict ord_algebraMap_ne_zero_of_restrict_eq restrict_fiber_finite fiber ord_neg mem_of_eval_monic_eq_zero mem_maximalIdeal_iff_ord_pos ofHeightOneSpectrum_injective ord_ofHeightOneSpectrum_ne_zero_iff ord_eq_neg_log_of_valuationSubring_eq"
 p2m_open "AlgebraicCurve.Place AlgebraicCurve"
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F]
@@ -680,19 +559,14 @@ theorem deg_ofHeightOneSpectrum_eq_one (w : HeightOneSpectrum R)
     _ < 1 := (w.valuation_lt_one_iff_mem (K := F) _).mpr hmem
 
 end AlgebraicCurve.Place
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine Affine.Point.toClass a₃ a₁ map Affine.CoordinateRing coe_Δ' mk a₄ Jacobian a₂ a₆ reduction Affine.CoordinateRing.XYIdeal' IsIntegral Affine.Point Δ j Δ' Affine.GenusOnePlaceGate Affine.AbelTheorem Affine.genusOnePic0Equiv Affine.GenusOnePlaceGate.IsCentred"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Equation Point.toClass CoordinateRing.XYIdeal CoordinateRing.XYIdeal'_eq equation_iff_nonsingular_of_Δ_ne_zero CoordinateRing map CoordinateRing.YClass Point.some Nonsingular CoordinateRing.XYIdeal' FunctionField Point CoordinateRing.mk Point.toClass_injective CoordinateRing.XClass equation_iff polynomial GenusOnePlaceGate pointEquivPlace placeOfPoint deg_eq_one divisorSum AbelTheorem genusOnePic0Equiv GenusOnePlaceGate.IsCentred"
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
 variable {F : Type*} [Field F] {W : Affine F}
 
 namespace CoordinateRing
-p2m_export "WeierstrassCurve.Affine.CoordinateRing" "smul_basis_eq_zero XYIdeal XYIdeal'_eq quotientXYIdealEquiv XClass_ne_zero smul YClass XYIdeal' natDegree_norm_ne_one mk map degree_norm_smul_basis exists_smul_basis_eq XClass smul_basis_mul_Y YClass_ne_zero"
 p2m_open "WeierstrassCurve.Affine.CoordinateRing"
 
 theorem algebraMap_eq_mk_C_C (a : F) :
@@ -765,7 +639,6 @@ theorem exists_sub_algebraMap_mem {x y : F} (h : W.Equation x y) (r : W.Coordina
     Algebra.algebraMap_self_apply]
 
 end CoordinateRing
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
 
 p2m_open "WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing"
 
@@ -929,16 +802,9 @@ theorem geomPlaceOfPoint_surjective [InfinitePlace W] [IsAlgClosed F] (hΔ : W.�
   · exact ⟨.zero, (InfinitePlace.eq_of_not_isFinitePlace v hv).symm⟩
 
 end WeierstrassCurve.Affine
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
-
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
-
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
 
 section
 section
@@ -950,9 +816,7 @@ noncomputable section
 p2m_open "AlgebraicCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.AlgebraicCurve"
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine Affine.Point.toClass a₃ a₁ map Affine.CoordinateRing coe_Δ' mk a₄ Jacobian a₂ a₆ reduction Affine.CoordinateRing.XYIdeal' IsIntegral Affine.Point Δ j Δ' Affine.GenusOnePlaceGate Affine.AbelTheorem Affine.genusOnePic0Equiv Affine.GenusOnePlaceGate.IsCentred"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Equation Point.toClass CoordinateRing.XYIdeal CoordinateRing.XYIdeal'_eq equation_iff_nonsingular_of_Δ_ne_zero CoordinateRing map CoordinateRing.YClass Point.some Nonsingular CoordinateRing.XYIdeal' FunctionField Point CoordinateRing.mk Point.toClass_injective CoordinateRing.XClass equation_iff polynomial GenusOnePlaceGate pointEquivPlace placeOfPoint deg_eq_one divisorSum AbelTheorem genusOnePic0Equiv GenusOnePlaceGate.IsCentred"
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
 universe u
@@ -986,31 +850,15 @@ theorem geomDivisorSum_single (v : AlgebraicCurve.Place F W.FunctionField) (n : 
   Finsupp.liftAddHom_apply_single _ v n
 
 variable (W) in
-
 class GeomAbelTheorem : Prop where
-
   isPrincipal_iff_geomDivisorSum_eq_zero :
     ∀ D : AlgebraicCurve.Divisor F W.FunctionField, Divisor.degree D = 0 →
       (Divisor.IsPrincipal D ↔ geomDivisorSum D = 0)
 
-section GeomAbelTheorem
-
-variable [GeomAbelTheorem W]
-
-end GeomAbelTheorem
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
-
 end WeierstrassCurve.Affine
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
-
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
-
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
 
 section
 section
@@ -1022,9 +870,7 @@ open Polynomial IsDedekindDomain
 open scoped Polynomial.Bivariate
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place Place.ext Place.adicValuation Place.ord Place.ord_zero Divisor Divisor.degree Divisor.degree_single Divisor.IsPrincipal HasPrincipalDivisors Pic Pic0 Pic0.torsion AbelJacobiCard Place.ofHeightOneSpectrum Place.ofHeightOneSpectrum_toValuationSubring HasPrincipalDivisors.exists_divisor Place.ne_top' Place.ramificationIndex Place.restrict Place.ord_restrict Place.restrict_fiber_finite Place.ofHeightOneSpectrum_injective Place.ord_ofHeightOneSpectrum_ne_zero_iff Place.ord_eq_neg_log_of_valuationSubring_eq"
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ext coe_algebraMap ResidueField deg adicValuation adicValuation_ne_zero ord ord_zero ord_mul ord_inv ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ofHeightOneSpectrum ofHeightOneSpectrum_toValuationSubring ne_top' algebraMap_mem' toValuationSubring mk ramificationIndex ramificationIndex_pos ramificationIndex_dvd_ord restrict ord_restrict ord_algebraMap_ne_zero_of_restrict_eq restrict_fiber_finite fiber ord_neg mem_of_eval_monic_eq_zero mem_maximalIdeal_iff_ord_pos ofHeightOneSpectrum_injective ord_ofHeightOneSpectrum_ne_zero_iff ord_eq_neg_log_of_valuationSubring_eq"
 p2m_open "AlgebraicCurve.Place AlgebraicCurve"
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
@@ -1046,8 +892,6 @@ private theorem _root_.AlgebraicCurve.Place.min_ord_le_ord_add {f g : F} (hfg : 
   · have h2 := (WithZero.log_le_log hje (v.adicValuation_ne_zero hg)).mpr h1
     simp only [ord]
     omega
-
-p2m_export "AlgebraicCurve.Place" "min_ord_le_ord_add"
 
 private theorem _root_.AlgebraicCurve.Place.ord_add_eq_min {f g : F} (hf : f ≠ 0) (hg : g ≠ 0)
     (h : v.ord f ≠ v.ord g) :
@@ -1077,8 +921,6 @@ private theorem _root_.AlgebraicCurve.Place.ord_add_eq_min {f g : F} (hf : f ≠
     simp only [ord] at hlog h2 ⊢
     omega
 
-p2m_export "AlgebraicCurve.Place" "ord_add_eq_min"
-
 private theorem _root_.AlgebraicCurve.Place.ord_algebraMap (c : K) : v.ord (algebraMap K F c) = 0 := by
   rcases eq_or_ne c 0 with rfl | hc
   · simp
@@ -1091,12 +933,8 @@ private theorem _root_.AlgebraicCurve.Place.ord_algebraMap (c : K) : v.ord (alge
   rw [v.ord_inv] at h2
   omega
 
-p2m_export "AlgebraicCurve.Place" "ord_algebraMap"
-
 private theorem _root_.AlgebraicCurve.Place.ord_pow (f : F) (n : ℕ) : v.ord (f ^ n) = n * v.ord f := by
   rw [← zpow_natCast, v.ord_zpow]
-
-p2m_export "AlgebraicCurve.Place" "ord_pow"
 
 private theorem _root_.AlgebraicCurve.Place.ord_ringHom_eq_natDegree_mul {φ : K[X] →+* F} (hφinj : Function.Injective φ)
     (hφC : ∀ c : K, φ (C c) = algebraMap K F c) (hz : v.ord (φ X) < 0) :
@@ -1110,7 +948,6 @@ private theorem _root_.AlgebraicCurve.Place.ord_ringHom_eq_natDegree_mul {φ : K
       simpa using hc
     rw [map_mul, map_pow, v.ord_mul hc0 (pow_ne_zero n hX0), hφC, v.ord_algebraMap,
       v.ord_pow, zero_add]
-
   intro p
   induction hd : p.natDegree using Nat.strong_induction_on generalizing p with
   | _ d ih =>
@@ -1141,8 +978,6 @@ private theorem _root_.AlgebraicCurve.Place.ord_ringHom_eq_natDegree_mul {φ : K
         nlinarith
       omega
 
-p2m_export "AlgebraicCurve.Place" "ord_ringHom_eq_natDegree_mul"
-
 private theorem _root_.AlgebraicCurve.Place.le_ord_ringHom_of_natDegree_le {φ : K[X] →+* F} (hφinj : Function.Injective φ)
     (hφC : ∀ c : K, φ (C c) = algebraMap K F c) (hz : v.ord (φ X) < 0)
     {p : K[X]} {d : ℕ} (hd : p.natDegree ≤ d) :
@@ -1154,15 +989,10 @@ private theorem _root_.AlgebraicCurve.Place.le_ord_ringHom_of_natDegree_le {φ :
   have h1 : (p.natDegree : ℤ) ≤ (d : ℤ) := by exact_mod_cast hd
   nlinarith
 
-p2m_export "AlgebraicCurve.Place" "le_ord_ringHom_of_natDegree_le"
 end AlgebraicCurve.Place
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine Affine.Point.toClass a₃ a₁ map Affine.CoordinateRing coe_Δ' mk a₄ Jacobian a₂ a₆ reduction Affine.CoordinateRing.XYIdeal' IsIntegral Affine.Point Δ j Δ' Affine.GenusOnePlaceGate Affine.AbelTheorem Affine.genusOnePic0Equiv Affine.GenusOnePlaceGate.IsCentred"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Equation Point.toClass CoordinateRing.XYIdeal CoordinateRing.XYIdeal'_eq equation_iff_nonsingular_of_Δ_ne_zero CoordinateRing map CoordinateRing.YClass Point.some Nonsingular CoordinateRing.XYIdeal' FunctionField Point CoordinateRing.mk Point.toClass_injective CoordinateRing.XClass equation_iff polynomial GenusOnePlaceGate pointEquivPlace placeOfPoint deg_eq_one divisorSum AbelTheorem genusOnePic0Equiv GenusOnePlaceGate.IsCentred"
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
 p2m_open "WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing AlgebraicCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.AlgebraicCurve"
@@ -1186,7 +1016,6 @@ theorem polyToFunctionField_injective : Function.Injective (polyToFunctionField 
   intro p q h
   rw [polyToFunctionField_apply, polyToFunctionField_apply] at h
   have h2 := IsFractionRing.injective W.CoordinateRing W.FunctionField h
-
   have h0 : (p - q) • (1 : W.CoordinateRing) + (0 : F[X]) • CoordinateRing.mk W Y = 0 := by
     rw [zero_smul, add_zero, sub_smul, ← Algebra.algebraMap_eq_smul_one,
       ← Algebra.algebraMap_eq_smul_one, h2, sub_self]
@@ -1264,7 +1093,6 @@ variable (v : AlgebraicCurve.Place F W.FunctionField)
 
 theorem isFinitePlace_of_mem
     (hx : polyToFunctionField W X ∈ v.toValuationSubring) : IsFinitePlace v := by
-
   have hpoly : ∀ p : F[X], polyToFunctionField W p ∈ v.toValuationSubring := by
     intro p
     induction p using Polynomial.induction_on' with
@@ -1274,11 +1102,9 @@ theorem isFinitePlace_of_mem
         refine mul_mem ?_ (pow_mem hx n)
         rw [polyToFunctionField_C]
         exact v.algebraMap_mem' c
-
   set η := algebraMap W.CoordinateRing W.FunctionField (CoordinateRing.mk W Y) with hηdef
   set c₁ : F[X] := C W.a₁ * X + C W.a₃ with hc₁def
   set cb : F[X] := X ^ 3 + C W.a₂ * X ^ 2 + C W.a₄ * X + C W.a₆ with hcbdef
-
   have hrel : η * η = polyToFunctionField W cb - polyToFunctionField W c₁ * η := by
     have h1 := smul_basis_mul_Y (W' := W) 0 1
     rw [zero_smul, zero_add, one_smul, one_mul, one_mul, zero_sub] at h1
@@ -1310,7 +1136,6 @@ theorem isFinitePlace_of_mem
         Polynomial.eval_mul, Polynomial.eval_C, Polynomial.eval_X]
       rw [sq]
       linear_combination hrel
-
   intro r
   obtain ⟨p, q, rfl⟩ := exists_smul_basis_eq r
   rw [algebraMap_smul_basis]
@@ -1536,7 +1361,6 @@ theorem deg_eq_one_of_not_isFinitePlace (hv : ¬ IsFinitePlace v) : v.deg = 1 :=
   refine AlgebraicCurve.Place.deg_eq_one_of_surjective v ?_
   intro z
   obtain ⟨g, rfl⟩ := Ideal.Quotient.mk_surjective z
-
   rcases eq_or_ne (g : W.FunctionField) 0 with hg0 | hg0
   · refine ⟨0, ?_⟩
     have hgz : g = 0 := Subtype.ext hg0
@@ -1554,16 +1378,13 @@ theorem deg_eq_one_of_not_isFinitePlace (hv : ¬ IsFinitePlace v) : v.deg = 1 :=
   have hmem : (g : W.FunctionField) ∈ v.toValuationSubring := g.2
   rw [← hzab] at hmem
   have hab := (mem_iff_natDegree_norm_le v hv ha0 hb0).mp hmem
-
   obtain ⟨c, hc⟩ := exists_smul_sub_natDegree_norm_lt hb0 hab
   refine ⟨c, ?_⟩
-
   rw [IsScalarTower.algebraMap_apply F v.toValuationSubring v.ResidueField,
     IsLocalRing.ResidueField.algebraMap_eq]
   refine (Ideal.Quotient.eq (I := IsLocalRing.maximalIdeal v.toValuationSubring)).mpr ?_
   have hcoe : ((algebraMap F v.toValuationSubring c : v.toValuationSubring) : W.FunctionField)
       = algebraMap F W.FunctionField c := v.coe_algebraMap c
-
   have hdiff : ((algebraMap F v.toValuationSubring c - g : v.toValuationSubring)
       : W.FunctionField) = algebraMap W.CoordinateRing W.FunctionField (c • b - a)
         / algebraMap W.CoordinateRing W.FunctionField b := by
@@ -1575,7 +1396,6 @@ theorem deg_eq_one_of_not_isFinitePlace (hv : ¬ IsFinitePlace v) : v.deg = 1 :=
       rw [hcoe, hzab]
     rw [h0, map_sub, eq_div_iff hbL0, sub_mul, div_mul_cancel₀ _ hbL0, Algebra.smul_def,
       map_mul, ← IsScalarTower.algebraMap_apply F W.CoordinateRing W.FunctionField]
-
   rcases eq_or_ne (a - c • b) 0 with hzero | hzero
   · have h1 : c • b - a = 0 := by rw [← neg_sub a (c • b), hzero, _root_.neg_zero]
     have h2 : (algebraMap F v.toValuationSubring c - g : v.toValuationSubring)
@@ -1589,7 +1409,6 @@ theorem deg_eq_one_of_not_isFinitePlace (hv : ¬ IsFinitePlace v) : v.deg = 1 :=
         < (Algebra.norm F[X] b).natDegree := hc.resolve_left hzero
     have hsub0 : c • b - a ≠ 0 := fun h =>
       hzero (by rw [show a - c • b = -(c • b - a) by ring, h, _root_.neg_zero])
-
     have hordswap : v.ord (algebraMap W.CoordinateRing W.FunctionField (c • b - a))
         = v.ord (algebraMap W.CoordinateRing W.FunctionField (a - c • b)) := by
       rw [show c • b - a = -(a - c • b) by ring, _root_.map_neg, v.ord_neg]
@@ -1643,10 +1462,8 @@ theorem exists_not_isFinitePlace [IsAlgClosed F] [IsDedekindDomain W.CoordinateR
     ∃ v : AlgebraicCurve.Place F W.FunctionField, ¬ IsFinitePlace v := by
   by_contra hcon
   push Not at hcon
-
   obtain ⟨y₀, hy₀⟩ := exists_equation W 0
   set v₀ : AlgebraicCurve.Place F W.FunctionField := placeOfEquation hy₀ with hv₀def
-
   set r : W.CoordinateRing := CoordinateRing.mk W (C X) with hrdef
   have hr0 : r ≠ 0 := by
     rw [hrdef]
@@ -1655,7 +1472,6 @@ theorem exists_not_isFinitePlace [IsAlgClosed F] [IsDedekindDomain W.CoordinateR
     simpa using h1
   have hrL0 : algebraMap W.CoordinateRing W.FunctionField r ≠ 0 :=
     (map_ne_zero_iff _ (IsFractionRing.injective W.CoordinateRing W.FunctionField)).mpr hr0
-
   have hrmem : r ∈ (heightOneSpectrumOfEquation hy₀).asIdeal := by
     rw [heightOneSpectrumOfEquation_asIdeal]
     have h1 : XClass W (0 : F) ∈ XYIdeal W (0 : F) (C y₀) :=
@@ -1664,7 +1480,6 @@ theorem exists_not_isFinitePlace [IsAlgClosed F] [IsDedekindDomain W.CoordinateR
       rw [XClass, hrdef]
       norm_num
     exact h2 ▸ h1
-
   have hordpos : 0 < v₀.ord (algebraMap W.CoordinateRing W.FunctionField r) := by
     have h1 : v₀.ord (algebraMap W.CoordinateRing W.FunctionField r) ≠ 0 :=
       (AlgebraicCurve.Place.ord_ofHeightOneSpectrum_ne_zero_iff
@@ -1672,15 +1487,12 @@ theorem exists_not_isFinitePlace [IsAlgClosed F] [IsDedekindDomain W.CoordinateR
     have h2 : 0 ≤ v₀.ord (algebraMap W.CoordinateRing W.FunctionField r) :=
       v₀.ord_nonneg_of_mem (isFinitePlace_placeOfEquation hy₀ r)
     omega
-
   obtain ⟨D, hD, hDdeg⟩ := AlgebraicCurve.HasPrincipalDivisors.exists_divisor
     (K := F) (algebraMap W.CoordinateRing W.FunctionField r) hrL0
-
   have hDnonneg : ∀ w : AlgebraicCurve.Place F W.FunctionField, 0 ≤ D w := by
     intro w
     rw [hD w]
     exact w.ord_nonneg_of_mem (hcon w r)
-
   have hDpos : 0 < AlgebraicCurve.Divisor.degree D := by
     have hsum : AlgebraicCurve.Divisor.degree D = ∑ w ∈ D.support, D w * (w.deg : ℤ) := by
       simp only [AlgebraicCurve.Divisor.degree, Finsupp.liftAddHom_apply,
@@ -1705,16 +1517,9 @@ scoped instance instInfinitePlace [IsAlgClosed F] [IsDedekindDomain W.Coordinate
       (exists_not_isFinitePlace (W := W)).choose_spec
 
 end WeierstrassCurve.Affine
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
-
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
-
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
 
 section
 section
@@ -1728,7 +1533,6 @@ p2m_open "AlgebraicCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate
 open scoped nonZeroDivisors Polynomial.Bivariate
 
 namespace FractionalIdeal
-p2m_export "FractionalIdeal" "mul_inv_cancel_iff_isUnit count_mul coeIdeal_span_singleton count zero_mem ext count_zpow map_eq_zero_iff count_well_defined mul coeIdeal_inj count_maximal map isPrincipal_iff spanSingleton_mul_spanSingleton count_one spanSingleton_one exists_eq_spanSingleton_mul coeIdeal_mul spanSingleton spanSingleton_zero le_one_iff_exists_coeIdeal spanSingleton_ne_zero_iff num coeIdeal_top finprod_heightOneSpectrum_factorization"
 p2m_open "FractionalIdeal"
 
 variable {R : Type*} [CommRing R] [IsDedekindDomain R]
@@ -1772,12 +1576,9 @@ theorem eq_of_count_eq {I J : FractionalIdeal R⁰ L} (hI : I ≠ 0) (hJ : J ≠
   exact finprod_congr fun w => by rw [h w]
 
 end FractionalIdeal
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place Place.ext Place.adicValuation Place.ord Place.ord_zero Divisor Divisor.degree Divisor.degree_single Divisor.IsPrincipal HasPrincipalDivisors Pic Pic0 Pic0.torsion AbelJacobiCard Place.ofHeightOneSpectrum Place.ofHeightOneSpectrum_toValuationSubring HasPrincipalDivisors.exists_divisor Place.ne_top' Place.ramificationIndex Place.restrict Place.ord_restrict Place.restrict_fiber_finite Place.ofHeightOneSpectrum_injective Place.ord_ofHeightOneSpectrum_ne_zero_iff Place.ord_eq_neg_log_of_valuationSubring_eq"
 namespace Place
-p2m_export "AlgebraicCurve.Place" "ext coe_algebraMap ResidueField deg adicValuation adicValuation_ne_zero ord ord_zero ord_mul ord_inv ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ofHeightOneSpectrum ofHeightOneSpectrum_toValuationSubring ne_top' algebraMap_mem' toValuationSubring mk ramificationIndex ramificationIndex_pos ramificationIndex_dvd_ord restrict ord_restrict ord_algebraMap_ne_zero_of_restrict_eq restrict_fiber_finite fiber ord_neg mem_of_eval_monic_eq_zero mem_maximalIdeal_iff_ord_pos ofHeightOneSpectrum_injective ord_ofHeightOneSpectrum_ne_zero_iff ord_eq_neg_log_of_valuationSubring_eq"
 p2m_open "AlgebraicCurve.Place AlgebraicCurve"
 
 variable {K : Type*} [Field K]
@@ -1800,13 +1601,9 @@ theorem ord_ofHeightOneSpectrum_eq_count (w : HeightOneSpectrum R) {f : L} (hf :
   rw [ord_ofHeightOneSpectrum_eq_neg_log w hf, FractionalIdeal.count_spanSingleton w hf]
 
 end AlgebraicCurve.Place
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine Affine.Point.toClass a₃ a₁ map Affine.CoordinateRing coe_Δ' mk a₄ Jacobian a₂ a₆ reduction Affine.CoordinateRing.XYIdeal' IsIntegral Affine.Point Δ j Δ' Affine.GenusOnePlaceGate Affine.AbelTheorem Affine.genusOnePic0Equiv Affine.GenusOnePlaceGate.IsCentred"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Equation Point.toClass CoordinateRing.XYIdeal CoordinateRing.XYIdeal'_eq equation_iff_nonsingular_of_Δ_ne_zero CoordinateRing map CoordinateRing.YClass Point.some Nonsingular CoordinateRing.XYIdeal' FunctionField Point CoordinateRing.mk Point.toClass_injective CoordinateRing.XClass equation_iff polynomial GenusOnePlaceGate pointEquivPlace placeOfPoint deg_eq_one divisorSum AbelTheorem genusOnePic0Equiv GenusOnePlaceGate.IsCentred"
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
 universe u
@@ -1917,17 +1714,14 @@ theorem count_unitIdealOfDivisor (D : AlgebraicCurve.Divisor F W.FunctionField)
 theorem geomDivisorSum_eq_zero_of_isPrincipal' {D : AlgebraicCurve.Divisor F W.FunctionField}
     (hD : Divisor.IsPrincipal D) : geomDivisorSum D = 0 := by
   obtain ⟨f, hf, hDf⟩ := hD
-
   have key : (unitIdealOfDivisor D : FractionalIdeal W.CoordinateRing⁰ W.FunctionField)
       = FractionalIdeal.spanSingleton W.CoordinateRing⁰ f :=
     FractionalIdeal.eq_of_count_eq (Units.ne_zero _)
       (FractionalIdeal.spanSingleton_ne_zero_iff.mpr hf) fun w => by
         rw [count_unitIdealOfDivisor, hDf,
           AlgebraicCurve.Place.ord_ofHeightOneSpectrum_eq_count w hf]
-
   have hcls : ClassGroup.mk (K := W.FunctionField) (unitIdealOfDivisor D) = 1 :=
     ClassGroup.mk_eq_one_iff.mpr ((FractionalIdeal.isPrincipal_iff _).mpr ⟨f, key⟩)
-
   apply Point.toClass_injective
   rw [_root_.map_zero]
   rw [classGroup_mk_unitIdealOfDivisor] at hcls
@@ -1937,26 +1731,21 @@ theorem isPrincipal_of_geomDivisorSum_eq_zero' [HasPrincipalDivisors F W.Functio
     {D : AlgebraicCurve.Divisor F W.FunctionField} (h0 : Divisor.degree D = 0)
     (hD : geomDivisorSum D = 0) : Divisor.IsPrincipal D := by
   classical
-
   have hcls : ClassGroup.mk (K := W.FunctionField) (unitIdealOfDivisor D) = 1 := by
     rw [classGroup_mk_unitIdealOfDivisor, hD, _root_.map_zero]
     rfl
-
   obtain ⟨f, hf⟩ := (FractionalIdeal.isPrincipal_iff _).mp (ClassGroup.mk_eq_one_iff.mp hcls)
   have hf0 : f ≠ 0 := by
     rintro rfl
     rw [FractionalIdeal.spanSingleton_zero] at hf
     exact Units.ne_zero (unitIdealOfDivisor D) hf
-
   have hfin : ∀ w : HeightOneSpectrum W.CoordinateRing,
       D (AlgebraicCurve.Place.ofHeightOneSpectrum (K := F) w)
         = (AlgebraicCurve.Place.ofHeightOneSpectrum (K := F) w).ord f := by
     intro w
     rw [← count_unitIdealOfDivisor, hf,
       AlgebraicCurve.Place.ord_ofHeightOneSpectrum_eq_count w hf0]
-
   obtain ⟨Df, hDf, hDf0⟩ := HasPrincipalDivisors.exists_divisor (K := F) f hf0
-
   have hsub : D - Df = Finsupp.single (InfinitePlace.place :
       AlgebraicCurve.Place F W.FunctionField) ((D - Df) InfinitePlace.place) := by
     ext v
@@ -1968,11 +1757,9 @@ theorem isPrincipal_of_geomDivisorSum_eq_zero' [HasPrincipalDivisors F W.Functio
         rw [Finsupp.sub_apply, geomPlaceOfPoint_some, placeOfEquation, hfin, hDf, sub_self,
           Finsupp.single_apply, ite_eq_right]
         exact infinitePlace_ne_ofHeightOneSpectrum _
-
   have hdeg : Divisor.degree (D - Df) = 0 := by rw [map_sub, h0, hDf0, sub_zero]
   rw [hsub, Divisor.degree_single, InfinitePlace.deg_eq_one, Nat.cast_one, mul_one,
     Finsupp.sub_apply, sub_eq_zero] at hdeg
-
   refine ⟨f, hf0, fun v => ?_⟩
   obtain ⟨P, rfl⟩ := geomPlaceOfPoint_surjective isElliptic_Δ_ne_zero v
   cases P with
@@ -1984,16 +1771,9 @@ scoped instance instAbelTheorem [HasPrincipalDivisors F W.FunctionField] : GeomA
     ⟨geomDivisorSum_eq_zero_of_isPrincipal', isPrincipal_of_geomDivisorSum_eq_zero' h0⟩
 
 end WeierstrassCurve.Affine
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
-
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
-
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
 
 section
 section
@@ -2007,9 +1787,7 @@ open Polynomial
 open scoped Polynomial.Bivariate
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine Affine.Point.toClass a₃ a₁ map Affine.CoordinateRing coe_Δ' mk a₄ Jacobian a₂ a₆ reduction Affine.CoordinateRing.XYIdeal' IsIntegral Affine.Point Δ j Δ' Affine.GenusOnePlaceGate Affine.AbelTheorem Affine.genusOnePic0Equiv Affine.GenusOnePlaceGate.IsCentred"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Equation Point.toClass CoordinateRing.XYIdeal CoordinateRing.XYIdeal'_eq equation_iff_nonsingular_of_Δ_ne_zero CoordinateRing map CoordinateRing.YClass Point.some Nonsingular CoordinateRing.XYIdeal' FunctionField Point CoordinateRing.mk Point.toClass_injective CoordinateRing.XClass equation_iff polynomial GenusOnePlaceGate pointEquivPlace placeOfPoint deg_eq_one divisorSum AbelTheorem genusOnePic0Equiv GenusOnePlaceGate.IsCentred"
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
 p2m_open "WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing AlgebraicCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.AlgebraicCurve"
@@ -2128,31 +1906,10 @@ scoped instance : FiniteDimensional (RatFunc F) W.FunctionField := by
   exact (IntermediateField.topEquiv
     (F := RatFunc F) (E := W.FunctionField)).toLinearEquiv.finiteDimensional
 
-section CharZero
-
-variable [CharZero F]
-
-end CharZero
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
-
-section Gate
-
-variable [DecidableEq F] [IsAlgClosed F] [CharZero F] [W.IsElliptic]
-
-end Gate
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
-
 end WeierstrassCurve.Affine
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
-
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
-
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
 
 universe u in
 open _root_.WeierstrassCurve _root_.WeierstrassCurve.Affine
@@ -2171,7 +1928,6 @@ theorem solution
       deg_eq_one := fun v => by
         obtain ⟨P, rfl⟩ := WeierstrassCurve.Affine.geomPlaceOfPoint_surjective (WeierstrassCurve.Affine.isElliptic_Δ_ne_zero (W := W)) v
         exact WeierstrassCurve.Affine.deg_geomPlaceOfPoint P }
-  let := g
   refine ⟨g, ⟨?_, ?_⟩, ⟨?_⟩⟩
   · intro x y h
     change algebraMap W.CoordinateRing W.FunctionField (CoordinateRing.XClass W x)
@@ -2194,7 +1950,6 @@ theorem solution
   · intro D hD
     exact WeierstrassCurve.Affine.GeomAbelTheorem.isPrincipal_iff_geomDivisorSum_eq_zero D hD
 
-end
 end
 end
 end
