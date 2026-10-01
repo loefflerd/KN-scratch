@@ -1,3 +1,5 @@
+import Mathlib.FieldTheory.RatFunc.Basic
+
 import Definitions.FLT.Def_AlgebraicCurve_LocalResidue
 import Definitions.FLT.Def_AlgebraicCurve_RiemannRochRows
 

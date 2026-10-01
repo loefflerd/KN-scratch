@@ -1,6 +1,7 @@
 import Mathlib.FieldTheory.RatFunc.AsPolynomial
 import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaceInfty
 import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
+import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaceClassification
 import Theorems.FLT.Thm_P2M_Dup_AlgebraicCurve_RationalFunctionField_placeInfty_ne_ofHeightOneSpectrum
 import Definitions.FLT.Def_P2M_Util
 

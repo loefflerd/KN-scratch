@@ -1,3 +1,11 @@
+import Mathlib.Algebra.Polynomial.Homogenize
+import Mathlib.LinearAlgebra.Lagrange
+import Mathlib.NumberTheory.ArithmeticFunction.Misc
+import Mathlib.NumberTheory.ModularForms.EisensteinSeries.QExpansion
+import Mathlib.NumberTheory.ModularForms.LevelOne.GradedRing
+import Mathlib.NumberTheory.ModularForms.NormTrace
+import Mathlib.RingTheory.Valuation.Integral
+
 import Definitions.FLT.Def_ModularCurve_X1
 import Definitions.FLT.Def_P2M_Util
 

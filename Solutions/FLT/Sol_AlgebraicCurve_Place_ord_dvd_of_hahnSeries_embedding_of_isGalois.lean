@@ -2,6 +2,7 @@ import Mathlib
 import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
 import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
+import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaceClassification
 import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaceInfty
 import Definitions.FLT.Def_HahnSeries_RamificationBound
 import Theorems.FLT.Thm_AlgebraicCurve_Place_exists_ord_mul_eq_order_of_hasRamBound

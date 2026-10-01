@@ -2,6 +2,7 @@ import Mathlib.FieldTheory.RatFunc.AsPolynomial
 import Mathlib.FieldTheory.IsAlgClosed.Basic
 import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaceInfty
 import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
+import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaceClassification
 import Theorems.FLT.Thm_P2M_Dup_AlgebraicCurve_RationalFunctionField_eq_ofHeightOneSpectrum_or_eq_placeInfty
 import Definitions.FLT.Def_P2M_Util
 

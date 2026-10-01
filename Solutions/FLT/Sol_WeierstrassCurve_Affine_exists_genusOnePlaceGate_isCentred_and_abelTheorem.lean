@@ -449,11 +449,6 @@ scoped instance [IsAlgClosed F] [W.IsElliptic] : IsDedekindDomain W.CoordinateRi
 
 end CoordinateRing
 
-namespace Point
-p2m_open "WeierstrassCurve.Affine.Point"
-
-end Point
-
 end WeierstrassCurve.Affine
 end
 end
