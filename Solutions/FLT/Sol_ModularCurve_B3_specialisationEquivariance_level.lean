@@ -1,3 +1,6 @@
+import Mathlib.Algebra.Category.Grp.Injective
+import Mathlib.AlgebraicGeometry.EllipticCurve.DivisionPolynomial.Degree
+
 import Definitions.FLT.Def_ModularCurve_EMD
 import Definitions.FLT.Def_HahnSeries_Monodromy
 import Definitions.FLT.Def_WeierstrassCurve_VariableChangePointEquiv
