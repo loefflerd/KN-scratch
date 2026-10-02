@@ -116,7 +116,9 @@ def KaehlerRankOne : Prop :=
   Module.Free F Ω[F⁄K] ∧ Module.finrank F Ω[F⁄K] = 1
 
 variable {K F}
-namespace IsCurveOver p2m_export "AlgebraicCurve.IsCurveOver" "hasPrincipalDivisors instFiniteResidue finiteResidue kaehler_free_rank_one" end IsCurveOver
+namespace IsCurveOver
+p2m_export "AlgebraicCurve.IsCurveOver" "hasPrincipalDivisors instFiniteResidue finiteResidue kaehler_free_rank_one"
+end IsCurveOver
 p2m_open_scoped "AlgebraicCurve.IsCurveOver" in
 
 theorem IsCurveOver.of_finiteResidue_of_kaehlerRankOne

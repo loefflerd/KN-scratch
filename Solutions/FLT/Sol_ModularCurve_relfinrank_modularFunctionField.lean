@@ -8,7 +8,9 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_relfinrank_modularFunctionField
 
-namespace ModularCurve p2m_export "ModularCurve" "qExpand jq jqN modularFunctionField adjoin_jq_le" end ModularCurve
+namespace ModularCurve
+p2m_export "ModularCurve" "qExpand jq jqN modularFunctionField adjoin_jq_le"
+end ModularCurve
 p2m_open_scoped "ModularCurve" in
 open IntermediateField in
 private theorem ModularCurve.relfinrank_modularFunctionField (N : ℕ) [NeZero N] :

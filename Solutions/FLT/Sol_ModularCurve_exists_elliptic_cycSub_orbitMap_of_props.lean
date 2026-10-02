@@ -114,7 +114,9 @@ theorem emd_of_alphaN (p : ℕ) [NeZero p] (data : ModularPolynomialData p)
 
 end ModularCurve.WiringB2
 
-namespace ModularCurve p2m_export "ModularCurve" "Emb Induces SamePlace CycSub SameOrbit EMD jBar jpBar modularFunctionFieldBar ModularPolynomialData TatePoint.dictN TatePoint.isAlgClosed_H TatePoint.charZero_H B3.nearTransport B3.b3Act exists_place_of_emb samePlace_iff_exists_monodromy natCard_normalized_algHom_jBar_eq_toNat_ord place_eq_of_induces exists_emb_equiv_rootsAt nonempty_modularPolynomialData B3.specialisationEquivariance_level" end ModularCurve
+namespace ModularCurve
+p2m_export "ModularCurve" "Emb Induces SamePlace CycSub SameOrbit EMD jBar jpBar modularFunctionFieldBar ModularPolynomialData TatePoint.dictN TatePoint.isAlgClosed_H TatePoint.charZero_H B3.nearTransport B3.b3Act exists_place_of_emb samePlace_iff_exists_monodromy natCard_normalized_algHom_jBar_eq_toNat_ord place_eq_of_induces exists_emb_equiv_rootsAt nonempty_modularPolynomialData B3.specialisationEquivariance_level"
+end ModularCurve
 p2m_open_scoped "ModularCurve" in
 
 theorem ModularCurve.hbeta_of_emd_docks (N : ℕ) [NeZero N] (j₀ : AlgebraicClosure ℚ)

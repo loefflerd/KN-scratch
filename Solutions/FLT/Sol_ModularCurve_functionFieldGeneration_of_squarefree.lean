@@ -21,7 +21,9 @@ noncomputable section
 p2m_open "ModularCurve P2MW.S_ModularCurve_functionFieldGeneration_of_squarefree.ModularCurve ModularCurve.PhiGen"
 open scoped IntermediateField
 
-namespace ModularCurve p2m_export "ModularCurve" "jq jqN dedekindPsi ModularPolynomialData FunctionFieldGeneration modularFunctionField adjoin_jq_le algebraMap_comp_evalAtJGen ModularPolynomialData.toAdjoin modularFunctionFieldFull modularFunctionField_le_full PhiIrreducible finrank_adjoin_jqN_eq_of_squarefree relfinrank_full_of_squarefree relfinrank_modularFunctionField functionFieldGeneration_iff_full_eq dedekindPsi_of_squarefree" end ModularCurve
+namespace ModularCurve
+p2m_export "ModularCurve" "jq jqN dedekindPsi ModularPolynomialData FunctionFieldGeneration modularFunctionField adjoin_jq_le algebraMap_comp_evalAtJGen ModularPolynomialData.toAdjoin modularFunctionFieldFull modularFunctionField_le_full PhiIrreducible finrank_adjoin_jqN_eq_of_squarefree relfinrank_full_of_squarefree relfinrank_modularFunctionField functionFieldGeneration_iff_full_eq dedekindPsi_of_squarefree"
+end ModularCurve
 p2m_open_scoped "ModularCurve" in
 private theorem ModularCurve.functionFieldGeneration_of_squarefree (N : ℕ) [NeZero N] (hN : Squarefree N) : FunctionFieldGeneration N := by
   rw [functionFieldGeneration_iff_full_eq]

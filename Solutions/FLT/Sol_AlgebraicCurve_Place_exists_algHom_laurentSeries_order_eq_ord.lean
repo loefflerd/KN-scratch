@@ -497,7 +497,11 @@ private theorem exists_algHom_laurentSeries_of_irreducible (w : Place K F) (hw :
 
 end AlgebraicCurve.Place
 
-namespace AlgebraicCurve p2m_export "AlgebraicCurve" "Place" namespace Place p2m_export "AlgebraicCurve.Place" "ext coe_algebraMap ResidueField deg ord ord_coe_unit exists_unit_mul_zpow toValuationSubring mk" end AlgebraicCurve.Place
+namespace AlgebraicCurve
+p2m_export "AlgebraicCurve" "Place"
+namespace Place
+p2m_export "AlgebraicCurve.Place" "ext coe_algebraMap ResidueField deg ord ord_coe_unit exists_unit_mul_zpow toValuationSubring mk"
+end AlgebraicCurve.Place
 p2m_open_scoped "AlgebraicCurve AlgebraicCurve.Place" in
 private theorem AlgebraicCurve.Place.exists_algHom_laurentSeries_of_deg_eq_one
     {K F : Type*} [Field K] [Field F] [Algebra K F] (w : Place K F) (hw : w.deg = 1)

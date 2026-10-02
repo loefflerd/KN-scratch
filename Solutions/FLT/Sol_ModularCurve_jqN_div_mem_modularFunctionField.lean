@@ -552,7 +552,9 @@ p2m_reactivate "P2MW.S_ModularCurve_jqN_div_mem_modularFunctionField.ModularCurv
 
 open ModularCurve.W1
 
-namespace ModularCurve p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_injective qExpand_one_apply qExpand_qExpand jq coeff_jq_neg_one coeff_jq_of_lt jqN dedekindPsi evalAtJ_X ModularPolynomialData modularFunctionField adjoin_jq_le modularFunctionFieldFull jqd_mem_full modularFunctionField_le_full coeffEmb coeffEmb_coeff qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand EvalSymm coeffMap_qExpand PhiGen.splits_prime_at_slot coeffMap_injective exists_phiIrreducible_evalSymm" end ModularCurve
+namespace ModularCurve
+p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_injective qExpand_one_apply qExpand_qExpand jq coeff_jq_neg_one coeff_jq_of_lt jqN dedekindPsi evalAtJ_X ModularPolynomialData modularFunctionField adjoin_jq_le modularFunctionFieldFull jqd_mem_full modularFunctionField_le_full coeffEmb coeffEmb_coeff qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand EvalSymm coeffMap_qExpand PhiGen.splits_prime_at_slot coeffMap_injective exists_phiIrreducible_evalSymm"
+end ModularCurve
 p2m_open_scoped "ModularCurve" in
 
 private theorem ModularCurve.jqN_div_mem_modularFunctionField (M : ℕ) [NeZero M] (p : ℕ)

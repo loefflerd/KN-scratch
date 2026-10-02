@@ -61,7 +61,9 @@ theorem jqN_congr {n m : ℕ} [NeZero n] [NeZero m] (h : n = m) : jqN n = jqN m 
 
 end ModularCurve.W1
 
-namespace ModularCurve p2m_export "ModularCurve" "qExpand qExpand_qExpand jq jqN jqN_one dedekindPsi evalAtJ evalAtJ_X ModularPolynomialData exists_phiIrreducible_evalSymm coeffEmb" end ModularCurve
+namespace ModularCurve
+p2m_export "ModularCurve" "qExpand qExpand_qExpand jq jqN jqN_one dedekindPsi evalAtJ evalAtJ_X ModularPolynomialData exists_phiIrreducible_evalSymm coeffEmb"
+end ModularCurve
 p2m_open_scoped "ModularCurve" in
 
 private theorem ModularCurve.exists_monic_evalAtJ_jqN_eq_zero (N : ℕ) [NeZero N] :

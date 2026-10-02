@@ -386,7 +386,9 @@ scoped instance finiteDimensional_adjoin_jBar (N : ℕ) [NeZero N] :
 end B2Places
 p2m_reactivate "P2MW.S_ModularCurve_nonempty_equiv_place_pos_ord_algHom_integralClosure.B2Places"
 
-namespace ModularCurve p2m_export "ModularCurve" "jBar modularFunctionFieldBar dedekindPsi relfinrank_laurentBaseChange_modularFunctionFieldFull relfinrank_full_eq_dedekindPsi dedekindPsi_pos transcendental_coeffEmb_jq" end ModularCurve
+namespace ModularCurve
+p2m_export "ModularCurve" "jBar modularFunctionFieldBar dedekindPsi relfinrank_laurentBaseChange_modularFunctionFieldFull relfinrank_full_eq_dedekindPsi dedekindPsi_pos transcendental_coeffEmb_jq"
+end ModularCurve
 p2m_open_scoped "ModularCurve" in
 open B2Places in
 

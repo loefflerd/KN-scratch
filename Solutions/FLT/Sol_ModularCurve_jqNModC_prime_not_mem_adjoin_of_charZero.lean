@@ -556,7 +556,9 @@ end ModularCurve.W1
 p2m_reactivate "P2MW.S_ModularCurve_jqNModC_prime_not_mem_adjoin_of_charZero.ModularCurve P2MW.S_ModularCurve_jqNModC_prime_not_mem_adjoin_of_charZero.ModularCurve.W1"
 p2m_reactivate "P2MW.S_ModularCurve_jqNModC_prime_not_mem_adjoin_of_charZero.ModularCurve P2MW.S_ModularCurve_jqNModC_prime_not_mem_adjoin_of_charZero.ModularCurve.W1"
 
-namespace ModularCurve p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_one_apply qExpand_qExpand jq dedekindPsi ModularPolynomialData coeffMap coeffMap_coeff coeffMap_single algebraMap_laurentSeries_eq_single qTwist qTwist_coeff qTwist_single qTwist_one_apply qTwist_qTwist qTwist_qExpand EvalSymm jqModC jqNModC jqNModC_one jqModC_rat map_jqModC jqModC_eq_map_intCast coeffMap_qExpand coeff_jqModC_neg_one order_jqModC coeff_jqModC_pow_of_lt coeff_jqModC_pow_self transcendental_jqModC exists_phiIrreducible_evalSymm one_le_coeff_jq" end ModularCurve
+namespace ModularCurve
+p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_one_apply qExpand_qExpand jq dedekindPsi ModularPolynomialData coeffMap coeffMap_coeff coeffMap_single algebraMap_laurentSeries_eq_single qTwist qTwist_coeff qTwist_single qTwist_one_apply qTwist_qTwist qTwist_qExpand EvalSymm jqModC jqNModC jqNModC_one jqModC_rat map_jqModC jqModC_eq_map_intCast coeffMap_qExpand coeff_jqModC_neg_one order_jqModC coeff_jqModC_pow_of_lt coeff_jqModC_pow_self transcendental_jqModC exists_phiIrreducible_evalSymm one_le_coeff_jq"
+end ModularCurve
 p2m_open_scoped "ModularCurve" in
 open ModularCurve.W1 in
 private theorem ModularCurve.jqNModC_prime_not_mem_adjoin_of_forall_aeval_ne {K : Type*} [Field K] (p : ℕ) [hp : Fact (Nat.Prime p)] (h : ∀ P : Polynomial K, Polynomial.aeval (jqModC K) P ≠ jqNModC K p) : jqNModC K p ∉ IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K)) :=

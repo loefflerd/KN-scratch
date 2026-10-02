@@ -19,7 +19,9 @@ set_option autoImplicit false
 
 p2m_open "ModularCurve~modularFunctionFieldBar P2MW.S_ModularCurve_finiteDimensional_adjoin_coeffEmb_jq_full.ModularCurve"
 
-namespace ModularCurve p2m_export "ModularCurve" "jq dedekindPsi modularFunctionFieldFull coeffEmb laurentBaseChange coeffEmb_mem_laurentBaseChange relfinrank_laurentBaseChange_modularFunctionFieldFull jq_mem_full relfinrank_full_eq_dedekindPsi dedekindPsi_pos" end ModularCurve
+namespace ModularCurve
+p2m_export "ModularCurve" "jq dedekindPsi modularFunctionFieldFull coeffEmb laurentBaseChange coeffEmb_mem_laurentBaseChange relfinrank_laurentBaseChange_modularFunctionFieldFull jq_mem_full relfinrank_full_eq_dedekindPsi dedekindPsi_pos"
+end ModularCurve
 p2m_open_scoped "ModularCurve" in
 private theorem ModularCurve.finiteDimensional_adjoin_coeffEmb_jq_full (L : Type*) [Field L] [Algebra ℚ L] (N : ℕ) [NeZero N] : FiniteDimensional (IntermediateField.adjoin L ({⟨coeffEmb L jq, coeffEmb_mem_laurentBaseChange L (jq_mem_full N)⟩} : Set (laurentBaseChange L (modularFunctionFieldFull N)))) (laurentBaseChange L (modularFunctionFieldFull N)) := by
   have hmap : (IntermediateField.adjoin L

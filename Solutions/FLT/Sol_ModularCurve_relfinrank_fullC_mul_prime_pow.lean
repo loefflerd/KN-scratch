@@ -1154,7 +1154,9 @@ end ModularCurve.W1
 p2m_reactivate "P2MW.S_ModularCurve_relfinrank_fullC_mul_prime_pow.ModularCurve P2MW.S_ModularCurve_relfinrank_fullC_mul_prime_pow.ModularCurve.W1"
 p2m_reactivate "P2MW.S_ModularCurve_relfinrank_fullC_mul_prime_pow.ModularCurve P2MW.S_ModularCurve_relfinrank_fullC_mul_prime_pow.ModularCurve.W1"
 
-namespace ModularCurve p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_injective qExpand_one_apply qExpand_congr qExpand_qExpand dedekindPsi ModularPolynomialData coeffMap coeffMap_coeff qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand EvalSymm jqModC jqNModC jqNModC_one map_jqModC coeffMap_qExpand coeff_jqModC_neg_one order_jqModC PhiGen.splits_prime_at_slot_of_isPrimitiveRoot exists_phiIrreducible_evalSymm dedekindPsi_prime" end ModularCurve
+namespace ModularCurve
+p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_injective qExpand_one_apply qExpand_congr qExpand_qExpand dedekindPsi ModularPolynomialData coeffMap coeffMap_coeff qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand EvalSymm jqModC jqNModC jqNModC_one map_jqModC coeffMap_qExpand coeff_jqModC_neg_one order_jqModC PhiGen.splits_prime_at_slot_of_isPrimitiveRoot exists_phiIrreducible_evalSymm dedekindPsi_prime"
+end ModularCurve
 p2m_open_scoped "ModularCurve" in
 open ModularCurve.W1 in
 private theorem ModularCurve.fullC_mul_prime_pow_eq_adjoin {K : Type*} [Field K] (M : ℕ) [NeZero M] (p : ℕ) [hp : Fact (Nat.Prime p)] (a : ℕ) (hpM : ¬ p ∣ M) (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) (M * p ^ (a + 1))) : IntermediateField.adjoin K {x : LaurentSeries K | ∃ (d' : ℕ) (_ : NeZero d'), d' ∣ M * p ^ (a + 1) ∧ x = jqNModC K d'} = IntermediateField.adjoin K (insert (jqNModC K (p ^ (a + 1))) ((IntermediateField.adjoin K {x : LaurentSeries K | ∃ (d' : ℕ) (_ : NeZero d'), d' ∣ M * p ^ a ∧ x = jqNModC K d'} : IntermediateField K (LaurentSeries K)) : Set (LaurentSeries K))) := by

@@ -979,7 +979,9 @@ end ModularCurve.W1
 p2m_reactivate "P2MW.S_ModularCurve_jqN_pow_not_mem_adjoin_full.ModularCurve P2MW.S_ModularCurve_jqN_pow_not_mem_adjoin_full.ModularCurve.W1"
 p2m_reactivate "P2MW.S_ModularCurve_jqN_pow_not_mem_adjoin_full.ModularCurve P2MW.S_ModularCurve_jqN_pow_not_mem_adjoin_full.ModularCurve.W1"
 
-namespace ModularCurve p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_one_apply qExpand_congr qExpand_qExpand jq coeff_jq_neg_one coeff_jq_of_lt jqN jqN_one dedekindPsi evalAtJ_X ModularPolynomialData modularFunctionFieldFull jqd_mem_full coeffEmb coeffEmb_coeff qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand EvalSymm coeffMap_qExpand PhiGen.splits_prime_at_slot exists_phiIrreducible_evalSymm" end ModularCurve
+namespace ModularCurve
+p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_one_apply qExpand_congr qExpand_qExpand jq coeff_jq_neg_one coeff_jq_of_lt jqN jqN_one dedekindPsi evalAtJ_X ModularPolynomialData modularFunctionFieldFull jqd_mem_full coeffEmb coeffEmb_coeff qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand EvalSymm coeffMap_qExpand PhiGen.splits_prime_at_slot exists_phiIrreducible_evalSymm"
+end ModularCurve
 p2m_open_scoped "ModularCurve" in
 private theorem ModularCurve.jqN_pow_not_mem_adjoin_full (M : ℕ) [NeZero M] (p : ℕ)
     [hp : Fact (Nat.Prime p)] (a : ℕ)

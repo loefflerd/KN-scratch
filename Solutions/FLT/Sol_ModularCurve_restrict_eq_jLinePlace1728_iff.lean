@@ -19,7 +19,10 @@ set_option synthInstance.maxHeartbeats 1600000
 
 open IntermediateField AlgebraicCurve
 
-namespace ModularCurve p2m_export "ModularCurve" "jAdjoinAlgebra jLinePlace1728 jq modularFunctionField jq_mem jGen eq_jLinePlace1728_iff_ord_jGen_sub_pos" namespace RestrictAux end ModularCurve.RestrictAux
+namespace ModularCurve
+p2m_export "ModularCurve" "jAdjoinAlgebra jLinePlace1728 jq modularFunctionField jq_mem jGen eq_jLinePlace1728_iff_ord_jGen_sub_pos"
+namespace RestrictAux
+end ModularCurve.RestrictAux
 p2m_open_scoped "ModularCurve" in
 
 theorem ModularCurve.RestrictAux.ord_algebraMap_pos_iff (N : ℕ) [NeZero N] :

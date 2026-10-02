@@ -29,7 +29,9 @@ set_option autoImplicit false
 open scoped IntermediateField
 open Polynomial
 
-namespace AlgebraicCurve p2m_export "AlgebraicCurve" "Place RationalFunctionField.exists_forall_ne_ofHeightOneSpectrum RationalFunctionField.ord_eq_neg_intDegree_of_forall_ne_ofHeightOneSpectrum Place.exists_comap_eq_toValuationSubring Place.exists_ord_algebraMap_eq_mul_ord finiteDimensional_adjoin_of_transcendental" end AlgebraicCurve
+namespace AlgebraicCurve
+p2m_export "AlgebraicCurve" "Place RationalFunctionField.exists_forall_ne_ofHeightOneSpectrum RationalFunctionField.ord_eq_neg_intDegree_of_forall_ne_ofHeightOneSpectrum Place.exists_comap_eq_toValuationSubring Place.exists_ord_algebraMap_eq_mul_ord finiteDimensional_adjoin_of_transcendental"
+end AlgebraicCurve
 p2m_open_scoped "AlgebraicCurve" in
 
 theorem AlgebraicCurve.isSeparable_of_finrank_fieldRange_frobenius_eq
@@ -236,7 +238,9 @@ theorem transcendental_of_pow_eq {x y : F} {m : ℕ} (hx : Transcendental K x) (
     Transcendental K y :=
   fun halg => hx (h ▸ halg.pow m)
 
-namespace Place p2m_export "AlgebraicCurve.Place" "ext ord ord_zpow algebraMap_mem' exists_comap_eq_toValuationSubring exists_ord_algebraMap_eq_mul_ord" end Place
+namespace Place
+p2m_export "AlgebraicCurve.Place" "ext ord ord_zpow algebraMap_mem' exists_comap_eq_toValuationSubring exists_ord_algebraMap_eq_mul_ord"
+end Place
 p2m_open_scoped "AlgebraicCurve.Place" in
 
 theorem Place.mem_range_algebraMap_of_forall_ord_eq_zero_core [IsAlgClosed K]
@@ -311,7 +315,11 @@ end AlgebraicCurve
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_Place_mem_range_algebraMap_of_forall_ord_eq_zero_of_isAlgClosed.AlgebraicCurve"
 open scoped nonZeroDivisors
 
-namespace AlgebraicCurve p2m_export "AlgebraicCurve" "Place RationalFunctionField.exists_forall_ne_ofHeightOneSpectrum RationalFunctionField.ord_eq_neg_intDegree_of_forall_ne_ofHeightOneSpectrum Place.exists_comap_eq_toValuationSubring Place.exists_ord_algebraMap_eq_mul_ord finiteDimensional_adjoin_of_transcendental" namespace Place p2m_export "AlgebraicCurve.Place" "ext ord ord_zpow algebraMap_mem' exists_comap_eq_toValuationSubring exists_ord_algebraMap_eq_mul_ord" end AlgebraicCurve.Place
+namespace AlgebraicCurve
+p2m_export "AlgebraicCurve" "Place RationalFunctionField.exists_forall_ne_ofHeightOneSpectrum RationalFunctionField.ord_eq_neg_intDegree_of_forall_ne_ofHeightOneSpectrum Place.exists_comap_eq_toValuationSubring Place.exists_ord_algebraMap_eq_mul_ord finiteDimensional_adjoin_of_transcendental"
+namespace Place
+p2m_export "AlgebraicCurve.Place" "ext ord ord_zpow algebraMap_mem' exists_comap_eq_toValuationSubring exists_ord_algebraMap_eq_mul_ord"
+end AlgebraicCurve.Place
 p2m_open_scoped "AlgebraicCurve AlgebraicCurve.Place" in
 
 theorem AlgebraicCurve.Place.exists_ord_neg_of_transcendental_of_isSeparable

@@ -45,7 +45,9 @@ private theorem qCoeff_one_eq (Z : ModularForm 𝒮ℒ 12) (c : ℂ)
 
 end WL12Pen
 
-namespace ModularForm p2m_export "ModularForm" "toCuspForm discriminant discriminant_qExpansion_coeff_one" end ModularForm
+namespace ModularForm
+p2m_export "ModularForm" "toCuspForm discriminant discriminant_qExpansion_coeff_one"
+end ModularForm
 p2m_open_scoped "ModularForm" in
 private theorem ModularForm.levelOne_weight_twelve_qCoeff_eq_qCoeff_one_mul_discriminant (Z : ModularForm 𝒮ℒ 12) (h0 : ModularFormClass.qCoeff ⇑Z 0 = 0) : ∀ n : ℕ, ModularFormClass.qCoeff ⇑Z n = ModularFormClass.qCoeff ⇑Z 1 * ModularFormClass.qCoeff ModularForm.discriminant n := by
   obtain ⟨c, hZ⟩ := WL12Pen.exists_coe_eq_smul_discriminant Z h0

@@ -14,7 +14,9 @@ p2m_attr_erase "simp" "AlgebraicCurve.SemilinearAut.torsionRep_apply AlgebraicCu
 
 p2m_open "ModularCurve P2MW.S_ModularCurve_theta_coeff.ModularCurve ModularCurve.PhiGen P2MW.S_ModularCurve_theta_coeff.ModularCurve.PhiGen"
 
-namespace ModularCurve p2m_export "ModularCurve" "qTwist qTwist_coeff qTwist_one_apply qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_one_apply" end ModularCurve
+namespace ModularCurve
+p2m_export "ModularCurve" "qTwist qTwist_coeff qTwist_one_apply qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_one_apply"
+end ModularCurve
 p2m_open_scoped "ModularCurve" in
 private theorem ModularCurve.theta_coeff {R : Type*} [CommRing R] (f : LaurentSeries R) (k : ℤ) : ((HahnSeries.single (1 : ℤ) (1 : R) : LaurentSeries R) * LaurentSeries.derivative R f).coeff k = k • f.coeff k := by
   rw [HahnSeries.coeff_single_mul, one_mul, LaurentSeries.derivative_apply,
@@ -81,7 +83,11 @@ private theorem ModularCurve.theta_qTwist {R : Type*} [CommRing R] (u : Rˣ) (f 
   ext k
   rw [theta_coeff, qTwist_coeff, qTwist_coeff, theta_coeff, mul_smul_comm]
 
-namespace ModularCurve p2m_export "ModularCurve" "qTwist qTwist_coeff qTwist_one_apply qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_one_apply" namespace PhiGen p2m_export "ModularCurve.PhiGen" "sum_qTwist_coeff" end ModularCurve.PhiGen
+namespace ModularCurve
+p2m_export "ModularCurve" "qTwist qTwist_coeff qTwist_one_apply qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_one_apply"
+namespace PhiGen
+p2m_export "ModularCurve.PhiGen" "sum_qTwist_coeff"
+end ModularCurve.PhiGen
 p2m_open_scoped "ModularCurve ModularCurve.PhiGen" in
 private theorem ModularCurve.PhiGen.weightTwo_coeff_sum_slots {K : Type*} [Field K] [Algebra ℚ K] (ℓ : ℕ) [NeZero ℓ] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) ℓ) (f : LaurentSeries K) (n : ℤ) : ((ℓ * ℓ) • qExpand K (ℓ * ℓ) f + ∑ b ∈ Finset.range ℓ, qTwist (ζ ^ b) f).coeff ((ℓ : ℤ) * n) = (ℓ : K) * (f.coeff ((ℓ : ℤ) * n) + if (ℓ : ℤ) ∣ n then (ℓ : K) * f.coeff (n / ℓ) else 0) := by
   have hℓ : (ℓ : ℤ) ≠ 0 := by exact_mod_cast NeZero.ne ℓ

@@ -57,7 +57,11 @@ theorem single_one_mem_puiseuxRamSubfield {e : ℕ} (he : 0 < e) (c : K) :
 
 end HahnSeries
 
-namespace AlgebraicCurve p2m_export "AlgebraicCurve" "Place SemilinearAut SemilinearAut.ofAlgAut SemilinearAut.ofAlgAut_smul SemilinearAut.ord_smul Place.ord_ofHeightOneSpectrum_ne_zero_iff RationalFunctionField.heightOneSpectrumOfIrreducible RationalFunctionField.heightOneSpectrumOfIrreducible_asIdeal RationalFunctionField.finitePlace RationalFunctionField.finitePlace_def Place.exists_ord_mul_eq_order_of_hasRamBound Place.exists_algEquiv_smul_eq_of_restrict_eq Place.exists_restrict_eq RationalFunctionField.eq_ofHeightOneSpectrum_or_eq_placeInfty RationalFunctionField.ord_placeInfty_algebraMap" namespace Place p2m_export "AlgebraicCurve.Place" "ext ord ord_coe_irreducible ord_smul toValuationSubring ramificationIndex ramificationIndex_pos restrict ord_restrict ord_ofHeightOneSpectrum_ne_zero_iff exists_ord_mul_eq_order_of_hasRamBound exists_algEquiv_smul_eq_of_restrict_eq exists_restrict_eq" end AlgebraicCurve.Place
+namespace AlgebraicCurve
+p2m_export "AlgebraicCurve" "Place SemilinearAut SemilinearAut.ofAlgAut SemilinearAut.ofAlgAut_smul SemilinearAut.ord_smul Place.ord_ofHeightOneSpectrum_ne_zero_iff RationalFunctionField.heightOneSpectrumOfIrreducible RationalFunctionField.heightOneSpectrumOfIrreducible_asIdeal RationalFunctionField.finitePlace RationalFunctionField.finitePlace_def Place.exists_ord_mul_eq_order_of_hasRamBound Place.exists_algEquiv_smul_eq_of_restrict_eq Place.exists_restrict_eq RationalFunctionField.eq_ofHeightOneSpectrum_or_eq_placeInfty RationalFunctionField.ord_placeInfty_algebraMap"
+namespace Place
+p2m_export "AlgebraicCurve.Place" "ext ord ord_coe_irreducible ord_smul toValuationSubring ramificationIndex ramificationIndex_pos restrict ord_restrict ord_ofHeightOneSpectrum_ne_zero_iff exists_ord_mul_eq_order_of_hasRamBound exists_algEquiv_smul_eq_of_restrict_eq exists_restrict_eq"
+end AlgebraicCurve.Place
 p2m_open_scoped "AlgebraicCurve AlgebraicCurve.Place" in
 private theorem AlgebraicCurve.Place.ord_pos_and_dvd_of_hasRamBound {K L F : Type*} [Field K] [Field L]
     [Algebra K L] [Field F] [Algebra K F] (φ : F →ₐ[K] HahnSeries ℚ L) {d : ℕ}
@@ -193,7 +197,9 @@ private theorem adjoin_jBar_jNBar_eq_top :
 
 end ModularCurve
 
-namespace ModularCurve p2m_export "ModularCurve" "qExpand jq jqN evalAtJ evalAtJ_X ModularPolynomialData FunctionFieldGeneration modularFunctionField modularFunctionFieldFull jqd_mem_full coeffEmb laurentBaseChange coeffEmb_mem_laurentBaseChange jq_mem_full modularFunctionField_eq_full laurentBaseChange_adjoin" end ModularCurve
+namespace ModularCurve
+p2m_export "ModularCurve" "qExpand jq jqN evalAtJ evalAtJ_X ModularPolynomialData FunctionFieldGeneration modularFunctionField modularFunctionFieldFull jqd_mem_full coeffEmb laurentBaseChange coeffEmb_mem_laurentBaseChange jq_mem_full modularFunctionField_eq_full laurentBaseChange_adjoin"
+end ModularCurve
 p2m_open_scoped "ModularCurve" in
 private theorem ModularCurve.ord_jBar_sub_pos_and_dvd_of_forall_isRoot_hasRamBound (L : Type*) [Field L]
     [Algebra ℚ L] (N : ℕ) [NeZero N] (data : ModularCurve.ModularPolynomialData N) (j₀ : L)
@@ -326,7 +332,11 @@ theorem eval₂_C_add_single_ne_zero_and_order_eq_one (p : K[X]) (a : L) (ha : P
 
 end HahnSeries
 
-namespace AlgebraicCurve p2m_export "AlgebraicCurve" "Place SemilinearAut SemilinearAut.ofAlgAut SemilinearAut.ofAlgAut_smul SemilinearAut.ord_smul Place.ord_ofHeightOneSpectrum_ne_zero_iff RationalFunctionField.heightOneSpectrumOfIrreducible RationalFunctionField.heightOneSpectrumOfIrreducible_asIdeal RationalFunctionField.finitePlace RationalFunctionField.finitePlace_def Place.exists_ord_mul_eq_order_of_hasRamBound Place.exists_algEquiv_smul_eq_of_restrict_eq Place.exists_restrict_eq RationalFunctionField.eq_ofHeightOneSpectrum_or_eq_placeInfty RationalFunctionField.ord_placeInfty_algebraMap" namespace RationalFunctionField p2m_export "AlgebraicCurve.RationalFunctionField" "heightOneSpectrumOfIrreducible heightOneSpectrumOfIrreducible_asIdeal finitePlace finitePlace_def eq_ofHeightOneSpectrum_or_eq_placeInfty ord_placeInfty_algebraMap" end AlgebraicCurve.RationalFunctionField
+namespace AlgebraicCurve
+p2m_export "AlgebraicCurve" "Place SemilinearAut SemilinearAut.ofAlgAut SemilinearAut.ofAlgAut_smul SemilinearAut.ord_smul Place.ord_ofHeightOneSpectrum_ne_zero_iff RationalFunctionField.heightOneSpectrumOfIrreducible RationalFunctionField.heightOneSpectrumOfIrreducible_asIdeal RationalFunctionField.finitePlace RationalFunctionField.finitePlace_def Place.exists_ord_mul_eq_order_of_hasRamBound Place.exists_algEquiv_smul_eq_of_restrict_eq Place.exists_restrict_eq RationalFunctionField.eq_ofHeightOneSpectrum_or_eq_placeInfty RationalFunctionField.ord_placeInfty_algebraMap"
+namespace RationalFunctionField
+p2m_export "AlgebraicCurve.RationalFunctionField" "heightOneSpectrumOfIrreducible heightOneSpectrumOfIrreducible_asIdeal finitePlace finitePlace_def eq_ofHeightOneSpectrum_or_eq_placeInfty ord_placeInfty_algebraMap"
+end AlgebraicCurve.RationalFunctionField
 p2m_open_scoped "AlgebraicCurve AlgebraicCurve.RationalFunctionField" in
 private theorem AlgebraicCurve.RationalFunctionField.eq_finitePlace_of_ord_pos {K : Type*} [Field K] {p : K[X]}
     (hp : Irreducible p) (v : AlgebraicCurve.Place K (RatFunc K))

@@ -56,7 +56,9 @@ private theorem finrankAdjoinJBar (N : ℕ) [NeZero N] :
   rw [← h2]
   exact h1
 
-namespace ModularCurve p2m_export "ModularCurve" "dedekindPsi jBar modularFunctionFieldBar sum_ord_jBar_sub_eq_dedekindPsi exists_finset_ord_jBar_sub_pos deg_eq_one_modularFunctionFieldBar dedekindPsi_pos natCard_normalized_algHom_hahnSeries_jBar_sub_eq_toNat_ord relfinrank_laurentBaseChange_modularFunctionFieldFull relfinrank_full_eq_dedekindPsi" end ModularCurve
+namespace ModularCurve
+p2m_export "ModularCurve" "dedekindPsi jBar modularFunctionFieldBar sum_ord_jBar_sub_eq_dedekindPsi exists_finset_ord_jBar_sub_pos deg_eq_one_modularFunctionFieldBar dedekindPsi_pos natCard_normalized_algHom_hahnSeries_jBar_sub_eq_toNat_ord relfinrank_laurentBaseChange_modularFunctionFieldFull relfinrank_full_eq_dedekindPsi"
+end ModularCurve
 p2m_open_scoped "ModularCurve" in
 
 private theorem ModularCurve.natCard_normalized_algHom_jBar_eq_toNat_ord (N : ℕ) [NeZero N]

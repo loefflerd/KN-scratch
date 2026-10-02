@@ -12,7 +12,10 @@ set_option autoImplicit false
 open UpperHalfPlane
 open scoped MatrixGroups Topology Manifold
 
-namespace ModularCurve p2m_export "ModularCurve" "realizeOf realizeOf_def" namespace RealizeOfWD end ModularCurve.RealizeOfWD
+namespace ModularCurve
+p2m_export "ModularCurve" "realizeOf realizeOf_def"
+namespace RealizeOfWD
+end ModularCurve.RealizeOfWD
 p2m_open_scoped "ModularCurve" in
 
 theorem ModularCurve.RealizeOfWD.one_mem_strictPeriods (Γ : Subgroup SL(2, ℤ)) (hT : ModularGroup.T ∈ Γ) :

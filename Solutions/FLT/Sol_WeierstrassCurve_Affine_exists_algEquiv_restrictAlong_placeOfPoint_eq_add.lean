@@ -1814,7 +1814,9 @@ p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.m
 
 variable {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F']
 
-namespace Place p2m_export "AlgebraicCurve.Place" "restrictAlong ramificationIndexAlong ord_restrictAlong ramificationIndex_pos ext coe_algebraMap deg adicValuation adicValuation_ne_zero adicValuation_coe_eq_one_iff adicValuation_coe_irreducible ord ord_zero ord_mul ord_inv ord_coe_irreducible ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ofHeightOneSpectrum ofHeightOneSpectrum_toValuationSubring rec ne_top' algebraMap_mem' toValuationSubring mk mem_of_eval_monic_eq_zero isEquiv_adicValuation_of_valuationSubring_eq ord_eq_zero_iff_adicValuation_eq_one ofHeightOneSpectrum_injective ord_ofHeightOneSpectrum_ne_zero_iff" end Place
+namespace Place
+p2m_export "AlgebraicCurve.Place" "restrictAlong ramificationIndexAlong ord_restrictAlong ramificationIndex_pos ext coe_algebraMap deg adicValuation adicValuation_ne_zero adicValuation_coe_eq_one_iff adicValuation_coe_irreducible ord ord_zero ord_mul ord_inv ord_coe_irreducible ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ofHeightOneSpectrum ofHeightOneSpectrum_toValuationSubring rec ne_top' algebraMap_mem' toValuationSubring mk mem_of_eval_monic_eq_zero isEquiv_adicValuation_of_valuationSubring_eq ord_eq_zero_iff_adicValuation_eq_one ofHeightOneSpectrum_injective ord_ofHeightOneSpectrum_ne_zero_iff"
+end Place
 p2m_open_scoped "AlgebraicCurve.Place" in
 theorem Place.mem_restrictAlong_iff (φ : F →ₐ[K] F') (hφ : φ.toRingHom.IsIntegral)
     (w : Place K F') (f : F) :
@@ -3216,7 +3218,9 @@ section Translate
 
 variable [W.IsElliptic] [WeierstrassCurve.Affine.GenusOnePlaceGate W] [WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred W] [WeierstrassCurve.Affine.AbelTheorem W]
 
-namespace Point p2m_export "WeierstrassCurve.Affine.Point" "add baseChange some some.injEq neg_zero some.inj map_zero add_some map some_ne_zero rec add_of_X_ne zero neg_some add_self_of_Y_ne mk" end Point
+namespace Point
+p2m_export "WeierstrassCurve.Affine.Point" "add baseChange some some.injEq neg_zero some.inj map_zero add_some map some_ne_zero rec add_of_X_ne zero neg_some add_self_of_Y_ne mk"
+end Point
 p2m_open_scoped "WeierstrassCurve.Affine.Point" in
 def Point.translateFF : W.Point → (W.FunctionField ≃ₐ[F] W.FunctionField)
   | 0 => AlgEquiv.refl

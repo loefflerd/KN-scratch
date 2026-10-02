@@ -43,7 +43,9 @@ private theorem isUnit_zmod_prime_pow_iff {p k : ℕ} (hp : p.Prime) (hk : k ≠
       _ = ((z.val : ℕ) : ZMod p) := map_natCast _ _
       _ = 0 := (ZMod.natCast_eq_zero_iff _ _).mpr hdvd
 
-namespace IsUnimodularRow p2m_export "ModularCurve.IsUnimodularRow" "map" end IsUnimodularRow
+namespace IsUnimodularRow
+p2m_export "ModularCurve.IsUnimodularRow" "map"
+end IsUnimodularRow
 namespace IsUnimodularRow
 p2m_open_scoped "ModularCurve.IsUnimodularRow" in
 

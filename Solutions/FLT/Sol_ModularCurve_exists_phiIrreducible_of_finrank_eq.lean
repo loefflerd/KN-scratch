@@ -45,7 +45,9 @@ end ModularCurve.W1
 
 open IntermediateField Polynomial
 
-namespace ModularCurve p2m_export "ModularCurve" "jq jqN dedekindPsi evalAtJ ModularPolynomialData evalAtJGen algebraMap_comp_evalAtJGen PhiIrreducible exists_monic_evalAtJ_jqN_eq_zero PhiGen.evalAtJ_injective" end ModularCurve
+namespace ModularCurve
+p2m_export "ModularCurve" "jq jqN dedekindPsi evalAtJ ModularPolynomialData evalAtJGen algebraMap_comp_evalAtJGen PhiIrreducible exists_monic_evalAtJ_jqN_eq_zero PhiGen.evalAtJ_injective"
+end ModularCurve
 p2m_open_scoped "ModularCurve" in
 
 private theorem ModularCurve.exists_phiIrreducible_of_finrank_eq (N : ℕ) [NeZero N]

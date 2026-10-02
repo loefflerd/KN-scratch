@@ -55,7 +55,9 @@ namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "Place Place.coe_algebraMap Divisor Divisor.degree Divisor.degree_single HasPrincipalDivisors HasPrincipalDivisors.exists_divisor IsCurveOver IsCurveOver.finite_residueField LSpace ell mem_lSpace_iff_ord lSpace_mono one_mem_lSpace_zero ConstantsAreBase ell_zero_eq_one_of_constantsAreBase adeleBdd mem_adeleBdd adeleBdd_mono diagonalHom diagonalHom_injective diagonal_mem_adeleBdd_iff adeleSpace adeleBdd_le_adeleSpace diagonal_mem_adeleSpace globalSub diagonal_mem_globalSub map_diagonal_lSpace finrank_adeleBdd_inf_global_eq_ell indexOfSpecialty adeleBddPrincipal indexOfSpecialty_eq omegaSpace omegaSpace_antitone omegaSpaceEquivIndexDual finrank_omegaSpace_eq_indexOfSpecialty weilDifferentialModule omegaSpace_le_weilDifferentialModule mem_weilDifferentialModule_iff mulAdele_apply adeleSpaceMul adeleSpaceMul_coe weilSmul weilSmul_apply weilSmul_one weilSmul_mul weilSmul_injective weilSmul_mem_omegaSpace_add residuePairing residuePairing_apply_coe residuePairing_injective WeilDifferentialRankOne RiemannGenusReachedAt RiemannGenusReached StichtenothGenusExists RiemannGenusBounded IndexOfSpecialtyFinite"
 p2m_open "AlgebraicCurve"
 variable {K F : Type*} [Field K] [Field F] [Algebra K F]
-namespace Divisor p2m_export "AlgebraicCurve.Divisor" "degree degree_single principal smul_def smul_apply" end Divisor
+namespace Divisor
+p2m_export "AlgebraicCurve.Divisor" "degree degree_single principal smul_def smul_apply"
+end Divisor
 p2m_open_scoped "AlgebraicCurve.Divisor" in
 theorem Divisor.degree_eq_sum_support (D : Divisor K F) :
     Divisor.degree D = ∑ v ∈ D.support, D v * (v.deg : ℤ) := by
@@ -969,7 +971,9 @@ theorem adeleBddSup_eq_of_degree_sub_ell_eq {D₁ D₂ : Divisor K F} (hD : D₁
 
 end Index
 
-namespace RiemannGenusReachedAt p2m_export "AlgebraicCurve.RiemannGenusReachedAt" "finite mk eq isMax" end RiemannGenusReachedAt
+namespace RiemannGenusReachedAt
+p2m_export "AlgebraicCurve.RiemannGenusReachedAt" "finite mk eq isMax"
+end RiemannGenusReachedAt
 namespace RiemannGenusReachedAt
 p2m_open_scoped "AlgebraicCurve.RiemannGenusReachedAt" in
 

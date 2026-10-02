@@ -27,7 +27,9 @@ set_option synthInstance.maxHeartbeats 6400000
 set_option maxHeartbeats 12800000
 
 section
-namespace IsLocalRing p2m_export "IsLocalRing" "ResidueField maximalIdeal residue_eq_zero_iff maximalIdeal.isMaximal residue_surjective of_injective residue" end IsLocalRing
+namespace IsLocalRing
+p2m_export "IsLocalRing" "ResidueField maximalIdeal residue_eq_zero_iff maximalIdeal.isMaximal residue_surjective of_injective residue"
+end IsLocalRing
 p2m_open_scoped "IsLocalRing" in
 theorem IsLocalRing.maximalIdeal_le {R : Type*} [CommSemiring R] [IsLocalRing R] {J : Ideal R}
     (hJ : J ≠ ⊤) (h : IsLocalRing.maximalIdeal R ≤ J) :

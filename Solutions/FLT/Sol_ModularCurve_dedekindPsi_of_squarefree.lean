@@ -39,7 +39,9 @@ private theorem psi_prime_pow_aux {p : ℕ} (hp : p.Prime) (k : ℕ) :
 
 end ModularCurve.W1
 
-namespace ModularCurve p2m_export "ModularCurve" "dedekindPsi dedekindPsi_one dedekindPsi_mul_of_coprime dedekindPsi_prime" end ModularCurve
+namespace ModularCurve
+p2m_export "ModularCurve" "dedekindPsi dedekindPsi_one dedekindPsi_mul_of_coprime dedekindPsi_prime"
+end ModularCurve
 p2m_open_scoped "ModularCurve" in
 private theorem ModularCurve.dedekindPsi_prime_pow {p : ℕ} (hp : p.Prime) (k : ℕ) :
     dedekindPsi (p ^ (k + 1)) = (p + 1) * p ^ k := by

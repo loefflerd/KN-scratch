@@ -638,7 +638,11 @@ private theorem _root_.ModularCurve.TatePoint.DiscEvenEngine.fullKernelDiscAt_of
 p2m_export "ModularCurve.TatePoint.DiscEvenEngine" "fullKernelDiscAt_of_even"
 end ModularCurve.TatePoint.DiscEvenEngine
 
-namespace ModularCurve p2m_export "ModularCurve" "TatePoint.FullKernelDiscAt TatePoint.fullKernelDiscAt_of_odd" namespace TatePoint p2m_export "ModularCurve.TatePoint" "FullKernelDiscAt fullKernelDiscAt_of_odd" end ModularCurve.TatePoint
+namespace ModularCurve
+p2m_export "ModularCurve" "TatePoint.FullKernelDiscAt TatePoint.fullKernelDiscAt_of_odd"
+namespace TatePoint
+p2m_export "ModularCurve.TatePoint" "FullKernelDiscAt fullKernelDiscAt_of_odd"
+end ModularCurve.TatePoint
 namespace ModularCurve.TatePoint
 p2m_open_scoped "ModularCurve ModularCurve.TatePoint" in
 

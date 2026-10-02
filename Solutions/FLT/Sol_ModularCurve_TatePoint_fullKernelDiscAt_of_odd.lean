@@ -68,7 +68,11 @@ private theorem _root_.WeierstrassCurve.zmultiples_eq_of_fullKernelQuotient_j_eq
 p2m_export "WeierstrassCurve" "zmultiples_eq_of_fullKernelQuotient_j_eq_of_transcendental_of_odd"
 end WeierstrassCurve
 
-namespace ModularCurve p2m_export "ModularCurve" "TatePoint.dictOdd TatePoint.Qbar TatePoint.nearCurve TatePoint.CycSubH TatePoint.RootsAt ModularPolynomialData ModularPolynomialData.isRoot_map_j_veluQuotient_j_of_addOrderOf_eq TatePoint.dictN" namespace ModularPolynomialData p2m_export "ModularCurve.ModularPolynomialData" "Φ isRoot_map_j_veluQuotient_j_of_addOrderOf_eq" end ModularCurve.ModularPolynomialData
+namespace ModularCurve
+p2m_export "ModularCurve" "TatePoint.dictOdd TatePoint.Qbar TatePoint.nearCurve TatePoint.CycSubH TatePoint.RootsAt ModularPolynomialData ModularPolynomialData.isRoot_map_j_veluQuotient_j_of_addOrderOf_eq TatePoint.dictN"
+namespace ModularPolynomialData
+p2m_export "ModularCurve.ModularPolynomialData" "Φ isRoot_map_j_veluQuotient_j_of_addOrderOf_eq"
+end ModularCurve.ModularPolynomialData
 p2m_open_scoped "ModularCurve ModularCurve.ModularPolynomialData" in
 
 theorem ModularCurve.ModularPolynomialData.isRoot_map_j_fullKernelQuotient_j_of_odd

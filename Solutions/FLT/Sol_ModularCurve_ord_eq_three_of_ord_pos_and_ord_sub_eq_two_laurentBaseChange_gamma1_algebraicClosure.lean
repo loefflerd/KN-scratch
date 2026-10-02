@@ -94,7 +94,10 @@ theorem S_smul_I : ModularGroup.S • UpperHalfPlane.I = UpperHalfPlane.I :=
 
 end ModularCurve.NoEllAux
 
-namespace ModularCurve p2m_export "ModularCurve" "qExpFunctionFieldC jGen laurentBaseChange jqModC LevelN.wp LevelN.fricke LevelN.jAnalytic LevelN.ring LevelN.jGen exists_ringHom_laurentBaseChange_qExpFunctionFieldC_levelN_qExpansion LevelN.exists_monoidHom_algEquiv_fixedField_eq_adjoin LevelN.exists_place_ord_jGen_eq_three_two_and_stabilizer_subset_zpowers LevelN.Descent.fixer_le JOneES.exists_transcendental_finiteDimensional_laurentBaseChange" namespace NoEllAux end ModularCurve.NoEllAux
+namespace ModularCurve
+p2m_export "ModularCurve" "qExpFunctionFieldC jGen laurentBaseChange jqModC LevelN.wp LevelN.fricke LevelN.jAnalytic LevelN.ring LevelN.jGen exists_ringHom_laurentBaseChange_qExpFunctionFieldC_levelN_qExpansion LevelN.exists_monoidHom_algEquiv_fixedField_eq_adjoin LevelN.exists_place_ord_jGen_eq_three_two_and_stabilizer_subset_zpowers LevelN.Descent.fixer_le JOneES.exists_transcendental_finiteDimensional_laurentBaseChange"
+namespace NoEllAux
+end ModularCurve.NoEllAux
 p2m_open_scoped "ModularCurve" in
 open ModularCurve.NoEllAux in
 set_option synthInstance.maxHeartbeats 1600000 in

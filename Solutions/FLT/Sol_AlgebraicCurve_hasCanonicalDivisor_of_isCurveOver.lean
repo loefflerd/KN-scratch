@@ -823,7 +823,9 @@ section Gates
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 
-namespace Place p2m_export "AlgebraicCurve.Place" "ext ResidueField FiniteResidue ord ord_zero ord_one ord_mul ord_inv ord_coe_unit ord_coe_irreducible ord_unit_smul_zpow exists_unit_mul_zpow ne_top' FiniteResidue.finite algebraMap_mem' toValuationSubring dCoord DCoordGenerates dCoord_ne_zero differentialCoeff differentialCoeff_smul_dCoord differentialCoeff_unique ordDifferential ordDifferential_smul mem_maximalIdeal_iff_ord_pos" end Place
+namespace Place
+p2m_export "AlgebraicCurve.Place" "ext ResidueField FiniteResidue ord ord_zero ord_one ord_mul ord_inv ord_coe_unit ord_coe_irreducible ord_unit_smul_zpow exists_unit_mul_zpow ne_top' FiniteResidue.finite algebraMap_mem' toValuationSubring dCoord DCoordGenerates dCoord_ne_zero differentialCoeff differentialCoeff_smul_dCoord differentialCoeff_unique ordDifferential ordDifferential_smul mem_maximalIdeal_iff_ord_pos"
+end Place
 namespace Place
 p2m_open_scoped "AlgebraicCurve.Place" in
 @[reducible] private noncomputable def _root_.AlgebraicCurve.Place.toKSubalgebra (v : Place K F) : Subalgebra K F where

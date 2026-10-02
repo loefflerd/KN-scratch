@@ -15,7 +15,9 @@ p2m_open_scoped "MatrixGroups ModularForm P2MW.S_ModularForm_eq_zero_of_lt_order
 
 noncomputable section
 
-namespace ModularForm p2m_export "ModularForm" "coe_norm translate norm_eq_zero_iff coe_zero levelOne_eq_zero_of_lt_order_qExpansion" end ModularForm
+namespace ModularForm
+p2m_export "ModularForm" "coe_norm translate norm_eq_zero_iff coe_zero levelOne_eq_zero_of_lt_order_qExpansion"
+end ModularForm
 namespace ModularForm
 p2m_open_scoped "ModularForm" in
 

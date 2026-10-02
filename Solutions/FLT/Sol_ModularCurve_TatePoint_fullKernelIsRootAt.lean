@@ -79,7 +79,11 @@ end ModularCurve.TatePoint
 
 end
 
-namespace ModularCurve p2m_export "ModularCurve" "TatePoint.FullKernelIsRootAt" namespace TatePoint p2m_export "ModularCurve.TatePoint" "FullKernelIsRootAt FullKernelDiscAt isAlgClosed_H charZero_H H fullKernelIsRootAt_of_odd fullKernelDiscAt_of_odd" end ModularCurve.TatePoint
+namespace ModularCurve
+p2m_export "ModularCurve" "TatePoint.FullKernelIsRootAt"
+namespace TatePoint
+p2m_export "ModularCurve.TatePoint" "FullKernelIsRootAt FullKernelDiscAt isAlgClosed_H charZero_H H fullKernelIsRootAt_of_odd fullKernelDiscAt_of_odd"
+end ModularCurve.TatePoint
 p2m_open_scoped "ModularCurve ModularCurve.TatePoint" in
 
 private theorem ModularCurve.TatePoint.fullKernelIsRootAt_aux

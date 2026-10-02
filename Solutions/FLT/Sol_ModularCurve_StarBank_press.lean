@@ -146,7 +146,10 @@ end ModularCurve.W1
 
 open ModularCurve.W1
 
-namespace ModularCurve p2m_export "ModularCurve" "qTwist qTwist_coeff qTwist_single qTwist_one_apply qTwist_qExpand qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd algebraMap_laurentSeries_eq_single jqModC jqNModC coeff_jqModC_neg_one coeff_jqModC_pow_self coeff_jqModC_pow_of_lt" namespace StarBank end ModularCurve.StarBank
+namespace ModularCurve
+p2m_export "ModularCurve" "qTwist qTwist_coeff qTwist_single qTwist_one_apply qTwist_qExpand qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd algebraMap_laurentSeries_eq_single jqModC jqNModC coeff_jqModC_neg_one coeff_jqModC_pow_self coeff_jqModC_pow_of_lt"
+namespace StarBank
+end ModularCurve.StarBank
 p2m_open_scoped "ModularCurve" in
 
 private theorem ModularCurve.StarBank.press {K : Type*} [Field K] (p : ℕ) [Fact p.Prime] (ζ : Kˣ)

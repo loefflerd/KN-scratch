@@ -45,7 +45,9 @@ private theorem nsmul_eq_zero_of_dvd_mul_val {m : ℕ} {z : ZMod N} [NeZero N]
 
 variable [NeZero N]
 
-namespace IsUnimodularRow p2m_export "ModularCurve.IsUnimodularRow" "map" end IsUnimodularRow
+namespace IsUnimodularRow
+p2m_export "ModularCurve.IsUnimodularRow" "map"
+end IsUnimodularRow
 p2m_open_scoped "ModularCurve.IsUnimodularRow" in
 omit [NeZero N] in
 

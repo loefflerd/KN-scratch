@@ -130,7 +130,10 @@ end ModularCurve.W1
 
 p2m_open "P2MW.S_ModularCurve_StarBank_starK.ModularCurve.W1 ModularCurve P2MW.S_ModularCurve_StarBank_starK.ModularCurve"
 
-namespace ModularCurve p2m_export "ModularCurve" "jqModC map_jqModC eisenstein4 etaProd dedekindEtaUnit dedekindEtaUnitInv dedekindEtaUnit_mul_inv jNum ofPowerSeries_coeff_of_neg" namespace StarBank end ModularCurve.StarBank
+namespace ModularCurve
+p2m_export "ModularCurve" "jqModC map_jqModC eisenstein4 etaProd dedekindEtaUnit dedekindEtaUnitInv dedekindEtaUnit_mul_inv jNum ofPowerSeries_coeff_of_neg"
+namespace StarBank
+end ModularCurve.StarBank
 p2m_open_scoped "ModularCurve" in
 
 private theorem ModularCurve.StarBank.starK_of_240 (K : Type*) [Field K] (h240 : (240 : K) = 0) :

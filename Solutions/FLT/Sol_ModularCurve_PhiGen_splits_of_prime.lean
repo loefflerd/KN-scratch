@@ -327,7 +327,11 @@ end ModularCurve.W1
 p2m_reactivate "P2MW.S_ModularCurve_PhiGen_splits_of_prime.ModularCurve P2MW.S_ModularCurve_PhiGen_splits_of_prime.ModularCurve.W1"
 p2m_reactivate "P2MW.S_ModularCurve_PhiGen_splits_of_prime.ModularCurve P2MW.S_ModularCurve_PhiGen_splits_of_prime.ModularCurve.W1"
 
-namespace ModularCurve p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_one_apply qExpand_qExpand jq coeff_jq_neg_one coeff_jq_of_lt jqN dedekindPsi evalAtJ evalAtJ_X ModularPolynomialData coeffMap coeffMap_coeff coeffMap_coeffMap coeffMap_congr coeffEmb coeffEmb_coeff qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand coeffMap_qExpand ModularPolynomialData.eq_of_prime" namespace PhiGen p2m_export "ModularCurve.PhiGen" "conj conj_zero conj_succ phiProd IntCoeffs exists_phiGenDescends mem_adjoin_jq_of_phiGenDescends exists_modularPolynomialData_coeff_eq splits_of_coeff_evalAtJ_eq" end ModularCurve.PhiGen
+namespace ModularCurve
+p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_one_apply qExpand_qExpand jq coeff_jq_neg_one coeff_jq_of_lt jqN dedekindPsi evalAtJ evalAtJ_X ModularPolynomialData coeffMap coeffMap_coeff coeffMap_coeffMap coeffMap_congr coeffEmb coeffEmb_coeff qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand coeffMap_qExpand ModularPolynomialData.eq_of_prime"
+namespace PhiGen
+p2m_export "ModularCurve.PhiGen" "conj conj_zero conj_succ phiProd IntCoeffs exists_phiGenDescends mem_adjoin_jq_of_phiGenDescends exists_modularPolynomialData_coeff_eq splits_of_coeff_evalAtJ_eq"
+end ModularCurve.PhiGen
 p2m_open_scoped "ModularCurve ModularCurve.PhiGen" in
 open ModularCurve.W1 in
 private theorem ModularCurve.PhiGen.splits_of_prime {K : Type*} [Field K] [Algebra ℚ K] (p : ℕ) [hp : Fact (Nat.Prime p)] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) p) (data : ModularPolynomialData p) : data.Φ.map (((coeffEmb K).comp (qExpand ℚ p)).comp evalAtJ) = phiProd p (conj p ζ) := by

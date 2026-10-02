@@ -67,7 +67,9 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_IsCurveOver_exists_separating_transcendent
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 
-namespace IsCurveOver p2m_export "AlgebraicCurve.IsCurveOver" "finrank_kaehler instNontrivialKaehler" end IsCurveOver
+namespace IsCurveOver
+p2m_export "AlgebraicCurve.IsCurveOver" "finrank_kaehler instNontrivialKaehler"
+end IsCurveOver
 p2m_open_scoped "AlgebraicCurve.IsCurveOver" in
 
 theorem IsCurveOver.trdeg_eq_one [PerfectField K] [IsCurveOver K F]

@@ -1781,7 +1781,9 @@ p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.o
 
 variable {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F']
 
-namespace Place p2m_export "AlgebraicCurve.Place" "restrictAlong ramificationIndexAlong ord_restrictAlong ramificationIndex_pos restrict restrict_toValuationSubring ext coe_algebraMap ResidueField deg adicValuation adicValuation_ne_zero adicValuation_coe_eq_one_iff ord ord_zero ord_mul ord_inv ord_unit_smul_zpow exists_unit_mul_zpow ofHeightOneSpectrum ofHeightOneSpectrum_toValuationSubring ne_top' algebraMap_mem' toValuationSubring mk mem_of_eval_monic_eq_zero IsRational algebraMap_residueField_injective residueInv_algebraMap evalAt evalAt_of_mem algebraMap_evalAt ord_eq_zero_iff_adicValuation_eq_one ofHeightOneSpectrum_injective ord_ofHeightOneSpectrum_ne_zero_iff" end Place
+namespace Place
+p2m_export "AlgebraicCurve.Place" "restrictAlong ramificationIndexAlong ord_restrictAlong ramificationIndex_pos restrict restrict_toValuationSubring ext coe_algebraMap ResidueField deg adicValuation adicValuation_ne_zero adicValuation_coe_eq_one_iff ord ord_zero ord_mul ord_inv ord_unit_smul_zpow exists_unit_mul_zpow ofHeightOneSpectrum ofHeightOneSpectrum_toValuationSubring ne_top' algebraMap_mem' toValuationSubring mk mem_of_eval_monic_eq_zero IsRational algebraMap_residueField_injective residueInv_algebraMap evalAt evalAt_of_mem algebraMap_evalAt ord_eq_zero_iff_adicValuation_eq_one ofHeightOneSpectrum_injective ord_ofHeightOneSpectrum_ne_zero_iff"
+end Place
 p2m_open_scoped "AlgebraicCurve.Place" in
 
 theorem Place.mem_restrictAlong_iff (φ : F →ₐ[K] F') (hφ : φ.toRingHom.IsIntegral)

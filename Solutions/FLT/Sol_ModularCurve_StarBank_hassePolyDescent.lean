@@ -87,7 +87,10 @@ theorem coeff_single_zero_mul {K : Type*} [Ring K] (c : K) (y : LaurentSeries K)
 
 end ModularCurve.W1
 
-namespace ModularCurve p2m_export "ModularCurve" "jqModC etaProd dedekindEtaUnit constantCoeff_dedekindEtaUnit jNum constantCoeff_jNum ofPowerSeries_coeff_of_neg jq_pow qExpansion_discriminant_eq_map_X_mul_dedekindEtaUnit jqModC_eq_qExpansion_E4_cube_div_discriminant" namespace StarBank end ModularCurve.StarBank
+namespace ModularCurve
+p2m_export "ModularCurve" "jqModC etaProd dedekindEtaUnit constantCoeff_dedekindEtaUnit jNum constantCoeff_jNum ofPowerSeries_coeff_of_neg jq_pow qExpansion_discriminant_eq_map_X_mul_dedekindEtaUnit jqModC_eq_qExpansion_E4_cube_div_discriminant"
+namespace StarBank
+end ModularCurve.StarBank
 p2m_open_scoped "ModularCurve" in
 
 private theorem ModularCurve.StarBank.hassePolyDescent {N : ℕ}

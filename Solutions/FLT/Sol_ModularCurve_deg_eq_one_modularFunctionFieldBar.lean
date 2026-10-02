@@ -148,7 +148,9 @@ theorem finiteDimensional_adjoin_jBar (M : ℕ) [NeZero M] :
 
 end B2Deg
 
-namespace ModularCurve p2m_export "ModularCurve" "modularFunctionFieldBar jq dedekindPsi coeffEmb laurentBaseChange coeffEmb_mem_laurentBaseChange jq_mem_full relfinrank_laurentBaseChange_modularFunctionFieldFull relfinrank_full_eq_dedekindPsi dedekindPsi_pos" end ModularCurve
+namespace ModularCurve
+p2m_export "ModularCurve" "modularFunctionFieldBar jq dedekindPsi coeffEmb laurentBaseChange coeffEmb_mem_laurentBaseChange jq_mem_full relfinrank_laurentBaseChange_modularFunctionFieldFull relfinrank_full_eq_dedekindPsi dedekindPsi_pos"
+end ModularCurve
 p2m_open_scoped "ModularCurve" in
 
 private theorem ModularCurve.deg_eq_one_modularFunctionFieldBar (M : ℕ) [NeZero M]

@@ -57,7 +57,9 @@ private theorem diffQExpBar_smul_D_jBar_aux (N : ℕ) [NeZero N] (x : modularFun
 
 end Engine
 
-namespace ModularCurve p2m_export "ModularCurve" "qEuler qEuler_coeff diffQExp_smul_D diffQExpBar modularFunctionFieldBar jq coeff_jq_neg_one coeffEmb coeffEmb_coeff coeffEmb_mem_laurentBaseChange transcendental_coeffEmb_jq jq_mem_full isSeparable_adjoin_coeffEmb_jq_full" end ModularCurve
+namespace ModularCurve
+p2m_export "ModularCurve" "qEuler qEuler_coeff diffQExp_smul_D diffQExpBar modularFunctionFieldBar jq coeff_jq_neg_one coeffEmb coeffEmb_coeff coeffEmb_mem_laurentBaseChange transcendental_coeffEmb_jq jq_mem_full isSeparable_adjoin_coeffEmb_jq_full"
+end ModularCurve
 p2m_open_scoped "ModularCurve" in
 
 private theorem ModularCurve.diffQExpBar_injective_of_neZero (N : ℕ) [NeZero N] :

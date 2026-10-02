@@ -162,7 +162,9 @@ p2m_open "WithZeroMulInt"
 end WithZeroMulInt
 
 section
-namespace IsLocalRing p2m_export "IsLocalRing" "ResidueField maximalIdeal maximalIdeal.isMaximal of_injective" end IsLocalRing
+namespace IsLocalRing
+p2m_export "IsLocalRing" "ResidueField maximalIdeal maximalIdeal.isMaximal of_injective"
+end IsLocalRing
 p2m_open_scoped "IsLocalRing" in
 theorem IsLocalRing.maximalIdeal_le {R : Type*} [CommSemiring R] [IsLocalRing R] {J : Ideal R}
     (hJ : J ≠ ⊤) (h : IsLocalRing.maximalIdeal R ≤ J) :
@@ -520,7 +522,9 @@ section
 
 variable {F : Type*} [Field F]
 
-namespace ValuationSubring p2m_export "ValuationSubring" "comap subtype mem_comap subtype_apply toSubring algebraMap_apply ext zero_mem mk mem_top mul_mem algebraMap_injective add_mem eq_top_iff valuation inclusion" end ValuationSubring
+namespace ValuationSubring
+p2m_export "ValuationSubring" "comap subtype mem_comap subtype_apply toSubring algebraMap_apply ext zero_mem mk mem_top mul_mem algebraMap_injective add_mem eq_top_iff valuation inclusion"
+end ValuationSubring
 p2m_open_scoped "ValuationSubring" in
 theorem ValuationSubring.valued_eq_one_of_isUnit {K : Type*} [Field K] {Γ₀ : Type*}
     [LinearOrderedCommGroupWithZero Γ₀] [hv : Valued K Γ₀] (x : hv.v.valuationSubring)

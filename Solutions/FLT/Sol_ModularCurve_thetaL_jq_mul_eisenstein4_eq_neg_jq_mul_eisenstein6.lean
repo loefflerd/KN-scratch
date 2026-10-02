@@ -18,7 +18,10 @@ set_option autoImplicit false
 
 p2m_open "ModularCurve P2MW.S_ModularCurve_thetaL_jq_mul_eisenstein4_eq_neg_jq_mul_eisenstein6.ModularCurve"
 
-namespace ModularCurve p2m_export "ModularCurve" "eisenstein6 laurentOfInt eisenstein4 dedekindEtaUnitInv dedekindEtaUnit_mul_inv jNum jNumQ jq thetaL dedekindEtaUnitQ deltaSeries deltaSeries_ne_zero thetaL_jq_mul_deltaSeries" namespace RC18Face end ModularCurve.RC18Face
+namespace ModularCurve
+p2m_export "ModularCurve" "eisenstein6 laurentOfInt eisenstein4 dedekindEtaUnitInv dedekindEtaUnit_mul_inv jNum jNumQ jq thetaL dedekindEtaUnitQ deltaSeries deltaSeries_ne_zero thetaL_jq_mul_deltaSeries"
+namespace RC18Face
+end ModularCurve.RC18Face
 p2m_open_scoped "ModularCurve" in
 
 theorem ModularCurve.RC18Face.jq_mul_deltaSeries :

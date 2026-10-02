@@ -15,7 +15,9 @@ p2m_open_scoped "MatrixGroups ModularForm P2MW.S_ModularForm_finiteDimensional_o
 
 noncomputable section
 
-namespace ModularForm p2m_export "ModularForm" "ext eq_zero_of_lt_order_qExpansion_of_isArithmetic" end ModularForm
+namespace ModularForm
+p2m_export "ModularForm" "ext eq_zero_of_lt_order_qExpansion_of_isArithmetic"
+end ModularForm
 p2m_open_scoped "ModularForm" in
 
 def ModularForm.qExpansionCoeffs_W2D {𝒢 : Subgroup (GL (Fin 2) ℝ)} [𝒢.HasDetOne] (k : ℤ) {h : ℝ}

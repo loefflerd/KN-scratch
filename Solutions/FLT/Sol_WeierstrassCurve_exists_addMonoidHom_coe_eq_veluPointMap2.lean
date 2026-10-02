@@ -64,7 +64,9 @@ section PointFibre
 
 variable {F : Type*} [Field F] {W : Affine F} {x₀ y₀ : F}
 
-namespace Point p2m_export "WeierstrassCurve.Affine.Point" "add_of_Y_eq some some.injEq X_eq_iff zero_def map some_ne_zero add_of_X_ne zero neg_some add_self_of_Y_ne mk" end Point
+namespace Point
+p2m_export "WeierstrassCurve.Affine.Point" "add_of_Y_eq some some.injEq X_eq_iff zero_def map some_ne_zero add_of_X_ne zero neg_some add_self_of_Y_ne mk"
+end Point
 p2m_open_scoped "WeierstrassCurve.Affine.Point" in
 
 theorem Point.some_eq_of_X_eq_of_veluGy_eq_zero (hQ : W.toAffine.Equation x₀ y₀)

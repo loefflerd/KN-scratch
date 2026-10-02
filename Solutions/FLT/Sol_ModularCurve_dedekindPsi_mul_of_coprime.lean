@@ -378,7 +378,9 @@ end Engine
 
 section QExpansion
 
-namespace ModularPolynomialData p2m_export "ModularCurve.ModularPolynomialData" "monic eval_eq_zero natDegree_eq Φ" end ModularPolynomialData
+namespace ModularPolynomialData
+p2m_export "ModularCurve.ModularPolynomialData" "monic eval_eq_zero natDegree_eq Φ"
+end ModularPolynomialData
 namespace ModularPolynomialData
 p2m_open_scoped "ModularCurve.ModularPolynomialData" in
 

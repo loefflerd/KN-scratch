@@ -642,7 +642,9 @@ end ModularCurve.W1
 p2m_reactivate "P2MW.S_ModularCurve_jqN_prime_not_mem_adjoin.ModularCurve P2MW.S_ModularCurve_jqN_prime_not_mem_adjoin.ModularCurve.W1"
 p2m_reactivate "P2MW.S_ModularCurve_jqN_prime_not_mem_adjoin.ModularCurve P2MW.S_ModularCurve_jqN_prime_not_mem_adjoin.ModularCurve.W1"
 
-namespace ModularCurve p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_injective qExpand_one_apply qExpand_congr qExpand_qExpand jq coeff_jq_neg_one coeff_jq_of_lt jqN dedekindPsi evalAtJ_X ModularPolynomialData coeffEmb coeffEmb_coeff qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand coeffMap_qExpand PhiGen.splits_prime_at_slot finrank_adjoin_jqN_prime_of_not_mem finrank_adjoin_jqN_eq_of_prime dedekindPsi_prime exists_phiIrreducible_evalSymm coeffMap_injective" end ModularCurve
+namespace ModularCurve
+p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_injective qExpand_one_apply qExpand_congr qExpand_qExpand jq coeff_jq_neg_one coeff_jq_of_lt jqN dedekindPsi evalAtJ_X ModularPolynomialData coeffEmb coeffEmb_coeff qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand coeffMap_qExpand PhiGen.splits_prime_at_slot finrank_adjoin_jqN_prime_of_not_mem finrank_adjoin_jqN_eq_of_prime dedekindPsi_prime exists_phiIrreducible_evalSymm coeffMap_injective"
+end ModularCurve
 p2m_open_scoped "ModularCurve" in
 private theorem ModularCurve.jqN_prime_not_mem_adjoin (S : Finset ℕ) (hS : ∀ p ∈ S, p.Prime) (r : ℕ) [hr : Fact (Nat.Prime r)] (hrS : r ∉ S) : jqN r ∉ IntermediateField.adjoin ℚ (insert jq {x : LaurentSeries ℚ | ∃ p ∈ S, ∃ _ : NeZero p, x = jqN p}) :=
   ModularCurve.W1.jqN_prime_not_mem_adjoin_key S hS r hr.out hrS

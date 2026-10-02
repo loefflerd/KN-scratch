@@ -425,7 +425,11 @@ section Root
 p2m_open "ModularCurve P2MW.S_ModularCurve_StarBank_starBank.ModularCurve"
 open scoped MatrixGroups
 
-namespace ModularCurve p2m_export "ModularCurve" "jqModC jqNModC map_jqModC qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_C etaProd constantCoeff_etaProd qTwist jqNModC_prime_not_mem_adjoin_of_forall_aeval_ne StarBank.closure StarBank.count StarBank.deltaNorm StarBank.delta_pow_ne StarBank.eisInt_not_dvd_num StarBank.eisInt_series StarBank.hassePolyDescent StarBank.onePoint StarBank.press StarBank.starK" namespace StarBank p2m_export "ModularCurve.StarBank" "closure count deltaNorm delta_pow_ne eisInt_not_dvd_num eisInt_series hassePolyDescent onePoint press starK" end ModularCurve.StarBank
+namespace ModularCurve
+p2m_export "ModularCurve" "jqModC jqNModC map_jqModC qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_C etaProd constantCoeff_etaProd qTwist jqNModC_prime_not_mem_adjoin_of_forall_aeval_ne StarBank.closure StarBank.count StarBank.deltaNorm StarBank.delta_pow_ne StarBank.eisInt_not_dvd_num StarBank.eisInt_series StarBank.hassePolyDescent StarBank.onePoint StarBank.press StarBank.starK"
+namespace StarBank
+p2m_export "ModularCurve.StarBank" "closure count deltaNorm delta_pow_ne eisInt_not_dvd_num eisInt_series hassePolyDescent onePoint press starK"
+end ModularCurve.StarBank
 p2m_open_scoped "ModularCurve ModularCurve.StarBank" in
 
 private theorem ModularCurve.StarBank.starBank {K : Type*} [Field K] {ℓ : ℕ} [Fact ℓ.Prime]

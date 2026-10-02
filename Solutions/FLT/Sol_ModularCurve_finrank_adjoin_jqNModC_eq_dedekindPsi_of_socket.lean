@@ -463,7 +463,9 @@ end ModularCurve.W1
 p2m_reactivate "P2MW.S_ModularCurve_finrank_adjoin_jqNModC_eq_dedekindPsi_of_socket.ModularCurve P2MW.S_ModularCurve_finrank_adjoin_jqNModC_eq_dedekindPsi_of_socket.ModularCurve.W1"
 p2m_reactivate "P2MW.S_ModularCurve_finrank_adjoin_jqNModC_eq_dedekindPsi_of_socket.ModularCurve P2MW.S_ModularCurve_finrank_adjoin_jqNModC_eq_dedekindPsi_of_socket.ModularCurve.W1"
 
-namespace ModularCurve p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_one_apply qExpand_qExpand dedekindPsi ModularPolynomialData coeffMap coeffMap_coeff coeffMap_single algebraMap_laurentSeries_eq_single qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand EvalSymm jqModC jqNModC jqNModC_one map_jqModC coeffMap_qExpand coeff_jqModC_neg_one order_jqModC coeff_jqModC_pow_of_lt coeff_jqModC_pow_self coeffMap_injective qExpand_jqModC_eq_pow_unconditional exists_phiIrreducible isIntegral_jqNModC_of_modularPolynomialData jqNModC_prime_not_mem_adjoin_of_forall_aeval_ne jqNModC_prime_not_mem_adjoin_of_charZero package_of_socket" end ModularCurve
+namespace ModularCurve
+p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_one_apply qExpand_qExpand dedekindPsi ModularPolynomialData coeffMap coeffMap_coeff coeffMap_single algebraMap_laurentSeries_eq_single qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand EvalSymm jqModC jqNModC jqNModC_one map_jqModC coeffMap_qExpand coeff_jqModC_neg_one order_jqModC coeff_jqModC_pow_of_lt coeff_jqModC_pow_self coeffMap_injective qExpand_jqModC_eq_pow_unconditional exists_phiIrreducible isIntegral_jqNModC_of_modularPolynomialData jqNModC_prime_not_mem_adjoin_of_forall_aeval_ne jqNModC_prime_not_mem_adjoin_of_charZero package_of_socket"
+end ModularCurve
 p2m_open_scoped "ModularCurve" in
 open ModularCurve.W1 in
 private theorem ModularCurve.jqNModC_prime_not_mem_adjoin_of_ringHom {K K' : Type*} [Field K] [Field K'] (σ : K →+* K') (p : ℕ) [hp : Fact (Nat.Prime p)] (h : jqNModC K p ∉ IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) : jqNModC K' p ∉ IntermediateField.adjoin K' ({jqModC K'} : Set (LaurentSeries K')) :=

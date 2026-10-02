@@ -22,7 +22,9 @@ noncomputable section
 
 p2m_open "ModularCurve P2MW.S_ModularCurve_emd_holds.ModularCurve"
 
-namespace ModularCurve p2m_export "ModularCurve" "emd_of_beta_docks EMD exists_elliptic_cycSub_orbitMap finite_cycSub exists_place_of_emb place_eq_of_induces natCard_normalized_algHom_jBar_eq_toNat_ord" end ModularCurve
+namespace ModularCurve
+p2m_export "ModularCurve" "emd_of_beta_docks EMD exists_elliptic_cycSub_orbitMap finite_cycSub exists_place_of_emb place_eq_of_induces natCard_normalized_algHom_jBar_eq_toNat_ord"
+end ModularCurve
 p2m_open_scoped "ModularCurve" in
 private theorem ModularCurve.emd_holds (N : ℕ) [NeZero N] (j₀ : AlgebraicClosure ℚ) :
     EMD N j₀ :=

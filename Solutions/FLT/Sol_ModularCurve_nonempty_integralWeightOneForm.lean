@@ -224,7 +224,9 @@ p2m_reactivate "P2MW.S_ModularCurve_nonempty_integralWeightOneForm.ModularCurve.
 end ModularCurve
 p2m_reactivate "P2MW.S_ModularCurve_nonempty_integralWeightOneForm.ModularCurve.WeightOneEisensteinSum P2MW.S_ModularCurve_nonempty_integralWeightOneForm.ModularCurve"
 
-namespace ModularForm p2m_export "ModularForm" "mk IsGLPos.coe_smul coe_smul qExpansionAddHom ext coe_zero exists_weightOne_eisenstein_qCoeff_eq_of_isPrimitive_of_odd" end ModularForm
+namespace ModularForm
+p2m_export "ModularForm" "mk IsGLPos.coe_smul coe_smul qExpansionAddHom ext coe_zero exists_weightOne_eisenstein_qCoeff_eq_of_isPrimitive_of_odd"
+end ModularForm
 p2m_open_scoped "ModularForm" in
 open ModularCurve.WeightOneEisensteinSum in
 

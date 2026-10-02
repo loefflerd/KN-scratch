@@ -33,7 +33,9 @@ section Seam
 variable {K : Type*} [Field K] [Algebra ℚ K] {ℓ : ℕ} [hℓ : Fact (Nat.Prime ℓ)] {ζ : Kˣ}
 variable {c : ℕ → LaurentSeries ℚ}
 
-namespace PhiGenDescends p2m_export "ModularCurve.PhiGen.PhiGenDescends" "poleOrderLE" end PhiGenDescends
+namespace PhiGenDescends
+p2m_export "ModularCurve.PhiGen.PhiGenDescends" "poleOrderLE"
+end PhiGenDescends
 namespace PhiGenDescends
 p2m_open_scoped "ModularCurve.PhiGen.PhiGenDescends" in
 

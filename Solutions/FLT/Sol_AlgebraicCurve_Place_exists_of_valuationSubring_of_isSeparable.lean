@@ -150,7 +150,11 @@ end Crux
 
 section Roots
 
-namespace AlgebraicCurve p2m_export "AlgebraicCurve" "Place Place.ofHeightOneSpectrum Place.ofHeightOneSpectrum_toValuationSubring" namespace Place p2m_export "AlgebraicCurve.Place" "ofHeightOneSpectrum ofHeightOneSpectrum_toValuationSubring toValuationSubring" end AlgebraicCurve.Place
+namespace AlgebraicCurve
+p2m_export "AlgebraicCurve" "Place Place.ofHeightOneSpectrum Place.ofHeightOneSpectrum_toValuationSubring"
+namespace Place
+p2m_export "AlgebraicCurve.Place" "ofHeightOneSpectrum ofHeightOneSpectrum_toValuationSubring toValuationSubring"
+end AlgebraicCurve.Place
 p2m_open_scoped "AlgebraicCurve AlgebraicCurve.Place" in
 
 private theorem AlgebraicCurve.Place.exists_of_valuationSubring' {K F : Type*} [Field K] [Field F] [Algebra K F] (x : F) [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F] [Algebra.IsSeparable (IntermediateField.adjoin K ({x} : Set F)) F] (A : ValuationSubring F) (hAK : ∀ a : K, algebraMap K F a ∈ A) (hA : A ≠ ⊤) : ∃ v : AlgebraicCurve.Place K F, v.toValuationSubring = A := by

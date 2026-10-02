@@ -4488,7 +4488,9 @@ namespace AlgebraicCurve
 
 variable {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F']
 
-namespace Place p2m_export "AlgebraicCurve.Place" "ord_prod" end Place
+namespace Place
+p2m_export "AlgebraicCurve.Place" "ord_prod"
+end Place
 theorem Place.ord_div (v : Place K F) {f g : F} (hf : f ≠ 0) (hg : g ≠ 0) :
     v.ord (f / g) = v.ord f - v.ord g := by
   rw [div_eq_mul_inv, v.ord_mul hf (inv_ne_zero hg), v.ord_inv]
@@ -6986,7 +6988,9 @@ def VeluDeficitCrossQuadProdDegLtAt (p : ℕ) : Prop :=
 
 variable {F}
 
-namespace Affine p2m_export "WeierstrassCurve.Affine" "map_slope Equation negY equation_iff' slope_of_X_ne equation_neg Point.add_of_Y_eq map_a₃ equation_iff_nonsingular_of_Δ_ne_zero slope CoordinateRing map equation_add Point.some Point.some.injEq Point.X_eq_iff Nonsingular Point.some.inj map_a₆ Point.add_self_of_Y_eq negAddY map_addY negY_negY FunctionField map_addX nonsingular_add map_a₂ Point CoordinateRing.mk addX map_a₁ Point.add_some nonsingular_neg map_a₄ monic_polynomial Point.some_ne_zero map_negY CoordinateRing.basis addY Y_eq_of_X_eq Point.add_of_X_ne equation_iff map_nonsingular polynomial Point.neg_some Point.coordsOrZero Point.coordsOrZero_some" end Affine
+namespace Affine
+p2m_export "WeierstrassCurve.Affine" "map_slope Equation negY equation_iff' slope_of_X_ne equation_neg Point.add_of_Y_eq map_a₃ equation_iff_nonsingular_of_Δ_ne_zero slope CoordinateRing map equation_add Point.some Point.some.injEq Point.X_eq_iff Nonsingular Point.some.inj map_a₆ Point.add_self_of_Y_eq negAddY map_addY negY_negY FunctionField map_addX nonsingular_add map_a₂ Point CoordinateRing.mk addX map_a₁ Point.add_some nonsingular_neg map_a₄ monic_polynomial Point.some_ne_zero map_negY CoordinateRing.basis addY Y_eq_of_X_eq Point.add_of_X_ne equation_iff map_nonsingular polynomial Point.neg_some Point.coordsOrZero Point.coordsOrZero_some"
+end Affine
 p2m_open_scoped "WeierstrassCurve.Affine" in
 omit [DecidableEq F] in
 

@@ -32,7 +32,9 @@ theorem algebraMap_polynomial_eq_mk_C (p : F[X]) :
 
 noncomputable def yGen (W : Affine F) : W.FunctionField :=
   algebraMap W.CoordinateRing W.FunctionField (CoordinateRing.mk W Y)
-namespace CoordinateRing p2m_export "WeierstrassCurve.Affine.CoordinateRing" "mk map smul_basis_mul_Y" end CoordinateRing
+namespace CoordinateRing
+p2m_export "WeierstrassCurve.Affine.CoordinateRing" "mk map smul_basis_mul_Y"
+end CoordinateRing
 p2m_open_scoped "WeierstrassCurve.Affine.CoordinateRing" in
 
 theorem CoordinateRing.algebraMap_eq_mk_C_C (a : F) :

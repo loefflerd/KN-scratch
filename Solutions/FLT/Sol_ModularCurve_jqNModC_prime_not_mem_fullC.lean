@@ -1851,7 +1851,9 @@ end ModularCurve.W1
 p2m_reactivate "P2MW.S_ModularCurve_jqNModC_prime_not_mem_fullC.ModularCurve P2MW.S_ModularCurve_jqNModC_prime_not_mem_fullC.ModularCurve.W1"
 p2m_reactivate "P2MW.S_ModularCurve_jqNModC_prime_not_mem_fullC.ModularCurve P2MW.S_ModularCurve_jqNModC_prime_not_mem_fullC.ModularCurve.W1"
 
-namespace ModularCurve p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_one_apply qExpand_congr qExpand_qExpand dedekindPsi dedekindPsi_one ModularPolynomialData jqd_mem_full coeffMap coeffMap_coeff coeffEmb qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand EvalSymm jqModC jqNModC jqNModC_one map_jqModC modularFunctionFieldC coeffMap_qExpand coeff_jqModC_neg_one order_jqModC PhiGen.splits_prime_at_slot_of_isPrimitiveRoot exists_phiIrreducible_evalSymm dedekindPsi_prime_pow dedekindPsi_mul_of_coprime" end ModularCurve
+namespace ModularCurve
+p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_one_apply qExpand_congr qExpand_qExpand dedekindPsi dedekindPsi_one ModularPolynomialData jqd_mem_full coeffMap coeffMap_coeff coeffEmb qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand EvalSymm jqModC jqNModC jqNModC_one map_jqModC modularFunctionFieldC coeffMap_qExpand coeff_jqModC_neg_one order_jqModC PhiGen.splits_prime_at_slot_of_isPrimitiveRoot exists_phiIrreducible_evalSymm dedekindPsi_prime_pow dedekindPsi_mul_of_coprime"
+end ModularCurve
 p2m_open_scoped "ModularCurve" in
 private theorem ModularCurve.minpoly_jqNModC_map_eq_prod_slots {K : Type*} [Field K]
     (M : ℕ) [NeZero M] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) M)

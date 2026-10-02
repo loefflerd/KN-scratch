@@ -536,7 +536,9 @@ variable {K F F' F'' : Type*} [Field K] [Field F] [Field F'] [Field F'']
   [Algebra K F] [Algebra K F'] [Algebra K F'']
 variable (φ : F →ₐ[K] F') (χ : F' →ₐ[K] F'')
 
-namespace Place p2m_export "AlgebraicCurve.Place" "restrictAlong ramificationIndexAlong inertiaDegAlong ord_restrictAlong ramificationIndex_pos restrict restrict_toValuationSubring restrictInclusion ext ResidueField deg adicValuation_coe_eq_one_iff ord ord_unit_smul_zpow exists_unit_mul_zpow ofHeightOneSpectrum ofHeightOneSpectrum_toValuationSubring ne_top' algebraMap_mem' toValuationSubring mk mem_of_eval_monic_eq_zero ord_eq_zero_iff_adicValuation_eq_one ofHeightOneSpectrum_injective ord_ofHeightOneSpectrum_ne_zero_iff" end Place
+namespace Place
+p2m_export "AlgebraicCurve.Place" "restrictAlong ramificationIndexAlong inertiaDegAlong ord_restrictAlong ramificationIndex_pos restrict restrict_toValuationSubring restrictInclusion ext ResidueField deg adicValuation_coe_eq_one_iff ord ord_unit_smul_zpow exists_unit_mul_zpow ofHeightOneSpectrum ofHeightOneSpectrum_toValuationSubring ne_top' algebraMap_mem' toValuationSubring mk mem_of_eval_monic_eq_zero ord_eq_zero_iff_adicValuation_eq_one ofHeightOneSpectrum_injective ord_ofHeightOneSpectrum_ne_zero_iff"
+end Place
 p2m_open_scoped "AlgebraicCurve.Place" in
 
 theorem Place.restrictAlong_restrictAlong (hφ : φ.toRingHom.IsIntegral)
@@ -554,7 +556,9 @@ def InertiaDegComp (hφ : φ.toRingHom.IsIntegral) (hχ : χ.toRingHom.IsIntegra
     W.inertiaDegAlong (χ.comp φ) hχφ
       = W.inertiaDegAlong χ hχ * (W.restrictAlong χ hχ).inertiaDegAlong φ hφ
 
-namespace Divisor p2m_export "AlgebraicCurve.Divisor" "pushforwardAlong pushforwardAlong_single pushforward pullback degree pushforwardAlong_pushforwardAlong'" end Divisor
+namespace Divisor
+p2m_export "AlgebraicCurve.Divisor" "pushforwardAlong pushforwardAlong_single pushforward pullback degree pushforwardAlong_pushforwardAlong'"
+end Divisor
 p2m_open_scoped "AlgebraicCurve.Divisor" in
 
 theorem Divisor.pushforwardAlong_pushforwardAlong (hφ : φ.toRingHom.IsIntegral)

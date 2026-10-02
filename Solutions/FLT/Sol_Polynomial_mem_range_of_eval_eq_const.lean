@@ -10,7 +10,9 @@ namespace P2MW.S_Polynomial_mem_range_of_eval_eq_const
 
 p2m_open "Polynomial P2MW.S_Polynomial_mem_range_of_eval_eq_const.Polynomial"
 
-namespace Polynomial p2m_export "Polynomial" "C Splits.of_dvd card_roots' coeff_map natDegree_mul coeff unique aeval coeff_C_zero Splits.of_natDegree_eq_one degree factor IsRoot.def map_map Splits map mem_roots eq_zero_of_natDegree_lt_card_of_eval_eq_zero' Monic comp roots natDegree_eq_card_roots roots.le_of_dvd natDegree eval_C natDegree_sub_le eval_sub natDegree_map map_dvd natDegree_C mod eval_map_algebraMap ext roots_map IsRoot ring roots_mul" end Polynomial
+namespace Polynomial
+p2m_export "Polynomial" "C Splits.of_dvd card_roots' coeff_map natDegree_mul coeff unique aeval coeff_C_zero Splits.of_natDegree_eq_one degree factor IsRoot.def map_map Splits map mem_roots eq_zero_of_natDegree_lt_card_of_eval_eq_zero' Monic comp roots natDegree_eq_card_roots roots.le_of_dvd natDegree eval_C natDegree_sub_le eval_sub natDegree_map map_dvd natDegree_C mod eval_map_algebraMap ext roots_map IsRoot ring roots_mul"
+end Polynomial
 p2m_open_scoped "Polynomial" in
 
 private theorem Polynomial.mem_range_of_unique_common_root {F L : Type*} [Field F] [Field L] [Algebra F L]

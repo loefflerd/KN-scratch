@@ -9,7 +9,9 @@ set_option backward.isDefEq.respectTransparency.types false
 namespace P2MW.S_ModularForm_levelOne_weight_six_qCoeff_one
 open scoped MatrixGroups
 
-namespace ModularForm p2m_export "ModularForm" "levelOne_weight_six_rank_one E₆ E₆_qExpansion_coeff_one" end ModularForm
+namespace ModularForm
+p2m_export "ModularForm" "levelOne_weight_six_rank_one E₆ E₆_qExpansion_coeff_one"
+end ModularForm
 p2m_open_scoped "ModularForm" in
 private theorem ModularForm.levelOne_weight_six_qCoeff_one (Y : ModularForm 𝒮ℒ 6) : ModularFormClass.qCoeff ⇑Y 1 = -504 * ModularFormClass.qCoeff ⇑Y 0 := by
   obtain ⟨c, hc⟩ : ∃ c : ℂ, c • ModularForm.E₆ = Y :=

@@ -48,7 +48,9 @@ private theorem w1_relfinrank_insert (E : IntermediateField ℚ (LaurentSeries �
 
 end ModularCurve.W1
 
-namespace ModularCurve p2m_export "ModularCurve" "qExpand_one_apply jq jqN modularFunctionFieldFull jqd_mem_full finrank_adjoin_jqN_prime_of_not_mem finrank_adjoin_jqN_pow_succ_of_not_mem" end ModularCurve
+namespace ModularCurve
+p2m_export "ModularCurve" "qExpand_one_apply jq jqN modularFunctionFieldFull jqd_mem_full finrank_adjoin_jqN_prime_of_not_mem finrank_adjoin_jqN_pow_succ_of_not_mem"
+end ModularCurve
 p2m_open_scoped "ModularCurve" in
 
 private theorem ModularCurve.relfinrank_full_eq_mul (M : ℕ) [NeZero M] (p : ℕ)

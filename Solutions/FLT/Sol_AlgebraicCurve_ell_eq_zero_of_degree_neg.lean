@@ -51,7 +51,9 @@ namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "Place Divisor Divisor.degree HasPrincipalDivisors HasPrincipalDivisors.exists_divisor IsCurveOver LSpace ell mem_lSpace_iff_ord WeilDifferentialRankOne StichtenothGenusExists"
 p2m_open "AlgebraicCurve"
 variable {K F : Type*} [Field K] [Field F] [Algebra K F]
-namespace Divisor p2m_export "AlgebraicCurve.Divisor" "degree" end Divisor
+namespace Divisor
+p2m_export "AlgebraicCurve.Divisor" "degree"
+end Divisor
 p2m_open_scoped "AlgebraicCurve.Divisor" in
 theorem Divisor.degree_eq_sum_support (D : Divisor K F) :
     Divisor.degree D = ∑ v ∈ D.support, D v * (v.deg : ℤ) := by

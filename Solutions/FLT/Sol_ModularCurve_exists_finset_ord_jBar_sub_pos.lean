@@ -343,7 +343,9 @@ scoped instance finiteDimensional_adjoin_jBar (N : ℕ) [NeZero N] :
 end B2Peo3
 p2m_reactivate "P2MW.S_ModularCurve_exists_finset_ord_jBar_sub_pos.B2Peo3"
 
-namespace ModularCurve p2m_export "ModularCurve" "jBar modularFunctionFieldBar dedekindPsi relfinrank_laurentBaseChange_modularFunctionFieldFull relfinrank_full_eq_dedekindPsi dedekindPsi_pos transcendental_coeffEmb_jq" end ModularCurve
+namespace ModularCurve
+p2m_export "ModularCurve" "jBar modularFunctionFieldBar dedekindPsi relfinrank_laurentBaseChange_modularFunctionFieldFull relfinrank_full_eq_dedekindPsi dedekindPsi_pos transcendental_coeffEmb_jq"
+end ModularCurve
 p2m_open_scoped "ModularCurve" in
 open B2Peo3 in
 

@@ -12,7 +12,10 @@ namespace P2MW.S_ModularCurve_coeffEmb_jqN
 noncomputable section
 open HahnSeries
 
-namespace ModularCurve p2m_export "ModularCurve" "jqModC jqNModC jqModC_rat map_jqModC qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd jq jqN coeffMap coeffEmb" namespace CharLRows end ModularCurve.CharLRows
+namespace ModularCurve
+p2m_export "ModularCurve" "jqModC jqNModC jqModC_rat map_jqModC qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd jq jqN coeffMap coeffEmb"
+namespace CharLRows
+end ModularCurve.CharLRows
 p2m_open_scoped "ModularCurve" in
 theorem ModularCurve.CharLRows.coeffEmb_jq (L : Type*) [Field L] [Algebra ℚ L] : coeffEmb L jq = jqModC L := by
   rw [← jqModC_rat]
