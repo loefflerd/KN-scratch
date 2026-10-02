@@ -12,7 +12,7 @@ set_option backward.isDefEq.respectTransparency.types false
 
 set_option autoImplicit false
 
-noncomputable section
+noncomputable section DL_unincorporated
 
 open scoped PowerSeries.WithPiTopology
 
@@ -350,3 +350,4 @@ theorem qExpandₐ_comp (ℓ ℓ' : ℕ) [NeZero ℓ] [NeZero ℓ'] :
 end AllDivisors
 
 end ModularCurve
+end DL_unincorporated

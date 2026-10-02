@@ -13,7 +13,7 @@ set_option backward.isDefEq.respectTransparency.types false
 
 set_option autoImplicit false
 
-noncomputable section
+noncomputable section DL_lapidification
 
 open scoped PeriodPair UpperHalfPlane
 
@@ -152,4 +152,4 @@ abbrev sublatticeQuotient (L L' : PeriodPair) :=
 
 end PeriodPair
 
-end
+end DL_lapidification

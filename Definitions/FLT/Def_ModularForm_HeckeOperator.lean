@@ -6,7 +6,7 @@ set_option backward.isDefEq.respectTransparency.types false
 
 set_option autoImplicit false
 
-noncomputable section
+noncomputable section DL_intactile
 
 open scoped MatrixGroups ModularForm
 
@@ -205,5 +205,5 @@ theorem coeffHeckeU_smul (p : ℕ) (c : ℂ) (a : ℕ → ℂ) :
 
 end ModularForm
 
-end
+end DL_intactile
 

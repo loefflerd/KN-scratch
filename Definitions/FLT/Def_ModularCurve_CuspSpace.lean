@@ -10,7 +10,7 @@ open scoped MatrixGroups
 
 namespace ModularCurve
 
-noncomputable section
+noncomputable section DL_portligature
 
 def ratPoint (a c : ℤ) : OnePoint ℚ :=
   if c = 0 then ∞ else (((a : ℚ) / (c : ℚ) : ℚ) : OnePoint ℚ)
@@ -264,7 +264,7 @@ def Classification (N : ℕ) : Prop :=
 
 end CuspSpace
 
-end
+end DL_portligature
 
 end ModularCurve
 
@@ -274,7 +274,7 @@ open scoped MatrixGroups
 
 namespace ModularCurve
 
-noncomputable section
+noncomputable section DL_tintometry
 
 theorem gcd_sq_eq_mul_gcd_div {N d : ℕ} (hd : d ∣ N) :
     Nat.gcd (d ^ 2) N = d * Nat.gcd d (N / d) := by
@@ -374,6 +374,6 @@ theorem cuspWidth_pos (hN : N ≠ 0) (x : CuspSpace N) : 0 < cuspWidth x :=
 
 end CuspSpace
 
-end
+end DL_tintometry
 
 end ModularCurve

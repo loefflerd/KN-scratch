@@ -5,7 +5,7 @@ import Mathlib.RingTheory.Valuation.Discrete.RankOne
 
 set_option backward.isDefEq.respectTransparency.types false
 
-section
+section DL_erasion
 
 namespace IsDedekindDomain.HeightOneSpectrum
 
@@ -31,18 +31,18 @@ private lemma intValuation_eq_coe_neg_multiplicity {A : Type*} [CommRing A] [IsD
 
 end IsDedekindDomain.HeightOneSpectrum
 
-end
+end DL_erasion
 
-section
+section DL_archfriend
 
 private theorem IsLocalRing.maximalIdeal_le {R : Type*} [CommSemiring R] [IsLocalRing R] {J : Ideal R}
     (hJ : J ≠ ⊤) (h : IsLocalRing.maximalIdeal R ≤ J) :
     J.IsMaximal :=
   (IsLocalRing.maximalIdeal.isMaximal R).eq_of_le hJ h ▸ IsLocalRing.maximalIdeal.isMaximal R
 
-end
+end DL_archfriend
 
-section
+section DL_dung
 
 variable {F : Type*} [Field F]
 
@@ -75,9 +75,9 @@ private theorem ValuationSubring.isUnit_iff_valued_eq_one {K : Type*} [Field K] 
     IsUnit x ↔ Valued.v x.val = 1 :=
   ⟨valued_eq_one_of_isUnit x, isUnit_of_valued_eq_one x⟩
 
-end
+end DL_dung
 
-section
+section DL_inventiveness
 
 namespace IsDedekindDomain.HeightOneSpectrum
 
@@ -537,4 +537,4 @@ lemma completionIdeal_ne_bot : completionIdeal K v ≠ ⊥ := IsDiscreteValuatio
 
 end IsDedekindDomain.HeightOneSpectrum
 
-end
+end DL_inventiveness

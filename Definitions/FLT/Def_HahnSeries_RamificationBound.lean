@@ -9,7 +9,7 @@ set_option backward.isDefEq.respectTransparency.types false
 
 set_option autoImplicit false
 
-noncomputable section
+noncomputable section DL_felinophobe
 
 namespace HahnSeries
 
@@ -46,4 +46,4 @@ def puiseuxRamSubfield {e : ℕ} (he : 0 < e) : Subfield (HahnSeries ℚ K) :=
 
 end HahnSeries
 
-end
+end DL_felinophobe

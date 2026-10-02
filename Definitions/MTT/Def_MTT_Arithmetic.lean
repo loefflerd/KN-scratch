@@ -6,7 +6,7 @@ import Mathlib.RingTheory.Finiteness.Defs
 import Mathlib.FieldTheory.IsAlgClosed.AlgebraicClosure
 
 set_option autoImplicit false
-noncomputable section
+noncomputable section DL_primage
 open scoped BigOperators
 open MeasureTheory
 namespace MTT
@@ -84,3 +84,4 @@ def criticalLValue (ι : Qbar →+* ℂ) (f : UpperHalfPlane → ℂ)
       inverseTwist ι f m χ (UpperHalfPlane.ofComplex (Complex.I * t)) * (t : ℂ) ^ j
 
 end MTT
+end DL_primage

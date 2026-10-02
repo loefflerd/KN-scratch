@@ -98,7 +98,7 @@ universe w' u v
 
 variable {k : Type u} {G : Type v} [Ring k] [Monoid G]
 
-section
+section DL_exclusive
 
 variable (k G)
 
@@ -115,7 +115,7 @@ noncomputable def ofMulActionFinsuppIso (H : Type w') [MulAction G H] :
     ofMulActionFinsupp k G H ≅ ofMulAction k G H :=
   mkIso (Representation.ofMulActionFinsuppEquiv k G H)
 
-end
+end DL_exclusive
 
 noncomputable abbrev leftRegularHomFinsupp (A : Rep k G) (x : A) : leftRegularFinsupp k G ⟶ A := -- [port] noncomputable
   Rep.ofHom ⟨Finsupp.lift A k G fun g ↦ A.ρ g x, fun g ↦ by ext; simp⟩

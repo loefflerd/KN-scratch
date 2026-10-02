@@ -7,7 +7,7 @@ set_option backward.isDefEq.respectTransparency.types false
 
 set_option autoImplicit false
 
-noncomputable section
+noncomputable section DL_provinculum
 
 open HahnSeries IntermediateField
 
@@ -145,5 +145,5 @@ end BaseChange
 
 end ModularCurve
 
-end
+end DL_provinculum
 

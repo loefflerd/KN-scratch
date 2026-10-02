@@ -26,7 +26,7 @@ right multiplication with `T` and `S`; the horizontal caps vanish in the limit `
 -/
 
 set_option autoImplicit false
-noncomputable section
+noncomputable section DL_focusable
 open UpperHalfPlane MeasureTheory
 open scoped MatrixGroups Modular
 
@@ -1030,3 +1030,4 @@ theorem solution
     exact (sum_integral_mob_tile_eq hR hA hinv hH).symm
   rw [key]
   exact tendsto_nhds_unique hlim1 hlim2
+end DL_focusable

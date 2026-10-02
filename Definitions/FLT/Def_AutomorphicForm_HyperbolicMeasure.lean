@@ -10,7 +10,7 @@ set_option backward.isDefEq.respectTransparency.types false
 open MeasureTheory Set
 open scoped MatrixGroups Pointwise NNReal ENNReal
 
-noncomputable section
+noncomputable section DL_toxihemia
 
 namespace FLT.HyperbolicMeasure
 
@@ -133,4 +133,4 @@ theorem not_isFiniteMeasure_volume : ¬ IsFiniteMeasure (volume : Measure ℍ) :
   exact (measure_lt_top (volume : Measure ℍ) Set.univ).ne volume_univ_eq_top
 
 end FLT.HyperbolicMeasure
-end
+end DL_toxihemia

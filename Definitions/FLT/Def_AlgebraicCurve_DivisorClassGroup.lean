@@ -1,6 +1,6 @@
 import Mathlib.RingTheory.Valuation.Discrete.IsDiscreteValuationRing
 
-noncomputable section
+noncomputable section DL_unmount
 
 open IsDedekindDomain WithZero IsLocalRing
 
@@ -462,3 +462,4 @@ theorem ofHeightOneSpectrum_toValuationSubring [Algebra K R] [IsScalarTower K R 
 end Place
 
 end AlgebraicCurve
+end DL_unmount

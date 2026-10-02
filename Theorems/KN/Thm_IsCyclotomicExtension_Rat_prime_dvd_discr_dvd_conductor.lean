@@ -2,7 +2,7 @@ module
 
 public import Mathlib.NumberTheory.NumberField.Cyclotomic.Basic
 
-public noncomputable section
+public noncomputable section DL_untractarian
 
 /-- Every rational prime dividing the discriminant of an `n`-th cyclotomic
 field divides `n`. -/
@@ -20,4 +20,4 @@ theorem IsCyclotomicExtension.Rat.prime_dvd_discr_dvd_conductor
     hnat.trans (Nat.div_dvd_of_dvd hden)
   exact hl.dvd_of_dvd_pow hpow
 
-end
+end DL_untractarian

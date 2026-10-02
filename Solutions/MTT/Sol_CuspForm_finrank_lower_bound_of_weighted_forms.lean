@@ -7,7 +7,7 @@ import Mathlib.LinearAlgebra.Dimension.Finite
 
 /-! # Independent power series from successive vanishing orders -/
 
-noncomputable section
+noncomputable section DL_blowings
 
 namespace PowerSeries
 
@@ -62,7 +62,7 @@ end PowerSeries
 
 /-! # Cusp-form families from two weighted modular forms -/
 
-noncomputable section
+noncomputable section DL_stomaching
 
 open UpperHalfPlane
 open scoped MatrixGroups
@@ -150,3 +150,5 @@ theorem solution {Γ : Subgroup (GL (Fin 2) ℝ)} [Γ.HasDetOne]
     (k - r) / d + 1 ≤ Module.finrank ℂ (CuspForm Γ (k : ℤ)) :=
   CuspForm.finrank_lower_bound_of_weighted_forms_aux hd hr A B D h hh hΓ
     (PowerSeries.order_eq_order.trans hA) (PowerSeries.order_eq_order.trans hB) hD
+end DL_stomaching
+end DL_blowings

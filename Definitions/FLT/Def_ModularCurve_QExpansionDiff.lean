@@ -7,7 +7,7 @@ set_option backward.isDefEq.respectTransparency.types false
 
 set_option autoImplicit false
 
-noncomputable section
+noncomputable section DL_foulmouthedly
 
 open HahnSeries
 
@@ -70,5 +70,5 @@ end TraceDiff
 
 end AlgebraicCurve
 
-end
+end DL_foulmouthedly
 

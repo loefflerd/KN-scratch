@@ -9,7 +9,7 @@ set_option backward.isDefEq.respectTransparency.types false
 
 set_option autoImplicit false
 
-noncomputable section
+noncomputable section DL_Crocus
 
 open scoped MatrixGroups ModularForm
 
@@ -31,5 +31,5 @@ theorem petersson_def (f g : CuspForm (CongruenceSubgroup.Gamma0 N) k) :
 
 end CuspForm
 
-end
+end DL_Crocus
 

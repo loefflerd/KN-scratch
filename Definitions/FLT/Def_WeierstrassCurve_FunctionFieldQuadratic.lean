@@ -10,7 +10,7 @@ set_option backward.isDefEq.respectTransparency.types false
 
 set_option autoImplicit false
 
-noncomputable section
+noncomputable section DL_stragglingly
 
 open Polynomial
 
@@ -155,4 +155,4 @@ theorem isIntegral_yCoord : _root_.IsIntegral (RatFunc F) (yCoord W) :=
 
 end WeierstrassCurve.Affine
 
-end
+end DL_stragglingly

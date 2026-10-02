@@ -5,7 +5,7 @@ set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
-noncomputable section
+noncomputable section DL_annulate
 
 namespace HahnSeries
 
@@ -231,5 +231,5 @@ theorem fixedTransport_some [DecidableEq K] (σ : K ≃ₐ[k] K) (E : Weierstras
 
 end WeierstrassCurve.Affine.Point
 
-end
+end DL_annulate
 

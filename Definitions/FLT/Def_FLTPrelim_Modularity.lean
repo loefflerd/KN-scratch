@@ -12,7 +12,7 @@ set_option backward.isDefEq.respectTransparency.types false
 
 set_option autoImplicit false
 
-noncomputable section
+noncomputable section DL_Makonde
 
 open UpperHalfPlane
 
@@ -107,4 +107,4 @@ def IsModular (E : WeierstrassCurve ℚ) : Prop :=
 
 end WeierstrassCurve
 
-end
+end DL_Makonde

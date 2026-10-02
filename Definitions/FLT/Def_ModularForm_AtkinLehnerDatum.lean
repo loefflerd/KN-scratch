@@ -10,7 +10,7 @@ set_option autoImplicit false
 open Matrix UpperHalfPlane CongruenceSubgroup
 open scoped MatrixGroups ModularForm
 
-noncomputable section
+noncomputable section DL_kechel
 
 namespace ModularForm
 
@@ -159,4 +159,4 @@ lemma alSlash_smul {M q : ℕ} (W : AtkinLehnerDatum M q) (k : ℤ) [NeZero M] (
 
 end ModularForm
 
-end
+end DL_kechel
