@@ -73,7 +73,8 @@ lemma coe_toGL_smul {A : Matrix (Fin 2) (Fin 2) ℤ} (h : 0 < A.det) (τ : ℍ) 
 lemma slash_toGL_apply {A : Matrix (Fin 2) (Fin 2) ℤ} (h : 0 < A.det) (k : ℤ) (f : ℍ → ℂ)
     (τ : ℍ) :
     (f ∣[k] toGL A) τ =
-      f (toGL A • τ) * (A.det : ℂ) ^ (k - 1) * ((A 1 0 : ℂ) * τ + (A 1 1 : ℂ)) ^ (-k) := by
+      f (toGL A • τ) * (A.det : ℂ) ^ (k - 1) *
+        ((A 1 0 : ℂ) * τ + (A 1 1 : ℂ)) ^ (-k) := by
   rw [ModularForm.slash_apply, σ_toGL h, toGL_det h.ne', abs_of_pos (by exact_mod_cast h)]
   simp [denom, toGL_apply h.ne']
 
@@ -120,7 +121,8 @@ def slashCuspForm (hN : 0 < N) {k : ℕ} (g : CuspForm (MTT.GammaOne N) (k : ℤ
     rintro δ ⟨δ₀, hδ₀, rfl⟩
     have hmem : γ.val * δ₀ * γ.val⁻¹ ∈ Gamma1 N := conj_mem_Gamma1 γ hδ₀
     rw [← SlashAction.slash_mul, ← map_mul,
-      show γ.val * δ₀ = (γ.val * δ₀ * γ.val⁻¹) * γ.val by group, map_mul, SlashAction.slash_mul,
+      show γ.val * δ₀ = (γ.val * δ₀ * γ.val⁻¹) * γ.val by group,
+      map_mul, SlashAction.slash_mul,
       SlashInvariantFormClass.slash_action_eq g _ (Subgroup.mem_map.mpr ⟨_, hmem, rfl⟩)]
   holo' := (ModularFormClass.holo g).slash _ _
   zero_at_cusps' := by
@@ -131,7 +133,8 @@ def slashCuspForm (hN : 0 < N) {k : ℕ} (g : CuspForm (MTT.GammaOne N) (k : ℤ
     exact CuspFormClass.zero_at_cusps g hc' (Matrix.SpecialLinearGroup.mapGL ℝ γ.val * h)
       (by rw [mul_smul, hh])
 
-theorem exists_cuspForm_slash_gamma0 (hN : 0 < N) {k : ℕ} (g : CuspForm (MTT.GammaOne N) (k : ℤ))
+theorem exists_cuspForm_slash_gamma0
+    (hN : 0 < N) {k : ℕ} (g : CuspForm (MTT.GammaOne N) (k : ℤ))
     (γ : Gamma0 N) :
     ∃ g' : CuspForm (MTT.GammaOne N) (k : ℤ), ∀ z : ℍ,
       g ((Matrix.SpecialLinearGroup.mapGL ℝ γ.val) • z) =

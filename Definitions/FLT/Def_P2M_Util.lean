@@ -10,6 +10,10 @@ set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
 open Lean Elab Tactic Meta in
+/-- `p2m_exact_reverting e` reverts all non-implementation-detail local declarations,
+preserving their order, then checks `e` against the resulting generalized goal and closes it.
+Auxiliary declarations are cleared during reversion. Fails if expression metavariables remain.
+This lets a proof of the complete statement solve a goal whose binders were already introduced. -/
 elab "p2m_exact_reverting " e:term : tactic => do
   let g ← getMainGoal
   let lctx := (← g.getDecl).lctx
@@ -25,6 +29,11 @@ elab "p2m_exact_reverting " e:term : tactic => do
   replaceMainGoal []
 
 open Lean Elab Command Meta in
+/-- `#p2m_type_eq A B` checks that the types of declarations `A` and `B` are definitionally
+equal after universe unification. Treating `A` as the statement and `B` as its proof, it also
+rejects matches that specialize or identify universe parameters of `A`.
+Logs `P2M_TYPE_EQ` on success; errors on unknown constants, a type mismatch, or insufficient
+universe generality. Compares types, not proof bodies, and does not check for `sorry`. -/
 elab "#p2m_type_eq " a:ident b:ident : command => liftTermElabM do
   let some ia := (← getEnv).find? a.getId | throwError m!"#p2m_type_eq: unknown constant {a.getId}"
   let some ib := (← getEnv).find? b.getId | throwError m!"#p2m_type_eq: unknown constant {b.getId}"
@@ -49,8 +58,13 @@ elab "#p2m_type_eq " a:ident b:ident : command => liftTermElabM do
     throwError m!"P2M_TYPE_MISMATCH\n  {a.getId} : {ta}\n  {b.getId} : {tb}"
 
 open Lean Elab Command in
+/-- `p2m_ns "N"` registers `N` as a namespace without entering or opening it. -/
 elab "p2m_ns " s:str : command => modifyEnv fun env => env.registerNamespace s.getString.toName
+
 open Lean Elab Command in
+/-- Opens the space-separated namespaces in `s` and activates their scoped extensions.
+An entry `N~x~y` hides `x` and `y` from ordinary name lookup through this opening of `N`.
+Shared implementation of `p2m_open` and its command-local form. -/
 meta def p2mOpenCore (s : String) : CommandElabM Unit := do
   for w in s.splitOn " " do
     if w.isEmpty then continue
@@ -60,10 +74,18 @@ meta def p2mOpenCore (s : String) : CommandElabM Unit := do
     let hidden := (parts.drop 1).filter (· ≠ "") |>.map (fun h => h.toName)
     modifyScope fun sc => { sc with openDecls := OpenDecl.simple ns hidden :: sc.openDecls }
     activateScoped ns
+
 open Lean Elab Command in
+/-- `p2m_open "N M"` opens the listed namespaces and activates their scoped extensions.
+Use `N~x~y` to hide names `x` and `y` when opening `N`. Empty entries are ignored.
+The openings last for the current scope; use `p2m_open "N M" in cmd` for one command. -/
 elab "p2m_open " s:str : command => p2mOpenCore s.getString
 
 open Lean Elab Command in
+/-- `p2m_export_all "N" "S"` aliases declarations below `N.S` under `S` in the current
+namespace, preserving their relative names. The scan uses user-facing names for private
+declarations and excludes internal-detail names and `N.S` itself.
+Creates name-resolution aliases, not copies of the declarations. -/
 elab "p2m_export_all " n:str s:str : command => do
   let env ← getEnv
   let short := s.getString.toName
@@ -77,6 +99,10 @@ elab "p2m_export_all " n:str s:str : command => do
   modifyEnv fun env => al.foldl (fun env p => addAlias env p.1 p.2) env
 
 open Lean Elab Command Meta in
+/-- `#p2m_type_eq_warn A B` checks definitional equality of declaration types after universe
+unification. Logs `P2M_TYPE_EQ` on success and a non-fatal `P2M_DUP_TYPE_MISMATCH` warning on
+mismatch; unknown constants still cause errors. Unlike `#p2m_type_eq`, it does not check
+universe generality. Does not compare proof bodies or check for `sorry`. -/
 elab "#p2m_type_eq_warn " a:ident b:ident : command => liftTermElabM do
   let some ia := (← getEnv).find? a.getId | throwError m!"#p2m_type_eq_warn: unknown constant {a.getId}"
   let some ib := (← getEnv).find? b.getId | throwError m!"#p2m_type_eq_warn: unknown constant {b.getId}"
@@ -88,6 +114,9 @@ elab "#p2m_type_eq_warn " a:ident b:ident : command => liftTermElabM do
   else logWarning m!"P2M_DUP_TYPE_MISMATCH (non-fatal)\n  {a.getId} : {ta}\n  {b.getId} : {tb}"
 
 open Lean Elab Command in
+/-- `p2m_alias "a" "N.b"` adds the name-resolution alias `a` for the existing declaration
+`N.b`. Uses the names as supplied, without prepending the current namespace. If the target
+is absent, tries its private name in the current module; silently skips a missing target. -/
 elab "p2m_alias " a:str n:str : command => do
   let env ← getEnv
   let full := n.getString.toName
@@ -97,14 +126,23 @@ elab "p2m_alias " a:str n:str : command => do
   | none => pure ()
 
 open Lean Elab Command in
+/-- `p2m_open_scoped "N M"` activates the listed namespaces' scoped extensions without
+opening ordinary names. Empty entries are ignored, and any `~...` suffix is discarded.
+Use `p2m_open_scoped "N M" in cmd` to restrict activation to one command. -/
 elab "p2m_open_scoped " s:str : command => do
   for w in s.getString.splitOn " " do
     if w.isEmpty then continue
     activateScoped ((w.splitOn "~").head!).toName
+/-- `p2m_open "N M" in cmd` opens namespaces and activates their scoped extensions only
+within `cmd`, by wrapping the opening and command in a temporary section.
+Supports the same `N~x~y` hiding syntax as `p2m_open`. -/
 syntax (name := p2mOpenIn) "p2m_open " str " in" ppLine command : command
 open Lean in
 macro_rules | `(p2m_open $s:str in $c:command) => return mkNullNode #[← `(section), ← `(p2m_open $s:str), c, ← `(end)]
 open Lean Elab Command in
+/-- `p2m_export "N" "a b"` aliases `N.a` and `N.b` as `a` and `b` in the current namespace.
+For each target, tries the ordinary declaration name, then its private name in the current
+module. Silently skips missing targets and empty entries. Creates aliases, not new proofs. -/
 elab "p2m_export " n:str m:str : command => do
   let env ← getEnv
   let ns := n.getString.toName
@@ -120,6 +158,10 @@ elab "p2m_export " n:str m:str : command => do
   modifyEnv fun env => al.foldl (fun env p => addAlias env p.1 p.2) env
 
 open Lean Elab Command in
+/-- `p2m_reactivate "N M"` forces the listed namespaces' scoped registrations to activate
+again. For each scoped environment extension, removes the namespace from the active-scope
+set at the top of its state stack, then reactivates it. This can restore registrations after
+environment changes even when the namespace was already marked active. -/
 elab "p2m_reactivate " s:str : command => do
   for w in s.getString.splitOn " " do
     if w.isEmpty then continue
@@ -133,6 +175,8 @@ elab "p2m_reactivate " s:str : command => do
           ext.activateScoped (ext.ext.setState env { st with stateStack := top :: stack }) ns
         | _ => env
 
+/-- `p2m_open_scoped "N M" in cmd` activates scoped extensions only within `cmd`, using
+a temporary section. Does not open ordinary names. -/
 macro "p2m_open_scoped " s:str " in " c:command : command => `(section p2m_open_scoped $s $c end)
 
 open Lean Elab Command in

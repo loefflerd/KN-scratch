@@ -8,14 +8,14 @@ Generation 1 means that a node has no imports from this extracted local filetree
 
 The parser reads textual `import` and `public import` commands, resolves module names from file paths, and ignores comments after an import. This intentionally does not reproduce Lean’s elaboration or transitive module-loading behavior.
 
-Classified files: **2418 / 2418** in **1308** dependency nodes, including **1110** theorem/solution pairs. Cycles found: **0**. Files with unresolved non-baseline imports: **0**.
+Classified files: **2413 / 2413** in **1308** dependency nodes, including **1105** theorem/solution pairs. Cycles found: **0**. Files with unresolved non-baseline imports: **0**.
 
 ## Summary
 
 | Generation | Total files | FLT | MTT | KN |
 |---:|---:|---:|---:|---:|
-| 1 | 45 | 37 | 6 | 2 |
-| 2 | 448 | 438 | 6 | 4 |
+| 1 | 46 | 38 | 6 | 2 |
+| 2 | 442 | 432 | 6 | 4 |
 | 3 | 317 | 275 | 29 | 13 |
 | 4 | 263 | 219 | 30 | 14 |
 | 5 | 203 | 155 | 42 | 6 |
@@ -112,6 +112,7 @@ Classified files: **2418 / 2418** in **1308** dependency nodes, including **1110
 - `Definitions/FLT/Def_WeierstrassCurve_Velu.lean`
 - `Definitions/KN/Def_MonoidAlgebra_Augmentation.lean`
 - `Definitions/MTT/Def_MTT_Arithmetic.lean`
+- `Theorems/FLT/Thm_ModularForm_exists_coe_eq_of_levelOne.lean`
 - `Theorems/FLT/Thm_MonoidAlgebra_isLocalRing_of_isPGroup.lean`
 - `Theorems/KN/Thm_IsCyclotomicExtension_Rat_prime_dvd_discr_dvd_conductor.lean`
 - `Theorems/MTT/Thm_CuspForm_finrank_lower_bound_of_weighted_forms.lean`
@@ -167,7 +168,6 @@ Classified files: **2418 / 2418** in **1308** dependency nodes, including **1110
 - `Solutions/FLT/Sol_AlgebraicCurve_Divisor_degree_eq_sum.lean`
 - `Solutions/FLT/Sol_AlgebraicCurve_Pic0_mk_eq_zero_iff.lean`
 - `Solutions/FLT/Sol_AlgebraicCurve_Pic0_zsmul_mk.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_Place_adicValuation_isRankOneDiscrete.lean`
 - `Solutions/FLT/Sol_AlgebraicCurve_Place_adicValuation_isTrivialOn.lean`
 - `Solutions/FLT/Sol_AlgebraicCurve_Place_deg_eq_one_of_isAlgClosed.lean`
 - `Solutions/FLT/Sol_AlgebraicCurve_Place_exists_algHom_laurentSeries_order_eq_ord.lean`
@@ -215,7 +215,6 @@ Classified files: **2418 / 2418** in **1308** dependency nodes, including **1110
 - `Solutions/FLT/Sol_EisensteinSeries_exists_modularForm_coe_eq_eisensteinG.lean`
 - `Solutions/FLT/Sol_EisensteinSeries_hasSum_weierstrassZeta_sub_mul_G2.lean`
 - `Solutions/FLT/Sol_EisensteinSeries_qExpansion_eisensteinG_coeff.lean`
-- `Solutions/FLT/Sol_EisensteinSeries_sum_eisensteinG_vecCons_eq_mul_tsum_divisorSum_mul_cexp_pow.lean`
 - `Solutions/FLT/Sol_EisensteinWeightOne_e1Chi3IsModular.lean`
 - `Solutions/FLT/Sol_Field_nonempty_ringHom_complex_of_countable.lean`
 - `Solutions/FLT/Sol_HahnSeries_hasRamBound_natDegree_factorial_of_isRoot.lean`
@@ -272,12 +271,10 @@ Classified files: **2418 / 2418** in **1308** dependency nodes, including **1110
 - `Solutions/FLT/Sol_ModularCurve_thetaL_coeffMap_eq_coeffMap_single_mul_derivative.lean`
 - `Solutions/FLT/Sol_ModularFormClass_eq_of_forall_qCoeff_eq.lean`
 - `Solutions/FLT/Sol_ModularFormClass_isBoundedAt_heckeT.lean`
-- `Solutions/FLT/Sol_ModularFormClass_isBoundedAt_heckeU.lean`
 - `Solutions/FLT/Sol_ModularFormClass_qCoeff_comp_heckeDiagMatrix_smul.lean`
 - `Solutions/FLT/Sol_ModularForm_coeffHeckeT_coeffHeckeU_comm.lean`
 - `Solutions/FLT/Sol_ModularForm_coeffHeckeT_comm.lean`
 - `Solutions/FLT/Sol_ModularForm_coeffHeckeU_comm.lean`
-- `Solutions/FLT/Sol_ModularForm_exists_coe_eq_of_levelOne.lean`
 - `Solutions/FLT/Sol_ModularForm_exists_cuspForm_mul_eq_of_analyticOrderAt_le.lean`
 - `Solutions/FLT/Sol_ModularForm_exists_degeneracy_Gamma0.lean`
 - `Solutions/FLT/Sol_ModularForm_exists_modularForm_mul_eq_of_analyticOrderAt_le_of_finiteIndex.lean`
@@ -286,7 +283,6 @@ Classified files: **2418 / 2418** in **1308** dependency nodes, including **1110
 - `Solutions/FLT/Sol_ModularForm_heckeT_slash_eq_self_of_mem_Gamma0.lean`
 - `Solutions/FLT/Sol_ModularForm_heckeU_slash_eq_self_of_mem_Gamma0.lean`
 - `Solutions/FLT/Sol_ModularForm_isBoundedAtImInfty_heckeT.lean`
-- `Solutions/FLT/Sol_ModularForm_isBoundedAtImInfty_heckeU.lean`
 - `Solutions/FLT/Sol_ModularForm_levelOne_eq_zero_of_lt_order_qExpansion.lean`
 - `Solutions/FLT/Sol_ModularForm_levelOne_weight_four_qCoeff_one.lean`
 - `Solutions/FLT/Sol_ModularForm_levelOne_weight_six_qCoeff_one.lean`
@@ -478,7 +474,6 @@ Classified files: **2418 / 2418** in **1308** dependency nodes, including **1110
 - `Theorems/FLT/Thm_ModularForm_coeffHeckeT_coeffHeckeU_comm.lean`
 - `Theorems/FLT/Thm_ModularForm_coeffHeckeT_comm.lean`
 - `Theorems/FLT/Thm_ModularForm_coeffHeckeU_comm.lean`
-- `Theorems/FLT/Thm_ModularForm_exists_coe_eq_of_levelOne.lean`
 - `Theorems/FLT/Thm_ModularForm_exists_cuspForm_mul_eq_of_analyticOrderAt_le.lean`
 - `Theorems/FLT/Thm_ModularForm_exists_degeneracy_Gamma0.lean`
 - `Theorems/FLT/Thm_ModularForm_exists_modularForm_mul_eq_of_analyticOrderAt_le_of_finiteIndex.lean`
