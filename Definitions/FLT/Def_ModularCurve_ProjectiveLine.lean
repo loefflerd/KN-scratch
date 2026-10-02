@@ -1,6 +1,10 @@
-import Mathlib.LinearAlgebra.Matrix.SpecialLinearGroup
-import Mathlib.GroupTheory.GroupAction.Quotient
-import Mathlib.Basic.Finite.Prod
+module
+
+public import Mathlib.LinearAlgebra.Matrix.SpecialLinearGroup
+public import Mathlib.GroupTheory.GroupAction.Quotient
+public import Mathlib.Basic.Finite.Prod
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -95,3 +99,5 @@ theorem mem_borel_iff {A : SpecialLinearGroup (Fin 2) R} : A ∈ borel R ↔ A.1
 end Borel
 
 end ModularCurve
+
+end publicSection

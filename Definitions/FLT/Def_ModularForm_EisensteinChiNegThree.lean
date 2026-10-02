@@ -1,6 +1,10 @@
-import Mathlib.Analysis.CStarAlgebra.Classes
-import Mathlib.NumberTheory.ModularForms.Basic
-import Mathlib.RingTheory.PowerSeries.Basic
+module
+
+public import Mathlib.Analysis.CStarAlgebra.Classes
+public import Mathlib.NumberTheory.ModularForms.Basic
+public import Mathlib.RingTheory.PowerSeries.Basic
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -31,3 +35,5 @@ def E1Chi3IsModular : Prop :=
         Complex.exp (2 * (Real.pi : ℂ) * Complex.I * (n : ℂ) * (z : ℂ))
 
 end EisensteinWeightOne
+
+end publicSection

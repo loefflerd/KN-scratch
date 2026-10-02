@@ -1,10 +1,14 @@
-import Mathlib.RingTheory.LaurentSeries
-import Mathlib.RingTheory.PowerSeries.PiTopology
-import Mathlib.RingTheory.PowerSeries.Inverse
-import Mathlib.FieldTheory.IntermediateField.Adjoin.Basic
-import Mathlib.RingTheory.Algebraic.Basic
-import Mathlib.NumberTheory.Divisors
-import Mathlib.Data.Nat.Squarefree
+module
+
+public import Mathlib.RingTheory.LaurentSeries
+public import Mathlib.RingTheory.PowerSeries.PiTopology
+public import Mathlib.RingTheory.PowerSeries.Inverse
+public import Mathlib.FieldTheory.IntermediateField.Adjoin.Basic
+public import Mathlib.RingTheory.Algebraic.Basic
+public import Mathlib.NumberTheory.Divisors
+public import Mathlib.Data.Nat.Squarefree
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -351,3 +355,5 @@ end AllDivisors
 
 end ModularCurve
 end DL_unincorporated
+
+end publicSection

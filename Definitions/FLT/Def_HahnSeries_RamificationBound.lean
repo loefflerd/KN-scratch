@@ -1,7 +1,11 @@
-import Mathlib.Algebra.Field.Subfield.Basic
-import Mathlib.Algebra.Order.Ring.Star
-import Mathlib.Data.Rat.Star
-import Mathlib.RingTheory.HahnSeries.Summable
+module
+
+public import Mathlib.Algebra.Field.Subfield.Basic
+public import Mathlib.Algebra.Order.Ring.Star
+public import Mathlib.Data.Rat.Star
+public import Mathlib.RingTheory.HahnSeries.Summable
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -47,3 +51,5 @@ def puiseuxRamSubfield {e : ℕ} (he : 0 < e) : Subfield (HahnSeries ℚ K) :=
 end HahnSeries
 
 end DL_felinophobe
+
+end publicSection

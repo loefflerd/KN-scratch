@@ -1,5 +1,9 @@
-import Mathlib.AlgebraicGeometry.EllipticCurve.DivisionPolynomial.Basic
-import Mathlib.AlgebraicGeometry.EllipticCurve.Affine.Formula
+module
+
+public import Mathlib.AlgebraicGeometry.EllipticCurve.DivisionPolynomial.Basic
+public import Mathlib.AlgebraicGeometry.EllipticCurve.Affine.Formula
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -101,3 +105,4 @@ lemma isVeluSet_empty : W.IsVeluSet ∅ := ⟨by simp⟩
 
 end WeierstrassCurve
 
+end publicSection

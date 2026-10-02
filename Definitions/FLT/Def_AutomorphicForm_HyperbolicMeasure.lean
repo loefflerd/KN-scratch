@@ -1,7 +1,11 @@
-import Mathlib.Analysis.CStarAlgebra.Classes
-import Mathlib.Analysis.Complex.UpperHalfPlane.Measure
-import Mathlib.NumberTheory.Modular
-import Mathlib.Order.CompletePartialOrder
+module
+
+public import Mathlib.Analysis.CStarAlgebra.Classes
+public import Mathlib.Analysis.Complex.UpperHalfPlane.Measure
+public import Mathlib.NumberTheory.Modular
+public import Mathlib.Order.CompletePartialOrder
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -134,3 +138,5 @@ theorem not_isFiniteMeasure_volume : ¬ IsFiniteMeasure (volume : Measure ℍ) :
 
 end FLT.HyperbolicMeasure
 end DL_toxihemia
+
+end publicSection

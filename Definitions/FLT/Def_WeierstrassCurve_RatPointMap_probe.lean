@@ -1,4 +1,8 @@
-import Mathlib.AlgebraicGeometry.EllipticCurve.Affine.Point
+module
+
+public import Mathlib.AlgebraicGeometry.EllipticCurve.Affine.Point
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -23,3 +27,4 @@ def ratPointMap : W₀.toAffine.Point → (W₀.map f).toAffine.Point
 
 end WeierstrassCurve
 
+end publicSection

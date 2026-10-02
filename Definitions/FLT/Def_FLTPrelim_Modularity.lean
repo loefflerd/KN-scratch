@@ -1,10 +1,14 @@
-import Mathlib.NumberTheory.ModularForms.QExpansion
-import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
-import Mathlib.NumberTheory.ModularForms.ArithmeticSubgroups
-import Mathlib.AlgebraicGeometry.EllipticCurve.Affine.Point
-import Mathlib.AlgebraicGeometry.EllipticCurve.VariableChange
-import Mathlib.Data.ZMod.Basic
-import Mathlib.SetTheory.Cardinal.NatCard
+module
+
+public import Mathlib.NumberTheory.ModularForms.QExpansion
+public import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
+public import Mathlib.NumberTheory.ModularForms.ArithmeticSubgroups
+public import Mathlib.AlgebraicGeometry.EllipticCurve.Affine.Point
+public import Mathlib.AlgebraicGeometry.EllipticCurve.VariableChange
+public import Mathlib.Data.ZMod.Basic
+public import Mathlib.SetTheory.Cardinal.NatCard
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -108,3 +112,5 @@ def IsModular (E : WeierstrassCurve ℚ) : Prop :=
 end WeierstrassCurve
 
 end DL_Makonde
+
+end publicSection

@@ -1,8 +1,12 @@
-import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
-import Mathlib.GroupTheory.Transfer
-import Mathlib.Algebra.Module.Hom
-import Mathlib.Data.ZMod.Units
-import Mathlib.Algebra.BigOperators.GroupWithZero.Action
+module
+
+public import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
+public import Mathlib.GroupTheory.Transfer
+public import Mathlib.Algebra.Module.Hom
+public import Mathlib.Data.ZMod.Units
+public import Mathlib.Algebra.BigOperators.GroupWithZero.Action
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -509,3 +513,4 @@ end LevelMaps
 
 end CohCarrier
 
+end publicSection

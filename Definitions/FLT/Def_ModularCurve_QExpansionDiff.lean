@@ -1,5 +1,9 @@
-import Mathlib.RingTheory.LaurentSeries
-import Mathlib.RingTheory.Kaehler.Basic
+module
+
+public import Mathlib.RingTheory.LaurentSeries
+public import Mathlib.RingTheory.Kaehler.Basic
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -72,3 +76,4 @@ end AlgebraicCurve
 
 end DL_foulmouthedly
 
+end publicSection

@@ -1,7 +1,11 @@
-import Mathlib.Algebra.Group.Int.TypeTags
-import Mathlib.RingTheory.DedekindDomain.AdicValuation
-import Mathlib.RingTheory.RamificationInertia.Inertia
-import Mathlib.RingTheory.Valuation.Discrete.RankOne
+module
+
+public import Mathlib.Algebra.Group.Int.TypeTags
+public import Mathlib.RingTheory.DedekindDomain.AdicValuation
+public import Mathlib.RingTheory.RamificationInertia.Inertia
+public import Mathlib.RingTheory.Valuation.Discrete.RankOne
+
+@[expose] public section publicSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
@@ -538,3 +542,5 @@ lemma completionIdeal_ne_bot : completionIdeal K v ≠ ⊥ := IsDiscreteValuatio
 end IsDedekindDomain.HeightOneSpectrum
 
 end DL_inventiveness
+
+end publicSection

@@ -1,5 +1,9 @@
-import Mathlib.RingTheory.LaurentSeries
-import Mathlib.FieldTheory.IntermediateField.Adjoin.Basic
+module
+
+public import Mathlib.RingTheory.LaurentSeries
+public import Mathlib.FieldTheory.IntermediateField.Adjoin.Basic
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -147,3 +151,4 @@ end ModularCurve
 
 end DL_provinculum
 
+end publicSection

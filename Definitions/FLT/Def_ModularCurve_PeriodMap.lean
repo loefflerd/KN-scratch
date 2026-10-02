@@ -1,5 +1,9 @@
-import Mathlib.Analysis.Complex.UpperHalfPlane.MoebiusAction
-import Mathlib.Algebra.Module.Hom
+module
+
+public import Mathlib.Analysis.Complex.UpperHalfPlane.MoebiusAction
+public import Mathlib.Algebra.Module.Hom
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -84,3 +88,4 @@ end ParabolicHoms
 
 end ModularCurve.Period
 
+end publicSection

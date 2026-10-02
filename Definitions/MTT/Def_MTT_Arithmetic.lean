@@ -1,12 +1,14 @@
-import Mathlib.NumberTheory.ModularForms.QExpansion
-import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
-import Mathlib.NumberTheory.DirichletCharacter.Basic
-import Mathlib.MeasureTheory.Integral.Bochner.Set
-import Mathlib.RingTheory.Finiteness.Defs
-import Mathlib.FieldTheory.IsAlgClosed.AlgebraicClosure
+module
 
-set_option autoImplicit false
-noncomputable section DL_primage
+public import Mathlib.NumberTheory.ModularForms.QExpansion
+public import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
+public import Mathlib.NumberTheory.DirichletCharacter.Basic
+public import Mathlib.MeasureTheory.Integral.Bochner.Set
+public import Mathlib.RingTheory.Finiteness.Defs
+public import Mathlib.FieldTheory.IsAlgClosed.AlgebraicClosure
+
+public noncomputable section publicSection
+
 open scoped BigOperators
 open MeasureTheory
 namespace MTT
@@ -84,4 +86,5 @@ def criticalLValue (ι : Qbar →+* ℂ) (f : UpperHalfPlane → ℂ)
       inverseTwist ι f m χ (UpperHalfPlane.ofComplex (Complex.I * t)) * (t : ℂ) ^ j
 
 end MTT
-end DL_primage
+
+end publicSection

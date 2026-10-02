@@ -1,8 +1,9 @@
 module
 
 public import Mathlib.NumberTheory.Padics.Complex
-public import Mathlib.RingTheory.Coprime.Lemmas
-public import Mathlib.Analysis.SpecificLimits.Basic
+
+import Mathlib.RingTheory.Coprime.Lemmas
+import Mathlib.Analysis.SpecificLimits.Basic
 
 section privateSection
 
@@ -44,7 +45,7 @@ theorem solution {p : ℕ} [Fact p.Prime] (D : ℕ → ℤ → ℂ_[p])
 
 end privateSection
 
-public noncomputable section publicSection
+public section publicSection
 open scoped BigOperators
 open Filter
 

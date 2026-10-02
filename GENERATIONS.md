@@ -67,9 +67,6 @@ Classified files: **2431 / 2431**. Cycles found: **0**. Files with unresolved no
 - `Definitions/FLT/Def_WeierstrassCurve_Velu.lean`
 - `Definitions/KN/Def_MonoidAlgebra_Augmentation.lean`
 - `Definitions/MTT/Def_MTT_Arithmetic.lean`
-- `Solutions/MTT/Sol_CuspForm_finrank_lower_bound_of_weighted_forms.lean`
-- `Solutions/MTT/Sol_MTT_coeff_eq_of_hecke_recurrence.lean`
-- `Solutions/MTT/Sol_MTT_sum_integral_wirtinger_smul_fd_eq_zero.lean`
 - `Theorems/FLT/Thm_AddCommGroup_nonempty_zmod_prod_addEquiv_torsionBy_of_card_torsionBy_eq_sq.lean`
 - `Theorems/FLT/Thm_Algebra_IsSeparable_of_finrank_fieldRange_frobenius_eq.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_essFiniteType_of_transcendental_of_finiteDimensional.lean`

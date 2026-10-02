@@ -1,4 +1,8 @@
-import Mathlib.AlgebraicGeometry.EllipticCurve.Affine.Point
+module
+
+public import Mathlib.AlgebraicGeometry.EllipticCurve.Affine.Point
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -36,3 +40,5 @@ lemma mem_oddOrderSummingSet {Q : W.toAffine.Point} {n : ℕ} {P : F × F} :
 end SummingSet
 
 end WeierstrassCurve
+
+end publicSection

@@ -1,4 +1,8 @@
-import Mathlib.RingTheory.Valuation.Discrete.IsDiscreteValuationRing
+module
+
+public import Mathlib.RingTheory.Valuation.Discrete.IsDiscreteValuationRing
+
+@[expose] public section publicSection
 
 noncomputable section DL_unmount
 
@@ -463,3 +467,5 @@ end Place
 
 end AlgebraicCurve
 end DL_unmount
+
+end publicSection

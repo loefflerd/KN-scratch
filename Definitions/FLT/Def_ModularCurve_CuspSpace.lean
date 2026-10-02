@@ -1,4 +1,8 @@
-import Mathlib.NumberTheory.ModularForms.Cusps
+module
+
+public import Mathlib.NumberTheory.ModularForms.Cusps
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -377,3 +381,5 @@ end CuspSpace
 end DL_tintometry
 
 end ModularCurve
+
+end publicSection

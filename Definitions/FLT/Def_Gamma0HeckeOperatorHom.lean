@@ -1,9 +1,13 @@
-import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
-import Mathlib.GroupTheory.Index
-import Mathlib.GroupTheory.GroupAction.Quotient
-import Mathlib.Tactic.Group
-import Mathlib.Tactic.LinearCombination
-import Mathlib.Tactic.FinCases
+module
+
+public import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
+public import Mathlib.GroupTheory.Index
+public import Mathlib.GroupTheory.GroupAction.Quotient
+public import Mathlib.Tactic.Group
+public import Mathlib.Tactic.LinearCombination
+public import Mathlib.Tactic.FinCases
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -306,3 +310,5 @@ def HeckeIndexEq : Prop := (heckeUpper N ℓ).index = ℓ + 1
 end HeckeOperator
 
 end HeckeEis
+
+end publicSection

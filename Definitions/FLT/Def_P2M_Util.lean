@@ -1,4 +1,9 @@
-import Lean
+module
+
+public import Lean
+public meta import Lean.Elab.Tactic.ElabTerm
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -46,7 +51,7 @@ elab "#p2m_type_eq " a:ident b:ident : command => liftTermElabM do
 open Lean Elab Command in
 elab "p2m_ns " s:str : command => modifyEnv fun env => env.registerNamespace s.getString.toName
 open Lean Elab Command in
-def p2mOpenCore (s : String) : CommandElabM Unit := do
+meta def p2mOpenCore (s : String) : CommandElabM Unit := do
   for w in s.splitOn " " do
     if w.isEmpty then continue
 
@@ -143,3 +148,4 @@ elab "p2m_attr_erase " attr:str names:str : command => do
     if (← getEnv).contains n then
       liftCoreM <| Lean.Attribute.erase n attrName
 
+end publicSection

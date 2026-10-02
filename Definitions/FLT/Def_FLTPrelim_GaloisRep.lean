@@ -1,14 +1,19 @@
+module
+
 /-
 Copyright (c) 2024 Imperial College London FLT project contributors.
 Released under Apache 2.0 license.
 Adapted from the Imperial College London FLT formalization
 (https://github.com/ImperialCollegeLondon/FLT).
 -/
-import Mathlib.AlgebraicGeometry.EllipticCurve.Affine.Point
-import Mathlib.Algebra.Module.Torsion.Basic
-import Mathlib.Algebra.GroupWithZero.Action.Basic
-import Mathlib.Algebra.Module.ZMod
-import Mathlib.FieldTheory.IsAlgClosed.AlgebraicClosure
+
+public import Mathlib.AlgebraicGeometry.EllipticCurve.Affine.Point
+public import Mathlib.Algebra.Module.Torsion.Basic
+public import Mathlib.Algebra.GroupWithZero.Action.Basic
+public import Mathlib.Algebra.Module.ZMod
+public import Mathlib.FieldTheory.IsAlgClosed.AlgebraicClosure
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -86,3 +91,4 @@ noncomputable instance instDecEqAlgebraicClosureRat :
     DecidableEq (AlgebraicClosure ℚ) :=
   Classical.decEq _
 
+end publicSection

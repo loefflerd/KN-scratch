@@ -1,7 +1,11 @@
-import Mathlib.Algebra.Order.Ring.Star
-import Mathlib.Analysis.Normed.Ring.Lemmas
-import Mathlib.Data.Int.Star
-import Mathlib.Tactic.NoncommRing
+module
+
+public import Mathlib.Algebra.Order.Ring.Star
+public import Mathlib.Analysis.Normed.Ring.Lemmas
+public import Mathlib.Data.Int.Star
+public import Mathlib.Tactic.NoncommRing
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -301,9 +305,8 @@ private theorem one_charPoly_int :
   norm_num
 
 theorem gate_intLinComb_norm_at_one :
-
     ((AddMonoid.End.DualEndData.ofCharPoly (A := ℤ) 1 2 1
-      one_charPoly_int).intLinComb 1 2).norm = 9 := by
+      <| by exact one_charPoly_int).intLinComb 1 2).norm = 9 := by
   simp only [AddMonoid.End.DualEndData.intLinComb_norm,
     AddMonoid.End.DualEndData.ofCharPoly_trace, AddMonoid.End.DualEndData.ofCharPoly_norm]
   decide
@@ -314,10 +317,12 @@ theorem gate_dualEndData_intCast_three :
 
 theorem gate_intLinComb_disc_scaling :
     ((AddMonoid.End.DualEndData.ofCharPoly (A := ℤ) 1 2 1
-      one_charPoly_int).intLinComb 0 2).trace ^ 2
+      <| by exact one_charPoly_int).intLinComb 0 2).trace ^ 2
         - 4 * ((AddMonoid.End.DualEndData.ofCharPoly (A := ℤ) 1 2 1
-          one_charPoly_int).intLinComb 0 2).norm = 2 ^ 2 * (2 ^ 2 - 4 * 1) := by
+        <| by exact one_charPoly_int).intLinComb 0 2).norm = 2 ^ 2 * (2 ^ 2 - 4 * 1) := by
   rw [AddMonoid.End.DualEndData.intLinComb_disc, AddMonoid.End.DualEndData.ofCharPoly_trace,
     AddMonoid.End.DualEndData.ofCharPoly_norm]
 
 end SatGates
+
+end publicSection

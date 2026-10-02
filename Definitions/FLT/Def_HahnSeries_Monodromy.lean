@@ -1,11 +1,9 @@
-import Mathlib.RingTheory.HahnSeries.PowerSeries
-import Mathlib.AlgebraicGeometry.EllipticCurve.Affine.Point
+module
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
+public import Mathlib.RingTheory.HahnSeries.PowerSeries
+public import Mathlib.AlgebraicGeometry.EllipticCurve.Affine.Point
 
-noncomputable section DL_annulate
+public noncomputable section publicSection
 
 namespace HahnSeries
 
@@ -19,7 +17,7 @@ def hahnTwistFun (χ : Multiplicative ℚ →* Rˣ) (x : HahnSeries ℚ R) : Hah
 
 theorem coeff_hahnTwistFun (χ : Multiplicative ℚ →* Rˣ) (x : HahnSeries ℚ R) (a : ℚ) :
     (hahnTwistFun χ x).coeff a = χ (Multiplicative.ofAdd a) * x.coeff a :=
-  rfl
+  (rfl)
 
 theorem support_hahnTwistFun (χ : Multiplicative ℚ →* Rˣ) (x : HahnSeries ℚ R) :
     (hahnTwistFun χ x).support = x.support := by
@@ -73,7 +71,7 @@ def hahnTwist (χ : Multiplicative ℚ →* Rˣ) : HahnSeries ℚ R ≃ₐ[R] Ha
 @[simp]
 theorem coeff_hahnTwist (χ : Multiplicative ℚ →* Rˣ) (x : HahnSeries ℚ R) (a : ℚ) :
     (hahnTwist χ x).coeff a = χ (Multiplicative.ofAdd a) * x.coeff a :=
-  rfl
+  (rfl)
 
 theorem hahnTwist_single (χ : Multiplicative ℚ →* Rˣ) (a : ℚ) (r : R) :
     hahnTwist χ (single a r) = single a (χ (Multiplicative.ofAdd a) * r) :=
@@ -118,11 +116,11 @@ def hahnTwistHom : (Multiplicative ℚ →* Rˣ) →* (HahnSeries ℚ R ≃ₐ[R
 theorem hahnTwistHom_apply (χ : Multiplicative ℚ →* Rˣ) :
     (hahnTwistHom : (Multiplicative ℚ →* Rˣ) →* (HahnSeries ℚ R ≃ₐ[R] HahnSeries ℚ R)) χ =
       hahnTwist χ :=
-  rfl
+  (rfl)
 
 variable (R) in
 
-def monodromy : Subgroup (HahnSeries ℚ R ≃ₐ[R] HahnSeries ℚ R) :=
+@[expose] def monodromy : Subgroup (HahnSeries ℚ R ≃ₐ[R] HahnSeries ℚ R) :=
   (MonoChar R).map hahnTwistHom
 
 theorem fixes_single_one_of_mem_monodromy {m : HahnSeries ℚ R ≃ₐ[R] HahnSeries ℚ R}
@@ -222,14 +220,13 @@ def fixedTransport [DecidableEq K] (σ : K ≃ₐ[k] K) (E : WeierstrassCurve K)
 
 theorem fixedTransport_zero [DecidableEq K] (σ : K ≃ₐ[k] K) (E : WeierstrassCurve K)
     (hE : E.map (σ : K →+* K) = E) : fixedTransport σ E hE 0 = 0 :=
-  rfl
+  (rfl)
 
 theorem fixedTransport_some [DecidableEq K] (σ : K ≃ₐ[k] K) (E : WeierstrassCurve K)
     (hE : E.map (σ : K →+* K) = E) (x y : K) (h : E.toAffine.Nonsingular x y) :
     fixedTransport σ E hE (some x y h) = some (σ x) (σ y) (nonsingular_of_fixed σ E hE h) :=
-  rfl
+  (rfl)
 
 end WeierstrassCurve.Affine.Point
 
-end DL_annulate
-
+end publicSection

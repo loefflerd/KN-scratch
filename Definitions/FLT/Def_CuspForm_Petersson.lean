@@ -1,7 +1,11 @@
-import Mathlib.NumberTheory.ModularForms.Bounds
-import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
-import Mathlib.Analysis.Complex.UpperHalfPlane.Measure
-import Mathlib.MeasureTheory.Integral.Bochner.Basic
+module
+
+public import Mathlib.NumberTheory.ModularForms.Bounds
+public import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
+public import Mathlib.Analysis.Complex.UpperHalfPlane.Measure
+public import Mathlib.MeasureTheory.Integral.Bochner.Basic
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -33,3 +37,4 @@ end CuspForm
 
 end DL_Crocus
 
+end publicSection

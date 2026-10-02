@@ -1,4 +1,8 @@
-import Mathlib.NumberTheory.ModularForms.SlashActions
+module
+
+public import Mathlib.NumberTheory.ModularForms.SlashActions
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -207,3 +211,4 @@ end ModularForm
 
 end DL_intactile
 
+end publicSection
