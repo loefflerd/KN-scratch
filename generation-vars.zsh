@@ -5,9 +5,10 @@
 #   lake build $GEN1
 #   lake build $GEN2
 #
-# GEN1, ..., GEN14 are zsh arrays of Lean module names. GEN_ALL contains
-# every generation in order. The arrays are read from GENERATIONS.md each
-# time this file is sourced, so there is no second long file list to maintain.
+# GEN1, ..., GEN$n are zsh arrays of Lean module names, where GEN_COUNT is n.
+# GEN_ALL contains every generation in order. The arrays are read from
+# GENERATIONS.md each time this file is sourced, so there is no second long
+# file list to maintain.
 
 if [[ ${ZSH_EVAL_CONTEXT-} != *:file ]]; then
   print -u2 'generation-vars.zsh must be sourced, not executed.'
@@ -21,22 +22,31 @@ function _p2m_load_generation_vars {
 
   local script_path=${${(%):-%N}:A}
   local generation_file=${script_path:h}/GENERATIONS.md
-  local line path module
+  local line path module variable
   local -i generation=0
+  local -i index
 
   if [[ ! -r $generation_file ]]; then
     print -u2 "Cannot read $generation_file"
     return 1
   fi
 
-  typeset -ga GEN1 GEN2 GEN3 GEN4 GEN5 GEN6 GEN7
-  typeset -ga GEN8 GEN9 GEN10 GEN11 GEN12 GEN13 GEN14 GEN_ALL
-  GEN1=() GEN2=() GEN3=() GEN4=() GEN5=() GEN6=() GEN7=()
-  GEN8=() GEN9=() GEN10=() GEN11=() GEN12=() GEN13=() GEN14=()
+  # Clear arrays left by an earlier sourcing, including generations which may
+  # no longer occur after the dependency graph is regenerated.
+  for variable in ${(k)parameters}; do
+    [[ $variable == GEN<-> ]] && unset "$variable"
+  done
+  typeset -gi GEN_COUNT=0
+  typeset -ga GEN_ALL
+  GEN_ALL=()
 
   while IFS= read -r line; do
     if [[ $line == '## Generation '<-> ]]; then
       generation=${line##* }
+      variable=GEN$generation
+      typeset -ga "$variable"
+      set -A "$variable"
+      (( generation > GEN_COUNT )) && GEN_COUNT=$generation
       continue
     fi
 
@@ -54,32 +64,14 @@ function _p2m_load_generation_vars {
 
     module=${path%.lean}
     module=${module//\//.}
-    case $generation in
-      1)  GEN1+=("$module") ;;
-      2)  GEN2+=("$module") ;;
-      3)  GEN3+=("$module") ;;
-      4)  GEN4+=("$module") ;;
-      5)  GEN5+=("$module") ;;
-      6)  GEN6+=("$module") ;;
-      7)  GEN7+=("$module") ;;
-      8)  GEN8+=("$module") ;;
-      9)  GEN9+=("$module") ;;
-      10) GEN10+=("$module") ;;
-      11) GEN11+=("$module") ;;
-      12) GEN12+=("$module") ;;
-      13) GEN13+=("$module") ;;
-      14) GEN14+=("$module") ;;
-      *)
-        print -u2 "Unsupported generation $generation in GENERATIONS.md"
-        return 1
-        ;;
-    esac
+    variable=GEN$generation
+    set -A "$variable" "${(@P)variable}" "$module"
   done < "$generation_file"
 
-  GEN_ALL=(
-    $GEN1 $GEN2 $GEN3 $GEN4 $GEN5 $GEN6 $GEN7
-    $GEN8 $GEN9 $GEN10 $GEN11 $GEN12 $GEN13 $GEN14
-  )
+  for (( index = 1; index <= GEN_COUNT; ++index )); do
+    variable=GEN$index
+    GEN_ALL+=("${(@P)variable}")
+  done
 
   if (( ${#GEN_ALL} == 0 )); then
     print -u2 'No Lean files were parsed from GENERATIONS.md'

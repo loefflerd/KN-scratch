@@ -7,7 +7,7 @@ public import Mathlib.MeasureTheory.Integral.Bochner.Set
 public import Mathlib.RingTheory.Finiteness.Defs
 public import Mathlib.FieldTheory.IsAlgClosed.AlgebraicClosure
 
-public noncomputable section publicSection
+@[expose] public noncomputable section publicSection
 
 open scoped BigOperators
 open MeasureTheory
