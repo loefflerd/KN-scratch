@@ -8,14 +8,14 @@ Generation 1 means that a node has no imports from this extracted local filetree
 
 The parser reads textual `import` and `public import` commands, resolves module names from file paths, and ignores comments after an import. This intentionally does not reproduce Lean’s elaboration or transitive module-loading behavior.
 
-Classified files: **2413 / 2413** in **1308** dependency nodes, including **1105** theorem/solution pairs. Cycles found: **0**. Files with unresolved non-baseline imports: **0**.
+Classified files: **2409 / 2409** in **1308** dependency nodes, including **1101** theorem/solution pairs. Cycles found: **0**. Files with unresolved non-baseline imports: **0**.
 
 ## Summary
 
 | Generation | Total files | FLT | MTT | KN |
 |---:|---:|---:|---:|---:|
-| 1 | 46 | 38 | 6 | 2 |
-| 2 | 442 | 432 | 6 | 4 |
+| 1 | 50 | 42 | 6 | 2 |
+| 2 | 434 | 424 | 6 | 4 |
 | 3 | 317 | 275 | 29 | 13 |
 | 4 | 263 | 219 | 30 | 14 |
 | 5 | 203 | 155 | 42 | 6 |
@@ -112,8 +112,12 @@ Classified files: **2413 / 2413** in **1308** dependency nodes, including **1105
 - `Definitions/FLT/Def_WeierstrassCurve_Velu.lean`
 - `Definitions/KN/Def_MonoidAlgebra_Augmentation.lean`
 - `Definitions/MTT/Def_MTT_Arithmetic.lean`
+- `Theorems/FLT/Thm_AlgebraicCurve_isIntegral_adjoin_of_isScalarTower.lean`
 - `Theorems/FLT/Thm_ModularForm_exists_coe_eq_of_levelOne.lean`
 - `Theorems/FLT/Thm_MonoidAlgebra_isLocalRing_of_isPGroup.lean`
+- `Theorems/FLT/Thm_MvPolynomial_IsHomogeneous_iterate_pderiv_eq_zero_of_lt.lean`
+- `Theorems/FLT/Thm_WeierstrassCurve_variableChange_mk_smul_eq_self_of_pow_three_eq_one.lean`
+- `Theorems/FLT/Thm_WeierstrassCurve_variableChange_smul_eq_self_iff_of_c4_ne_zero_of_c6_ne_zero.lean`
 - `Theorems/KN/Thm_IsCyclotomicExtension_Rat_prime_dvd_discr_dvd_conductor.lean`
 - `Theorems/MTT/Thm_CuspForm_finrank_lower_bound_of_weighted_forms.lean`
 - `Theorems/MTT/Thm_MTT_coeff_eq_of_hecke_recurrence.lean`
@@ -197,7 +201,6 @@ Classified files: **2413 / 2413** in **1308** dependency nodes, including **1105
 - `Solutions/FLT/Sol_AlgebraicCurve_isAlgebraic_adjoin_of_transcendental.lean`
 - `Solutions/FLT/Sol_AlgebraicCurve_isIntegral_adjoin_intermediateField_mk.lean`
 - `Solutions/FLT/Sol_AlgebraicCurve_isIntegral_adjoin_map_algHom.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_isIntegral_adjoin_of_isScalarTower.lean`
 - `Solutions/FLT/Sol_AlgebraicCurve_kaehlerRankOne_of_transcendental.lean`
 - `Solutions/FLT/Sol_AlgebraicCurve_linearIndependent_of_constantFieldExtension.lean`
 - `Solutions/FLT/Sol_CohCarrier_index_gammaH_eq_index_gamma0_mul_index.lean`
@@ -296,7 +299,6 @@ Classified files: **2413 / 2413** in **1308** dependency nodes, including **1105
 - `Solutions/FLT/Sol_Monoid_CoprodI_exists_addMonoidHom_conj_pow_minimalPeriod_eq_of_finsum_eq_zero.lean`
 - `Solutions/FLT/Sol_Monoid_CoprodI_isTree_cosetGraph.lean`
 - `Solutions/FLT/Sol_MulAction_card_mul_natCard_orbitRel_quotient_eq_of_natCard_eq_prime.lean`
-- `Solutions/FLT/Sol_MvPolynomial_IsHomogeneous_iterate_pderiv_eq_zero_of_lt.lean`
 - `Solutions/FLT/Sol_Nat_exists_squarefree_sq_add.lean`
 - `Solutions/FLT/Sol_NumberField_exists_isFrobenius_lift_arithFrobAt.lean`
 - `Solutions/FLT/Sol_NumberField_exists_lift_mem_inertia_integralClosure.lean`
@@ -353,9 +355,7 @@ Classified files: **2413 / 2413** in **1308** dependency nodes, including **1105
 - `Solutions/FLT/Sol_WeierstrassCurve_mem_stabilizer_variableChange_iff_of_isShortNF_of_a4_eq_zero.lean`
 - `Solutions/FLT/Sol_WeierstrassCurve_mem_stabilizer_variableChange_iff_of_isShortNF_of_a6_eq_zero.lean`
 - `Solutions/FLT/Sol_WeierstrassCurve_nonempty_functionField_algEquiv_of_variableChange.lean`
-- `Solutions/FLT/Sol_WeierstrassCurve_variableChange_mk_smul_eq_self_of_pow_three_eq_one.lean`
 - `Solutions/FLT/Sol_WeierstrassCurve_variableChange_mk_smul_eq_self_of_sq_eq_neg_one.lean`
-- `Solutions/FLT/Sol_WeierstrassCurve_variableChange_smul_eq_self_iff_of_c4_ne_zero_of_c6_ne_zero.lean`
 - `Solutions/FLT/Sol_WeierstrassCurve_velu2_secant_negAddY_cleared_identity.lean`
 - `Solutions/FLT/Sol_WeierstrassCurve_velu2_tangent_addX_cleared_identity.lean`
 - `Solutions/FLT/Sol_WeierstrassCurve_velu2_tangent_negAddY_cleared_identity.lean`
@@ -394,7 +394,6 @@ Classified files: **2413 / 2413** in **1308** dependency nodes, including **1105
 - `Theorems/FLT/Thm_AlgebraicCurve_isAlgebraic_adjoin_of_transcendental.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_isIntegral_adjoin_intermediateField_mk.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_isIntegral_adjoin_map_algHom.lean`
-- `Theorems/FLT/Thm_AlgebraicCurve_isIntegral_adjoin_of_isScalarTower.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_kaehlerRankOne_of_transcendental.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_linearIndependent_of_constantFieldExtension.lean`
 - `Theorems/FLT/Thm_CohCarrier_index_gammaH_eq_index_gamma0_mul_index.lean`
@@ -496,7 +495,6 @@ Classified files: **2413 / 2413** in **1308** dependency nodes, including **1105
 - `Theorems/FLT/Thm_Monoid_CoprodI_exists_addMonoidHom_conj_pow_minimalPeriod_eq_of_finsum_eq_zero.lean`
 - `Theorems/FLT/Thm_Monoid_CoprodI_isTree_cosetGraph.lean`
 - `Theorems/FLT/Thm_MulAction_card_mul_natCard_orbitRel_quotient_eq_of_natCard_eq_prime.lean`
-- `Theorems/FLT/Thm_MvPolynomial_IsHomogeneous_iterate_pderiv_eq_zero_of_lt.lean`
 - `Theorems/FLT/Thm_Nat_exists_squarefree_sq_add.lean`
 - `Theorems/FLT/Thm_NumberField_exists_isFrobenius_lift_arithFrobAt.lean`
 - `Theorems/FLT/Thm_NumberField_exists_lift_mem_inertia_integralClosure.lean`
@@ -553,9 +551,7 @@ Classified files: **2413 / 2413** in **1308** dependency nodes, including **1105
 - `Theorems/FLT/Thm_WeierstrassCurve_mem_stabilizer_variableChange_iff_of_isShortNF_of_a4_eq_zero.lean`
 - `Theorems/FLT/Thm_WeierstrassCurve_mem_stabilizer_variableChange_iff_of_isShortNF_of_a6_eq_zero.lean`
 - `Theorems/FLT/Thm_WeierstrassCurve_nonempty_functionField_algEquiv_of_variableChange.lean`
-- `Theorems/FLT/Thm_WeierstrassCurve_variableChange_mk_smul_eq_self_of_pow_three_eq_one.lean`
 - `Theorems/FLT/Thm_WeierstrassCurve_variableChange_mk_smul_eq_self_of_sq_eq_neg_one.lean`
-- `Theorems/FLT/Thm_WeierstrassCurve_variableChange_smul_eq_self_iff_of_c4_ne_zero_of_c6_ne_zero.lean`
 - `Theorems/FLT/Thm_WeierstrassCurve_velu2_secant_negAddY_cleared_identity.lean`
 - `Theorems/FLT/Thm_WeierstrassCurve_velu2_tangent_addX_cleared_identity.lean`
 - `Theorems/FLT/Thm_WeierstrassCurve_velu2_tangent_negAddY_cleared_identity.lean`

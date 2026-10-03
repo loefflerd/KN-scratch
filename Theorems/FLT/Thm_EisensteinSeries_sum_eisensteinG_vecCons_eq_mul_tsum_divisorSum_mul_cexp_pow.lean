@@ -7,6 +7,10 @@ public import Definitions.FLT.Def_EisensteinSeries_EisensteinG
 import Mathlib.NumberTheory.ModularForms.EisensteinSeries.QExpansion
 import Mathlib.Topology.Separation.CompletelyRegular
 
+open scoped Real UpperHalfPlane
+
+local notation "𝕢" z => Complex.exp (2 * π * Complex.I * z)
+
 section privateSection
 
 private theorem tsum_nat_eq_tsum_pnat_of_zero
@@ -15,12 +19,12 @@ private theorem tsum_nat_eq_tsum_pnat_of_zero
   rw [tsum_eq_zero_add' hs, h0, zero_add, tsum_pnat_eq_tsum_succ]
 
 private theorem sum_eisensteinG_eq_tsum_indicator
-    (N : ℕ) [NeZero N] (a : ZMod N) {k : ℕ} (hk : 3 ≤ k) (z : UpperHalfPlane) :
+    (N : ℕ) [NeZero N] (a : ZMod N) {k : ℕ} (hk : 3 ≤ k) (z : ℍ) :
     ∑ e : ZMod N, EisensteinSeries.eisensteinG N k ![a, e] z =
-      ∑' v, ({v : Fin 2 → ℤ | ((v 0 : ℤ) : ZMod N) = a}).indicator
+      ∑' v, ({v : Fin 2 → ℤ | v 0 = a}).indicator
         (fun v => EisensteinSeries.eisSummand k v z) v := by
   classical
-  have hk3 : (3 : ℤ) ≤ (k : ℤ) := by exact_mod_cast hk
+  have hk3 : (3 : ℤ) ≤ (k : ℤ) := mod_cast hk
   let f : (Fin 2 → ℤ) → ℂ := fun v => EisensteinSeries.eisSummand k v z
   have hfsum : Summable fun v => ‖f v‖ := EisensteinSeries.summable_norm_eisSummand hk3 z
   let S : Set (Fin 2 → ℤ) := {v | ((v 0 : ℤ) : ZMod N) = a}
@@ -47,8 +51,7 @@ private theorem sum_eisensteinG_eq_tsum_indicator
       apply hne
       have := congrFun h 1
       simpa using this.symm
-    · intro h
-      exact absurd (Finset.mem_univ _) h
+    · grind
   · rw [ite_eq_right hv]
     refine Finset.sum_eq_zero fun e _ => ?_
     rw [ite_eq_right]
@@ -58,65 +61,61 @@ private theorem sum_eisensteinG_eq_tsum_indicator
     have := congrFun h 0
     simpa using this
 
-open scoped Real in
-private theorem eisSummand_row_eq_qExpansion
-    {k : ℕ} (hk1 : 1 ≤ k - 1) (hkk : k - 1 + 1 = k) (z : UpperHalfPlane)
-    (q C : ℂ) (hq : q = Complex.exp (2 * π * Complex.I * z))
-    (hC : C = (-2 * π * Complex.I) ^ k / (Nat.factorial (k - 1) : ℂ)) (m : ℕ+) :
-    ∑' n : ℤ, EisensteinSeries.eisSummand k ![(m : ℤ), n] z =
-      C * ∑' d : ℕ+, (((d : ℕ) : ℂ) ^ (k - 1)) * q ^ ((m : ℕ) * (d : ℕ)) := by
+noncomputable def eisSummand_row_sum (k : ℕ) (z : ℍ) (m : ℤ) :=
+  ∑' n, EisensteinSeries.eisSummand k ![m, n] z
+
+private theorem eisSummand_row_sum_eq_qExpansion
+    {k : ℕ} (hk1 : 1 ≤ k - 1) (hkk : k - 1 + 1 = k) (z : ℍ) (m : ℕ+) :
+    eisSummand_row_sum k z m =
+      ((-2 * π * Complex.I) ^ k / Nat.factorial (k - 1)) *
+        ∑' d : ℕ+, (((d : ℕ) : ℂ) ^ (k - 1)) *
+          (𝕢 z) ^ (m * d : ℕ) := by
+  let q := 𝕢 z
+  let C := (-2 * π * Complex.I) ^ k / Nat.factorial (k - 1)
   have hm : 0 < (m : ℕ) := m.pos
   have hz' : 0 < (((m : ℕ) : ℂ) * (z : ℂ)).im := by
     simpa [Complex.mul_im] using mul_pos (Nat.cast_pos.mpr hm : (0 : ℝ) < m) z.im_pos
   have H := EisensteinSeries.qExpansion_identity
     (k := k - 1) hk1 ⟨((m : ℕ) : ℂ) * z, hz'⟩
   rw [hkk] at H
-  have hlhs :
-      (∑' n : ℤ, EisensteinSeries.eisSummand k ![(m : ℤ), n] z) =
-        ∑' n : ℤ, 1 /
-          (((⟨((m : ℕ) : ℂ) * z, hz'⟩ : UpperHalfPlane) : ℂ) + n) ^ k := by
+  have hlhs : eisSummand_row_sum k z m =
+      ∑' n : ℤ, 1 / (((⟨((m : ℕ) : ℂ) * z, hz'⟩ : ℍ) : ℂ) + n) ^ k := by
     refine tsum_congr fun n => ?_
     simp only [EisensteinSeries.eisSummand, Matrix.cons_val_zero, Matrix.cons_val_one]
     rw [zpow_neg, zpow_natCast, one_div]
-    push_cast
-    rfl
-  rw [hlhs, H, ← hC]
+    norm_cast
+  rw [hlhs, H]
   congr 1
-  have hqm :
-      Complex.exp
-          (2 * π * Complex.I *
-            (((⟨((m : ℕ) : ℂ) * z, hz'⟩ : UpperHalfPlane) : ℂ))) =
+  have hqm : Complex.exp
+      (2 * π * Complex.I * (((⟨((m : ℕ) : ℂ) * z, hz'⟩ : ℍ) : ℂ))) =
         q ^ (m : ℕ) := by
-    rw [UpperHalfPlane.coe_mk, hq, ← Complex.exp_nat_mul]
-    congr 1
-    ring
+    rw [UpperHalfPlane.coe_mk, ← Complex.exp_nat_mul]
+    grind
   simp_rw [hqm, ← pow_mul]
   refine tsum_nat_eq_tsum_pnat_of_zero
     (fun d => ((d : ℂ) ^ (k - 1)) * q ^ ((m : ℕ) * d)) (by
       simp [zero_pow (by omega : k - 1 ≠ 0)]) ?_
-  have hqn : ‖q‖ < 1 := hq ▸ UpperHalfPlane.norm_exp_two_pi_I_lt_one z
+  have hqn : ‖q‖ < 1 := UpperHalfPlane.norm_exp_two_pi_I_lt_one z
   have hqn' : ‖q ^ (m : ℕ)‖ < 1 := by
     rw [norm_pow]
     exact pow_lt_one₀ (norm_nonneg _) hqn (by omega)
   have hs := summable_pow_mul_geometric_of_norm_lt_one (k - 1) hqn'
   simp_rw [← pow_mul] at hs
-  exact (summable_nat_add_iff 1).mpr hs
-
-open scoped Real in
+  simpa [q] using (summable_nat_add_iff 1).mpr hs
 
 theorem solution
-    (N : ℕ) [NeZero N] (a : ZMod N) (ha : a ≠ 0) {k : ℕ} (hk : 3 ≤ k) (hk2 : Even k) (z : UpperHalfPlane) :
+    (N : ℕ) [NeZero N] (a : ZMod N) (ha : a ≠ 0) {k : ℕ} (hk : 3 ≤ k) (hk2 : Even k) (z : ℍ) :
     ∑ e : ZMod N, EisensteinSeries.eisensteinG N k ![a, e] z =
       ((-2 * π * Complex.I) ^ k / (Nat.factorial (k - 1) : ℂ)) *
         ∑' n : ℕ, (∑ d ∈ n.divisors,
             ((if ((n / d : ℕ) : ZMod N) = a then (d : ℂ) ^ (k - 1) else 0) +
               (if ((n / d : ℕ) : ZMod N) = -a then (d : ℂ) ^ (k - 1) else 0))) *
-          Complex.exp (2 * π * Complex.I * z) ^ n := by
+          (𝕢 z) ^ n := by
   classical
-  obtain ⟨q, hq⟩ : ∃ q : ℂ, q = Complex.exp (2 * π * Complex.I * z) := ⟨_, rfl⟩
-  have hqn : ‖q‖ < 1 := hq ▸ UpperHalfPlane.norm_exp_two_pi_I_lt_one z
+  set q : ℂ := 𝕢 z
+  have hqn : ‖q‖ < 1 := UpperHalfPlane.norm_exp_two_pi_I_lt_one z
   obtain ⟨C, hC⟩ : ∃ C : ℂ, C = (-2 * π * Complex.I) ^ k / (Nat.factorial (k - 1) : ℂ) := ⟨_, rfl⟩
-  rw [← hC, ← hq]
+  rw [← hC]
   have hk1 : 1 ≤ k - 1 := by omega
   have hkk : k - 1 + 1 = k := by omega
   have hk3 : (3 : ℤ) ≤ (k : ℤ) := by exact_mod_cast hk
@@ -127,28 +126,21 @@ theorem solution
   have h1 : ∑ e : ZMod N, EisensteinSeries.eisensteinG N k ![a, e] z =
       ∑' v, S.indicator f v :=
     sum_eisensteinG_eq_tsum_indicator N a hk z
-  let row : ℤ → ℂ := fun m => ∑' n : ℤ, f ![m, n]
+  let row : ℤ → ℂ := eisSummand_row_sum k z
   let F : ℤ × ℤ → ℂ := (S.indicator f) ∘ (finTwoArrowEquiv ℤ).symm
   have hF : ∀ p : ℤ × ℤ, F p = if ((p.1 : ℤ) : ZMod N) = a then f ![p.1, p.2] else 0 := fun p => by
     simp only [F, Function.comp_apply, finTwoArrowEquiv_symm_apply, Set.indicator_apply, S,
       Set.mem_ofPred_eq, Matrix.cons_val_zero]
     rfl
   have hFsum : Summable F := (Equiv.summable_iff _).mpr (hfsum.of_norm.indicator S)
-  obtain ⟨G, hG⟩ : ∃ G : ℤ → ℂ, G = fun m => if ((m : ℤ) : ZMod N) = a then row m else 0 := ⟨_, rfl⟩
+  let G : ℤ → ℂ := fun m => if m = a then row m else 0
   have h2 : ∑' v, S.indicator f v = ∑' m : ℤ, G m := by
-    rw [← ((finTwoArrowEquiv ℤ).symm.tsum_eq (S.indicator f)), show
-      (fun c : ℤ × ℤ => S.indicator f ((finTwoArrowEquiv ℤ).symm c)) = F from rfl, hFsum.tsum_prod]
-    refine tsum_congr fun m => ?_
-    simp only [hF, hG]
-    split_ifs with hm
-    · rfl
-    · exact tsum_zero
-  have hGsum : Summable G := by
-    refine hFsum.prod.congr fun m => ?_
-    simp only [hF, hG]
-    split_ifs with hm
-    · rfl
-    · exact tsum_zero
+    rw [← ((finTwoArrowEquiv ℤ).symm.tsum_eq (S.indicator f)),
+      show (fun c : ℤ × ℤ => S.indicator f ((finTwoArrowEquiv ℤ).symm c)) = F from rfl,
+      hFsum.tsum_prod]
+    exact tsum_congr fun m => by grind [eisSummand_row_sum, tsum_zero]
+  have hGsum : Summable G := hFsum.prod.congr fun _ ↦ by
+    grind [eisSummand_row_sum, tsum_zero]
   have hrowsum : Summable row := by
     have hall : Summable (f ∘ (finTwoArrowEquiv ℤ).symm) := (Equiv.summable_iff _).mpr hfsum.of_norm
     refine hall.prod.congr fun m => ?_
@@ -156,20 +148,17 @@ theorem solution
     rfl
   have hrow_neg : ∀ m : ℤ, row (-m) = row m := by
     intro m
-    simp only [row]
+    simp only [row, eisSummand_row_sum]
     rw [← (Equiv.neg ℤ).tsum_eq]
     refine tsum_congr fun n => ?_
-    simp only [f, Equiv.neg_apply, EisensteinSeries.eisSummand, Matrix.cons_val_zero,
-      Matrix.cons_val_one, Int.cast_neg]
-    rw [neg_mul, ← neg_add, hkeven.neg_zpow]
-  have hG0 : ∀ m : ℕ, G (m : ℤ) = (if ((m : ℕ) : ZMod N) = a then (1 : ℂ) else 0) * row m := fun m => by
-    rw [hG]
-    dsimp only
+    simp [EisensteinSeries.eisSummand, ← neg_add, -neg_add_rev, hkeven.neg_zpow]
+  have hG0 : ∀ m : ℕ,
+      G (m : ℤ) = (if ((m : ℕ) : ZMod N) = a then (1 : ℂ) else 0) * row m := fun m => by
+    dsimp only [G]
     rw [Int.cast_natCast, boole_mul]
   have hGneg : ∀ m : ℕ, G (-((m : ℤ) + 1)) =
       (if (((m + 1 : ℕ)) : ZMod N) = -a then (1 : ℂ) else 0) * row ((m : ℤ) + 1) := fun m => by
-    rw [hG]
-    dsimp only
+    dsimp only [G]
     rw [hrow_neg, boole_mul]
     have : ((((-((m : ℤ) + 1)) : ℤ) : ZMod N) = a) ↔ (((m + 1 : ℕ) : ZMod N) = -a) := by
       push_cast
@@ -206,19 +195,16 @@ theorem solution
       rfl
     rw [hB', ← hsumA.tsum_add hsumB]
     exact tsum_congr fun m => by ring
-  obtain ⟨w, hw⟩ : ∃ w : ℕ → ℂ, w = fun m =>
-      (if ((m : ℕ) : ZMod N) = a then (1 : ℂ) else 0) + (if ((m : ℕ) : ZMod N) = -a then (1 : ℂ) else 0) :=
-    ⟨_, rfl⟩
+  let w : ℕ → ℂ := fun m =>
+      (if ((m : ℕ) : ZMod N) = a then (1 : ℂ) else 0) + (if ((m : ℕ) : ZMod N) = -a then (1 : ℂ) else 0)
   have hw0 : w 0 = 0 := by
     have h1 : ¬ ((0 : ℕ) : ZMod N) = a := by rw [Nat.cast_zero]; exact fun h => ha h.symm
     have h2 : ¬ ((0 : ℕ) : ZMod N) = -a := by
       rw [Nat.cast_zero, eq_comm, neg_eq_zero]; exact ha
-    rw [hw]
-    dsimp only
+    dsimp only [w]
     rw [ite_eq_right h1, ite_eq_right h2, add_zero]
   have hwnorm : ∀ m, ‖w m‖ ≤ 2 := fun m => by
-    rw [hw]
-    dsimp only
+    dsimp only [w]
     refine (norm_add_le _ _).trans ?_
     have : ∀ P : Prop, ∀ _ : Decidable P, ‖(if P then (1 : ℂ) else 0)‖ ≤ 1 := by
       intro P _; split_ifs <;> simp
@@ -226,7 +212,8 @@ theorem solution
   have hrow : ∀ m : ℕ+, row m =
       C * ∑' d : ℕ+, (((d : ℕ) : ℂ) ^ (k - 1)) * q ^ ((m : ℕ) * (d : ℕ)) := by
     intro m
-    simpa only [row, f] using eisSummand_row_eq_qExpansion hk1 hkk z q C hq hC m
+    simpa only [hC, row, f, eisSummand_row_sum]
+      using eisSummand_row_sum_eq_qExpansion hk1 hkk z m
   let gP : ℕ+ × ℕ+ → ℂ := fun c => w c.1 * ((((c.2 : ℕ) : ℂ) ^ (k - 1)) * q ^ ((c.1 : ℕ) * (c.2 : ℕ)))
   have hgP : Summable gP := by
     refine Summable.of_norm_bounded ((summable_prod_mul_pow (𝕜 := ℂ) (k - 1) hqn).norm.mul_left 2)
@@ -238,15 +225,13 @@ theorem solution
         (if ((m : ℕ) : ZMod N) = -a then (1 : ℂ) else 0)) * row m = C * ∑' c : ℕ+ × ℕ+, gP c := by
     have e : (fun m : ℕ => ((if ((m : ℕ) : ZMod N) = a then (1 : ℂ) else 0) +
         (if ((m : ℕ) : ZMod N) = -a then (1 : ℂ) else 0)) * row m) = fun m => w m * row m := by
-      rw [hw]
+      rfl
     rw [e]
     have hsw : Summable (fun m : ℕ => w (m + 1) * row ((m + 1 : ℕ) : ℤ)) := by
       have := (hsumA.add hsumB)
       have h' : Summable fun m : ℕ => w m * row m := by
         refine this.congr fun m => ?_
-        rw [hw]
-        dsimp only
-        ring
+        grind
       exact (summable_nat_add_iff 1).mpr h'
     rw [tsum_nat_eq_tsum_pnat_of_zero (fun m => w m * row m) (by simp [hw0]) hsw,
       hgP.tsum_prod, ← tsum_mul_left]
@@ -287,19 +272,15 @@ theorem solution
   refine (tsum_nat_eq_tsum_pnat_of_zero (fun n : ℕ => (∑ d ∈ n.divisors,
       ((if ((n / d : ℕ) : ZMod N) = a then (d : ℂ) ^ (k - 1) else 0) +
         (if ((n / d : ℕ) : ZMod N) = -a then (d : ℂ) ^ (k - 1) else 0))) * q ^ n)
-    (by simp) ?_).trans ?_
+      (by simp) ?_).trans ?_
   · have := (Equiv.pnatEquivNat.symm.summable_iff).mpr hfin
     refine this.congr fun n => ?_
-    simp only [Function.comp_apply, Equiv.pnatEquivNat_symm_apply, Nat.succPNat_coe, Nat.succ_eq_add_one, hw]
+    simp only [Function.comp_apply, Equiv.pnatEquivNat_symm_apply, Nat.succPNat_coe, Nat.succ_eq_add_one]
     congr 1
-    refine Finset.sum_congr rfl fun i _ => ?_
-    rw [add_mul, ]
-    grind
+    exact Finset.sum_congr rfl fun i _ =>  by grind
   · refine tsum_congr fun n => ?_
-    rw [hw]
     congr 1
     refine Finset.sum_congr rfl fun i _ => ?_
-    dsimp only
     rw [add_mul, boole_mul, boole_mul]
 
 end privateSection
@@ -308,13 +289,14 @@ public section publicSection
 
 open scoped Real in
 theorem EisensteinSeries.sum_eisensteinG_vecCons_eq_mul_tsum_divisorSum_mul_cexp_pow
-    (N : ℕ) [NeZero N] (a : ZMod N) (ha : a ≠ 0) {k : ℕ} (hk : 3 ≤ k) (hk2 : Even k) (z : UpperHalfPlane) :
+    (N : ℕ) [NeZero N] (a : ZMod N) (ha : a ≠ 0) {k : ℕ} (hk : 3 ≤ k) (hk2 : Even k)
+    (z : ℍ) :
     ∑ e : ZMod N, EisensteinSeries.eisensteinG N k ![a, e] z =
       ((-2 * π * Complex.I) ^ k / (Nat.factorial (k - 1) : ℂ)) *
         ∑' n : ℕ, (∑ d ∈ n.divisors,
             ((if ((n / d : ℕ) : ZMod N) = a then (d : ℂ) ^ (k - 1) else 0) +
               (if ((n / d : ℕ) : ZMod N) = -a then (d : ℂ) ^ (k - 1) else 0))) *
-          Complex.exp (2 * π * Complex.I * z) ^ n :=
+          (𝕢 z) ^ n :=
   solution N a ha hk hk2 z
 
 end publicSection
