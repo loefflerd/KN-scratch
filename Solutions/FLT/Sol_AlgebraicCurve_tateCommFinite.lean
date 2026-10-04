@@ -129,24 +129,6 @@ namespace KwF4gRRTate
 p2m_export "ModularCurve.KwF4gRRTate" "tateCommRestrict_apply tateComm_eq_of_commute adicIntegersKSubmod tateProj lmulK KwF4gRRTateCommFinite"
 p2m_open "ModularCurve.KwF4gRRTate ModularCurve"
 
-section FinrankTrace
-
-variable {K V : Type*} [Field K] [AddCommGroup V] [Module K V]
-
-end FinrankTrace
-
-section TateComm
-
-variable {K V : Type*} [Field K] [AddCommGroup V] [Module K V]
-
-end TateComm
-
-section TateFactoring
-
-variable {K V : Type*} [Field K] [AddCommGroup V] [Module K V]
-
-end TateFactoring
-
 end ModularCurve.KwF4gRRTate
 
 end
@@ -172,25 +154,17 @@ namespace Place
 p2m_export "AlgebraicCurve.Place" "ext ResidueField FiniteResidue heightOneSpectrum heightOneSpectrum_asIdeal ord ord_unit_smul_zpow exists_unit_mul_zpow FiniteResidue.finite algebraMap_mem' toValuationSubring mk restrict adicCompletion adicCompletionIntegers"
 p2m_open "AlgebraicCurve.Place"
 
-variable {K F}
-
-variable (v : Place K F)
-
 end Place
 
 namespace Divisor
 p2m_export "AlgebraicCurve.Divisor" "smul_def"
 p2m_open "AlgebraicCurve.Divisor"
 
-variable {K F}
-
 end Divisor
 
 namespace Pic0
 p2m_export "AlgebraicCurve.Pic0" "mk mk_surjective"
 p2m_open "AlgebraicCurve.Pic0"
-
-variable {K F}
 
 end Pic0
 
@@ -200,11 +174,6 @@ p2m_open "AlgebraicCurve.Place"
 
 p2m_open_scoped "Pointwise P2MW.S_AlgebraicCurve_tateCommFinite.Pointwise"
 
-variable {K F}
-variable (σ : F ≃ₐ[K] F)
-
-variable (v : Place K F)
-
 end Place
 
 namespace Divisor
@@ -212,8 +181,6 @@ p2m_export "AlgebraicCurve.Divisor" "smul_def"
 p2m_open "AlgebraicCurve.Divisor"
 
 p2m_open_scoped "Pointwise P2MW.S_AlgebraicCurve_tateCommFinite.Pointwise"
-
-variable {K F}
 
 end Divisor
 
@@ -223,16 +190,11 @@ p2m_open "AlgebraicCurve.Pic0"
 
 p2m_open_scoped "Pointwise P2MW.S_AlgebraicCurve_tateCommFinite.Pointwise"
 
-variable {K F}
-
 end Pic0
 
 namespace Place
 p2m_export "AlgebraicCurve.Place" "ext ResidueField FiniteResidue heightOneSpectrum heightOneSpectrum_asIdeal ord ord_unit_smul_zpow exists_unit_mul_zpow FiniteResidue.finite algebraMap_mem' toValuationSubring mk restrict adicCompletion adicCompletionIntegers"
 p2m_open "AlgebraicCurve.Place"
-
-variable {K F}
-variable {R : Type*} [CommRing R] [IsDedekindDomain R] [Algebra R F] [IsFractionRing R F]
 
 end Place
 
@@ -286,23 +248,6 @@ theorem mem_of_ord_nonneg {f : F} (hf : f ≠ 0) (h : 0 ≤ v.ord f) :
   exact mul_mem (u : v.toValuationSubring).2 (pow_mem (π : v.toValuationSubring).2 _)
 
 end SinglePlace
-
-section Restrict
-
-variable {K F F' : Type*} [Field K] [Field F] [Field F']
-  [Algebra K F'] [Algebra F F']
-
-variable (w : Place K F')
-
-variable [Algebra.IsIntegral F F']
-
-section RestrictDef
-
-variable [Algebra K F] [IsScalarTower K F F']
-
-end RestrictDef
-
-end Restrict
 
 end Place
 
@@ -373,42 +318,6 @@ namespace Place
 p2m_export "AlgebraicCurve.Place" "ext ResidueField FiniteResidue heightOneSpectrum heightOneSpectrum_asIdeal ord ord_unit_smul_zpow exists_unit_mul_zpow FiniteResidue.finite algebraMap_mem' toValuationSubring mk restrict adicCompletion adicCompletionIntegers"
 p2m_open "AlgebraicCurve.Place AlgebraicCurve"
 
-section AdicCompletion
-
-variable {K F : Type*} [Field K] [Field F] [Algebra K F] (V : Place K F)
-
-end AdicCompletion
-
-section Henselian
-
-variable {K F : Type*} [Field K] [Field F] [Algebra K F] (V : Place K F)
-
-end Henselian
-
-section WithValLevel
-
-variable {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F']
-variable (F)
-variable [Algebra F F'] [IsScalarTower K F F'] [Algebra.IsIntegral F F'] (W : Place K F')
-
-end WithValLevel
-
-section CompletionComap
-
-variable {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F']
-variable (F)
-variable [Algebra F F'] [IsScalarTower K F F'] [Algebra.IsIntegral F F'] (W : Place K F')
-
-end CompletionComap
-
-section Bridge
-
-variable {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F']
-variable (F)
-variable [Algebra F F'] [IsScalarTower K F F'] [Algebra.IsIntegral F F'] (W : Place K F')
-
-end Bridge
-
 end AlgebraicCurve.Place
 
 end
@@ -464,24 +373,6 @@ theorem range_tateProj : LinearMap.range (tateProj u) = adicIntegersKSubmod u :=
     exact ⟨x, tateProj_of_mem u hx⟩
 
 end TateProj
-
-section TateResDef
-
-variable {K L : Type*} [Field K] [Field L] [Algebra K L] (u : Place K L)
-
-end TateResDef
-
-section TateAtoms
-
-variable (K L : Type*) [Field K] [Field L] [Algebra K L]
-
-variable [HasCanonicalLocalResidueKStar K L]
-
-variable (F E : Type*) [Field F] [Algebra K F] [Field E] [Algebra K E]
-variable [Algebra E F] [IsScalarTower K E F] [Algebra.IsIntegral E F]
-variable [HasCanonicalLocalResidueKStar K F] [HasCanonicalLocalResidueKStar K E]
-
-end TateAtoms
 
 end ModularCurve.KwF4gRRTate
 
@@ -743,8 +634,6 @@ end adicCompletion
 section NumberField
 
 p2m_open "NumberField P2MW.S_AlgebraicCurve_tateCommFinite.NumberField"
-
-variable (F : Type*) [Field F] [NumberField F] (w : HeightOneSpectrum (𝓞 F))
 
 end NumberField
 

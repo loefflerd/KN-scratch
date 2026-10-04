@@ -84,12 +84,6 @@ namespace Place
 p2m_export "AlgebraicCurve.Place" "ResidueField deg FiniteResidue ofHeightOneSpectrum FiniteResidue.finite"
 p2m_open "AlgebraicCurve.Place"
 
-section Restrict
-
-variable {K F F' : Type*} [Field K] [Field F] [Field F']
-  [Algebra K F'] [Algebra F F'] [Algebra K F] [IsScalarTower K F F']
-  [Algebra.IsIntegral F F'] (w : Place K F')
-end Restrict
 p2m_reactivate "P2MW.S_AlgebraicCurve_instIsCurveOverRatFunc.AlgebraicCurve P2MW.S_AlgebraicCurve_instIsCurveOverRatFunc.AlgebraicCurve.RationalFunctionField"
 end Place
 p2m_reactivate "P2MW.S_AlgebraicCurve_instIsCurveOverRatFunc.AlgebraicCurve P2MW.S_AlgebraicCurve_instIsCurveOverRatFunc.AlgebraicCurve.RationalFunctionField"
@@ -138,7 +132,6 @@ theorem isCurveOver_of_kaehlerRankOne (hΩ : KaehlerRankOne K (RatFunc K)) :
   IsCurveOver.of_finiteResidue_of_kaehlerRankOne hΩ
 end RationalFunctionField
 p2m_reactivate "P2MW.S_AlgebraicCurve_instIsCurveOverRatFunc.AlgebraicCurve P2MW.S_AlgebraicCurve_instIsCurveOverRatFunc.AlgebraicCurve.RationalFunctionField"
-variable (K F)
 end AlgebraicCurve
 p2m_reactivate "P2MW.S_AlgebraicCurve_instIsCurveOverRatFunc.AlgebraicCurve P2MW.S_AlgebraicCurve_instIsCurveOverRatFunc.AlgebraicCurve.RationalFunctionField"
 p2m_reactivate "P2MW.S_AlgebraicCurve_instIsCurveOverRatFunc.AlgebraicCurve P2MW.S_AlgebraicCurve_instIsCurveOverRatFunc.AlgebraicCurve.RationalFunctionField"
@@ -179,20 +172,14 @@ theorem kaehlerRankOne_ratFunc : KaehlerRankOne K (RatFunc K) :=
 scoped instance instIsCurveOverRatFunc : IsCurveOver K (RatFunc K) :=
   RationalFunctionField.isCurveOver_of_kaehlerRankOne K (kaehlerRankOne_ratFunc K)
 
-variable {F : Type*} [Field F] [Algebra K F]
-variable {K}
-variable (K F)
-variable {K F}
 end AlgebraicCurve
 p2m_reactivate "P2MW.S_AlgebraicCurve_instIsCurveOverRatFunc.AlgebraicCurve P2MW.S_AlgebraicCurve_instIsCurveOverRatFunc.AlgebraicCurve.RationalFunctionField"
 namespace ModularCurve
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_instIsCurveOverRatFunc.AlgebraicCurve"
-variable (K : Type*) [Field K] (N : ℕ) [NeZero N]
 end ModularCurve
 p2m_reactivate "P2MW.S_AlgebraicCurve_instIsCurveOverRatFunc.AlgebraicCurve P2MW.S_AlgebraicCurve_instIsCurveOverRatFunc.AlgebraicCurve.RationalFunctionField"
 section Gates
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_instIsCurveOverRatFunc.AlgebraicCurve P2MW.S_AlgebraicCurve_instIsCurveOverRatFunc.ModularCurve"
-variable (K : Type*) [Field K]
 end Gates
 p2m_reactivate "P2MW.S_AlgebraicCurve_instIsCurveOverRatFunc.AlgebraicCurve P2MW.S_AlgebraicCurve_instIsCurveOverRatFunc.AlgebraicCurve.RationalFunctionField"
 end

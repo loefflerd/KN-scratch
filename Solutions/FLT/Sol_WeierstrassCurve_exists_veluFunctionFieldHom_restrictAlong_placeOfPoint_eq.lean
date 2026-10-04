@@ -698,8 +698,6 @@ def ratPointHom [DecidableEq F] [DecidableEq k] :
   map_zero' := rfl
   map_add' := ratPointMap_add f
 
-variable [Fintype F]
-
 end RationalPoints
 p2m_reactivate "P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.WeierstrassCurve P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.WeierstrassCurve.Affine"
 
@@ -820,10 +818,6 @@ private lemma _root_.WeierstrassCurve.veluY_negY (S : Finset (F × F)) (x y : F)
   ring
 
 p2m_export "WeierstrassCurve" "veluY_negY"
-variable {W}
-variable {x₀ y₀ : F} (hQ : W.toAffine.Equation x₀ y₀) (hΨ : (W.Ψ₃).eval x₀ = 0)
-  (hΔ : (W.veluQuotient {(x₀, y₀)}).Δ ≠ 0)
-
 end Field
 p2m_reactivate "P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.WeierstrassCurve P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.WeierstrassCurve.Affine"
 
@@ -1260,8 +1254,6 @@ scoped instance : SMul (F ≃ₐ[K] F) (Place K F) where
         IsPrincipalIdealRing.of_surjective
           (smulRingEquiv σ v.toValuationSubring : _ ≃+* _)
           (smulRingEquiv σ v.toValuationSubring).surjective }
-
-variable (v : Place K F)
 
 end Place
 p2m_reactivate "P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.WeierstrassCurve P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.AlgebraicCurve.Place"
@@ -3511,8 +3503,6 @@ private theorem _root_.AlgebraicCurve.Place.ord_sub_evalAt_pos (hrat : v.IsRatio
     omega
 
 p2m_export "AlgebraicCurve.Place" "ord_sub_evalAt_pos"
-variable [HasPrincipalDivisors K F]
-
 end Place
 p2m_reactivate "P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.WeierstrassCurve P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.AlgebraicCurve P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.WeierstrassCurve.Affine.Point"
 
@@ -3812,8 +3802,6 @@ def VeluDeficitCrossQuadCubeBetaDegLtAt (p : ℕ) : Prop :=
               * (∏ A ∈ W.oddOrderSummingSet (Point.some x₀ y₀ h₀) ((p - 1) / 2),
                     (r - A.1)) ^ 4
               = M.eval r
-
-variable {F}
 
 end Reduction
 p2m_reactivate "P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.WeierstrassCurve P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.AlgebraicCurve P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.WeierstrassCurve.Affine.Point"
@@ -4377,8 +4365,6 @@ def VeluDeficitCrossQuadBetaOnlyDegLtAt (p : ℕ) : Prop :=
               * (∏ A ∈ W.oddOrderSummingSet (Point.some x₀ y₀ h₀) ((p - 1) / 2),
                     (r - A.1)) ^ 4
               = M.eval r
-
-variable {F}
 
 end Reduction
 p2m_reactivate "P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.WeierstrassCurve P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.AlgebraicCurve P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.WeierstrassCurve.Affine.Point"
@@ -5302,8 +5288,6 @@ def VeluDeficitCrossQuadBetaSDecompDegLtAt (p : ℕ) : Prop :=
               * (∏ A ∈ W.oddOrderSummingSet (Point.some x₀ y₀ h₀) ((p - 1) / 2),
                     (r - A.1)) ^ 4
               = M.eval r + N.eval r * s
-
-variable {F}
 
 end Reduction
 p2m_reactivate "P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.WeierstrassCurve P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.AlgebraicCurve P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.WeierstrassCurve.Affine.Point"

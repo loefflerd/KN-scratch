@@ -193,12 +193,6 @@ theorem pointPullbackHomTo_yGen {xP yP : L}
 
 end PointPullbackTo
 
-section AddMu
-
-variable (W : Affine F)
-
-end AddMu
-
 end WeierstrassCurve.Affine
 
 namespace ModularCurve
@@ -271,49 +265,6 @@ theorem equation_map_polyToFunctionField_yGen :
 
 end GenericPoint
 
-section CoordinateIdentification
-
-variable {W : Affine F} {x₀ y₀ : F}
-
-end CoordinateIdentification
-
-section Transcendence
-
-variable [DecidableEq F] [IsAlgClosed F] [CharZero F]
-variable {W : Affine F} [W.IsElliptic] {x₀ y₀ : F}
-
-end Transcendence
-
-section Certificate
-
-variable {W : Affine F} {x₀ y₀ : F}
-variable (hQ : W.toAffine.Equation x₀ y₀) (hΨ : (W.Ψ₃).eval x₀ = 0)
-
-end Certificate
-
-section Inclusion
-
-variable [DecidableEq F] [IsAlgClosed F] [CharZero F]
-variable {W : Affine F} [W.IsElliptic] {x₀ y₀ : F}
-variable (hQ : W.toAffine.Equation x₀ y₀) (hΨ : (W.Ψ₃).eval x₀ = 0)
-
-end Inclusion
-
-section Integrality
-
-variable [DecidableEq F] [IsAlgClosed F] [CharZero F]
-variable {W : Affine F} [W.IsElliptic] {x₀ y₀ : F}
-variable (hQ : W.toAffine.Equation x₀ y₀) (hΨ : (W.Ψ₃).eval x₀ = 0)
-
-end Integrality
-
-section Assembly
-
-variable [DecidableEq F] [IsAlgClosed F] [CharZero F]
-variable {W : Affine F} [W.IsElliptic] {x₀ y₀ : F}
-
-end Assembly
-
 end WeierstrassCurve.Affine
 
 end
@@ -332,29 +283,15 @@ p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
 variable {K : Type*} [Field K]
 
-section Formulas
-
-variable (C : VariableChange K) (W : WeierstrassCurve.Affine K)
-
-variable {C W}
-
-end Formulas
-
 namespace Point
 p2m_export "WeierstrassCurve.Affine.Point" "add some some.injEq some.inj map zero mk"
 p2m_open "WeierstrassCurve.Affine.Point"
-
-variable {C : VariableChange K} {W : WeierstrassCurve.Affine K}
-
-variable [DecidableEq K]
 
 end Point
 
 namespace Point
 p2m_export "WeierstrassCurve.Affine.Point" "add some some.injEq some.inj map zero mk"
 p2m_open "WeierstrassCurve.Affine.Point"
-
-variable {C : VariableChange K} {W : WeierstrassCurve.Affine K} {φ : K →+* K}
 
 end Point
 
@@ -401,12 +338,6 @@ local notation "ι" => algebraMap F W.FunctionField
 
 end GenericPointGroup
 
-section CoordHom
-
-variable {W : Affine F} {a b : F} (hA : W.Equation a b)
-
-end CoordHom
-
 section AdjoinSurjective
 
 variable {W : Affine F} (hΔ : W.Δ ≠ 0) {a b : F} (hA : W.Equation a b)
@@ -421,14 +352,6 @@ theorem transcendental_polyToFunctionField_X :
   exact polyToFunctionField_injective (by simpa using hp)
 
 end AdjoinSurjective
-
-section TranslationHom
-
-variable {W : Affine F} {a b : F} (hA : W.Equation a b)
-
-variable (hΔ : W.Δ ≠ 0)
-
-end TranslationHom
 
 end WeierstrassCurve.Affine
 
@@ -571,14 +494,6 @@ theorem mrtw60a_aeval_xFwd_injective :
     Function.Injective (Polynomial.aeval (R := F) (mrtw60a_xFwd C V)) :=
   (injective_iff_map_eq_zero _).mpr fun p hp =>
     transcendental_iff.mp (mrtw60a_transcendental_xFwd C V) p hp
-
-section CoordHom
-
-variable (C) (V)
-
-variable {C} {V}
-
-end CoordHom
 
 theorem mrtw60a_coordHom_ext {W : Affine F} {S : Type u} [CommRing S] [Algebra F S]
     {φ ψ : W.CoordinateRing →ₐ[F] S}

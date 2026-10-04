@@ -175,8 +175,6 @@ theorem le_exp_neg_one_of_lt_one {x : ℤᵐ⁰} (hx : x < 1) : x ≤ exp (-1 : 
 namespace Place
 p2m_open "AlgebraicCurve.Place"
 
-variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
-
 end Place
 
 end AlgebraicCurve

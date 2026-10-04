@@ -1234,8 +1234,6 @@ end C6_width
 section Solution
 
 p2m_open "UpperHalfPlane~I"
-open scoped Manifold
-
 end Solution
 
 end WLightR2

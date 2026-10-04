@@ -26,9 +26,6 @@ namespace Place
 p2m_export "AlgebraicCurve.Place" "fiberOver restrict_eq_of_mem_fiberOver ramificationIndex restrict inertiaDeg ramificationIndex_eq_of_restrict_eq inertiaDeg_eq_of_restrict_eq sum_ramificationIndex_mul_inertiaDeg_fiberOver"
 p2m_open "AlgebraicCurve.Place"
 
-variable {K F' M : Type*} [Field K] [Field F'] [Field M] [Algebra K F'] [Algebra K M]
-  [Algebra F' M] [IsScalarTower K F' M]
-
 end Place
 end AlgebraicCurve
 

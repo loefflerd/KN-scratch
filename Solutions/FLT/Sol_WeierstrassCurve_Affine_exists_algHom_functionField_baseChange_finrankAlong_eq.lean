@@ -113,17 +113,6 @@ def kw_coordinateRingBasis {R : Type*} [CommRing R] (V : Affine R) :
 
 end Setup
 
-section Wire
-
-variable (W : WeierstrassCurve ℚ) [W.IsElliptic]
-variable (F : Type v) [Field F] [Algebra ℚ F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
-variable (F' : Type w) [Field F'] [Algebra ℚ F'] [DecidableEq F'] [IsAlgClosed F'] [CharZero F']
-variable [Algebra F F'] [IsScalarTower ℚ F F']
-
-variable (K : Type) [Field K] [Algebra ℚ K] [DecidableEq K] [IsAlgClosed K] [CharZero K]
-
-end Wire
-
 end ModularCurve
 
 end
@@ -182,8 +171,6 @@ end CoordinateRing
 
 p2m_open "WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.WeierstrassCurve.Affine.CoordinateRing"
 
-variable [IsDedekindDomain W.CoordinateRing]
-
 end WeierstrassCurve.Affine
 
 end
@@ -203,8 +190,6 @@ p2m_open_scoped "Polynomial.Bivariate P2MW.S_WeierstrassCurve_Affine_exists_algH
 namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "algebraAlong FiniteAlong finrankAlong Place"
 p2m_open "AlgebraicCurve"
-
-variable {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F']
 
 end AlgebraicCurve
 
@@ -239,26 +224,6 @@ variable {W}
 def yGen (W : Affine F) : W.FunctionField :=
   algebraMap W.CoordinateRing W.FunctionField (CoordinateRing.mk W Y)
 
-section OrdAtPoint
-
-variable [IsDedekindDomain W.CoordinateRing]
-
-end OrdAtPoint
-
-section OrdVeluFun
-
-variable {x₀ y₀ : F}
-
-variable [IsDedekindDomain W.CoordinateRing]
-
-end OrdVeluFun
-
-section OrdVeluFunInfty
-
-variable {x₀ y₀ : F} (v : AlgebraicCurve.Place F W.FunctionField)
-
-end OrdVeluFunInfty
-
 end WeierstrassCurve.Affine
 
 namespace WeierstrassCurve
@@ -273,14 +238,6 @@ variable {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
 variable {W : Affine F} [W.IsElliptic]
 
 namespace VeluPicSeam
-
-variable {V : Affine F}
-
-section Cases
-
-variable [IsDedekindDomain V.CoordinateRing]
-
-end Cases
 
 end VeluPicSeam
 
@@ -359,20 +316,7 @@ variable [Algebra F F'] [IsScalarTower ℚ F F']
 
 attribute [local instance] Algebra.TensorProduct.rightAlgebra
 
-section FracHom
-
-variable [IsDomain ((W⁄F).FunctionField ⊗[F] F')]
-
-end FracHom
-
 end Setup
-
-section Wire
-
-variable (W : WeierstrassCurve ℚ) [W.IsElliptic]
-variable (K : Type) [Field K] [Algebra ℚ K] [DecidableEq K] [IsAlgClosed K] [CharZero K]
-
-end Wire
 
 end ModularCurve
 
@@ -489,12 +433,6 @@ theorem pointPullbackHomTo_yGen {xP yP : L}
 
 end PointPullbackTo
 
-section AddMu
-
-variable (W : Affine F)
-
-end AddMu
-
 end WeierstrassCurve.Affine
 
 namespace ModularCurve
@@ -562,46 +500,6 @@ theorem equation_map_polyToFunctionField_yGen :
 
 end GenericPoint
 
-section CoordinateIdentification
-
-variable {W : Affine F} {x₀ y₀ : F}
-
-end CoordinateIdentification
-
-section Transcendence
-
-variable [DecidableEq F] [IsAlgClosed F] [CharZero F]
-variable {W : Affine F} [W.IsElliptic] {x₀ y₀ : F}
-
-end Transcendence
-
-section Certificate
-
-variable {W : Affine F} {x₀ y₀ : F}
-
-end Certificate
-
-section Inclusion
-
-variable [DecidableEq F] [IsAlgClosed F] [CharZero F]
-variable {W : Affine F} [W.IsElliptic] {x₀ y₀ : F}
-
-end Inclusion
-
-section Integrality
-
-variable [DecidableEq F] [IsAlgClosed F] [CharZero F]
-variable {W : Affine F} [W.IsElliptic] {x₀ y₀ : F}
-
-end Integrality
-
-section Assembly
-
-variable [DecidableEq F] [IsAlgClosed F] [CharZero F]
-variable {W : Affine F} [W.IsElliptic] {x₀ y₀ : F}
-
-end Assembly
-
 end WeierstrassCurve.Affine
 
 end
@@ -644,12 +542,6 @@ local notation "ι" => algebraMap F W.FunctionField
 
 end GenericPointGroup
 
-section CoordHom
-
-variable {W : Affine F} {a b : F} (hA : W.Equation a b)
-
-end CoordHom
-
 section AdjoinSurjective
 
 variable {W : Affine F} (hΔ : W.Δ ≠ 0) {a b : F} (hA : W.Equation a b)
@@ -664,14 +556,6 @@ theorem transcendental_polyToFunctionField_X :
   exact polyToFunctionField_injective (by simpa using hp)
 
 end AdjoinSurjective
-
-section TranslationHom
-
-variable {W : Affine F} {a b : F} (hA : W.Equation a b)
-
-variable (hΔ : W.Δ ≠ 0)
-
-end TranslationHom
 
 end WeierstrassCurve.Affine
 
@@ -991,15 +875,6 @@ theorem kw_isogenyEndDatumBaseChangeAlong_of_tensorIsDomainGeneral
   kw_isogenyEndDatumBaseChangeAlong_of_isDomain_tensorGeneral W F F' hseam σ N
 
 end Setup
-
-section SatGate
-
-variable (W : WeierstrassCurve ℚ) [W.IsElliptic]
-variable (F : Type) [Field F] [Algebra ℚ F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
-variable (F' : Type) [Field F'] [Algebra ℚ F'] [DecidableEq F'] [IsAlgClosed F'] [CharZero F']
-variable [Algebra F F'] [IsScalarTower ℚ F F']
-
-end SatGate
 
 end ModularCurve
 p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.ModularCurve"

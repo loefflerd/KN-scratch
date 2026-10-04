@@ -20,9 +20,6 @@ namespace Place
 p2m_export "AlgebraicCurve.Place" "restrict restrict_toValuationSubring ext smul_toValuationSubring"
 p2m_open "AlgebraicCurve.Place"
 
-variable {K F' M : Type*} [Field K] [Field F'] [Field M] [Algebra K F'] [Algebra K M]
-  [Algebra F' M] [IsScalarTower K F' M]
-
 end Place
 end AlgebraicCurve
 

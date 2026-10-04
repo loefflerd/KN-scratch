@@ -2458,18 +2458,6 @@ theorem indexOfSpecialtyFinite_of_ratFunc_tower :
 end RationalFunctionField
 p2m_reactivate "P2MW.S_AlgebraicCurve_RationalFunctionField_stichtenothGenusExists_of_ratFunc_tower.AlgebraicCurve P2MW.S_AlgebraicCurve_RationalFunctionField_stichtenothGenusExists_of_ratFunc_tower.AlgebraicCurve.RationalFunctionField"
 
-section Gates
-
-variable (K : Type*) [Field K]
-
-variable [DecidableEq (RatFunc K)]
-variable (F : Type*) [Field F] [Algebra K F] [Algebra (RatFunc K) F]
-  [IsScalarTower K (RatFunc K) F]
-
-variable [FiniteDimensional (RatFunc K) F] [Algebra.IsSeparable (RatFunc K) F]
-  [HasPrincipalDivisors K F]
-
-end Gates
 p2m_reactivate "P2MW.S_AlgebraicCurve_RationalFunctionField_stichtenothGenusExists_of_ratFunc_tower.AlgebraicCurve P2MW.S_AlgebraicCurve_RationalFunctionField_stichtenothGenusExists_of_ratFunc_tower.AlgebraicCurve.RationalFunctionField"
 
 end AlgebraicCurve
@@ -2543,18 +2531,6 @@ theorem riemannGenusBounded (hC : ConstantsAreBase K F) : RiemannGenusBounded K 
 end RationalFunctionField
 p2m_reactivate "P2MW.S_AlgebraicCurve_RationalFunctionField_stichtenothGenusExists_of_ratFunc_tower.AlgebraicCurve P2MW.S_AlgebraicCurve_RationalFunctionField_stichtenothGenusExists_of_ratFunc_tower.AlgebraicCurve.RationalFunctionField"
 
-section Gates
-
-variable (K : Type*) [Field K] [DecidableEq (RatFunc K)]
-variable (F : Type*) [Field F] [Algebra K F] [Algebra (RatFunc K) F]
-  [IsScalarTower K (RatFunc K) F]
-  [FiniteDimensional (RatFunc K) F] [Algebra.IsSeparable (RatFunc K) F]
-
-omit [DecidableEq (RatFunc K)] [Algebra (RatFunc K) F] [IsScalarTower K (RatFunc K) F]
-  [FiniteDimensional (RatFunc K) F] [Algebra.IsSeparable (RatFunc K) F] in
-variable [IsCurveOver K F]
-
-end Gates
 p2m_reactivate "P2MW.S_AlgebraicCurve_RationalFunctionField_stichtenothGenusExists_of_ratFunc_tower.AlgebraicCurve P2MW.S_AlgebraicCurve_RationalFunctionField_stichtenothGenusExists_of_ratFunc_tower.AlgebraicCurve.RationalFunctionField"
 
 end AlgebraicCurve

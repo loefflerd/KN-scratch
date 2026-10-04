@@ -409,12 +409,6 @@ theorem kw_veluOrderTwoTangentYContent_axiomAnchor : True := by
   have _q : Quot.mk (α := ℕ) (· = ·) 0 = Quot.mk (· = ·) 0 := Quot.sound rfl
   trivial
 
-section Field
-
-variable {F : Type*} [Field F] [DecidableEq F] {W : WeierstrassCurve F} {x₀ y₀ x y : F}
-
-end Field
-
 section CommRing
 
 variable {R : Type*} [CommRing R] {W : WeierstrassCurve R} {x₀ y₀ x y : R}

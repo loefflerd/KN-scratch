@@ -139,24 +139,6 @@ namespace KwF4gRRTate
 p2m_export "ModularCurve.KwF4gRRTate" "KwF4gRRTateCommFinite KwF4gRRTateAgreement KwF4gRRTateChainRule KwF4gRRTateTraceCompat"
 p2m_open "ModularCurve.KwF4gRRTate ModularCurve"
 
-section FinrankTrace
-
-variable {K V : Type*} [Field K] [AddCommGroup V] [Module K V]
-
-end FinrankTrace
-
-section TateComm
-
-variable {K V : Type*} [Field K] [AddCommGroup V] [Module K V]
-
-end TateComm
-
-section TateFactoring
-
-variable {K V : Type*} [Field K] [AddCommGroup V] [Module K V]
-
-end TateFactoring
-
 end ModularCurve.KwF4gRRTate
 
 end
@@ -182,23 +164,15 @@ namespace Place
 p2m_export "AlgebraicCurve.Place" "ext FiniteResidue ord ord_one ord_mul ord_inv ord_coe_irreducible ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ne_top' toValuationSubring dCoord DCoordGenerates differentialCoeff uniformizer localResidue localResidue_eq_zero_of_ord_nonneg ramificationIndex ramificationIndex_pos exists_ord_eq_ramificationIndex ramificationIndex_dvd_ord irreducible_mk_comap adicCompletion adicCompletionIntegers"
 p2m_open "AlgebraicCurve.Place"
 
-variable {K F}
-
-variable (v : Place K F)
-
 end Place
 
 namespace Divisor
 p2m_open "AlgebraicCurve.Divisor"
 
-variable {K F}
-
 end Divisor
 
 namespace Pic0
 p2m_open "AlgebraicCurve.Pic0"
-
-variable {K F}
 
 end Pic0
 
@@ -208,19 +182,12 @@ p2m_open "AlgebraicCurve.Place"
 
 p2m_open_scoped "Pointwise P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.Pointwise"
 
-variable {K F}
-variable (σ : F ≃ₐ[K] F)
-
-variable (v : Place K F)
-
 end Place
 
 namespace Divisor
 p2m_open "AlgebraicCurve.Divisor"
 
 p2m_open_scoped "Pointwise P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.Pointwise"
-
-variable {K F}
 
 end Divisor
 
@@ -229,16 +196,11 @@ p2m_open "AlgebraicCurve.Pic0"
 
 p2m_open_scoped "Pointwise P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.Pointwise"
 
-variable {K F}
-
 end Pic0
 
 namespace Place
 p2m_export "AlgebraicCurve.Place" "ext FiniteResidue ord ord_one ord_mul ord_inv ord_coe_irreducible ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ne_top' toValuationSubring dCoord DCoordGenerates differentialCoeff uniformizer localResidue localResidue_eq_zero_of_ord_nonneg ramificationIndex ramificationIndex_pos exists_ord_eq_ramificationIndex ramificationIndex_dvd_ord irreducible_mk_comap adicCompletion adicCompletionIntegers"
 p2m_open "AlgebraicCurve.Place"
-
-variable {K F}
-variable {R : Type*} [CommRing R] [IsDedekindDomain R] [Algebra R F] [IsFractionRing R F]
 
 end Place
 
@@ -438,12 +400,6 @@ theorem isPrincipalIdealRing_comap :
   rw [hcoe, mul_comm, div_mul_cancel₀]
   exact hgn
 
-section RestrictDef
-
-variable [Algebra K F] [IsScalarTower K F F']
-
-end RestrictDef
-
 end Restrict
 
 end Place
@@ -507,42 +463,6 @@ namespace Place
 p2m_export "AlgebraicCurve.Place" "ext FiniteResidue ord ord_one ord_mul ord_inv ord_coe_irreducible ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ne_top' toValuationSubring dCoord DCoordGenerates differentialCoeff uniformizer localResidue localResidue_eq_zero_of_ord_nonneg ramificationIndex ramificationIndex_pos exists_ord_eq_ramificationIndex ramificationIndex_dvd_ord irreducible_mk_comap adicCompletion adicCompletionIntegers"
 p2m_open "AlgebraicCurve.Place AlgebraicCurve"
 
-section AdicCompletion
-
-variable {K F : Type*} [Field K] [Field F] [Algebra K F] (V : Place K F)
-
-end AdicCompletion
-
-section Henselian
-
-variable {K F : Type*} [Field K] [Field F] [Algebra K F] (V : Place K F)
-
-end Henselian
-
-section WithValLevel
-
-variable {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F']
-variable (F)
-variable [Algebra F F'] [IsScalarTower K F F'] [Algebra.IsIntegral F F'] (W : Place K F')
-
-end WithValLevel
-
-section CompletionComap
-
-variable {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F']
-variable (F)
-variable [Algebra F F'] [IsScalarTower K F F'] [Algebra.IsIntegral F F'] (W : Place K F')
-
-end CompletionComap
-
-section Bridge
-
-variable {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F']
-variable (F)
-variable [Algebra F F'] [IsScalarTower K F F'] [Algebra.IsIntegral F F'] (W : Place K F')
-
-end Bridge
-
 end AlgebraicCurve.Place
 
 end
@@ -566,19 +486,9 @@ namespace Place
 p2m_export "AlgebraicCurve.Place" "ext FiniteResidue ord ord_one ord_mul ord_inv ord_coe_irreducible ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ne_top' toValuationSubring dCoord DCoordGenerates differentialCoeff uniformizer localResidue localResidue_eq_zero_of_ord_nonneg ramificationIndex ramificationIndex_pos exists_ord_eq_ramificationIndex ramificationIndex_dvd_ord irreducible_mk_comap adicCompletion adicCompletionIntegers"
 p2m_open "AlgebraicCurve.Place AlgebraicCurve"
 
-section CompletionAlgebra
-
-variable {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F']
-variable (F)
-variable [Algebra F F'] [IsScalarTower K F F'] [Algebra.IsIntegral F F'] (W : Place K F')
-
-end CompletionAlgebra
-
 section IrreducibleValuation
 
 p2m_open "WithZero P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.WithZero"
-
-variable {K F : Type*} [Field K] [Field F] [Algebra K F] (V : Place K F)
 
 end IrreducibleValuation
 
@@ -588,8 +498,6 @@ p2m_open_scoped "Valued P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.Valu
 
 p2m_open "WithZeroMulInt P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.WithZeroMulInt Valuation.IsRankOneDiscrete P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.Valuation.IsRankOneDiscrete"
 
-variable {K F : Type*} [Field K] [Field F] [Algebra K F] (V : Place K F)
-
 end SpectralSetup
 
 section AbsoluteValue
@@ -598,19 +506,11 @@ p2m_open_scoped "Valued P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.Valu
 
 p2m_open "WithZeroMulInt P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.WithZeroMulInt Valuation.IsRankOneDiscrete P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.Valuation.IsRankOneDiscrete"
 
-variable {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F']
-variable (F)
-variable [Algebra F F'] [IsScalarTower K F F'] [Algebra.IsIntegral F F'] (W : Place K F')
-
 end AbsoluteValue
 
 section IntegralClosure
 
 p2m_open_scoped "Valued P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.Valued NNReal P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.NNReal WithZero P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.WithZero"
-
-variable {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F']
-variable (F)
-variable [Algebra F F'] [IsScalarTower K F F'] [Algebra.IsIntegral F F'] (W : Place K F')
 
 end IntegralClosure
 
@@ -618,19 +518,7 @@ section ClosedAdjoin
 
 p2m_open_scoped "Valued P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.Valued NNReal P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.NNReal WithZero P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.WithZero"
 
-variable {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F']
-variable (F)
-variable [Algebra F F'] [IsScalarTower K F F'] [Algebra.IsIntegral F F'] (W : Place K F')
-
 end ClosedAdjoin
-
-section Bridge
-
-variable {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F']
-variable (F)
-variable [Algebra F F'] [IsScalarTower K F F'] [Algebra.IsIntegral F F'] (W : Place K F')
-
-end Bridge
 
 end AlgebraicCurve.Place
 
@@ -657,28 +545,6 @@ namespace Place
 p2m_export "AlgebraicCurve.Place" "ext FiniteResidue ord ord_one ord_mul ord_inv ord_coe_irreducible ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ne_top' toValuationSubring dCoord DCoordGenerates differentialCoeff uniformizer localResidue localResidue_eq_zero_of_ord_nonneg ramificationIndex ramificationIndex_pos exists_ord_eq_ramificationIndex ramificationIndex_dvd_ord irreducible_mk_comap adicCompletion adicCompletionIntegers"
 p2m_open "AlgebraicCurve.Place AlgebraicCurve"
 
-section FiniteDimensional
-
-variable {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F']
-variable (F)
-variable [Algebra F F'] [IsScalarTower K F F'] [Algebra.IsIntegral F F'] (W : Place K F')
-
-end FiniteDimensional
-
-section CompletionTrace
-
-variable {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F']
-variable (F)
-variable [Algebra F F'] [IsScalarTower K F F'] [Algebra.IsIntegral F F'] (W : Place K F')
-
-end CompletionTrace
-
-section ResidueCompletion
-
-variable {K F : Type*} [Field K] [Field F] [Algebra K F] (V : Place K F)
-
-end ResidueCompletion
-
 end AlgebraicCurve.Place
 
 end
@@ -702,22 +568,13 @@ variable (K F : Type*) [Field K] [Field F] [Algebra K F]
 namespace IsCurveOver
 p2m_open "AlgebraicCurve.IsCurveOver"
 
-variable {K F}
-
 end IsCurveOver
 
 namespace Place
 p2m_export "AlgebraicCurve.Place" "ext FiniteResidue ord ord_one ord_mul ord_inv ord_coe_irreducible ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ne_top' toValuationSubring dCoord DCoordGenerates differentialCoeff uniformizer localResidue localResidue_eq_zero_of_ord_nonneg ramificationIndex ramificationIndex_pos exists_ord_eq_ramificationIndex ramificationIndex_dvd_ord irreducible_mk_comap adicCompletion adicCompletionIntegers"
 p2m_open "AlgebraicCurve.Place"
 
-variable {K F}
-variable (v : Place K F)
-
 end Place
-
-variable {K F}
-
-variable (K F)
 
 end AlgebraicCurve
 
@@ -732,8 +589,6 @@ end ModularCurve
 namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver diagonalHom_apply HasCanonicalLocalResidueKStar kaehlerResidueTerm kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff kwHgfV352_exists_sub_mem_adicCompletionIntegers kaehlerPullback kwHgfV352_localResidueCompletion kwHgfV352_completionTraceAt tateCommFinite tateTraceCompat_of_isSeparable tateAgreement tateChainRule"
 p2m_open "AlgebraicCurve"
-
-variable (K F : Type*) [Field K] [Field F] [Algebra K F]
 
 end AlgebraicCurve
 
@@ -759,12 +614,6 @@ namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver diagonalHom_apply HasCanonicalLocalResidueKStar kaehlerResidueTerm kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff kwHgfV352_exists_sub_mem_adicCompletionIntegers kaehlerPullback kwHgfV352_localResidueCompletion kwHgfV352_completionTraceAt tateCommFinite tateTraceCompat_of_isSeparable tateAgreement tateChainRule"
 p2m_open "AlgebraicCurve"
 
-variable {K F : Type*} [Field K] [Field F] [Algebra K F]
-
-variable {D E : Divisor K F}
-
-variable (K F)
-
 end AlgebraicCurve
 
 end
@@ -789,15 +638,6 @@ namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver diagonalHom_apply HasCanonicalLocalResidueKStar kaehlerResidueTerm kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff kwHgfV352_exists_sub_mem_adicCompletionIntegers kaehlerPullback kwHgfV352_localResidueCompletion kwHgfV352_completionTraceAt tateCommFinite tateTraceCompat_of_isSeparable tateAgreement tateChainRule"
 p2m_open "AlgebraicCurve"
 
-section Helpers
-
-variable {K F : Type*} [Field K] [Field F] [Algebra K F]
-variable {E : Type*} [Field E] [Algebra K E] [Algebra E F] [IsScalarTower K E F]
-variable [Algebra.IsIntegral E F]
-variable [HasCanonicalLocalResidueKStar K E] [HasCanonicalLocalResidueKStar K F]
-
-end Helpers
-
 section NoGoEngine
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F]
@@ -811,43 +651,6 @@ end FiberKaehlerLocalDatum
 
 end NoGoEngine
 
-section FKRINoGo
-
-variable {K F : Type*} [Field K] [Field F] [Algebra K F]
-variable [HasCanonicalLocalResidueKStar K F]
-variable [∀ w : Place K F, w.DCoordGenerates] [Nontrivial Ω[F⁄K]]
-variable {E : Type*} [Field E] [Algebra K E]
-variable [HasCanonicalLocalResidueKStar K E]
-variable [∀ v : Place K E, v.DCoordGenerates] [Nontrivial Ω[E⁄K]]
-variable [Algebra E F] [IsScalarTower K E F] [Algebra.IsIntegral E F]
-
-end FKRINoGo
-
-section CorrectedCarrier
-
-variable (K F : Type*) [Field K] [Field F] [Algebra K F]
-variable (E : Type*) [Field E] [Algebra K E] [Algebra E F] [IsScalarTower K E F]
-
-variable {K F E}
-
-variable (K F E)
-variable [HasCanonicalLocalResidueKStar K E] [HasCanonicalLocalResidueKStar K F]
-variable [Algebra.IsIntegral E F]
-
-end CorrectedCarrier
-
-section CorrectedEngine
-
-variable {K F : Type*} [Field K] [Field F] [Algebra K F]
-variable [HasCanonicalLocalResidueKStar K F]
-variable [∀ w : Place K F, w.DCoordGenerates] [Nontrivial Ω[F⁄K]]
-variable {E : Type*} [Field E] [Algebra K E]
-variable [HasCanonicalLocalResidueKStar K E]
-variable [∀ v : Place K E, v.DCoordGenerates] [Nontrivial Ω[E⁄K]]
-variable [Algebra E F] [IsScalarTower K E F] [Algebra.IsIntegral E F]
-
-end CorrectedEngine
-
 end AlgebraicCurve
 
 namespace ModularCurve
@@ -857,12 +660,6 @@ p2m_open "ModularCurve"
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.AlgebraicCurve Polynomial P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.Polynomial IntermediateField P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.IntermediateField"
 
 attribute [local instance 2000] RatFunc.instAlgebraOfPolynomial
-
-section CorrectedProductionJoin
-
-variable (N : ℕ) [NeZero N]
-
-end CorrectedProductionJoin
 
 end ModularCurve
 
@@ -919,48 +716,6 @@ theorem kwHgfV352_localResidueCompletion_algebraMap (v : Place K E) (x : E) :
 
 end LocalResidueCompletion
 
-section CompletionTraceAt
-
-variable {K : Type*} [Field K] {F : Type*} [Field F] [Algebra K F]
-variable {E : Type*} [Field E] [Algebra K E] [Algebra E F] [IsScalarTower K E F]
-variable [Algebra.IsIntegral E F] [HasPrincipalDivisors K E] [HasPrincipalDivisors K F]
-
-end CompletionTraceAt
-
-section MPGKPowBasisLocalMint
-
-variable (K F : Type*) [Field K] [Field F] [Algebra K F]
-variable (E : Type*) [Field E] [Algebra K E] [Algebra E F] [IsScalarTower K E F]
-variable [HasCanonicalLocalResidueKStar K E] [HasCanonicalLocalResidueKStar K F]
-variable [Algebra.IsIntegral E F]
-
-end MPGKPowBasisLocalMint
-
-section CompletionTraceSumMint
-
-variable (K F : Type*) [Field K] [Field F] [Algebra K F]
-variable (E : Type*) [Field E] [Algebra K E] [Algebra E F] [IsScalarTower K E F]
-variable [Algebra.IsIntegral E F]
-
-end CompletionTraceSumMint
-
-section EffBaseDescentMint
-
-variable (K F : Type*) [Field K] [Field F] [Algebra K F]
-variable (E : Type*) [Field E] [Algebra K E] [Algebra E F] [IsScalarTower K E F]
-variable [Algebra.IsIntegral E F]
-
-end EffBaseDescentMint
-
-section MainReduction
-
-variable {K F : Type*} [Field K] [Field F] [Algebra K F]
-variable {E : Type*} [Field E] [Algebra K E] [Algebra E F] [IsScalarTower K E F]
-variable [HasCanonicalLocalResidueKStar K E] [HasCanonicalLocalResidueKStar K F]
-variable [Algebra.IsIntegral E F] [FiniteDimensional E F]
-
-end MainReduction
-
 end AlgebraicCurve
 
 end
@@ -985,30 +740,6 @@ p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4R1V391a.KwF4R1V
 namespace KwF4gRRTate
 p2m_export "ModularCurve.KwF4gRRTate" "KwF4gRRTateCommFinite KwF4gRRTateAgreement KwF4gRRTateChainRule KwF4gRRTateTraceCompat"
 p2m_open "ModularCurve.KwF4gRRTate ModularCurve"
-
-section TateProj
-
-variable {K L : Type*} [Field K] [Field L] [Algebra K L] (u : Place K L)
-
-end TateProj
-
-section TateResDef
-
-variable {K L : Type*} [Field K] [Field L] [Algebra K L] (u : Place K L)
-
-end TateResDef
-
-section TateAtoms
-
-variable (K L : Type*) [Field K] [Field L] [Algebra K L]
-
-variable [HasCanonicalLocalResidueKStar K L]
-
-variable (F E : Type*) [Field F] [Algebra K F] [Field E] [Algebra K E]
-variable [Algebra E F] [IsScalarTower K E F] [Algebra.IsIntegral E F]
-variable [HasCanonicalLocalResidueKStar K F] [HasCanonicalLocalResidueKStar K E]
-
-end TateAtoms
 
 end ModularCurve.KwF4gRRTate
 

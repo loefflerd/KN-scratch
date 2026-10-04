@@ -464,8 +464,6 @@ namespace Place
 p2m_export "AlgebraicCurve.Place" "restrictAlong ramificationIndexAlong ord_restrictAlong ramificationIndex_pos ext coe_algebraMap ResidueField deg adicValuation adicValuation_ne_zero ord ord_zero ord_unit_smul_zpow exists_unit_mul_zpow ofHeightOneSpectrum ofHeightOneSpectrum_toValuationSubring ne_top' algebraMap_mem' toValuationSubring mk IsRational evalAt algebraMap_evalAt ofHeightOneSpectrum_injective"
 p2m_open "AlgebraicCurve.Place~ord_nonneg_of_mem~mem_of_ord_nonneg AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg"
 
-variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
-
 end AlgebraicCurve.Place
 p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_algHom_ext_of_forall_restrictAlong_placeOfPoint_eq.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_algHom_ext_of_forall_restrictAlong_placeOfPoint_eq.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_algHom_ext_of_forall_restrictAlong_placeOfPoint_eq.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_algHom_ext_of_forall_restrictAlong_placeOfPoint_eq.WeierstrassCurve.Affine"
 p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_algHom_ext_of_forall_restrictAlong_placeOfPoint_eq.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_algHom_ext_of_forall_restrictAlong_placeOfPoint_eq.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_algHom_ext_of_forall_restrictAlong_placeOfPoint_eq.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_algHom_ext_of_forall_restrictAlong_placeOfPoint_eq.WeierstrassCurve.Affine"
@@ -574,11 +572,6 @@ variable (w : Place K F')
 
 variable [Algebra.IsIntegral F F']
 
-section RestrictDef
-
-variable [Algebra K F] [IsScalarTower K F F']
-
-end RestrictDef
 p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_algHom_ext_of_forall_restrictAlong_placeOfPoint_eq.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_algHom_ext_of_forall_restrictAlong_placeOfPoint_eq.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_algHom_ext_of_forall_restrictAlong_placeOfPoint_eq.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_algHom_ext_of_forall_restrictAlong_placeOfPoint_eq.WeierstrassCurve.Affine"
 
 end Restrict
@@ -641,10 +634,6 @@ p2m_export "WeierstrassCurve.Affine" "Equation CoordinateRing map Point.some Non
 namespace Point
 p2m_export "WeierstrassCurve.Affine.Point" "add some some.inj map_zero map zero mk"
 p2m_open "WeierstrassCurve.Affine.Point WeierstrassCurve.Affine WeierstrassCurve"
-
-variable {R : Type r} {S : Type s} {K : Type v} [CommRing R] [CommRing S] [Field K]
-  [DecidableEq K] [IsAlgClosed K] [CharZero K] {W' : Affine R} [Algebra R S] [Algebra R K]
-  [Algebra S K] [IsScalarTower R S K] {p : ℕ}
 
 end WeierstrassCurve.Affine.Point
 p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_algHom_ext_of_forall_restrictAlong_placeOfPoint_eq.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_algHom_ext_of_forall_restrictAlong_placeOfPoint_eq.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_algHom_ext_of_forall_restrictAlong_placeOfPoint_eq.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_algHom_ext_of_forall_restrictAlong_placeOfPoint_eq.WeierstrassCurve.Affine"
@@ -770,8 +759,6 @@ private theorem _root_.AlgebraicCurve.Place.ord_sub_evalAt_pos (hrat : v.IsRatio
     omega
 
 p2m_export "AlgebraicCurve.Place" "ord_sub_evalAt_pos"
-variable [HasPrincipalDivisors K F]
-
 end Place
 p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_algHom_ext_of_forall_restrictAlong_placeOfPoint_eq.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_algHom_ext_of_forall_restrictAlong_placeOfPoint_eq.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_algHom_ext_of_forall_restrictAlong_placeOfPoint_eq.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_algHom_ext_of_forall_restrictAlong_placeOfPoint_eq.WeierstrassCurve.Affine"
 
@@ -781,8 +768,6 @@ p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_algHom_ext_of_forall_restrictAlon
 namespace ModularCurve
 
 p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg P2MW.S_WeierstrassCurve_Affine_algHom_ext_of_forall_restrictAlong_placeOfPoint_eq.AlgebraicCurve"
-
-variable (N : ℕ) [NeZero N]
 
 end ModularCurve
 p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_algHom_ext_of_forall_restrictAlong_placeOfPoint_eq.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_algHom_ext_of_forall_restrictAlong_placeOfPoint_eq.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_algHom_ext_of_forall_restrictAlong_placeOfPoint_eq.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_algHom_ext_of_forall_restrictAlong_placeOfPoint_eq.WeierstrassCurve.Affine"

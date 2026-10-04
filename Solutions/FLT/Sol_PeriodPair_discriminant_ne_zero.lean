@@ -218,8 +218,6 @@ namespace Projectivization
 p2m_export "Projectivization" "map card"
 p2m_open "Projectivization"
 
-open scoped LinearAlgebra.Projectivization
-
 end Projectivization
 p2m_reactivate "P2MW.S_PeriodPair_discriminant_ne_zero.ModularForm"
 end

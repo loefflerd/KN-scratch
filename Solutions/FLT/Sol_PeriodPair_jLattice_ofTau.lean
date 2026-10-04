@@ -49,15 +49,11 @@ namespace PeriodPair
 p2m_export "PeriodPair" "lattice ω₁ latticeEquivProd g₃ derivWeierstrassP_sq ω₂ latticeEquiv_symm_apply G g₂ weierstrassCurve weierstrassCurve_Δ weierstrassCurve_c₄ equation_weierstrassP DiscriminantNeZero toPoint toPoint_zero IsUniformization jLattice JSurjective ofTau scale sublatticeIndex discriminant_ne_zero"
 p2m_open "PeriodPair"
 
-variable (L : PeriodPair)
-
 end PeriodPair
 
 namespace Projectivization
 p2m_export "Projectivization" "map card"
 p2m_open "Projectivization"
-
-open scoped LinearAlgebra.Projectivization
 
 end Projectivization
 end

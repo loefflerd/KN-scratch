@@ -58,8 +58,6 @@ def ValSubringKaehlerSpanTop : Prop :=
     Submodule.span v.toValuationSubring
       {KaehlerDifferential.D K v.toValuationSubring (Place.uniformizerSubring' v)} = ⊤
 
-variable {K F}
-
 end AlgebraicCurve
 p2m_reactivate "P2MW.S_AlgebraicCurve_dCoordGenerates_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_dCoordGenerates_of_isCurveOver.AlgebraicCurve"
 

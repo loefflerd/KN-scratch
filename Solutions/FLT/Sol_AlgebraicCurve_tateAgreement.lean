@@ -365,24 +365,6 @@ namespace KwF4gRRTate
 p2m_export "ModularCurve.KwF4gRRTate" "finrankTrace tateComm tateCommRestrict tateCommRestrict_apply tateCommTrace tateComm_eq_of_commute adicIntegersKSubmod tateProj lmulK tateRes KwF4gRRTateCommFinite KwF4gRRTateAgreement"
 p2m_open "ModularCurve.KwF4gRRTate ModularCurve"
 
-section FinrankTrace
-
-variable {K V : Type*} [Field K] [AddCommGroup V] [Module K V]
-
-end FinrankTrace
-
-section TateComm
-
-variable {K V : Type*} [Field K] [AddCommGroup V] [Module K V]
-
-end TateComm
-
-section TateFactoring
-
-variable {K V : Type*} [Field K] [AddCommGroup V] [Module K V]
-
-end TateFactoring
-
 end ModularCurve.KwF4gRRTate
 
 end
@@ -408,25 +390,17 @@ namespace Place
 p2m_export "AlgebraicCurve.Place" "ext ResidueField FiniteResidue heightOneSpectrum heightOneSpectrum_asIdeal adicValuation adicValuation_ne_zero ord ord_zero ord_mul ord_unit_smul_zpow exists_unit_mul_zpow FiniteResidue.finite algebraMap_mem' toValuationSubring mk DCoordGenerates uniformizer ord_uniformizer uniformizer_ne_zero localResidue localResidue_eq_zero_of_ord_nonneg restrict adicCompletion adicCompletionIntegers uniformizerSubring coe_uniformizerSubring uniformizerSubring_mem_maximalIdeal uniformizer_mem poleSubmodule mem_poleSubmodule mem_poleSubmodule_iff_ord"
 p2m_open "AlgebraicCurve.Place"
 
-variable {K F}
-
-variable (v : Place K F)
-
 end Place
 
 namespace Divisor
 p2m_export "AlgebraicCurve.Divisor" "smul_def"
 p2m_open "AlgebraicCurve.Divisor"
 
-variable {K F}
-
 end Divisor
 
 namespace Pic0
 p2m_export "AlgebraicCurve.Pic0" "mk mk_surjective"
 p2m_open "AlgebraicCurve.Pic0"
-
-variable {K F}
 
 end Pic0
 
@@ -436,11 +410,6 @@ p2m_open "AlgebraicCurve.Place"
 
 p2m_open_scoped "Pointwise P2MW.S_AlgebraicCurve_tateAgreement.Pointwise"
 
-variable {K F}
-variable (σ : F ≃ₐ[K] F)
-
-variable (v : Place K F)
-
 end Place
 
 namespace Divisor
@@ -448,8 +417,6 @@ p2m_export "AlgebraicCurve.Divisor" "smul_def"
 p2m_open "AlgebraicCurve.Divisor"
 
 p2m_open_scoped "Pointwise P2MW.S_AlgebraicCurve_tateAgreement.Pointwise"
-
-variable {K F}
 
 end Divisor
 
@@ -459,16 +426,11 @@ p2m_open "AlgebraicCurve.Pic0"
 
 p2m_open_scoped "Pointwise P2MW.S_AlgebraicCurve_tateAgreement.Pointwise"
 
-variable {K F}
-
 end Pic0
 
 namespace Place
 p2m_export "AlgebraicCurve.Place" "ext ResidueField FiniteResidue heightOneSpectrum heightOneSpectrum_asIdeal adicValuation adicValuation_ne_zero ord ord_zero ord_mul ord_unit_smul_zpow exists_unit_mul_zpow FiniteResidue.finite algebraMap_mem' toValuationSubring mk DCoordGenerates uniformizer ord_uniformizer uniformizer_ne_zero localResidue localResidue_eq_zero_of_ord_nonneg restrict adicCompletion adicCompletionIntegers uniformizerSubring coe_uniformizerSubring uniformizerSubring_mem_maximalIdeal uniformizer_mem poleSubmodule mem_poleSubmodule mem_poleSubmodule_iff_ord"
 p2m_open "AlgebraicCurve.Place"
-
-variable {K F}
-variable {R : Type*} [CommRing R] [IsDedekindDomain R] [Algebra R F] [IsFractionRing R F]
 
 end Place
 
@@ -529,23 +491,6 @@ private theorem _root_.AlgebraicCurve.Place.mem_iff_ord_nonneg {f : F} (hf : f �
 
 p2m_export "AlgebraicCurve.Place" "mem_iff_ord_nonneg"
 end SinglePlace
-
-section Restrict
-
-variable {K F F' : Type*} [Field K] [Field F] [Field F']
-  [Algebra K F'] [Algebra F F']
-
-variable (w : Place K F')
-
-variable [Algebra.IsIntegral F F']
-
-section RestrictDef
-
-variable [Algebra K F] [IsScalarTower K F F']
-
-end RestrictDef
-
-end Restrict
 
 end Place
 
@@ -685,22 +630,6 @@ scoped instance instIsAdicCompleteCompletionIdealAdicCompletionIntegers :
 
 end Henselian
 
-section Uniformizer
-
-variable {A : Type*} [CommRing A] [IsDedekindDomain A]
-  (K : Type*) [Field K] [Algebra A K] [IsFractionRing A K]
-  (v : IsDedekindDomain.HeightOneSpectrum A)
-
-end Uniformizer
-
-section DVR
-
-variable (R : Type*) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R]
-
-variable (K : Type*) [Field K] [Algebra R K] [IsFractionRing R K]
-
-end DVR
-
 end MazurTorsion
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion"
 
@@ -726,11 +655,6 @@ namespace Place
 p2m_export "AlgebraicCurve.Place" "ext ResidueField FiniteResidue heightOneSpectrum heightOneSpectrum_asIdeal adicValuation adicValuation_ne_zero ord ord_zero ord_mul ord_unit_smul_zpow exists_unit_mul_zpow FiniteResidue.finite algebraMap_mem' toValuationSubring mk DCoordGenerates uniformizer ord_uniformizer uniformizer_ne_zero localResidue localResidue_eq_zero_of_ord_nonneg restrict adicCompletion adicCompletionIntegers uniformizerSubring coe_uniformizerSubring uniformizerSubring_mem_maximalIdeal uniformizer_mem poleSubmodule mem_poleSubmodule mem_poleSubmodule_iff_ord"
 p2m_open "AlgebraicCurve.Place AlgebraicCurve"
 
-section AdicCompletion
-
-variable {K F : Type*} [Field K] [Field F] [Algebra K F] (V : Place K F)
-
-end AdicCompletion
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion"
 
 section Henselian
@@ -744,31 +668,10 @@ scoped instance kw_ffgc_isAdicComplete_placeAdicCompletionIntegers :
 end Henselian
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion"
 
-section WithValLevel
-
-variable {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F']
-variable (F)
-variable [Algebra F F'] [IsScalarTower K F F'] [Algebra.IsIntegral F F'] (W : Place K F')
-
-end WithValLevel
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion"
 
-section CompletionComap
-
-variable {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F']
-variable (F)
-variable [Algebra F F'] [IsScalarTower K F F'] [Algebra.IsIntegral F F'] (W : Place K F')
-
-end CompletionComap
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion"
 
-section Bridge
-
-variable {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F']
-variable (F)
-variable [Algebra F F'] [IsScalarTower K F F'] [Algebra.IsIntegral F F'] (W : Place K F')
-
-end Bridge
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion"
 
 end AlgebraicCurve.Place
@@ -805,29 +708,12 @@ p2m_open "ModularCurve.Ldgr36Si P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve
 p2m_open "ModularCurve.Ldgr36Rc P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.Ldgr36Rc"
 p2m_open "ModularCurve.Ldgr35Cs P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.Ldgr35Cs"
 
-section CompletionCarrier
-
-variable {K F : Type*} [Field K] [Field F] [Algebra K F]
-
-end CompletionCarrier
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place"
 
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place"
 
-section Stratum
-
-variable {K E : Type*} [Field K] [Field E] [Algebra K E] [HasCanonicalLocalResidueKStar K E]
-
-end Stratum
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place"
 
-section MovedCarrier
-
-variable {K K' F' : Type*} [Field K] [Field K'] [Field F']
-  [Algebra K K'] [Algebra K' F'] [Algebra K F'] [IsScalarTower K K' F']
-variable [HasCanonicalLocalResidueKStar K F']
-
-end MovedCarrier
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place"
 
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place"
@@ -896,19 +782,11 @@ theorem mp72a103_t2_evalDepth_pow_uniformizer_mul_eq_zero (v : Place K F) :
 end Calculus
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place"
 
-section NumeratorBand
-
-variable {K : Type*} [Field K] [CharZero K]
-
-end NumeratorBand
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place"
 
 section RatProduction
 
 attribute [local instance 2000] RatFunc.instAlgebraOfPolynomial
-
-variable [HasCanonicalLocalResidueKStar ℚ (RatFunc ℚ)]
-variable [HasCanonicalLocalResidueKStar (AlgebraicClosure ℚ) (RatFunc (AlgebraicClosure ℚ))]
 
 end RatProduction
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place"
@@ -998,51 +876,14 @@ theorem kwHgfV352_localResidueCompletion_add (v : Place K E)
 end LocalResidueCompletion
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place"
 
-section CompletionTraceAt
-
-variable {K : Type*} [Field K] {F : Type*} [Field F] [Algebra K F]
-variable {E : Type*} [Field E] [Algebra K E] [Algebra E F] [IsScalarTower K E F]
-variable [Algebra.IsIntegral E F] [HasPrincipalDivisors K E] [HasPrincipalDivisors K F]
-
-end CompletionTraceAt
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place"
 
-section MPGKPowBasisLocalMint
-
-variable (K F : Type*) [Field K] [Field F] [Algebra K F]
-variable (E : Type*) [Field E] [Algebra K E] [Algebra E F] [IsScalarTower K E F]
-variable [HasCanonicalLocalResidueKStar K E] [HasCanonicalLocalResidueKStar K F]
-variable [Algebra.IsIntegral E F]
-
-end MPGKPowBasisLocalMint
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place"
 
-section CompletionTraceSumMint
-
-variable (K F : Type*) [Field K] [Field F] [Algebra K F]
-variable (E : Type*) [Field E] [Algebra K E] [Algebra E F] [IsScalarTower K E F]
-variable [Algebra.IsIntegral E F]
-
-end CompletionTraceSumMint
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place"
 
-section EffBaseDescentMint
-
-variable (K F : Type*) [Field K] [Field F] [Algebra K F]
-variable (E : Type*) [Field E] [Algebra K E] [Algebra E F] [IsScalarTower K E F]
-variable [Algebra.IsIntegral E F]
-
-end EffBaseDescentMint
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place"
 
-section MainReduction
-
-variable {K F : Type*} [Field K] [Field F] [Algebra K F]
-variable {E : Type*} [Field E] [Algebra K E] [Algebra E F] [IsScalarTower K E F]
-variable [HasCanonicalLocalResidueKStar K E] [HasCanonicalLocalResidueKStar K F]
-variable [Algebra.IsIntegral E F] [FiniteDimensional E F]
-
-end MainReduction
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place"
 
 end AlgebraicCurve
@@ -1111,24 +952,8 @@ theorem range_tateProj : LinearMap.range (tateProj u) = adicIntegersKSubmod u :=
 end TateProj
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place"
 
-section TateResDef
-
-variable {K L : Type*} [Field K] [Field L] [Algebra K L] (u : Place K L)
-
-end TateResDef
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place"
 
-section TateAtoms
-
-variable (K L : Type*) [Field K] [Field L] [Algebra K L]
-
-variable [HasCanonicalLocalResidueKStar K L]
-
-variable (F E : Type*) [Field F] [Algebra K F] [Field E] [Algebra K E]
-variable [Algebra E F] [IsScalarTower K E F] [Algebra.IsIntegral E F]
-variable [HasCanonicalLocalResidueKStar K F] [HasCanonicalLocalResidueKStar K E]
-
-end TateAtoms
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place"
 
 end ModularCurve.KwF4gRRTate
@@ -1286,8 +1111,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_Algebrai
 section NumberField
 
 p2m_open "NumberField P2MW.S_AlgebraicCurve_tateAgreement.NumberField"
-
-variable (F : Type*) [Field F] [NumberField F] (w : HeightOneSpectrum (𝓞 F))
 
 end NumberField
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place"
@@ -2926,25 +2749,10 @@ namespace KwF4gRRTate
 p2m_export "ModularCurve.KwF4gRRTate" "finrankTrace tateComm tateCommRestrict tateCommRestrict_apply tateCommTrace tateComm_eq_of_commute adicIntegersKSubmod tateProj lmulK tateRes KwF4gRRTateCommFinite KwF4gRRTateAgreement"
 p2m_open "ModularCurve.KwF4gRRTate ModularCurve"
 
-section Additivity
-
-variable {K V : Type*} [Field K] [AddCommGroup V] [Module K V]
-
-end Additivity
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
-section TateCommAddFst
-
-variable {K V : Type*} [Field K] [AddCommGroup V] [Module K V]
-
-end TateCommAddFst
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
-section TateResAddFst
-
-variable {K L : Type*} [Field K] [Field L] [Algebra K L] (u : Place K L)
-
-end TateResAddFst
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 section CohenMint
@@ -3228,52 +3036,12 @@ theorem kwF4R1V394a_localResidueCompletion_smul
 end LinearWrappers
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
-section OrdCompat
-
-variable (K F : Type*) [Field K] [Field F] [Algebra K F]
-variable (E : Type*) [Field E] [Algebra K E] [Algebra E F] [IsScalarTower K E F]
-variable [Algebra.IsIntegral E F]
-variable [HasCanonicalLocalResidueKStar K E] [HasCanonicalLocalResidueKStar K F]
-
-variable {K F E}
-variable [HasPrincipalDivisors K E] [HasPrincipalDivisors K F] [FiniteDimensional E F]
-variable [Nontrivial Ω[E⁄K]]
-
-end OrdCompat
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
-section Recursion
-
-variable {K F : Type*} [Field K] [Field F] [Algebra K F]
-variable {E : Type*} [Field E] [Algebra K E] [Algebra E F] [IsScalarTower K E F]
-variable [Algebra.IsIntegral E F]
-variable [HasCanonicalLocalResidueKStar K E] [HasCanonicalLocalResidueKStar K F]
-variable [HasPrincipalDivisors K E] [HasPrincipalDivisors K F] [FiniteDimensional E F]
-variable [Nontrivial Ω[E⁄K]]
-
-variable [Nontrivial Ω[F⁄K]]
-
-end Recursion
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
-section MonomialMint
-
-variable (K F : Type*) [Field K] [Field F] [Algebra K F]
-variable (E : Type*) [Field E] [Algebra K E] [Algebra E F] [IsScalarTower K E F]
-variable [Algebra.IsIntegral E F]
-variable [HasCanonicalLocalResidueKStar K E] [HasCanonicalLocalResidueKStar K F]
-
-end MonomialMint
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
-section Engine
-
-variable {K F : Type*} [Field K] [Field F] [Algebra K F]
-variable {E : Type*} [Field E] [Algebra K E] [Algebra E F] [IsScalarTower K E F]
-variable [Algebra.IsIntegral E F]
-variable [HasCanonicalLocalResidueKStar K E] [HasCanonicalLocalResidueKStar K F]
-
-end Engine
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 end ModularCurve.KwF4R1V394a
@@ -3713,12 +3481,6 @@ theorem exists_approximant (v : Place K F) (S : Lg37CompletionSection v)
         rw [Nat.zero_add] at hsh
         rw [hsh, aCoeff_zero, lg37_residueHat_algebraMap, hn, sub_self]
 
-section Separability
-
-variable [HasCanonicalLocalResidueKStar K F]
-variable (v : Place K F) [v.DCoordGenerates] [Nontrivial Ω[F⁄K]]
-
-end Separability
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 attribute [local instance 2000] RatFunc.instAlgebraOfPolynomial

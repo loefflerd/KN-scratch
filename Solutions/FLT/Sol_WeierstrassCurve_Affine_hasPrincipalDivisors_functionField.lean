@@ -129,8 +129,6 @@ p2m_open "WeierstrassCurve.Affine.Point"
 
 p2m_open "WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.WeierstrassCurve.Affine.CoordinateRing"
 
-variable [DecidableEq F] [IsAlgClosed F] [IsDedekindDomain W.CoordinateRing]
-
 end Point
 p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.WeierstrassCurve.Affine.CoordinateRing"
 
@@ -202,11 +200,6 @@ variable (w : Place K F')
 
 variable [Algebra.IsIntegral F F']
 
-section RestrictDef
-
-variable [Algebra K F] [IsScalarTower K F F']
-
-end RestrictDef
 p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.WeierstrassCurve.Affine"
 
 end Restrict
@@ -250,8 +243,6 @@ namespace Place
 p2m_export "AlgebraicCurve.Place" "ext coe_algebraMap ResidueField deg adicValuation adicValuation_ne_zero ord ord_zero ord_mul ord_inv ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ofHeightOneSpectrum ofHeightOneSpectrum_toValuationSubring ne_top' algebraMap_mem' toValuationSubring mk ramificationIndex ramificationIndex_pos ramificationIndex_dvd_ord restrict ord_restrict ord_algebraMap_ne_zero_of_restrict_eq restrict_fiber_finite fiber ord_neg mem_of_eval_monic_eq_zero mem_maximalIdeal_iff_ord_pos ofHeightOneSpectrum_injective ord_ofHeightOneSpectrum_ne_zero_iff ord_eq_neg_log_of_valuationSubring_eq"
 p2m_open "AlgebraicCurve.Place~ord_nonneg_of_mem~mem_of_ord_nonneg~mem_iff_ord_nonneg~ord_algebraMap~comap_algebraMap_ne_top"
 
-variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
-
 end Place
 p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.WeierstrassCurve.Affine"
 
@@ -261,18 +252,8 @@ p2m_open "AlgebraicCurve.RationalFunctionField~ord_ofHeightOneSpectrum_eq_neg_lo
 
 variable {K : Type*} [Field K]
 
-section PlaceInftyOrd
-
-variable [DecidableEq (RatFunc K)]
-
-end PlaceInftyOrd
 p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.WeierstrassCurve.Affine"
 
-section IrreducibleDivisor
-
-variable [DecidableEq (RatFunc K)]
-
-end IrreducibleDivisor
 p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.WeierstrassCurve.Affine"
 
 end RationalFunctionField
@@ -1036,11 +1017,6 @@ class GeomAbelTheorem : Prop where
     ∀ D : AlgebraicCurve.Divisor F W.FunctionField, Divisor.degree D = 0 →
       (Divisor.IsPrincipal D ↔ geomDivisorSum D = 0)
 
-section GeomAbelTheorem
-
-variable [GeomAbelTheorem W]
-
-end GeomAbelTheorem
 p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.WeierstrassCurve.Affine"
 
 end WeierstrassCurve.Affine
@@ -2221,18 +2197,8 @@ scoped instance : FiniteDimensional (RatFunc F) W.FunctionField := by
   exact (IntermediateField.topEquiv
     (F := RatFunc F) (E := W.FunctionField)).toLinearEquiv.finiteDimensional
 
-section CharZero
-
-variable [CharZero F]
-
-end CharZero
 p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.WeierstrassCurve.Affine"
 
-section Gate
-
-variable [DecidableEq F] [IsAlgClosed F] [CharZero F] [W.IsElliptic]
-
-end Gate
 p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.WeierstrassCurve.Affine"
 
 end WeierstrassCurve.Affine

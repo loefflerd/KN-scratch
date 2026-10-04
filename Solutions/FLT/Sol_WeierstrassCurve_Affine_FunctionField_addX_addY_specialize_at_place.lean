@@ -87,24 +87,12 @@ p2m_open "WeierstrassCurve.Affine.CoordinateRing"
 
 variable {F : Type u} [Field F]
 
-section PointPullbackTo
-
-variable {W : Affine F} {L : Type u} [Field L] [Algebra F L]
-
-end PointPullbackTo
-
 theorem exists_algebraMap_eq_of_isAlgebraic [IsAlgClosed F] {L : Type u} [Field L] [Algebra F L]
     {z : L} (hz : IsAlgebraic F z) : ∃ c : F, algebraMap F L c = z := by
   have hint : _root_.IsIntegral F z := hz.isIntegral
   have hdeg : (minpoly F z).degree = 1 :=
     IsAlgClosed.degree_eq_one_of_irreducible F (minpoly.irreducible hint)
   exact minpoly.degree_eq_one_iff.mp hdeg
-
-section AddMu
-
-variable (W : Affine F)
-
-end AddMu
 
 end WeierstrassCurve.Affine
 
@@ -133,8 +121,6 @@ namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "Place"
 p2m_open "AlgebraicCurve"
 
-variable {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F']
-
 end AlgebraicCurve
 
 namespace WeierstrassCurve
@@ -144,8 +130,6 @@ p2m_export "WeierstrassCurve.Affine" "Point.add Equation negY equation_iff' slop
 p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
 p2m_open "WeierstrassCurve.Affine.CoordinateRing AlgebraicCurve P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.AlgebraicCurve"
-
-variable {F : Type*} [Field F] {W : Affine F}
 
 end WeierstrassCurve.Affine
 
@@ -164,26 +148,6 @@ variable {W}
 def yGen (W : Affine F) : W.FunctionField :=
   algebraMap W.CoordinateRing W.FunctionField (CoordinateRing.mk W Y)
 
-section OrdAtPoint
-
-variable [IsDedekindDomain W.CoordinateRing]
-
-end OrdAtPoint
-
-section OrdVeluFun
-
-variable {x₀ y₀ : F}
-
-variable [IsDedekindDomain W.CoordinateRing]
-
-end OrdVeluFun
-
-section OrdVeluFunInfty
-
-variable {x₀ y₀ : F} (v : AlgebraicCurve.Place F W.FunctionField)
-
-end OrdVeluFunInfty
-
 end WeierstrassCurve.Affine
 
 namespace WeierstrassCurve
@@ -200,14 +164,6 @@ variable {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
 variable {W : Affine F} [W.IsElliptic]
 
 namespace VeluPicSeam
-
-variable {V : Affine F}
-
-section Cases
-
-variable [IsDedekindDomain V.CoordinateRing]
-
-end Cases
 
 end VeluPicSeam
 
@@ -293,10 +249,6 @@ p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
 p2m_open "WeierstrassCurve.Affine.CoordinateRing AlgebraicCurve P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.AlgebraicCurve"
 
-variable {F : Type*} [Field F] {W : Affine F}
-
-variable (v : AlgebraicCurve.Place F W.FunctionField)
-
 end WeierstrassCurve.Affine
 
 end
@@ -350,23 +302,6 @@ private theorem _root_.AlgebraicCurve.Place.mem_of_ord_nonneg {f : F} (hf : f �
 p2m_export "AlgebraicCurve.Place" "mem_of_ord_nonneg"
 end SinglePlace
 
-section Restrict
-
-variable {K F F' : Type*} [Field K] [Field F] [Field F']
-  [Algebra K F'] [Algebra F F']
-
-variable (w : Place K F')
-
-variable [Algebra.IsIntegral F F']
-
-section RestrictDef
-
-variable [Algebra K F] [IsScalarTower K F F']
-
-end RestrictDef
-
-end Restrict
-
 end Place
 
 end AlgebraicCurve
@@ -417,46 +352,6 @@ theorem equation_map_polyToFunctionField_yGen :
   linear_combination h2
 
 end GenericPoint
-
-section CoordinateIdentification
-
-variable {W : Affine F} {x₀ y₀ : F}
-
-end CoordinateIdentification
-
-section Transcendence
-
-variable [DecidableEq F] [IsAlgClosed F] [CharZero F]
-variable {W : Affine F} [W.IsElliptic] {x₀ y₀ : F}
-
-end Transcendence
-
-section Certificate
-
-variable {W : Affine F} {x₀ y₀ : F}
-
-end Certificate
-
-section Inclusion
-
-variable [DecidableEq F] [IsAlgClosed F] [CharZero F]
-variable {W : Affine F} [W.IsElliptic] {x₀ y₀ : F}
-
-end Inclusion
-
-section Integrality
-
-variable [DecidableEq F] [IsAlgClosed F] [CharZero F]
-variable {W : Affine F} [W.IsElliptic] {x₀ y₀ : F}
-
-end Integrality
-
-section Assembly
-
-variable [DecidableEq F] [IsAlgClosed F] [CharZero F]
-variable {W : Affine F} [W.IsElliptic] {x₀ y₀ : F}
-
-end Assembly
 
 end WeierstrassCurve.Affine
 
@@ -623,13 +518,6 @@ def es1a6_addSumSeamDataAt (v : AlgebraicCurve.Place F W.FunctionField) :
         0 < v.ord (es1a6_addSumY W φ₁ φ₂ - algebraMap F W.FunctionField y₃)
 
 end SeamEngines
-
-section FiSupply
-
-variable {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
-variable {V W : WeierstrassCurve.Affine F} [V.IsElliptic] [W.IsElliptic]
-
-end FiSupply
 
 end ModularCurve.Es1a1
 
@@ -1752,13 +1640,6 @@ theorem es1a10_ncPole_bothPole_notMem (v : AlgebraicCurve.Place F W.FunctionFiel
 
 end PoleSeamEngines
 
-section PoleDictionary
-
-variable {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
-variable {W : WeierstrassCurve.Affine F} [W.IsElliptic]
-
-end PoleDictionary
-
 end ModularCurve.Es1a1
 
 end
@@ -2347,13 +2228,6 @@ theorem es1a10_ncVertical_seamData (v : AlgebraicCurve.Place F W.FunctionField)
   exact es1a10_ncVertical_addX_not_mem v hrx₁ hrx₂ hΛ
 
 end VerticalCaseEngines
-
-section ProductionDictionary
-
-variable {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
-variable {W : WeierstrassCurve.Affine F} [W.IsElliptic]
-
-end ProductionDictionary
 
 end ModularCurve.Es1a1
 

@@ -90,8 +90,6 @@ namespace PeriodPair
 p2m_export "PeriodPair" "lattice ω₁ mk latticeEquivProd g₃ derivWeierstrassP_sq ω₂ G g₂ weierstrassCurve weierstrassCurve_Δ weierstrassCurve_c₄ equation_weierstrassP DiscriminantNeZero toPoint toPoint_of_mem toPoint_zero IsUniformization jLattice JSurjective ofTau scale_indep scale sublatticeIndex discriminant_ne_zero isUniformization_toPoint"
 p2m_open "PeriodPair"
 
-variable (L : PeriodPair)
-
 end PeriodPair
 
 namespace Projectivization
@@ -249,14 +247,6 @@ theorem card_torsionBy_latticeQuotient [Module.Free ℤ ↥Λ] [Module.Finite �
 
 end LatticeQuotient
 
-section Producer
-
-variable {N p : ℕ}
-variable {V : Type*} [AddCommGroup V] [DivisibleBy V ℤ] [NoZeroSMulDivisors ℤ V]
-variable {Λ : AddSubgroup V} [Module.Free ℤ ↥Λ] [Module.Finite ℤ ↥Λ]
-
-end Producer
-
 end ModularCurve
 p2m_reactivate "P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.ModularCurve"
 
@@ -308,20 +298,8 @@ p2m_reactivate "P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeInde
 
 namespace ModularCurve
 
-section AtomU4
-
-variable (W : WeierstrassCurve ℚ) [W.IsElliptic]
-  (K : Type*) [Field K] [Algebra ℚ K] [DecidableEq K] [IsAlgClosed K] [CharZero K]
-
-end AtomU4
 p2m_reactivate "P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.ModularCurve"
 
-section Reduction
-
-variable (W : WeierstrassCurve ℚ) [W.IsElliptic]
-  (K : Type*) [Field K] [Algebra ℚ K] [DecidableEq K] [IsAlgClosed K] [CharZero K]
-
-end Reduction
 p2m_reactivate "P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.ModularCurve"
 
 end ModularCurve
@@ -384,18 +362,8 @@ p2m_export "PeriodPair" "mem_scale_lattice_iff"
 end Scale
 p2m_reactivate "P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.ModularCurve"
 
-section Homogeneity
-
-variable (α : ℂˣ)
-
-end Homogeneity
 p2m_reactivate "P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.ModularCurve"
 
-section LatticeDependence
-
-variable {L L' : PeriodPair}
-
-end LatticeDependence
 p2m_reactivate "P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.ModularCurve"
 
 section Gates
@@ -496,11 +464,6 @@ theorem kw_card_torsionBy_zlatticeQuotient_finrank_real
 end ModularCurve
 p2m_reactivate "P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.ModularCurve P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.PeriodPair"
 
-section SatGate
-
-open ModularCurve
-
-end SatGate
 p2m_reactivate "P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.ModularCurve P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.PeriodPair"
 
 end

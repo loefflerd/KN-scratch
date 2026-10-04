@@ -30,13 +30,6 @@ instance HasSeparableResidue.of_perfectField_of_isCurveOver [PerfectField K]
     [IsCurveOver K F] : HasSeparableResidue K F :=
   HasSeparableResidue.of_perfectField
 
-section PerfectDischarge
-
-variable [HasCanonicalLocalResidueKStar K F] [HasCanonicalDivisor (K := K) (F := F)]
-  [∀ v : Place K F, v.DCoordGenerates] [Nontrivial Ω[F⁄K]]
-
-end PerfectDischarge
-
 end AlgebraicCurve
 
 end
@@ -502,8 +495,6 @@ end Place
 
 namespace Place
 
-variable (v : Place K F)
-
 end Place
 
 end AlgebraicCurve
@@ -804,8 +795,6 @@ open IsDedekindDomain WithZero IsLocalRing Polynomial
 
 namespace ModularCurve.Ldgr35Cl
 
-open AlgebraicCurve
-
 end ModularCurve.Ldgr35Cl
 
 end
@@ -821,8 +810,6 @@ open IsDedekindDomain WithZero Module IsLocalRing
 
 namespace ModularCurve.Ldgr35Cs
 
-open AlgebraicCurve
-
 end ModularCurve.Ldgr35Cs
 
 end
@@ -830,10 +817,6 @@ end
 set_option autoImplicit false
 
 noncomputable section
-
-open IsDedekindDomain WithZero Module IsLocalRing Polynomial
-open AlgebraicCurve
-open scoped Polynomial
 
 end
 
@@ -848,15 +831,6 @@ noncomputable section
 open IsDedekindDomain WithZero IsLocalRing Polynomial
 
 namespace ModularCurve.Ldgr36Si
-
-open AlgebraicCurve
-
-section Generic
-
-variable {K K' F' : Type*} [Field K] [Field K'] [Field F']
-  [Algebra K K'] [Algebra K' F'] [Algebra K F'] [IsScalarTower K K' F']
-
-end Generic
 
 end ModularCurve.Ldgr36Si
 
@@ -873,46 +847,6 @@ open IsDedekindDomain WithZero Module IsLocalRing
 
 namespace ModularCurve.Ldgr36Rc
 
-open AlgebraicCurve
-open ModularCurve.Ldgr35Cs
-open ModularCurve.Ldgr35Cl
-
-section Restriction
-
-variable {K K' F' : Type*} [Field K] [Field K'] [Field F']
-  [Algebra K K'] [Algebra K' F'] [Algebra K F'] [IsScalarTower K K' F']
-
-end Restriction
-
-section ReCarve
-
-variable {K K' F' : Type*} [Field K] [Field K'] [Field F']
-  [Algebra K K'] [Algebra K' F'] [Algebra K F'] [IsScalarTower K K' F']
-
-end ReCarve
-
-section NoForkTies
-
-variable {K K' F' : Type*} [Field K] [Field K'] [Field F']
-  [Algebra K K'] [Algebra K' F'] [Algebra K F'] [IsScalarTower K K' F']
-
-end NoForkTies
-
-section PaymentRewire
-
-variable {K K' F' : Type*} [Field K] [Field K'] [Field F']
-  [Algebra K K'] [Algebra K' F'] [Algebra K F'] [IsScalarTower K K' F']
-  [HasCanonicalLocalResidueKStar K F']
-
-end PaymentRewire
-
-section Supply
-
-variable {K K' F' : Type*} [Field K] [Field K'] [Field F']
-  [Algebra K K'] [Algebra K' F'] [Algebra K F'] [IsScalarTower K K' F']
-
-end Supply
-
 end ModularCurve.Ldgr36Rc
 
 end
@@ -920,8 +854,6 @@ end
 set_option autoImplicit false
 
 noncomputable section
-
-open IsDedekindDomain WithZero Module IsLocalRing Polynomial
 
 end
 
@@ -964,14 +896,6 @@ structure Lg37CompletionSection (v : Place K F) where
   residueHat_lift : ∀ a, lg37_residueHat v (lift a) = a
 
 end CompletionCarrier
-
-section MovedCarrier
-
-variable {K K' F' : Type*} [Field K] [Field K'] [Field F']
-  [Algebra K K'] [Algebra K' F'] [Algebra K F'] [IsScalarTower K K' F']
-variable [HasCanonicalLocalResidueKStar K F']
-
-end MovedCarrier
 
 end ModularCurve.Lg37
 
@@ -1289,9 +1213,6 @@ section RatProduction
 
 attribute [local instance 2000] RatFunc.instAlgebraOfPolynomial
 
-variable [HasCanonicalLocalResidueKStar ℚ (RatFunc ℚ)]
-variable [HasCanonicalLocalResidueKStar (AlgebraicClosure ℚ) (RatFunc (AlgebraicClosure ℚ))]
-
 end RatProduction
 
 end ModularCurve.Mp72a102T3
@@ -1525,9 +1446,6 @@ end Calculus
 section RatProduction
 
 attribute [local instance 2000] RatFunc.instAlgebraOfPolynomial
-
-variable [HasCanonicalLocalResidueKStar ℚ (RatFunc ℚ)]
-variable [HasCanonicalLocalResidueKStar (AlgebraicClosure ℚ) (RatFunc (AlgebraicClosure ℚ))]
 
 end RatProduction
 

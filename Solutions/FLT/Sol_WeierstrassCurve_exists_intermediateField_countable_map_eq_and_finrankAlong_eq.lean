@@ -173,17 +173,6 @@ def kw_coordinateRingBasis {R : Type*} [CommRing R] (V : Affine R) :
 
 end Setup
 
-section Wire
-
-variable (W : WeierstrassCurve ℚ) [W.IsElliptic]
-variable (F : Type u) [Field F] [Algebra ℚ F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
-variable (F' : Type u) [Field F'] [Algebra ℚ F'] [DecidableEq F'] [IsAlgClosed F'] [CharZero F']
-variable [Algebra F F'] [IsScalarTower ℚ F F']
-
-variable (K : Type uK) [Field K] [Algebra ℚ K] [DecidableEq K] [IsAlgClosed K] [CharZero K]
-
-end Wire
-
 end ModularCurve
 
 end
@@ -262,20 +251,7 @@ variable [Algebra F F'] [IsScalarTower ℚ F F']
 
 attribute [local instance] Algebra.TensorProduct.rightAlgebra
 
-section FracHom
-
-variable [IsDomain ((W⁄F).FunctionField ⊗[F] F')]
-
-end FracHom
-
 end Setup
-
-section Wire
-
-variable (W : WeierstrassCurve ℚ) [W.IsElliptic]
-variable (K : Type uK) [Field K] [Algebra ℚ K] [DecidableEq K] [IsAlgClosed K] [CharZero K]
-
-end Wire
 
 end ModularCurve
 
@@ -394,12 +370,6 @@ theorem pointPullbackHomTo_yGen {xP yP : L}
 
 end PointPullbackTo
 
-section AddMu
-
-variable (W : Affine F)
-
-end AddMu
-
 end WeierstrassCurve.Affine
 
 namespace ModularCurve
@@ -472,49 +442,6 @@ theorem equation_map_polyToFunctionField_yGen :
 
 end GenericPoint
 
-section CoordinateIdentification
-
-variable {W : Affine F} {x₀ y₀ : F}
-
-end CoordinateIdentification
-
-section Transcendence
-
-variable [DecidableEq F] [IsAlgClosed F] [CharZero F]
-variable {W : Affine F} [W.IsElliptic] {x₀ y₀ : F}
-
-end Transcendence
-
-section Certificate
-
-variable {W : Affine F} {x₀ y₀ : F}
-variable (hQ : W.toAffine.Equation x₀ y₀) (hΨ : (W.Ψ₃).eval x₀ = 0)
-
-end Certificate
-
-section Inclusion
-
-variable [DecidableEq F] [IsAlgClosed F] [CharZero F]
-variable {W : Affine F} [W.IsElliptic] {x₀ y₀ : F}
-variable (hQ : W.toAffine.Equation x₀ y₀) (hΨ : (W.Ψ₃).eval x₀ = 0)
-
-end Inclusion
-
-section Integrality
-
-variable [DecidableEq F] [IsAlgClosed F] [CharZero F]
-variable {W : Affine F} [W.IsElliptic] {x₀ y₀ : F}
-variable (hQ : W.toAffine.Equation x₀ y₀) (hΨ : (W.Ψ₃).eval x₀ = 0)
-
-end Integrality
-
-section Assembly
-
-variable [DecidableEq F] [IsAlgClosed F] [CharZero F]
-variable {W : Affine F} [W.IsElliptic] {x₀ y₀ : F}
-
-end Assembly
-
 end WeierstrassCurve.Affine
 
 end
@@ -578,8 +505,6 @@ end TreeIsogenyEndDatum
 
 namespace TreeIsogenyEndDatum
 
-variable {W}
-
 end TreeIsogenyEndDatum
 
 end WeierstrassCurve.Affine
@@ -587,13 +512,6 @@ end WeierstrassCurve.Affine
 namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine isUnit_Δ a₃ map_map a₁ WeierstrassCurve.map_a₃ map Ψ₃ mk Affine.equation_add a₄ Jacobian a₂ a₆ WeierstrassCurve.map_a₆ reduction map_id IsIntegral toAffine WeierstrassCurve.map_a₂ Affine.Point WeierstrassCurve.map_a₁ WeierstrassCurve.map_a₄ map_Δ map_a₆ map_a₁ map_a₄ Δ Affine.equation_iff Affine.polynomial map_a₂ baseChange j map_a₃ Affine.finiteDimensional_ratFunc_functionField"
 p2m_open "WeierstrassCurve"
-
-section JNonIntBridge
-
-variable (W : WeierstrassCurve ℚ) [W.IsElliptic]
-  {K : Type*} [Field K] [Algebra ℚ K] [DecidableEq K] [IsAlgClosed K] [CharZero K]
-
-end JNonIntBridge
 
 end WeierstrassCurve
 
@@ -609,13 +527,6 @@ end ModularCurve.ElevenA1
 namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine isUnit_Δ a₃ map_map a₁ WeierstrassCurve.map_a₃ map Ψ₃ mk Affine.equation_add a₄ Jacobian a₂ a₆ WeierstrassCurve.map_a₆ reduction map_id IsIntegral toAffine WeierstrassCurve.map_a₂ Affine.Point WeierstrassCurve.map_a₁ WeierstrassCurve.map_a₄ map_Δ map_a₆ map_a₁ map_a₄ Δ Affine.equation_iff Affine.polynomial map_a₂ baseChange j map_a₃ Affine.finiteDimensional_ratFunc_functionField"
 p2m_open "WeierstrassCurve"
-
-section BridgeOrdering
-
-variable (W : WeierstrassCurve ℚ) [W.IsElliptic]
-  {K : Type*} [Field K] [Algebra ℚ K] [DecidableEq K] [IsAlgClosed K] [CharZero K]
-
-end BridgeOrdering
 
 end WeierstrassCurve
 
@@ -651,20 +562,6 @@ p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
 p2m_open "WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.WeierstrassCurve.Affine.CoordinateRing AlgebraicCurve P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.AlgebraicCurve"
 
-variable {F : Type*} [Field F] {W : Affine F}
-
-section CharZero
-
-variable [CharZero F]
-
-end CharZero
-
-section Gate
-
-variable [DecidableEq F] [IsAlgClosed F] [CharZero F] [W.IsElliptic]
-
-end Gate
-
 end WeierstrassCurve.Affine
 
 end
@@ -696,8 +593,6 @@ end AlgHom
 p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField"
 
 namespace ModularCurve
-
-variable (N ℓ : ℕ) [NeZero N] [NeZero ℓ]
 
 end ModularCurve
 p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField"
@@ -747,11 +642,6 @@ local notation "ι" => algebraMap F W.FunctionField
 end GenericPointGroup
 p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField"
 
-section CoordHom
-
-variable {W : Affine F} {a b : F} (hA : W.Equation a b)
-
-end CoordHom
 p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField"
 
 section AdjoinSurjective
@@ -770,13 +660,6 @@ theorem transcendental_polyToFunctionField_X :
 end AdjoinSurjective
 p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField"
 
-section TranslationHom
-
-variable {W : Affine F} {a b : F} (hA : W.Equation a b)
-
-variable (hΔ : W.Δ ≠ 0)
-
-end TranslationHom
 p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField"
 
 end WeierstrassCurve.Affine
@@ -821,12 +704,6 @@ p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_e
 
 p2m_open "PeriodPair P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.PeriodPair"
 
-section Wire
-
-variable (K : Type uK) [Field K] [Algebra ℚ K] [DecidableEq K] [IsAlgClosed K] [CharZero K]
-variable (E : WeierstrassCurve K) [E.IsElliptic]
-
-end Wire
 p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField"
 
 p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField"
