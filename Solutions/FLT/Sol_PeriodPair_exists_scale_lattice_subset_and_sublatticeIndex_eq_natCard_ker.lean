@@ -92,30 +92,6 @@ p2m_open "PeriodPair"
 
 variable (L : PeriodPair)
 
-section Liouville
-
-end Liouville
-
-section Curve
-
-end Curve
-
-section HalfPeriods
-
-end HalfPeriods
-
-section ToPoint
-
-end ToPoint
-
-section JInvariant
-
-end JInvariant
-
-section Isogeny
-
-end Isogeny
-
 end PeriodPair
 
 namespace Projectivization
@@ -590,9 +566,6 @@ universe u
 
 attribute [local instance] Classical.propDecidable
 
-section HoloLiftMint
-
-end HoloLiftMint
 p2m_reactivate "P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.ModularCurve P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.PeriodPair"
 
 section IndexDualMint
@@ -609,14 +582,8 @@ def KwD5BetweenCurvesIndexDual : Prop :=
 end IndexDualMint
 p2m_reactivate "P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.ModularCurve P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.PeriodPair"
 
-section Reduce
-
-end Reduce
 p2m_reactivate "P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.ModularCurve P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.PeriodPair"
 
-section UpdatedWires
-
-end UpdatedWires
 p2m_reactivate "P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.ModularCurve P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.PeriodPair"
 
 end ModularCurve

@@ -701,18 +701,6 @@ variable (K : Type*) [Field K] [Algebra R K] [IsFractionRing R K]
 
 end DVR
 
-section Cover
-
-end Cover
-
-section Consequences
-
-end Consequences
-
-section PadicGate
-
-end PadicGate
-
 end MazurTorsion
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion"
 
@@ -824,9 +812,6 @@ variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 end CompletionCarrier
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place"
 
-section Inhabitant
-
-end Inhabitant
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place"
 
 section Stratum
@@ -845,18 +830,12 @@ variable [HasCanonicalLocalResidueKStar K F']
 end MovedCarrier
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place"
 
-section CommittedPlace
-
-end CommittedPlace
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place"
 
 end ModularCurve.Lg37
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place"
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place"
 
-section AxiomAudit
-
-end AxiomAudit
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place"
 
 end
@@ -937,9 +916,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_Algebrai
 end Mp72a103T2
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place"
 
-section AxiomAudit
-
-end AxiomAudit
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place"
 
 end

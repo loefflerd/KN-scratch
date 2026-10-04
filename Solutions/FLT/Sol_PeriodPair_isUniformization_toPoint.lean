@@ -175,14 +175,6 @@ private theorem _root_.PeriodPair.apply_eq_apply_of_differentiable_of_forall_per
 p2m_export "PeriodPair" "apply_eq_apply_of_differentiable_of_forall_periodic"
 end Liouville
 
-section Curve
-
-end Curve
-
-section HalfPeriods
-
-end HalfPeriods
-
 section ToPoint
 
 private theorem _root_.PeriodPair.toPoint_add_mem (h : L.DiscriminantNeZero) (z : ℂ) {l : ℂ} (hl : l ∈ L.lattice) :
@@ -214,14 +206,6 @@ private theorem _root_.PeriodPair.toPoint_neg (h : L.DiscriminantNeZero) (z : �
 
 p2m_export "PeriodPair" "toPoint_neg"
 end ToPoint
-
-section JInvariant
-
-end JInvariant
-
-section Isogeny
-
-end Isogeny
 
 end PeriodPair
 

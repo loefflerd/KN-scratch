@@ -1071,9 +1071,6 @@ variable [HasCanonicalLocalResidueKStar K F]
 end AlgebraicCurve
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
 
-section AxiomAudit
-
-end AxiomAudit
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
 
 end

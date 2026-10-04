@@ -51,30 +51,6 @@ p2m_open "PeriodPair"
 
 variable (L : PeriodPair)
 
-section Liouville
-
-end Liouville
-
-section Curve
-
-end Curve
-
-section HalfPeriods
-
-end HalfPeriods
-
-section ToPoint
-
-end ToPoint
-
-section JInvariant
-
-end JInvariant
-
-section Isogeny
-
-end Isogeny
-
 end PeriodPair
 
 namespace Projectivization

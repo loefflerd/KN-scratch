@@ -199,34 +199,16 @@ p2m_open "PeriodPair"
 
 variable (L : PeriodPair)
 
-section Liouville
-
-end Liouville
 p2m_reactivate "P2MW.S_PeriodPair_discriminant_ne_zero.ModularForm"
 
-section Curve
-
-end Curve
 p2m_reactivate "P2MW.S_PeriodPair_discriminant_ne_zero.ModularForm"
 
-section HalfPeriods
-
-end HalfPeriods
 p2m_reactivate "P2MW.S_PeriodPair_discriminant_ne_zero.ModularForm"
 
-section ToPoint
-
-end ToPoint
 p2m_reactivate "P2MW.S_PeriodPair_discriminant_ne_zero.ModularForm"
 
-section JInvariant
-
-end JInvariant
 p2m_reactivate "P2MW.S_PeriodPair_discriminant_ne_zero.ModularForm"
 
-section Isogeny
-
-end Isogeny
 p2m_reactivate "P2MW.S_PeriodPair_discriminant_ne_zero.ModularForm"
 
 end PeriodPair

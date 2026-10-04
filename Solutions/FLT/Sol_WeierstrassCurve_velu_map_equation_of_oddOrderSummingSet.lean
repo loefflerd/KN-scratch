@@ -7276,18 +7276,6 @@ local notation "Qbar" => AlgebraicClosure ℚ
 
 variable {ℓ : ℕ} [Fact ℓ.Prime] {A : ValuationSubring Qbar} (f : ZMod ℓ →+* ResidueField A)
 
-section GateInstances
-
-end GateInstances
-
-section Consumers
-
-end Consumers
-
-section NonVacuity
-
-end NonVacuity
-
 end ModularCurve.ElevenA1
 
 end

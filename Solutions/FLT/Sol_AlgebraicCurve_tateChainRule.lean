@@ -732,14 +732,8 @@ p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve Poly
 
 attribute [local instance 2000] RatFunc.instAlgebraOfPolynomial
 
-section ProductionNondegeneracy
-
-end ProductionNondegeneracy
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve"
 
-section ProductionNoGo
-
-end ProductionNoGo
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve"
 
 section CorrectedProductionJoin
@@ -752,9 +746,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve"
 end ModularCurve
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve"
 
-section AxiomAudit
-
-end AxiomAudit
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve"
 
 end

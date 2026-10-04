@@ -372,34 +372,16 @@ p2m_open "PeriodPair"
 
 variable (L : PeriodPair)
 
-section Liouville
-
-end Liouville
 p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
 
-section Curve
-
-end Curve
 p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
 
-section HalfPeriods
-
-end HalfPeriods
 p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
 
-section ToPoint
-
-end ToPoint
 p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
 
-section JInvariant
-
-end JInvariant
 p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
 
-section Isogeny
-
-end Isogeny
 p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
 
 end PeriodPair

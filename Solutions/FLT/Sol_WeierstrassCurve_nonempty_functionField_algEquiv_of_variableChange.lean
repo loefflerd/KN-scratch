@@ -356,10 +356,6 @@ p2m_open "WeierstrassCurve.Affine.Point"
 
 variable {C : VariableChange K} {W : WeierstrassCurve.Affine K} {φ : K →+* K}
 
-section ComponentFixed
-
-end ComponentFixed
-
 end Point
 
 end WeierstrassCurve.Affine

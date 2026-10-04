@@ -858,14 +858,6 @@ p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.Alg
 
 attribute [local instance 2000] RatFunc.instAlgebraOfPolynomial
 
-section ProductionNondegeneracy
-
-end ProductionNondegeneracy
-
-section ProductionNoGo
-
-end ProductionNoGo
-
 section CorrectedProductionJoin
 
 variable (N : ℕ) [NeZero N]
@@ -873,10 +865,6 @@ variable (N : ℕ) [NeZero N]
 end CorrectedProductionJoin
 
 end ModularCurve
-
-section AxiomAudit
-
-end AxiomAudit
 
 end
 

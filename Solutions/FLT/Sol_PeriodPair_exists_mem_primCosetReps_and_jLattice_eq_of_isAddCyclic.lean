@@ -339,9 +339,6 @@ theorem index_eq_comap_inr_mul_map_fst (H : AddSubgroup (A × B)) :
 end ProductIndex
 p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair"
 
-section LatticeOfProjections
-
-end LatticeOfProjections
 p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair"
 
 section StructureTheorem
@@ -424,14 +421,8 @@ theorem latticeOf_canonical_eq : latticeOf (aOf H) (dOf H) (bOf H) = H := by
 end StructureTheorem
 p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair"
 
-section ParameterRecovery
-
-end ParameterRecovery
 p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair"
 
-section TheCount
-
-end TheCount
 p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair"
 
 end QuaternionAlgebra
@@ -800,9 +791,6 @@ theorem kw_surgehgf4_qtzz_proved : KwSublatticeQuotientZZTransport := by
 end ModularCurve
 p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.ModularCurve"
 
-section AxiomAudits
-
-end AxiomAudits
 p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.ModularCurve"
 
 end
