@@ -103,11 +103,6 @@ namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine Affine.negY Affine.slope_of_X_ne a₃ a₁ map Affine.nonsingular_iff mk a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq Affine.Point.X_eq_iff Affine.negAddY Affine.Point.zero_def Affine.nonsingular_add toAffine Affine.slope_of_Y_ne Affine.Point Affine.addX Affine.nonsingular_neg Affine.equation_iff_nonsingular Affine.Point.some_ne_zero Δ c₄ Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.Point.neg_some Affine.Point.add_self_of_Y_ne Δ' velu2X velu2Y veluPointMap2 veluPointMap2_zero veluPointMap2_some_of_eq veluPointMap2_some_of_ne veluQuotient2 veluQuotient2_a₁ veluQuotient2_a₂ veluQuotient2_a₃ veluQuotient2_a₄ veluGx veluGy veluGy_eq_zero_of_negY_eq veluQuotient2_Delta_eq velu2_secant_negAddY_cleared_identity velu2_tangent_addX_cleared_identity velu2_tangent_negAddY_cleared_identity"
 p2m_open "WeierstrassCurve"
 
-theorem kw_veluOrderTwoNeg_axiomAnchor : True := by
-  have _h := Classical.em True
-  have _q : Quot.mk (α := ℕ) (· = ·) 0 = Quot.mk (· = ·) 0 := Quot.sound rfl
-  trivial
-
 section Field
 
 variable {F : Type*} [Field F] {W : WeierstrassCurve F} {x₀ y₀ : F}
@@ -115,7 +110,6 @@ variable {F : Type*} [Field F] {W : WeierstrassCurve F} {x₀ y₀ : F}
 theorem kw_velu2Y_negY (hgy : W.veluGy x₀ y₀ = 0) (x y : F) :
     W.velu2Y x₀ y₀ x (W.toAffine.negY x y)
       = (W.veluQuotient2 x₀ y₀).toAffine.negY (W.velu2X x₀ y₀ x) (W.velu2Y x₀ y₀ x y) := by
-  have _ := kw_veluOrderTwoNeg_axiomAnchor
   have hord : 2 * y₀ + W.a₁ * x₀ + W.a₃ = 0 := by
     have h := hgy; rw [veluGy, neg_eq_zero] at h; exact h
   by_cases hx : x = x₀
@@ -136,14 +130,12 @@ omit [DecidableEq F] in
 lemma kw_v2neg_some_congr {W' : Affine F} {x y₁ y₂ : F}
     {h₁ : W'.Nonsingular x y₁} {h₂ : W'.Nonsingular x y₂} (hy : y₁ = y₂) :
     Affine.Point.some x y₁ h₁ = Affine.Point.some x y₂ h₂ := by
-  have _ := kw_veluOrderTwoNeg_axiomAnchor
   subst hy; rfl
 
 include hchar hQ hgy hΔ in
 
 theorem kw_veluPointMap2_neg (P : W.toAffine.Point) :
     veluPointMap2 hchar hQ hgy hΔ (-P) = -veluPointMap2 hchar hQ hgy hΔ P := by
-  have _ := kw_veluOrderTwoNeg_axiomAnchor
   cases P with
   | zero => rfl
   | some x y h =>
@@ -168,11 +160,6 @@ namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine Affine.negY Affine.slope_of_X_ne a₃ a₁ map Affine.nonsingular_iff mk a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq Affine.Point.X_eq_iff Affine.negAddY Affine.Point.zero_def Affine.nonsingular_add toAffine Affine.slope_of_Y_ne Affine.Point Affine.addX Affine.nonsingular_neg Affine.equation_iff_nonsingular Affine.Point.some_ne_zero Δ c₄ Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.Point.neg_some Affine.Point.add_self_of_Y_ne Δ' velu2X velu2Y veluPointMap2 veluPointMap2_zero veluPointMap2_some_of_eq veluPointMap2_some_of_ne veluQuotient2 veluQuotient2_a₁ veluQuotient2_a₂ veluQuotient2_a₃ veluQuotient2_a₄ veluGx veluGy veluGy_eq_zero_of_negY_eq veluQuotient2_Delta_eq velu2_secant_negAddY_cleared_identity velu2_tangent_addX_cleared_identity velu2_tangent_negAddY_cleared_identity"
 p2m_open "WeierstrassCurve"
 
-theorem kw_veluOrderTwoAddKernel_axiomAnchor : True := by
-  have _h := Classical.em True
-  have _q : Quot.mk (α := ℕ) (· = ·) 0 = Quot.mk (· = ·) 0 := Quot.sound rfl
-  trivial
-
 section Field
 
 variable {F : Type*} [Field F] [DecidableEq F] {W : WeierstrassCurve F} {x₀ y₀ : F}
@@ -188,7 +175,6 @@ theorem kw_velu2_addX_kernel {x y : F} (hP : W.toAffine.Equation x y)
     (hQ : W.toAffine.Equation x₀ y₀) (hgy : W.veluGy x₀ y₀ = 0) (hx : x ≠ x₀) :
     W.toAffine.addX x x₀ (W.toAffine.slope x x₀ y y₀)
       = x₀ + W.veluGx x₀ y₀ / (x - x₀) := by
-  have _ := kw_veluOrderTwoAddKernel_axiomAnchor
   have hord : 2 * y₀ + W.a₁ * x₀ + W.a₃ = 0 := by
     have h := hgy; rw [veluGy, neg_eq_zero] at h; exact h
   have hd : x - x₀ ≠ 0 := sub_ne_zero.mpr hx
@@ -203,7 +189,6 @@ theorem kw_velu2X_sub_velu2X {x₁ x₂ : F} (hx₁ : x₁ ≠ x₀) (hx₂ : x�
     W.velu2X x₀ y₀ x₁ - W.velu2X x₀ y₀ x₂
       = (x₁ - x₂) * ((x₁ - x₀) * (x₂ - x₀) - W.veluGx x₀ y₀)
           / ((x₁ - x₀) * (x₂ - x₀)) := by
-  have _ := kw_veluOrderTwoAddKernel_axiomAnchor
   have hd₁ : x₁ - x₀ ≠ 0 := sub_ne_zero.mpr hx₁
   have hd₂ : x₂ - x₀ ≠ 0 := sub_ne_zero.mpr hx₂
   simp only [velu2X]
@@ -215,7 +200,6 @@ omit [DecidableEq F] in
 theorem kw_velu2X_eq_iff {x₁ x₂ : F} (hx₁ : x₁ ≠ x₀) (hx₂ : x₂ ≠ x₀) :
     W.velu2X x₀ y₀ x₁ = W.velu2X x₀ y₀ x₂
       ↔ x₁ = x₂ ∨ (x₁ - x₀) * (x₂ - x₀) = W.veluGx x₀ y₀ := by
-  have _ := kw_veluOrderTwoAddKernel_axiomAnchor
   have hd₁ : x₁ - x₀ ≠ 0 := sub_ne_zero.mpr hx₁
   have hd₂ : x₂ - x₀ ≠ 0 := sub_ne_zero.mpr hx₂
   rw [← sub_eq_zero, kw_velu2X_sub_velu2X hx₁ hx₂, div_eq_zero_iff, mul_eq_zero,
@@ -227,7 +211,6 @@ theorem kw_velu2X_addKernel {x y : F} (hP : W.toAffine.Equation x y)
     (ht : W.veluGx x₀ y₀ ≠ 0) (hx : x ≠ x₀) :
     W.velu2X x₀ y₀ (W.toAffine.addX x x₀ (W.toAffine.slope x x₀ y y₀))
       = W.velu2X x₀ y₀ x := by
-  have _ := kw_veluOrderTwoAddKernel_axiomAnchor
   have hd : x - x₀ ≠ 0 := sub_ne_zero.mpr hx
   have htd : W.veluGx x₀ y₀ / (x - x₀) ≠ 0 := div_ne_zero ht hd
   rw [kw_velu2_addX_kernel hP hQ hgy hx]
@@ -239,7 +222,6 @@ theorem kw_velu2_addY_kernel {x y : F} (hP : W.toAffine.Equation x y)
     (hQ : W.toAffine.Equation x₀ y₀) (hgy : W.veluGy x₀ y₀ = 0) (hx : x ≠ x₀) :
     W.toAffine.addY x x₀ y (W.toAffine.slope x x₀ y y₀) - y₀
       = -(W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀)) / (x - x₀) ^ 2 := by
-  have _ := kw_veluOrderTwoAddKernel_axiomAnchor
   have hord : 2 * y₀ + W.a₁ * x₀ + W.a₃ = 0 := by
     have h := hgy; rw [veluGy, neg_eq_zero] at h; exact h
   have hd : x - x₀ ≠ 0 := sub_ne_zero.mpr hx
@@ -255,7 +237,6 @@ theorem kw_velu2Y_addKernel {x y : F} (hP : W.toAffine.Equation x y)
     W.velu2Y x₀ y₀ (W.toAffine.addX x x₀ (W.toAffine.slope x x₀ y y₀))
         (W.toAffine.addY x x₀ y (W.toAffine.slope x x₀ y y₀))
       = W.velu2Y x₀ y₀ x y := by
-  have _ := kw_veluOrderTwoAddKernel_axiomAnchor
   have hd : x - x₀ ≠ 0 := sub_ne_zero.mpr hx
   have hxP := kw_velu2_addX_kernel hP hQ hgy hx
   have hyP := kw_velu2_addY_kernel hP hQ hgy hx
@@ -281,7 +262,6 @@ omit [DecidableEq F] in
 lemma kw_v2ker_some_congr {W' : Affine F} {u₁ u₂ v₁ v₂ : F}
     {h₁ : W'.Nonsingular u₁ v₁} {h₂ : W'.Nonsingular u₂ v₂} (hX : u₁ = u₂) (hY : v₁ = v₂) :
     Affine.Point.some u₁ v₁ h₁ = Affine.Point.some u₂ v₂ h₂ := by
-  have _ := kw_veluOrderTwoAddKernel_axiomAnchor
   subst hX; subst hY; rfl
 
 include hchar hQ hgy hΔ in
@@ -290,7 +270,6 @@ theorem kw_veluPointMap2_add_kernel_gen (hQns : W.toAffine.Nonsingular x₀ y₀
     (P : W.toAffine.Point) :
     veluPointMap2 hchar hQ hgy hΔ (P + .some x₀ y₀ hQns)
       = veluPointMap2 hchar hQ hgy hΔ P := by
-  have _ := kw_veluOrderTwoAddKernel_axiomAnchor
   have ht : W.veluGx x₀ y₀ ≠ 0 := kw_veluGx_ne_zero_of_quotΔ hQ hgy hΔ
   have h2P₀ : (2 : ℕ) • (Affine.Point.some x₀ y₀ hQns : W.toAffine.Point) = 0 :=
     Affine.two_nsmul_some_eq_zero_of_veluGy_eq_zero hgy hQns
@@ -330,11 +309,6 @@ namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine Affine.negY Affine.slope_of_X_ne a₃ a₁ map Affine.nonsingular_iff mk a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq Affine.Point.X_eq_iff Affine.negAddY Affine.Point.zero_def Affine.nonsingular_add toAffine Affine.slope_of_Y_ne Affine.Point Affine.addX Affine.nonsingular_neg Affine.equation_iff_nonsingular Affine.Point.some_ne_zero Δ c₄ Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.Point.neg_some Affine.Point.add_self_of_Y_ne Δ' velu2X velu2Y veluPointMap2 veluPointMap2_zero veluPointMap2_some_of_eq veluPointMap2_some_of_ne veluQuotient2 veluQuotient2_a₁ veluQuotient2_a₂ veluQuotient2_a₃ veluQuotient2_a₄ veluGx veluGy veluGy_eq_zero_of_negY_eq veluQuotient2_Delta_eq velu2_secant_negAddY_cleared_identity velu2_tangent_addX_cleared_identity velu2_tangent_negAddY_cleared_identity"
 p2m_open "WeierstrassCurve"
 
-theorem kw_veluOrderTwoSecantXContent_axiomAnchor : True := by
-  have _h := Classical.em True
-  have _q : Quot.mk (α := ℕ) (· = ·) 0 = Quot.mk (· = ·) 0 := Quot.sound rfl
-  trivial
-
 section CommRing
 
 variable {R : Type*} [CommRing R] {W : WeierstrassCurve R} {x₀ y₀ x₁ y₁ x₂ y₂ : R}
@@ -346,7 +320,6 @@ theorem kw_velu2_secX_SI2 (hP₁ : W.toAffine.Equation x₁ y₁)
       = ((x₂ - x₀) * (W.a₁ * (x₁ - x₀) + y₁ - y₀)
             + (x₁ - x₀) * (W.a₁ * (x₂ - x₀) + y₂ - y₀) - W.a₁ * ((x₁ - x₀) * (x₂ - x₀)))
         * ((x₂ - x₀) * (y₁ - y₀) - (x₁ - x₀) * (y₂ - y₀)) := by
-  have _ := kw_veluOrderTwoSecantXContent_axiomAnchor
   rw [Affine.equation_iff] at hP₁ hP₂ hQ
   simp only [veluGx]
   linear_combination (-(x₂ - x₀) ^ 2) * hP₁ + (x₁ - x₀) ^ 2 * hP₂
@@ -362,7 +335,6 @@ theorem kw_velu2_secX_SI3 (hP₁ : W.toAffine.Equation x₁ y₁)
             + (x₁ - x₀) * (W.a₁ * (x₂ - x₀) + y₂ - y₀) - W.a₁ * ((x₁ - x₀) * (x₂ - x₀)))
       = (x₁ - x₂) * ((x₁ - x₀) * (x₂ - x₀) - W.veluGx x₀ y₀)
         * ((x₂ - x₀) * (y₁ - y₀) - (x₁ - x₀) * (y₂ - y₀)) := by
-  have _ := kw_veluOrderTwoSecantXContent_axiomAnchor
   rw [Affine.equation_iff] at hP₁ hP₂ hQ
   simp only [veluGx]
   linear_combination
@@ -389,11 +361,6 @@ namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine Affine.negY Affine.slope_of_X_ne a₃ a₁ map Affine.nonsingular_iff mk a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq Affine.Point.X_eq_iff Affine.negAddY Affine.Point.zero_def Affine.nonsingular_add toAffine Affine.slope_of_Y_ne Affine.Point Affine.addX Affine.nonsingular_neg Affine.equation_iff_nonsingular Affine.Point.some_ne_zero Δ c₄ Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.Point.neg_some Affine.Point.add_self_of_Y_ne Δ' velu2X velu2Y veluPointMap2 veluPointMap2_zero veluPointMap2_some_of_eq veluPointMap2_some_of_ne veluQuotient2 veluQuotient2_a₁ veluQuotient2_a₂ veluQuotient2_a₃ veluQuotient2_a₄ veluGx veluGy veluGy_eq_zero_of_negY_eq veluQuotient2_Delta_eq velu2_secant_negAddY_cleared_identity velu2_tangent_addX_cleared_identity velu2_tangent_negAddY_cleared_identity"
 p2m_open "WeierstrassCurve"
 
-theorem kw_veluOrderTwoTangentYContent_axiomAnchor : True := by
-  have _h := Classical.em True
-  have _q : Quot.mk (α := ℕ) (· = ·) 0 = Quot.mk (· = ·) 0 := Quot.sound rfl
-  trivial
-
 section CommRing
 
 variable {R : Type*} [CommRing R] {W : WeierstrassCurve R} {x₀ y₀ x y : R}
@@ -410,7 +377,6 @@ theorem kw_velu2_tanY_SI2c (hP : W.toAffine.Equation x y) (hQ : W.toAffine.Equat
         - ((x - x₀) ^ 2 - W.veluGx x₀ y₀) * (x - x₀)
           * (3 * x ^ 2 + 2 * W.a₂ * x + W.a₄ - W.a₁ * y) * (2 * y + W.a₁ * x + W.a₃) ^ 2
       = 0 := by
-  have _ := kw_veluOrderTwoTangentYContent_axiomAnchor
   rw [Affine.equation_iff] at hP hQ
   simp only [veluGx]
   linear_combination
@@ -430,11 +396,6 @@ namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine Affine.negY Affine.slope_of_X_ne a₃ a₁ map Affine.nonsingular_iff mk a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq Affine.Point.X_eq_iff Affine.negAddY Affine.Point.zero_def Affine.nonsingular_add toAffine Affine.slope_of_Y_ne Affine.Point Affine.addX Affine.nonsingular_neg Affine.equation_iff_nonsingular Affine.Point.some_ne_zero Δ c₄ Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.Point.neg_some Affine.Point.add_self_of_Y_ne Δ' velu2X velu2Y veluPointMap2 veluPointMap2_zero veluPointMap2_some_of_eq veluPointMap2_some_of_ne veluQuotient2 veluQuotient2_a₁ veluQuotient2_a₂ veluQuotient2_a₃ veluQuotient2_a₄ veluGx veluGy veluGy_eq_zero_of_negY_eq veluQuotient2_Delta_eq velu2_secant_negAddY_cleared_identity velu2_tangent_addX_cleared_identity velu2_tangent_negAddY_cleared_identity"
 p2m_open "WeierstrassCurve"
 
-theorem kw_veluOrderTwoSecantAtoms_axiomAnchor : True := by
-  have _h := Classical.em True
-  have _q : Quot.mk (α := ℕ) (· = ·) 0 = Quot.mk (· = ·) 0 := Quot.sound rfl
-  trivial
-
 section Field
 
 variable {F : Type*} [Field F] [DecidableEq F] {W : WeierstrassCurve F} {x₀ y₀ x₁ y₁ x₂ y₂ : F}
@@ -443,7 +404,6 @@ theorem kw_velu2_dXA_cleared (hx12 : x₁ ≠ x₂) :
     (x₁ - x₂) ^ 2 * (W.toAffine.addX x₁ x₂ (W.toAffine.slope x₁ x₂ y₁ y₂) - x₀)
       = (y₁ - y₂) ^ 2 + W.a₁ * (y₁ - y₂) * (x₁ - x₂)
           - (W.a₂ + x₀ + x₁ + x₂) * (x₁ - x₂) ^ 2 := by
-  have _ := kw_veluOrderTwoSecantAtoms_axiomAnchor
   have hd₁₂ : x₁ - x₂ ≠ 0 := sub_ne_zero.mpr hx12
   simp only [Affine.addX, Affine.slope_of_X_ne hx12]
   field_simp
@@ -463,7 +423,6 @@ theorem kw_velu2_slopeDiff_cleared :
         * ((x₂ - x₀) * (W.a₁ * (x₁ - x₀) + y₁ - y₀)
             + (x₁ - x₀) * (W.a₁ * (x₂ - x₀) + y₂ - y₀)
             - W.a₁ * ((x₁ - x₀) * (x₂ - x₀))) := by
-  have _ := kw_veluOrderTwoSecantAtoms_axiomAnchor
   have hd₁ : x₁ - x₀ ≠ 0 := sub_ne_zero.mpr hx₁
   have hd₂ : x₂ - x₀ ≠ 0 := sub_ne_zero.mpr hx₂
   have hd₁₂ : x₁ - x₂ ≠ 0 := sub_ne_zero.mpr hx12
@@ -489,7 +448,6 @@ theorem kw_velu2_slopeSum_cleared :
               - W.a₁ * ((x₁ - x₀) * (x₂ - x₀)))
         + ((x₁ - x₀) * (x₂ - x₀) - W.veluGx x₀ y₀) * ((x₁ - x₀) + (x₂ - x₀))
           * ((x₂ - x₀) * (y₁ - y₀) - (x₁ - x₀) * (y₂ - y₀)) := by
-  have _ := kw_veluOrderTwoSecantAtoms_axiomAnchor
   have hd₁ : x₁ - x₀ ≠ 0 := sub_ne_zero.mpr hx₁
   have hd₂ : x₂ - x₀ ≠ 0 := sub_ne_zero.mpr hx₂
   have hd₁₂ : x₁ - x₂ ≠ 0 := sub_ne_zero.mpr hx12
@@ -513,11 +471,6 @@ open Polynomial
 namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine Affine.negY Affine.slope_of_X_ne a₃ a₁ map Affine.nonsingular_iff mk a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq Affine.Point.X_eq_iff Affine.negAddY Affine.Point.zero_def Affine.nonsingular_add toAffine Affine.slope_of_Y_ne Affine.Point Affine.addX Affine.nonsingular_neg Affine.equation_iff_nonsingular Affine.Point.some_ne_zero Δ c₄ Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.Point.neg_some Affine.Point.add_self_of_Y_ne Δ' velu2X velu2Y veluPointMap2 veluPointMap2_zero veluPointMap2_some_of_eq veluPointMap2_some_of_ne veluQuotient2 veluQuotient2_a₁ veluQuotient2_a₂ veluQuotient2_a₃ veluQuotient2_a₄ veluGx veluGy veluGy_eq_zero_of_negY_eq veluQuotient2_Delta_eq velu2_secant_negAddY_cleared_identity velu2_tangent_addX_cleared_identity velu2_tangent_negAddY_cleared_identity"
 p2m_open "WeierstrassCurve"
-
-theorem kw_veluOrderTwoSecantCarrier_axiomAnchor : True := by
-  have _h := Classical.em True
-  have _q : Quot.mk (α := ℕ) (· = ·) 0 = Quot.mk (· = ·) 0 := Quot.sound rfl
-  trivial
 
 section Field
 
@@ -576,7 +529,6 @@ theorem kw_veluPointMap2_add_of_secant_diffAvoid
         ((Affine.Point.some x₁ y₁ h₁ : W.toAffine.Point) + Affine.Point.some x₂ y₂ h₂)
       = veluPointMap2 hchar hQ hgy hΔ (Affine.Point.some x₁ y₁ h₁)
         + veluPointMap2 hchar hQ hgy hΔ (Affine.Point.some x₂ y₂ h₂) := by
-  have _ := kw_veluOrderTwoSecantCarrier_axiomAnchor
   obtain ⟨hX12, hXeq, hYeq⟩ := hsec h₁.1 h₂.1 hx12 hx₁ hx₂ hsp hsm
   rw [Affine.Point.add_of_X_ne hx12, veluPointMap2_some_of_ne hchar hQ hgy hΔ _ hsp,
     veluPointMap2_some_of_ne hchar hQ hgy hΔ h₁ hx₁,
@@ -594,7 +546,6 @@ theorem kw_veluPointMap2_add_self_of_tangent
         ((Affine.Point.some x y h : W.toAffine.Point) + Affine.Point.some x y h)
       = veluPointMap2 hchar hQ hgy hΔ (Affine.Point.some x y h)
         + veluPointMap2 hchar hQ hgy hΔ (Affine.Point.some x y h) := by
-  have _ := kw_veluOrderTwoSecantCarrier_axiomAnchor
   obtain ⟨hY, hXeq, hYeq⟩ := htan h.1 hy hx hx2
   rw [Affine.Point.add_self_of_Y_ne hy, veluPointMap2_some_of_ne hchar hQ hgy hΔ _ hx2,
     veluPointMap2_some_of_ne hchar hQ hgy hΔ h hx]
@@ -613,11 +564,6 @@ namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine Affine.negY Affine.slope_of_X_ne a₃ a₁ map Affine.nonsingular_iff mk a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq Affine.Point.X_eq_iff Affine.negAddY Affine.Point.zero_def Affine.nonsingular_add toAffine Affine.slope_of_Y_ne Affine.Point Affine.addX Affine.nonsingular_neg Affine.equation_iff_nonsingular Affine.Point.some_ne_zero Δ c₄ Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.Point.neg_some Affine.Point.add_self_of_Y_ne Δ' velu2X velu2Y veluPointMap2 veluPointMap2_zero veluPointMap2_some_of_eq veluPointMap2_some_of_ne veluQuotient2 veluQuotient2_a₁ veluQuotient2_a₂ veluQuotient2_a₃ veluQuotient2_a₄ veluGx veluGy veluGy_eq_zero_of_negY_eq veluQuotient2_Delta_eq velu2_secant_negAddY_cleared_identity velu2_tangent_addX_cleared_identity velu2_tangent_negAddY_cleared_identity"
 p2m_open "WeierstrassCurve"
 
-theorem kw_veluOrderTwoSecantConjunctOne_axiomAnchor : True := by
-  have _h := Classical.em True
-  have _q : Quot.mk (α := ℕ) (· = ·) 0 = Quot.mk (· = ·) 0 := Quot.sound rfl
-  trivial
-
 section Field
 
 variable {F : Type*} [Field F] [DecidableEq F] {W : WeierstrassCurve F} {x₀ y₀ : F}
@@ -630,7 +576,6 @@ theorem kw_velu2_quotNegY_sub_factored (hgy : W.veluGy x₀ y₀ = 0)
         * (W.velu2Y x₀ y₀ x y
             - (W.veluQuotient2 x₀ y₀).toAffine.negY (W.velu2X x₀ y₀ x) (W.velu2Y x₀ y₀ x y))
       = (y - W.toAffine.negY x y) * ((x - x₀) ^ 2 - W.veluGx x₀ y₀) := by
-  have _ := kw_veluOrderTwoSecantConjunctOne_axiomAnchor
   have hord : 2 * y₀ + W.a₁ * x₀ + W.a₃ = 0 := by
     have h := hgy; rw [veluGy, neg_eq_zero] at h; exact h
   have hd : x - x₀ ≠ 0 := sub_ne_zero.mpr hx
@@ -648,7 +593,6 @@ theorem kw_velu2X_ne_of_diffAvoid
     (hsp : W.toAffine.addX x₁ x₂ (W.toAffine.slope x₁ x₂ y₁ y₂) ≠ x₀)
     (hsm : W.toAffine.addX x₁ x₂ (W.toAffine.slope x₁ x₂ y₁ (W.toAffine.negY x₂ y₂)) ≠ x₀) :
     W.velu2X x₀ y₀ x₁ ≠ W.velu2X x₀ y₀ x₂ := by
-  have _ := kw_veluOrderTwoSecantConjunctOne_axiomAnchor
   intro hXeq
   have hd₁ : x₁ - x₀ ≠ 0 := sub_ne_zero.mpr hx₁
   have hfib : (x₁ - x₀) * (x₂ - x₀) = W.veluGx x₀ y₀ :=
@@ -689,7 +633,6 @@ theorem kw_velu2Y_ne_quotNegY_of_tangent
     (hx2 : W.toAffine.addX x x (W.toAffine.slope x x y y) ≠ x₀) :
     W.velu2Y x₀ y₀ x y
       ≠ (W.veluQuotient2 x₀ y₀).toAffine.negY (W.velu2X x₀ y₀ x) (W.velu2Y x₀ y₀ x y) := by
-  have _ := kw_veluOrderTwoSecantConjunctOne_axiomAnchor
   intro hcon
   have hd : x - x₀ ≠ 0 := sub_ne_zero.mpr hx
   have hfact : (y - W.toAffine.negY x y) * ((x - x₀) ^ 2 - W.veluGx x₀ y₀) = 0 := by
@@ -738,11 +681,6 @@ namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine Affine.negY Affine.slope_of_X_ne a₃ a₁ map Affine.nonsingular_iff mk a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq Affine.Point.X_eq_iff Affine.negAddY Affine.Point.zero_def Affine.nonsingular_add toAffine Affine.slope_of_Y_ne Affine.Point Affine.addX Affine.nonsingular_neg Affine.equation_iff_nonsingular Affine.Point.some_ne_zero Δ c₄ Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.Point.neg_some Affine.Point.add_self_of_Y_ne Δ' velu2X velu2Y veluPointMap2 veluPointMap2_zero veluPointMap2_some_of_eq veluPointMap2_some_of_ne veluQuotient2 veluQuotient2_a₁ veluQuotient2_a₂ veluQuotient2_a₃ veluQuotient2_a₄ veluGx veluGy veluGy_eq_zero_of_negY_eq veluQuotient2_Delta_eq velu2_secant_negAddY_cleared_identity velu2_tangent_addX_cleared_identity velu2_tangent_negAddY_cleared_identity"
 p2m_open "WeierstrassCurve"
 
-theorem kw_veluOrderTwoSecantAlign_axiomAnchor : True := by
-  have _h := Classical.em True
-  have _q : Quot.mk (α := ℕ) (· = ·) 0 = Quot.mk (· = ·) 0 := Quot.sound rfl
-  trivial
-
 section Field
 
 variable {F : Type*} [Field F] [DecidableEq F] {W : WeierstrassCurve F}
@@ -757,7 +695,6 @@ theorem kw_velu2_secX_align (hP₁ : W.toAffine.Equation x₁ y₁)
       = (W.veluQuotient2 x₀ y₀).toAffine.addX (W.velu2X x₀ y₀ x₁) (W.velu2X x₀ y₀ x₂)
           ((W.veluQuotient2 x₀ y₀).toAffine.slope (W.velu2X x₀ y₀ x₁) (W.velu2X x₀ y₀ x₂)
             (W.velu2Y x₀ y₀ x₁ y₁) (W.velu2Y x₀ y₀ x₂ y₂)) := by
-  have _ := kw_veluOrderTwoSecantAlign_axiomAnchor
   have hSI2 := kw_velu2_secX_SI2 hP₁ hP₂ hQ hord
   have hSI3 := kw_velu2_secX_SI3 hP₁ hP₂ hQ hord
   have hd₁ : x₁ - x₀ ≠ 0 := sub_ne_zero.mpr hx₁
@@ -788,7 +725,6 @@ theorem kw_velu2_secY_negAddY_align (hP₁ : W.toAffine.Equation x₁ y₁)
           (W.velu2Y x₀ y₀ x₁ y₁)
           ((W.veluQuotient2 x₀ y₀).toAffine.slope (W.velu2X x₀ y₀ x₁) (W.velu2X x₀ y₀ x₂)
             (W.velu2Y x₀ y₀ x₁ y₁) (W.velu2Y x₀ y₀ x₂ y₂)) := by
-  have _ := kw_veluOrderTwoSecantAlign_axiomAnchor
   have hSIY := velu2_secant_negAddY_cleared_identity hP₁ hP₂ hQ hord hx12
   have hXalign := kw_velu2_secX_align hP₁ hP₂ hQ hord hx12 hx₁ hx₂ hsp hX12
   have hd₁ : x₁ - x₀ ≠ 0 := sub_ne_zero.mpr hx₁
@@ -835,7 +771,6 @@ theorem kw_velu2_secY_align (hP₁ : W.toAffine.Equation x₁ y₁)
           (W.velu2Y x₀ y₀ x₁ y₁)
           ((W.veluQuotient2 x₀ y₀).toAffine.slope (W.velu2X x₀ y₀ x₁) (W.velu2X x₀ y₀ x₂)
             (W.velu2Y x₀ y₀ x₁ y₁) (W.velu2Y x₀ y₀ x₂ y₂)) := by
-  have _ := kw_veluOrderTwoSecantAlign_axiomAnchor
   have hord : 2 * y₀ + W.a₁ * x₀ + W.a₃ = 0 := by
     have h := hgy; rw [veluGy, neg_eq_zero] at h; exact h
   have hXalign := kw_velu2_secX_align hP₁ hP₂ hQ hord hx12 hx₁ hx₂ hsp hX12
@@ -857,11 +792,6 @@ namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine Affine.negY Affine.slope_of_X_ne a₃ a₁ map Affine.nonsingular_iff mk a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq Affine.Point.X_eq_iff Affine.negAddY Affine.Point.zero_def Affine.nonsingular_add toAffine Affine.slope_of_Y_ne Affine.Point Affine.addX Affine.nonsingular_neg Affine.equation_iff_nonsingular Affine.Point.some_ne_zero Δ c₄ Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.Point.neg_some Affine.Point.add_self_of_Y_ne Δ' velu2X velu2Y veluPointMap2 veluPointMap2_zero veluPointMap2_some_of_eq veluPointMap2_some_of_ne veluQuotient2 veluQuotient2_a₁ veluQuotient2_a₂ veluQuotient2_a₃ veluQuotient2_a₄ veluGx veluGy veluGy_eq_zero_of_negY_eq veluQuotient2_Delta_eq velu2_secant_negAddY_cleared_identity velu2_tangent_addX_cleared_identity velu2_tangent_negAddY_cleared_identity"
 p2m_open "WeierstrassCurve"
 
-theorem kw_veluOrderTwoTangentXAlign_axiomAnchor : True := by
-  have _h := Classical.em True
-  have _q : Quot.mk (α := ℕ) (· = ·) 0 = Quot.mk (· = ·) 0 := Quot.sound rfl
-  trivial
-
 section Field
 
 variable {F : Type*} [Field F] [DecidableEq F] {W : WeierstrassCurve F} {x₀ y₀ x y : F}
@@ -871,7 +801,6 @@ theorem kw_velu2_tan_d2P_cleared (hy : y ≠ W.toAffine.negY x y) :
       = (3 * x ^ 2 + 2 * W.a₂ * x + W.a₄ - W.a₁ * y) ^ 2
         + W.a₁ * (3 * x ^ 2 + 2 * W.a₂ * x + W.a₄ - W.a₁ * y) * (y - W.toAffine.negY x y)
         - (W.a₂ + 2 * x + x₀) * (y - W.toAffine.negY x y) ^ 2 := by
-  have _ := kw_veluOrderTwoTangentXAlign_axiomAnchor
   have hsd : y - W.toAffine.negY x y ≠ 0 := sub_ne_zero.mpr hy
   simp only [Affine.slope_of_Y_ne rfl hy, Affine.addX]
   field_simp
@@ -888,7 +817,6 @@ theorem kw_velu2_tan_quotSlope_eq (hgy : W.veluGy x₀ y₀ = 0)
               * (W.a₁ ^ 2 * (x - x₀)
                   + 4 * (x ^ 2 + x * x₀ + x₀ ^ 2 + W.a₂ * (x + x₀) + W.a₄ - W.a₁ * y₀)))
           / ((y - W.toAffine.negY x y) * ((x - x₀) ^ 2 - W.veluGx x₀ y₀)) := by
-  have _ := kw_veluOrderTwoTangentXAlign_axiomAnchor
   have hord : 2 * y₀ + W.a₁ * x₀ + W.a₃ = 0 := by
     have h := hgy; rw [veluGy, neg_eq_zero] at h; exact h
   have hd : x - x₀ ≠ 0 := sub_ne_zero.mpr hx
@@ -922,7 +850,6 @@ theorem kw_velu2_tanX_align (hP : W.toAffine.Equation x y) (hQ : W.toAffine.Equa
       = (W.veluQuotient2 x₀ y₀).toAffine.addX (W.velu2X x₀ y₀ x) (W.velu2X x₀ y₀ x)
           ((W.veluQuotient2 x₀ y₀).toAffine.slope (W.velu2X x₀ y₀ x) (W.velu2X x₀ y₀ x)
             (W.velu2Y x₀ y₀ x y) (W.velu2Y x₀ y₀ x y)) := by
-  have _ := kw_veluOrderTwoTangentXAlign_axiomAnchor
   have hord : 2 * y₀ + W.a₁ * x₀ + W.a₃ = 0 := by
     have h := hgy; rw [veluGy, neg_eq_zero] at h; exact h
   have hd : x - x₀ ≠ 0 := sub_ne_zero.mpr hx
@@ -958,11 +885,6 @@ namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine Affine.negY Affine.slope_of_X_ne a₃ a₁ map Affine.nonsingular_iff mk a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq Affine.Point.X_eq_iff Affine.negAddY Affine.Point.zero_def Affine.nonsingular_add toAffine Affine.slope_of_Y_ne Affine.Point Affine.addX Affine.nonsingular_neg Affine.equation_iff_nonsingular Affine.Point.some_ne_zero Δ c₄ Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.Point.neg_some Affine.Point.add_self_of_Y_ne Δ' velu2X velu2Y veluPointMap2 veluPointMap2_zero veluPointMap2_some_of_eq veluPointMap2_some_of_ne veluQuotient2 veluQuotient2_a₁ veluQuotient2_a₂ veluQuotient2_a₃ veluQuotient2_a₄ veluGx veluGy veluGy_eq_zero_of_negY_eq veluQuotient2_Delta_eq velu2_secant_negAddY_cleared_identity velu2_tangent_addX_cleared_identity velu2_tangent_negAddY_cleared_identity"
 p2m_open "WeierstrassCurve"
 
-theorem kw_veluOrderTwoTangentYAlign_axiomAnchor : True := by
-  have _h := Classical.em True
-  have _q : Quot.mk (α := ℕ) (· = ·) 0 = Quot.mk (· = ·) 0 := Quot.sound rfl
-  trivial
-
 section Field
 
 variable {F : Type*} [Field F] [DecidableEq F] {W : WeierstrassCurve F} {x₀ y₀ x y : F}
@@ -979,7 +901,6 @@ theorem kw_velu2_tanY_negAddY_align (hP : W.toAffine.Equation x y)
           (W.velu2Y x₀ y₀ x y)
           ((W.veluQuotient2 x₀ y₀).toAffine.slope (W.velu2X x₀ y₀ x) (W.velu2X x₀ y₀ x)
             (W.velu2Y x₀ y₀ x y) (W.velu2Y x₀ y₀ x y)) := by
-  have _ := kw_veluOrderTwoTangentYAlign_axiomAnchor
   have hord : 2 * y₀ + W.a₁ * x₀ + W.a₃ = 0 := by
     have h := hgy; rw [veluGy, neg_eq_zero] at h; exact h
   have hd : x - x₀ ≠ 0 := sub_ne_zero.mpr hx
@@ -1050,7 +971,6 @@ theorem kw_velu2_tanY_align (hP : W.toAffine.Equation x y)
           (W.velu2Y x₀ y₀ x y)
           ((W.veluQuotient2 x₀ y₀).toAffine.slope (W.velu2X x₀ y₀ x) (W.velu2X x₀ y₀ x)
             (W.velu2Y x₀ y₀ x y) (W.velu2Y x₀ y₀ x y)) := by
-  have _ := kw_veluOrderTwoTangentYAlign_axiomAnchor
   have hXalign := kw_velu2_tanX_align hP hQ hgy hy hx hx2 hY
   have hnAY := kw_velu2_tanY_negAddY_align hP hQ hgy hy hx hx2 hY
   rw [Affine.addY, kw_velu2Y_negY hgy, Affine.addY, hXalign, hnAY]
@@ -1091,11 +1011,6 @@ namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine Affine.negY Affine.slope_of_X_ne a₃ a₁ map Affine.nonsingular_iff mk a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq Affine.Point.X_eq_iff Affine.negAddY Affine.Point.zero_def Affine.nonsingular_add toAffine Affine.slope_of_Y_ne Affine.Point Affine.addX Affine.nonsingular_neg Affine.equation_iff_nonsingular Affine.Point.some_ne_zero Δ c₄ Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.Point.neg_some Affine.Point.add_self_of_Y_ne Δ' velu2X velu2Y veluPointMap2 veluPointMap2_zero veluPointMap2_some_of_eq veluPointMap2_some_of_ne veluQuotient2 veluQuotient2_a₁ veluQuotient2_a₂ veluQuotient2_a₃ veluQuotient2_a₄ veluGx veluGy veluGy_eq_zero_of_negY_eq veluQuotient2_Delta_eq velu2_secant_negAddY_cleared_identity velu2_tangent_addX_cleared_identity velu2_tangent_negAddY_cleared_identity"
 p2m_open "WeierstrassCurve"
 
-theorem kw_veluOrderTwoAddCompatReduce_axiomAnchor : True := by
-  have _h := Classical.em True
-  have _q : Quot.mk (α := ℕ) (· = ·) 0 = Quot.mk (· = ·) 0 := Quot.sound rfl
-  trivial
-
 section Field
 
 variable {F : Type*} [Field F] [DecidableEq F] {W : WeierstrassCurve F} {x₀ y₀ : F}
@@ -1105,7 +1020,6 @@ omit [DecidableEq F] in
 theorem kw_velu2_kernel_nonsingular (hQ : W.toAffine.Equation x₀ y₀)
     (hgy : W.veluGy x₀ y₀ = 0) (hΔ : (W.veluQuotient2 x₀ y₀).Δ ≠ 0) :
     W.toAffine.Nonsingular x₀ y₀ := by
-  have _ := kw_veluOrderTwoAddCompatReduce_axiomAnchor
   have ht : W.veluGx x₀ y₀ ≠ 0 := kw_veluGx_ne_zero_of_quotΔ hQ hgy hΔ
   simp only [veluGx] at ht
   refine (Affine.nonsingular_iff ..).mpr ⟨hQ, Or.inl fun hcon => ht ?_⟩
@@ -1119,7 +1033,6 @@ include hchar hQ hgy hΔ in
 theorem kw_veluPointMap2_add_of_right_ker {K : W.toAffine.Point}
     (hK : veluPointMap2 hchar hQ hgy hΔ K = 0) (P : W.toAffine.Point) :
     veluPointMap2 hchar hQ hgy hΔ (P + K) = veluPointMap2 hchar hQ hgy hΔ P := by
-  have _ := kw_veluOrderTwoAddCompatReduce_axiomAnchor
   have hQns : W.toAffine.Nonsingular x₀ y₀ := kw_velu2_kernel_nonsingular hQ hgy hΔ
   cases K with
   | zero => rw [← Affine.Point.zero_def, add_zero]
@@ -1136,7 +1049,6 @@ theorem kw_veluPointMap2_add_self (htan : W.KwVeluOrderTwoTangentCompatAt x₀ y
     (P : W.toAffine.Point) :
     veluPointMap2 hchar hQ hgy hΔ (P + P)
       = veluPointMap2 hchar hQ hgy hΔ P + veluPointMap2 hchar hQ hgy hΔ P := by
-  have _ := kw_veluOrderTwoAddCompatReduce_axiomAnchor
   have hQns : W.toAffine.Nonsingular x₀ y₀ := kw_velu2_kernel_nonsingular hQ hgy hΔ
   cases P with
   | zero =>
@@ -1192,7 +1104,6 @@ theorem kw_veluPointMap2_add' (hsec : W.KwVeluOrderTwoSecantCompatDiffAvoidAt x�
     (htan : W.KwVeluOrderTwoTangentCompatAt x₀ y₀) (P₁ P₂ : W.toAffine.Point) :
     veluPointMap2 hchar hQ hgy hΔ (P₁ + P₂)
       = veluPointMap2 hchar hQ hgy hΔ P₁ + veluPointMap2 hchar hQ hgy hΔ P₂ := by
-  have _ := kw_veluOrderTwoAddCompatReduce_axiomAnchor
   have hQns : W.toAffine.Nonsingular x₀ y₀ := kw_velu2_kernel_nonsingular hQ hgy hΔ
   cases P₁ with
   | zero =>
@@ -1280,13 +1191,6 @@ namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine Affine.negY Affine.slope_of_X_ne a₃ a₁ map Affine.nonsingular_iff mk a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq Affine.Point.X_eq_iff Affine.negAddY Affine.Point.zero_def Affine.nonsingular_add toAffine Affine.slope_of_Y_ne Affine.Point Affine.addX Affine.nonsingular_neg Affine.equation_iff_nonsingular Affine.Point.some_ne_zero Δ c₄ Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.Point.neg_some Affine.Point.add_self_of_Y_ne Δ' velu2X velu2Y veluPointMap2 veluPointMap2_zero veluPointMap2_some_of_eq veluPointMap2_some_of_ne veluQuotient2 veluQuotient2_a₁ veluQuotient2_a₂ veluQuotient2_a₃ veluQuotient2_a₄ veluGx veluGy veluGy_eq_zero_of_negY_eq veluQuotient2_Delta_eq velu2_secant_negAddY_cleared_identity velu2_tangent_addX_cleared_identity velu2_tangent_negAddY_cleared_identity"
 p2m_open "WeierstrassCurve"
 
-theorem kw_veluOrderTwoCarrierDischarge_axiomAnchor : True := by
-  have _ := kw_veluOrderTwoAddCompatReduce_axiomAnchor
-  have _ := kw_veluOrderTwoSecantConjunctOne_axiomAnchor
-  have _ := kw_veluOrderTwoSecantAlign_axiomAnchor
-  have _ := kw_veluOrderTwoTangentXAlign_axiomAnchor
-  trivial
-
 section Field
 
 variable {F : Type*} [Field F] [DecidableEq F] {W : WeierstrassCurve F} (x₀ y₀ : F)
@@ -1313,7 +1217,6 @@ include hgy hQns in
 theorem kw_velu2_tangentCarrier_of_YAlign
     (hYal : W.KwVeluOrderTwoTangentYAlignAt x₀ y₀) :
     W.KwVeluOrderTwoTangentCompatAt x₀ y₀ := by
-  have _ := kw_veluOrderTwoCarrierDischarge_axiomAnchor
   intro x y hP hy hx hx2
   have hns := (Affine.equation_iff_nonsingular (W := W.toAffine)).mp hP
   have hY := kw_velu2Y_ne_quotNegY_of_tangent hgy hQns hns hy hx hx2
@@ -1323,7 +1226,6 @@ include hgy hQns in
 
 theorem kw_velu2_secantCarrier :
     W.KwVeluOrderTwoSecantCompatDiffAvoidAt x₀ y₀ := by
-  have _ := kw_veluOrderTwoCarrierDischarge_axiomAnchor
   intro x₁ y₁ x₂ y₂ h₁ h₂ hx12 hx₁ hx₂ hsp hsm
   have hns₁ := (Affine.equation_iff_nonsingular (W := W.toAffine)).mp h₁
   have hns₂ := (Affine.equation_iff_nonsingular (W := W.toAffine)).mp h₂
@@ -1340,7 +1242,6 @@ theorem kw_velu2_addCompatAt_of_YAlign
     (hchar : (2 : F) ≠ 0) (hΔ : (W.veluQuotient2 x₀ y₀).Δ ≠ 0)
     (hYal : W.KwVeluOrderTwoTangentYAlignAt x₀ y₀) :
     W.KwVeluOrderTwoAddCompatAt x₀ y₀ hchar hQns.1 hgy hΔ := by
-  have _ := kw_veluOrderTwoCarrierDischarge_axiomAnchor
   exact kw_veluOrderTwoAddCompatAt_of_carriers hchar hQns.1 hgy hΔ
     (kw_velu2_secantCarrier hgy hQns)
     (kw_velu2_tangentCarrier_of_YAlign hgy hQns hYal)

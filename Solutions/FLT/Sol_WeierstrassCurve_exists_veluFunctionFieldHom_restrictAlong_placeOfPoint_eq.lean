@@ -8265,13 +8265,6 @@ universe u
 
 variable {F : Type u} [Field F]
 
-theorem kw_vgffhso_axiomAnchor : True :=
-  have _h₁ : True = True := propext Iff.rfl
-  have _h₂ : ℕ := Classical.choice ⟨0⟩
-  have _h₃ : Quot.mk (fun (_ _ : ℕ) => True) 0 = Quot.mk (fun (_ _ : ℕ) => True) 1 :=
-    Quot.sound trivial
-  trivial
-
 section DeficitZeroOdd
 
 variable [DecidableEq F] [IsAlgClosed F] [CharZero F]
@@ -8280,7 +8273,6 @@ variable {W : WeierstrassCurve F} {Q : W.toAffine.Point} {p : ℕ}
 theorem kw_veluDeficitFun_oddOrderSummingSet_eq_zero_odd
     (hp3 : 3 ≤ p) (hpodd : Odd p) (hord : addOrderOf Q = p) (hΔW : W.Δ ≠ 0) :
     W.toAffine.veluDeficitFun (W.oddOrderSummingSet Q ((p - 1) / 2)) = 0 := by
-  have _ := kw_vgffhso_axiomAnchor
   have hQ0 : Q ≠ 0 := by intro h; rw [h, addOrderOf_zero] at hord; omega
   obtain ⟨x₀, y₀, h₀, rfl, -⟩ := exists_some_of_ne_zero hQ0
   set S := W.oddOrderSummingSet (Point.some x₀ y₀ h₀) ((p - 1) / 2) with hS

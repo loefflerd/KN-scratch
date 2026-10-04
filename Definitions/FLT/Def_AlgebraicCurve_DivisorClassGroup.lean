@@ -2,9 +2,7 @@ module
 
 public import Mathlib.RingTheory.Valuation.Discrete.IsDiscreteValuationRing
 
-@[expose] public section publicSection
-
-noncomputable section DL_unmount
+@[expose] public noncomputable section publicSection
 
 open IsDedekindDomain WithZero IsLocalRing
 
@@ -463,6 +461,5 @@ theorem ofHeightOneSpectrum_toValuationSubring [Algebra K R] [IsScalarTower K R 
 end Place
 
 end AlgebraicCurve
-end DL_unmount
 
 end publicSection

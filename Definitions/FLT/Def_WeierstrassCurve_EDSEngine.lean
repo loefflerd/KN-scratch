@@ -997,9 +997,7 @@ end
 
 end PortEllSequenceCore
 
-section PortEllSequenceUniversal
-
-noncomputable section
+noncomputable section PortEllSequenceUniversal
 
 open scoped Polynomial.Bivariate
 
@@ -1172,8 +1170,6 @@ lemma curveRing_map_ringEval : curveRing.map (ringEval eqn) = W := by
 end Univ
 
 end WeierstrassCurve
-
-end
 
 end PortEllSequenceUniversal
 

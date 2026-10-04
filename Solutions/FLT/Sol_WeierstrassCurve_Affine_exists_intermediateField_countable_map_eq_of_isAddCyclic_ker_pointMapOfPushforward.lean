@@ -2020,12 +2020,6 @@ universe u
 
 attribute [local instance] Classical.propDecidable
 
-theorem kw_fdn2_qephod_hend2fgd1_axiomAnchor : True := by
-  have h1 : (True ∧ True) = True := propext (by simp)
-  have h2 := Classical.choice ⟨()⟩
-  have h3 := Quot.sound (r := fun _ _ : Unit => True) (a := ()) (b := ()) trivial
-  trivial
-
 section CountableBridge
 
 theorem kw_fdn2_qephod_hend2fgd1_countable_of_fg {K : Type uK} [Field K] [Algebra ℚ K]
@@ -2139,12 +2133,6 @@ namespace ModularCurve
 universe u
 
 attribute [local instance] Classical.propDecidable
-
-theorem kw_surgehgf4_hfgkd_axiomAnchor : True := by
-  have h1 : (True ∧ True) = True := propext (by simp)
-  have h2 := Classical.choice ⟨()⟩
-  have h3 := Quot.sound (r := fun _ _ : Unit => True) (a := ()) (b := ()) trivial
-  trivial
 
 section BCNoACEngine
 
@@ -3107,12 +3095,6 @@ p2m_open_scoped "TensorProduct P2MW.S_WeierstrassCurve_Affine_exists_intermediat
 namespace ModularCurve
 
 attribute [local instance] Classical.propDecidable
-
-theorem kw_surgehgf4_cfe_axiomAnchor : True := by
-  have h1 : (True ∧ True) = True := propext (by simp)
-  have h2 := Classical.choice ⟨()⟩
-  have h3 := Quot.sound (r := fun _ _ : Unit => True) (a := ()) (b := ()) trivial
-  trivial
 
 section Bridge
 

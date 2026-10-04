@@ -13,10 +13,6 @@ import Mathlib.Topology.Separation.CompletelyRegular
 import Definitions.FLT.Def_ModularForm_EisensteinChiNegThree
 import Definitions.FLT.Def_P2M_Util
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
 namespace P2MW.S_EisensteinWeightOne_e1Chi3IsModular
 
 namespace S17E1

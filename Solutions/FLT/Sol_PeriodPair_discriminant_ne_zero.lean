@@ -3,29 +3,12 @@ import Mathlib.NumberTheory.ModularForms.LevelOne.DimensionFormula
 import Definitions.FLT.Def_PeriodPair_Uniformization
 import Definitions.FLT.Def_P2M_Util
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
-namespace P2MW.S_PeriodPair_discriminant_ne_zero
-
-set_option linter.unusedSectionVars false
-set_option linter.unusedVariables false
-
-set_option synthInstance.maxHeartbeats 800000
-set_option maxHeartbeats 6400000
-
-section
-section
-
 noncomputable section
 
-open scoped MatrixGroups UpperHalfPlane
-p2m_open "UpperHalfPlane ModularForm P2MW.S_PeriodPair_discriminant_ne_zero.ModularForm ModularFormClass EisensteinSeries PowerSeries"
+open scoped MatrixGroups Real
+open Complex UpperHalfPlane ModularForm ModularFormClass EisensteinSeries PowerSeries
 
 namespace ModularForm
-p2m_export "ModularForm" "sub_apply toCuspForm E coe_mul discriminant tendsto_atImInfty_tprod_one_sub_eta_q_pow discriminant_eq_q_prod E₄_qExpansion_coeff_one ext smul_apply E₄ mcast E₆ discriminant_ne_zero E₆_qExpansion_coeff_one mul"
-p2m_open "ModularForm"
 
 def kw_E4cube : ModularForm 𝒮ℒ 12 :=
   ModularForm.mcast (by ring) ((E₄.mul E₄).mul E₄)
@@ -132,10 +115,7 @@ theorem kw_exists_smul_discriminant_eq_E4cube_sub_E6sq :
       hfun, ModularForm.qExpansion_smul one_pos one_mem_strictPeriods_SL,
       PowerSeries.coeff_smul, smul_eq_mul, CuspForm.coe_discriminant] at this
     exact this
-  refine ⟨c, ?_, hpt, hcoeff⟩
-  intro hzero
-  rw [hzero, zero_mul] at hcoeff
-  exact absurd hcoeff (by norm_num)
+  grind
 
 theorem kw_E4cube_ne_E6sq (τ : ℍ) : E₄ τ ^ 3 ≠ E₆ τ ^ 2 := by
   obtain ⟨c, hc, hpt, -⟩ := kw_exists_smul_discriminant_eq_E4cube_sub_E6sq
@@ -145,62 +125,17 @@ theorem kw_E4cube_ne_E6sq (τ : ℍ) : E₄ τ ^ 3 ≠ E₆ τ ^ 2 := by
   exact mul_ne_zero hc (discriminant_ne_zero τ) this.symm
 
 end ModularForm
-end
-end
-end
-p2m_reactivate "P2MW.S_PeriodPair_discriminant_ne_zero.ModularForm"
-
-section
-section
-
-noncomputable section
-
-open UpperHalfPlane Complex
 
 namespace PeriodPair
-p2m_export "PeriodPair" "lattice ω₁ latticeEquivProd g₃ derivWeierstrassP_sq ω₂ indep latticeEquiv_symm_apply G g₂ weierstrassCurve weierstrassCurve_Δ weierstrassCurve_c₄ equation_weierstrassP DiscriminantNeZero toPoint toPoint_zero IsUniformization jLattice JSurjective ofTau ofTau_lattice scale_indep scale scale_ω₁ scale_ω₂ sublatticeIndex"
-p2m_open "PeriodPair"
 
 theorem kw_ofTau_latticeEquivProd_symm_apply (τ : ℍ) (p : ℤ × ℤ) :
     ((ofTau τ).latticeEquivProd.symm p : ℂ) = p.1 * (τ : ℂ) + p.2 := by
   rw [latticeEquiv_symm_apply]; simp
 
 end PeriodPair
-end
-end
-end
-p2m_reactivate "P2MW.S_PeriodPair_discriminant_ne_zero.ModularForm"
 
-section
-section
-
-open Complex Filter Set
-
-p2m_open_scoped "PeriodPair P2MW.S_PeriodPair_discriminant_ne_zero.PeriodPair"
 
 namespace PeriodPair
-p2m_export "PeriodPair" "lattice ω₁ latticeEquivProd g₃ derivWeierstrassP_sq ω₂ indep latticeEquiv_symm_apply G g₂ weierstrassCurve weierstrassCurve_Δ weierstrassCurve_c₄ equation_weierstrassP DiscriminantNeZero toPoint toPoint_zero IsUniformization jLattice JSurjective ofTau ofTau_lattice scale_indep scale scale_ω₁ scale_ω₂ sublatticeIndex"
-end PeriodPair
-p2m_reactivate "P2MW.S_PeriodPair_discriminant_ne_zero.ModularForm"
-
-namespace Projectivization
-p2m_export "Projectivization" "map card"
-end Projectivization
-end
-end
-p2m_reactivate "P2MW.S_PeriodPair_discriminant_ne_zero.ModularForm"
-
-section
-section
-
-noncomputable section
-
-open scoped UpperHalfPlane Real
-p2m_open "Complex UpperHalfPlane EisensteinSeries ModularForm P2MW.S_PeriodPair_discriminant_ne_zero.ModularForm"
-
-namespace PeriodPair
-p2m_export "PeriodPair" "lattice ω₁ latticeEquivProd g₃ derivWeierstrassP_sq ω₂ indep latticeEquiv_symm_apply G g₂ weierstrassCurve weierstrassCurve_Δ weierstrassCurve_c₄ equation_weierstrassP DiscriminantNeZero toPoint toPoint_zero IsUniformization jLattice JSurjective ofTau ofTau_lattice scale_indep scale scale_ω₁ scale_ω₂ sublatticeIndex"
-p2m_open "PeriodPair"
 
 theorem kw_G_ofTau_eq {k : ℕ} (hk : 3 ≤ k) (τ : ℍ) :
     (ofTau τ).G k = 2 * riemannZeta k * E hk τ := by
@@ -215,10 +150,9 @@ theorem kw_G_ofTau_eq {k : ℕ} (hk : 3 ≤ k) (τ : ℍ) :
   rw [(finTwoArrowEquiv ℤ).symm.tsum_eq (f := fun v => eisSummand (k : ℤ) v τ),
     tsum_eisSummand_eq_riemannZeta_mul_eisensteinSeries hk τ]
   have hE : (E hk : ℍ → ℂ) τ = (1 / 2 : ℂ) * eisensteinSeries (N := 1) 0 k τ := rfl
-  rw [hE]; ring
+  grind
 
 end PeriodPair
-p2m_reactivate "P2MW.S_PeriodPair_discriminant_ne_zero.ModularForm"
 
 namespace ModularCurve
 
@@ -239,45 +173,25 @@ theorem kw_riemannZeta_six : riemannZeta 6 = (π : ℂ) ^ 6 / 945 := by
     show (6 : ℕ).factorial = 720 from by decide] at h
   rw [show (2 * (3 : ℂ) : ℂ) = (6 : ℂ) by ring] at h
   push_cast at h
-  rw [h]; ring
+  grind
 
 end ModularCurve
-p2m_reactivate "P2MW.S_PeriodPair_discriminant_ne_zero.ModularForm"
-
-namespace PeriodPair
-p2m_export "PeriodPair" "lattice ω₁ latticeEquivProd g₃ derivWeierstrassP_sq ω₂ indep latticeEquiv_symm_apply G g₂ weierstrassCurve weierstrassCurve_Δ weierstrassCurve_c₄ equation_weierstrassP DiscriminantNeZero toPoint toPoint_zero IsUniformization jLattice JSurjective ofTau ofTau_lattice scale_indep scale scale_ω₁ scale_ω₂ sublatticeIndex"
-p2m_open "PeriodPair"
 
 open ModularCurve
+
+namespace PeriodPair
 
 theorem kw_g₂_ofTau (τ : ℍ) :
     (ofTau τ).g₂ = (4 * (π : ℂ) ^ 4 / 3) * E₄ τ := by
   rw [g₂, kw_G_ofTau_eq (by norm_num : (3:ℕ) ≤ 4) τ,
-    show ((4 : ℕ) : ℂ) = (4 : ℂ) by push_cast; ring, riemannZeta_four]
+    show ((4 : ℕ) : ℂ) = (4 : ℂ) by grind, riemannZeta_four]
   ring
 
 theorem kw_g₃_ofTau (τ : ℍ) :
     (ofTau τ).g₃ = (8 * (π : ℂ) ^ 6 / 27) * E₆ τ := by
   rw [g₃, kw_G_ofTau_eq (by norm_num : (3:ℕ) ≤ 6) τ,
-    show ((6 : ℕ) : ℂ) = (6 : ℂ) by push_cast; ring, kw_riemannZeta_six]
+    show ((6 : ℕ) : ℂ) = (6 : ℂ) by grind, kw_riemannZeta_six]
   ring
-
-end PeriodPair
-end
-end
-end
-p2m_reactivate "P2MW.S_PeriodPair_discriminant_ne_zero.ModularForm"
-
-section
-section
-
-noncomputable section
-
-p2m_open_scoped "PeriodPair P2MW.S_PeriodPair_discriminant_ne_zero.PeriodPair"
-
-namespace PeriodPair
-p2m_export "PeriodPair" "lattice ω₁ latticeEquivProd g₃ derivWeierstrassP_sq ω₂ indep latticeEquiv_symm_apply G g₂ weierstrassCurve weierstrassCurve_Δ weierstrassCurve_c₄ equation_weierstrassP DiscriminantNeZero toPoint toPoint_zero IsUniformization jLattice JSurjective ofTau ofTau_lattice scale_indep scale scale_ω₁ scale_ω₂ sublatticeIndex"
-p2m_open "PeriodPair"
 
 variable (L : PeriodPair)
 
@@ -303,25 +217,17 @@ private theorem _root_.PeriodPair.scale_lattice : (L.scale α).lattice = Submodu
   congr 1
   ext z
   simp only [Set.mem_insert_iff, Set.mem_singleton_iff, Set.mem_image, mulLeftZ_apply]
-  constructor
-  · rintro (rfl | rfl)
-    · exact ⟨L.ω₁, Or.inl rfl, rfl⟩
-    · exact ⟨L.ω₂, Or.inr rfl, rfl⟩
-  · rintro ⟨w, hw | hw, rfl⟩ <;> simp [hw]
-
-p2m_export "PeriodPair" "scale_lattice"
+  grind
 
 private def _root_.PeriodPair.scaleLatticeEquiv : L.lattice ≃ₗ[ℤ] (L.scale α).lattice :=
   (Submodule.equivMapOfInjective (mulLeftZ (α : ℂ))
     (fun _ _ h => mul_left_cancel₀ α.ne_zero (by simpa using h)) L.lattice).trans
     (LinearEquiv.ofEq _ _ (L.scale_lattice α).symm)
 
-p2m_export "PeriodPair" "scaleLatticeEquiv"
 @[scoped simp] theorem scaleLatticeEquiv_apply (l : L.lattice) :
     ((L.scaleLatticeEquiv α l : (L.scale α).lattice) : ℂ) = (α : ℂ) * (l : ℂ) := rfl
 
 end Scale
-p2m_reactivate "P2MW.S_PeriodPair_discriminant_ne_zero.ModularForm"
 
 section Homogeneity
 
@@ -351,7 +257,6 @@ theorem discriminantNeZero_scale_iff :
   simp only [mul_ne_zero_iff, and_iff_right (inv_ne_zero (pow_ne_zero 12 α.ne_zero))]
 
 end Homogeneity
-p2m_reactivate "P2MW.S_PeriodPair_discriminant_ne_zero.ModularForm"
 
 section LatticeDependence
 
@@ -373,23 +278,6 @@ theorem g₃_eq_of_lattice_eq (h : L.lattice = L'.lattice) : L.g₃ = L'.g₃ :=
   unfold g₃; rw [G_eq_of_lattice_eq h]
 
 end LatticeDependence
-end PeriodPair
-end
-end
-end
-p2m_reactivate "P2MW.S_PeriodPair_discriminant_ne_zero.ModularForm P2MW.S_PeriodPair_discriminant_ne_zero.PeriodPair"
-
-section
-section
-
-noncomputable section
-
-open scoped UpperHalfPlane Real
-p2m_open "Complex UpperHalfPlane ModularForm P2MW.S_PeriodPair_discriminant_ne_zero.ModularForm"
-
-namespace PeriodPair
-p2m_export "PeriodPair" "lattice ω₁ latticeEquivProd g₃ derivWeierstrassP_sq ω₂ indep latticeEquiv_symm_apply G g₂ weierstrassCurve weierstrassCurve_Δ weierstrassCurve_c₄ equation_weierstrassP DiscriminantNeZero toPoint toPoint_zero IsUniformization jLattice JSurjective ofTau ofTau_lattice scale_indep scale scale_ω₁ scale_ω₂ sublatticeIndex"
-p2m_open "PeriodPair"
 
 theorem kw_discriminant_ofTau_eq (τ : ℍ) :
     (ofTau τ).g₂ ^ 3 - 27 * (ofTau τ).g₃ ^ 2
@@ -414,8 +302,7 @@ theorem kw_im_div_ne_zero (L : PeriodPair) : (L.ω₁ / L.ω₂).im ≠ 0 := by
   intro him
   have hdiv : (L.ω₁ / L.ω₂ : ℂ) = ((L.ω₁ / L.ω₂).re : ℂ) :=
     Complex.ext (by simp) (by simp [him])
-  have hreal : L.ω₁ = ((L.ω₁ / L.ω₂).re : ℂ) * L.ω₂ := by
-    rw [← hdiv, div_mul_cancel₀ _ hω₂]
+  have hreal : L.ω₁ = ((L.ω₁ / L.ω₂).re : ℂ) * L.ω₂ := by grind
   have key : (1 : ℝ) • L.ω₁ + (-(L.ω₁ / L.ω₂).re) • L.ω₂ = 0 := by
     rw [one_smul, _root_.neg_smul, Complex.real_smul, ← hreal, add_neg_cancel]
   exact one_ne_zero (LinearIndependent.pair_iff.mp L.indep 1 (-(L.ω₁ / L.ω₂).re) key).1
@@ -437,8 +324,7 @@ private theorem _root_.PeriodPair.kw_discriminantNeZero (L : PeriodPair) : L.Dis
   set α : ℂˣ := (Units.mk0 L.ω₂ hω₂)⁻¹
   have hα : (α : ℂ) = (L.ω₂)⁻¹ := by
     simp only [α, Units.val_inv_eq_inv_val, Units.val_mk0]
-  have hω : (α : ℂ) * L.ω₁ = L.ω₁ / L.ω₂ ∧ (α : ℂ) * L.ω₂ = 1 := by
-    refine ⟨?_, ?_⟩ <;> rw [hα] <;> field_simp
+  have hω : (α : ℂ) * L.ω₁ = L.ω₁ / L.ω₂ ∧ (α : ℂ) * L.ω₂ = 1 := by grind
   have hlat : (L.scale α).lattice = Submodule.span ℤ {L.ω₁ / L.ω₂, 1} := by
     simp only [lattice, scale_ω₁, scale_ω₂, hω.1, hω.2]
   rcases lt_or_gt_of_ne (kw_im_div_ne_zero L) with hneg | hpos
@@ -452,17 +338,9 @@ private theorem _root_.PeriodPair.kw_discriminantNeZero (L : PeriodPair) : L.Dis
     exact (discriminantNeZero_scale_iff L α).mp
       ((kw_discriminantNeZero_of_lattice_eq heq).mpr (kw_discriminantNeZero_ofTau τ))
 
-p2m_export "PeriodPair" "kw_discriminantNeZero"
-
 end PeriodPair
-end
-end
-end
-p2m_reactivate "P2MW.S_PeriodPair_discriminant_ne_zero.ModularForm P2MW.S_PeriodPair_discriminant_ne_zero.PeriodPair"
 
 theorem solution (L : PeriodPair) : L.DiscriminantNeZero :=
   L.kw_discriminantNeZero
 
-end S_PeriodPair_discriminant_ne_zero
-end P2MW
-export P2MW.S_PeriodPair_discriminant_ne_zero (solution)
+end

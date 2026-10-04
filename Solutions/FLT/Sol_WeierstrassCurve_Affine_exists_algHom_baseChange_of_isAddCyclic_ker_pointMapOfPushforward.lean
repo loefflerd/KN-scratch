@@ -3206,12 +3206,6 @@ universe u
 
 attribute [local instance] Classical.propDecidable
 
-theorem kw_surge_hgf4_hBC_axiomAnchor : True := by
-  have h1 : (True ∧ True) = True := propext (by simp)
-  have h2 := Classical.choice ⟨()⟩
-  have h3 := Quot.sound (r := fun _ _ : Unit => True) (a := ()) (b := ()) trivial
-  trivial
-
 section BetweenCurvesTensor
 
 variable {R₀ : Type u} [Field R₀]
@@ -3466,7 +3460,6 @@ theorem kw_surge_hgf4_bcIota₁_isIntegral (hfin₀ : FiniteAlong F ι₀) :
 
 theorem kw_surge_hgf4_bcIota₁_finrankAlong (hfin₀ : FiniteAlong F ι₀) :
     finrankAlong F' (kw_surge_hgf4_bcIota₁ E₀ E₀' F F' ι₀) = finrankAlong F ι₀ := by
-  have _ := kw_surge_hgf4_hBC_axiomAnchor
   let ψE := kw_functionFieldTensorFracEquivGeneral E₀ F F'
   let ψE' := kw_functionFieldTensorFracEquivGeneral E₀' F F'
   let ιFr := kw_surge_hgf4_bcTensorFracIota E₀ E₀' F F' ι₀
@@ -4073,7 +4066,6 @@ end BetweenCurvesTensor
 p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_algHom_baseChange_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_algHom_baseChange_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_algHom_baseChange_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_algHom_baseChange_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_algHom_baseChange_of_isAddCyclic_ker_pointMapOfPushforward.PeriodPair P2MW.S_WeierstrassCurve_Affine_exists_algHom_baseChange_of_isAddCyclic_ker_pointMapOfPushforward.ModularCurve P2MW.S_WeierstrassCurve_Affine_exists_algHom_baseChange_of_isAddCyclic_ker_pointMapOfPushforward.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_Affine_exists_algHom_baseChange_of_isAddCyclic_ker_pointMapOfPushforward.AlgebraicCurve"
 
 theorem kw_surge_hgf4_hBC_proved : KwD5BetweenCurvesFFSeamBaseChange := by
-  have _ := kw_surge_hgf4_hBC_axiomAnchor
   intro R₀ _ E₀ E₀' _ _ F F' _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ σ ι₀ hι₀ hfin₀ N _ hcyc hcard
   let : Algebra F F' := σ.toRingHom.toAlgebra
   have : IsScalarTower R₀ F F' := IsScalarTower.of_algebraMap_eq fun r =>
@@ -4214,12 +4206,6 @@ namespace ModularCurve
 attribute [local instance] Classical.propDecidable
 attribute [local instance] Algebra.TensorProduct.rightAlgebra
 
-theorem kw_surgehgf4_hfgkd_ktd_axiomAnchor : True := by
-  have h1 : (True ∧ True) = True := propext (by simp)
-  have h2 := Classical.choice ⟨()⟩
-  have h3 := Quot.sound (r := fun _ _ : Unit => True) (a := ()) (b := ()) trivial
-  trivial
-
 theorem kw_surgehgf4_hfgkd_ktd_chiNoAC_eq_chiGeneral
     {R₀ : Type} [Field R₀] (W : WeierstrassCurve R₀) [W.IsElliptic]
     (F : Type) [Field F] [Algebra R₀ F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
@@ -4235,7 +4221,6 @@ theorem kw_surgehgf4_hfgkd_ktd_chiNoAC_eq_chiGeneral
 
 theorem kw_surgehgf4_hfgkd_ktd_kerTransport_proved :
     KwD5BetweenCurvesKerTransportAlongEmbed := by
-  have _ := kw_surgehgf4_hfgkd_ktd_axiomAnchor
   intro R₀ _ E₀ E₀' _ _ F₁ _ _ _ _ _ F₂ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
     ι₁ hι₁ hfin₁ ι₂ hι₂ hfin₂ hχ N _ hcyc₂ hcard₂
   have : IsDomain ((E₀⁄F₁).toAffine.FunctionField ⊗[F₁] F₂) :=

@@ -649,12 +649,6 @@ namespace ModularCurve
 p2m_export "ModularCurve" "primCosetReps mem_primCosetReps jq jqN ModularPolynomialData ModularPolynomialData.eval_eq_zero"
 p2m_open "ModularCurve"
 
-theorem kw_surgehgf4_qtzz_axiomAnchor : True := by
-  have h1 : (True ∧ True) = True := propext (by simp)
-  have h2 := Classical.choice ⟨()⟩
-  have h3 := Quot.sound (r := fun _ _ : Unit => True) (a := ()) (b := ()) trivial
-  trivial
-
 section Psi
 
 variable (L L' : PeriodPair) (α : ℂˣ) (τ : ℍ)
@@ -693,7 +687,6 @@ def kw_surgehgf4_qtzz_psi (hlat : (L.scale α).lattice = (ofTau τ).lattice) :
 theorem kw_surgehgf4_qtzz_psi_surjective
     (hlat : (L.scale α).lattice = (ofTau τ).lattice) :
     Function.Surjective (kw_surgehgf4_qtzz_psi L L' α τ hlat) := by
-  have _ := kw_surgehgf4_qtzz_axiomAnchor
   refine (QuotientAddGroup.mk'_surjective _).comp fun l => ?_
   have hαl : ((α : ℂ) * (l : ℂ)) ∈ (ofTau τ).lattice.toAddSubgroup := by
     rw [← hlat]
@@ -705,7 +698,6 @@ theorem kw_surgehgf4_qtzz_psi_surjective
 theorem kw_surgehgf4_qtzz_psi_ker
     (hlat : (L.scale α).lattice = (ofTau τ).lattice) :
     (kw_surgehgf4_qtzz_psi L L' α τ hlat).ker = kw_HZZ τ (L'.scale α) := by
-  have _ := kw_surgehgf4_qtzz_axiomAnchor
   ext p
   simp only [kw_surgehgf4_qtzz_psi, AddMonoidHom.mem_ker, AddMonoidHom.comp_apply,
     QuotientAddGroup.mk'_apply, QuotientAddGroup.eq_zero_iff,
@@ -723,7 +715,6 @@ end Psi
 p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.ModularCurve"
 
 theorem kw_surgehgf4_qtzz_proved : KwSublatticeQuotientZZTransport := by
-  have _ := kw_surgehgf4_qtzz_axiomAnchor
   intro L L' hsub α τ hlat hcyc
   let ψ := kw_surgehgf4_qtzz_psi L L' α τ hlat
   have hψsurj := kw_surgehgf4_qtzz_psi_surjective L L' α τ hlat

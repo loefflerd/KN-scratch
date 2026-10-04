@@ -1074,13 +1074,6 @@ noncomputable section
 
 p2m_open "Module P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_and_isAddCyclic_sublatticeQuotient.Module"
 
-theorem kw_zlatticeQuotientTorsionCountBridge_axiomAnchor : True :=
-  have _h₁ : True = True := propext Iff.rfl
-  have _h₂ : ℕ := Classical.choice ⟨0⟩
-  have _h₃ : Quot.mk (fun (_ _ : ℕ) => True) 0 = Quot.mk (fun (_ _ : ℕ) => True) 1 :=
-    Quot.sound trivial
-  trivial
-
 namespace ModularCurve
 
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
@@ -1123,7 +1116,6 @@ scoped instance kwLatticeToAddSubgroupFinite : Module.Finite ℤ (L.toAddSubgrou
 theorem kw_card_torsionBy_zlatticeQuotient {n : ℕ} (hn : (n : ℤ) ≠ 0) :
     Nat.card (Submodule.torsionBy ℤ (E ⧸ L.toAddSubgroup) (n : ℤ)) =
       n ^ Module.finrank ℤ L := by
-  have _ := kw_zlatticeQuotientTorsionCountBridge_axiomAnchor
   have h := ModularCurve.card_torsionBy_latticeQuotient (V := E) (L.toAddSubgroup) hn
   rw [h]
   exact congrArg (fun k => n ^ k)
@@ -1481,19 +1473,12 @@ p2m_open "PeriodPair P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublattic
 
 namespace ModularCurve
 
-theorem kw_surgehgf4_kqe_axiomAnchor : True := by
-  have h1 : (True ∧ True) = True := propext (by simp)
-  have h2 := Classical.choice ⟨()⟩
-  have h3 := Quot.sound (r := fun _ _ : Unit => True) (a := ()) (b := ()) trivial
-  trivial
-
 section CoreLemma
 
 variable {N : ℕ} [NeZero N]
 
 theorem kw_surgehgf4_kqe_map_fst (φ : ZMod N × ZMod N →+ ZMod N) (x : ZMod N) :
     φ (x, 0) = x * φ (1, 0) := by
-  have _ := kw_surgehgf4_kqe_axiomAnchor
   have hx : ((x, 0) : ZMod N × ZMod N) = x.val • ((1, 0) : ZMod N × ZMod N) := by
     simp [Prod.smul_mk, nsmul_eq_mul, ZMod.natCast_val]
   rw [hx, map_nsmul, nsmul_eq_mul, ZMod.natCast_val, ZMod.cast_id']
@@ -1501,7 +1486,6 @@ theorem kw_surgehgf4_kqe_map_fst (φ : ZMod N × ZMod N →+ ZMod N) (x : ZMod N
 
 theorem kw_surgehgf4_kqe_map_snd (φ : ZMod N × ZMod N →+ ZMod N) (y : ZMod N) :
     φ (0, y) = y * φ (0, 1) := by
-  have _ := kw_surgehgf4_kqe_axiomAnchor
   have hy : ((0, y) : ZMod N × ZMod N) = y.val • ((0, 1) : ZMod N × ZMod N) := by
     simp [Prod.smul_mk, nsmul_eq_mul, ZMod.natCast_val]
   rw [hy, map_nsmul, nsmul_eq_mul, ZMod.natCast_val, ZMod.cast_id']
@@ -1510,7 +1494,6 @@ theorem kw_surgehgf4_kqe_map_snd (φ : ZMod N × ZMod N →+ ZMod N) (y : ZMod N
 theorem kw_surgehgf4_kqe_map_eq (φ : ZMod N × ZMod N →+ ZMod N)
     (p : ZMod N × ZMod N) :
     φ p = p.1 * φ (1, 0) + p.2 * φ (0, 1) := by
-  have _ := kw_surgehgf4_kqe_axiomAnchor
   have hp : p = ((p.1, 0) : ZMod N × ZMod N) + (0, p.2) := by ext <;> simp
   conv_lhs => rw [hp]
   rw [map_add, kw_surgehgf4_kqe_map_fst, kw_surgehgf4_kqe_map_snd]
@@ -1527,7 +1510,6 @@ theorem kw_surgehgf4_kqe_addOrderOf_negSwap (a b : ZMod N) :
 theorem kw_surgehgf4_kqe_lcm_addOrderOf_eq (φ : ZMod N × ZMod N →+ ZMod N)
     (hφ : Function.Surjective φ) :
     Nat.lcm (addOrderOf (φ (1, 0))) (addOrderOf (φ (0, 1))) = N := by
-  have _ := kw_surgehgf4_kqe_axiomAnchor
   set a := φ (1, 0); set b := φ (0, 1)
   refine Nat.dvd_antisymm ?_ ?_
   · exact Nat.lcm_dvd (addOrderOf_dvd_of_nsmul_eq_zero (by simp))
@@ -1552,7 +1534,6 @@ theorem kw_surgehgf4_kqe_lcm_addOrderOf_eq (φ : ZMod N × ZMod N →+ ZMod N)
 theorem kw_surgehgf4_kqe_card_ker (φ : ZMod N × ZMod N →+ ZMod N)
     (hφ : Function.Surjective φ) :
     Nat.card φ.ker = N := by
-  have _ := kw_surgehgf4_kqe_axiomAnchor
   have hG : Nat.card (ZMod N × ZMod N) = N ^ 2 := by simp [sq]
   have hcodom : Nat.card (ZMod N) = N := by simp
   have htot := (AddSubgroup.card_eq_card_quotient_mul_card_addSubgroup φ.ker).symm
@@ -1563,7 +1544,6 @@ theorem kw_surgehgf4_kqe_card_ker (φ : ZMod N × ZMod N →+ ZMod N)
 theorem kw_surgehgf4_kqe_isAddCyclic_ker_of_surjective
     (φ : ZMod N × ZMod N →+ ZMod N) (hφ : Function.Surjective φ) :
     IsAddCyclic φ.ker := by
-  have _ := kw_surgehgf4_kqe_axiomAnchor
   set a := φ (1, 0); set b := φ (0, 1)
   set g : φ.ker := ⟨(-b, a), kw_surgehgf4_kqe_negSwap_mem_ker φ⟩ with hgdef
   refine ⟨g, fun x => ?_⟩
@@ -1583,7 +1563,6 @@ theorem kw_surgehgf4_kqe_isAddCyclic_ker_of_surjective'
     (φ : ZMod N × ZMod N →+ C) (hφ : Function.Surjective φ)
     (hcard : Nat.card C = N) (hcyc : IsAddCyclic C) :
     IsAddCyclic φ.ker := by
-  have _ := kw_surgehgf4_kqe_axiomAnchor
   have hfin : Finite C := Nat.finite_of_card_ne_zero (hcard ▸ NeZero.ne N)
   obtain ⟨g, hg⟩ := hcyc
   let e : C ≃+ ZMod N := (zmodAddEquivOfGenerator hg hcard).symm
@@ -1628,7 +1607,6 @@ theorem kw_surgehgf4_kqe_ker_toZModSq :
       = (M.scale (Units.mk0 (N : ℂ)
           (by exact_mod_cast NeZero.ne N))).lattice.toAddSubgroup.addSubgroupOf
           M.lattice.toAddSubgroup := by
-  have _ := kw_surgehgf4_kqe_axiomAnchor
   ext l
   rw [AddMonoidHom.mem_ker, kw_surgehgf4_kqe_toZModSq_apply, Prod.mk_eq_zero,
     ZMod.intCast_zmod_eq_zero_iff_dvd, ZMod.intCast_zmod_eq_zero_iff_dvd,
@@ -1714,7 +1692,6 @@ theorem kw_surgehgf4_kqe_ker_Psi :
       = (L'.scale (kw_surgehgf4_hID_dualUnit α ψ
           (hcard ▸ NeZero.pos N))).lattice.toAddSubgroup.addSubgroupOf
           L.lattice.toAddSubgroup := by
-  have _ := kw_surgehgf4_kqe_axiomAnchor
   ext l
   rw [AddMonoidHom.mem_ker]
   show kw_surgehgf4_kqe_toZModSq L'
@@ -1798,7 +1775,6 @@ end Equivs
 p2m_reactivate "P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_and_isAddCyclic_sublatticeQuotient.WeierstrassCurve.Affine.CoordinateRing P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_and_isAddCyclic_sublatticeQuotient.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_and_isAddCyclic_sublatticeQuotient.WeierstrassCurve P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_and_isAddCyclic_sublatticeQuotient.WeierstrassCurve.Affine P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_and_isAddCyclic_sublatticeQuotient.PeriodPair P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_and_isAddCyclic_sublatticeQuotient.ModularCurve"
 
 theorem kw_surgehgf4_kqe_proved : KwD5BetweenCurvesKerQuotEquivBC := by
-  have _ := kw_surgehgf4_kqe_axiomAnchor
   intro L L' _ _ _ _ _ _ _ _ ι'' hι'' hfin'' N _ ψ hcard hH2 _hID hcyc
   have hNe : Nat.card ψ.ker ≠ 0 := hcard ▸ NeZero.ne N
   obtain ⟨F, hFdiff, hF0, hFint⟩ := hH2 L L' ι'' hι'' hfin''

@@ -1,30 +1,12 @@
 import Mathlib.NumberTheory.ModularForms.LevelOne.GradedRing
 
 import Definitions.FLT.Def_PeriodPair_Uniformization
-import Definitions.FLT.Def_P2M_Util
-
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
-namespace P2MW.S_PeriodPair_jLattice_ofTau
-
-set_option linter.unusedSectionVars false
-set_option linter.unusedVariables false
-
-set_option synthInstance.maxHeartbeats 800000
-set_option maxHeartbeats 6400000
-
-section
-section
 
 noncomputable section
 
 open UpperHalfPlane Complex
 
 namespace PeriodPair
-p2m_export "PeriodPair" "lattice ω₁ latticeEquivProd g₃ derivWeierstrassP_sq ω₂ latticeEquiv_symm_apply G g₂ weierstrassCurve weierstrassCurve_Δ weierstrassCurve_c₄ equation_weierstrassP DiscriminantNeZero toPoint toPoint_zero IsUniformization jLattice JSurjective ofTau scale sublatticeIndex discriminant_ne_zero"
-p2m_open "PeriodPair"
 
 theorem kw_ofTau_latticeEquivProd_symm_apply (τ : ℍ) (p : ℤ × ℤ) :
     ((ofTau τ).latticeEquivProd.symm p : ℂ) = p.1 * (τ : ℂ) + p.2 := by
@@ -33,30 +15,6 @@ theorem kw_ofTau_latticeEquivProd_symm_apply (τ : ℍ) (p : ℤ × ℤ) :
 end PeriodPair
 
 end
-end
-
-end
-
-section
-section
-
-open Complex Filter Set
-
-p2m_open_scoped "PeriodPair P2MW.S_PeriodPair_jLattice_ofTau.PeriodPair"
-
-namespace PeriodPair
-p2m_export "PeriodPair" "lattice ω₁ latticeEquivProd g₃ derivWeierstrassP_sq ω₂ latticeEquiv_symm_apply G g₂ weierstrassCurve weierstrassCurve_Δ weierstrassCurve_c₄ equation_weierstrassP DiscriminantNeZero toPoint toPoint_zero IsUniformization jLattice JSurjective ofTau scale sublatticeIndex discriminant_ne_zero"
-end PeriodPair
-
-namespace Projectivization
-p2m_export "Projectivization" "map card"
-end Projectivization
-end
-
-end
-
-section
-section
 
 noncomputable section
 
@@ -64,8 +22,6 @@ open scoped UpperHalfPlane Real
 open Complex UpperHalfPlane EisensteinSeries ModularForm
 
 namespace PeriodPair
-p2m_export "PeriodPair" "lattice ω₁ latticeEquivProd g₃ derivWeierstrassP_sq ω₂ latticeEquiv_symm_apply G g₂ weierstrassCurve weierstrassCurve_Δ weierstrassCurve_c₄ equation_weierstrassP DiscriminantNeZero toPoint toPoint_zero IsUniformization jLattice JSurjective ofTau scale sublatticeIndex discriminant_ne_zero"
-p2m_open "PeriodPair"
 
 theorem kw_G_ofTau_eq {k : ℕ} (hk : 3 ≤ k) (τ : ℍ) :
     (ofTau τ).G k = 2 * riemannZeta k * E hk τ := by
@@ -108,8 +64,6 @@ theorem kw_riemannZeta_six : riemannZeta 6 = (π : ℂ) ^ 6 / 945 := by
 end ModularCurve
 
 namespace PeriodPair
-p2m_export "PeriodPair" "lattice ω₁ latticeEquivProd g₃ derivWeierstrassP_sq ω₂ latticeEquiv_symm_apply G g₂ weierstrassCurve weierstrassCurve_Δ weierstrassCurve_c₄ equation_weierstrassP DiscriminantNeZero toPoint toPoint_zero IsUniformization jLattice JSurjective ofTau scale sublatticeIndex discriminant_ne_zero"
-p2m_open "PeriodPair"
 
 open ModularCurve
 
@@ -128,12 +82,6 @@ theorem kw_g₃_ofTau (τ : ℍ) :
 end PeriodPair
 
 end
-end
-
-end
-
-section
-section
 
 noncomputable section
 
@@ -141,8 +89,6 @@ open scoped UpperHalfPlane Real
 open Complex UpperHalfPlane ModularForm
 
 namespace PeriodPair
-p2m_export "PeriodPair" "lattice ω₁ latticeEquivProd g₃ derivWeierstrassP_sq ω₂ latticeEquiv_symm_apply G g₂ weierstrassCurve weierstrassCurve_Δ weierstrassCurve_c₄ equation_weierstrassP DiscriminantNeZero toPoint toPoint_zero IsUniformization jLattice JSurjective ofTau scale sublatticeIndex discriminant_ne_zero"
-p2m_open "PeriodPair"
 
 theorem kw_discriminant_ofTau_eq (τ : ℍ) :
     (ofTau τ).g₂ ^ 3 - 27 * (ofTau τ).g₃ ^ 2
@@ -164,9 +110,6 @@ theorem kw_jLattice_ofTau_eq (τ : ℍ) :
 end PeriodPair
 
 end
-end
-
-end
 
 open scoped UpperHalfPlane in
 theorem solution (τ : ℍ) :
@@ -174,7 +117,3 @@ theorem solution (τ : ℍ) :
   rw [PeriodPair.kw_jLattice_ofTau_eq, ModularForm.discriminant_eq_E₄_cube_sub_E₆_sq,
     div_div_eq_mul_div]
   ring
-
-end S_PeriodPair_jLattice_ofTau
-end P2MW
-export P2MW.S_PeriodPair_jLattice_ofTau (solution)

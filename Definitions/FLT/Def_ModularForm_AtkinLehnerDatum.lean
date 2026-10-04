@@ -3,16 +3,10 @@ module
 public import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
 public import Mathlib.NumberTheory.ModularForms.SlashActions
 
-@[expose] public section publicSection
-
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
+@[expose] public noncomputable section publicSection
 
 open Matrix UpperHalfPlane CongruenceSubgroup
 open scoped MatrixGroups ModularForm
-
-noncomputable section DL_kechel
 
 namespace ModularForm
 
@@ -155,7 +149,5 @@ lemma alSlash_smul {M q : ℕ} (W : AtkinLehnerDatum M q) (k : ℤ) [NeZero M] (
   simp only [alSlash, ModularForm.smul_slash, AtkinLehnerDatum.σ_alGL_apply]
 
 end ModularForm
-
-end DL_kechel
 
 end publicSection

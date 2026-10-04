@@ -13,8 +13,6 @@ import Mathlib.RingTheory.Nakayama
 
 universe u v
 
-section privateSection
-
 namespace S_MonoidAlgebra_isLocalRing_of_isPGroup
 
 namespace M4cP4R2L
@@ -150,8 +148,6 @@ theorem solution
   · exact Or.inl (isUnit_of_counit_not_mem hp hG ha)
 
 end S_MonoidAlgebra_isLocalRing_of_isPGroup
-
-end privateSection
 
 public section publicSection
 

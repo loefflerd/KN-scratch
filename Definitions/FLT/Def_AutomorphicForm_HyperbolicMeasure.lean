@@ -5,28 +5,14 @@ public import Mathlib.Analysis.Complex.UpperHalfPlane.Measure
 public import Mathlib.NumberTheory.Modular
 public import Mathlib.Order.CompletePartialOrder
 
-@[expose] public section publicSection
-
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
+@[expose] public noncomputable section publicSection
 
 open MeasureTheory Set
 open scoped MatrixGroups Pointwise NNReal ENNReal
 
-noncomputable section DL_toxihemia
-
 namespace FLT.HyperbolicMeasure
 
 open UpperHalfPlane
-
-example : MeasureSpace ℍ := inferInstance
-
-example : SigmaFinite (volume : Measure ℍ) := inferInstance
-
-example : SMulInvariantMeasure (GL (Fin 2) ℝ) ℍ volume := inferInstance
-
-example : IsFiniteMeasureOnCompacts (volume : Measure ℍ) := inferInstance
 
 theorem volume_smul_gl (g : GL (Fin 2) ℝ) (s : Set ℍ) : volume (g • s) = volume s :=
   MeasureTheory.measure_smul (volume : Measure ℍ) g s
@@ -102,11 +88,7 @@ private lemma box_eq_smul (n : ℤ) : box n = (ModularGroup.T ^ n) • box 0 := 
   rw [Set.mem_smul_set_iff_inv_smul_mem, ← zpow_neg]
   simp only [box, Set.mem_inter_iff, Set.mem_preimage, Set.mem_Ioo,
     ModularGroup.re_T_zpow_smul, ModularGroup.im_T_zpow_smul, Int.cast_neg, Int.cast_zero]
-  constructor
-  · rintro ⟨⟨h1, h2⟩, h3⟩
-    exact ⟨⟨by linarith, by linarith⟩, h3⟩
-  · rintro ⟨⟨h1, h2⟩, h3⟩
-    exact ⟨⟨by linarith, by linarith⟩, h3⟩
+  grind
 
 theorem volume_univ_eq_top : volume (Set.univ : Set ℍ) = ⊤ := by
   have hdisj := pairwise_disjoint_box
@@ -129,6 +111,5 @@ theorem not_isFiniteMeasure_volume : ¬ IsFiniteMeasure (volume : Measure ℍ) :
   exact (measure_lt_top (volume : Measure ℍ) Set.univ).ne volume_univ_eq_top
 
 end FLT.HyperbolicMeasure
-end DL_toxihemia
 
 end publicSection

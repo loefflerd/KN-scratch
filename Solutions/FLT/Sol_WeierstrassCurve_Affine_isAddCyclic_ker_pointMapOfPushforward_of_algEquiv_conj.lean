@@ -1390,12 +1390,6 @@ set_option linter.unusedSectionVars false
 
 namespace ModularCurve
 
-theorem kw_surgehgf4_pck_axiomAnchor : True := by
-  have h1 : (True ∧ True) = True := propext (by simp)
-  have h2 := Classical.choice ⟨()⟩
-  have h3 := Quot.sound (r := fun _ _ : Unit => True) (a := ()) (b := ()) trivial
-  trivial
-
 section PMOPComp
 
 variable {W₁ W₂ W₃ : WeierstrassCurve.Affine ℂ}
@@ -1412,7 +1406,6 @@ theorem kw_surgehgf4_pck_pmop_comp_apply
         (normFormulaAlong_of_elliptic (φ.comp χ) hfinφχ) P
       = pointMapOfPushforward χ hχ hfinχ (normFormulaAlong_of_elliptic χ hfinχ)
           (pointMapOfPushforward φ hφ hfinφ (normFormulaAlong_of_elliptic φ hfinφ) P) := by
-  have _ := kw_surgehgf4_pck_axiomAnchor
   show genusOnePic0Equiv W₁ (Pic0.pushforwardAlongHom (φ.comp χ) _ _ _
         ((genusOnePic0Equiv W₃).symm P))
     = genusOnePic0Equiv W₁ (Pic0.pushforwardAlongHom χ _ _ _
@@ -1438,7 +1431,6 @@ theorem kw_surgehgf4_pck_pmop_id
     (hfin : FiniteAlong ℂ (AlgHom.id ℂ W.FunctionField)) (P : W.Point) :
     pointMapOfPushforward (AlgHom.id ℂ W.FunctionField) hι hfin
         (normFormulaAlong_of_elliptic _ hfin) P = P := by
-  have _ := kw_surgehgf4_pck_axiomAnchor
   have h := IsogenyEndDatum.idDatum_pointEnd W
   calc pointMapOfPushforward (AlgHom.id ℂ W.FunctionField) hι hfin
           (normFormulaAlong_of_elliptic _ hfin) P
@@ -1588,7 +1580,6 @@ theorem kw_surgehgf4_pck_proved_core
     IsAddCyclic (AddMonoidHom.ker (pointMapOfPushforward
         (kw_fdn2_qephod_hend21_conjSeam eE eE' ι) hι'' hfin''
         (normFormulaAlong_of_elliptic _ hfin''))) := by
-  have _ := kw_surgehgf4_pck_axiomAnchor
   intro hcyc
   have hAbij := kw_surgehgf4_pck_pmop_equiv_bijective eE.symm
   have hBinj := (kw_surgehgf4_pck_pmop_equiv_bijective eE').injective

@@ -5,13 +5,7 @@ public import Mathlib.Algebra.Order.Ring.Star
 public import Mathlib.Data.Rat.Star
 public import Mathlib.RingTheory.HahnSeries.Summable
 
-@[expose] public section publicSection
-
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
-noncomputable section DL_felinophobe
+@[expose] public noncomputable section publicSection
 
 namespace HahnSeries
 
@@ -47,7 +41,5 @@ def puiseuxRamSubfield {e : ℕ} (he : 0 < e) : Subfield (HahnSeries ℚ K) :=
   (puiseuxRamEmb (K := K) he).fieldRange
 
 end HahnSeries
-
-end DL_felinophobe
 
 end publicSection

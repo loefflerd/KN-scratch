@@ -232,20 +232,12 @@ p2m_open "Filter P2MW.S_PeriodPair_jLattice_surjective.Filter Topology P2MW.S_Pe
 
 namespace ModularCurve
 
-theorem kwQepw118c_axiomAnchor : True :=
-  have _h₁ : True = True := propext Iff.rfl
-  have _h₂ : ℕ := Classical.choice ⟨0⟩
-  have _h₃ : Quot.mk (fun (_ _ : ℕ) => True) 0 = Quot.mk (fun (_ _ : ℕ) => True) 1 :=
-    Quot.sound trivial
-  trivial
-
 theorem kwQepw118c_modularForm_tendsto_valueAtInfty
     {k : ℤ} {Γ : Subgroup (GL (Fin 2) ℝ)} {F : Type*}
     [FunLike F UpperHalfPlane ℂ] [ModularFormClass F Γ k] (f : F)
     {h : ℝ} (hh : 0 < h) (hΓ : h ∈ Γ.strictPeriods) :
     Tendsto (f : UpperHalfPlane → ℂ) UpperHalfPlane.atImInfty
       (𝓝 (UpperHalfPlane.valueAtInfty f)) := by
-  have _ := kwQepw118c_axiomAnchor
   have hanal := ModularFormClass.analyticAt_cuspFunction_zero f hh hΓ
   have hper := SlashInvariantFormClass.periodic_comp_ofComplex f hΓ
   rw [← UpperHalfPlane.cuspFunction_apply_zero hh hanal hper]
@@ -256,7 +248,6 @@ theorem kwQepw118c_modularForm_tendsto_valueAtInfty
 theorem kwQepw118c_eisenstein4_tendsto_one :
     Tendsto (ModularForm.E₄ : UpperHalfPlane → ℂ)
       UpperHalfPlane.atImInfty (𝓝 1) := by
-  have _ := kwQepw118c_axiomAnchor
   have htend := kwQepw118c_modularForm_tendsto_valueAtInfty
     ModularForm.E₄ one_pos one_mem_strictPeriods_SL
   have hanal := ModularFormClass.analyticAt_cuspFunction_zero
@@ -425,13 +416,6 @@ p2m_open_scoped "MatrixGroups P2MW.S_PeriodPair_jLattice_surjective.MatrixGroups
 
 namespace ModularCurve
 
-theorem kwQepw123c_axiomAnchor : True :=
-  have _h₁ : True = True := propext Iff.rfl
-  have _h₂ : ℕ := Classical.choice ⟨0⟩
-  have _h₃ : Quot.mk (fun (_ _ : ℕ) => True) 0 = Quot.mk (fun (_ _ : ℕ) => True) 1 :=
-    Quot.sound trivial
-  trivial
-
 def kwQepw123c_jH (tau : UpperHalfPlane) : ℂ :=
   ModularForm.E₄ tau ^ 3 / ModularForm.discriminant tau
 
@@ -446,24 +430,20 @@ def kwQepw123c_pencil (c z : ℂ) : ℂ :=
 
 theorem kwQepw123c_E₄cubeExt_coe (tau : UpperHalfPlane) :
     kwQepw123c_E₄cubeExt (tau : ℂ) = ModularForm.E₄ tau ^ 3 := by
-  have _ := kwQepw123c_axiomAnchor
   exact dite_eq_left tau.coe_im_pos
 
 theorem kwQepw123c_ΔExt_coe (tau : UpperHalfPlane) :
     kwQepw123c_ΔExt (tau : ℂ) = ModularForm.discriminant tau := by
-  have _ := kwQepw123c_axiomAnchor
   exact dite_eq_left tau.coe_im_pos
 
 theorem kwQepw123c_pencil_coe (c : ℂ) (tau : UpperHalfPlane) :
     kwQepw123c_pencil c (tau : ℂ)
       = ModularForm.E₄ tau ^ 3 - c * ModularForm.discriminant tau := by
-  have _ := kwQepw123c_axiomAnchor
   unfold kwQepw123c_pencil
   rw [kwQepw123c_E₄cubeExt_coe, kwQepw123c_ΔExt_coe]
 
 theorem kwQepw123c_pencilFibre_jH :
     kwQepw124b_PencilFibreProp kwQepw123c_pencil kwQepw123c_jH := by
-  have _ := kwQepw123c_axiomAnchor
   intro c tau
   rw [kwQepw123c_pencil_coe, sub_eq_zero]
   unfold kwQepw123c_jH
@@ -553,18 +533,10 @@ p2m_open "Filter P2MW.S_PeriodPair_jLattice_surjective.Filter Topology P2MW.S_Pe
 
 namespace ModularCurve
 
-theorem kwQepw116c_axiomAnchor : True :=
-  have _h₁ : True = True := propext Iff.rfl
-  have _h₂ : ℕ := Classical.choice ⟨0⟩
-  have _h₃ : Quot.mk (fun (_ _ : ℕ) => True) 0 = Quot.mk (fun (_ _ : ℕ) => True) 1 :=
-    Quot.sound trivial
-  trivial
-
 theorem kwQepw116c_sanity_jH_surjective_iff_pencil_has_zero :
     (∀ c : ℂ, ∃ tau : UpperHalfPlane, kwQepw123c_jH tau = c)
       ↔ ∀ c : ℂ, ∃ tau : UpperHalfPlane,
           kwQepw123c_pencil c (↑tau : ℂ) = 0 := by
-  have _ := kwQepw116c_axiomAnchor
   constructor
   · intro h c
     obtain ⟨tau, htau⟩ := h c
@@ -592,13 +564,6 @@ p2m_open_scoped "MatrixGroups P2MW.S_PeriodPair_jLattice_surjective.MatrixGroups
 
 namespace ModularCurve
 
-theorem kwQepw121c_axiomAnchor : True :=
-  have _h₁ : True = True := propext Iff.rfl
-  have _h₂ : ℕ := Classical.choice ⟨0⟩
-  have _h₃ : Quot.mk (fun (_ _ : ℕ) => True) 0 = Quot.mk (fun (_ _ : ℕ) => True) 1 :=
-    Quot.sound trivial
-  trivial
-
 abbrev kwQepw121c_PencilSlashWeightTwelveProp
     {C : Type*} (F : C → ℂ → ℂ) : Prop :=
   ∀ c : C, ∀ g : Matrix.SpecialLinearGroup (Fin 2) ℤ,
@@ -613,7 +578,6 @@ abbrev kwQepw121c_PencilHolomorphicProp
 
 theorem kwQepw121c_pencil_slashWeightTwelve :
     kwQepw121c_PencilSlashWeightTwelveProp kwQepw123c_pencil := by
-  have _ := kwQepw121c_axiomAnchor
   intro c g tau
   have hmem : Matrix.SpecialLinearGroup.mapGL ℝ g ∈ 𝒮ℒ :=
     MonoidHom.mem_range.mpr ⟨g, rfl⟩
@@ -657,23 +621,14 @@ p2m_open "Filter P2MW.S_PeriodPair_jLattice_surjective.Filter Topology P2MW.S_Pe
 
 namespace ModularCurve
 
-theorem kwQepw119c_axiomAnchor : True :=
-  have _h₁ : True = True := propext Iff.rfl
-  have _h₂ : ℕ := Classical.choice ⟨0⟩
-  have _h₃ : Quot.mk (fun (_ _ : ℕ) => True) 0 = Quot.mk (fun (_ _ : ℕ) => True) 1 :=
-    Quot.sound trivial
-  trivial
-
 theorem kwQepw119c_tendsto_isBoundedAtImInfty
     {f : UpperHalfPlane → ℂ} {L : ℂ}
     (h : Tendsto f UpperHalfPlane.atImInfty (𝓝 L)) :
     UpperHalfPlane.IsBoundedAtImInfty f := by
-  have _ := kwQepw119c_axiomAnchor
   exact h.isBigO_one ℝ
 
 theorem kwQepw119c_discriminant_cuspVanishing :
     kwQepw120c_DiscriminantCuspVanishingProp := by
-  have _ := kwQepw119c_axiomAnchor
   exact ModularForm.discriminant_isZeroAtImInfty
 
 end ModularCurve
@@ -695,27 +650,18 @@ p2m_open "Filter P2MW.S_PeriodPair_jLattice_surjective.Filter Topology P2MW.S_Pe
 
 namespace ModularCurve
 
-theorem kwQepw117c_axiomAnchor : True :=
-  have _h₁ : True = True := propext Iff.rfl
-  have _h₂ : ℕ := Classical.choice ⟨0⟩
-  have _h₃ : Quot.mk (fun (_ _ : ℕ) => True) 0 = Quot.mk (fun (_ _ : ℕ) => True) 1 :=
-    Quot.sound trivial
-  trivial
-
 theorem kwQepw117c_modularForm_analyticAt_comp_ofComplex
     {k : ℤ} {Γ : Subgroup (GL (Fin 2) ℝ)} {F : Type*}
     [FunLike F UpperHalfPlane ℂ] [ModularFormClass F Γ k] (f : F)
     (tau : UpperHalfPlane) :
     AnalyticAt ℂ ((f : UpperHalfPlane → ℂ) ∘ UpperHalfPlane.ofComplex)
       (↑tau : ℂ) := by
-  have _ := kwQepw117c_axiomAnchor
   exact (UpperHalfPlane.mdifferentiable_iff.mp
     (ModularFormClass.holo f)).analyticAt
     (UpperHalfPlane.isOpen_upperHalfPlaneSet.mem_nhds tau.im_pos)
 
 theorem kwQepw117c_E₄cubeExt_analyticAt (tau : UpperHalfPlane) :
     AnalyticAt ℂ kwQepw123c_E₄cubeExt (↑tau : ℂ) := by
-  have _ := kwQepw117c_axiomAnchor
   have hE := kwQepw117c_modularForm_analyticAt_comp_ofComplex
     ModularForm.E₄ tau
   refine (hE.pow 3).congr ?_
@@ -726,7 +672,6 @@ theorem kwQepw117c_E₄cubeExt_analyticAt (tau : UpperHalfPlane) :
 
 theorem kwQepw117c_ΔExt_analyticAt (tau : UpperHalfPlane) :
     AnalyticAt ℂ kwQepw123c_ΔExt (↑tau : ℂ) := by
-  have _ := kwQepw117c_axiomAnchor
   have hΔ := kwQepw117c_modularForm_analyticAt_comp_ofComplex
     CuspForm.discriminant tau
   refine hΔ.congr ?_
@@ -738,7 +683,6 @@ theorem kwQepw117c_ΔExt_analyticAt (tau : UpperHalfPlane) :
 
 theorem kwQepw117c_pencil_holomorphic :
     kwQepw121c_PencilHolomorphicProp kwQepw123c_pencil := by
-  have _ := kwQepw117c_axiomAnchor
   intro c tau
   have hE := kwQepw117c_E₄cubeExt_analyticAt tau
   have hΔ := kwQepw117c_ΔExt_analyticAt tau
@@ -768,17 +712,9 @@ p2m_open_scoped "MatrixGroups P2MW.S_PeriodPair_jLattice_surjective.MatrixGroups
 
 namespace ModularCurve
 
-theorem kwQepw115c_axiomAnchor : True :=
-  have _h₁ : True = True := propext Iff.rfl
-  have _h₂ : ℕ := Classical.choice ⟨0⟩
-  have _h₃ : Quot.mk (fun (_ _ : ℕ) => True) 0 = Quot.mk (fun (_ _ : ℕ) => True) 1 :=
-    Quot.sound trivial
-  trivial
-
 theorem kwQepw115c_pencil_tendsto_one_atImInfty (c : ℂ) :
     Tendsto (fun τ : UpperHalfPlane => kwQepw123c_pencil c (↑τ : ℂ))
       UpperHalfPlane.atImInfty (𝓝 1) := by
-  have _ := kwQepw115c_axiomAnchor
   have hE : Tendsto (fun τ : UpperHalfPlane => ModularForm.E₄ τ ^ 3)
       UpperHalfPlane.atImInfty (𝓝 1) := by
     have := kwQepw118c_eisenstein4_tendsto_one.pow 3
@@ -799,7 +735,6 @@ theorem kwQepw115c_invPencilH_slash (c : ℂ)
       ∣[(-12 : ℤ)] g
       = fun τ : UpperHalfPlane =>
         (kwQepw123c_pencil c (↑τ : ℂ))⁻¹ := by
-  have _ := kwQepw115c_axiomAnchor
   ext τ
   rw [ModularForm.SL_slash_apply, neg_neg,
     kwQepw121c_pencil_slashWeightTwelve c g τ]
@@ -812,7 +747,6 @@ theorem kwQepw115c_invPencilH_mdifferentiable (c : ℂ)
     (hnz : ∀ τ : UpperHalfPlane, kwQepw123c_pencil c (↑τ : ℂ) ≠ 0) :
     MDifferentiable 𝓘(ℂ) 𝓘(ℂ)
       (fun τ : UpperHalfPlane => (kwQepw123c_pencil c (↑τ : ℂ))⁻¹) := by
-  have _ := kwQepw115c_axiomAnchor
   rw [UpperHalfPlane.mdifferentiable_iff]
   refine DifferentiableOn.congr
     (f := fun z => (kwQepw123c_pencil c z)⁻¹) ?_ (fun z hz => ?_)
@@ -825,7 +759,6 @@ theorem kwQepw115c_invPencilH_mdifferentiable (c : ℂ)
 theorem kwQepw115c_invPencilH_isBoundedAtImInfty (c : ℂ) :
     UpperHalfPlane.IsBoundedAtImInfty
       (fun τ : UpperHalfPlane => (kwQepw123c_pencil c (↑τ : ℂ))⁻¹) := by
-  have _ := kwQepw115c_axiomAnchor
   have htend : Tendsto
       (fun τ : UpperHalfPlane => (kwQepw123c_pencil c (↑τ : ℂ))⁻¹)
       UpperHalfPlane.atImInfty (𝓝 1) := by
@@ -850,7 +783,6 @@ def kwQepw115c_invPencilMF (c : ℂ)
 
 theorem kwQepw115c_pencil_has_zero (c : ℂ) :
     ∃ τ : UpperHalfPlane, kwQepw123c_pencil c (↑τ : ℂ) = 0 := by
-  have _ := kwQepw115c_axiomAnchor
   by_contra hcon
   have hnz : ∀ τ : UpperHalfPlane, kwQepw123c_pencil c (↑τ : ℂ) ≠ 0 :=
     not_exists.mp hcon
@@ -864,7 +796,6 @@ theorem kwQepw115c_pencil_has_zero (c : ℂ) :
 
 theorem kwQepw115c_jH_surjective :
     ∀ c : ℂ, ∃ τ : UpperHalfPlane, kwQepw123c_jH τ = c := by
-  have _ := kwQepw115c_axiomAnchor
   exact kwQepw116c_sanity_jH_surjective_iff_pencil_has_zero.mpr
     kwQepw115c_pencil_has_zero
 

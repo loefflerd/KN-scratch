@@ -354,13 +354,6 @@ noncomputable section
 
 p2m_open "Module P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.Module"
 
-theorem kw_zlatticeQuotientTorsionCountBridge_axiomAnchor : True :=
-  have _h₁ : True = True := propext Iff.rfl
-  have _h₂ : ℕ := Classical.choice ⟨0⟩
-  have _h₃ : Quot.mk (fun (_ _ : ℕ) => True) 0 = Quot.mk (fun (_ _ : ℕ) => True) 1 :=
-    Quot.sound trivial
-  trivial
-
 namespace ModularCurve
 
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
@@ -403,7 +396,6 @@ scoped instance kwLatticeToAddSubgroupFinite : Module.Finite ℤ (L.toAddSubgrou
 theorem kw_card_torsionBy_zlatticeQuotient {n : ℕ} (hn : (n : ℤ) ≠ 0) :
     Nat.card (Submodule.torsionBy ℤ (E ⧸ L.toAddSubgroup) (n : ℤ)) =
       n ^ Module.finrank ℤ L := by
-  have _ := kw_zlatticeQuotientTorsionCountBridge_axiomAnchor
   have h := ModularCurve.card_torsionBy_latticeQuotient (V := E) (L.toAddSubgroup) hn
   rw [h]
   exact congrArg (fun k => n ^ k)
@@ -502,12 +494,6 @@ noncomputable section
 p2m_open "P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.ModularCurve PeriodPair P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.PeriodPair"
 
 namespace ModularCurve
-
-theorem kw_surgehgf4_hID_axiomAnchor : True := by
-  have _p : (True ∨ True) = True := propext (by tauto)
-  have _c := Classical.em True
-  have _q := Quot.sound (r := fun _ _ : Unit => True) (a := ()) (b := ()) trivial
-  trivial
 
 section BetweenCurves
 
@@ -788,7 +774,6 @@ theorem kw_surgehgf4_hID_dualIndex_eq (hN : 0 < Nat.card ψ.ker) :
 
 theorem kw_surgehgf4_hID_betweenCurvesIndexDual_proved :
     KwD5BetweenCurvesIndexDual := by
-  have _ := kw_surgehgf4_hID_axiomAnchor
   intro L L' _ _ α ψ hint
   have hN := kw_surgehgf4_hID_card_ker_pos L L' α ψ hint
   exact ⟨kw_surgehgf4_hID_dualUnit α ψ hN,
