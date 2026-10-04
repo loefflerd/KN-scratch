@@ -124,12 +124,10 @@ theorem transfer (x : Fκ) (hx : (x : LaurentSeries κ) = jqModC κ)
   classical
   have hjk : jqModC k ∈ Fk := intFormRatiosC_subset k Γ (ModularCurve.jqModC_mem_intFormRatiosC k Γ)
   have hΦx : Φ φ (x : LaurentSeries κ) = jqModC k := by rw [hx, coeffMap_jqModC]
-
   set Lκ : IntermediateField κ Fκ := adjoin κ ({x} : Set Fκ) with hLκ
   set K₀ : IntermediateField k Fk := adjoin k ({x'} : Set Fk) with hK₀
   set K₁ : IntermediateField k (LaurentSeries k) := adjoin k ({jqModC k} : Set (LaurentSeries k)) with hK₁
   have : FiniteDimensional Lκ Fκ := hfd
-
   let ψ₀ : Lκ →+* LaurentSeries k :=
     (Φ φ).comp (((qExpFunctionFieldC κ Γ).val : Fκ →+* LaurentSeries κ).comp (algebraMap Lκ Fκ))
   have hψ₀ : ∀ a : Lκ, ψ₀ a = Φ φ ((a : Fκ) : LaurentSeries κ) := fun a => rfl
@@ -144,14 +142,12 @@ theorem transfer (x : Fκ) (hx : (x : LaurentSeries κ) = jqModC κ)
   let ψ : Lκ →+* K₁ := ψ₀.codRestrict K₁ hψ₀mem
   have hψval : ∀ a : Lκ, ((ψ a : K₁) : LaurentSeries k) = Φ φ ((a : Fκ) : LaurentSeries κ) :=
     fun a => rfl
-
   set n := Module.finrank Lκ Fκ with hn
   let v := Module.finBasis Lκ Fκ
   let w : Fin n → LaurentSeries k := fun i => Φ φ ((v i : Fκ) : LaurentSeries κ)
   set S : Submodule K₁ (LaurentSeries k) := Submodule.span K₁ (Set.range w) with hS
   have hSfin : Module.Finite K₁ S := Module.Finite.span_of_finite K₁ (Set.finite_range w)
   have hSrank : Module.finrank K₁ S ≤ n := (finrank_range_le_card w).trans (by simp)
-
   have hsub : ∀ y : LaurentSeries κ, y ∈ Fκ → Φ φ y ∈ S := by
     intro y hy
     obtain ⟨c, hc⟩ := (Submodule.mem_span_range_iff_exists_fun Lκ).mp
@@ -169,7 +165,6 @@ theorem transfer (x : Fκ) (hx : (x : LaurentSeries κ) = jqModC κ)
       rw [IntermediateField.smul_def, smul_eq_mul, hψval]
     rw [this]
     exact Submodule.smul_mem _ _ (Submodule.subset_span ⟨i, rfl⟩)
-
   have hone : (1 : LaurentSeries k) ∈ S := by
     have h := hsub 1 (one_mem _)
     rwa [map_one] at h
@@ -191,7 +186,6 @@ theorem transfer (x : Fκ) (hx : (x : LaurentSeries κ) = jqModC κ)
     | zero => rw [zero_mul]; exact zero_mem _
     | add a₁ a₂ _ _ h₁ h₂ => rw [add_mul]; exact add_mem h₁ h₂
     | smul r a _ h => rw [smul_mul_assoc]; exact Submodule.smul_mem _ _ h
-
   have hinv : ∀ a : LaurentSeries k, a ∈ S → a⁻¹ ∈ S := by
     intro a ha
     by_cases ha0 : a = 0
@@ -213,7 +207,6 @@ theorem transfer (x : Fκ) (hx : (x : LaurentSeries κ) = jqModC κ)
     have ht' : a * (t : LaurentSeries k) = 1 := congrArg Subtype.val ht
     have : a⁻¹ = t := by rw [inv_eq_of_mul_eq_one_right ht']
     rw [this]; exact t.2
-
   let SF : IntermediateField k (LaurentSeries k) :=
     { carrier := S
       mul_mem' := fun {a b} ha hb => hmul a b ha hb
@@ -230,7 +223,6 @@ theorem transfer (x : Fκ) (hx : (x : LaurentSeries κ) = jqModC κ)
     rw [adjoin_le_iff, ← image_intFormRatiosC φ Γ]
     rintro _ ⟨y, hy, rfl⟩
     exact hsub y (intFormRatiosC_subset κ Γ hy)
-
   have hK₁F : K₁ ≤ Fk := by
     rw [hK₁, adjoin_le_iff, Set.singleton_subset_iff]
     exact hjk
@@ -245,7 +237,6 @@ theorem transfer (x : Fκ) (hx : (x : LaurentSeries κ) = jqModC κ)
     have h1 : Module.finrank K₁ (Subalgebra.toSubmodule N₁.toSubalgebra) ≤ Module.finrank K₁ S :=
       Submodule.finrank_mono hN₁S
     exact h1.trans hSrank
-
   have hmap : K₀.map (qExpFunctionFieldC k Γ).val = K₁ := by
     have h := adjoin_map k ({x'} : Set Fk) (qExpFunctionFieldC k Γ).val
     rw [Set.image_singleton] at h
@@ -286,7 +277,6 @@ theorem isAlgebraic_residueField :
   have hp : p.Prime := Fact.out
   refine ⟨fun ybar => ?_⟩
   obtain ⟨y, rfl⟩ := IsLocalRing.residue_surjective ybar
-
   have hyQ : IsAlgebraic ℚ (y : AlgebraicClosure ℚ) := by
     have h := (AlgebraicClosure.isAlgebraic ℚ).isAlgebraic (y : AlgebraicClosure ℚ)
     convert h using 2
@@ -300,7 +290,6 @@ theorem isAlgebraic_residueField :
       rw [← eq_C_content_mul_primPart]; exact hPy
     rw [map_mul, aeval_C, mul_eq_zero] at h1
     exact h1.resolve_left ((map_ne_zero_iff _ (RingHom.injective_int _)).mpr hc0)
-
   have hQyA : eval₂ (Int.castRingHom A) y Q = 0 := by
     have hinj : Function.Injective A.subtype := Subtype.val_injective
     apply hinj
@@ -308,7 +297,6 @@ theorem isAlgebraic_residueField :
     have h2 : (A.subtype.comp (Int.castRingHom A)) = algebraMap ℤ (AlgebraicClosure ℚ) := RingHom.ext_int _ _
     rw [h2]
     exact hQy
-
   set Qbar := Q.map (Int.castRingHom (ZMod p)) with hQbar
   have hQbar0 : Qbar ≠ 0 := by
     intro h0
@@ -365,8 +353,7 @@ theorem bound_of_isAlgClosed (K' : Type*) [Field K'] [IsAlgClosed K']
   classical
   obtain ⟨p, hchar⟩ := CharP.exists K'
   rcases CharP.char_is_prime_or_zero K' p with hp | rfl
-  ·
-    have : Fact p.Prime := ⟨hp⟩
+  · have : Fact p.Prime := ⟨hp⟩
     obtain ⟨A, hA⟩ := ValuationSubring.exists_liesOverPrime_algebraicClosure_rat ⟨p, hp⟩
     have : CharP (IsLocalRing.ResidueField A) p :=
       ValuationSubring.charP_residueField_of_liesOverPrime_def hp hA
@@ -379,7 +366,6 @@ theorem bound_of_isAlgClosed (K' : Type*) [Field K'] [IsAlgClosed K']
     obtain ⟨xκ, hxκ, -, hfd, hle⟩ :=
       ModularCurve.exists_transcendental_finiteDimensional_qExpFunctionFieldC_residueField
         (AlgebraicClosure ℚ) A Γ hT
-
     have hy : jqModC (AlgebraicClosure ℚ) ∈
         laurentBaseChange (AlgebraicClosure ℚ) (qExpFunctionFieldC ℚ Γ) := by
       have h := coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (F₀ := qExpFunctionFieldC ℚ Γ)
@@ -390,8 +376,7 @@ theorem bound_of_isAlgClosed (K' : Type*) [Field K'] [IsAlgClosed K']
       (AlgebraicClosure ℚ) Γ hT Γ' hΓ' hneg ⟨_, hy⟩ rfl
     obtain ⟨hfd', hle'⟩ := transfer φ Γ xκ hxκ x' hx' hfd
     exact ⟨hfd', hle'.trans (hb.trans hidx)⟩
-  ·
-    have : CharZero K' := CharP.charP_to_charZero K'
+  · have : CharZero K' := CharP.charP_to_charZero K'
     obtain ⟨xκ, hxκ, -, hfd, hle⟩ :=
       ModularCurve.exists_transcendental_finiteDimensional_qExpFunctionFieldC_residueField
         K' (⊤ : ValuationSubring K') Γ hT
@@ -428,7 +413,6 @@ theorem solution
           (IntermediateField.adjoin K ({x} : Set (ModularCurve.qExpFunctionFieldC K Γ)))
           (ModularCurve.qExpFunctionFieldC K Γ) ≤ Γ'.index := by
   classical
-
   have hjK' : jqModC (AlgebraicClosure K) ∈ qExpFunctionFieldC (AlgebraicClosure K) Γ :=
     intFormRatiosC_subset (AlgebraicClosure K) Γ
       (ModularCurve.jqModC_mem_intFormRatiosC (AlgebraicClosure K) Γ)

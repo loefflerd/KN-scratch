@@ -83,12 +83,9 @@ p2m_open_scoped "ModularCurve.PhiGen.PhiGenDescends" in
 private theorem _root_.ModularCurve.PhiGen.PhiGenDescends.exists_intPoly (hc : PhiGenDescends ℓ ζ c)
     (hint : ∀ k, IntCoeffs (c k)) (hmem : ∀ k, c k ∈ Algebra.adjoin ℚ {jq}) (k : ℕ) :
     ∃ Q : Polynomial ℤ, Q.natDegree ≤ ℓ + 1 ∧ evalAtJ Q = c k := by
-
   obtain ⟨P, hPdeg, hP⟩ := exists_aeval_jq_eq_of_mem_adjoin (hmem k) (hc.poleOrderLE k)
-
   have hPint : ∀ n : ℕ, ∃ z : ℤ, P.coeff n = (z : ℚ) :=
     aeval_jq_intCoeffs_descent P (by rw [← hP]; exact hint k)
-
   have hlift : P ∈ Polynomial.lifts (Int.castRingHom ℚ) := by
     rw [Polynomial.lifts_iff_coeff_lifts]
     intro n
@@ -137,19 +134,14 @@ variable {c : ℕ → LaurentSeries ℚ}
 private theorem exists_modularPolynomialData_coeff_eq (hc : PhiGenDescends ℓ ζ c)
     (hint : ∀ k, IntCoeffs (c k)) (hmem : ∀ k, c k ∈ Algebra.adjoin ℚ {jq}) :
     ∃ data : ModularPolynomialData ℓ, ∀ k, evalAtJ (data.Φ.coeff k) = c k := by
-
   choose Q hQdeg hQeval using hc.exists_intPoly hint hmem
-
   have hQtop : Q (ℓ + 1) = 1 := by
     refine evalAtJ_injective ?_
     rw [hQeval (ℓ + 1), hc.c_top, map_one]
-
   set Φ : Polynomial (Polynomial ℤ) :=
     ∑ k ∈ Finset.range (ℓ + 2), Polynomial.C (Q k) * Polynomial.X ^ k with hΦ
-
   have hΦtop : Φ.coeff (ℓ + 1) = 1 := by
     rw [hΦ, coeff_sum_C_mul_X_pow Q (ℓ + 2) (ℓ + 1) (by omega), hQtop]
-
   have hΦdeg_le : Φ.natDegree ≤ ℓ + 1 := by
     rw [hΦ]
     refine Polynomial.natDegree_sum_le_of_forall_le _ _ fun k hk => ?_
@@ -159,23 +151,18 @@ private theorem exists_modularPolynomialData_coeff_eq (hc : PhiGenDescends ℓ �
   have hΦdeg : Φ.natDegree = ℓ + 1 :=
     le_antisymm hΦdeg_le
       (Polynomial.le_natDegree_of_ne_zero (by rw [hΦtop]; exact one_ne_zero))
-
   have hΦcoeff : ∀ k, evalAtJ (Φ.coeff k) = c k := by
     intro k
     by_cases hk : k < ℓ + 2
     · rw [hΦ, coeff_sum_C_mul_X_pow Q (ℓ + 2) k hk, hQeval k]
     · rw [Polynomial.coeff_eq_zero_of_natDegree_lt (by omega : Φ.natDegree < k), map_zero,
         hc.c_eq_zero (by omega : ℓ + 1 < k)]
-
   refine ⟨⟨Φ, ?_, ?_, ?_⟩, hΦcoeff⟩
-  ·
-    show Φ.coeff Φ.natDegree = 1
+  · show Φ.coeff Φ.natDegree = 1
     rw [hΦdeg]
     exact hΦtop
-  ·
-    rw [hΦdeg, dedekindPsi_prime hℓ.out]
-  ·
-    rw [Polynomial.eval₂_eq_sum_range' evalAtJ (n := ℓ + 2) (by rw [hΦdeg]; omega) (jqN ℓ)]
+  · rw [hΦdeg, dedekindPsi_prime hℓ.out]
+  · rw [Polynomial.eval₂_eq_sum_range' evalAtJ (n := ℓ + 2) (by rw [hΦdeg]; omega) (jqN ℓ)]
     have hterm : ∀ k ∈ Finset.range (ℓ + 2),
         evalAtJ (Φ.coeff k) * (jqN ℓ) ^ k = c k * (jqN ℓ) ^ k := by
       intro k _
@@ -194,7 +181,6 @@ open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_exists_modularPolynom
 
 theorem solution {K : Type*} [Field K] [Algebra ℚ K] {ℓ : ℕ} [hℓ : Fact (Nat.Prime ℓ)] {ζ : Kˣ} {c : ℕ → LaurentSeries ℚ} (hc : PhiGenDescends ℓ ζ c) (hint : ∀ k, IntCoeffs (c k)) (hmem : ∀ k, c k ∈ Algebra.adjoin ℚ {jq}) : ∃ data : ModularPolynomialData ℓ, ∀ k, evalAtJ (data.Φ.coeff k) = c k :=
   ModularCurve.PhiGen.exists_modularPolynomialData_coeff_eq hc hint hmem
-
 
 end S_ModularCurve_PhiGen_exists_modularPolynomialData_coeff_eq
 end P2MW

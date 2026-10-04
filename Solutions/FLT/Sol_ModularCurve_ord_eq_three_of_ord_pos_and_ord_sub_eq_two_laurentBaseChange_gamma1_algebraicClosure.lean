@@ -130,14 +130,11 @@ theorem ModularCurve.NoEllAux.main
     exact ⟨hγ.1, hγ.2.2.2, hγ.2.2.1⟩
   have hT : ModularGroup.T ∈ CongruenceSubgroup.Gamma1 M := by
     rw [CongruenceSubgroup.Gamma1_mem]; simp [ModularGroup.T]
-
   obtain ⟨Φ, E', hE'j, hE'Φ, hΦc, hΦy, hΦfix⟩ :=
     ModularCurve.exists_ringHom_laurentBaseChange_qExpFunctionFieldC_levelN_qExpansion M
       (CongruenceSubgroup.Gamma1 M) hΓM hT ι K
-
   obtain ⟨hst, σ, hσ, hker, hfix, htr, hfd, hdeg, hgal⟩ :=
     ModularCurve.LevelN.exists_monoidHom_algEquiv_fixedField_eq_adjoin M K
-
   have hM2 : 2 ≤ M := by omega
   obtain ⟨⟨W0, hW0, hD0⟩, ⟨W1728, hW1728, hD1728⟩⟩ :=
     ModularCurve.LevelN.exists_place_ord_jGen_eq_three_two_and_stabilizer_subset_zpowers M hM2 K hst σ hσ hker
@@ -161,13 +158,11 @@ theorem ModularCurve.NoEllAux.main
   obtain ⟨x₀, hx₀tr, hx₀fd⟩ :=
     ModularCurve.JOneES.exists_transcendental_finiteDimensional_laurentBaseChange (AlgebraicClosure ℚ) (CongruenceSubgroup.Gamma1 M) hT
   have : IsCurveOver (AlgebraicClosure ℚ) ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) := isCurveOver_of_transcendental_of_perfectField hx₀tr hx₀fd
-
   have htr' : Transcendental ℂ (ΦE y) := fun h => htr (by
     have h' := IntermediateField.isAlgebraic_iff.mp h
     rwa [hΦE, hΦy'] at h')
   have := hfd
   have hEfd : FiniteDimensional ↥(IntermediateField.adjoin ℂ ({ΦE y} : Set ↥E)) ↥E := by
-
     have hlift : IntermediateField.lift (IntermediateField.adjoin ℂ ({ΦE y} : Set ↥E)) = IntermediateField.adjoin ℂ ({t} : Set K) := by
       rw [IntermediateField.lift_adjoin_simple, hΦE, hΦy']
     have hle' : IntermediateField.adjoin ℂ ({t} : Set K) ≤ E := by rw [← hlift]; exact IntermediateField.lift_le _
@@ -193,11 +188,9 @@ theorem ModularCurve.NoEllAux.main
     rw [this]
   obtain ⟨P', -, hP'ord, -⟩ := Place.exists_comap_algebraMap_eq_of_constantFieldExtension
     (AlgebraicClosure ℚ) ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) ℂ ↥E ⟨x₀, hx₀tr, hx₀fd⟩ ⟨ΦE y, htr', hEfd⟩ hgen P
-
   have hvaly : E.val (ΦE y) = t := by rw [IntermediateField.coe_val]; exact (hΦE y).trans hΦy'
   have hint : ∀ ψ : ↥E →ₐ[ℂ] K, ψ (ΦE y) = t → ψ.toRingHom.IsIntegral := by
     intro ψ hψ
-
     let S : Subalgebra ℂ K := ψ.range
     have hleS : (IntermediateField.adjoin ℂ ({t} : Set K)).toSubalgebra ≤ S := by
       have : IntermediateField.adjoin ℂ ({t} : Set K) ≤ ψ.fieldRange :=
@@ -216,7 +209,6 @@ theorem ModularCurve.NoEllAux.main
       rw [AlgEquiv.ofInjective_apply]
     rw [he]
     exact RingHom.IsIntegral.trans _ _ (RingHom.isIntegral_of_surjective e.toAlgHom.toRingHom e.surjective) hS
-
   have hΦfixσ : ∀ γ ∈ CongruenceSubgroup.Gamma1 M, ∀ u, σ γ (Φ u) = Φ u :=
     fun γ hγ u => hΦfix γ hγ (hst γ⁻¹) (σ γ) (hσ γ) u
   have keyEQ : ∀ (j₀ : ℂ) (W₀ : Place ℂ K) (γ₀ : SL(2, ℤ)) (τ₀ : UpperHalfPlane), γ₀ • τ₀ = τ₀ →
@@ -232,13 +224,11 @@ theorem ModularCurve.NoEllAux.main
     rw [h5 ψ hψ, h1]
     have := hfd
     have := hgal
-
     have htmem : t ∈ IntermediateField.adjoin ℂ ({t} : Set K) := IntermediateField.mem_adjoin_simple_self ℂ t
     have hσt : ∀ g : K ≃ₐ[↥(IntermediateField.adjoin ℂ ({t} : Set K))] K, g t = t := fun g =>
       g.commutes (⟨t, htmem⟩ : ↥(IntermediateField.adjoin ℂ ({t} : Set K)))
     have hle' : IntermediateField.adjoin ℂ ({t} : Set K) ≤ E :=
       IntermediateField.adjoin_simple_le_iff.mpr (hΦy' ▸ hΦmem y)
-
     let rSH : (K ≃ₐ[↥(IntermediateField.adjoin ℂ ({t} : Set K))] K) →* (K ≃ₐ[ℂ] K) :=
       { toFun := fun g => g.restrictScalars ℂ
         map_one' := AlgEquiv.ext fun _ => rfl
@@ -259,7 +249,6 @@ theorem ModularCurve.NoEllAux.main
       show Nat.card rSH.range = Nat.card σ.range
       rw [← Subgroup.index_ker σ, hker, ← hdeg, ← IsGalois.card_aut_eq_finrank]
       exact (Nat.card_congr (MonoidHom.ofInjective rSH_inj).toEquiv).symm
-
     let gmap : {g : K ≃ₐ[↥(IntermediateField.adjoin ℂ ({t} : Set K))] K //
           SemilinearAut.ofAlgAut (g.restrictScalars ℂ) • W₀ = W₀} →
         {ψ' : {ψ' : ↥E →ₐ[ℂ] K // ψ' (ΦE y) = t} //
@@ -272,12 +261,10 @@ theorem ModularCurve.NoEllAux.main
       rintro ⟨⟨ψ', hψ'⟩, heq⟩
       obtain ⟨g, hg, rfl⟩ := (h4 ψ ψ' hψ hψ').mp heq.symm
       exact ⟨⟨g, hg⟩, rfl⟩
-
     have hclaim : ∀ g : K ≃ₐ[↥(IntermediateField.adjoin ℂ ({t} : Set K))] K,
         SemilinearAut.ofAlgAut (g.restrictScalars ℂ) • W₀ = W₀ → (∀ e : ↥E, g (ψ e) = ψ e) → g = 1 := by
       intro g hgW hgψ
       obtain ⟨k, hk⟩ := hD g hgW
-
       have hψfix : ∀ (z : K) (hz : z ∈ IntermediateField.adjoin ℂ ({t} : Set K)), ψ ⟨z, hle' hz⟩ = z := by
         intro z hz
         let T : IntermediateField ℂ ↥E := (AlgHom.equalizer ψ E.val).toIntermediateField (fun x hx => by
@@ -292,7 +279,6 @@ theorem ModularCurve.NoEllAux.main
           have : ((ΦE y : ↥E) : K) = t := (hΦE y).trans hΦy'
           rw [this]; exact hz
         exact hTle hzmem
-
       let E₂ : IntermediateField ↥(IntermediateField.adjoin ℂ ({t} : Set K)) K := IntermediateField.extendScalars hle'
       let ψ₂ : ↥E₂ →ₐ[↥(IntermediateField.adjoin ℂ ({t} : Set K))] K :=
         { ψ.toRingHom with
@@ -307,9 +293,7 @@ theorem ModularCurve.NoEllAux.main
       let g' : K ≃ₐ[↥(IntermediateField.adjoin ℂ ({t} : Set K))] K :=
         AlgEquiv.ofBijective φ' (Algebra.IsAlgebraic.algHom_bijective φ')
       have hg' : ∀ e : ↥E, g' (e : K) = ψ e := hφ'
-
       obtain ⟨δ', hδ'⟩ : rSH g' ∈ σ.range := by rw [hrange]; exact ⟨g', rfl⟩
-
       set η : SL(2, ℤ) := δ'⁻¹ * γ₀ ^ k * δ' with hη
       have hσg : rSH g = σ (γ₀ ^ k) := by rw [map_pow]; exact hk
       have hση : σ η = rSH (g'⁻¹ * g * g') := by
@@ -320,17 +304,14 @@ theorem ModularCurve.NoEllAux.main
         have h1 : g' (Φ u) = ψ ⟨Φ u, hΦmem u⟩ := hg' ⟨Φ u, hΦmem u⟩
         rw [h1, hgψ, ← h1]
         exact g'.symm_apply_apply _
-
       have hηmem := ModularCurve.LevelN.Descent.fixer_le M K t σ hker hfd hgal hdeg ι Φ E' hE'j hE'Φ y hy hΦy' hΦfixσ η hηfix
       rw [mem_sup_zpowers_neg_one_iff] at hηmem
-
       have hγpow : ∀ n : ℕ, (γ₀ ^ n) • τ₀ = τ₀ := fun n => by
         induction n with
         | zero => rw [pow_zero, one_smul]
         | succ n ih => rw [pow_succ, mul_smul, hγτ, ih]
       have hηpt : η • (δ'⁻¹ • τ₀) = δ'⁻¹ • τ₀ := by
         rw [hη, mul_smul, mul_smul, smul_inv_smul, hγpow k]
-
       have hη1 := CongruenceSubgroup.eq_one_or_eq_neg_one_of_mem_Gamma1_of_smul_eq M hM η hηmem (δ'⁻¹ • τ₀) hηpt
       have hγk1 : σ (γ₀ ^ k) = 1 := by
         have hconj : γ₀ ^ k = δ' * η * δ'⁻¹ := by rw [hη]; group
@@ -361,7 +342,6 @@ theorem ModularCurve.NoEllAux.main
       apply Subtype.ext
       exact (inv_mul_eq_one.mp hg).symm
     exact_mod_cast (Nat.card_eq_of_bijective gmap ⟨hinj, hsurj⟩).symm
-
   have h0E : P'.ord (ΦE y) = P.ord y := by rw [← hP'ord y]; rfl
   have h1728E : P'.ord (ΦE y - 1728) = P.ord (y - 1728) := by rw [← hP'ord (y - 1728), map_sub, map_ofNat]; rfl
   refine ⟨fun hpos => ?_, fun hpos => ?_⟩

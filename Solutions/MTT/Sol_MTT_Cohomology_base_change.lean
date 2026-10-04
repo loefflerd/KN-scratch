@@ -86,7 +86,6 @@ def ext (N n : ℕ) (R : Type*) [CommRing R] : Hc N n ℤ →ₗ[ℤ] Hc N n R :
 
 end P2MBC
 
-
 namespace P2MBC
 
 open MvPolynomial
@@ -177,7 +176,6 @@ theorem ThetaF_injective : Function.Injective (ThetaF N n R) := by
   simpa using this
 
 end P2MBC
-
 
 namespace P2MBC
 

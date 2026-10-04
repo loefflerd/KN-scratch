@@ -42,7 +42,6 @@ theorem tauInv_comp_tau (c₁ c₂ : ℂ) (hc : c₁ ≠ c₂) : (tauInv c₁ c�
     show tauInv c₁ c₂ (tau c₁ c₂ (X 0)) = X 0
     rw [tau_X0, map_add, map_mul, MvPolynomial.algHom_C, MvPolynomial.algebraMap_eq]
     simp only [tauInv, MvPolynomial.aeval_X, Fin.isValue, ↓reduceIte, one_ne_zero]
-
     have key : C ((c₂ - c₁)⁻¹) * (C c₂ * X 0 - C c₁ * X 1) + C c₁ * (C ((c₂ - c₁)⁻¹) * (X 1 - X 0))
         = C ((c₂ - c₁)⁻¹ * (c₂ - c₁)) * (X 0 : MvPolynomial (Fin 2) ℂ) := by
       simp only [map_mul, map_sub]
@@ -209,8 +208,7 @@ theorem main (n : ℕ) (hn : Even n) :
       ≤ Module.finrank ℂ ↥(LinearMap.ker (binaryFormRepSL ℂ n (ModularGroup.S * ModularGroup.T) - 1)) := by
   obtain ⟨p, hp⟩ := hn
   constructor
-  ·
-    obtain ⟨e00, e01, e10, e11⟩ := S_entries
+  · obtain ⟨e00, e01, e10, e11⟩ := S_entries
     refine le_finrank_ker n ModularGroup.S Complex.I (-Complex.I) (-Complex.I) Complex.I ?_ ?_ ?_ ?_ ?_
       (fun t : Fin (n + 1 - 2 * ((n + 2) / 4)) => 2 * (t : ℕ) + p % 2) ?_ ?_ ?_
     · intro h
@@ -231,11 +229,9 @@ theorem main (n : ℕ) (hn : Even n) :
       obtain ⟨q, hq⟩ : ∃ q, 2 * (t : ℕ) + p % 2 + p = 2 * q := ⟨(2 * (t : ℕ) + p % 2 + p) / 2, by omega⟩
       have hle : 2 * (t : ℕ) + p % 2 ≤ n := by have := t.2; omega
       have hIn : Complex.I ^ n = (-1) ^ p := by rw [hp, ← two_mul, pow_mul, Complex.I_sq]
-
       rw [neg_pow Complex.I, mul_assoc, ← pow_add, show (2 * (t : ℕ) + p % 2) + (n - (2 * (t : ℕ) + p % 2)) = n by omega, hIn,
         ← pow_add, hq, pow_mul, neg_one_sq, one_pow]
-  ·
-    obtain ⟨e00, e01, e10, e11⟩ := ST_entries
+  · obtain ⟨e00, e01, e10, e11⟩ := ST_entries
     obtain ⟨ω, hω⟩ : ∃ ω : ℂ, IsPrimitiveRoot ω 3 := ⟨_, Complex.isPrimitiveRoot_exp 3 (by norm_num)⟩
     have hω3 : ω ^ 3 = 1 := hω.pow_eq_one
     have hω1 : ω ≠ 1 := hω.ne_one (by norm_num)
@@ -250,7 +246,6 @@ theorem main (n : ℕ) (hn : Even n) :
       (fun t : Fin (n + 1 - 2 * ((n + 2) / 3)) => 3 * (t : ℕ) + (2 * n) % 3) ?_ ?_ ?_
     · intro h
       apply hω1
-
       have hω0 : ω ≠ 0 := by intro h0; rw [h0] at hω3; norm_num at hω3
       have : ω * (ω - 1) = 0 := by linear_combination (-1 : ℂ) * h
       rcases mul_eq_zero.mp this with h' | h'
@@ -260,7 +255,6 @@ theorem main (n : ℕ) (hn : Even n) :
     · rw [e10, e11]; push_cast; linear_combination hωq
     · rw [e00, e01]; push_cast; ring
     · rw [e10, e11]; push_cast
-
       linear_combination hωq + ω * hω3
     · intro t t' h
       apply Fin.ext

@@ -138,7 +138,6 @@ theorem coeff_unique {d : ℕ → ℂ} (hh : 0 < h)
     (hF' : ∀ τ : ℍ, HasSum (fun m : ℕ => d m * 𝕢 h (τ : ℂ) ^ m) (F τ)) : c = d := by
   have hc := hasFPowerSeriesOnBall_update hh hF
   have hd := hasFPowerSeriesOnBall_update hh hF'
-
   have hlim : ∀ {e : ℕ → ℂ}, HasFPowerSeriesOnBall (update (cuspFunction h F) 0 (e 0)) (.ofScalars ℂ e) 0 1 →
       Tendsto (cuspFunction h F) (𝓝[≠] 0) (𝓝 (e 0)) := by
     intro e he

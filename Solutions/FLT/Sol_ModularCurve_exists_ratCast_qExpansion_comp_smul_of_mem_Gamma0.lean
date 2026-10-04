@@ -273,7 +273,6 @@ theorem qExpansion_widthOne_rat {g : ℍ → ℂ} (hg : MDifferentiable 𝓘(ℂ
   exact ⟨r, hr⟩
 
 theorem qExpansion_disc_rat_one (n : ℕ) : ∃ r : ℚ, (qExpansion 1 (Δ : ℍ → ℂ)).coeff n = (r : ℂ) := by
-
   let A : ModularForm 𝒮ℒ 12 := (E₄.pow 3).mcast (by norm_num)
   let B : ModularForm 𝒮ℒ 12 := (E₆.pow 2).mcast (by norm_num)
   have hfun : (Δ : ℍ → ℂ) = ⇑((1728 : ℂ)⁻¹ • (A - B)) := by
@@ -293,7 +292,6 @@ theorem qExpansion_disc_rat_one (n : ℕ) : ∃ r : ℚ, (qExpansion 1 (Δ : ℍ
     split_ifs
     · exact ⟨1, by simp⟩
     · exact ⟨-(2 * 6 / bernoulli 6) * (ArithmeticFunction.sigma 5 n : ℚ), by push_cast; ring⟩
-
   obtain ⟨p4, hp4⟩ : ∃ p : PowerSeries ℚ, p.map (algebraMap ℚ ℂ) = qExpansion 1 (E₄ : ℍ → ℂ) := by
     choose r hr using h4
     exact ⟨PowerSeries.mk r, by ext n; simp [hr n]⟩
@@ -900,7 +898,6 @@ theorem exists_ev_of_mem_adjoin {x : ℍ → ℂ} (hx : x ∈ Algebra.adjoin (kN
   classical
   rw [Algebra.adjoin_eq_range] at hx
   obtain ⟨R₀, rfl⟩ := hx
-
   have hsec : ∀ y : genSet N, ∃ o : Idx N, gen N id o = y := by
     rintro ⟨y, hy⟩
     rcases hy with rfl | ⟨v, hv, rfl⟩
@@ -924,7 +921,6 @@ theorem descent {m : ℕ} {G : ℍ → ℂ} (hG : MDifferentiable 𝓘(ℂ) 𝓘
     (hrat : RatAt N (kN N) m G) :
     ∃ P Q : MvPolynomial (Idx N) (kN N), ev N id Q ≠ 0 ∧ G * ev N id Q = ev N id P := by
   classical
-
   set S : Set (ℍ → ℂ) := {F | ∃ α : SL(2, ℤ), F = cw G α} with hS
   have hGS : G ∈ S := ⟨1, (cw_one G).symm⟩
   have hhol : ∀ F ∈ S, MDifferentiable 𝓘(ℂ) 𝓘(ℂ) F := by
@@ -943,16 +939,13 @@ theorem descent {m : ℕ} {G : ℍ → ℂ} (hG : MDifferentiable 𝓘(ℂ) 𝓘
     exact hinv _ (conj_mem_Gamma N α hγ) _
   obtain ⟨a, b, ha, hb, hb0, hGb⟩ := WLight.exists_levelFraction_of_stable_family N tauPair tauPair_spec
     (WW N) (WW_spec N) (fricke N) (fricke_spec N) jf jf_spec S hhol hpb' hst hinvS hGS
-
   have hpbG : ∀ γ : SL(2, ℤ), ∃ m : ℕ, IsBoundedAtImInfty ((G ∘ (γ • ·)) * ModularForm.discriminant ^ m) :=
     fun γ => ⟨m, hpb γ⟩
   obtain ⟨d, p, hprel⟩ := WLight.exists_monicRel_j_of_mdifferentiable_levelFraction N tauPair tauPair_spec
     (WW N) (WW_spec N) (fricke N) (fricke_spec N) jf jf_spec ha hb hb0 hG hGb hpbG
-
   obtain ⟨n, lam, Gi, Pi, Qi, di, pi, hGsum, hGimd, hPQ, hpiK, hGirel⟩ :=
     WLight.frickeFunction_intBaseChange N tauPair tauPair_spec (WW N) (WW_spec N) (fricke N)
       (fricke_spec N) jf jf_spec hG ha hb hb0 hGb p hprel
-
   have hPi : ∀ i, ∃ R : MvPolynomial (Idx N) (kN N), ev N id R = Pi i := fun i =>
     exists_ev_of_mem_adjoin (hPQ i).1
   have hQi : ∀ i, ∃ R : MvPolynomial (Idx N) (kN N), ev N id R = Qi i := fun i =>
@@ -975,18 +968,15 @@ theorem descent {m : ℕ} {G : ℍ → ℂ} (hG : MDifferentiable 𝓘(ℂ) 𝓘
       ⟨di i, pi i, hpiK i, hGirel i⟩
     exact ⟨mi, (hGimd i), h1, h2, h3⟩
   choose mi hmi using hrati
-
   set M : ℕ := m + ∑ i, mi i with hM
   have hGM : RatAt N (kN N) M G := hrat.of_le (Nat.le_add_right _ _)
   have hGiM : ∀ i, RatAt N (kN N) M (Gi i) := fun i =>
     (hmi i).of_le (le_trans (Finset.single_le_sum (fun j _ => Nat.zero_le (mi j)) (Finset.mem_univ i))
       (Nat.le_add_left _ _))
-
   have hmem : G ∈ Submodule.span ℂ (Set.range Gi) := by
     rw [hGsum]
     exact Submodule.sum_mem _ fun i _ => Submodule.smul_mem _ _ (Submodule.subset_span ⟨i, rfl⟩)
   obtain ⟨κ, hκ⟩ := exists_rat_combination (kN N) hGiM hGM hmem
-
   refine ⟨∑ i, MvPolynomial.C (κ i) * Ph i * ∏ j ∈ Finset.univ.erase i, Qh j, ∏ i, Qh i, ?_, ?_⟩
   · exact ev_prod_ne_zero Finset.univ Qh fun i _ => by rw [hQh i]; exact (hPQ i).2.2.1
   · have hev_prod : ∀ (s : Finset (Fin n)), ev N id (∏ j ∈ s, Qh j) = ∏ j ∈ s, Qi j := by
@@ -1019,7 +1009,6 @@ theorem exists_of_mul_eq {K : Type*} [Field K] (ι φ : K →+* ℂ)
     rw [PowerSeries.isUnit_iff_constantCoeff, hU, PowerSeries.constantCoeff_divXPowOrder]
     exact isUnit_iff_ne_zero.mpr (PowerSeries.coeff_order hB)
   obtain ⟨u, hu⟩ := hUunit
-
   have hAι : A.map ι = PowerSeries.X ^ v * (ξ * U.map ι) := by
     rw [← h1, ← hBU]
     simp only [map_mul, map_pow, PowerSeries.map_X]
@@ -1033,7 +1022,6 @@ theorem exists_of_mul_eq {K : Type*} [Field K] (ι φ : K →+* ℂ)
     exact ι.injective (by rw [hcoef, map_zero])
   obtain ⟨A', hA'⟩ := hAdvd
   have hXv : (PowerSeries.X : PowerSeries ℂ) ^ v ≠ 0 := pow_ne_zero _ PowerSeries.X_ne_zero
-
   have key : ∀ ψ : K →+* ℂ, ξ * B.map ψ = A.map ψ → ξ * U.map ψ = A'.map ψ := by
     intro ψ h
     rw [← hBU, hA'] at h
@@ -1136,7 +1124,6 @@ theorem exists_series_fixed {m : ℕ} {G : ℍ → ℂ} (hG : MDifferentiable �
     ∃ X : PowerSeries (kN N), X.map (algebraMap (kN N) ℂ) = qExpansion N (cw G γ * Δ ^ m) ∧
       X.map (phiOf N σ) = qExpansion N (cw G γ * Δ ^ m) := by
   classical
-
   have hperG : Periodic (G ∘ ofComplex) 1 := periodic_of_T_invariant fun τ => hinv _ (T_mem_Gamma1 N) τ
   have hinvγ : ∀ g ∈ Gamma1 N, ∀ τ : ℍ, cw G γ (g • τ) = cw G γ τ := by
     intro g hg τ
@@ -1150,11 +1137,8 @@ theorem exists_series_fixed {m : ℕ} {G : ℍ → ℂ} (hG : MDifferentiable �
       (periodic_pow (periodic_ofComplex_natCast periodic_disc_one N) m),
       by simpa [cw_one] using hpb 1,
       fun n => by obtain ⟨r, hr⟩ := hrat n; rw [hr]; exact ratCast_mem r⟩
-
   obtain ⟨P, Q, hb0, hGb⟩ := descent hG (fun g hg => hinv g (Gamma_le_Gamma1 N hg)) hpb hratG
-
   obtain ⟨s, hs, hσ⟩ := exists_pow_of_aut N σ
-
   have hT0 : Tσ σ (G * evφ N (algebraMap (kN N) ℂ) id Q - evφ N (algebraMap (kN N) ℂ) id P)
       (G * evφ N (phiOf N σ) (ds N s ∘ id) Q - evφ N (phiOf N σ) (ds N s ∘ id) P) := by
     have hfam : ∀ o : Option (Idx N), Tσ σ ((fun o : Option (Idx N) => o.elim G (gen N id)) o)
@@ -1170,12 +1154,10 @@ theorem exists_series_fixed {m : ℕ} {G : ℍ → ℂ} (hG : MDifferentiable �
     have h0 : G * evφ N (algebraMap (kN N) ℂ) id Q - evφ N (algebraMap (kN N) ℂ) id P = 0 := by
       rw [evφ_algebraMap, evφ_algebraMap, hGb, sub_self]
     exact (tσ_zero_iff σ hT0).mp h0
-
   obtain ⟨γ', ⟨g₁, hg₁, rfl⟩, hvm⟩ := exists_twist_conj N hγ s
   have hvm' : (vm N (g₁ * γ) ∘ ds N s) = (ds N s ∘ vm N γ) := funext hvm
   have hcwG : cw G (g₁ * γ) = cw G γ := by
     rw [cw_mul]; congr 1; funext τ; exact hinv g₁ hg₁ τ
-
   have hE1 : cw G γ * ev N (vm N γ) Q = ev N (vm N γ) P := by
     have := congrArg (fun F => cw F γ) hGb
     simp only [cw_mul_fun, cw_ev] at this
@@ -1185,7 +1167,6 @@ theorem exists_series_fixed {m : ℕ} {G : ℍ → ℂ} (hG : MDifferentiable �
     simp only [cw_mul_fun, cw_evφ, hcwG] at h
     rw [hvm'] at h
     exact h
-
   have hTQ : Tσ σ (ev N (vm N γ) Q) (evφ N (phiOf N σ) (ds N s ∘ vm N γ) Q) :=
     tσ_ev σ hs hσ (vm N γ) (fun v hv => vm_ne_zero N γ hv) Q
   have hTP : Tσ σ (ev N (vm N γ) P) (evφ N (phiOf N σ) (ds N s ∘ vm N γ) P) :=
@@ -1195,7 +1176,6 @@ theorem exists_series_fixed {m : ℕ} {G : ℍ → ℂ} (hG : MDifferentiable �
   set MQ : ℕ := mQ + mP with hMQ
   obtain ⟨pB, hpB, hpB'⟩ := hQlift MQ (Nat.le_add_right _ _)
   obtain ⟨pA, hpA, hpA'⟩ := hPlift (m + MQ) (by omega)
-
   have hmdγ : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) (cw G γ * Δ ^ m) := (mdifferentiable_cw hG γ).mul (mdifferentiable_disc.pow m)
   have hperγm : Periodic ((cw G γ * Δ ^ m) ∘ ofComplex) N :=
     periodic_mul (periodic_ofComplex_natCast hperγ N) (periodic_pow (periodic_ofComplex_natCast periodic_disc_one N) m)
@@ -1248,7 +1228,6 @@ theorem cardK (N : ℕ) [NeZero N] (m : ℕ) (G : ℍ → ℂ) (hG : MDifferenti
       (qExpansion 1 (G * ModularForm.discriminant ^ m)).coeff n = (r : ℂ))
     (γ : SL(2, ℤ)) (hγ : γ ∈ CongruenceSubgroup.Gamma0 N) (n : ℕ) :
     ∃ r : ℚ, (qExpansion 1 ((fun τ => G (γ • τ)) * ModularForm.discriminant ^ m)).coeff n = (r : ℂ) := by
-
   have hperG : Periodic (G ∘ ofComplex) 1 := periodic_of_T_invariant fun τ => hinv _ (T_mem_Gamma1 N) τ
   have hinvγ : ∀ g ∈ Gamma1 N, ∀ τ : ℍ, cw G γ (g • τ) = cw G γ τ := by
     intro g hg τ

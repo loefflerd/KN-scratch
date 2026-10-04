@@ -156,15 +156,11 @@ theorem solution
     (W.veluQuotient (W.oddOrderSummingSet Q n)).Ψ₂Sq.eval
       (W.veluX (W.oddOrderSummingSet Q n) r) = 0 := by
   set S := W.oddOrderSummingSet Q n with hS
-
   have heqt : W.toAffine.Equation r (W.s18c_twoTorsionY r) :=
     WeierstrassCurve.s18c_equation_twoTorsionY_of_eval h2 hr
-
   have hav : ∀ A ∈ S, r ≠ A.1 := fun A hA hc =>
     WeierstrassCurve.s18c_eval_Ψ₂Sq_ne_zero_of_mem_oddOrderSummingSet (W := W) hQ hA (hc ▸ hr)
-
   have hmapeq := W.velu_map_equation_of_oddOrderSummingSet h2 n Q hQ heqt hav
-
   exact WeierstrassCurve.s18c_veluQuotient_eval_Ψ₂Sq_veluX_eq_zero_of_mapeq
     (WeierstrassCurve.s18c_twoTorsionY_eq_negY h2 r) hmapeq
 

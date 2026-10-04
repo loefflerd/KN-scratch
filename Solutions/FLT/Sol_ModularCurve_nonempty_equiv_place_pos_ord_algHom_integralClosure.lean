@@ -106,14 +106,12 @@ theorem mem_of_ord_sub_pos (w : Place K F) {t : F} {c : K}
 
 theorem forall_mem_of_mem (t : F) (w : Place K F) (ht : t ∈ w.toValuationSubring)
     (a : normalization K t) : (a : F) ∈ w.toValuationSubring := by
-
   have hadj : ∀ x : F, x ∈ Algebra.adjoin K ({t} : Set F) → x ∈ w.toValuationSubring := by
     intro x hx
     refine Algebra.adjoin_induction (fun y hy => ?_) (fun c => w.algebraMap_mem' c)
       (fun _ _ _ _ hx hy => add_mem hx hy) (fun _ _ _ _ hx hy => mul_mem hx hy) hx
     rw [Set.mem_singleton_iff.mp hy]
     exact ht
-
   obtain ⟨P, hPmonic, hPeval⟩ : IsIntegral (Algebra.adjoin K ({t} : Set F)) (a : F) := a.2
   refine w.mem_of_eval_monic_eq_zero (P := P.map (algebraMap _ F)) (hPmonic.map _)
     (fun i => ?_) ?_
@@ -462,7 +460,6 @@ theorem solution (N : ℕ) [NeZero N]
             ⟨jBar N, Algebra.self_mem_adjoin_singleton (AlgebraicClosure ℚ)
               (jBar N : modularFunctionFieldBar N)⟩) = j₀}) :=
   ModularCurve.nonempty_equiv_place_pos_ord_algHom_integralClosure N j₀ hdeg
-
 
 end S_ModularCurve_nonempty_equiv_place_pos_ord_algHom_integralClosure
 end P2MW

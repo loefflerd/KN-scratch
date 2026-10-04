@@ -302,9 +302,7 @@ theorem ord_smul (f : F) : (σ • v).ord (σ f) = v.ord f := by
   · simp
   obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible v.toValuationSubring
   obtain ⟨u, hu⟩ := v.exists_unit_mul_zpow hf hπ
-
   set n := v.ord f with hn
-
   set e := smulRingEquiv σ v.toValuationSubring with he
   have hπ' : Irreducible (e π) := (MulEquiv.irreducible_iff e).mpr hπ
   have hu' : IsUnit (e (u : v.toValuationSubring)) := u.isUnit.map e
@@ -441,7 +439,6 @@ theorem isPrincipalIdealRing_valuationSubring (w : HeightOneSpectrum R) :
     IsPrincipalIdealRing ((w.valuation F).valuationSubring) := by
   rw [show (w.valuation F).valuationSubring = valuationSubringAtPrime F w from
     (valuationSubringAtPrime_eq_valuationSubring (K := F) w).symm]
-
   infer_instance
 
 open IsDedekindDomain.HeightOneSpectrum in

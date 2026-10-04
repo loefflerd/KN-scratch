@@ -132,31 +132,25 @@ theorem slope_mem_residue_of_not_inverse
   have ha₁ : (W.map A.subtype).toAffine.a₁ ∈ A := SetLike.coe_mem W.a₁
   have ha₂ : (W.map A.subtype).toAffine.a₂ ∈ A := SetLike.coe_mem W.a₂
   have ha₄ : (W.map A.subtype).toAffine.a₄ ∈ A := SetLike.coe_mem W.a₄
-
   have hk₁ : (W.map (residue A)).toAffine.Equation (residue A ⟨x₁, hx₁⟩) (residue A ⟨y₁, hy₁⟩) :=
     Affine.equation_residue W (x := ⟨x₁, hx₁⟩) (y := ⟨y₁, hy₁⟩) h₁
   have hk₂ : (W.map (residue A)).toAffine.Equation (residue A ⟨x₂, hx₂⟩) (residue A ⟨y₂, hy₂⟩) :=
     Affine.equation_residue W (x := ⟨x₂, hx₂⟩) (y := ⟨y₂, hy₂⟩) h₂
-
   have ha₁k : (W.map (residue A)).toAffine.a₁ = residue A W.a₁ := rfl
   have ha₂k : (W.map (residue A)).toAffine.a₂ = residue A W.a₂ := rfl
   have ha₄k : (W.map (residue A)).toAffine.a₄ = residue A W.a₄ := rfl
   by_cases hxx : x₁ - x₂ ∈ A.nonunits
-  ·
-
-    have hyy : y₁ - (W.map A.subtype).toAffine.negY x₂ y₂ ∉ A.nonunits := fun h => hred ⟨hxx, h⟩
+  · have hyy : y₁ - (W.map A.subtype).toAffine.negY x₂ y₂ ∉ A.nonunits := fun h => hred ⟨hxx, h⟩
     have hyyA : y₁ - (W.map A.subtype).toAffine.negY x₂ y₂ ∈ A :=
       A.toSubring.sub_mem hy₁ (negY_mem hx₂ hy₂)
     have hyy0 : y₁ - (W.map A.subtype).toAffine.negY x₂ y₂ ≠ 0 :=
       A.ne_zero_of_notMem_nonunits hyy
-
     have hxk : residue A ⟨x₁, hx₁⟩ = residue A ⟨x₂, hx₂⟩ :=
       (A.residue_eq_residue_iff_sub_mem_nonunits hx₁ hx₂).mpr hxx
     have hyk : residue A ⟨y₁, hy₁⟩ ≠
         (W.map (residue A)).toAffine.negY (residue A ⟨x₂, hx₂⟩) (residue A ⟨y₂, hy₂⟩) := by
       intro h
       exact hyy (((residue_inverse_iff hx₁ hy₁ hx₂ hy₂).mp ⟨hxk, h⟩).2)
-
     have hyk' : residue A ⟨y₁, hy₁⟩ = residue A ⟨y₂, hy₂⟩ :=
       Affine.Y_eq_of_Y_ne hk₁ hk₂ hxk hyk
     have hslope_k : (W.map (residue A)).toAffine.slope (residue A ⟨x₁, hx₁⟩)
@@ -167,12 +161,10 @@ theorem slope_mem_residue_of_not_inverse
           (residue A ⟨y₁, hy₁⟩ -
             (W.map (residue A)).toAffine.negY (residue A ⟨x₁, hx₁⟩) (residue A ⟨y₁, hy₁⟩)) :=
       Affine.slope_of_Y_ne hxk hyk
-
     have hden_res : residue A ⟨y₁ - (W.map A.subtype).toAffine.negY x₂ y₂, hyyA⟩ =
         residue A ⟨y₁, hy₁⟩ -
           (W.map (residue A)).toAffine.negY (residue A ⟨x₁, hx₁⟩) (residue A ⟨y₁, hy₁⟩) := by
       rw [residue_sub_negY hy₁ hx₂ hy₂ hyyA, hxk, hyk']
-
     have hnum_mem : 3 * x₁ ^ 2 + 2 * (W.map A.subtype).toAffine.a₂ * x₁ +
         (W.map A.subtype).toAffine.a₄ - (W.map A.subtype).toAffine.a₁ * y₁ ∈ A := by
       refine A.toSubring.sub_mem (A.toSubring.add_mem (A.toSubring.add_mem ?_ ?_) ha₄)
@@ -190,8 +182,7 @@ theorem slope_mem_residue_of_not_inverse
       simp only [map_sub, map_add, map_mul, map_pow, map_ofNat]
       rw [ha₁k, ha₂k, ha₄k]
     by_cases hx : x₁ = x₂
-    ·
-      have hyL : y₁ ≠ (W.map A.subtype).toAffine.negY x₂ y₂ := fun h => hyy0 (by rw [h, sub_self])
+    · have hyL : y₁ ≠ (W.map A.subtype).toAffine.negY x₂ y₂ := fun h => hyy0 (by rw [h, sub_self])
       have hyL' : y₁ = y₂ := Affine.Y_eq_of_Y_ne h₁ h₂ hx hyL
       have hslope_L : (W.map A.subtype).toAffine.slope x₁ x₂ y₁ y₂ =
           (3 * x₁ ^ 2 + 2 * (W.map A.subtype).toAffine.a₂ * x₁ +
@@ -212,9 +203,7 @@ theorem slope_mem_residue_of_not_inverse
       refine ⟨hsmem, ?_⟩
       rw [A.residue_eq_div_of_eq_div hsmem hnum_mem hyyA hyy hslope_L', hslope_k, hnum_res,
         hden_res]
-    ·
-
-      have hslope_L : (W.map A.subtype).toAffine.slope x₁ x₂ y₁ y₂ = (y₁ - y₂) / (x₁ - x₂) :=
+    · have hslope_L : (W.map A.subtype).toAffine.slope x₁ x₂ y₁ y₂ = (y₁ - y₂) / (x₁ - x₂) :=
         Affine.slope_of_X_ne hx
       have hN_mem : x₁ ^ 2 + x₁ * x₂ + x₂ ^ 2 + (W.map A.subtype).toAffine.a₂ * (x₁ + x₂) +
           (W.map A.subtype).toAffine.a₄ - (W.map A.subtype).toAffine.a₁ * y₁ ∈ A := by
@@ -222,7 +211,6 @@ theorem slope_mem_residue_of_not_inverse
           (A.toSubring.add_mem (pow_mem hx₁ 2) (A.toSubring.mul_mem hx₁ hx₂)) (pow_mem hx₂ 2))
           (A.toSubring.mul_mem ha₂ (A.toSubring.add_mem hx₁ hx₂))) ha₄)
           (A.toSubring.mul_mem ha₁ hy₁)
-
       have hslope_N : (W.map A.subtype).toAffine.slope x₁ x₂ y₁ y₂ =
           (x₁ ^ 2 + x₁ * x₂ + x₂ ^ 2 + (W.map A.subtype).toAffine.a₂ * (x₁ + x₂) +
               (W.map A.subtype).toAffine.a₄ - (W.map A.subtype).toAffine.a₁ * y₁) /
@@ -233,7 +221,6 @@ theorem slope_mem_residue_of_not_inverse
         rw [hslope_N]
         exact A.div_mem_of_mem_of_notMem_nonunits hN_mem hyy
       refine ⟨hsmem, ?_⟩
-
       have hN_res : residue A ⟨x₁ ^ 2 + x₁ * x₂ + x₂ ^ 2 +
           (W.map A.subtype).toAffine.a₂ * (x₁ + x₂) + (W.map A.subtype).toAffine.a₄ -
           (W.map A.subtype).toAffine.a₁ * y₁, hN_mem⟩ =
@@ -248,8 +235,7 @@ theorem slope_mem_residue_of_not_inverse
         rw [ha₁k, ha₂k, ha₄k, ← hxk]
         ring
       rw [A.residue_eq_div_of_eq_div hsmem hN_mem hyyA hyy hslope_N, hslope_k, hN_res, hden_res]
-  ·
-    have hxL : x₁ ≠ x₂ := fun h => hxx (by rw [h, sub_self]; exact A.nonunits.zero_mem)
+  · have hxL : x₁ ≠ x₂ := fun h => hxx (by rw [h, sub_self]; exact A.nonunits.zero_mem)
     have hxxA : x₁ - x₂ ∈ A := A.toSubring.sub_mem hx₁ hx₂
     have hslope_L : (W.map A.subtype).toAffine.slope x₁ x₂ y₁ y₂ = (y₁ - y₂) / (x₁ - x₂) :=
       Affine.slope_of_X_ne hxL
@@ -258,7 +244,6 @@ theorem slope_mem_residue_of_not_inverse
       rw [hslope_L]
       exact A.div_mem_of_mem_of_notMem_nonunits hyyA hxx
     refine ⟨hsmem, ?_⟩
-
     have hxk : residue A ⟨x₁, hx₁⟩ ≠ residue A ⟨x₂, hx₂⟩ := fun h =>
       hxx ((A.residue_eq_residue_iff_sub_mem_nonunits hx₁ hx₂).mp h)
     have hslope_k : (W.map (residue A)).toAffine.slope (residue A ⟨x₁, hx₁⟩)
@@ -287,36 +272,26 @@ theorem reducePoint_add_of_mem {x₁ y₁ x₂ y₂ : L}
       reducePoint hΔ (.some x₁ y₁ h₁) + reducePoint hΔ (.some x₂ y₂ h₂) := by
   have hy₁ : y₁ ∈ A := Affine.Y_mem_of_X_mem W h₁.1 hx₁
   have hy₂ : y₂ ∈ A := Affine.Y_mem_of_X_mem W h₂.1 hx₂
-
   rw [reducePoint_some_of_mem _ _ hx₁, reducePoint_some_of_mem _ _ hx₂]
   by_cases hred : x₁ - x₂ ∈ A.nonunits ∧
       y₁ - (W.map A.subtype).toAffine.negY x₂ y₂ ∈ A.nonunits
-  ·
-    obtain ⟨hredx, hredy⟩ := (residue_inverse_iff hx₁ hy₁ hx₂ hy₂).mpr hred
+  · obtain ⟨hredx, hredy⟩ := (residue_inverse_iff hx₁ hy₁ hx₂ hy₂).mpr hred
     rw [Affine.Point.add_of_Y_eq hredx hredy]
     by_cases hPQ : x₁ = x₂ ∧ y₁ = (W.map A.subtype).toAffine.negY x₂ y₂
-    ·
-      rw [Affine.Point.add_of_Y_eq hPQ.1 hPQ.2, reducePoint_zero]
-    ·
-
-      rw [Affine.Point.add_some hPQ]
+    · rw [Affine.Point.add_of_Y_eq hPQ.1 hPQ.2, reducePoint_zero]
+    · rw [Affine.Point.add_some hPQ]
       exact reducePoint_some_of_notMem _ _
         (Affine.addX_notMem_of_sub_mem_nonunits W hΔ h₁.1 h₂.1 hx₁ hx₂ hPQ hred.1 hred.2)
-  ·
-
-    obtain ⟨hsmem, hsres⟩ := slope_mem_residue_of_not_inverse h₁.1 h₂.1 hx₁ hx₂ hred
-
+  · obtain ⟨hsmem, hsres⟩ := slope_mem_residue_of_not_inverse h₁.1 h₂.1 hx₁ hx₂ hred
     have hPQ : ¬(x₁ = x₂ ∧ y₁ = (W.map A.subtype).toAffine.negY x₂ y₂) := by
       rintro ⟨hxe, hye⟩
       exact hred ⟨by rw [hxe, sub_self]; exact A.nonunits.zero_mem,
         by rw [hye, sub_self]; exact A.nonunits.zero_mem⟩
-
     have hredk : ¬(residue A ⟨x₁, hx₁⟩ = residue A ⟨x₂, hx₂⟩ ∧
         residue A ⟨y₁, hy₁⟩ =
           (W.map (residue A)).toAffine.negY (residue A ⟨x₂, hx₂⟩) (residue A ⟨y₂, hy₂⟩)) :=
       fun h => hred ((residue_inverse_iff hx₁ hy₁ hx₂ hy₂).mp h)
     rw [Affine.Point.add_some hPQ, Affine.Point.add_some hredk]
-
     have hX_coe : (W.map A.subtype).toAffine.addX x₁ x₂
         ((W.map A.subtype).toAffine.slope x₁ x₂ y₁ y₂) =
         ((W.toAffine.addX ⟨x₁, hx₁⟩ ⟨x₂, hx₂⟩
@@ -334,8 +309,7 @@ theorem reducePoint_add_of_mem {x₁ y₁ x₂ y₂ : L}
       rw [hX_coe]; exact SetLike.coe_mem _
     rw [reducePoint_some_of_mem _ _ hX_mem]
     refine some_congr' ?_ ?_ _ _
-    ·
-      calc residue A ⟨(W.map A.subtype).toAffine.addX x₁ x₂
+    · calc residue A ⟨(W.map A.subtype).toAffine.addX x₁ x₂
               ((W.map A.subtype).toAffine.slope x₁ x₂ y₁ y₂), hX_mem⟩
           = residue A (W.toAffine.addX ⟨x₁, hx₁⟩ ⟨x₂, hx₂⟩
               ⟨(W.map A.subtype).toAffine.slope x₁ x₂ y₁ y₂, hsmem⟩) :=
@@ -345,8 +319,7 @@ theorem reducePoint_add_of_mem {x₁ y₁ x₂ y₂ : L}
             (Affine.map_addX (W' := W) (residue A) (⟨x₁, hx₁⟩ : A) (⟨x₂, hx₂⟩ : A)
               ⟨(W.map A.subtype).toAffine.slope x₁ x₂ y₁ y₂, hsmem⟩).symm
         _ = _ := by rw [hsres]
-    ·
-      calc residue A ⟨(W.map A.subtype).toAffine.addY x₁ x₂ y₁
+    · calc residue A ⟨(W.map A.subtype).toAffine.addY x₁ x₂ y₁
               ((W.map A.subtype).toAffine.slope x₁ x₂ y₁ y₂),
               Affine.Y_mem_of_X_mem W (Affine.nonsingular_add h₁ h₂ hPQ).1 hX_mem⟩
           = residue A (W.toAffine.addY ⟨x₁, hx₁⟩ ⟨x₂, hx₂⟩ ⟨y₁, hy₁⟩
@@ -372,13 +345,10 @@ theorem reducePoint_add_of_notMem_of_notMem {x₁ y₁ x₂ y₂ : L}
     (h₂ : (W.map A.subtype).toAffine.Nonsingular x₂ y₂) (hx₁ : x₁ ∉ A) (hx₂ : x₂ ∉ A) :
     reducePoint hΔ (.some x₁ y₁ h₁ + .some x₂ y₂ h₂) =
       reducePoint hΔ (.some x₁ y₁ h₁) + reducePoint hΔ (.some x₂ y₂ h₂) := by
-
   rw [reducePoint_some_of_notMem _ _ hx₁, reducePoint_some_of_notMem _ _ hx₂, add_zero]
   by_cases hPQ : x₁ = x₂ ∧ y₁ = (W.map A.subtype).toAffine.negY x₂ y₂
   · rw [Affine.Point.add_of_Y_eq hPQ.1 hPQ.2, reducePoint_zero]
-  ·
-
-    have hy₁0 : y₁ ≠ 0 := Affine.Y_ne_zero_of_X_notMem W h₁.1 hx₁
+  · have hy₁0 : y₁ ≠ 0 := Affine.Y_ne_zero_of_X_notMem W h₁.1 hx₁
     have hy₂0 : y₂ ≠ 0 := Affine.Y_ne_zero_of_X_notMem W h₂.1 hx₂
     have hx₁0 : x₁ ≠ 0 := fun h => hx₁ (h ▸ A.zero_mem)
     have hx₂0 : x₂ ≠ 0 := fun h => hx₂ (h ▸ A.zero_mem)
@@ -389,12 +359,10 @@ theorem reducePoint_add_of_notMem_of_notMem {x₁ y₁ x₂ y₂ : L}
     have haddX : (W.map A.subtype).toAffine.addX x₁ x₂
         ((W.map A.subtype).toAffine.slope x₁ x₂ y₁ y₂) ∉ A := by
       rcases A.mem_or_inv_mem ((x₁ / y₁) / (x₂ / y₂)) with hcase | hcase
-      ·
-        refine (Affine.add_formal_param_estimate h₁.1 h₂.1 hx₁ hx₂ hPQ ht₂m ht₂0 hcase ?_).1
+      · refine (Affine.add_formal_param_estimate h₁.1 h₂.1 hx₁ hx₂ hPQ ht₂m ht₂0 hcase ?_).1
         rw [div_self ht₂0]
         exact A.one_mem
-      ·
-        rw [show ((x₁ / y₁) / (x₂ / y₂))⁻¹ = (x₂ / y₂) / (x₁ / y₁) by rw [inv_div]] at hcase
+      · rw [show ((x₁ / y₁) / (x₂ / y₂))⁻¹ = (x₂ / y₂) / (x₁ / y₁) by rw [inv_div]] at hcase
         refine (Affine.add_formal_param_estimate h₁.1 h₂.1 hx₁ hx₂ hPQ ht₁m ht₁0 ?_ hcase).1
         rw [div_self ht₁0]
         exact A.one_mem
@@ -413,9 +381,7 @@ theorem reducePoint_add_of_mem_of_notMem {x₁ y₁ x₂ y₂ : L}
     (h₂ : (W.map A.subtype).toAffine.Nonsingular x₂ y₂) (hx₁ : x₁ ∈ A) (hx₂ : x₂ ∉ A) :
     reducePoint hΔ (.some x₁ y₁ h₁ + .some x₂ y₂ h₂) =
       reducePoint hΔ (.some x₁ y₁ h₁) + reducePoint hΔ (.some x₂ y₂ h₂) := by
-
   rw [reducePoint_some_of_notMem _ _ hx₂, add_zero]
-
   have hPn : (W.map A.subtype).toAffine.Nonsingular x₁ ((W.map A.subtype).toAffine.negY x₁ y₁) :=
     (Affine.nonsingular_neg _ _).mpr h₁
   have hQn : (W.map A.subtype).toAffine.Nonsingular x₂ ((W.map A.subtype).toAffine.negY x₂ y₂) :=
@@ -424,10 +390,8 @@ theorem reducePoint_add_of_mem_of_notMem {x₁ y₁ x₂ y₂ : L}
       (W.map A.subtype).toAffine.Point) = -(.some x₁ y₁ h₁) := (Affine.Point.neg_some h₁).symm
   have hQneg : (.some x₂ ((W.map A.subtype).toAffine.negY x₂ y₂) hQn :
       (W.map A.subtype).toAffine.Point) = -(.some x₂ y₂ h₂) := (Affine.Point.neg_some h₂).symm
-
   cases hadd : (.some x₁ y₁ h₁ + .some x₂ y₂ h₂ : (W.map A.subtype).toAffine.Point) with
   | zero =>
-
     exfalso
     have hP : (.some x₁ y₁ h₁ : (W.map A.subtype).toAffine.Point) = -(.some x₂ y₂ h₂) :=
       eq_neg_of_add_eq_zero_left hadd
@@ -436,16 +400,14 @@ theorem reducePoint_add_of_mem_of_notMem {x₁ y₁ x₂ y₂ : L}
     exact hx₂ (hP.1 ▸ hx₁)
   | some X₃ Y₃ h₃ =>
     by_cases hX₃ : X₃ ∈ A
-    ·
-      have hint := reducePoint_add_of_mem hΔ h₃ hPn hX₃ hx₁
+    · have hint := reducePoint_add_of_mem hΔ h₃ hPn hX₃ hx₁
       have hSnegP : (.some X₃ Y₃ h₃ : (W.map A.subtype).toAffine.Point) +
           .some x₁ ((W.map A.subtype).toAffine.negY x₁ y₁) hPn = .some x₂ y₂ h₂ := by
         rw [hPneg, ← hadd]; abel
       rw [hSnegP, reducePoint_some_of_notMem _ _ hx₂, hPneg, reducePoint_neg,
         ← sub_eq_add_neg] at hint
       exact (sub_eq_zero.mp hint.symm)
-    ·
-      exfalso
+    · exfalso
       have hker := reducePoint_add_of_notMem_of_notMem hΔ h₃ hQn hX₃ hx₂
       have hSnegQ : (.some X₃ Y₃ h₃ : (W.map A.subtype).toAffine.Point) +
           .some x₂ ((W.map A.subtype).toAffine.negY x₂ y₂) hQn = .some x₁ y₁ h₁ := by

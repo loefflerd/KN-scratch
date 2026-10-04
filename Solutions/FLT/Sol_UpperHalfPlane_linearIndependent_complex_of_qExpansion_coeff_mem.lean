@@ -474,7 +474,6 @@ private theorem linearIndependent_complex_of_kPole [NeZero N] (K : IntermediateF
   classical
   rw [linearIndependent_iff']
   intro s c hc i hi
-
   set m : ι → ℕ := fun j ↦ (hKP j).2.choose
   set M : ℕ := s.sup m
   have hKPM : ∀ j ∈ s, KPoleAt K N M (f j) := fun j hj ↦
@@ -484,19 +483,16 @@ private theorem linearIndependent_complex_of_kPole [NeZero N] (K : IntermediateF
     fun j ↦ (hKPM j j.2).1
   have hbd : ∀ (j : s), IsBoundedAtImInfty (f j * ⇑CuspForm.discriminant ^ M) :=
     fun j ↦ (hKPM j j.2).2.1
-
   have hiff : ∀ (t : Finset s) (c' : s → ℂ),
       (∑ j ∈ t, c' j • f j = 0)
         ↔ ∀ n, ∑ j ∈ t, c' j * (qExpansion N (f j * ⇑CuspForm.discriminant ^ M)).coeff n = 0 :=
     fun t c' ↦ finsetSum_smul_eq_zero_iff_qCoeff t c' M (fun j _ ↦ hhol j)
       (fun j _ ↦ hper j) (fun j _ ↦ hbd j)
-
   set vK : s → ℕ → ↥K := fun j n ↦
     ⟨(qExpansion N (f j * ⇑CuspForm.discriminant ^ M)).coeff n, (hKPM j j.2).2.2 n⟩ with hvK_def
   have halg : ∀ x : ↥K, (x : ℂ) = algebraMap ↥K ℂ x := fun _ ↦ rfl
   have hvKcoe : ∀ (j : s) n, algebraMap ↥K ℂ (vK j n)
       = (qExpansion N (f j * ⇑CuspForm.discriminant ^ M)).coeff n := fun _ _ ↦ rfl
-
   have hli_s := hli.comp (Subtype.val : s → ι) Subtype.val_injective
   have hvKli : LinearIndependent ↥K vK := by
     rw [linearIndependent_iff']
@@ -516,9 +512,7 @@ private theorem linearIndependent_complex_of_kPole [NeZero N] (K : IntermediateF
       rw [← hsumC]
       exact Finset.sum_congr rfl fun j' _ ↦ (algebraMap_smul ℂ (d j') (f j')).symm
     exact linearIndependent_iff'.mp hli_s t d hsumK j hj
-
   have hvCli := linearIndependent_pi_algebraMap_of_field (K := ℂ) hvKli
-
   have hcoeff' : ∀ n, ∑ j' ∈ (Finset.univ : Finset s), c j'
       * (qExpansion N (f j' * ⇑CuspForm.discriminant ^ M)).coeff n = 0 := by
     intro n
@@ -549,7 +543,6 @@ theorem solution (N : ℕ) [NeZero N]
     (fun i => ⟨(hf i).1, by
       obtain ⟨m, hm⟩ := (hf i).2
       exact ⟨m, by simpa only [WLight.KPoleAt, CuspForm.coe_discriminant] using hm⟩⟩) hli
-
 
 end
 

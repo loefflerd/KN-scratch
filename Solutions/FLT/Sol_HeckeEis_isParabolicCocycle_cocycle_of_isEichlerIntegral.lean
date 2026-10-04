@@ -71,8 +71,7 @@ theorem solution (N n : ℕ) [NeZero N]
     rw [← Module.End.mul_apply, ← map_mul, mul_inv_cancel, map_one, Module.End.one_apply]
   intro γ hγ
   rcases Nat.even_or_odd n with heven | hodd
-  ·
-    obtain ⟨ε, δ, h, hε, hγeq⟩ := ModularGroup.exists_eq_conj_T_zpow_of_trace_sq_eq_four (γ : SL(2, ℤ)) hγ
+  · obtain ⟨ε, δ, h, hε, hγeq⟩ := ModularGroup.exists_eq_conj_T_zpow_of_trace_sq_eq_four (γ : SL(2, ℤ)) hγ
     have hRε : R ε = 1 := by
       rcases hε with rfl | rfl
       · exact map_one R
@@ -88,7 +87,6 @@ theorem solution (N n : ℕ) [NeZero N]
       · rw [one_mul] at hγeq; rw [← hγeq]; exact γ.2
       · have e : δ * ModularGroup.T ^ h * δ⁻¹ = -1 * (γ : SL(2, ℤ)) := by rw [hγeq, ← mul_assoc, neg_one_mul, neg_neg, one_mul]
         rw [e]; exact Subgroup.mul_mem _ hneg1 γ.2
-
     set g : ℍ → ℂ := (f : ℍ → ℂ) ∣[((n : ℤ) + 2)] δ with hg
     set G : ℍ → ↥(BinaryForm ℂ n) := fun τ => R δ⁻¹ (F (δ • τ)) with hGdef
     have hGEI : IsEichlerIntegral n g G := hEI.slash δ
@@ -97,11 +95,9 @@ theorem solution (N n : ℕ) [NeZero N]
     have hgper : Function.Periodic (g ∘ ofComplex) ((h : ℝ) : ℂ) :=
       periodic_slash_comp_ofComplex_of_conj_T_zpow_mem f δ hσ
     have hFG : ∀ u : ℍ, F (δ • u) = R δ (G u) := fun u => by rw [hGdef, hRinv']
-
     have hcoc : hF.cocycle γ = R δ (G (ModularGroup.T ^ h • I) - R (ModularGroup.T ^ h) (G I)) := by
       rw [← hF.sub_eq_cocycle γ (δ • I), hρapp, hγeq, hεsmul, hRεx, ← mul_smul, inv_mul_cancel_right, mul_smul,
         hFG, hFG, map_mul, map_mul, Module.End.mul_apply, Module.End.mul_apply, hRinv, map_sub]
-
     have htrans : ∀ y ∈ LinearMap.range (R (ModularGroup.T ^ h) - 1), R δ y ∈ LinearMap.range (ρ γ - 1) := by
       rintro _ ⟨w, rfl⟩
       refine ⟨R δ w, ?_⟩
@@ -113,8 +109,7 @@ theorem solution (N n : ℕ) [NeZero N]
     · simp
     · rw [UpperHalfPlane.modular_T_zpow_smul]
       exact hGEI.vadd_sub_T_zpow_apply_mem_range hh hgper hghol hgzero I
-  ·
-    set m : Gamma0 N := ⟨-1, hneg1⟩ with hm
+  · set m : Gamma0 N := ⟨-1, hneg1⟩ with hm
     have hρm : ∀ v, ρ m v = -v := fun v => by
       rw [hρapp]
       show binaryFormRepSL ℂ n (-1) v = -v
@@ -125,7 +120,6 @@ theorem solution (N n : ℕ) [NeZero N]
     have h1 := hz γ m
     have h2 := hz m γ
     rw [hcomm, h2, hρm] at h1
-
     have h4 : hF.cocycle γ + hF.cocycle γ = hF.cocycle m - ρ γ (hF.cocycle m) := by
       rw [eq_sub_iff_add_eq]
       calc hF.cocycle γ + hF.cocycle γ + ρ γ (hF.cocycle m)

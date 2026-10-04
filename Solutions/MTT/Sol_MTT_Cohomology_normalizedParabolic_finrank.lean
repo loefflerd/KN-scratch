@@ -120,7 +120,6 @@ theorem eval_symmetricPower_expansion {n : ℕ} (P : Sym ℂ n) (u v : ℂ) :
   conv_lhs => rw [symmetricPower_expansion P]
   simp
 
-
 end MTT.Cohomology
 end
 

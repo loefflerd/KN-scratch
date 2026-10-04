@@ -175,10 +175,8 @@ theorem solution (N : ℕ) [NeZero N]
       ((ModularForm.E₄ : ℍ → ℂ) σ' ^ 3 / ModularForm.discriminant σ') = 0 := by
   classical
   have hN : N ≠ 0 := NeZero.ne N
-
   have hσ'pt : σ' = ModularForm.heckeDiagMatrix N • σ :=
     UpperHalfPlane.ext (by rw [hσ', ModularForm.coe_heckeDiagMatrix_smul hN])
-
   obtain ⟨e, he⟩ := ModularForm.exists_degeneracy_Gamma0 (show 1 * 1 ∣ N by simp) e4cube1
   obtain ⟨δ, hδ⟩ := ModularForm.exists_degeneracy_Gamma0 (show 1 * 1 ∣ N by simp) delta1
   obtain ⟨eN, heN⟩ := ModularForm.exists_degeneracy_Gamma0 (show N * 1 ∣ N by simp) e4cube1
@@ -189,7 +187,6 @@ theorem solution (N : ℕ) [NeZero N]
     rw [hδ, heckeDiagMatrix_one]; funext τ; rw [one_smul, coe_delta1, coe_deltaSL]
   have heN' : ⇑eN = fun τ => e4cubeSL (ModularForm.heckeDiagMatrix N • τ) := by rw [heN]; rfl
   have hδN' : ⇑δN = fun τ => deltaSL (ModularForm.heckeDiagMatrix N • τ) := by rw [hδN]; rfl
-
   set A : LaurentSeries ℂ := ((qExpansion 1 (ModularForm.E₄ : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) with hA
   set D : LaurentSeries ℂ := ((qExpansion 1 (ModularForm.discriminant : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ)
     with hD
@@ -209,7 +206,6 @@ theorem solution (N : ℕ) [NeZero N]
       rw [h0', PowerSeries.coeff_map, PowerSeries.coeff_zero_eq_constantCoeff_apply, constantCoeff_jNum, map_one]
     rw [this, HahnSeries.coeff_zero] at h1
     exact zero_ne_one h1
-
   have hΓ := one_mem_sp N
   have hAn4 : An (ModularForm.E₄ : ℍ → ℂ) := an_of_modularForm one_mem_strictPeriods_SL ModularForm.E₄
   have hqe4cube : ((qExpansion 1 (e4cubeSL : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) = A ^ 3 := by
@@ -224,13 +220,11 @@ theorem solution (N : ℕ) [NeZero N]
     rw [heN', ModularForm.qExpansion_heckeDiagMatrix_smul_eq_qExpand_of_levelOne N e4cubeSL, hqe4cube]
   have hqδN : ((qExpansion 1 (δN : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) = qExpand ℂ N D := by
     rw [hδN', ModularForm.qExpansion_heckeDiagMatrix_smul_eq_qExpand_of_levelOne N deltaSL, coe_deltaSL]
-
   set n : ℕ := data.Φ.natDegree with hn
   set m : ℕ := (Finset.range (n + 1)).sup (fun i => (data.Φ.coeff i).natDegree) with hm
   have hmi : ∀ i ∈ Finset.range (n + 1), (data.Φ.coeff i).natDegree ≤ m := fun i hi =>
     Finset.le_sup (f := fun i => (data.Φ.coeff i).natDegree) hi
   set c : ℕ → ℕ → ℝ := fun i k => (((data.Φ.coeff i).coeff k : ℤ) : ℝ) with hc
-
   have an_mf : ∀ f : ModularForm (CongruenceSubgroup.Gamma0 N) 12, An ⇑f := fun f => an_of_modularForm hΓ f
   have qexp_pow : ∀ (f : ℍ → ℂ) (hf : An f) (p : ℕ), An (f ^ p) ∧ qExpansion 1 (f ^ p) = qExpansion 1 f ^ p := by
     intro f hf p
@@ -254,7 +248,6 @@ theorem solution (N : ℕ) [NeZero N]
       UpperHalfPlane.qExpansion_mul a3 a4, q1, q2, q3, q4]
     simp only [PowerSeries.coe_mul, PowerSeries.coe_pow]
     rw [hqe, hqδ, hqeN, hqδN]
-
   let idx : Finset (ℕ × ℕ) := Finset.range (n + 1) ×ˢ Finset.range (m + 1)
   let H : ModularForm (CongruenceSubgroup.Gamma0 N) (12 * ((m + n : ℕ) : ℤ)) :=
     ∑ p ∈ idx, c p.1 p.2 • mono e δ eN δN m n p.1 p.2
@@ -262,7 +255,6 @@ theorem solution (N : ℕ) [NeZero N]
     intro p hp
     simp only [idx, Finset.mem_product, Finset.mem_range] at hp
     omega
-
   have hHcoe : (H : ℍ → ℂ) = ∑ p ∈ idx, ((c p.1 p.2 : ℝ) : ℂ) • ((mono e δ eN δN m n p.1 p.2) : ℍ → ℂ) := by
     show coeAddHom _ H = _
     rw [map_sum]
@@ -271,9 +263,7 @@ theorem solution (N : ℕ) [NeZero N]
     rw [FunLike.coe_smul]
     funext τ
     simp only [Pi.smul_apply, Complex.real_smul, smul_eq_mul]
-
   have hformal : (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (LaurentSeries ℂ)) J)).eval (qExpand ℂ N J) = 0 := by
-
     have h0 := data.eval_eq_zero
     have h1 := congrArg (coeffMap (algebraMap ℚ ℂ)) h0
     rw [map_zero, Polynomial.hom_eval₂] at h1
@@ -295,7 +285,6 @@ theorem solution (N : ℕ) [NeZero N]
     rw [Polynomial.eval_map]
     first
     | exact h1
-
   have hqH : qExpansion 1 (H : ℍ → ℂ) = 0 := by
     apply HahnSeries.ofPowerSeries_injective (Γ := ℤ) (R := ℂ)
     rw [map_zero]
@@ -329,7 +318,6 @@ theorem solution (N : ℕ) [NeZero N]
     simp only [hc, eq_intCast, Complex.ofReal_intCast]
     rw [← map_intCast (HahnSeries.C : ℂ →+* LaurentSeries ℂ)]
     try ring
-
   have hH0 : H = 0 := (ModularForm.qExpansion_eq_zero_iff one_pos hΓ H).mp hqH
   have hpt : (H : ℍ → ℂ) σ = 0 := by rw [hH0]; rfl
   rw [hHcoe, Finset.sum_apply] at hpt
@@ -358,7 +346,6 @@ theorem solution (N : ℕ) [NeZero N]
   have hnz : ModularForm.discriminant σ ^ m * ModularForm.discriminant σ' ^ n ≠ 0 :=
     mul_ne_zero (pow_ne_zero _ (ModularForm.discriminant_ne_zero σ)) (pow_ne_zero _ (ModularForm.discriminant_ne_zero σ'))
   have hsum0 := (mul_eq_zero.mp hpt).resolve_left hnz
-
   rw [Polynomial.eval_map, Polynomial.eval₂_eq_sum_range' _ (Nat.lt_succ_self _)]
   rw [Finset.sum_product] at hsum0
   rw [← hsum0]

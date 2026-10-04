@@ -29,27 +29,20 @@ theorem solution
     (x : F) (hx : Transcendental K x)
     [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F] :
     ConstantsAreBase K F := by
-
   have hICO : IsCurveOver K F := isCurveOver_of_isAlgClosed_of_transcendental x hx
-
   obtain ⟨t, htr_t, hfd_t, hsep_t⟩ :=
     exists_separating_transcendental_of_perfectField (K := K) (F := F) hx inferInstance
   have : FiniteDimensional (IntermediateField.adjoin K ({t} : Set F)) F := hfd_t
   have : Algebra.IsSeparable (IntermediateField.adjoin K ({t} : Set F)) F := hsep_t
-
   have hxIC : x ∉ (integralClosure K F).toSubring := fun h ↦ hx h.isAlgebraic
-
   obtain ⟨V, hICV, hxV⟩ :=
     Subring.exists_le_valuationSubring_of_isIntegrallyClosedIn
       (R := (integralClosure K F).toSubring) hxIC
-
   have hKV : ∀ a : K, (RingHom.id F) (algebraMap K F a) ∈ V := fun a ↦
     hICV (Subalgebra.algebraMap_mem (integralClosure K F) a)
-
   obtain ⟨v₀, -⟩ :=
     Place.exists_toValuationSubring_eq_comap_ringHom_of_isSeparable (K := K) (F := F) (F' := F)
       t (RingHom.id F) V hKV ⟨x, hxV⟩
-
   exact constantsAreBase_of_deg_eq_one v₀ (IsCurveOver.deg_eq_one_of_isAlgClosed v₀)
 
 end S_AlgebraicCurve_constantsAreBase_of_isAlgClosed_of_transcendental

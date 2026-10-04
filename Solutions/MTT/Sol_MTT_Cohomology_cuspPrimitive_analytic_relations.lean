@@ -92,7 +92,6 @@ lemma denom_SL_ne_zero (γ : SL(2, ℤ)) (τ : ℍ) :
   have := denom_ne_zero (toGL (γ : Matrix (Fin 2) (Fin 2) ℤ)) τ
   simpa [denom, toGL_apply (show (γ : Matrix (Fin 2) (Fin 2) ℤ).det ≠ 0 by simp)] using this
 
-
 end MTT.HeckePort
 
 namespace MTT.AnalyticRelations
@@ -132,7 +131,6 @@ lemma rational_translate_integrable
   simp only [ModularForm.weakFEPair, add_sub_cancel_right, Complex.cpow_natCast,
     smul_eq_mul, hval t ht]
   ring
-
 
 /-- The integrand `t ↦ F(r+it) P(r+it)` of the modular integral. -/
 def vint (F : ℍ → ℂ) (P : Polynomial ℂ) (r : ℚ) (t : ℝ) : ℂ :=
@@ -174,7 +172,6 @@ lemma GoodAt.integrable_vint {F : ℍ → ℂ} {r : ℚ} (h : GoodAt F r) (P : P
     ring
   rw [this]
   exact integrable_finsetSum _ fun i _ => (h.pow i).const_mul _
-
 
 lemma modularIntegral_add_form {F G : ℍ → ℂ} {r : ℚ} (hF : GoodAt F r) (hG : GoodAt G r)
     (P : Polynomial ℂ) :

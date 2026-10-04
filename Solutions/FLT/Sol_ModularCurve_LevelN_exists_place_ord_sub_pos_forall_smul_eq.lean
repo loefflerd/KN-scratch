@@ -162,7 +162,6 @@ def ordValuation (τ₀ : ℍ) : Valuation (ring N) (WithZero (Multiplicative �
     rw [ordFun_of_ne_zero N τ₀ hF, ordFun_of_ne_zero N τ₀ hG, ordFun_of_ne_zero N τ₀ hFG]
     have hmin := min_ordAt_le_ordAt_add N F.2 G.2 hF hG (by simpa using hFG) τ₀
     rw [show ((F + G : ring N) : ℍ → ℂ) = (F : ℍ → ℂ) + (G : ℍ → ℂ) from rfl]
-
     rcases le_total (ordAt τ₀ (F : ℍ → ℂ)) (ordAt τ₀ (G : ℍ → ℂ)) with h | h
     · rw [min_eq_left h] at hmin
       refine le_trans ?_ (le_max_left _ _)
@@ -214,7 +213,6 @@ theorem jSub_ne_zero (τ₀ : ℍ) : (jSub N τ₀ : ring N) ≠ 0 := by
   intro h
   have h' := congrArg (fun F : ring N => (F : ℍ → ℂ)) h
   simp only [coe_jSub, ZeroMemClass.coe_zero] at h'
-
   have hpkg := WLight.levelN_structure_package N PeriodPair.ofTau (fun τ => ⟨rfl, rfl⟩) (wp N)
     (fun v τ => rfl) (fricke N) (fun v τ => rfl) jAnalytic (fun τ => rfl)
   have htr := hpkg.2.2.2.1 (Polynomial.X - Polynomial.C (jAnalytic τ₀)) (fun τ => by
@@ -338,7 +336,6 @@ theorem moeb_denom_ne_zero (δ : SL(2, ℤ)) (τ : ℍ) :
   have him := congrArg Complex.im h
   simp only [Complex.add_im, Complex.mul_im, Complex.intCast_re, Complex.intCast_im, zero_mul,
     add_zero, Complex.zero_im] at him
-
   have hc : ((δ 1 0 : ℤ) : ℝ) = 0 := by
     rcases mul_eq_zero.mp him with h1 | h1
     · exact h1
@@ -484,7 +481,6 @@ theorem ord_jSub_pos (τ₀ : ℍ) :
     exact jSub_ne_zero N τ₀ ((IsFractionRing.injective (ring N) K)
       (by rw [h, map_zero]))
   obtain ⟨hyW, hmax⟩ := ValuationSubring.mem_nonunits_iff_exists_mem_maximalIdeal.mp hmem
-
   have hval : W.adicValuation y < 1 := by
     rw [W.adicValuation_coe ⟨y, hyW⟩,
       IsDedekindDomain.HeightOneSpectrum.intValuation_lt_one_iff_mem]

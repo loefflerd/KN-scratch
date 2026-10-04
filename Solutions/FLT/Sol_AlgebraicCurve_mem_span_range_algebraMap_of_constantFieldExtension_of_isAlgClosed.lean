@@ -189,7 +189,6 @@ theorem isIntegral_of_forall_mem_valuationSubring {R L : Type*} [CommRing R] [Fi
   classical
   by_contra hni
   have hw0 : w ≠ 0 := by rintro rfl; exact hni isIntegral_zero
-
   set S : Subalgebra R L := Algebra.adjoin R {w⁻¹} with hS
   have hwS : w⁻¹ ∈ S := Algebra.subset_adjoin (Set.mem_singleton _)
   set A : Subring L := S.toSubring with hA
@@ -199,17 +198,14 @@ theorem isIntegral_of_forall_mem_valuationSubring {R L : Type*} [CommRing R] [Fi
     have h1 : (1 : A) ∈ I := htop ▸ Submodule.mem_top
     rw [hI, Ideal.mem_span_singleton'] at h1
     obtain ⟨a, ha⟩ := h1
-
     have haS : (a : L) ∈ S := a.2
     rw [hS, Algebra.adjoin_singleton_eq_range_aeval] at haS
     obtain ⟨f, hf⟩ := haS
     have haw : (a : L) * w⁻¹ = 1 := by
       have := congrArg Subtype.val ha
       simpa using this
-
     set n := f.natDegree with hn
     apply hni
-
     set g : R[X] := ∑ i ∈ Finset.range (n + 1), C (f.coeff i) * X ^ (n - i) with hg
     have hgdeg : g.degree < (n + 1 : ℕ) := by
       rw [hg]
@@ -219,7 +215,6 @@ theorem isIntegral_of_forall_mem_valuationSubring {R L : Type*} [CommRing R] [Fi
       refine lt_of_le_of_lt (degree_C_mul_X_pow_le _ _) ?_
       exact_mod_cast Nat.lt_succ_of_le (Nat.sub_le n i)
     refine ⟨X ^ (n + 1) - g, monic_X_pow_sub hgdeg, ?_⟩
-
     have hfw : (aeval w⁻¹ f : L) = ∑ i ∈ Finset.range (n + 1), algebraMap R L (f.coeff i) * w⁻¹ ^ i := by
       rw [aeval_def, eval₂_eq_sum_range]
     have hkey : w ^ (n + 1) = ∑ i ∈ Finset.range (n + 1), algebraMap R L (f.coeff i) * w ^ (n - i) := by
@@ -236,7 +231,6 @@ theorem isIntegral_of_forall_mem_valuationSubring {R L : Type*} [CommRing R] [Fi
     rw [← aeval_def, map_sub, map_pow, aeval_X, hg, map_sum]
     simp only [map_mul, aeval_C, map_pow, aeval_X]
     rw [hkey, sub_self]
-
   obtain ⟨B, hAB, hIB⟩ := Ideal.image_subset_nonunits_valuationSubring I hI
   have hwB : w⁻¹ ∈ B.nonunits := by
     apply hIB
@@ -386,7 +380,6 @@ theorem trace_mem [IsAlgClosed K] [IsAlgClosed K'] [IsCurveOver K F] [IsCurveOve
     have := add_mem hx'c_mem (v'.algebraMap_mem' c)
     simpa using this
   have hx'k : x' ∈ kx' := IntermediateField.mem_adjoin_simple_self K' x'
-
   have hnew : ∀ W : Place K' F',
       (∀ g : F', g ∈ kx' → g ∈ v'.toValuationSubring → g ∈ W.toValuationSubring) →
       ∀ v : Place K F, W.toValuationSubring.comap (algebraMap F F') ≠ v.toValuationSubring := by
@@ -419,7 +412,6 @@ theorem trace_mem [IsAlgClosed K] [IsAlgClosed K'] [IsCurveOver K F] [IsCurveOve
       exact inv_mem (sub_mem hx'k (kx'.algebraMap_mem _))
     · apply mem_of_ord_nonneg
       rw [v'.ord_inv, hord0, neg_zero]
-
   have hint : IsIntegral R w := by
     apply isIntegral_of_forall_mem_valuationSubring
     intro B hB
@@ -486,7 +478,6 @@ theorem mem_span_of_regular [IsAlgClosed K'] [IsCurveOver K' F']
     intro h
     apply ht0
     rw [hpq₀, h, div_zero]
-
   set g := gcd p₀ q₀ with hg
   have hg0 : g ≠ 0 := fun h => hq₀0 ((gcd_eq_zero_iff p₀ q₀).1 h).2
   set p := p₀ / g with hp
@@ -511,7 +502,6 @@ theorem mem_span_of_regular [IsAlgClosed K'] [IsCurveOver K' F']
     intro h
     apply ht0
     rw [ht', h, zero_div]
-
   have hroots : ∀ c ∈ q.roots, c ∈ Set.range (algebraMap K K') := by
     intro c hc
     by_contra hcK
@@ -525,7 +515,6 @@ theorem mem_span_of_regular [IsAlgClosed K'] [IsCurveOver K' F']
     have hx'mem : x' ∈ v'.toValuationSubring := by
       have := add_mem (mem_of_ord_nonneg v' hv'.le) (v'.algebraMap_mem' c)
       simpa using this
-
     obtain ⟨q₂, hq₂⟩ := dvd_iff_isRoot.2 hqc
     have haq2_ne : aeval x' q₂ ≠ 0 := by
       intro h
@@ -535,7 +524,6 @@ theorem mem_span_of_regular [IsAlgClosed K'] [IsCurveOver K' F']
       rw [hq₂, map_mul, map_sub, aeval_X, aeval_C, v'.ord_mul hsub_ne haq2_ne]
       have := ord_nonneg_of_mem v' (aeval_mem v' hx'mem q₂)
       omega
-
     have hpc : eval c p ≠ 0 := by
       intro h
       exact Polynomial.not_isUnit_X_sub_C c
@@ -556,7 +544,6 @@ theorem mem_span_of_regular [IsAlgClosed K'] [IsCurveOver K' F']
       rw [ht', div_eq_mul_inv, v'.ord_mul hap (inv_ne_zero haq), v'.ord_inv]
       ring
     omega
-
   set A : Subalgebra K' F' := Algebra.adjoin K' (Set.range (algebraMap F F')) with hA
   suffices hmem : t ∈ A by
     have : t ∈ Subalgebra.toSubmodule A := hmem
@@ -640,7 +627,6 @@ theorem exists_basis [IsAlgClosed K] [IsAlgClosed K']
   set x' := algebraMap F F' x with hx'def
   set kx' : IntermediateField K' F' := IntermediateField.adjoin K' ({x'} : Set F') with hkx'
   have hx' : Transcendental K' x' := transcendental_algebraMap hfg hfg' hgen hx
-
   have hli : LinearIndependent kx' (fun i => algebraMap F F' (y i)) := by
     rw [linearIndependent_iff']
     intro s r hr i hi
@@ -706,7 +692,6 @@ theorem exists_basis [IsAlgClosed K] [IsAlgClosed K']
     have h1 : B * (r i : F') = 0 := by rw [hBQ, hQi, map_zero]
     have h2 : (r i : F') = 0 := (mul_eq_zero.1 h1).resolve_left hB0
     exact_mod_cast h2
-
   have hsp : ⊤ ≤ Submodule.span kx' (Set.range fun i => algebraMap F F' (y i)) := by
     have hφ : ∀ f : F, algebraMap F F' f ∈
         Submodule.span kx' (Set.range fun i => algebraMap F F' (y i)) := by
@@ -826,7 +811,6 @@ theorem mem_span_range_algebraMap_of_constantFieldExtension
         z ∈ v'.toValuationSubring) :
     z ∈ Submodule.span K' (Set.range (algebraMap F F')) := by
   classical
-
   obtain ⟨x₀, hx₀, hfin₀⟩ := id hfg
   obtain ⟨x, hx, hfin, hsep_kx⟩ :=
     AlgebraicCurve.exists_separating_transcendental_of_perfectField hx₀ hfin₀

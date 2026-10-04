@@ -17,7 +17,6 @@ theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
   · rw [sub_eq_zero] at h
     rw [h]
   have hsub : f - g ∈ v.toValuationSubring := sub_mem hf hg
-
   have hmax : ∀ {x : F} (hx : x ∈ v.toValuationSubring), 0 < v.ord x →
       (⟨x, hx⟩ : v.toValuationSubring) ∈ IsLocalRing.maximalIdeal v.toValuationSubring := by
     intro x hx hpos

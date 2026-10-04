@@ -91,7 +91,6 @@ theorem natDegree_dehom_le {P : MvPolynomial (Fin 2) R} (hP : P ∈ BinaryForm R
 theorem dehom_binarySubst_T_zpow (h : ℤ) (P : MvPolynomial (Fin 2) R) :
     dehom (binarySubst R ((ModularGroup.T ^ h : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) P)
       = (dehom P).comp (Polynomial.X + Polynomial.C (h : R)) := by
-
   revert P
   refine fun P => ?_
   have key : (dehom : MvPolynomial (Fin 2) R →ₐ[R] R[X]).comp (binarySubst R ((ModularGroup.T ^ h : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ))
@@ -106,7 +105,6 @@ theorem eq_C_of_comp_X_add_C_eq [IsDomain R] {q : R[X]} (hq : q.natDegree ≤ n)
     (hn : ∀ j : ℕ, 1 ≤ j → j ≤ n → (j : R) ≠ 0) (hinv : q.comp (Polynomial.X + Polynomial.C h) = q) :
     q = Polynomial.C (q.eval 0) := by
   classical
-
   have hper : ∀ k : ℕ, q.eval ((k : R) * h) = q.eval 0 := by
     intro k
     induction k with
@@ -116,7 +114,6 @@ theorem eq_C_of_comp_X_add_C_eq [IsDomain R] {q : R[X]} (hq : q.natDegree ≤ n)
       simp only [Polynomial.eval_comp, Polynomial.eval_add, Polynomial.eval_X, Polynomial.eval_C] at this
       rw [← ih, ← this]
       congr 1; push_cast; ring
-
   set q' : R[X] := q - Polynomial.C (q.eval 0) with hq'
   have hdeg : q'.natDegree ≤ n := (Polynomial.natDegree_sub_le _ _).trans (by simpa using hq)
   have hroots : ∀ k ∈ Finset.range (n + 1), q'.eval ((k : R) * h) = 0 := fun k _ => by
@@ -126,8 +123,7 @@ theorem eq_C_of_comp_X_add_C_eq [IsDomain R] {q : R[X]} (hq : q.natDegree ≤ n)
     simp only [Finset.coe_range, Set.mem_Iio] at hi hj
     have : ((i : R) - (j : R)) * h = 0 := by rw [sub_mul]; exact sub_eq_zero.mpr hij
     rcases mul_eq_zero.mp this with h0 | h0
-    ·
-      by_contra hne
+    · by_contra hne
       rcases Nat.lt_or_gt_of_ne hne with hlt | hlt
       · have := hn (j - i) (by omega) (by omega)
         apply this; rw [Nat.cast_sub hlt.le]; linear_combination -h0
@@ -158,7 +154,6 @@ theorem SolMain.A2 {R : Type*} [CommRing R] [IsDomain R] (n : ℕ) {h : ℤ}
     rw [← dehom_binarySubst_T_zpow, hsub]
   have hconst := eq_C_of_comp_X_add_C_eq (natDegree_dehom_le P.2) hh hn hq
   refine ⟨AddMonoidAlgebra.coeff (P : MvPolynomial (Fin 2) R) (expo n 0), ?_⟩
-
   have hcoeff : ∀ j ∈ Finset.range (n + 1), j ≠ 0 → AddMonoidAlgebra.coeff (P : MvPolynomial (Fin 2) R) (expo n j) = 0 := by
     intro j hj hj0
     have := congrArg (fun r : R[X] => r.coeff j) hconst
@@ -176,7 +171,6 @@ theorem solution {R : Type*} [CommRing R] [IsDomain R] (n : ℕ)
     (hP : HeckeEis.binaryFormRepSL R n (ModularGroup.T ^ h) P = P) :
     ∃ c : R, (P : MvPolynomial (Fin 2) R) = c • MvPolynomial.X 0 ^ n :=
   HeckeEis.SolMain.A2 n hh hn P hP
-
 
 end S_HeckeEis_exists_eq_smul_X_pow_of_binaryFormRepSL_T_zpow_eq_self
 end P2MW

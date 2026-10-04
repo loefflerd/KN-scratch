@@ -417,7 +417,6 @@ theorem tRed_zero (γ : SL(2, ℤ)) (hγ : γ ∈ CongruenceSubgroup.Gamma0 M) :
 
 theorem tRed_add (D E : IDatum M H w) (γ : SL(2, ℤ)) (hγ : γ ∈ CongruenceSubgroup.Gamma0 M) :
     tRed K (D + E) γ hγ = tRed K D γ hγ + tRed K E γ hγ := by
-
   let T : IDatum M H w := (texp E γ hγ) • trans D γ hγ + (texp D γ hγ) • trans E γ hγ
   have hT : (⇑T.f : ℍ → ℂ) =
       ((texp D γ hγ * texp E γ hγ : ℤ) : ℂ) • ((⇑(D + E).f : ℍ → ℂ) ∣[w] γ) := by
@@ -515,7 +514,6 @@ theorem sum_coe_smul_tRed_eq_zero (s : Finset (IDatum M H w)) (e : IDatum M H w 
     ∑ D ∈ s, ((e D : K)) • tRed K D γ hγ = 0 := by
   classical
   choose y z hz hyz using fun D : IDatum M H w => exists_intCast_div_of_mem_bot (e D).2
-
   let Z : K := ∏ D ∈ s, (z D : K)
   have hZ : Z ≠ 0 := Finset.prod_ne_zero_iff.mpr fun D _ => hz D
   let m : IDatum M H w → ℤ := fun D => y D * ∏ D' ∈ s.erase D, z D'
@@ -550,7 +548,6 @@ theorem sum_smul_tRed_eq_zero (s : Finset (IDatum M H w)) (c : IDatum M H w → 
   classical
   let F : Subfield K := ⊥
   let b := Module.Basis.ofVectorSpace F K
-
   have hA : ∀ i, ∑ D ∈ s, ((b.repr (c D) i : F) : K) • intSeriesC K D.p = 0 := by
     intro i
     ext n
@@ -559,12 +556,10 @@ theorem sum_smul_tRed_eq_zero (s : Finset (IDatum M H w)) (c : IDatum M H w → 
     have hn : ∑ D ∈ s, c D * (intSeriesC K D.p).coeff n = 0 := by
       have := congrArg (fun x : LaurentSeries K => x.coeff n) h
       simpa only [coeff_finset_sum, HahnSeries.coeff_smul, smul_eq_mul, HahnSeries.coeff_zero] using this
-
     have hr : ∀ D : IDatum M H w, ∃ r : F, (r : K) = (intSeriesC K D.p).coeff n := fun D => by
       obtain ⟨zz, hzz⟩ := exists_intCast_eq_coeff_intSeriesC (K := K) D.p n
       exact ⟨⟨(zz : K), by simp [F]⟩, hzz.symm⟩
     choose r hr using hr
-
     have h1 : ∑ D ∈ s, r D • c D = 0 := by
       rw [← hn]
       refine Finset.sum_congr rfl fun D _ => ?_
@@ -579,10 +574,8 @@ theorem sum_smul_tRed_eq_zero (s : Finset (IDatum M H w)) (c : IDatum M H w → 
     refine Finset.sum_congr rfl fun D _ => ?_
     simp only [map_mul, Subfield.coe_subtype, hr]
     rw [mul_comm]
-
   have hB : ∀ i, ∑ D ∈ s, ((b.repr (c D) i : F) : K) • tRed K D γ hγ = 0 :=
     fun i => sum_coe_smul_tRed_eq_zero s (fun D => b.repr (c D) i) γ hγ (hA i)
-
   let S := s.biUnion fun D => (b.repr (c D)).support
   have hc : ∀ D ∈ s, c D = ∑ i ∈ S, ((b.repr (c D) i : F) : K) * (b i : K) := by
     intro D hD
@@ -1085,7 +1078,6 @@ theorem tRed_neg_one (D : IDatum M H w) (h1 : (-1 : SL(2, ℤ)) ∈ CongruenceSu
 theorem rhoVal_neg_one {x : LaurentSeries K} (hx : x ∈ qExpFunctionFieldC K (CohCarrier.GammaH M H))
     (h1 : (-1 : SL(2, ℤ)) ∈ CongruenceSubgroup.Gamma0 M) : rhoVal (-1) h1 x hx = x := by
   obtain ⟨w, l, l', hl⟩ := exists_rep hx
-
   have hsgn : ((sgn w : ℤ) : K) ≠ 0 := by
     unfold sgn; split_ifs <;> simp
   have hev : ∀ m : IDatum M H w →₀ K,
@@ -1164,7 +1156,6 @@ theorem rho_apply_generator (γ : CongruenceSubgroup.Gamma0 M) {k : ℤ}
   change rhoVal γ.1 γ.2 (intSeriesC K pf / intSeriesC K pg) (div_mem_qExpFunctionFieldC f g hf hg hg0) = _
   rw [rhoVal_eq (div_mem_qExpFunctionFieldC f g hf hg hg0) hrep γ.1 γ.2, evT_single, evT_single,
     one_smul, one_smul]
-
   have hfun : ((texp Df γ.1 γ.2 : ℤ) : ℂ) • (⇑(f₁.mul (trans Dg γ.1 γ.2).f) : ℍ → ℂ) =
       ((texp Dg γ.1 γ.2 : ℤ) : ℂ) • (⇑(g₁.mul (trans Df γ.1 γ.2).f) : ℍ → ℂ) := by
     rw [ModularForm.coe_mul, ModularForm.coe_mul, trans_f, trans_f, ef, eg]

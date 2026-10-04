@@ -83,18 +83,15 @@ theorem solution
   have hT : ModularGroup.T ∈ CongruenceSubgroup.Gamma1 M := by
     rw [CongruenceSubgroup.Gamma1_mem]; simp [ModularGroup.T]
   have h1 := one_mem_strictPeriods_gamma1 M
-
   obtain ⟨a, g, h, hh, hXh⟩ :=
     ModularCurve.exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange_qExpFunctionFieldC
       (CongruenceSubgroup.Gamma1 M) hT X hX
-
   obtain ⟨Φ, hΦdef⟩ : ∃ Φ : ModularForm (Gamma1 M) (a + (k : ℤ) * 1), Φ = g.mul (w.pow k) := ⟨_, rfl⟩
   have hΦcoe : (Φ : ℍ → ℂ) = fun z => g z * w z ^ k := by
     funext z
     rw [hΦdef, ModularForm.coe_mul, ModularForm.coe_pow, Pi.mul_apply, Pi.pow_apply]
   have hqΦ : qExpansion 1 (Φ : ℍ → ℂ) = qExpansion 1 (g : ℍ → ℂ) * qExpansion 1 (w : ℍ → ℂ) ^ k := by
     rw [hΦdef, ModularForm.qExpansion_mul one_pos h1, ModularForm.qExpansion_pow one_pos h1]
-
   obtain ⟨L, hLdef⟩ : ∃ L : ModularForm (Gamma1 M) (2 * (k : ℤ) + (a + a)), L = F₂.mul (h.mul h) := ⟨_, rfl⟩
   obtain ⟨R, hRdef⟩ : ∃ R : ModularForm (Gamma1 M) ((a + (k : ℤ) * 1) + (a + (k : ℤ) * 1)), R = Φ.mul Φ := ⟨_, rfl⟩
   have hqL : qExpansion 1 (L : ℍ → ℂ) = qExpansion 1 (F₂ : ℍ → ℂ) * (qExpansion 1 (h : ℍ → ℂ) * qExpansion 1 (h : ℍ → ℂ)) := by
@@ -111,7 +108,6 @@ theorem solution
     have e := congr_fun (coe_eq_of_qExpansion_eq L R hLR) z
     rw [hLdef, hRdef] at e
     simpa only [ModularForm.coe_mul, Pi.mul_apply] using e
-
   have hord : ∀ τ : ℍ, analyticOrderAt ((h : ℍ → ℂ) ∘ ofComplex) (τ : ℂ) ≤
       analyticOrderAt ((Φ : ℍ → ℂ) ∘ ofComplex) (τ : ℂ) := by
     intro τ
@@ -125,7 +121,6 @@ theorem solution
     have e := congrArg (fun F : ℂ → ℂ => analyticOrderAt F (τ : ℂ)) hid
     rw [analyticOrderAt_mul hc (ha.mul ha), analyticOrderAt_mul ha ha, analyticOrderAt_mul hb hb] at e
     exact le_of_add_eq_two e
-
   have hcusp : ∀ A : SL(2, ℤ), ∃ C : ℝ, ∀ᶠ τ : ℍ in atImInfty,
       ‖((Φ : ℍ → ℂ) ∣[a + (k : ℤ) * 1] (A : GL (Fin 2) ℝ)) τ‖ ≤ C * ‖((h : ℍ → ℂ) ∣[a] (A : GL (Fin 2) ℝ)) τ‖ := by
     intro A
@@ -159,7 +154,6 @@ theorem solution
     refine le_of_pow_le_pow_left₀ two_ne_zero hnn ?_
     rw [mul_pow, Real.sq_sqrt (le_max_right _ _), ← norm_pow, hsq, norm_mul, norm_pow]
     exact mul_le_mul_of_nonneg_right hτ' (by positivity)
-
   obtain ⟨f, hf⟩ := ModularForm.exists_modularForm_mul_eq_of_analyticOrderAt_le_of_finiteIndex
     (CongruenceSubgroup.Gamma1 M) (k : ℤ) (by ring) Φ h hh hord hcusp
   refine ⟨f, ?_⟩
@@ -183,7 +177,6 @@ theorem solution
     rw [sub_mul, e, ← hXh]
     ring
   exact sub_eq_zero.mp ((mul_eq_zero.mp key).resolve_right hHh0)
-
 
 end
 end S_ModularCurve_exists_modularForm_gamma1_qExpansion_eq_mul_pow_of_qExpansion_eq_sq

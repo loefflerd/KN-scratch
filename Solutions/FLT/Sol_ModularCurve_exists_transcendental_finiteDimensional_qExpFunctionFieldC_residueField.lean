@@ -638,8 +638,7 @@ theorem exists_resHom_eq {z : LaurentSeries kk} (hz : z ∈ qExpFunctionFieldC k
     rintro z (⟨t, rfl⟩ | ⟨k, f, g, pf, pg, hf, hg, hg0, rfl⟩)
     · obtain ⟨a, rfl⟩ := Ideal.Quotient.mk_surjective t
       exact ⟨⟨_, (algebraMap_mem_gaussRing_iff A Γ (a : L)).mpr a.2⟩, resHom_algebraMap A Γ a _⟩
-    ·
-      have hgQ : intSeriesC ℚ pg ≠ 0 := intSeriesC_ne_zero_rat hg0
+    · have hgQ : intSeriesC ℚ pg ≠ 0 := intSeriesC_ne_zero_rat hg0
       have hmem : ι A (intSeriesA A pf) / ι A (intSeriesA A pg) ∈ FF := by
         have h := coeffEmb_mem_laurentBaseChange L (div_mem_qExpFunctionFieldC f g hf hg hgQ)
         rwa [map_div₀, coeffEmb_intSeriesC, coeffEmb_intSeriesC, ← ι_intSeriesA A pf,
@@ -756,7 +755,6 @@ theorem card_le_finrank_of_linearIndependent
   set K0' := IntermediateField.adjoin kk {(jbar Γ kk : Fb)} with hK0'
   by_contra hlt
   push Not at hlt
-
   have hb : ∀ i : s, ∃ b : gaussRing A Γ, resHom A Γ b = ((i : Fb) : LaurentSeries kk) :=
     fun i => exists_resHom_eq A Γ (i : Fb).2
   choose b hb using hb
@@ -777,7 +775,6 @@ theorem card_le_finrank_of_linearIndependent
     rw [h0, map_zero, le_zero_iff, Valuation.zero_iff] at this
     exact ZeroMemClass.coe_eq_zero.mp this
   have hvpos : 0 < (gaussRing A Γ).valuation ((g i₀ : K0) : FF) := (Valuation.pos_iff _).mpr hgi₀
-
   let c : s → FF := fun o => ((g o : K0) : FF) / ((g i₀ : K0) : FF)
   have hcK : ∀ o, c o ∈ K0 := fun o => div_mem (g o).2 (g i₀).2
   have hcO : ∀ o, c o ∈ gaussRing A Γ := fun o => by
@@ -793,7 +790,6 @@ theorem card_le_finrank_of_linearIndependent
           rw [Finset.mul_sum]
           exact Finset.sum_congr rfl fun o _ => by simp only [c]; ring
       _ = 0 := by rw [h1, mul_zero]
-
   have ht : ∀ o, ∃ t : K0', ((t : Fb) : LaurentSeries kk) = resHom A Γ ⟨c o, hcO o⟩ :=
     fun o => exists_adjoin_coe_eq_resHom A Γ (hcK o) (hcO o)
   choose t ht using ht
@@ -802,7 +798,6 @@ theorem card_le_finrank_of_linearIndependent
     have h2 : ((t i₀ : Fb) : LaurentSeries kk) = (((1 : K0') : Fb) : LaurentSeries kk) := by
       rw [ht i₀, h1, map_one]; simp
     exact Subtype.ext (Subtype.ext h2)
-
   have hrelO : ∑ o, (⟨c o, hcO o⟩ : gaussRing A Γ) * b o = 0 := by
     apply Subtype.ext
     rw [AddSubmonoidClass.coe_finsetSum]
@@ -881,7 +876,6 @@ theorem isAlgebraic_of_sum_aeval_mul_pow_eq_zero {x t : F} (ht : Transcendental 
     have hcoeff := congrArg (fun p : Kt[X] => ((p.coeff m : Kt) : F)) hq
     simp only [q, finsetSum_coeff, coeff_C_mul, coeff_map, coeff_zero, ZeroMemClass.coe_zero] at hcoeff
     rw [AddSubmonoidClass.coe_finsetSum] at hcoeff
-
     have hpoly : aeval t (∑ i : Fin n, C ((c i).coeff m) * X ^ (i : ℕ)) = 0 := by
       rw [map_sum]
       refine (Finset.sum_congr rfl fun i _ => ?_).trans hcoeff
@@ -910,7 +904,6 @@ theorem finiteDimensional_adjoin_of_transcendental {x t : F}
   set Kx := IntermediateField.adjoin K {x} with hKx
   set Kt := IntermediateField.adjoin K {t} with hKt
   have := hfin
-
   set d := Module.finrank Kx F with hd
   have hdep : ¬ LinearIndependent Kx (fun i : Fin (d + 1) => t ^ (i : ℕ)) := by
     intro hli
@@ -918,7 +911,6 @@ theorem finiteDimensional_adjoin_of_transcendental {x t : F}
     rw [Fintype.card_fin] at h
     omega
   obtain ⟨g, hg, i₁, hi₁⟩ := Fintype.not_linearIndependent_iff.mp hdep
-
   have hrs : ∀ i, ∃ r s : K[X], aeval x s ≠ 0 ∧ ((g i : Kx) : F) * aeval x s = aeval x r := by
     intro i
     obtain ⟨r, s, h⟩ := (mem_adjoin_simple_iff K ((g i : Kx) : F)).mp (g i).2
@@ -927,7 +919,6 @@ theorem finiteDimensional_adjoin_of_transcendental {x t : F}
       rw [h, hs, div_zero, zero_mul, map_zero]
     · exact ⟨r, s, hs, by rw [h, div_mul_cancel₀ _ hs]⟩
   choose r s hs hgrs using hrs
-
   let c : Fin (d + 1) → K[X] := fun i => r i * ∏ j ∈ Finset.univ.erase i, s j
   have hD : ∀ i, aeval x (c i) = ((g i : Kx) : F) * ∏ j, aeval x (s j) := by
     intro i
@@ -947,7 +938,6 @@ theorem finiteDimensional_adjoin_of_transcendental {x t : F}
     refine ⟨i₁, ?_⟩
     rw [hD]
     exact mul_ne_zero (fun h => hi₁ (Subtype.ext h)) hprod
-
   have halg : IsAlgebraic Kt x := isAlgebraic_of_sum_aeval_mul_pow_eq_zero ht c hrel hne
   have : FiniteDimensional Kt (IntermediateField.adjoin Kt {x}) :=
     IntermediateField.adjoin.finiteDimensional halg.isIntegral

@@ -29,7 +29,6 @@ theorem solution (τ : UpperHalfPlane) : HasSum (fun m : ℤ => ((ModularCurve.j
   have hq : q ≠ 0 := Function.Periodic.qParam_ne_zero _
   have h := (hasSum_jNum_qParam τ).mul_left q⁻¹
   rw [← hqdef, inv_mul_cancel_left₀ hq] at h
-
   have hinj : Function.Injective fun n : ℕ => (n : ℤ) - 1 := fun a b hab => by
     simpa using hab
   rw [← hinj.hasSum_iff]

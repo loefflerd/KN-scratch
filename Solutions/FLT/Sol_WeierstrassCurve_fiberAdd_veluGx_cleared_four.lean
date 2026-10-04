@@ -51,7 +51,6 @@ theorem solution {R : Type*} [CommRing R] (W : WeierstrassCurve R) (x y x₀ y�
       = 4 * (3 * (x * (x - x₀) ^ 2 + W.veluGx x₀ y₀ * (x - x₀)) ^ 2 + 2 * W.a₂ * (x * (x - x₀) ^ 2 + W.veluGx x₀ y₀ * (x - x₀)) * (x - x₀) ^ 2 + (W.a₄ - 5 * W.veluGx x₀ y₀) * (x - x₀) ^ 4 - W.a₁ * (y * (x - x₀) ^ 3 - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀) * (x - x₀)) * (x - x₀)) :=
   WeierstrassCurve.fiberAdd_veluGx_cleared_four_aux W x y x₀ y₀ hP hQ hgy
 
-
 end S_WeierstrassCurve_fiberAdd_veluGx_cleared_four
 end P2MW
 export P2MW.S_WeierstrassCurve_fiberAdd_veluGx_cleared_four (solution)

@@ -157,9 +157,7 @@ theorem ord_smul (f : F) : (g • v).ord (g • f) = v.ord f := by
   · simp
   obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible v.toValuationSubring
   obtain ⟨u, hu⟩ := v.exists_unit_mul_zpow hf hπ
-
   set n := v.ord f with hn
-
   set e := smulValuationSubringEquiv g v.toValuationSubring with he
   have hπ' : Irreducible (e π) := (MulEquiv.irreducible_iff e).mpr hπ
   have hu' : IsUnit (e (u : v.toValuationSubring)) := u.isUnit.map e

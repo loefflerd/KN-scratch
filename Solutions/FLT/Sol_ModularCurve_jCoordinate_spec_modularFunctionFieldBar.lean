@@ -201,8 +201,7 @@ theorem solution (N : ℕ) [NeZero N] :
   have hpd : HasPrincipalDivisors (AlgebraicClosure ℚ) (modularFunctionFieldBar N) :=
     ModularCurve.hasPrincipalDivisors_modularFunctionFieldBar_unconditional N
   refine ⟨fun v hv => mwP2_exists_unique_coord htr hFD v hv, fun c => ?_, ?_⟩
-  ·
-    have hne : (⟨coeffEmb (AlgebraicClosure ℚ) jq,
+  · have hne : (⟨coeffEmb (AlgebraicClosure ℚ) jq,
         coeffEmb_mem_laurentBaseChange (L := AlgebraicClosure ℚ) (hx := jq_mem_full N)⟩ :
         modularFunctionFieldBar N)
         - algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) c ≠ 0 := by
@@ -212,8 +211,7 @@ theorem solution (N : ℕ) [NeZero N] :
     refine Set.Finite.subset (mwP2_finite_ord_support hne) fun v hv => ?_
     simp only [Set.mem_ofPred_eq] at hv ⊢
     omega
-  ·
-    refine Set.Finite.subset (mwP2_finite_ord_support hjb0) fun v hv => ?_
+  · refine Set.Finite.subset (mwP2_finite_ord_support hjb0) fun v hv => ?_
     simp only [Set.mem_ofPred_eq] at hv ⊢
     omega
 

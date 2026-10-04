@@ -299,7 +299,6 @@ p2m_open_scoped "ModularCurve" in
 open ModularCurve.W1 in
 private theorem ModularCurve.finrank_adjoin_jqN_prime_of_not_mem (F : IntermediateField ℚ (LaurentSeries ℚ)) (hj : jq ∈ F) (p : ℕ) [hp : Fact (Nat.Prime p)] (hpF : jqN p ∉ F) : Module.finrank F (IntermediateField.adjoin F ({jqN p} : Set (LaurentSeries ℚ))) = p + 1 := by
   classical
-
   obtain ⟨data, -, -⟩ := exists_phiIrreducible_evalSymm p
   set jF : F := ⟨jq, hj⟩ with hjF
   set P : Polynomial F := phiAtSeed data jF with hP
@@ -311,18 +310,15 @@ private theorem ModularCurve.finrank_adjoin_jqN_prime_of_not_mem (F : Intermedia
     rw [← Polynomial.eval_map_algebraMap, hPmap]
     simpa using phiAtSeed_jqN_eval p data 1
   have hα : IsIntegral F (jqN p) := ⟨P, hPmonic, by rwa [Polynomial.aeval_def] at hProot⟩
-
   let K := CyclotomicField p ℚ
   let ζ : Kˣ := cycUnit p
   have hζ : IsPrimitiveRoot (ζ : K) p := cycUnit_spec p
   let ι : LaurentSeries ℚ →+* LaurentSeries K := (coeffEmb K).comp (qExpand ℚ p)
   let : Algebra F (LaurentSeries K) := (ι.comp (algebraMap F (LaurentSeries ℚ))).toAlgebra
   have halg : ∀ a : F, algebraMap F (LaurentSeries K) a = ι a := fun a => rfl
-
   have hPmapL : P.map (algebraMap F (LaurentSeries K)) = phiProd p (conj p ζ) := by
     rw [RingHom.algebraMap_toAlgebra, ← Polynomial.map_map, hPmap, phiAtSeed_map]
     exact phiAtSeed_iota_jq_eq_phiProd p ζ hζ data
-
   have hirr : Irreducible P := by
     refine Polynomial.irreducible_of_transitive_ringAut P hPmonic ?_ (qTwistEquiv ζ) ?_ (TS K (p * p) 1)
       (fun b => TS K 1 (ζ ^ b)) p ?_ ?_ ?_ ?_
@@ -343,7 +339,6 @@ private theorem ModularCurve.finrank_adjoin_jqN_prime_of_not_mem (F : Intermedia
         change ι f = coeffEmb K (qExpand ℚ p (jqN p))
         rw [hf, iota_jqN]
       exact hpF (this ▸ f.2)
-
   have hmin : P = minpoly F (jqN p) := minpoly.eq_of_irreducible_of_monic hirr hProot hPmonic
   rw [IntermediateField.adjoin.finrank hα, ← hmin, hPdeg]
 
@@ -351,7 +346,6 @@ p2m_open "ModularCurve~coeffEmb_qExpand" in open _root_.P2MW.S_ModularCurve_finr
 
 theorem solution (F : IntermediateField ℚ (LaurentSeries ℚ)) (hj : jq ∈ F) (p : ℕ) [hp : Fact (Nat.Prime p)] (hpF : jqN p ∉ F) : Module.finrank F (IntermediateField.adjoin F ({jqN p} : Set (LaurentSeries ℚ))) = p + 1 :=
   ModularCurve.finrank_adjoin_jqN_prime_of_not_mem F hj p hpF
-
 
 end
 end S_ModularCurve_finrank_adjoin_jqN_prime_of_not_mem

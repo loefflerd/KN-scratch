@@ -33,7 +33,6 @@ theorem volume_smul_gl (g : GL (Fin 2) ℝ) (s : Set ℍ) : volume (g • s) = v
 
 instance : SMulInvariantMeasure SL(2, ℤ) ℍ (volume : Measure ℍ) where
   measure_preimage_smul g s hs := by
-
     simp only [MulAction.compHom_smul_def]
     exact SMulInvariantMeasure.measure_preimage_smul (Matrix.SpecialLinearGroup.mapGL ℝ g) hs
 
@@ -55,15 +54,12 @@ private lemma density_ne_zero {w : ℂ} (hw : w ∈ Set.range (UpperHalfPlane.co
 instance : Measure.IsOpenPosMeasure (volume : Measure ℍ) := by
   constructor
   intro U hU hUne
-
   rw [UpperHalfPlane.volume_eq_lintegral]
-
   have himage_open : IsOpen (UpperHalfPlane.coe '' U) :=
     UpperHalfPlane.isOpenEmbedding_coe.isOpenMap U hU
   have himage_ne : (UpperHalfPlane.coe '' U).Nonempty := hUne.image _
   have hpos : 0 < volume (UpperHalfPlane.coe '' U) :=
     himage_open.measure_pos volume himage_ne
-
   refine ((MeasureTheory.setLIntegral_pos_iff measurable_density).mpr ?_).ne'
   refine hpos.trans_le (measure_mono fun w hw => ?_)
   exact ⟨density_ne_zero (Set.image_subset_range _ _ hw), hw⟩
@@ -90,7 +86,6 @@ private lemma pairwise_disjoint_box : Pairwise (Function.onFun Disjoint box) := 
   refine Set.disjoint_left.mpr fun z hzm hzn => hmn ?_
   have h1 : (m : ℝ) < z.re ∧ z.re < m + 1 := hzm.1
   have h2 : (n : ℝ) < z.re ∧ z.re < n + 1 := hzn.1
-
   have : (m : ℝ) = n := by
     rcases lt_trichotomy m n with h | h | h
     · exfalso
@@ -114,17 +109,14 @@ private lemma box_eq_smul (n : ℤ) : box n = (ModularGroup.T ^ n) • box 0 := 
     exact ⟨⟨by linarith, by linarith⟩, h3⟩
 
 theorem volume_univ_eq_top : volume (Set.univ : Set ℍ) = ⊤ := by
-
   have hdisj := pairwise_disjoint_box
   have hmeas : ∀ n : ℤ, MeasurableSet (box n) := fun n => (isOpen_box n).measurableSet
   have hsum : volume (⋃ n : ℤ, box n) = ∑' n : ℤ, volume (box n) :=
     measure_iUnion hdisj hmeas
-
   have hconst : ∀ n : ℤ, volume (box n) = volume (box 0) := fun n => by
     rw [box_eq_smul n, volume_smul_sl2z]
   have hpos : volume (box 0) ≠ 0 :=
     (volume_pos_of_isOpen (isOpen_box 0) (box_nonempty 0)).ne'
-
   have htop : volume (⋃ n : ℤ, box n) = ⊤ := by
     rw [hsum]
     calc ∑' n : ℤ, volume (box n) = ∑' _ : ℤ, volume (box 0) := by

@@ -157,7 +157,6 @@ theorem mul_inv_mem_Gamma1 {γ γ' : SL(2, ℤ)} (hγ : γ ∈ Gamma0 M) (hγ' :
     push_cast at this
     rw [hc', mul_zero, sub_zero] at this
     exact this
-
   have h00 : ((γ 0 0 : ℤ) : ZMod M) = ((γ' 0 0 : ℤ) : ZMod M) := by
     have hu : IsUnit ((γ 1 1 : ℤ) : ZMod M) := isUnit_iff_exists_inv.mpr ⟨_, by rw [mul_comm]; exact hdet⟩
     apply hu.mul_right_cancel
@@ -241,7 +240,6 @@ theorem isRat_slash_mul (f : ModularForm Γ₁(M) k) (m : ℕ) {kE : ℤ} (E : M
     (hkE : k + kE = 12 * m) (hf : IsRat (qExpansion 1 f)) (hE : IsRat (qExpansion 1 E))
     {γ : SL(2, ℤ)} (hγ : γ ∈ Gamma0 M) :
     IsRat (qExpansion 1 (((⇑f : ℍ → ℂ) ∣[k] γ) * ⇑E)) := by
-
   set H : ℍ → ℂ := (⇑f : ℍ → ℂ) * ⇑E with hH
   set G : ℍ → ℂ := fun τ => H τ / (Δ τ) ^ m with hG
   have hΔ : ∀ τ : ℍ, (Δ τ) ^ m ≠ 0 := fun τ => pow_ne_zero _ (discriminant_ne_zero τ)
@@ -253,7 +251,6 @@ theorem isRat_slash_mul (f : ModularForm Γ₁(M) k) (m : ℕ) {kE : ℤ} (E : M
   have hmdG : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) G := by
     intro τ
     exact (hmdH τ).div ((hmdΔ τ).pow m) (hΔ τ)
-
   have hcw : ∀ α : SL(2, ℤ), (fun τ => G (α • τ)) * Δ ^ m = ((⇑f : ℍ → ℂ) ∣[k] α) * ⇑E := by
     intro α
     funext τ
@@ -265,7 +262,6 @@ theorem isRat_slash_mul (f : ModularForm Γ₁(M) k) (m : ℕ) {kE : ℤ} (E : M
       rw [mul_pow, ← zpow_natCast, ← zpow_mul, hkE]
     rw [hpow, zpow_add₀ hd, zpow_neg]
     field_simp [hΔ τ, zpow_ne_zero k hd, zpow_ne_zero kE hd]
-
   have hinv : ∀ g ∈ Gamma1 M, ∀ τ : ℍ, G (g • τ) = G τ := by
     intro g hg τ
     have h1 := congrFun (hcw g) τ
@@ -277,19 +273,16 @@ theorem isRat_slash_mul (f : ModularForm Γ₁(M) k) (m : ℕ) {kE : ℤ} (E : M
     have h3 : G τ * Δ τ ^ m = f τ * E τ := by
       have := congrFun hGΔ τ; first | exact this
     exact mul_right_cancel₀ (hΔ τ) (h1.trans h3.symm)
-
   have hbd : ∀ α : SL(2, ℤ), IsBoundedAtImInfty ((fun τ => G (α • τ)) * Δ ^ m) := by
     intro α
     rw [hcw α]
     exact (isBoundedAtImInfty_slash f α).mul (ModularFormClass.bdd_at_infty E)
-
   have hrat : ∀ n, ∃ r : ℚ, (qExpansion 1 (G * Δ ^ m)).coeff n = (r : ℂ) := by
     rw [hGΔ, hH]
     have : qExpansion 1 ((⇑f : ℍ → ℂ) * ⇑E) = qExpansion 1 ⇑f * qExpansion 1 ⇑(resSL M E) := by
       rw [← coe_resSL M E, ModularForm.qExpansion_mul_coe one_pos (one_mem_strictPeriods M) f (resSL M E)]
     rw [this]
     exact hf.mul hE
-
   have key := ModularCurve.exists_ratCast_qExpansion_comp_smul_of_mem_Gamma0 M m G hmdG hinv hbd hrat γ hγ
   rw [hcw γ] at key
   exact key
@@ -346,16 +339,14 @@ theorem exists_weights (hk : Even k) : ∃ (m a b : ℕ), k + (a * 4 + b * 6 : �
   have hjabs' : -j ≤ (j.natAbs : ℤ) := by
     have := Int.le_natAbs (a := -j); rwa [Int.natAbs_neg] at this
   rcases Int.emod_two_eq_zero_or_one j with hpar | hpar
-  ·
-    set q : ℤ := j / 2 with hq
+  · set q : ℤ := j / 2 with hq
     have hjq : j = 2 * q := by omega
     have h0 : 0 ≤ 3 * (j.natAbs : ℤ) + 3 - q := by omega
     obtain ⟨a, ha⟩ := Int.eq_ofNat_of_zero_le h0
     refine ⟨j.natAbs + 1, a, 0, ?_⟩
     simp only [Nat.cast_add, Nat.cast_mul, Nat.cast_ofNat, Nat.cast_one, ← ha]
     omega
-  ·
-    set q : ℤ := j / 2 with hq
+  · set q : ℤ := j / 2 with hq
     have hjq : j = 2 * q + 1 := by omega
     have h0 : 0 ≤ 3 * (j.natAbs : ℤ) + 1 - q := by omega
     obtain ⟨a, ha⟩ := Int.eq_ofNat_of_zero_le h0
@@ -367,7 +358,6 @@ theorem isRat_slash_of_even (hk : Even k) (f : ModularForm Γ₁(M) k) (hf : IsR
     {γ : SL(2, ℤ)} (hγ : γ ∈ Gamma0 M) : IsRat (qExpansion 1 ((⇑f : ℍ → ℂ) ∣[k] γ)) := by
   obtain ⟨m, a, b, hw⟩ := exists_weights hk
   have key := isRat_slash_mul f m (Eaux a b) (by exact_mod_cast hw) hf (isRat_Eaux a b) hγ
-
   have hprod : qExpansion 1 (((⇑f : ℍ → ℂ) ∣[k] γ) * ⇑(Eaux a b))
       = qExpansion 1 ((⇑f : ℍ → ℂ) ∣[k] γ) * qExpansion 1 ⇑(Eaux a b) := by
     rw [← coe_diamondSlash γ hγ f, ← coe_resSL M (Eaux a b),
@@ -384,7 +374,6 @@ theorem exists_E1 : ∃ E : ModularForm Γ₁(3) 1,
   obtain ⟨E, hE⟩ := EisensteinWeightOne.e1Chi3IsModular
   refine ⟨E, ?_⟩
   set c : ℕ → ℤ := fun n => PowerSeries.coeff n EisensteinWeightOne.e1Chi3 with hc
-
   have hchi : ∀ d : ℕ, |EisensteinWeightOne.chiNegThree d| ≤ 1 := by
     intro d
     unfold EisensteinWeightOne.chiNegThree
@@ -406,7 +395,6 @@ theorem exists_E1 : ∃ E : ModularForm Γ₁(3) 1,
         rw [abs_mul, abs_of_nonneg (by norm_num : (0:ℤ) ≤ 6)]; linarith
       rw [← Int.cast_abs]
       exact_mod_cast h2
-
   have hsum : ∀ z : ℍ, HasSum (fun n : ℕ => ((c n : ℤ) : ℂ) • Periodic.qParam 1 z ^ n) (E z) := by
     intro z
     have hq : ‖Periodic.qParam 1 z‖ < 1 := by
@@ -485,8 +473,7 @@ theorem exists_lift (d : ℤ) (hd : IsCoprime d (M : ℤ)) :
     obtain ⟨u, v, huv⟩ := hM3
     refine ⟨d + (1 - d) * u * M, ?_, ⟨(1 - d) * u, by ring⟩, Or.inr ?_⟩
     · apply IsCoprime.mul_right
-      ·
-        have : d + (1 - d) * u * M = 1 + 3 * (-(1 - d) * v) := by linear_combination (1 - d) * huv
+      · have : d + (1 - d) * u * M = 1 + 3 * (-(1 - d) * v) := by linear_combination (1 - d) * huv
         rw [this]
         exact (isCoprime_one_left.add_mul_left_left _)
       · exact hd.add_mul_right_left _
@@ -496,7 +483,6 @@ theorem isRat_slash_of_odd (hk : Odd k) (f : ModularForm Γ₁(M) k) (hf : IsRat
     {γ : SL(2, ℤ)} (hγ : γ ∈ Gamma0 M) : IsRat (qExpansion 1 ((⇑f : ℍ → ℂ) ∣[k] γ)) := by
   obtain ⟨E, hE, hE0⟩ := exists_E1
   have : NeZero (3 * M) := ⟨mul_ne_zero three_ne_zero (NeZero.ne M)⟩
-
   obtain ⟨d', hcop, ⟨t, ht⟩, h3⟩ := exists_lift (M := M) (γ 1 1) (isCoprime_entry hγ)
   obtain ⟨x, y, hxy⟩ := hcop
   set γ' : SL(2, ℤ) := ⟨!![x, -y; 3 * M, d'], by
@@ -510,9 +496,7 @@ theorem isRat_slash_of_odd (hk : Odd k) (f : ModularForm Γ₁(M) k) (hf : IsRat
   have hγ'3 : γ' ∈ Gamma0 3 := Gamma0_le_of_dvd (dvd_mul_right 3 M) hγ'3M
   have hentry : ((γ 1 1 : ℤ) : ZMod M) = ((γ' 1 1 : ℤ) : ZMod M) := by
     rw [hγ'11, ht]; push_cast; simp
-
   have hfγ : (⇑f : ℍ → ℂ) ∣[k] γ = (⇑f : ℍ → ℂ) ∣[k] γ' := slash_eq_of_apply_eq f hγ hγ'M hentry
-
   obtain ⟨ε, hε, hEγ⟩ : ∃ ε : ℚ, ε * ε = 1 ∧ (⇑E : ℍ → ℂ) ∣[(1 : ℤ)] γ' = (ε : ℂ) • (⇑E : ℍ → ℂ) := by
     have h3z : (3 : ZMod 3) = 0 := by decide
     have hxd : ((x : ℤ) : ZMod 3) * ((d' : ℤ) : ZMod 3) = 1 := by
@@ -521,8 +505,7 @@ theorem isRat_slash_of_odd (hk : Odd k) (f : ModularForm Γ₁(M) k) (hf : IsRat
       rw [h3z] at this
       simpa using this
     rcases h3 with h3 | h3
-    ·
-      have hd3 : ((d' : ℤ) : ZMod 3) = 1 ∨ ((d' : ℤ) : ZMod 3) = -1 := by
+    · have hd3 : ((d' : ℤ) : ZMod 3) = 1 ∨ ((d' : ℤ) : ZMod 3) = -1 := by
         have hne : ((d' : ℤ) : ZMod 3) ≠ 0 := by
           intro h0; rw [h0, mul_zero] at hxd; exact zero_ne_one hxd
         revert hne; generalize ((d' : ℤ) : ZMod 3) = e; decide +revert
@@ -545,8 +528,7 @@ theorem isRat_slash_of_odd (hk : Odd k) (f : ModularForm Γ₁(M) k) (hf : IsRat
           exact hxd
         rw [slash_of_neg_mem E hmem]
         push_cast; norm_num
-    ·
-      refine ⟨1, by norm_num, ?_⟩
+    · refine ⟨1, by norm_num, ?_⟩
       have hd3 : ((d' : ℤ) : ZMod 3) = 1 := by
         obtain ⟨w, hw⟩ := h3
         have : d' = 1 + 3 * w := by linear_combination hw
@@ -559,7 +541,6 @@ theorem isRat_slash_of_odd (hk : Odd k) (f : ModularForm Γ₁(M) k) (hf : IsRat
         rw [ModularForm.SL_slash]
         exact SlashInvariantFormClass.slash_action_eq E _ (Subgroup.mem_map_of_mem _ hmem)
       rw [hEinv]; push_cast; rw [one_smul]
-
   set f3 : ModularForm Γ₁(3 * M) k := res (dvd_mul_left M 3) f with hf3
   set E3 : ModularForm Γ₁(3 * M) 1 := res (dvd_mul_right 3 M) E with hE3
   set F : ModularForm Γ₁(3 * M) (k + 1) := f3.mul E3 with hF
@@ -568,13 +549,11 @@ theorem isRat_slash_of_odd (hk : Odd k) (f : ModularForm Γ₁(M) k) (hf : IsRat
     exact hf.mul hE
   have hk1 : Even (k + 1) := hk.add_one
   have key := isRat_slash_of_even hk1 F hFrat hγ'3M
-
   have hFγ : (⇑F : ℍ → ℂ) ∣[k + 1] γ' = ⇑(diamondSlash γ' hγ'3M f3) * ⇑(((ε : ℂ)) • E3) := by
     rw [hF, coe_mul, ModularForm.mul_slash_SL2, coe_diamondSlash, FunLike.coe_smul, coe_res, coe_res, hEγ]
   rw [hFγ, ModularForm.qExpansion_mul_coe one_pos (one_mem_strictPeriods (3 * M)),
     FunLike.coe_smul, ModularForm.qExpansion_smul one_pos (one_mem_strictPeriods (3 * M)),
     coe_diamondSlash, coe_res, coe_res, ← hfγ] at key
-
   have key' : IsRat (qExpansion 1 ((⇑f : ℍ → ℂ) ∣[k] γ) * qExpansion 1 ⇑E) := by
     have heq : qExpansion 1 ((⇑f : ℍ → ℂ) ∣[k] γ) * qExpansion 1 ⇑E
         = (ε : ℂ) • (qExpansion 1 ((⇑f : ℍ → ℂ) ∣[k] γ) * ((ε : ℂ) • qExpansion 1 ⇑E)) := by

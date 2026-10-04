@@ -50,7 +50,6 @@ theorem solution (n N : ℕ) (f : UpperHalfPlane → ℂ)
       = HeckeEis.coeffH1parMk _ ⟨hF.cocycle, ⟨hF.cocycle_mem_coeffCocycles, hpar⟩⟩ :=
   HeckeEis.SolMain.eqmk n N f hEI hF hpar
 
-
 end S_HeckeEis_eichlerShimuraMap_eq_coeffH1parMk
 end P2MW
 export P2MW.S_HeckeEis_eichlerShimuraMap_eq_coeffH1parMk (solution)

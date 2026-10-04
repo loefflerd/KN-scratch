@@ -224,7 +224,6 @@ theorem sq_eq_intCast_nonneg_isSquare
       rw [← hDξ]; exact DDξ.add_dual
     have hmul : ξ * DDξ.dual = ((DDξ.norm : ℤ) : AddMonoid.End W.Point) := by
       rw [← hDξ]; exact DDξ.mul_dual
-
     have hlin : ξ * ((DDξ.trace : ℤ) : AddMonoid.End W.Point)
         = (((d + DDξ.norm) : ℤ) : AddMonoid.End W.Point) := by
       rw [← htξ, mul_add, hξsq, hmul, ← Int.cast_add]
@@ -268,7 +267,6 @@ theorem dualEndData_disc_neg_of_notBot
       - ((t : ℤ) : AddMonoid.End W.Point) with hξ_def
   have hξS : ξ ∈ isogenyEndSubring W hNs :=
     sub_mem (mul_mem (intCast_mem _ 2) hφS) (intCast_mem _ t)
-
   have hξsq : ξ * ξ = ((d : ℤ) : AddMonoid.End W.Point) := by
     have hφφ : φ * φ
         = ((t : ℤ) : AddMonoid.End W.Point) * φ - ((n : ℤ) : AddMonoid.End W.Point) := by
@@ -306,9 +304,7 @@ theorem dualEndData_disc_neg_of_notBot
           - ((4 * n : ℤ) : AddMonoid.End W.Point) by
         rw [← Int.cast_sub]; congr 1; ring]
     abel
-
   obtain ⟨e, he⟩ := sq_eq_intCast_nonneg_isSquare W hNs hξS hd_nn hξsq
-
   have hfact : (ξ - ((e : ℤ) : AddMonoid.End W.Point))
       * (ξ + ((e : ℤ) : AddMonoid.End W.Point)) = 0 := by
     have expand : (ξ - ((e : ℤ) : AddMonoid.End W.Point))
@@ -326,20 +322,17 @@ theorem dualEndData_disc_neg_of_notBot
         (sub_mem hξS (intCast_mem _ e)) h hfact
       exact Subring.mem_bot.mpr ⟨-e, by
         rw [Int.cast_neg]; exact neg_eq_of_add_eq_zero_left h0⟩
-
   obtain ⟨s, hs⟩ := Subring.mem_bot.mp hξbot
   have h2φ : ((2 : ℤ) : AddMonoid.End W.Point) * φ
       = (((t + s : ℤ)) : AddMonoid.End W.Point) := by
     have : ((2 : ℤ) : AddMonoid.End W.Point) * φ
         = ((t : ℤ) : AddMonoid.End W.Point) + ξ := by rw [hξ_def]; abel
     rw [this, ← hs, ← Int.cast_add]
-
   have hs_sq : s ^ 2 = d := by
     have : (((s ^ 2 : ℤ)) : AddMonoid.End W.Point)
         = ((d : ℤ) : AddMonoid.End W.Point) := by
       rw [← hξsq, ← hs, sq, Int.cast_mul]
     exact intCast_addMonoidEnd_point_injective W this
-
   have hprod : (t + s) * (t - s) = 4 * n := by
     have : t ^ 2 - s ^ 2 = 4 * n := by rw [hs_sq, hd_def]; ring
     linarith [sq_sub_sq t s]
@@ -352,7 +345,6 @@ theorem dualEndData_disc_neg_of_notBot
     rw [hprod] at h3
     omega
   obtain ⟨m, hm⟩ := hts_even
-
   have hcancel : ((2 : ℤ) : AddMonoid.End W.Point)
       * (φ - ((m : ℤ) : AddMonoid.End W.Point)) = 0 := by
     rw [mul_sub, h2φ, ← Int.cast_mul, ← Int.cast_sub, hm, sub_self, Int.cast_zero]

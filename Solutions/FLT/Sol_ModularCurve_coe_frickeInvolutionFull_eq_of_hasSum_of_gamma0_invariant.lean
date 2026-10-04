@@ -228,16 +228,14 @@ include hζ in
 theorem exists_interpK_coeff_eq (f g : LaurentSeries ℚ) (k : ℕ) :
     ∃ ξ : LaurentSeries ℚ, (interpK ℓ ζ f g).coeff k = coeffEmb K (qExpand ℚ ℓ ξ) := by
   refine PhiGen.mem_range_coeffEmb_qExpand_of_mem_inter ?_ ?_
-  ·
-    refine mem_range_qExpand_of_qTwist_eq ℓ ζ hζ _ ?_
+  · refine mem_range_qExpand_of_qTwist_eq ℓ ζ hζ _ ?_
     rw [← Polynomial.coeff_map, interpK, interpPoly_map]
     have h1 : (⇑(qTwist ζ) ∘ slotH ℓ ζ f g) = slotH ℓ ζ f g ∘ liftPerm ℓ (Equiv.addRight (1 : Fin ℓ)) :=
       funext fun i => qTwist_slotH ℓ ζ hζ f g i
     have h2 : (⇑(qTwist ζ) ∘ PhiGen.conj ℓ ζ) = PhiGen.conj ℓ ζ ∘ liftPerm ℓ (Equiv.addRight (1 : Fin ℓ)) :=
       funext fun i => qTwist_conj ℓ ζ hζ i
     rw [h1, h2, interpPoly_perm]
-  ·
-    refine PhiGen.mem_range_coeffEmb_of_forall_coeffMap_eq
+  · refine PhiGen.mem_range_coeffEmb_of_forall_coeffMap_eq
       (fun c hc => (IsGalois.mem_range_algebraMap_iff_fixed c).mpr hc) fun σ => ?_
     obtain ⟨e, he⟩ := PhiGen.exists_galoisPerm hζ (σ : K →+* K)
     rw [← Polynomial.coeff_map, interpK, interpPoly_map]
@@ -508,13 +506,11 @@ include hF hG hσ in
 lemma realL_slotH (i : Fin (ℓ + 1)) :
     RealL ℓ (coeffMap σ (slotH ℓ ζ f g i)) (slotF ℓ F i) := by
   refine Fin.cases ?_ (fun b => ?_) i
-  ·
-    have h := realL_qExpand_of_realL_one ℓ _ _ (realL_fC f F hF)
+  · have h := realL_qExpand_of_realL_one ℓ _ _ (realL_fC f F hF)
     refine h.congr ?_ fun τ => ?_
     · rw [slotH_zero, coeffMap_sigma_coeffEmb, coeffMap_qExpand]
     · simp [slotF]
-  ·
-    have h := realL_twist ℓ _ _ (realL_gC ℓ g F hG) (b : ℕ) (coeffMap σ (slotH ℓ ζ f g b.succ)) fun m => by
+  · have h := realL_twist ℓ _ _ (realL_gC ℓ g F hG) (b : ℕ) (coeffMap σ (slotH ℓ ζ f g b.succ)) fun m => by
       rw [slotH_succ, coeffMap_coeff, qTwist_coeff, map_mul, Units.val_zpow_eq_zpow_val, map_zpow₀,
         Units.val_pow_eq_pow_val, map_pow, hσ, coeffEmb_coeff, eq_ratCast, map_ratCast, coeffMap_coeff]
       rfl
@@ -629,7 +625,6 @@ include hF hG hσ hinv in
 
 lemma mem_adjoin_of_interpK_coeff_eq (k : ℕ) (ξ : LaurentSeries ℚ)
     (hξ : (interpK ℓ ζ f g).coeff k = coeffEmb K (qExpand ℚ ℓ ξ)) : ξ ∈ Algebra.adjoin ℚ {jq} := by
-
   have h1 : RealL ℓ (coeffMap σ ((interpK ℓ ζ f g).coeff k)) (interpFun ℓ F k) := by
     have h := RealL.interpPoly_coeff (h := (ℓ : ℝ)) (by exact_mod_cast hℓ.out.pos)
       (fun i => realL_slotH ℓ ζ σ hσ f g F hF hG i) (fun i => realL_conj ℓ ζ σ hσ i) k
@@ -723,10 +718,8 @@ include hζ hσ hF hG hinv in
 theorem mem_modularFunctionField_of_data : f ∈ modularFunctionField ℓ := by
   classical
   have : NeZero ℓ := ⟨hℓ.out.ne_zero⟩
-
   obtain ⟨x, hx, hιx⟩ := exists_sum_eq_mul_dHat ℓ ζ hζ f g
     (fun k ξ h => mem_adjoin_of_interpK_coeff_eq ℓ ζ σ hσ f g F hF hG hinv k ξ h)
-
   have h1F : ∀ τ : ℍ, HasSum (fun m : ℤ => (((1 : LaurentSeries ℚ).coeff m : ℚ) : ℂ) * 𝕢 1 (τ : ℂ) ^ m)
       ((fun _ : ℍ => (1 : ℂ)) τ) := by
     intro τ
@@ -760,7 +753,6 @@ theorem isIntegral_of_data : IsIntegral (Algebra.adjoin ℚ {jq}) f := by
     mem_adjoin_of_conjK_coeff_eq ℓ ζ σ hσ f g F hF hG hinv k (π k) (hπ k)
   have hdeg : (conjK ℓ ζ f g).natDegree = ℓ + 1 := conjPoly_natDegree _
   have hmon : (conjK ℓ ζ f g).Monic := conjPoly_monic _
-
   let p : Polynomial (Algebra.adjoin ℚ {jq}) :=
     ∑ k ∈ Finset.range (ℓ + 2),
       Polynomial.C (⟨π k, hπmem k⟩ : Algebra.adjoin ℚ {jq}) * (Polynomial.X : Polynomial (Algebra.adjoin ℚ {jq})) ^ k
@@ -886,7 +878,6 @@ variable {K : Type} [Field K] [Algebra ℚ K] [IsGalois ℚ K] [FiniteDimensiona
 lemma realL_jtN_S : RealL ℓ (coeffMap castC jq) (fun τ => jtN ℓ (ModularGroup.S • τ)) := by
   have : NeZero ℓ := ⟨hℓ.out.ne_zero⟩
   intro τ
-
   have hpt : ModularForm.heckeDiagMatrix ℓ • ModularGroup.S • τ = ModularGroup.S • ModularForm.heckeMatrix ℓ 0 • τ := by
     have h := heckeDiag_smul_S_T_pow_smul ℓ 0 τ
     rwa [pow_zero, mul_one] at h
@@ -944,7 +935,6 @@ lemma embW_of_mem_adjoin (w : modularFunctionFieldFull ℓ ≃ₐ[ℚ] modularFu
     intro hξ'
     rw [Set.mem_singleton_iff] at hx
     subst hx
-
     have h := hw 1 ℓ (one_mul ℓ) inferInstance inferInstance
     have h1 : (⟨qExpand ℚ 1 jq, jqd_mem_full ℓ (Dvd.intro ℓ (one_mul ℓ))⟩ : modularFunctionFieldFull ℓ) =
         ⟨jq, hξ'⟩ := Subtype.ext (qExpand_one_apply jq)
@@ -952,7 +942,6 @@ lemma embW_of_mem_adjoin (w : modularFunctionFieldFull ℓ ≃ₐ[ℚ] modularFu
     rw [embW_apply, h]
   | algebraMap r =>
     intro hξ'
-
     have hR : qExpand ℚ ℓ (algebraMap ℚ (LaurentSeries ℚ) r) = algebraMap ℚ (LaurentSeries ℚ) r :=
       RingHom.congr_fun (RingHom.ext_rat ((qExpand ℚ ℓ).comp (algebraMap ℚ (LaurentSeries ℚ)))
         (algebraMap ℚ (LaurentSeries ℚ))) r
@@ -994,7 +983,6 @@ theorem fricke_transport (w : modularFunctionFieldFull ℓ ≃ₐ[ℚ] modularFu
   have hadj : Algebra.adjoin ℚ {jq} ≤ (modularFunctionFieldFull ℓ).toSubalgebra :=
     Algebra.adjoin_le (Set.singleton_subset_iff.mpr (jq_mem_full ℓ))
   have hFle := modularFunctionField_le_full ℓ
-
   choose ξ hξ using fun k => exists_interpK_coeff_eq ℓ ζ hζ f g k
   have h1F : ∀ τ : ℍ, HasSum (fun m : ℤ => (((1 : LaurentSeries ℚ).coeff m : ℚ) : ℂ) * 𝕢 1 (τ : ℂ) ^ m)
       ((fun _ : ℍ => (1 : ℂ)) τ) := by
@@ -1009,7 +997,6 @@ theorem fricke_transport (w : modularFunctionFieldFull ℓ ≃ₐ[ℚ] modularFu
     mem_adjoin_of_interpK_coeff_eq ℓ ζ σ hσ f g F hF hG hinv k (ξ k) (hξ k)
   have hξ1mem : ∀ k, ξ1 k ∈ Algebra.adjoin ℚ {jq} := fun k =>
     mem_adjoin_of_interpK_coeff_eq ℓ ζ σ hσ 1 1 (fun _ => 1) h1F h1G h1inv k (ξ1 k) (hξ1 k)
-
   have hreal : ∀ k, RealL 1 (coeffMap castC (ξ k)) (interpFun ℓ F k) := by
     intro k
     have h := RealL.interpPoly_coeff (h := (ℓ : ℝ)) hℓpos
@@ -1028,7 +1015,6 @@ theorem fricke_transport (w : modularFunctionFieldFull ℓ ≃ₐ[ℚ] modularFu
       rw [← Polynomial.coeff_map, interpK, interpPoly_map]; rfl
     rw [hξ1 k, coeffMap_sigma_coeffEmb, coeffMap_qExpand] at h'
     exact realL_one_of_realL_qExpand ℓ _ _ h'
-
   set x : LaurentSeries ℚ := ∑ k ∈ Finset.range (ℓ + 1), ξ k * jqN ℓ ^ k with hx
   set d : LaurentSeries ℚ := ∑ k ∈ Finset.range (ℓ + 1), ξ1 k * jqN ℓ ^ k with hd
   set x' : LaurentSeries ℚ := ∑ k ∈ Finset.range (ℓ + 1), qExpand ℚ ℓ (ξ k) * jq ^ k with hx'
@@ -1037,7 +1023,6 @@ theorem fricke_transport (w : modularFunctionFieldFull ℓ ≃ₐ[ℚ] modularFu
     sum_mem fun k _ => mul_mem (hadj (hξmem k)) (pow_mem (hFle (jqN_mem ℓ)) k)
   have hdmem : d ∈ modularFunctionFieldFull ℓ :=
     sum_mem fun k _ => mul_mem (hadj (hξ1mem k)) (pow_mem (hFle (jqN_mem ℓ)) k)
-
   have hιx : iota (K := K) ℓ x = iota ℓ f * dHat ℓ ζ := by
     have hdeg : (interpK ℓ ζ f g).natDegree < ℓ + 1 := natDegree_interpPoly_lt _ _
     rw [hx, map_sum]
@@ -1051,7 +1036,6 @@ theorem fricke_transport (w : modularFunctionFieldFull ℓ ≃ₐ[ℚ] modularFu
   have hd0 : d ≠ 0 := by
     intro h0; exact dHat_ne_zero ℓ ζ hζ (by rw [h0, map_zero] at hιd; exact hιd.symm)
   have hfd : f * d = x := iota_injective (K := K) ℓ (by rw [map_mul, hιd, hιx])
-
   have hwx : embW ℓ w ⟨x, hxmem⟩ = x' := by
     have : (⟨x, hxmem⟩ : modularFunctionFieldFull ℓ) =
         ∑ k ∈ Finset.range (ℓ + 1), ⟨ξ k, hadj (hξmem k)⟩ * ⟨jqN ℓ, hFle (jqN_mem ℓ)⟩ ^ k := by
@@ -1088,7 +1072,6 @@ theorem fricke_transport (w : modularFunctionFieldFull ℓ ≃ₐ[ℚ] modularFu
         ⟨jqN ℓ, hFle (jqN_mem ℓ)⟩ := Subtype.ext rfl
     rw [h1, h2] at h
     rw [embW_apply, h]
-
   have hXpt : ∀ (Φ : ℍ → ℂ) (τ : ℍ), ∑ k ∈ Finset.range (ℓ + 1), interpFun ℓ Φ k τ * jtN ℓ τ ^ k =
       Φ τ * ∏ m ∈ Finset.univ.erase (0 : Fin (ℓ + 1)), (slotJ ℓ 0 τ - slotJ ℓ m τ) := by
     intro Φ τ
@@ -1116,7 +1099,6 @@ theorem fricke_transport (w : modularFunctionFieldFull ℓ ≃ₐ[ℚ] modularFu
     apply coeffMap_castC_injective
     rw [map_mul]
     exact laurent_qParam_coeff_unique ℓ hℓpos _ _ _ hrx' (hrg.mul hℓpos hrd')
-
   have hd'0 : d' ≠ 0 := by
     rw [← hwd, embW_apply]
     intro h0

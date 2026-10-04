@@ -57,24 +57,19 @@ theorem solution
           ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ)
           (ModularCurve.qExpFunctionFieldC ℚ Γ)) + 2 := by
   classical
-
   have hKc : CharZero (AlgebraicClosure ℚ) :=
     charZero_of_injective_algebraMap (algebraMap ℚ (AlgebraicClosure ℚ)).injective
-
   have : (Gamma1 M).FiniteIndex := (CongruenceSubgroup.Gamma1_is_congruence M).finiteIndex
   have : Γ.FiniteIndex := Subgroup.finiteIndex_of_le hΓ
   have hT1 : ModularGroup.T ∈ Gamma1 M := by
     rw [← ModularCurve.GammaH_bot M]; exact ModularCurve.translation_mem_GammaH M ⊥
   have hT : ModularGroup.T ∈ Γ := hΓ hT1
-
   obtain ⟨htr, hfin⟩ :=
     ModularCurve.transcendental_and_finiteDimensional_adjoin_laurentBaseChange_qExpFunctionFieldC_of_coe_eq_jqModC
       (AlgebraicClosure ℚ) Γ hT y hy
   have := hfin
-
   have hle := ModularCurve.two_mul_genusFF_add_card_fibres_le_finrank_add_two_of_gamma1_le M Γ hΓ y hy
   refine le_antisymm hle ?_
-
   obtain ⟨S0, hS0mem, hS0sum⟩ :=
     AlgebraicCurve.exists_finset_sum_ord_sub_algebraMap_eq_finrank_of_isAlgClosed (AlgebraicClosure ℚ) y htr hfin 0
   obtain ⟨S1, hS1mem, hS1sum⟩ :=
@@ -89,7 +84,6 @@ theorem solution
           (ModularCurve.qExpFunctionFieldC ℚ Γ))) := by
     exact map_ofNat _ 1728
   simp only [h0] at hS0mem hS0sum
-
   have cSi : Nat.card {P : AlgebraicCurve.Place (AlgebraicClosure ℚ)
           ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)) //
             P.ord y < 0} = Si.card := by
@@ -109,7 +103,6 @@ theorem solution
       intro P; rw [hS1mem P, h1728]
     rw [Nat.card_congr (Equiv.subtypeEquivRight e)]
     simp only [Nat.card_eq_fintype_card, Fintype.card_coe]
-
   have hdisj : Disjoint S0 S1 := by
     rw [Finset.disjoint_left]
     intro P hP0 hP1
@@ -132,7 +125,6 @@ theorem solution
     rw [add_sub_cancel, hc] at hsum
     rw [hsum] at hy0
     exact lt_irrefl _ hy0
-
   have : CharZero ↥(IntermediateField.adjoin (AlgebraicClosure ℚ)
       ({y} : Set ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)))) :=
     charZero_of_injective_algebraMap (algebraMap (AlgebraicClosure ℚ) _).injective
@@ -141,7 +133,6 @@ theorem solution
         ({y} : Set ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ))))
       ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)) :=
     Algebra.IsAlgebraic.isSeparable_of_perfectField
-
   have hst := AlgebraicCurve.sum_ord_sub_one_le_two_mul_genusFF_of_isSeparable (AlgebraicClosure ℚ) y htr hfin hsep
     (S0 ∪ S1) (fun P => if P ∈ S0 then 0 else 1728)
     (by
@@ -151,7 +142,6 @@ theorem solution
       · have hn : P ∉ S0 := fun h' => Finset.disjoint_left.mp hdisj h' h
         simp only [hn, ite_false]; exact (hS1mem P).mp h)
     Si (fun P hP => (hSimem P).mp hP)
-
   have eA : ∀ P ∈ S0, (P.ord (y - algebraMap (AlgebraicClosure ℚ) _
         ((fun P => if P ∈ S0 then (0 : AlgebraicClosure ℚ) else 1728) P)) - 1) = P.ord y - 1 := by
     intro P hP
@@ -165,7 +155,6 @@ theorem solution
   rw [Finset.sum_union hdisj, Finset.sum_congr rfl eA, Finset.sum_congr rfl eB] at hst
   simp only [Finset.sum_sub_distrib, Finset.sum_const, nsmul_eq_mul, mul_one] at hst
   rw [hS0sum, hS1sum, hSisum] at hst
-
   rw [cSi, cS0, cS1]
   omega
 

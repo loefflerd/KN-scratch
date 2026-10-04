@@ -116,14 +116,12 @@ theorem ord_eq_zero_of_pos_1728 {v : Place ℚb 𝔽} (hv : 0 < v.ord (jBar N - 
   have hne : (algebraMap ℚb 𝔽 1728) ≠ 0 := by
     rw [Ne, map_eq_zero_iff _ (algebraMap ℚb 𝔽).injective]; norm_num
   rcases lt_trichotomy (v.ord (jBar N)) 0 with hlt | heq | hgt
-  ·
-    have h : v.ord (jBar N + (-(algebraMap ℚb 𝔽 1728))) = v.ord (jBar N) :=
+  · have h : v.ord (jBar N + (-(algebraMap ℚb 𝔽 1728))) = v.ord (jBar N) :=
       v.ord_add_eq_of_lt (jBar_ne_zero N) (neg_ne_zero.mpr hne) (by rw [ord_neg, h1728]; exact hlt)
     rw [← sub_eq_add_neg] at h
     omega
   · exact heq
-  ·
-    have h : v.ord (-(algebraMap ℚb 𝔽 1728) + jBar N) = v.ord (-(algebraMap ℚb 𝔽 1728)) :=
+  · have h : v.ord (-(algebraMap ℚb 𝔽 1728) + jBar N) = v.ord (-(algebraMap ℚb 𝔽 1728)) :=
       v.ord_add_eq_of_lt (neg_ne_zero.mpr hne) (jBar_ne_zero N) (by rw [ord_neg, h1728]; exact hgt)
     rw [neg_add_eq_sub, ord_neg, h1728] at h
     omega
@@ -175,9 +173,7 @@ theorem exists_weightDivisor :
           + 2 * (m : ℤ) * v.ord (jBar N) / 3) ∧
       (∀ v, v.ord (jBar N) < 0 → D v ≤ (m : ℤ) * v.ord (jBar N) - 1) := by
   classical
-
   have hdeg : ∀ w : Place ℚb 𝔽, w.deg = 1 := deg_eq_one_modularFunctionFieldBar N
-
   obtain ⟨-, hfinc, hfinI⟩ := jCoordinate_spec_modularFunctionFieldBar N
   set S0 : Finset (Place ℚb 𝔽) := (hfinc 0).toFinset with hS0def
   set S1 : Finset (Place ℚb 𝔽) := (hfinc 1728).toFinset with hS1def
@@ -188,7 +184,6 @@ theorem exists_weightDivisor :
     fun v => by rw [hS1def, Set.Finite.mem_toFinset, Set.mem_ofPred_eq]
   have hSI : ∀ v, v ∈ Sinf ↔ v.ord (jBar N) < 0 := fun v => by
     rw [hSIdef, Set.Finite.mem_toFinset, Set.mem_ofPred_eq]
-
   set S := S0 ∪ S1 ∪ Sinf with hSdef
   have hS : ∀ v, v ∈ S ↔ v ∈ S0 ∨ v ∈ S1 ∨ v ∈ Sinf := fun v => by
     simp only [hSdef, Finset.mem_union, or_assoc]
@@ -207,7 +202,6 @@ theorem exists_weightDivisor :
   rotate_left
   · rw [hD, recipe_of_nonneg N m hv]
   · rw [hD, recipe_of_neg N m hv]
-
   have hdisj01 : Disjoint S0 S1 := by
     rw [Finset.disjoint_left]
     intro v hv0 hv1
@@ -234,14 +228,12 @@ theorem exists_weightDivisor :
   have hsplit : ∑ v ∈ S, recipe N m v
       = ∑ v ∈ S0, recipe N m v + ∑ v ∈ S1, recipe N m v + ∑ v ∈ Sinf, recipe N m v := by
     rw [hSdef, Finset.sum_union hdisj0I, Finset.sum_union hdisj01]
-
   have hsum0 : 3 * ∑ v ∈ S0, recipe N m v
       = 3 * ((2 * m / 3 : ℕ) : ℤ) * ((S0.filter fun v => v.ord (jBar N) = 1).card : ℤ)
         + 2 * (m : ℤ) * ((dedekindPsi N : ℤ) - ((S0.filter fun v => v.ord (jBar N) = 1).card : ℤ)) := by
     have hψ₀ : ∑ v ∈ S0, v.ord (jBar N) = (dedekindPsi N : ℤ) := by
       have h := sum_ord_jBar_sub_eq_dedekindPsi N 0 hdeg S0 (fun v => by rw [hS0, map_zero, sub_zero])
       simpa [map_zero, sub_zero] using h
-
     have hcase : ∀ v ∈ S0, (v.ord (jBar N) = 1 ∧ recipe N m v = ((2 * m / 3 : ℕ) : ℤ)) ∨
         (v.ord (jBar N) = 3 ∧ recipe N m v = 2 * (m : ℤ)) := by
       intro v hv
@@ -284,7 +276,6 @@ theorem exists_weightDivisor :
     rw [hA, hB]
     rw [hψA, hψB] at hψ₀
     linear_combination (2 * (m : ℤ)) * hψ₀
-
   have hsum1 : 2 * ∑ v ∈ S1, recipe N m v
       = 2 * ((m / 2 : ℕ) : ℤ) * ((S1.filter fun v => v.ord (jBar N - algebraMap ℚb 𝔽 1728) = 1).card : ℤ)
         + (m : ℤ) * ((dedekindPsi N : ℤ) - ((S1.filter fun v => v.ord (jBar N - algebraMap ℚb 𝔽 1728) = 1).card : ℤ)) := by
@@ -332,14 +323,12 @@ theorem exists_weightDivisor :
     rw [hA, hB]
     rw [hψA, hψB] at hψ₁
     linear_combination (m : ℤ) * hψ₁
-
   have hsumI : ∑ v ∈ Sinf, recipe N m v = -(m : ℤ) * (dedekindPsi N : ℤ) - (Sinf.card : ℤ) := by
     have hψinf : ∑ v ∈ Sinf, -v.ord (jBar N) = (dedekindPsi N : ℤ) := sum_neg_ord_jBar_eq_dedekindPsi N Sinf hSI
     rw [Finset.sum_congr rfl (g := fun v => -(m : ℤ) * (-v.ord (jBar N)) + (-1))
       (fun v hv => by rw [recipe_of_neg N m ((hSI v).1 hv)]; ring)]
     rw [Finset.sum_add_distrib, ← Finset.mul_sum, hψinf, Finset.sum_const, nsmul_eq_mul, mul_neg, mul_one]
     ring
-
   have hNC : ∀ (P : Place ℚb 𝔽 → Prop) (T : Finset (Place ℚb 𝔽)),
       (∀ v, v ∈ T ↔ P v) → Nat.card {v // P v} = T.card := by
     intro P T hT
@@ -374,7 +363,6 @@ theorem exists_weightDivisor :
   rw [hε₃] at hsum0
   rw [hε₂] at hsum1
   rw [hcard] at hsumI
-
   set A0 : ℤ := ∑ v ∈ S0, recipe N m v with hA0
   set A1 : ℤ := ∑ v ∈ S1, recipe N m v with hA1
   set AI : ℤ := ∑ v ∈ Sinf, recipe N m v with hAI
@@ -487,19 +475,16 @@ theorem isIntegral_pair_of_mem_riemannRochSpace (m : ℕ)
     with hc
   have hψpos : 0 < ψ := ModularCurve.dedekindPsi_pos N (NeZero.ne N)
   have hJ0 : J ≠ 0 := jBar_ne_zero N
-
   by_cases hx0 : x = 0
   · subst hx0
     refine ⟨?_, ?_⟩
     · rw [zero_pow (by norm_num), zero_mul, zero_mul]; exact isIntegral_zero
     · rw [zero_pow (by omega), zero_mul, zero_mul]; exact isIntegral_zero
-
   have hxord : ∀ v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N), -Dv v ≤ v.ord x := by
     intro v
     rcases (mem_riemannRochSpace_iff.mp hx) v with h | h
     · exact absurd h hx0
     · exact h
-
   obtain ⟨Dj, hDj, -⟩ := HasPrincipalDivisors.exists_divisor (K := AlgebraicClosure ℚ)
     (F := modularFunctionFieldBar N) J hJ0
   let S : Finset (Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N)) :=
@@ -530,7 +515,6 @@ theorem isIntegral_pair_of_mem_riemannRochSpace (m : ℕ)
     have h' : (ψ : ℤ) = 0 := hsum.symm
     omega
   obtain ⟨v₀, hv₀⟩ := hpole
-
   have htr : Transcendental (AlgebraicClosure ℚ) J := by
     intro halg
     have hint : IsIntegral (AlgebraicClosure ℚ) J := halg.isIntegral
@@ -550,7 +534,6 @@ theorem isIntegral_pair_of_mem_riemannRochSpace (m : ℕ)
     rw [hc] at h
     rw [← h] at this
     omega
-
   have hordJsub_of_neg : ∀ v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N), v.ord J < 0 →
       v.ord (J - c1728) = v.ord J := by
     intro v hv
@@ -564,8 +547,7 @@ theorem isIntegral_pair_of_mem_riemannRochSpace (m : ℕ)
     have hJmem : J ∈ v.toValuationSubring := (v.mem_iff_ord_nonneg hJ0).mpr hv
     exact v.ord_nonneg_of_mem (sub_mem hJmem (v.algebraMap_mem' _))
   refine ⟨?_, ?_⟩
-  ·
-    refine AlgebraicCurve.isIntegral_adjoin_of_forall_ord_nonneg (K := AlgebraicClosure ℚ)
+  · refine AlgebraicCurve.isIntegral_adjoin_of_forall_ord_nonneg (K := AlgebraicClosure ℚ)
       (F := modularFunctionFieldBar N) J _ ?_
     intro v hvJ
     have ha := hordJsub_nonneg v hvJ
@@ -577,8 +559,7 @@ theorem isIntegral_pair_of_mem_riemannRochSpace (m : ℕ)
     have h3 := six_mul_ediv_three_le (2 * (m : ℤ) * v.ord J)
     push_cast
     nlinarith
-  ·
-    have htr' : Transcendental (AlgebraicClosure ℚ) J⁻¹ := by
+  · have htr' : Transcendental (AlgebraicClosure ℚ) J⁻¹ := by
       intro halg
       exact htr (by simpa using halg.inv)
     have hadj : IntermediateField.adjoin (AlgebraicClosure ℚ) ({J⁻¹} : Set (modularFunctionFieldBar N))
@@ -603,17 +584,14 @@ theorem isIntegral_pair_of_mem_riemannRochSpace (m : ℕ)
       v.ord_mul (pow_ne_zero _ hx0) (pow_ne_zero _ hJ0), ord_pow', ord_pow', ord_pow']
     have hxv := hxord v
     rcases hvJ.lt_or_eq with hneg | hzero
-    ·
-      have hw := hwidth v hneg
+    · have hw := hwidth v hneg
       have hD := hDcusp v hneg
       rw [hordJsub_of_neg v hneg]
       have hψ1 : (1 : ℤ) ≤ ψ := by exact_mod_cast hψpos
       push_cast
-
       have hx1 : 1 - (m : ℤ) * v.ord J ≤ v.ord x := by linarith
       nlinarith [mul_le_mul_of_nonneg_left hx1 (by positivity : (0 : ℤ) ≤ 2 * (ψ : ℤ))]
-    ·
-      have ha := hordJsub_nonneg v hzero.ge
+    · have ha := hordJsub_nonneg v hzero.ge
       have hD := hDfin v hzero.ge
       rw [hzero, mul_zero, Int.zero_ediv, add_zero] at hD
       have h2 := two_mul_ediv_two_le ((m : ℤ) * v.ord (J - c1728))

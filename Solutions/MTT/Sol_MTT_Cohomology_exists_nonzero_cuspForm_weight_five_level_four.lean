@@ -218,7 +218,6 @@ theorem gammaOne_four_closure :
       ((CongruenceSubgroup.Gamma1 4).inv_mem hg)
     simpa only [neg_mul, mul_inv_cancel] using hm
 
-
 end MTT.Cohomology
 
 /-! # Eta-product transformations at level four
@@ -399,7 +398,6 @@ lemma F_slash_S_slash_T (a' b' c' : ℕ) (h₂ : 24 ∣ 4 * (2 * a') + 2 * (2 * 
   rw [ModularForm.SL_slash_apply, denom_T_zpow, one_zpow, mul_one, coe_T_zpow_smul]
   rw [Gc_sub_four _ _ _ h₂]
 
-
 lemma coe_T_smul (z : ℍ) : ((ModularGroup.T • z : ℍ) : ℂ) = (z : ℂ) + 1 := by
   rw [UpperHalfPlane.modular_T_smul, UpperHalfPlane.coe_vadd]; push_cast; ring
 
@@ -413,7 +411,6 @@ lemma F_slash_T (a b c : ℕ) (k : ℤ) (h₁ : 24 ∣ a + 2 * b + 4 * c) :
   ext z
   rw [ModularForm.SL_slash_apply, denom_T, one_zpow, mul_one, F, F,
     coe_T_smul, Fc_add_one _ _ _ h₁]
-
 
 lemma F_mdifferentiable (a b c : ℕ) :
     MDifferentiable (modelWithCornersSelf ℂ ℂ) (modelWithCornersSelf ℂ ℂ) (F a b c) := by
@@ -434,9 +431,7 @@ lemma F_mdifferentiable (a b c : ℕ) :
   have hz' : 0 < z.im := hz
   simp [F, Function.comp, UpperHalfPlane.ofComplex_apply_of_im_pos hz']
 
-
 end MTT.Cohomology.EtaFour
-
 
 open UpperHalfPlane
 open scoped MatrixGroups ModularForm
@@ -466,7 +461,6 @@ theorem IsZeroAt.of_mul_self {c : OnePoint ℝ} {f : UpperHalfPlane → ℂ} {k 
   exact UpperHalfPlane.isZeroAtImInfty_of_square h
 
 end OnePoint
-
 
 /-! # A nonzero weight-five cusp form on Gamma1(4) -/
 

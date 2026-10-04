@@ -51,7 +51,6 @@ theorem solution {R : Type*} [CommRing R] (W : WeierstrassCurve R) (x y x₀ y�
       = 16 * ((x * (x - x₀) + W.veluGx x₀ y₀) * (3 * (x * (x - x₀) + W.veluGx x₀ y₀) ^ 2 + 2 * W.a₂ * (x * (x - x₀) + W.veluGx x₀ y₀) * (x - x₀) + (W.a₄ - 5 * W.veluGx x₀ y₀) * (x - x₀) ^ 2 - W.a₁ * (y * (x - x₀) ^ 2 - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀))) * (x - x₀) ^ 3 - (y * (x - x₀) ^ 2 - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀)) * (-(2 * (y * (x - x₀) ^ 2 - W.veluGx x₀ y₀ * (W.a₁ * (x - x₀) + y - y₀)) + W.a₁ * (x * (x - x₀) + W.veluGx x₀ y₀) * (x - x₀) + W.a₃ * (x - x₀) ^ 2)) * (x - x₀) ^ 2) :=
   WeierstrassCurve.fiberAdd_asymWeight_cleared_sixteen_aux W x y x₀ y₀ hP hQ hgy
 
-
 end S_WeierstrassCurve_fiberAdd_asymWeight_cleared_sixteen
 end P2MW
 export P2MW.S_WeierstrassCurve_fiberAdd_asymWeight_cleared_sixteen (solution)

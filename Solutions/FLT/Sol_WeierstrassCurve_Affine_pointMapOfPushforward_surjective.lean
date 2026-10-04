@@ -26,7 +26,6 @@ theorem solution
     (hfin : FiniteAlong F ι) (hN : NormFormulaAlong F ι hfin) :
     Function.Surjective (pointMapOfPushforward ι hι hfin hN) := by
   classical
-
   have hsep : SeparableAlong F ι := by
     let := algebraAlong ι
     have : Module.Finite E'.FunctionField E.FunctionField := hfin
@@ -34,9 +33,7 @@ theorem solution
       charZero_of_injective_algebraMap (algebraMap F E'.FunctionField).injective
     show Algebra.IsSeparable E'.FunctionField E.FunctionField
     exact Algebra.IsSeparable.of_integral E'.FunctionField E.FunctionField
-
   choose s hs using AlgebraicCurve.Place.restrictAlong_surjective ι hι hfin hsep
-
   have hpush : Function.Surjective (Pic0.pushforwardAlongHom ι hι hfin hN) := by
     intro c'
     obtain ⟨D', rfl⟩ := Pic0.mk_surjective c'
@@ -55,7 +52,6 @@ theorem solution
     rw [Pic0.pushforwardAlongHom_mk]
     congr 1
     exact Subtype.ext (by rw [Pic0.coe_pushforwardAlongDegZero]; exact hD)
-
   intro Q
   obtain ⟨c, hc⟩ := hpush ((genusOnePic0Equiv E').symm Q)
   refine ⟨genusOnePic0Equiv E c, ?_⟩

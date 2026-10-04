@@ -239,14 +239,12 @@ theorem hasSum_average (τ : ℍ) :
       ((p : ℂ)⁻¹ * ∑ j ∈ Finset.range p, f (heckeMatrix p j • τ)) := by
   have hF : ∀ τ' : ℍ, HasSum (fun m ↦ qCoeff f m • Periodic.qParam 1 τ' ^ m) (f τ') :=
     hasSum_qExpansion one_pos hper hhol hbdd
-
   have h1 : HasSum (fun m ↦ ∑ j ∈ Finset.range p,
       qCoeff f m • (exp (2 * π * I * τ / p) * exp (2 * π * I / p) ^ j) ^ m)
       (∑ j ∈ Finset.range p, f (heckeMatrix p j • τ)) := by
     refine hasSum_sum fun j _ => ?_
     have := hF (heckeMatrix p j • τ)
     rwa [qParam_heckeMatrix_smul hp j τ] at this
-
   have h2 : (fun m ↦ ∑ j ∈ Finset.range p,
       qCoeff f m • (exp (2 * π * I * τ / p) * exp (2 * π * I / p) ^ j) ^ m)
       = fun m ↦ if p ∣ m then (p : ℂ) * qCoeff f m * exp (2 * π * I * τ / p) ^ m else 0 := by
@@ -254,7 +252,6 @@ theorem hasSum_average (τ : ℍ) :
     simp only [mul_pow, smul_eq_mul, ← Finset.mul_sum, sum_rootOfUnity_pow hp m]
     split_ifs <;> ring
   rw [h2] at h1
-
   have hinj : Function.Injective (fun l : ℕ ↦ l * p) := mul_left_injective₀ hp
   have h3 := (hinj.hasSum_iff (f := fun m ↦
       if p ∣ m then (p : ℂ) * qCoeff f m * exp (2 * π * I * τ / p) ^ m else 0)

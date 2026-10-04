@@ -32,7 +32,6 @@ theorem solution {F : Type*} [Field F]
   constructor
   · intro h
     obtain ⟨u, r, s, t⟩ := C
-
     have h4 : ((u : F)⁻¹) ^ 4 = 1 := by
       have := congrArg WeierstrassCurve.c₄ h
       rw [variableChange_c₄, Units.val_inv_eq_inv_val] at this

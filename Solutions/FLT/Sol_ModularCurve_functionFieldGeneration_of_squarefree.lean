@@ -58,7 +58,6 @@ open _root_.ModularCurve _root_.P2MW.S_ModularCurve_functionFieldGeneration_of_s
 theorem solution (N : ℕ) [NeZero N] (hN : Squarefree N) : FunctionFieldGeneration N :=
   ModularCurve.functionFieldGeneration_of_squarefree N hN
 
-
 end
 end S_ModularCurve_functionFieldGeneration_of_squarefree
 end P2MW

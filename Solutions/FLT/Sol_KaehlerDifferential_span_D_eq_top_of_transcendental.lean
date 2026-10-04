@@ -25,7 +25,6 @@ variable {K F : Type*} [Field K] [Field F] [Algebra K F] {x : F} (hx : Transcend
 include hx in
 
 private theorem exists_basis : ∃ b : Module.Basis Unit F Ω[F⁄K], b () = D K F x := by
-
   let e : RatFunc K ≃ₐ[K] IntermediateField.adjoin K ({x} : Set F) := RatFunc.algEquivOfTranscendental x hx
   let algKx : Algebra K[X] (IntermediateField.adjoin K ({x} : Set F)) := (e.toAlgHom.toRingHom.comp (algebraMap K[X] (RatFunc K))).toAlgebra
   let algF : Algebra K[X] F := ((algebraMap (IntermediateField.adjoin K ({x} : Set F)) F).comp (algebraMap K[X] (IntermediateField.adjoin K ({x} : Set F)))).toAlgebra
@@ -37,14 +36,12 @@ private theorem exists_basis : ∃ b : Module.Basis Unit F Ω[F⁄K], b () = D K
   have : IsScalarTower K K[X] F := IsScalarTower.of_algebraMap_eq (fun c => by
     rw [IsScalarTower.algebraMap_apply K (IntermediateField.adjoin K ({x} : Set F)) F, IsScalarTower.algebraMap_apply K[X] (IntermediateField.adjoin K ({x} : Set F)) F,
       ← IsScalarTower.algebraMap_apply K K[X] (IntermediateField.adjoin K ({x} : Set F))])
-
   have : Algebra.FormallyEtale K[X] (RatFunc K) :=
     Algebra.FormallyEtale.of_isLocalization (nonZeroDivisors K[X])
   have : Algebra.FormallyEtale K[X] (IntermediateField.adjoin K ({x} : Set F)) :=
     Algebra.FormallyEtale.of_equiv (R := K[X]) (A := RatFunc K) { e with commutes' := fun _ => rfl }
   have : Algebra.FormallyEtale (IntermediateField.adjoin K ({x} : Set F)) F := Algebra.FormallyEtale.of_isSeparable (IntermediateField.adjoin K ({x} : Set F)) F
   have : Algebra.FormallyEtale K[X] F := Algebra.FormallyEtale.comp K[X] (IntermediateField.adjoin K ({x} : Set F)) F
-
   let b₀ : Module.Basis Unit K[X] Ω[K[X]⁄K] :=
     (Module.Basis.singleton Unit K[X]).map (polynomialEquiv K).symm
   have hb₀ : b₀ () = D K K[X] X := by simp [b₀]

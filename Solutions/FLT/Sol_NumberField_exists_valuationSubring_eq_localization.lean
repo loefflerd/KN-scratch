@@ -51,7 +51,6 @@ noncomputable def subring : Subring ℚ̄ where
 
 theorem comap_ne_bot (K : IntermediateField ℚ ℚ̄) [NumberField K] :
     Qt.comap (algebraMap (𝓞 K) (𝓞 ℚ̄)) ≠ ⊥ := by
-
   have : (Qt.under ℤ).IsMaximal := Ideal.IsMaximal.under ℤ Qt
   have hne : Qt.under ℤ ≠ ⊥ := Ring.ne_bot_of_isMaximal_of_not_isField inferInstance Int.not_isField
   obtain ⟨n, hn, hn0⟩ := Submodule.exists_mem_ne_zero_of_ne_bot hne
@@ -64,29 +63,24 @@ theorem comap_ne_bot (K : IntermediateField ℚ ℚ̄) [NumberField K] :
   exact hn0 (by exact_mod_cast hmem)
 
 theorem mem_or_inv_mem (x : ℚ̄) : x ∈ carrier Qt ∨ x⁻¹ ∈ carrier Qt := by
-
   have hx : IsIntegral ℚ x := Algebra.IsIntegral.isIntegral x
   let K : IntermediateField ℚ ℚ̄ := IntermediateField.adjoin ℚ {x}
   have : FiniteDimensional ℚ K := IntermediateField.adjoin.finiteDimensional hx
   have : NumberField K := NumberField.mk
   have hxK : x ∈ K := IntermediateField.mem_adjoin_simple_self ℚ x
-
   let v : IsDedekindDomain.HeightOneSpectrum (𝓞 K) :=
     ⟨Qt.comap (algebraMap (𝓞 K) (𝓞 ℚ̄)), Ideal.IsPrime.comap _, comap_ne_bot Qt K⟩
-
   obtain ⟨n, d, hnd⟩ := IsDedekindDomain.HeightOneSpectrum.exists_primeCompl_mul_eq_or_mul_eq (K := K) v ⟨x, hxK⟩
   have hd : algebraMap (𝓞 K) (𝓞 ℚ̄) d ∉ Qt := fun h => d.2 (Ideal.mem_comap.mpr h)
   have coe_alg : ∀ a : 𝓞 K, ((algebraMap (𝓞 K) (𝓞 ℚ̄) a : 𝓞 ℚ̄) : ℚ̄) = ((algebraMap (𝓞 K) K a : K) : ℚ̄) :=
     fun _ => rfl
   rcases hnd with h | h
-  ·
-    left
+  · left
     refine ⟨algebraMap (𝓞 K) (𝓞 ℚ̄) d, hd, algebraMap (𝓞 K) (𝓞 ℚ̄) n, ?_⟩
     have := congrArg (fun y : K => (y : ℚ̄)) h
     simp only [MulMemClass.coe_mul] at this
     rw [coe_alg, coe_alg, ← this, mul_comm]
-  ·
-    right
+  · right
     have hK := congrArg (fun y : K => (y : ℚ̄)) h
     simp only [MulMemClass.coe_mul] at hK
     have hx0 : x ≠ 0 := by

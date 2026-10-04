@@ -102,7 +102,6 @@ theorem solution
   obtain ⟨E4, E6, hE4, hE6⟩ := ModularForm.exists_gamma1_isIntegralQExp_eisenstein_four_six M
   rw [mk_sigma_three_eq_eisenstein4] at hE4
   rw [mk_sigma_five_eq_eisenstein6] at hE6
-
   set w := wI.form with hwdef
   set W : LaurentSeries ℂ := HahnSeries.ofPowerSeries ℤ ℂ (qExpansion 1 w) with hWdef
   have hWint : W = intSeriesC ℂ wI.series := by
@@ -118,7 +117,6 @@ theorem solution
     apply hWne
     rw [← hWint, hWdef, h0]
     simp [qExpansion_zero]
-
   let Nf : ModularForm ((Gamma1 M : Subgroup SL(2, ℤ)) : Subgroup (GL (Fin 2) ℝ)) 10 :=
     ModularForm.mcast (by norm_num) ((w.mul w).mul (E4.mul E4))
   let Df : ModularForm ((Gamma1 M : Subgroup SL(2, ℤ)) : Subgroup (GL (Fin 2) ℝ)) 10 :=
@@ -136,7 +134,6 @@ theorem solution
     intSeriesC_ne_zero_of_constantCoeff K _ hE6c
   have hDne : intSeriesC ℚ (eisenstein4 * eisenstein6) ≠ 0 := by
     rw [intSeriesC_mul]; exact mul_ne_zero (hE4ne ℚ) (hE6ne ℚ)
-
   have humem : intSeriesC ℂ (wI.series * wI.series * (eisenstein4 * eisenstein4)) /
       intSeriesC ℂ (eisenstein4 * eisenstein6) ∈
       ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)) := by
@@ -147,12 +144,10 @@ theorem solution
     rw [← map_jqModC (algebraMap ℚ ℂ), jqModC_rat]
     exact coeffEmb_mem_laurentBaseChange ℂ
       (intFormRatiosC_subset ℚ _ (by rw [← jqModC_rat]; exact jqModC_mem_intFormRatiosC ℚ _))
-
   refine ⟨w, -(intSeriesC ℂ (wI.series * wI.series * (eisenstein4 * eisenstein4)) /
       intSeriesC ℂ (eisenstein4 * eisenstein6) * (ModularCurve.jqModC ℂ)⁻¹), hw0, ?_, ?_⟩
   · exact neg_mem (mul_mem humem (inv_mem hjmem))
-  ·
-    have hjC : coeffEmb ℂ jq = ModularCurve.jqModC ℂ := by
+  · have hjC : coeffEmb ℂ jq = ModularCurve.jqModC ℂ := by
       rw [← jqModC_rat]; exact map_jqModC (algebraMap ℚ ℂ)
     have hid := congrArg (coeffEmb ℂ) ModularCurve.thetaL_jq_mul_eisenstein4_eq_neg_jq_mul_eisenstein6
     rw [map_mul, map_neg, map_mul, coeffEmb_thetaL, hjC] at hid

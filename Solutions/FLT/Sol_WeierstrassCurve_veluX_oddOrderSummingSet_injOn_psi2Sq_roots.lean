@@ -773,8 +773,7 @@ theorem solution
     (heq : W.veluX (W.oddOrderSummingSet Q n) r = W.veluX (W.oddOrderSummingSet Q n) r') :
     r = r' := by
   rcases Nat.eq_zero_or_pos n with rfl | hn
-  ·
-    have h0 : W.oddOrderSummingSet Q 0 = ∅ := by simp [WeierstrassCurve.oddOrderSummingSet]
+  · have h0 : W.oddOrderSummingSet Q 0 = ∅ := by simp [WeierstrassCurve.oddOrderSummingSet]
     simpa [h0] using heq
   · have hp3 : 3 ≤ 2 * n + 1 := by omega
     have hpodd : Odd (2 * n + 1) := ⟨n, rfl⟩

@@ -40,7 +40,6 @@ theorem cmm5_dp_natCard_ker_comp {A B C : Type*} [AddCommGroup A] [AddCommGroup 
     [AddCommGroup C] (f : A →+ B) (g : B →+ C) (hf : Function.Surjective f) :
     Nat.card (AddMonoidHom.ker (g.comp f))
       = Nat.card (AddMonoidHom.ker g) * Nat.card (AddMonoidHom.ker f) := by
-
   have hmem : ∀ x : AddMonoidHom.ker (g.comp f),
       (f.domRestrict (AddMonoidHom.ker (g.comp f))) x ∈ AddMonoidHom.ker g := by
     intro x
@@ -48,7 +47,6 @@ theorem cmm5_dp_natCard_ker_comp {A B C : Type*} [AddCommGroup A] [AddCommGroup 
     rw [AddMonoidHom.mem_ker] at hx
     rw [AddMonoidHom.mem_ker]
     exact hx
-
   have hle : AddMonoidHom.ker f ≤ AddMonoidHom.ker (g.comp f) := by
     intro x hx
     rw [AddMonoidHom.mem_ker] at hx
@@ -59,7 +57,6 @@ theorem cmm5_dp_natCard_ker_comp {A B C : Type*} [AddCommGroup A] [AddCommGroup 
       = Nat.card (AddMonoidHom.ker f) := by
     rw [AddMonoidHom.ker_codRestrict, AddMonoidHom.ker_domRestrict]
     exact Nat.card_congr (AddSubgroup.addSubgroupOfEquivOfLe hle).toEquiv
-
   have hφsurj : Function.Surjective
       (AddMonoidHom.codRestrict (f.domRestrict (AddMonoidHom.ker (g.comp f)))
         (AddMonoidHom.ker g) hmem) := by
@@ -335,17 +332,14 @@ theorem ker_pointMapOfPushforward_eq_of_j_eq_of_forall_pointEnd_eq_zsmul_a68
     (hj : V.j = V'.j) :
     (pointMapOfPushforward ι hι hfin hN).ker = (pointMapOfPushforward ι' hι' hfin' hN').ker := by
   classical
-
   obtain ⟨C, hC⟩ := WeierstrassCurve.exists_variableChange_of_j_eq V V' hj
   obtain ⟨σ⟩ : Nonempty (V.toAffine.FunctionField ≃ₐ[F] V'.toAffine.FunctionField) :=
     hC ▸ WeierstrassCurve.nonempty_functionField_algEquiv_of_variableChange V C
-
   set τ : V'.toAffine.FunctionField →ₐ[F] V.toAffine.FunctionField := σ.symm.toAlgHom with hτ_def
   have hτbij : Function.Bijective τ := σ.symm.bijective
   have hτint : τ.toRingHom.IsIntegral := RingHom.isIntegral_of_surjective _ hτbij.2
   have hτfin : FiniteAlong F τ := finiteAlong_of_surjective τ hτbij.2
   have hNτ : NormFormulaAlong F τ hτfin := normFormulaAlong_of_elliptic τ hτfin
-
   have hιτint : (ι.comp τ).toRingHom.IsIntegral := RingHom.IsIntegral.trans _ _ hτint hι
   have hιτfin : FiniteAlong F (ι.comp τ) := finiteAlong_comp τ ι hτfin hfin
   have hNιτ : NormFormulaAlong F (ι.comp τ) hιτfin := normFormulaAlong_of_elliptic _ hιτfin
@@ -360,12 +354,10 @@ theorem ker_pointMapOfPushforward_eq_of_j_eq_of_forall_pointEnd_eq_zsmul_a68
     rw [AddMonoidHom.mem_ker, AddMonoidHom.mem_ker, hβ_comp]
     refine ⟨fun h => hτinj (h.trans (map_zero _).symm), fun h => ?_⟩
     rw [h, map_zero]
-
   have hβs : Function.Surjective β :=
     pointMapOfPushforward_surjective W.toAffine _ (ι.comp τ) hιτint hιτfin hNιτ
   have hφ's : Function.Surjective φ' :=
     pointMapOfPushforward_surjective W.toAffine _ ι' hι' hfin' hN'
-
   set d : ℕ := Nat.card φ'.ker with hd_def
   have hdpos : 0 < d := by
     rw [hd_def, hφ'_def, natCard_ker_pointMapOfPushforward_eq_finrankAlong W.toAffine V'.toAffine
@@ -376,7 +368,6 @@ theorem ker_pointMapOfPushforward_eq_of_j_eq_of_forall_pointEnd_eq_zsmul_a68
     exact Module.finrank_pos
   have hd0 : d ≠ 0 := hdpos.ne'
   have hfinker : Finite φ'.ker := Nat.finite_of_card_ne_zero (hd_def ▸ hd0)
-
   have hNne : ((d : ℤ) : AddMonoid.End W.toAffine.Point) ≠ 0 := by
     intro h
     have := intCast_addMonoidEnd_point_injective W.toAffine (h.trans Int.cast_zero.symm)
@@ -385,7 +376,6 @@ theorem ker_pointMapOfPushforward_eq_of_j_eq_of_forall_pointEnd_eq_zsmul_a68
     ((d : ℤ) : AddMonoid.End W.toAffine.Point) (intCast_mem _ _) hNne
   have hMapp : ∀ P, M.pointEnd (hNs M) P = (d : ℤ) • P := fun P => by
     rw [hM, AddMonoid.End.intCast_apply]
-
   let φ'D : IsogenyHomDatum W.toAffine V'.toAffine := ⟨ι', hι', hfin'⟩
   have hmem_of_ker : ∀ P, φ' P = 0 → (d : ℤ) • P = 0 := by
     intro P hP
@@ -406,7 +396,6 @@ theorem ker_pointMapOfPushforward_eq_of_j_eq_of_forall_pointEnd_eq_zsmul_a68
   have hdual₂ : ∀ S, φ' (ψ' S) = (d : ℤ) • S := fun S => by
     obtain ⟨P, rfl⟩ := hφ's S
     rw [hdual₁, map_zsmul]
-
   have hDint : ((ι.comp τ).comp χ.ι).toRingHom.IsIntegral :=
     RingHom.IsIntegral.trans _ _ χ.hι hιτint
   let D : IsogenyEndDatum W.toAffine :=
@@ -419,7 +408,6 @@ theorem ker_pointMapOfPushforward_eq_of_j_eq_of_forall_pointEnd_eq_zsmul_a68
   have hθm : ∀ P, θ P = m • P := fun P => by
     show ψ' (β P) = m • P
     rw [← hD P]; exact hm P
-
   have hkerψ' : Nat.card ψ'.ker = d := by
     have hcomp : Nat.card (ψ'.comp φ').ker = d ^ 2 := by
       have h := kw_nat_card_ker_of_zsmul (W := W.toAffine) (f := ψ'.comp φ')
@@ -428,7 +416,6 @@ theorem ker_pointMapOfPushforward_eq_of_j_eq_of_forall_pointEnd_eq_zsmul_a68
     have hsplit := ModularCurve.cmm5_dp_natCard_ker_comp φ' ψ' hφ's
     rw [hcomp, ← hd_def, sq] at hsplit
     exact (Nat.eq_of_mul_eq_mul_right hdpos hsplit).symm
-
   have hkerθ : Nat.card θ.ker = d ^ 2 := by
     have hsplit := ModularCurve.cmm5_dp_natCard_ker_comp β ψ' hβs
     rw [hkerβ, hcard, hkerψ'] at hsplit
@@ -446,12 +433,10 @@ theorem ker_pointMapOfPushforward_eq_of_j_eq_of_forall_pointEnd_eq_zsmul_a68
     have hcard' := kw_nat_card_ker_of_zsmul (W := W.toAffine) hmne hθm
     rw [hkerθ, sq, sq] at hcard'
     exact (Nat.mul_self_inj).mp hcard'.symm
-
   have hkey : ∀ P, (d : ℤ) • β P = m • φ' P := fun P => by
     have h1 : φ' (ψ' (β P)) = (d : ℤ) • β P := hdual₂ (β P)
     have h2 : φ' (θ P) = m • φ' P := by rw [hθm, map_zsmul]
     rw [← h1]; exact h2
-
   have hmcases : m = (d : ℤ) ∨ m = -(d : ℤ) := by
     rcases Int.natAbs_eq m with h | h <;> [left; right] <;> omega
   have hNz : (d : ℤ) ≠ 0 := by exact_mod_cast hd0

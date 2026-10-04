@@ -104,7 +104,6 @@ theorem solution {h : ℝ} (hh : 0 < h) {g : UpperHalfPlane → ℂ}
     all_goals first | rfl | simp
   have key := apply_eq_apply_of_hasDerivAt_zero hD (h +ᵥ τ) τ
   simp only [coe_vadd] at key
-
   rw [add_comm] at key
   rw [hGper] at key
   linear_combination key

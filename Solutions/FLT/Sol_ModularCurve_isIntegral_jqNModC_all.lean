@@ -17,7 +17,6 @@ theorem solution (K : Type*) [Field K] (N : ℕ) [NeZero N] :
     IsIntegral (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) (jqNModC K N) :=
   isIntegral_jqNModC_all_of_modularPolynomialFamily K modularPolynomialFamily N
 
-
 end S_ModularCurve_isIntegral_jqNModC_all
 end P2MW
 export P2MW.S_ModularCurve_isIntegral_jqNModC_all (solution)

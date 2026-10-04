@@ -295,8 +295,7 @@ theorem roots_prime_at_slot_nodup (N : ℕ) [NeZero N] (ζ : Kˣ) (hζ : IsPrimi
   have hζp : IsPrimitiveRoot ((ζ ^ (N / p) : Kˣ) : K) p := isPrimitiveRoot_pow_div hζ hpN
   rw [Multiset.nodup_cons]
   constructor
-  ·
-    intro hmem
+  · intro hmem
     obtain ⟨b, hb, heq⟩ := Multiset.mem_map.mp hmem
     have h := (TS_injective (K := K) (e := e) (e' := p * (p * e))
       (u := u * ζ ^ (b * (N / p))) (u' := u ^ (p * p)) heq).1
@@ -305,8 +304,7 @@ theorem roots_prime_at_slot_nodup (N : ℕ) [NeZero N] (ζ : Kˣ) (hζ : IsPrimi
     have hmono : 2 * (2 * e) ≤ p * (p * e) := Nat.mul_le_mul hp2 (Nat.mul_le_mul hp2 le_rfl)
     rw [← h] at hmono
     omega
-  ·
-    refine Multiset.Nodup.map_on ?_ (Multiset.nodup_range p)
+  · refine Multiset.Nodup.map_on ?_ (Multiset.nodup_range p)
     intro b hb b' hb' heq
     rw [Multiset.mem_range] at hb hb'
     have h := (TS_injective (K := K) (e := e) (e' := e)
@@ -548,7 +546,6 @@ private theorem root_shape (M : ℕ) [NeZero M] (p : ℕ) [hp : Fact (Nat.Prime 
       (algebraMap ℚ⟮jq⟯ (LaurentSeries ℚ)))) = 0) :
     ∃ a : ℕ, ∃ _ : NeZero a, a ∣ M ∧ ∃ b : ℕ, b < M / a ∧ y = TS K (p * (a * a)) (ζ ^ (b * a)) := by
   have hid := ModularCurve.minpoly_jqN_map_eq_prod_slots (K := K) M ζ hζ (fun d hd _ => hallM d hd)
-
   have hcomp : (qExpand K p).comp (((coeffEmb K).comp (qExpand ℚ M)).comp
       (algebraMap ℚ⟮jq⟯ (LaurentSeries ℚ)))
       = ((coeffEmb K).comp (qExpand ℚ (M * p))).comp (algebraMap ℚ⟮jq⟯ (LaurentSeries ℚ)) := by
@@ -600,7 +597,6 @@ private theorem hsp_of (M : ℕ) [NeZero M] (p : ℕ) [hp : Fact (Nat.Prime p)] 
   rw [iota_jqN]
   intro h
   obtain ⟨he, _⟩ := TS_injective h
-
   have hp2 : 2 ≤ p := hp.out.two_le
   have hM : 0 < M := Nat.pos_of_ne_zero (NeZero.ne M)
   have ha : a ≤ M := Nat.le_of_dvd hM haM
@@ -620,17 +616,14 @@ private theorem hall_all : ∀ N : ℕ, N ≠ 0 → Hall N := by
   induction N using Nat.strong_induction_on with
   | _ N ih =>
   intro hN d hdN hd
-
   by_cases hdlt : d < N
   · exact ih d hdlt (NeZero.ne d) d dvd_rfl
   have hdN' : d = N := le_antisymm (Nat.le_of_dvd (Nat.pos_of_ne_zero hN) hdN) (not_lt.mp hdlt)
   subst hdN'
-
   have hprop : ∀ m : ℕ, m ∣ d → m < d → Hall m := fun m _ hlt => ih m hlt (by
     rintro rfl; exact absurd hlt (by have := Nat.pos_of_ne_zero hN; omega))
   by_cases h1 : d = 1
   · subst h1; exact ⟨tight_one, gen_one⟩
-
   have hgen : Gen d := by
     unfold Gen
     refine ModularCurve.modularFunctionField_eq_full_of d ?_ ?_
@@ -639,7 +632,6 @@ private theorem hall_all : ∀ N : ℕ, N ≠ 0 → Hall N := by
       have hMlt : M < d := by
         rw [← hMp]; exact lt_mul_of_one_lt_right (Nat.pos_of_ne_zero (NeZero.ne M)) hp.one_lt
       have hallM : Hall M := hprop M ⟨p, hMp.symm⟩ hMlt
-
       have hmem := ModularCurve.jqN_div_mem_modularFunctionField M p (K := CyclotomicField (M * p) ℚ)
         (cycUnit (M * p)) (cycUnit_spec (M * p))
         (fun y hy w hw => htw_of M p (cycUnit (M * p) ^ (M * p / M))
@@ -653,7 +645,6 @@ private theorem hall_all : ∀ N : ℕ, N ≠ 0 → Hall N := by
         rw [← hMp]; exact lt_mul_of_one_lt_right (Nat.pos_of_ne_zero (NeZero.ne M)) hp.one_lt
       exact (hprop M ⟨p, hMp.symm⟩ hMlt M dvd_rfl).2
   refine ⟨?_, hgen⟩
-
   unfold Tight
   set p := d.minFac with hpdef
   have hp : p.Prime := Nat.minFac_prime h1
@@ -669,14 +660,12 @@ private theorem hall_all : ∀ N : ℕ, N ≠ 0 → Hall N := by
       exact hpM this
     · exact ⟨a, rfl⟩
   have hdM' : d = M * p ^ (a + 1) := by rw [hdM, mul_comm]
-
   have hlow_dvd : M * p ^ a ∣ d := ⟨p, by rw [hdM', pow_succ, mul_assoc]⟩
   have hlow_lt : M * p ^ a < d := by
     rw [hdM', pow_succ, ← mul_assoc]
     exact lt_mul_of_one_lt_right (Nat.pos_of_ne_zero (mul_ne_zero hM0 (pow_ne_zero _ hp.ne_zero))) hp.one_lt
   have hall_low : Hall (M * p ^ a) := hprop _ hlow_dvd hlow_lt
   have hallM : Hall M := fun e he _ => hall_low e (he.trans ⟨p ^ a, rfl⟩)
-
   have hlowdeg : IntermediateField.relfinrank ℚ⟮jq⟯ (modularFunctionFieldFull (M * p ^ a))
       = dedekindPsi (M * p ^ a) := by
     have h := hall_low (M * p ^ a) dvd_rfl
@@ -685,11 +674,9 @@ private theorem hall_all : ∀ N : ℕ, N ≠ 0 → Hall N := by
     (ModularCurve.full_eq_adjoin_full_div_prime M p a hpM) (jqN_pow_not_mem_full M p hpM hallM a)
   have htower := IntermediateField.relfinrank_mul_relfinrank (F0_le_full (M * p ^ a))
     (full_degeneracy_le (N := M * p ^ a) (M := M * p ^ (a + 1)) ⟨p, by rw [pow_succ, mul_assoc]⟩)
-
   rw [← ModularCurve.relfinrank_modularFunctionField d]
   unfold Gen at hgen
   rw [hgen, full_congr hdM', ← htower, hlowdeg, hstep]
-
   have hpsi : dedekindPsi d = dedekindPsi (M * p ^ a) * (if a = 0 then p + 1 else p) := by
     rw [hdM']
     split_ifs with ha
@@ -753,7 +740,6 @@ p2m_open "ModularCurve~coeffEmb_qExpand" in open _root_.P2MW.S_ModularCurve_exis
 
 theorem solution (N : ℕ) [NeZero N] : ∃ data : ModularPolynomialData N, PhiIrreducible data :=
   ModularCurve.exists_phiIrreducible N
-
 
 end S_ModularCurve_exists_phiIrreducible
 end P2MW

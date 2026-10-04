@@ -23,11 +23,8 @@ def WalkConnected {V : Type*} (T : SimpleGraph V) (s : Set V) : Prop :=
 
 structure IsConnectedTransversal {V : Type*} (T : SimpleGraph V) (Γ : Type*) [Group Γ]
     [MulAction Γ V] (D : Set V) : Prop where
-
   walkConnected : WalkConnected T D
-
   eq_of_mem_orbit : ∀ v ∈ D, ∀ w ∈ D, v ∈ orbit Γ w → v = w
-
   exists_mem_orbit : ∀ u : V, ∃ v ∈ D, v ∈ orbit Γ u
 
 variable {V : Type*} {T : SimpleGraph V} {Γ : Type*} [Group Γ] [MulAction Γ V]
@@ -40,7 +37,6 @@ theorem walkConnected_singleton (T : SimpleGraph V) (v₀ : V) : WalkConnected T
 
 theorem WalkConnected.insert_of_adj {s : Set V} (hs : WalkConnected T s) {v w : V}
     (hv : v ∈ s) (hadj : T.Adj v w) : WalkConnected T (insert w s) := by
-
   have key : ∀ x ∈ insert w s, ∃ p : T.Walk v x, ∀ y ∈ p.support, y ∈ insert w s := by
     intro x hx
     rcases Set.mem_insert_iff.mp hx with rfl | hx
@@ -118,7 +114,6 @@ theorem exists_isConnectedTransversal
     (hpre : T.Preconnected) (v₀ : V) :
     ∃ D : Set V, v₀ ∈ D ∧ IsConnectedTransversal T Γ D := by
   classical
-
   obtain ⟨D, hsub, hDmem, hDmax⟩ := zorn_subset_nonempty
     {s : Set V | v₀ ∈ s ∧ WalkConnected T s ∧ ∀ v ∈ s, ∀ w ∈ s, v ∈ orbit Γ w → v = w}
     (fun c hc hchain hcne => by
@@ -133,20 +128,16 @@ theorem exists_isConnectedTransversal
       rw [Set.mem_singleton_iff] at hv hw
       rw [hv, hw]⟩
   have hv₀D : v₀ ∈ D := hsub (Set.mem_singleton v₀)
-
   refine ⟨D, hv₀D, hDmem.2.1, hDmem.2.2, fun u => ?_⟩
   by_contra hu
-
   obtain ⟨p⟩ := hpre v₀ u
   obtain ⟨v, hvD, w, hadj, hw⟩ :=
     exists_adj_of_walk hsmul p ⟨v₀, hv₀D, MulAction.mem_orbit_self v₀⟩ hu
-
   have hwD : w ∉ D := fun hwD => hw ⟨w, hwD, MulAction.mem_orbit_self w⟩
   have hins : insert w D ∈
       {s : Set V | v₀ ∈ s ∧ WalkConnected T s ∧ ∀ v ∈ s, ∀ w ∈ s, v ∈ orbit Γ w → v = w} :=
     ⟨Set.mem_insert_of_mem _ hv₀D, hDmem.2.1.insert_of_adj hvD hadj,
       eq_of_mem_orbit_insert hDmem.2.2 hw⟩
-
   exact hwD (hDmax hins (Set.subset_insert w D) (Set.mem_insert w D))
 
 end GraphTransversal

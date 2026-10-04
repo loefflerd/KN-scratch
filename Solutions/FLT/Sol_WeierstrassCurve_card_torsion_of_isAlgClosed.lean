@@ -87,7 +87,6 @@ theorem isCoprime_ΨSq_succ [W.IsElliptic] (n : ℕ) :
   push Not at hcon
   obtain ⟨hn0, hn1⟩ := hcon
   rw [coe_aeval_eq_eval] at hn0 hn1
-
   obtain ⟨y₀, hy₀⟩ := IsAlgClosed.exists_root
     (C (1 : K) * X ^ 2 + C ((W.baseChange K).a₁ * x₀ + (W.baseChange K).a₃) * X +
       C (-(x₀ ^ 3 + (W.baseChange K).a₂ * x₀ ^ 2 + (W.baseChange K).a₄ * x₀ +
@@ -99,7 +98,6 @@ theorem isCoprime_ΨSq_succ [W.IsElliptic] (n : ℕ) :
     linear_combination hy₀
   have hns : (W.baseChange K).toAffine.Nonsingular x₀ y₀ :=
     (Affine.equation_iff_nonsingular).mp heq
-
   have hψ0 : ((W.baseChange K).ψ (n : ℤ)).evalEval x₀ y₀ = 0 := by
     have h2 := evalEval_ψ_sq (W.baseChange K) heq (n : ℤ)
     rw [hn0] at h2
@@ -108,7 +106,6 @@ theorem isCoprime_ΨSq_succ [W.IsElliptic] (n : ℕ) :
     have h2 := evalEval_ψ_sq (W.baseChange K) heq ((n : ℤ) + 1)
     rw [hn1] at h2
     exact (pow_eq_zero_iff two_ne_zero).mp h2
-
   have h0 : (n : ℤ) • (Affine.Point.some x₀ y₀ hns) = 0 :=
     (smul_eq_zero_iff_evalEval_ψ (W.baseChange K) hns (n : ℤ)).mpr hψ0
   have h1 : ((n : ℤ) + 1) • (Affine.Point.some x₀ y₀ hns) = 0 :=
@@ -146,8 +143,7 @@ theorem smul_formula_or_zero [W.IsElliptic] {n : ℕ} (_hn : 0 < n) {x₀ y₀ :
   have heq : (W.baseChange K).toAffine.Equation x₀ y₀ := h.left
   have hψsq := (W.baseChange K).evalEval_ψ_sq heq (n : ℤ)
   constructor
-  ·
-    intro hΨ
+  · intro hΨ
     have hψ : ((W.baseChange K).ψ (n : ℤ)).evalEval x₀ y₀ ≠ 0 := by
       intro h0
       exact hΨ (by rw [← hψsq, h0]; exact zero_pow two_ne_zero)
@@ -175,8 +171,7 @@ theorem smul_formula_or_zero [W.IsElliptic] {n : ℕ} (_hn : 0 < n) {x₀ y₀ :
           ((W.baseChange K).Φ (n : ℤ)).eval x₀
       rw [← hψsq, div_mul_cancel₀ _ (pow_ne_zero 2 hψ),
         (W.baseChange K).evalEval_φ heq]
-  ·
-    intro hΨ
+  · intro hΨ
     have hψ0 : ((W.baseChange K).ψ (n : ℤ)).evalEval x₀ y₀ = 0 :=
       sq_eq_zero_iff.mp (hψsq.trans hΨ)
     rw [← natCast_zsmul]
@@ -237,22 +232,19 @@ theorem isCoprime_Φ_ΨSq [IsAlgClosed K] [W.IsElliptic] {n : ℕ} (hn : 0 < n) 
     linear_combination h1
   rcases mul_eq_zero.mp h0 with h12 | hG
   · rcases mul_eq_zero.mp h12 with hE | hF
-    ·
-      have hb : ((W.baseChange K).ΨSq ((n : ℤ) + 1)).eval x₀ = 0 := by
+    · have hb : ((W.baseChange K).ΨSq ((n : ℤ) + 1)).eval x₀ = 0 := by
         have h2 := ΨSq_eval_eq_zero_of_preΨ W (m := n + 1) (K := K)
           (by rwa [Nat.cast_add, Nat.cast_one])
         rwa [Nat.cast_add, Nat.cast_one] at h2
       exact eval_ne_of_isCoprime (isCoprime_ΨSq_succ W n) hΨ0 hb
-    ·
-      have hb : ((W.baseChange K).ΨSq ((n - 1 : ℕ) : ℤ)).eval x₀ = 0 :=
+    · have hb : ((W.baseChange K).ΨSq ((n - 1 : ℕ) : ℤ)).eval x₀ = 0 :=
         ΨSq_eval_eq_zero_of_preΨ W (m := n - 1) (K := K)
           (by rwa [Nat.cast_sub hn, Nat.cast_one])
       have hA := isCoprime_ΨSq_succ W (K := K) (n - 1)
       have hc : ((n - 1 : ℕ) : ℤ) + 1 = (n : ℤ) := by omega
       rw [hc] at hA
       exact eval_ne_of_isCoprime hA hb hΨ0
-  ·
-    by_cases hev : Even (n : ℤ)
+  · by_cases hev : Even (n : ℤ)
     · rw [ite_eq_left hev] at hG
       exact one_ne_zero hG
     · rw [ite_eq_right hev] at hG
@@ -354,7 +346,6 @@ theorem wronskian_Φ_ΨSq_ne_zero [W.IsElliptic] {n : ℕ} (hn : (n : K) ≠ 0) 
   · set E := W.baseChange K with hE
     have hnQ : ((n : ℕ) : K) ≠ 0 := hn
     have hm4 : 4 ≤ n ^ 2 := by nlinarith
-
     have hFlc : (E.Φ n).coeff (n ^ 2) = 1 := by
       simpa using WeierstrassCurve.coeff_Φ E (n : ℤ)
     have hGlc : (E.ΨSq n).coeff (n ^ 2 - 1) = (n : K) ^ 2 := by
@@ -365,7 +356,6 @@ theorem wronskian_Φ_ΨSq_ne_zero [W.IsElliptic] {n : ℕ} (hn : (n : K) ≠ 0) 
     have hG'c : (derivative (E.ΨSq n)).coeff (n ^ 2 - 2) =
         (n : K) ^ 2 * (((n ^ 2 - 2 : ℕ) : K) + 1) := by
       rw [coeff_derivative, (by omega : n ^ 2 - 2 + 1 = n ^ 2 - 1), hGlc]
-
     have hFdegle : (E.Φ n).natDegree ≤ n ^ 2 := by
       have h := WeierstrassCurve.natDegree_Φ_le E (n : ℤ)
       rwa [Int.natAbs_natCast] at h
@@ -500,7 +490,6 @@ theorem smul_surjective [W.IsElliptic] {n : ℕ} (hodd : Odd n) (hn : (n : K) �
     rw [eval_add, eval_mul, eval_mul, eval_one, hF0, hG0, mul_zero, mul_zero,
       add_zero] at h1
     exact zero_ne_one h1
-
   obtain ⟨y₀, hy₀⟩ : ∃ y : K, (W.baseChange K).toAffine.Equation x₀ y := by
     obtain ⟨y, hy⟩ := IsAlgClosed.exists_root
       (C 1 * X ^ 2 + C ((W.baseChange K).a₁ * x₀ + (W.baseChange K).a₃) * X
@@ -626,7 +615,6 @@ theorem exists_double_fiber_card [W.IsElliptic] {n : ℕ} (hodd : Odd n)
   set G := (W.baseChange K).ΨSq n with hGdef
   have hnQ : ((n : ℕ) : K) ≠ 0 := hn
   have hnZ : (((n : ℕ) : ℤ) : K) ≠ 0 := by exact_mod_cast hnQ
-
   have hB : {c : K | ¬ Squarefree (F' - C c * G)}.Finite := finite_not_squarefree_fiber W hn
   have hΨ₂ne : (W.baseChange K).Ψ₂Sq ≠ 0 := Ψ₂Sq_ne_zero_of_isElliptic W
   have hB' : ((fun x => F'.eval x / G.eval x) ''
@@ -637,13 +625,11 @@ theorem exists_double_fiber_card [W.IsElliptic] {n : ℕ} (hodd : Odd n)
   push Not at hc
   obtain ⟨hcB, hcB'⟩ := hc
   have hsqf : Squarefree (F' - C c * G) := not_not.mp hcB
-
   obtain ⟨yQ, hyQ⟩ := exists_equation_y W c
   have hQns : (W.baseChange K).toAffine.Nonsingular c yQ :=
     WeierstrassCurve.Affine.equation_iff_nonsingular.mp hyQ
   refine ⟨Point.some c yQ hQns, ?_⟩
   set p : K[X] := F' - C c * G with hpdef
-
   have hFdeg : F'.natDegree = n ^ 2 := by
     have h := WeierstrassCurve.natDegree_Φ (W.baseChange K) (n : ℤ)
     rw [Int.natAbs_natCast] at h
@@ -674,12 +660,10 @@ theorem exists_double_fiber_card [W.IsElliptic] {n : ℕ} (hodd : Odd n)
     intro h
     rw [h, coeff_zero] at hpco
     exact zero_ne_one hpco
-
   have hnodup : p.roots.Nodup := squarefree_roots_nodup hsqf
   have hroots_card : p.roots.toFinset.card = n ^ 2 := by
     rw [Multiset.toFinset_card_of_nodup hnodup,
       ← (IsAlgClosed.splits p).natDegree_eq_card_roots, hpdeg]
-
   have key_F : ∀ x : K, p.eval x = 0 → F'.eval x = c * G.eval x := by
     intro x hx
     rw [hpdef, eval_sub, eval_mul, eval_C, sub_eq_zero] at hx
@@ -698,7 +682,6 @@ theorem exists_double_fiber_card [W.IsElliptic] {n : ℕ} (hodd : Odd n)
     refine hcB' ⟨x, h2, ?_⟩
     show F'.eval x / G.eval x = c
     rw [key_F x hx, mul_div_assoc, div_self (key_G x hx), mul_one]
-
   set R2fin : Finset (K × K) := p.roots.toFinset.biUnion
     (fun x => (qpoly W x).roots.toFinset.image (fun y => (x, y))) with hR2def
   have hmemR2 : ∀ z : K × K, z ∈ R2fin ↔
@@ -720,7 +703,6 @@ theorem exists_double_fiber_card [W.IsElliptic] {n : ℕ} (hodd : Odd n)
         exact ⟨z.2, by
           rw [Multiset.mem_toFinset, mem_roots (qpoly_ne_zero W z.1)]
           exact (isRoot_qpoly_iff W z.1 z.2).mpr h2, rfl⟩
-
   have hfiber2 : ∀ x ∈ p.roots.toFinset,
       ((qpoly W x).roots.toFinset.image (fun y => (x, y))).card = 2 := by
     intro x hx
@@ -750,7 +732,6 @@ theorem exists_double_fiber_card [W.IsElliptic] {n : ℕ} (hodd : Odd n)
       calc 2 = ({y₀, (W.baseChange K).toAffine.negY x y₀} : Finset K).card :=
             (Finset.card_pair hyne).symm
         _ ≤ _ := Finset.card_le_card hsub
-
   have hR2card : R2fin.card = 2 * n ^ 2 := by
     rw [hR2def, Finset.card_biUnion]
     · rw [Finset.sum_congr rfl hfiber2, Finset.sum_const, smul_eq_mul, hroots_card,
@@ -763,7 +744,6 @@ theorem exists_double_fiber_card [W.IsElliptic] {n : ℕ} (hodd : Odd n)
       obtain ⟨y₁, -, rfl⟩ := hz₁
       obtain ⟨y₂, -, hz⟩ := hz₂
       exact hne ((Prod.ext_iff.mp hz).1.symm)
-
   set Q : W.toAffine⟮K⟯ := Point.some c yQ hQns with hQdef
   have hQ0 : Q ≠ 0 := Point.some_ne_zero hQns
   have hnegQ : -Q = Point.some c ((W.baseChange K).toAffine.negY c yQ)
@@ -774,7 +754,6 @@ theorem exists_double_fiber_card [W.IsElliptic] {n : ℕ} (hodd : Odd n)
     rcases hP with h | h
     · exact hQ0 h.symm
     · exact hQ0 (neg_eq_zero.mp h.symm)
-
   have hmaps : Set.MapsTo (coords W) {P : W.toAffine⟮K⟯ | n • P = Q ∨ n • P = -Q}
       ↑R2fin := by
     rintro P hP
@@ -837,7 +816,6 @@ theorem exists_double_fiber_card [W.IsElliptic] {n : ℕ} (hodd : Odd n)
     · refine Or.inr ?_
       rw [hnegQ]
       exact hsmul
-
   have hbij : Set.BijOn (coords W) {P : W.toAffine⟮K⟯ | n • P = Q ∨ n • P = -Q}
       ↑R2fin := ⟨hmaps, hinj, hsurj⟩
   calc Nat.card {P : W.toAffine⟮K⟯ // n • P = Q ∨ n • P = -Q}
@@ -856,8 +834,7 @@ theorem card_nTorsion_odd_fibers [W.IsElliptic] {n : ℕ} (hodd : Odd n)
   have hn0 : n ≠ 0 := by rintro rfl; simp at hn
   obtain ⟨Q, hQ⟩ := exists_double_fiber_card W hodd hn
   by_cases hQQ : Q = -Q
-  ·
-    exfalso
+  · exfalso
     simp only [← hQQ, or_self] at hQ
     rw [card_smul_fiber W hodd hn Q] at hQ
     have hfin : Finite (nTorsion W (K := K) n) := by
@@ -876,8 +853,7 @@ theorem card_nTorsion_odd_fibers [W.IsElliptic] {n : ℕ} (hodd : Odd n)
     rw [hcoe] at hdvdn
     have hodd' := Nat.odd_iff.mp hodd
     omega
-  ·
-    have hdisj : Disjoint (fun P : W.toAffine⟮K⟯ => n • P = Q)
+  · have hdisj : Disjoint (fun P : W.toAffine⟮K⟯ => n • P = Q)
         (fun P : W.toAffine⟮K⟯ => n • P = -Q) := by
       rw [Pi.disjoint_iff]
       intro P
@@ -1060,7 +1036,6 @@ theorem card_nTorsion_two [W.IsElliptic] (h2 : (2 : K) ≠ 0) :
     Nat.card (nTorsion W (K := K) 2) = 4 := by
   classical
   set E := W.baseChange K with hE
-
   have ha : E.twoTorsionPolynomial.a ≠ 0 := by
     show (4 : K) ≠ 0
     rw [show (4 : K) = 2 * 2 by norm_num]
@@ -1073,18 +1048,15 @@ theorem card_nTorsion_two [W.IsElliptic] (h2 : (2 : K) ≠ 0) :
   have hcard3 : E.twoTorsionPolynomial.roots.toFinset.card = 3 := by
     have h := Cubic.card_roots_of_discr_ne_zero ha hsplits hd
     rwa [hmap] at h
-
   have hroot_iff : ∀ x : K, x ∈ E.twoTorsionPolynomial.roots ↔
       4 * x ^ 3 + E.b₂ * x ^ 2 + 2 * E.b₄ * x + E.b₆ = 0 :=
     fun x => Cubic.mem_roots_iff (Cubic.ne_zero_of_a_ne_zero ha) x
-
   set yy : K → K := fun x => -(E.a₁ * x + E.a₃) / 2 with hyy
   have hyneg : ∀ x : K, yy x = E.toAffine.negY x (yy x) := by
     intro x
     simp only [hyy, negY]
     field_simp
     ring
-
   have hEq : ∀ x : K, 4 * x ^ 3 + E.b₂ * x ^ 2 + 2 * E.b₄ * x + E.b₆ = 0 →
       E.toAffine.Equation x (yy x) := by
     intro x hx
@@ -1093,7 +1065,6 @@ theorem card_nTorsion_two [W.IsElliptic] (h2 : (2 : K) ≠ 0) :
     simp only [b₂, b₄, b₆] at hx
     field_simp
     linear_combination -hx
-
   have hEval : ∀ x y : K, E.toAffine.Equation x y → y = E.toAffine.negY x y →
       (4 * x ^ 3 + E.b₂ * x ^ 2 + 2 * E.b₄ * x + E.b₆ = 0 ∧ y = yy x) := by
     intro x y heq hy
@@ -1106,11 +1077,9 @@ theorem card_nTorsion_two [W.IsElliptic] (h2 : (2 : K) ≠ 0) :
     · simp only [hyy]
       field_simp
       linear_combination hy2
-
   have hns : ∀ x ∈ E.twoTorsionPolynomial.roots.toFinset, E.toAffine.Nonsingular x (yy x) :=
     fun x hx =>
       equation_iff_nonsingular.mp (hEq x ((hroot_iff x).mp (Multiset.mem_toFinset.mp hx)))
-
   set T : Finset (W.toAffine⟮K⟯) :=
     insert 0 ((E.twoTorsionPolynomial.roots.toFinset.attach).image
       fun p => Point.some p.1 (yy p.1) (hns p.1 p.2)) with hT
@@ -1190,7 +1159,6 @@ theorem card_nTorsion_prime_pow [W.IsElliptic] {p : ℕ} (hp : p.Prime)
       refine Nat.finite_of_card_ne_zero ?_
       rw [hfib, ih]
       exact pow_ne_zero _ hp.pos.ne'
-
     have e : nTorsion W (K := K) (p ^ (k + 1)) ≃
         Σ Q : nTorsion W (K := K) p,
           {P : W.toAffine⟮K⟯ // p ^ k • P = (Q : W.toAffine⟮K⟯)} := by
@@ -1234,8 +1202,7 @@ theorem card_nTorsion_mul_of_coprime {m n : ℕ} (hmn : Nat.Coprime m n) :
         ⟨((m : ℤ) * a) • (P : W.toAffine⟮K⟯), ?_⟩),
       fun x => ⟨(x.1 : W.toAffine⟮K⟯) + (x.2 : W.toAffine⟮K⟯), ?_⟩,
       fun P => ?_, fun x => ?_⟩
-    ·
-      show m • (((n : ℤ) * b) • (P : W.toAffine⟮K⟯)) = 0
+    · show m • (((n : ℤ) * b) • (P : W.toAffine⟮K⟯)) = 0
       have hP : ((m : ℤ) * (n : ℤ)) • (P : W.toAffine⟮K⟯) = 0 := by
         have h := P.2
         show _ = _
@@ -1245,8 +1212,7 @@ theorem card_nTorsion_mul_of_coprime {m n : ℕ} (hmn : Nat.Coprime m n) :
       rw [← natCast_zsmul, smul_smul,
         show (m : ℤ) * ((n : ℤ) * b) = b * ((m : ℤ) * (n : ℤ)) by ring,
         ← smul_smul, hP, smul_zero]
-    ·
-      show n • (((m : ℤ) * a) • (P : W.toAffine⟮K⟯)) = 0
+    · show n • (((m : ℤ) * a) • (P : W.toAffine⟮K⟯)) = 0
       have hP : ((m : ℤ) * (n : ℤ)) • (P : W.toAffine⟮K⟯) = 0 := by
         have h := P.2
         rw [show (m : ℤ) * (n : ℤ) = ((m * n : ℕ) : ℤ) by push_cast; ring,
@@ -1255,8 +1221,7 @@ theorem card_nTorsion_mul_of_coprime {m n : ℕ} (hmn : Nat.Coprime m n) :
       rw [← natCast_zsmul, smul_smul,
         show (n : ℤ) * ((m : ℤ) * a) = a * ((m : ℤ) * (n : ℤ)) by ring,
         ← smul_smul, hP, smul_zero]
-    ·
-      show (m * n) • ((x.1 : W.toAffine⟮K⟯) + (x.2 : W.toAffine⟮K⟯)) = 0
+    · show (m * n) • ((x.1 : W.toAffine⟮K⟯) + (x.2 : W.toAffine⟮K⟯)) = 0
       have hx1 : m • (x.1 : W.toAffine⟮K⟯) = 0 := x.1.2
       have hx2 : n • (x.2 : W.toAffine⟮K⟯) = 0 := x.2.2
       rw [smul_add]
@@ -1265,13 +1230,11 @@ theorem card_nTorsion_mul_of_coprime {m n : ℕ} (hmn : Nat.Coprime m n) :
       have h2 : (m * n) • (x.2 : W.toAffine⟮K⟯) = 0 := by
         rw [← smul_smul, hx2, smul_zero]
       rw [h1, h2, add_zero]
-    ·
-      apply Subtype.ext
+    · apply Subtype.ext
       show ((n : ℤ) * b) • (P : W.toAffine⟮K⟯) + ((m : ℤ) * a) • (P : W.toAffine⟮K⟯) =
         (P : W.toAffine⟮K⟯)
       rw [← add_zsmul, show (n : ℤ) * b + (m : ℤ) * a = 1 by linarith [hBez], one_zsmul]
-    ·
-      have hm1 : (m : ℤ) • (x.1 : W.toAffine⟮K⟯) = 0 := by
+    · have hm1 : (m : ℤ) • (x.1 : W.toAffine⟮K⟯) = 0 := by
         rw [natCast_zsmul]; exact x.1.2
       have hn2 : (n : ℤ) • (x.2 : W.toAffine⟮K⟯) = 0 := by
         rw [natCast_zsmul]; exact x.2.2

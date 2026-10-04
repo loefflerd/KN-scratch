@@ -546,7 +546,6 @@ theorem frickeFn_slash {N : ℕ} [NeZero N] (a : Fin 2 → ZMod N) (γ : SL(2, �
       field_simp]
   congr 1
   have hN : (N : ℂ) ≠ 0 := Nat.cast_ne_zero.mpr (NeZero.ne N)
-
   have hpt : denomZ γ τ * frickeTorsionPt N a (γ • τ)
       = ((((a 0).val : ℤ) * γ 0 0 + ((a 1).val : ℤ) * γ 1 0 : ℤ) * (τ : ℂ)
           + (((a 0).val : ℤ) * γ 0 1 + ((a 1).val : ℤ) * γ 1 1 : ℤ)) / (N : ℂ) := by
@@ -934,7 +933,6 @@ theorem frickeF_eq_imp {N : ℕ} [NeZero N] (a b : FrickeIdx N)
     rw [ea] at eb
     linear_combination (-2592) * eb
   have hq := qExpansion_wpNorm_eq_of_frickeH_eq ha₁ ha₂ ha0 hb₁ hb₂ hb0 hH
-
   have hNpos : (0 : ℝ) < N := by exact_mod_cast Nat.pos_of_ne_zero (NeZero.ne N)
   have hfun : wpNorm N (a.1 0).val (a.1 1).val = wpNorm N (b.1 0).val (b.1 1).val := by
     funext τ
@@ -1020,27 +1018,19 @@ theorem solution (N : ℕ) [NeZero N]
         (((2 * π * I) ^ 2)⁻¹ *
           PeriodPair.weierstrassP (L τ)
             ((((a 0).val : ℂ) * (τ : ℂ) + ((a 1).val : ℂ)) / (N : ℂ)))
-
     (∀ (a : Fin 2 → ZMod N) (γ : SL(2, ℤ)) (τ : ℍ), f a (γ • τ) =
         f (Matrix.vecMul a ((γ : Matrix (Fin 2) (Fin 2) ℤ).map ((↑) : ℤ → ZMod N))) τ) ∧
-
     (∀ a : Fin 2 → ZMod N, f (-a) = f a) ∧
-
     (∀ a : Fin 2 → ZMod N, a ≠ 0 → MDifferentiable 𝓘(ℂ) 𝓘(ℂ) (f a)) ∧
-
     (∀ a : Fin 2 → ZMod N, a ≠ 0 →
       IsBoundedAtImInfty (f a * ModularForm.discriminant)) ∧
-
     (∀ a : Fin 2 → ZMod N, a ≠ 0 →
       Function.Periodic ((f a * ModularForm.discriminant) ∘ ofComplex) N ∧
       ∀ n : ℕ, (qExpansion N (f a * ModularForm.discriminant)).coeff n ∈
         IntermediateField.adjoin ℚ {cexp (2 * π * I / N)}) ∧
-
     (∀ a b : Fin 2 → ZMod N, a ≠ 0 → b ≠ 0 → f a = f b → b = a ∨ b = -a) ∧
-
     (∀ a : Fin 2 → ZMod N, ∀ γ ∈ CongruenceSubgroup.Gamma N, ∀ τ : ℍ,
       f a (γ • τ) = f a τ) ∧
-
     (∀ s : ℕ, s.Coprime N →
       ∀ φ : ↑(IntermediateField.adjoin ℚ {cexp (2 * π * I / N)}) →+* ℂ,
         (∀ z : ↑(IntermediateField.adjoin ℚ {cexp (2 * π * I / N)}),
@@ -1062,24 +1052,20 @@ theorem solution (N : ℕ) [NeZero N]
     with_unfolding_all rfl
   have hfeq' : ∀ a : Fin 2 → ZMod N, f a = frickeF N a := fun a => funext (hfeq a)
   refine ⟨?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_⟩
-  ·
-    intro a γ τ
+  · intro a γ τ
     rw [hfeq, hfeq]
     exact frickeF_slash a γ τ
-  ·
-    intro a
+  · intro a
     funext τ
     rw [hfeq, hfeq]
     show frickeF N (-a) τ = frickeF N a τ
     simp only [frickeF]
     congr 1
     rw [wpNormZ_eq, wpNormZ_eq, weierstrassP_frickeTorsionPt_neg]
-  ·
-    intro a ha
+  · intro a ha
     rw [hfeq' a]
     exact mdifferentiable_frickeF ⟨a, ha⟩
-  ·
-    intro a ha
+  · intro a ha
     have hb := isBoundedAtImInfty_frickeF_mul_discriminant (⟨a, ha⟩ : FrickeIdx N)
     have hsh : (f a * ModularForm.discriminant : ℍ → ℂ) =
         frickeF N a * ⇑CuspForm.discriminant := by
@@ -1089,8 +1075,7 @@ theorem solution (N : ℕ) [NeZero N]
         (congrFun CuspForm.coe_discriminant τ).symm]
     rw [hsh]
     exact hb
-  ·
-    intro a ha
+  · intro a ha
     obtain ⟨h1, h2, h0⟩ := frickeIdx_hyps (⟨a, ha⟩ : FrickeIdx N)
     have hshape : (f a * ModularForm.discriminant : ℍ → ℂ) =
         (-(1 / 2592) : ℂ) • frickeH N (a 0).val (a 1).val := by
@@ -1112,15 +1097,12 @@ theorem solution (N : ℕ) [NeZero N]
       refine mul_mem ?_ (qExpansion_frickeH_coeff_mem_kN h1 h2 h0 n)
       show ((-(1 / 2592) : ℂ)) ∈ IntermediateField.adjoin ℚ {Complex.exp (2 * ↑Real.pi * Complex.I / N)}
       simp
-  ·
-    intro a b ha hb hab
+  · intro a b ha hb hab
     exact frickeF_eq_imp ⟨a, ha⟩ ⟨b, hb⟩ (by rw [← hfeq' a, ← hfeq' b]; exact hab)
-  ·
-    intro a γ hγ τ
+  · intro a γ hγ τ
     rw [hfeq, hfeq]
     exact frickeF_invariant_Gamma a hγ τ
-  ·
-    intro s hs φ hφ a ha n z hz
+  · intro s hs φ hφ a ha n z hz
     obtain ⟨h1, h2, h0⟩ := frickeIdx_hyps (⟨a, ha⟩ : FrickeIdx N)
     have hN : N ≠ 0 := NeZero.ne N
     have h2' : s * (a 1).val % N < N := Nat.mod_lt _ (Nat.pos_of_ne_zero hN)

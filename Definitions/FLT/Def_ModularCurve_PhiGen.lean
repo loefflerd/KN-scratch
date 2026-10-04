@@ -46,7 +46,6 @@ def qTwist (u : Rˣ) : LaurentSeries R →+* LaurentSeries R where
     · rw [mul_zero]
   map_mul' f g := by
     ext k
-
     have hset : pwoAntidiagonal (qTwistFun u f).isPWO_support
         (qTwistFun u g).isPWO_support k =
         pwoAntidiagonal f.isPWO_support g.isPWO_support k := by

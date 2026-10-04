@@ -113,7 +113,6 @@ theorem solution {R R' : Type*} [CommRing R] [CommRing R'] (φ : R →+* R') (n 
     T' (Φ x) = Φ (T x) :=
   HeckeEis.SolMain.C1 φ n N ℓ Φ hΦ T hT T' hT' x
 
-
 end S_HeckeEis_coeffH1par_map_heckeT_comm
 end P2MW
 export P2MW.S_HeckeEis_coeffH1par_map_heckeT_comm (solution)

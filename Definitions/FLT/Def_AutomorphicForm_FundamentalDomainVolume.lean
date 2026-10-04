@@ -19,17 +19,14 @@ def band (A a : ℝ) (n : ℕ) : Set ℍ :=
 theorem verticalStrip_subset_iUnion_band (A : ℝ) {a : ℝ} (ha : 0 < a) :
     UpperHalfPlane.verticalStrip A a ⊆ ⋃ n : ℕ, band A a n := by
   rintro z ⟨hre, him⟩
-
   have hex : ∃ n : ℕ, z.im ≤ a * 2 ^ (n + 1) := by
     obtain ⟨n, hn⟩ := pow_unbounded_of_one_lt (z.im / a) (one_lt_two (α := ℝ))
     exact ⟨n, by
       rw [div_lt_iff₀ ha] at hn
       nlinarith [pow_pos (zero_lt_two (α := ℝ)) n, pow_succ (2 : ℝ) n]⟩
   classical
-
   refine Set.mem_iUnion.mpr ⟨Nat.find hex, ?_, ?_, Nat.find_spec hex⟩
   · exact hre
-
   rcases Nat.eq_zero_or_eq_succ_pred (Nat.find hex) with h0 | hsucc
   · rw [h0]; simpa using him
   · rw [hsucc]
@@ -57,16 +54,13 @@ private lemma volume_cbox (relo rehi imlo imhi : ℝ) :
 theorem volume_band_le {A a : ℝ} (hA : 0 ≤ A) (ha : 0 < a) (n : ℕ) :
     volume (band A a n) ≤ ENNReal.ofReal (2 * A * (a⁻¹ * (1 / 2) ^ n)) := by
   have h2n : (0 : ℝ) < a * 2 ^ n := by positivity
-
   rw [UpperHalfPlane.volume_eq_lintegral]
-
   have himg : (UpperHalfPlane.coe '' band A a n) ⊆
       cbox (-A) A (a * 2 ^ n) (a * 2 ^ (n + 1)) := by
     rintro w ⟨z, ⟨hre, him₁, him₂⟩, rfl⟩
     rw [mem_cbox, UpperHalfPlane.coe_re, UpperHalfPlane.coe_im]
     exact ⟨abs_le.mp hre, him₁, him₂⟩
   refine le_trans (lintegral_mono_set himg) ?_
-
   have hbound : ∀ w ∈ cbox (-A) A (a * 2 ^ n) (a * 2 ^ (n + 1)),
       (((1 / ‖w.im‖₊) ^ 2 : ℝ≥0) : ℝ≥0∞) ≤ ENNReal.ofReal ((a * 2 ^ n)⁻¹ ^ 2) := by
     intro w hw
@@ -80,7 +74,6 @@ theorem volume_band_le {A a : ℝ} (hA : 0 ≤ A) (ha : 0 < a) (n : ℕ) :
     rw [this]
     gcongr
   refine le_trans (setLIntegral_mono measurable_const hbound) ?_
-
   rw [setLIntegral_const, volume_cbox]
   have harith₁ : A - -A = 2 * A := by ring
   have harith₂ : a * 2 ^ (n + 1) - a * 2 ^ n = a * 2 ^ n := by ring
@@ -95,7 +88,6 @@ theorem volume_band_le {A a : ℝ} (hA : 0 ≤ A) (ha : 0 < a) (n : ℕ) :
 
 theorem volume_verticalStrip_lt_top (A : ℝ) {a : ℝ} (ha : 0 < a) :
     volume (UpperHalfPlane.verticalStrip A a) < ⊤ := by
-
   rcases le_or_gt 0 A with hA | hA
   swap
   · have hempty : UpperHalfPlane.verticalStrip A a = ∅ := by

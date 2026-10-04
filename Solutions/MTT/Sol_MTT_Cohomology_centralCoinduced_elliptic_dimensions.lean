@@ -300,7 +300,6 @@ def symmetricPowerCoordinates (R : Type*) [CommRing R] (n : ℕ) :
 theorem finrank_sym (n : ℕ) : Module.finrank ℂ (Sym ℂ n) = n + 1 := by
   rw [(symmetricPowerCoordinates ℂ n).finrank_eq, Module.finrank_finsupp_self, Fintype.card_fin]
 
-
 end MTT.Cohomology
 
 /-! # Finite-order fixed dimensions in the full coinduced coefficient module -/

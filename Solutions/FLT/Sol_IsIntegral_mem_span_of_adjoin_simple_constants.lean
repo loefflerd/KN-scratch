@@ -288,7 +288,6 @@ theorem mem_span_RSet_of_adjoin_simple (hBS : B ⊆ S) {c : ℂ} (hc : IsIntegra
     conv_lhs => rw [← pb.basis.sum_repr x']
     refine Finset.sum_congr rfl fun i _ ↦ ?_
     rw [pb.coe_basis, hpbg]
-
   obtain ⟨P, hPm, hPc, hPx⟩ := (isIntegral_subalgebra_iff _ x).mp hxint
   set d := P.natDegree
   choose pc hpc hpcφ using fun n ↦ exists_lift_of_mem_adjoin F B hBS hc (hPc n)
@@ -305,7 +304,6 @@ theorem mem_span_RSet_of_adjoin_simple (hBS : B ⊆ S) {c : ℂ} (hc : IsIntegra
     congr 1
     refine Finset.sum_congr rfl fun n _ ↦ ?_
     rw [IntermediateField.coe_mul, IntermediateField.coe_pow, hpc]
-
   set roots := (minpoly ↥L₀ (ι c)).aroots K
   set s := roots.toFinset
   have hsconst : ∀ r ∈ s, ∃ a : ℂ, IsIntegral ↥F a ∧ ι a = r := fun r hr ↦
@@ -315,7 +313,6 @@ theorem mem_span_RSet_of_adjoin_simple (hBS : B ⊆ S) {c : ℂ} (hc : IsIntegra
   have hφg : ∀ r hr, φ r hr g = r := fun r hr ↦
     IntermediateField.algHomAdjoinIntegralEquiv_symm_apply_gen ↥L₀ hint ⟨r, hr⟩
   let zf : K → K := fun r ↦ if hr : r ∈ roots then φ r hr x' else 0
-
   have hZ1 : ∀ r hr, IsIntegral ↥(TRng F B) (φ r hr x') := by
     intro r hr
     set T := Algebra.adjoin ↥(TRng F B) {r}
@@ -350,14 +347,12 @@ theorem mem_span_RSet_of_adjoin_simple (hBS : B ⊆ S) {c : ℂ} (hc : IsIntegra
         simp_rw [← map_pow, ← map_mul]
         rw [← map_sum, ← map_add, hw, map_zero]
     exact isIntegral_of_isIntegral_adjoin_singleton hrint hT
-
   have hZ2 : ∀ r hr, φ r hr x' = ∑ i, (y i : K) * r ^ (i : ℕ) := by
     intro r hr
     rw [hx', map_sum]
     refine Finset.sum_congr rfl fun i _ ↦ ?_
     rw [Algebra.smul_def, map_mul, map_pow, hφg, AlgHom.commutes]
     rfl
-
   set Y : K[X] := ∑ i : Fin pb.dim, C (y i : K) * X ^ (i : ℕ)
   have hcard : s.card = pb.dim := by
     rw [hpbd]; exact card_rootFinset_minpoly_KFld F hc
@@ -378,7 +373,6 @@ theorem mem_span_RSet_of_adjoin_simple (hBS : B ⊆ S) {c : ℂ} (hc : IsIntegra
     · intro j _ hji
       rw [ite_eq_right (fun h ↦ hji (Fin.ext h.symm))]
     · intro h; exact absurd (Finset.mem_univ i) h
-
   have hZ4 : ∀ i : Fin pb.dim, IsIntegral ↥(TRng F B) (y i : K) := by
     intro i
     rw [← hYcoeff, hY, Lagrange.interpolate_apply, Polynomial.finsetSum_coeff]
@@ -388,9 +382,7 @@ theorem mem_span_RSet_of_adjoin_simple (hBS : B ⊆ S) {c : ℂ} (hc : IsIntegra
     have hr' : r ∈ roots := Multiset.mem_toFinset.mp hr
     simp only [zf, dite_eq_left hr']
     exact hZ1 r hr'
-
   have hZ5 : ∀ i : Fin pb.dim, (y i : K) ∈ RSet F B S := fun i ↦ ⟨(y i).2, hZ4 i⟩
-
   have hxsum : x = ∑ i : Fin pb.dim, (y i : K) * ι c ^ (i : ℕ) := by
     have := congrArg (fun e : ↥E ↦ (e : K)) hx'
     rw [IntermediateField.coe_sum] at this

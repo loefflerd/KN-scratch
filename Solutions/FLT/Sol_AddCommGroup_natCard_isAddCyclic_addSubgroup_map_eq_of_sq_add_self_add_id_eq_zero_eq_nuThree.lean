@@ -19,7 +19,6 @@ theorem l3x_transport {A : Type*} [AddCommGroup A] (n : ℕ) [NeZero n]
     Nat.card {H : AddSubgroup A // IsAddCyclic H ∧ Nat.card H = n ∧ H.map σ = H}
       = Nat.card {H : AddSubgroup M // IsAddCyclic H ∧ Nat.card H = n ∧ H.map T = H} := by
   have hcomm : σ.comp ι = ι.comp T := AddMonoidHom.ext fun m => (hT m).symm
-
   have hΦ : ∀ L : AddSubgroup M, IsAddCyclic L ∧ Nat.card L = n ∧ L.map T = L →
       IsAddCyclic (L.map ι) ∧ Nat.card (L.map ι) = n ∧ (L.map ι).map σ = L.map ι := by
     rintro L ⟨hc, hcard, hst⟩
@@ -27,7 +26,6 @@ theorem l3x_transport {A : Type*} [AddCommGroup A] (n : ℕ) [NeZero n]
     refine ⟨isAddCyclic_of_surjective _ (L.equivMapOfInjective ι hι).surjective, ?_, ?_⟩
     · rw [← Nat.card_congr (L.equivMapOfInjective ι hι).toEquiv, hcard]
     · rw [AddSubgroup.map_map, hcomm, ← AddSubgroup.map_map, hst]
-
   have hΨ : ∀ H : AddSubgroup A, IsAddCyclic H ∧ Nat.card H = n ∧ H.map σ = H →
       (H.comap ι).map ι = H ∧
       (IsAddCyclic (H.comap ι) ∧ Nat.card (H.comap ι) = n ∧ (H.comap ι).map T = H.comap ι) := by
@@ -66,19 +64,16 @@ theorem solution
     (hns : ∀ p : ℕ, p.Prime → p ∣ n → ∃ a : A, addOrderOf a = p ∧ ∀ k : ℕ, σ a ≠ k • a) :
     Nat.card {H : AddSubgroup A // IsAddCyclic H ∧ Nat.card H = n ∧ H.map σ = H}
       = nuThree n := by
-
   have memV : ∀ a : A, a ∈ Submodule.torsionBy ℤ A n ↔ n • a = 0 := fun a => by
     rw [Submodule.mem_torsionBy_iff, natCast_zsmul]
   have σV : ∀ a ∈ Submodule.torsionBy ℤ A n, σ a ∈ Submodule.torsionBy ℤ A n := fun a ha => by
     rw [memV] at ha ⊢; rw [← map_nsmul, ha, map_zero]
-
   let ι : ZMod n × ZMod n →+ A :=
     (Submodule.torsionBy ℤ A n).subtype.toAddMonoidHom.comp e.toAddMonoidHom
   have ι_apply : ∀ m, ι m = (e m : A) := fun m => rfl
   have hι : Function.Injective ι := Subtype.val_injective.comp e.injective
   have hιr : ∀ a : A, n • a = 0 → ∃ m, ι m = a := fun a ha =>
     ⟨e.symm ⟨a, (memV a).mpr ha⟩, by rw [ι_apply, AddEquiv.apply_symm_apply]⟩
-
   let σr : Submodule.torsionBy ℤ A n →+ Submodule.torsionBy ℤ A n :=
     (σ.comp (Submodule.torsionBy ℤ A n).subtype.toAddMonoidHom).codRestrict
       (Submodule.torsionBy ℤ A n) (fun x => σV x.1 x.2)
@@ -89,7 +84,6 @@ theorem solution
     simp only [T_apply, ι_apply, AddEquiv.apply_symm_apply, σr_apply]
   have hT2 : ∀ m, T (T m) + T m + m = 0 := fun m =>
     hι (by rw [map_add, map_add, hT, hT, hσ, map_zero])
-
   have hnsT : ∀ p : ℕ, p.Prime → p ∣ n →
       ∃ v : ZMod n × ZMod n, addOrderOf v = p ∧ ∀ k : ℕ, T v ≠ k • v := by
     intro p hp hpn

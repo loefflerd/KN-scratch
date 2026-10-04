@@ -85,7 +85,6 @@ open _root_.ModularCurve _root_.P2MW.S_ModularCurve_relfinrank_full_eq_mul.Modul
 theorem solution (M : ℕ) [NeZero M] (p : ℕ) [hp : Fact (Nat.Prime p)] (a : ℕ) (hup : modularFunctionFieldFull (M * p ^ (a + 1)) = IntermediateField.adjoin ℚ (insert (jqN (p ^ (a + 1))) (modularFunctionFieldFull (M * p ^ a) : Set (LaurentSeries ℚ)))) (hnm : jqN (p ^ (a + 1)) ∉ modularFunctionFieldFull (M * p ^ a)) : IntermediateField.relfinrank (modularFunctionFieldFull (M * p ^ a)) (modularFunctionFieldFull (M * p ^ (a + 1))) = if a = 0 then p + 1 else p :=
   ModularCurve.relfinrank_full_eq_mul M p a hup hnm
 
-
 end S_ModularCurve_relfinrank_full_eq_mul
 end P2MW
 export P2MW.S_ModularCurve_relfinrank_full_eq_mul (solution)

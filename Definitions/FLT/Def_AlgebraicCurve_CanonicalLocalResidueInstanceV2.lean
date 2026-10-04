@@ -130,7 +130,6 @@ def restrictSubringHom : (w.restrict F).toValuationSubring →+* w.toValuationSu
 instance instIsLocalHom_restrictSubringHom : IsLocalHom (w.restrictSubringHom (F := F)) := by
   constructor
   intro a ha
-
   obtain ⟨b, hb⟩ := isUnit_iff_exists_inv.mp ha
   have hb' : algebraMap F F' (a : F) * (b : F') = 1 := by
     exact congrArg Subtype.val hb
@@ -138,11 +137,9 @@ instance instIsLocalHom_restrictSubringHom : IsLocalHom (w.restrictSubringHom (F
     rintro h0
     rw [h0, map_zero, zero_mul] at hb'
     exact zero_ne_one hb'
-
   have hbeq : (b : F') = algebraMap F F' (a : F)⁻¹ := by
     rw [map_inv₀]
     exact eq_inv_of_mul_eq_one_right (by linear_combination hb')
-
   have hmem : (a : F)⁻¹ ∈ (w.restrict F).toValuationSubring := by
     show algebraMap F F' (a : F)⁻¹ ∈ w.toValuationSubring
     exact hbeq ▸ b.2
@@ -273,7 +270,6 @@ theorem simplePoleResidueAux_apply (f : v.simplePoleSubmodule) :
 theorem simplePoleResidueAux_eq_zero_of_mem {f : F} (hf : f ∈ v.toValuationSubring) :
     v.simplePoleResidueAux ⟨f, v.mem_simplePoleSubmodule_of_mem hf⟩ = 0 := by
   rw [simplePoleResidueAux_apply, IsLocalRing.residue_eq_zero_iff]
-
   have hmul : (⟨v.uniformizer * f, mul_mem v.uniformizer_mem hf⟩ : v.toValuationSubring)
       = v.uniformizerSubring * ⟨f, hf⟩ := Subtype.ext rfl
   rw [hmul]
@@ -412,13 +408,11 @@ theorem laurentTail_remainder_mem_poleSubmodule {n : ℕ} {f : F}
     (hf : f ∈ v.poleSubmodule (n + 1)) {c : v.toValuationSubring}
     (hc : IsLocalRing.residue _ c = v.laurentTailCoeff (n + 1) ⟨f, hf⟩) :
     f - (c : F) * (v.uniformizer ^ (n + 1))⁻¹ ∈ v.poleSubmodule n := by
-
   set a : v.toValuationSubring := ⟨v.uniformizer ^ (n + 1) * f, hf⟩ with ha_def
   have hmem : a - c ∈ IsLocalRing.maximalIdeal v.toValuationSubring := by
     rw [← IsLocalRing.residue_eq_zero_iff, map_sub, hc, laurentTailCoeff_apply, sub_self]
   rw [v.irreducible_uniformizerSubring.maximalIdeal_eq, Ideal.mem_span_singleton] at hmem
   obtain ⟨d, hd⟩ := hmem
-
   rw [mem_poleSubmodule]
   have hcoe : v.uniformizer ^ (n + 1) * f - (c : F) = v.uniformizer * (d : F) := by
     have h := congrArg (Subtype.val) hd
@@ -577,22 +571,17 @@ theorem higherPoleMonomial_coeff_eq_zero_of_mem (s : Finset ℕ) (c : ℕ → K)
   | insert N s hN ih =>
     have hNs : N ∉ s := fun h => absurd (hN N h) (lt_irrefl N)
     rw [Finset.sum_insert hNs] at hmem
-
     have hrest : ∑ m ∈ s, c m • (v.uniformizer ^ (m + 2))⁻¹ ∈ v.poleSubmodule (N + 1) :=
       v.higherPoleMonomial_sum_mem_poleSubmodule hN c
-
     have hwhole := v.poleSubmodule_mono (Nat.one_le_iff_ne_zero.mpr (Nat.succ_ne_zero N)) hmem
-
     have htop : c N • (v.uniformizer ^ (N + 2))⁻¹ ∈ v.poleSubmodule (N + 1) := by
       have hsub := (v.poleSubmodule (N + 1)).sub_mem hwhole hrest
       rwa [add_sub_cancel_right] at hsub
-
     have hcN : c N = 0 := by
       by_contra hcN
       exact (gate_poleSubmodule_strictMono v (N + 1)).2 <|
         (inv_smul_smul₀ hcN ((v.uniformizer ^ (N + 2))⁻¹)) ▸
           (v.poleSubmodule (N + 1)).smul_mem (c N)⁻¹ htop
-
     intro m hm
     rcases Finset.mem_insert.mp hm with rfl | hm'
     · exact hcN
@@ -628,16 +617,13 @@ theorem higherPoleCorrection_apply_of_mem {f : F} (hf : f ∈ v.poleSubmodule 1)
 theorem higherPoleCorrection_uniformizer_pow_inv (m : ℕ) :
     v.higherPoleCorrection ((v.uniformizer ^ (m + 2))⁻¹)
       = v.localResidueExtend ((v.uniformizer ^ (m + 2))⁻¹) := by
-
   have hmem : (v.poleSubmodule 1).mkQ ((v.uniformizer ^ (m + 2))⁻¹)
       ∈ Submodule.span K
           (Set.range fun m : ℕ => (v.poleSubmodule 1).mkQ ((v.uniformizer ^ (m + 2))⁻¹)) :=
     Submodule.subset_span ⟨m, rfl⟩
   have hext := DFunLike.congr_fun v.higherPoleCorrectionAux.exists_extend.choose_spec
     ⟨(v.poleSubmodule 1).mkQ ((v.uniformizer ^ (m + 2))⁻¹), hmem⟩
-
   refine hext.trans ?_
-
   unfold higherPoleCorrectionAux
   have hb := (Basis.span v.linearIndependent_higherPoleMonomial_mkQ).constr_basis K
     (fun m => v.localResidueExtend ((v.uniformizer ^ (m + 2))⁻¹)) m
@@ -681,12 +667,10 @@ theorem canonicalLocalResidueDataK_agree_on_poleSubmodule_of_surj
     rw [R₁.res_of_mem f hf', R₂.res_of_mem f hf']
   | succ n ih =>
     rcases Nat.lt_or_ge n 1 with hn | hn
-    ·
-      interval_cases n
+    · interval_cases n
       exact v.localResidueData_agree_on_simplePole R₁.toLocalResidueData R₂.toLocalResidueData
         (v.poleSubmodule_one ▸ hf)
-    ·
-      obtain ⟨c, hc⟩ := hsurj (v.laurentTailCoeff (n + 1) ⟨f, hf⟩)
+    · obtain ⟨c, hc⟩ := hsurj (v.laurentTailCoeff (n + 1) ⟨f, hf⟩)
       have hclift : IsLocalRing.residue _ (algebraMap K v.toValuationSubring c)
           = v.laurentTailCoeff (n + 1) ⟨f, hf⟩ := by
         rw [← hc, IsScalarTower.algebraMap_apply K v.toValuationSubring v.ResidueField,
@@ -717,14 +701,11 @@ namespace Place
 variable (v : Place K F)
 
 structure CoefficientFieldSection where
-
   lift : v.ResidueField →ₐ[K] v.toValuationSubring
-
   residue_lift : ∀ a, IsLocalRing.residue _ (lift a) = a
 
 structure CanonicalLocalResidueDataS (σ : v.CoefficientFieldSection)
     extends v.LocalResidueData where
-
   res_higherPoleSectionMonomial : ∀ (n : ℕ), 1 ≤ n → ∀ a : v.ResidueField,
     res ((σ.lift a : F) * (v.uniformizer ^ (n + 1))⁻¹) = 0
 
@@ -749,12 +730,10 @@ theorem canonicalLocalResidueDataS_agree_on_poleSubmodule (σ : v.CoefficientFie
     rw [R₁.res_of_mem f hf', R₂.res_of_mem f hf']
   | succ n ih =>
     rcases Nat.lt_or_ge n 1 with hn | hn
-    ·
-      interval_cases n
+    · interval_cases n
       exact v.localResidueData_agree_on_simplePole R₁.toLocalResidueData R₂.toLocalResidueData
         (v.poleSubmodule_one ▸ hf)
-    ·
-      set a : v.ResidueField := v.laurentTailCoeff (n + 1) ⟨f, hf⟩ with ha_def
+    · set a : v.ResidueField := v.laurentTailCoeff (n + 1) ⟨f, hf⟩ with ha_def
       have hclift : IsLocalRing.residue _ (σ.lift a)
           = v.laurentTailCoeff (n + 1) ⟨f, hf⟩ := σ.residue_lift a
       have hrem : f - (σ.lift a : F) * (v.uniformizer ^ (n + 1))⁻¹ ∈ v.poleSubmodule n :=
@@ -770,7 +749,6 @@ def coefficientFieldSectionOfBijective
     simp only [AlgHom.coe_comp, Function.comp_apply]
     set c : K := (AlgEquiv.ofBijective (Algebra.ofId K v.ResidueField) hbij).symm a with hc_def
     show IsLocalRing.residue _ (algebraMap K v.toValuationSubring c) = a
-
     rw [show IsLocalRing.residue _ (algebraMap K v.toValuationSubring c)
           = algebraMap K v.ResidueField c from by
         rw [IsScalarTower.algebraMap_apply K v.toValuationSubring v.ResidueField,
@@ -890,9 +868,7 @@ theorem lg37_residueHat_algebraMap (v : Place K F) (x : v.toValuationSubring) :
       = IsLocalRing.residue v.toValuationSubring x := rfl
 
 structure Lg37CompletionSection (v : Place K F) where
-
   lift : v.ResidueField →ₐ[K] lg37_completion v
-
   residueHat_lift : ∀ a, lg37_residueHat v (lift a) = a
 
 end CompletionCarrier
@@ -959,9 +935,7 @@ theorem mp72a102_t1_exists_completion_root_of_residue_root
   classical
   have _htower : IsScalarTower K v.toValuationSubring (lg37_completion v) :=
     mp72a102_t1_isScalarTower v
-
   obtain ⟨a, ha⟩ := IsLocalRing.residue_surjective (R := v.toValuationSubring) rbar
-
   have hapI : Polynomial.aeval a p ∈ IsLocalRing.maximalIdeal v.toValuationSubring := by
     rw [← IsLocalRing.residue_eq_zero_iff]
     have h1 : IsLocalRing.residue v.toValuationSubring (Polynomial.aeval a p)
@@ -969,13 +943,11 @@ theorem mp72a102_t1_exists_completion_root_of_residue_root
       rw [← ha, ← IsLocalRing.ResidueField.algebraMap_eq,
         Polynomial.aeval_algebraMap_apply]
     rw [h1, hrbar]
-
   have hapIhat : Polynomial.aeval
       (algebraMap v.toValuationSubring (lg37_completion v) a) p
         ∈ mp72a102_t1_maximalIdealHat v := by
     rw [Polynomial.aeval_algebraMap_apply]
     exact Ideal.mem_map_of_mem _ hapI
-
   have hfeval : ∀ x : lg37_completion v,
       (p.map (algebraMap K (lg37_completion v))).eval x = Polynomial.aeval x p :=
     fun x => by rw [Polynomial.eval_map, ← Polynomial.aeval_def]
@@ -986,7 +958,6 @@ theorem mp72a102_t1_exists_completion_root_of_residue_root
             (algebraMap v.toValuationSubring (lg37_completion v) a)
             (Polynomial.derivative p) := by
     rw [Polynomial.derivative_map, Polynomial.eval_map, ← Polynomial.aeval_def]
-
   obtain ⟨u, w, huw⟩ := hpsep
   have hunit : IsUnit (Ideal.Quotient.mk (mp72a102_t1_maximalIdealHat v)
       ((p.map (algebraMap K (lg37_completion v))).derivative.eval
@@ -1002,7 +973,6 @@ theorem mp72a102_t1_exists_completion_root_of_residue_root
     rw [map_add, map_mul, map_mul, map_one,
       Ideal.Quotient.eq_zero_iff_mem.mpr hapIhat, mul_zero, zero_add] at h2
     exact IsUnit.of_mul_eq_one _ ((mul_comm _ _).trans h2)
-
   obtain ⟨α, hαroot, hαnear⟩ :=
     (mp72a102_t1_henselianRing_completion v).is_henselian
       (p.map (algebraMap K (lg37_completion v))) (hpmon.map _)
@@ -1011,8 +981,7 @@ theorem mp72a102_t1_exists_completion_root_of_residue_root
   refine ⟨α, ?_, ?_⟩
   · rw [← hfeval]
     exact hαroot
-  ·
-    have h0 : lg37_residueHat v
+  · have h0 : lg37_residueHat v
         (α - algebraMap v.toValuationSubring (lg37_completion v) a) = 0 :=
       RingHom.mem_ker.mp (mp72a102_t1_maximalIdealHat_le_ker_residueHat v hαnear)
     have heq : lg37_residueHat v α
@@ -1286,7 +1255,6 @@ theorem residueFieldAdjoinRootEquiv_root {ᾱ : v.ResidueField} (hint : IsIntegr
     (htop : K⟮ᾱ⟯ = ⊤) :
     residueFieldAdjoinRootEquiv v hint htop (AdjoinRoot.root (minpoly K ᾱ)) = ᾱ := by
   have hgen := adjoinRootEquivAdjoin_apply_root K hint
-
   simp only [residueFieldAdjoinRootEquiv, AlgEquiv.trans_apply, hgen,
     IntermediateField.topEquiv_apply]
   exact AdjoinSimple.coe_gen K ᾱ
@@ -1307,7 +1275,6 @@ noncomputable def sectionOfPrimitiveRoot {ᾱ : v.ResidueField} (hint : IsIntegr
       (by rw [aeval_def] at hroot; exact hroot)).comp
       (residueFieldAdjoinRootEquiv v hint htop).symm.toAlgHom
   residueHat_lift a := by
-
     have hres' : lg37_residueHat v αhat
         = residueFieldAdjoinRootEquiv v hint htop (AdjoinRoot.root (minpoly K ᾱ)) :=
       hres.trans (residueFieldAdjoinRootEquiv_root v hint htop).symm
@@ -1549,16 +1516,13 @@ theorem hensel_unique (v : Place K F) {p : K[X]} (hsep : p.Separable)
   set f := p.map (algebraMap K (lg37_completion v)) with hf
   have hevalα : f.eval α = 0 := by rw [hf, eval_map, ← aeval_def]; exact hα
   have hevalβ : f.eval β = 0 := by rw [hf, eval_map, ← aeval_def]; exact hβ
-
   set φ := (AdicCompletion.evalOneₐ (maximalIdeal v.toValuationSubring)).restrictScalars K
     with hφ
   have hφeq : ∀ z, φ z = lg37_residueHat v z := fun z => rfl
-
   have hsub0 : lg37_residueHat v (α - β) = 0 := by rw [map_sub, hres, sub_self]
   have hmem : (α - β) ∈ maximalIdeal (lg37_completion v) := by
     rw [← ker_residueHat_eq_maximalIdeal v]; exact RingHom.mem_ker.mpr hsub0
   have hnu : ¬ IsUnit (α - β) := fun hu => notMem_maximalIdeal.mpr hu hmem
-
   have hfderiv : f.derivative.eval α = aeval α (derivative p) := by
     rw [hf, derivative_map, eval_map, ← aeval_def]
   have hαroot : aeval (lg37_residueHat v α) p = 0 := by
@@ -1589,7 +1553,6 @@ theorem section_unique (v : Place K F)
   have hθ : S.lift θ = S'.lift θ :=
     hensel_unique v hsep (hroot S) (hroot S')
       ((S.residueHat_lift θ).trans (S'.residueHat_lift θ).symm)
-
   have hcomp : S.lift.comp (residueFieldAdjoinRootEquiv v hint htop).toAlgHom
       = S'.lift.comp (residueFieldAdjoinRootEquiv v hint htop).toAlgHom := by
     refine AdjoinRoot.algHom_ext ?_
@@ -1615,13 +1578,11 @@ theorem aCoeff_section_indep (v : Place K F)
   have ha' := Classical.choose_spec (mp72a102_t3_sigma_taylor_expansion v S' (n + 1) x)
   set a := Classical.choose (mp72a102_t3_sigma_taylor_expansion v S (n + 1) x) with ha_def
   set a' := Classical.choose (mp72a102_t3_sigma_taylor_expansion v S' (n + 1) x) with ha'_def
-
   have ha'' : AdicCompletion.evalₐ (maximalIdeal v.toValuationSubring) (n + 1)
       (x - ∑ i ∈ Finset.range (n + 1), S.lift (a' i)
         * algebraMap v.toValuationSubring (lg37_completion v)
             v.uniformizerSubring ^ i) = 0 := by
     simpa only [← hlift] using ha'
-
   have key : AdicCompletion.evalₐ (maximalIdeal v.toValuationSubring) (n + 1)
       (∑ i ∈ Finset.range (n + 1), S.lift ((fun i => a' i - a i) i)
         * algebraMap v.toValuationSubring (lg37_completion v)
@@ -1791,10 +1752,8 @@ theorem aCoeff_shift (v : Place K F) (S : Lg37CompletionSection v) (n : ℕ)
   set b := Classical.choose (mp72a102_t3_sigma_taylor_expansion v S (n + 2)
     (algebraMap v.toValuationSubring (lg37_completion v) v.uniformizerSubring * x))
     with hb_def
-
   set c : ℕ → v.ResidueField :=
     fun i => Nat.rec (motive := fun _ => v.ResidueField) 0 (fun j _ => a j) i with hc_def
-
   have hshift : AdicCompletion.evalₐ (maximalIdeal v.toValuationSubring) (n + 2)
       ((algebraMap v.toValuationSubring (lg37_completion v) v.uniformizerSubring * x)
         - ∑ i ∈ Finset.range (n + 2), S.lift (c i)
@@ -1819,7 +1778,6 @@ theorem aCoeff_shift (v : Place K F) (S : Lg37CompletionSection v) (n : ℕ)
       ring
     rw [e]
     exact hmul
-
   have key : AdicCompletion.evalₐ (maximalIdeal v.toValuationSubring) (n + 2)
       (∑ i ∈ Finset.range (n + 2), S.lift ((fun i => c i - b i) i)
         * algebraMap v.toValuationSubring (lg37_completion v)
@@ -1870,7 +1828,6 @@ theorem aCoeff_one_eq_zero (v : Place K F) (S : Lg37CompletionSection v)
     {n : ℕ} (hn : 1 ≤ n) : aCoeff v S n 1 = 0 := by
   have hc := Classical.choose_spec (mp72a102_t3_sigma_taylor_expansion v S (n + 1) 1)
   set cc := Classical.choose (mp72a102_t3_sigma_taylor_expansion v S (n + 1) 1) with hcc_def
-
   set e : ℕ → v.ResidueField := fun i => if i = 0 then 1 else 0 with he_def
   have hesum : (∑ i ∈ Finset.range (n + 1), S.lift (e i)
       * algebraMap v.toValuationSubring (lg37_completion v)

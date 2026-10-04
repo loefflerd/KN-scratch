@@ -28,14 +28,12 @@ theorem solution
     (h₁ : @WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred F _ W g₁)
     (h₂ : @WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred F _ W g₂) :
     g₁ = g₂ := by
-
   have hw : ∀ {x y : F} (h : W.Nonsingular x y),
       ∃ w : IsDedekindDomain.HeightOneSpectrum W.CoordinateRing,
         w.asIdeal = CoordinateRing.XYIdeal W x (Polynomial.C y) := fun {x y} h =>
     ⟨⟨CoordinateRing.XYIdeal W x (Polynomial.C y),
         (CoordinateRing.XYIdeal_isMaximal h.left).isPrime,
         CoordinateRing.XYIdeal_ne_bot x (Polynomial.C y)⟩, rfl⟩
-
   have hsome : ∀ {x y : F} (h : W.Nonsingular x y),
       g₁.pointEquivPlace (Point.some x y h) = g₂.pointEquivPlace (Point.some x y h) := by
     intro x y h
@@ -43,7 +41,6 @@ theorem solution
     have e1 := @placeOfPoint_some_eq_ofHeightOneSpectrum F _ _ W g₁ h₁ _ x y h w hw
     have e2 := @placeOfPoint_some_eq_ofHeightOneSpectrum F _ _ W g₂ h₂ _ x y h w hw
     exact e1.trans e2.symm
-
   have hall : ∀ P : W.Point, g₁.pointEquivPlace P = g₂.pointEquivPlace P := by
     intro P
     cases P with
@@ -62,9 +59,6 @@ theorem solution
       rw [Equiv.apply_symm_apply] at this
       first
         | exact this.symm
-
-
-
   cases g₁ with
   | mk e₁ d₁ =>
     cases g₂ with

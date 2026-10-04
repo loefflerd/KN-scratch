@@ -81,16 +81,13 @@ theorem solution (M : ℕ) [NeZero M] {k : ℤ}
     ∃ (D : ℤ) (f₁ : ModularForm (CongruenceSubgroup.Gamma1 M : Subgroup (GL (Fin 2) ℝ)) k)
       (p₁ : PowerSeries ℤ), D ≠ 0 ∧ ModularCurve.IsIntegralQExp f₁ p₁ ∧
         (⇑f₁ : UpperHalfPlane → ℂ) = (D : ℂ) • ((⇑f : UpperHalfPlane → ℂ) ∣[k] γ) := by
-
   have hrat := ModularCurve.exists_ratCast_qExpansion_slash_of_mem_Gamma0 M f
     (rat_of_isIntegralQExp hp) γ hγ
-
   set g : ModularForm (CongruenceSubgroup.Gamma1 M : Subgroup (GL (Fin 2) ℝ)) k := diamondSlash γ hγ f
     with hg
   have hcoe : (⇑g : ℍ → ℂ) = (⇑f : ℍ → ℂ) ∣[k] γ := coe_diamondSlash γ hγ f
   have hrat' : ∀ n : ℕ, ∃ r : ℚ, (qExpansion 1 g).coeff n = (r : ℂ) := by
     rw [hcoe]; exact hrat
-
   obtain ⟨D, p₁, hD, hint⟩ := ModularCurve.exists_isIntegralQExp_smul_of_ratCast_qExpansion M g hrat'
   refine ⟨D, (D : ℂ) • g, p₁, hD, ?_, ?_⟩
   · rw [FunLike.coe_smul]; exact hint

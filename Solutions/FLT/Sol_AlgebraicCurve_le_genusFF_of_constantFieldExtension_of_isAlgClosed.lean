@@ -45,7 +45,6 @@ theorem constantsAreBase {K F : Type*} [Field K] [Field F] [Algebra K F] [IsAlgC
   · exact zero_mem _
   have hord : ∀ v : Place K F, 0 ≤ v.ord f := fun v => by
     have := (mem_riemannRochSpace_iff.mp hf v).resolve_left hf0; simpa using this
-
   obtain ⟨D, hDord, hDdeg⟩ := HasPrincipalDivisors.exists_divisor (K := K) (F := F) f hf0
   have hdiv : ∀ v : Place K F, v.ord f = 0 := by
     by_contra hne; push Not at hne; obtain ⟨v, hv⟩ := hne
@@ -78,7 +77,6 @@ theorem solution (K F K' F' : Type*)
     (hgen : IntermediateField.adjoin K' (Set.range (algebraMap F F')) = ⊤) :
     genusFF K F ≤ genusFF K' F' := by
   classical
-
   obtain ⟨x, hxt, hxfd⟩ := id hfg
   obtain ⟨x', hxt', hxfd'⟩ := id hfg'
   have : Algebra.EssFiniteType K F :=
@@ -89,7 +87,6 @@ theorem solution (K F K' F' : Type*)
   have hCAB' : ConstantsAreBase K' F' := constantsAreBase hfg'
   have : HasPrincipalDivisors K F := IsCurveOver.hasPrincipalDivisors
   have : HasPrincipalDivisors K' F' := IsCurveOver.hasPrincipalDivisors
-
   obtain ⟨γ, hγ⟩ := exists_genus_riemannIndex_of_isCurveOver (K := K) (F := F) hCAB
   obtain ⟨γ', hγ'⟩ := exists_genus_riemannIndex_of_isCurveOver (K := K') (F := F') hCAB'
   have hγeq : γ = (genusFF K F : ℤ) := by
@@ -104,14 +101,12 @@ theorem solution (K F K' F' : Type*)
       ell_zero_eq_one_of_constantsAreBase hCAB',
       indexOfSpecialty_eq_finrank_H1 (K := K') (F := F') 0] at h0
     unfold genusFF; push_cast at h0 ⊢; linarith
-
   obtain ⟨hne, hfd0, γ₀, D₀, hD₀⟩ := stichtenothGenusExists_of_isCurveOver (K := K) (F := F) hCAB
   have : Nonempty (Place K F) := hne
   have : FiniteDimensional K ↥(LSpace (0 : Divisor K F)) := hfd0
   have hi0 : indexOfSpecialty D₀ = 0 := indexOfSpecialty_eq_zero_of_genusReached hD₀
   have hkey : Divisor.degree D₀ - (ell D₀ : ℤ) = γ - 1 := by
     have := (hγ D₀).2; rw [hi0] at this; push_cast at this; linarith
-
   have hX := fun P =>
     Place.exists_comap_algebraMap_eq_of_constantFieldExtension_of_isAlgClosed
       K F K' F' hfg hfg' hgen P
@@ -129,7 +124,6 @@ theorem solution (K F K' F' : Type*)
   have : ∀ v : Place K F, Module.Finite K v.ResidueField := fun v => IsCurveOver.finiteResidue v
   have : ∀ v' : Place K' F', Module.Finite K' v'.ResidueField :=
     fun v' => IsCurveOver.finiteResidue v'
-
   set D₀' : Divisor K' F' := Finsupp.mapDomain lift D₀ with hD₀'def
   have hdegEq : Divisor.degree D₀' = Divisor.degree D₀ := by
     rw [Divisor.degree_eq_sum_support, Divisor.degree_eq_sum_support, hD₀'def,
@@ -145,7 +139,6 @@ theorem solution (K F K' F' : Type*)
     rw [hD₀'def]
     exact ell_mapDomain_eq_of_constantFieldExtension_of_isAlgClosed K F K' F' hfg hfg' hgen
       lift hlift_ord hlift_inj hlift_new D₀
-
   have hbound : Divisor.degree D₀' - (ell (K := K') D₀' : ℤ) ≤ γ' - 1 := by
     have hIF := (hγ' D₀').2
     have hnn : (0:ℤ) ≤ (indexOfSpecialty (K := K') D₀' : ℤ) := Int.natCast_nonneg _

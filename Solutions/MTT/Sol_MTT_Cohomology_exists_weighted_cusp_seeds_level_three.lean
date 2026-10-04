@@ -122,7 +122,6 @@ section WeightThreeEisenstein
 
 /-! # A weight-three Eisenstein series vanishing at infinity on Gamma1(3) -/
 
-
 open UpperHalfPlane Matrix
 open scoped MatrixGroups ModularForm
 
@@ -233,7 +232,6 @@ end QExpansionWidthThree
 section WeightThreeCoefficients
 
 /-! # The first coefficients of the level-three Eisenstein sum -/
-
 
 open UpperHalfPlane
 open scoped MatrixGroups
@@ -439,7 +437,6 @@ end CuspSquareRoot
 section WeightSixThreeSeed
 
 /-! # A nonzero weight-six cusp form on Gamma1(3) -/
-
 
 open UpperHalfPlane
 open scoped MatrixGroups ModularForm

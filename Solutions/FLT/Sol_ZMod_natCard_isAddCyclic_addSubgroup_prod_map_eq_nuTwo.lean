@@ -179,13 +179,11 @@ theorem card_eig_pTorsion_le (τ : (ZMod n × ZMod n) →+ (ZMod n × ZMod n)) (
     Nat.card {g : eig τ k // p • g = 0} ≤ p := by
   have : Fact p.Prime := ⟨hp⟩
   obtain ⟨v₀, hv₀, hv₀ns⟩ := hns
-
   have hv₀K : v₀ ∉ eig τ k := fun h => hv₀ns k.val (by
     rw [mem_eig] at h; rw [h, ← Nat.cast_smul_eq_nsmul (ZMod n), ZMod.natCast_zmod_val])
   let Z : AddSubgroup (ZMod n × ZMod n) := AddSubgroup.zmultiples v₀
   have hZcard : Nat.card Z = p := by rw [Nat.card_zmultiples, hv₀]
   have : Finite Z := Nat.finite_of_card_ne_zero (by rw [hZcard]; exact hp.ne_zero)
-
   let Kp : AddSubgroup (ZMod n × ZMod n) :=
     { carrier := {v | τ v = k • v ∧ p • v = 0}
       zero_mem' := by simp only [Set.mem_ofPred_eq, map_zero, smul_zero, and_self]
@@ -201,11 +199,9 @@ theorem card_eig_pTorsion_le (τ : (ZMod n × ZMod n) →+ (ZMod n × ZMod n)) (
     · exact Subtype.ext v.2.2
     · intro g; rfl
     · intro v; rfl
-
   have hdisj : ∀ x, x ∈ Kp → x ∈ Z → x = 0 := by
     intro x hxK hxZ
     by_contra hx0
-
     have hpx : p • x = 0 := hxK.2
     have hordx : addOrderOf x = p :=
       (hp.eq_one_or_self_of_dvd _ (addOrderOf_dvd_of_nsmul_eq_zero hpx)).resolve_left
@@ -216,7 +212,6 @@ theorem card_eig_pTorsion_le (τ : (ZMod n × ZMod n) →+ (ZMod n × ZMod n)) (
     have hv₀x : v₀ ∈ AddSubgroup.zmultiples x := by rw [heq]; exact AddSubgroup.mem_zmultiples v₀
     have hxk : AddSubgroup.zmultiples x ≤ eig τ k := AddSubgroup.zmultiples_le_of_mem hxK.1
     exact hv₀K (hxk hv₀x)
-
   let f : Kp × Z → {v : (ZMod n × ZMod n) // p • v = 0} := fun gz => ⟨gz.1.1 + gz.2.1, by
     obtain ⟨⟨g, hg⟩, ⟨z, hz⟩⟩ := gz
     obtain ⟨a, rfl⟩ := AddSubgroup.mem_zmultiples_iff.mp hz
@@ -284,7 +279,6 @@ theorem eig_cyclic_card_eq {k : ZMod n} (hk : k * k = s * k - 1) :
 theorem card_stable_eq_card_roots :
     Nat.card {H : AddSubgroup (ZMod n × ZMod n) // IsAddCyclic H ∧ Nat.card H = n ∧ H.map τ = H}
       = Nat.card {k : ZMod n // k * k = s * k - 1} := by
-
   have gen : ∀ H : AddSubgroup (ZMod n × ZMod n), IsAddCyclic H → Nat.card H = n →
       ∃ v : (ZMod n × ZMod n), addOrderOf v = n ∧ AddSubgroup.zmultiples v = H := by
     intro H hc hcard
@@ -303,8 +297,7 @@ theorem card_stable_eq_card_roots :
       (⟨eig τ k.1, (eig_cyclic_card_eq τ s hτ hns k.2).1, (eig_cyclic_card_eq τ s hτ hns k.2).2,
         map_eig_eq τ s hτ k.1⟩ : {H : AddSubgroup (ZMod n × ZMod n) // IsAddCyclic H ∧ Nat.card H = n ∧ H.map τ = H}))
     ⟨?_, ?_⟩
-  ·
-    intro k k' h
+  · intro k k' h
     have h' : eig τ k.1 = eig τ k'.1 := congrArg Subtype.val h
     obtain ⟨v, hv, hvH⟩ := gen (eig τ k.1) (eig_cyclic_card_eq τ s hτ hns k.2).1
       (eig_cyclic_card_eq τ s hτ hns k.2).2
@@ -312,8 +305,7 @@ theorem card_stable_eq_card_roots :
     have hv2 : τ v = k'.1 • v := (mem_eig τ k'.1 v).mp (h' ▸ hvH ▸ AddSubgroup.mem_zmultiples v)
     refine Subtype.ext (sub_eq_zero.mp (eq_zero_of_smul_eq_zero hv ?_))
     rw [sub_smul, ← hv1, ← hv2, sub_self]
-  ·
-    rintro ⟨H, hc, hcard, hst⟩
+  · rintro ⟨H, hc, hcard, hst⟩
     obtain ⟨v, hv, hvH⟩ := gen H hc hcard
     have hτv : τ v ∈ H := by rw [← hst]; exact AddSubgroup.mem_map_of_mem τ (hvH ▸ AddSubgroup.mem_zmultiples v)
     rw [← hvH, AddSubgroup.mem_zmultiples_iff] at hτv
@@ -321,7 +313,6 @@ theorem card_stable_eq_card_roots :
     have hk : τ v = (a : ZMod n) • v := by rw [Int.cast_smul_eq_zsmul, ha]
     have hroot : (a : ZMod n) * (a : ZMod n) = s * (a : ZMod n) - 1 := root_of_eigen τ s hτ hv hk
     refine ⟨⟨(a : ZMod n), hroot⟩, Subtype.ext ?_⟩
-
     show eig τ (a : ZMod n) = H
     have : Finite (eig τ (a : ZMod n)) := inferInstance
     symm

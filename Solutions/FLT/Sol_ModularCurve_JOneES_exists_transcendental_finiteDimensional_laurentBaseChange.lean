@@ -53,7 +53,6 @@ theorem eq_C_of_isAlgebraic {y : LaurentSeries K} (hy : IsAlgebraic K y) :
     have h2 : IsAlgebraic K (algebraMap K (LaurentSeries K) (y.coeff 0)) := isAlgebraic_algebraMap _
     rw [LaurentSeries.algebraMap_apply] at h2
     exact hy.sub h2
-
   have hy1 := valuation_le_one_of_isAlgebraic hy
   have hy0 : ∀ m < (0 : ℤ), y.coeff m = 0 :=
     (LaurentSeries.valuation_le_iff_coeff_lt_eq_zero K (D := 0) (f := y)).1 (by simpa using hy1)
@@ -64,7 +63,6 @@ theorem eq_C_of_isAlgebraic {y : LaurentSeries K} (hy : IsAlgebraic K y) :
     · subst h; simp [hz, HahnSeries.C_apply]
   have hzval : Valued.v z ≤ WithZero.exp (-(1 : ℤ)) :=
     (LaurentSeries.valuation_le_iff_coeff_lt_eq_zero K).2 hcoef
-
   by_cases hz0 : z = 0
   · exact (sub_eq_zero.mp hz0)
   · exfalso
@@ -109,7 +107,6 @@ theorem charZero_L : CharZero L :=
 
 theorem transcendental_coeffEmb {x : LaurentSeries ℚ} (hx : Transcendental ℚ x) :
     Transcendental L (coeffEmb L x) := by
-
   have hC : ∀ c : ℚ, algebraMap ℚ (LaurentSeries ℚ) c = HahnSeries.C c :=
     fun c => RingHom.congr_fun (Subsingleton.elim _ _) c
   have hne : ∃ n : ℤ, n ≠ 0 ∧ x.coeff n ≠ 0 := by
@@ -191,12 +188,10 @@ theorem finite_extendScalars (X₀ : F₀) [FiniteDimensional ℚ⟮X₀⟯ F₀
     Module.Finite L⟮coeffEmb L (X₀ : LaurentSeries ℚ)⟯ (IntermediateField.extendScalars hle) := by
   classical
   have := charZero_L L
-
   have : Module.Free ℚ⟮X₀⟯ F₀ := Module.Free.of_divisionRing _ _
   let bF := Module.finBasis ℚ⟮X₀⟯ F₀
   let T : Set (LaurentSeries L) := Set.range fun j => coeffEmb L ((bF j : F₀) : LaurentSeries ℚ)
   have : Finite T := Set.finite_range _ |>.to_subtype
-
   have hcoeQ : ∀ c : ℚ, ((algebraMap ℚ F₀ c : F₀) : LaurentSeries ℚ) = algebraMap ℚ (LaurentSeries ℚ) c :=
     fun c => RingHom.congr_fun (Subsingleton.elim
       ((algebraMap F₀ (LaurentSeries ℚ)).comp (algebraMap ℚ F₀)) (algebraMap ℚ (LaurentSeries ℚ))) c
@@ -217,14 +212,12 @@ theorem finite_extendScalars (X₀ : F₀) [FiniteDimensional ℚ⟮X₀⟯ F₀
     | mul y w _ _ hy hw => rw [MulMemClass.coe_mul]; exact mul_mem hy hw
   have hmemK₁ : ∀ r : ℚ⟮X₀⟯, coeffEmb L ((r : F₀) : LaurentSeries ℚ) ∈ L⟮coeffEmb L (X₀ : LaurentSeries ℚ)⟯ :=
     fun r => coeffEmb_mem_adjoin_of_mem_adjoin L _ (hval r r.2)
-
   let ψ : ℚ⟮X₀⟯ →+* L⟮coeffEmb L (X₀ : LaurentSeries ℚ)⟯ :=
     { toFun := fun r => ⟨coeffEmb L ((r : F₀) : LaurentSeries ℚ), hmemK₁ r⟩
       map_one' := Subtype.ext (by simp)
       map_mul' := fun a b => Subtype.ext (by simp)
       map_zero' := Subtype.ext (by simp)
       map_add' := fun a b => Subtype.ext (by simp) }
-
   let Φ : F₀ →+* LaurentSeries L := (coeffEmb L).comp (algebraMap F₀ (LaurentSeries ℚ))
   have hΦψ : Φ.comp (algebraMap ℚ⟮X₀⟯ F₀) =
       (algebraMap L⟮coeffEmb L (X₀ : LaurentSeries ℚ)⟯ (LaurentSeries L)).comp ψ :=
@@ -241,7 +234,6 @@ theorem finite_extendScalars (X₀ : F₀) [FiniteDimensional ℚ⟮X₀⟯ F₀
   have hfinT : FiniteDimensional L⟮coeffEmb L (X₀ : LaurentSeries ℚ)⟯
       (IntermediateField.adjoin L⟮coeffEmb L (X₀ : LaurentSeries ℚ)⟯ T) :=
     IntermediateField.finiteDimensional_adjoin hint
-
   have hST : (⇑(coeffEmb L) '' (F₀ : Set (LaurentSeries ℚ))) ⊆
       (IntermediateField.adjoin L⟮coeffEmb L (X₀ : LaurentSeries ℚ)⟯ T : Set _) := by
     rintro _ ⟨y, hy, rfl⟩
@@ -266,7 +258,6 @@ theorem finite_extendScalars (X₀ : F₀) [FiniteDimensional ℚ⟮X₀⟯ F₀
       (IntermediateField.adjoin L⟮coeffEmb L (X₀ : LaurentSeries ℚ)⟯
         (⇑(coeffEmb L) '' (F₀ : Set (LaurentSeries ℚ)))) :=
     finite_adjoin_of_le L _ _ T hle'
-
   exact finite_extendScalars_of_adjoin L _ _ hle
 
 theorem exists_transcendental_finiteDimensional_laurentBaseChange
@@ -280,7 +271,6 @@ theorem exists_transcendental_finiteDimensional_laurentBaseChange
   have hxE : coeffEmb L (X₀ : LaurentSeries ℚ) ∈ laurentBaseChange L F₀ :=
     coeffEmb_mem_laurentBaseChange L X₀.2
   let Y : laurentBaseChange L F₀ := ⟨coeffEmb L (X₀ : LaurentSeries ℚ), hxE⟩
-
   have hxtr : Transcendental ℚ (X₀ : LaurentSeries ℚ) := by
     rintro ⟨r, hr0, hr⟩
     refine hX₀ ⟨r, hr0, ?_⟩

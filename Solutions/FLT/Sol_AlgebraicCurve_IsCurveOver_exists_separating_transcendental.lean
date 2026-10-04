@@ -100,25 +100,19 @@ variable {ι : Type*} {v : ι → F}
 def kaehlerAdjoinBasis (hv : AlgebraicIndependent K v) :
     Basis ι (IntermediateField.adjoin K (Set.range v))
       Ω[(IntermediateField.adjoin K (Set.range v))⁄K] := by
-
   let Kv : IntermediateField K F := IntermediateField.adjoin K (Set.range v)
-
   letI : Algebra (MvPolynomial ι K) Kv :=
     ((algebraMap (Algebra.adjoin K (Set.range v)) Kv).comp
       (hv.aevalEquiv : MvPolynomial ι K →+* Algebra.adjoin K (Set.range v))).toAlgebra
-
   haveI : IsScalarTower K (MvPolynomial ι K) Kv :=
     IsScalarTower.of_algebraMap_eq fun a => by
       show algebraMap K Kv a
         = algebraMap (Algebra.adjoin K (Set.range v)) Kv (hv.aevalEquiv (algebraMap K _ a))
       rw [AlgEquiv.commutes]; rfl
-
   haveI : IsFractionRing (MvPolynomial ι K) Kv :=
     IsFractionRing.of_ringEquiv_left hv.aevalEquiv.toRingEquiv (fun _ => rfl)
-
   haveI : Algebra.FormallyEtale (MvPolynomial ι K) Kv :=
     Algebra.FormallyEtale.of_isLocalization (nonZeroDivisors (MvPolynomial ι K))
-
   exact ((KaehlerDifferential.mvPolynomialBasis K ι).baseChange Kv).map
     (KaehlerDifferential.tensorKaehlerEquivOfFormallyEtale K (MvPolynomial ι K) Kv)
 
@@ -141,14 +135,12 @@ theorem finrank_kaehler_eq_card_of_separating' {s : Finset F}
     (hs : AlgebraicIndependent K ((↑) : s → F))
     [hsep : Algebra.IsSeparable (IntermediateField.adjoin K (s : Set F)) F] :
     Module.finrank F Ω[F⁄K] = s.card := by
-
   have heq : IntermediateField.adjoin K (s : Set F)
       = IntermediateField.adjoin K (Set.range ((↑) : s → F)) := by
     rw [Subtype.range_coe]
   let e : (IntermediateField.adjoin K (s : Set F)) ≃ₐ[K]
       (IntermediateField.adjoin K (Set.range ((↑) : s → F))) :=
     IntermediateField.equivOfEq heq
-
   have : Algebra.IsSeparable (IntermediateField.adjoin K (Set.range ((↑) : s → F))) F :=
     Algebra.IsSeparable.of_equiv_equiv e.toRingEquiv (RingEquiv.refl F)
       (RingHom.ext fun x => rfl)
@@ -161,11 +153,9 @@ p2m_open "AlgebraicCurve.IsCurveOver"
 theorem trdeg_le_one [PerfectField K] [Algebra.EssFiniteType K F] [IsCurveOver K F] :
     Algebra.trdeg K F ≤ 1 := by
   obtain ⟨s, hs, hsep⟩ := exists_isTranscendenceBasis_and_isSeparable_of_perfectField K F
-
   have := hsep
   have hcard : s.card = 1 := by
     rw [← finrank_kaehler_eq_card_of_separating' hs.1, IsCurveOver.finrank_kaehler]
-
   have htr := hs.cardinalMk_eq_trdeg
   rw [Cardinal.mk_coe_finset, hcard, Nat.cast_one] at htr
   exact htr.symm.le
@@ -197,29 +187,23 @@ p2m_open "AlgebraicCurve.IsCurveOver"
 theorem exists_separating_transcendental_s6 [PerfectField K] [Algebra.EssFiniteType K F]
     [IsCurveOver K F] :
     ∃ t : F, Transcendental K t ∧ FiniteDimensional K⟮t⟯ F ∧ Algebra.IsSeparable K⟮t⟯ F := by
-
   obtain ⟨s, hs, hsep⟩ := exists_isTranscendenceBasis_and_isSeparable_of_perfectField K F
-
   have hcard : s.card = 1 := by
     have htr := hs.cardinalMk_eq_trdeg
     rw [Cardinal.mk_coe_finset, IsCurveOver.trdeg_eq_one_of_perfectField] at htr
     exact_mod_cast htr
-
   obtain ⟨t, rfl⟩ := Finset.card_eq_one.mp hcard
-
   have htr : Transcendental K t := by
     have h1 := hs.1
     rw [show ((↑) : (↑({t} : Finset F)) → F) = fun _ => t from
       funext fun x => (Finset.mem_singleton.mp x.2).symm ▸ rfl] at h1
     exact (algebraicIndependent_unique_type_iff (ι := (↑({t} : Finset F)))).mp h1
-
   have heq : IntermediateField.adjoin K (↑({t} : Finset F) : Set F) = K⟮t⟯ := by
     rw [Finset.coe_singleton]
   have hsep' : Algebra.IsSeparable K⟮t⟯ F :=
     Algebra.IsSeparable.of_equiv_equiv
       (IntermediateField.equivOfEq heq).toRingEquiv (RingEquiv.refl F)
       (RingHom.ext fun _ => rfl)
-
   have : Algebra.EssFiniteType K⟮t⟯ F := Algebra.EssFiniteType.of_comp K K⟮t⟯ F
   exact ⟨t, htr, Algebra.finite_of_essFiniteType_of_isAlgebraic, hsep'⟩
 

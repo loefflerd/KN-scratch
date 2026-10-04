@@ -214,13 +214,11 @@ theorem isFinitePlace_iff_exists_placeOfEquation [IsAlgClosed F]
     IsFinitePlace v ↔ ∃ (x y : F) (h : W.Equation x y), v = placeOfEquation h := by
   constructor
   · intro hv
-
     have := hv.centre_isPrime
     have hmax : hv.centre.IsMaximal := Ideal.IsPrime.isMaximal hv.centre_isPrime hv.centre_ne_bot
     obtain ⟨x, y, hxy, hXY⟩ :=
       CoordinateRing.exists_eq_XYIdeal (W := W) (P := hv.centre) hv.centre_ne_bot
     refine ⟨x, y, hxy, ?_⟩
-
     set w : HeightOneSpectrum W.CoordinateRing := heightOneSpectrumOfEquation hxy with hw
     set A : ValuationSubring W.FunctionField :=
       HeightOneSpectrum.valuationSubringAtPrime W.FunctionField w with hA
@@ -234,19 +232,16 @@ theorem isFinitePlace_iff_exists_placeOfEquation [IsAlgClosed F]
         rw [hXY] at hmem
         exact hs hmem
       exact mul_mem (hv r) (hv.inv_mem hs')
-
     have hSP : A.ofPrime (A.idealOfLE v.toValuationSubring hle) = v.toValuationSubring :=
       ValuationSubring.ofPrime_idealOfLE A v.toValuationSubring hle
     rcases eq_or_ne (A.idealOfLE v.toValuationSubring hle) ⊥ with hP | hP
-    ·
-      exfalso
+    · exfalso
       apply v.ne_top'
       have h2 : A.ofPrime ⊥ ≤ A.ofPrime (A.idealOfLE v.toValuationSubring hle) :=
         ValuationSubring.ofPrime_le_of_le (h := hP.le)
       rw [ValuationSubring.ofPrime_bot] at h2
       exact top_le_iff.mp (le_trans h2 hSP.le)
-    ·
-      have hPmax : (A.idealOfLE v.toValuationSubring hle).IsMaximal :=
+    · have hPmax : (A.idealOfLE v.toValuationSubring hle).IsMaximal :=
         Ideal.IsPrime.isMaximal inferInstance hP
       have hPeq : A.idealOfLE v.toValuationSubring hle = IsLocalRing.maximalIdeal A :=
         IsLocalRing.eq_maximalIdeal hPmax
@@ -533,7 +528,6 @@ variable (v : AlgebraicCurve.Place F W.FunctionField)
 
 theorem isFinitePlace_of_mem
     (hx : polyToFunctionField W X ∈ v.toValuationSubring) : IsFinitePlace v := by
-
   have hpoly : ∀ p : F[X], polyToFunctionField W p ∈ v.toValuationSubring := by
     intro p
     induction p using Polynomial.induction_on' with
@@ -543,11 +537,9 @@ theorem isFinitePlace_of_mem
         refine mul_mem ?_ (pow_mem hx n)
         rw [polyToFunctionField_C]
         exact v.algebraMap_mem' c
-
   set η := algebraMap W.CoordinateRing W.FunctionField (CoordinateRing.mk W Y) with hηdef
   set c₁ : F[X] := C W.a₁ * X + C W.a₃ with hc₁def
   set cb : F[X] := X ^ 3 + C W.a₂ * X ^ 2 + C W.a₄ * X + C W.a₆ with hcbdef
-
   have hrel : η * η = polyToFunctionField W cb - polyToFunctionField W c₁ * η := by
     have h1 := smul_basis_mul_Y (W' := W) 0 1
     rw [zero_smul, zero_add, one_smul, one_mul, one_mul, zero_sub] at h1
@@ -555,17 +547,14 @@ theorem isFinitePlace_of_mem
     rw [map_mul, algebraMap_smul_basis, _root_.map_neg, neg_mul, ← sub_eq_add_neg] at h2
     exact h2
   have hy : η ∈ v.toValuationSubring := by
-
     refine v.mem_of_eval_monic_eq_zero (P := Polynomial.X ^ 2
       + (Polynomial.C (polyToFunctionField W c₁) * Polynomial.X
         - Polynomial.C (polyToFunctionField W cb))) ?_ ?_ (x := η) ?_
-    ·
-      refine Polynomial.monic_X_pow_add (n := 2) ?_
+    · refine Polynomial.monic_X_pow_add (n := 2) ?_
       rw [sub_eq_add_neg, ← Polynomial.C_neg]
       refine lt_of_le_of_lt Polynomial.degree_linear_le ?_
       exact_mod_cast Nat.one_lt_two
-    ·
-      intro i
+    · intro i
       rw [show (Polynomial.C (polyToFunctionField W c₁) * Polynomial.X : Polynomial _)
           = Polynomial.C (polyToFunctionField W c₁) * Polynomial.X ^ 1 by ring]
       simp only [Polynomial.coeff_add, Polynomial.coeff_sub, Polynomial.coeff_X_pow,
@@ -578,12 +567,10 @@ theorem isFinitePlace_of_mem
       · split
         · exact hpoly _
         · exact v.toValuationSubring.zero_mem
-    ·
-      simp only [Polynomial.eval_add, Polynomial.eval_sub, Polynomial.eval_pow,
+    · simp only [Polynomial.eval_add, Polynomial.eval_sub, Polynomial.eval_pow,
         Polynomial.eval_mul, Polynomial.eval_C, Polynomial.eval_X]
       rw [sq]
       linear_combination hrel
-
   intro r
   obtain ⟨p, q, rfl⟩ := exists_smul_basis_eq r
   rw [algebraMap_smul_basis]
@@ -675,14 +662,12 @@ private theorem _root_.PeriodPair.apply_eq_apply_of_differentiable_of_forall_per
     (hf : Differentiable ℂ f) (hper : ∀ l ∈ L.lattice, ∀ z, f (z + l) = f z) (z w : ℂ) :
     f z = f w := by
   apply hf.apply_eq_apply_of_bounded
-
   have hrange : range f ⊆ f '' closure (ZSpan.fundamentalDomain L.basis) := by
     rintro - ⟨u, rfl⟩
     refine ⟨ZSpan.fract L.basis u, subset_closure (ZSpan.fract_mem_fundamentalDomain _ u), ?_⟩
     have h := hper _ (L.sub_fract_mem_lattice u) (ZSpan.fract L.basis u)
     rw [add_sub_cancel] at h
     exact h.symm
-
   refine Bornology.IsBounded.subset ?_ hrange
   refine (IsCompact.image ?_ hf.continuous).isBounded
   exact Metric.isCompact_of_isClosed_isBounded isClosed_closure
@@ -737,7 +722,6 @@ theorem exists_smul_mem_and_apply_eq_of_forall_sub_mem (L' : PeriodPair) {F : �
     (hF : Differentiable ℂ F)
     (hper : ∀ l ∈ L.lattice, ∀ z, F (z + l) - F z ∈ L'.lattice) :
     ∃ α : ℂ, (∀ l ∈ L.lattice, α * l ∈ L'.lattice) ∧ ∀ z, F z = F 0 + α * z := by
-
   have hFc : Continuous F := hF.continuous
   have hconst : ∀ l ∈ L.lattice, ∀ z, F (z + l) - F z = F l - F 0 := by
     intro l hl z
@@ -745,7 +729,6 @@ theorem exists_smul_mem_and_apply_eq_of_forall_sub_mem (L' : PeriodPair) {F : �
       (f := fun u => F (u + l) - F u)
       ((hFc.comp (continuous_id.add continuous_const)).sub hFc) (hper l hl) z 0
     simpa using h
-
   have hadd : ∀ z w, F (z + w) = F z + F w - F 0 := by
     intro z w
     have hper' : ∀ l ∈ L.lattice, ∀ u,
@@ -761,7 +744,6 @@ theorem exists_smul_mem_and_apply_eq_of_forall_sub_mem (L' : PeriodPair) {F : �
       ((hF.comp (differentiable_id.add_const w)).sub hF) hper' z 0
     simp only [zero_add] at h
     linear_combination h
-
   set α : ℂ := deriv F 0 with hα
   have hderiv : ∀ z, deriv F z = α := by
     intro z
@@ -774,7 +756,6 @@ theorem exists_smul_mem_and_apply_eq_of_forall_sub_mem (L' : PeriodPair) {F : �
     have h2 : deriv (fun w => F w + (F z - F 0)) 0 = deriv F 0 := by
       rw [deriv_add_const]
     rw [← h1, hfun, h2]
-
   have haffine : ∀ z, F z = F 0 + α * z := by
     have hG : Differentiable ℂ fun z => F z - α * z :=
       hF.sub (differentiable_id.const_mul α)
@@ -788,7 +769,6 @@ theorem exists_smul_mem_and_apply_eq_of_forall_sub_mem (L' : PeriodPair) {F : �
     have h := is_const_of_deriv_eq_zero hG hG' z 0
     simp only [mul_zero, sub_zero] at h
     linear_combination h
-
   refine ⟨α, fun l hl => ?_, haffine⟩
   have h := hper l hl 0
   rw [zero_add, haffine l] at h
@@ -1559,12 +1539,10 @@ theorem eq_placeOfEquation_of_le_centre [IsAlgClosed F] [IsDedekindDomain W.Coor
     (hle : XYIdeal W x (C y) ≤ hv.centre) : v = placeOfEquation h := by
   obtain ⟨x', y', h', hveq⟩ := (isFinitePlace_iff_exists_placeOfEquation v).mp hv
   subst hveq
-
   have hc : hv.centre = XYIdeal W x' (C y') := by
     rw [Subsingleton.elim hv (isFinitePlace_placeOfEquation h')]
     exact centre_placeOfEquation h'
   rw [hc] at hle
-
   have heq : XYIdeal W x (C y) = XYIdeal W x' (C y') :=
     (CoordinateRing.XYIdeal_isMaximal h).eq_of_le (CoordinateRing.XYIdeal_isMaximal h').ne_top
       hle
@@ -1731,7 +1709,6 @@ theorem equation_map_polyToFunctionField_yGen :
   rw [zero_smul, zero_add, one_smul, one_mul, one_mul, zero_sub] at hrel
   have h2 := congrArg (algebraMap W.CoordinateRing W.FunctionField) hrel
   rw [map_mul, algebraMap_smul_basis, _root_.map_neg, neg_mul, ← sub_eq_add_neg] at h2
-
   simp only [map_a₁, map_a₂, map_a₃, map_a₄, map_a₆]
   simp only [map_add, map_mul, map_pow, polyToFunctionField_C] at h2
   rw [show yGen W = algebraMap W.CoordinateRing W.FunctionField (CoordinateRing.mk W Y)
@@ -1811,23 +1788,19 @@ theorem restrictAlong_placeOfEquation {x y : F} (h : W.Equation x y) {a b : F}
     (hdx : 0 < (placeOfEquation h).ord (ξ - algebraMap F W.FunctionField a))
     (hdy : 0 < (placeOfEquation h).ord (η - algebraMap F W.FunctionField b)) :
     (placeOfEquation h).restrictAlong ι hι = placeOfEquation h' := by
-
   have hfin : IsFinitePlace ((placeOfEquation h).restrictAlong ι hι) :=
     isFinitePlace_of_mem _ (by
       rw [Place.mem_restrictAlong_iff, hX]
       exact hreg)
-
   refine eq_placeOfEquation_of_le_centre hfin h' ?_
   rw [XYIdeal, Ideal.span_le]
   intro r hr
   simp only [Set.mem_insert_iff, Set.mem_singleton_iff] at hr
   rcases hr with rfl | rfl
-  ·
-    rw [SetLike.mem_coe, hfin.mem_centre_iff_ord_ne_zero (XClass_ne_zero _),
+  · rw [SetLike.mem_coe, hfin.mem_centre_iff_ord_ne_zero (XClass_ne_zero _),
       Place.ord_restrictAlong_ne_zero_iff, map_XClass ι hX]
     omega
-  ·
-    rw [SetLike.mem_coe, hfin.mem_centre_iff_ord_ne_zero (YClass_ne_zero _),
+  · rw [SetLike.mem_coe, hfin.mem_centre_iff_ord_ne_zero (YClass_ne_zero _),
       Place.ord_restrictAlong_ne_zero_iff, map_YClass ι hY]
     omega
 
@@ -3334,7 +3307,6 @@ theorem kw_surge_hgf4_bcTensorFracIotaSeam (hfin₀ : FiniteAlong F ι₀) :
   have hιT_fin : ιT.Finite := kw_surge_hgf4_bcTensorIota_finite E₀ E₀' F F' ι₀ hfin₀
   have hιFr_am : ∀ t : T', ιFr (algebraMap T' FrT' t) = algebraMap T FrT (ιT t) :=
     kw_surge_hgf4_bcTensorFracIota_algebraMap E₀ E₀' F F' ι₀
-
   let algι : Algebra FF' FF := ι₀.toRingHom.toAlgebra
   let modι : Module FF' FF := Algebra.toModule
   have hsmul_ι : ∀ (c : FF') (x : FF), c • x = ι₀ c * x := fun c x => rfl
@@ -3347,7 +3319,6 @@ theorem kw_surge_hgf4_bcTensorFracIotaSeam (hfin₀ : FiniteAlong F ι₀) :
     rw [← hsmul_ι, map_smul, Finsupp.smul_apply, smul_eq_mul]
   let e : Fin D → T := fun i => (b i) ⊗ₜ[F] (1 : F')
   let bFr : Fin D → FrT := fun i => algebraMap T FrT (e i)
-
   have hspanT : ∀ t : T, ∃ c : Fin D → T', t = ∑ i, ιT (c i) * e i := by
     intro t
     induction t using TensorProduct.inductionOn with
@@ -3370,7 +3341,6 @@ theorem kw_surge_hgf4_bcTensorFracIotaSeam (hfin₀ : FiniteAlong F ι₀) :
             rw [show ιT ((b.repr a i) ⊗ₜ[F] c) = (ι₀ (b.repr a i)) ⊗ₜ[F] c from
                   kw_surge_hgf4_bcTensorIota_tmul E₀ E₀' F F' ι₀ _ _,
               Algebra.TensorProduct.tmul_mul_tmul, mul_one]
-
   have hliT : ∀ c : Fin D → T', ∑ i, ιT (c i) * e i = 0 → ∀ j, c j = 0 := by
     intro c hc j
     let pj : FF →ₗ[F] FF' :=
@@ -3401,7 +3371,6 @@ theorem kw_surge_hgf4_bcTensorFracIotaSeam (hfin₀ : FiniteAlong F ι₀) :
           split_ifs with h <;> simp [h]
     have hc' : Ej (∑ i, ιT (c i) * e i) = 0 := by rw [hc, map_zero]
     simpa only [map_sum, hEj_key, Finset.sum_ite_eq', Finset.mem_univ, ite_true] using hc'
-
   have hint : ∀ s : T, s ≠ 0 → ∃ (u : T) (s₀ : T'), s₀ ≠ 0 ∧ s * u = ιT s₀ := by
     intro s hs
     obtain ⟨p, hp_monic, hp_eval⟩ : ιT.IsIntegralElem s := hιT_fin.to_isIntegral s
@@ -3439,7 +3408,6 @@ theorem kw_surge_hgf4_bcTensorFracIotaSeam (hfin₀ : FiniteAlong F ι₀) :
     rw [hz, hc, map_sum, Finset.mul_sum]
     refine Finset.sum_congr rfl fun i _ => ?_
     rw [map_mul, map_mul, ← hιFr_am s₀, ← hιFr_am (c i), ← map_inv₀ ιFr, mul_assoc]
-
   have hliFr : ∀ d : Fin D → FrT', ∑ i, ιFr (d i) * bFr i = 0 → ∀ j, d j = 0 := by
     intro d hd j
     obtain ⟨q, hq⟩ := IsLocalization.exist_integer_multiples_of_finset
@@ -3459,7 +3427,6 @@ theorem kw_surge_hgf4_bcTensorFracIotaSeam (hfin₀ : FiniteAlong F ι₀) :
     have hthis : algebraMap T' FrT' (q : T') * d j = 0 := by
       rw [← hp' j, hpj, map_zero]
     exact (mul_eq_zero.mp hthis).resolve_left hq0
-
   let algFr : Algebra FrT' FrT := ιFr.toAlgebra
   let modFr : Module FrT' FrT := Algebra.toModule
   have hsmul_Fr : ∀ (c : FrT') (x : FrT), c • x = ιFr c * x := fun c x => rfl
@@ -3553,7 +3520,6 @@ theorem kw_surge_hgf4_χE_algebraMap_XClass (V : WeierstrassCurve R₀) [V.IsEll
           (XClass (V⁄F).toAffine x))
       = algebraMap (V⁄F').toAffine.CoordinateRing (V⁄F').toAffine.FunctionField
           (XClass (V⁄F').toAffine (algebraMap F F' x)) := by
-
   have hF : algebraMap (V⁄F).toAffine.CoordinateRing (V⁄F).toAffine.FunctionField
       (XClass (V⁄F).toAffine x)
       = polyToFunctionField (V⁄F).toAffine X - algebraMap F (V⁄F).toAffine.FunctionField x := by
@@ -3594,12 +3560,9 @@ theorem kw_surge_hgf4_χE_VSR_compat {x y : F} (hP : (E₀⁄F).toAffine.Nonsing
     (g : (E₀⁄F).toAffine.FunctionField) :
     χE g ∈ (placeOfEquation hσP.left).toValuationSubring ↔
       g ∈ (placeOfEquation hP.left).toValuationSubring := by
-
   have hχE_inj : Function.Injective (χE : _ →ₐ[F] _) :=
     (kw_functionFieldMapAlongGeneral E₀ F F').injective
-
   classical
-
   have hmk (W : Affine F) : ∀ q : F[X][Y],
       algebraMap W.CoordinateRing W.FunctionField (CoordinateRing.mk W q)
         = q.eval₂ (polyToFunctionField W) (yGen W) := by
@@ -3610,12 +3573,10 @@ theorem kw_surge_hgf4_χE_VSR_compat {x y : F} (hP : (E₀⁄F).toAffine.Nonsing
         simp only [← Polynomial.C_mul_X_pow_eq_monomial, map_mul, map_pow,
           Polynomial.eval₂_mul, Polynomial.eval₂_pow, Polynomial.eval₂_C, Polynomial.eval₂_X]
         rw [← algebraMap_polynomial_eq_mk_C, ← polyToFunctionField_apply]; rfl
-
   have hfinσP : IsFinitePlace (placeOfEquation hσP.left) :=
     isFinitePlace_placeOfEquation hσP.left
   have hχE_polyToFF (p : F[X]) :
       χE (polyToFunctionField (E₀⁄F).toAffine p) ∈ (placeOfEquation hσP.left).toValuationSubring := by
-
     have h : χE (polyToFunctionField (E₀⁄F).toAffine p)
         = polyToFunctionField (E₀⁄F').toAffine (p.map (algebraMap F F')) := by
       induction p using Polynomial.induction_on' with
@@ -3633,7 +3594,6 @@ theorem kw_surge_hgf4_χE_VSR_compat {x y : F} (hP : (E₀⁄F).toAffine.Nonsing
     intro a
     obtain ⟨q, rfl⟩ := AdjoinRoot.mk_surjective a
     rw [hmk (E₀⁄F).toAffine q]
-
     induction q using Polynomial.induction_on' with
     | add r s hr hs =>
         rw [Polynomial.eval₂_add, map_add]
@@ -3644,7 +3604,6 @@ theorem kw_surge_hgf4_χE_VSR_compat {x y : F} (hP : (E₀⁄F).toAffine.Nonsing
           kw_functionFieldMapAlongGeneral_yGen]
         exact Subring.mul_mem _ (hχE_polyToFF p)
           (Subring.pow_mem _ (hfinσP (CoordinateRing.mk (E₀⁄F').toAffine Y)) n)
-
   have hXClass_σP_mem_𝔪 : (⟨algebraMap _ _ (CoordinateRing.XClass (E₀⁄F').toAffine
         (algebraMap F F' x)), hfinσP _⟩ : (placeOfEquation hσP.left).toValuationSubring)
       ∈ IsLocalRing.maximalIdeal (placeOfEquation hσP.left).toValuationSubring := by
@@ -3682,7 +3641,6 @@ theorem kw_surge_hgf4_χE_VSR_compat {x y : F} (hP : (E₀⁄F).toAffine.Nonsing
             kw_surge_hgf4_χE_algebraMap_YClass F F' E₀ y])]
     exact Ideal.add_mem _ (Ideal.mul_mem_left _ _ hXClass_σP_mem_𝔪)
       (Ideal.mul_mem_left _ _ hYClass_σP_mem_𝔪)
-
   have hχE_unit : ∀ s : (E₀⁄F).toAffine.CoordinateRing,
       s ∉ CoordinateRing.XYIdeal (E₀⁄F).toAffine x (C y) →
       IsUnit (⟨χE (algebraMap _ _ s), hχE_CR_mem s⟩ :
@@ -3692,7 +3650,6 @@ theorem kw_surge_hgf4_χE_VSR_compat {x y : F} (hP : (E₀⁄F).toAffine.Nonsing
     have hc_ne : c ≠ 0 := by
       intro h; apply hs; simpa [h, sub_zero] using hc
     have hσc_ne : algebraMap F F' c ≠ 0 := (map_ne_zero_iff _ (algebraMap F F').injective).mpr hc_ne
-
     have hχE_const : χE (algebraMap (E₀⁄F).toAffine.CoordinateRing _
           (algebraMap F (E₀⁄F).toAffine.CoordinateRing c))
         = algebraMap F' (E₀⁄F').toAffine.FunctionField (algebraMap F F' c) := by
@@ -3710,7 +3667,6 @@ theorem kw_surge_hgf4_χE_VSR_compat {x y : F} (hP : (E₀⁄F).toAffine.Nonsing
             + χE (algebraMap _ _ (s - algebraMap F _ c))
       rw [← hχE_const, ← map_add, ← map_add, add_sub_cancel]
     rw [hsplit]
-
     have hfirst_unit : IsUnit (⟨algebraMap F' _ (algebraMap F F' c),
         (placeOfEquation hσP.left).algebraMap_mem' _⟩ :
         (placeOfEquation hσP.left).toValuationSubring) := by
@@ -3719,7 +3675,6 @@ theorem kw_surge_hgf4_χE_VSR_compat {x y : F} (hP : (E₀⁄F).toAffine.Nonsing
       push_cast
       rw [← map_inv₀, ← map_mul, mul_inv_cancel₀ hσc_ne, map_one]
     have hsecond_𝔪 := hχE_mem_𝔪 (s - algebraMap F _ c) hc
-
     by_contra hnotunit
     have hsum_𝔪 := (IsLocalRing.mem_maximalIdeal _).mpr (mem_nonunits_iff.mpr hnotunit)
     have hfirst_𝔪 : (⟨algebraMap F' _ (algebraMap F F' c),
@@ -3729,10 +3684,8 @@ theorem kw_surge_hgf4_χE_VSR_compat {x y : F} (hP : (E₀⁄F).toAffine.Nonsing
       have hsub := Ideal.sub_mem _ hsum_𝔪 hsecond_𝔪
       rwa [add_sub_cancel_right] at hsub
     exact (mem_nonunits_iff.mp ((IsLocalRing.mem_maximalIdeal _).mp hfirst_𝔪)) hfirst_unit
-
   have hXY_prime : (CoordinateRing.XYIdeal (E₀⁄F).toAffine x (C y)).IsPrime :=
     (CoordinateRing.XYIdeal_isMaximal hP.left).isPrime
-
   have hmem_P : ∀ f : (E₀⁄F).toAffine.FunctionField,
       f ∈ (placeOfEquation hP.left).toValuationSubring
         ↔ ∃ (n s : (E₀⁄F).toAffine.CoordinateRing)
@@ -3742,7 +3695,6 @@ theorem kw_surge_hgf4_χE_VSR_compat {x y : F} (hP : (E₀⁄F).toAffine.Nonsing
     have hfinP := isFinitePlace_placeOfEquation hP.left
     constructor
     · intro hf
-
       obtain ⟨n, s, hcase⟩ :=
         (CoordinateRing.heightOneSpectrumOfEquation hP.left).exists_primeCompl_mul_eq_or_mul_eq
           (K := (E₀⁄F).toAffine.FunctionField) f
@@ -3755,15 +3707,10 @@ theorem kw_surge_hgf4_χE_VSR_compat {x y : F} (hP : (E₀⁄F).toAffine.Nonsing
           (E₀⁄F).toAffine.FunctionField (s : (E₀⁄F).toAffine.CoordinateRing) ≠ 0 :=
         (map_ne_zero_iff _ (IsFractionRing.injective _ _)).mpr hs_CR_ne
       rcases hcase with heq | heq
-      ·
-        refine ⟨n, s, hs_nin, ?_⟩
+      · refine ⟨n, s, hs_nin, ?_⟩
         field_simp at heq ⊢; linear_combination heq
-      ·
-
-        by_cases hn_nin : (n : _) ∈ CoordinateRing.XYIdeal (E₀⁄F).toAffine x (C y)
-        ·
-
-          exfalso
+      · by_cases hn_nin : (n : _) ∈ CoordinateRing.XYIdeal (E₀⁄F).toAffine x (C y)
+        · exfalso
           have hn0 : (n : (E₀⁄F).toAffine.CoordinateRing) ≠ 0 := fun h => by
             rw [h, map_zero, mul_zero] at heq
             exact hs_CR_ne ((map_eq_zero_iff _
@@ -3797,14 +3744,12 @@ theorem kw_surge_hgf4_χE_VSR_compat {x y : F} (hP : (E₀⁄F).toAffine.Nonsing
         hfinP.inv_mem (by rwa [centre_placeOfEquation])
       exact Subring.mul_mem _ (hfinP n) hs_inv
   constructor
-  ·
-    intro hχEg
+  · intro hχEg
     by_contra hg_notin
     have hg_ne : g ≠ 0 := fun h => hg_notin (h ▸ Subring.zero_mem _)
     have hginv_in : g⁻¹ ∈ (placeOfEquation hP.left).toValuationSubring :=
       ((placeOfEquation hP.left).toValuationSubring.mem_or_inv_mem g).resolve_left hg_notin
     obtain ⟨n, s, hs_notin, hginv_eq⟩ := (hmem_P g⁻¹).mp hginv_in
-
     have hginv_𝔪 : (⟨g⁻¹, hginv_in⟩ : (placeOfEquation hP.left).toValuationSubring)
         ∈ IsLocalRing.maximalIdeal _ := by
       rw [IsLocalRing.mem_maximalIdeal, mem_nonunits_iff]
@@ -3812,7 +3757,6 @@ theorem kw_surge_hgf4_χE_VSR_compat {x y : F} (hP : (E₀⁄F).toAffine.Nonsing
       exact hg_notin (inv_inv g ▸ kw_surge_hgf4_place_inv_mem_of_isUnit _ hu)
     have hn_in : n ∈ CoordinateRing.XYIdeal (E₀⁄F).toAffine x (C y) := by
       by_contra hn_notin
-
       have hfinP := isFinitePlace_placeOfEquation hP.left
       have hn_inv : (algebraMap _ _ n)⁻¹ ∈ (placeOfEquation hP.left).toValuationSubring :=
         hfinP.inv_mem (by rwa [centre_placeOfEquation])
@@ -3828,7 +3772,6 @@ theorem kw_surge_hgf4_χE_VSR_compat {x y : F} (hP : (E₀⁄F).toAffine.Nonsing
           ⟨(⟨g, hg_mem⟩ : (placeOfEquation hP.left).toValuationSubring),
            Subtype.ext (by push_cast; exact inv_mul_cancel₀ hg_ne)⟩
       exact mem_nonunits_iff.mp ((IsLocalRing.mem_maximalIdeal _).mp hginv_𝔪) hginv_unit
-
     have hχEn_𝔪 := hχE_mem_𝔪 n hn_in
     have hχEs_unit := hχE_unit s hs_notin
     have hχEginv_eq : χE g⁻¹ = χE (algebraMap _ _ n) * (χE (algebraMap _ _ s))⁻¹ := by
@@ -3848,7 +3791,6 @@ theorem kw_surge_hgf4_χE_VSR_compat {x y : F} (hP : (E₀⁄F).toAffine.Nonsing
         Subtype.ext (by show χE g⁻¹ = _ * _; exact hχEginv_eq)
       rw [hrw]
       exact Ideal.mul_mem_right _ _ hχEn_𝔪
-
     have hχEg_ne : χE g ≠ 0 := (map_ne_zero_iff _ hχE_inj).mpr hg_ne
     have hχEginv_unit : IsUnit
         (⟨χE g⁻¹, hχEginv_mem⟩ : (placeOfEquation hσP.left).toValuationSubring) :=
@@ -3856,8 +3798,7 @@ theorem kw_surge_hgf4_χE_VSR_compat {x y : F} (hP : (E₀⁄F).toAffine.Nonsing
         ⟨(⟨χE g, hχEg⟩ : (placeOfEquation hσP.left).toValuationSubring),
          Subtype.ext (by show χE g⁻¹ * χE g = 1; rw [map_inv₀, inv_mul_cancel₀ hχEg_ne])⟩
     exact mem_nonunits_iff.mp ((IsLocalRing.mem_maximalIdeal _).mp hχEginv_𝔪) hχEginv_unit
-  ·
-    intro hg
+  · intro hg
     obtain ⟨n, s, hs_notin, hg_eq⟩ := (hmem_P g).mp hg
     rw [hg_eq, map_mul, map_inv₀]
     exact Subring.mul_mem _ (hχE_CR_mem n)
@@ -3867,7 +3808,6 @@ theorem kw_surge_hgf4_bcIota₁_compat (a : (E₀'⁄F).toAffine.FunctionField) 
     (ι₁) (χE' a) = χE (ι₀ a) := by
   let ψE := kw_functionFieldTensorFracEquivGeneral E₀ F F'
   let ψE' := kw_functionFieldTensorFracEquivGeneral E₀' F F'
-
   have hκE' : ψE' (χE' a)
       = algebraMap ((E₀'⁄F).toAffine.FunctionField ⊗[F] F') _ (a ⊗ₜ[F] (1 : F')) := by
     have hκ : ((kw_functionFieldTensorFracHomGeneral E₀' F F').restrictScalars F).comp
@@ -3883,7 +3823,6 @@ theorem kw_surge_hgf4_bcIota₁_compat (a : (E₀'⁄F).toAffine.FunctionField) 
         rw [kw_functionFieldMapAlongGeneral_yGen, kw_functionFieldTensorFracHomGeneral_yGen]
         rfl
     exact DFunLike.congr_fun hκ a
-
   have hκE : ∀ b, ψE.symm (algebraMap ((E₀⁄F).toAffine.FunctionField ⊗[F] F') _
       (b ⊗ₜ[F] (1 : F'))) = χE b := by
     intro b
@@ -3902,7 +3841,6 @@ theorem kw_surge_hgf4_bcIota₁_compat (a : (E₀'⁄F).toAffine.FunctionField) 
         rw [kw_functionFieldMapAlongGeneral_yGen, kw_functionFieldTensorFracHomGeneral_yGen]
         rfl
     exact (DFunLike.congr_fun hκ b).symm
-
   show ψE.symm (kw_surge_hgf4_bcTensorFracIotaAlg E₀ E₀' F F' ι₀ (ψE' (χE' a)))
       = χE (ι₀ a)
   rw [hκE',
@@ -3926,12 +3864,10 @@ theorem kw_surge_hgf4_pmop_naturality :
     let φ₁ := pointMapOfPushforward (ι₁) hι₁ hfin₁ (normFormulaAlong_of_elliptic (ι₁) hfin₁)
     ∀ P, φ₁ (σE P) = σE' (φ₀ P) := by
   intro hι₁ hfin₁ σE σE' φ₀ φ₁
-
   have hgBC₀ := kw_fdn2_qephod_hend7_pmop_eq_geomMorphBC_sub ι₀ hι₀ hfin₀ (normFormulaAlong_of_elliptic ι₀ hfin₀)
   have hgBC₁ := kw_fdn2_qephod_hend7_pmop_eq_geomMorphBC_sub (ι₁) hι₁ hfin₁ (normFormulaAlong_of_elliptic ι₁ hfin₁)
   let g₀ := kw_fdn2_qephod_hend7_geomMorphBC ι₀ hι₀
   let g₁ := kw_fdn2_qephod_hend7_geomMorphBC (ι₁) hι₁
-
   have hχE_ord_pos : ∀ {x y : F} (hP : (E₀⁄F).toAffine.Nonsingular x y)
       (hσP : (E₀⁄F').toAffine.Nonsingular (algebraMap F F' x) (algebraMap F F' y))
       (h : (E₀⁄F).toAffine.FunctionField) (hh : h ≠ 0),
@@ -3976,7 +3912,6 @@ theorem kw_surge_hgf4_pmop_naturality :
   have hgBC_nat_affine : ∀ {x y : F} (hP : (E₀⁄F).toAffine.Nonsingular x y),
       g₁ (σE (.some x y hP)) = σE' (g₀ (.some x y hP)) := by
     intro x y hP
-
     have hσP : (E₀⁄F').toAffine.Nonsingular (algebraMap F F' x) (algebraMap F F' y) :=
       kw_surge_hgf4_toAffine_map_eq F F' E₀ ▸
         (((E₀⁄F).toAffine.map_nonsingular (algebraMap F F').injective x y).mpr hP)
@@ -3985,16 +3920,13 @@ theorem kw_surge_hgf4_pmop_naturality :
       have h := Point.map_some (W' := E₀.toAffine) (F := F) (K := F') σ hP
       rw [show σE (.some x y hP) = Point.map (W' := E₀.toAffine) σ (.some x y hP) from rfl, h]
       congr 1 <;> exact hσ _
-
     refine placeOfPoint_injective ?_
     rw [← kw_fdn2_qephod_hend7_placeOfPoint_geomMorphBC (ι₁) hι₁ (σE (.some x y hP)),
       hσE_some, placeOfPoint_some]
-
     have hseam₀ : (placeOfEquation hP.left).restrictAlong ι₀ hι₀
         = placeOfPoint (g₀ (.some x y hP)) := by
       rw [← placeOfPoint_some hP,
         kw_fdn2_qephod_hend7_placeOfPoint_geomMorphBC ι₀ hι₀]
-
     have hι₁X : (ι₁) (polyToFunctionField (E₀'⁄F').toAffine X)
         = χE (ι₀ (polyToFunctionField (E₀'⁄F).toAffine X)) := by
       rw [← kw_functionFieldMapAlongGeneral_polyToFunctionField_X E₀' F F']
@@ -4003,20 +3935,16 @@ theorem kw_surge_hgf4_pmop_naturality :
         = χE (ι₀ (yGen (E₀'⁄F).toAffine)) := by
       rw [← kw_functionFieldMapAlongGeneral_yGen E₀' F F']
       exact kw_surge_hgf4_bcIota₁_compat E₀ E₀' F F' ι₀ _
-
     have hχE_const : ∀ c : F, χE (algebraMap F (E₀⁄F).toAffine.FunctionField c)
         = algebraMap F' (E₀⁄F').toAffine.FunctionField (algebraMap F F' c) := fun c => by
       rw [AlgHom.commutes,
         IsScalarTower.algebraMap_apply F F' (E₀⁄F').toAffine.FunctionField]
-
     rcases hQ₀_case : g₀ (.some x y hP) with _ | ⟨qx, qy, hQ₀ns⟩
-    ·
-      rw [show placeOfPoint (σE' (.zero : (E₀'⁄F).toAffine.Point))
+    · rw [show placeOfPoint (σE' (.zero : (E₀'⁄F).toAffine.Point))
           = (InfinitePlace.place : Place F' (E₀'⁄F').toAffine.FunctionField) from by
         rw [show σE' (.zero : (E₀'⁄F).toAffine.Point)
             = (.zero : (E₀'⁄F').toAffine.Point) from map_zero σE', placeOfPoint_zero]]
       refine AbstractSeam.restrictAlong_eq_infinitePlace (ι₁) hι₁ rfl _ ?_
-
       rw [hι₁X]
       intro hmem
       have hι₀X_mem : ι₀ (polyToFunctionField (E₀'⁄F).toAffine X)
@@ -4026,10 +3954,8 @@ theorem kw_surge_hgf4_pmop_naturality :
           ∈ ((placeOfEquation hP.left).restrictAlong ι₀ hι₀).toValuationSubring :=
         (Place.mem_restrictAlong_iff ι₀ hι₀ _ _).mpr hι₀X_mem
       rw [hseam₀, hQ₀_case, placeOfPoint_zero] at hX_res
-
       exact InfinitePlace.not_isFinitePlace (isFinitePlace_of_mem _ hX_res)
-    ·
-      have hσQ : (E₀'⁄F').toAffine.Nonsingular (algebraMap F F' qx) (algebraMap F F' qy) :=
+    · have hσQ : (E₀'⁄F').toAffine.Nonsingular (algebraMap F F' qx) (algebraMap F F' qy) :=
         kw_surge_hgf4_toAffine_map_eq F F' E₀' ▸
           (((E₀'⁄F).toAffine.map_nonsingular (algebraMap F F').injective qx qy).mpr hQ₀ns)
       have hσE'_some : σE' (.some qx qy hQ₀ns)
@@ -4039,10 +3965,8 @@ theorem kw_surge_hgf4_pmop_naturality :
             = Point.map (W' := E₀'.toAffine) σ (.some qx qy hQ₀ns) from rfl, h]
         congr 1 <;> exact hσ _
       rw [hσE'_some, placeOfPoint_some]
-
       have hseam₀' : (placeOfEquation hP.left).restrictAlong ι₀ hι₀
           = placeOfEquation hQ₀ns.left := by rw [hseam₀, hQ₀_case, placeOfPoint_some]
-
       have hbrX : algebraMap (E₀'⁄F).toAffine.CoordinateRing (E₀'⁄F).toAffine.FunctionField
           (CoordinateRing.XClass (E₀'⁄F).toAffine qx)
           = polyToFunctionField (E₀'⁄F).toAffine X - algebraMap F _ qx :=
@@ -4084,21 +4008,16 @@ theorem kw_surge_hgf4_pmop_naturality :
           (ord_placeOfEquation_pos_iff hQ₀ns.left (CoordinateRing.YClass_ne_zero _)).mpr
             (Ideal.subset_span (Set.mem_insert_of_mem _ rfl))
         positivity
-
       refine AbstractSeam.restrictAlong_placeOfEquation (ι₁) hι₁ rfl rfl
         hσP.left hσQ.left ?_ ?_ ?_
-      ·
-        rw [hι₁X]
+      · rw [hι₁X]
         refine (kw_surge_hgf4_χE_VSR_compat E₀ F F' hP hσP _).mpr ?_
         rw [← Place.mem_restrictAlong_iff ι₀ hι₀, hseam₀']
         exact isFinitePlace_placeOfEquation hQ₀ns.left _
-      ·
-        rw [hι₁X, ← hχE_const qx, ← map_sub]
+      · rw [hι₁X, ← hχE_const qx, ← map_sub]
         exact (hχE_ord_pos hP hσP _ hι₀X_ne).mpr hdxF
-      ·
-        rw [hι₁Y, ← hχE_const qy, ← map_sub]
+      · rw [hι₁Y, ← hχE_const qy, ← map_sub]
         exact (hχE_ord_pos hP hσP _ hι₀Y_ne).mpr hdyF
-
   let δ : (E₀⁄F).toAffine.Point →+ (E₀'⁄F').toAffine.Point :=
     (φ₁.comp σE) - (σE'.comp φ₀)
   have hδ_affine : ∀ {x y : F} (hP : (E₀⁄F).toAffine.Nonsingular x y),
@@ -4109,7 +4028,6 @@ theorem kw_surge_hgf4_pmop_naturality :
     have h0 : φ₀ (.some x y hP) = g₀ (.some x y hP) - g₀ 0 := hgBC₀ _
     rw [h1, h0, map_sub, hgBC_nat_affine hP]
     abel
-
   have hC_zero : σE' (g₀ 0) - g₁ 0 = 0 := by
     obtain ⟨e3⟩ :=
       WeierstrassCurve.nonempty_pointTorsionBy_zmod (W := (E₀⁄F)) (n := 3) (by omega)
@@ -4132,12 +4050,10 @@ theorem kw_surge_hgf4_pmop_naturality :
         have : ((3 : ℤ) - 2) • P₀ = 0 := by rw [sub_smul]; exact this
         simpa using this
       exact hP₀_ne hP₀_eq
-
     rcases hP₀_case : P₀ with _ | ⟨px, py, hpP⟩
     · exact (hP₀_ne hP₀_case).elim
     rcases h2P₀_case : (2 : ℤ) • P₀ with _ | ⟨qx, qy, hqQ⟩
     · exact (h2P₀_ne h2P₀_case).elim
-
     have h2C : (2 : ℤ) • (σE' (g₀ 0) - g₁ 0) = σE' (g₀ 0) - g₁ 0 := by
       calc (2 : ℤ) • (σE' (g₀ 0) - g₁ 0)
           = (2 : ℤ) • δ (.some px py hpP) := by rw [hδ_affine hpP]
@@ -4146,11 +4062,9 @@ theorem kw_surge_hgf4_pmop_naturality :
         _ = δ ((2 : ℤ) • P₀) := by rw [hP₀_case]
         _ = δ (.some qx qy hqQ) := by rw [h2P₀_case]
         _ = σE' (g₀ 0) - g₁ 0 := hδ_affine hqQ
-
     have hC' : ((2 : ℤ) - 1) • (σE' (g₀ 0) - g₁ 0) = 0 := by
       rw [sub_smul, one_smul, h2C, sub_self]
     simpa using hC'
-
   intro P
   have hδP : δ P = 0 := by
     rcases P with _ | ⟨x, y, hP⟩
@@ -4165,20 +4079,16 @@ p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_algHom_baseChange_of_isAdd
 theorem kw_surge_hgf4_hBC_proved : KwD5BetweenCurvesFFSeamBaseChange := by
   have _ := kw_surge_hgf4_hBC_axiomAnchor
   intro R₀ _ E₀ E₀' _ _ F F' _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ σ ι₀ hι₀ hfin₀ N _ hcyc hcard
-
   let : Algebra F F' := σ.toRingHom.toAlgebra
   have : IsScalarTower R₀ F F' := IsScalarTower.of_algebraMap_eq fun r =>
     (σ.commutes r).symm
-
   have : IsDomain ((E₀⁄F).toAffine.FunctionField ⊗[F] F') :=
     kw_functionFieldTensorIsDomain_dischargeGeneral E₀ F F'
   have : IsDomain ((E₀'⁄F).toAffine.FunctionField ⊗[F] F') :=
     kw_functionFieldTensorIsDomain_dischargeGeneral E₀' F F'
-
   let ι₁ := kw_surge_hgf4_bcIota₁ E₀ E₀' F F' ι₀
   have hι₁ := kw_surge_hgf4_bcIota₁_isIntegral E₀ E₀' F F' ι₀ hfin₀
   have hfin₁ := kw_surge_hgf4_bcIota₁_finiteAlong E₀ E₀' F F' ι₀ hfin₀
-
   have hD := kw_surge_hgf4_bcIota₁_finrankAlong E₀ E₀' F F' ι₀ hfin₀
   have hker₁ : Nat.card (AddMonoidHom.ker
       (pointMapOfPushforward ι₁ hι₁ hfin₁ (normFormulaAlong_of_elliptic ι₁ hfin₁))) = N := by
@@ -4186,7 +4096,6 @@ theorem kw_surge_hgf4_hBC_proved : KwD5BetweenCurvesFFSeamBaseChange := by
         ι₁ hι₁ hfin₁, hD,
       ← kw_fdn2_qephod_hend7_pmopKerCard_proved F (E₀⁄F).toAffine (E₀'⁄F).toAffine
         ι₀ hι₀ hfin₀, hcard]
-
   let σE : (E₀⁄F).toAffine.Point →+ (E₀⁄F').toAffine.Point :=
     WeierstrassCurve.Affine.Point.map (W' := E₀.toAffine) σ
   let σE' : (E₀'⁄F).toAffine.Point →+ (E₀'⁄F').toAffine.Point :=
@@ -4195,23 +4104,18 @@ theorem kw_surge_hgf4_hBC_proved : KwD5BetweenCurvesFFSeamBaseChange := by
     WeierstrassCurve.Affine.Point.map_injective (W' := E₀.toAffine) σ
   let φ₀ := pointMapOfPushforward ι₀ hι₀ hfin₀ (normFormulaAlong_of_elliptic ι₀ hfin₀)
   let φ₁ := pointMapOfPushforward ι₁ hι₁ hfin₁ (normFormulaAlong_of_elliptic ι₁ hfin₁)
-
   have hnat : ∀ P, φ₁ (σE P) = σE' (φ₀ P) := by
-
     exact kw_surge_hgf4_pmop_naturality E₀ E₀' F F' ι₀ hι₀ hfin₀ σ (fun _ => rfl)
-
   have hker_sub : ∀ P ∈ AddMonoidHom.ker φ₀, σE P ∈ AddMonoidHom.ker φ₁ := by
     intro P hP
     rw [AddMonoidHom.mem_ker] at hP ⊢
     rw [hnat P, hP, map_zero]
-
   let σE_ker : (AddMonoidHom.ker φ₀) →+ (AddMonoidHom.ker φ₁) :=
     { toFun := fun ⟨P, hP⟩ => ⟨σE P, hker_sub P hP⟩
       map_zero' := Subtype.ext (map_zero σE)
       map_add' := fun ⟨P, _⟩ ⟨Q, _⟩ => Subtype.ext (map_add σE P Q) }
   have hσE_ker_inj : Function.Injective σE_ker := fun ⟨P, _⟩ ⟨Q, _⟩ hPQ =>
     Subtype.ext (hσE_inj (Subtype.ext_iff.mp hPQ))
-
   have hcard_eq : Nat.card (AddMonoidHom.ker φ₀) = Nat.card (AddMonoidHom.ker φ₁) := by
     rw [hcard, hker₁]
   have hfin_ker₀ : Finite (AddMonoidHom.ker φ₀) :=
@@ -4220,7 +4124,6 @@ theorem kw_surge_hgf4_hBC_proved : KwD5BetweenCurvesFFSeamBaseChange := by
     Nat.finite_of_card_ne_zero (hker₁ ▸ (NeZero.ne N))
   have hσE_ker_bij : Function.Bijective σE_ker :=
     (Nat.bijective_iff_injective_and_card _).mpr ⟨hσE_ker_inj, hcard_eq⟩
-
   have hcyc₁ : IsAddCyclic (AddMonoidHom.ker φ₁) := by
     let e : (AddMonoidHom.ker φ₀) ≃+ (AddMonoidHom.ker φ₁) :=
       AddEquiv.ofBijective σE_ker hσE_ker_bij
@@ -4339,19 +4242,15 @@ theorem kw_surgehgf4_hfgkd_ktd_kerTransport_proved :
   have _ := kw_surgehgf4_hfgkd_ktd_axiomAnchor
   intro R₀ _ E₀ E₀' _ _ F₁ _ _ _ _ _ F₂ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
     ι₁ hι₁ hfin₁ ι₂ hι₂ hfin₂ hχ N _ hcyc₂ hcard₂
-
   have : IsDomain ((E₀⁄F₁).toAffine.FunctionField ⊗[F₁] F₂) :=
     kw_functionFieldTensorIsDomain_dischargeGeneral E₀ F₁ F₂
   have : IsDomain ((E₀'⁄F₁).toAffine.FunctionField ⊗[F₁] F₂) :=
     kw_functionFieldTensorIsDomain_dischargeGeneral E₀' F₁ F₂
-
   have hχE₀ := kw_surgehgf4_hfgkd_ktd_chiNoAC_eq_chiGeneral E₀ F₁ F₂
   have hχE₀' := kw_surgehgf4_hfgkd_ktd_chiNoAC_eq_chiGeneral E₀' F₁ F₂
-
   have hχG : ∀ x, ι₂ (kw_functionFieldMapAlongGeneral E₀' F₁ F₂ x)
       = kw_functionFieldMapAlongGeneral E₀ F₁ F₂ (ι₁ x) := by
     intro x; rw [← hχE₀', ← hχE₀]; exact hχ x
-
   have heq : ι₂ = kw_surge_hgf4_bcIota₁ E₀ E₀' F₁ F₂ ι₁ := by
     refine kw_functionField_algHom_ext ?_ ?_
     · rw [show polyToFunctionField (E₀'⁄F₂).toAffine X
@@ -4364,9 +4263,7 @@ theorem kw_surgehgf4_hfgkd_ktd_kerTransport_proved :
           (kw_functionFieldMapAlongGeneral_yGen E₀' F₁ F₂).symm,
         hχG, kw_surge_hgf4_bcIota₁_compat E₀ E₀' F₁ F₂ ι₁]
   subst heq
-
   clear hχ hχG hχE₀ hχE₀'
-
   let φ₁ := pointMapOfPushforward ι₁ hι₁ hfin₁ (normFormulaAlong_of_elliptic ι₁ hfin₁)
   let φ₂ := pointMapOfPushforward _ hι₂ hfin₂ (normFormulaAlong_of_elliptic _ hfin₂)
   have hD := kw_surge_hgf4_bcIota₁_finrankAlong E₀ E₀' F₁ F₂ ι₁ hfin₁
@@ -4377,7 +4274,6 @@ theorem kw_surgehgf4_hfgkd_ktd_kerTransport_proved :
       ← kw_fdn2_qephod_hend7_pmopKerCard_proved F₂ (E₀⁄F₂).toAffine (E₀'⁄F₂).toAffine
         _ hι₂ hfin₂]
     exact hcard₂
-
   let σ : F₁ →ₐ[R₀] F₂ := IsScalarTower.toAlgHom R₀ F₁ F₂
   let σE : (E₀⁄F₁).toAffine.Point →+ (E₀⁄F₂).toAffine.Point :=
     WeierstrassCurve.Affine.Point.map (W' := E₀.toAffine) σ
@@ -4387,7 +4283,6 @@ theorem kw_surgehgf4_hfgkd_ktd_kerTransport_proved :
     WeierstrassCurve.Affine.Point.map_injective (W' := E₀.toAffine) σ
   have hnat : ∀ P, φ₂ (σE P) = σE' (φ₁ P) :=
     kw_surge_hgf4_pmop_naturality E₀ E₀' F₁ F₂ ι₁ hι₁ hfin₁ σ (fun _ => rfl)
-
   have hker_sub : ∀ P ∈ AddMonoidHom.ker φ₁, σE P ∈ AddMonoidHom.ker φ₂ := by
     intro P hP
     rw [AddMonoidHom.mem_ker] at hP ⊢
@@ -4398,7 +4293,6 @@ theorem kw_surgehgf4_hfgkd_ktd_kerTransport_proved :
       map_add' := fun ⟨P, _⟩ ⟨Q, _⟩ => Subtype.ext (map_add σE P Q) }
   have hσE_ker_inj : Function.Injective σE_ker := fun ⟨P, _⟩ ⟨Q, _⟩ hPQ =>
     Subtype.ext (hσE_inj (Subtype.ext_iff.mp hPQ))
-
   have hcard_eq : Nat.card (AddMonoidHom.ker φ₁) = Nat.card (AddMonoidHom.ker φ₂) := by
     rw [hker₁, hcard₂]
   have hfin_ker₁ : Finite (AddMonoidHom.ker φ₁) :=

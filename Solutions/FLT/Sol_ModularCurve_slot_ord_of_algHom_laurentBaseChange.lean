@@ -74,13 +74,11 @@ private theorem _root_.ModularCurve.slot_ord_of_algHom_laurentBaseChange (N : �
         -((N / a / Nat.gcd a (N / a) : ℕ) : ℤ) ∧
     w.ord ⟨coeffEmb K (jqN N), coeffEmb_mem_laurentBaseChange K (jqd_mem_full N (dvd_refl N))⟩ =
         -((a / Nat.gcd a (N / a) : ℕ) : ℤ) := by
-
   let F := laurentBaseChange K (modularFunctionFieldFull N)
   let jbar : F := ⟨coeffEmb K jq, coeffEmb_mem_laurentBaseChange K (jq_mem_full N)⟩
   let jbarN : F :=
     ⟨coeffEmb K (jqN N), coeffEmb_mem_laurentBaseChange K (jqd_mem_full N (dvd_refl N))⟩
   let g := Nat.gcd a (N / a)
-
   have ha0 : a ≠ 0 := NeZero.ne a
   have hg0 : g ≠ 0 := Nat.gcd_ne_zero_left ha0
   have hag0 : NeZero (a * g) := ⟨Nat.mul_ne_zero ha0 hg0⟩
@@ -89,7 +87,6 @@ private theorem _root_.ModularCurve.slot_ord_of_algHom_laurentBaseChange (N : �
       _ = N := Nat.mul_div_cancel' ha
   have hag_dvd_aa : a * g ∣ a * a := Nat.mul_dvd_mul_left a (Nat.gcd_dvd_left _ _)
   have : NeZero (a * a) := ⟨Nat.mul_ne_zero ha0 ha0⟩
-
   have hord1 : (ι jbar).order = -(N : ℤ) := by
     rw [show ι jbar = qExpand K N (coeffEmb K jq) from hι₁, order_qExpand, order_coeffEmb_jq,
       mul_neg_one]
@@ -98,7 +95,6 @@ private theorem _root_.ModularCurve.slot_ord_of_algHom_laurentBaseChange (N : �
       mul_neg_one]
   have hw1 : w.ord jbar * γ = -(N : ℤ) := (hw jbar).trans hord1
   have hw2 : w.ord jbarN * γ = -((a * a : ℕ) : ℤ) := (hw jbarN).trans hord2
-
   have hγdvd : γ ∣ ((a * g : ℕ) : ℤ) := by
     have hN : γ ∣ (N : ℤ) := ⟨-(w.ord jbar), by rw [mul_neg, mul_comm γ, hw1, neg_neg]⟩
     have haa : γ ∣ ((a * a : ℕ) : ℤ) :=
@@ -108,11 +104,8 @@ private theorem _root_.ModularCurve.slot_ord_of_algHom_laurentBaseChange (N : �
       rw [Nat.gcd_mul_left, Nat.gcd_comm]
     rw [← key, Nat.gcd_eq_gcd_ab]
     exact dvd_add (Dvd.dvd.mul_right hN _) (Dvd.dvd.mul_right haa _)
-
   have hrange : ∀ x : F, ι x ∈ (qExpandAlgK (K := K) (a * g)).fieldRange := by
-
     have hadj := laurentBaseChange_adjoin_pair K N (functionFieldGeneration N)
-
     have htop : IntermediateField.adjoin K ({jbar, jbarN} : Set F) = ⊤ := by
       apply IntermediateField.map_injective F.val
       calc (IntermediateField.adjoin K ({jbar, jbarN} : Set F)).map F.val
@@ -130,7 +123,6 @@ private theorem _root_.ModularCurve.slot_ord_of_algHom_laurentBaseChange (N : �
     intro x
     have hxmem : x ∈ IntermediateField.adjoin K ({jbar, jbarN} : Set F) :=
       htop ▸ IntermediateField.mem_top
-
     induction hxmem using IntermediateField.adjoin_induction with
     | mem y hy =>
       simp only [Set.mem_insert_iff, Set.mem_singleton_iff] at hy
@@ -144,7 +136,6 @@ private theorem _root_.ModularCurve.slot_ord_of_algHom_laurentBaseChange (N : �
     | add y z _ _ ihy ihz => rw [map_add]; exact add_mem ihy ihz
     | inv y _ ih => rw [map_inv₀]; exact inv_mem ih
     | mul y z _ _ ihy ihz => rw [map_mul]; exact mul_mem ihy ihz
-
   obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible w.toValuationSubring
   obtain ⟨f, hfπ⟩ := hrange (π : F)
   have hγeq : γ = (ι (π : F)).order := by
@@ -156,20 +147,17 @@ private theorem _root_.ModularCurve.slot_ord_of_algHom_laurentBaseChange (N : �
     show ((a * g : ℕ) : ℤ) ∣ (qExpandAlgK (a * g) f).order
     rw [qExpandAlgK_apply, order_qExpand]
     exact Dvd.intro _ rfl
-
   have hagpos : 0 < ((a * g : ℕ) : ℤ) := by
     exact_mod_cast Nat.pos_of_ne_zero hag0.out
   have hγval : γ = ((a * g : ℕ) : ℤ) :=
     Int.dvd_antisymm (le_of_lt hγ) (le_of_lt hagpos) hγdvd hagdvdγ
   refine ⟨by rw [hγval]; push_cast; ring, ?_, ?_⟩
-  ·
-    have hdiv : (N / a / g) * (a * g) = N := by
+  · have hdiv : (N / a / g) * (a * g) = N := by
       rw [Nat.div_div_eq_div_mul, Nat.div_mul_cancel hag_dvd_N]
     have key : (-((N / a / g : ℕ) : ℤ)) * ((a * g : ℕ) : ℤ) = -(N : ℤ) := by
       rw [neg_mul, ← Nat.cast_mul, hdiv]
     exact mul_right_cancel₀ (ne_of_gt hagpos) ((hγval ▸ hw1).trans key.symm)
-  ·
-    have hdiv : (a / g) * (a * g) = a * a := by
+  · have hdiv : (a / g) * (a * g) = a * a := by
       rw [mul_comm a g, ← mul_assoc, Nat.div_mul_cancel (Nat.gcd_dvd_left a (N / a))]
     have key : (-((a / g : ℕ) : ℤ)) * ((a * g : ℕ) : ℤ) = -((a * a : ℕ) : ℤ) := by
       rw [neg_mul, ← Nat.cast_mul, hdiv]
@@ -195,7 +183,6 @@ theorem solution (K : Type*) [Field K] [Algebra ℚ K] (N : ℕ) [NeZero N] (ζ 
     w.ord ⟨coeffEmb K (jqN N), coeffEmb_mem_laurentBaseChange K (jqd_mem_full N (dvd_refl N))⟩ =
         -((a / Nat.gcd a (N / a) : ℕ) : ℤ) :=
   ModularCurve.slot_ord_of_algHom_laurentBaseChange K N ζ a b ha ι hι₁ hι₂ w γ hγ hw
-
 
 end S_ModularCurve_slot_ord_of_algHom_laurentBaseChange
 end P2MW

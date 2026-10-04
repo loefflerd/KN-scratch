@@ -100,19 +100,16 @@ theorem ModularCurve.CuspPlaceGlue.ord_eq_zero_aux
     (hv : y ∉ v.toValuationSubring) :
     v.ord x = 0 := by
   classical
-
   obtain ⟨hst, σ, hσ, hker, hfixed, htr, hfin, _, hgal⟩ :=
     ModularCurve.LevelN.exists_monoidHom_algEquiv_fixedField_eq_adjoin M K
   obtain ⟨E, hEj, hEq⟩ := ModularCurve.LevelN.exists_algHom_laurentSeries_qExpansion M K
   have hEinj : Function.Injective E := E.toRingHom.injective
-
   obtain ⟨Ψ, hΨ⟩ := ModularCurve.LevelN.exists_algHom_laurentBaseChange_apply_eq_qExpand M K σ hker hfixed
     E hEj Γ hΓM hT
   have hΨinj : Function.Injective Ψ := Ψ.toRingHom.injective
   have hΨy : Ψ y = algebraMap (ModularCurve.LevelN.ring M) K (ModularCurve.LevelN.jGen M) := by
     apply hEinj
     rw [hΨ, hy, hEj]
-
   obtain ⟨k, g, h, hh, hxgh⟩ :=
     ModularCurve.exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange_qExpFunctionFieldC_of_T_mem
       Γ hT (x : LaurentSeries ℂ) x.2
@@ -120,7 +117,6 @@ theorem ModularCurve.CuspPlaceGlue.ord_eq_zero_aux
       Filter.Tendsto (fun τ : ℍ => (g : ℍ → ℂ) (γ • τ) / (h : ℍ → ℂ) (γ • τ)) atImInfty (𝓝 L) :=
     ModularCurve.exists_tendsto_div_smul_of_eventuallyEq_realizeOf_of_tendsto Γ hT g h hh (x : LaurentSeries ℂ)
       hxgh F hFx hcusp
-
   set z : K := Ψ x with hzdef
   set qg : LaurentSeries ℂ := ModularCurve.qExpand ℂ M
     ((UpperHalfPlane.qExpansion 1 (g : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) with hqg
@@ -128,7 +124,6 @@ theorem ModularCurve.CuspPlaceGlue.ord_eq_zero_aux
     ((UpperHalfPlane.qExpansion 1 (h : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) with hqh
   have hz : E z * qh = qg := by
     rw [hzdef, hΨ, hqh, hqg, ← map_mul, hxgh]
-
   have hEz : E z ≠ 0 := by
     intro h0
     have hqg0 : qg = 0 := by rw [← hz, h0, zero_mul]
@@ -148,7 +143,6 @@ theorem ModularCurve.CuspPlaceGlue.ord_eq_zero_aux
     exact hL (tendsto_nhds_unique hL' this)
   have hz' : E z⁻¹ * qg = qh := by
     rw [map_inv₀, ← hz, inv_mul_cancel_left₀ hEz]
-
   have hpole : ∀ γ : SL(2, ℤ), Valued.v (E (σ γ z)) ≤ 1 := by
     intro γ
     obtain ⟨L, hL, hlimγ⟩ := hlim γ⁻¹
@@ -167,7 +161,6 @@ theorem ModularCurve.CuspPlaceGlue.ord_eq_zero_aux
       rw [this, map_zero, map_zero]
     have hzz := hz
     rw [hqg0] at hzz
-
     have hqh0 : qh ≠ 0 := by
       intro hqh0
       have hh0 : (UpperHalfPlane.qExpansion 1 (h : ℍ → ℂ) : PowerSeries ℂ) = 0 := by
@@ -188,19 +181,16 @@ theorem ModularCurve.CuspPlaceGlue.ord_eq_zero_aux
       simpa only [inv_div] using this
     exact ModularCurve.LevelN.valuation_apply_smul_le_one_of_tendsto_div_smul M K hst σ hσ E hEj hEq
       Γ hΓM hT h g hg z⁻¹ hz' γ L⁻¹ (inv_ne_zero hL) hlim'
-
   obtain ⟨P, hPm, hPz, hPc⟩ :=
     ModularCurve.LevelN.exists_monic_eval_eq_zero_coeff_eq_aeval_inv_div_of_forall_valuation_le_one
       M K σ hker hfixed E hEj z hpole
   obtain ⟨Q, hQm, hQz, hQc⟩ :=
     ModularCurve.LevelN.exists_monic_eval_eq_zero_coeff_eq_aeval_inv_div_of_forall_valuation_le_one
       M K σ hker hfixed E hEj z⁻¹ hpole'
-
   rw [← hΨy] at hPc hQc
   obtain ⟨P₀, hP₀m, hP₀x, hP₀c⟩ := exists_monic_pullback Ψ y x P hPm (by rw [← hzdef]; exact hPz) hPc
   obtain ⟨Q₀, hQ₀m, hQ₀x, hQ₀c⟩ :=
     exists_monic_pullback Ψ y x⁻¹ Q hQm (by rw [map_inv₀, ← hzdef]; exact hQz) hQc
-
   exact AlgebraicCurve.Place.ord_eq_zero_of_not_mem_of_eval_monic_eq_zero_of_coeff_eq_aeval_inv_div
     v hv hP₀m hQ₀m hP₀c hQ₀c hP₀x hQ₀x
 

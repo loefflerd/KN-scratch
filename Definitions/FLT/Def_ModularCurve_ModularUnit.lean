@@ -60,7 +60,6 @@ theorem mul {f g : LaurentSeries ℚ} {m n : ℤ} (hf : IsMonicOfOrder f m)
 
 theorem of_mul_right {f g : LaurentSeries ℚ} {k n : ℤ} (hfg : IsMonicOfOrder (f * g) k)
     (hg : IsMonicOfOrder g n) : IsMonicOfOrder f (k - n) := by
-
   have hlc : f.leadingCoeff = 1 := by
     have h := HahnSeries.leadingCoeff_mul f g
     rw [hfg.2, hg.2, mul_one] at h
@@ -79,7 +78,6 @@ theorem qExpand {f : LaurentSeries ℚ} {m : ℤ} (p : ℕ) [NeZero p] (hf : IsM
   have hcoeff' : (ModularCurve.qExpand ℚ p f).coeff ((p : ℤ) * m) ≠ 0 := by
     rw [hcoeff]; exact one_ne_zero
   have hne : ModularCurve.qExpand ℚ p f ≠ 0 := HahnSeries.ne_zero_of_coeff_ne_zero hcoeff'
-
   have hbelow : ∀ k : ℤ, k < (p : ℤ) * m → (ModularCurve.qExpand ℚ p f).coeff k = 0 := by
     intro k hk
     by_cases hdvd : (p : ℤ) ∣ k

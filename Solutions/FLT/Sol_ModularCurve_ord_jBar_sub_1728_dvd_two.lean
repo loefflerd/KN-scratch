@@ -185,7 +185,6 @@ theorem hasRamBound_two_of_isRoot_at_1728
       ((1728 : HahnSeries ℚ (AlgebraicClosure ℚ)) + HahnSeries.single (1 : ℚ) (1 : AlgebraicClosure ℚ)))).IsRoot r) :
     HahnSeries.HasRamBound 2 r := by
   classical
-
   obtain ⟨𝓔, hΔ, hc⟩ :=
     WeierstrassCurve.exists_isUnit_discriminant_and_c6_sq_eq_mul_X_sq_powerSeries
       (AlgebraicClosure ℚ) two_ne_zero three_ne_zero
@@ -194,7 +193,6 @@ theorem hasRamBound_two_of_isRoot_at_1728
     j_eq_1728_add_single_two_one 𝓔 hΔ hc
   have ht : Transcendental ℚ (𝓔.map (HahnSeries.ofPowerSeries ℚ ℚ̄)).j := by
     rw [hjW]; exact transcendental_1728_add_single_two
-
   have hτj : hahnExpMul 2 (by norm_num) ((1728 : 𝕂) + HahnSeries.single (1 : ℚ) (1 : ℚ̄))
       = (𝓔.map (HahnSeries.ofPowerSeries ℚ ℚ̄)).j := by
     rw [map_add, map_ofNat, hahnExpMul_single, one_mul, hjW]
@@ -205,7 +203,6 @@ theorem hasRamBound_two_of_isRoot_at_1728
     show Polynomial.eval _ _ = 0
     rw [Polynomial.eval_map, Polynomial.eval₂_hom, show Polynomial.eval r (spec data.Φ _) = 0 from hroot,
       map_zero]
-
   have hmemL : ∀ y : 𝕂, y ∈ HahnSeries.puiseuxRamSubfield ℚ̄ Nat.one_pos ↔ HasRamBound 1 y :=
     fun y => HahnSeries.mem_puiseuxRamSubfield_iff Nat.one_pos
   have hτrL : hahnExpMul 2 (by norm_num) r ∈ HahnSeries.puiseuxRamSubfield ℚ̄ Nat.one_pos := by
@@ -217,8 +214,7 @@ theorem hasRamBound_two_of_isRoot_at_1728
     · rw [WeierstrassCurve.map_a₃, hmemL]; exact hasRamBound_one_ofPowerSeries _
     · rw [WeierstrassCurve.map_a₄, hmemL]; exact hasRamBound_one_ofPowerSeries _
     · rw [WeierstrassCurve.map_a₆, hmemL]; exact hasRamBound_one_ofPowerSeries _
-    ·
-      intro x y hns hd
+    · intro x y hns hd
       have h := WeierstrassCurve.hasRamBound_one_of_nsmul_eq_zero_of_isUnit_discriminant_powerSeries
         𝓔 hΔ (Nat.pos_of_ne_zero (NeZero.ne N)) x y hns hd
       exact ⟨(hmemL x).mpr h.1, (hmemL y).mpr h.2⟩
@@ -297,7 +293,6 @@ theorem algebraMap_RF_X_sub_C (c : AlgebraicClosure ℚ) :
 theorem eval₂_Phi_jb_jNb (data : ModularPolynomialData N) :
     data.Φ.eval₂ (Polynomial.eval₂RingHom (Int.castRingHom ↥(modularFunctionFieldBar N)) (jb N)) (jNb N)
       = 0 := by
-
   apply Subtype.ext
   have hval : ((modularFunctionFieldBar N).toSubfield.subtype).comp
       (Polynomial.eval₂RingHom (Int.castRingHom ↥(modularFunctionFieldBar N)) (jb N))

@@ -18,12 +18,9 @@ namespace ModularCurve
 variable (κ : Type*) [Field κ] (M : ℕ)
 
 structure IntegralWeightOneForm where
-
   form : ModularForm (Gamma1 M : Subgroup (GL (Fin 2) ℝ)) 1
-
   series : PowerSeries ℤ
   isIntegralQExp : IsIntegralQExp form series
-
   intSeriesC_ne_zero : intSeriesC κ series ≠ 0
 
 variable {κ M}

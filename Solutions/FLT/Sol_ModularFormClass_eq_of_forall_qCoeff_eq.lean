@@ -240,7 +240,6 @@ theorem hasSum_average (τ : ℍ) :
       ((p : ℂ)⁻¹ * ∑ j ∈ Finset.range p, f (heckeMatrix p j • τ)) := by
   have hF : ∀ τ' : ℍ, HasSum (fun m ↦ qCoeff f m • Periodic.qParam 1 τ' ^ m) (f τ') :=
     hasSum_qExpansion one_pos hper hhol hbdd
-
   have h1 : HasSum (fun m ↦ ∑ j ∈ Finset.range p,
       qCoeff f m • (exp (2 * π * I * τ / p) * exp (2 * π * I / p) ^ j) ^ m)
       (∑ j ∈ Finset.range p, f (heckeMatrix p j • τ)) := by

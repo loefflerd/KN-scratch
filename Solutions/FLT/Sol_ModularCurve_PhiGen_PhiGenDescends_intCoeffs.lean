@@ -104,7 +104,6 @@ private theorem val_mem_integralClosure_of_pow_eq_one {u : Kˣ} {n : ℕ} (hn : 
 
 private theorem zpow_val_mem_integralClosure_of_pow_eq_one {u : Kˣ} {n : ℕ} (hn : n ≠ 0)
     (hu : u ^ n = 1) (m : ℤ) : ((u ^ m : Kˣ) : K) ∈ integralClosure ℤ K := by
-
   have hrw : u ^ m = u ^ (m % (n : ℤ)).toNat := by
     have h1 : u ^ m = u ^ (m % (n : ℤ)) := by
       conv_lhs => rw [← Int.emod_add_mul_ediv m (n : ℤ)]
@@ -201,14 +200,11 @@ private theorem exists_intCast_eq_of_mem {q : ℚ}
     (h : algebraMap ℚ K q ∈ integralClosure ℤ K) : ∃ z : ℤ, q = (z : ℚ) := by
   rw [mem_integralClosure_iff] at h
   obtain ⟨P, hPmonic, hPeval⟩ := h
-
   have hcomp : algebraMap ℤ K = (algebraMap ℚ K).comp (Int.castRingHom ℚ) :=
     Subsingleton.elim _ _
   rw [hcomp, ← Polynomial.hom_eval₂] at hPeval
-
   have h0 : Polynomial.eval₂ (Int.castRingHom ℚ) q P = 0 :=
     FaithfulSMul.algebraMap_injective ℚ K (by rw [hPeval, map_zero])
-
   have hint : IsIntegral ℤ q :=
     ⟨P, hPmonic, by
       rwa [show algebraMap ℤ ℚ = Int.castRingHom ℚ from Subsingleton.elim _ _]⟩
@@ -220,7 +216,6 @@ variable {ℓ : ℕ} [hℓ : Fact (Nat.Prime ℓ)] {ζ : Kˣ} {c : ℕ → Laure
 private theorem PhiGenDescends.intCoeffs (hc : PhiGenDescends ℓ ζ c) (hζ1 : ζ ^ ℓ = 1) (k : ℕ) :
     IntCoeffs (c k) := by
   intro m
-
   have h1 : algebraMap ℚ K ((c k).coeff m)
       = ((phiProd ℓ (conj ℓ ζ)).coeff k).coeff ((ℓ : ℤ) * m) := by
     rw [hc k, coeffEmb_coeff, qExpand_coeff_mul]
@@ -240,7 +235,6 @@ open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_PhiGenDescends_intCoe
 
 theorem solution {K : Type*} [Field K] [Algebra ℚ K] {ℓ : ℕ} [hℓ : Fact (Nat.Prime ℓ)] {ζ : Kˣ} {c : ℕ → LaurentSeries ℚ} (hc : PhiGenDescends ℓ ζ c) (hζ1 : ζ ^ ℓ = 1) (k : ℕ) : IntCoeffs (c k) :=
   ModularCurve.PhiGen.PhiGenDescends.intCoeffs hc hζ1 k
-
 
 end S_ModularCurve_PhiGen_PhiGenDescends_intCoeffs
 end P2MW

@@ -607,7 +607,6 @@ open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_splits_prime_at_slot_
 theorem solution {K : Type*} [Field K] (p : ℕ) [hp : Fact (Nat.Prime p)] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) p) (data : ModularPolynomialData p) (e : ℕ) [NeZero e] (u : Kˣ) : data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (LaurentSeries K)) (qExpand K (p * e) (qTwist (u ^ p) (jqModC K)))) = (Polynomial.X - Polynomial.C (qExpand K (p * (p * e)) (qTwist (u ^ (p * p)) (jqModC K)))) * ∏ b ∈ Finset.range p, (Polynomial.X - Polynomial.C (qExpand K e (qTwist (u * ζ ^ b) (jqModC K)))) :=
   ModularCurve.PhiGen.splits_prime_at_slot_of_isPrimitiveRoot p ζ hζ data e u
 
-
 end S_ModularCurve_PhiGen_splits_prime_at_slot_of_isPrimitiveRoot
 end P2MW
 export P2MW.S_ModularCurve_PhiGen_splits_prime_at_slot_of_isPrimitiveRoot (solution)

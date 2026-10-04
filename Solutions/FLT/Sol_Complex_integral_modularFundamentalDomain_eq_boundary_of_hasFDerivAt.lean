@@ -396,7 +396,6 @@ lemma integral_T_horiz :
         _ = ‖Φ' ⟨p.1, p.2⟩‖ := by rw [norm_one, mul_one]
         _ ≤ C' * Real.exp (-δ * p.2) := hC' _ (hDU (mk_mem_D hp.1 hp.2))
   rw [setIntegral_T_eq_y_x hG]
-
   have hae : (fun y => ∫ x in {x : ℝ | |x| ≤ 1 / 2 ∧ h x ≤ y}, Φ' ⟨x, y⟩ 1) =ᵐ[volume]
       (Ioi (Real.sqrt 3 / 2)).indicator fun y =>
         (Φ ⟨1 / 2, y⟩ - Φ ⟨-(1 / 2), y⟩) + (Iic (1 : ℝ)).indicator (corr Φ) y := by
@@ -536,7 +535,6 @@ lemma arc_cos :
       (2 * Real.pi / 3) :=
     (hcont.mono (by rw [uIcc_of_le h2]; exact Icc_subset_Icc_left h1)).intervalIntegrable
   rw [← intervalIntegral.integral_add_adjacent_intervals hi1 hi2]
-
   have k1 : ∫ θ in (Real.pi / 3)..(Real.pi / 2), Real.cos θ • Φ (γ θ) =
       ∫ y in (Real.sqrt 3 / 2)..1, Φ ⟨r y, y⟩ := by
     rw [← Real.sin_pi_div_three, ← Real.sin_pi_div_two,
@@ -548,7 +546,6 @@ lemma arc_cos :
       simp only [Function.comp_apply, γ, r_sin, abs_of_nonneg hc0]
     · rw [min_eq_left h1, max_eq_right h1] at hθ
       exact Real.cos_nonneg_of_mem_Icc ⟨by linarith [hθ.1], hθ.2.le⟩
-
   have k2 : ∫ θ in (Real.pi / 2)..(2 * Real.pi / 3), Real.cos θ • Φ (γ θ) =
       -∫ y in (Real.sqrt 3 / 2)..1, Φ ⟨-r y, y⟩ := by
     rw [← sin_two_pi_div_three, ← Real.sin_pi_div_two,

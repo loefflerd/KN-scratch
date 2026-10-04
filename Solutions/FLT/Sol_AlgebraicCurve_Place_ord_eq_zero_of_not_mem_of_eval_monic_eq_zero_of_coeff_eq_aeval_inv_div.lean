@@ -92,7 +92,6 @@ theorem aeval_mem (v : Place K F) {u : F} (hu : u ∈ v.toValuationSubring) (r :
 theorem valuation_aeval_eq_one (v : Place K F) {u : F} (hu : u ∈ v.toValuationSubring)
     (hu1 : v.toValuationSubring.valuation u < 1) (q : K[X]) (hq : q.coeff 0 ≠ 0) :
     v.toValuationSubring.valuation (aeval u q) = 1 := by
-
   obtain ⟨r, hr⟩ : ∃ r : K[X], q = C (q.coeff 0) + X * r := ⟨q.divX, by
     conv_lhs => rw [← q.divX_mul_X_add]
     ring⟩

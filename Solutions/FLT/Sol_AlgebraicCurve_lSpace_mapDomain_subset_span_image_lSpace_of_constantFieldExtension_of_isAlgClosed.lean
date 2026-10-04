@@ -88,7 +88,6 @@ theorem solution
     (hf' : f' ∈ LSpace (K := K') (Finsupp.mapDomain lift D)) :
     f' ∈ Submodule.span K' ((algebraMap F F') '' (LSpace (K := K) D : Set F)) := by
   classical
-
   have hnew : ∀ v' : Place K' F', (∀ v : Place K F,
       v'.toValuationSubring.comap (algebraMap F F') ≠ v.toValuationSubring) →
       f' ∈ v'.toValuationSubring := by
@@ -104,10 +103,8 @@ theorem solution
   have hspan' : f' ∈ Submodule.span K' (Set.range (algebraMap F F')) :=
     mem_span_range_algebraMap_of_constantFieldExtension_of_isAlgClosed
       K F K' F' hfg hfg' hgen f' hnew
-
   let B := Module.Basis.ofVectorSpace K K'
   obtain ⟨c, hc⟩ := Finsupp.mem_span_range_iff_exists_finsupp.mp hspan'
-
   let g : Module.Basis.ofVectorSpaceIndex K K' →₀ F :=
     (Finsupp.ofSupportFinite
       (fun j => ∑ f ∈ c.support, (B.repr (c f) j) • f)
@@ -161,12 +158,10 @@ theorem solution
       _ = ∑ j ∈ g.support, algebraMap K' F' (B j) * algebraMap F F' (g j) :=
           (Finset.sum_subset hgsub fun j _ hj => by
             rw [Finsupp.notMem_support_iff.mp hj, map_zero, mul_zero]).symm
-
   have hgD : ∀ j, g j ∈ LSpace (K := K) D :=
     AlgebraicCurve.mem_riemannRochSpace_of_sum_basis_smul_algebraMap_mem_mapDomain
       K F K' F' lift hlift_ord hlift_inj D B B.linearIndependent g
       (hf'eq ▸ hf')
-
   rw [hf'eq]
   refine Submodule.sum_mem _ fun j _ => ?_
   rw [← Algebra.smul_def]

@@ -55,7 +55,6 @@ theorem solution (N : ℕ) [NeZero N]
     (AlgebraicCurve.genus (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar N) : ℚ)
       = ModularCurve.genusFormula N := by
   classical
-
   set F := ↥(modularFunctionFieldBar N) with hF
   set j : ↥(modularFunctionFieldBar N) := jBar N with hj
   have hjdef : j = (⟨coeffEmb (AlgebraicClosure ℚ) jq,
@@ -63,7 +62,6 @@ theorem solution (N : ℕ) [NeZero N]
   have h1728 : (j - 1728 : ↥(modularFunctionFieldBar N))
       = j - algebraMap (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) 1728 := by
     rw [map_ofNat]
-
   have : CharZero ↥(modularFunctionFieldBar N) :=
     charZero_of_injective_algebraMap (algebraMap (AlgebraicClosure ℚ) _).injective
   have : IsCurveOver (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) := isCurveOver_modularFunctionFieldBar N
@@ -81,12 +79,9 @@ theorem solution (N : ℕ) [NeZero N]
   have : Algebra.IsSeparable ↥(IntermediateField.adjoin (AlgebraicClosure ℚ) ({j} : Set ↥(modularFunctionFieldBar N)))
       ↥(modularFunctionFieldBar N) := Algebra.IsSeparable.of_integral _ _
   have htr : Transcendental (AlgebraicClosure ℚ) j := transcendental_coeffEmb_jq (AlgebraicClosure ℚ) N
-
   have hdeg : ∀ w : Place (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N), w.deg = 1 :=
     deg_eq_one_modularFunctionFieldBar N
-
   obtain ⟨hval, hfinc, hfinI⟩ := jCoordinate_spec_modularFunctionFieldBar N
-
   set S0 : Finset (Place (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N)) := (hfinc 0).toFinset with hS0def
   set S1 : Finset (Place (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N)) := (hfinc 1728).toFinset with hS1def
   set Sinf : Finset (Place (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N)) := hfinI.toFinset with hSIdef
@@ -96,7 +91,6 @@ theorem solution (N : ℕ) [NeZero N]
     fun v => by rw [hS1def, Set.Finite.mem_toFinset, Set.mem_ofPred_eq]
   have hSI : ∀ v, v ∈ Sinf ↔ v.ord j < 0 := fun v => by
     rw [hSIdef, Set.Finite.mem_toFinset, Set.mem_ofPred_eq]
-
   have hDj1728 : KaehlerDifferential.D (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) j
       = KaehlerDifferential.D (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N)
           (j - algebraMap (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) 1728) := by
@@ -118,20 +112,17 @@ theorem solution (N : ℕ) [NeZero N]
       ∧ v.ord j < 0 := fun v hv => by
     have hneg := (hSI v).1 hv
     exact ⟨AlgebraicCurve.Place.ordDiff_D_eq_ord_sub_one j v hneg.ne, hneg⟩
-
   have hψ₀ : ∑ v ∈ S0, v.ord j = (dedekindPsi N : ℤ) := by
     have h := sum_ord_jBar_sub_eq_dedekindPsi N 0 hdeg S0 (fun v => by rw [hS0, map_zero, sub_zero])
     simpa [map_zero, sub_zero] using h
   have hψ₁ : ∑ v ∈ S1, v.ord (j - algebraMap (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) 1728) = (dedekindPsi N : ℤ) :=
     sum_ord_jBar_sub_eq_dedekindPsi N 1728 hdeg S1 hS1
   have hψinf : ∑ v ∈ Sinf, -v.ord j = (dedekindPsi N : ℤ) := sum_neg_ord_jBar_eq_dedekindPsi N Sinf hSI
-
   set S := S0 ∪ S1 ∪ Sinf with hSdef
   have hS : ∀ v, v ∈ S ↔ v ∈ S0 ∨ v ∈ S1 ∨ v ∈ Sinf := fun v => by
     simp only [hSdef, Finset.mem_union, or_assoc]
   have hDj : KaehlerDifferential.D (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) j ≠ 0 :=
     KaehlerDifferential.D_ne_zero_of_transcendental (AlgebraicClosure ℚ) j htr
-
   have hoff : ∀ v, v ∉ S → v.ordDiff (KaehlerDifferential.D (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) j) = 0 := by
     intro v hv
     rw [hS] at hv
@@ -174,10 +165,8 @@ theorem solution (N : ℕ) [NeZero N]
       rw [AddMonoidHom.mulRight_apply, hdeg v, Nat.cast_one, mul_one]
     rw [hdegsum, Finset.sum_subset hsupp (fun v _ hv => by simpa [Finsupp.mem_support_iff] using hv)]
     exact Finset.sum_congr rfl (fun v _ => hseam v)
-
   have hHE := AlgebraicCurve.twelve_mul_eq_of_sum_ordDiff_eq j S0 S1 Sinf (dedekindPsi N)
     (genus (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) : ℤ) h₀ h₁ hinf hψ₀ hψ₁ hψinf S hS hcan
-
   have hNC : ∀ (P : Place (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) → Prop)
       (T : Finset (Place (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N))),
       (∀ v, v ∈ T ↔ P v) → Nat.card {v // P v} = T.card := by
@@ -211,10 +200,8 @@ theorem solution (N : ℕ) [NeZero N]
       (fun v => by
         rw [Finset.mem_filter, hS0, hj]
         exact ⟨fun hv => hv.2, fun hv => ⟨by rw [hv]; exact one_pos, hv⟩⟩)] at h
-
   have hcard : Sinf.card = cuspCount N := card_eq_cuspCount_of_forall_mem_iff_ord_jBar_neg N Sinf hSI
   rw [hε₂, hε₃, hcard] at hHE
-
   have key : (12 : ℚ) * (genus (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) : ℚ)
       = 12 + (dedekindPsi N : ℚ) - 3 * (nuTwo N : ℚ) - 4 * (nuThree N : ℚ) - 6 * (cuspCount N : ℚ) := by
     exact_mod_cast hHE

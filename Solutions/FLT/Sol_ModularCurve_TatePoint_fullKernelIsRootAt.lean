@@ -90,13 +90,11 @@ private theorem ModularCurve.TatePoint.fullKernelIsRootAt_aux
     (N : ℕ) [NeZero N] : ModularCurve.TatePoint.FullKernelIsRootAt N :=
   ModularCurve.TatePoint.fullKernelIsRootAt_of_tower N
 
-
 open scoped Classical
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_TatePoint_fullKernelIsRootAt.ModularCurve _root_.ModularCurve.TatePoint _root_.P2MW.S_ModularCurve_TatePoint_fullKernelIsRootAt.ModularCurve.TatePoint in
 
 theorem solution (N : ℕ) [NeZero N] : FullKernelIsRootAt N :=
   ModularCurve.TatePoint.fullKernelIsRootAt_aux N
-
 
 end S_ModularCurve_TatePoint_fullKernelIsRootAt
 end P2MW

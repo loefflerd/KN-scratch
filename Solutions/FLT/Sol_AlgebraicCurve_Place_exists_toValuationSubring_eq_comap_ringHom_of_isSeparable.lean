@@ -215,7 +215,6 @@ end Roots
 theorem solution {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] (x : F) [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F] [Algebra.IsSeparable (IntermediateField.adjoin K ({x} : Set F)) F] (φ : F →+* F') (w : ValuationSubring F') (hwK : ∀ a : K, φ (algebraMap K F a) ∈ w) (hwx : ∃ y : F, φ y ∉ w) : ∃ v : AlgebraicCurve.Place K F, v.toValuationSubring = w.comap φ :=
   AlgebraicCurve.Place.exists_toValuationSubring_eq_comap_ringHom x φ w hwK hwx
 
-
 end S_AlgebraicCurve_Place_exists_toValuationSubring_eq_comap_ringHom_of_isSeparable
 end P2MW
 export P2MW.S_AlgebraicCurve_Place_exists_toValuationSubring_eq_comap_ringHom_of_isSeparable (solution)

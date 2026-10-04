@@ -125,15 +125,12 @@ theorem b3Act_dictN_of_monodromy (N : ℕ) [NeZero N] (j₀ : Qbar)
   intro data m r r' hr
   set G : CycSubH (nearCurve j₀) N := dictN N data j₀ hW1 hW2 hW3 r with hGdef
   set G'' : CycSubH (nearCurve j₀) N := dictN N data j₀ hW1 hW2 hW3 r' with hG''def
-
   have hA1 : r = cycSubRootN (nearCurve j₀) hW1 hW3 data G :=
     (dictN_apply_eq_iff N data j₀ hW1 hW2 hW3 r G).mp hGdef.symm
   have hA2 : r' = cycSubRootN (nearCurve j₀) hW1 hW3 data G'' :=
     (dictN_apply_eq_iff N data j₀ hW1 hW2 hW3 r' G'').mp hG''def.symm
-
   have hordτg : addOrderOf (nearTransport j₀ m (cycSubGen (nearCurve j₀) G)) = N := by
     rw [addOrderOf_nearTransport]; exact addOrderOf_cycSubGen _ G
-
   have hQel : ((nearCurve j₀).fullKernelQuotient (cycSubGen (nearCurve j₀) G) N).IsElliptic :=
     isElliptic_fullKernelQuotient_cycSubGen (nearCurve j₀) hW3 G
   have hΔ' : ((nearCurve j₀).fullKernelQuotient
@@ -142,9 +139,7 @@ theorem b3Act_dictN_of_monodromy (N : ℕ) [NeZero N] (j₀ : Qbar)
   have hQel' : ((nearCurve j₀).fullKernelQuotient
       (nearTransport j₀ m (cycSubGen (nearCurve j₀) G)) N).IsElliptic :=
     ⟨isUnit_iff_ne_zero.mpr hΔ'⟩
-
   have hB := j_fullKernelQuotient_nearTransport j₀ m (cycSubGen (nearCurve j₀) G) N hQel hQel'
-
   have hjj : (cycSubRootN (nearCurve j₀) hW1 hW3 data G'').1 = @WeierstrassCurve.j H _ _ hQel' := by
     calc (cycSubRootN (nearCurve j₀) hW1 hW3 data G'').1
         = r'.1 := by rw [← hA2]
@@ -152,14 +147,12 @@ theorem b3Act_dictN_of_monodromy (N : ℕ) [NeZero N] (j₀ : Qbar)
       _ = (m : H ≃ₐ[Qbar] H) (cycSubRootN (nearCurve j₀) hW1 hW3 data G).1 := by rw [← hA1]
       _ = (m : H ≃ₐ[Qbar] H) (@WeierstrassCurve.j H _ _ hQel) := rfl
       _ = @WeierstrassCurve.j H _ _ hQel' := hB.symm
-
   have hzm : AddSubgroup.zmultiples (cycSubGen (nearCurve j₀) G'') =
       AddSubgroup.zmultiples (nearTransport j₀ m (cycSubGen (nearCurve j₀) G)) :=
     hW2 (nearCurve j₀) (transcendental_rat_of_transcendental_qbar (nearCurve_j_transcendental j₀))
       (cycSubGen (nearCurve j₀) G'') (nearTransport j₀ m (cycSubGen (nearCurve j₀) G))
       (addOrderOf_cycSubGen _ G'') hordτg
       (isElliptic_fullKernelQuotient_cycSubGen (nearCurve j₀) hW3 G'').isUnit.ne_zero hΔ' hjj
-
   calc B3.b3Act j₀ m G.1
       = B3.b3Act j₀ m (AddSubgroup.zmultiples (cycSubGen (nearCurve j₀) G)) := by
         rw [← coe_eq_zmultiples_cycSubGen]

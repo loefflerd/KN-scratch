@@ -111,7 +111,6 @@ theorem exists_forall_hasRamBound (j₀ : AlgebraicClosure ℚ)
     (hψ : ψ (jb N) = HahnSeries.C j₀ + HahnSeries.single (1 : ℚ) (1 : AlgebraicClosure ℚ)) :
     ∃ e : ℕ, 0 < e ∧ ∀ z, HahnSeries.HasRamBound e (ψ z) := by
   obtain ⟨data⟩ := ModularCurve.nonempty_modularPolynomialData N
-
   set P : Polynomial (HahnSeries ℚ (AlgebraicClosure ℚ)) :=
     data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (HahnSeries ℚ (AlgebraicClosure ℚ)))
       (HahnSeries.C j₀ + HahnSeries.single (1 : ℚ) (1 : AlgebraicClosure ℚ))) with hPdef
@@ -122,7 +121,6 @@ theorem exists_forall_hasRamBound (j₀ : AlgebraicClosure ℚ)
     rw [hPdef, Polynomial.coeff_map]
     exact (HahnSeries.mem_puiseuxRamSubfield_iff one_pos).mp
       (eval₂RingHom_mem_puiseuxRamSubfield_one _ (hasRamBound_C_add_single j₀) _)
-
   have hroot : P.IsRoot (ψ (jNb N)) := by
     rw [Polynomial.IsRoot, hPdef, Polynomial.eval_map, ← hψ]
     have hcomp : Polynomial.eval₂RingHom (Int.castRingHom (HahnSeries ℚ (AlgebraicClosure ℚ))) (ψ (jb N))
@@ -138,7 +136,6 @@ theorem exists_forall_hasRamBound (j₀ : AlgebraicClosure ℚ)
   set e := P.natDegree.factorial with hedef
   have he : 0 < e := Nat.factorial_pos _
   refine ⟨e, he, ?_⟩
-
   let S := HahnSeries.puiseuxRamSubfield (AlgebraicClosure ℚ) (e := e) he
   have hS : ∀ y, y ∈ S ↔ HahnSeries.HasRamBound e y := fun y => HahnSeries.mem_puiseuxRamSubfield_iff he
   let T : IntermediateField (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) :=
@@ -180,7 +177,6 @@ theorem induces_unique
     intro x
     have hx := h x
     rw [← h' x] at hx
-
     constructor
     · intro h0
       have : 0 ≤ (w'.ord x : ℚ) * g' := by rw [← hx]; positivity
@@ -263,7 +259,6 @@ theorem card_eq_natCard_quot (j₀ : AlgebraicClosure ℚ)
     (S : Finset (Place (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N)))
     (hS : ∀ v, v ∈ S ↔ 0 < v.ord (jBar N - algebraMap (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) j₀)) :
     S.card = Nat.card (Quot (fun ψ ψ' : Emb N j₀ => SamePlace ψ.1 ψ'.1)) := by
-
   have hmem : ∀ ψ : Emb N j₀, placeOf N j₀ ψ ∈ S := fun ψ =>
     (hS _).mpr (pos_ord_of_induces N j₀ ψ (induces_placeOf N j₀ ψ))
   let π : Emb N j₀ → ↥S := fun ψ => ⟨placeOf N j₀ ψ, hmem ψ⟩

@@ -662,7 +662,6 @@ theorem main (y : FF) (hy : (y : LaurentSeries ℚbar) = jqModC ℚbar) :
   classical
   have : Γ.FiniteIndex := Subgroup.finiteIndex_of_le hΓ
   have hT : ModularGroup.T ∈ Γ := hΓ (T_mem_Gamma1 M)
-
   have hytr : Transcendental ℚbar y := by
     have h := transcendental_jqModC ℚbar
     rw [← hy] at h
@@ -673,9 +672,7 @@ theorem main (y : FF) (hy : (y : LaurentSeries ℚbar) = jqModC ℚbar) :
   have hfin : FiniteDimensional ℚbar⟮y⟯ FF := finiteDimensional_adjoin_of_transcendental x₀ hytr
   have hsep : Algebra.IsSeparable ℚbar⟮y⟯ FF := Algebra.IsAlgebraic.isSeparable_of_perfectField
   have hC : IsCurveOver ℚbar FF := isCurveOver_of_transcendental_of_perfectField hytr hfin
-
   obtain ⟨S, hS0, hSsum⟩ := exists_sum_ordDiff_D_eq ℚbar y hytr hfin hsep
-
   have hy0 : (y : FF) ≠ 0 := fun h => hytr (h ▸ isAlgebraic_zero)
   have h1728F : (1728 : FF) = algebraMap ℚbar FF 1728 := (map_ofNat _ 1728).symm
   have hy1728 : y - algebraMap ℚbar FF 1728 ≠ 0 := by
@@ -686,7 +683,6 @@ theorem main (y : FF) (hy : (y : LaurentSeries ℚbar) = jqModC ℚbar) :
   obtain ⟨Z₀, hZ₀⟩ := exists_finset_zeros (K := ℚbar) hy0
   obtain ⟨Z₁, hZ₁⟩ := exists_finset_zeros (K := ℚbar) hy1728
   obtain ⟨Pinf, hPinf⟩ := exists_finset_poles (K := ℚbar) hy0
-
   have hsum₀ : ∑ v ∈ Z₀, v.ord y = (Module.finrank ℚbar⟮y⟯ FF : ℤ) := by
     have h := sum_ord_sub_algebraMap_eq_finrank (K := ℚbar) hytr 0 Z₀
       (fun v => by rw [map_zero, sub_zero]; exact hZ₀ v)
@@ -695,7 +691,6 @@ theorem main (y : FF) (hy : (y : LaurentSeries ℚbar) = jqModC ℚbar) :
     sum_ord_sub_algebraMap_eq_finrank (K := ℚbar) hytr 1728 Z₁ hZ₁
   have hsuminf : ∑ v ∈ Pinf, (-v.ord y) = (Module.finrank ℚbar⟮y⟯ FF : ℤ) :=
     sum_neg_ord_eq_finrank (K := ℚbar) hytr Pinf hPinf
-
   set f : Place ℚbar FF → ℤ := fun v => v.ordDiff (KaehlerDifferential.D ℚbar FF y) with hf
   have hD1728 : KaehlerDifferential.D ℚbar FF (y - algebraMap ℚbar FF 1728) =
       KaehlerDifferential.D ℚbar FF y := by
@@ -711,7 +706,6 @@ theorem main (y : FF) (hy : (y : LaurentSeries ℚbar) = jqModC ℚbar) :
     change v.ordDiff (KaehlerDifferential.D ℚbar FF y) = _
     rw [← hD1728]
     exact Place.ordDiff_D_eq_ord_sub_one y v h
-
   set U : Finset (Place ℚbar FF) := Z₀ ∪ Z₁ ∪ Pinf with hU
   have hf_off : ∀ v, v ∉ U → f v = 0 := by
     intro v hv
@@ -736,11 +730,9 @@ theorem main (y : FF) (hy : (y : LaurentSeries ℚbar) = jqModC ℚbar) :
     change v.ordDiff (KaehlerDifferential.D ℚbar FF y) = 0
     rw [← hDc, Place.ordDiff_D_eq_ord_sub_one y v (by rw [heq]; exact one_ne_zero), heq]
     ring
-
   have hUsum : ∑ v ∈ U, f v = 2 * (genusFF ℚbar FF : ℤ) - 2 := by
     rw [← hSsum]
     exact (sum_eq_sum_of_vanish f S U hS0 hf_off).symm
-
   have h1728ne : (1728 : ℚbar) ≠ 0 := by norm_num
   have hd01 : Disjoint Z₀ Z₁ := by
     rw [Finset.disjoint_left]
@@ -759,7 +751,6 @@ theorem main (y : FF) (hy : (y : LaurentSeries ℚbar) = jqModC ℚbar) :
   have hd01inf : Disjoint (Z₀ ∪ Z₁) Pinf := Finset.disjoint_union_left.mpr ⟨hd0inf, hd1inf⟩
   have hsplit : ∑ v ∈ U, f v = ∑ v ∈ Z₀, f v + ∑ v ∈ Z₁, f v + ∑ v ∈ Pinf, f v := by
     rw [hU, Finset.sum_union hd01inf, Finset.sum_union hd01]
-
   have hs₀ : ∑ v ∈ Z₀, f v = (Module.finrank ℚbar⟮y⟯ FF : ℤ) - Z₀.card := by
     rw [Finset.sum_congr rfl hf_zero, Finset.sum_sub_distrib, hsum₀]
     simp
@@ -769,7 +760,6 @@ theorem main (y : FF) (hy : (y : LaurentSeries ℚbar) = jqModC ℚbar) :
   have hsinf : ∑ v ∈ Pinf, f v = -(Module.finrank ℚbar⟮y⟯ FF : ℤ) - Pinf.card := by
     rw [Finset.sum_congr rfl hf_pole, Finset.sum_sub_distrib, ← hsuminf, Finset.sum_neg_distrib]
     simp
-
   have hc₀ : Nat.card {P : Place ℚbar FF // 0 < P.ord y} = Z₀.card :=
     natCard_subtype_eq_card Z₀ _ hZ₀
   have hc₁ : Nat.card {P : Place ℚbar FF // 0 < P.ord (y - 1728)} = Z₁.card := by

@@ -100,7 +100,6 @@ theorem pushCoeff_binarySubst (M : Matrix (Fin 2) (Fin 2) ℤ) (P : MvPolynomial
   classical
   ext d
   rw [coeff_pushCoeff, coeff_binarySubst, coeff_binarySubst, map_sum]
-
   rw [Finset.sum_subset (support_pushCoeff f P)]
   · refine Finset.sum_congr rfl fun d' _ => ?_
     rw [coeff_pushCoeff, ← zsmul_eq_mul, ← zsmul_eq_mul, map_zsmul]
@@ -260,7 +259,6 @@ theorem solution {R R' : Type*} [CommRing R] [CommRing R'] (φ : R →+* R') (n 
     HeckeEis.CoeffMapAux.pushH1par_mk φ.toAddMonoidHom n z⟩⟩
   intro g
   rw [HeckeEis.CoeffMapAux.pushPar_apply_coe, HeckeEis.CoeffMapAux.pushCoeff_ringHom_eq_map]
-
 
 end S_HeckeEis_exists_coeffH1par_map_ringHom
 end P2MW

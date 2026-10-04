@@ -287,11 +287,9 @@ theorem meromorphicOrderAt_cf_ne_top {P : ℍ → ℂ} (hP : P ∈ ring N) (hP0 
     meromorphicOrderAt (cf N P) 0 ≠ ⊤ := by
   intro htop
   rw [meromorphicOrderAt_eq_top_iff] at htop
-
   have hev : ∀ᶠ τ : ℍ in atImInfty, P τ = 0 := by
     filter_upwards [(tendsto_qParam N).eventually htop] with τ hτ
     rwa [cf_qParam N hP] at hτ
-
   rw [atImInfty, eventually_comap] at hev
   obtain ⟨A, hA⟩ := (Filter.eventually_atTop.mp hev)
   set z₀ : ℂ := Complex.I * ((max A 0 : ℝ) + 1) with hz₀
@@ -708,8 +706,6 @@ theorem hasDerivAt_qParam (h : ℝ) (z : ℂ) :
     simp only [id_eq, mul_one] at h0
     first
       | exact h0
-
-
   exact qdiff.hasDerivAt
 
 variable (δ : SL(2, ℤ))
@@ -789,12 +785,10 @@ theorem isZeroAtImInfty_slash {ω : Ω[K⁄ℂ]} (hω : ω ∈ AlgebraicCurve.re
   have hb0 : (b : ℍ → ℂ) ≠ 0 := den_ne_zero N K f
   have he0 : (e : ℍ → ℂ) ≠ 0 := den_ne_zero N K π
   have hid := hF a b c e a.2 b.2 c.2 e.2 hb0 he0 (by rw [hω', num_div_den, num_div_den])
-
   have hrf : realq N K δ f = fun q => cfδ N δ (a : ℍ → ℂ) q / cfδ N δ (b : ℍ → ℂ) q := rfl
   have hrπ : realq N K δ π = fun q => cfδ N δ (c : ℍ → ℂ) q / cfδ N δ (e : ℍ → ℂ) q := rfl
   set κ : ℂ := 2 * ↑Real.pi * Complex.I / (N : ℝ) with hκ
   set H : ℂ → ℂ := fun q => Φ q * (deriv R q * (q * κ)) with hH
-
   have hev : ∀ᶠ τ : ℍ in atImInfty, (F ∣[(2 : ℤ)] δ) τ = H (𝕢 N τ) := by
     have h1 := eventually_cfδ_ne_zero N δ b.2 hb0
     have h2 := eventually_cfδ_ne_zero N δ e.2 he0
@@ -814,7 +808,6 @@ theorem isZeroAtImInfty_slash {ω : Ω[K⁄ℂ]} (hω : ω ∈ AlgebraicCurve.re
       rw [precomp_apply] at this
       rwa [← this]
     rw [slash_apply_eq N δ b.2 c.2 e.2 hid τ hbτ heτ]
-
     have hΦq : (a : ℍ → ℂ) (δ • τ) / (b : ℍ → ℂ) (δ • τ) = Φ (𝕢 N τ) := by
       rw [← hfq]
       have ha' := cf_qParam N (precomp_mem N δ a.2) τ
@@ -822,7 +815,6 @@ theorem isZeroAtImInfty_slash {ω : Ω[K⁄ℂ]} (hω : ω ∈ AlgebraicCurve.re
       rw [precomp_apply] at ha' hb'
       simp only [hrf, cfδ]
       rw [ha', hb']
-
     have hRq' : deriv (fun z => up (precomp δ (c : ℍ → ℂ)) z / up (precomp δ (e : ℍ → ℂ)) z) τ =
         deriv R (𝕢 N τ) * (𝕢 N τ * κ) := by
       have hE1 : (fun z => up (precomp δ (c : ℍ → ℂ)) z / up (precomp δ (e : ℍ → ℂ)) z)
@@ -838,14 +830,12 @@ theorem isZeroAtImInfty_slash {ω : Ω[K⁄ℂ]} (hω : ω ∈ AlgebraicCurve.re
       rw [(hE1.trans hE2).deriv_eq]
       exact (hRq.differentiableAt.hasDerivAt.comp (τ : ℂ) (hasDerivAt_qParam N τ)).deriv
     rw [hΦq, hRq']
-
   have hH0 : Tendsto H (𝓝[≠] (0 : ℂ)) (𝓝 0) := by
     have hcont : ContinuousAt H 0 :=
       hΦ.continuousAt.mul (hR.deriv.continuousAt.mul (continuousAt_id.mul continuousAt_const))
     have := hcont.tendsto
     simp only [hH, mul_zero, zero_mul] at this
     exact this.mono_left nhdsWithin_le_nhds
-
   exact ((hH0.comp (tendsto_qParam N)).congr' (hev.mono fun τ hτ => hτ.symm) :)
 
 end Cusp

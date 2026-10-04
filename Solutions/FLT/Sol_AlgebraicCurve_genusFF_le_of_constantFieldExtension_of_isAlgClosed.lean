@@ -76,7 +76,6 @@ theorem solution (K F K' F' : Type*)
     (hgen : IntermediateField.adjoin K' (Set.range (algebraMap F F')) = ⊤) :
     genusFF K' F' ≤ genusFF K F := by
   classical
-
   obtain ⟨x, hxt, hxfd⟩ := id hfg
   obtain ⟨x', hxt', hxfd'⟩ := id hfg'
   have : Algebra.EssFiniteType K F :=
@@ -87,7 +86,6 @@ theorem solution (K F K' F' : Type*)
   have hCAB' : ConstantsAreBase K' F' := constantsAreBase hfg'
   have : HasPrincipalDivisors K F := IsCurveOver.hasPrincipalDivisors
   have : HasPrincipalDivisors K' F' := IsCurveOver.hasPrincipalDivisors
-
   obtain ⟨γ, hγ⟩ := exists_genus_riemannIndex_of_isCurveOver (K := K) (F := F) hCAB
   obtain ⟨γ', hγ'⟩ := exists_genus_riemannIndex_of_isCurveOver (K := K') (F := F') hCAB'
   have hγeq : γ = (genusFF K F : ℤ) := by
@@ -102,7 +100,6 @@ theorem solution (K F K' F' : Type*)
       ell_zero_eq_one_of_constantsAreBase hCAB',
       indexOfSpecialty_eq_finrank_H1 (K := K') (F := F') 0] at h0
     unfold genusFF; push_cast at h0 ⊢; linarith
-
   have hX := fun P =>
     Place.exists_comap_algebraMap_eq_of_constantFieldExtension_of_isAlgClosed
       K F K' F' hfg hfg' hgen P
@@ -116,12 +113,10 @@ theorem solution (K F K' F' : Type*)
   have : ∀ v : Place K F, Module.Finite K v.ResidueField := fun v => IsCurveOver.finiteResidue v
   have : ∀ v' : Place K' F', Module.Finite K' v'.ResidueField :=
     fun v' => IsCurveOver.finiteResidue v'
-
   obtain ⟨D, hiD'⟩ :=
     exists_indexOfSpecialty_mapDomain_eq_zero_of_constantFieldExtension_of_isAlgClosed
       K F K' F' hfg hfg' lift
   set D' : Divisor K' F' := Finsupp.mapDomain lift D with hD'def
-
   have hdegEq : Divisor.degree D' = Divisor.degree D := by
     rw [Divisor.degree_eq_sum_support, Divisor.degree_eq_sum_support, hD'def,
       Finsupp.mapDomain_support_of_injective hlift_inj,
@@ -131,7 +126,6 @@ theorem solution (K F K' F' : Type*)
       show ((lift v).deg : ℤ) = 1 from by
         exact_mod_cast Place.deg_eq_one_of_isAlgClosed_of_finite (lift v),
       show ((v.deg : ℤ)) = 1 from by exact_mod_cast Place.deg_eq_one_of_isAlgClosed_of_finite v]
-
   obtain ⟨hne, hfd0, γ₀, D₀, hD₀⟩ := stichtenothGenusExists_of_isCurveOver (K := K) (F := F) hCAB
   have : FiniteDimensional K ↥(LSpace (0 : Divisor K F)) := hfd0
   have hfdD : FiniteDimensional K ↥(riemannRochSpace D) := finiteDimensional_lSpace D
@@ -139,7 +133,6 @@ theorem solution (K F K' F' : Type*)
     rw [hD'def]
     exact ell_mapDomain_eq_of_constantFieldExtension_of_isAlgClosed K F K' F' hfg hfg' hgen
       lift hlift_ord hlift_inj hlift_new D
-
   have hiD : (0:ℤ) ≤ γ - γ' := by
     have h1 := (hγ' D').2
     rw [hiD', Nat.cast_zero] at h1

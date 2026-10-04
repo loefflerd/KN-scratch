@@ -207,13 +207,11 @@ theorem levelOne_smul {k' : ℤ} (E : ModularForm 𝒮ℒ k') (α : SL(2, ℤ)) 
 theorem isBdd_mul (f : ModularForm Γ₁(M) k) (m : ℕ) {kE : ℤ} (E : ModularForm 𝒮ℒ kE)
     (hkE : k + kE = 12 * m) (hf : IsRat (qExpansion 1 f)) (hE : IsRat (qExpansion 1 E)) :
     IsBdd (qExpansion 1 ((⇑f : ℍ → ℂ) * ⇑E)) := by
-
   set H : ℍ → ℂ := (⇑f : ℍ → ℂ) * ⇑E with hH
   set G : ℍ → ℂ := fun τ => H τ / (Δ τ) ^ m with hG
   have hΔ : ∀ τ : ℍ, (Δ τ) ^ m ≠ 0 := fun τ => pow_ne_zero _ (discriminant_ne_zero τ)
   have hGΔ : G * Δ ^ m = H := by
     funext τ; simp only [Pi.mul_apply, Pi.pow_apply, hG]; field_simp [hΔ τ]
-
   set HF : ModularForm Γ₁(M) (k + kE) := f.mul (resSL M E) with hHF
   have hHF_coe : (⇑HF : ℍ → ℂ) = H := by rw [hHF, coe_mul, coe_resSL]
   have hmdH : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) H := f.holo'.mul E.holo'
@@ -227,7 +225,6 @@ theorem isBdd_mul (f : ModularForm Γ₁(M) k) (m : ℕ) {kE : ℤ} (E : Modular
   have hmdG : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) G := by
     intro τ
     exact (hmdH τ).div ((hmdΔ τ).pow m) (hΔ τ)
-
   have hcw : ∀ α : SL(2, ℤ), (fun τ => G (α • τ)) * Δ ^ m = ((⇑f : ℍ → ℂ) ∣[k] α) * ⇑E := by
     intro α
     funext τ
@@ -239,7 +236,6 @@ theorem isBdd_mul (f : ModularForm Γ₁(M) k) (m : ℕ) {kE : ℤ} (E : Modular
       rw [mul_pow, ← zpow_natCast, ← zpow_mul, hkE]
     rw [hpow, zpow_add₀ hd, zpow_neg]
     field_simp [hΔ τ, zpow_ne_zero k hd, zpow_ne_zero kE hd]
-
   have hinv1 : ∀ g ∈ Gamma1 M, ∀ τ : ℍ, G (g • τ) = G τ := by
     intro g hg τ
     have h1 := congrFun (hcw g) τ
@@ -253,12 +249,10 @@ theorem isBdd_mul (f : ModularForm Γ₁(M) k) (m : ℕ) {kE : ℤ} (E : Modular
     exact mul_right_cancel₀ (hΔ τ) (h1.trans h3.symm)
   have hinv : ∀ g ∈ CongruenceSubgroup.Gamma M, ∀ τ : ℍ, G (g • τ) = G τ := fun g hg =>
     hinv1 g (Gamma_le_Gamma1 M hg)
-
   have hbd : ∀ α : SL(2, ℤ), IsBoundedAtImInfty ((fun τ => G (α • τ)) * Δ ^ m) := by
     intro α
     rw [hcw α]
     exact (isBoundedAtImInfty_slash f α).mul (ModularFormClass.bdd_at_infty E)
-
   have hrat1 : IsRat (qExpansion 1 H) := by
     rw [hH]
     have : qExpansion 1 ((⇑f : ℍ → ℂ) * ⇑E) = qExpansion 1 ⇑f * qExpansion 1 ⇑(resSL M E) := by
@@ -271,11 +265,9 @@ theorem isBdd_mul (f : ModularForm Γ₁(M) k) (m : ℕ) {kE : ℤ} (E : Modular
     split_ifs
     · exact hrat1 _
     · exact ⟨0, by simp⟩
-
   obtain ⟨D, hD, hint⟩ :=
     ModularCurve.exists_ne_zero_forall_intCast_mul_qExpansion_coeff_of_gamma_invariant M m G hmdG hinv
       hbd hratM
-
   rw [isBdd_iff]
   refine ⟨D, hD, fun n => ?_⟩
   obtain ⟨z, hz⟩ := hint (M * n)
@@ -367,7 +359,6 @@ theorem isBdd_of_even (hk : Even k) (f : ModularForm Γ₁(M) k) (hf : IsRat (qE
     IsBdd (qExpansion 1 f) := by
   obtain ⟨m, a, b, hw⟩ := exists_weights hk
   have key := isBdd_mul f m (Eaux a b) (by exact_mod_cast hw) hf (isRat_Eaux a b)
-
   have hprod : qExpansion 1 ((⇑f : ℍ → ℂ) * ⇑(Eaux a b))
       = qExpansion 1 (⇑f : ℍ → ℂ) * (P4 ^ a * P6 ^ b).map (Int.castRingHom ℂ) := by
     rw [← qExpansion_Eaux, ← coe_resSL M (Eaux a b),
@@ -387,7 +378,6 @@ theorem exists_E1 : ∃ E : ModularForm Γ₁(3) 1,
   · rw [← PowerSeries.coeff_zero_eq_constantCoeff_apply]
     simp [EisensteinWeightOne.e1Chi3]
   set c : ℕ → ℤ := fun n => PowerSeries.coeff n EisensteinWeightOne.e1Chi3 with hc
-
   have hchi : ∀ d : ℕ, |EisensteinWeightOne.chiNegThree d| ≤ 1 := by
     intro d
     unfold EisensteinWeightOne.chiNegThree
@@ -409,7 +399,6 @@ theorem exists_E1 : ∃ E : ModularForm Γ₁(3) 1,
         rw [abs_mul, abs_of_nonneg (by norm_num : (0:ℤ) ≤ 6)]; linarith
       rw [← Int.cast_abs]
       exact_mod_cast h2
-
   have hsum : ∀ z : ℍ, HasSum (fun n : ℕ => ((c n : ℤ) : ℂ) • Periodic.qParam 1 z ^ n) (E z) := by
     intro z
     have hq : ‖Periodic.qParam 1 z‖ < 1 := by

@@ -13,8 +13,6 @@ namespace MTT.Cohomology
 
 /-! ### Part 0: integer matrices, `fractional` as the `GL₂(ℚ)`-action -/
 
-
-
 /-- An integer matrix viewed in `GL₂(ℚ)` (junk value `1` if the determinant vanishes). -/
 def toGLQ (A : Matrix (Fin 2) (Fin 2) ℤ) : GL (Fin 2) ℚ :=
   if h : ((Int.castRingHom ℚ).mapMatrix A).det ≠ 0 then
@@ -36,7 +34,6 @@ lemma toGL_apply {A : Matrix (Fin 2) (Fin 2) ℤ} (h : A.det ≠ 0) (i j : Fin 2
     (toGL A : Matrix (Fin 2) (Fin 2) ℝ) i j = (A i j : ℝ) := by
   rw [toGL, Matrix.GeneralLinearGroup.map_apply, toGLQ_val h]
   simp
-
 
 lemma toGLQ_apply {A : Matrix (Fin 2) (Fin 2) ℤ} (h : A.det ≠ 0) (i j : Fin 2) :
     (toGLQ A : Matrix (Fin 2) (Fin 2) ℚ) i j = (A i j : ℚ) := by
@@ -220,7 +217,6 @@ lemma reflection_smul {R : Type*} [CommRing R] (c : R) (φ : (Cusp × Cusp) → 
     reflection (c • φ) = c • reflection φ := by
   funext D; simp [reflection]
 
-
 /-! ### `act` preserves homogeneity -/
 
 lemma actAlg_X_isHomogeneous (γ : Matrix (Fin 2) (Fin 2) ℤ) (i : Fin 2) :
@@ -243,8 +239,6 @@ lemma act_mem_Sym {n : ℕ} (γ : Matrix (Fin 2) (Fin 2) ℤ) {P : Binary ℂ} (
   have e : 0 + 1 * j + 1 * (n - j) = n := by omega
   rw [e] at this
   exact this
-
-
 
 /-! ### Part A: cusps as primitive vectors -/
 

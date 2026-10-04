@@ -17,9 +17,7 @@ variable {F : Type u} [Field F]
 variable (W : Affine F) in
 
 class GenusOnePlaceGate : Type u where
-
   pointEquivPlace : W.Point ≃ AlgebraicCurve.Place F W.FunctionField
-
   deg_eq_one : ∀ v : AlgebraicCurve.Place F W.FunctionField, v.deg = 1
 
 variable {W : Affine F} [GenusOnePlaceGate W]

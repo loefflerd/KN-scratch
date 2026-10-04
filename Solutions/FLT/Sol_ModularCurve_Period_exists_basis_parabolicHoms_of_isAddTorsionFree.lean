@@ -46,7 +46,6 @@ theorem π_mul (γ δ : ↥Γ) : π Γ (γ * δ) = π Γ γ + π Γ δ := by
 theorem π_one : π Γ 1 = 0 := by
   have h := π_mul Γ 1 1
   rw [mul_one] at h
-
   have : π Γ 1 + π Γ 1 = π Γ 1 + 0 := by rw [add_zero]; exact h.symm
   exact add_left_cancel this
 
@@ -218,20 +217,17 @@ theorem Θ_injective : Function.Injective (Θ D R) := by
 
 theorem Θ_surjective [IsAddTorsionFree R] : Function.Surjective (Θ D R) := by
   intro φ
-
   set ψ : Q Γ →+ R := liftQ (φ : Additive ↥Γ →+ R) φ.2 with hψ
   refine ⟨fun i => ψ (sect D (Finsupp.single i 1)), Subtype.ext ?_⟩
   refine AddMonoidHom.ext fun x => ?_
   obtain ⟨γ, rfl⟩ : ∃ γ, Additive.ofMul γ = x := ⟨Additive.toMul x, rfl⟩
   rw [Θ_apply_apply, ← liftQ_π (φ : Additive ↥Γ →+ R) φ.2 γ]
-
   set q := π Γ γ with hq
   have hkill : ψ (q - sect D (D.E q).1) = 0 :=
     apply_eq_zero_of_isOfFinAddOrder ψ _ (isOfFinAddOrder_sub_sect D q)
   have hq' : ψ q = ψ (sect D (D.E q).1) := by
     rw [map_sub, sub_eq_zero] at hkill; exact hkill
   rw [hq']
-
   have hv : sect D (D.E q).1 = ∑ i, ((D.E q).1 i) • sect D (Finsupp.single i 1) := by
     have hsect : ∀ v w : Fin D.n →₀ ℤ, sect D (v + w) = sect D v + sect D w := by
       intro v w; unfold sect; rw [← map_add, Prod.mk_add_mk, add_zero]

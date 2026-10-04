@@ -56,7 +56,6 @@ theorem eq_or_eq_neg_of_xco_eq [DecidableEq L] {W : WeierstrassCurve L} {P Q : W
   · simp [xco] at hPQ
   · simp only [xco_some, Option.some.injEq] at hPQ
     subst hPQ
-
     have hy : y = y' ∨ y = W.toAffine.negY x y' := by
       have h1 := h.1; have h2 := h'.1
       rw [WeierstrassCurve.Affine.equation_iff] at h1 h2
@@ -94,16 +93,13 @@ variable {V : Type*} [AddCommGroup V]
 
 theorem exists_common_scalar {p : ℕ} [Fact p.Prime] (e : ZMod p × ZMod p ≃+ V) (σ : V →+ V)
     (heig : ∀ v : V, ∃ a : ℤ, σ v = a • v) : ∃ c : ℤ, ∀ v : V, σ v = c • v := by
-
   obtain ⟨a, ha⟩ := heig (e (1, 0))
   obtain ⟨b, hb⟩ := heig (e (0, 1))
   obtain ⟨c, hc⟩ := heig (e (1, 1))
-
   have hsum : e (1, 1) = e (1, 0) + e (0, 1) := by
     rw [← map_add, Prod.mk_add_mk, add_zero, zero_add]
   have key : c • e (1, 0) + c • e (0, 1) = a • e (1, 0) + b • e (0, 1) := by
     rw [← smul_add, ← hsum, ← hc, hsum, map_add, ha, hb]
-
   have key' : ((c : ZMod p), (c : ZMod p)) = ((a : ZMod p), (b : ZMod p)) := by
     apply e.injective
     have h1 : e ((c : ZMod p), (c : ZMod p)) = c • e (1, 0) + c • e (0, 1) := by
@@ -113,13 +109,11 @@ theorem exists_common_scalar {p : ℕ} [Fact p.Prime] (e : ZMod p × ZMod p ≃+
     rw [h1, h2, key]
   have hca : (c : ZMod p) = a := congrArg Prod.fst key'
   have hcb : (c : ZMod p) = b := congrArg Prod.snd key'
-
   have hpV : ∀ v : V, (p : ℤ) • v = 0 := by
     intro v
     obtain ⟨w, rfl⟩ := e.surjective v
     rw [← map_zsmul, show (p : ℤ) • w = 0 from ?_, map_zero]
     ext <;> simp [zsmul_eq_mul]
-
   have hzs : ∀ (m n : ℤ) (v : V), (m : ZMod p) = n → m • v = n • v := by
     intro m n v hmn
     obtain ⟨k, hk⟩ := (ZMod.intCast_eq_intCast_iff_dvd_sub n m p).mp hmn.symm
@@ -196,14 +190,11 @@ theorem solution
     rw [Units.val_inv_eq_inv_val, inv_pow, hu]; norm_num
   have hu2inv : ((u : L) ^ 2)⁻¹ = -1 := by rw [hu]; norm_num
   have h2 : (2 : L) ≠ 0 := two_ne_zero
-
   have hΔ : W.Δ = -64 * A ^ 3 := by
     simp only [hWdef, WeierstrassCurve.Δ, WeierstrassCurve.b₂, WeierstrassCurve.b₄, WeierstrassCurve.b₆,
       WeierstrassCurve.b₈]; ring
   have hE : W.IsElliptic := ⟨by rw [hΔ]; exact isUnit_iff_ne_zero.mpr (by simp [hA])⟩
-
   have hW : γ • W = W := WeierstrassCurve.variableChange_mk_smul_eq_self_of_sq_eq_neg_one u hu A
-
   suffices core : ∃ (x y : L) (h : W.toAffine.Nonsingular x y), addOrderOf (Point.some x y h) = p ∧
       ∀ k : ℕ, xco (k • Point.some x y h) ≠ some (-x) by
     obtain ⟨x, y, h, hord, hk⟩ := core
@@ -211,7 +202,6 @@ theorem solution
     have := xco_eq_of_heq hW hheq
     rw [xco_vcInvFun] at this
     rw [← this]; simp [hu2inv]
-
   obtain ⟨e, he⟩ := WeierstrassCurve.exists_addEquiv_point_variableChange W γ
   let σ : W.toAffine.Point →+ W.toAffine.Point := (castPt hW).toAddMonoidHom.comp e.toAddMonoidHom
   have hσx : ∀ (x y : L) (h : W.toAffine.Nonsingular x y), xco (σ (Point.some x y h)) = some (-x) := by
@@ -224,7 +214,6 @@ theorem solution
     ⟨fun h0 => by
       have : castPt hW (e P) = castPt hW (e 0) := by rw [map_zero, map_zero]; exact h0
       exact e.injective ((castPt hW).injective this), fun h0 => by rw [h0, map_zero]⟩
-
   rcases hp.eq_two_or_odd' with rfl | hpodd
   · obtain ⟨a, ha⟩ : ∃ a : L, a ^ 2 = -A := by
       obtain ⟨a, ha⟩ := IsAlgClosed.exists_pow_nat_eq (-A) (n := 2) (by norm_num)
@@ -248,7 +237,6 @@ theorem solution
       refine (addOrderOf_eq_prime_iff.mpr ⟨h2T, ?_⟩)
       exact Point.some_ne_zero hns
     refine ⟨a, 0, hns, hord, fun k => ?_⟩
-
     have hkT : k • Point.some a 0 hns = 0 ∨ k • Point.some a 0 hns = Point.some a 0 hns := by
       rcases Nat.even_or_odd k with ⟨j, rfl⟩ | ⟨j, rfl⟩
       · left; rw [← two_mul, mul_nsmul, h2T, nsmul_zero]
@@ -259,10 +247,8 @@ theorem solution
       intro h; apply ha0
       have : (2 : L) * a = 0 := by linear_combination h
       simpa [h2] using this
-
   · have hp2 : p ≠ 2 := by rintro rfl; exact (Nat.not_even_iff_odd.mpr hpodd) even_two
     have hp3 : 3 ≤ p := by have := hp.two_le; omega
-
     have hcard : Nat.card (Submodule.torsionBy ℤ W.toAffine.Point p) = p ^ 2 := by
       have hpL : ((p : ℕ) : L) ≠ 0 := Nat.cast_ne_zero.mpr hp.ne_zero
       have h := W.card_torsion_of_isAlgClosed (K := L) hpL
@@ -273,7 +259,6 @@ theorem solution
       exact h
     by_contra hcon
     push Not at hcon
-
     have heig : ∀ T : W.toAffine.Point, (p : ℤ) • T = 0 → ∃ a : ℤ, σ T = a • T := by
       intro T hpT
       rcases T with _ | ⟨x, y, h⟩
@@ -286,7 +271,6 @@ theorem solution
         rcases eq_or_eq_neg_of_xco_eq hx with h1 | h1
         · exact ⟨k, by rw [h1, natCast_zsmul]⟩
         · exact ⟨-k, by rw [h1, neg_smul, natCast_zsmul]⟩
-
     let Ep := (Submodule.torsionBy ℤ W.toAffine.Point p).toAddSubgroup
     have hEp_mem : ∀ T : W.toAffine.Point, T ∈ Ep ↔ (p : ℤ) • T = 0 := fun T => Submodule.mem_torsionBy_iff _ _
     have hσEp : ∀ T ∈ Ep, σ T ∈ Ep := by
@@ -294,7 +278,6 @@ theorem solution
       rw [hEp_mem] at hT ⊢
       rw [← map_zsmul, hT, map_zero]
     let σ' : Ep →+ Ep := (σ.domRestrict Ep).codRestrict Ep (fun T => hσEp T T.2)
-
     obtain ⟨eb⟩ : Nonempty (ZMod p × ZMod p ≃+ Ep) := by
       have hpL : ((p : ℕ) : L) ≠ 0 := Nat.cast_ne_zero.mpr hp.ne_zero
       have h := W.nonempty_torsionBy_addEquiv_zmod_prod_of_isAlgClosed (K := L) hpL
@@ -308,15 +291,12 @@ theorem solution
       obtain ⟨a, ha⟩ := heig T ((hEp_mem T).mp hT)
       exact ⟨a, Subtype.ext ha⟩
     obtain ⟨c, hc⟩ := exists_common_scalar eb σ' heig'
-
     obtain ⟨m, hm1, hmle, hmx⟩ : ∃ m : ℕ, 1 ≤ m ∧ 2 * m ≤ p - 1 ∧
         ∀ (x y : L) (h : W.toAffine.Nonsingular x y), (p : ℤ) • Point.some x y h = 0 →
           xco ((m : ℤ) • Point.some x y h) = some (-x) := by
-
       let r : ℕ := ((c : ZMod p)).val
       have hr : (r : ZMod p) = c := by simp [r]
       have hrp : r < p := ZMod.val_lt _
-
       have hσc : ∀ (x y : L) (h : W.toAffine.Nonsingular x y), (p : ℤ) • Point.some x y h = 0 →
           σ (Point.some x y h) = (r : ℤ) • Point.some x y h := by
         intro x y h hpT
@@ -324,11 +304,9 @@ theorem solution
         have := hc ⟨_, hT⟩
         have hval : σ (Point.some x y h) = c • Point.some x y h := congrArg Subtype.val this
         rw [hval]
-
         obtain ⟨k, hk⟩ := (ZMod.intCast_eq_intCast_iff_dvd_sub (r : ℤ) c p).mp (by exact_mod_cast hr)
         have : c = r + p * k := by linarith
         rw [this, add_zsmul, mul_comm, mul_zsmul, hpT, zsmul_zero, add_zero]
-
       obtain ⟨x₀, y₀, h₀, hp₀⟩ : ∃ (x y : L) (h : W.toAffine.Nonsingular x y), (p : ℤ) • Point.some x y h = 0 := by
         have h1 : 1 < Nat.card Ep := by rw [show Nat.card Ep = p ^ 2 from hcard]; nlinarith
         have : Finite Ep := Nat.finite_of_card_ne_zero (by rw [show Nat.card Ep = p ^ 2 from hcard]; positivity)
@@ -350,14 +328,12 @@ theorem solution
         have : ((p - r : ℕ) : ℤ) • Point.some x y h = -((r : ℤ) • Point.some x y h) := by
           rw [Nat.cast_sub hrp.le, sub_zsmul, hpT]; simp
         rw [this, xco_neg, ← hσc x y h hpT, hσx]
-
     set F : L[X] := W.Φ (m : ℤ) + X * W.ΨSq (m : ℤ) with hFdef
     have hF0 : F ≠ 0 := Phi_add_X_mul_PsiSq_ne_zero W m hm1
     have hFdeg : F.natDegree ≤ m ^ 2 := natDegree_Phi_add_X_mul_PsiSq_le W m hm1
     have hmp : (m : ℤ) • (0 : W.toAffine.Point) = 0 := zsmul_zero _
     have hroot : ∀ (x y : L) (h : W.toAffine.Nonsingular x y), (p : ℤ) • Point.some x y h = 0 → F.IsRoot x := by
       intro x y h hpT
-
       have hord : addOrderOf (Point.some x y h) = p :=
         addOrderOf_eq_prime_iff.mpr ⟨by rw [← natCast_zsmul]; exact hpT, Point.some_ne_zero h⟩
       have hmT : (m : ℤ) • Point.some x y h ≠ 0 := by
@@ -378,7 +354,6 @@ theorem solution
       show F.eval x = 0
       rw [hFdef, eval_add, eval_mul, eval_X]
       linear_combination hx
-
     have hfinEp : Finite Ep := Nat.finite_of_card_ne_zero (by rw [show Nat.card Ep = p ^ 2 from hcard]; positivity)
     have : Fintype Ep := Fintype.ofFinite Ep
     classical
@@ -390,7 +365,6 @@ theorem solution
           Finset.card_univ, ← Nat.card_eq_fintype_card, show Nat.card Ep = p ^ 2 from hcard]
         have : 1 ≤ p ^ 2 := Nat.one_le_iff_ne_zero.mpr (by positivity); omega
       omega
-
     have hfib : ∀ b ∈ s.image g, (s.filter (fun T => g T = b)).card ≤ 2 := by
       intro b hb
       obtain ⟨T₁, hT₁, rfl⟩ := Finset.mem_image.mp hb
@@ -404,7 +378,6 @@ theorem solution
           exact Subtype.ext (by rw [h1]; rfl)
       exact (Finset.card_le_card hsub).trans (Finset.card_insert_le _ _ |>.trans (by simp))
     have hle : s.card ≤ 2 * (s.image g).card := Finset.card_le_mul_card_image s 2 hfib
-
     have himg : s.image g ⊆ (F.roots.toFinset).image some := by
       intro b hb
       obtain ⟨T, hT, rfl⟩ := Finset.mem_image.mp hb
@@ -420,7 +393,6 @@ theorem solution
       exact (Polynomial.card_roots' F).trans hFdeg
     have hfinal : p ^ 2 - 1 ≤ 2 * m ^ 2 := by
       rw [← hs_card]; exact hle.trans (Nat.mul_le_mul_left 2 ((Finset.card_le_card himg).trans hR))
-
     have h4 : 4 * m ^ 2 ≤ (p - 1) ^ 2 := by nlinarith
     have hp1 : 1 ≤ p := hp.one_lt.le
     zify [hp1, Nat.one_le_iff_ne_zero.mpr (show p ^ 2 ≠ 0 by positivity)] at hfinal h4 hmle

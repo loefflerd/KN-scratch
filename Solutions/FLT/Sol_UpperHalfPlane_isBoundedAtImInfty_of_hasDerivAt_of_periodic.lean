@@ -122,7 +122,6 @@ theorem isBoundedAtImInfty_of_hasDerivAt_of_periodic {h : ℝ} (hh : 0 < h) {u v
     rcases mul_eq_zero.mp this with h0 | h0
     · exact h0
     · exact absurd (ofReal_eq_zero.mp h0) hh.ne'
-
   set r : ℝ := Real.exp (-2 * π) with hr
   have hr1 : r < 1 := by
     rw [hr]
@@ -134,7 +133,6 @@ theorem isBoundedAtImInfty_of_hasDerivAt_of_periodic {h : ℝ} (hh : 0 < h) {u v
       rw [mem_ball_zero_iff]; rw [mem_closedBall_zero_iff] at hq; linarith
     exact (hΨ q hq').continuousAt.continuousWithinAt
   obtain ⟨M, hM⟩ := (isCompact_closedBall (0:ℂ) r).exists_bound_of_continuousOn hΨcont
-
   rw [isBoundedAtImInfty_iff]
   refine ⟨‖(↑h / (2 * π * Complex.I) : ℂ)‖ * M + ‖v I - G ↑I‖, h, fun τ hτ => ?_⟩
   have hqr : 𝕢 h ↑τ ∈ closedBall (0:ℂ) r := by
@@ -168,7 +166,6 @@ theorem solution {h : ℝ} (hh : 0 < h) {u v : UpperHalfPlane → ℂ}
     (hv_per : Function.Periodic (v ∘ UpperHalfPlane.ofComplex) h) :
     UpperHalfPlane.IsBoundedAtImInfty v :=
   UpperHalfPlane.PrimBddAux.isBoundedAtImInfty_of_hasDerivAt_of_periodic hh hu_per hu_hol hu_bdd hv hv_per
-
 
 end S_UpperHalfPlane_isBoundedAtImInfty_of_hasDerivAt_of_periodic
 end P2MW

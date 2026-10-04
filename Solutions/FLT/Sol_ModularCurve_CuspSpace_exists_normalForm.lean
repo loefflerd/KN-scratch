@@ -28,17 +28,14 @@ lemma exists_dvd_sub_and_isCoprime {M : ℤ} (hM : M ≠ 0) {s₀ : ℤ} (hs₀ 
   set m : ℕ := M.natAbs with hm
   have hm0 : m ≠ 0 := Int.natAbs_ne_zero.mpr hM
   have : NeZero (m * e) := ⟨by positivity⟩
-
   have hcop : IsCoprime s₀ ((m : ℕ) : ℤ) := by
     rwa [Int.isCoprime_iff_gcd_eq_one, hm, Int.gcd, Int.natAbs_natCast, ← Int.gcd,
       ← Int.isCoprime_iff_gcd_eq_one]
   have hunit : IsUnit ((s₀ : ZMod m)) :=
     .of_mul_eq_one _ (ZMod.coe_int_mul_inv_eq_one hcop)
-
   obtain ⟨S, hS⟩ := ZMod.unitsMap_surjective (n := m) (Nat.dvd_mul_right m e) hunit.unit
   refine ⟨((S : ZMod (m * e)).val : ℤ), ?_, ?_⟩
-  ·
-    have h1 : (((S : ZMod (m * e)).val : ℤ) : ZMod m) = ((s₀ : ZMod m)) := by
+  · have h1 : (((S : ZMod (m * e)).val : ℤ) : ZMod m) = ((s₀ : ZMod m)) := by
       have h2 : ZMod.castHom (Nat.dvd_mul_right m e) (ZMod m) (S : ZMod (m * e))
           = (s₀ : ZMod m) := by
         have := congrArg Units.val hS
@@ -49,19 +46,16 @@ lemma exists_dvd_sub_and_isCoprime {M : ℤ} (hM : M ≠ 0) {s₀ : ℤ} (hs₀ 
     have h4 : (m : ℤ) ∣ ((S : ZMod (m * e)).val : ℤ) - s₀ := by
       simpa [neg_sub] using dvd_neg.mpr h1
     exact Int.natAbs_dvd.mp h4
-  ·
-    have h3 : Nat.Coprime (S : ZMod (m * e)).val (m * e) := ZMod.val_coe_unit_coprime S
+  · have h3 : Nat.Coprime (S : ZMod (m * e)).val (m * e) := ZMod.val_coe_unit_coprime S
     exact (Nat.isCoprime_iff_coprime.mpr h3).of_isCoprime_of_dvd_right
       (by exact_mod_cast dvd_mul_left e m)
 
 lemma exists_row_smul_eq_gcd (hN : N ≠ 0) {a c : ℤ} (hac : IsCoprime a c) :
     ∃ r s : ℤ, (N : ℤ) ∣ r ∧ IsCoprime r s ∧ r * a + s * c = Int.gcd c N := by
   rcases eq_or_ne a 0 with rfl | ha
-  ·
-    have hc : IsUnit c := isCoprime_zero_left.mp hac
+  · have hc : IsUnit c := isCoprime_zero_left.mp hac
     refine ⟨0, c, dvd_zero _, isCoprime_zero_left.mpr hc, ?_⟩
     rcases Int.isUnit_iff.mp hc with rfl | rfl <;> simp
-
   set d : ℕ := Int.gcd c N with hd
   have hd0 : d ≠ 0 := by
     have : (N : ℤ) ≠ 0 := by exact_mod_cast hN
@@ -72,7 +66,6 @@ lemma exists_row_smul_eq_gcd (hN : N ≠ 0) {a c : ℤ} (hac : IsCoprime a c) :
     rintro rfl
     rw [mul_zero] at hn₁
     exact hN (by exact_mod_cast hn₁)
-
   have hcop1 : IsCoprime c₁ n₁ := by
     rw [Int.isCoprime_iff_gcd_eq_one]
     have h5 : Int.gcd ((d : ℤ) * c₁) ((d : ℤ) * n₁) = d * Int.gcd c₁ n₁ := by
@@ -82,11 +75,9 @@ lemma exists_row_smul_eq_gcd (hN : N ≠ 0) {a c : ℤ} (hac : IsCoprime a c) :
   have hcop2 : IsCoprime c₁ a :=
     hac.symm.of_isCoprime_of_dvd_left ⟨(d : ℤ), by rw [hc₁]; ring⟩
   obtain ⟨u, v, huv⟩ := hcop1.mul_right hcop2
-
   have hMne : n₁ * a ≠ 0 := mul_ne_zero hn₁0 ha
   have huM : IsCoprime u (n₁ * a) := ⟨c₁, v, by linear_combination huv⟩
   obtain ⟨s, hsmod, hsd⟩ := exists_dvd_sub_and_isCoprime hMne huM hd0
-
   obtain ⟨t, ht⟩ : (n₁ * a) ∣ s * c₁ - 1 := by
     have h6 : s * c₁ - 1 = (s - u) * c₁ - v * (n₁ * a) := by linear_combination huv
     rw [h6]
@@ -98,7 +89,6 @@ lemma exists_row_smul_eq_gcd (hN : N ≠ 0) {a c : ℤ} (hac : IsCoprime a c) :
         _ = (N : ℤ) * a * t := by rw [hn₁]; ring
     linear_combination h7
   refine ⟨-((N : ℤ) * t), s, ⟨-t, by ring⟩, ?_, hsum⟩
-
   obtain ⟨p, q, hpq⟩ := hsd
   exact ⟨q * a, p + q * c, by linear_combination hpq + q * hsum⟩
 

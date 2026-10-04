@@ -371,7 +371,6 @@ theorem natCard_place_ord_lt_zero_le (ι : ℚ̄ →+* ℂ) (y : FF) (hy : (y : 
     (CongruenceSubgroup.Gamma1_is_congruence M).finiteIndex
   have hΓM : CongruenceSubgroup.Gamma M ≤ CongruenceSubgroup.Gamma1 M := Gamma_le_Gamma1 M
   have hT : ModularGroup.T ∈ CongruenceSubgroup.Gamma1 M := T_mem_Gamma1 M
-
   obtain ⟨Φ, hΦc, hΦy, hΦfix⟩ :=
     ModularCurve.exists_ringHom_laurentBaseChange_qExpFunctionFieldC_levelN M
       (CongruenceSubgroup.Gamma1 M) hΓM hT ι K
@@ -379,7 +378,6 @@ theorem natCard_place_ord_lt_zero_le (ι : ℚ̄ →+* ℂ) (y : FF) (hy : (y : 
   let E : IntermediateField L₀ K := IntermediateField.adjoin L₀ (Set.range Φ)
   have hΦE : ∀ u, Φ u ∈ E := fun u => IntermediateField.subset_adjoin _ _ ⟨u, rfl⟩
   let ΦE : FF →+* E := Φ.codRestrict E hΦE
-
   let : Algebra ℚ̄ ℂ := ι.toAlgebra
   let : Algebra FF E := ΦE.toAlgebra
   let : Algebra ℚ̄ E := ((algebraMap ℂ E).comp ι).toAlgebra
@@ -388,14 +386,12 @@ theorem natCard_place_ord_lt_zero_le (ι : ℚ̄ →+* ℂ) (y : FF) (hy : (y : 
     apply Subtype.ext
     change algebraMap ℂ K (ι c) = Φ (algebraMap ℚ̄ FF c)
     rw [hΦc])
-
   obtain ⟨hyT, hfin⟩ :=
     ModularCurve.transcendental_and_finiteDimensional_adjoin_laurentBaseChange_qExpFunctionFieldC_of_coe_eq_jqModC
       ℚ̄ (CongruenceSubgroup.Gamma1 M) hT y hy
   have := hfin
   have : AlgebraicCurve.IsCurveOver ℚ̄ FF :=
     AlgebraicCurve.isCurveOver_of_transcendental_of_perfectField hyT hfin
-
   have hjE : jK M K ∈ E := E.algebraMap_mem (⟨jK M K, IntermediateField.mem_adjoin_simple_self ℂ _⟩ : L₀)
   let xE : E := ⟨jK M K, hjE⟩
   have hyt : ((algebraMap FF E y : E) : K) = jK M K := hΦy y hy
@@ -414,7 +410,6 @@ theorem natCard_place_ord_lt_zero_le (ι : ℚ̄ →+* ℂ) (y : FF) (hy : (y : 
     exact h'
   have hxfin : FiniteDimensional (IntermediateField.adjoin ℂ ({xE} : Set E)) E :=
     finiteDimensional_adjoin (jK M K) E xE rfl
-
   have hσE : ∀ γ ∈ CongruenceSubgroup.Gamma1 M, ∀ e : E, σ' M K γ (e : K) = e := by
     intro γ hγ e
     have hle : E ≤ IntermediateField.fixedField (Subgroup.zpowers (σ' M K γ)) := by
@@ -428,7 +423,6 @@ theorem natCard_place_ord_lt_zero_le (ι : ℚ̄ →+* ℂ) (y : FF) (hy : (y : 
       have := (Subgroup.zpowers_le.mpr hst) hg
       rwa [MulAction.mem_stabilizer_iff, AlgEquiv.smul_def] at this
     exact (IntermediateField.mem_fixedField_iff _ (e : K)).mp (hle e.2) _ (Subgroup.mem_zpowers _)
-
   have hy0 : y ≠ 0 := fun h => by
     rw [h] at hyT; exact hyT isAlgebraic_zero
   obtain ⟨-, hplaces⟩ :=
@@ -436,7 +430,6 @@ theorem natCard_place_ord_lt_zero_le (ι : ℚ̄ →+* ℂ) (y : FF) (hy : (y : 
       (jK M K) (transcendental_jK M K) E hyt hgen
   have hfinE' : Finite {P : AlgebraicCurve.Place ℂ E // P.ord (algebraMap FF E y) < 0} :=
     ((hplaces y hy0).2).1
-
   have hDC := fun P : AlgebraicCurve.Place ℚ̄ FF =>
     AlgebraicCurve.Place.exists_comap_algebraMap_eq_of_constantFieldExtension ℚ̄ FF ℂ E
       ⟨y, hyT, hfin⟩ ⟨xE, hxT, hxfin⟩ hgen P
@@ -452,7 +445,6 @@ theorem natCard_place_ord_lt_zero_le (ι : ℚ̄ →+* ℂ) (y : FF) (hy : (y : 
   have h1 : Nat.card {P : AlgebraicCurve.Place ℚ̄ FF // P.ord y < 0} ≤
       Nat.card {P : AlgebraicCurve.Place ℂ E // P.ord (algebraMap FF E y) < 0} :=
     Nat.card_le_card_of_injective ι' hι'
-
   obtain ⟨W, hW, hD⟩ := exists_place_infty M K
   have hiff : ∀ P : AlgebraicCurve.Place ℂ E,
       0 < P.ord (xE⁻¹ - algebraMap ℂ E 0) ↔ P.ord (algebraMap FF E y) < 0 := by
@@ -564,10 +556,8 @@ theorem natCard_place_ord_lt_zero_laurentBaseChange_eq
       Nat.card {P : Place (AlgebraicClosure ℚ)
         ↥(laurentBaseChange (AlgebraicClosure ℚ) (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) // P.ord y < 0} := by
   classical
-
   let F₀ : IntermediateField ℚ (LaurentSeries ℚ) := qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)
   have : CharZero K := charZero_of_injective_algebraMap (algebraMap ℚ K).injective
-
   have : Algebra.IsAlgebraic ℚ (AlgebraicClosure ℚ) := AlgebraicClosure.isAlgebraic ℚ
   let τ : (AlgebraicClosure ℚ) →ₐ[ℚ] K := IsAlgClosed.lift
   let Ψ : ↥(laurentBaseChange (AlgebraicClosure ℚ) F₀) →+* ↥(laurentBaseChange K F₀) := psi τ F₀
@@ -576,7 +566,6 @@ theorem natCard_place_ord_lt_zero_laurentBaseChange_eq
   have hΨy : Ψ y = yK := by
     apply Subtype.ext
     rw [hΨ, hy, hyK, coeffMap_jqModC]
-
   have : (CongruenceSubgroup.Gamma1 M).FiniteIndex := (CongruenceSubgroup.Gamma1_is_congruence M).finiteIndex
   have hT : ModularGroup.T ∈ CongruenceSubgroup.Gamma1 M := by
     rw [CongruenceSubgroup.Gamma1_mem]
@@ -589,7 +578,6 @@ theorem natCard_place_ord_lt_zero_laurentBaseChange_eq
       K (CongruenceSubgroup.Gamma1 M) hT yK hyK
   have : IsCurveOver (AlgebraicClosure ℚ) ↥(laurentBaseChange (AlgebraicClosure ℚ) F₀) :=
     AlgebraicCurve.isCurveOver_of_transcendental_of_perfectField htr hfin
-
   let : Algebra (AlgebraicClosure ℚ) K := τ.toRingHom.toAlgebra
   let : Algebra ↥(laurentBaseChange (AlgebraicClosure ℚ) F₀) ↥(laurentBaseChange K F₀) := Ψ.toAlgebra
   let : Algebra (AlgebraicClosure ℚ) ↥(laurentBaseChange K F₀) :=
@@ -626,7 +614,6 @@ theorem natCard_place_ord_lt_zero_laurentBaseChange_eq
     have hw : w = ⟨v, hv⟩ := Subtype.ext hwv
     rw [← hw]
     exact hwA
-
   have hlift := fun P : Place (AlgebraicClosure ℚ) ↥(laurentBaseChange (AlgebraicClosure ℚ) F₀) =>
     AlgebraicCurve.Place.exists_comap_algebraMap_eq_of_constantFieldExtension (AlgebraicClosure ℚ) ↥(laurentBaseChange (AlgebraicClosure ℚ) F₀)
       K ↥(laurentBaseChange K F₀) ⟨y, htr, hfin⟩ ⟨yK, htrK, hfinK⟩ hgen P
@@ -638,7 +625,6 @@ theorem natCard_place_ord_lt_zero_laurentBaseChange_eq
   have hlift_uniq : ∀ P Q', Q'.toValuationSubring.comap
       (algebraMap ↥(laurentBaseChange (AlgebraicClosure ℚ) F₀) ↥(laurentBaseChange K F₀)) = P.toValuationSubring → Q' = lift P :=
     fun P Q' h => (hlift P).choose_spec.2.2 Q' h
-
   let g : {P : Place (AlgebraicClosure ℚ) ↥(laurentBaseChange (AlgebraicClosure ℚ) F₀) // P.ord y < 0} →
       {Q : Place K ↥(laurentBaseChange K F₀) // Q.ord yK < 0} :=
     fun P => ⟨lift P.1, by rw [← hΨy, hlift_ord]; exact P.2⟩
@@ -650,7 +636,6 @@ theorem natCard_place_ord_lt_zero_laurentBaseChange_eq
     rw [← hlift_comap P₁, ← hlift_comap P₂, h']
   have gsurj : Function.Surjective g := by
     rintro ⟨Q, hQ⟩
-
     have hQy : Q.ord (Ψ y) ≠ 0 := by rw [hΨy]; exact ne_of_lt hQ
     obtain ⟨P₀, hP₀⟩ :=
       ModularCurve.exists_place_algebraicClosure_ord_comp_eq_of_laurentBaseChange K (CongruenceSubgroup.Gamma1 M) hT

@@ -103,7 +103,6 @@ private theorem exists_chart {N : ℕ} [NeZero N] {F : ℍ → ℂ}
         u (Periodic.qParam N τ) := by
   have hN : (0 : ℝ) < N := by exact_mod_cast Nat.pos_of_ne_zero (NeZero.ne N)
   set P := qExpansion N F with hP
-
   have hsummN : Summable fun n : ℕ => ‖P.coeff n‖ * (1 / 2 : ℝ) ^ n := by
     let : FiniteDimensional ℝ ℂ := basisOneI.finiteDimensional_of_finite
     have h1 : HasSum (fun n : ℕ => P.coeff n • ((1 / 2 : ℝ) : ℂ) ^ n)
@@ -126,7 +125,6 @@ private theorem exists_chart {N : ℕ} [NeZero N] {F : ℍ → ℂ}
       norm_num
     rw [pow_add, add_comm j P.order.toNat]
     linear_combination ‖P.coeff (P.order.toNat + j)‖ * ((1 : ℝ) / 2) ^ j * hpow
-
   set u : ℂ → ℂ := fun z => ∑' j : ℕ, P.coeff (P.order.toNat + j) * z ^ j with hu
   have hucont : ContinuousOn u (Metric.ball (0 : ℂ) (1 / 2)) := by
     refine continuousOn_tsum (fun j => ?_) hsummShift fun j z hz => ?_
@@ -337,15 +335,12 @@ theorem solution
   obtain ⟨L, hL, hF⟩ := hcusp σ
   refine ⟨L, hL, ?_⟩
   set G : UpperHalfPlane → ℂ := fun τ => (g : ℍ → ℂ) (σ • τ) / (h : ℍ → ℂ) (σ • τ) with hGdef
-
   have hne : ∀ᶠ τ in atImInfty, (h : ℍ → ℂ) (σ • τ) ≠ 0 := Glue.eventually_apply_smul_ne_zero Γ σ h hh
-
   have hloc : ∀ τ : ℍ, ∀ᶠ w in 𝓝[≠] τ, F (σ • w) = ModularCurve.realizeOf Γ x (σ • w) := by
     intro τ
     have h1 := (Glue.tendsto_coe_smul_punctured σ τ).eventually (hFx (σ • τ))
     filter_upwards [h1] with w hw
     simpa only [ofComplex_apply] using hw
-
   rw [Metric.tendsto_nhds]
   intro ε hε
   have hFε : ∀ᶠ τ in atImInfty, dist (F (σ • τ)) L < ε / 2 := Metric.tendsto_nhds.mp hF (ε / 2) (half_pos hε)
@@ -354,17 +349,14 @@ theorem solution
     rw [atImInfty_mem]
     refine ⟨A + 1, fun τ hτ => ?_⟩
     have hτA : A < τ.im := by linarith
-
     have hU : {w : ℍ | A < w.im} ∈ 𝓝 τ :=
       (isOpen_lt continuous_const UpperHalfPlane.continuous_im).mem_nhds hτA
     have hhτ : (h : ℍ → ℂ) (σ • τ) ≠ 0 := (hA τ hτA.le).2
-
     have hcg : Continuous fun w : ℍ => (g : ℍ → ℂ) (σ • w) :=
       (ModularFormClass.holo g).continuous.comp (Glue.continuous_sl_smul σ)
     have hch : Continuous fun w : ℍ => (h : ℍ → ℂ) (σ • w) :=
       (ModularFormClass.holo h).continuous.comp (Glue.continuous_sl_smul σ)
     have hGcont : ContinuousAt G τ := (hcg.continuousAt).div (hch.continuousAt) hhτ
-
     have hFG : ∀ᶠ w in 𝓝[≠] τ, F (σ • w) = G w := by
       filter_upwards [hloc τ, mem_nhdsWithin_of_mem_nhds hU] with w h1 h2
       rw [h1, hGdef]

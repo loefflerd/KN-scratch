@@ -25,21 +25,17 @@ theorem solution
   obtain ⟨⟨v⟩, hfd, γ, D₀, hγ⟩ := hSG
   have : Nonempty (Place K F) := ⟨v⟩
   have : FiniteDimensional K ↥(LSpace (0 : Divisor K F)) := hfd
-
   have hi : ∀ D' : Divisor K F,
       (indexOfSpecialty D' : ℤ) = (ell D' : ℤ) - (Divisor.degree D' + 1 - γ) :=
     fun D' => (indexOfSpecialty_eq_of_genusReached hγ D').2
-
   have hdegv : 0 < (v.deg : ℤ) := by
     have : Module.Finite K v.ResidueField := IsCurveOver.finiteResidue v
     exact_mod_cast (Module.finrank_pos : 0 < Module.finrank K v.ResidueField)
-
   have hγle : γ ≤ (genus K F : ℤ) := by
     have h₁ := hRR hω D₀
     have h₂ := hγ.eq
     have h₃ : (0 : ℤ) ≤ (ell (canonicalDivisorOf hω - D₀) : ℤ) := Nat.cast_nonneg _
     linarith
-
   have hgeγ : (genus K F : ℤ) ≤ γ := by
     set D₁ : Divisor K F := canonicalDivisorOf hω + Finsupp.single v 1 with hD₁
     have hKD : canonicalDivisorOf hω - D₁ = -Finsupp.single v 1 := by

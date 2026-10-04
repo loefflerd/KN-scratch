@@ -424,7 +424,6 @@ private theorem horizontalGroupAlgebraProjection_refl (R : Type*) [CommRing R]
   rw [hh, MonoidAlgebra.mapDomainRingHom_id]
   rfl
 
-
 private theorem theta_projection_unit_multiple
     {N k p B₀ : ℕ} {ι : MTT.Qbar →+* ℂ} [Fact p.Prime]
     {ιp : MTT.Qbar →+* ℂ_[p]} {f : MTT.Eigenform N k ι}
@@ -491,7 +490,6 @@ decreasing_by
   rw [heq]
   exact Finset.card_erase_lt_of_mem (by simp [hnB, hnA])
 
-
 private def horizontalCharacterEvalRingHom
     {p : ℕ} [Fact p.Prime] {m : ℕ → ℕ} (R : Subring ℂ_[p])
     (χ : HorizontalCharacter p m) :
@@ -512,7 +510,6 @@ private theorem horizontalCharacterEvalRingHom_apply
   change (x.coeff g : ℂ_[p]) * χ.toMonoidHom g =
     (x.coeff g : ℂ_[p]) * χ.toMonoidHom g
   rfl
-
 
 private theorem evaluation_projection
     {p : ℕ} [Fact p.Prime] {m : ℕ → ℕ} (R : Subring ℂ_[p])

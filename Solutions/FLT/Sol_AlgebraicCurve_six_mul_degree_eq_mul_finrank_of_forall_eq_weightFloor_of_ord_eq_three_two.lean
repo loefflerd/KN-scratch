@@ -119,18 +119,15 @@ theorem solution
   have : HasPrincipalDivisors k F := IsCurveOver.hasPrincipalDivisors
   have hdeg1 : ∀ v : Place k F, v.deg = 1 := IsCurveOver.forall_deg_eq_one_of_isAlgClosed
   set n : ℤ := (Module.finrank ↥(IntermediateField.adjoin k ({y} : Set F)) F : ℤ) with hn
-
   have hc : (1728 : F) = algebraMap k F 1728 := (map_ofNat (algebraMap k F) 1728).symm
   have hD' : ∀ w : Place k F, D w = (if 0 < w.ord y then (2 * (m : ℤ) * w.ord y) / 3 else 0)
           + (if 0 < w.ord (y - algebraMap k F 1728) then ((m : ℤ) * w.ord (y - algebraMap k F 1728)) / 2 else 0)
           + (if w.ord y < 0 then (m : ℤ) * w.ord y else 0) := fun w => by rw [← hc]; exact hD w
   have h1728' : ∀ w : Place k F, 0 < w.ord (y - algebraMap k F 1728) → w.ord (y - algebraMap k F 1728) = 2 :=
     fun w => by rw [← hc]; exact h1728 w
-
   have hy0 : y ≠ 0 := fun h => hy (h ▸ isAlgebraic_zero)
   have hyc : y - algebraMap k F 1728 ≠ 0 := fun h => hy (by
     rw [sub_eq_zero] at h; rw [h]; exact isAlgebraic_algebraMap (1728 : k))
-
   obtain ⟨Dj, hDj, hDj0⟩ := HasPrincipalDivisors.exists_divisor (K := k) (F := F) y hy0
   obtain ⟨Dc, hDc, hDc0⟩ := HasPrincipalDivisors.exists_divisor (K := k) (F := F) (y - algebraMap k F 1728) hyc
   set S0 := Dj.support.filter (fun v => 0 < v.ord y) with hS0def
@@ -160,13 +157,11 @@ theorem solution
     have : ∑ v ∈ T, -(v.ord y) = n := hPdeg'.symm.trans hPdeg
     rw [Finset.sum_neg_distrib] at this
     linarith
-
   have hdegsum : ∀ E : Divisor k F, Divisor.degree E = ∑ v ∈ E.support, E v := by
     intro E
     conv_lhs => rw [← Finsupp.sum_single E]
     rw [Finsupp.sum, map_sum]
     simp only [Divisor.degree_single, hdeg1, Nat.cast_one, mul_one]
-
   have hsupp_j : Dj.support = S0 ∪ T := by
     ext v
     rw [Finset.mem_union, hS0, hT, Finsupp.mem_support_iff, hDj v]
@@ -187,7 +182,6 @@ theorem solution
   have hnpos : 0 < n := by
     have : 0 < Module.finrank ↥(IntermediateField.adjoin k ({y} : Set F)) F := Module.finrank_pos
     rw [hn]; exact_mod_cast this
-
   by_cases hk : (1728 : k) = 0
   · exfalso
     have hS0ne : S0.Nonempty := by
@@ -201,7 +195,6 @@ theorem solution
     have hv2 := h1728' v (by rw [hyy]; exact (hS0 v).1 hv)
     rw [hyy] at hv2
     omega
-
   have hzero_c : ∀ v : Place k F, 0 < v.ord y → v.ord (y - algebraMap k F 1728) = 0 :=
     fun v hv => ord_sub_algebraMap_eq_zero_of_ord_pos v hy0 hk hv
   have hpole_c : ∀ v : Place k F, v.ord y < 0 → v.ord (y - algebraMap k F 1728) = v.ord y :=
@@ -210,7 +203,6 @@ theorem solution
     fun v hv => ord_eq_zero_of_ord_sub_algebraMap_pos v hk hyc hv
   have hpole_j : ∀ v : Place k F, v.ord (y - algebraMap k F 1728) < 0 → v.ord y = v.ord (y - algebraMap k F 1728) :=
     fun v hv => ord_eq_of_ord_sub_algebraMap_neg v 1728 hyc hv
-
   have hsupp_c : Dc.support = S1 ∪ T := by
     ext v
     rw [Finset.mem_union, hS1, hT, Finsupp.mem_support_iff, hDc v]
@@ -232,7 +224,6 @@ theorem solution
     have : ∑ v ∈ T, v.ord (y - algebraMap k F 1728) = ∑ v ∈ T, v.ord y :=
       Finset.sum_congr rfl fun v hv => hpole_c v ((hT v).1 hv)
     linarith
-
   have hcnt0 : 3 * (S0.card : ℤ) = n := by
     rw [← hS0sum, show ∑ v ∈ S0, v.ord y = ∑ v ∈ S0, (3 : ℤ) from
       Finset.sum_congr rfl fun v hv => h0 v ((hS0 v).1 hv)]
@@ -241,7 +232,6 @@ theorem solution
     rw [← hS1sum, show ∑ v ∈ S1, v.ord (y - algebraMap k F 1728) = ∑ v ∈ S1, (2 : ℤ) from
       Finset.sum_congr rfl fun v hv => h1728' v ((hS1 v).1 hv)]
     simp only [Finset.sum_const]; ring
-
   have hDval : ∀ v : Place k F, D v =
       (if v ∈ S0 then 2 * (m : ℤ) else 0) + (if v ∈ S1 then (m : ℤ) else 0) + (if v ∈ T then (m : ℤ) * v.ord y else 0) := by
     intro v
@@ -282,7 +272,6 @@ theorem solution
     rw [Finset.sum_ite_mem, Finset.inter_eq_right.2 (by intro v hv; simp [hv]), Finset.mul_sum]
   rw [hDdeg, hsumD, Finset.sum_add_distrib, Finset.sum_add_distrib, hA, hB, hC, hTsum]
   linear_combination (4 * (m : ℤ)) * hcnt0 + (3 * (m : ℤ)) * hcnt1
-
 
 end S_AlgebraicCurve_six_mul_degree_eq_mul_finrank_of_forall_eq_weightFloor_of_ord_eq_three_two
 end P2MW

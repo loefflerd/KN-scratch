@@ -249,7 +249,6 @@ theorem equation_map_polyToFunctionField_yGen :
   rw [zero_smul, zero_add, one_smul, one_mul, one_mul, zero_sub] at hrel
   have h2 := congrArg (algebraMap W.CoordinateRing W.FunctionField) hrel
   rw [map_mul, algebraMap_smul_basis, _root_.map_neg, neg_mul, ← sub_eq_add_neg] at h2
-
   simp only [map_a₁, map_a₂, map_a₃, map_a₄, map_a₆]
   simp only [map_add, map_mul, map_pow, polyToFunctionField_C] at h2
   rw [show yGen W = algebraMap W.CoordinateRing W.FunctionField (CoordinateRing.mk W Y)

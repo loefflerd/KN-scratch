@@ -46,14 +46,11 @@ theorem solution
     (h : D₁.pointEnd hN₁ + D₂.pointEnd hN₂ ≠ 0) :
     ∃ (D₃ : IsogenyEndDatum W) (hN₃ : NormFormulaAlong F D₃.ι D₃.hfin),
       D₃.pointEnd hN₃ = D₁.pointEnd hN₁ + D₂.pointEnd hN₂ := by
-
   obtain ⟨D₃, hD₃⟩ :=
     IsogenyEndDatum.exists_restrictAlong_placeOfPoint_eq_add D₁ hN₁ D₂ hN₂ h
-
   have : HasPrincipalDivisors F W.FunctionField := hasPrincipalDivisors_functionField W
   have hN₃ : NormFormulaAlong F D₃.ι D₃.hfin := normFormulaAlong_of_finiteAlong_aux D₃.ι D₃.hfin
   refine ⟨D₃, hN₃, ?_⟩
-
   refine AddMonoidHom.ext fun P => ?_
   show D₃.pointEnd hN₃ P = D₁.pointEnd hN₁ P + D₂.pointEnd hN₂ P
   rw [IsogenyEndDatum.pointEnd_apply_eq_sub D₃ hN₃, IsogenyEndDatum.pointEnd_apply_eq_sub D₁ hN₁,

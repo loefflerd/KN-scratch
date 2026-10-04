@@ -182,7 +182,6 @@ theorem lipschitz_two_closed {x : ℂ} (hx : x ∈ Complex.integerComplement) :
   set U : Set ℂ := ball x (ε / 2) with hUdef
   have hUsub : U ⊆ Complex.integerComplement :=
     (ball_subset_ball (half_le_self hε.le)).trans hball
-
   have hsep : ∀ y ∈ U, ∀ n : ℤ, ε / 2 ≤ ‖y + n‖ := by
     intro y hy n
     by_contra! hlt
@@ -207,7 +206,6 @@ theorem lipschitz_two_closed {x : ℂ} (hx : x ∈ Complex.integerComplement) :
       _ ≤ ‖x‖ + ε / 2 := by linarith
   set R : ℝ := ‖x‖ + ε / 2 with hRdef
   set K : ℕ := ⌈2 * R⌉₊ with hKdef
-
   set u : ℤ → ℝ := fun n ↦
     (if n ∈ Finset.Icc (-(K : ℤ)) K then 4 / ε ^ 2 else 0) + 4 * (1 / (n : ℝ) ^ 2) with hudef
   have hu : Summable u := by
@@ -225,7 +223,6 @@ theorem lipschitz_two_closed {x : ℂ} (hx : x ∈ Complex.integerComplement) :
       have h2 : (0 : ℝ) ≤ 4 * (1 / (n : ℝ) ^ 2) := by positivity
       linarith
     · simp only [hudef, hn, ite_false, zero_add]
-
       have hnK : (K : ℝ) < |(n : ℝ)| := by
         simp only [Finset.mem_Icc, not_and_or, not_le] at hn
         rw [← Int.cast_abs]
@@ -255,7 +252,6 @@ theorem lipschitz_two_closed {x : ℂ} (hx : x ∈ Complex.integerComplement) :
     refine DifferentiableOn.mul (by fun_prop) (DifferentiableOn.div (by fun_prop) (by fun_prop) ?_)
     intro y hy
     exact pow_ne_zero _ (sub_ne_zero.mpr (cexp_two_pi_I_mul_ne_one (hUsub hy)).symm)
-
   set z₀ : ℂ := x + (ε / 4 : ℝ) * I with hz₀def
   have hz₀U : z₀ ∈ U := by
     rw [hUdef, mem_ball, dist_eq_norm, hz₀def, add_sub_cancel_left, norm_mul, Complex.norm_real,
@@ -732,7 +728,6 @@ theorem differentiableOn_wpTorsionSeries {N a₁ a₂ : ℕ} (ha₁ : a₁ < N) 
     (h0 : a₁ ≠ 0 ∨ a₂ ≠ 0) :
     DifferentiableOn ℂ (wpTorsionSeries N a₁ a₂) {τ : ℂ | 0 < τ.im} := by
   intro τ₀ hτ₀
-
   set B : ℝ := τ₀.im / 2 with hB
   have hB0 : 0 < B := by simp only [Set.mem_ofPred_eq] at hτ₀; positivity
   set U : Set ℂ := {τ : ℂ | B < τ.im} with hU
@@ -797,11 +792,9 @@ theorem solution :
     (∀ w : ℂ, 0 < w.im →
       ∑' n : ℤ, 1 / (w + n) ^ 2 =
         (2 * π * I) ^ 2 * ∑' m : ℕ, (m : ℂ) * cexp (2 * π * I * w) ^ m) ∧
-
     (∀ w : ℂ, w.im < 0 →
       ∑' n : ℤ, 1 / (w + n) ^ 2 =
         (2 * π * I) ^ 2 * ∑' m : ℕ, (m : ℂ) * cexp (-(2 * π * I * w)) ^ m) ∧
-
     (∀ z τ : ℂ, -τ.im < z.im → z.im < τ.im → z ∈ Complex.integerComplement →
       ∑' c : ℤ, ((∑' d : ℤ, 1 / ((z - c * τ) + d) ^ 2) - ∑' d : ℤ, 1 / (c * τ + d) ^ 2) =
         (2 * π * I) ^ 2 *
@@ -809,7 +802,6 @@ theorem solution :
             ∑' c : ℕ+, ∑' m : ℕ, (m : ℂ) *
               (cexp (2 * π * I * z) ^ m + (cexp (2 * π * I * z))⁻¹ ^ m - 2) *
                 cexp (2 * π * I * τ) ^ ((c : ℕ) * m))) ∧
-
     (∀ L : ℍ → PeriodPair, (∀ τ : ℍ, (L τ).ω₁ = (τ : ℂ) ∧ (L τ).ω₂ = 1) →
       ∀ N a₁ a₂ : ℕ, a₁ < N → a₂ < N → (a₁ ≠ 0 ∨ a₂ ≠ 0) →
         (∀ τ : ℍ, PeriodPair.weierstrassP (L τ) (((a₁ : ℂ) * τ + a₂) / N) =
@@ -825,7 +817,6 @@ theorem solution :
                   2 * cexp (2 * π * I * (τ : ℂ) / N) ^ ((p.1 : ℕ) * N * (p.2 : ℕ))))) ∧
         MDifferentiable 𝓘(ℂ) 𝓘(ℂ)
           (fun τ : ℍ => PeriodPair.weierstrassP (L τ) (((a₁ : ℂ) * τ + a₂) / N))) ∧
-
     (∀ L L' : PeriodPair, ∀ c : ℂ, L'.ω₁ = c * L.ω₁ → L'.ω₂ = c * L.ω₂ →
       ∀ z : ℂ, PeriodPair.weierstrassP L' (c * z) =
         c⁻¹ ^ 2 * PeriodPair.weierstrassP L z) := by

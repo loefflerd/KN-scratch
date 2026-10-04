@@ -19,7 +19,6 @@ open UpperHalfPlane Filter Function
 open scoped Real Topology Manifold
 
 structure FnWrap where
-
   toFun : ℍ → ℂ
 
 scoped instance : FunLike FnWrap ℍ ℂ where
@@ -75,7 +74,6 @@ theorem main (f : ℍ → ℂ) (h₀ : ℝ) (hh₀ : 0 < h₀)
     rw [heq, hasSum_extend_zero hinj]
     exact h1
   have huniq := qExpansion_coeff_unique F hh (analyticAt_cuspFunction_zero hh hper' hhol hbdd) hsum i
-
   change c i = PowerSeries.coeff i (qExpansion ((m' : ℝ) * h₀) f) at huniq
   rw [← huniq, hc]
 
@@ -92,7 +90,6 @@ theorem solution (f : UpperHalfPlane → ℂ) (h₀ : ℝ) (hh₀ : 0 < h₀)
     PowerSeries.coeff i (UpperHalfPlane.qExpansion ((m' : ℝ) * h₀) f) =
       if m' ∣ i then PowerSeries.coeff (i / m') (UpperHalfPlane.qExpansion h₀ f) else 0 :=
   WidthChange.main f h₀ hh₀ hper hhol hbdd m' hm' i
-
 
 end S_UpperHalfPlane_qExpansion_coeff_mul_width
 end P2MW

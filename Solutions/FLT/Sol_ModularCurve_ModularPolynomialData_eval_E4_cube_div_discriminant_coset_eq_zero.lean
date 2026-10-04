@@ -81,7 +81,6 @@ theorem solution (N : ℕ) [NeZero N]
   set σ : ℍ := (γ₂ : GL (Fin 2) ℝ) • τ with hσ
   have h1 : τ' = (γ₁ : GL (Fin 2) ℝ) • (ModularForm.heckeDiagMatrix N • σ) := by
     rw [hτ'pt, hgeq, mul_smul, mul_smul]
-
   change (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom ℂ) (jt τ))).eval (jt τ') = 0
   rw [h1, jt_smul, show jt τ = jt σ from by rw [hσ, jt_smul]]
   exact ModularCurve.ModularPolynomialData.eval_E4_cube_div_discriminant_smul_eq_zero N data σ _

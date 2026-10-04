@@ -22,7 +22,6 @@ theorem solution (N : ℕ) [NeZero N] (E₀ : WeierstrassCurve (AlgebraicClosure
   have hN : ((N : ℕ) : AlgebraicClosure ℚ) ≠ 0 := by exact_mod_cast (NeZero.ne N)
   have : Finite (Submodule.torsionBy ℤ E₀.toAffine.Point N) :=
     WeierstrassCurve.finite_torsionBy_of_natCast_ne_zero (AlgebraicClosure ℚ) E₀ N hN
-
   have hle : ∀ H : CycSub E₀ N, ∀ x : E₀.toAffine.Point, x ∈ H.1 →
       x ∈ Submodule.torsionBy ℤ E₀.toAffine.Point N := by
     rintro ⟨H, g, hg, rfl⟩ x hx
@@ -30,7 +29,6 @@ theorem solution (N : ℕ) [NeZero N] (E₀ : WeierstrassCurve (AlgebraicClosure
     obtain ⟨k, rfl⟩ := AddSubgroup.mem_zmultiples_iff.mp hx
     show (N : ℤ) • (k • g) = 0
     rw [smul_comm, ← hg, natCast_zsmul, addOrderOf_nsmul_eq_zero, smul_zero]
-
   let f : CycSub E₀ N → Set (Submodule.torsionBy ℤ E₀.toAffine.Point N) :=
     fun H => {x | (x : E₀.toAffine.Point) ∈ H.1}
   refine Finite.of_injective f fun H H' hHH' => ?_

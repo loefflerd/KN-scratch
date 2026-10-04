@@ -78,7 +78,6 @@ theorem qCoeff_comp_smul {F : ℍ → ℂ} (hper : Periodic (F ∘ ofComplex) 1)
   have han : AnalyticAt ℂ (cuspFunction 1 G) 0 :=
     analyticAt_cuspFunction_zero one_pos (periodic_comp_smul hd hper) (mdifferentiable_comp_smul hd hhol)
       (isBoundedAtImInfty_comp_smul hd hbdd)
-
   set c : ℕ → ℂ := fun n ↦ if d ∣ n then (qExpansion 1 F).coeff (n / d) else 0 with hc
   have hsum : ∀ τ : ℍ, HasSum (fun m ↦ c m • Periodic.qParam 1 τ ^ m) (G τ) := by
     intro τ

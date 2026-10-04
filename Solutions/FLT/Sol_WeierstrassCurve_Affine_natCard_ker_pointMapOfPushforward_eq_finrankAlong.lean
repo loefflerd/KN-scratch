@@ -116,32 +116,26 @@ theorem ord_deriv_pos_of_ramificationIndex_ne_one
     (hθint : _root_.IsIntegral v.toValuationSubring θ)
     (hram : w.ramificationIndex F ≠ 1) :
     0 < w.ord (aeval θ (derivative (minpoly F θ))) := by
-
   obtain ⟨c, rfl⟩ : ∃ c : integralClosureAt F' v,
       algebraMap (integralClosureAt F' v) F' c = θ := ⟨⟨θ, hθint⟩, rfl⟩
   have hAc : _root_.IsIntegral v.toValuationSubring c := Algebra.IsIntegral.isIntegral c
-
   have hadjF : Algebra.adjoin F {algebraMap (integralClosureAt F' v) F' c} = ⊤ := by
     rw [← IntermediateField.adjoin_toSubalgebra, hgen, IntermediateField.top_toSubalgebra]
-
   have hmem : aeval c (derivative (minpoly v.toValuationSubring c))
       ∈ differentIdeal v.toValuationSubring (integralClosureAt F' v) :=
     aeval_derivative_mem_differentIdeal (A := v.toValuationSubring) (K := F) (L := F')
       (B := integralClosureAt F' v) c hadjF
-
   have himg : aeval (algebraMap (integralClosureAt F' v) F' c)
         (derivative (minpoly F (algebraMap (integralClosureAt F' v) F' c)))
       = algebraMap (integralClosureAt F' v) F'
           (aeval c (derivative (minpoly v.toValuationSubring c))) := by
     rw [minpoly.isIntegrallyClosed_eq_field_fractions F F' hAc, derivative_map,
       aeval_map_algebraMap, aeval_algebraMap_apply]
-
   have hg0 : aeval (algebraMap (integralClosureAt F' v) F' c)
       (derivative (minpoly F (algebraMap (integralClosureAt F' v) F' c))) ≠ 0 :=
     (Algebra.IsSeparable.isSeparable F _).aeval_derivative_ne_zero (minpoly.aeval F _)
   have hc0 : aeval c (derivative (minpoly v.toValuationSubring c)) ≠ 0 := by
     intro h; exact hg0 (by rw [himg, h, _root_.map_zero])
-
   have : FaithfulSMul v.toValuationSubring (integralClosureAt F' v) :=
     (faithfulSMul_iff_algebraMap_injective v.toValuationSubring (integralClosureAt F' v)).mpr
       (algebraMap_integralClosureAt_injective v)
@@ -175,7 +169,6 @@ theorem ord_deriv_pos_of_ramificationIndex_ne_one
     exact hram <| by
       rw [ramificationIndex_eq_ramificationIdx_fiberCenter (v := v) hw,
         (fiberCenter_liesOver hw).over, he1]
-
   have hmem2 : aeval c (derivative (minpoly v.toValuationSubring c))
       ∈ (fiberCenter F' v hw).asIdeal := Ideal.le_of_dvd hdvd hmem
   rw [himg]
@@ -293,7 +286,6 @@ theorem kw_fdn2_qephod_hend5_natCard_fiber_eq_finrank_of_unramified
   have : Algebra.IsSeparable F F' := hsep
   have hsum := AlgebraicCurve.Place.sum_ramificationIndex_mul_inertiaDeg
     (K := K) (F := F) (F' := F') v
-
   have hcoll : ∀ w ∈ v.fiber F',
       (w.ramificationIndex F : ℤ) * (w.inertiaDeg F : ℤ) = 1 := by
     intro w hw
@@ -366,7 +358,6 @@ theorem kw_fdn2_qephod_hend6_existsUnramifiedBetweenCurves_proved :
     KwD5ExistsUnramifiedBetweenCurves.{u} := by
   intro K _ _ _ _ E E' _ _ _ _ _ _ ι hι hfin
   classical
-
   let := algebraAlong ι
   have := isScalarTower_along ι
   have := isIntegral_along ι hι
@@ -376,14 +367,12 @@ theorem kw_fdn2_qephod_hend6_existsUnramifiedBetweenCurves_proved :
   have hsep : Algebra.IsSeparable E'.FunctionField E.FunctionField := inferInstance
   have hpdE : HasPrincipalDivisors K E.FunctionField := hasPrincipalDivisors_functionField E
   have hpdE' : HasPrincipalDivisors K E'.FunctionField := hasPrincipalDivisors_functionField E'
-
   obtain ⟨θ, hgen⟩ := Field.exists_primitive_element E'.FunctionField E.FunctionField
   have hpmon : (minpoly E'.FunctionField θ).Monic :=
     minpoly.monic (_root_.IsIntegral.of_finite E'.FunctionField θ)
   have hg0 : aeval θ (derivative (minpoly E'.FunctionField θ)) ≠ 0 :=
     (Algebra.IsSeparable.isSeparable E'.FunctionField θ).aeval_derivative_ne_zero
       (minpoly.aeval E'.FunctionField θ)
-
   let S₁ : Set (Place K E'.FunctionField) :=
     ⋃ i ∈ (minpoly E'.FunctionField θ).support,
       {v | (minpoly E'.FunctionField θ).coeff i ∉ v.toValuationSubring}
@@ -396,16 +385,13 @@ theorem kw_fdn2_qephod_hend6_existsUnramifiedBetweenCurves_proved :
     finite_setOf_ord_ne_zero_of_hasPrincipalDivisors (K := K) hg0
   have hSfin : (S₁ ∪ (fun w => w.restrict E'.FunctionField) '' S₂).Finite :=
     hS₁fin.union (hS₂fin.image _)
-
   have : Infinite (Place K E'.FunctionField) :=
     (placeOfPointEquiv E').symm.infinite_iff.mpr (kw_point_infinite (W := E'))
   obtain ⟨v, hv⟩ := hSfin.infinite_compl.nonempty
   simp only [Set.mem_compl_iff, Set.mem_union, not_or] at hv
   obtain ⟨hvS₁, hvS₂⟩ := hv
-
   refine ⟨v, fun w hw => ?_⟩
   by_contra hram
-
   have hcoeff : ∀ i, (minpoly E'.FunctionField θ).coeff i ∈ v.toValuationSubring := by
     intro i
     by_contra hni
@@ -419,11 +405,9 @@ theorem kw_fdn2_qephod_hend6_existsUnramifiedBetweenCurves_proved :
     refine ⟨Q, hQmon, ?_⟩
     rw [RingHom.algebraMap_toAlgebra, ← Polynomial.eval₂_map, hQmap]
     exact minpoly.aeval E'.FunctionField θ
-
   have hpos := Place.ord_deriv_pos_of_ramificationIndex_ne_one
     (K := K) (F := E'.FunctionField) (F' := E.FunctionField)
     (v := v) (w := w) hw θ hgen hθint hram
-
   exact hvS₂ ⟨w, hpos.ne', hw⟩
 
 section GeomMorphBC

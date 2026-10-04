@@ -45,7 +45,6 @@ theorem solution (K : Type*) [CommRing K] (n N ℓ : ℕ) [NeZero ℓ]
           ∘ₗ HeckeEis.binaryFormAlphaAdj K n ℓ :=
   HeckeEis.SolMain.A1 K n N ℓ u
 
-
 end S_HeckeEis_binaryFormAlphaAdj_comp_binaryFormRepSL_heckeConj
 end P2MW
 export P2MW.S_HeckeEis_binaryFormAlphaAdj_comp_binaryFormRepSL_heckeConj (solution)

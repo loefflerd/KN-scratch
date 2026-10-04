@@ -170,7 +170,6 @@ theorem solution (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ)) [Γ.Fin
           = a (Quotient.mk (MulAction.orbitRel (Subgroup.zpowers ModularGroup.T) _)
               (g : Matrix.SpecialLinearGroup (Fin 2) ℤ ⧸ Γ)) := by
   have : (Hm Γ).FiniteIndex := ⟨by rw [index_Hm Γ hneg]; exact Subgroup.FiniteIndex.index_ne_zero⟩
-
   set a' : MulAction.orbitRel.Quotient (Subgroup.zpowers τ) (Gp ⧸ Hm Γ) → R :=
     fun c => a ((Θ Γ hneg).symm c) with ha'def
   have ha' : ∑ᶠ c, a' c = 0 := by
@@ -196,7 +195,6 @@ theorem solution (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ)) [Γ.Fin
   rw [hmap, key, ha'def]
   show a ((Θ Γ hneg).symm (Θ Γ hneg (Quotient.mk _ (g : SL(2, ℤ) ⧸ Γ)))) = _
   rw [Equiv.symm_apply_apply]
-
 
 end
 end S_Matrix_SpecialLinearGroup_exists_addMonoidHom_conj_T_pow_minimalPeriod_eq_of_finsum_eq_zero

@@ -117,7 +117,6 @@ instance fullCoinduced_finiteDimensional (N n : ℕ) [NeZero N] :
   FiniteDimensional.of_injective (fullCoinducedCoordinates N n).toLinearMap
     (fullCoinducedCoordinates N n).injective
 
-
 end MTT.Cohomology
 
 /-! # Trace obstructions to elliptic fixed cosets at large Gamma1 level -/
@@ -156,7 +155,6 @@ theorem gammaOne_coset_smul_ne_of_trace {N : ℕ} (hN : 5 ≤ N) {g : SL(2, ℤ)
       have hz := Int.eq_zero_of_dvd_of_nonneg_of_lt (by omega :
         0 ≤ 2 - Matrix.trace g.val) (by omega : 2 - Matrix.trace g.val < (N : ℤ)) hd
       omega
-
 
 end MTT.Cohomology
 
@@ -294,7 +292,6 @@ theorem centralAverage_comm (g : G) (v : A) :
     A.ρ g ((2 : ℂ)⁻¹ • (v + A.ρ z v))
   rw [map_smul, map_add, ← Module.End.mul_apply, ← map_mul, hz,
     map_mul, Module.End.mul_apply]
-
 
 end Rep
 

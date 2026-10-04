@@ -232,7 +232,6 @@ theorem isoTarget_even_step (M : ℕ) (hM : 0 < M)
     (hcoord : ∀ (k : ℕ) (x y : F) (h : W.toAffine.Nonsingular x y),
       k • g = Point.some x y h → x ∈ L ∧ y ∈ L) :
     Nonempty (IsoTarget W g L) := by
-
   have hQne : M • g ≠ 0 := by
     intro h
     have hdvd := addOrderOf_dvd_of_nsmul_eq_zero h
@@ -250,7 +249,6 @@ theorem isoTarget_even_step (M : ℕ) (hM : 0 < M)
   have hgy : W.veluGy x₀ y₀ = 0 := WeierstrassCurve.veluGy_eq_zero_of_negY_eq (W := W) hy
   have hQeq : W.toAffine.Equation x₀ y₀ := hns.1
   obtain ⟨hx₀L, hy₀L⟩ := hcoord M x₀ y₀ hns hQ
-
   have hΔW : W.Δ ≠ 0 := W.isUnit_Δ.ne_zero
   have hΔ₁ : (W.veluQuotient2 x₀ y₀).Δ ≠ 0 := WeierstrassCurve.veluQuotient2_Delta_ne_zero hΔW hQeq hgy
   have : (W.veluQuotient2 x₀ y₀).IsElliptic :=
@@ -262,7 +260,6 @@ theorem isoTarget_even_step (M : ℕ) (hM : 0 < M)
   let := gV
   have := hcV
   have := haV
-
   obtain ⟨ι₁, hι₁, hfin₁, hseam⟩ :=
     WeierstrassCurve.exists_velu2FunctionFieldHom_restrictAlong_placeOfPoint_veluPointMap2 hQeq hgy hΔ₁
   have hN₁ : NormFormulaAlong F ι₁ hfin₁ := normFormulaAlong_of_elliptic ι₁ hfin₁
@@ -270,7 +267,6 @@ theorem isoTarget_even_step (M : ℕ) (hM : 0 < M)
   have hp₁ : ∀ P, p₁ P = WeierstrassCurve.veluPointMap2 two_ne_zero hQeq hgy hΔ₁ P :=
     pointMapOfPushforward_eq_of_seam ι₁ hι₁ hfin₁ hN₁ _
       (by rw [Affine.Point.zero_def]; exact WeierstrassCurve.veluPointMap2_zero _ _ _ _) hseam
-
   have hp₁Q : p₁ (Point.some x₀ y₀ hns) = 0 := by
     rw [hp₁, WeierstrassCurve.veluPointMap2_some_of_eq two_ne_zero hQeq hgy hΔ₁ hns rfl,
       Affine.Point.zero_def]
@@ -286,7 +282,6 @@ theorem isoTarget_even_step (M : ℕ) (hM : 0 < M)
       · rw [hp₁, WeierstrassCurve.veluPointMap2_some_of_ne two_ne_zero hQeq hgy hΔ₁ h hx,
           Affine.Point.zero_def] at hP
         cases hP
-
   have hg₁ord : addOrderOf (p₁ g) = M := by
     refine (addOrderOf_eq_iff hM).mpr ⟨?_, ?_⟩
     · rw [← map_nsmul, hQ, hp₁Q]
@@ -304,7 +299,6 @@ theorem isoTarget_even_step (M : ℕ) (hM : 0 < M)
         have hdvd := addOrderOf_dvd_of_nsmul_eq_zero hsub
         rw [hg] at hdvd
         exact absurd (Nat.le_of_dvd (by omega) hdvd) (by omega)
-
   have hgx : W.veluGx x₀ y₀ ∈ L := veluGx_mem W L h₁ h₂ h₄ hx₀L hy₀L
   have hcoord₁ : ∀ (k : ℕ) (x y : F) (h : (W.veluQuotient2 x₀ y₀).toAffine.Nonsingular x y),
       k • p₁ g = Point.some x y h → x ∈ L ∧ y ∈ L := by
@@ -327,7 +321,6 @@ theorem isoTarget_even_step (M : ℕ) (hM : 0 < M)
         · rw [← hye]; unfold WeierstrassCurve.velu2Y
           exact sub_mem hyL (div_mem (mul_mem hgx (sub_mem (add_mem (mul_mem h₁ (sub_mem hxL hx₀L))
             hyL) hy₀L)) (pow_mem (sub_mem hxL hx₀L) 2))
-
   have hb₂ : W.b₂ ∈ L := by
     unfold WeierstrassCurve.b₂
     have h4 : (4 : F) ∈ L := by simp
@@ -340,7 +333,6 @@ theorem isoTarget_even_step (M : ℕ) (hM : 0 < M)
     rw [WeierstrassCurve.veluQuotient2_a₆]
     have h7 : (7 : F) ∈ L := by simp
     exact sub_mem (sub_mem h₆ (mul_mem hb₂ hgx)) (mul_mem h7 (mul_mem hx₀L hgx))
-
   obtain ⟨T₂⟩ := ih (W.veluQuotient2 x₀ y₀) L
     (by rw [WeierstrassCurve.veluQuotient2_a₁]; exact h₁)
     (by rw [WeierstrassCurve.veluQuotient2_a₂]; exact h₂)
@@ -352,7 +344,6 @@ theorem isoTarget_even_step (M : ℕ) (hM : 0 < M)
   have hN₂ : NormFormulaAlong F T₂.ι T₂.hfin := normFormulaAlong_of_elliptic T₂.ι T₂.hfin
   set p₂ := pointMapOfPushforward T₂.ι T₂.hι T₂.hfin hN₂ with hp₂_def
   have hker₂ : p₂.ker = AddSubgroup.zmultiples (p₁ g) := T₂.ker_eq hN₂
-
   have hι : (ι₁.comp T₂.ι).toRingHom.IsIntegral := RingHom.IsIntegral.trans _ _ T₂.hι hι₁
   have hfin : FiniteAlong F (ι₁.comp T₂.ι) := finiteAlong_comp T₂.ι ι₁ T₂.hfin hfin₁
   have hker : ∀ hN : NormFormulaAlong F (ι₁.comp T₂.ι) hfin,
@@ -410,7 +401,6 @@ theorem main {N : ℕ} [NeZero N] (data : ModularCurve.ModularPolynomialData N)
     (r : F) (hr : (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom F) W.j)).IsRoot r) :
     r ∈ L := by
   classical
-
   have : IsDedekindDomain W.toAffine.CoordinateRing := CoordinateRing.isDedekindDomain W
   obtain ⟨gW, hcW, haW⟩ := exists_genusOnePlaceGate_isCentred_and_abelTheorem (W := W.toAffine)
   let := gW
@@ -425,7 +415,6 @@ theorem main {N : ℕ} [NeZero N] (data : ModularCurve.ModularPolynomialData N)
   have hNK : ((N : ℕ) : F) ≠ 0 := Nat.cast_ne_zero.mpr (NeZero.ne N)
   set Φj := data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom F) W.j) with hΦj
   have hΦjm : Φj.Monic := data.monic.map _
-
   let B := {H : AddSubgroup W.toAffine.Point // IsAddCyclic H ∧ Nat.card H = N}
   have hBcard : Nat.card B = ModularCurve.dedekindPsi N :=
     WeierstrassCurve.natCard_addSubgroup_isAddCyclic_card_eq_dedekindPsi_of_isAlgClosed
@@ -437,7 +426,6 @@ theorem main {N : ℕ} [NeZero N] (data : ModularCurve.ModularPolynomialData N)
     · simp [hN0]
   have : Finite B := Nat.finite_of_card_ne_zero (hBcard ▸ hψpos.ne')
   have : Fintype B := Fintype.ofFinite _
-
   have hgen : ∀ H : B, ∃ g : W.toAffine.Point, AddSubgroup.zmultiples g = H.1 ∧ addOrderOf g = N :=
     fun H => exists_generator_of_isAddCyclic H.1 H.2.1 H.2.2
   choose gen hgenH hgenord using hgen
@@ -446,15 +434,12 @@ theorem main {N : ℕ} [NeZero N] (data : ModularCurve.ModularPolynomialData N)
     intro H k x y h hk
     apply htors
     rw [← hk, smul_comm, (hgenord H ▸ addOrderOf_nsmul_eq_zero (gen H) : N • gen H = 0), smul_zero]
-
   let T : ∀ H : B, IsoTarget W (gen H) L := fun H =>
     Classical.choice (exists_isoTarget N W L h₁ h₂ h₃ h₄ h₆ (gen H) hN0 (hgenord H) (hcoord H))
   let jH : B → F := fun H =>
     haveI := (T H).ell
     (T H).V.j
-
   have hjHmem : ∀ H : B, jH H ∈ L := fun H => (T H).j_mem
-
   have hjHroot : ∀ H : B, Φj.IsRoot (jH H) := by
     intro H
     let := (T H).gate
@@ -469,7 +454,6 @@ theorem main {N : ℕ} [NeZero N] (data : ModularCurve.ModularPolynomialData N)
       rw [hker, Nat.card_zmultiples, hgenord]
     exact WeierstrassCurve.Affine.eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward
       F W.toAffine (T H).V.toAffine (T H).ι (T H).hι (T H).hfin hN' N hcyc hcard data
-
   have hjHinj : Function.Injective jH := by
     intro H H' hjeq
     let := (T H).gate
@@ -492,7 +476,6 @@ theorem main {N : ℕ} [NeZero N] (data : ModularCurve.ModularPolynomialData N)
       hN₂ hcard hjeq
     rw [hker, hker'] at heq
     exact Subtype.ext ((hgenH H).symm.trans (heq.trans (hgenH H')))
-
   have hJcard : (Finset.univ.image jH).card = ModularCurve.dedekindPsi N := by
     rw [Finset.card_image_of_injective _ hjHinj, Finset.card_univ, ← Nat.card_eq_fintype_card,
       hBcard]
@@ -508,7 +491,6 @@ theorem main {N : ℕ} [NeZero N] (data : ModularCurve.ModularPolynomialData N)
           rw [hΦj, ← data.natDegree_eq]
           exact ModularCurve.card_roots_fibrePoly_of_monic (K := F) data.monic W.j
       _ = (Finset.univ.image jH).card := hJcard.symm
-
   have hrmem : r ∈ Φj.roots.toFinset := by
     rw [Multiset.mem_toFinset, Polynomial.mem_roots hΦjm.ne_zero]; exact hr
   rw [hroots] at hrmem
@@ -532,14 +514,12 @@ theorem solution
     (hr : (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (HahnSeries ℚ (AlgebraicClosure ℚ))) W.j)).IsRoot r) :
     r ∈ L := by
   by_cases hodd : Odd N
-  ·
-    exact ModularCurve.ModularPolynomialData.mem_of_isRoot_map_j_of_transcendental_of_odd hodd data W
+  · exact ModularCurve.ModularPolynomialData.mem_of_isRoot_map_j_of_transcendental_of_odd hodd data W
       ht L h₁ h₂ h₃ h₄ h₆ htors r hr
   · have : IsAlgClosed (HahnSeries ℚ (AlgebraicClosure ℚ)) := HahnSeries.isAlgClosed_rat
     have : CharZero (HahnSeries ℚ (AlgebraicClosure ℚ)) :=
       (RingHom.charZero_iff (HahnSeries.C (R := AlgebraicClosure ℚ) (Γ := ℚ)).injective).mp
         inferInstance
-
     have ht' : @Transcendental ℚ (HahnSeries ℚ (AlgebraicClosure ℚ)) _ _
         DivisionRing.toRatAlgebra W.j := by
       convert ht; exact Subsingleton.elim _ _

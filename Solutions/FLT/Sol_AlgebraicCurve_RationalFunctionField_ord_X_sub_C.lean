@@ -128,7 +128,6 @@ theorem exists_sub_algebraMap_intDegree_neg {x : RatFunc K}
   have hden0 : x.denom ≠ 0 := x.denom_ne_zero
   rcases lt_or_eq_of_le hdeg with hlt | heq
   · exact ⟨0, Or.inr (by simpa using hlt)⟩
-
   have hndeg : x.num.natDegree = x.denom.natDegree := by
     have h2 := heq
     rw [RatFunc.intDegree, sub_eq_zero] at h2
@@ -152,7 +151,6 @@ theorem exists_sub_algebraMap_intDegree_neg {x : RatFunc K}
       (IsFractionRing.injective K[X] (RatFunc K))).mpr hnz)
     ((map_ne_zero_iff _ (IsFractionRing.injective K[X] (RatFunc K))).mpr hden0),
     RatFunc.intDegree_polynomial, RatFunc.intDegree_polynomial, sub_neg]
-
   have hCdeg : (Polynomial.C c * x.denom).degree = x.denom.degree := by
     rw [Polynomial.degree_mul, Polynomial.degree_C hc0, zero_add]
   have hdegeq : x.num.degree = (Polynomial.C c * x.denom).degree := by
@@ -268,18 +266,14 @@ theorem single_add_single_apply_eq_ord {p : K[X]} (hp : Irreducible p)
   have hp0 : p ≠ 0 := hp.ne_zero
   rw [Finsupp.add_apply]
   rcases eq_ofHeightOneSpectrum_or_eq_placeInfty v with ⟨w, rfl⟩ | rfl
-  ·
-    rw [Finsupp.single_eq_of_ne (Ne.symm (placeInfty_ne_ofHeightOneSpectrum K w)), add_zero]
+  · rw [Finsupp.single_eq_of_ne (Ne.symm (placeInfty_ne_ofHeightOneSpectrum K w)), add_zero]
     by_cases hcase :
         Place.ofHeightOneSpectrum (K := K) (F := RatFunc K) w = finitePlace K hp
-    ·
-      rw [hcase, Finsupp.single_eq_same]
+    · rw [hcase, Finsupp.single_eq_same]
       exact (ord_ofHeightOneSpectrum_of_span (heightOneSpectrumOfIrreducible K hp) hp0
         (heightOneSpectrumOfIrreducible_asIdeal K hp)).symm
-    ·
-      rw [Finsupp.single_eq_of_ne hcase]
+    · rw [Finsupp.single_eq_of_ne hcase]
       refine (ord_ofHeightOneSpectrum_eq_zero_of_notMem w hp0 fun hmem => hcase ?_).symm
-
       have hspan : Ideal.span {p} = w.asIdeal :=
         (PrincipalIdealRing.isMaximal_of_irreducible hp).eq_of_le w.isPrime.ne_top
           ((Ideal.span_singleton_le_iff_mem _).mpr hmem)
@@ -287,8 +281,7 @@ theorem single_add_single_apply_eq_ord {p : K[X]} (hp : Irreducible p)
         HeightOneSpectrum.ext
           (hspan.symm.trans (heightOneSpectrumOfIrreducible_asIdeal K hp).symm)
       rw [hwp, finitePlace_def]
-  ·
-    rw [Finsupp.single_eq_of_ne
+  · rw [Finsupp.single_eq_of_ne
         (show placeInfty K ≠ finitePlace K hp from
           placeInfty_ne_ofHeightOneSpectrum K (heightOneSpectrumOfIrreducible K hp)),
       Finsupp.single_eq_same, zero_add]
@@ -349,30 +342,25 @@ theorem ord_placeOfPoint_algebraMap_eq_mul (a : K) {q : K[X]} (hq : q ≠ 0) :
     (placeOfPoint K a).ord (algebraMap K[X] (RatFunc K) q)
       = (rootMultiplicity a q : ℤ)
           * (placeOfPoint K a).ord (algebraMap K[X] (RatFunc K) (X - C a)) := by
-
   obtain ⟨r, hr⟩ := pow_rootMultiplicity_dvd q a
   set m : ℕ := rootMultiplicity a q with hm
   have hXa : (X : K[X]) - C a ≠ 0 := X_sub_C_ne_zero a
   have hr0 : r ≠ 0 := by
     rintro rfl
     exact hq (by simpa using hr)
-
   have hndvd : ¬((X : K[X]) - C a) ∣ r := by
     intro ⟨s, hs⟩
     have : (X - C a) ^ (m + 1) ∣ q := ⟨s, by rw [hr, hs]; ring⟩
     have := (le_rootMultiplicity_iff hq).mpr this
     omega
-
   have hinj := IsFractionRing.injective K[X] (RatFunc K)
   have hXa' : algebraMap K[X] (RatFunc K) (X - C a) ≠ 0 := (map_ne_zero_iff _ hinj).mpr hXa
   have hr0' : algebraMap K[X] (RatFunc K) r ≠ 0 := (map_ne_zero_iff _ hinj).mpr hr0
   have hpow' : algebraMap K[X] (RatFunc K) ((X - C a) ^ m) ≠ 0 :=
     (map_ne_zero_iff _ hinj).mpr (pow_ne_zero m hXa)
-
   have hordr : (placeOfPoint K a).ord (algebraMap K[X] (RatFunc K) r) = 0 := by
     by_contra hcon
     exact hndvd (((ord_finitePlace_ne_zero_iff K (irreducible_X_sub_C a) hr0).mp) hcon)
-
   calc (placeOfPoint K a).ord (algebraMap K[X] (RatFunc K) q)
       = (placeOfPoint K a).ord (algebraMap K[X] (RatFunc K) ((X - C a) ^ m)
           * algebraMap K[X] (RatFunc K) r) := by rw [← map_mul, ← hr]
@@ -402,19 +390,15 @@ theorem ord_placeOfPoint_X_sub_C (a : K) :
     (placeOfPoint K a).ord (algebraMap K[X] (RatFunc K) (X - C a)) = 1 := by
   set v := placeOfPoint K a with hv
   set n : ℤ := v.ord (algebraMap K[X] (RatFunc K) (X - C a)) with hn
-
   obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible v.toValuationSubring
   have hπ0 : (π : RatFunc K) ≠ 0 := by
     simpa using hπ.ne_zero
   have h1 : v.ord (π : RatFunc K) = 1 := v.ord_coe_irreducible hπ
-
   have hdvd : n ∣ 1 := h1 ▸ dvd_ord_placeOfPoint a hπ0
-
   have hmem : algebraMap K[X] (RatFunc K) (X - C a) ∈ v.toValuationSubring := by
     rw [hv, placeOfPoint_eq_ofHeightOneSpectrum]
     exact algebraMap_mem_ofHeightOneSpectrum K _ _
   have hnonneg : 0 ≤ n := v.ord_nonneg_of_mem hmem
-
   rcases Int.isUnit_iff.mp (isUnit_of_dvd_one hdvd) with h | h
   · exact h
   · omega
@@ -428,13 +412,11 @@ variable (K)
 theorem exists_eq_placeOfPoint [IsAlgClosed K] (w : HeightOneSpectrum K[X]) :
     ∃ a : K, Place.ofHeightOneSpectrum (K := K) (F := RatFunc K) w = placeOfPoint K a := by
   obtain ⟨p, hp, hwp⟩ := exists_irreducible_span K w
-
   have hdeg : p.degree ≠ 0 := by
     rw [IsAlgClosed.degree_eq_one_of_irreducible K hp]
     exact one_ne_zero
   obtain ⟨a, ha⟩ := IsAlgClosed.exists_root p hdeg
   refine ⟨a, ?_⟩
-
   have hassoc : Associated ((X : K[X]) - C a) p :=
     (irreducible_X_sub_C a).associated_of_dvd hp (dvd_iff_isRoot.mpr ha)
   have hideal : w = heightOneSpectrumOfIrreducible K (irreducible_X_sub_C a) :=
@@ -825,7 +807,6 @@ theorem exists_algebraMap_of_forall_ord_eq_zero {g : RatFunc K} (hg : g ≠ 0)
   have hsplit : g = algebraMap K[X] (RatFunc K) g.num
       * (algebraMap K[X] (RatFunc K) g.denom)⁻¹ := by
     rw [← div_eq_mul_inv, g.num_div_denom]
-
   have hkey : ∀ p : K[X], Irreducible p → ¬p ∣ g.num ∧ ¬p ∣ g.denom := by
     intro p hpirr
     have hord : (finitePlace K hpirr).ord (algebraMap K[X] (RatFunc K) g.num)
@@ -929,7 +910,6 @@ theorem reciprocity_linear (b : K) :
     · refine (reciprocity_of_forall_ord_eq_zero hLb hf fun v => ?_).symm
       rw [← principalDivisor_apply hf v, Finsupp.support_eq_empty.mp hempty]
       rfl
-
     have hsum := sum_ord_eq_zero hf
     have hexpos : ∃ v ∈ (principalDivisor hf).support, 0 < v.ord f := by
       by_contra hcon
@@ -965,7 +945,6 @@ theorem reciprocity_linear (b : K) :
       · exact h
       · rw [h, hinf] at hvn
         exact absurd hvn (lt_irrefl 0)
-
     have hab : a ≠ b := by
       rintro rfl
       rw [hb] at hvp
@@ -978,7 +957,6 @@ theorem reciprocity_linear (b : K) :
       intro h
       rw [h] at hvp
       omega
-
     have hLa : algebraMap K[X] (RatFunc K) (X - C a) ≠ 0 :=
       algebraMap_polynomial_ne_zero (X_sub_C_ne_zero a)
     have hLa₀ : algebraMap K[X] (RatFunc K) (X - C a₀) ≠ 0 :=
@@ -993,7 +971,6 @@ theorem reciprocity_linear (b : K) :
     set m : ℤ := (placeOfPoint K a).ord f with hm
     have hrm_ne : (algebraMap K[X] (RatFunc K) (X - C a)
         / algebraMap K[X] (RatFunc K) (X - C a₀)) ^ m ≠ 0 := zpow_ne_zero m hrne
-
     have hf' : f / (algebraMap K[X] (RatFunc K) (X - C a)
         / algebraMap K[X] (RatFunc K) (X - C a₀)) ^ m ≠ 0 := div_ne_zero hf hrm_ne
     have hord_f' : ∀ v : Place K (RatFunc K),
@@ -1002,7 +979,6 @@ theorem reciprocity_linear (b : K) :
           = v.ord f - m * (Finsupp.single (placeOfPoint K a) (1 : ℤ)
               + Finsupp.single (placeOfPoint K a₀) (-1 : ℤ)) v := fun v => by
       rw [ord_div_zpow v hf hrne m, hord_r v]
-
     have hf'_inf : (placeInfty K).ord (f / (algebraMap K[X] (RatFunc K) (X - C a)
         / algebraMap K[X] (RatFunc K) (X - C a₀)) ^ m) = 0 := by
       rw [hord_f', hinf, Finsupp.add_apply,
@@ -1024,7 +1000,6 @@ theorem reciprocity_linear (b : K) :
       rw [hord_f', Finsupp.add_apply, Finsupp.single_eq_same,
         Finsupp.single_eq_of_ne haa₀, ← hm]
       ring
-
     have hsupp' : (principalDivisor hf').support
         ⊆ (principalDivisor hf).support.erase (placeOfPoint K a) := by
       intro v hv
@@ -1049,7 +1024,6 @@ theorem reciprocity_linear (b : K) :
       have h1 := Finset.card_le_card hsupp'
       rw [Finset.card_erase_of_mem hvp_mem] at h1
       omega
-
     have hd_r_Lb : ∀ v : Place K (RatFunc K),
         v.ord (algebraMap K[X] (RatFunc K) (X - C a)
             / algebraMap K[X] (RatFunc K) (X - C a₀)) = 0
@@ -1078,7 +1052,6 @@ theorem reciprocity_linear (b : K) :
       rcases eq_or_ne v (placeInfty K) with rfl | hvinf
       · exact Or.inl hf'_inf
       · exact Or.inr (ord_X_sub_C_eq_zero_of_ne b hvb hvinf)
-
     have hcross_pow :
         Divisor.evalFun ((algebraMap K[X] (RatFunc K) (X - C a)
             / algebraMap K[X] (RatFunc K) (X - C a₀)) ^ m)
@@ -1102,7 +1075,6 @@ theorem reciprocity_linear (b : K) :
         = Divisor.evalFun (algebraMap K[X] (RatFunc K) (X - C b))
             (principalDivisor (mul_ne_zero (zpow_ne_zero m hrne) hf')) :=
       reciprocity_mul_left (zpow_ne_zero m hrne) hf' hLb hd_rm_Lb hd_f'_Lb hcross_pow hih
-
     have hfeq : f = (algebraMap K[X] (RatFunc K) (X - C a)
         / algebraMap K[X] (RatFunc K) (X - C a₀)) ^ m
         * (f / (algebraMap K[X] (RatFunc K) (X - C a)
@@ -1125,7 +1097,6 @@ theorem reciprocity_of_ord_placeInfty_eq_zero :
       (∀ v : Place K (RatFunc K), v.ord f = 0 ∨ v.ord g = 0) →
       ((principalDivisor hg).support.erase (placeInfty K)).card ≤ n →
       Divisor.evalFun f (principalDivisor hg) = Divisor.evalFun g (principalDivisor hf) := by
-
   have hbase : ∀ (f g : RatFunc K) (hf : f ≠ 0) (hg : g ≠ 0),
       (principalDivisor hg).support.erase (placeInfty K) = ∅ →
       Divisor.evalFun f (principalDivisor hg) = Divisor.evalFun g (principalDivisor hf) := by
@@ -1157,7 +1128,6 @@ theorem reciprocity_of_ord_placeInfty_eq_zero :
     rcases Finset.eq_empty_or_nonempty
       ((principalDivisor hg).support.erase (placeInfty K)) with hempty | hne
     · exact hbase f g hf hg hempty
-
     obtain ⟨vb, hvb⟩ := hne
     rw [Finset.mem_erase] at hvb
     obtain ⟨b, rfl⟩ : ∃ x : K, vb = placeOfPoint K x := by
@@ -1170,7 +1140,6 @@ theorem reciprocity_of_ord_placeInfty_eq_zero :
       algebraMap_polynomial_ne_zero (X_sub_C_ne_zero b)
     set m : ℤ := (placeOfPoint K b).ord g with hm
     have hLbm : (algebraMap K[X] (RatFunc K) (X - C b)) ^ m ≠ 0 := zpow_ne_zero m hLb
-
     have hg' : g / (algebraMap K[X] (RatFunc K) (X - C b)) ^ m ≠ 0 := div_ne_zero hg hLbm
     have hord_g' : ∀ v : Place K (RatFunc K),
         v.ord (g / (algebraMap K[X] (RatFunc K) (X - C b)) ^ m)
@@ -1180,7 +1149,6 @@ theorem reciprocity_of_ord_placeInfty_eq_zero :
         (g / (algebraMap K[X] (RatFunc K) (X - C b)) ^ m) = 0 := by
       rw [hord_g', ord_X_sub_C_placeOfPoint_self, ← hm]
       ring
-
     have hsupp' : (principalDivisor hg').support.erase (placeInfty K)
         ⊆ ((principalDivisor hg).support.erase (placeInfty K)).erase (placeOfPoint K b) := by
       intro v hv
@@ -1200,7 +1168,6 @@ theorem reciprocity_of_ord_placeInfty_eq_zero :
       have h1 := Finset.card_le_card hsupp'
       rw [Finset.card_erase_of_mem (Finset.mem_erase.mpr hvb)] at h1
       omega
-
     have hd_f_Lb : ∀ v : Place K (RatFunc K),
         v.ord f = 0 ∨ v.ord (algebraMap K[X] (RatFunc K) (X - C b)) = 0 := by
       intro v
@@ -1220,7 +1187,6 @@ theorem reciprocity_of_ord_placeInfty_eq_zero :
       · refine Or.inr ?_
         rw [hord_g' v, (hd v).resolve_left hv, (hd_f_Lb v).resolve_left hv, mul_zero,
           sub_zero]
-
     have hlin :
         Divisor.evalFun f (principalDivisor hLb)
           = Divisor.evalFun (algebraMap K[X] (RatFunc K) (X - C b)) (principalDivisor hf) :=
@@ -1240,7 +1206,6 @@ theorem reciprocity_of_ord_placeInfty_eq_zero :
           = Divisor.evalFun ((algebraMap K[X] (RatFunc K) (X - C b)) ^ m
               * (g / (algebraMap K[X] (RatFunc K) (X - C b)) ^ m)) (principalDivisor hf) :=
       reciprocity_mul_right hf hLbm hg' hd_f_Lbm hd_f_g' hlin_pow hih
-
     have hgeq : g = (algebraMap K[X] (RatFunc K) (X - C b)) ^ m
         * (g / (algebraMap K[X] (RatFunc K) (X - C b)) ^ m) := by
       rw [mul_comm, div_mul_cancel₀ _ hLbm]

@@ -52,7 +52,6 @@ private theorem ψ_mem_maximalIdeal {z : 𝓞 (AlgebraicClosure ℚ)} (hz : z �
     ψ hA z ∈ IsLocalRing.maximalIdeal A := by
   rw [IsLocalRing.mem_maximalIdeal, mem_nonunits_iff]
   rintro ⟨u, hu⟩
-
   have hinvA : ((u⁻¹ : Aˣ) : A).1 ∈ A := ((u⁻¹ : Aˣ) : A).2
   obtain ⟨s, hs, a, hsa⟩ := (hA _).1 hinvA
   apply hs
@@ -111,13 +110,11 @@ private theorem smul_residue {τ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClo
     (y : IsLocalRing.ResidueField A) :
     (⟨τ, hτ⟩ : A.decompositionSubgroup ℚ) • y = y ^ ℓ := by
   set g : A.decompositionSubgroup ℚ := ⟨τ, hτ⟩
-
   have key : ∀ x : 𝓞 (AlgebraicClosure ℚ),
       g • IsLocalRing.residue A (ψ hA x) = IsLocalRing.residue A (ψ hA x) ^ ℓ := fun x => by
     rw [← IsLocalRing.ResidueField.residue_smul, smul_ψ hA hτ, ← map_pow, ← map_pow, ← sub_eq_zero,
       ← map_sub, IsLocalRing.residue_eq_zero_iff, ← map_sub]
     exact ψ_mem_maximalIdeal hA (hfrob x)
-
   obtain ⟨r, rfl⟩ := Ideal.Quotient.mk_surjective y
   change g • IsLocalRing.residue A r = IsLocalRing.residue A r ^ ℓ
   obtain ⟨s, hs, a, hsa⟩ := (hA _).1 r.2

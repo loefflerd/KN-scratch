@@ -45,7 +45,6 @@ open _root_.ModularCurve _root_.P2MW.S_ModularCurve_minpoly_jqN_eq_toAdjoin.Modu
 theorem solution {N : ℕ} [NeZero N] (data : ModularPolynomialData N) (h : PhiIrreducible data) : minpoly (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) (jqN N) = data.toAdjoin :=
   ModularCurve.minpoly_jqN_eq_toAdjoin data h
 
-
 end S_ModularCurve_minpoly_jqN_eq_toAdjoin
 end P2MW
 export P2MW.S_ModularCurve_minpoly_jqN_eq_toAdjoin (solution)

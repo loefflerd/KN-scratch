@@ -24,7 +24,6 @@ theorem solution
   classical
   set E := IntermediateField.adjoin k ({x} : Set F) with hE
   have : FiniteDimensional ↥E F := hfin
-
   let e : RatFunc k ≃ₐ[k] ↥E := RatFunc.algEquivOfTranscendental x hx
   let algRE : Algebra (RatFunc k) ↥E := e.toAlgHom.toRingHom.toAlgebra
   let algRF : Algebra (RatFunc k) F := ((algebraMap ↥E F).comp e.toAlgHom.toRingHom).toAlgebra
@@ -35,11 +34,9 @@ theorem solution
   have : IsScalarTower k (RatFunc k) ↥E := IsScalarTower.of_algebraMap_eq (fun c => by
     change algebraMap k ↥E c = e (algebraMap k (RatFunc k) c)
     rw [e.commutes])
-
   have : Module.Finite (RatFunc k) ↥E :=
     Module.Finite.of_surjective (Algebra.linearMap (RatFunc k) ↥E) e.surjective
   have : FiniteDimensional (RatFunc k) F := Module.Finite.trans ↥E F
-
   have : Algebra.IsSeparable (RatFunc k) ↥E := by
     refine ⟨fun y => ?_⟩
     obtain ⟨r, rfl⟩ := e.surjective y

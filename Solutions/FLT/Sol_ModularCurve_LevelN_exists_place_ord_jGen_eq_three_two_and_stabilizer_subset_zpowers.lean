@@ -161,7 +161,6 @@ p2m_export "AlgebraicCurve.Place" "mem_iff_ord_nonneg'"
 theorem eq_of_ord_algebraMap_eq {A : Type*} [CommRing A] [IsDomain A] [Algebra A F] [IsFractionRing A F]
     (v w : Place K F)
     (h : ∀ a : A, algebraMap A F a ≠ 0 → v.ord (algebraMap A F a) = w.ord (algebraMap A F a)) : v = w := by
-
   have hall : ∀ x : F, x ≠ 0 → v.ord x = w.ord x := by
     intro x hx
     obtain ⟨a, b, hb, rfl⟩ := IsFractionRing.div_surjective (A := A) x
@@ -211,10 +210,8 @@ theorem denom_ne_zero' {z : ℂ} (hz : 0 < z.im) : ent γ 1 0 * z + ent γ 1 1 �
   have him := congrArg Complex.im h
   rw [Complex.add_im, Complex.mul_im, ent_eq, ent_eq] at him
   simp only [Complex.intCast_re, Complex.intCast_im, zero_mul, add_zero, Complex.zero_im] at him
-
   rcases mul_eq_zero.mp him with hc | hi
-  ·
-    have hc' : (γ 1 0 : ℤ) = 0 := by exact_mod_cast hc
+  · have hc' : (γ 1 0 : ℤ) = 0 := by exact_mod_cast hc
     have hd := det_ent γ
     rw [ent_eq γ 1 0, hc', Int.cast_zero, mul_zero, sub_zero] at hd
     rw [ent_eq γ 1 0, hc', Int.cast_zero, zero_mul, zero_add] at h
@@ -630,12 +627,10 @@ theorem core
   obtain ⟨W, e, he, hW⟩ := ModularCurve.LevelN.exists_place_analyticOrderAt_eq_mul_ord M K τ₀
   obtain ⟨hpos, hmul⟩ := ord_jsub_bounds M K τ₀ W e he hW
   set a := W.ord (jK M K - algebraMap ℂ K (LevelN.jAnalytic τ₀)) with ha
-
   have hφfix : ∀ z ∈ ℂ⟮jK M K⟯, σhom γ₀ z = z := fun z hz => by
     rw [← hfixed] at hz
     exact (IntermediateField.mem_fixedField_iff _ z).mp hz _ ⟨γ₀, rfl⟩
   set g₀ := liftGal K (jK M K) (σhom γ₀) hφfix with hg₀
-
   have hfixW : σhom γ₀ • W = W := by
     refine Place.eq_of_ord_algebraMap_eq (A := LevelN.ring M) _ _ fun b hb => ?_
     have hb' : (b : ℍ → ℂ) ≠ 0 := by
@@ -645,18 +640,15 @@ theorem core
       hW b b.2 hb'
   have hg₀D : g₀ ∈ decomp K (jK M K) W := by
     rw [mem_decomp, restrictScalars_liftGal, ofAlgAut_smul, hfixW]
-
   have hordg₀ : orderOf g₀ = p := by
     rw [← orderOf_injective (rS K (jK M K)) (rS_injective K (jK M K)) g₀]
     show orderOf ((liftGal K (jK M K) (σhom γ₀) hφfix).restrictScalars ℂ) = p
     rw [restrictScalars_liftGal, hordp]
-
   have hDH := (AlgebraicCurve.Place.ord_restrictAlong_eq_natCard_algHom_of_isGalois ℂ (jK M K) (jK M K)
     (LevelN.jAnalytic τ₀) (AlgHom.id ℂ K) rfl hfin hgal (isIntegral_of_apply_eq K (jK M K) hfin) W hpos).1
   have hcardD : Nat.card (decomp K (jK M K) W) = Nat.card {σ : K ≃ₐ[ℂ⟮jK M K⟯] K //
       SemilinearAut.ofAlgAut (σ.restrictScalars ℂ) • W = W} :=
     Nat.card_congr (Equiv.subtypeEquivRight fun _ => Iff.rfl)
-
   have hdvd : p ∣ Nat.card (decomp K (jK M K) W) := hordg₀ ▸ Subgroup.orderOf_dvd_natCard _ hg₀D
   rw [hcardD, ← Int.natCast_dvd_natCast, ← hDH] at hdvd
   rw [← ha] at hdvd
@@ -668,7 +660,6 @@ theorem core
   have hpa : (p : ℤ) ≤ a := Int.le_of_dvd hpos hdvd
   have hap : a = p := le_antisymm hle hpa
   refine ⟨W, hap, fun g hg => ?_⟩
-
   have hzle : Subgroup.zpowers g₀ ≤ decomp K (jK M K) W := (Subgroup.zpowers_le).mpr hg₀D
   have hcardz : Nat.card (Subgroup.zpowers g₀) = p := by rw [Nat.card_zpowers, hordg₀]
   have hcardDp : Nat.card (decomp K (jK M K) W) = p := by

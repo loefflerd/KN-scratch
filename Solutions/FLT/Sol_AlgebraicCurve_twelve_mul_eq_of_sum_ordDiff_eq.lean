@@ -11,7 +11,6 @@ open AlgebraicCurve
 
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (t : F) (S₀ S₁ Sinf : Finset (Place K F)) (ψ : ℕ) (g : ℤ) (h₀ : ∀ v ∈ S₀, v.ordDiff (KaehlerDifferential.D K F t) = v.ord t - 1 ∧ 0 < v.ord t ∧ v.ord t ∣ 3) (h₁ : ∀ v ∈ S₁, v.ordDiff (KaehlerDifferential.D K F t) = v.ord (t - algebraMap K F 1728) - 1 ∧ 0 < v.ord (t - algebraMap K F 1728) ∧ v.ord (t - algebraMap K F 1728) ∣ 2) (hinf : ∀ v ∈ Sinf, v.ordDiff (KaehlerDifferential.D K F t) = v.ord t - 1 ∧ v.ord t < 0) (hψ₀ : ∑ v ∈ S₀, v.ord t = ψ) (hψ₁ : ∑ v ∈ S₁, v.ord (t - algebraMap K F 1728) = ψ) (hψinf : ∑ v ∈ Sinf, -v.ord t = ψ) (S : Finset (Place K F)) (hS : ∀ v, v ∈ S ↔ v ∈ S₀ ∨ v ∈ S₁ ∨ v ∈ Sinf) (hcan : ∑ v ∈ S, v.ordDiff (KaehlerDifferential.D K F t) = 2 * g - 2) : 12 * g = 12 + ψ - 3 * ((S₁.filter fun v => v.ord (t - algebraMap K F 1728) = 1).card : ℤ) - 4 * ((S₀.filter fun v => v.ord t = 1).card : ℤ) - 6 * (Sinf.card : ℤ) := by
   let : DecidableEq (Place K F) := Classical.decEq _
-
   have houter : Disjoint (S₀ ∪ S₁) Sinf := by
     rw [Finset.disjoint_left]
     intro v hv hvi
@@ -23,11 +22,9 @@ theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (t : F) (S₀ S
     · have h1 := (h₁ v h).1
       have h2 := (h₁ v h).2.1
       omega
-
   have hSeq : S = (S₀ ∪ S₁) ∪ Sinf := by
     ext v
     rw [hS v, Finset.mem_union, Finset.mem_union, or_assoc]
-
   have hov : ∀ v ∈ S₀ ∩ S₁, v.ordDiff (KaehlerDifferential.D K F t) = 0 := by
     intro v hv
     obtain ⟨hv0, hv1⟩ := Finset.mem_inter.mp hv
@@ -47,7 +44,6 @@ theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (t : F) (S₀ S
     rw [hzero] at h
     omega
   rw [hSeq, Finset.sum_union houter, hinner] at hcan
-
   have hE0 : (∑ v ∈ S₀, v.ordDiff (KaehlerDifferential.D K F t)) + (S₀.card : ℤ) = (ψ : ℤ) := by
     have hpt : ∀ v ∈ S₀, v.ordDiff (KaehlerDifferential.D K F t) + 1 = v.ord t := by
       intro v hv
@@ -74,7 +70,6 @@ theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (t : F) (S₀ S
     rw [Finset.sum_add_distrib, Finset.sum_add_distrib, Finset.sum_const, nsmul_eq_mul, mul_one] at hz
     have hneg := hψinf
     omega
-
   have key0 : ∀ v ∈ S₀.filter (fun v => ¬ v.ord t = 1), v.ord t = 3 := by
     intro v hv
     obtain ⟨hvS, hne⟩ := Finset.mem_filter.mp hv
@@ -93,7 +88,6 @@ theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (t : F) (S₀ S
     rw [Finset.sum_congr rfl key0, Finset.sum_const, nsmul_eq_mul]
   have hcards0 : (S₀.filter fun v => v.ord t = 1).card + (S₀.filter (fun v => ¬ v.ord t = 1)).card = S₀.card := by
     rw [Finset.card_filter_add_card_filter_not]
-
   have key1 : ∀ v ∈ S₁.filter (fun v => ¬ v.ord (t - algebraMap K F 1728) = 1), v.ord (t - algebraMap K F 1728) = 2 := by
     intro v hv
     obtain ⟨hvS, hne⟩ := Finset.mem_filter.mp hv

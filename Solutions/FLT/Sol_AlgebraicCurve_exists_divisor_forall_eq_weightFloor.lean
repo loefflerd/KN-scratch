@@ -34,7 +34,6 @@ theorem solution
   classical
   obtain ⟨Dj, hDj⟩ := DivexG.exists_divisor_ord K y
   obtain ⟨Dc, hDc⟩ := DivexG.exists_divisor_ord K (y - 1728)
-
   let R : Place K F → ℤ := fun w =>
     (if 0 < w.ord y then (2 * (m : ℤ) * w.ord y) / 3 else 0)
       + (if 0 < w.ord (y - 1728) then ((m : ℤ) * w.ord (y - 1728)) / 2 else 0)
@@ -48,7 +47,6 @@ theorem solution
     simp only [R, hmem.1, hmem.2, lt_irrefl, ite_false, add_zero]
   refine ⟨Finsupp.onFinset (Dj.support ∪ Dc.support) R hsupp, fun w => ?_⟩
   rw [Finsupp.onFinset_apply]
-
 
 end S_AlgebraicCurve_exists_divisor_forall_eq_weightFloor
 end P2MW

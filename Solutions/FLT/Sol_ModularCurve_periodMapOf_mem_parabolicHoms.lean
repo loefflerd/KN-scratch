@@ -38,7 +38,6 @@ theorem period_eq_zero {Γ : Subgroup SL(2, ℤ)} {F : ℍ → ℂ}
     (hlim : Tendsto (fun w : ℍ => F (δ • w)) atImInfty (𝓝 L)) (n : ℤ) (ε : SL(2, ℤ))
     (hε : ε = 1 ∨ ε = -1) (hγ : ε * (δ * ModularGroup.T ^ n * δ⁻¹) ∈ Γ) :
     hF.period ⟨_, hγ⟩ = 0 := by
-
   have hεact : ∀ z : ℍ, (ε : SL(2, ℤ)) • z = z := by
     intro z
     rcases hε with rfl | rfl

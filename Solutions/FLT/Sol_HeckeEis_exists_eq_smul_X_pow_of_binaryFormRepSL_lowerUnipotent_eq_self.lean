@@ -63,7 +63,6 @@ theorem solution {R : Type*} [CommRing R] [IsDomain R] (n : ℕ)
     ∃ c : R, (P : MvPolynomial (Fin 2) R) = c • MvPolynomial.X 1 ^ n :=
   HeckeEis.SolMain.A3 n hh hn g hg P hP
 
-
 end S_HeckeEis_exists_eq_smul_X_pow_of_binaryFormRepSL_lowerUnipotent_eq_self
 end P2MW
 export P2MW.S_HeckeEis_exists_eq_smul_X_pow_of_binaryFormRepSL_lowerUnipotent_eq_self (solution)

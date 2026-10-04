@@ -145,7 +145,6 @@ theorem solution {K : Type*} [Field K] {e : ℕ} (he : 0 < e) (c : K) :
     HasRamBound e (single (1 : ℚ) c) :=
   HahnSeries.hasRamBound_single_one he c
 
-
 end S_HahnSeries_hasRamBound_single_one
 end P2MW
 export P2MW.S_HahnSeries_hasRamBound_single_one (solution)

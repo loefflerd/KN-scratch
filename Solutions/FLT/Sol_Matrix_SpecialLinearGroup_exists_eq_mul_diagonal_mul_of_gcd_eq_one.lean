@@ -21,7 +21,6 @@ p2m_open "Matrix.SpecialLinearGroup Matrix"
 theorem exists_coprime_mul_add {a b d : ℕ} (hd : d ≠ 0) (hgcd : Nat.gcd a (Nat.gcd b d) = 1) :
     ∃ p : ℕ, Nat.Coprime (a * p + b) d := by
   classical
-
   refine ⟨∏ q ∈ d.primeFactors.filter (fun q => ¬ q ∣ b), q, ?_⟩
   set P := ∏ q ∈ d.primeFactors.filter (fun q => ¬ q ∣ b), q with hP
   apply Nat.Coprime.symm
@@ -31,7 +30,6 @@ theorem exists_coprime_mul_add {a b d : ℕ} (hd : d ≠ 0) (hgcd : Nat.gcd a (N
     rw [hP]
     first
       | rw [Prime.dvd_finsetProd_iff (Nat.prime_iff.mp hq)]
-
     constructor
     · rintro ⟨q', hq', hqq'⟩
       rw [Finset.mem_filter, Nat.mem_primeFactors] at hq'
@@ -40,8 +38,7 @@ theorem exists_coprime_mul_add {a b d : ℕ} (hd : d ≠ 0) (hgcd : Nat.gcd a (N
     · intro hqb
       exact ⟨q, Finset.mem_filter.mpr ⟨Nat.mem_primeFactors.mpr ⟨hq, hqd, hd⟩, hqb⟩, dvd_rfl⟩
   by_cases hqb : q ∣ b
-  ·
-    have hqa : ¬ q ∣ a := by
+  · have hqa : ¬ q ∣ a := by
       intro hqa
       have : q ∣ Nat.gcd a (Nat.gcd b d) := Nat.dvd_gcd hqa (Nat.dvd_gcd hqb hqd)
       rw [hgcd] at this
@@ -50,8 +47,7 @@ theorem exists_coprime_mul_add {a b d : ℕ} (hd : d ≠ 0) (hgcd : Nat.gcd a (N
     rcases (Nat.Prime.dvd_mul hq).mp hqaP with h | h
     · exact hqa h
     · exact (hqP.mp h) hqb
-  ·
-    have hqP' : q ∣ a * P := Dvd.dvd.mul_left (hqP.mpr hqb) a
+  · have hqP' : q ∣ a * P := Dvd.dvd.mul_left (hqP.mpr hqb) a
     exact hqb ((Nat.dvd_add_right hqP').mp hqab)
 
 theorem main {N a b d : ℕ} (hN : N ≠ 0) (had : a * d = N) (hgcd : Nat.gcd a (Nat.gcd b d) = 1) :
@@ -60,7 +56,6 @@ theorem main {N a b d : ℕ} (hN : N ≠ 0) (had : a * d = N) (hgcd : Nat.gcd a 
         * (γ₂ : Matrix (Fin 2) (Fin 2) ℤ) := by
   have hd : d ≠ 0 := fun h0 => hN (by rw [← had, h0, mul_zero])
   obtain ⟨p, hp⟩ := exists_coprime_mul_add hd hgcd
-
   set u : ℤ := (a : ℤ) * p + b with hu
   have hcop : IsCoprime u (d : ℤ) := by
     rw [hu]
@@ -68,15 +63,13 @@ theorem main {N a b d : ℕ} (hN : N ≠ 0) (had : a * d = N) (hgcd : Nat.gcd a 
     rw [← this, Int.isCoprime_iff_gcd_eq_one, Int.gcd_natCast_natCast]
     exact hp
   obtain ⟨s, t, hst⟩ := hcop
-
   have hN' : (N : ℤ) = a * d := by exact_mod_cast had.symm
   refine ⟨⟨!![-t, -u; s, -(d : ℤ)], ?_⟩, ⟨!![-1, (p : ℤ); -s * a, (p : ℤ) * s * a - 1], ?_⟩, ?_⟩
   · rw [Matrix.det_fin_two_of]
     linear_combination hst
   · rw [Matrix.det_fin_two_of]
     ring
-  ·
-    rw [Matrix.mul_fin_two, Matrix.mul_fin_two, hN']
+  · rw [Matrix.mul_fin_two, Matrix.mul_fin_two, hN']
     ext i j
     fin_cases i <;> fin_cases j
     · simp

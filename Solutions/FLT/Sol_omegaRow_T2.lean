@@ -249,19 +249,16 @@ theorem order_le_of_identity {p q d : ℂ → ℂ} {n m : ℕ} {C : ℕ → ℂ 
   obtain ⟨k, hk⟩ : ∃ k : ℕ, (k : ℕ∞) = analyticOrderAt p z :=
     ENat.ne_top_iff_exists.mp (ne_top_of_lt hlt)
   have hd_ord : analyticOrderAt d z = 0 := hd.analyticOrderAt_eq_zero.mpr hd0
-
   have hL : analyticOrderAt (p ^ (6 * n) * d ^ m) z = ((6 * n * k : ℕ) : ℕ∞) := by
     rw [analyticOrderAt_mul (hp.pow _) (hd.pow _), analyticOrderAt_pow hp, analyticOrderAt_pow hd,
       ← hk, hd_ord]
     simp only [nsmul_eq_mul, smul_zero, add_zero]
     push_cast
     ring
-
   have hq_ord : ((k + 1 : ℕ) : ℕ∞) ≤ analyticOrderAt q z := by
     rw [← hk] at hlt
     have := Order.add_one_le_of_lt hlt
     exact_mod_cast this
-
   have hR : ∀ i ∈ Finset.range n, ((6 * n * k + 6 : ℕ) : ℕ∞) ≤
       analyticOrderAt (C i * (p ^ (6 * i) * (q ^ 6 * d) ^ (n - i))) z := by
     intro i hi
@@ -352,7 +349,6 @@ theorem rankinCohen_E4_E6 :
   obtain ⟨RC, -, hRCq⟩ := ModularForm.exists_rankinCohen_one_qExpansion_eq
     (Γ := CongruenceSubgroup.Gamma0 1) (one_mem_strictPeriods_gamma0 1) g4 g6
   rw [hg4, hg6] at hRCq
-
   have hΓ : (𝒮ℒ : Subgroup (GL (Fin 2) ℝ)) =
       Subgroup.map (Matrix.SpecialLinearGroup.mapGL ℝ) (CongruenceSubgroup.Gamma0 1) := by
     rw [Gamma0_one_eq_top, ← MonoidHom.range_eq_map]
@@ -360,7 +356,6 @@ theorem rankinCohen_E4_E6 :
   have hZcoe : (Z : ℍ → ℂ) = (RC : ℍ → ℂ) := by
     first
     | rfl
-
   have hZq : qExpansion 1 (Z : ℍ → ℂ) =
       PowerSeries.C (4 : ℂ) * qExpansion 1 ⇑ModularForm.E₄ *
           PowerSeries.mk (fun n : ℕ => (n : ℂ) * (qExpansion 1 ⇑ModularForm.E₆).coeff n)
@@ -393,7 +388,6 @@ theorem rankinCohen_E4_E6 :
     have h1' := h1
     simp only [ModularFormClass.qCoeff] at this h1'
     rw [this, h1']
-
   have hL := congrArg (HahnSeries.ofPowerSeries ℤ ℂ) hZΔ
   rw [hZq] at hL
   simp only [map_sub, map_mul, HahnSeries.ofPowerSeries_C, ofPowerSeries_mk_mul] at hL
@@ -415,7 +409,6 @@ theorem thetaJ_mul_D : θ (𝐉) * ψ 𝔡 = -(ψ 𝔞 ^ 2 * ψ 𝔟) := by
   have H2' : ψ 𝔞 * ψ 𝔞 * ψ 𝔞 - ψ 𝔟 * ψ 𝔟 = 1728 * ψ 𝔡 := by
     rw [← A_cube_sub_B_sq]; ring
   have H1 := rankinCohen_E4_E6
-
   have H5 : ψ 𝔡 * θ (𝐉) + 𝐉 * θ (ψ 𝔡) = 3 * (ψ 𝔞) ^ 2 * θ (ψ 𝔞) := by
     have e := congrArg (ModularCurve.thetaL ℂ) H3
     simp only [theta_mul'] at e
@@ -431,7 +424,6 @@ theorem thetaJ_mul_D : θ (𝐉) * ψ 𝔡 = -(ψ 𝔞 ^ 2 * ψ 𝔟) := by
   have h2 : (2 : LaurentSeries ℂ) ≠ 0 := by
     rw [← map_ofNat (HahnSeries.C (Γ := ℤ) (R := ℂ)) 2]
     exact HahnSeries.C_ne_zero (by norm_num)
-
   have key : (2 * 1728 * ψ 𝔡) * (ψ 𝔡 * θ (𝐉) + ψ 𝔞 ^ 2 * ψ 𝔟) = 0 := by
     linear_combination (2 * 1728 * ψ 𝔡) * H5 - (2 * 1728 * θ (ψ 𝔡)) * H3
       + (2 * (ψ 𝔞 * ψ 𝔞 * ψ 𝔞)) * H6 - (6 * ψ 𝔞 ^ 2 * θ (ψ 𝔞)) * H2' + (ψ 𝔞 ^ 2 * ψ 𝔟) * H1

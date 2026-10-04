@@ -14,11 +14,9 @@ theorem WLight.weierstrassP_qExpansion_package :
     (∀ w : ℂ, 0 < w.im →
       ∑' n : ℤ, 1 / (w + n) ^ 2 =
         (2 * π * I) ^ 2 * ∑' m : ℕ, (m : ℂ) * cexp (2 * π * I * w) ^ m) ∧
-
     (∀ w : ℂ, w.im < 0 →
       ∑' n : ℤ, 1 / (w + n) ^ 2 =
         (2 * π * I) ^ 2 * ∑' m : ℕ, (m : ℂ) * cexp (-(2 * π * I * w)) ^ m) ∧
-
     (∀ z τ : ℂ, -τ.im < z.im → z.im < τ.im → z ∈ Complex.integerComplement →
       ∑' c : ℤ, ((∑' d : ℤ, 1 / ((z - c * τ) + d) ^ 2) - ∑' d : ℤ, 1 / (c * τ + d) ^ 2) =
         (2 * π * I) ^ 2 *
@@ -26,7 +24,6 @@ theorem WLight.weierstrassP_qExpansion_package :
             ∑' c : ℕ+, ∑' m : ℕ, (m : ℂ) *
               (cexp (2 * π * I * z) ^ m + (cexp (2 * π * I * z))⁻¹ ^ m - 2) *
                 cexp (2 * π * I * τ) ^ ((c : ℕ) * m))) ∧
-
     (∀ L : ℍ → PeriodPair, (∀ τ : ℍ, (L τ).ω₁ = (τ : ℂ) ∧ (L τ).ω₂ = 1) →
       ∀ N a₁ a₂ : ℕ, a₁ < N → a₂ < N → (a₁ ≠ 0 ∨ a₂ ≠ 0) →
         (∀ τ : ℍ, PeriodPair.weierstrassP (L τ) (((a₁ : ℂ) * τ + a₂) / N) =
@@ -42,7 +39,6 @@ theorem WLight.weierstrassP_qExpansion_package :
                   2 * cexp (2 * π * I * (τ : ℂ) / N) ^ ((p.1 : ℕ) * N * (p.2 : ℕ))))) ∧
         MDifferentiable 𝓘(ℂ) 𝓘(ℂ)
           (fun τ : ℍ => PeriodPair.weierstrassP (L τ) (((a₁ : ℂ) * τ + a₂) / N))) ∧
-
     (∀ L L' : PeriodPair, ∀ c : ℂ, L'.ω₁ = c * L.ω₁ → L'.ω₂ = c * L.ω₂ →
       ∀ z : ℂ, PeriodPair.weierstrassP L' (c * z) =
         c⁻¹ ^ 2 * PeriodPair.weierstrassP L z) := by sorry

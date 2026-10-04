@@ -63,16 +63,13 @@ theorem surjective_algebraMap_residueField {K F : Type*} [Field K] [Field F] [Al
     rw [eq_comm, ← sub_eq_zero, ← map_sub, IsLocalRing.residue_eq_zero_iff]
     exact hc
   by_cases halg : IsAlgebraic K (y : F)
-  ·
-    have hdeg := IsAlgClosed.degree_eq_one_of_irreducible K (minpoly.irreducible halg.isIntegral)
+  · have hdeg := IsAlgClosed.degree_eq_one_of_irreducible K (minpoly.irreducible halg.isIntegral)
     obtain ⟨c, hc⟩ := minpoly.mem_range_of_degree_eq_one K (y : F) hdeg
     refine ⟨c, ?_⟩
     have h0 : y - algebraMap K w.toValuationSubring c = 0 := Subtype.ext (by simp [← hc])
     rw [h0]
     exact zero_mem _
-  ·
-
-    have ht : Transcendental K (y : F) := halg
+  · have ht : Transcendental K (y : F) := halg
     have := AlgebraicCurve.isAlgebraic_adjoin_of_transcendental t ht
     by_contra hcon
     simp only [not_exists] at hcon
@@ -167,7 +164,6 @@ open AlgebraicCurve _root_.ModularCurve _root_.P2MW.S_ModularCurve_deg_eq_one_mo
 
 theorem solution (M : ℕ) [NeZero M] (w : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar M)) : w.deg = 1 :=
   ModularCurve.deg_eq_one_modularFunctionFieldBar M w
-
 
 end S_ModularCurve_deg_eq_one_modularFunctionFieldBar
 end P2MW

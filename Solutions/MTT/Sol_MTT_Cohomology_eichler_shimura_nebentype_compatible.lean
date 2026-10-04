@@ -150,7 +150,6 @@ lemma reflection_smul {R : Type*} [CommRing R] (c : R) (φ : (Cusp × Cusp) → 
     reflection (c • φ) = c • reflection φ := by
   funext D; simp [reflection]
 
-
 /-! ### `act` preserves homogeneity -/
 
 lemma actAlg_X_isHomogeneous (γ : Matrix (Fin 2) (Fin 2) ℤ) (i : Fin 2) :

@@ -31,7 +31,6 @@ private lemma differentiableOn_gfun : DifferentiableOn ℂ gfun (Metric.ball (0 
 
 private lemma discriminant_eq_qParam_mul_gfun (τ : ℍ) :
     ModularForm.discriminant τ = 𝕢 1 (τ : ℂ) * gfun (𝕢 1 (τ : ℂ)) := by
-
   rw [ModularForm.discriminant_eq_q_prod, gfun]
 
 private def qJ (τ : ℍ) : ℂ := 𝕢 1 (τ : ℂ) * (ModularForm.E₄ τ ^ 3 / ModularForm.discriminant τ)
@@ -162,7 +161,6 @@ private lemma qExpansion_qJ : qExpansion 1 qJ = jNum.map (Int.castRingHom ℂ) :
       ModularForm.coe_pow]
     rfl
   rw [hE3] at hmul
-
   have hinv : dedekindEtaUnit.map (Int.castRingHom ℂ) * dedekindEtaUnitInv.map (Int.castRingHom ℂ) = 1 := by
     rw [← map_mul, dedekindEtaUnit_mul_inv, map_one]
   calc qExpansion 1 qJ

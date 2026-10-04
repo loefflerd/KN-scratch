@@ -85,10 +85,8 @@ theorem solution (N : ℕ) [NeZero N] (k : ℕ) (hk : 4 ≤ k) (hke : Even k) :
   have hm : 1 ≤ m := by omega
   have hCD := ModularCurve.hasCanonicalDivisor_modularFunctionFieldBar N
   have hfinS := CuspForm.finiteDimensional_Gamma0 N (2 * (m : ℤ))
-
   obtain ⟨D, hdeg, hint⟩ :=
     ModularCurve.exists_divisor_degree_weight_and_isIntegral_of_mem_riemannRochSpace N m hm
-
   have hk4 : (2 * m / 4 : ℕ) = m / 2 := by omega
   have hLHS : (((2 * m : ℕ) : ℚ) - 1) * (ModularCurve.genusFormula N - 1) + ((2 * m / 4 : ℕ) : ℚ) * (ModularCurve.nuTwo N : ℚ)
         + ((2 * m / 3 : ℕ) : ℚ) * (ModularCurve.nuThree N : ℚ) + (((2 * m : ℕ) : ℚ) / 2 - 1) * (ModularCurve.cuspCount N : ℚ)
@@ -97,7 +95,6 @@ theorem solution (N : ℕ) [NeZero N] (k : ℕ) (hk : 4 ≤ k) (hke : Even k) :
     push_cast
     ring
   rw [hLHS]
-
   have hRR := ModularCurve.degree_add_one_sub_genusFF_le_finrank_riemannRochSpace N D
   have hg1 := ModularCurve.genus_eq_genusFF_modularFunctionFieldBar N
   have hg2 := ModularCurve.genus_modularFunctionFieldBar_eq_genusFormula N
@@ -110,20 +107,16 @@ theorem solution (N : ℕ) [NeZero N] (k : ℕ) (hk : 4 ≤ k) (hke : Even k) :
     exact_mod_cast hRR
   refine hRR'.trans ?_
   rw [show ((2 * m : ℕ) : ℤ) = 2 * (m : ℤ) by push_cast; ring]
-
   suffices key : Module.finrank (AlgebraicClosure ℚ) ↥(riemannRochSpace D)
       ≤ Module.finrank ℂ (CuspForm (CongruenceSubgroup.Gamma0 N) (2 * (m : ℤ))) by
     exact_mod_cast key
   by_cases hfin : Module.Finite (AlgebraicClosure ℚ) ↥(riemannRochSpace D)
   swap
   · rw [Module.finrank_of_not_finite hfin]; exact Nat.zero_le _
-
   let b := Module.finBasis (AlgebraicClosure ℚ) ↥(riemannRochSpace D)
   set r := Module.finrank (AlgebraicClosure ℚ) ↥(riemannRochSpace D) with hr
-
   have : Algebra.IsAlgebraic ℚ (AlgebraicClosure ℚ) := AlgebraicClosure.isAlgebraic ℚ
   let ι₀ : AlgebraicClosure ℚ →+* ℂ := (IsAlgClosed.lift : AlgebraicClosure ℚ →ₐ[ℚ] ℂ).toRingHom
-
   have hex : ∀ i : Fin r, ∃ f : CuspForm (CongruenceSubgroup.Gamma0 N) (2 * (m : ℤ)),
       HahnSeries.ofPowerSeries ℤ ℂ (UpperHalfPlane.qExpansion 1 f) =
         ModularCurve.coeffMap ι₀ (((b i : ↥(riemannRochSpace D)) : ↥(modularFunctionFieldBar N)) : LaurentSeries (AlgebraicClosure ℚ)) *
@@ -132,7 +125,6 @@ theorem solution (N : ℕ) [NeZero N] (k : ℕ) (hk : 4 ≤ k) (hke : Even k) :
     obtain ⟨h₁, h₂⟩ := hint ((b i : ↥(riemannRochSpace D)) : ↥(modularFunctionFieldBar N)) (b i).2
     exact ModularCurve.exists_cuspForm_qExpansion_eq_coeffMap_mul_thetaL_pow_of_isIntegral N m hm ι₀ _ h₁ h₂
   choose f hf using hex
-
   let v : Fin r → ℤ → AlgebraicClosure ℚ :=
     fun i n => ((((b i : ↥(riemannRochSpace D)) : ↥(modularFunctionFieldBar N)) : LaurentSeries (AlgebraicClosure ℚ))).coeff n
   have hcoeff_sum : ∀ (s : Finset (Fin r)) (x : Fin r → LaurentSeries (AlgebraicClosure ℚ)) (n : ℤ),
@@ -147,7 +139,6 @@ theorem solution (N : ℕ) [NeZero N] (k : ℕ) (hk : 4 ≤ k) (hke : Even k) :
     induction s using Finset.induction_on with
     | empty => simp
     | insert a s ha ih => rw [Finset.sum_insert ha, Finset.sum_insert ha, HahnSeries.coeff_add, ih]
-
   let E : ↥(riemannRochSpace D) →ₗ[AlgebraicClosure ℚ] (ℤ → AlgebraicClosure ℚ) :=
     { toFun := fun y n => (((y : ↥(riemannRochSpace D)) : ↥(modularFunctionFieldBar N)) : LaurentSeries (AlgebraicClosure ℚ)).coeff n
       map_add' := by
@@ -155,7 +146,6 @@ theorem solution (N : ℕ) [NeZero N] (k : ℕ) (hk : 4 ≤ k) (hke : Even k) :
         funext n
         first
           | rfl
-
       map_smul' := by
         intro d y
         funext n
@@ -180,7 +170,6 @@ theorem solution (N : ℕ) [NeZero N] (k : ℕ) (hk : 4 ≤ k) (hke : Even k) :
     apply Subtype.ext
     ext n
     exact congr_fun h n
-
   have hv : LinearIndependent (AlgebraicClosure ℚ) v := by
     rw [Fintype.linearIndependent_iff]
     intro d hd
@@ -194,10 +183,8 @@ theorem solution (N : ℕ) [NeZero N] (k : ℕ) (hk : 4 ≤ k) (hke : Even k) :
       rw [map_smul, Pi.smul_apply, smul_eq_mul, hE]
     have hzero' : (∑ i, d i • b i) = 0 := hEinj (by rw [hsum, map_zero])
     exact Fintype.linearIndependent_iff.mp b.linearIndependent d hzero'
-
   have hvC : LinearIndependent ℂ (fun i n => ι₀ (v i n)) :=
     linearIndependent_ringHom_comp_of_linearIndependent' ι₀ hv
-
   have hΓ := CongruenceSubgroup.one_mem_strictPeriods_Gamma0 N
   have hcadd : ∀ φ ψ : CuspForm (CongruenceSubgroup.Gamma0 N) (2 * (m : ℤ)), ⇑(φ + ψ) = ⇑φ + ⇑ψ := fun _ _ => rfl
   have hcsmul : ∀ (x : ℂ) (φ : CuspForm (CongruenceSubgroup.Gamma0 N) (2 * (m : ℤ))), ⇑(x • φ) = x • ⇑φ := fun _ _ => rfl
@@ -207,17 +194,14 @@ theorem solution (N : ℕ) [NeZero N] (k : ℕ) (hk : 4 ≤ k) (hke : Even k) :
     intro φ ψ
     first
       | exact ModularForm.qExpansion_add one_pos hΓ φ ψ
-
   have hqsmul : ∀ (x : ℂ) (φ : CuspForm (CongruenceSubgroup.Gamma0 N) (2 * (m : ℤ))),
       UpperHalfPlane.qExpansion 1 (x • ⇑φ) = x • UpperHalfPlane.qExpansion 1 ⇑φ := by
     intro x φ
     first
       | exact ModularForm.qExpansion_smul one_pos hΓ x φ
-
   have hqzero : UpperHalfPlane.qExpansion 1 (0 : UpperHalfPlane → ℂ) = 0 := by
     first
       | exact UpperHalfPlane.qExpansion_zero 1
-
   have hT := thetaL_coeffEmb_jq_pow_ne_zero m
   have hli : LinearIndependent ℂ f := by
     rw [Fintype.linearIndependent_iff]
@@ -231,7 +215,6 @@ theorem solution (N : ℕ) [NeZero N] (k : ℕ) (hk : 4 ≤ k) (hke : Even k) :
         rw [Finset.sum_insert ha, Finset.sum_insert ha, hcadd, hqadd, hcsmul, hqsmul, ih]
     have hq : ∑ i, c i • UpperHalfPlane.qExpansion 1 ⇑(f i) = 0 := by
       rw [← hqsum Finset.univ, hc, hczero, hqzero]
-
     have hq' : HahnSeries.ofPowerSeries ℤ ℂ (∑ i, c i • UpperHalfPlane.qExpansion 1 ⇑(f i)) = 0 := by
       rw [hq, map_zero]
     rw [map_sum] at hq'

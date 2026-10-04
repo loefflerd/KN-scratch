@@ -215,7 +215,6 @@ theorem slash_apply_eq_of_ne {F : ℍ → ℂ} {a b c e : ℍ → ℂ} (ha : a �
   rw [hc', he'] at h1
   have h2 := h τ
   rw [slash_two_apply]
-
   have h3 : F (γ • τ) * (b τ * e τ ^ 2) = (F τ * D⁻¹) * (b τ * e τ ^ 2) := by
     calc F (γ • τ) * (b τ * e τ ^ 2) = F (γ • τ) * b τ * e τ ^ 2 := by ring
       _ = a τ * (e τ * (deriv (c ∘ ofComplex) τ * D⁻¹) - c τ * (deriv (e ∘ ofComplex) τ * D⁻¹)) := h1

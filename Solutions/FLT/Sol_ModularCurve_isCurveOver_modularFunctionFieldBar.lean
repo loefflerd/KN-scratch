@@ -57,10 +57,8 @@ private theorem kaehler_free_rank_one_adjoin (x : LF) (hx : Transcendental K x) 
   have hxF : x ∈ F := subset_adjoin K _ (Set.mem_insert x _)
   have hTF : ∀ t ∈ T, t ∈ F := fun t ht => subset_adjoin K _ (Set.mem_insert_of_mem x ht)
   set x' : F := ⟨x, hxF⟩ with hx'
-
   have hx't : Transcendental K x' :=
     (transcendental_algebraMap_iff (R := K) (S := F) (A := LF) Subtype.val_injective).mp hx
-
   set A : IntermediateField K F := IntermediateField.adjoin K ({x'} : Set F) with hA
   have hliftA : lift A = K⟮x⟯ := by
     rw [hA, lift_adjoin_simple]
@@ -74,14 +72,12 @@ private theorem kaehler_free_rank_one_adjoin (x : LF) (hx : Transcendental K x) 
     ext b
     change (((e.symm b : A) : F) : LF) = ((b : K⟮x⟯) : LF)
     rw [← he (e.symm b), AlgEquiv.apply_symm_apply]
-
   have hint : ∀ t (ht : t ∈ T), IsIntegral A (⟨t, hTF t ht⟩ : F) := by
     intro t ht
     have h1 : IsIntegral A (t : LF) :=
       (hT t ht).map_of_comp_eq (R := K⟮x⟯) (S := LF) (T := A) (U := LF)
         (e.symm : K⟮x⟯ →+* A) (RingHom.id LF) hcomp'
     exact (isIntegral_algHom_iff (IsScalarTower.toAlgHom A F LF) Subtype.val_injective).mp h1
-
   have : FiniteDimensional A F := by
     set T' : Set F := (fun t : T => (⟨(t : LF), hTF t t.2⟩ : F)) '' Set.univ with hT'
     have : Finite T' := Set.Finite.to_subtype ((Set.finite_univ).image _)
@@ -103,7 +99,6 @@ private theorem kaehler_free_rank_one_adjoin (x : LF) (hx : Transcendental K x) 
         · exact ⟨⟨z, hTF z hz⟩, Or.inr ⟨⟨z, hz⟩, Set.mem_univ _, rfl⟩, rfl⟩
     rw [htop] at this
     exact LinearEquiv.finiteDimensional (IntermediateField.topEquiv (F := A) (E := F)).toLinearEquiv
-
   have : Algebra.IsSeparable A F := ⟨fun z => by
     have hzLF : IsIntegral K⟮x⟯ ((z : F) : LF) :=
       ((IsIntegral.of_finite A z).map (IsScalarTower.toAlgHom A F LF)).map_of_comp_eq
@@ -121,16 +116,13 @@ open ModularCurve in
 
 private theorem isCurveOver_laurentBaseChange (L : Type*) [Field L] {instQL : Algebra ℚ L} (N : ℕ)
     [NeZero N] : IsCurveOver L (laurentBaseChange L (modularFunctionFieldFull N)) := by
-
   have hpair : laurentBaseChange L (modularFunctionFieldFull N)
       = IntermediateField.adjoin L {jqModC L, jqNModC L N} :=
     laurentBaseChange_adjoin_pair L N (functionFieldGeneration N)
-
   have hfin : ∀ E : IntermediateField L (LaurentSeries L), E = modularFunctionFieldC L N →
       ∀ w : Place L E, Module.Finite L w.ResidueField := by
     rintro E rfl w
     exact Module.finite_of_finrank_pos (Nat.pos_of_ne_zero (deg_ne_zero_modularFunctionFieldC L N w))
-
   have hkae : ∀ E : IntermediateField L (LaurentSeries L),
       E = IntermediateField.adjoin L
         (insert (jqModC L) ((({jqNModC L N} : Finset (LaurentSeries L)) : Set (LaurentSeries L)))) →
@@ -163,7 +155,6 @@ theorem solution (N : ℕ) [NeZero N] :
   AlgebraicCurve.R0.isCurveOver_laurentBaseChange (AlgebraicClosure ℚ) N
 
 example : ∀ (N : ℕ) [NeZero N], IsCurveOver (AlgebraicClosure ℚ) (modularFunctionFieldBar N) := @solution
-
 
 end S_ModularCurve_isCurveOver_modularFunctionFieldBar
 end P2MW

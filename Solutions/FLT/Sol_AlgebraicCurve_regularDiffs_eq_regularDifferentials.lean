@@ -41,7 +41,6 @@ theorem regularDiffs_eq [CharZero K] [Algebra.EssFiniteType K F] [IsCurveOver K 
     regularDiffs K F = regularDifferentials K F := by
   have : PerfectField K := inferInstance
   have hgen : ∀ v : Place K F, v.DCoordGenerates := AlgebraicCurve.dCoordGenerates_of_isCurveOver
-
   have key : ∀ (ω : Ω[F⁄K]) (v : Place K F),
       0 ≤ v.ordDiff ω ↔ ∃ f ∈ v.toValuationSubring, ω = f • v.dCoord := by
     intro ω v

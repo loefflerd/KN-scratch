@@ -27,7 +27,6 @@ theorem solution {k G : Type u} [Field k] [Group G] (S : Subgroup G) [S.FiniteIn
   let Q := Quotient (QuotientGroup.rightRel S)
   have : Finite Q := Finite.of_equiv _ (QuotientGroup.quotientRightRelEquivQuotientLeftRel S).symm
   let : Fintype Q := Fintype.ofFinite Q
-
   let rep : G → G := fun g => (Quotient.mk (QuotientGroup.rightRel S) g).out
   have rep_spec : ∀ g : G, g * (rep g)⁻¹ ∈ S := fun g =>
     QuotientGroup.rightRel_apply.1 (Quotient.mk_out (s := QuotientGroup.rightRel S) g)
@@ -38,11 +37,9 @@ theorem solution {k G : Type u} [Field k] [Group G] (S : Subgroup G) [S.FiniteIn
     show @Setoid.r _ (QuotientGroup.rightRel S) ((s : G) * g) g
     rw [QuotientGroup.rightRel_apply]
     simp
-
   have key : ∀ (a : G) (ha : a ∈ S) (v : N), a = 1 → N.ρ ⟨a, ha⟩ v = v := by
     rintro a ha v rfl
     exact congrFun (congrArg DFunLike.coe (map_one N.ρ)) v
-
   let e : Rep.coind S.subtype N ≃ₗ[k] (Q → N) :=
     { toFun := fun f q => (f : G → N) q.out
       map_add' := fun _ _ => rfl

@@ -285,8 +285,7 @@ theorem roots_prime_at_slot_nodup (N : ℕ) [NeZero N] (ζ : Kˣ) (hζ : IsPrimi
   have hζp : IsPrimitiveRoot ((ζ ^ (N / p) : Kˣ) : K) p := isPrimitiveRoot_pow_div hζ hpN
   rw [Multiset.nodup_cons]
   constructor
-  ·
-    intro hmem
+  · intro hmem
     obtain ⟨b, hb, heq⟩ := Multiset.mem_map.mp hmem
     have h := (TS_injective (K := K) (e := e) (e' := p * (p * e))
       (u := u * ζ ^ (b * (N / p))) (u' := u ^ (p * p)) heq).1
@@ -295,8 +294,7 @@ theorem roots_prime_at_slot_nodup (N : ℕ) [NeZero N] (ζ : Kˣ) (hζ : IsPrimi
     have hmono : 2 * (2 * e) ≤ p * (p * e) := Nat.mul_le_mul hp2 (Nat.mul_le_mul hp2 le_rfl)
     rw [← h] at hmono
     omega
-  ·
-    refine Multiset.Nodup.map_on ?_ (Multiset.nodup_range p)
+  · refine Multiset.Nodup.map_on ?_ (Multiset.nodup_range p)
     intro b hb b' hb' heq
     rw [Multiset.mem_range] at hb hb'
     have h := (TS_injective (K := K) (e := e) (e' := e)
@@ -544,7 +542,6 @@ private theorem chain_extend (p e s : ℕ) [hpp : Fact (Nat.Prime p)] [NeZero e]
   subst hG
   classical
   have hp0 : 0 < p := hpp.out.pos
-
   have hP_aeval : Polynomial.aeval (jqN (d * p)) (phiAtSeed dp (⟨jqN d, hd_mem⟩ : F)) = 0 := by
     rw [Polynomial.aeval_def, ← Polynomial.eval_map, phiAtSeed_map]
     exact phiAtSeed_jqN_eval p dp d
@@ -553,7 +550,6 @@ private theorem chain_extend (p e s : ℕ) [hpp : Fact (Nat.Prime p)] [NeZero e]
       rwa [Polynomial.aeval_def] at hP_aeval⟩
   have hdvd : minpoly F (jqN (d * p)) ∣ phiAtSeed dp (⟨jqN d, hd_mem⟩ : F) :=
     minpoly.dvd F _ hP_aeval
-
   let : Algebra F (LaurentSeries K) := σ.toAlgebra
   have halg : algebraMap F (LaurentSeries K) = σ := RingHom.algebraMap_toAlgebra σ
   have hpB : p ∣ p * e * s := ⟨e * s, by ring⟩
@@ -576,7 +572,6 @@ private theorem chain_extend (p e s : ℕ) [hpp : Fact (Nat.Prime p)] [NeZero e]
     have h := isRoot_prime_at_slot_iff (p * e * s) ζ hζ p hpB dp e (ζ ^ (t * e)) y
     rw [hBdiv] at h
     exact h
-
   have hPmap_ne : (phiAtSeed dp (⟨jqN d, hd_mem⟩ : F)).map (algebraMap F (LaurentSeries K)) ≠ 0 :=
     ((phiAtSeed_monic dp _).map _).ne_zero
   have hPmap_splits : ((phiAtSeed dp (⟨jqN d, hd_mem⟩ : F)).map
@@ -613,7 +608,6 @@ private theorem chain_extend (p e s : ℕ) [hpp : Fact (Nat.Prime p)] [NeZero e]
     rw [Polynomial.mem_roots hPmap_ne] at h1
     rw [Polynomial.aeval_def, ← Polynomial.eval_map]
     exact h1
-
   have h2d : ∃ y₁ ∈ ((minpoly F (jqN (d * p))).map (algebraMap F (LaurentSeries K))).roots,
       ∃ y₂ ∈ ((minpoly F (jqN (d * p))).map (algebraMap F (LaurentSeries K))).roots, y₁ ≠ y₂ := by
     have hcard : 1 < (((minpoly F (jqN (d * p))).map
@@ -633,14 +627,12 @@ private theorem chain_extend (p e s : ℕ) [hpp : Fact (Nat.Prime p)] [NeZero e]
   obtain ⟨c, hc, htwist_mem⟩ := hex_twist
   have htwist_aroots : qExpand K e (qTwist (ζ ^ (t * e) * ζ ^ (c * (e * s))) (coeffEmb K jq))
       ∈ (minpoly F (jqN (d * p))).aroots (LaurentSeries K) := htwist_mem
-
   obtain ⟨ψ, hψ_gen⟩ : ∃ ψ : IntermediateField.adjoin F ({jqN (d * p)} : Set (LaurentSeries ℚ))
         →ₐ[F] LaurentSeries K,
       ψ (IntermediateField.AdjoinSimple.gen F (jqN (d * p)))
         = qExpand K e (qTwist (ζ ^ (t * e) * ζ ^ (c * (e * s))) (coeffEmb K jq)) :=
     ⟨(IntermediateField.algHomAdjoinIntegralEquiv F hint).symm ⟨_, htwist_aroots⟩,
       IntermediateField.algHomAdjoinIntegralEquiv_symm_apply_gen F hint ⟨_, htwist_aroots⟩⟩
-
   have hle : ∀ {z : LaurentSeries ℚ},
       z ∈ IntermediateField.adjoin ℚ ((F : Set (LaurentSeries ℚ)) ∪ {jqN (d * p)}) →
       z ∈ IntermediateField.adjoin F ({jqN (d * p)} : Set (LaurentSeries ℚ)) := by
@@ -673,16 +665,14 @@ private theorem chain_extend (p e s : ℕ) [hpp : Fact (Nat.Prime p)] [NeZero e]
           IntermediateField.adjoin F ({jqN (d * p)} : Set (LaurentSeries ℚ)))
           = ⟨z.1, hle z.2⟩ + ⟨w.1, hle w.2⟩ := Subtype.ext rfl
       rw [h1, map_add] }, t + c * s, ?_, ?_, ?_⟩
-  ·
-    intro z hz
+  · intro z hz
     show ψ ⟨(z : LaurentSeries ℚ), _⟩ = σ z
     have h1 : (⟨(z : LaurentSeries ℚ), hle hz⟩ :
         IntermediateField.adjoin F ({jqN (d * p)} : Set (LaurentSeries ℚ)))
         = algebraMap F (IntermediateField.adjoin F ({jqN (d * p)} : Set (LaurentSeries ℚ))) z :=
       Subtype.ext rfl
     rw [h1, AlgHom.commutes, halg]
-  ·
-    intro hx
+  · intro hx
     show ψ ⟨jqN (d * p), _⟩ = _
     have h1 : (⟨jqN (d * p), hle hx⟩ :
         IntermediateField.adjoin F ({jqN (d * p)} : Set (LaurentSeries ℚ)))
@@ -692,8 +682,7 @@ private theorem chain_extend (p e s : ℕ) [hpp : Fact (Nat.Prime p)] [NeZero e]
       congr 1
       ring
     rw [h1, hψ_gen, hu]
-  ·
-    intro z
+  · intro z
     show ψ ⟨z.1, hle z.2⟩ ∈ (qExpand K e).range
     obtain ⟨g, hg⟩ := (IntermediateField.adjoin.powerBasis hint).exists_eq_aeval'
       (⟨z.1, hle z.2⟩ : IntermediateField.adjoin F ({jqN (d * p)} : Set (LaurentSeries ℚ)))
@@ -729,7 +718,6 @@ private theorem chain_endgame (M p : ℕ) [NeZero M] [hp : Fact (Nat.Prime p)] (
   have hp0 : 0 < p := hp.out.pos
   have hp2 : 2 ≤ p := hp.out.two_le
   have hM0 : 0 < M := Nat.pos_of_ne_zero (NeZero.ne M)
-
   have hnot : ∀ i : ℕ, i ≤ a → jqN (p ^ i * p) ∉ chainField M p i := by
     intro i hi
     rw [show jqN (p ^ i * p) = jqN (p ^ (i + 1)) from jqN_congr (pow_succ p i).symm]
@@ -743,7 +731,6 @@ private theorem chain_endgame (M p : ℕ) [NeZero M] [hp : Fact (Nat.Prime p)] (
         congrArg (chainField M p) (by omega)
       rw [heq1, heq2]
       exact hIH (i - 1) (by omega)
-
   have chain : ∀ i : ℕ, i ≤ a →
       ∃ (σ : chainField M p i →+* LaurentSeries K) (t : ℕ),
         (σ ⟨jqN (p ^ i), mem_chainField M p (le_refl i)⟩
@@ -808,7 +795,6 @@ private theorem chain_endgame (M p : ℕ) [NeZero M] [hp : Fact (Nat.Prime p)] (
         Subtype.ext (jqN_congr (pow_succ p i))
       rw [hmk]
       exact hσ'new hxmem
-
   obtain ⟨σa, ta, hatop, harange⟩ := chain a (le_refl a)
   have hpow_top : M * p ^ (a + 2 - a) = p * (M * p) := by
     rw [show a + 2 - a = 2 from by omega]
@@ -835,12 +821,10 @@ private theorem chain_endgame (M p : ℕ) [NeZero M] [hp : Fact (Nat.Prime p)] (
     chain_extend p (M * p) (p ^ a) ζ hζtop dp (chainField M p a) σa (p ^ a)
       (mem_chainField M p (le_refl a)) (hnot a (le_refl a)) ta hatop' harange'
       (chainField M p (a + 1)) (chainField_succ M p a)
-
   have hmem_a1 : jqN (p ^ (a + 1)) ∈ chainField M p (a + 1) :=
     mem_chainField M p (le_refl (a + 1))
   have hmem_a : jqN (p ^ a) ∈ chainField M p (a + 1) :=
     mem_chainField M p (Nat.le_succ a)
-
   have hrel_up_Ω : (phiAtSeed dp (jqN (p ^ (a + 1)))).eval (jqN (p ^ (a + 2))) = 0 := by
     have h := phiAtSeed_jqN_eval p dp (p ^ (a + 1))
     rwa [show jqN (p ^ (a + 1) * p) = jqN (p ^ (a + 2)) from
@@ -856,7 +840,6 @@ private theorem chain_endgame (M p : ℕ) [NeZero M] [hp : Fact (Nat.Prime p)] (
       (⟨jqN (p ^ a), hmem_a⟩ : chainField M p (a + 1)) = 0 :=
     phiAtSeed_eval_of_injective dp _ _
       (algebraMap (chainField M p (a + 1)) (LaurentSeries ℚ)) Subtype.val_injective hrel_dn_Ω
-
   have hσ_a1 : σ ⟨jqN (p ^ (a + 1)), hmem_a1⟩
       = qExpand K (M * p) (qTwist (ζ ^ (tt * (M * p))) (coeffEmb K jq)) := by
     have hx : jqN (p ^ a * p) ∈ chainField M p (a + 1) := by
@@ -866,7 +849,6 @@ private theorem chain_endgame (M p : ℕ) [NeZero M] [hp : Fact (Nat.Prime p)] (
         = ⟨jqN (p ^ a * p), hx⟩ := Subtype.ext (jqN_congr (pow_succ p a))
     rw [hmk]
     exact hnew hx
-
   have hz_up : (phiAtSeed dp (qExpand K (M * p)
       (qTwist (ζ ^ (tt * (M * p))) (coeffEmb K jq)))).eval
       (σ ⟨jqN (p ^ (a + 2)), hmem⟩) = 0 := by
@@ -879,7 +861,6 @@ private theorem chain_endgame (M p : ℕ) [NeZero M] [hp : Fact (Nat.Prime p)] (
     have h := phiAtSeed_eval_map dp _ _
       (σ : chainField M p (a + 1) →+* LaurentSeries K) hrel_dn_E
     rwa [hσ_a1] at h
-
   have hpB : p ∣ M * p ^ (a + 2) := by
     refine ⟨M * p ^ (a + 1), ?_⟩
     rw [pow_succ]
@@ -907,7 +888,6 @@ private theorem chain_endgame (M p : ℕ) [NeZero M] [hp : Fact (Nat.Prime p)] (
     have h := isRoot_prime_at_slot_iff (M * p ^ (a + 2)) ζ hζ p hpB dp M (ζ ^ (tt * M)) y
     rw [hBdiv] at h
     exact h
-
   have hMp_ne : ¬ (((M * p : ℕ) : ℤ) ∣ ((M : ℕ) : ℤ)) := by
     rw [Int.natCast_dvd_natCast]
     intro h
@@ -922,7 +902,6 @@ private theorem chain_endgame (M p : ℕ) [NeZero M] [hp : Fact (Nat.Prime p)] (
       have hr := hrange ⟨jqN (p ^ (a + 2)), hmem⟩
       rw [h] at hr
       exact qExpand_qTwist_notMem_range_qExpand hMp_ne _ hr
-
   have hz_dn_form : σ ⟨jqN (p ^ a), hmem_a⟩
       = qExpand K (p * (M * p)) (qTwist (ζ ^ (ta * (p * (M * p)))) (coeffEmb K jq)) := by
     have h1 := hcompat ⟨jqN (p ^ a), mem_chainField M p (le_refl a)⟩ hmem_a
@@ -940,7 +919,6 @@ private theorem chain_endgame (M p : ℕ) [NeZero M] [hp : Fact (Nat.Prime p)] (
         rw [show M * (p * p) = p * (M * p) from by ring]
         exact h2
       exact nat_ne_of_mul hM0 (le_trans hp2 (Nat.le_mul_of_pos_right p hp0)) h3
-
   have hsub : (⟨jqN (p ^ (a + 2)), hmem⟩ : chainField M p (a + 1))
       = ⟨jqN (p ^ a), hmem_a⟩ :=
     RingHom.injective σ (hz_up_spread.trans hz_dn_spread.symm)
@@ -998,7 +976,6 @@ p2m_open "ModularCurve~coeffEmb_qExpand" in open _root_.P2MW.S_ModularCurve_jqN_
 
 theorem solution (M : ℕ) [NeZero M] (p : ℕ) [hp : Fact (Nat.Prime p)] (a : ℕ) (hF : jqN p ∉ modularFunctionFieldFull M) : jqN (p ^ (a + 2)) ∉ IntermediateField.adjoin ℚ ((modularFunctionFieldFull M : Set (LaurentSeries ℚ)) ∪ {x : LaurentSeries ℚ | ∃ i : ℕ, i ≤ a + 1 ∧ x = jqN (p ^ i)}) :=
   ModularCurve.jqN_pow_not_mem_adjoin_full M p a hF
-
 
 end S_ModularCurve_jqN_pow_not_mem_adjoin_full
 end P2MW

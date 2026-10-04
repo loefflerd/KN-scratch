@@ -62,7 +62,6 @@ theorem isCompl_range_of_finrank_le {S H : Type*} [AddCommGroup S] [Module ℂ S
     (hdim : finrank ℂ H ≤ 2 * finrank ℂ S) :
     IsCompl (LinearMap.range ES) (LinearMap.range ESbar) := by
   classical
-
   let ESR : S →ₗ[ℝ] H := ES.restrictScalars ℝ
   let EBR : S →ₗ[ℝ] H := realOfSemilinear ESbar
   have hinjR : Function.Injective ESR := hinj
@@ -127,16 +126,13 @@ theorem solution (N : ℕ) [NeZero N] (n : ℕ)
     (hESbar : ∀ f : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2), ESbar f = Φ (ES f)) :
     IsCompl (LinearMap.range ES) (LinearMap.range ESbar) := by
   classical
-
   obtain ⟨ΦZ, hΦZ⟩ := HeckeEis.exists_coeffH1par_map_ringHom (Int.castRingHom ℂ) n (CongruenceSubgroup.Gamma0 N)
   obtain ⟨t, b, c, -⟩ := HeckeEis.exists_basis_coeffH1par_int_complex n N ΦZ hΦZ
   have : FiniteDimensional ℂ (HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype)) := Module.Finite.of_basis c
-
   rcases Nat.even_or_odd n with hne | hno
   swap
   · exact ISCAsm.isCompl_of_forall_eq_zero ES ESbar
       (HeckeEis.coeffH1par_binaryFormRepSL_eq_zero_of_odd ℂ two_ne_zero N n hno)
-
   have hESinj : Function.Injective ES := by
     intro a b h
     have h' : HeckeEis.eichlerShimuraMap n N a = HeckeEis.eichlerShimuraMap n N b := by rw [← hES, ← hES, h]
@@ -161,12 +157,10 @@ theorem solution (N : ℕ) [NeZero N] (n : ℕ)
     intro a b h
     rw [hESbar, hESbar] at h
     exact hESinj (hΦinj h)
-
   have hdisj : ∀ f g : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2), ES f = ESbar g → f = 0 := by
     intro f g h
     rw [hESbar] at h
     exact HeckeEis.range_eichlerShimuraMap_inf_range_conj_eq_bot N n ES hES Φ hΦ f g h
-
   have hdim : Module.finrank ℂ (HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype)) ≤ 2 * Module.finrank ℂ (CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2)) := by
     rcases Nat.eq_zero_or_pos n with rfl | hpos
     · have hU := HeckeEis.finrank_coeffH1par_zero_le_two_mul_genusFormula N
@@ -186,7 +180,6 @@ theorem solution (N : ℕ) [NeZero N] (n : ℕ)
         linarith
       exact_mod_cast this
   exact ISCAsm.isCompl_range_of_finrank_le ES ESbar hESinj hESbar_inj hdisj hdim
-
 
 end S_HeckeEis_isCompl_range_eichlerShimuraMap_range_conj
 end P2MW

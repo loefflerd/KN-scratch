@@ -31,8 +31,7 @@ theorem exists_scalar {a₁ b₁ a₂ b₂ : ℂ}
     (R1 : a₁ ^ 3 * b₂ ^ 2 = a₂ ^ 3 * b₁ ^ 2) :
     ∃ w : ℂ, w ≠ 0 ∧ a₂ = w ^ 4 * a₁ ∧ b₂ = w ^ 6 * b₁ := by
   by_cases ha₁ : a₁ = 0
-  ·
-    subst ha₁
+  · subst ha₁
     have hb₁ : b₁ ≠ 0 := by rintro rfl; exact h₁ (by ring)
     have ha₂ : a₂ = 0 := by
       have : a₂ ^ 3 * b₁ ^ 2 = 0 := by rw [← R1]; ring
@@ -45,8 +44,7 @@ theorem exists_scalar {a₁ b₁ a₂ b₂ : ℂ}
       rw [zero_pow (by norm_num), eq_comm, div_eq_zero_iff] at ht
       exact ht.elim hb₂ hb₁
     exact ⟨t, ht0, by simp, by rw [ht]; field_simp⟩
-  ·
-    have ha₂ : a₂ ≠ 0 := by
+  · have ha₂ : a₂ ≠ 0 := by
       intro ha₂; subst ha₂
       have hb₂ : b₂ = 0 := by
         have : a₁ ^ 3 * b₂ ^ 2 = 0 := by rw [R1]; ring
@@ -104,7 +102,6 @@ theorem exists_sl2z_of_lattice_rel (τ₁ τ₂ : ℍ) {u : ℂ} (hu : u ≠ 0)
     (h1 : u * (a * τ₁ + b) = τ₂) (h2 : u * (c * τ₁ + d) = 1)
     (h3 : p * (τ₂ : ℂ) + q = u * τ₁) (h4 : r * (τ₂ : ℂ) + s = u) :
     ∃ γ : SL(2, ℤ), γ • τ₁ = τ₂ := by
-
   have hrow₁ : p * a + q * c = 1 ∧ p * b + q * d = 0 := by
     refine int_indep τ₁ (mul_left_cancel₀ hu ?_)
     push_cast
@@ -115,7 +112,6 @@ theorem exists_sl2z_of_lattice_rel (τ₁ τ₂ : ℍ) {u : ℂ} (hu : u ≠ 0)
     linear_combination r * h1 + s * h2 + h4
   have hdet : (a * d - b * c) * (p * s - q * r) = 1 := by
     linear_combination (r * b + s * d) * hrow₁.1 - (r * a + s * c) * hrow₁.2 + hrow₂.2
-
   have hz : (c : ℂ) * τ₁ + d ≠ 0 := by
     intro h0; rw [h0, mul_zero] at h2; exact zero_ne_one h2
   have hτ₂ : (τ₂ : ℂ) * (c * τ₁ + d) = a * τ₁ + b := by
@@ -142,7 +138,6 @@ theorem exists_sl2z_of_lattice_rel (τ₁ τ₂ : ℍ) {u : ℂ} (hu : u ≠ 0)
       push_cast at this
       rw [this] at hpos
       linarith [τ₁.im_pos]
-
   let γ : SL(2, ℤ) := ⟨!![a, b; c, d], by rw [Matrix.det_fin_two_of]; linarith⟩
   refine ⟨γ, ?_⟩
   apply UpperHalfPlane.ext
@@ -220,7 +215,6 @@ theorem solution (τ τ' : ℍ)
     (h : (ModularForm.E₄ : ℍ → ℂ) τ ^ 3 / ModularForm.discriminant τ =
       (ModularForm.E₄ : ℍ → ℂ) τ' ^ 3 / ModularForm.discriminant τ') :
     ∃ γ : SL(2, ℤ), γ • τ = τ' := by
-
   have R1 : E₄ τ ^ 3 * E₆ τ' ^ 2 = E₄ τ' ^ 3 * E₆ τ ^ 2 := by
     rw [ModularForm.discriminant_eq_E₄_cube_sub_E₆_sq, ModularForm.discriminant_eq_E₄_cube_sub_E₆_sq,
       div_eq_div_iff (by simpa using E₄_cube_sub_E₆_sq_ne_zero τ)
@@ -228,10 +222,8 @@ theorem solution (τ τ' : ℍ)
     change E₄ τ ^ 3 * ((E₄ τ' ^ 3 - E₆ τ' ^ 2) / 1728) =
       E₄ τ' ^ 3 * ((E₄ τ ^ 3 - E₆ τ ^ 2) / 1728) at h
     linear_combination -1728 * h
-
   obtain ⟨w, hw, hwa, hwb⟩ := exists_scalar (E₄_cube_sub_E₆_sq_ne_zero τ)
     (E₄_cube_sub_E₆_sq_ne_zero τ') R1
-
   set uU : ℂˣ := (Units.mk0 w hw)⁻¹ with huU
   set u : ℂ := (uU : ℂ) with huc
   have hu : u ≠ 0 := uU.ne_zero
@@ -240,7 +232,6 @@ theorem solution (τ τ' : ℍ)
     apply PeriodPair.lattice_eq_of_g2_eq_of_g3_eq
     · rw [g₂_scale, g₂_ofTau, g₂_ofTau, hwa, ← huc, hwu, inv_pow]; ring
     · rw [g₃_scale, g₃_ofTau, g₃_ofTau, hwb, ← huc, hwu, inv_pow]; ring
-
   obtain ⟨a, b, h1⟩ : ∃ a b : ℤ, u * (a * τ + b) = τ' := by
     have h := (PeriodPair.ofTau τ').ω₁_mem_lattice
     rw [hΛ, mem_scale_lattice] at h

@@ -31,17 +31,14 @@ lemma exists_dvd_sub_and_isCoprime {M : ℤ} (hM : M ≠ 0) {s₀ : ℤ} (hs₀ 
   set m : ℕ := M.natAbs with hm
   have hm0 : m ≠ 0 := Int.natAbs_ne_zero.mpr hM
   have : NeZero (m * e) := ⟨by positivity⟩
-
   have hcop : IsCoprime s₀ ((m : ℕ) : ℤ) := by
     rwa [Int.isCoprime_iff_gcd_eq_one, hm, Int.gcd, Int.natAbs_natCast, ← Int.gcd,
       ← Int.isCoprime_iff_gcd_eq_one]
   have hunit : IsUnit ((s₀ : ZMod m)) :=
     .of_mul_eq_one _ (ZMod.coe_int_mul_inv_eq_one hcop)
-
   obtain ⟨S, hS⟩ := ZMod.unitsMap_surjective (n := m) (Nat.dvd_mul_right m e) hunit.unit
   refine ⟨((S : ZMod (m * e)).val : ℤ), ?_, ?_⟩
-  ·
-    have h1 : (((S : ZMod (m * e)).val : ℤ) : ZMod m) = ((s₀ : ZMod m)) := by
+  · have h1 : (((S : ZMod (m * e)).val : ℤ) : ZMod m) = ((s₀ : ZMod m)) := by
       have h2 : ZMod.castHom (Nat.dvd_mul_right m e) (ZMod m) (S : ZMod (m * e))
           = (s₀ : ZMod m) := by
         have := congrArg Units.val hS
@@ -52,8 +49,7 @@ lemma exists_dvd_sub_and_isCoprime {M : ℤ} (hM : M ≠ 0) {s₀ : ℤ} (hs₀ 
     have h4 : (m : ℤ) ∣ ((S : ZMod (m * e)).val : ℤ) - s₀ := by
       simpa [neg_sub] using dvd_neg.mpr h1
     exact Int.natAbs_dvd.mp h4
-  ·
-    have h3 : Nat.Coprime (S : ZMod (m * e)).val (m * e) := ZMod.val_coe_unit_coprime S
+  · have h3 : Nat.Coprime (S : ZMod (m * e)).val (m * e) := ZMod.val_coe_unit_coprime S
     exact (Nat.isCoprime_iff_coprime.mpr h3).of_isCoprime_of_dvd_right
       (by exact_mod_cast dvd_mul_left e m)
 
@@ -80,18 +76,15 @@ lemma exists_intCast_eq_unit {d : ℕ} (hd0 : d ≠ 0)
       ((s : ZMod (Nat.gcd d (N / d)))) = (u : ZMod (Nat.gcd d (N / d))) := by
   have hg0 : Nat.gcd d (N / d) ≠ 0 := (Nat.gcd_pos_of_pos_left _ (Nat.pos_of_ne_zero hd0)).ne'
   have : NeZero (Nat.gcd d (N / d)) := ⟨hg0⟩
-
   have hval : Nat.Coprime ((u : ZMod (Nat.gcd d (N / d)))).val (Nat.gcd d (N / d)) :=
     ZMod.val_coe_unit_coprime u
   have hvalZ : IsCoprime (((u : ZMod (Nat.gcd d (N / d)))).val : ℤ)
       ((Nat.gcd d (N / d) : ℕ) : ℤ) :=
     Nat.isCoprime_iff_coprime.mpr hval
-
   obtain ⟨s, hs_mod, hs_cop⟩ :=
     exists_dvd_sub_and_isCoprime (M := ((Nat.gcd d (N / d) : ℕ) : ℤ))
       (by exact_mod_cast hg0) hvalZ hd0
   refine ⟨s, hs_cop, ?_⟩
-
   have h1 : ((((u : ZMod (Nat.gcd d (N / d)))).val : ℤ) : ZMod (Nat.gcd d (N / d)))
       = (s : ZMod (Nat.gcd d (N / d))) :=
     (ZMod.intCast_eq_intCast_iff_dvd_sub _ _ _).mpr hs_mod
@@ -132,11 +125,9 @@ lemma fiberToUnits_surjective (hN : N ≠ 0) (hcrit : NormalFormCriterion N) {d 
   have hd0 : d ≠ 0 := by rintro rfl; exact hN (Nat.eq_zero_of_zero_dvd hd)
   intro u
   obtain ⟨s, hs_cop, hs_val⟩ := exists_intCast_eq_unit hd0 u
-
   have hyd : cuspDenom N (mk N (ratPoint s d)) = d := by
     rw [cuspDenom_mk_ratPoint hs_cop, Int.gcd_natCast_natCast, Nat.gcd_eq_left hd]
   refine ⟨⟨mk N (ratPoint s d), hyd⟩, ?_⟩
-
   refine Units.ext ?_
   rw [val_fiberToUnits]
   have ha : IsCoprime (normalNumerator hN (mk N (ratPoint s d))) ((d : ℕ) : ℤ) := by

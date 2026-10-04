@@ -65,14 +65,12 @@ theorem solution (N : ℕ) [NeZero N] :
   let := ModularCurve.jAdjoinAlgebra N
   intro _ w h1728 h0 hinf
   obtain ⟨v', hv'⟩ := exists_eq_congr (w.restrict ↥ℚ⟮ModularCurve.jq⟯)
-
   have hinf' : v' ≠ placeInfty ℚ := by
     rintro rfl; exact hinf hv'
   have h0' : v' ≠ placeOfPoint ℚ 0 := by
     rintro rfl; exact h0 hv'
   have h1728' : v' ≠ placeOfPoint ℚ 1728 := by
     rintro rfl; exact h1728 hv'
-
   obtain ⟨P, rfl⟩ : ∃ P : IsDedekindDomain.HeightOneSpectrum ℚ[X], v' = Place.ofHeightOneSpectrum P := by
     rcases eq_ofHeightOneSpectrum_or_eq_placeInfty v' with h | h
     · exact h
@@ -86,11 +84,9 @@ theorem solution (N : ℕ) [NeZero N] :
   have hp0 : p ≠ 0 := hpirr.ne_zero
   have hPp : P.asIdeal = Ideal.span {p} := by
     rw [hPg]; exact Ideal.span_singleton_eq_span_singleton.mpr hpg
-
   have hordv : (w.restrict ↥ℚ⟮ModularCurve.jq⟯).ord (Polynomial.aeval ModularCurve.jGen p) = 1 := by
     rw [hv', ← equiv_algebraMap, Place.ord_congrRingEquiv]
     exact ord_ofHeightOneSpectrum_of_span P hp0 hPp
-
   have hj : algebraMap ↥ℚ⟮ModularCurve.jq⟯ ↥(ModularCurve.modularFunctionField N) ModularCurve.jGen
       = (⟨ModularCurve.jq, ModularCurve.jq_mem N⟩ : ↥(ModularCurve.modularFunctionField N)) :=
     Subtype.ext (ModularCurve.algebraMap_jGen_val N)
@@ -102,7 +98,6 @@ theorem solution (N : ℕ) [NeZero N] :
     rw [haeval, w.ord_restrict (F := ↥ℚ⟮ModularCurve.jq⟯), hordv, mul_one]
   have hepos : 0 < (w.ramificationIndex ↥ℚ⟮ModularCurve.jq⟯ : ℤ) := by
     exact_mod_cast w.ramificationIndex_pos (F := ↥ℚ⟮ModularCurve.jq⟯)
-
   have hroot : ∀ a : ℚ, Place.ofHeightOneSpectrum (K := ℚ) (F := RatFunc ℚ) P ≠ placeOfPoint ℚ a →
       p.eval a ≠ 0 := by
     intro a hne hpa

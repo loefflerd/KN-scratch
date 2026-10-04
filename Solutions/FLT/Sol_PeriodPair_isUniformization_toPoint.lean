@@ -80,20 +80,16 @@ p2m_export "PeriodPair" "kw_compl_lattice_mem_nhdsNE_zero"
 private theorem _root_.PeriodPair.kw_weierstrassP_not_eventually_const {c : ℂ} (hc : c ∉ L.lattice) (e : ℂ) :
     ¬ ℘[L] =ᶠ[𝓝 c] fun _ => e := by
   intro hconst
-
   have hEq : Set.EqOn ℘[L] (fun _ => e) (L.lattice : Set ℂ)ᶜ :=
     L.analyticOnNhd_weierstrassP.eqOn_of_preconnected_of_eventuallyEq
       analyticOnNhd_const L.kw_isPreconnected_compl_lattice hc hconst
-
   have htend_e : Tendsto ℘[L] (𝓝[≠] 0) (𝓝 e) :=
     Tendsto.congr' (eventually_of_mem L.kw_compl_lattice_mem_nhdsNE_zero
       fun z hz => (hEq hz).symm) tendsto_const_nhds
-
   have htend_top : Tendsto ℘[L] (𝓝[≠] 0) (Bornology.cobounded ℂ) := by
     refine tendsto_cobounded_of_meromorphicOrderAt_neg ?_
     simp only [L.order_weierstrassP 0 (zero_mem _)]
     decide
-
   have habs : Tendsto (‖℘[L] ·‖) (𝓝[≠] 0) atTop :=
     tendsto_norm_atTop_iff_cobounded.mpr htend_top
   have hbdd : Tendsto (‖℘[L] ·‖) (𝓝[≠] 0) (𝓝 ‖e‖) :=
@@ -151,14 +147,12 @@ private theorem _root_.PeriodPair.apply_eq_apply_of_differentiable_of_forall_per
     (hf : Differentiable ℂ f) (hper : ∀ l ∈ L.lattice, ∀ z, f (z + l) = f z) (z w : ℂ) :
     f z = f w := by
   apply hf.apply_eq_apply_of_bounded
-
   have hrange : range f ⊆ f '' closure (ZSpan.fundamentalDomain L.basis) := by
     rintro - ⟨u, rfl⟩
     refine ⟨ZSpan.fract L.basis u, subset_closure (ZSpan.fract_mem_fundamentalDomain _ u), ?_⟩
     have h := hper _ (L.sub_fract_mem_lattice u) (ZSpan.fract L.basis u)
     rw [add_sub_cancel] at h
     exact h.symm
-
   refine Bornology.IsBounded.subset ?_ hrange
   refine (IsCompact.image ?_ hf.continuous).isBounded
   exact Metric.isCompact_of_isClosed_isBounded isClosed_closure
@@ -225,12 +219,10 @@ variable (L : PeriodPair)
 private theorem _root_.PeriodPair.kw_exists_derivWeierstrassP_ne_zero :
     ∃ c, c ∉ L.lattice ∧ ℘'[L] c ≠ 0 := by
   by_contra! h
-
   have h0 : ℘'[L] =ᶠ[𝓝 (L.ω₁ / 2)] fun _ => 0 :=
     eventually_of_mem (L.isClosed_lattice.isOpen_compl.mem_nhds L.ω₁_div_two_notMem_lattice)
       fun u hu => h u hu
   have hord_top : analyticOrderAt ℘'[L] (L.ω₁ / 2) = ⊤ := analyticOrderAt_eq_top.mpr h0
-
   have hfin := L.kw_analyticOrderAt_weierstrassP_sub_self_ne_top L.ω₁_div_two_notMem_lattice
   rw [← L.kw_analyticOrderAt_derivWeierstrassP L.ω₁_div_two_notMem_lattice, hord_top,
     top_add] at hfin
@@ -242,13 +234,11 @@ private theorem _root_.PeriodPair.kw_two_mul_deriv_derivWeierstrassP_mul {z : �
     2 * ℘'[L] z * deriv ℘'[L] z = (12 * ℘[L] z ^ 2 - L.g₂) * ℘'[L] z := by
   have hP : DifferentiableAt ℂ ℘[L] z := (L.analyticOnNhd_weierstrassP z hz).differentiableAt
   have hP' : DifferentiableAt ℂ ℘'[L] z := (L.analyticOnNhd_derivWeierstrassP z hz).differentiableAt
-
   have hEq : (fun u => ℘'[L] u ^ 2) =ᶠ[𝓝 z]
       fun u => 4 * ℘[L] u ^ 3 - L.g₂ * ℘[L] u - L.g₃ := by
     filter_upwards [L.isClosed_lattice.isOpen_compl.mem_nhds hz] with u hu
     exact L.derivWeierstrassP_sq u hu
   have hD := hEq.deriv_eq
-
   have hdP : HasDerivAt ℘[L] (℘'[L] z) z := L.deriv_weierstrassP ▸ hP.hasDerivAt
   have hL : HasDerivAt (fun u => ℘'[L] u ^ 2) (2 * ℘'[L] z * deriv ℘'[L] z) z :=
     (hP'.hasDerivAt.pow 2).congr_deriv (by ring)
@@ -264,13 +254,11 @@ p2m_export "PeriodPair" "kw_two_mul_deriv_derivWeierstrassP_mul"
 
 private theorem _root_.PeriodPair.kw_deriv_derivWeierstrassP {z : ℂ} (hz : z ∉ L.lattice) :
     deriv ℘'[L] z = 6 * ℘[L] z ^ 2 - L.g₂ / 2 := by
-
   have hAnL : AnalyticOnNhd ℂ (deriv ℘'[L]) (L.lattice : Set ℂ)ᶜ :=
     fun u hu => (L.analyticOnNhd_derivWeierstrassP u hu).deriv
   have hAnR : AnalyticOnNhd ℂ (fun u => 6 * ℘[L] u ^ 2 - L.g₂ / 2) (L.lattice : Set ℂ)ᶜ :=
     fun u hu => (analyticAt_const.mul ((L.analyticOnNhd_weierstrassP u hu).pow 2)).sub
       analyticAt_const
-
   obtain ⟨c, hc, hP'c⟩ := L.kw_exists_derivWeierstrassP_ne_zero
   have hAgree : deriv ℘'[L] =ᶠ[𝓝 c] fun u => 6 * ℘[L] u ^ 2 - L.g₂ / 2 := by
     have hP'cont : ContinuousAt ℘'[L] c :=
@@ -281,7 +269,6 @@ private theorem _root_.PeriodPair.kw_deriv_derivWeierstrassP {z : ℂ} (hz : z �
     refine mul_left_cancel₀ (a := 2 * ℘'[L] u) (mul_ne_zero two_ne_zero hu_ne) ?_
     calc 2 * ℘'[L] u * deriv ℘'[L] u = (12 * ℘[L] u ^ 2 - L.g₂) * ℘'[L] u := hmul
       _ = 2 * ℘'[L] u * (6 * ℘[L] u ^ 2 - L.g₂ / 2) := by ring
-
   exact hAnL.eqOn_of_preconnected_of_eventuallyEq hAnR L.kw_isPreconnected_compl_lattice
     hc hAgree hz
 
@@ -290,7 +277,6 @@ p2m_export "PeriodPair" "kw_deriv_derivWeierstrassP"
 private theorem _root_.PeriodPair.kw_deriv2_derivWeierstrassP {z : ℂ} (hz : z ∉ L.lattice) :
     deriv (deriv ℘'[L]) z = 12 * ℘[L] z * ℘'[L] z := by
   have hP : DifferentiableAt ℂ ℘[L] z := (L.analyticOnNhd_weierstrassP z hz).differentiableAt
-
   have hEq : deriv ℘'[L] =ᶠ[𝓝 z] fun u => 6 * ℘[L] u ^ 2 - L.g₂ / 2 := by
     filter_upwards [L.isClosed_lattice.isOpen_compl.mem_nhds hz] with u hu
     exact L.kw_deriv_derivWeierstrassP hu
@@ -342,44 +328,35 @@ p2m_export "PeriodPair" "kw_tendsto_weierstrassP_cobounded"
 private theorem _root_.PeriodPair.kw_weierstrassP_surjective (x₀ : ℂ) : ∃ z, z ∉ L.lattice ∧ ℘[L] z = x₀ := by
   by_contra! hno
   classical
-
   let G : ℂ → ℂ := fun z => if z ∈ L.lattice then 0 else (℘[L] z - x₀)⁻¹
   have hGcompl : ∀ z ∉ L.lattice, G z = (℘[L] z - x₀)⁻¹ := fun z hz => ite_eq_right hz
   have hGmem : ∀ z ∈ L.lattice, G z = 0 := fun z hz => ite_eq_left hz
-
   have hGper : ∀ l ∈ L.lattice, ∀ z, G (z + l) = G z := by
     intro l hl z
     by_cases hz : z ∈ L.lattice
     · rw [hGmem z hz, hGmem (z + l) (add_mem hz hl)]
     · have hzl : z + l ∉ L.lattice := fun h => hz (by simpa using sub_mem h hl)
       rw [hGcompl z hz, hGcompl (z + l) hzl, L.weierstrassP_add_coe z ⟨l, hl⟩]
-
   have hne : ∀ z ∉ L.lattice, ℘[L] z - x₀ ≠ 0 := fun z hz => sub_ne_zero.mpr (hno z hz)
   have hGdiff_compl : DifferentiableOn ℂ G (L.lattice : Set ℂ)ᶜ := by
     refine DifferentiableOn.congr ?_ (fun z hz => hGcompl z hz)
     exact fun z hz => ((L.analyticOnNhd_weierstrassP z hz).sub
       analyticAt_const).differentiableAt.inv (hne z hz) |>.differentiableWithinAt
-
   have hGdiff : Differentiable ℂ G := by
     intro z
     by_cases hz : z ∈ L.lattice
-    ·
-      set s := ((L.lattice : Set ℂ) \ {z})ᶜ with hs_def
+    · set s := ((L.lattice : Set ℂ) \ {z})ᶜ with hs_def
       have hs_nhds : s ∈ 𝓝 z := L.compl_lattice_sdiff_singleton_mem_nhds z
-
       have hs_diff : s \ {z} = (L.lattice : Set ℂ)ᶜ := by
         ext w; simp only [hs_def, Set.mem_sdiff, mem_compl_iff, mem_singleton_iff]
         constructor
         · rintro ⟨hw, hwne⟩ hwL; exact hw ⟨hwL, hwne⟩
         · exact fun hwL => ⟨fun ⟨h, _⟩ => hwL h, fun h => hwL (h ▸ hz)⟩
-
       have hGcont : ContinuousAt G z := by
         rw [← continuousWithinAt_compl_self, ContinuousWithinAt, hGmem z hz]
-
         refine Tendsto.congr'
           (eventually_of_mem (L.kw_compl_lattice_mem_nhdsNE z)
             (fun w hw => (hGcompl w hw).symm)) ?_
-
         have h℘ := L.kw_tendsto_weierstrassP_cobounded hz
         have h℘' : Tendsto (fun w => ℘[L] w - x₀) (𝓝[≠] z) (cobounded ℂ) := by
           rw [← tendsto_norm_atTop_iff_cobounded] at h℘ ⊢
@@ -389,9 +366,7 @@ private theorem _root_.PeriodPair.kw_weierstrassP_surjective (x₀ : ℂ) : ∃ 
       exact ((differentiableOn_compl_singleton_and_continuousAt_iff hs_nhds).mp
         ⟨hs_diff ▸ hGdiff_compl, hGcont⟩).differentiableAt hs_nhds
     · exact (hGdiff_compl z hz).differentiableAt (L.isClosed_lattice.isOpen_compl.mem_nhds hz)
-
   have hGconst := L.apply_eq_apply_of_differentiable_of_forall_periodic hGdiff hGper
-
   have h0 : G 0 = 0 := hGmem 0 (zero_mem _)
   have hω : G (L.ω₁ / 2) = (℘[L] (L.ω₁ / 2) - x₀)⁻¹ :=
     hGcompl _ L.ω₁_div_two_notMem_lattice
@@ -414,9 +389,7 @@ private theorem _root_.PeriodPair.kw_toPoint_surjective (h : L.DiscriminantNeZer
   intro P
   rcases P with _ | ⟨x₀, y₀, hP⟩
   · exact ⟨0, L.toPoint_zero h⟩
-
   obtain ⟨z, hz, h℘z⟩ := L.kw_weierstrassP_surjective x₀
-
   have hsq : (℘'[L] z / 2) ^ 2 = y₀ ^ 2 := by
     have h1 := L.equation_weierstrassP hz
     have h2 := hP.1
@@ -425,13 +398,11 @@ private theorem _root_.PeriodPair.kw_toPoint_surjective (h : L.DiscriminantNeZer
       h℘z, zero_mul, add_zero] at h1 h2
     linear_combination h1 - h2
   rcases sq_eq_sq_iff_eq_or_eq_neg.mp hsq with heq | heq
-  ·
-    exact ⟨z, by
+  · exact ⟨z, by
       rw [L.toPoint_of_notMem h hz]
       simp only [WeierstrassCurve.Affine.Point.some.injEq]
       exact ⟨h℘z, heq⟩⟩
-  ·
-    have hnz : -z ∉ L.lattice := fun hm => hz (neg_neg z ▸ neg_mem hm)
+  · have hnz : -z ∉ L.lattice := fun hm => hz (neg_neg z ▸ neg_mem hm)
     exact ⟨-z, by
       rw [L.toPoint_of_notMem h hnz]
       simp only [WeierstrassCurve.Affine.Point.some.injEq]
@@ -739,9 +710,7 @@ private theorem _root_.PeriodPair.kw_addBridgeR_order_ge_four (hw : w ∉ L.latt
   have hg := PeriodPair.analyticAt_weierstrassPExcept L (0 : ℂ)
   have hP := L.kw_analyticAt_weierstrassP_add_zero hw
   have hid : AnalyticAt ℂ (id : ℂ → ℂ) (0 : ℂ) := analyticAt_id
-
   have hord_id : analyticOrderAt (id : ℂ → ℂ) (0 : ℂ) = 1 := analyticOrderAt_id
-
   have hReq : L.kwAddBridgeR w =
       (fun _ : ℂ => (8 : ℂ)) * ((id ^ 2 * L.weierstrassPExcept (0 : ℂ))
         * ((fun z => ℘[L] (z + w)) - fun _ => ℘[L] w))
@@ -752,15 +721,13 @@ private theorem _root_.PeriodPair.kw_addBridgeR_order_ge_four (hw : w ∉ L.latt
   rw [hReq]
   refine le_trans ?_ le_analyticOrderAt_add
   refine le_min ?_ ?_
-  ·
-    rw [analyticOrderAt_mul analyticAt_const (((hid.pow 2).mul hg).mul (hP.sub analyticAt_const)),
+  · rw [analyticOrderAt_mul analyticAt_const (((hid.pow 2).mul hg).mul (hP.sub analyticAt_const)),
       analyticOrderAt_mul ((hid.pow 2).mul hg) (hP.sub analyticAt_const),
       analyticOrderAt_mul (hid.pow 2) hg, analyticOrderAt_pow hid, hord_id]
     calc (4 : ℕ∞) = 0 + ((2 • 1 + 2) + 0) := by norm_num
       _ ≤ _ := add_le_add zero_le
               (add_le_add (add_le_add le_rfl L.kw_weierstrassPExcept_zero_order_ge_two) zero_le)
-  ·
-    rw [analyticOrderAt_mul (hid.pow 4) (L.kw_analyticAt_addBridgeT hw),
+  · rw [analyticOrderAt_mul (hid.pow 4) (L.kw_analyticAt_addBridgeT hw),
       analyticOrderAt_pow hid, hord_id]
     calc (4 : ℕ∞) = 4 • 1 + 0 := by norm_num
       _ ≤ _ := add_le_add le_rfl zero_le
@@ -787,7 +754,6 @@ p2m_export "PeriodPair" "kw_addΦ_diffEq"
 private theorem _root_.PeriodPair.kw_addBridge_identity {z : ℂ} (hz : z ∉ L.lattice) (hw : w ∉ L.lattice)
     (hz0 : z ≠ 0) :
     z ^ 4 * L.kwAddΦ w z = L.kwAddCoreE w z + L.kwAddBridgeR w z := by
-
   have hPz : ℘[L] z = (z ^ 2)⁻¹ + L.weierstrassPExcept (0 : ℂ) z := by
     have h := PeriodPair.weierstrassPExcept_add L ⟨0, zero_mem _⟩ z
     simp only [sub_zero, ne_eq, OfNat.ofNat_ne_zero, not_false_eq_true,
@@ -799,7 +765,6 @@ private theorem _root_.PeriodPair.kw_addBridge_identity {z : ℂ} (hz : z ∉ L.
     have hr : (2 : ℂ) / z ^ 3 = 2 * (z ^ 3)⁻¹ := by ring
     rw [hr] at h
     linear_combination -h
-
   rw [L.kw_addΦ_diffEq hz hw, hPz, hP'z]
   unfold kwAddCoreE kwAddBridgeR kwAddBridgeT
   field_simp
@@ -887,13 +852,11 @@ p2m_export "PeriodPair" "kw_analyticOnNhd_addΦ"
 
 private theorem _root_.PeriodPair.kw_addΦ_removable_at_zero (hw : w ∉ L.lattice) :
     ∃ B, AnalyticAt ℂ B (0 : ℂ) ∧ L.kwAddΦ w =ᶠ[𝓝[≠] (0 : ℂ)] B := by
-
   have hER : AnalyticAt ℂ (fun z => L.kwAddCoreE w z + L.kwAddBridgeR w z) 0 :=
     (L.kw_analyticAt_addCoreE hw).add (L.kw_analyticAt_addBridgeR hw)
   obtain ⟨B, hB_an, hB_eq⟩ := (natCast_le_analyticOrderAt hER).mp
     (L.kw_addCoreE_add_R_order_ge_four hw)
   refine ⟨B, hB_an, ?_⟩
-
   filter_upwards [L.kw_compl_lattice_mem_nhdsNE 0,
     mem_nhdsWithin_of_mem_nhds (L.kw_add_notMem_mem_nhds_zero hw),
     self_mem_nhdsWithin, hB_eq.filter_mono nhdsWithin_le_nhds] with z hzL hzwL hz0 hzB
@@ -916,7 +879,6 @@ p2m_export "PeriodPair" "kw_sq_mul_weierstrassP_add_eq"
 
 private theorem _root_.PeriodPair.kw_addΦ_removable_at_neg (hw : w ∉ L.lattice) :
     ∃ B, AnalyticAt ℂ B (-w) ∧ L.kwAddΦ w =ᶠ[𝓝[≠] (-w)] B := by
-
   have hnw : -w ∉ L.lattice := fun h => hw (by simpa using neg_mem h)
   have hPw : ℘[L] (-w) = ℘[L] w := L.weierstrassP_neg w
   have hP_an : AnalyticAt ℂ (fun z => ℘[L] z - ℘[L] w) (-w) :=
@@ -927,7 +889,6 @@ private theorem _root_.PeriodPair.kw_addΦ_removable_at_neg (hw : w ∉ L.lattic
     intro i hi; interval_cases i
     simp [hPw]
   obtain ⟨g, hg_an, hg_eq⟩ := (natCast_le_analyticOrderAt hP_an).mp hord
-
   refine ⟨fun z => 4 * g z ^ 2 *
       (1 + (z + w) ^ 2 * L.weierstrassPExcept (0 : ℂ) (z + w) + (z + w) ^ 2 * (℘[L] z + ℘[L] w))
     - (℘'[L] z - ℘'[L] w) ^ 2, ?_, ?_⟩
@@ -942,14 +903,12 @@ private theorem _root_.PeriodPair.kw_addΦ_removable_at_neg (hw : w ∉ L.lattic
     have hP := L.analyticOnNhd_weierstrassP (-w) hnw
     have hP' := L.analyticOnNhd_derivWeierstrassP (-w) hnw
     fun_prop
-  ·
-    have hmem : (L.lattice : Set ℂ)ᶜ ∈ 𝓝 (-w) := L.isClosed_lattice.isOpen_compl.mem_nhds hnw
+  · have hmem : (L.lattice : Set ℂ)ᶜ ∈ 𝓝 (-w) := L.isClosed_lattice.isOpen_compl.mem_nhds hnw
     filter_upwards [mem_nhdsWithin_of_mem_nhds hmem, self_mem_nhdsWithin,
       hg_eq.filter_mono nhdsWithin_le_nhds] with z hzL hzne hzg
     have hzw0 : z + w ≠ 0 := fun h => hzne (eq_neg_of_add_eq_zero_left h)
     unfold kwAddΦ
     simp only [sub_neg_eq_add, pow_one, smul_eq_mul] at hzg
-
     have hsq := L.kw_sq_mul_weierstrassP_add_eq hzw0
     rw [hzg]
     linear_combination 4 * g z ^ 2 * hsq
@@ -966,12 +925,10 @@ private theorem _root_.PeriodPair.kw_elliptic_Liouville_zero (hw : w ∉ L.latti
   classical
   obtain ⟨B₀, hB₀_an, hB₀_eq⟩ := hH0
   obtain ⟨B₁, hB₁_an, hB₁_eq⟩ := hHnw
-
   let Φext : ℂ → ℂ := fun u => if u ∈ L.lattice then B₀ 0
     else if u + w ∈ L.lattice then B₁ (-w) else H u
   have hΦD : ∀ u ∈ L.kwAddΦDomain w, Φext u = H u := fun u ⟨h1, h2⟩ => by
     simp only [Φext, ite_eq_right h1, ite_eq_right h2]
-
   have hper : ∀ l ∈ L.lattice, ∀ u, Φext (u + l) = Φext u := by
     intro l hl u
     by_cases h1 : u ∈ L.lattice
@@ -984,10 +941,8 @@ private theorem _root_.PeriodPair.kw_elliptic_Liouville_zero (hw : w ∉ L.latti
     · have h2' : u + l + w ∉ L.lattice := fun h => h2 (by
         rw [show u + l + w = u + w + l from by ring] at h; simpa using sub_mem h hl)
       rw [hΦD u ⟨h1, h2⟩, hΦD (u + l) ⟨h1', h2'⟩, hHper l hl u]
-
   have hDdiff : DifferentiableOn ℂ Φext (L.kwAddΦDomain w) :=
     hHan.differentiableOn.congr hΦD
-
   have hdiff0 : DifferentiableAt ℂ Φext 0 := by
     set s := ((L.lattice : Set ℂ) \ {0})ᶜ ∩ {u | u + w ∉ L.lattice} with hs_def
     have hs_nhds : s ∈ 𝓝 (0 : ℂ) :=
@@ -1010,7 +965,6 @@ private theorem _root_.PeriodPair.kw_elliptic_Liouville_zero (hw : w ∉ L.latti
       rw [hΦD u ⟨fun hu => h1 ⟨hu, h3⟩, h2⟩, h4]
     exact ((differentiableOn_compl_singleton_and_continuousAt_iff hs_nhds).mp
       ⟨hs_diff ▸ hDdiff.mono inter_subset_left, hcont⟩).differentiableAt hs_nhds
-
   have hnw : -w ∉ L.lattice := fun h => hw (by simpa using neg_mem h)
   have hdiff_nw : DifferentiableAt ℂ Φext (-w) := by
     set s := (L.lattice : Set ℂ)ᶜ ∩ ({u | u + w ∈ L.lattice} \ {-w})ᶜ with hs_def
@@ -1044,7 +998,6 @@ private theorem _root_.PeriodPair.kw_elliptic_Liouville_zero (hw : w ∉ L.latti
       rw [hΦD u ⟨h1, fun hu => h2 ⟨hu, h3⟩⟩, h4]
     exact ((differentiableOn_compl_singleton_and_continuousAt_iff hs_nhds).mp
       ⟨hs_diff ▸ hDdiff.mono inter_subset_left, hcont⟩).differentiableAt hs_nhds
-
   have hshift : ∀ l ∈ L.lattice, Φext = fun v => Φext (v - l) := fun l hl =>
     funext fun v => by rw [← hper l hl (v - l), sub_add_cancel]
   have hdiff : Differentiable ℂ Φext := by
@@ -1059,9 +1012,7 @@ private theorem _root_.PeriodPair.kw_elliptic_Liouville_zero (hw : w ∉ L.latti
         (by simp only [sub_add_cancel_left]; exact hdiff_nw)
         (differentiableAt_id.sub_const (u + w))
     · exact (hDdiff u ⟨h1, h2⟩).differentiableAt (L.kw_isOpen_addΦDomain.mem_nhds ⟨h1, h2⟩)
-
   have hconst := L.apply_eq_apply_of_differentiable_of_forall_periodic hdiff hper
-
   have hwD : w ∈ L.kwAddΦDomain w := ⟨hw, by rwa [← two_mul]⟩
   calc H z = Φext z := (hΦD z ⟨hz, hzw⟩).symm
     _ = Φext w := hconst z w
@@ -1145,7 +1096,6 @@ private theorem _root_.PeriodPair.kw_addΨCoreE_order_ge_three (hw : w ∉ L.lat
     fun_prop
   rw [show (3 : ℕ∞) = ((3 : ℕ) : ℕ∞) from rfl,
     natCast_le_analyticOrderAt_iff_iteratedDeriv_eq_zero hAn]
-
   have hEΨ' : ∀ z, z + w ∉ L.lattice → HasDerivAt (L.kwAddΨCoreE w)
       (-℘'[L] (z + w) + z * deriv ℘'[L] (z + w) + ℘'[L] w) z := by
     intro z hzw
@@ -1159,7 +1109,6 @@ private theorem _root_.PeriodPair.kw_addΨCoreE_order_ge_three (hw : w ∉ L.lat
       exact ((hasDerivAt_id z).mul (hP'.add_const (℘'[L] w))).sub
         ((hP.sub_const (℘[L] w)).const_mul 2)
     convert hD using 1; ring
-
   have hEΨ'' : deriv (deriv (L.kwAddΨCoreE w)) =ᶠ[𝓝 (0 : ℂ)]
       fun z => z * deriv (deriv ℘'[L]) (z + w) := by
     have hD : deriv (L.kwAddΨCoreE w) =ᶠ[𝓝 (0 : ℂ)]
@@ -1198,7 +1147,6 @@ p2m_export "PeriodPair" "kwAddΨTail"
 
 private theorem _root_.PeriodPair.kw_addΨ_cube_bridge {z : ℂ} (hz0 : z ≠ 0) :
     z ^ 3 * L.kwAddΨ w z = L.kwAddΨCoreE w z + z ^ 3 * L.kwAddΨTail w z := by
-
   have hPz : ℘[L] z = (z ^ 2)⁻¹ + L.weierstrassPExcept (0 : ℂ) z := by
     have h := PeriodPair.weierstrassPExcept_add L ⟨0, zero_mem _⟩ z
     simp only [sub_zero, ne_eq, OfNat.ofNat_ne_zero, not_false_eq_true, zero_pow,
@@ -1233,7 +1181,6 @@ private theorem _root_.PeriodPair.kw_addΨ_removable_at_zero (hw : w ∉ L.latti
       have hP' := L.kw_analyticAt_derivWeierstrassP_add h0w
       fun_prop
     fun_prop
-
   have hord : (3 : ℕ∞) ≤
       analyticOrderAt (fun z => L.kwAddΨCoreE w z + z ^ 3 * L.kwAddΨTail w z) 0 := by
     refine le_trans ?_ le_analyticOrderAt_add
@@ -1244,7 +1191,6 @@ private theorem _root_.PeriodPair.kw_addΨ_removable_at_zero (hw : w ∉ L.latti
       analyticOrderAt_pow analyticAt_id, analyticOrderAt_id]
     calc (3 : ℕ∞) = 3 • 1 + 0 := by norm_num
       _ ≤ _ := add_le_add le_rfl zero_le
-
   obtain ⟨B, hB_an, hB_eq⟩ := (natCast_le_analyticOrderAt hSum_an).mp hord
   refine ⟨B, hB_an, ?_⟩
   filter_upwards [self_mem_nhdsWithin, hB_eq.filter_mono nhdsWithin_le_nhds] with z hz0 hzB
@@ -1262,8 +1208,7 @@ private theorem _root_.PeriodPair.kw_addΨ_removable_at_neg (hw : w ∉ L.lattic
   · have hinner : AnalyticAt ℂ (fun z : ℂ => -z - w) (-w) :=
       (analyticAt_neg.mpr analyticAt_id).sub analyticAt_const
     exact (AnalyticAt.comp (by simpa using hB₀_an) hinner).neg
-  ·
-    have hmap : Tendsto (fun z : ℂ => -z - w) (𝓝[≠] (-w)) (𝓝[≠] (0 : ℂ)) := by
+  · have hmap : Tendsto (fun z : ℂ => -z - w) (𝓝[≠] (-w)) (𝓝[≠] (0 : ℂ)) := by
       refine tendsto_nhdsWithin_of_tendsto_nhds_of_eventually_within _ ?_ ?_
       · have hc : Continuous (fun z : ℂ => -z - w) := by continuity
         simpa using (hc.tendsto (-w)).mono_left nhdsWithin_le_nhds
@@ -1293,7 +1238,6 @@ private theorem _root_.PeriodPair.kw_derivWeierstrassP_add_eq_addY (hw : w ∉ L
   have hX := L.kw_weierstrassP_add_eq_addX hw h2w hz hzw hne
   unfold kwAddΨ at hΨ
   have hne' : ℘[L] z - ℘[L] w ≠ 0 := sub_ne_zero.mpr hne
-
   have hdw : ℘'[L] (z + w) = (-(℘'[L] z - ℘'[L] w) * ℘[L] (z + w)
       - ℘[L] z * ℘'[L] w + ℘[L] w * ℘'[L] z) / (℘[L] z - ℘[L] w) := by
     rw [eq_div_iff hne']; linear_combination hΨ
@@ -1324,8 +1268,7 @@ private theorem _root_.PeriodPair.kw_countable_analytic_level {f : ℂ → ℂ}
     L.kw_isPreconnected_compl_lattice with heq | hne
   · obtain ⟨z, hz, hfz⟩ := hfnc
     exact absurd (heq hz) hfz
-  ·
-    have hD : IsDiscrete ({z | f z = 0} ∩ (L.lattice : Set ℂ)ᶜ) := by
+  · have hD : IsDiscrete ({z | f z = 0} ∩ (L.lattice : Set ℂ)ᶜ) := by
       refine isDiscrete_of_codiscreteWithin ?_
       simp only [Set.compl_ofPred] at hne ⊢
       exact hne
@@ -1350,7 +1293,6 @@ p2m_export "PeriodPair" "kw_countable_weierstrassP_eq"
 
 private theorem _root_.PeriodPair.kw_countable_derivWeierstrassP_zero :
     {z | z ∉ L.lattice ∧ ℘'[L] z = 0}.Countable := by
-
   refine L.kw_countable_analytic_level L.analyticOnNhd_derivWeierstrassP ?_
   by_contra! hall
   obtain ⟨z₀, hz₀, hPz₀⟩ := L.kw_weierstrassP_surjective 0
@@ -1372,7 +1314,6 @@ private theorem _root_.PeriodPair.kw_exists_generic_perturbation (z : ℂ) :
       ℘'[L] u ≠ 0 ∧ ℘'[L] (w + u) ≠ 0 ∧
       ℘[L] z ≠ ℘[L] u ∧ ℘[L] w ≠ ℘[L] u ∧ ℘[L] (z + w) ≠ ℘[L] u ∧ ℘[L] z ≠ ℘[L] (w + u) := by
   classical
-
   have hLc := L.kw_countable_lattice
   set S : Set ℂ := (L.lattice : Set ℂ) ∪ {u | 2 * u ∈ L.lattice} ∪ {u | z + u ∈ L.lattice}
     ∪ {u | w + u ∈ L.lattice} ∪ {u | z + w + u ∈ L.lattice} ∪ {u | 2 * (w + u) ∈ L.lattice}
@@ -1394,7 +1335,6 @@ private theorem _root_.PeriodPair.kw_exists_generic_perturbation (z : ℂ) :
       (L.kw_countable_weierstrassP_eq (℘[L] w))).union
       (L.kw_countable_weierstrassP_eq (℘[L] (z + w)))).union
       ((L.kw_countable_weierstrassP_eq (℘[L] z)).preimage (hinj w))
-
   have hSne : Sᶜ.Nonempty := by
     rw [Set.nonempty_compl]
     exact fun hSu => not_countable_complex (hSu ▸ hSc)
@@ -1409,7 +1349,6 @@ p2m_export "PeriodPair" "kw_exists_generic_perturbation"
 
 private theorem _root_.PeriodPair.kw_toPoint_add (hD : L.DiscriminantNeZero) (z w : ℂ) :
     L.toPoint hD (z + w) = L.toPoint hD z + L.toPoint hD w := by
-
   by_cases hz : z ∈ L.lattice
   · rw [L.toPoint_of_mem hD hz, zero_add, add_comm, L.toPoint_add_mem hD w hz]
   by_cases hw : w ∈ L.lattice
@@ -1419,14 +1358,12 @@ private theorem _root_.PeriodPair.kw_toPoint_add (hD : L.DiscriminantNeZero) (z 
     have : L.toPoint hD w = L.toPoint hD (-z) := by
       rw [show w = -z + (z + w) from by ring, L.toPoint_add_mem hD (-z) hzw]
     rw [this, L.toPoint_neg, add_neg_cancel]
-
   obtain ⟨u, hu, h2u, -, hwu, hzwu, h2wu, -, -, -, hne_wu, hne_zwu, hne_zwuP⟩ :=
     L.kw_exists_generic_perturbation (w := w) z
   have A2 := L.kw_toPoint_add_generic hD hu h2u hw hwu hne_wu
   have A3 := L.kw_toPoint_add_generic hD hu h2u hzw hzwu hne_zwu
   have A4 := L.kw_toPoint_add_generic hD hwu h2wu hz
     (by rwa [show z + (w + u) = z + w + u from by ring]) hne_zwuP
-
   have hchain : L.toPoint hD (z + w) + L.toPoint hD u =
       L.toPoint hD z + L.toPoint hD w + L.toPoint hD u := by
     rw [← A3, show z + w + u = z + (w + u) from by ring, A4, A2]

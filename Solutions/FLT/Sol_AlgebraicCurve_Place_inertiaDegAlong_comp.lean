@@ -18,10 +18,8 @@ theorem solution {K F F' F'' : Type*} [Field K] [Field F] [Field F'] [Field F'']
   let iφ : Algebra F F' := algebraAlong φ
   have := isScalarTower_along φ
   have := isIntegral_along φ hφ
-
   let w : Place K F' := W.restrict F'
   let v : Place K F := w.restrict F
-
   let iχφ : Algebra F F'' := algebraAlong (χ.comp φ)
   have := isScalarTower_along (χ.comp φ)
   have := isIntegral_along (χ.comp φ) hχφ

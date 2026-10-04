@@ -15,11 +15,9 @@ variable {F : Type u} [Field F]
 variable (W : Affine F) in
 
 class GenusOnePlaceGate.IsCentred [GenusOnePlaceGate W] : Prop where
-
   XClass_mem_nonunits : ∀ (x y : F) (h : W.Nonsingular x y),
     algebraMap W.CoordinateRing W.FunctionField (CoordinateRing.XClass W x)
       ∈ (placeOfPoint (Point.some x y h)).toValuationSubring.nonunits
-
   YClass_mem_nonunits : ∀ (x y : F) (h : W.Nonsingular x y),
     algebraMap W.CoordinateRing W.FunctionField (CoordinateRing.YClass W (Polynomial.C y))
       ∈ (placeOfPoint (Point.some x y h)).toValuationSubring.nonunits

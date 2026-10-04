@@ -110,24 +110,20 @@ theorem endgame_read (p : ℕ) [NeZero p] (hp1 : 1 ≤ p) {β₀ γ : K} (hγ : 
     rw [show (HahnSeries.C γ : LaurentSeries K) = HahnSeries.single 0 γ from rfl,
       HahnSeries.coeff_single, ite_eq_left rfl] at h1
     exact h1.trans rfl
-
   have hq := congrArg (qExpand K p) honept
   rw [map_mul, ModularCurve.qExpand_C] at hq
   have hqj : qExpand K p (jqModC K - HahnSeries.C β₀)
       = (jqModC K - HahnSeries.C β₀) ^ p := by
     rw [map_sub, ModularCurve.qExpand_C, hpress, add_sub_cancel_right]
   rw [hqj] at hq
-
   have hj : jqModC K - HahnSeries.C β₀ = HahnSeries.C γ * D⁻¹ := by
     rw [← honept]
     exact (mul_inv_cancel_right₀ hD0 _).symm
   rw [hj, mul_pow] at hq
-
   have h6 := congrArg (fun z : LaurentSeries K => z * D ^ p) hq
   rw [show HahnSeries.C γ ^ p * D⁻¹ ^ p * qExpand K p D * D ^ p
       = HahnSeries.C γ ^ p * qExpand K p D * (D⁻¹ * D) ^ p from by ring,
     inv_mul_cancel₀ hD0, one_pow, mul_one] at h6
-
   have h7 : HahnSeries.C γ * (HahnSeries.C (γ ^ (p - 1)) * qExpand K p D)
       = HahnSeries.C γ * D ^ p := by
     calc HahnSeries.C γ * (HahnSeries.C (γ ^ (p - 1)) * qExpand K p D)
@@ -249,7 +245,6 @@ theorem hasse_input {ℓ : ℕ} [Fact ℓ.Prime] (hℓ5 : 5 ≤ ℓ) :
   obtain ⟨T, hTmap, hTconst, hTdvd⟩ := ModularCurve.StarBank.eisInt_series hℓ5 hk
   have hnum0 : ¬ (ℓ : ℤ) ∣ (_root_.bernoulli (ℓ - 1)).num :=
     ModularCurve.StarBank.eisInt_not_dvd_num hℓ5
-
   have hmapZ : T.map (Int.castRingHom (ZMod ℓ))
       = PowerSeries.C (((_root_.bernoulli (ℓ - 1)).num : ZMod ℓ)) := by
     ext n
@@ -265,21 +260,18 @@ theorem hasse_input {ℓ : ℕ} [Fact ℓ.Prime] (hℓ5 : 5 ≤ ℓ) :
     rw [map_pow, hmapZ, ← map_pow]
   have hnumZ : (((_root_.bernoulli (ℓ - 1)).num : ZMod ℓ)) ≠ 0 :=
     fun h => hnum0 ((ZMod.intCast_zmod_eq_zero_iff_dvd _ _).mp h)
-
   have hdvd12 : ∀ m, 1 ≤ m → (ℓ : ℤ) ∣ (T ^ 12).coeff m := by
     intro m hm
     have h1 := congrArg (fun u : PowerSeries (ZMod ℓ) => PowerSeries.coeff m u) hmapZ12
     simp only [PowerSeries.coeff_map, PowerSeries.coeff_C] at h1
     rw [ite_eq_right (by omega : ¬ m = 0)] at h1
     exact (ZMod.intCast_zmod_eq_zero_iff_dvd _ _).mp h1
-
   have hconst12 : PowerSeries.constantCoeff (T ^ 12) = (_root_.bernoulli (ℓ - 1)).num ^ 12 := by
     rw [map_pow, hTconst]
   have hnot12 : ¬ (ℓ : ℤ) ∣ PowerSeries.constantCoeff (T ^ 12) := by
     rw [hconst12, ← ZMod.intCast_zmod_eq_zero_iff_dvd]
     push_cast
     exact pow_ne_zero 12 hnumZ
-
   have hw : ((12 : ℕ) : ℤ) * ((ℓ - 1 : ℕ) : ℤ) = 12 * ((ℓ - 1 : ℕ) : ℤ) := by norm_num
   have hT12 : (T ^ 12).map (Int.castRingHom ℂ)
       = UpperHalfPlane.qExpansion 1
@@ -312,20 +304,17 @@ p2m_open "ModularCurve P2MW.S_ModularCurve_StarBank_starBank.ModularCurve"
 
 private theorem starBank_core {K : Type*} [Field K] [IsAlgClosed K] {ℓ p : ℕ}
     [Fact ℓ.Prime] [Fact p.Prime] [CharP K ℓ] (hpℓ : p ≠ ℓ)
-
     (hstarK : ∃ M : ℕ, 1 ≤ M ∧ (M : K) ≠ 0 ∧ ∃ G : Polynomial K, G.natDegree = M
       ∧ Polynomial.aeval (jqModC K) G
           * (HahnSeries.single (1 : ℤ) (1 : K)
               * HahnSeries.ofPowerSeries ℤ K
                   (PowerSeries.map (Int.castRingHom K) etaProd) ^ 24) ^ M = 1)
-
     (hpress : ∀ (ζ : Kˣ), IsPrimitiveRoot (ζ : K) p → ∀ {R : Polynomial K},
       Polynomial.aeval (jqModC K) R = jqNModC K p →
       R.Monic ∧ R.natDegree = p ∧
         R.map (algebraMap K (LaurentSeries K)) - Polynomial.C (jqNModC K p) =
           ∏ b ∈ Finset.range p,
             (Polynomial.X - Polynomial.C (qTwist (ζ ^ b) (jqModC K))))
-
     (hnorm : ∀ (ζ : Kˣ), IsPrimitiveRoot (ζ : K) p →
       (∏ b ∈ Finset.range p, qTwist (ζ ^ b)
           (HahnSeries.single (1 : ℤ) (1 : K) *
@@ -338,7 +327,6 @@ private theorem starBank_core {K : Type*} [Field K] [IsAlgClosed K] {ℓ p : ℕ
         qExpand K p (HahnSeries.single (1 : ℤ) (1 : K) *
             HahnSeries.ofPowerSeries ℤ K
               (PowerSeries.map (Int.castRingHom K) etaProd) ^ 24) ^ (p + 1))
-
     (hclosure : ∀ (ζ : Kˣ) {M : ℕ} {G R : Polynomial K},
       Polynomial.aeval (jqModC K) G *
           (HahnSeries.single (1 : ℤ) (1 : K) *
@@ -360,13 +348,11 @@ private theorem starBank_core {K : Type*} [Field K] [IsAlgClosed K] {ℓ p : ℕ
             HahnSeries.ofPowerSeries ℤ K
               (PowerSeries.map (Int.castRingHom K) etaProd) ^ 24) ^ (p + 1)) →
       ∃ c : K, c ≠ 0 ∧ G.comp R ∣ Polynomial.C c * G ^ (p + 1))
-
     (hcount : ∀ (_ : (p : K) ≠ 0) (_ : 2 ≤ p) {R G : Polynomial K} (_ : R.Monic)
       (_ : R.natDegree = p) (_ : 0 < G.natDegree) {c : K} (_ : c ≠ 0)
       (_ : G.comp R ∣ Polynomial.C c * G ^ (p + 1)),
       ∃ β₀ : K, (∀ β : K, G.IsRoot β → β = β₀) ∧
         R = (Polynomial.X - Polynomial.C β₀) ^ p + Polynomial.C β₀)
-
     (honepoint : ∀ {M : ℕ} (_ : (M : K) ≠ 0) {c : K} (_ : c ≠ 0) {β₀ : K}
       (_ : Polynomial.aeval (jqModC K)
             (Polynomial.C c * (Polynomial.X - Polynomial.C β₀) ^ M)
@@ -380,7 +366,6 @@ private theorem starBank_core {K : Type*} [Field K] [IsAlgClosed K] {ℓ p : ℕ
               * HahnSeries.ofPowerSeries ℤ K
                   (PowerSeries.map (Int.castRingHom K) etaProd) ^ 24)
           = HahnSeries.C γ)
-
     (hdelta : ∀ (γ : K),
       (HahnSeries.single (1 : ℤ) (1 : K) *
           HahnSeries.ofPowerSeries ℤ K
@@ -388,7 +373,6 @@ private theorem starBank_core {K : Type*} [Field K] [IsAlgClosed K] {ℓ p : ℕ
         HahnSeries.C γ * qExpand K p (HahnSeries.single (1 : ℤ) (1 : K) *
           HahnSeries.ofPowerSeries ℤ K
             (PowerSeries.map (Int.castRingHom K) etaProd) ^ 24))
-
     {R : Polynomial K} (hRmem : Polynomial.aeval (jqModC K) R = jqNModC K p) : False := by
   have hp0 : (p : K) ≠ 0 := ModularCurve.W1.natCast_prime_ne_zero K hpℓ
   obtain ⟨ζ, hζ⟩ := ModularCurve.W1.exists_primitiveRoot_units K p hp0
@@ -458,7 +442,6 @@ theorem solution {K : Type*} [Field K] {ℓ : ℕ} [Fact ℓ.Prime]
     [CharP K ℓ] {p : ℕ} [Fact p.Prime] (hpℓ : p ≠ ℓ) :
     jqNModC K p ∉ IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K)) :=
   ModularCurve.StarBank.starBank hpℓ
-
 
 end S_ModularCurve_StarBank_starBank
 end P2MW

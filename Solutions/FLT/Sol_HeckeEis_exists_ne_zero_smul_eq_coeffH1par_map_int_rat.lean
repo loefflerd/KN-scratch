@@ -25,7 +25,6 @@ variable {G : Type*} [Group G] {K : Type*} [CommRing K] {V : Type*} [AddCommGrou
 theorem coeffCocycles_apply_one {ρ : Representation K G V} {z : G → V} (hz : z ∈ coeffCocycles ρ) : z 1 = 0 := by
   have h := hz 1 1
   rw [mul_one, map_one, Module.End.one_apply] at h
-
   have : z 1 + z 1 = z 1 + 0 := by rw [add_zero]; exact h.symm
   exact add_left_cancel this
 
@@ -33,7 +32,6 @@ theorem coeffCocycles_apply_inv {ρ : Representation K G V} {z : G → V} (hz : 
     z g⁻¹ = -(ρ g⁻¹ (z g)) := by
   have h := hz g⁻¹ g
   rw [inv_mul_cancel, coeffCocycles_apply_one hz] at h
-
   exact eq_neg_of_add_eq_zero_left h.symm
 
 theorem mem_of_mem_coeffCocycles_of_closure_eq_top {ρ : Representation K G V} {z : G → V} (hz : z ∈ coeffCocycles ρ)
@@ -156,7 +154,6 @@ theorem pushCoeff_binarySubst (M : Matrix (Fin 2) (Fin 2) ℤ) (P : MvPolynomial
   classical
   ext d
   rw [coeff_pushCoeff, coeff_binarySubst, coeff_binarySubst, map_sum]
-
   rw [Finset.sum_subset (support_pushCoeff f P)]
   · refine Finset.sum_congr rfl fun d' _ => ?_
     rw [coeff_pushCoeff, ← zsmul_eq_mul, ← zsmul_eq_mul, map_zsmul]
@@ -487,7 +484,6 @@ theorem cuspWidth_dvd (δ : SL(2, ℤ)) {h : ℤ} (hh : δ * ModularGroup.T ^ h 
   obtain ⟨ha, hmem⟩ := cuspWidth_spec N δ
   set a : ℕ := cuspWidth N δ with hadef
   have ha' : (0 : ℤ) < a := by exact_mod_cast ha
-
   have hrmem : δ * ModularGroup.T ^ (h % a) * δ⁻¹ ∈ Gamma0 N := by
     have e : h % (a : ℤ) = h + (a : ℤ) * (-(h / a)) := by rw [Int.emod_def]; ring
     rw [e, conj_T_zpow_add, conj_T_zpow_mul]
@@ -582,7 +578,6 @@ theorem isParabolicCocycle_of_cuspWitnesses (n N : ℕ) [NeZero N] (hρm1 : bina
   set m₁ : Gamma0 N := ⟨-1, neg_one_mem_Gamma0 N⟩ with hm₁
   intro γ hγ
   obtain ⟨ε, σ, h, hε, hγeq⟩ := ModularGroup.exists_eq_conj_T_zpow_of_trace_sq_eq_four (γ : SL(2, ℤ)) hγ
-
   set q : SL(2, ℤ) ⧸ Gamma0 N := QuotientGroup.mk σ⁻¹ with hq
   have hg₀ : σ * (cuspRep N q)⁻¹ ∈ Gamma0 N := mul_cuspRep_inv_mem N σ
   set g₀ : Gamma0 N := ⟨σ * (cuspRep N q)⁻¹, hg₀⟩ with hg₀def
@@ -597,12 +592,10 @@ theorem isParabolicCocycle_of_cuspWitnesses (n N : ℕ) [NeZero N] (hρm1 : bina
   obtain ⟨k, hk⟩ := cuspWidth_dvd N (cuspRep N q) hconj_mem
   have hpow : cuspRep N q * ModularGroup.T ^ h * (cuspRep N q)⁻¹ = ((cuspGen N q : Gamma0 N) : SL(2, ℤ)) ^ k := by
     rw [hk, conj_T_zpow_mul, coe_cuspGen]
-
   set γ' : Gamma0 N := g₀ * (cuspGen N q) ^ k * g₀⁻¹ with hγ'def
   have hγ'coe : (γ' : SL(2, ℤ)) = σ * ModularGroup.T ^ h * σ⁻¹ := by
     simp only [hγ'def, Subgroup.coe_mul, Subgroup.coe_inv, SubgroupClass.coe_zpow, ← hpow, hσ]
     group
-
   obtain ⟨W, hW⟩ := hWq q
   have hW' : y (cuspGen N q) = ((binaryFormRepSL ℤ n).comp (Gamma0 N).subtype) (cuspGen N q) W - W := hW
   have hzp : ∀ v ∈ Subgroup.zpowers (cuspGen N q),
@@ -611,7 +604,6 @@ theorem isParabolicCocycle_of_cuspWitnesses (n N : ℕ) [NeZero N] (hρm1 : bina
       (by rwa [Subgroup.zpowers_eq_closure] at hv)
   have hpar' : y γ' ∈ LinearMap.range (((binaryFormRepSL ℤ n).comp (Gamma0 N).subtype) γ' - 1) :=
     apply_conj_mem_range hycoc (hzp _ (Subgroup.zpow_mem_zpowers _ _)) g₀
-
   rcases hε with rfl | rfl
   · have : γ = γ' := Subtype.ext (by rw [hγ'coe, hγeq, one_mul])
     rw [this]; exact hpar'
@@ -621,7 +613,6 @@ theorem isParabolicCocycle_of_cuspWitnesses (n N : ℕ) [NeZero N] (hρm1 : bina
       have h1 := hycoc m₁ m₁
       have hmm : m₁ * m₁ = 1 := Subtype.ext (by simp [hm₁])
       rw [hmm, coeffCocycles_apply_one hycoc, hρm₁, Module.End.one_apply] at h1
-
       apply Subtype.ext; ext d
       have h2 := congrArg (fun P : ↥(BinaryForm ℤ n) => AddMonoidAlgebra.coeff (P : MvPolynomial (Fin 2) ℤ) d) h1
       simp only [Submodule.coe_add, AddMonoidAlgebra.coeff_add, Finsupp.add_apply, Submodule.coe_zero, AddMonoidAlgebra.coeff_zero, Finsupp.zero_apply] at h2
@@ -684,28 +675,21 @@ theorem main
   obtain ⟨z, rfl⟩ := coeffH1parMk_surjective ((binaryFormRepSL ℚ n).comp (Gamma0 N).subtype) x
   rcases Nat.even_or_odd n with heven | hodd
   swap
-  ·
-    refine ⟨1, 0, one_ne_zero, ?_⟩
+  · refine ⟨1, 0, one_ne_zero, ?_⟩
     rw [map_zero, one_smul, mk_eq_zero_of_odd n N hodd z]
-  ·
-
-    have hgen : ∀ (K : Type) [CommRing K] (P : ↥(BinaryForm K n)), ((-1 : K) ^ n) • P = P := by
+  · have hgen : ∀ (K : Type) [CommRing K] (P : ↥(BinaryForm K n)), ((-1 : K) ^ n) • P = P := by
       intro K _ P
       rw [Even.neg_one_pow heven, one_smul]
     have hρm1 : binaryFormRepSL ℤ n (-1) = 1 := by
       refine LinearMap.ext fun P => ?_
       rw [Module.End.one_apply]
       exact (binaryFormRepSL_neg_one_apply ℤ n P).trans (hgen ℤ P)
-
     obtain ⟨S, hS⟩ := Group.fg_def.mp (instGroupFG_Gamma0 N)
-
     choose w hw using fun q : SL(2, ℤ) ⧸ Gamma0 N => z.2.2 (cuspGen N q) (trace_cuspGen_sq N q)
-
     obtain ⟨D₁, hD₁, hint₁⟩ := exists_isInt_zsmul_family S (fun g => ((z.1 g : ↥(BinaryForm ℚ n)) : MvPolynomial (Fin 2) ℚ))
     obtain ⟨D₂, hD₂, hint₂⟩ := exists_isInt_zsmul_family (Finset.univ : Finset (SL(2, ℤ) ⧸ Gamma0 N))
       (fun q => ((w q : ↥(BinaryForm ℚ n)) : MvPolynomial (Fin 2) ℚ))
     have hD : D₁ * D₂ ≠ 0 := mul_ne_zero hD₁ hD₂
-
     let M : AddSubgroup ↥(BinaryForm ℚ n) :=
       { carrier := {P | IsInt (P : MvPolynomial (Fin 2) ℚ)}
         zero_mem' := by show IsInt ((0 : ↥(BinaryForm ℚ n)) : MvPolynomial (Fin 2) ℚ); simpa using IsInt.zero
@@ -729,14 +713,12 @@ theorem main
       rw [show (((((D₁ * D₂ : ℤ)) : ℚ) • z).1 g : ↥(BinaryForm ℚ n)) = (((D₁ * D₂ : ℤ)) : ℚ) • z.1 g from rfl, Submodule.coe_smul,
         Int.cast_smul_eq_zsmul, mul_comm, mul_smul]
       exact (hint₁ g hg).zsmul D₂
-
     choose y hy using fun g => exists_eq_pushForm_of_isInt n (hint g)
     have hyv : ∀ g, pushForm ιZQ n (y g) = (((D₁ * D₂ : ℤ)) : ℚ) • z.1 g := fun g => hy g
     have hycoc : y ∈ coeffCocycles ((binaryFormRepSL ℤ n).comp (Gamma0 N).subtype) := by
       intro g h
       apply pushForm_ι_injective n
       rw [hy, ((((D₁ * D₂ : ℤ)) : ℚ) • z).2.1 g h, hρZ', hρQ', pushForm_add, pushForm_binaryFormRepSL, hy, hy]
-
     have hWq : ∀ q, ∃ W : ↥(BinaryForm ℤ n),
         y (cuspGen N q) = binaryFormRepSL ℤ n ((cuspGen N q : Gamma0 N) : SL(2, ℤ)) W - W := by
       intro q
@@ -748,9 +730,7 @@ theorem main
       have h1 := hw q
       rw [LinearMap.sub_apply, Module.End.one_apply] at h1
       rw [hyv, pushForm_sub, pushForm_binaryFormRepSL, hW, ← hρQ', LinearMap.map_smul, ← smul_sub, h1]
-
     have hypar := isParabolicCocycle_of_cuspWitnesses n N hρm1 hycoc hWq
-
     obtain ⟨w', hw'1, hw'2⟩ := hΦ ⟨y, hycoc, hypar⟩
     refine ⟨D₁ * D₂, coeffH1parMk _ ⟨y, hycoc, hypar⟩, hD, ?_⟩
     rw [hw'2]
@@ -782,7 +762,6 @@ theorem solution (n N : ℕ) [NeZero N]
     ∃ (m : ℤ) (y : HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℤ n).comp (CongruenceSubgroup.Gamma0 N).subtype)),
       m ≠ 0 ∧ Φ y = m • x :=
   HeckeEis.ZQAux.main n N Φ hΦ x
-
 
 end S_HeckeEis_exists_ne_zero_smul_eq_coeffH1par_map_int_rat
 end P2MW

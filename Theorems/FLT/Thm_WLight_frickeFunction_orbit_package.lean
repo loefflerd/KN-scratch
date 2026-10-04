@@ -24,13 +24,10 @@ theorem WLight.frickeFunction_orbit_package
       -(ModularForm.E₄ τ * ModularForm.E₆ τ / ModularForm.discriminant τ) / 2592 * W v τ)
     (jf : ℍ → ℂ)
     (hjf : ∀ τ : ℍ, jf τ = ModularForm.E₄ τ ^ 3 / ModularForm.discriminant τ) :
-
     (MDifferentiable 𝓘(ℂ) 𝓘(ℂ) jf ∧
       ∃ m : ℕ, IsBoundedAtImInfty (jf * ModularForm.discriminant ^ m)) ∧
-
     (∀ v : Fin 2 → ZMod N, v ≠ 0 → MDifferentiable 𝓘(ℂ) 𝓘(ℂ) (fricke v) ∧
       ∃ m : ℕ, IsBoundedAtImInfty (fricke v * ModularForm.discriminant ^ m)) ∧
-
     (∃ P : ℕ → Polynomial ℂ,
       (∀ k i, (P k).coeff i ∈
         IntermediateField.adjoin ℚ {Complex.exp (2 * (Real.pi : ℂ) * Complex.I / N)}) ∧

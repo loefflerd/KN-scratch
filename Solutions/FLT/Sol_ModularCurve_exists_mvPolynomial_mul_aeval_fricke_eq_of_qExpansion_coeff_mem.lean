@@ -175,7 +175,6 @@ theorem qExpansion_widthOne_rat {g : ℍ → ℂ} (hg : MDifferentiable 𝓘(ℂ
   exact ⟨r, hr⟩
 
 theorem qExpansion_disc_rat_one (n : ℕ) : ∃ r : ℚ, (qExpansion 1 (Δ : ℍ → ℂ)).coeff n = (r : ℂ) := by
-
   let A : ModularForm 𝒮ℒ 12 := (E₄.pow 3).mcast (by norm_num)
   let B : ModularForm 𝒮ℒ 12 := (E₆.pow 2).mcast (by norm_num)
   have hfun : (Δ : ℍ → ℂ) = ⇑((1728 : ℂ)⁻¹ • (A - B)) := by
@@ -195,7 +194,6 @@ theorem qExpansion_disc_rat_one (n : ℕ) : ∃ r : ℚ, (qExpansion 1 (Δ : ℍ
     split_ifs
     · exact ⟨1, by simp⟩
     · exact ⟨-(2 * 6 / bernoulli 6) * (ArithmeticFunction.sigma 5 n : ℚ), by push_cast; ring⟩
-
   obtain ⟨p4, hp4⟩ : ∃ p : PowerSeries ℚ, p.map (algebraMap ℚ ℂ) = qExpansion 1 (E₄ : ℍ → ℂ) := by
     choose r hr using h4
     exact ⟨PowerSeries.mk r, by ext n; simp [hr n]⟩
@@ -417,7 +415,6 @@ theorem exists_ev_of_mem_adjoin {x : ℍ → ℂ} (hx : x ∈ Algebra.adjoin (kN
   classical
   rw [Algebra.adjoin_eq_range] at hx
   obtain ⟨R₀, rfl⟩ := hx
-
   have hsec : ∀ y : genSet X, ∃ o : Idx N, gen X o = y := by
     rintro ⟨y, hy⟩
     rcases hy with rfl | ⟨v, hv, rfl⟩
@@ -441,7 +438,6 @@ theorem descent {m : ℕ} {G : ℍ → ℂ} (hG : MDifferentiable 𝓘(ℂ) 𝓘
     (hrat : RatAt N (kN N) m G) :
     ∃ P Q : MvPolynomial (Idx N) (kN N), ev X Q ≠ 0 ∧ G * ev X Q = ev X P := by
   classical
-
   set S : Set (ℍ → ℂ) := {F | ∃ α : SL(2, ℤ), F = cw G α} with hS
   have hGS : G ∈ S := ⟨1, (cw_one G).symm⟩
   have hhol : ∀ F ∈ S, MDifferentiable 𝓘(ℂ) 𝓘(ℂ) F := by
@@ -460,16 +456,13 @@ theorem descent {m : ℕ} {G : ℍ → ℂ} (hG : MDifferentiable 𝓘(ℂ) 𝓘
     exact hinv _ (conj_mem_Gamma N α hγ) _
   obtain ⟨a, b, ha, hb, hb0, hGb⟩ := WLight.exists_levelFraction_of_stable_family N X.L X.hL
     X.W X.hW X.fricke X.hfricke X.jf X.hjf S hhol hpb' hst hinvS hGS
-
   have hpbG : ∀ γ : SL(2, ℤ), ∃ m : ℕ, IsBoundedAtImInfty ((G ∘ (γ • ·)) * ModularForm.discriminant ^ m) :=
     fun γ => ⟨m, hpb γ⟩
   obtain ⟨d, p, hprel⟩ := WLight.exists_monicRel_j_of_mdifferentiable_levelFraction N X.L X.hL
     X.W X.hW X.fricke X.hfricke X.jf X.hjf ha hb hb0 hG hGb hpbG
-
   obtain ⟨n, lam, Gi, Pi, Qi, di, pi, hGsum, hGimd, hPQ, hpiK, hGirel⟩ :=
     WLight.frickeFunction_intBaseChange N X.L X.hL X.W X.hW X.fricke
       X.hfricke X.jf X.hjf hG ha hb hb0 hGb p hprel
-
   have hPi : ∀ i, ∃ R : MvPolynomial (Idx N) (kN N), ev X R = Pi i := fun i =>
     exists_ev_of_mem_adjoin X (hPQ i).1
   have hQi : ∀ i, ∃ R : MvPolynomial (Idx N) (kN N), ev X R = Qi i := fun i =>
@@ -492,18 +485,15 @@ theorem descent {m : ℕ} {G : ℍ → ℂ} (hG : MDifferentiable 𝓘(ℂ) 𝓘
       ⟨di i, pi i, hpiK i, hGirel i⟩
     exact ⟨mi, (hGimd i), h1, h2, h3⟩
   choose mi hmi using hrati
-
   set M : ℕ := m + ∑ i, mi i with hM
   have hGM : RatAt N (kN N) M G := hrat.of_le (Nat.le_add_right _ _)
   have hGiM : ∀ i, RatAt N (kN N) M (Gi i) := fun i =>
     (hmi i).of_le (le_trans (Finset.single_le_sum (fun j _ => Nat.zero_le (mi j)) (Finset.mem_univ i))
       (Nat.le_add_left _ _))
-
   have hmem : G ∈ Submodule.span ℂ (Set.range Gi) := by
     rw [hGsum]
     exact Submodule.sum_mem _ fun i _ => Submodule.smul_mem _ _ (Submodule.subset_span ⟨i, rfl⟩)
   obtain ⟨κ, hκ⟩ := exists_rat_combination (kN N) hGiM hGM hmem
-
   refine ⟨∑ i, MvPolynomial.C (κ i) * Ph i * ∏ j ∈ Finset.univ.erase i, Qh j, ∏ i, Qh i, ?_, ?_⟩
   · exact ev_prod_ne_zero X Finset.univ Qh fun i _ => by rw [hQh i]; exact (hPQ i).2.2.1
   · have hev_prod : ∀ (s : Finset (Fin n)), ev X (∏ j ∈ s, Qh j) = ∏ j ∈ s, Qi j := by
@@ -532,7 +522,6 @@ theorem main (N : ℕ) [NeZero N] (X : FD N) (K : IntermediateField ℚ ℂ) (hK
       G * MvPolynomial.aeval (fun o : Idx N => o.elim X.jf fun v => X.fricke v.1) (Q.map (algebraMap K ℂ)) =
         MvPolynomial.aeval (fun o : Idx N => o.elim X.jf fun v => X.fricke v.1) (P.map (algebraMap K ℂ)) := by
   subst hK
-
   have hT : ModularGroup.T ^ (N : ℤ) ∈ CongruenceSubgroup.Gamma N := by
     rw [Gamma_mem, ModularGroup.coe_T_zpow]
     simp

@@ -68,7 +68,6 @@ lemma eventuallyEq_zero (L L' : PeriodPair) (h₂ : L.g₂ = L'.g₂) (h₃ : L.
       deriv (L'.weierstrassPExcept 0) z = (L'.derivWeierstrassPExcept 0) z :=
     Filter.eventually_of_mem (L'.compl_lattice_sdiff_singleton_mem_nhds 0)
       (L'.eqOn_deriv_weierstrassPExcept_derivWeierstrassPExcept 0)
-
   suffices hD0 : ∀ᶠ z in 𝓝 (0 : ℂ),
       ((L.weierstrassPExcept 0) - (L'.weierstrassPExcept 0)) z = 0 by
     refine mem_nhdsWithin_of_mem_nhds ?_
@@ -83,7 +82,6 @@ lemma eventuallyEq_zero (L L' : PeriodPair) (h₂ : L.g₂ = L'.g₂) (h₃ : L.
       ((L.weierstrassPExcept 0) - (L'.weierstrassPExcept 0)) z = z ^ m * E z := by
     filter_upwards [hDE] with z hz
     rw [hz, sub_zero, smul_eq_mul]
-
   have hderiv : ∀ᶠ z in 𝓝 (0 : ℂ),
       (L.derivWeierstrassPExcept 0) z - (L'.derivWeierstrassPExcept 0) z =
         (m : ℂ) * z ^ (m - 1) * E z + z ^ m * deriv E z := by
@@ -99,7 +97,6 @@ lemma eventuallyEq_zero (L L' : PeriodPair) (h₂ : L.g₂ = L'.g₂) (h₃ : L.
         (m : ℂ) * z ^ (m - 1) * E z + z ^ m * deriv E z :=
       ((hasDerivAt_pow m z).mul hEz.differentiableAt.hasDerivAt).deriv
     rw [← hd1, ← hd2, ← lhs, hz, rhs]
-
   have key : ∀ᶠ z in 𝓝[≠] (0 : ℂ),
       ((m : ℂ) * E z + z * deriv E z) *
           ((z ^ 3 * (L.derivWeierstrassPExcept 0) z - 2) +
@@ -138,7 +135,6 @@ lemma eventuallyEq_zero (L L' : PeriodPair) (h₂ : L.g₂ = L'.g₂) (h₃ : L.
           (z ^ 2 * (L.weierstrassPExcept 0) z + 1) *
             (z ^ 2 * (L'.weierstrassPExcept 0) z + 1) +
             (z ^ 2 * (L'.weierstrassPExcept 0) z + 1) ^ 2) - L.g₂ * z ^ 4) * H3
-
   have hEc : ContinuousAt E 0 := hE.continuousAt
   have hE'c : ContinuousAt (deriv E) 0 := hE.deriv.continuousAt
   have hP₁c := hP₁.continuousAt
@@ -210,7 +206,6 @@ lemma eqOn_of_eventuallyEq_zero (L L' : PeriodPair)
     simp only [Set.mem_compl_iff, Set.mem_sdiff, Set.mem_singleton_iff, SetLike.mem_coe,
       Set.mem_union, not_or, hU] at hz1 hz2 hz3 ⊢
     exact ⟨fun h => hz1 ⟨h, hz3⟩, fun h => hz2 ⟨h, hz3⟩⟩
-
   have hboth : ∀ᶠ z in 𝓝[≠] (0 : ℂ),
       ∀ᶠ w in 𝓝 z, w ∈ U ∧ ℘[L] w = ℘[L'] w := by
     have h := (hUmem.and h0)

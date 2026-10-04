@@ -325,8 +325,7 @@ theorem fixedField_eq :
     IntermediateField.fixedField (σHom N K).range =
       IntermediateField.adjoin ℂ ({jK N K} : Set K) := by
   apply le_antisymm
-  ·
-    intro x hx
+  · intro x hx
     rw [IntermediateField.mem_fixedField_iff] at hx
     obtain ⟨a, b, hb, rfl⟩ := IsFractionRing.div_surjective (A := ring N) x
     have hb0 : (b : ℍ → ℂ) ≠ 0 := by
@@ -336,7 +335,6 @@ theorem fixedField_eq :
       exact zero_notMem_nonZeroDivisors hb
     have hbK : algebraMap (ring N) K b ≠ 0 :=
       IsFractionRing.to_map_ne_zero_of_mem_nonZeroDivisors hb
-
     have hinv : ∀ γ : SL(2, ℤ), (a : ℍ → ℂ) * ((b : ℍ → ℂ) ∘ (γ • ·)) =
         ((a : ℍ → ℂ) ∘ (γ • ·)) * (b : ℍ → ℂ) := by
       intro γ
@@ -346,7 +344,6 @@ theorem fixedField_eq :
         have h' := IsFractionRing.injective (ring N) K h
         have h'' := congrArg (fun F : ring N => (F : ℍ → ℂ)) h'
         simp only [Subalgebra.coe_mul] at h''
-
         funext τ
         have := congrFun h'' τ
         simp only [Pi.mul_apply, coe_ρHom_apply, inv_inv, Function.comp_apply] at this ⊢
@@ -361,7 +358,6 @@ theorem fixedField_eq :
         simp only [coe_ρHom_apply, Pi.zero_apply, inv_inv, smul_inv_smul] at this
         exact this
     obtain ⟨p, q, hq, hpq⟩ := invariant_fraction N a b a.2 b.2 hb0 hinv
-
     have hqK : Polynomial.aeval (jK N K) q ≠ 0 := aeval_jK_ne_zero N K hq
     have hab : algebraMap (ring N) K a / algebraMap (ring N) K b =
         Polynomial.aeval (jK N K) p / Polynomial.aeval (jK N K) q := by
@@ -381,8 +377,7 @@ theorem fixedField_eq :
     exact div_mem
       (IntermediateField.algebra_adjoin_le_adjoin ℂ _ (Polynomial.aeval_mem_adjoin_singleton ℂ _))
       (IntermediateField.algebra_adjoin_le_adjoin ℂ _ (Polynomial.aeval_mem_adjoin_singleton ℂ _))
-  ·
-    rw [IntermediateField.adjoin_le_iff, Set.singleton_subset_iff, SetLike.mem_coe,
+  · rw [IntermediateField.adjoin_le_iff, Set.singleton_subset_iff, SetLike.mem_coe,
       IntermediateField.mem_fixedField_iff]
     rintro _ ⟨γ, rfl⟩
     exact σHom_jK N K γ

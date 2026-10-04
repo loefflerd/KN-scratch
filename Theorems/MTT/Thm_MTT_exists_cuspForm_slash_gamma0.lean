@@ -90,7 +90,6 @@ lemma denom_SL_ne_zero (γ : SL(2, ℤ)) (τ : ℍ) :
   have := denom_ne_zero (toGL (γ : Matrix (Fin 2) (Fin 2) ℤ)) τ
   simpa [denom, toGL_apply (show (γ : Matrix (Fin 2) (Fin 2) ℤ).det ≠ 0 by simp)] using this
 
-
 variable {N : ℕ}
 
 /-- Rational matrices preserve the cusps of `Γ₁(N)`. -/
@@ -102,7 +101,6 @@ lemma isCusp_toGL_smul (hN : 0 < N) {c : OnePoint ℝ} (hc : IsCusp c (MTT.Gamma
     Subgroup.IsArithmetic.conj (MTT.GammaOne N) (toGLQ A)
   rw [Subgroup.IsArithmetic.isCusp_iff_isCusp_SL2Z] at h1 ⊢
   exact h1
-
 
 /-- `Γ₁(N)` is normal in `Γ₀(N)`. -/
 lemma conj_mem_Gamma1 (γ : Gamma0 N) {δ : SL(2, ℤ)} (hδ : δ ∈ Gamma1 N) :

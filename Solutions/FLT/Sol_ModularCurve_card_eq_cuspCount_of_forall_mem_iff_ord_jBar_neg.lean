@@ -141,24 +141,20 @@ theorem solution (N : ℕ) [NeZero N]
     (S : Finset (AlgebraicCurve.Place (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar N)))
     (hS : ∀ v, v ∈ S ↔ v.ord (ModularCurve.jBar N) < 0) :
     S.card = ModularCurve.cuspCount N := by
-
   obtain ⟨z, hz⟩ := HasEnoughRootsOfUnity.exists_primitiveRoot (AlgebraicClosure ℚ) N
   set ζ : (AlgebraicClosure ℚ)ˣ := (hz.isUnit (NeZero.ne N)).unit with hζdef
   have hζ : IsPrimitiveRoot (ζ : AlgebraicClosure ℚ) N := by
     rw [hζdef, IsUnit.unit_spec]
     exact hz
-
   have hex : ∀ p ∈ labels N, ∃ w, SlotAt N ζ p.1 p.2 w := fun p hp => by
     obtain ⟨h1, h2, h3⟩ := mem_labels.mp hp
     exact exists_slotAt ζ hζ h1 h2 h3
   rw [← card_labels N]
   symm
   refine Finset.card_bij (fun p hp => (hex p hp).choose) ?_ ?_ ?_
-  ·
-    intro p hp
+  · intro p hp
     exact (hS _).mpr (ord_neg_of_slotAt ζ (mem_labels.mp hp).1 (hex p hp).choose_spec)
-  ·
-    intro p hp p' hp' heq
+  · intro p hp p' hp' heq
     obtain ⟨ha, hb, -⟩ := mem_labels.mp hp
     obtain ⟨ha', hb', -⟩ := mem_labels.mp hp'
     obtain ⟨hpa, hmod⟩ :=
@@ -169,8 +165,7 @@ theorem solution (N : ℕ) [NeZero N]
     subst hpa
     obtain rfl : b = b' := Nat.ModEq.eq_of_lt_of_lt hmod hb hb'
     rfl
-  ·
-    intro v hv
+  · intro v hv
     obtain ⟨a, b, ha, hcop, hslot⟩ := exists_slotAt_of_ord_neg ζ hζ ((hS v).mp hv)
     have hg : 0 < Nat.gcd a (N / a) := gcd_pos_of_dvd ha
     have hmem : (⟨a, b % Nat.gcd a (N / a)⟩ : Σ _ : ℕ, ℕ) ∈ labels N := by

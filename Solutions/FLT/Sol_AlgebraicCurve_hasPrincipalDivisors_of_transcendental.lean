@@ -44,18 +44,15 @@ private theorem eq_ord_of_addHom_of_nonneg_iff (φ : F → ℤ)
     (hiff : ∀ x, x ≠ 0 → (0 ≤ φ x ↔ x ∈ w.toValuationSubring))
     {x : F} (hx : x ≠ 0) : φ x = w.ord x := by
   obtain ⟨t, ht0, ht1⟩ := hone
-
   have hφ1 : φ 1 = 0 := by
     have := hmul 1 1 one_ne_zero one_ne_zero
     rw [mul_one] at this
     omega
-
   have hinv : ∀ y, y ≠ 0 → φ y⁻¹ = -φ y := by
     intro y hy
     have h1 : φ (y * y⁻¹) = φ y + φ y⁻¹ := hmul y y⁻¹ hy (inv_ne_zero hy)
     rw [mul_inv_cancel₀ hy, hφ1] at h1
     omega
-
   have hpow : ∀ (y : F), y ≠ 0 → ∀ m : ℕ, φ (y ^ m) = m * φ y := by
     intro y hy m
     induction m with
@@ -71,7 +68,6 @@ private theorem eq_ord_of_addHom_of_nonneg_iff (φ : F → ℤ)
     · rw [zpow_negSucc, hinv _ (pow_ne_zero _ hy), hpow y hy, Int.negSucc_eq]
       push_cast
       ring
-
   have hsign : ∀ y, y ≠ 0 → (0 ≤ φ y ↔ 0 ≤ w.ord y) := by
     intro y hy
     rw [hiff y hy, w.mem_iff_ord_nonneg hy]
@@ -81,12 +77,10 @@ private theorem eq_ord_of_addHom_of_nonneg_iff (φ : F → ℤ)
     have h2 := hsign y⁻¹ (inv_ne_zero hy)
     rw [hinv y hy, w.ord_inv] at h2
     omega
-
   have htord : 0 < w.ord t := by
     have h1 := (hsign t ht0).mp (by omega)
     have h2 := (hzero t ht0).not.mp (by omega)
     omega
-
   have hcancel : ∀ y, y ≠ 0 → w.ord y = φ y * w.ord t := by
     intro y hy
     have hyt : y * t ^ (-(φ y)) ≠ 0 := mul_ne_zero hy (zpow_ne_zero _ ht0)
@@ -96,13 +90,11 @@ private theorem eq_ord_of_addHom_of_nonneg_iff (φ : F → ℤ)
     have h2 : w.ord (y * t ^ (-(φ y))) = 0 := (hzero _ hyt).mp h1
     rw [w.ord_mul hy (zpow_ne_zero _ ht0), w.ord_zpow] at h2
     linarith
-
   obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible w.toValuationSubring
   have hπ0 : (π : F) ≠ 0 := by
     simpa [ne_eq, ZeroMemClass.coe_eq_zero] using hπ.ne_zero
   have hπcancel := hcancel (π : F) hπ0
   rw [w.ord_coe_irreducible hπ] at hπcancel
-
   have htord1 : w.ord t = 1 := by
     have hdvd : w.ord t ∣ 1 := ⟨φ (π : F), by linarith⟩
     have := Int.le_of_dvd one_pos hdvd
@@ -127,15 +119,13 @@ private theorem neg_log_valuation_fiberCenter_eq_ord (hw : w.restrict F = v) {x 
     -log ((fiberCenter F' v hw).valuation F' x) = w.ord x := by
   refine eq_ord_of_addHom_of_nonneg_iff w
     (fun y => -log ((fiberCenter F' v hw).valuation F' y)) ?_ ?_ ?_ hx
-  ·
-    intro a b ha hb
+  · intro a b ha hb
     show -log ((fiberCenter F' v hw).valuation F' (a * b)) =
       -log ((fiberCenter F' v hw).valuation F' a) +
         -log ((fiberCenter F' v hw).valuation F' b)
     rw [map_mul, log_mul ((Valuation.ne_zero_iff _).mpr ha) ((Valuation.ne_zero_iff _).mpr hb)]
     ring
-  ·
-    obtain ⟨t, ht⟩ := (fiberCenter F' v hw).valuation_exists_uniformizer F'
+  · obtain ⟨t, ht⟩ := (fiberCenter F' v hw).valuation_exists_uniformizer F'
     refine ⟨t, ?_, ?_⟩
     · intro h
       rw [h, map_zero] at ht
@@ -143,8 +133,7 @@ private theorem neg_log_valuation_fiberCenter_eq_ord (hw : w.restrict F = v) {x 
     · show -log ((fiberCenter F' v hw).valuation F' t) = 1
       rw [ht, log_exp]
       ring
-  ·
-    intro y hy
+  · intro y hy
     have hy0 : (fiberCenter F' v hw).valuation F' y ≠ 0 := (Valuation.ne_zero_iff _).mpr hy
     show 0 ≤ -log ((fiberCenter F' v hw).valuation F' y) ↔ y ∈ w.toValuationSubring
     have hmem : y ∈ w.toValuationSubring ↔ (fiberCenter F' v hw).valuation F' y ≤ 1 := by
@@ -192,23 +181,19 @@ private theorem ramificationIndex_eq_ramificationIdx_fiberCenter (hw : w.restric
     w.ramificationIndex F =
       (IsLocalRing.maximalIdeal v.toValuationSubring).ramificationIdx'
         (fiberCenter F' v hw).asIdeal := by
-
   obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible v.toValuationSubring
   have hπ0 : π ≠ 0 := hπ.ne_zero
   have hπC : algebraMap v.toValuationSubring (integralClosureAt F' v) π ≠ 0 :=
     algebraMap_integralClosureAt_ne_zero hπ0
-
   have hmap : (IsLocalRing.maximalIdeal v.toValuationSubring).map
       (algebraMap v.toValuationSubring (integralClosureAt F' v))
         = Ideal.span {algebraMap v.toValuationSubring (integralClosureAt F' v) π} := by
     rw [hπ.maximalIdeal_eq, Ideal.map_span, Set.image_singleton]
-
   have hord : w.ord (algebraMap (integralClosureAt F' v) F'
       (algebraMap v.toValuationSubring (integralClosureAt F' v) π))
         = w.ramificationIndex F := by
     rw [ord_algebraMap_integralClosureAt hw, ValuationSubring.algebraMap_apply,
       v.ord_coe_irreducible hπ, mul_one]
-
   refine (Ideal.ramificationIdx'_spec ?_ ?_).symm
   · rw [hmap, Ideal.span_singleton_le_iff_mem,
       ← le_ord_iff_mem_pow_fiberCenter hw hπC, hord]
@@ -256,12 +241,10 @@ private theorem surjective_residueOfCenter (hw : w.restrict F = v) :
   classical
   intro y
   obtain ⟨x, rfl⟩ := IsLocalRing.residue_surjective y
-
   have hx : (x : F') ∈ HeightOneSpectrum.valuationSubringAtPrime F' (fiberCenter F' v hw) := by
     rw [← toValuationSubring_eq_of_restrict_eq hw]
     exact x.2
   obtain ⟨a, s, hs, hxas⟩ := hx
-
   have hsP : s ∉ (fiberCenter F' v hw).asIdeal := hs
   have hs0 : s ≠ 0 := fun h => hsP (h ▸ (fiberCenter F' v hw).asIdeal.zero_mem)
   have hsF : algebraMap (integralClosureAt F' v) F' s ≠ 0 := by
@@ -273,7 +256,6 @@ private theorem surjective_residueOfCenter (hw : w.restrict F = v) :
     have h2 : 0 ≤ w.ord (algebraMap (integralClosureAt F' v) F' s) :=
       w.ord_nonneg_of_mem (forall_mem_of_restrict_eq hw s)
     omega
-
   have hmax : (fiberCenter F' v hw).asIdeal.IsMaximal :=
     (fiberCenter F' v hw).isPrime.isMaximal (fiberCenter F' v hw).ne_bot
   obtain ⟨t, i, hi, hti⟩ := hmax.exists_inv hsP
@@ -282,9 +264,7 @@ private theorem surjective_residueOfCenter (hw : w.restrict F = v) :
     rw [h1]
     exact neg_mem hi
   refine ⟨a * t, ?_⟩
-
   rw [residueOfCenter_apply, ← sub_eq_zero, ← map_sub, IsLocalRing.residue_eq_zero_iff]
-
   have hcoe : ((toValuationSubringOfRestrictEq hw (a * t) - x : w.toValuationSubring) : F')
       = algebraMap (integralClosureAt F' v) F' (a * t) - (x : F') := rfl
   rcases eq_or_ne (toValuationSubringOfRestrictEq hw (a * t) - x) 0 with hzero | hne
@@ -293,7 +273,6 @@ private theorem surjective_residueOfCenter (hw : w.restrict F = v) :
   have hcoene : algebraMap (integralClosureAt F' v) F' (a * t) - (x : F') ≠ 0 := by
     intro h
     exact hne (by rwa [← hcoe, ZeroMemClass.coe_eq_zero] at h)
-
   have hfactor : algebraMap (integralClosureAt F' v) F' (a * t) - (x : F')
       = algebraMap (integralClosureAt F' v) F' (a * t * s - a)
           * (algebraMap (integralClosureAt F' v) F' s)⁻¹ := by
@@ -307,7 +286,6 @@ private theorem surjective_residueOfCenter (hw : w.restrict F = v) :
     have h1 : a * t * s - a = a * (s * t - 1) := by ring
     rw [h1]
     exact Ideal.mul_mem_left _ _ hst
-
   have hmem' : algebraMap (integralClosureAt F' v) F' (a * t) - (x : F')
       ∈ w.toValuationSubring := by
     rw [← hcoe]
@@ -368,20 +346,16 @@ private theorem inertiaDeg_eq_inertiaDeg_fiberCenter (hw : w.restrict F = v) :
   show Module.finrank (w.restrict F).ResidueField w.ResidueField = _
   refine Algebra.finrank_eq_of_equiv_equiv (restrictResidueFieldEquiv hw)
     (residueFieldEquivQuotientCenter hw).symm ?_
-
   ext a
   obtain ⟨a, rfl⟩ := IsLocalRing.residue_surjective a
   simp only [RingHom.coe_comp, Function.comp_apply, RingEquiv.toRingHom_eq_coe,
     RingHom.coe_coe]
-
   apply (residueFieldEquivQuotientCenter hw).injective
   rw [RingEquiv.apply_symm_apply]
-
   show IsLocalRing.residue w.toValuationSubring
       (toValuationSubringOfRestrictEq hw
         (algebraMap v.toValuationSubring (integralClosureAt F' v) (placeCongrEquiv hw a)))
     = IsLocalRing.residue w.toValuationSubring (restrictInclusion F w a)
-
   refine congrArg _ (Subtype.ext ?_)
   show algebraMap (integralClosureAt F' v) F'
       (algebraMap v.toValuationSubring (integralClosureAt F' v) (placeCongrEquiv hw a))
@@ -424,7 +398,6 @@ private theorem _root_.AlgebraicCurve.Place.exists_coeff_ord_ne_zero {f : F'} (h
   have hmonic : P.Monic := minpoly.monic hint
   have hdeg : 0 < P.natDegree := minpoly.natDegree_pos hint
   have hc0 : P.coeff 0 ≠ 0 := minpoly.coeff_zero_ne_zero hint hf
-
   have hcoeff : ∀ i, algebraMap F F' (P.coeff i) ∈ w.toValuationSubring := by
     intro i
     rcases lt_trichotomy i P.natDegree with hi | hi | hi
@@ -434,14 +407,11 @@ private theorem _root_.AlgebraicCurve.Place.exists_coeff_ord_ne_zero {f : F'} (h
     · subst hi
       simp [hmonic.coeff_natDegree]
     · simp [Polynomial.coeff_eq_zero_of_natDegree_lt hi]
-
   have hfmem : f ∈ w.toValuationSubring := by
     refine w.mem_of_eval_monic_eq_zero (P := P.map (algebraMap F F')) (hmonic.map _)
       (fun i => by simpa using hcoeff i) ?_
     rw [Polynomial.eval_map, ← Polynomial.aeval_def, hPdef, minpoly.aeval]
-
   have hfpos : 0 < w.ord f := lt_of_le_of_ne (w.ord_nonneg_of_mem hfmem) (Ne.symm hford)
-
   have hkey : algebraMap F F' (P.coeff 0) = -(f * Polynomial.aeval f P.divX) := by
     have hsplit : Polynomial.aeval f (Polynomial.X * P.divX + Polynomial.C (P.coeff 0))
         = (0 : F') := by rw [P.X_mul_divX_add]; exact minpoly.aeval F f
@@ -453,7 +423,6 @@ private theorem _root_.AlgebraicCurve.Place.exists_coeff_ord_ne_zero {f : F'} (h
     intro h
     rw [h, mul_zero, neg_zero] at hkey
     exact hc0 (by simpa using hkey)
-
   have hpos0 : 0 < w.ord (algebraMap F F' (P.coeff 0)) := by
     rw [hkey, w.ord_neg, w.ord_mul hf hcof_ne]
     have := w.ord_nonneg_of_mem hcof_mem
@@ -491,7 +460,6 @@ private theorem ord_coe_eq_of_span_singleton_eq_pow_maximalIdeal {r : v.toValuat
   obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible v.toValuationSubring
   rw [hπ.maximalIdeal_eq, Ideal.span_singleton_pow, Ideal.span_singleton_eq_span_singleton] at h
   obtain ⟨u, hu⟩ := h
-
   have hr : r = ((u⁻¹ : v.toValuationSubringˣ) : v.toValuationSubring) * π ^ n := by
     rw [mul_comm, Units.eq_mul_inv_iff_mul_eq]
     exact hu
@@ -539,7 +507,6 @@ private theorem count_normalizedFactors_span_singleton
     (normalizedFactors (Ideal.span {c})).count (fiberCenter F' v hw).asIdeal
       = (w.ord (algebraMap (integralClosureAt F' v) F' c)).toNat := by
   have : (fiberCenter F' v hw).asIdeal.IsPrime := (fiberCenter F' v hw).isPrime
-
   have hord0 : 0 ≤ w.ord (algebraMap (integralClosureAt F' v) F' c) :=
     w.ord_nonneg_of_mem (forall_mem_of_restrict_eq hw c)
   refine Ideal.count_normalizedFactors_eq (p := (fiberCenter F' v hw).asIdeal)
@@ -560,7 +527,6 @@ private theorem relNorm_span_singleton {c : integralClosureAt F' v}
   have hspan : (Ideal.span {c} : Ideal (integralClosureAt F' v)) ≠ ⊥ := by simpa using hc
   set S : Multiset (Ideal (integralClosureAt F' v)) := normalizedFactors (Ideal.span {c})
     with hS
-
   have hfactor : ∀ Q ∈ S.toFinset, ∃ w' : Place K F', ∃ hw' : w'.restrict F = v,
       (fiberCenter F' v hw').asIdeal = Q := by
     intro Q hQ
@@ -571,7 +537,6 @@ private theorem relNorm_span_singleton {c : integralClosureAt F' v}
     exact ⟨placeOfPrime ⟨Q, inferInstance, hQbot⟩, restrict_placeOfPrime _,
       congrArg HeightOneSpectrum.asIdeal (fiberCenter_placeOfPrime
         (⟨Q, inferInstance, hQbot⟩ : HeightOneSpectrum (integralClosureAt F' v)))⟩
-
   set T : Finset (Ideal (integralClosureAt F' v)) := (v.fiberOver F').attach.image
     (fun w' => (fiberCenter F' v ((mem_fiberOver v).mp w'.2)).asIdeal) with hT
   have hsub : S.toFinset ⊆ T := by
@@ -583,7 +548,6 @@ private theorem relNorm_span_singleton {c : integralClosureAt F' v}
     intro w₁ _ w₂ _ h
     exact Subtype.ext (eq_of_fiberCenter_eq ((mem_fiberOver v).mp w₁.2) ((mem_fiberOver v).mp w₂.2)
       (HeightOneSpectrum.ext h))
-
   calc
     Ideal.relNorm v.toValuationSubring (Ideal.span {c})
         = Ideal.relNorm v.toValuationSubring (∏ Q ∈ S.toFinset, Q ^ S.count Q) := by
@@ -606,7 +570,6 @@ private theorem relNorm_span_singleton {c : integralClosureAt F' v}
           ^ (∑ w ∈ v.fiberOver F',
               w.inertiaDeg F * (w.ord (algebraMap (integralClosureAt F' v) F' c)).toNat) := by
           congr 1
-
           calc
             ∑ Q ∈ S.toFinset,
                 Q.inertiaDeg v.toValuationSubring * S.count Q
@@ -643,15 +606,11 @@ private theorem ord_norm_algebraMap_integralClosureAt
     v.ord (Algebra.norm F (algebraMap (integralClosureAt F' v) F' c))
       = ∑ w ∈ v.fiberOver F', (w.inertiaDeg F : ℤ)
           * w.ord (algebraMap (integralClosureAt F' v) F' c) := by
-
   rw [← Algebra.algebraMap_intNorm (A := v.toValuationSubring) (K := F) (L := F')
     (B := integralClosureAt F' v)]
-
   have hrel := relNorm_span_singleton (v := v) hc
   rw [Ideal.relNorm_singleton] at hrel
-
   rw [ValuationSubring.algebraMap_apply, ord_coe_eq_of_span_singleton_eq_pow_maximalIdeal v hrel]
-
   push_cast
   refine Finset.sum_congr rfl fun w hw => ?_
   rw [Int.toNat_of_nonneg
@@ -659,7 +618,6 @@ private theorem ord_norm_algebraMap_integralClosureAt
 
 private theorem ord_norm_eq_sum_fiberOver {f : F'} (hf : f ≠ 0) :
     v.ord (Algebra.norm F f) = ∑ w ∈ v.fiberOver F', (w.inertiaDeg F : ℤ) * w.ord f := by
-
   obtain ⟨⟨c, s⟩, hcs⟩ := IsLocalization.surj
     (nonZeroDivisors (integralClosureAt F' v)) f
   have hs0 : (s : integralClosureAt F' v) ≠ 0 := nonZeroDivisors.coe_ne_zero s
@@ -669,10 +627,8 @@ private theorem ord_norm_eq_sum_fiberOver {f : F'} (hf : f ≠ 0) :
     rw [← hcs]
     exact mul_ne_zero hf hsF
   have hc0 : c ≠ 0 := fun h => hcF (by rw [h, map_zero])
-
   have hintc := ord_norm_algebraMap_integralClosureAt v hc0
   have hints := ord_norm_algebraMap_integralClosureAt v hs0
-
   rw [← hcs, map_mul, v.ord_mul (Algebra.norm_ne_zero_iff.mpr hf)
     (Algebra.norm_ne_zero_iff.mpr hsF), hints] at hintc
   have hsplit : ∑ w ∈ v.fiberOver F', (w.inertiaDeg F : ℤ)
@@ -726,16 +682,13 @@ private theorem finite_setOf_ord_ne_zero_of_finiteDimensional {f : F'} (hf : f �
     {w : Place K F' | w.ord f ≠ 0}.Finite := by
   classical
   set P := minpoly (RatFunc K) f with hPdef
-
   refine Set.Finite.subset (Set.Finite.biUnion (Set.finite_Iio P.natDegree) (fun i _ =>
     Set.Finite.biUnion (s := {v : Place K (RatFunc K) | v.ord (P.coeff i) ≠ 0})
       ?_ (fun v _ => Place.finite_setOf_restrict_eq v))) ?_
-  ·
-    rcases eq_or_ne (P.coeff i) 0 with h0 | h0
+  · rcases eq_or_ne (P.coeff i) 0 with h0 | h0
     · simp [h0]
     · exact RationalFunctionField.finite_setOf_ord_ne_zero h0
-  ·
-    intro w hw
+  · intro w hw
     obtain ⟨i, hi, hci, hord⟩ := w.exists_coeff_ord_ne_zero (F := RatFunc K) hf hw
     simp only [Set.mem_iUnion, Set.mem_ofPred_eq, exists_prop]
     refine ⟨i, hi, w.restrict (RatFunc K), ?_, rfl⟩

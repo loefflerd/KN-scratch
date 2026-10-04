@@ -237,19 +237,16 @@ theorem order_le_of_identity {p q d : ℂ → ℂ} {n m : ℕ} {C : ℕ → ℂ 
   obtain ⟨k, hk⟩ : ∃ k : ℕ, (k : ℕ∞) = analyticOrderAt p z :=
     ENat.ne_top_iff_exists.mp (ne_top_of_lt hlt)
   have hd_ord : analyticOrderAt d z = 0 := hd.analyticOrderAt_eq_zero.mpr hd0
-
   have hL : analyticOrderAt (p ^ (6 * n) * d ^ m) z = ((6 * n * k : ℕ) : ℕ∞) := by
     rw [analyticOrderAt_mul (hp.pow _) (hd.pow _), analyticOrderAt_pow hp, analyticOrderAt_pow hd,
       ← hk, hd_ord]
     simp only [nsmul_eq_mul, smul_zero, add_zero]
     push_cast
     ring
-
   have hq_ord : ((k + 1 : ℕ) : ℕ∞) ≤ analyticOrderAt q z := by
     rw [← hk] at hlt
     have := Order.add_one_le_of_lt hlt
     exact_mod_cast this
-
   have hR : ∀ i ∈ Finset.range n, ((6 * n * k + 6 : ℕ) : ℕ∞) ≤
       analyticOrderAt (C i * (p ^ (6 * i) * (q ^ 6 * d) ^ (n - i))) z := by
     intro i hi
@@ -401,7 +398,6 @@ theorem coreC (𝔤 𝔥 : 𝒩) (X : LaurentSeries ℂ) (hX : X * ψ 𝔥 = ψ 
         ∑ i ∈ Finset.range n, K i * ((𝔤 ^ (2 * M) * 𝔞 ^ (3 * M + 3) * 𝔟 ^ (2 * M)) ^ i *
           (𝔥 ^ (2 * M) * 𝔡 ^ (2 * M + 1)) ^ (n - i)) = 0 := by
   classical
-
   have key1 : (X ^ (2 * M) * 𝐉 ^ (M + 1) * (𝐉 - algebraMap ℂ (LaurentSeries ℂ) 1728) ^ M) *
       (ψ 𝔥 ^ (2 * M) * ψ 𝔡 ^ (2 * M + 1)) = ψ 𝔤 ^ (2 * M) * ψ 𝔞 ^ (3 * M + 3) * ψ 𝔟 ^ (2 * M) := by
     calc (X ^ (2 * M) * 𝐉 ^ (M + 1) * (𝐉 - algebraMap ℂ (LaurentSeries ℂ) 1728) ^ M) *
@@ -412,7 +408,6 @@ theorem coreC (𝔤 𝔥 : 𝒩) (X : LaurentSeries ℂ) (hX : X * ψ 𝔥 = ψ 
       _ = (ψ 𝔤) ^ (2 * M) * (ψ 𝔞 ^ 3) ^ (M + 1) * (ψ 𝔟 ^ 2) ^ M := by rw [hX, J_mul_D, J_sub_mul_D]
       _ = ψ 𝔤 ^ (2 * M) * ψ 𝔞 ^ (3 * M + 3) * ψ 𝔟 ^ (2 * M) := by
           rw [← pow_mul, ← pow_mul, show 3 * (M + 1) = 3 * M + 3 by ring]
-
   obtain ⟨p, hpm, hpev⟩ := h₂
   rw [hpm.as_sum] at hpev
   simp only [Polynomial.eval₂_add, Polynomial.eval₂_pow, Polynomial.eval₂_X, Polynomial.eval₂_finsetSum,
@@ -433,7 +428,6 @@ theorem coreC (𝔤 𝔥 : 𝒩) (X : LaurentSeries ℂ) (hX : X * ψ 𝔥 = ψ 
   have hdeg : ∀ i ∈ Finset.range n, (c i).natDegree ≤ m := fun i hi =>
     Finset.single_le_sum (f := fun j => (c j).natDegree) (fun j _ => Nat.zero_le _) hi
   clear_value m
-
   let K : ℕ → 𝒩 := fun i =>
     ∑ l ∈ Finset.range ((c i).natDegree + 1), algebraMap ℂ 𝒩 ((c i).coeff l) * (𝔡 ^ l * 𝔞 ^ (3 * (m - l)))
   have key3 : ∀ i ∈ Finset.range n, ψ 𝔞 ^ (3 * m) * algebraMap R (LaurentSeries ℂ) (p.coeff i) = ψ (K i) := by
@@ -448,7 +442,6 @@ theorem coreC (𝔤 𝔥 : 𝒩) (X : LaurentSeries ℂ) (hX : X * ψ 𝔥 = ψ 
           rw [← pow_mul, ← pow_add, show 3 * (m - l) + 3 * l = 3 * m by omega]
       _ = ψ 𝔞 ^ (3 * (m - l)) * ((𝐉)⁻¹ * ψ 𝔞 ^ 3) ^ l := by rw [mul_pow ((𝐉)⁻¹)]; ring
       _ = ψ 𝔡 ^ l * ψ 𝔞 ^ (3 * (m - l)) := by rw [Jinv_mul_A_cube, mul_comm]
-
   let W : 𝒩 := 𝔤 ^ (2 * M) * 𝔞 ^ (3 * M + 3) * 𝔟 ^ (2 * M)
   let V : 𝒩 := 𝔥 ^ (2 * M) * 𝔡 ^ (2 * M + 1)
   have k1 : Y * ψ V = ψ W := by
@@ -461,7 +454,6 @@ theorem coreC (𝔤 𝔥 : 𝒩) (X : LaurentSeries ℂ) (hX : X * ψ 𝔥 = ψ 
     calc ψ V ^ n * Y ^ i = (Y * ψ V) ^ i * ψ V ^ (n - i) := by
           rw [e, mul_pow Y (ψ V) i]; ring
       _ = ψ W ^ i * ψ V ^ (n - i) := by rw [k1]
-
   let E : 𝒩 := W ^ n * 𝔞 ^ (3 * m) + ∑ i ∈ Finset.range n, K i * (W ^ i * V ^ (n - i))
   have hE : ψ E = ψ V ^ n * ψ 𝔞 ^ (3 * m) *
       (Y ^ n + ∑ i ∈ Finset.range n, algebraMap R (LaurentSeries ℂ) (p.coeff i) * Y ^ i) := by
@@ -479,7 +471,6 @@ theorem coreC (𝔤 𝔥 : 𝒩) (X : LaurentSeries ℂ) (hX : X * ψ 𝔥 = ψ 
     apply ψ_injective
     rw [hE, hpev, mul_zero, map_zero]
   refine ⟨n, m, K, fun i hi A τ => ?_, hE0⟩
-
   have hlm : ∀ l ∈ Finset.range ((c i).natDegree + 1), l ≤ m := fun l hl =>
     (Nat.lt_succ_iff.mp (Finset.mem_range.mp hl)).trans (hdeg i hi)
   show ev (A • τ) (K i) = denom (A : GL (Fin 2) ℝ) τ ^ (12 * m) * ev τ (K i)
@@ -506,7 +497,6 @@ theorem solution (N : ℕ) {k : ℤ}
   classical
   obtain ⟨n, m, K, hK, hE⟩ := ANb.coreC (ANb.ofMF g (ANb.one_mem_strictPeriods_gamma0 N))
     (ANb.ofMF h (ANb.one_mem_strictPeriods_gamma0 N)) X hX M h₂
-
   let κ0 : ℕ → ℝ := fun i => ‖PowerSeries.coeff 0 (qExpansion 1 (K i : ℍ → ℂ))‖ + 1
   let B : ℝ := 1 + ∑ i ∈ Finset.range n, κ0 i
   have hκ0 : ∀ i, 0 ≤ κ0 i := fun i => by positivity
@@ -529,7 +519,6 @@ theorem solution (N : ℕ) {k : ℤ}
     calc ε ^ (2 * M) * (C / (C + 1)) ≤ ε ^ (2 * M) * 1 := by
           exact mul_le_mul_of_nonneg_left h1 (by positivity)
       _ = ε ^ (2 * M) := mul_one _
-
   have t4 : Filter.Tendsto (fun τ : ℍ => ModularForm.E₄ τ) atImInfty (nhds 1) := by
     have := ANb.tendsto_nice ANb.𝔞
     rwa [show PowerSeries.coeff 0 (qExpansion 1 ((ANb.𝔞 : ℍ → ℂ))) = 1 from ANb.qA0] at this
@@ -551,7 +540,6 @@ theorem solution (N : ℕ) {k : ℤ}
     rw [dist_eq_norm] at hτ
     exact (norm_le_insert' _ _).trans (by simp only [κ0]; linarith)
   filter_upwards [e4, e6, eΔ, eK] with τ h4 h6 hd hKτ
-
   rw [dist_eq_norm] at h4 h6
   rw [dist_zero_right] at hd
   set δ : ℂ := denom (A : GL (Fin 2) ℝ) τ with hδdef
@@ -568,14 +556,12 @@ theorem solution (N : ℕ) {k : ℤ}
   have ha0 : a ≠ 0 := fun h0 => by rw [h0, norm_zero] at ha_lo; linarith
   have hb0 : b ≠ 0 := fun h0 => by rw [h0, norm_zero] at hb_lo; linarith
   have hd0 : d ≠ 0 := ModularForm.discriminant_ne_zero τ
-
   set z : ℍ := A • τ with hz
   have hE4z : ModularForm.E₄ z = δ ^ 4 * a := ANb.𝔞_apply_smul A τ
   have hE6z : ModularForm.E₆ z = δ ^ 6 * b := ANb.𝔟_apply_smul A τ
   have hΔz : ModularForm.discriminant z = δ ^ 12 * d := ANb.𝔡_apply_smul A τ
   have hKz : ∀ i ∈ Finset.range n, (K i : ℍ → ℂ) z = δ ^ (12 * m) * (K i : ℍ → ℂ) τ :=
     fun i hi => hK i hi A τ
-
   set u : ℂ := g z ^ (2 * M) * ModularForm.E₄ z ^ (3 * M + 3) * ModularForm.E₆ z ^ (2 * M) with hu
   set v : ℂ := h z ^ (2 * M) * ModularForm.discriminant z ^ (2 * M + 1) with hv
   have hid : u ^ n * ModularForm.E₄ z ^ (3 * m) +
@@ -584,13 +570,11 @@ theorem solution (N : ℕ) {k : ℤ}
     simp only [map_add, map_sum, map_mul, map_pow, map_zero, ANb.ev_apply] at this
     exact this
   clear_value u v
-
   rw [ANb.slash_coe_apply, ANb.slash_coe_apply]
   change ‖g z * ModularForm.E₄ z ^ 2 * ModularForm.E₆ z * δ ^ (-(k + 14))‖ ≤
     ε * ‖h z * ModularForm.discriminant z * δ ^ (-(k + 12))‖
   by_cases hv0 : v = 0
-  ·
-    have hMpos : M ≠ 0 := by
+  · have hMpos : M ≠ 0 := by
       rintro rfl
       apply hd0
       have : ModularForm.discriminant z = 0 := by simpa [hv] using hv0
@@ -614,9 +598,7 @@ theorem solution (N : ℕ) {k : ℤ}
       · exact absurd h1 hE6z0
     rw [hg0, zero_mul, zero_mul, zero_mul, norm_zero]
     positivity
-
   have hE4z0 : ModularForm.E₄ z ≠ 0 := by rw [hE4z]; exact mul_ne_zero (pow_ne_zero _ hδ) ha0
-
   set U : ℂ := u / v with hU
   have huv : u = U * v := by rw [hU, div_mul_cancel₀ _ hv0]
   let κ : ℕ → ℂ := fun i => (K i : ℍ → ℂ) τ / a ^ (3 * m)
@@ -652,7 +634,6 @@ theorem solution (N : ℕ) {k : ℤ}
       _ ≤ B * 2 ^ (3 * m) * ‖a‖ ^ (3 * m) :=
           mul_le_mul_of_nonneg_left h2 (mul_nonneg (by linarith) (by positivity))
   have hUC : ‖U‖ ≤ C := ANb.norm_le_of_monic_relation hB' hκbd hrel
-
   set t : ℝ := ‖δ‖ with ht
   have ht0 : 0 < t := norm_pos_iff.mpr hδ
   set ρ : ℝ := ‖δ ^ (-(k + 12))‖ with hρ
@@ -671,7 +652,6 @@ theorem solution (N : ℕ) {k : ℤ}
   have hve : ‖v‖ = ‖h z‖ ^ (2 * M) * (t ^ 12 * ‖d‖) ^ (2 * M + 1) := by
     rw [hv, norm_mul, norm_pow, norm_pow, hΔz, norm_mul, norm_pow]
   have hv' : 0 < ‖v‖ := norm_pos_iff.mpr hv0
-
   have hT' : P ^ (2 * M) * ‖a‖ ^ (3 * M + 3) * ‖v‖ = ‖u‖ * Q ^ (2 * M) * ‖d‖ * ‖a‖ ^ (4 * M) := by
     rw [hPe, hQe, hue, hve]
     field_simp
@@ -681,15 +661,12 @@ theorem solution (N : ℕ) {k : ℤ}
     rw [hUn, show ‖u‖ / ‖v‖ * Q ^ (2 * M) * ‖d‖ * ‖a‖ ^ (4 * M) =
       (‖u‖ * Q ^ (2 * M) * ‖d‖ * ‖a‖ ^ (4 * M)) / ‖v‖ by ring, eq_div_iff hv'.ne']
     exact hT'
-
   have hPnn : 0 ≤ P := norm_nonneg _
   have hQnn : 0 ≤ Q := norm_nonneg _
   by_cases hM : M = 0
-  ·
-    subst hM
+  · subst hM
     exfalso
     simp only [mul_zero, pow_zero, zero_add, one_mul, mul_one] at hT hCη
-
     have h1 : (1 / 2 : ℝ) ^ 3 < ‖a‖ ^ 3 := pow_lt_pow_left₀ ha_lo (by norm_num) three_ne_zero
     have h2 : ‖U‖ * ‖d‖ ≤ C * η₀ := mul_le_mul hUC hd.le (norm_nonneg _) hC0
     rw [← hT] at h2

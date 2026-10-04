@@ -168,7 +168,6 @@ theorem hasRamBound_three_of_isRoot_at_zero
       (HahnSeries.single (1 : ℚ) (1 : ℚ̄)))).IsRoot r) :
     HahnSeries.HasRamBound 3 r := by
   classical
-
   obtain ⟨𝓔, hΔ, hc⟩ :=
     WeierstrassCurve.exists_isUnit_discriminant_and_c4_cube_eq_mul_X_cube_powerSeries
       ℚ̄ two_ne_zero three_ne_zero
@@ -177,7 +176,6 @@ theorem hasRamBound_three_of_isRoot_at_zero
     j_eq_single_three_one 𝓔 hΔ hc
   have ht : Transcendental ℚ (𝓔.map (HahnSeries.ofPowerSeries ℚ ℚ̄)).j := by
     rw [hjW]; exact transcendental_single_three
-
   have hτj : hahnExpMul 3 (by norm_num) (HahnSeries.single (1 : ℚ) (1 : ℚ̄))
       = (𝓔.map (HahnSeries.ofPowerSeries ℚ ℚ̄)).j := by
     rw [hahnExpMul_single, one_mul, hjW]
@@ -188,7 +186,6 @@ theorem hasRamBound_three_of_isRoot_at_zero
     show Polynomial.eval _ _ = 0
     rw [Polynomial.eval_map, Polynomial.eval₂_hom,
       show Polynomial.eval r (spec data.Φ _) = 0 from hroot, map_zero]
-
   have hmemL : ∀ y : 𝕂, y ∈ HahnSeries.puiseuxRamSubfield ℚ̄ Nat.one_pos ↔ HasRamBound 1 y :=
     fun y => HahnSeries.mem_puiseuxRamSubfield_iff Nat.one_pos
   have hτrL : hahnExpMul 3 (by norm_num) r ∈ HahnSeries.puiseuxRamSubfield ℚ̄ Nat.one_pos := by
@@ -200,8 +197,7 @@ theorem hasRamBound_three_of_isRoot_at_zero
     · rw [WeierstrassCurve.map_a₃, hmemL]; exact hasRamBound_one_ofPowerSeries _
     · rw [WeierstrassCurve.map_a₄, hmemL]; exact hasRamBound_one_ofPowerSeries _
     · rw [WeierstrassCurve.map_a₆, hmemL]; exact hasRamBound_one_ofPowerSeries _
-    ·
-      intro x y hns hd
+    · intro x y hns hd
       have h := WeierstrassCurve.hasRamBound_one_of_nsmul_eq_zero_of_isUnit_discriminant_powerSeries
         𝓔 hΔ (Nat.pos_of_ne_zero (NeZero.ne N)) x y hns hd
       exact ⟨(hmemL x).mpr h.1, (hmemL y).mpr h.2⟩

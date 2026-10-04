@@ -81,7 +81,6 @@ theorem solution
     (r : HahnSeries ℚ (AlgebraicClosure ℚ))
     (hr : (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (HahnSeries ℚ (AlgebraicClosure ℚ))) W.j)).IsRoot r) :
     r ∈ L := by
-
   have hK : IsAlgClosed (HahnSeries ℚ (AlgebraicClosure ℚ)) := HahnSeries.isAlgClosed_rat
   have : CharZero (HahnSeries ℚ (AlgebraicClosure ℚ)) :=
     (RingHom.charZero_iff (HahnSeries.C (R := AlgebraicClosure ℚ) (Γ := ℚ)).injective).mp inferInstance
@@ -91,7 +90,6 @@ theorem solution
   set Φj := data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (HahnSeries ℚ (AlgebraicClosure ℚ))) W.j)
     with hΦj
   have hΦjm : Φj.Monic := data.monic.map _
-
   let B := {H : AddSubgroup W.toAffine.Point // IsAddCyclic H ∧ Nat.card H = 2 * n + 1}
   have hBcard : Nat.card B = ModularCurve.dedekindPsi (2 * n + 1) :=
     WeierstrassCurve.natCard_addSubgroup_isAddCyclic_card_eq_dedekindPsi_of_isAlgClosed
@@ -103,7 +101,6 @@ theorem solution
     · simp
   have : Finite B := Nat.finite_of_card_ne_zero (hBcard ▸ hψpos.ne')
   have : Fintype B := Fintype.ofFinite _
-
   have hgen : ∀ H : B, ∃ g : W.toAffine.Point,
       AddSubgroup.zmultiples g = H.1 ∧ addOrderOf g = 2 * n + 1 :=
     fun H => exists_generator_of_isAddCyclic H.1 H.2.1 H.2.2
@@ -113,21 +110,17 @@ theorem solution
   let jH : B → HahnSeries ℚ (AlgebraicClosure ℚ) := fun H =>
     haveI : (W.veluQuotient (W.oddOrderSummingSet (gen H) n)).IsElliptic := ⟨isUnit_iff_ne_zero.mpr (hΔgen H)⟩
     (W.veluQuotient (W.oddOrderSummingSet (gen H) n)).j
-
   have hjHmem : ∀ H : B, jH H ∈ L := fun H =>
     WeierstrassCurve.veluQuotient_j_mem_of_mem W L _ h₁ h₂ h₃ h₄ h₆
       (oddOrderSummingSet_coords_mem W L (hgenord H) htors) (hΔgen H)
-
   have hjHroot : ∀ H : B, Φj.IsRoot (jH H) := fun H =>
     ModularCurve.ModularPolynomialData.isRoot_map_j_veluQuotient_j_of_addOrderOf_eq W n (gen H) (hgenord H)
       (hΔgen H) data
-
   have hjHinj : Function.Injective jH := by
     intro H H' hjeq
     have hz := WeierstrassCurve.zmultiples_eq_of_veluQuotient_j_eq_of_transcendental W ht n (gen H) (gen H')
       (hgenord H) (hgenord H') (hΔgen H) (hΔgen H') hjeq
     exact Subtype.ext ((hgenH H).symm.trans (hz.trans (hgenH H')))
-
   have hJcard : (Finset.univ.image jH).card = ModularCurve.dedekindPsi (2 * n + 1) := by
     rw [Finset.card_image_of_injective _ hjHinj, Finset.card_univ, ← Nat.card_eq_fintype_card, hBcard]
   have hJsub : Finset.univ.image jH ⊆ Φj.roots.toFinset := by
@@ -142,7 +135,6 @@ theorem solution
           rw [hΦj, ← data.natDegree_eq]
           exact ModularCurve.card_roots_fibrePoly_of_monic (K := HahnSeries ℚ (AlgebraicClosure ℚ)) data.monic W.j
       _ = (Finset.univ.image jH).card := hJcard.symm
-
   have hrmem : r ∈ Φj.roots.toFinset := by
     rw [Multiset.mem_toFinset, Polynomial.mem_roots hΦjm.ne_zero]; exact hr
   rw [hroots] at hrmem

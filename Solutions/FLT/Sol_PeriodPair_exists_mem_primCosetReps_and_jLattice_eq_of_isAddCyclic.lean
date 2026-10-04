@@ -165,11 +165,9 @@ theorem kw_linearIndependent_tau_one (τ : ℍ) :
     LinearIndependent ℝ ![(τ : ℂ), (1 : ℂ)] := by
   rw [LinearIndependent.pair_iff]
   intro a b h
-
   have him : (a • (τ : ℂ) + b • (1 : ℂ)).im = 0 := by rw [h]; simp
   simp only [Complex.add_im, Complex.smul_im, Complex.one_im, smul_zero,
     add_zero] at him
-
   have ha : a = 0 := by
     rcases mul_eq_zero.mp him with ha | him0
     · exact ha
@@ -204,7 +202,6 @@ theorem kw_im_div_ne_zero (L : PeriodPair) : (L.ω₁ / L.ω₂).im ≠ 0 := by
   have hω₂ : L.ω₂ ≠ 0 := by
     have := L.indep.ne_zero 1; simpa using this
   intro him
-
   have hdiv : (L.ω₁ / L.ω₂ : ℂ) = ((L.ω₁ / L.ω₂).re : ℂ) :=
     Complex.ext (by simp) (by simp [him])
   have hreal : L.ω₁ = ((L.ω₁ / L.ω₂).re : ℂ) * L.ω₂ := by
@@ -354,7 +351,6 @@ noncomputable def bOf : ℤ := (exists_over_aOf H).choose % ((dOf H : ℕ) : ℤ
 theorem aOf_bOf_mem : (((aOf H : ℕ) : ℤ), bOf H) ∈ H := by
   have h0 := (exists_over_aOf H).choose_spec
   set y0 := (exists_over_aOf H).choose with hy0
-
   have hd : ((0 : ℤ), ((dOf H : ℕ) : ℤ) * (y0 / ((dOf H : ℕ) : ℤ))) ∈ H := by
     have := H.zsmul_mem (zero_dOf_mem H) (y0 / ((dOf H : ℕ) : ℤ))
     simpa [Prod.smul_mk, smul_eq_mul, mul_comm] using this
@@ -372,21 +368,17 @@ theorem bOf_lt (hd : dOf H ≠ 0) : bOf H < ((dOf H : ℕ) : ℤ) :=
 
 theorem latticeOf_canonical_eq : latticeOf (aOf H) (dOf H) (bOf H) = H := by
   apply le_antisymm
-  ·
-    rw [latticeOf]
+  · rw [latticeOf]
     apply (AddSubgroup.closure_le H).mpr
     rintro z (rfl | rfl)
     · exact aOf_bOf_mem H
     · exact zero_dOf_mem H
-  ·
-    rintro ⟨x, y⟩ hxy
+  · rintro ⟨x, y⟩ hxy
     rw [mem_latticeOf_iff]
-
     have hx : ((aOf H : ℕ) : ℤ) ∣ x := by
       have hmem : x ∈ H.map (fst ℤ ℤ) := ⟨(x, y), hxy, rfl⟩
       exact dvd_of_mem_natGen (K := H.map (fst ℤ ℤ)) hmem
     obtain ⟨m, rfl⟩ := hx
-
     have hsub : (((aOf H : ℕ) : ℤ) * m, m * bOf H) ∈ H := by
       have := H.zsmul_mem (aOf_bOf_mem H) m
       simpa [Prod.smul_mk, smul_eq_mul, mul_comm] using this
@@ -721,7 +713,6 @@ theorem kw_surgehgf4_qtzz_psi_ker
     QuotientAddGroup.mk'_apply, QuotientAddGroup.eq_zero_iff,
     AddSubgroup.mem_addSubgroupOf, kw_HZZ, AddSubgroup.mem_comap,
     Submodule.mem_toAddSubgroup]
-
   rw [kw_surgehgf4_qtzz_psi₀_apply, mem_scale_lattice_iff]
   constructor
   · intro hmem

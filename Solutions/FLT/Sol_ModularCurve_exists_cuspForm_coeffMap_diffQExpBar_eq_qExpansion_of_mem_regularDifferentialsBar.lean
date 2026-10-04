@@ -148,17 +148,14 @@ theorem solution (N : ℕ) [NeZero N] (ι₀ : AlgebraicClosure ℚ →+* ℂ)
         HahnSeries.ofPowerSeries ℤ ℂ (UpperHalfPlane.qExpansion 1 f) := by
   classical
   have hCO := ModularCurve.isCurveOver_modularFunctionFieldBar N
-
   have hrank : Module.finrank (modularFunctionFieldBar N)
       Ω[modularFunctionFieldBar N⁄AlgebraicClosure ℚ] = 1 := IsCurveOver.finrank_kaehler
   obtain ⟨x, hx⟩ := (finrank_eq_one_iff_of_nonzero'
     (D (AlgebraicClosure ℚ) (modularFunctionFieldBar N) (jB N)) (D_jB_ne_zero N)).mp hrank ω
-
   have hxreg : x • D (AlgebraicClosure ℚ) (modularFunctionFieldBar N) (jB N) ∈ regularDifferentialsBar N := by
     rw [hx]; exact hω
   obtain ⟨h₁, h₂⟩ :=
     ModularCurve.isIntegral_and_isIntegral_of_smul_D_mem_regularDifferentialsBar N x hxreg
-
   have hXmem : phi N ι₀ x ∈ laurentBaseChange ℂ (modularFunctionFieldFull N) :=
     coeffMap_mem_laurentBaseChange_complex N ι₀ x.2
   have hJ : phi N ι₀ (jB N) = coeffEmb ℂ jq := phi_jB N ι₀
@@ -170,11 +167,9 @@ theorem solution (N : ℕ) [NeZero N] (ι₀ : AlgebraicClosure ℚ →+* ℂ)
   rw [map_inv₀, hJ] at h₂'
   rw [hJ] at h₁'
   simp only [map_mul, map_pow, map_sub, hJ, h1728] at h₁' h₂'
-
   obtain ⟨f, hf⟩ := ModularCurve.exists_cuspForm_qExpansion_eq_mul_thetaL_of_isIntegral N (phi N ι₀ x) hXmem
     (dedekindPsi N) h₁' h₂'
   refine ⟨f, ?_⟩
-
   have hΘ : ModularCurve.diffQExpBar N ω =
       ((x : modularFunctionFieldBar N) : LaurentSeries (AlgebraicClosure ℚ)) *
         qEuler (AlgebraicClosure ℚ) ((jB N : modularFunctionFieldBar N) : LaurentSeries (AlgebraicClosure ℚ)) := by

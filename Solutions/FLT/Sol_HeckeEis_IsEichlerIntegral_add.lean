@@ -44,7 +44,6 @@ theorem solution {n : ℕ} {f g : UpperHalfPlane → ℂ} {F G : UpperHalfPlane 
     HeckeEis.IsEichlerIntegral n (f + g) (F + G) :=
   HeckeEis.SolMain.add hF hG
 
-
 end S_HeckeEis_IsEichlerIntegral_add
 end P2MW
 export P2MW.S_HeckeEis_IsEichlerIntegral_add (solution)

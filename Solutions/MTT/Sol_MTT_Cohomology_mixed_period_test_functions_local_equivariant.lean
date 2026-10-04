@@ -75,7 +75,6 @@ lemma periodContraction_periodPower (n : ℕ) (z w : ℂ) :
   field_simp
   ring
 
-
 lemma differential_apply (a b w : ℂ) : periodDifferential a b w = a * w + b * conj w := by
   simp [periodDifferential]
 
@@ -127,7 +126,6 @@ lemma coeff_conj_cusp {N k : ℕ}
     conj (AddMonoidAlgebra.coeff (((↑ₕ(fun τ : ℍ => q τ)) w) • periodPower n w) (binaryExponent n j)) := by
   simp [coeff_periodPower n j hj]
 
-
 lemma coeff_primitive_contDiff {N k : ℕ}
     (g v : CuspForm (MTT.GammaOne N) (k : ℤ))
     (U : ℂ → Binary ℂ) (hU : IsMixedPeriodPrimitive g v U)
@@ -154,7 +152,6 @@ lemma coeff_primitive_contDiff {N k : ℕ}
       exact (UpperHalfPlane.ofComplex_apply ⟨w, hw⟩)
     simpa [a, b, e, he] using
       (hU.2.2.1 ⟨w, hw⟩ e).hasFDerivWithinAt (s := upperHalfPlaneSet)
-
 
 lemma mixed_const_mul {F : ℂ → ℂ} {a b z : ℂ} (c : ℂ)
     (hF : HasFDerivAt F (periodDifferential a b) z) :
@@ -212,7 +209,6 @@ lemma second_test_contDiff {N k : ℕ}
     (coeff_primitive_contDiff g v U hU (k - 2 - j) (Nat.sub_le _ _))).div_const _
 
 end MTT.LocalPeriod
-
 
 set_option autoImplicit false
 noncomputable section
@@ -307,7 +303,6 @@ lemma eval_homogeneous_scale {n : ℕ} {P : Binary ℂ}
   rw [mul_pow, mul_pow, hc]
   ring
 
-
 lemma act_homogeneous {n : ℕ} {P : Binary ℂ}
     (hP : P ∈ MTT.Cohomology.Sym ℂ n) (A : Matrix (Fin 2) (Fin 2) ℤ) :
     act A P ∈ MTT.Cohomology.Sym ℂ n := by
@@ -330,7 +325,6 @@ lemma eval_act (P : Binary ℂ) (A : Matrix (Fin 2) (Fin 2) ℤ) (x y : ℂ) :
   congr 1
   ext i
   fin_cases i <;> simp [Fin.sum_univ_two, MvPolynomial.smul_eq_C_mul]
-
 
 lemma contraction_eval_left {n : ℕ} {P : Binary ℂ}
     (hP : P ∈ MTT.Cohomology.Sym ℂ n) (w : ℂ) :
@@ -373,7 +367,6 @@ lemma eval_act_mob {n : ℕ} {P : Binary ℂ}
   rw [hx, hy, eval_homogeneous_scale hP]
 
 end MTT.LocalPeriod
-
 
 set_option autoImplicit false
 noncomputable section
@@ -478,7 +471,6 @@ lemma second_test_derivative {N k : ℕ}
 
 end MTT.LocalPeriod
 
-
 set_option autoImplicit false
 noncomputable section
 open UpperHalfPlane
@@ -561,7 +553,6 @@ lemma second_test_equivariant {N k : ℕ} (hk : 2 ≤ k)
     _ = _ := by rw [weight_cancel hk (denom_ne_zero γ z)]
 
 end MTT.LocalPeriod
-
 
 set_option autoImplicit false
 noncomputable section

@@ -75,12 +75,10 @@ theorem finrank_le_finrank (y : F) (hy : Transcendental k y) [FiniteDimensional 
   classical
   set d := Module.finrank k⟮y⟯ F with hd
   let b := Module.finBasisOfFinrankEq k⟮y⟯ F hd.symm
-
   suffices hli : LinearIndependent K'⟮t⟯ (fun i : Fin d => algebraMap F E (b i)) by
     simpa using hli.fintype_card_le_finrank
   rw [Fintype.linearIndependent_iff]
   intro l hl
-
   have hpq : ∀ i, ∃ p q : Polynomial K', Polynomial.aeval t q ≠ 0 ∧
       ((l i : K'⟮t⟯) : L) * Polynomial.aeval t q = Polynomial.aeval t p := fun i => exists_mul_aeval_eq t (l i)
   choose p q hq hpq using hpq
@@ -93,7 +91,6 @@ theorem finrank_le_finrank (y : F) (hy : Transcendental k y) [FiniteDimensional 
     intro i
     rw [hQ, ← Finset.mul_prod_erase Finset.univ q (Finset.mem_univ i), map_mul, ← mul_assoc, hpq i,
       ← map_mul]
-
   have hrelL : ∑ i, ((l i : K'⟮t⟯) : L) * (algebraMap F E (b i) : L) = 0 := by
     have := congrArg (fun e : E => (e : L)) hl
     simpa [IntermediateField.smul_def, smul_eq_mul] using this
@@ -103,11 +100,9 @@ theorem finrank_le_finrank (y : F) (hy : Transcendental k y) [FiniteDimensional 
     rw [← this]
     refine Finset.sum_congr rfl fun i _ => ?_
     rw [← hP i]; ring
-
   set N : ℕ := (Finset.univ.sup fun i => (P i).natDegree) + 1 with hN
   have hdeg : ∀ i, (P i).natDegree < N := fun i =>
     Nat.lt_succ_of_le (Finset.le_sup (f := fun i => (P i).natDegree) (Finset.mem_univ i))
-
   have htn : ∀ n : ℕ, ((algebraMap F E (y ^ n) : E) : L) = t ^ n := by
     intro n
     rw [map_pow]
@@ -120,7 +115,6 @@ theorem finrank_le_finrank (y : F) (hy : Transcendental k y) [FiniteDimensional 
     rw [Polynomial.aeval_eq_sum_range' (hdeg i), Finset.sum_mul, ← Fin.sum_univ_eq_sum_range]
     refine Finset.sum_congr rfl fun n _ => ?_
     rw [map_mul, MulMemClass.coe_mul, htn, smul_mul_assoc]
-
   let Y : k⟮y⟯ := ⟨y, IntermediateField.mem_adjoin_simple_self k y⟩
   have hYt : Transcendental k Y := by
     have hinj : Function.Injective (algebraMap k⟮y⟯ F) := (algebraMap k⟮y⟯ F).injective
@@ -142,7 +136,6 @@ theorem finrank_le_finrank (y : F) (hy : Transcendental k y) [FiniteDimensional 
       (LinearMap.ker_eq_bot.mpr fun a b h => Subtype.ext h)
   have hcoeff : ∀ pr : Fin N × Fin d, (P pr.2).coeff (pr.1 : ℕ) = 0 :=
     Fintype.linearIndependent_iff.mp hLD' _ hrel2
-
   intro i
   have hPi : P i = 0 := by
     ext n
@@ -169,7 +162,6 @@ theorem natCard_places_le (y : F) (hy : Transcendental k y) [FiniteDimensional k
         Nat.card {P : AlgebraicCurve.Place k F // P.ord u < 0}) := by
   classical
   have hu' : algebraMap F E u ≠ 0 := (map_ne_zero _).mpr hu
-
   have hcomap : ∀ P : AlgebraicCurve.Place K' E, P.ord (algebraMap F E u) ≠ 0 →
       ∃ v : AlgebraicCurve.Place k F,
         v.toValuationSubring = P.toValuationSubring.comap (algebraMap F E) := by
@@ -186,7 +178,6 @@ theorem natCard_places_le (y : F) (hy : Transcendental k y) [FiniteDimensional k
         have := (AlgebraicCurve.Place.mem_iff_ord_nonneg P (inv_ne_zero hu')).mp hmem
         rw [AlgebraicCurve.Place.ord_inv] at this
         omega
-
   have huniq : ∀ (v : AlgebraicCurve.Place k F) (P₁ P₂ : AlgebraicCurve.Place K' E),
       P₁.toValuationSubring.comap (algebraMap F E) = v.toValuationSubring →
       P₂.toValuationSubring.comap (algebraMap F E) = v.toValuationSubring → P₁ = P₂ := by
@@ -195,7 +186,6 @@ theorem natCard_places_le (y : F) (hy : Transcendental k y) [FiniteDimensional k
       AlgebraicCurve.Place.exists_comap_algebraMap_eq_of_constantFieldExtension k F K' E
         ⟨y, hy, inferInstance⟩ hfg' hgen v
     rw [hP' P₁ h₁, hP' P₂ h₂]
-
   have hsign_pos : ∀ (P : AlgebraicCurve.Place K' E) (v : AlgebraicCurve.Place k F),
       v.toValuationSubring = P.toValuationSubring.comap (algebraMap F E) →
       (0 < P.ord (algebraMap F E u) ↔ 0 < v.ord u) := by
@@ -221,7 +211,6 @@ theorem natCard_places_le (y : F) (hy : Transcendental k y) [FiniteDimensional k
     constructor
     · intro h; by_contra h'; have := h1.mpr (by omega); omega
     · intro h; by_contra h'; have := h1.mp (by omega); omega
-
   obtain ⟨D, hD, -⟩ := AlgebraicCurve.HasPrincipalDivisors.exists_divisor (K := k) u hu
   have hfin_pos : Finite {P : AlgebraicCurve.Place k F // 0 < P.ord u} := by
     apply Finite.of_injective (fun P => (⟨P.1, by
@@ -339,7 +328,6 @@ theorem solution
         (Finite {P : AlgebraicCurve.Place K' E // P.ord (algebraMap F E u) < 0} ∧
           Nat.card {P : AlgebraicCurve.Place K' E // P.ord (algebraMap F E u) < 0} ≤
             Nat.card {P : AlgebraicCurve.Place k F // P.ord u < 0}) := by
-
   have hx : Transcendental K' (algebraMap F E y) := by
     have : IsScalarTower K' E L := IsScalarTower.of_algebraMap_eq (fun _ => rfl)
     rw [← transcendental_algebraMap_iff (R := K') (A := L) (algebraMap E L).injective]

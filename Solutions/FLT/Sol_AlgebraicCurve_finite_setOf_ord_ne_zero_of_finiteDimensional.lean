@@ -58,7 +58,6 @@ private theorem _root_.AlgebraicCurve.Place.exists_coeff_ord_ne_zero {f : F'} (h
   have hmonic : P.Monic := minpoly.monic hint
   have hdeg : 0 < P.natDegree := minpoly.natDegree_pos hint
   have hc0 : P.coeff 0 ≠ 0 := minpoly.coeff_zero_ne_zero hint hf
-
   have hcoeff : ∀ i, algebraMap F F' (P.coeff i) ∈ w.toValuationSubring := by
     intro i
     rcases lt_trichotomy i P.natDegree with hi | hi | hi
@@ -68,14 +67,11 @@ private theorem _root_.AlgebraicCurve.Place.exists_coeff_ord_ne_zero {f : F'} (h
     · subst hi
       simp [hmonic.coeff_natDegree]
     · simp [Polynomial.coeff_eq_zero_of_natDegree_lt hi]
-
   have hfmem : f ∈ w.toValuationSubring := by
     refine w.mem_of_eval_monic_eq_zero (P := P.map (algebraMap F F')) (hmonic.map _)
       (fun i => by simpa using hcoeff i) ?_
     rw [Polynomial.eval_map, ← Polynomial.aeval_def, hPdef, minpoly.aeval]
-
   have hfpos : 0 < w.ord f := lt_of_le_of_ne (w.ord_nonneg_of_mem hfmem) (Ne.symm hford)
-
   have hkey : algebraMap F F' (P.coeff 0) = -(f * Polynomial.aeval f P.divX) := by
     have hsplit : Polynomial.aeval f (Polynomial.X * P.divX + Polynomial.C (P.coeff 0))
         = (0 : F') := by rw [P.X_mul_divX_add]; exact minpoly.aeval F f
@@ -87,7 +83,6 @@ private theorem _root_.AlgebraicCurve.Place.exists_coeff_ord_ne_zero {f : F'} (h
     intro h
     rw [h, mul_zero, neg_zero] at hkey
     exact hc0 (by simpa using hkey)
-
   have hpos0 : 0 < w.ord (algebraMap F F' (P.coeff 0)) := by
     rw [hkey, w.ord_neg, w.ord_mul hf hcof_ne]
     have := w.ord_nonneg_of_mem hcof_mem
@@ -111,16 +106,13 @@ theorem solution {K F' : Type*} [Field K] [Field F'] [Algebra K F']
     {f : F'} (hf : f ≠ 0) : {w : Place K F' | w.ord f ≠ 0}.Finite := by
   classical
   set P := minpoly (RatFunc K) f with hPdef
-
   refine Set.Finite.subset (Set.Finite.biUnion (Set.finite_Iio P.natDegree) (fun i _ =>
     Set.Finite.biUnion (s := {v : Place K (RatFunc K) | v.ord (P.coeff i) ≠ 0})
       ?_ (fun v _ => Place.finite_setOf_restrict_eq v))) ?_
-  ·
-    rcases eq_or_ne (P.coeff i) 0 with h0 | h0
+  · rcases eq_or_ne (P.coeff i) 0 with h0 | h0
     · simp [h0]
     · exact RationalFunctionField.finite_setOf_ord_ne_zero h0
-  ·
-    intro w hw
+  · intro w hw
     obtain ⟨i, hi, hci, hord⟩ := w.exists_coeff_ord_ne_zero (F := RatFunc K) hf hw
     simp only [Set.mem_iUnion, Set.mem_ofPred_eq, exists_prop]
     refine ⟨i, hi, w.restrict (RatFunc K), ?_, rfl⟩

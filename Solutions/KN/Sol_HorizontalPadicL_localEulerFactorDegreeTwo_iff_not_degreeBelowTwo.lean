@@ -98,7 +98,6 @@ lemma LFunction_prime_pow (E : WeierstrassCurve ℚ) (v : HeightOneSpectrum (�
   · rw [card_residue, ofPowerSeries_apply_pow hp.one_lt]
   · exact prod_delta hp _ _ fun w hw j => factor_delta E v w (Finset.ne_of_mem_erase hw) j
 
-
 lemma Fv_mul (E : WeierstrassCurve ℚ) (v : HeightOneSpectrum (𝓞 ℚ)) :
     ((E.baseChange (v.adicCompletion ℚ)).localPolynomial (v.adicCompletionIntegers ℚ) : PowerSeries ℤ)
       * Fv E v = 1 := by

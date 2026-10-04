@@ -218,7 +218,6 @@ theorem exists_place_ord_sub_le (τ₀ : ℍ) :
   rw [algebraMap_jsub] at hord
   rw [analyticOrderAt_jsub] at hord hfin
   simp only [ENat.toNat_natCast] at hord
-
   have hpos : 0 < (Nat.card (MulAction.stabilizer SL(2, ℤ) τ₀) / 2 : ℕ) := by
     have h := analyticOrderAt_jsub τ₀
     have hne : analyticOrderAt ((fun τ : ℍ => LevelN.jAnalytic τ - LevelN.jAnalytic τ₀) ∘ ofComplex)

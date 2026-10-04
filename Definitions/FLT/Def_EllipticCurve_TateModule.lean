@@ -402,14 +402,12 @@ theorem liftFun_mem
     (n : ℕ) (m : torsionBy ℤ M ((p ^ n : ℕ) : ℤ)) : liftFun next n m ∈ TateModule p M := by
   intro k
   constructor
-  ·
-    by_cases hk : n ≤ k
+  · by_cases hk : n ≤ k
     · rw [liftFun_of_le hk]
       exact pow_smul_coe_liftAux (k - n) (by omega)
     · rw [liftFun_of_lt (not_le.mp hk)]
       exact (mem_torsionBy_iff _ _).mp (pow_smul_mem_torsionBy (not_le.mp hk).le m.2)
-  ·
-    by_cases hk : n ≤ k
+  · by_cases hk : n ≤ k
     · rw [liftFun_of_le hk, liftFun_of_le (by omega : n ≤ k + 1),
         coe_liftAux_congr (by omega : k + 1 - n = (k - n) + 1)]
       exact hnext _ _
@@ -485,13 +483,11 @@ theorem dvd_of_rel_apply {x y : TateModule p M}
   | zero => intro a b _; simp
   | succ n ih =>
     intro a b hab
-
     have hab1 : a • (x : ℕ → M) 1 + b • (y : ℕ → M) 1 = 0 := by
       have := congrArg (((p ^ n : ℕ) : ℤ) • ·) hab
       simpa only [smul_add, smul_zero, smul_comm _ a, smul_comm _ b, Nat.add_comm n 1 ▸ compat_pow x 1 n,
         Nat.add_comm n 1 ▸ compat_pow y 1 n] using this
     obtain ⟨⟨a', rfl⟩, ⟨b', rfl⟩⟩ := h1 a b hab1
-
     have hab' : a' • (x : ℕ → M) n + b' • (y : ℕ → M) n = 0 := by
       rw [mul_comm, mul_smul, mul_comm, mul_smul, compat, compat] at hab
       exact hab
@@ -557,7 +553,6 @@ theorem mem_span_pair (hcard : ∀ n : ℕ, Nat.card (torsionBy ℤ M ((p ^ n : 
     (h1 : ∀ a b : ℤ, a • (x : ℕ → M) 1 + b • (y : ℕ → M) 1 = 0 → (p : ℤ) ∣ a ∧ (p : ℤ) ∣ b)
     (z : TateModule p M) : ∃ s t : ℤ_[p], s • x + t • y = z := by
   choose a b hab using fun n => exists_eq_levelMap hcard h1 n (proj_mem_torsionBy n z)
-
   have hcompat : ∀ n, ((p ^ n : ℕ) : ℤ) ∣ (a (n + 1) : ℤ) - a n ∧ ((p ^ n : ℕ) : ℤ) ∣ (b (n + 1) : ℤ) - b n :=
     fun n => dvd_of_rel_apply h1 n _ _ (by
       rw [sub_smul, sub_smul, sub_add_sub_comm, hab n, sub_eq_zero, proj_apply, ← compat z n,
@@ -712,7 +707,6 @@ theorem finiteDimensional_torsionField (n : ℕ)
       Affine.Point.coords (W := W.baseChange (AlgebraicClosure ℚ)) P).Finite :=
     Set.Finite.biUnion (Set.finite_coe_iff.mp hfin) fun P _ => Affine.Point.coords_finite P
   have := hS.to_subtype
-
   exact IntermediateField.finiteDimensional_adjoin fun z _ => by
     convert ((AlgebraicClosure.isAlgebraic ℚ).isAlgebraic z).isIntegral
 

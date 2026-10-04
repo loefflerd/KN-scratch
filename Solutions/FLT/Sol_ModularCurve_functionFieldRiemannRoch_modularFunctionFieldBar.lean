@@ -40,10 +40,8 @@ private theorem exists_transcendental_finiteDimensional (x : LF) (hx : Transcend
   have hxF : x ∈ F := subset_adjoin K _ (Set.mem_insert x _)
   have hTF : ∀ t ∈ T, t ∈ F := fun t ht => subset_adjoin K _ (Set.mem_insert_of_mem x ht)
   set x' : F := ⟨x, hxF⟩ with hx'
-
   have hx't : Transcendental K x' :=
     (transcendental_algebraMap_iff (R := K) (S := F) (A := LF) Subtype.val_injective).mp hx
-
   set A : IntermediateField K F := IntermediateField.adjoin K ({x'} : Set F) with hA
   have hliftA : lift A = K⟮x⟯ := by
     rw [hA, lift_adjoin_simple]
@@ -55,14 +53,12 @@ private theorem exists_transcendental_finiteDimensional (x : LF) (hx : Transcend
     ext b
     change (((e.symm b : A) : F) : LF) = ((b : K⟮x⟯) : LF)
     rw [← he (e.symm b), AlgEquiv.apply_symm_apply]
-
   have hint : ∀ t (ht : t ∈ T), IsIntegral A (⟨t, hTF t ht⟩ : F) := by
     intro t ht
     have h1 : IsIntegral A (t : LF) :=
       (hT t ht).map_of_comp_eq (R := K⟮x⟯) (S := LF) (T := A) (U := LF)
         (e.symm : K⟮x⟯ →+* A) (RingHom.id LF) hcomp'
     exact (isIntegral_algHom_iff (IsScalarTower.toAlgHom A F LF) Subtype.val_injective).mp h1
-
   have hfd : FiniteDimensional A F := by
     set T' : Set F := (fun t : T => (⟨(t : LF), hTF t t.2⟩ : F)) '' Set.univ with hT'
     have : Finite T' := Set.Finite.to_subtype ((Set.finite_univ).image _)
@@ -101,7 +97,6 @@ set_option maxHeartbeats 6400000 in
 
 theorem solution (N : ℕ) [NeZero N] :
     FunctionFieldRiemannRoch (AlgebraicClosure ℚ) (modularFunctionFieldBar N) := by
-
   have hpair : laurentBaseChange (AlgebraicClosure ℚ) (modularFunctionFieldFull N)
       = IntermediateField.adjoin (AlgebraicClosure ℚ) {jqModC (AlgebraicClosure ℚ), jqNModC (AlgebraicClosure ℚ) N} :=
     laurentBaseChange_adjoin_pair (AlgebraicClosure ℚ) N (functionFieldGeneration N)
@@ -117,7 +112,6 @@ theorem solution (N : ℕ) [NeZero N] :
     subst ht
     exact isIntegral_jqNModC_all (AlgebraicClosure ℚ) N
   obtain ⟨x', hx', hfd⟩ := h (modularFunctionFieldBar N) (by rw [Finset.coe_singleton]; exact hpair)
-
   let e := RatFunc.algEquivOfTranscendental x' hx'
   let : Algebra (RatFunc (AlgebraicClosure ℚ)) (IntermediateField.adjoin (AlgebraicClosure ℚ) ({x'} : Set (modularFunctionFieldBar N))) := e.toAlgHom.toRingHom.toAlgebra
   let : Algebra (RatFunc (AlgebraicClosure ℚ)) (modularFunctionFieldBar N) :=
@@ -136,22 +130,18 @@ theorem solution (N : ℕ) [NeZero N] :
   have : CharZero (RatFunc (AlgebraicClosure ℚ)) :=
     charZero_of_injective_algebraMap (algebraMap (AlgebraicClosure ℚ) (RatFunc (AlgebraicClosure ℚ))).injective
   have : PerfectField (RatFunc (AlgebraicClosure ℚ)) := PerfectField.ofCharZero
-
   have := isCurveOver_modularFunctionFieldBar N
   have := hasCanonicalDivisor_modularFunctionFieldBar N
   have := essFiniteType_modularFunctionFieldBar N
   have : ∀ w : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N), w.DCoordGenerates := dCoordGenerates_of_isCurveOver
-
   have := AlgebraicCurve.instIsCurveOverRatFunc (AlgebraicClosure ℚ)
   have : Algebra.EssFiniteType (Polynomial (AlgebraicClosure ℚ)) (RatFunc (AlgebraicClosure ℚ)) :=
     Algebra.EssFiniteType.of_isLocalization (RatFunc (AlgebraicClosure ℚ)) (nonZeroDivisors (Polynomial (AlgebraicClosure ℚ)))
   have : Algebra.EssFiniteType (AlgebraicClosure ℚ) (RatFunc (AlgebraicClosure ℚ)) :=
     Algebra.EssFiniteType.comp (AlgebraicClosure ℚ) (Polynomial (AlgebraicClosure ℚ)) (RatFunc (AlgebraicClosure ℚ))
   have : ∀ v : Place (AlgebraicClosure ℚ) (RatFunc (AlgebraicClosure ℚ)), v.DCoordGenerates := dCoordGenerates_of_isCurveOver
-
   exact @functionFieldRiemannRoch_of_isAlgClosed (AlgebraicClosure ℚ) (modularFunctionFieldBar N)
     _ _ (Classical.decEq _) _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
-
 
 end S_ModularCurve_functionFieldRiemannRoch_modularFunctionFieldBar
 end P2MW

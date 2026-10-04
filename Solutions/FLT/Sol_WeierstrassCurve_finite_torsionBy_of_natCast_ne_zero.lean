@@ -21,7 +21,6 @@ theorem solution (k : Type*) [Field k] [DecidableEq k] (W : WeierstrassCurve k) 
     (n : ℕ) (hn : (n : k) ≠ 0) :
     Finite (Submodule.torsionBy ℤ W.toAffine.Point n) := by
   classical
-
   let K := AlgebraicClosure k
   have hnK : (n : K) ≠ 0 := by
     rw [← map_natCast (algebraMap k K) n]
@@ -33,7 +32,6 @@ theorem solution (k : Type*) [Field k] [DecidableEq k] (W : WeierstrassCurve k) 
     WeierstrassCurve.card_torsion_of_isAlgClosed (K := K) W hnK
   have : Finite (Submodule.torsionBy ℤ (W⁄K).Point n) :=
     Nat.finite_of_card_ne_zero (by rw [hcard]; exact pow_ne_zero 2 hn0)
-
   let φ : (W.toAffine⁄k).Point →+ (W.toAffine⁄K).Point := Point.baseChange k K
   have hφ : Function.Injective φ := Point.map_injective _
   have hmem : ∀ P : Submodule.torsionBy ℤ W.toAffine.Point n, φ P.1 ∈ Submodule.torsionBy ℤ (W⁄K).Point n := by

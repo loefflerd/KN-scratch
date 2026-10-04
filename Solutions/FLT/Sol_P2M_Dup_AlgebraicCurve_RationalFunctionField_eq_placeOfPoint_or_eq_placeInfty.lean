@@ -29,13 +29,11 @@ variable (K : Type*) [Field K]
 theorem exists_eq_placeOfPoint [IsAlgClosed K] (w : HeightOneSpectrum K[X]) :
     ∃ a : K, Place.ofHeightOneSpectrum (K := K) (F := RatFunc K) w = placeOfPoint K a := by
   obtain ⟨p, hp, hwp⟩ := exists_irreducible_span K w
-
   have hdeg : p.degree ≠ 0 := by
     rw [IsAlgClosed.degree_eq_one_of_irreducible K hp]
     exact one_ne_zero
   obtain ⟨a, ha⟩ := IsAlgClosed.exists_root p hdeg
   refine ⟨a, ?_⟩
-
   have hassoc : Associated ((X : K[X]) - C a) p :=
     (irreducible_X_sub_C a).associated_of_dvd hp (dvd_iff_isRoot.mpr ha)
   have hideal : w = heightOneSpectrumOfIrreducible K (irreducible_X_sub_C a) :=

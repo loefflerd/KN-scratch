@@ -111,17 +111,14 @@ theorem solution
   have : NeZero N := ⟨hN⟩
   set W : WeierstrassCurve L := ⟨0, 0, 0, A, 0⟩ with hWdef
   set γ : VariableChange L := ⟨u, 0, 0, 0⟩ with hγdef
-
   have hΔ : W.Δ = -64 * A ^ 3 := by
     simp only [hWdef, WeierstrassCurve.Δ, WeierstrassCurve.b₂, WeierstrassCurve.b₄, WeierstrassCurve.b₆,
       WeierstrassCurve.b₈]; ring
   have hE : W.IsElliptic := ⟨by rw [hΔ]; exact isUnit_iff_ne_zero.mpr (by simp [hA])⟩
-
   have hW : γ • W = W := WeierstrassCurve.variableChange_mk_smul_eq_self_of_sq_eq_neg_one u hu A
   let σ : W.toAffine.Point →+ W.toAffine.Point := vcHom γ W hW
   have hi2 : ((u⁻¹ : Lˣ) : L) ^ 2 = -1 := by
     rw [Units.val_inv_eq_inv_val, inv_pow, hu, inv_neg, inv_one]
-
   have hσ : ∀ P : W.toAffine.Point, σ (σ P) = -P := by
     intro P
     apply xy_injective
@@ -134,14 +131,12 @@ theorem solution
       · linear_combination (((u⁻¹ : Lˣ) : L) ^ 4 * y - ((u⁻¹ : Lˣ) : L) ^ 2 * y + y) * hi2
   have σinj : Function.Injective σ := fun a b h => by
     have h2 := congrArg σ h; rwa [hσ, hσ, neg_inj] at h2
-
   have hns : ∀ p : ℕ, p.Prime → p ∣ N → ∃ a : W.toAffine.Point, addOrderOf a = p ∧ ∀ k : ℕ, σ a ≠ k • a := by
     intro p hp _
     obtain ⟨T, hT, hk⟩ :=
       WeierstrassCurve.exists_addOrderOf_eq_and_vcInvFun_ne_nsmul_of_sq_eq_neg_one A hA u hu p hp
     refine ⟨T, hT, fun k hk' => hk k ?_⟩
     exact (heq_vcHom γ W hW T).trans (heq_of_eq hk')
-
   have hNL : ((N : ℕ) : L) ≠ 0 := Nat.cast_ne_zero.mpr hN
   obtain ⟨e⟩ : Nonempty (ZMod N × ZMod N ≃+ Submodule.torsionBy ℤ W.toAffine.Point N) := by
     have h := W.nonempty_torsionBy_addEquiv_zmod_prod_of_isAlgClosed (K := L) hNL
@@ -150,7 +145,6 @@ theorem solution
       rw [WeierstrassCurve.baseChange, Algebra.algebraMap_self, WeierstrassCurve.map_id]
     rw [hb] at h
     exact h
-
   rw [← AddCommGroup.natCard_isAddCyclic_addSubgroup_map_eq_of_sq_eq_neg_one_eq_nuTwo N e σ hσ hns]
   refine Nat.card_congr (Equiv.subtypeEquivRight fun H => ?_)
   refine ⟨fun ⟨hc, hcard, hst⟩ => ⟨hc, hcard, ?_⟩, fun ⟨hc, hcard, hst⟩ => ⟨hc, hcard, ?_⟩⟩

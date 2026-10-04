@@ -148,9 +148,7 @@ theorem nonempty_freeGroupBasis [Γ.FiniteIndex] (hneg : (-1 : SL(2, ℤ)) ∈ �
   have : (pulledBack Γ).FiniteIndex := ⟨by
     rw [index_pulledBack Γ hneg]; exact Subgroup.FiniteIndex.index_ne_zero⟩
   have hCT := conjTrivial Γ hΓ
-
   obtain ⟨b⟩ := Monoid.CoprodI.nonempty_freeGroupBasis_fin_kuroshRank (pulledBack Γ) hCT
-
   have hdvd : ∀ i : Fin 2, (i.val + 2) ∣ Γ.index := by
     intro i
     have hc := Subgroup.card_orbitRelQuotient_mul_card_eq_index (pulledBack Γ)

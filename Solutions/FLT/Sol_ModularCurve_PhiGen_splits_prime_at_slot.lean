@@ -154,7 +154,6 @@ private theorem ModularCurve.PhiGen.splits_prime_at_slot {K : Type*} [Field K] [
   have hζp : IsPrimitiveRoot ((ζ ^ (N / p) : Kˣ) : K) p :=
     ModularCurve.W1.isPrimitiveRoot_pow_div hζ hpN
   have h0 := ModularCurve.PhiGen.splits_of_prime p (ζ ^ (N / p)) hζp data
-
   have hhom : Polynomial.eval₂RingHom (Int.castRingHom (LaurentSeries K))
       (qExpand K (p * e) (qTwist (u ^ p) (coeffEmb K jq)))
       = ((qExpand K e).comp (qTwist u)).comp (((coeffEmb K).comp (qExpand ℚ p)).comp evalAtJ) := by
@@ -162,20 +161,17 @@ private theorem ModularCurve.PhiGen.splits_prime_at_slot {K : Type*} [Field K] [
     simp only [Polynomial.coe_eval₂RingHom, Polynomial.eval₂_X, RingHom.comp_apply, evalAtJ_X]
     rw [ModularCurve.W1.iota_jq, ModularCurve.W1.qExpand_qTwist_TS, mul_one, zpow_natCast]
     exact (ModularCurve.W1.TS_congr (Nat.mul_comm e p) (u ^ p)).symm
-
   have h₀ : ((qExpand K e).comp (qTwist u)) (conj p (ζ ^ (N / p)) (0 : Fin (p + 1)))
       = qExpand K (p * (p * e)) (qTwist (u ^ (p * p)) (coeffEmb K jq)) := by
     rw [RingHom.comp_apply, ModularCurve.W1.conj_zero_eq, ModularCurve.W1.qExpand_qTwist_TS,
       mul_one, zpow_natCast]
     exact ModularCurve.W1.TS_congr (by ring) (u ^ (p * p))
-
   have h₁ : ∀ b : Fin p, ((qExpand K e).comp (qTwist u)) (conj p (ζ ^ (N / p)) b.succ)
       = qExpand K e (qTwist (u * ζ ^ ((b : ℕ) * (N / p))) (coeffEmb K jq)) := by
     intro b
     rw [RingHom.comp_apply, ModularCurve.W1.conj_succ_eq, ModularCurve.W1.qExpand_qTwist_TS,
       Nat.cast_one, zpow_one, ← pow_mul, Nat.mul_comm (N / p) (b : ℕ)]
     exact ModularCurve.W1.TS_congr (mul_one e) (u * ζ ^ ((b : ℕ) * (N / p)))
-
   rw [hhom, ← Polynomial.map_map, h0,
     show phiProd p (conj p (ζ ^ (N / p)))
         = ∏ i : Fin (p + 1), (Polynomial.X - Polynomial.C (conj p (ζ ^ (N / p)) i)) from rfl,
@@ -232,8 +228,7 @@ theorem roots_prime_at_slot_nodup (N : ℕ) [NeZero N] (ζ : Kˣ) (hζ : IsPrimi
   have hζp : IsPrimitiveRoot ((ζ ^ (N / p) : Kˣ) : K) p := isPrimitiveRoot_pow_div hζ hpN
   rw [Multiset.nodup_cons]
   constructor
-  ·
-    intro hmem
+  · intro hmem
     obtain ⟨b, hb, heq⟩ := Multiset.mem_map.mp hmem
     have h := (TS_injective (K := K) (e := e) (e' := p * (p * e))
       (u := u * ζ ^ (b * (N / p))) (u' := u ^ (p * p)) heq).1
@@ -242,8 +237,7 @@ theorem roots_prime_at_slot_nodup (N : ℕ) [NeZero N] (ζ : Kˣ) (hζ : IsPrimi
     have hmono : 2 * (2 * e) ≤ p * (p * e) := Nat.mul_le_mul hp2 (Nat.mul_le_mul hp2 le_rfl)
     rw [← h] at hmono
     omega
-  ·
-    refine Multiset.Nodup.map_on ?_ (Multiset.nodup_range p)
+  · refine Multiset.Nodup.map_on ?_ (Multiset.nodup_range p)
     intro b hb b' hb' heq
     rw [Multiset.mem_range] at hb hb'
     have h := (TS_injective (K := K) (e := e) (e' := e)
@@ -293,7 +287,6 @@ p2m_open "ModularCurve~coeffEmb_qExpand" in open _root_.P2MW.S_ModularCurve_PhiG
 
 theorem solution {K : Type*} [Field K] [Algebra ℚ K] (N : ℕ) [NeZero N] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) N) (p : ℕ) [hp : Fact (Nat.Prime p)] (hpN : p ∣ N) (data : ModularPolynomialData p) (e : ℕ) [NeZero e] (u : Kˣ) : data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (LaurentSeries K)) (qExpand K (p * e) (qTwist (u ^ p) (coeffEmb K jq)))) = (Polynomial.X - Polynomial.C (qExpand K (p * (p * e)) (qTwist (u ^ (p * p)) (coeffEmb K jq)))) * ∏ b ∈ Finset.range p, (Polynomial.X - Polynomial.C (qExpand K e (qTwist (u * ζ ^ (b * (N / p))) (coeffEmb K jq)))) :=
   ModularCurve.PhiGen.splits_prime_at_slot N ζ hζ p hpN data e u
-
 
 end S_ModularCurve_PhiGen_splits_prime_at_slot
 end P2MW

@@ -82,11 +82,9 @@ theorem solution
           UpperHalfPlane.atImInfty (nhds L) := by
   classical
   have : Γ.normalCore.FiniteIndex := inferInstance
-
   have hR := fun σ : SL(2, ℤ) =>
     ModularCurve.exists_ringHom_place_order_eq_mul_ord_of_qExpansion_slash Γ hT F₀ hF σ
   choose Φ Pl e he hE2 hE3 hpres hconst hord hyc hE1 using hR
-
   have hΓPl : ∀ γ ∈ Γ, ∀ σ : SL(2, ℤ), Pl (γ * σ) = Pl σ := by
     intro γ hγ σ
     apply AlgebraicCurve.Place.ext
@@ -104,7 +102,6 @@ theorem solution
   obtain ⟨σ, hσ⟩ := ModularCurve.exists_apply_eq_of_forall_ord_eq_zero_tendsto_realizeOf Γ hT hΓ F₀ hF y hy
     Pl hΓPl hlim P hP
   subst hσ
-
   have hN : σ * ModularGroup.T ^ Γ.normalCore.index * σ⁻¹ ∈ Γ := by
     have h1 : (σ * ModularGroup.T * σ⁻¹) ^ Γ.normalCore.index ∈ Γ.normalCore := Subgroup.pow_index_mem _ _
     rw [conj_pow] at h1

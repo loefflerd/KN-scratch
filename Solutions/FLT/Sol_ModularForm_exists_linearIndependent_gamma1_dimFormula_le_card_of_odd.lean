@@ -127,10 +127,8 @@ theorem solution
         ≤ 12 * d := by
   classical
   have hk1 : 1 ≤ k := by omega
-
   have hfi' : (CongruenceSubgroup.Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).FiniteIndex :=
     Subgroup.finiteIndex_of_le le_sup_left
-
   obtain ⟨y, hy⟩ := exists_coe_eq_jqModC M
   have hT : ModularGroup.T ∈ CongruenceSubgroup.Gamma1 M := by
     rw [CongruenceSubgroup.Gamma1_mem]; simp [ModularGroup.T]
@@ -147,18 +145,15 @@ theorem solution
   have : IsCurveOver ℂ ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) :=
     ModularCurve.isCurveOver_laurentBaseChange_qExpFunctionFieldC_gamma1 ℂ M
   have hg := ModularCurve.twelve_mul_genusFF_laurentBaseChange_gamma1_add_six_mul_natCard_doubleCoset_eq_index_add_twelve_of_isAlgClosed ℂ M hM
-
   obtain ⟨w, v0, hw0, hv0mem, hv0⟩ :=
     ModularForm.exists_gamma1_weightOne_ne_zero_and_mul_thetaL_eq_qExpansion_sq M hM
   let v : ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) := ⟨v0, hv0mem⟩
   obtain ⟨Dw, hDw⟩ :=
     ModularCurve.exists_divisor_two_mul_eq_ord_add_weightFloor_one_laurentBaseChange_gamma1 M hM y hy w hw0 v hv0
-
   obtain ⟨Dk, hDk⟩ := AlgebraicCurve.exists_divisor_forall_eq_weightFloor ℂ y k
   have hdegk := AlgebraicCurve.six_mul_degree_eq_mul_finrank_of_forall_eq_weightFloor_of_ord_eq_three_two
     ℂ y htr hfin h0 h1728 k Dk hDk
   rw [hfull] at hdegk
-
   set W : LaurentSeries ℂ := HahnSeries.ofPowerSeries ℤ ℂ (qExpansion 1 w) with hWdef
   have hW : W ≠ 0 := by
     intro h0
@@ -172,7 +167,6 @@ theorem solution
     rw [← hv0]
     show v0 * _ = 0
     rw [show v0 = (v : LaurentSeries ℂ) from rfl, this, zero_mul]
-
   obtain ⟨Pv, hPv, hdegPv⟩ := AlgebraicCurve.HasPrincipalDivisors.exists_divisor (K := ℂ) v hvne
   obtain ⟨D1, hD1⟩ := AlgebraicCurve.exists_divisor_forall_eq_weightFloor ℂ y 1
   have hdeg1 := AlgebraicCurve.six_mul_degree_eq_mul_finrank_of_forall_eq_weightFloor_of_ord_eq_three_two
@@ -197,7 +191,6 @@ theorem solution
       linarith [hdegDw]
     calc (12 : ℤ) * ((k : ℤ) * Dw.degree) = k * (12 * Dw.degree) := by ring
       _ = _ := by rw [this]
-
   set μ : ℕ := (CongruenceSubgroup.Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index with hμdef
   set cc : ℕ := Nat.card (DoubleCoset.Quotient (CongruenceSubgroup.Gamma1 M : Set SL(2, ℤ))
       ((Subgroup.zpowers ModularGroup.T ⊔ Subgroup.zpowers (-1) : Subgroup SL(2, ℤ)) : Set SL(2, ℤ))) with hccdef
@@ -219,7 +212,6 @@ theorem solution
   set d : ℕ := Module.finrank ℂ ↥(riemannRochSpace (k • Dw)) with hddef
   have hell : (ell (k • Dw) : ℤ) = d := rfl
   let b := Module.finBasis ℂ ↥(riemannRochSpace (k • Dw))
-
   have hEk : ∀ P : AlgebraicCurve.Place ℂ ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))),
       (k : ℤ) * D1 P = Dk P := by
     intro P
@@ -273,7 +265,6 @@ theorem solution
       (((b i : ↥(riemannRochSpace (k • Dw))) :
           ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) ^ 2 * v ^ k).2
       (hshape i).1 (hshape i).2
-
   have hsq : ∀ i : Fin d,
       HahnSeries.ofPowerSeries ℤ ℂ (qExpansion 1 (F₂ i)) =
         ((((b i : ↥(riemannRochSpace (k • Dw))) :
@@ -293,8 +284,7 @@ theorem solution
           ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))).2
       (F₂ i) (hsq i)
   refine ⟨d, f, ?_, ?_⟩
-  ·
-    rw [Fintype.linearIndependent_iff]
+  · rw [Fintype.linearIndependent_iff]
     intro g hg0 i
     have hq : qExpansion 1 (⇑(∑ i, g i • f i) : ℍ → ℂ) = 0 := by
       rw [hg0]; exact qExpansion_zero 1
@@ -309,7 +299,6 @@ theorem solution
       rw [Submodule.coe_smul, IntermediateField.coe_smul]
       first
         | rw [Algebra.smul_def]
-
     have hL : (((∑ i, g i • b i : ↥(riemannRochSpace (k • Dw))) :
           ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) : LaurentSeries ℂ) * W ^ k = 0 := by
       have h1 := congrArg (HahnSeries.ofPowerSeries ℤ ℂ) hq
@@ -327,8 +316,7 @@ theorem solution
       apply Subtype.val_injective; apply Subtype.val_injective
       rw [hsum]; rfl
     exact Fintype.linearIndependent_iff.1 b.linearIndependent g hsumF i
-  ·
-    have h12 : (12 : ℤ) * d = k * μ - μ + 6 * cc := by
+  · have h12 : (12 : ℤ) * d = k * μ - μ + 6 * cc := by
       rw [← hell, hRR]; linarith [hdegw, hgZ]
     zify [show 1 ≤ k by omega]
     nlinarith [h12, hμZ]

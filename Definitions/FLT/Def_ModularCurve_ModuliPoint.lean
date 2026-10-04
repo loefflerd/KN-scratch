@@ -18,13 +18,9 @@ section Pairs
 variable (N : ℕ) (L : Type*) [Field L] [DecidableEq L]
 
 structure Gamma0Pair where
-
   toCurve : WeierstrassCurve L
-
   isElliptic : toCurve.IsElliptic
-
   gen : toCurve.toAffine.Point
-
   addOrderOf_gen : addOrderOf gen = N
 
 attribute [instance] Gamma0Pair.isElliptic

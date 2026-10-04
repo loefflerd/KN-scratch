@@ -76,15 +76,13 @@ theorem coeffEmb_mem_adjoin (S : Set (LaurentSeries ℚ)) {x : LaurentSeries ℚ
 
 theorem main : laurentBaseChange L (qExpFunctionFieldC ℚ Γ) = qExpFunctionFieldC L Γ := by
   apply le_antisymm
-  ·
-    show IntermediateField.adjoin L (⇑(coeffEmb L) '' (qExpFunctionFieldC ℚ Γ : Set (LaurentSeries ℚ))) ≤ _
+  · show IntermediateField.adjoin L (⇑(coeffEmb L) '' (qExpFunctionFieldC ℚ Γ : Set (LaurentSeries ℚ))) ≤ _
     rw [IntermediateField.adjoin_le_iff]
     rintro _ ⟨x, hx, rfl⟩
     have h := coeffEmb_mem_adjoin L (intFormRatiosC ℚ Γ) hx
     rw [image_intFormRatiosC] at h
     exact h
-  ·
-    show IntermediateField.adjoin L (intFormRatiosC L Γ) ≤ _
+  · show IntermediateField.adjoin L (intFormRatiosC L Γ) ≤ _
     rw [IntermediateField.adjoin_le_iff, ← image_intFormRatiosC L Γ]
     rintro _ ⟨x, hx, rfl⟩
     exact coeffEmb_mem_laurentBaseChange L (intFormRatiosC_subset ℚ Γ hx)

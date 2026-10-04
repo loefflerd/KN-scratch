@@ -202,13 +202,11 @@ theorem isFinitePlace_iff_exists_placeOfEquation [IsAlgClosed F]
     IsFinitePlace v ↔ ∃ (x y : F) (h : W.Equation x y), v = placeOfEquation h := by
   constructor
   · intro hv
-
     have := hv.centre_isPrime
     have hmax : hv.centre.IsMaximal := Ideal.IsPrime.isMaximal hv.centre_isPrime hv.centre_ne_bot
     obtain ⟨x, y, hxy, hXY⟩ :=
       CoordinateRing.exists_eq_XYIdeal (W := W) (P := hv.centre) hv.centre_ne_bot
     refine ⟨x, y, hxy, ?_⟩
-
     set w : HeightOneSpectrum W.CoordinateRing := heightOneSpectrumOfEquation hxy with hw
     set A : ValuationSubring W.FunctionField :=
       HeightOneSpectrum.valuationSubringAtPrime W.FunctionField w with hA
@@ -222,19 +220,16 @@ theorem isFinitePlace_iff_exists_placeOfEquation [IsAlgClosed F]
         rw [hXY] at hmem
         exact hs hmem
       exact mul_mem (hv r) (hv.inv_mem hs')
-
     have hSP : A.ofPrime (A.idealOfLE v.toValuationSubring hle) = v.toValuationSubring :=
       ValuationSubring.ofPrime_idealOfLE A v.toValuationSubring hle
     rcases eq_or_ne (A.idealOfLE v.toValuationSubring hle) ⊥ with hP | hP
-    ·
-      exfalso
+    · exfalso
       apply v.ne_top'
       have h2 : A.ofPrime ⊥ ≤ A.ofPrime (A.idealOfLE v.toValuationSubring hle) :=
         ValuationSubring.ofPrime_le_of_le (h := hP.le)
       rw [ValuationSubring.ofPrime_bot] at h2
       exact top_le_iff.mp (le_trans h2 hSP.le)
-    ·
-      have hPmax : (A.idealOfLE v.toValuationSubring hle).IsMaximal :=
+    · have hPmax : (A.idealOfLE v.toValuationSubring hle).IsMaximal :=
         Ideal.IsPrime.isMaximal inferInstance hP
       have hPeq : A.idealOfLE v.toValuationSubring hle = IsLocalRing.maximalIdeal A :=
         IsLocalRing.eq_maximalIdeal hPmax
@@ -670,8 +665,7 @@ private theorem _root_.AlgebraicCurve.Place.ord_sub_evalAt_pos (hrat : v.IsRatio
   have hmem : f - algebraMap K F (v.evalAt f) ∈ v.toValuationSubring :=
     sub_mem hf (v.algebraMap_mem' _)
   rcases eq_or_ne (v.ord (f - algebraMap K F (v.evalAt f))) 0 with h0 | h0
-  ·
-    exfalso
+  · exfalso
     refine v.evalAt_ne_zero hrat hne h0 ?_
     have hres : algebraMap K v.ResidueField
         (v.evalAt (f - algebraMap K F (v.evalAt f))) = 0 := by
@@ -821,8 +815,7 @@ theorem no3ahbad_riqsucr_a1a_algHom_ext_of_restrictAlong_placeOfPoint_eq
   have hpoles : {P : V.Point |
       ((placeOfPoint P).restrictAlong φ₁ hφ₁).ord f < 0}.Finite := by
     rcases eq_or_ne (φ₁ f) 0 with h0 | h0
-    ·
-      exact absurd (by
+    · exact absurd (by
         have hf0 : f = 0 := φ₁.injective (by simp [h0])
         simp [hf0]) hne'
     · refine (no3ahbad_riqsucr_a1a_finite_ord_ne_zero (V := V) (φ₁ f) h0).subset ?_
@@ -843,8 +836,7 @@ theorem no3ahbad_riqsucr_a1a_algHom_ext_of_restrictAlong_placeOfPoint_eq
     obtain ⟨c, hc⟩ := no3ahbad_riqsucr_a1a_exists_residue
       ((placeOfPoint P).restrictAlong φ₁ hφ₁) (hrat _) f hge
     rcases hc with heq | hc
-    ·
-      exact absurd (heq ▸ (φ₁.commutes c).trans (φ₂.commutes c).symm) hne
+    · exact absurd (heq ▸ (φ₁.commutes c).trans (φ₂.commutes c).symm) hne
     have h1 := no3ahbad_riqsucr_a1a_ord_pos_of_restrictAlong_ord_pos φ₁ hφ₁
       (placeOfPoint P) f c hc
     have h2 := no3ahbad_riqsucr_a1a_ord_pos_of_restrictAlong_ord_pos φ₂ hφ₂

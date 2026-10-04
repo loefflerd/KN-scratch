@@ -164,7 +164,6 @@ def ordValuation (τ₀ : ℍ) : Valuation (ring N) (WithZero (Multiplicative �
     rw [ordFun_of_ne_zero N τ₀ hF, ordFun_of_ne_zero N τ₀ hG, ordFun_of_ne_zero N τ₀ hFG]
     have hmin := min_ordAt_le_ordAt_add N F.2 G.2 hF hG (by simpa using hFG) τ₀
     rw [show ((F + G : ring N) : ℍ → ℂ) = (F : ℍ → ℂ) + (G : ℍ → ℂ) from rfl]
-
     rcases le_total (ordAt τ₀ (F : ℍ → ℂ)) (ordAt τ₀ (G : ℍ → ℂ)) with h | h
     · rw [min_eq_left h] at hmin
       refine le_trans ?_ (le_max_left _ _)
@@ -216,7 +215,6 @@ theorem jSub_ne_zero (τ₀ : ℍ) : (jSub N τ₀ : ring N) ≠ 0 := by
   intro h
   have h' := congrArg (fun F : ring N => (F : ℍ → ℂ)) h
   simp only [coe_jSub, ZeroMemClass.coe_zero] at h'
-
   have hpkg := WLight.levelN_structure_package N PeriodPair.ofTau (fun τ => ⟨rfl, rfl⟩) (wp N)
     (fun v τ => rfl) (fricke N) (fun v τ => rfl) jAnalytic (fun τ => rfl)
   have htr := hpkg.2.2.2.1 (Polynomial.X - Polynomial.C (jAnalytic τ₀)) (fun τ => by
@@ -342,7 +340,6 @@ theorem exists_pos_neg_log_eq_mul_ord (τ₀ : ℍ) :
       refine ⟨⟨π, ⟨(π : K)⁻¹, hinv⟩, Subtype.ext ?_, Subtype.ext ?_⟩, rfl⟩
       · change (π : K) * (π : K)⁻¹ = 1; exact mul_inv_cancel₀ hπ0
       · change (π : K)⁻¹ * (π : K) = 1; exact inv_mul_cancel₀ hπ0
-
   have hlogπ : WithZero.log (v (π : K)) < 0 := by
     rw [WithZero.log_lt_iff_lt_exp hvπ0, WithZero.exp_zero]; exact hvπlt
   refine ⟨(-(WithZero.log (v (π : K)))).toNat, by omega, fun x hx0 => ?_⟩
@@ -350,7 +347,6 @@ theorem exists_pos_neg_log_eq_mul_ord (τ₀ : ℍ) :
     Int.toNat_of_nonneg (by omega)
   rw [he]
   obtain ⟨u, hux⟩ := W.exists_unit_mul_zpow hx0 hπ
-
   have hu0 : ((u : W.toValuationSubring) : K) ≠ 0 := by
     simp [ne_eq, ZeroMemClass.coe_eq_zero]
   have hvu : v ((u : W.toValuationSubring) : K) = 1 := by
@@ -368,7 +364,6 @@ theorem exists_pos_neg_log_eq_mul_ord (τ₀ : ℍ) :
     rw [hvinv] at hinv
     have hpos : 0 < v ((u : W.toValuationSubring) : K) := zero_lt_iff.mpr ((Valuation.ne_zero_iff v).mpr hu0)
     exact (inv_le_one₀ hpos).mp hinv
-
   have hvx : v x = v ((u : W.toValuationSubring) : K) * v (π : K) ^ W.ord x := by
     conv_lhs => rw [hux]
     rw [map_mul, map_zpow₀]

@@ -634,17 +634,13 @@ theorem exists_veluGy_eq_zero_of_addOrderOf_eq_two
     ∃ (x₀ y₀ : F) (h₀ : W.toAffine.Nonsingular x₀ y₀),
       Q = .some x₀ y₀ h₀ ∧ W.veluGy x₀ y₀ = 0 := by
   rcases Q with _ | ⟨x, y, hns⟩
-  ·
-    rw [show (Point.zero : W.toAffine.Point) = 0 from rfl, addOrderOf_zero] at hQ
+  · rw [show (Point.zero : W.toAffine.Point) = 0 from rfl, addOrderOf_zero] at hQ
     exact absurd hQ (by decide)
   · refine ⟨x, y, hns, rfl, ?_⟩
-
     have h2Q : (2 : ℕ) • (Point.some x y hns : W.toAffine.Point) = 0 := by
       rw [← hQ]; exact addOrderOf_nsmul_eq_zero _
-
     have hΨ : W.Ψ₂Sq.eval x = 0 :=
       (WeierstrassCurve.Affine.Point.two_smul_some_eq_zero_iff W hns).mp h2Q
-
     have hGy2 : W.veluGy x y ^ 2 = 0 := by
       have := W.veluU_eq_Ψ₂Sq_eval hns.1
       simp only [WeierstrassCurve.veluU] at this
@@ -749,7 +745,6 @@ p2m_open_scoped "WeierstrassCurve" in
 set_option maxHeartbeats 3200000 in
 private theorem WeierstrassCurve.exists_functionFieldHom_fullKernelQuotient_pointMapOfPushforward_ker_eq_zmultiples_aux
     {F : Type*} [Field F] [DecidableEq F] [CharZero F] [IsAlgClosed F]
-
     {W : WeierstrassCurve F} [W.toAffine.IsElliptic]
     {Q : W.toAffine.Point} {N : ℕ} [NeZero N] (hord : addOrderOf Q = N)
     (hΔ' : (W.fullKernelQuotient Q N).Δ ≠ 0)
@@ -769,7 +764,6 @@ private theorem WeierstrassCurve.exists_functionFieldHom_fullKernelQuotient_poin
       ∀ hN : AlgebraicCurve.NormFormulaAlong F ι hfin,
         (WeierstrassCurve.Affine.pointMapOfPushforward ι hι hfin hN).ker
           = AddSubgroup.zmultiples Q := by
-
   suffices H : ∀ (N : ℕ), 0 < N → ∀ (W : WeierstrassCurve F) [W.toAffine.IsElliptic]
       (Q : W.toAffine.Point), addOrderOf Q = N →
       ∀ (V : WeierstrassCurve F), V = W.fullKernelQuotient Q N → V.Δ ≠ 0 →
@@ -791,12 +785,10 @@ private theorem WeierstrassCurve.exists_functionFieldHom_fullKernelQuotient_poin
   | _ N IH =>
     intro hNpos W instW Q hord V hV hΔV instV gW cW aW gV cV aV
     rcases Nat.even_or_odd N with hE | hO
-    ·
-      obtain ⟨M, hMM⟩ := hE
+    · obtain ⟨M, hMM⟩ := hE
       have hN2M : N = 2 * M := by omega
       subst hN2M
       have hM0 : M ≠ 0 := by omega
-
       have hMQ0 : M • Q ≠ 0 := by
         intro h0
         have hdvd : addOrderOf Q ∣ M := addOrderOf_dvd_iff_nsmul_eq_zero.mpr h0
@@ -813,15 +805,12 @@ private theorem WeierstrassCurve.exists_functionFieldHom_fullKernelQuotient_poin
           have h := addOrderOf_nsmul_eq_zero (M • Q)
           rwa [h1, one_nsmul] at h
         · exact h2
-
       obtain ⟨x₀, y₀, h₀, hMQ, hgy⟩ := Affine.Point.exists_veluGy_eq_zero_of_addOrderOf_eq_two (M • Q) hord2
-
       have instWbare : W.IsElliptic := ‹W.toAffine.IsElliptic›
       have hW1ell : (W.veluQuotient2 x₀ y₀).IsElliptic :=
         isElliptic_veluQuotient2_of_isElliptic h₀.1 hgy
       have : (W.veluQuotient2 x₀ y₀).toAffine.IsElliptic := hW1ell
       have hΔ₂ : (W.veluQuotient2 x₀ y₀).Δ ≠ 0 := hW1ell.isUnit.ne_zero
-
       have hordφ : addOrderOf (veluPointMap2 two_ne_zero h₀.1 hgy hΔ₂ Q) = M :=
         KernelTower.addOrderOf_veluPointMap2 two_ne_zero W Q M hM0 hord hMQ hgy hΔ₂
           (fun P => VeluTwoKernel.veluPointMap2_eq_zero_iff two_ne_zero h₀.1 hgy hΔ₂ h₀ P)
@@ -832,30 +821,25 @@ private theorem WeierstrassCurve.exists_functionFieldHom_fullKernelQuotient_poin
       have hV' : V = (W.veluQuotient2 x₀ y₀).fullKernelQuotient
           (veluPointMap2 two_ne_zero h₀.1 hgy hΔ₂ Q) M := hV.trans E2
       subst hV'
-
       obtain ⟨g₁, hc₁, hA₁⟩ :=
         Affine.exists_genusOnePlaceGate_isCentred_abelTheorem (W.veluQuotient2 x₀ y₀).toAffine
       let := g₁
       have : WeierstrassCurve.Affine.GenusOnePlaceGate.IsCentred
         (W.veluQuotient2 x₀ y₀).toAffine := hc₁
       have : WeierstrassCurve.Affine.AbelTheorem (W.veluQuotient2 x₀ y₀).toAffine := hA₁
-
       obtain ⟨ιM, hιM, hfinM, hkerM⟩ :=
         IH M (by omega) (Nat.pos_of_ne_zero hM0) (W.veluQuotient2 x₀ y₀)
           (veluPointMap2 two_ne_zero h₀.1 hgy hΔ₂ Q) hordφ
           ((W.veluQuotient2 x₀ y₀).fullKernelQuotient
             (veluPointMap2 two_ne_zero h₀.1 hgy hΔ₂ Q) M) rfl hΔV
-
       obtain ⟨ι₂, hι₂, hfin₂, hseam⟩ :=
         exists_velu2FunctionFieldHom_restrictAlong_placeOfPoint_veluPointMap2 h₀.1 hgy hΔ₂
-
       have hιc : (ι₂.comp ιM).toRingHom.IsIntegral := by
         show (ι₂.toRingHom.comp ιM.toRingHom).IsIntegral
         exact RingHom.IsIntegral.trans _ _ hιM hι₂
       have hfinc : AlgebraicCurve.FiniteAlong F (ι₂.comp ιM) :=
         AlgebraicCurve.finiteAlong_comp ιM ι₂ hfinM hfin₂
       refine ⟨ι₂.comp ιM, hιc, hfinc, fun hNc => ?_⟩
-
       have : CharZero (W.veluQuotient2 x₀ y₀).toAffine.FunctionField :=
         charZero_of_injective_algebraMap (algebraMap F _).injective
       have : CharZero ((W.veluQuotient2 x₀ y₀).fullKernelQuotient
@@ -872,26 +856,21 @@ private theorem WeierstrassCurve.exists_functionFieldHom_fullKernelQuotient_poin
       have hNM : AlgebraicCurve.NormFormulaAlong F ιM hfinM :=
         AlgebraicCurve.normFormulaAlong ιM hfinM
           (AlgebraicCurve.separableAlong_of_charZero ιM hιM)
-
       have hmapeq : WeierstrassCurve.Affine.pointMapOfPushforward (ι₂.comp ιM) hιc hfinc hNc
           = (WeierstrassCurve.Affine.pointMapOfPushforward ιM hιM hfinM hNM).comp
               (WeierstrassCurve.Affine.pointMapOfPushforward ι₂ hι₂ hfin₂ hN₂) :=
         Affine.pointMapOfPushforward_comp ιM ι₂ hιM hι₂ hιc hfinM hfin₂ hfinc hNM hN₂ hNc
       rw [hmapeq]
-
       refine KernelTower.ker_comp_eq_zmultiples _ _ ?_ ?_
-      ·
-        rw [VeluTwoKernel.ker_pointMapOfPushforward_eq_zmultiples two_ne_zero h₀.1 hgy hΔ₂ ι₂ hι₂ hfin₂ hN₂ hseam h₀, ← hMQ]
+      · rw [VeluTwoKernel.ker_pointMapOfPushforward_eq_zmultiples two_ne_zero h₀.1 hgy hΔ₂ ι₂ hι₂ hfin₂ hN₂ hseam h₀, ← hMQ]
         exact AddSubgroup.zmultiples_le.mpr
           (AddSubgroup.nsmul_mem _ (AddSubgroup.mem_zmultiples Q) M)
-      ·
-        have hQimg : WeierstrassCurve.Affine.pointMapOfPushforward ι₂ hι₂ hfin₂ hN₂ Q
+      · have hQimg : WeierstrassCurve.Affine.pointMapOfPushforward ι₂ hι₂ hfin₂ hN₂ Q
             = veluPointMap2 two_ne_zero h₀.1 hgy hΔ₂ Q :=
           VeluTwoKernel.pointMapOfPushforward_eq_veluPointMap2 two_ne_zero h₀.1 hgy hΔ₂ ι₂ hι₂ hfin₂ hN₂ hseam Q
         rw [hQimg]
         exact hkerM hNM
-    ·
-      obtain ⟨n, hn⟩ := hO
+    · obtain ⟨n, hn⟩ := hO
       have hord' : addOrderOf Q = 2 * n + 1 := hord.trans hn
       have hbr : W.fullKernelQuotient Q N = W.veluQuotient (W.oddOrderSummingSet Q n) := by
         have h := W.fullKernelQuotient_eq_veluQuotient_of_odd Q ⟨n, hn⟩ hord
@@ -924,7 +903,6 @@ theorem solution {F : Type*} [Field F] [DecidableEq F] [CharZero F] [IsAlgClosed
         (WeierstrassCurve.Affine.pointMapOfPushforward ι hι hfin hN).ker
           = AddSubgroup.zmultiples Q :=
   WeierstrassCurve.exists_functionFieldHom_fullKernelQuotient_pointMapOfPushforward_ker_eq_zmultiples_aux hord hΔ'
-
 
 end S_WeierstrassCurve_exists_functionFieldHom_fullKernelQuotient_pointMapOfPushforward_ker_eq_zmultiples
 end P2MW

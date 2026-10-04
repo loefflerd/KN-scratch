@@ -51,10 +51,8 @@ theorem Affine.notMem_nonunits_of_sub_negY_mem_nonunits (hΔ : (W.map (residue A
     3 * x ^ 2 + 2 * (W.map A.subtype).toAffine.a₂ * x + (W.map A.subtype).toAffine.a₄ -
       (W.map A.subtype).toAffine.a₁ * y ∉ A.nonunits := by
   have hy : y ∈ A := Affine.Y_mem_of_X_mem W h hx
-
   set eX : A := 3 * ⟨x, hx⟩ ^ 2 + 2 * W.a₂ * ⟨x, hx⟩ + W.a₄ - W.a₁ * ⟨y, hy⟩ with heX
   set eY : A := ⟨y, hy⟩ - W.toAffine.negY ⟨x, hx⟩ ⟨y, hy⟩ with heY
-
   have hcoeX : (eX : L) = 3 * x ^ 2 + 2 * (W.map A.subtype).toAffine.a₂ * x +
       (W.map A.subtype).toAffine.a₄ - (W.map A.subtype).toAffine.a₁ * y := by
     push_cast [heX]
@@ -65,14 +63,11 @@ theorem Affine.notMem_nonunits_of_sub_negY_mem_nonunits (hΔ : (W.map (residue A
     rw [heY]
     push_cast
     rw [h1]
-
   have hns := Affine.nonsingular_residue W hΔ (x := ⟨x, hx⟩) (y := ⟨y, hy⟩) h
   rw [Affine.nonsingular_iff] at hns
-
   have hY0 : residue A eY = 0 := by
     rw [← A.coe_mem_nonunits_iff_residue_eq_zero, hcoeY]
     exact hY
-
   have hX0 : residue A eX ≠ 0 := by
     rcases hns.2 with hX | hY'
     · intro h0
@@ -88,7 +83,6 @@ theorem Affine.notMem_nonunits_of_sub_negY_mem_nonunits (hΔ : (W.map (residue A
         rw [heY] at hY0
         simp only [Affine.negY, map_sub, map_neg, map_mul] at hY0
         linear_combination hY0) hY'
-
   rw [← hcoeX, A.coe_mem_nonunits_iff_residue_eq_zero]
   exact hX0
 
@@ -105,38 +99,28 @@ theorem Affine.slope_notMem_of_sub_mem_nonunits (hΔ : (W.map (residue A)).Δ �
     (W.map A.subtype).toAffine.slope x₁ x₂ y₁ y₂ ∉ A := by
   have hy₁ : y₁ ∈ A := Affine.Y_mem_of_X_mem W h₁ hx₁
   have hy₂ : y₂ ∈ A := Affine.Y_mem_of_X_mem W h₂ hx₂
-
   have ha₁ : (W.map A.subtype).toAffine.a₁ ∈ A := SetLike.coe_mem W.a₁
   have ha₂ : (W.map A.subtype).toAffine.a₂ ∈ A := SetLike.coe_mem W.a₂
   have ha₃ : (W.map A.subtype).toAffine.a₃ ∈ A := SetLike.coe_mem W.a₃
   have ha₄ : (W.map A.subtype).toAffine.a₄ ∈ A := SetLike.coe_mem W.a₄
-
   have hnegY : (W.map A.subtype).toAffine.negY x₂ y₂ ∈ A := by
     rw [Affine.negY]
     exact A.toSubring.sub_mem (A.toSubring.sub_mem (A.toSubring.neg_mem hy₂)
       (A.toSubring.mul_mem ha₁ hx₂)) ha₃
   by_cases hx : x₁ = x₂
-  ·
-
-    have hy : y₁ ≠ (W.map A.subtype).toAffine.negY x₂ y₂ := fun h => hPQ ⟨hx, h⟩
+  · have hy : y₁ ≠ (W.map A.subtype).toAffine.negY x₂ y₂ := fun h => hPQ ⟨hx, h⟩
     have hy12 : y₁ = y₂ := (Affine.Y_eq_of_X_eq h₁ h₂ hx).resolve_right hy
     rw [Affine.slope_of_Y_ne hx hy]
-
     have hden : y₁ - (W.map A.subtype).toAffine.negY x₁ y₁ ∈ A.nonunits := by
       rwa [← hx, ← hy12] at hyy
     have hden0 : y₁ - (W.map A.subtype).toAffine.negY x₁ y₁ ≠ 0 := by
       rw [sub_ne_zero]
       intro hcon
       exact hy (by rw [← hx, ← hy12]; exact hcon)
-
     have hnum := Affine.notMem_nonunits_of_sub_negY_mem_nonunits W hΔ h₁ hx₁ hden
     exact A.div_notMem hnum hden hden0
-  ·
-    by_cases hyy' : y₁ - y₂ ∈ A.nonunits
-    ·
-
-      rw [Affine.slope_of_X_ne hx]
-
+  · by_cases hyy' : y₁ - y₂ ∈ A.nonunits
+    · rw [Affine.slope_of_X_ne hx]
       have hden : y₁ - (W.map A.subtype).toAffine.negY x₁ y₁ ∈ A.nonunits := by
         have key : y₁ - (W.map A.subtype).toAffine.negY x₁ y₁ =
             (y₁ - (W.map A.subtype).toAffine.negY x₂ y₂) + (y₁ - y₂) +
@@ -145,9 +129,7 @@ theorem Affine.slope_notMem_of_sub_mem_nonunits (hΔ : (W.map (residue A)).Δ �
           ring
         rw [key]
         exact add_mem (add_mem hyy hyy') (A.mul_mem_nonunits ha₁ hxx)
-
       have hnum := Affine.notMem_nonunits_of_sub_negY_mem_nonunits W hΔ h₁ hx₁ hden
-
       set N : L := x₁ ^ 2 + x₁ * x₂ + x₂ ^ 2 + (W.map A.subtype).toAffine.a₂ * (x₁ + x₂) +
         (W.map A.subtype).toAffine.a₄ - (W.map A.subtype).toAffine.a₁ * y₁ with hN
       have hNunit : N ∉ A.nonunits := by
@@ -160,7 +142,6 @@ theorem Affine.slope_notMem_of_sub_mem_nonunits (hΔ : (W.map (residue A)).Δ �
         rw [key]
         exact sub_mem hmem (A.mul_mem_nonunits
           (add_mem (add_mem (add_mem hx₁ hx₁) hx₂) ha₂) (neg_mem hxx))
-
       have hd0 : y₁ - (W.map A.subtype).toAffine.negY x₂ y₂ ≠ 0 := by
         intro hd
         apply hNunit
@@ -171,15 +152,12 @@ theorem Affine.slope_notMem_of_sub_mem_nonunits (hΔ : (W.map (residue A)).Δ �
         · exact absurd (sub_eq_zero.mp h) hx
         · rw [h]
           exact zero_mem _
-
       have hslope : (y₁ - y₂) / (x₁ - x₂) = N / (y₁ - (W.map A.subtype).toAffine.negY x₂ y₂) := by
         rw [div_eq_div_iff (sub_ne_zero.mpr hx) hd0, hN]
         linear_combination Affine.sub_mul_sub_negY h₁ h₂
       rw [hslope]
       exact A.div_notMem hNunit hyy hd0
-    ·
-
-      rw [Affine.slope_of_X_ne hx]
+    · rw [Affine.slope_of_X_ne hx]
       exact A.div_notMem hyy' hxx (sub_ne_zero.mpr hx)
 
 theorem Affine.addX_notMem_of_sub_mem_nonunits (hΔ : (W.map (residue A)).Δ ≠ 0)
@@ -193,7 +171,6 @@ theorem Affine.addX_notMem_of_sub_mem_nonunits (hΔ : (W.map (residue A)).Δ ≠
   set ℓ : L := (W.map A.subtype).toAffine.slope x₁ x₂ y₁ y₂
   have ha₁ : (W.map A.subtype).toAffine.a₁ ∈ A := SetLike.coe_mem W.a₁
   have ha₂ : (W.map A.subtype).toAffine.a₂ ∈ A := SetLike.coe_mem W.a₂
-
   rw [show (W.map A.subtype).toAffine.addX x₁ x₂ ℓ =
     ℓ * (ℓ + (W.map A.subtype).toAffine.a₁) +
       (-(W.map A.subtype).toAffine.a₂ - x₁ - x₂) from by rw [Affine.addX]; ring]
@@ -299,7 +276,6 @@ theorem X_div_Y_mem_nonunits {x y : L} (h : (W.map A.subtype).toAffine.Equation 
     (hx : x ∉ A) : x / y ∈ A.nonunits := by
   have hy0 : y ≠ 0 := Y_ne_zero_of_X_notMem W h hx
   have hx0 : x ≠ 0 := fun h0 => hx (h0 ▸ A.zero_mem)
-
   by_contra hxy
   have hyx : y / x ∈ A := by
     have := A.inv_mem_of_notMem_nonunits hxy
@@ -341,7 +317,6 @@ theorem X_cubed_div_Y_sq_notMem_nonunits {x y : L}
   have hyinv : y⁻¹ ∈ A.nonunits := A.inv_mem_nonunits_of_notMem (Y_notMem_of_X_notMem W h hx)
   have ha₁ : (W.map A.subtype).toAffine.a₁ ∈ A := SetLike.coe_mem W.a₁
   have ha₃ : (W.map A.subtype).toAffine.a₃ ∈ A := SetLike.coe_mem W.a₃
-
   rw [equation_iff] at h
   have hu : (1 + (W.map A.subtype).toAffine.a₁ * (x / y) + (W.map A.subtype).toAffine.a₃ * y⁻¹)
       ∉ A.nonunits := by
@@ -362,7 +337,6 @@ theorem X_cubed_div_Y_sq_notMem_nonunits {x y : L}
     · exact mul_mem (SetLike.coe_mem W.a₂) hxinv
     · exact mul_mem (SetLike.coe_mem W.a₄) (mul_mem hxinv hxinv)
     · exact mul_mem (SetLike.coe_mem W.a₆) (mul_mem (mul_mem hxinv hxinv) hxinv)
-
   have key' : x ^ 3 / y ^ 2 = (1 + (W.map A.subtype).toAffine.a₁ * (x / y)
       + (W.map A.subtype).toAffine.a₃ * y⁻¹) * (1 + (W.map A.subtype).toAffine.a₂ * x⁻¹
         + (W.map A.subtype).toAffine.a₄ * (x⁻¹ * x⁻¹)
@@ -416,7 +390,6 @@ theorem neg_formal_param_add {x y : L} (hy0 : y ≠ 0)
           - (W.map A.subtype).toAffine.a₃ * x) / (y * y') := by
     first
     | (field_simp; ring1)
-
   rw [key, div_eq_zero_iff]
   left
   linear_combination (-x) * hsum
@@ -578,13 +551,11 @@ theorem slope_div_intercept_estimate {x₁ y₁ x₂ y₂ τ : L}
     exact A.inv_mem_nonunits_of_notMem (Y_notMem_of_X_notMem W h₂ hx₂)
   have hs₁A : (1 : L) / y₁ ∈ A := A.nonunits_subset hs₁'
   have hs₂A : (1 : L) / y₂ ∈ A := A.nonunits_subset hs₂'
-
   have main : y₁ - (W.map A.subtype).toAffine.slope x₁ x₂ y₁ y₂ * x₁ ≠ 0 ∧
       ((W.map A.subtype).toAffine.slope x₁ x₂ y₁ y₂
         / (y₁ - (W.map A.subtype).toAffine.slope x₁ x₂ y₁ y₂ * x₁)) / τ ∈ A.nonunits := by
     by_cases hx : x₁ = x₂
-    ·
-      have hy : y₁ ≠ (W.map A.subtype).toAffine.negY x₂ y₂ := fun h => hxy ⟨hx, h⟩
+    · have hy : y₁ ≠ (W.map A.subtype).toAffine.negY x₂ y₂ := fun h => hxy ⟨hx, h⟩
       have hyy : y₁ = y₂ := Y_eq_of_Y_ne h₁ h₂ hx hy
       subst hx
       subst hyy
@@ -594,7 +565,6 @@ theorem slope_div_intercept_estimate {x₁ y₁ x₂ y₂ τ : L}
       have hxτ : x₁⁻¹ / τ ∈ A.nonunits := inv_X_mul_div_mem_nonunits h₁ hx₁ hτ0 ht₁
       have hcube := X_cubed_div_Y_sq_notMem_nonunits W h₁ hx₁
       have hcubeinvA : (x₁ ^ 3 / y₁ ^ 2)⁻¹ ∈ A := A.inv_mem_of_notMem_nonunits hcube.2
-
       have hI_eq : (x₁ ^ 3 - (W.map A.subtype).toAffine.a₄ * x₁
             - 2 * (W.map A.subtype).toAffine.a₆ + (W.map A.subtype).toAffine.a₃ * y₁) / x₁ ^ 3
           = 1 + ((-((W.map A.subtype).toAffine.a₄ * x₁⁻¹)
@@ -624,7 +594,6 @@ theorem slope_div_intercept_estimate {x₁ y₁ x₂ y₂ τ : L}
             - 2 * (W.map A.subtype).toAffine.a₆
             + (W.map A.subtype).toAffine.a₃ * y₁) / x₁ ^ 3)⁻¹ ∈ A :=
         A.inv_mem_of_notMem_nonunits hInot
-
       have hψ_eq : y₁ - (W.map A.subtype).toAffine.negY x₁ y₁
           = y₁ + y₁ + (W.map A.subtype).toAffine.a₁ * x₁ + (W.map A.subtype).toAffine.a₃ := by
         simp only [negY]
@@ -643,7 +612,6 @@ theorem slope_div_intercept_estimate {x₁ y₁ x₂ y₂ τ : L}
         rw [h0, zero_mul] at hkey
         exact hI0 (by linear_combination hkey)
       refine ⟨hν0, ?_⟩
-
       have hslope_mul : (W.map A.subtype).toAffine.slope x₁ x₁ y₁ y₁
             * (y₁ - (W.map A.subtype).toAffine.negY x₁ y₁)
           = 3 * x₁ ^ 2 + 2 * (W.map A.subtype).toAffine.a₂ * x₁
@@ -659,7 +627,6 @@ theorem slope_div_intercept_estimate {x₁ y₁ x₂ y₂ τ : L}
         linear_combination (-(y₁ - (W.map A.subtype).toAffine.slope x₁ x₁ y₁ y₁ * x₁))
           * hslope_mul + (W.map A.subtype).toAffine.slope x₁ x₁ y₁ y₁ * hkey
       rw [hℓν]
-
       have hsplit : (-(3 * x₁ ^ 2 + 2 * (W.map A.subtype).toAffine.a₂ * x₁
               + (W.map A.subtype).toAffine.a₄ - (W.map A.subtype).toAffine.a₁ * y₁)
             / (x₁ ^ 3 - (W.map A.subtype).toAffine.a₄ * x₁
@@ -680,10 +647,8 @@ theorem slope_div_intercept_estimate {x₁ y₁ x₂ y₂ τ : L}
           (add_mem (add_mem (add_mem (add_mem A.one_mem A.one_mem) A.one_mem)
             (mul_mem (add_mem ha2A ha2A) hxinvA)) (mul_mem ha4A (mul_mem hxinvA hxinvA))) hxτ
       · exact A.mul_mem_nonunits (mul_mem ha1A hcubeinvA) hs₁
-    ·
-      have hxx0 : x₁ - x₂ ≠ 0 := sub_ne_zero_of_ne hx
+    · have hxx0 : x₁ - x₂ ≠ 0 := sub_ne_zero_of_ne hx
       have hsec := secant_slope_identity (W := W) h₁ h₂
-
       have hU_eq : (y₁ ^ 2 * y₂ ^ 2 + (W.map A.subtype).toAffine.a₁ * x₁ * y₁ * y₂ ^ 2
             - (W.map A.subtype).toAffine.a₂ * x₁ ^ 2 * y₂ ^ 2
             + (W.map A.subtype).toAffine.a₃ * (y₁ * y₂ ^ 2 + y₁ ^ 2 * y₂)
@@ -743,7 +708,6 @@ theorem slope_div_intercept_estimate {x₁ y₁ x₂ y₂ τ : L}
             - (W.map A.subtype).toAffine.a₆ * (y₂ ^ 2 + y₁ * y₂ + y₁ ^ 2) ≠ 0 := by
         intro h0
         exact hUnot (by rw [h0, zero_div]; exact A.nonunits.zero_mem)
-
       have hxy21 : x₁ * y₂ - x₂ * y₁ ≠ 0 := by
         intro h0
         have hUV : (y₁ - y₂) * (y₁ ^ 2 * y₂ ^ 2
@@ -766,7 +730,6 @@ theorem slope_div_intercept_estimate {x₁ y₁ x₂ y₂ τ : L}
           · exact sub_eq_zero.mp h'
           · exact absurd h' hy₁0
         · exact hU0 h
-
       have hkey : (y₁ - (W.map A.subtype).toAffine.slope x₁ x₂ y₁ y₂ * x₁) * (x₁ - x₂)
           = x₁ * y₂ - x₂ * y₁ := by
         rw [Affine.slope_of_X_ne hx]
@@ -776,7 +739,6 @@ theorem slope_div_intercept_estimate {x₁ y₁ x₂ y₂ τ : L}
         intro h0
         exact hxy21 (by rw [← hkey, h0, zero_mul])
       refine ⟨hν0, ?_⟩
-
       have hℓν : (W.map A.subtype).toAffine.slope x₁ x₂ y₁ y₂
             / (y₁ - (W.map A.subtype).toAffine.slope x₁ x₂ y₁ y₂ * x₁)
           = (y₁ - y₂) / (x₁ * y₂ - x₂ * y₁) := by
@@ -796,7 +758,6 @@ theorem slope_div_intercept_estimate {x₁ y₁ x₂ y₂ τ : L}
               - (W.map A.subtype).toAffine.a₆ * (y₂ ^ 2 + y₁ * y₂ + y₁ ^ 2))) := by
         rw [← neg_div, div_eq_div_iff hxy21 hU0]
         linear_combination hsec
-
       have hVsplit : ((y₁ - y₂) / (x₁ * y₂ - x₂ * y₁)) / τ
           = ((y₁ ^ 2 * y₂ ^ 2 + (W.map A.subtype).toAffine.a₁ * x₁ * y₁ * y₂ ^ 2
               - (W.map A.subtype).toAffine.a₂ * x₁ ^ 2 * y₂ ^ 2
@@ -813,7 +774,6 @@ theorem slope_div_intercept_estimate {x₁ y₁ x₂ y₂ τ : L}
         rw [hVU]
         first
         | (field_simp; ring1)
-
       rw [hℓν, hVsplit]
       refine A.mul_mem_nonunits hUinvA (A.nonunits.neg_mem
         (add_mem (add_mem (A.mul_mem_nonunits ?_ hs₂) (A.mul_mem_nonunits ht₁ hT₁))
@@ -822,7 +782,6 @@ theorem slope_div_intercept_estimate {x₁ y₁ x₂ y₂ τ : L}
         (mul_mem ha2A hT₂A)) (mul_mem ha4A hs₂A)
   obtain ⟨hν0, hℓν⟩ := main
   refine ⟨hν0, hℓν, ?_⟩
-
   have hℓν' : (W.map A.subtype).toAffine.slope x₁ x₂ y₁ y₂
       / (y₁ - (W.map A.subtype).toAffine.slope x₁ x₂ y₁ y₂ * x₁) ∈ A.nonunits := by
     rw [show (W.map A.subtype).toAffine.slope x₁ x₂ y₁ y₂
@@ -838,7 +797,6 @@ theorem slope_div_intercept_estimate {x₁ y₁ x₂ y₂ τ : L}
             / (y₁ - (W.map A.subtype).toAffine.slope x₁ x₂ y₁ y₂ * x₁)) := by
     first
     | (field_simp; ring1)
-
   rw [hline]
   exact add_mem (inv_Y_div_mem_nonunits h₁ hx₁ ht₁) (A.mul_mem_nonunits ht₁ hℓν')
 
@@ -888,9 +846,7 @@ theorem add_formal_param_estimate {x₁ y₁ x₂ y₂ τ : L}
   have ha6A : (W.map A.subtype).toAffine.a₆ ∈ A := SetLike.coe_mem W.a₆
   have hy₁0 : y₁ ≠ 0 := Y_ne_zero_of_X_notMem W h₁ hx₁
   have hy₂0 : y₂ ≠ 0 := Y_ne_zero_of_X_notMem W h₂ hx₂
-
   obtain ⟨hν0, hℓντ, hsντ⟩ := slope_div_intercept_estimate h₁ h₂ hx₁ hx₂ hxy hτ hτ0 ht₁ ht₂
-
   obtain ⟨hv₂, hv₃⟩ := vieta_addX (W := W) h₁ h₂ hxy
   have hS := sub_eq_slope_mul_sub (W := W) h₁ h₂ hxy
   have hR : (W.map A.subtype).toAffine.Equation
@@ -917,7 +873,6 @@ theorem add_formal_param_estimate {x₁ y₁ x₂ y₂ τ : L}
       + (y₁ - (W.map A.subtype).toAffine.slope x₁ x₂ y₁ y₂ * x₁) := by
     linear_combination -hS
   obtain ⟨hD, hN⟩ := collinear_prod_sum he₁ hv₂ hv₃ rfl hy₂_line hy₃_line
-
   rw [show (W.map A.subtype).toAffine.addY x₁ x₂ y₁
         ((W.map A.subtype).toAffine.slope x₁ x₂ y₁ y₂)
       = (W.map A.subtype).toAffine.negY
@@ -925,12 +880,10 @@ theorem add_formal_param_estimate {x₁ y₁ x₂ y₂ τ : L}
             ((W.map A.subtype).toAffine.slope x₁ x₂ y₁ y₂))
           ((W.map A.subtype).toAffine.negAddY x₁ x₂ y₁
             ((W.map A.subtype).toAffine.slope x₁ x₂ y₁ y₂)) from rfl]
-
   set ℓ := (W.map A.subtype).toAffine.slope x₁ x₂ y₁ y₂ with hℓ_def
   set x₃ := (W.map A.subtype).toAffine.addX x₁ x₂ ℓ with hx₃_def
   set y₃ := (W.map A.subtype).toAffine.negAddY x₁ x₂ y₁ ℓ with hy₃_def
   set ν := y₁ - ℓ * x₁ with hν_def
-
   have hℓν_m : ℓ / ν ∈ A.nonunits := by
     rw [show ℓ / ν = ℓ / ν / τ * τ from (div_mul_cancel₀ _ hτ0).symm]
     exact A.mul_mem_nonunits (A.nonunits_subset hℓντ) hτ
@@ -938,7 +891,6 @@ theorem add_formal_param_estimate {x₁ y₁ x₂ y₂ τ : L}
   have hsν_m : (1 : L) / ν ∈ A.nonunits := by
     rw [show (1 : L) / ν = (1 : L) / ν / τ * τ from (div_mul_cancel₀ _ hτ0).symm]
     exact A.mul_mem_nonunits (A.nonunits_subset hsντ) hτ
-
   have hu_eq : (ν ^ 3 - (W.map A.subtype).toAffine.a₂ * ℓ * ν ^ 2
         + (W.map A.subtype).toAffine.a₄ * ℓ ^ 2 * ν
         - (W.map A.subtype).toAffine.a₆ * ℓ ^ 3) / ν ^ 3
@@ -971,7 +923,6 @@ theorem add_formal_param_estimate {x₁ y₁ x₂ y₂ τ : L}
     intro h0
     rw [h0, mul_zero] at hD
     exact hD0 hD.symm
-
   have hsum_frac : -(x₃ / y₃) + -(x₁ / y₁) + -(x₂ / y₂)
       = -((x₁ * y₂ * y₃ + x₂ * y₁ * y₃ + x₃ * y₁ * y₂) / (y₁ * y₂ * y₃)) := by
     field_simp
@@ -997,7 +948,6 @@ theorem add_formal_param_estimate {x₁ y₁ x₂ y₂ τ : L}
     · exact sub_mem ha1A (mul_mem ha3A hℓν_A)
     · exact add_mem (sub_mem ha2A (mul_mem (add_mem ha4A ha4A) hℓν_A))
         (mul_mem (mul_mem (add_mem (add_mem ha6A ha6A) ha6A) hℓν_A) hℓν_A)
-
   have hT₃τ : (x₃ / y₃) / τ ∈ A := by
     have key : (x₃ / y₃) / τ = -((-(x₃ / y₃) + -(x₁ / y₁) + -(x₂ / y₂)) / τ)
         + (-((x₁ / y₁) / τ)) + (-((x₂ / y₂) / τ)) := by
@@ -1007,7 +957,6 @@ theorem add_formal_param_estimate {x₁ y₁ x₂ y₂ τ : L}
   have hT₃ : x₃ / y₃ ∈ A.nonunits := by
     rw [show x₃ / y₃ = x₃ / y₃ / τ * τ from (div_mul_cancel₀ _ hτ0).symm]
     exact A.mul_mem_nonunits hT₃τ hτ
-
   have hy₃inv : y₃⁻¹ ∈ A.nonunits := by
     have hν_alt : ν = y₃ - ℓ * x₃ := by linear_combination -hy₃_line
     have expand : (1 : L) / ν - ℓ / ν * (x₃ / y₃) = (y₃ - ℓ * x₃) / (ν * y₃) := by
@@ -1021,9 +970,7 @@ theorem add_formal_param_estimate {x₁ y₁ x₂ y₂ τ : L}
   have hy₃notA : y₃ ∉ A := (A.inv_mem_nonunits_iff.mp hy₃inv).resolve_left hy₃0
   have hx₃notA : x₃ ∉ A := fun hmem => hy₃notA (Y_mem_of_X_mem W hR hmem)
   refine ⟨hx₃notA, ?_⟩
-
   have hneg := neg_formal_param_estimate (W := W) hR hx₃notA hT₃τ
-
   have key : (-(x₃ / (W.map A.subtype).toAffine.negY x₃ y₃) - -(x₁ / y₁) - -(x₂ / y₂)) / τ
       = (-(x₃ / y₃) + -(x₃ / (W.map A.subtype).toAffine.negY x₃ y₃)) / τ
         - (-(x₃ / y₃) + -(x₁ / y₁) + -(x₂ / y₂)) / τ := by
@@ -1045,7 +992,6 @@ theorem formal_param_nsmul {x y : L} (h : (W.map A.subtype).toAffine.Nonsingular
     (∀ x' y' (h' : (W.map A.subtype).toAffine.Nonsingular x' y'),
       j • (some x y h : (W.map A.subtype).toAffine.Point) = some x' y' h' →
         x' ∉ A ∧ (-(x' / y')) / (-(x / y)) - (j : L) ∈ A.nonunits) := by
-
   have hy0 : y ≠ 0 := Affine.Y_ne_zero_of_X_notMem W h.1 hx
   have hx0 : x ≠ 0 := fun h0 => hx (h0 ▸ A.zero_mem)
   have hτ : -(x / y) ∈ A.nonunits := A.nonunits.neg_mem (Affine.X_div_Y_mem_nonunits W h.1 hx)
@@ -1060,10 +1006,8 @@ theorem formal_param_nsmul {x y : L} (h : (W.map A.subtype).toAffine.Nonsingular
     exact absurd heq.symm (some_ne_zero h')
   | succ j ih =>
     rw [succ_nsmul]
-
     rcases hP : (j • (some x y h : (W.map A.subtype).toAffine.Point)) with _ | @⟨xj, yj, hj⟩
-    ·
-      have hj0 : (j : L) ∈ A.nonunits := (ih.1) hP
+    · have hj0 : (j : L) ∈ A.nonunits := (ih.1) hP
       rw [← Affine.Point.zero_def, zero_add]
       refine ⟨fun h0 => absurd h0 (some_ne_zero h), fun x' y' h' heq => ?_⟩
       obtain ⟨rfl, rfl⟩ : x = x' ∧ y = y' := by
@@ -1073,8 +1017,7 @@ theorem formal_param_nsmul {x y : L} (h : (W.map A.subtype).toAffine.Nonsingular
       have : (1 : L) - (j + 1) = -j := by ring
       rw [this]
       exact A.nonunits.neg_mem hj0
-    ·
-      have hIH := (ih.2) xj yj hj hP
+    · have hIH := (ih.2) xj yj hj hP
       obtain ⟨hxj, hcong⟩ := hIH
       have htj : (xj / yj) / -(x / y) ∈ A := by
         have h1 : -(xj / yj) / -(x / y) ∈ A := by
@@ -1083,10 +1026,8 @@ theorem formal_param_nsmul {x y : L} (h : (W.map A.subtype).toAffine.Nonsingular
           simpa using this
         simpa [neg_div] using A.toSubring.neg_mem h1
       by_cases hcond : xj = x ∧ yj = (W.map A.subtype).toAffine.negY x y
-      ·
-        rw [add_of_Y_eq hcond.1 hcond.2]
+      · rw [add_of_Y_eq hcond.1 hcond.2]
         refine ⟨fun _ => ?_, fun x' y' h' heq => absurd heq.symm (some_ne_zero h')⟩
-
         have hneg := Affine.neg_formal_param_estimate (W := W) h.1 hx hself
         rw [hcond.1, hcond.2] at hcong
         have key : ((j : L) + 1) =
@@ -1095,7 +1036,6 @@ theorem formal_param_nsmul {x y : L} (h : (W.map A.subtype).toAffine.Nonsingular
               + (1 - (-(x / y)) / -(x / y)) := by
           first
           | (field_simp; ring1)
-
         rw [Nat.cast_succ, key]
         have h1 : (1 : L) - (-(x / y)) / -(x / y) = 0 := by
           rw [div_self hτ0]; ring
@@ -1110,8 +1050,7 @@ theorem formal_param_nsmul {x y : L} (h : (W.map A.subtype).toAffine.Nonsingular
           ring
         rw [heq]
         exact h3
-      ·
-        rw [add_some hcond]
+      · rw [add_some hcond]
         refine ⟨fun h0 => absurd h0 (some_ne_zero _), fun x' y' h' heq => ?_⟩
         obtain ⟨hx', hy'⟩ : (W.map A.subtype).toAffine.addX xj x
             ((W.map A.subtype).toAffine.slope xj x yj y) = x' ∧
@@ -1123,7 +1062,6 @@ theorem formal_param_nsmul {x y : L} (h : (W.map A.subtype).toAffine.Nonsingular
         obtain ⟨hadd1, hadd2⟩ := add_formal_param_estimate (W := W) hj.1 h.1 hxj hx hcond hτ hτ0
           htj hself
         refine ⟨hadd1, ?_⟩
-
         have key : (-((W.map A.subtype).toAffine.addX xj x
               ((W.map A.subtype).toAffine.slope xj x yj y)
             / (W.map A.subtype).toAffine.addY xj x yj
@@ -1137,7 +1075,6 @@ theorem formal_param_nsmul {x y : L} (h : (W.map A.subtype).toAffine.Nonsingular
             + ((-(x / y)) / -(x / y) - 1) := by
           first
           | (field_simp; ring1)
-
         rw [Nat.cast_succ, key]
         refine add_mem (add_mem hadd2 ?_) ?_
         · exact hcong
@@ -1177,12 +1114,10 @@ theorem some_eq_of_mem_inertia_of_nsmul_eq_zero' [DecidableEq L]
     (hP : n • (some x y h : (W.map A.subtype).toAffine.Point) = 0)
     (hP' : n • (some (σ x) (σ y) h' : (W.map A.subtype).toAffine.Point) = 0) :
     (some (σ x) (σ y) h' : (W.map A.subtype).toAffine.Point) = some x y h := by
-
   have hx : x ∈ A := X_mem_of_nsmul_eq_zero' W hn h hP
   have hy : y ∈ A := Affine.Y_mem_of_X_mem W h.1 hx
   have hσx : σ x ∈ A := A.smul_mem_of_mem_decompositionSubgroup K hσ hx
   have hσy : σ y ∈ A := A.smul_mem_of_mem_decompositionSubgroup K hσ hy
-
   have hresx : σ x - x ∈ A.nonunits := by
     rw [show σ x - x = (((⟨σ x, hσx⟩ : A) - ⟨x, hx⟩ : A) : L) from rfl,
       A.coe_mem_nonunits_iff_residue_eq_zero, map_sub, sub_eq_zero]
@@ -1191,7 +1126,6 @@ theorem some_eq_of_mem_inertia_of_nsmul_eq_zero' [DecidableEq L]
     rw [show σ y - y = (((⟨σ y, hσy⟩ : A) - ⟨y, hy⟩ : A) : L) from rfl,
       A.coe_mem_nonunits_iff_residue_eq_zero, map_sub, sub_eq_zero]
     exact A.residue_smul_eq_of_mem_inertiaSubgroup hσ hσI ⟨y, hy⟩
-
   by_contra hne
   have hnegns : (W.map A.subtype).toAffine.Nonsingular x ((W.map A.subtype).toAffine.negY x y) :=
     (Affine.nonsingular_neg ..).mpr h

@@ -80,7 +80,6 @@ theorem kw_nonempty_ringHom_algebraicClosure_complex (K₀ : Type u) [Field K₀
   have : Countable ACK := kw_countable_algebraicClosure K₀
   obtain ⟨s, hs⟩ := exists_isTranscendenceBasis ℚ (A := ACK)
   obtain ⟨t, ht⟩ := exists_isTranscendenceBasis ℚ (A := ℂ)
-
   have hcard : Cardinal.lift.{0, u} #s ≤ Cardinal.lift.{u, 0} #t := by
     have h1 : Cardinal.lift.{0, u} #s ≤ ℵ₀ := Cardinal.lift_le_aleph0.mpr Cardinal.mk_le_aleph0
     have h2 : ℵ₀ ≤ Cardinal.lift.{u, 0} #t :=
@@ -248,14 +247,12 @@ private theorem _root_.PeriodPair.apply_eq_apply_of_differentiable_of_forall_per
     (hf : Differentiable ℂ f) (hper : ∀ l ∈ L.lattice, ∀ z, f (z + l) = f z) (z w : ℂ) :
     f z = f w := by
   apply hf.apply_eq_apply_of_bounded
-
   have hrange : range f ⊆ f '' closure (ZSpan.fundamentalDomain L.basis) := by
     rintro - ⟨u, rfl⟩
     refine ⟨ZSpan.fract L.basis u, subset_closure (ZSpan.fract_mem_fundamentalDomain _ u), ?_⟩
     have h := hper _ (L.sub_fract_mem_lattice u) (ZSpan.fract L.basis u)
     rw [add_sub_cancel] at h
     exact h.symm
-
   refine Bornology.IsBounded.subset ?_ hrange
   refine (IsCompact.image ?_ hf.continuous).isBounded
   exact Metric.isCompact_of_isClosed_isBounded isClosed_closure
@@ -310,7 +307,6 @@ theorem exists_smul_mem_and_apply_eq_of_forall_sub_mem (L' : PeriodPair) {F : �
     (hF : Differentiable ℂ F)
     (hper : ∀ l ∈ L.lattice, ∀ z, F (z + l) - F z ∈ L'.lattice) :
     ∃ α : ℂ, (∀ l ∈ L.lattice, α * l ∈ L'.lattice) ∧ ∀ z, F z = F 0 + α * z := by
-
   have hFc : Continuous F := hF.continuous
   have hconst : ∀ l ∈ L.lattice, ∀ z, F (z + l) - F z = F l - F 0 := by
     intro l hl z
@@ -318,7 +314,6 @@ theorem exists_smul_mem_and_apply_eq_of_forall_sub_mem (L' : PeriodPair) {F : �
       (f := fun u => F (u + l) - F u)
       ((hFc.comp (continuous_id.add continuous_const)).sub hFc) (hper l hl) z 0
     simpa using h
-
   have hadd : ∀ z w, F (z + w) = F z + F w - F 0 := by
     intro z w
     have hper' : ∀ l ∈ L.lattice, ∀ u,
@@ -334,7 +329,6 @@ theorem exists_smul_mem_and_apply_eq_of_forall_sub_mem (L' : PeriodPair) {F : �
       ((hF.comp (differentiable_id.add_const w)).sub hF) hper' z 0
     simp only [zero_add] at h
     linear_combination h
-
   set α : ℂ := deriv F 0 with hα
   have hderiv : ∀ z, deriv F z = α := by
     intro z
@@ -347,7 +341,6 @@ theorem exists_smul_mem_and_apply_eq_of_forall_sub_mem (L' : PeriodPair) {F : �
     have h2 : deriv (fun w => F w + (F z - F 0)) 0 = deriv F 0 := by
       rw [deriv_add_const]
     rw [← h1, hfun, h2]
-
   have haffine : ∀ z, F z = F 0 + α * z := by
     have hG : Differentiable ℂ fun z => F z - α * z :=
       hF.sub (differentiable_id.const_mul α)
@@ -361,7 +354,6 @@ theorem exists_smul_mem_and_apply_eq_of_forall_sub_mem (L' : PeriodPair) {F : �
     have h := is_const_of_deriv_eq_zero hG hG' z 0
     simp only [mul_zero, sub_zero] at h
     linear_combination h
-
   refine ⟨α, fun l hl => ?_, haffine⟩
   have h := hper l hl 0
   rw [zero_add, haffine l] at h
@@ -574,34 +566,28 @@ theorem solution
     (D : IsogenyEndDatum W.toAffine) (hdeg : finrankAlong K D.ι = N) :
     Polynomial.aeval W.j (data.Φ.eval₂ (RingHom.id (Polynomial ℤ)) Polynomial.X) = 0 := by
   classical
-
   obtain ⟨K₀, hK₀c, E₀, hE₀e, hE₀map, ι₀, hι₀, hfin₀, hrk₀⟩ :=
     WeierstrassCurve.exists_intermediateField_countable_map_eq_and_finrankAlong_eq W D.ι D.hι D.hfin
   have := hE₀e
   have : Countable K₀ := hK₀c
   have : CharZero (AlgebraicClosure K₀) :=
     charZero_of_injective_algebraMap (algebraMap K₀ (AlgebraicClosure K₀)).injective
-
   obtain ⟨σ⟩ := kw_nonempty_ringHom_algebraicClosure_complex (↥K₀)
   let : Algebra (AlgebraicClosure K₀) ℂ := σ.toAlgebra
   let : Algebra (↥K₀) ℂ := (σ.comp (algebraMap (↥K₀) (AlgebraicClosure K₀))).toAlgebra
   have : IsScalarTower (↥K₀) (AlgebraicClosure K₀) ℂ := IsScalarTower.of_algebraMap_eq' rfl
-
   obtain ⟨ι₁, hι₁, hfin₁, hrk₁⟩ :=
     WeierstrassCurve.Affine.exists_algHom_functionField_baseChange_finrankAlong_eq E₀
       (AlgebraicClosure K₀) ℂ ι₀ hι₀ hfin₀
   have hN₁ : finrankAlong ℂ ι₁ = N := hrk₁.trans (hrk₀.trans hdeg)
-
   have hjK : W.j = algebraMap (↥K₀) K E₀.j := by
     subst hE₀map
     exact E₀.map_j (algebraMap (↥K₀) K)
   have hE1inst : (E₀.baseChange ℂ).IsElliptic :=
     inferInstanceAs (E₀.map (algebraMap (↥K₀) ℂ)).IsElliptic
   have hjC : (E₀.baseChange ℂ).j = algebraMap (↥K₀) ℂ E₀.j := E₀.map_j (algebraMap (↥K₀) ℂ)
-
   set d := data.Φ.eval₂ (RingHom.id (Polynomial ℤ)) Polynomial.X with hd
   suffices hℂ : Polynomial.aeval (E₀.baseChange ℂ).j d = 0 by
-
     have h0 : Polynomial.aeval E₀.j d = 0 := by
       apply (algebraMap (↥K₀) ℂ).injective
       rw [map_zero, ← Polynomial.aeval_algebraMap_apply, ← hjC]
@@ -610,7 +596,6 @@ theorem solution
   generalize hE1 : E₀.baseChange ℂ = E₁ at ι₁ hι₁ hfin₁ hN₁ hE1inst
   obtain ⟨L, C, hC⟩ := PeriodPair.exists_variableChange_smul_weierstrassCurve_eq E₁
   subst hC
-
   have hL : L.DiscriminantNeZero := PeriodPair.discriminant_ne_zero L
   have hLe : L.weierstrassCurve.IsElliptic :=
     ⟨isUnit_iff_ne_zero.mpr hL.weierstrassCurve_Δ_ne_zero⟩
@@ -623,26 +608,22 @@ theorem solution
   let := g
   have := hgc
   have := hga
-
   obtain ⟨eE⟩ := WeierstrassCurve.nonempty_functionField_algEquiv_of_variableChange L.weierstrassCurve C
   let ι₂ := kw_fdn2_qephod_hend21_conjSeam eE eE ι₁
   have hι₂ : ι₂.toRingHom.IsIntegral := kw_fdn2_qephod_hend21_conjSeam_isIntegral eE eE ι₁ hι₁
   have hfin₂ : FiniteAlong ℂ ι₂ := kw_fdn2_qephod_hend21_conjSeam_finiteAlong eE eE ι₁ hfin₁
   have hrk₂ : finrankAlong ℂ ι₂ = N := (kw_fdn2_qephod_hend21_finrankAlong_conj eE eE ι₁).trans hN₁
-
   have hN₂ : NormFormulaAlong ℂ ι₂ hfin₂ := normFormulaAlong_of_elliptic ι₂ hfin₂
   have hcard : Nat.card (pointMapOfPushforward ι₂ hι₂ hfin₂ hN₂).ker = N :=
     (WeierstrassCurve.Affine.natCard_ker_pointMapOfPushforward_eq_finrankAlong _ _ ι₂ hι₂ hfin₂ hN₂).trans hrk₂
   have hcyc : IsAddCyclic (pointMapOfPushforward ι₂ hι₂ hfin₂ hN₂).ker :=
     IsAddCyclic.of_squarefree_natCard (hcard.symm ▸ hN)
-
   obtain ⟨β, hsub, hidx, hcq⟩ :=
     PeriodPair.exists_scale_lattice_subset_and_sublatticeIndex_eq_and_isAddCyclic_sublatticeQuotient
       L L ι₂ hι₂ hfin₂ hN₂ N hcyc hcard
   have hroot := ModularCurve.ModularPolynomialData.eval_jLattice_eq_zero_of_isAddCyclic N data L (L.scale β)
     hsub hidx hcq
   rw [PeriodPair.jLattice_scale] at hroot
-
   rw [WeierstrassCurve.variableChange_j, s13_j_weierstrassCurve_eq_jLattice, s13_aeval_diag_eq_eval_map]
   exact hroot
 

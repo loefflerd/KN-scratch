@@ -291,8 +291,7 @@ theorem roots_prime_at_slot_nodup (N : ℕ) [NeZero N] (ζ : Kˣ) (hζ : IsPrimi
   have hζp : IsPrimitiveRoot ((ζ ^ (N / p) : Kˣ) : K) p := isPrimitiveRoot_pow_div hζ hpN
   rw [Multiset.nodup_cons]
   constructor
-  ·
-    intro hmem
+  · intro hmem
     obtain ⟨b, hb, heq⟩ := Multiset.mem_map.mp hmem
     have h := (TS_injective (K := K) (e := e) (e' := p * (p * e))
       (u := u * ζ ^ (b * (N / p))) (u' := u ^ (p * p)) heq).1
@@ -301,8 +300,7 @@ theorem roots_prime_at_slot_nodup (N : ℕ) [NeZero N] (ζ : Kˣ) (hζ : IsPrimi
     have hmono : 2 * (2 * e) ≤ p * (p * e) := Nat.mul_le_mul hp2 (Nat.mul_le_mul hp2 le_rfl)
     rw [← h] at hmono
     omega
-  ·
-    refine Multiset.Nodup.map_on ?_ (Multiset.nodup_range p)
+  · refine Multiset.Nodup.map_on ?_ (Multiset.nodup_range p)
     intro b hb b' hb' heq
     rw [Multiset.mem_range] at hb hb'
     have h := (TS_injective (K := K) (e := e) (e' := e)
@@ -454,7 +452,6 @@ theorem isLevel_mul_of_isRoot (N : ℕ) [NeZero N] (hN : Squarefree N) (ζ : Kˣ
   have hζ1 : ζ ^ (N * N) = 1 :=
     Units.ext (by rw [Units.val_pow_eq_pow_val, Units.val_one]; exact hζ.pow_eq_one)
   have hqd : ¬ q ∣ d := fun h => hqM (h.trans hdM)
-
   have hqe : q ∣ e := by
     have h1 : q ∣ e * (d * d) := by rw [hed]; exact dvd_mul_of_dvd_left hqNN M
     rcases hq.out.dvd_mul.mp h1 with h | h
@@ -462,20 +459,16 @@ theorem isLevel_mul_of_isRoot (N : ℕ) [NeZero N] (hN : Squarefree N) (ζ : Kˣ
     · rcases hq.out.dvd_mul.mp h with h' | h' <;> exact absurd h' hqd
   obtain ⟨e₁, rfl⟩ := hqe
   have : NeZero e₁ := ⟨fun h0 => NeZero.ne (q * e₁) (by rw [h0, mul_zero])⟩
-
   obtain ⟨u, huq⟩ := exists_pow_eq_of_coprime (G := Kˣ) hcop.symm hwM
-
   have hz2 : (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (LaurentSeries K))
       (qExpand K (q * e₁) (qTwist (u ^ q) (coeffEmb K jq))))).IsRoot z := by
     rw [huq]; exact hz
   rcases (isRoot_prime_at_slot_iff (N * N) ζ hζ q hqNN data e₁ u z).mp hz2 with hsp | ⟨b, -, htw⟩
-  ·
-    refine ⟨q * (q * e₁), d, inferInstance, u ^ (q * q), dvd_mul_of_dvd_left hdM q, ?_, ?_, hsp⟩
+  · refine ⟨q * (q * e₁), d, inferInstance, u ^ (q * q), dvd_mul_of_dvd_left hdM q, ?_, ?_, hsp⟩
     · rw [show q * (q * e₁) * (d * d) = q * (q * e₁ * (d * d)) from by ring, hed]; ring
     · rw [← pow_mul, show q * q * (M * q) = q * (q * (M * q)) from by ring, pow_mul, huq,
         show q * (M * q) = M * (q * q) from by ring, pow_mul, hwM, one_pow]
-  ·
-    refine ⟨e₁, d * q, inferInstance, u * ζ ^ (b * (N * N / q)),
+  · refine ⟨e₁, d * q, inferInstance, u * ζ ^ (b * (N * N / q)),
       mul_dvd_mul hdM dvd_rfl, ?_, ?_, htw⟩
     · rw [show e₁ * (d * q * (d * q)) = q * e₁ * (d * d) * q from by ring, hed]; ring
     · rw [mul_pow]
@@ -495,7 +488,6 @@ theorem eq_of_isRoot_of_isLevel (N : ℕ) [NeZero N] (hN : Squarefree N) (ζ : K
   obtain ⟨e, d, he, w, hdMq, hed, hwMq, rfl⟩ := hy
   have := he
   obtain ⟨hqN, hqNN, hcop, hqM⟩ := prime_step_facts N hN hq.out hMq
-
   have hqe : q ∣ e := by
     have h1 : q ∣ e * (d * d) := by
       rw [hed]; exact dvd_mul_of_dvd_right (dvd_mul_left q M) (N * N)
@@ -526,7 +518,6 @@ theorem eq_of_isRoot_of_isLevel (N : ℕ) [NeZero N] (hN : Squarefree N) (ζ : K
     calc q * (e₁ * (d * d)) = q * e₁ * (d * d) := by ring
       _ = N * N * (M * q) := hed
       _ = q * (N * N * M) := by ring
-
   have hwMqz : (w : K) ^ (M * q) = 1 := by
     have hh := congrArg Units.val hwMq
     rwa [Units.val_pow_eq_pow_val, Units.val_one] at hh
@@ -551,7 +542,6 @@ theorem eq_of_isRoot_of_isLevel (N : ℕ) [NeZero N] (hN : Squarefree N) (ζ : K
   have huq : (ζ ^ i₁) ^ q = w := by
     rw [← pow_mul, Nat.mul_comm i₁ q]
     exact hiwu
-
   have hz2 : (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (LaurentSeries K))
       (qExpand K (q * e₁) (qTwist ((ζ ^ i₁) ^ q) (coeffEmb K jq))))).IsRoot z := by
     rw [huq]; exact hz
@@ -560,10 +550,8 @@ theorem eq_of_isRoot_of_isLevel (N : ℕ) [NeZero N] (hN : Squarefree N) (ζ : K
     rw [huq]; exact hz'
   have hcz := (isRoot_prime_at_slot_iff (N * N) ζ hζ q hqNN data e₁ (ζ ^ i₁) z).mp hz2
   have hcz' := (isRoot_prime_at_slot_iff (N * N) ζ hζ q hqNN data e₁ (ζ ^ i₁) z').mp hz'2
-
   by_cases hqd : q ∣ d
-  ·
-    have hnt : ∀ {v : LaurentSeries K}, IsLevel K N M v → ∀ b : ℕ,
+  · have hnt : ∀ {v : LaurentSeries K}, IsLevel K N M v → ∀ b : ℕ,
         v = qExpand K e₁ (qTwist ((ζ ^ i₁) * ζ ^ (b * (N * N / q))) (coeffEmb K jq)) → False := by
       intro v hv b hveq
       obtain ⟨dz, hdzM, hdze, -⟩ :=
@@ -583,9 +571,7 @@ theorem eq_of_isRoot_of_isLevel (N : ℕ) [NeZero N] (hN : Squarefree N) (ζ : K
       · exact h
       · exact (hnt hz'M b h).elim
     rw [hzs, hz's]
-  ·
-
-    have hns : ∀ {v : LaurentSeries K}, IsLevel K N M v →
+  · have hns : ∀ {v : LaurentSeries K}, IsLevel K N M v →
         v = qExpand K (q * (q * e₁)) (qTwist ((ζ ^ i₁) ^ (q * q)) (coeffEmb K jq)) → False := by
       intro v hv hveq
       obtain ⟨dz, -, hdze, -⟩ :=
@@ -693,7 +679,6 @@ p2m_open_scoped "ModularCurve" in
 open ModularCurve.W1 in
 private theorem ModularCurve.finrank_adjoin_jqN_eq_of_squarefree (N : ℕ) [NeZero N] (hN : Squarefree N) : Module.finrank (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) (IntermediateField.adjoin (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) ({jqN N} : Set (LaurentSeries ℚ))) = dedekindPsi N := by
   classical
-
   set Sg : Set (LaurentSeries ℚ) := insert jq {x : LaurentSeries ℚ | ∃ p ∈ N.primeFactors, ∃ _ : NeZero p, x = jqN p}
     with hSg
   have hle : ℚ⟮jq⟯ ≤ IntermediateField.adjoin ℚ Sg :=
@@ -707,19 +692,16 @@ private theorem ModularCurve.finrank_adjoin_jqN_eq_of_squarefree (N : ℕ) [NeZe
   have hψpos : 0 < dedekindPsi N := by
     rw [dedekindPsi_of_squarefree hN]; exact Finset.prod_pos fun p _ => Nat.succ_pos p
   have : FiniteDimensional ℚ⟮jq⟯ E := Module.finite_of_finrank_pos (by rw [hfin]; exact hψpos)
-
   have memE : ∀ d : ℕ, ∀ _ : NeZero d, d ∣ N → jqN d ∈ E := by
     intro d _ hd
     have : jqN d ∈ IntermediateField.extendScalars hle :=
       (IntermediateField.mem_extendScalars _).mpr (by rw [← hfull]; exact jqd_mem_full N hd)
     rwa [hE] at this
   have hαE : jqN N ∈ E := memE N inferInstance (dvd_refl N)
-
   have hsub : IntermediateField.adjoin ℚ⟮jq⟯ ({jqN N} : Set (LaurentSeries ℚ)) ≤ E :=
     IntermediateField.adjoin_le_iff.mpr (Set.singleton_subset_iff.mpr hαE)
   have hup : Module.finrank ℚ⟮jq⟯ (IntermediateField.adjoin ℚ⟮jq⟯ ({jqN N} : Set (LaurentSeries ℚ))) ≤ dedekindPsi N :=
     hfin ▸ IntermediateField.finrank_le_of_le_right hsub
-
   have : NeZero (N * N) := ⟨mul_ne_zero (NeZero.ne N) (NeZero.ne N)⟩
   let K := CyclotomicField (N * N) ℚ
   let ζ : Kˣ := cycUnit (N * N)
@@ -734,10 +716,8 @@ private theorem ModularCurve.finrank_adjoin_jqN_eq_of_squarefree (N : ℕ) [NeZe
     exact (algebraMap ℚ K).injective this
   let : Algebra ℚ⟮jq⟯ (LaurentSeries K) := (ι.comp (algebraMap ℚ⟮jq⟯ (LaurentSeries ℚ))).toAlgebra
   have halg : ∀ a : ℚ⟮jq⟯, algebraMap ℚ⟮jq⟯ (LaurentSeries K) a = ι a := fun a => rfl
-
   have hdata : ∀ q : ℕ, ∀ _ : Fact q.Prime, ∃ data : ModularPolynomialData q, EvalSymm data.Φ :=
     fun q _ => (exists_phiIrreducible_evalSymm q).imp fun _ h => h.2
-
   have hsplit : ∀ x : E, ((minpoly ℚ⟮jq⟯ x).map (algebraMap ℚ⟮jq⟯ (LaurentSeries K))).Splits := by
     intro x
     rw [← minpoly.algHom_eq E.val Subtype.val_injective x]
@@ -767,10 +747,8 @@ private theorem ModularCurve.finrank_adjoin_jqN_eq_of_squarefree (N : ℕ) [NeZe
       rw [hseed, phiAtSeed, splits_prime_at_slot (N * N) ζ hζ p (dvd_mul_of_dvd_left hpN N) data (N * (N / p)) 1]
       exact Polynomial.Splits.mul (Polynomial.Splits.X_sub_C _)
         (Polynomial.Splits.prod fun _ _ => Polynomial.Splits.X_sub_C _)
-
   have hcard : Nat.card (E →ₐ[ℚ⟮jq⟯] LaurentSeries K) = dedekindPsi N := by
     rw [AlgHom.natCard_of_splits ℚ⟮jq⟯ E (LaurentSeries K) hsplit, hfin]
-
   have hlev : ∀ (ψ : E →ₐ[ℚ⟮jq⟯] LaurentSeries K) (d : ℕ) (_ : NeZero d) (hd : d ∣ N) (hmem : jqN d ∈ E),
       IsLevel K N d (ψ ⟨jqN d, hmem⟩) := by
     intro ψ d
@@ -801,10 +779,8 @@ private theorem ModularCurve.finrank_adjoin_jqN_eq_of_squarefree (N : ℕ) [NeZe
         Subtype.ext (jqN_congr (Nat.mul_comm a p))
       rw [e, Nat.mul_comm a p] at hval
       exact hval
-
   have hinj : Function.Injective (fun ψ : E →ₐ[ℚ⟮jq⟯] LaurentSeries K => ψ ⟨jqN N, hαE⟩) := by
     intro ψ₁ ψ₂ htop
-
     have hdown : ∀ m d : ℕ, ∀ _ : NeZero d, ∀ hdm : d * m = N,
         ψ₁ ⟨jqN d, memE d inferInstance ⟨m, hdm.symm⟩⟩ = ψ₂ ⟨jqN d, memE d inferInstance ⟨m, hdm.symm⟩⟩ := by
       intro m
@@ -824,7 +800,6 @@ private theorem ModularCurve.finrank_adjoin_jqN_eq_of_squarefree (N : ℕ) [NeZe
         obtain ⟨data, hs⟩ := hdata p inferInstance
         have hdpN : d * p ∣ N := ⟨a, hdp.symm⟩
         have hdN : d ∣ N := dvd_of_mul_right_dvd hdpN
-
         have hrel : ∀ ψ : E →ₐ[ℚ⟮jq⟯] LaurentSeries K,
             (phiAtSeed data (ψ ⟨jqN (d * p), memE (d * p) inferInstance hdpN⟩)).IsRoot
               (ψ ⟨jqN d, memE d inferInstance hdN⟩) := by
@@ -837,7 +812,6 @@ private theorem ModularCurve.finrank_adjoin_jqN_eq_of_squarefree (N : ℕ) [NeZe
         exact eq_of_isRoot_of_isLevel N hN ζ hζ (M := d) (q := p) hdpN data
           (hlev ψ₁ (d * p) inferInstance hdpN _) (hrel ψ₁) (by rw [hup]; exact hrel ψ₂)
           (hlev ψ₁ d inferInstance hdN _) (hlev ψ₂ d inferInstance hdN _)
-
     refine IntermediateField.adjoin_algHom_ext ℚ⟮jq⟯ (s := Sg) fun x hx => ?_
     rcases hx with rfl | ⟨p, hp, _, rfl⟩
     · have : ∀ h, (⟨jq, h⟩ : E) = algebraMap ℚ⟮jq⟯ E jGen := fun h => Subtype.ext rfl
@@ -845,7 +819,6 @@ private theorem ModularCurve.finrank_adjoin_jqN_eq_of_squarefree (N : ℕ) [NeZe
     · have hpN : p ∣ N := Nat.dvd_of_mem_primeFactors hp
       obtain ⟨m, hm⟩ := hpN
       exact hdown m p inferInstance hm.symm
-
   have hint : IsIntegral ℚ⟮jq⟯ (⟨jqN N, hαE⟩ : E) := IsIntegral.of_finite ℚ⟮jq⟯ _
   have hintL : IsIntegral ℚ⟮jq⟯ (jqN N) := by
     simpa using hint.map E.val
@@ -867,7 +840,6 @@ p2m_open "ModularCurve~coeffEmb_qExpand" in open _root_.P2MW.S_ModularCurve_finr
 
 theorem solution (N : ℕ) [NeZero N] (hN : Squarefree N) : Module.finrank (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) (IntermediateField.adjoin (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) ({jqN N} : Set (LaurentSeries ℚ))) = dedekindPsi N :=
   ModularCurve.finrank_adjoin_jqN_eq_of_squarefree N hN
-
 
 end
 end S_ModularCurve_finrank_adjoin_jqN_eq_of_squarefree

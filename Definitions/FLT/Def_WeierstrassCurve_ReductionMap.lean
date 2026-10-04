@@ -30,28 +30,21 @@ lemma natCast_mem_maximalIdeal_of_liesOverPrime {A : ValuationSubring L} {q : �
 
 theorem exists_liesOverPrime [CharZero L] {q : ℕ} (hq : q.Prime) :
     ∃ A : ValuationSubring L, A.LiesOverPrime q := by
-
   set R : Subring L := ⊥ with hR
-
   have hqR : ¬IsUnit ((q : ℕ) : R) := by
     rw [isUnit_iff_exists_inv]
     rintro ⟨y, hy⟩
-
     have hy' : (q : L) * (y : L) = 1 := by
       have := congrArg (R.subtype) hy
       simpa using this
-
     obtain ⟨n, hn⟩ := Subring.mem_bot.mp y.2
     rw [← hn] at hy'
-
     have hqn : (q : ℤ) * n = 1 := by
       have : (((q : ℤ) * n : ℤ) : L) = ((1 : ℤ) : L) := by push_cast; linear_combination hy'
       exact_mod_cast this
-
     have h1 : (q : ℤ) ≤ 1 := Int.le_of_dvd one_pos ⟨n, hqn.symm⟩
     have h2 : 2 ≤ q := hq.two_le
     omega
-
   obtain ⟨B, -, hB⟩ :=
     Ideal.image_subset_nonunits_valuationSubring (Ideal.span {((q : ℕ) : R)})
       (fun h => hqR (Ideal.span_singleton_eq_top.mp h))
@@ -61,7 +54,6 @@ theorem exists_liesOverPrime [CharZero L] {q : ℕ} (hq : q.Prime) :
 theorem charP_residueField_of_liesOverPrime_def {A : ValuationSubring L} {q : ℕ} (hq : q.Prime)
     (h : A.LiesOverPrime q) : CharP (IsLocalRing.ResidueField A) q := by
   rw [CharP.charP_iff_prime_eq_zero hq]
-
   have : ((q : ℕ) : IsLocalRing.ResidueField A) = IsLocalRing.residue A ((q : ℕ) : A) := by
     simp
   rw [this]
@@ -112,11 +104,9 @@ variable (W : WeierstrassCurve A)
 theorem Affine.Y_mem_of_X_mem {x y : L}
     (h : (W.map A.subtype).toAffine.Equation x y) (hx : x ∈ A) : y ∈ A := by
   by_contra hy
-
   have hy0 : y ≠ 0 := fun h0 => hy (h0 ▸ A.zero_mem)
   have hyinv : y⁻¹ ∈ A.nonunits := A.inv_mem_nonunits_iff.mpr (Or.inr hy)
   rw [equation_iff] at h
-
   have key : (1 : L) =
       (x ^ 3 + (W.map A.subtype).toAffine.a₂ * x ^ 2 + (W.map A.subtype).toAffine.a₄ * x
           + (W.map A.subtype).toAffine.a₆) * (y⁻¹ * y⁻¹)
@@ -124,7 +114,6 @@ theorem Affine.Y_mem_of_X_mem {x y : L}
         - (W.map A.subtype).toAffine.a₃ * y⁻¹ := by
     field_simp
     linear_combination h
-
   refine A.one_notMem_nonunits ?_
   rw [key]
   have ha₁ : (W.map A.subtype).toAffine.a₁ ∈ A := SetLike.coe_mem W.a₁
@@ -198,7 +187,6 @@ theorem reducePoint_neg (P : (W.map A.subtype).toAffine.Point) :
       rw [reducePoint_some_of_mem _ _ hx, reducePoint_some_of_mem _ _ hx,
         Affine.Point.neg_some]
       refine some_congr rfl ?_ _ _
-
       show residue A (W.toAffine.negY ⟨x, hx⟩ ⟨y, hy⟩) = _
       exact (Affine.map_negY (residue A) (⟨x, hx⟩ : A) (⟨y, hy⟩ : A)).symm
     · rw [reducePoint_some_of_notMem _ _ hx, reducePoint_some_of_notMem _ _ hx]
@@ -240,7 +228,6 @@ theorem reducePoint_some_apply_of_mem_inertia {σ : L ≃ₐ[K] L}
     have hσx : σ x ∈ A := A.smul_mem_of_mem_decompositionSubgroup K hσ hx
     have hσy : σ y ∈ A := A.smul_mem_of_mem_decompositionSubgroup K hσ hy
     rw [reducePoint_some_of_mem _ _ hσx, reducePoint_some_of_mem _ _ hx]
-
     refine some_congr ?_ ?_ _ _
     · calc residue A (⟨σ x, hσx⟩ : A)
           = residue A ((⟨σ, hσ⟩ : A.decompositionSubgroup K) • (⟨x, hx⟩ : A)) := rfl

@@ -25,7 +25,6 @@ private lemma intValuation_eq_coe_neg_multiplicity {A : Type*} [CommRing A] [IsD
   classical
   have hnb : Ideal.span {a} ≠ ⊥ := by
     rwa [ne_eq, Ideal.span_singleton_eq_bot]
-
   rw [intValuation_if_neg _ hnz, Ideal.count_associates_factors_eq hnb v.isPrime v.ne_bot]
   nth_rw 1 [← normalize_eq v.asIdeal]
   congr
@@ -158,7 +157,6 @@ open MonoidWithZeroHom in
 lemma exists_adicValued_sub_lt_of_adicValued_le_one {x : (WithVal (v.valuation K))}
     (γ : ((WithZero (Multiplicative ℤ)))ˣ) (hx : Valued.v x ≤ 1) :
     ∃a, Valued.v ((algebraMap A K a) - (x : v.adicCompletion K)) < γ.val := by
-
   obtain ⟨⟨n, d, hd⟩, hnd⟩ := IsLocalization.surj (nonZeroDivisors A) x
   dsimp only at hnd
   have hnd' := congr_arg Valued.v hnd
@@ -342,10 +340,8 @@ theorem exists_forall_adicValued_sub_lt {ι : Type*} (s : Finset ι)
     (injective : Function.Injective valuation)
     (x : (i : ι) → (valuation i).adicCompletionIntegers K) :
     ∃ a, ∀ i ∈ s, Valued.v ((algebraMap A K a) - (x i).val) < (e i).val := by
-
   choose f hf using fun (i : s) =>
     exists_adicValued_sub_lt_of_adicCompletionInteger K (valuation i) (x i) (e i)
-
   have hexists_e' : ∀ (i : ι), ∃ (e' : ℕ), (Multiplicative.ofAdd (-(e' : ℤ))) < (e i).val := by
     intro i
     apply exists_ofAdd_natCast_lt (e i).ne_zero

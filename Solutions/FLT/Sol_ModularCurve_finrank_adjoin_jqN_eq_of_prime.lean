@@ -53,7 +53,6 @@ open _root_.ModularCurve _root_.P2MW.S_ModularCurve_finrank_adjoin_jqN_eq_of_pri
 theorem solution (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] : Module.finrank (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) (IntermediateField.adjoin (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) ({jqN ℓ} : Set (LaurentSeries ℚ))) = ℓ + 1 :=
   ModularCurve.finrank_adjoin_jqN_eq_of_prime ℓ
 
-
 end S_ModularCurve_finrank_adjoin_jqN_eq_of_prime
 end P2MW
 export P2MW.S_ModularCurve_finrank_adjoin_jqN_eq_of_prime (solution)

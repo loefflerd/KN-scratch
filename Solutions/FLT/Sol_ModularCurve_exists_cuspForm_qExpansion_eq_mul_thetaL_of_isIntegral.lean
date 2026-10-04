@@ -53,7 +53,6 @@ theorem solution (N : ℕ) [NeZero N]
   classical
   obtain ⟨k, g, h, hh, hXh⟩ :=
     ModularCurve.exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange N X hX
-
   obtain ⟨E4N, hE4⟩ := ModularForm.exists_gamma0_qExpansion_eq_of_levelOne N ModularForm.E₄
   obtain ⟨E6N, hE6⟩ := ModularForm.exists_gamma0_qExpansion_eq_of_levelOne N ModularForm.E₆
   obtain ⟨DN, hD⟩ := ModularForm.exists_gamma0_qExpansion_eq_of_levelOne N
@@ -63,7 +62,6 @@ theorem solution (N : ℕ) [NeZero N]
     funext z
     rw [← CuspForm.toModularFormₗ_eq_coe, CuspForm.toModularFormₗ_apply]
     rfl
-
   obtain ⟨Φ, hΦdef⟩ : ∃ Φ : ModularForm (CongruenceSubgroup.Gamma0 N) (k + (4 + 4) + 6),
       Φ = (g.mul (E4N.mul E4N)).mul E6N := ⟨_, rfl⟩
   obtain ⟨Ψ, hΨdef⟩ : ∃ Ψ : ModularForm (CongruenceSubgroup.Gamma0 N) (k + 12), Ψ = h.mul DN := ⟨_, rfl⟩
@@ -86,7 +84,6 @@ theorem solution (N : ℕ) [NeZero N]
     rcases this with hz | hz
     · exact hz
     · exact absurd hz (ModularForm.discriminant_ne_zero z)
-
   have hord : ∀ τ : ℍ, analyticOrderAt ((Ψ : ℍ → ℂ) ∘ ofComplex) (τ : ℂ) ≤
       analyticOrderAt ((Φ : ℍ → ℂ) ∘ ofComplex) (τ : ℂ) := by
     intro τ
@@ -99,7 +96,6 @@ theorem solution (N : ℕ) [NeZero N]
     exact ModularCurve.eventually_norm_slash_le_of_isIntegral_adjoin_coeffEmb_jq_inv N g h X hXh M h₂ A ε hε
   obtain ⟨f, hf⟩ := ModularForm.exists_cuspForm_mul_eq_of_analyticOrderAt_le N 2 (by ring) Φ Ψ hΨ0 hord hcusp
   refine ⟨-f, ?_⟩
-
   have h1 := one_mem_strictPeriods_gamma0 N
   have hfΨ : ((ModularFormClass.modularForm f).mul Ψ : ℍ → ℂ) = (Φ : ℍ → ℂ) := by
     funext z
@@ -120,13 +116,11 @@ theorem solution (N : ℕ) [NeZero N]
         qExpansion 1 (ModularForm.E₆ : ℍ → ℂ) := by
     rw [hΦdef, ModularForm.qExpansion_mul one_pos h1, ModularForm.qExpansion_mul one_pos h1,
       ModularForm.qExpansion_mul one_pos h1, hE4, hE6]
-
   have hT2 : thetaL ℂ (coeffEmb ℂ jq) * ((qExpansion 1 ModularForm.discriminant : PowerSeries ℂ) : LaurentSeries ℂ) =
       -((((qExpansion 1 (ModularForm.E₄ : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ)) ^ 2 *
         ((qExpansion 1 (ModularForm.E₆ : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ)) := by
     rw [thetaL_coeffEmb_jq]
     exact omegaRow_T2
-
   have eq1 : ((qExpansion 1 (f : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) *
       ((qExpansion 1 (Ψ : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) =
       ((qExpansion 1 (Φ : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) := by
@@ -141,7 +135,6 @@ theorem solution (N : ℕ) [NeZero N]
           ((qExpansion 1 (ModularForm.E₄ : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ)) *
         ((qExpansion 1 (ModularForm.E₆ : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) := by
     rw [hqΦ, PowerSeries.coe_mul, PowerSeries.coe_mul, PowerSeries.coe_mul]
-
   have hhq : ((qExpansion 1 (h : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) ≠ 0 := by
     intro h0
     apply hh
@@ -159,7 +152,6 @@ theorem solution (N : ℕ) [NeZero N]
     have h0' : qExpansion 1 (DN : ℍ → ℂ) = 0 :=
       HahnSeries.ofPowerSeries_injective (by rw [hDcoe, h0, map_zero])
     exact (ModularForm.qExpansion_eq_zero_iff one_pos h1 DN).mp h0'
-
   have key : (((qExpansion 1 (f : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) + X * thetaL ℂ (coeffEmb ℂ jq)) *
       (((qExpansion 1 (h : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) *
         ((qExpansion 1 ModularForm.discriminant : PowerSeries ℂ) : LaurentSeries ℂ)) = 0 := by
@@ -171,7 +163,6 @@ theorem solution (N : ℕ) [NeZero N]
     rcases mul_eq_zero.mp key with h0 | h0
     · exact h0
     · exact absurd h0 (mul_ne_zero hhq hDq)
-
   have hneg : qExpansion 1 ((-f : CuspForm (CongruenceSubgroup.Gamma0 N) 2) : ℍ → ℂ) = -qExpansion 1 (f : ℍ → ℂ) := by
     rw [FunLike.coe_neg]
     exact ModularForm.qExpansion_neg one_pos h1 f

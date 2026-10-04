@@ -20,7 +20,6 @@ theorem solution
   have : Fintype G := Fintype.ofFinite G
   have : Fintype X := Fintype.ofFinite X
   have hGc : Fintype.card G = p := by rw [← Nat.card_eq_fintype_card]; exact hG
-
   have hfix : ∀ g : G, g ≠ 1 → fixedBy X g = fixedPoints G X := by
     intro g hg
     have hord : orderOf g = p := by
@@ -39,20 +38,16 @@ theorem solution
         rw [Subgroup.zpowers_le]; exact hx
       exact hle (by rw [hgen]; exact Subgroup.mem_top h)
     · intro hx; exact hx g
-
   have c1 : Fintype.card (fixedBy X (1 : G)) = Fintype.card X :=
     Fintype.card_congr (Equiv.subtypeUnivEquiv (fun x => show x ∈ fixedBy X (1 : G) from one_smul G x))
   have cg : ∀ g : G, g ≠ 1 → Fintype.card (fixedBy X g) = Fintype.card (fixedPoints G X) :=
     fun g hg => Fintype.card_congr (Set.equivOfEq (hfix g hg))
-
   have hB := sum_card_fixedBy_eq_card_orbits_mul_card_group G X
   rw [← Finset.add_sum_erase _ _ (Finset.mem_univ (1 : G)), c1,
     Finset.sum_congr rfl (fun g hg => cg g (Finset.ne_of_mem_erase hg)),
     Finset.sum_const, smul_eq_mul, Finset.card_erase_of_mem (Finset.mem_univ _),
     Finset.card_univ, hGc] at hB
-
   rw [Nat.card_eq_fintype_card, Nat.card_eq_fintype_card, Nat.card_eq_fintype_card]
-
   convert hB.symm using 1
   all_goals (first | exact mul_comm _ _  )
 

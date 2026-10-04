@@ -202,13 +202,11 @@ theorem isFinitePlace_iff_exists_placeOfEquation [IsAlgClosed F]
     IsFinitePlace v ↔ ∃ (x y : F) (h : W.Equation x y), v = placeOfEquation h := by
   constructor
   · intro hv
-
     have := hv.centre_isPrime
     have hmax : hv.centre.IsMaximal := Ideal.IsPrime.isMaximal hv.centre_isPrime hv.centre_ne_bot
     obtain ⟨x, y, hxy, hXY⟩ :=
       CoordinateRing.exists_eq_XYIdeal (W := W) (P := hv.centre) hv.centre_ne_bot
     refine ⟨x, y, hxy, ?_⟩
-
     set w : HeightOneSpectrum W.CoordinateRing := heightOneSpectrumOfEquation hxy with hw
     set A : ValuationSubring W.FunctionField :=
       HeightOneSpectrum.valuationSubringAtPrime W.FunctionField w with hA
@@ -222,19 +220,16 @@ theorem isFinitePlace_iff_exists_placeOfEquation [IsAlgClosed F]
         rw [hXY] at hmem
         exact hs hmem
       exact mul_mem (hv r) (hv.inv_mem hs')
-
     have hSP : A.ofPrime (A.idealOfLE v.toValuationSubring hle) = v.toValuationSubring :=
       ValuationSubring.ofPrime_idealOfLE A v.toValuationSubring hle
     rcases eq_or_ne (A.idealOfLE v.toValuationSubring hle) ⊥ with hP | hP
-    ·
-      exfalso
+    · exfalso
       apply v.ne_top'
       have h2 : A.ofPrime ⊥ ≤ A.ofPrime (A.idealOfLE v.toValuationSubring hle) :=
         ValuationSubring.ofPrime_le_of_le (h := hP.le)
       rw [ValuationSubring.ofPrime_bot] at h2
       exact top_le_iff.mp (le_trans h2 hSP.le)
-    ·
-      have hPmax : (A.idealOfLE v.toValuationSubring hle).IsMaximal :=
+    · have hPmax : (A.idealOfLE v.toValuationSubring hle).IsMaximal :=
         Ideal.IsPrime.isMaximal inferInstance hP
       have hPeq : A.idealOfLE v.toValuationSubring hle = IsLocalRing.maximalIdeal A :=
         IsLocalRing.eq_maximalIdeal hPmax
@@ -736,7 +731,6 @@ theorem restrictAlong_comp (φ ψ : F →ₐ[K] F) (hφ : φ.toRingHom.IsIntegra
     (w : Place K F) :
     w.restrictAlong (ψ.comp φ) hcomp = (w.restrictAlong ψ hψ).restrictAlong φ hφ := by
   refine Place.ext (SetLike.ext fun x => ?_)
-
   exact Iff.rfl
 
 end AlgebraicCurve.Place
@@ -850,7 +844,6 @@ theorem mmr72_pp_end_eq_zero_of_cofinite_const {M : Type*} [AddCommGroup M]
     Set.mem_preimage, not_or, not_not] at hQ'
   have hadd : S (P + Q') = S P + S Q' := map_add S P Q'
   rw [hQ'.2, hQ'.1] at hadd
-
   show S P = 0
   have h0 : S P + v = 0 + v := by rw [zero_add]; exact hadd.symm
   exact add_right_cancel h0
@@ -1040,7 +1033,6 @@ theorem pushforwardAlongDegZero_pointDivisor_geomMorph (D : IsogenyEndDatum W)
   rw [Pic0.coe_pushforwardAlongDegZero, coe_pointDivisor, map_sub,
     pushforwardAlong_single_eq D.ι D.hι, pushforwardAlong_single_eq D.ι D.hι,
     D.placeOfPoint_geomMorph P, D.placeOfPoint_geomMorph 0]
-
   push_cast
   rw [coe_pointDivisor, coe_pointDivisor, sub_sub_sub_cancel_right]
 
@@ -1131,8 +1123,7 @@ private theorem _root_.AlgebraicCurve.Place.ord_add_eq_min {f g : F} (hf : f ≠
     · exact v.adicValuation_ne_zero hg h1.symm
   rcases max_cases (v.adicValuation f) (v.adicValuation g) with ⟨hmax, hle⟩ | ⟨hmax, hlt⟩ <;>
     rw [hmax] at h1
-  ·
-    have hlog := (WithZero.log_le_log (v.adicValuation_ne_zero hg)
+  · have hlog := (WithZero.log_le_log (v.adicValuation_ne_zero hg)
       (v.adicValuation_ne_zero hf)).mpr hle
     have h2 : v.ord (f + g) = v.ord f := by simp only [ord, h1]
     simp only [ord] at hlog h2 ⊢
@@ -1175,7 +1166,6 @@ theorem polyToFunctionField_injective : Function.Injective (polyToFunctionField 
   intro p q h
   rw [polyToFunctionField_apply, polyToFunctionField_apply] at h
   have h2 := IsFractionRing.injective W.CoordinateRing W.FunctionField h
-
   have h0 : (p - q) • (1 : W.CoordinateRing) + (0 : F[X]) • CoordinateRing.mk W Y = 0 := by
     rw [zero_smul, add_zero, sub_smul, ← Algebra.algebraMap_eq_smul_one,
       ← Algebra.algebraMap_eq_smul_one, h2, sub_self]
@@ -1212,7 +1202,6 @@ variable (v : AlgebraicCurve.Place F W.FunctionField)
 
 theorem isFinitePlace_of_mem
     (hx : polyToFunctionField W X ∈ v.toValuationSubring) : IsFinitePlace v := by
-
   have hpoly : ∀ p : F[X], polyToFunctionField W p ∈ v.toValuationSubring := by
     intro p
     induction p using Polynomial.induction_on' with
@@ -1222,11 +1211,9 @@ theorem isFinitePlace_of_mem
         refine mul_mem ?_ (pow_mem hx n)
         rw [polyToFunctionField_C]
         exact v.algebraMap_mem' c
-
   set η := algebraMap W.CoordinateRing W.FunctionField (CoordinateRing.mk W Y) with hηdef
   set c₁ : F[X] := C W.a₁ * X + C W.a₃ with hc₁def
   set cb : F[X] := X ^ 3 + C W.a₂ * X ^ 2 + C W.a₄ * X + C W.a₆ with hcbdef
-
   have hrel : η * η = polyToFunctionField W cb - polyToFunctionField W c₁ * η := by
     have h1 := smul_basis_mul_Y (W' := W) 0 1
     rw [zero_smul, zero_add, one_smul, one_mul, one_mul, zero_sub] at h1
@@ -1234,17 +1221,14 @@ theorem isFinitePlace_of_mem
     rw [map_mul, algebraMap_smul_basis, _root_.map_neg, neg_mul, ← sub_eq_add_neg] at h2
     exact h2
   have hy : η ∈ v.toValuationSubring := by
-
     refine v.mem_of_eval_monic_eq_zero (P := Polynomial.X ^ 2
       + (Polynomial.C (polyToFunctionField W c₁) * Polynomial.X
         - Polynomial.C (polyToFunctionField W cb))) ?_ ?_ (x := η) ?_
-    ·
-      refine Polynomial.monic_X_pow_add (n := 2) ?_
+    · refine Polynomial.monic_X_pow_add (n := 2) ?_
       rw [sub_eq_add_neg, ← Polynomial.C_neg]
       refine lt_of_le_of_lt Polynomial.degree_linear_le ?_
       exact_mod_cast Nat.one_lt_two
-    ·
-      intro i
+    · intro i
       rw [show (Polynomial.C (polyToFunctionField W c₁) * Polynomial.X : Polynomial _)
           = Polynomial.C (polyToFunctionField W c₁) * Polynomial.X ^ 1 by ring]
       simp only [Polynomial.coeff_add, Polynomial.coeff_sub, Polynomial.coeff_X_pow,
@@ -1257,12 +1241,10 @@ theorem isFinitePlace_of_mem
       · split
         · exact hpoly _
         · exact v.toValuationSubring.zero_mem
-    ·
-      simp only [Polynomial.eval_add, Polynomial.eval_sub, Polynomial.eval_pow,
+    · simp only [Polynomial.eval_add, Polynomial.eval_sub, Polynomial.eval_pow,
         Polynomial.eval_mul, Polynomial.eval_C, Polynomial.eval_X]
       rw [sq]
       linear_combination hrel
-
   intro r
   obtain ⟨p, q, rfl⟩ := exists_smul_basis_eq r
   rw [algebraMap_smul_basis]
@@ -1501,7 +1483,6 @@ theorem algebraMap_coordinateRing_ne_zero {r : W.CoordinateRing} (hr : r ≠ 0) 
 
 theorem mk_mem_XYIdeal_iff {x y : F} (h : W.Equation x y) (P : F[X][Y]) :
     CoordinateRing.mk W P ∈ XYIdeal W x (C y) ↔ P.evalEval x y = 0 := by
-
   have hmap : XYIdeal W x (C y)
       = Ideal.map (CoordinateRing.mk W) (Ideal.span {C (X - C x), Y - C (C y)}) := by
     rw [Ideal.map_span, Set.image_pair]
@@ -1510,7 +1491,6 @@ theorem mk_mem_XYIdeal_iff {x y : F} (h : W.Equation x y) (P : F[X][Y]) :
   constructor
   · intro hP
     obtain ⟨Q, hQ, hQP⟩ := (Ideal.mem_map_iff_of_surjective _ AdjoinRoot.mk_surjective).mp hP
-
     obtain ⟨c, hc⟩ := AdjoinRoot.mk_eq_mk.mp hQP
     have hQ0 : Q.evalEval x y = 0 :=
       mem_span_C_X_sub_C_X_sub_C_iff_eval_eval_eq_zero.mp hQ
@@ -1565,12 +1545,10 @@ theorem eq_placeOfEquation_of_le_centre [IsAlgClosed F] [IsDedekindDomain W.Coor
     (hle : XYIdeal W x (C y) ≤ hv.centre) : v = placeOfEquation h := by
   obtain ⟨x', y', h', hveq⟩ := (isFinitePlace_iff_exists_placeOfEquation v).mp hv
   subst hveq
-
   have hc : hv.centre = XYIdeal W x' (C y') := by
     rw [Subsingleton.elim hv (isFinitePlace_placeOfEquation h')]
     exact centre_placeOfEquation h'
   rw [hc] at hle
-
   have heq : XYIdeal W x (C y) = XYIdeal W x' (C y') :=
     (CoordinateRing.XYIdeal_isMaximal h).eq_of_le (CoordinateRing.XYIdeal_isMaximal h').ne_top
       hle
@@ -1698,9 +1676,7 @@ private theorem _root_.AlgebraicCurve.Place.ord_sub_evalAt_pos (hrat : v.IsRatio
   have hmem : f - algebraMap K F (v.evalAt f) ∈ v.toValuationSubring :=
     sub_mem hf (v.algebraMap_mem' _)
   rcases eq_or_ne (v.ord (f - algebraMap K F (v.evalAt f))) 0 with h0 | h0
-  ·
-
-    exfalso
+  · exfalso
     refine v.evalAt_ne_zero hrat hne h0 ?_
     have hres : algebraMap K v.ResidueField
         (v.evalAt (f - algebraMap K F (v.evalAt f))) = 0 := by
@@ -1937,7 +1913,6 @@ theorem equation_map_polyToFunctionField_yGen :
   rw [zero_smul, zero_add, one_smul, one_mul, one_mul, zero_sub] at hrel
   have h2 := congrArg (algebraMap W.CoordinateRing W.FunctionField) hrel
   rw [map_mul, algebraMap_smul_basis, _root_.map_neg, neg_mul, ← sub_eq_add_neg] at h2
-
   simp only [map_a₁, map_a₂, map_a₃, map_a₄, map_a₆]
   simp only [map_add, map_mul, map_pow, polyToFunctionField_C] at h2
   rw [show yGen W = algebraMap W.CoordinateRing W.FunctionField (CoordinateRing.mk W Y)
@@ -2017,23 +1992,19 @@ theorem restrictAlong_placeOfEquation {x y : F} (h : W.Equation x y) {a b : F}
     (hdx : 0 < (placeOfEquation h).ord (ξ - algebraMap F W.FunctionField a))
     (hdy : 0 < (placeOfEquation h).ord (η - algebraMap F W.FunctionField b)) :
     (placeOfEquation h).restrictAlong ι hι = placeOfEquation h' := by
-
   have hfin : IsFinitePlace ((placeOfEquation h).restrictAlong ι hι) :=
     isFinitePlace_of_mem _ (by
       rw [Place.mem_restrictAlong_iff, hX]
       exact hreg)
-
   refine eq_placeOfEquation_of_le_centre hfin h' ?_
   rw [XYIdeal, Ideal.span_le]
   intro r hr
   simp only [Set.mem_insert_iff, Set.mem_singleton_iff] at hr
   rcases hr with rfl | rfl
-  ·
-    rw [SetLike.mem_coe, hfin.mem_centre_iff_ord_ne_zero (XClass_ne_zero _),
+  · rw [SetLike.mem_coe, hfin.mem_centre_iff_ord_ne_zero (XClass_ne_zero _),
       Place.ord_restrictAlong_ne_zero_iff, map_XClass ι hX]
     omega
-  ·
-    rw [SetLike.mem_coe, hfin.mem_centre_iff_ord_ne_zero (YClass_ne_zero _),
+  · rw [SetLike.mem_coe, hfin.mem_centre_iff_ord_ne_zero (YClass_ne_zero _),
       Place.ord_restrictAlong_ne_zero_iff, map_YClass ι hY]
     omega
 
@@ -2126,8 +2097,7 @@ theorem es1a8_coordSeamDataAt_of_restrictAlong_pbd
       rw [placeOfPoint_some] at hres
       have hpos := Place.ramificationIndexAlong_pos φ hφ v
       constructor
-      ·
-        have hsrc : 0 < (placeOfEquation h₃.left).ord
+      · have hsrc : 0 < (placeOfEquation h₃.left).ord
             (polyToFunctionField W X - algebraMap F W.FunctionField x₃) := by
           rw [show polyToFunctionField W X - algebraMap F W.FunctionField x₃
               = polyToFunctionField W (X - C x₃) by rw [map_sub, polyToFunctionField_C]]
@@ -2138,8 +2108,7 @@ theorem es1a8_coordSeamDataAt_of_restrictAlong_pbd
         rw [hres, map_sub, AlgHom.commutes] at htrans
         rw [htrans]
         exact mul_pos (by exact_mod_cast hpos) hsrc
-      ·
-        have hyeq : yGen W - algebraMap F W.FunctionField y₃
+      · have hyeq : yGen W - algebraMap F W.FunctionField y₃
             = algebraMap W.CoordinateRing W.FunctionField
                 ((-(C y₃) : F[X]) • (1 : W.CoordinateRing)
                   + (1 : F[X]) • CoordinateRing.mk W Y) := by
@@ -2577,7 +2546,6 @@ theorem es1a6_add_sumX_isAlgebraic_constant_point [IsAlgClosed F]
   simp only [WeierstrassCurve.map_a₁, WeierstrassCurve.map_a₂, WeierstrassCurve.map_a₃, WeierstrassCurve.map_a₄,
     WeierstrassCurve.map_a₆] at heq
   rw [← hc] at heq
-
   have hq0 : (X ^ 2 + C (W.a₁ * c + W.a₃) * X
       - C (c ^ 3 + W.a₂ * c ^ 2 + W.a₄ * c + W.a₆) : F[X]) ≠ 0 := by
     intro hq
@@ -2899,17 +2867,14 @@ theorem es1a4_negDatum_seam_some {x₀ y₀ : F} (h : W.Nonsingular x₀ y₀) :
     (placeOfEquation h.left).restrictAlong (es1a4_negPullbackHom W)
         (es1a4_negPullbackHom_isIntegral W)
       = placeOfEquation ((nonsingular_neg x₀ y₀).mpr h).left := by
-
   have hreg : polyToFunctionField W X ∈ (placeOfEquation h.left).toValuationSubring :=
     isFinitePlace_placeOfEquation h.left (algebraMap F[X] W.CoordinateRing X)
-
   have hdx : 0 < (placeOfEquation h.left).ord
       (polyToFunctionField W X - algebraMap F W.FunctionField x₀) := by
     rw [show polyToFunctionField W X - algebraMap F W.FunctionField x₀
         = polyToFunctionField W (X - C x₀) by rw [map_sub, polyToFunctionField_C]]
     refine (ord_polyToFunctionField_pos_iff h.left (X_sub_C_ne_zero x₀)).mpr ?_
     simp
-
   have hdy : 0 < (placeOfEquation h.left).ord
       (es1a4_negYGen W - algebraMap F W.FunctionField (W.negY x₀ y₀)) := by
     have hrbasis : -(CoordinateRing.YClass W (C y₀))
@@ -3230,7 +3195,6 @@ theorem es1a10_ncPole_poleData {a₁ a₂ a₃ a₄ a₆ : K} {ξp ηp : F}
   have hword : v.ord ξp⁻¹ = -v.ord ξp := v.ord_inv ξp
   have hwvan : es1a10_ncPole_vanishesAt v ξp⁻¹ := Or.inr (by rw [hword]; omega)
   have hwmem : ξp⁻¹ ∈ v.toValuationSubring := es1a10_ncPole_mem_of_vanishesAt v hwvan
-
   have hu₁red : es1a10_ncPole_reducesTo v
       (1 + algebraMap K F a₂ * ξp⁻¹ + algebraMap K F a₄ * ξp⁻¹ ^ 2
         + algebraMap K F a₆ * ξp⁻¹ ^ 3) 1 := by
@@ -3249,7 +3213,6 @@ theorem es1a10_ncPole_poleData {a₁ a₂ a₃ a₄ a₆ : K} {ξp ηp : F}
           (es1a10_ncPole_vanishesAt_mem_mul v (v.algebraMap_mem' a₆) hwvan) hwmem)
         hwmem)
   obtain ⟨hu₁0, hu₁ord⟩ := es1a10_ncPole_reducesTo_ord_eq_zero v hu₁red one_ne_zero
-
   have hprod : ηp * (ηp + (algebraMap K F a₁ * ξp + algebraMap K F a₃)) * ξp⁻¹ ^ 3
       = 1 + algebraMap K F a₂ * ξp⁻¹ + algebraMap K F a₄ * ξp⁻¹ ^ 2
         + algebraMap K F a₆ * ξp⁻¹ ^ 3 := by
@@ -3264,7 +3227,6 @@ theorem es1a10_ncPole_poleData {a₁ a₂ a₃ a₄ a₆ : K} {ξp ηp : F}
     intro h
     rw [h, mul_zero, zero_mul] at hprod
     exact hu₁0 hprod.symm
-
   have hword3 : v.ord (ξp⁻¹ ^ 3) = 3 * v.ord ξp⁻¹ := by
     rw [pow_succ, pow_succ, pow_one, v.ord_mul (mul_ne_zero hw0 hw0) hw0,
       v.ord_mul hw0 hw0]
@@ -3279,7 +3241,6 @@ theorem es1a10_ncPole_poleData {a₁ a₂ a₃ a₄ a₆ : K} {ξp ηp : F}
     rw [v.ord_mul (mul_ne_zero hη0 hSp0) (pow_ne_zero 3 hw0),
       v.ord_mul hη0 hSp0, hword3] at h1
     omega
-
   have hs : algebraMap K F a₁ * ξp + algebraMap K F a₃ = 0
       ∨ (algebraMap K F a₁ * ξp + algebraMap K F a₃ ≠ 0
         ∧ v.ord ξp ≤ v.ord (algebraMap K F a₁ * ξp + algebraMap K F a₃)) := by
@@ -3317,7 +3278,6 @@ theorem es1a10_ncPole_poleData {a₁ a₂ a₃ a₄ a₆ : K} {ξp ηp : F}
           omega
         · rw [hmin, hmulord, es1a10_ncPole_ord_algebraMap]
           omega
-
   have hkn : v.ord ηp < v.ord ξp := by
     by_contra hge
     rw [not_lt] at hge
@@ -3331,7 +3291,6 @@ theorem es1a10_ncPole_poleData {a₁ a₂ a₃ a₄ a₆ : K} {ξp ηp : F}
               le_min hge hsord
           _ ≤ _ := v.min_ord_le_ord_add hSp0
     omega
-
   have hSpk : v.ord (ηp + (algebraMap K F a₁ * ξp + algebraMap K F a₃))
       = v.ord ηp := by
     rcases hs with h0 | ⟨hs0, hsord⟩
@@ -3339,7 +3298,6 @@ theorem es1a10_ncPole_poleData {a₁ a₂ a₃ a₄ a₆ : K} {ξp ηp : F}
     · rw [v.ord_add_eq_min hη0 hs0 (by omega)]
       exact min_eq_left (by omega)
   have hk23 : 2 * v.ord ηp = 3 * v.ord ξp := by omega
-
   have hword2 : v.ord (ξp⁻¹ ^ 2) = 2 * v.ord ξp⁻¹ := by
     rw [pow_two, v.ord_mul hw0 hw0]
     ring
@@ -3347,7 +3305,6 @@ theorem es1a10_ncPole_poleData {a₁ a₂ a₃ a₄ a₆ : K} {ξp ηp : F}
     refine Or.inr ?_
     rw [v.ord_mul hη0 (pow_ne_zero 2 hw0), hword2]
     omega
-
   have hid : ηp ^ 2 * ξp⁻¹ ^ 3
       = (1 + algebraMap K F a₂ * ξp⁻¹ + algebraMap K F a₄ * ξp⁻¹ ^ 2
           + algebraMap K F a₆ * ξp⁻¹ ^ 3)
@@ -3439,7 +3396,6 @@ theorem es1a10_ncPole_addX_core {a₁ a₂ a₃ a₄ a₆ : K} {ξp ηp ξf ηf 
   have h3mem : (3 : F) ∈ v.toValuationSubring := by
     have h := v.algebraMap_mem' (3 : K)
     rwa [map_ofNat] at h
-
   have hu₂red : es1a10_ncPole_reducesTo v (1 - ξf * ξp⁻¹) 1 := by
     show es1a10_ncPole_vanishesAt v _
     rw [show (1 : F) - ξf * ξp⁻¹ - algebraMap K F 1 = -(ξf * ξp⁻¹) by
@@ -3449,7 +3405,6 @@ theorem es1a10_ncPole_addX_core {a₁ a₂ a₃ a₄ a₆ : K} {ξp ηp ξf ηf 
   have hu₂0 : (1 : F) - ξf * ξp⁻¹ ≠ 0 :=
     (es1a10_ncPole_reducesTo_ord_eq_zero v hu₂red one_ne_zero).1
   have hkey := es1a10_ncPole_addX_key (K := K) (F := F) hξ0 heqp heqf hΛ
-
   have hw2van : es1a10_ncPole_vanishesAt v (ξp⁻¹ ^ 2) := by
     rw [pow_two]
     exact es1a10_ncPole_vanishesAt_mul_mem v hwvan hwmem
@@ -3479,7 +3434,6 @@ theorem es1a10_ncPole_addX_core {a₁ a₂ a₃ a₄ a₆ : K} {ξp ηp ξf ηf 
         (es1a10_ncPole_vanishesAt_mem_mul v hAmem hwvan)
         (es1a10_ncPole_vanishesAt_mem_mul v hBmem hw2van))
       (es1a10_ncPole_vanishesAt_mem_mul v hCmem hηw2)
-
   have hu₂sq : es1a10_ncPole_reducesTo v ((1 - ξf * ξp⁻¹) ^ 2) 1 := by
     rw [pow_two]
     have h := es1a10_ncPole_reducesTo_mul v hu₂red hu₂red
@@ -3529,10 +3483,8 @@ theorem es1a10_ncPole_addY_core {a₁ a₂ a₃ a₄ a₆ : K} {ξp ηp ξf ηf 
   have hu₂0 : (1 : F) - ξf * ξp⁻¹ ≠ 0 :=
     (es1a10_ncPole_reducesTo_ord_eq_zero v hu₂red one_ne_zero).1
   have hkey := es1a10_ncPole_addX_key (K := K) (F := F) hξ0 heqp heqf hΛ
-
   have h4 : Λ * (1 - ξf * ξp⁻¹) = (ηp - ηf) * ξp⁻¹ := by
     linear_combination ξp⁻¹ * hΛ - Λ * hξw
-
   have hmaster : (Λ * (Λ ^ 2 + algebraMap K F a₁ * Λ - algebraMap K F a₂ - ξp - ξf - ξf)
         + (ηf + ηf + algebraMap K F a₁ * ξf + algebraMap K F a₃))
         * (1 - ξf * ξp⁻¹) ^ 3
@@ -3558,7 +3510,6 @@ theorem es1a10_ncPole_addY_core {a₁ a₂ a₃ a₄ a₆ : K} {ξp ηp ξf ηf 
             * (1 - ξf * ξp⁻¹) ^ 3 by ring]
     rw [h4, hkey]
     ring
-
   have hu₂cube : es1a10_ncPole_reducesTo v ((1 - ξf * ξp⁻¹) ^ 3) 1 := by
     rw [show ((1 : F) - ξf * ξp⁻¹) ^ 3
         = ((1 - ξf * ξp⁻¹) * (1 - ξf * ξp⁻¹)) * (1 - ξf * ξp⁻¹) by ring]
@@ -3578,7 +3529,6 @@ theorem es1a10_ncPole_addY_core {a₁ a₂ a₃ a₄ a₆ : K} {ξp ηp ξf ηf 
         + (1 - ξf * ξp⁻¹) ^ 3) := by
     have h := es1a10_ncPole_reducesTo_add v hbr hu₂cube
     exact es1a10_ncPole_vanishesAt_of_reducesTo_zero v (by simpa using h)
-
   have hw2van : es1a10_ncPole_vanishesAt v (ξp⁻¹ ^ 2) := by
     rw [pow_two]
     exact es1a10_ncPole_vanishesAt_mul_mem v hwvan hwmem
@@ -3612,7 +3562,6 @@ theorem es1a10_ncPole_addY_core {a₁ a₂ a₃ a₄ a₆ : K} {ξp ηp ξf ηf 
         (es1a10_ncPole_vanishesAt_add v
           (es1a10_ncPole_vanishesAt_mul_mem v hw2van hAmem)
           (es1a10_ncPole_vanishesAt_mul_mem v hw3van hBmem)))
-
   have hBfmem : ηf + ηf + algebraMap K F a₁ * ξf + algebraMap K F a₃
       ∈ v.toValuationSubring :=
     add_mem (add_mem (add_mem hyf hyf) (mul_mem (v.algebraMap_mem' a₁) hxf))
@@ -3725,7 +3674,6 @@ theorem es1a10_ncPole_mixedOne_seamData (v : AlgebraicCurve.Place F W.FunctionFi
     exact div_mul_cancel₀ _ hδ0
   have hXcore := es1a10_ncPole_addX_core v heqp heqf hpole hxf hyf hΛ
   have hYcore := es1a10_ncPole_addY_core v heqp heqf hpole hxf hyf hΛ
-
   have hXred : es1a10_ncPole_reducesTo v (es1a6_addSumX W φ₁ φ₂) c := by
     show es1a10_ncPole_vanishesAt v
       (es1a6_addSumX W φ₁ φ₂ - algebraMap F W.FunctionField c)
@@ -3751,7 +3699,6 @@ theorem es1a10_ncPole_mixedOne_seamData (v : AlgebraicCurve.Place F W.FunctionFi
       ring
     rw [hid]
     exact es1a10_ncPole_vanishesAt_add v hXcore hrx₂
-
   have hYred : es1a10_ncPole_reducesTo v (es1a6_addSumY W φ₁ φ₂) d := by
     show es1a10_ncPole_vanishesAt v
       (es1a6_addSumY W φ₁ φ₂ - algebraMap F W.FunctionField d)
@@ -3839,7 +3786,6 @@ theorem es1a10_ncPole_mixedTwo_seamData (v : AlgebraicCurve.Place F W.FunctionFi
     ring
   have hXcore := es1a10_ncPole_addX_core v heqp heqf hpole hxf hyf hΛ
   have hYcore := es1a10_ncPole_addY_core v heqp heqf hpole hxf hyf hΛ
-
   have hXred : es1a10_ncPole_reducesTo v (es1a6_addSumX W φ₁ φ₂) c := by
     show es1a10_ncPole_vanishesAt v
       (es1a6_addSumX W φ₁ φ₂ - algebraMap F W.FunctionField c)
@@ -3865,7 +3811,6 @@ theorem es1a10_ncPole_mixedTwo_seamData (v : AlgebraicCurve.Place F W.FunctionFi
       ring
     rw [hid]
     exact es1a10_ncPole_vanishesAt_add v hXcore hrx₁
-
   have hYred : es1a10_ncPole_reducesTo v (es1a6_addSumY W φ₁ φ₂) d := by
     show es1a10_ncPole_vanishesAt v
       (es1a6_addSumY W φ₁ φ₂ - algebraMap F W.FunctionField d)
@@ -3923,7 +3868,6 @@ theorem es1a10_ncPole_bothPole_notMem (v : AlgebraicCurve.Place F W.FunctionFiel
     (hpole₂ : φ₂ (polyToFunctionField W X) ∉ v.toValuationSubring) :
     es1a6_addSumX W φ₁ φ₂ ∉ v.toValuationSubring := by
   intro hmem
-
   have heq₃ := es1a6_addSum_equation W φ₁ φ₂ hcol
   rw [equation_iff] at heq₃
   simp only [WeierstrassCurve.map_a₁, WeierstrassCurve.map_a₂, WeierstrassCurve.map_a₃, WeierstrassCurve.map_a₄,
@@ -3982,15 +3926,12 @@ theorem es1a10_ncPole_bothPole_notMem (v : AlgebraicCurve.Place F W.FunctionFiel
       exact AlgebraicCurve.Place.ord_nonneg_of_mem v hRmem
     rw [v.ord_mul hy0 hS0] at hLord
     omega
-
   have h₁L := es1a6_add_nonsingular W hΔ φ₁
   have h₂L := es1a6_add_nonsingular W hΔ φ₂
   have h₃L := es1a6_addSum_nonsingular W φ₁ φ₂ hΔ hcol
-
   have hadd9 : Point.some _ _ h₁L + Point.some _ _ h₂L
       = Point.some (es1a6_addSumX W φ₁ φ₂) (es1a6_addSumY W φ₁ φ₂) h₃L :=
     Point.add_some (h₁ := h₁L) (h₂ := h₂L) hcol
-
   have hgrp : Point.some (es1a6_addSumX W φ₁ φ₂) (es1a6_addSumY W φ₁ φ₂) h₃L
       + -(Point.some _ _ h₁L) = Point.some _ _ h₂L := by
     rw [← hadd9, add_comm (Point.some _ _ h₁L) (Point.some _ _ h₂L),
@@ -4001,7 +3942,6 @@ theorem es1a10_ncPole_bothPole_notMem (v : AlgebraicCurve.Place F W.FunctionFiel
   rw [Point.add_of_X_ne hne₃₁] at hgrp
   rw [Point.some.injEq] at hgrp
   obtain ⟨hx2eq, -⟩ := hgrp
-
   have heq₁ := es1a10_ncPole_phi_equation (W := W) φ₁
   have hnegYdef : (W.map (algebraMap F W.FunctionField)).toAffine.negY
       (φ₁ (polyToFunctionField W X)) (φ₁ (yGen W))
@@ -4023,7 +3963,6 @@ theorem es1a10_ncPole_bothPole_notMem (v : AlgebraicCurve.Place F W.FunctionFiel
         + algebraMap F W.FunctionField W.a₆ := by
     rw [hnegYdef]
     linear_combination heq₁
-
   have heqf₃ : es1a6_addSumY W φ₁ φ₂ ^ 2
       + algebraMap F W.FunctionField W.a₁ * es1a6_addSumX W φ₁ φ₂
         * es1a6_addSumY W φ₁ φ₂
@@ -4036,7 +3975,6 @@ theorem es1a10_ncPole_bothPole_notMem (v : AlgebraicCurve.Place F W.FunctionFiel
     rw [equation_iff] at h
     simpa only [WeierstrassCurve.map_a₁, WeierstrassCurve.map_a₂, WeierstrassCurve.map_a₃, WeierstrassCurve.map_a₄,
       WeierstrassCurve.map_a₆] using h
-
   have hsl₃ : (W.map (algebraMap F W.FunctionField)).toAffine.slope
       (es1a6_addSumX W φ₁ φ₂) (φ₁ (polyToFunctionField W X))
       (es1a6_addSumY W φ₁ φ₂)
@@ -4058,9 +3996,7 @@ theorem es1a10_ncPole_bothPole_notMem (v : AlgebraicCurve.Place F W.FunctionFiel
         - es1a6_addSumY W φ₁ φ₂ := by
     rw [hsl₃, div_mul_eq_mul_div, div_eq_iff (sub_ne_zero.mpr hne₃₁)]
     ring
-
   have hXcore := es1a10_ncPole_addX_core v heqp' heqf₃ hpole₁ hmem hy₃mem hΛ₃
-
   have hid₂ : φ₂ (polyToFunctionField W X)
       = ((W.map (algebraMap F W.FunctionField)).toAffine.slope
             (es1a6_addSumX W φ₁ φ₂) (φ₁ (polyToFunctionField W X))
@@ -4407,9 +4343,7 @@ theorem es1a10_ncVertical_slope_ord_neg (v : AlgebraicCurve.Place F W.FunctionFi
   have hry₂ : es1a10_ncVertical_reducesTo v (φ₂ (yGen W)) d₂ :=
     es1a10_ncVertical_reducesTo_of_ord_pos v hy₂
   by_cases hξ : φ₁ (polyToFunctionField W X) = φ₂ (polyToFunctionField W X)
-  ·
-
-    rcases Y_eq_of_X_eq (es1a6_add_equation W φ₁) (es1a6_add_equation W φ₂) hξ with
+  · rcases Y_eq_of_X_eq (es1a6_add_equation W φ₁) (es1a6_add_equation W φ₂) hξ with
       hη | hcc
     · have hd : d₁ = d₂ := by
         by_contra hd
@@ -4475,8 +4409,7 @@ theorem es1a10_ncVertical_slope_ord_neg (v : AlgebraicCurve.Place F W.FunctionFi
       simp only [WeierstrassCurve.map_a₁, WeierstrassCurve.map_a₂, WeierstrassCurve.map_a₄]
       exact es1a10_ncVertical_ord_div_neg v hN0 hNord hdenne hdenord
     · exact absurd ⟨hξ, hcc⟩ hcol
-  ·
-    have hxden_ne : φ₁ (polyToFunctionField W X) - φ₂ (polyToFunctionField W X) ≠ 0 :=
+  · have hxden_ne : φ₁ (polyToFunctionField W X) - φ₂ (polyToFunctionField W X) ≠ 0 :=
       sub_ne_zero.mpr hξ
     have hxden_red : es1a10_ncVertical_reducesTo v
         (φ₁ (polyToFunctionField W X) - φ₂ (polyToFunctionField W X)) (c - c) :=
@@ -4489,9 +4422,7 @@ theorem es1a10_ncVertical_slope_ord_neg (v : AlgebraicCurve.Place F W.FunctionFi
       es1a10_ncVertical_ord_pos_of_vanishesAt_of_ne v hxden_van hxden_ne
     rw [slope_of_X_ne hξ]
     by_cases hd : d₁ = d₂
-    ·
-
-      have heq₁ := es1a6_add_equation W φ₁
+    · have heq₁ := es1a6_add_equation W φ₁
       have heq₂ := es1a6_add_equation W φ₂
       rw [equation_iff'] at heq₁ heq₂
       simp only [WeierstrassCurve.map_a₁, WeierstrassCurve.map_a₂, WeierstrassCurve.map_a₃, WeierstrassCurve.map_a₄,
@@ -4590,9 +4521,7 @@ theorem es1a10_ncVertical_slope_ord_neg (v : AlgebraicCurve.Place F W.FunctionFi
         linear_combination heq₁ - heq₂
       rw [hslope_eq]
       exact es1a10_ncVertical_ord_div_neg v hN0 hNord hD0 hDord
-    ·
-
-      have hnum_red : es1a10_ncVertical_reducesTo v
+    · have hnum_red : es1a10_ncVertical_reducesTo v
           (φ₁ (yGen W) - φ₂ (yGen W)) (d₁ - d₂) :=
         es1a10_ncVertical_reducesTo_sub v hry₁ hry₂
       obtain ⟨hnum0, hnumord⟩ :=
@@ -5066,7 +4995,6 @@ theorem es1a9_chordCase_seamData_nc (v : AlgebraicCurve.Place F W.FunctionField)
     es1a9_reducesTo_of_ord_pos_nc v hy₂
   have hxne : φ₁ (polyToFunctionField W X) ≠ φ₂ (polyToFunctionField W X) :=
     es1a9_ne_of_reducesTo_ne_nc v hrx₁ hrx₂ hne
-
   have hsl : es1a9_reducesTo_nc v
       ((W.map (algebraMap F W.FunctionField)).toAffine.slope
         (φ₁ (polyToFunctionField W X)) (φ₂ (polyToFunctionField W X))
@@ -5116,15 +5044,13 @@ theorem es1a9_tangentCase_seamData_nc (v : AlgebraicCurve.Place F W.FunctionFiel
     es1a9_reducesTo_of_ord_pos_nc v hx₂
   have hry₂ : es1a9_reducesTo_nc v (φ₂ (yGen W)) d :=
     es1a9_reducesTo_of_ord_pos_nc v hy₂
-
   have hsl : es1a9_reducesTo_nc v
       ((W.map (algebraMap F W.FunctionField)).toAffine.slope
         (φ₁ (polyToFunctionField W X)) (φ₂ (polyToFunctionField W X))
         (φ₁ (yGen W)) (φ₂ (yGen W)))
       (W.slope c c d d) := by
     by_cases hξ : φ₁ (polyToFunctionField W X) = φ₂ (polyToFunctionField W X)
-    ·
-      have hyne : φ₁ (yGen W)
+    · have hyne : φ₁ (yGen W)
           ≠ (W.map (algebraMap F W.FunctionField)).toAffine.negY
             (φ₂ (polyToFunctionField W X)) (φ₂ (yGen W)) :=
         fun hyy => hcol ⟨hξ, hyy⟩
@@ -5143,9 +5069,7 @@ theorem es1a9_tangentCase_seamData_nc (v : AlgebraicCurve.Place F W.FunctionFiel
           (es1a9_reducesTo_mul_nc v (es1a9_reducesTo_algebraMap_nc v W.a₁) hry₁))
         (es1a9_reducesTo_sub_nc v hry₁ (es1a9_negY_reducesTo_nc v hrx₁ hry₁))
         (sub_ne_zero.mpr h2tor)
-    ·
-
-      have heq₁ := es1a6_add_equation W φ₁
+    · have heq₁ := es1a6_add_equation W φ₁
       have heq₂ := es1a6_add_equation W φ₂
       rw [equation_iff'] at heq₁ heq₂
       simp only [WeierstrassCurve.map_a₁, WeierstrassCurve.map_a₂, WeierstrassCurve.map_a₃, WeierstrassCurve.map_a₄,
@@ -5328,9 +5252,7 @@ theorem mmr73_cs_evalAt_eq_of_ord_sub_pos (v : Place K F) (hv : v.IsRational)
   have _pin := Classical.em True
   by_contra hne
   rcases eq_or_ne (f - algebraMap K F (v.evalAt f)) 0 with h0 | hne0
-  ·
-
-    have hfa : f - algebraMap K F a = algebraMap K F (v.evalAt f - a) := by
+  · have hfa : f - algebraMap K F a = algebraMap K F (v.evalAt f - a) := by
       rw [map_sub, ← sub_eq_zero.mp h0]
     rw [hfa, AlgebraicCurve.Place.ord_algebraMap v] at hpos
     exact lt_irrefl 0 hpos
@@ -5394,7 +5316,6 @@ theorem mmr73_cs_geomMorph_some_coords (D : IsogenyEndDatum W) (Q : W.Point)
     (placeOfPoint Q).isRational_of_deg_eq_one (deg_placeOfPoint Q)
   have hseam := D.placeOfPoint_geomMorph Q
   rw [hQ, placeOfPoint_some] at hseam
-
   have hXsub_eq : polyToFunctionField W X - algebraMap F W.FunctionField a
       = algebraMap W.CoordinateRing W.FunctionField
           (CoordinateRing.mk W (C (X - C a))) := by
@@ -5418,7 +5339,6 @@ theorem mmr73_cs_geomMorph_some_coords (D : IsogenyEndDatum W) (Q : W.Point)
     exact mul_pos
       (by exact_mod_cast Place.ramificationIndexAlong_pos D.ι D.hι (placeOfPoint Q))
       hposX
-
   have hYsub_eq : yGen W - algebraMap F W.FunctionField b
       = algebraMap W.CoordinateRing W.FunctionField
           (CoordinateRing.mk W (Y - C (C b))) := by
@@ -5474,7 +5394,6 @@ theorem mmr73_cs_geomMorph_add_eq_of_addSum_const (D₁ D₂ : IsogenyEndDatum W
   have _pin := Classical.em True
   have hrat : (placeOfPoint Q).IsRational :=
     (placeOfPoint Q).isRational_of_deg_eq_one (deg_placeOfPoint Q)
-
   have hxne : polyToFunctionField W X ≠ 0 :=
     polyToFunctionField_ne_zero Polynomial.X_ne_zero
   have hyne : yGen W ≠ 0 := Y_image_ne_zero
@@ -5484,7 +5403,6 @@ theorem mmr73_cs_geomMorph_add_eq_of_addSum_const (D₁ D₂ : IsogenyEndDatum W
   have hg₂ne : D₂.ι (yGen W) ≠ 0 := mmr73_cs_iota_ne_zero D₂ hyne
   have hδne : D₁.ι (polyToFunctionField W X) - D₂.ι (polyToFunctionField W X) ≠ 0 :=
     sub_ne_zero.mpr hX
-
   have hm₁x : D₁.ι (polyToFunctionField W X) ∈ (placeOfPoint Q).toValuationSubring :=
     AlgebraicCurve.Place.mem_of_ord_nonneg (placeOfPoint Q) hf₁ne h1.ge
   have hm₂x : D₂.ι (polyToFunctionField W X) ∈ (placeOfPoint Q).toValuationSubring :=
@@ -5493,7 +5411,6 @@ theorem mmr73_cs_geomMorph_add_eq_of_addSum_const (D₁ D₂ : IsogenyEndDatum W
     AlgebraicCurve.Place.mem_of_ord_nonneg (placeOfPoint Q) hg₁ne h3.ge
   have hm₂y : D₂.ι (yGen W) ∈ (placeOfPoint Q).toValuationSubring :=
     AlgebraicCurve.Place.mem_of_ord_nonneg (placeOfPoint Q) hg₂ne h4.ge
-
   have hsome₁ : ∃ (a b : F) (hab : W.Nonsingular a b),
       D₁.geomMorph Q = Point.some a b hab := by
     rcases hP : D₁.geomMorph Q with _ | ⟨a, b, hab⟩
@@ -5510,7 +5427,6 @@ theorem mmr73_cs_geomMorph_add_eq_of_addSum_const (D₁ D₂ : IsogenyEndDatum W
   obtain ⟨a₂, b₂, hab₂, hP₂⟩ := hsome₂
   obtain ⟨ha₁, hb₁⟩ := mmr73_cs_geomMorph_some_coords D₁ Q hP₁ hm₁x hm₁y
   obtain ⟨ha₂, hb₂⟩ := mmr73_cs_geomMorph_some_coords D₂ Q hP₂ hm₂x hm₂y
-
   have hsubne : (placeOfPoint Q).evalAt
       (D₁.ι (polyToFunctionField W X) - D₂.ι (polyToFunctionField W X)) ≠ 0 :=
     (placeOfPoint Q).evalAt_ne_zero hrat hδne h5
@@ -5520,7 +5436,6 @@ theorem mmr73_cs_geomMorph_add_eq_of_addSum_const (D₁ D₂ : IsogenyEndDatum W
     rw [(placeOfPoint Q).evalAt_sub hrat hm₁x hm₂x, ha₁, ha₂]
   have hane' : a₁ - a₂ ≠ 0 := hsubeq ▸ hsubne
   have hane : a₁ ≠ a₂ := sub_ne_zero.mp hane'
-
   obtain ⟨Λ, hΛdef⟩ : ∃ L : W.FunctionField, L = (D₁.ι (yGen W) - D₂.ι (yGen W))
       / (D₁.ι (polyToFunctionField W X) - D₂.ι (polyToFunctionField W X)) :=
     ⟨_, rfl⟩
@@ -5535,12 +5450,10 @@ theorem mmr73_cs_geomMorph_add_eq_of_addSum_const (D₁ D₂ : IsogenyEndDatum W
       = D₁.ι (yGen W) - D₂.ι (yGen W) := by
     rw [hΛdef]
     exact div_mul_cancel₀ _ hδne
-
   have hslope : W.slope a₁ a₂ b₁ b₂ = (placeOfPoint Q).evalAt Λ := by
     rw [slope_of_X_ne hane, div_eq_iff hane', ← hb₁, ← hb₂,
       ← (placeOfPoint Q).evalAt_sub hrat hm₁y hm₂y, ← hsubeq,
       ← (placeOfPoint Q).evalAt_mul hrat hΛmem (sub_mem hm₁x hm₂x), hΛmul]
-
   have hΛΛ : Λ * Λ ∈ (placeOfPoint Q).toValuationSubring := mul_mem hΛmem hΛmem
   have hA1Λ : algebraMap F W.FunctionField W.a₁ * Λ
       ∈ (placeOfPoint Q).toValuationSubring :=
@@ -5558,7 +5471,6 @@ theorem mmr73_cs_geomMorph_add_eq_of_addSum_const (D₁ D₂ : IsogenyEndDatum W
       - algebraMap F W.FunctionField W.a₂ - D₁.ι (polyToFunctionField W X)
       - D₂.ι (polyToFunctionField W X)
       ∈ (placeOfPoint Q).toValuationSubring := sub_mem hu3 hm₂x
-
   have hBX : (placeOfPoint Q).evalAt
       (Λ * Λ + algebraMap F W.FunctionField W.a₁ * Λ
         - algebraMap F W.FunctionField W.a₂ - D₁.ι (polyToFunctionField W X)
@@ -5573,7 +5485,6 @@ theorem mmr73_cs_geomMorph_add_eq_of_addSum_const (D₁ D₂ : IsogenyEndDatum W
       (placeOfPoint Q).evalAt_mul hrat ((placeOfPoint Q).algebraMap_mem' W.a₁) hΛmem,
       (placeOfPoint Q).evalAt_algebraMap W.a₁,
       (placeOfPoint Q).evalAt_algebraMap W.a₂, ha₁, ha₂]
-
   have hX0 : es1a6_addSumX W D₁.ι D₂.ι
       = Λ * Λ + algebraMap F W.FunctionField W.a₁ * Λ
         - algebraMap F W.FunctionField W.a₂ - D₁.ι (polyToFunctionField W X)
@@ -5597,7 +5508,6 @@ theorem mmr73_cs_geomMorph_add_eq_of_addSum_const (D₁ D₂ : IsogenyEndDatum W
     simp only [addY, negAddY, negY, addX, WeierstrassCurve.map_a₁, WeierstrassCurve.map_a₂,
       WeierstrassCurve.map_a₃]
     ring
-
   have hU1 : Λ * Λ + algebraMap F W.FunctionField W.a₁ * Λ
       - algebraMap F W.FunctionField W.a₂ - D₁.ι (polyToFunctionField W X)
       - D₂.ι (polyToFunctionField W X) - D₁.ι (polyToFunctionField W X)
@@ -5645,19 +5555,16 @@ theorem mmr73_cs_geomMorph_add_eq_of_addSum_const (D₁ D₂ : IsogenyEndDatum W
       (placeOfPoint Q).evalAt_mul hrat ((placeOfPoint Q).algebraMap_mem' W.a₁) hU,
       hBX, (placeOfPoint Q).evalAt_algebraMap W.a₁,
       (placeOfPoint Q).evalAt_algebraMap W.a₃, ha₁, hb₁]
-
   rw [hP₁, hP₂, Point.add_of_X_ne hane]
   refine mmr48_sp_point_some_congr ?_ ?_ _ hcd
-  ·
-    rw [hslope]
+  · rw [hslope]
     have h0 : (placeOfPoint Q).evalAt (es1a6_addSumX W D₁.ι D₂.ι) = c := by
       rw [hx, (placeOfPoint Q).evalAt_algebraMap c]
     rw [hX0, hBX] at h0
     rw [← h0]
     simp only [addX]
     ring
-  ·
-    rw [hslope]
+  · rw [hslope]
     have h0 : (placeOfPoint Q).evalAt (es1a6_addSumY W D₁.ι D₂.ι) = d := by
       rw [hy, (placeOfPoint Q).evalAt_algebraMap d]
     rw [hY0, hBY] at h0
@@ -6078,31 +5985,22 @@ theorem kw_hk5f_addGeomMorphSupply_of_atoms
     (hifd : kw_hk5f_addIntegralFiniteDataAt W) :
     KwIsogenyEndAddGeomMorphSupply W := by
   intro D₁ D₂ h0
-
   have hcol : ¬ es1a6_addCollapse W D₁.ι D₂.ι := by
     have := es1a8_add_not_collapse_of_pointEnd_add_ne_zero_cmp D₁ D₂ h0
     rwa [show es1a8_addCollapse_cmp W D₁.ι D₂.ι = es1a6_addCollapse W D₁.ι D₂.ι from rfl]
       at this
-
   have hnc := hg D₁ D₂ h0
-
   have htr : Function.Injective
       (Polynomial.aeval (R := F) (es1a6_addSumX W D₁.ι D₂.ι)) :=
     es1a6_add_aeval_sumX_injective_of_forall_ne W D₁.ι D₂.ι hnc
-
   obtain ⟨hι, hfin⟩ := hifd D₁ D₂ hcol htr
-
   refine ⟨⟨es1a6_addSumPullbackHom W D₁.ι D₂.ι hcol htr, hι, hfin⟩, fun P => ?_⟩
-
   have h1 := kw_coordSeamDataAt_geomMorph D₁ P
   have h2 := kw_coordSeamDataAt_geomMorph D₂ P
-
   have hsum := hncseam D₁.ι D₂.ι hcol hnc (placeOfPoint P)
     (D₁.geomMorph P) (D₂.geomMorph P) h1 h2
-
   have hseam := es1a6_addSumSeam_of_data D₁.ι D₂.ι hcol htr hι P
     (D₁.geomMorph P + D₂.geomMorph P) hsum
-
   exact placeOfPoint_injective
     (((⟨_, hι, hfin⟩ : IsogenyEndDatum W).placeOfPoint_geomMorph P).symm.trans hseam)
 

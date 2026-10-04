@@ -19,14 +19,12 @@ theorem solution
   set S : Subfield F := (frobenius F p).fieldRange with hS
   have : IsSimpleOrder (IntermediateField S F) :=
     IntermediateField.isSimpleOrder_of_finrank_prime S F (by rw [hdeg]; exact Fact.out)
-
   set D := KaehlerDifferential.D E F with hD
   have hDS : ∀ s : F, s ∈ S → D s = 0 := by
     intro s hs
     obtain ⟨a, rfl⟩ := RingHom.mem_fieldRange.mp hs
     rw [frobenius_def, D.leibniz_pow, ← Nat.cast_smul_eq_nsmul F, CharP.cast_eq_zero, zero_smul]
   have hDy : D (algebraMap E F y) = 0 := D.map_algebraMap y
-
   let Z : IntermediateField S F :=
     { carrier := {z | D z = 0}
       mul_mem' := by
@@ -61,7 +59,6 @@ theorem solution
   have hD0 : ∀ z : F, D z = 0 := fun z => by
     have hz : z ∈ Z := hZ ▸ IntermediateField.mem_top
     exact hz
-
   have : Subsingleton (KaehlerDifferential E F) := by
     refine subsingleton_of_forall_eq 0 fun ω => ?_
     have hω : ω ∈ Submodule.span F (Set.range D) := by

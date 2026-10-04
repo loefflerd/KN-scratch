@@ -117,14 +117,12 @@ private theorem DOM_mem_of_ord_sub_pos (w : Place K F) {t : F} {c : K}
 
 private theorem DOM_forall_mem_of_mem (t : F) (w : Place K F) (ht : t ∈ w.toValuationSubring)
     (a : DOM_normalization K t) : (a : F) ∈ w.toValuationSubring := by
-
   have hadj : ∀ x : F, x ∈ Algebra.adjoin K ({t} : Set F) → x ∈ w.toValuationSubring := by
     intro x hx
     refine Algebra.adjoin_induction (fun y hy => ?_) (fun c => w.algebraMap_mem' c)
       (fun _ _ _ _ hx hy => add_mem hx hy) (fun _ _ _ _ hx hy => mul_mem hx hy) hx
     rw [Set.mem_singleton_iff.mp hy]
     exact ht
-
   obtain ⟨P, hPmonic, hPeval⟩ : IsIntegral (Algebra.adjoin K ({t} : Set F)) (a : F) := a.2
   refine w.mem_of_eval_monic_eq_zero (P := P.map (algebraMap _ F)) (hPmonic.map _)
     (fun i => ?_) ?_
@@ -213,7 +211,6 @@ private theorem DOM_exists_ord_comp_eq_mul {K K' F F' : Type*} [Field K] [Field 
   obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible w.toValuationSubring
   have hπ0 : (π : F) ≠ 0 := by simpa [ne_eq, ZeroMemClass.coe_eq_zero] using hπ.ne_zero
   have hιne : ∀ {x : F}, x ≠ 0 → ι x ≠ 0 := fun hx => (map_ne_zero ι).mpr hx
-
   have hunit : ∀ u : w.toValuationSubringˣ, v.ord (ι ((u : w.toValuationSubring) : F)) = 0 := by
     intro u
     have hu0 : ((u : w.toValuationSubring) : F) ≠ 0 := by
@@ -226,8 +223,7 @@ private theorem DOM_exists_ord_comp_eq_mul {K K' F F' : Type*} [Field K] [Field 
     rw [map_inv₀, v.ord_inv] at h2
     omega
   refine ⟨v.ord (ι (π : F)), ?_, fun x => ?_⟩
-  ·
-    have h1 : 0 ≤ v.ord (ι (π : F)) := DOM_ord_nonneg_of_mem' v ((h _).mp π.2)
+  · have h1 : 0 ≤ v.ord (ι (π : F)) := DOM_ord_nonneg_of_mem' v ((h _).mp π.2)
     have hnot : (π : F)⁻¹ ∉ w.toValuationSubring := by
       intro hmem
       have h0 := DOM_ord_nonneg_of_mem' w hmem
@@ -258,7 +254,6 @@ private theorem DOM_exists_place_of_forall_mem (A : ValuationSubring F') (hA : A
   let φ : R →+* A.toSubring := (algebraMap R F').codRestrict A.toSubring hR
   let P : Ideal R := (IsLocalRing.maximalIdeal A).comap φ
   have hP : P.IsPrime := Ideal.comap_isPrime _ _
-
   have hinv : ∀ s : R, s ∉ P → (algebraMap R F' s)⁻¹ ∈ A := by
     intro s hs
     have hu : IsUnit (φ s) := by
@@ -274,7 +269,6 @@ private theorem DOM_exists_place_of_forall_mem (A : ValuationSubring F') (hA : A
       rwa [hcoe] at hmul
     rw [← eq_inv_of_mul_eq_one_left h1]
     exact SetLike.coe_mem _
-
   have hP0 : P ≠ ⊥ := by
     intro hbot
     apply hA
@@ -285,7 +279,6 @@ private theorem DOM_exists_place_of_forall_mem (A : ValuationSubring F') (hA : A
     rw [hbot] at hbP
     exact nonZeroDivisors.ne_zero hb (Ideal.mem_bot.mp hbP)
   let Pv : HeightOneSpectrum R := ⟨P, hP, hP0⟩
-
   have hle : HeightOneSpectrum.valuationSubringAtPrime F' Pv ≤ A := by
     rintro x ⟨a, s, hs, rfl⟩
     exact mul_mem (hR a) (hinv s hs)
@@ -314,13 +307,11 @@ private theorem DOM_exists_valuationSubring_dom (ι : F →+* F') (w : Place K F
     ∃ A : ValuationSubring F', A ≠ ⊤ ∧ ∀ x : F, x ∈ w.toValuationSubring ↔ ι x ∈ A := by
   obtain ⟨A, hA, hloc⟩ := IsLocalRing.exists_factor_valuationRing (DOM_iotaO ι w)
   have hmem : ∀ x : F, x ∈ w.toValuationSubring → ι x ∈ A := fun x hx => hA ⟨x, hx⟩
-
   have hnu : ∀ z : w.toValuationSubring, ¬ IsUnit z →
       ¬ IsUnit ((DOM_iotaO ι w).codRestrict A.toSubring hA z) :=
     fun z hz hu => hz (hloc.map_nonunit z hu)
   refine ⟨A, ?_, fun x => ⟨hmem x, fun hx => ?_⟩⟩
-  ·
-    intro htop
+  · intro htop
     obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible w.toValuationSubring
     have hπ0 : (π : F) ≠ 0 := by
       simpa [ne_eq, ZeroMemClass.coe_eq_zero] using hπ.ne_zero
@@ -333,9 +324,7 @@ private theorem DOM_exists_valuationSubring_dom (ι : F →+* F') (w : Place K F
     apply Subtype.ext
     show ι (π : F) * (ι (π : F))⁻¹ = 1
     exact mul_inv_cancel₀ ((map_ne_zero ι).mpr hπ0)
-  ·
-
-    by_contra hxw
+  · by_contra hxw
     have hx0 : x ≠ 0 := by
       rintro rfl
       exact hxw (zero_mem _)
@@ -611,7 +600,6 @@ private theorem DOM_tauK_chi_eq_of_twist_eq (ι : F →+* F') (w : Place K F) (v
     τK e₁ (DOM_chi ι w v hdom (hres v) z) = τK e₂ (DOM_chi ι w v hdom (hres v) z) := by
   rw [← DOM_chi_twist ι w v hdom hres (τ e₁) (τK e₁) (hτ e₁) (hτι e₁) z,
     ← DOM_chi_twist ι w v hdom hres (τ e₂) (τK e₂) (hτ e₂) (hτι e₂) z]
-
   have key : ∀ (v₁ v₂ : Place K' F') (h12 : v₁ = v₂)
       (h₁ : ∀ x : F, x ∈ w.toValuationSubring ↔ ι x ∈ v₁.toValuationSubring)
       (h₂ : ∀ x : F, x ∈ w.toValuationSubring ↔ ι x ∈ v₂.toValuationSubring),
@@ -763,7 +751,6 @@ private theorem DOM_algebraMap_mem_of_dom (A : ValuationSubring (modularFunction
     (hA : ∀ x : modularFunctionField N, x ∈ w.toValuationSubring → DOM_iota N x ∈ A)
     (c : AlgebraicClosure ℚ) :
     algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) c ∈ A := by
-
   have hψ : ∀ q : ℚ, ((algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N)).comp
       (algebraMap ℚ (AlgebraicClosure ℚ))) q ∈ A := by
     intro q
@@ -878,8 +865,7 @@ private theorem DOM_main_pos [FiniteDimensional ℚ w.ResidueField] :
   have hord' : ∀ f : modularFunctionFieldBar N,
       v'.ord (DOM_gAut N (DOM_sigma N w v hdom ψ) f) = v.ord f := hord
   refine ⟨?_, ?_⟩
-  ·
-    have hne : DOM_iota N (DOM_j N) - algebraMap _ _
+  · have hne : DOM_iota N (DOM_j N) - algebraMap _ _
         (DOM_chi (DOM_iota N) w v hdom (DOM_residueBij N v) ⟨DOM_j N, hj⟩) ≠ 0 := by
       rw [DOM_iota_j', sub_ne_zero]
       exact DOM_jBar_ne_algebraMap N _
@@ -1005,12 +991,10 @@ private theorem CNT_ord_eq_one_of_valuation_eq (w : Place K F) {v' : Valuation F
   have hE := w.isEquiv_adicValuation_of_valuationSubring_eq hv'
   have hx0 : v' x ≠ 0 := by rw [hx]; exact exp_ne_zero
   have hu0 : w.adicValuation x ≠ 0 := (hE.eq_zero).ne.mp hx0
-
   have hlt : w.adicValuation x < 1 := by
     refine hE.lt_one_iff_lt_one.mp ?_
     rw [hx, ← exp_zero]
     exact exp_lt_exp.mpr (by norm_num)
-
   obtain ⟨ϖ, hϖ⟩ := w.heightOneSpectrum.valuation_exists_uniformizer F
   change w.adicValuation ϖ = exp (-1 : ℤ) at hϖ
   have hϖ0 : w.adicValuation ϖ ≠ 0 := by rw [hϖ]; exact exp_ne_zero
@@ -1026,7 +1010,6 @@ private theorem CNT_ord_eq_one_of_valuation_eq (w : Place K F) {v' : Valuation F
   have hge : exp (-1 : ℤ) ≤ w.adicValuation x := by
     rw [← hϖ]
     exact (hE ϖ x).mp hϖle
-
   have hle' : log (w.adicValuation x) ≤ -1 := by
     have hlog : log (w.adicValuation x) < 0 := (log_lt_iff_lt_exp hu0).mpr (by rw [exp_zero]; exact hlt)
     omega
@@ -1260,11 +1243,9 @@ private theorem CNT_squeeze (c : ℚ) :
           v.ord (jBar N - algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N)
             (c : AlgebraicClosure ℚ)) = 1}) := by
   classical
-
   obtain ⟨P, hP⟩ := ModularCurve.exists_finset_ord_jBar_sub_pos N (c : AlgebraicClosure ℚ)
   have hPEO := ModularCurve.sum_ord_jBar_sub_eq_dedekindPsi N (c : AlgebraicClosure ℚ)
     (deg_eq_one_modularFunctionFieldBar N) P hP
-
   have hW : ∀ w : Place ℚ (modularFunctionField N), w ∈ (CNT_base c).fiber (modularFunctionField N) ↔
       0 < w.ord ((⟨jq, jq_mem N⟩ : modularFunctionField N) - algebraMap ℚ (modularFunctionField N) c) :=
     fun w => by rw [Place.mem_fiber, CNT_restrict_eq_base_iff]
@@ -1287,7 +1268,6 @@ private theorem CNT_squeeze (c : ℚ) :
     rw [← hsum]
     refine Finset.sum_congr rfl fun w hw => ?_
     rw [he w hw, hf w hw, mul_comm]
-
   have hdom : ∀ w ∈ (CNT_base c).fiber (modularFunctionField N),
       ∃ S : Finset (Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N)), w.deg ≤ S.card ∧ ∀ v ∈ S,
         ∃ a : ℤ, 0 < a ∧ ∀ (x : modularFunctionField N) (y : modularFunctionFieldBar N),
@@ -1300,7 +1280,6 @@ private theorem CNT_squeeze (c : ℚ) :
     exact ⟨S, hcard, fun v hv => (hS v hv).2⟩
   choose! S hScard hSdom using hdom
   choose! a hapos ha using hSdom
-
   set jc : modularFunctionField N :=
     (⟨jq, jq_mem N⟩ : modularFunctionField N) - algebraMap ℚ (modularFunctionField N) c with hjc
   set jBc : modularFunctionFieldBar N :=
@@ -1310,12 +1289,10 @@ private theorem CNT_squeeze (c : ℚ) :
     rw [hjc, hjBc]
     exact CNT_coe_jBar_sub N c
   have hjc_pos : ∀ w ∈ W, 0 < w.ord jc := fun w hw => (hW w).mp hw
-
   have hordv : ∀ w ∈ W, ∀ v ∈ S w, v.ord jBc = a w v * w.ord jc :=
     fun w hw v hv => ha w hw v hv jc jBc hrel
   have hSP : ∀ w ∈ W, S w ⊆ P := fun w hw v hv =>
     (hP v).mpr (by rw [hordv w hw v hv]; exact mul_pos (hapos w hw v hv) (hjc_pos w hw))
-
   have hdisj : (W : Set (Place ℚ (modularFunctionField N))).PairwiseDisjoint S := by
     intro w hw w' hw' hne
     change Disjoint (S w) (S w')
@@ -1323,7 +1300,6 @@ private theorem CNT_squeeze (c : ℚ) :
     exact CNT_eq_of_dominated N w w' v (a w v) (a w' v) (hapos w hw v hv) (hapos w' hw' v hv')
       (ha w hw v hv) (ha w' hw' v hv')
   have hUP : W.biUnion S ⊆ P := Finset.biUnion_subset.mpr hSP
-
   have hAB : ∑ w ∈ W, (w.deg : ℤ) * w.ord jc ≤ ∑ w ∈ W, ∑ v ∈ S w, w.ord jc := by
     refine Finset.sum_le_sum fun w hw => ?_
     rw [Finset.sum_const, nsmul_eq_mul]
@@ -1343,7 +1319,6 @@ private theorem CNT_squeeze (c : ℚ) :
     linarith
   have hDPeq : ∑ v ∈ W.biUnion S, v.ord jBc = dedekindPsi N := by
     linarith
-
   have ha1 : ∀ w ∈ W, ∀ v ∈ S w, a w v = 1 := by
     by_contra hcon
     push Not at hcon
@@ -1355,7 +1330,6 @@ private theorem CNT_squeeze (c : ℚ) :
         le_mul_of_one_le_left (hjc_pos w hw).le (by have := hapos w hw v' hv'; omega)) ⟨v, hv, ?_⟩
       exact lt_mul_of_one_lt_left (hjc_pos w hw) (by have := hapos w hw v hv; omega)
     linarith
-
   have hcardS : ∀ w ∈ W, (S w).card = w.deg := by
     by_contra hcon
     push Not at hcon
@@ -1368,7 +1342,6 @@ private theorem CNT_squeeze (c : ℚ) :
       · rw [Finset.sum_const, nsmul_eq_mul]
         exact mul_lt_mul_of_pos_right (by exact_mod_cast hlt') (hjc_pos w hw)
     linarith
-
   have hPU : ∀ v ∈ P, v ∈ W.biUnion S := by
     intro v hv
     by_contra hvU
@@ -1379,16 +1352,14 @@ private theorem CNT_squeeze (c : ℚ) :
       ((hP u).mp (Finset.mem_sdiff.mp hu).1).le)).mp hzero v hv'
     exact absurd h0 ((hP v).mp hv).ne'
   refine ⟨fun w hw0 => ?_, fun T hT => ?_⟩
-  ·
-    have hw : w ∈ W := (hW w).mpr hw0
+  · have hw : w ∈ W := (hW w).mpr hw0
     have hne : (S w).Nonempty := by
       rw [← Finset.card_pos, hcardS w hw]
       exact hdegpos w hw
     obtain ⟨v, hv⟩ := hne
     refine ⟨v, fun x y hxy => ?_⟩
     rw [ha w hw v hv x y hxy, ha1 w hw v hv, one_mul]
-  ·
-    have hTW : T = W.filter (fun w => w.ord jc = 1) := by
+  · have hTW : T = W.filter (fun w => w.ord jc = 1) := by
       ext w
       rw [hT, Finset.mem_filter, hW]
       constructor
@@ -1554,8 +1525,7 @@ private theorem JD_efix_core {α : Type*} (S : Finset α) (f : α → ℤ) (k : 
     · exact Or.inl ⟨hv, h1⟩
     · exact Or.inr ⟨hv, h2⟩
   refine ⟨?_, ?_⟩
-  ·
-    rw [← hsum, ← hunion, Finset.sum_union hdisj]
+  · rw [← hsum, ← hunion, Finset.sum_union hdisj]
     have hs1 : ∑ v ∈ S.filter (fun v => f v = 1), f v
         = (S.filter (fun v => f v = 1)).card := by
       rw [Finset.sum_congr rfl fun v hv => (Finset.mem_filter.mp hv).2,
@@ -1565,8 +1535,7 @@ private theorem JD_efix_core {α : Type*} (S : Finset α) (f : α → ℤ) (k : 
       rw [Finset.sum_congr rfl fun v hv => (Finset.mem_filter.mp hv).2,
         Finset.sum_const, nsmul_eq_mul, mul_comm]
     rw [hs1, hs2]
-  ·
-    rw [← Finset.card_union_of_disjoint hdisj, hunion]
+  · rw [← Finset.card_union_of_disjoint hdisj, hunion]
 
 end EFIX
 p2m_reactivate "P2MW.S_ModularCurve_natCard_ord_jBar_sub_1728_eq_one_eq_nuTwo.CNTUnit"
@@ -2048,42 +2017,33 @@ private theorem JD_L_H1
     (hvpos : 0 < v.ord (Polynomial.aeval (jBar N) p)) :
     v.ord (Polynomial.aeval (jBar N) p) = 1 := by
   classical
-
   set q : Polynomial (AlgebraicClosure ℚ) := p.map (algebraMap ℚ (AlgebraicClosure ℚ)) with hq
   have hqmon : q.Monic := hmon.map _
   have hqsplits : q.Splits := IsAlgClosed.splits q
   have hqsep : q.Separable := (Irreducible.separable (F := ℚ) hirr).map
   have hnodup : q.roots.Nodup := nodup_roots hqsep
-
   have hpmap : p.map (algebraMap ℚ (modularFunctionFieldBar N)) =
       q.map (algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N)) := by
     rw [hq, Polynomial.map_map, ← JD_algebraMap_rat_barN]
-
   have hsplits' : (p.map (algebraMap ℚ (modularFunctionFieldBar N))).Splits :=
     hpmap ▸ hqsplits.map (algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N))
-
   have haroots : p.aroots (modularFunctionFieldBar N) =
       q.roots.map (algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N)) := by
     rw [aroots_def, hpmap, hqsplits.roots_map]
-
   have hprod : aeval (jBar N) p = (q.roots.map (fun α => jBar N -
       algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) α)).prod := by
     rw [hsplits'.aeval_eq_prod_aroots_of_monic hmon (jBar N), haroots, Multiset.map_map]
     rfl
   rw [hprod] at hvpos ⊢
-
   have hne : ∀ x ∈ q.roots.map (fun α => jBar N -
       algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) α), x ≠ 0 := by
     intro x hx h0
     refine absurd hvpos (not_lt.mpr (le_of_eq ?_))
     rw [Multiset.prod_eq_zero (h0 ▸ hx)]; exact v.ord_zero
-
   rw [JD_ord_multiset_prod v _ hne, Multiset.map_map] at hvpos ⊢
-
   have hnn : ∀ α ∈ q.roots, 0 ≤ v.ord (jBar N -
       algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) α) := fun α _ =>
     JD_ord_nonneg_of_mem v (sub_mem hvj (v.algebraMap_mem' α))
-
   obtain ⟨α, hαmem, hαpos⟩ : ∃ α ∈ q.roots, 0 < v.ord (jBar N -
       algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) α) := by
     by_contra h
@@ -2095,7 +2055,6 @@ private theorem JD_L_H1
     exact Multiset.sum_eq_zero fun y hy => by
       obtain ⟨α, hα, rfl⟩ := Multiset.mem_map.mp hy
       exact hzero α hα
-
   have hnotroot : ∀ a : ℚ, p.eval a ≠ 0 → α ≠ algebraMap ℚ (AlgebraicClosure ℚ) a := by
     intro a hpa hαa
     refine hpa ((algebraMap ℚ (AlgebraicClosure ℚ)).injective ?_)
@@ -2106,18 +2065,15 @@ private theorem JD_L_H1
     have := hnotroot 0 hp0; rwa [map_zero] at this
   have hα1728 : α ≠ 1728 := by
     have := hnotroot 1728 hp1728; rwa [map_ofNat] at this
-
   have hα1 : v.ord (jBar N -
       algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) α) = 1 :=
     h3 α hα0 hα1728 v hαpos
-
   have hother : ∀ β ∈ q.roots, β ≠ α → v.ord (jBar N -
       algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) β) = 0 := by
     intro β hβmem hβα
     by_contra hne0
     have hβpos : 0 < v.ord (jBar N - algebraMap (AlgebraicClosure ℚ) _ β) :=
       lt_of_le_of_ne (hnn β hβmem) (Ne.symm hne0)
-
     have hαne : jBar N - algebraMap (AlgebraicClosure ℚ) _ α ≠ 0 :=
       hne _ (Multiset.mem_map_of_mem _ hαmem)
     have hβne : jBar N - algebraMap (AlgebraicClosure ℚ) _ β ≠ 0 :=
@@ -2128,7 +2084,6 @@ private theorem JD_L_H1
     have hβM := (v.mem_maximalIdeal_iff_ord_pos hβne hβmemO).mpr hβpos
     have hαβne : (α - β : AlgebraicClosure ℚ) ≠ 0 := sub_ne_zero.mpr (Ne.symm hβα)
     have hord0 := JD_ord_algebraMap_eq_zero v hαβne
-
     have hordpos : 0 < v.ord (algebraMap (AlgebraicClosure ℚ)
         (modularFunctionFieldBar N) (α - β)) := by
       have hmem := v.algebraMap_mem' (α - β)
@@ -2143,7 +2098,6 @@ private theorem JD_L_H1
         rw [map_sub]; ring
       rw [heq]; exact sub_mem hβM hαM
     exact absurd hord0 (ne_of_gt hordpos)
-
   have hcons : q.roots = α ::ₘ q.roots.erase α := (Multiset.cons_erase hαmem).symm
   simp only [Function.comp_apply]
   rw [show (q.roots.map (fun β => v.ord (jBar N -
@@ -2177,34 +2131,27 @@ private theorem ModularCurve.ramificationIndex_eq_one_of_restrict_ne_jLinePlaces
   intro _ w h1728 h0 hinfty
   let := jAdjoinAlgebra N
   have _ := hN
-
   have hjnn : 0 ≤ w.ord (⟨jq, jq_mem N⟩ : modularFunctionField N) :=
     not_lt.mp (fun hlt => hinfty ((restrict_eq_jLinePlaceInfty_iff N w).mpr hlt))
-
   obtain ⟨p, hirr, hmon, hp0, hp1728, hwpos, hew⟩ :=
     exists_irreducible_ramificationIndex_eq_ord_aeval_of_restrict_ne_jLinePlaces N w
       h1728 h0 hinfty
-
   obtain ⟨S, hSdeg, hSmem⟩ := exists_finset_place_bar_dominating_of_ord_jq_nonneg N w hjnn
   have hSne : S.Nonempty :=
     Finset.card_pos.mp (lt_of_lt_of_le (JD_deg_pos N w) hSdeg)
   obtain ⟨v, hvS⟩ := hSne
   obtain ⟨⟨j₀, hj₀⟩, c, hcpos, hcord⟩ := hSmem v hvS
-
   have hjBmem : jBar N ∈ v.toValuationSubring := by
     have h1 : jBar N - algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) j₀
         + algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) j₀ ∈ v.toValuationSubring :=
       add_mem (JD_mem_of_ord_pos v hj₀) (v.algebraMap_mem' j₀)
     simpa using h1
-
   have hvordp : v.ord (Polynomial.aeval (jBar N) p) =
       c * w.ord (Polynomial.aeval (⟨jq, jq_mem N⟩ : modularFunctionField N) p) :=
     hcord _ _ (JD_coeffEmb_aeval N p)
-
   have hL : v.ord (Polynomial.aeval (jBar N) p) = 1 :=
     JD_L_H1 N h3 v hjBmem p hirr hmon hp0 hp1728
       (by rw [hvordp]; exact mul_pos hcpos hwpos)
-
   have heq : c * (w.ramificationIndex ↥ℚ⟮jq⟯ : ℤ) = 1 :=
     calc c * (w.ramificationIndex ↥ℚ⟮jq⟯ : ℤ)
         = c * w.ord (Polynomial.aeval (⟨jq, jq_mem N⟩ : modularFunctionField N) p) := by rw [hew]
@@ -2233,34 +2180,27 @@ private theorem ModularCurve.ramificationIndex_eq_one_of_restrict_ne_jLinePlaces
   intro _ w h1728 h0 hinfty
   let := jAdjoinAlgebra N
   have _ := hN
-
   have hjnn : 0 ≤ w.ord (⟨jq, jq_mem N⟩ : modularFunctionField N) :=
     not_lt.mp (fun hlt => hinfty ((restrict_eq_jLinePlaceInfty_iff N w).mpr hlt))
-
   obtain ⟨p, hirr, hmon, hp0, hp1728, hwpos, hew⟩ :=
     exists_irreducible_ramificationIndex_eq_ord_aeval_of_restrict_ne_jLinePlaces N w
       h1728 h0 hinfty
-
   obtain ⟨S, hSdeg, hSmem⟩ := exists_finset_place_bar_dominating_of_ord_jq_nonneg N w hjnn
   have hSne : S.Nonempty :=
     Finset.card_pos.mp (lt_of_lt_of_le (JD_deg_pos N w) hSdeg)
   obtain ⟨v, hvS⟩ := hSne
   obtain ⟨⟨j₀, hj₀⟩, c, hcpos, hcord⟩ := hSmem v hvS
-
   have hjBmem : jBar N ∈ v.toValuationSubring := by
     have h1 : jBar N - algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) j₀
         + algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) j₀ ∈ v.toValuationSubring :=
       add_mem (JD_mem_of_ord_pos v hj₀) (v.algebraMap_mem' j₀)
     simpa using h1
-
   have hvordp : v.ord (Polynomial.aeval (jBar N) p) =
       c * w.ord (Polynomial.aeval (⟨jq, jq_mem N⟩ : modularFunctionField N) p) :=
     hcord _ _ (JD_coeffEmb_aeval N p)
-
   have hL : v.ord (Polynomial.aeval (jBar N) p) = 1 :=
     JD_L_H1 N h3 v hjBmem p hirr hmon hp0 hp1728
       (by rw [hvordp]; exact mul_pos hcpos hwpos)
-
   have heq : c * (w.ramificationIndex ↥ℚ⟮jq⟯ : ℤ) = 1 :=
     calc c * (w.ramificationIndex ↥ℚ⟮jq⟯ : ℤ)
         = c * w.ord (Polynomial.aeval (⟨jq, jq_mem N⟩ : modularFunctionField N) p) := by rw [hew]
@@ -2283,7 +2223,6 @@ theorem solution (N : ℕ) [NeZero N]
       Nat.card {x : ModuliPoint N (AlgebraicClosure ℚ) // ModuliPoint.j x = (1728 : AlgebraicClosure ℚ)}) :
     Nat.card {v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N) // v.ord (jBar N - 1728) = 1} = nuTwo N :=
   ModularCurve.natCard_ord_jBar_sub_1728_eq_one_eq_nuTwo N h2 hcount
-
 
 end S_ModularCurve_natCard_ord_jBar_sub_1728_eq_one_eq_nuTwo
 end P2MW

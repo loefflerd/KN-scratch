@@ -146,7 +146,6 @@ theorem solution {K : Type*} [Field K] {e : ℕ} {x y : HahnSeries ℚ K} (hx : 
     (hy : HasRamBound e y) : HasRamBound e (x + y) :=
   HahnSeries.HasRamBound.add hx hy
 
-
 end S_HahnSeries_HasRamBound_add
 end P2MW
 export P2MW.S_HahnSeries_HasRamBound_add (solution)

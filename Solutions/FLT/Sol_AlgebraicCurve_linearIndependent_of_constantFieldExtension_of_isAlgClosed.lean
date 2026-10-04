@@ -70,7 +70,6 @@ theorem exists_factorisation_of_factorisation_map (m : K[X][X])
     ∃ g₀ h₀ : K[X][X], g₀.Monic ∧ h₀.Monic ∧ g₀.natDegree = g.natDegree ∧
       h₀.natDegree = h.natDegree ∧ m = g₀ * h₀ := by
   classical
-
   set N : ℕ := ((Finset.range g.natDegree).sup fun j => (g.coeff j).natDegree) ⊔
       ((Finset.range h.natDegree).sup fun j => (h.coeff j).natDegree) + 1 with hN
   have hNg : ∀ j : ℕ, j < g.natDegree → (g.coeff j).natDegree < N := by
@@ -83,7 +82,6 @@ theorem exists_factorisation_of_factorisation_map (m : K[X][X])
     have : (h.coeff j).natDegree ≤ (Finset.range h.natDegree).sup fun j => (h.coeff j).natDegree :=
       Finset.le_sup (f := fun j => (h.coeff j).natDegree) (Finset.mem_range.mpr hj)
     omega
-
   set dg := g.natDegree
   set dh := h.natDegree
   let σ : Type := (Fin dg × Fin N) ⊕ (Fin dh × Fin N)
@@ -106,7 +104,6 @@ theorem exists_factorisation_of_factorisation_map (m : K[X][X])
       funext j n; change MvPolynomial.aeval c (MvPolynomial.X _) = _; rw [MvPolynomial.aeval_X]; rfl
     rw [this]
     exact genericPoly_coeff_eq h hh N hNh
-
   let D : R[X][X] := m.map (mapRingHom (algebraMap K R)) - G * H
   have hDc : D.map (mapRingHom evc) = 0 := by
     simp only [D, Polynomial.map_sub, Polynomial.map_mul, hGc, hHc, Polynomial.map_map,
@@ -117,7 +114,6 @@ theorem exists_factorisation_of_factorisation_map (m : K[X][X])
     intro j n
     have := congrArg (fun P : K'[X][X] => (P.coeff j).coeff n) hDc
     simpa [coeff_map] using this
-
   have hker : RingHom.ker evc ≠ ⊤ := RingHom.ker_ne_top evc
   obtain ⟨𝔪, h𝔪, hle⟩ := Ideal.exists_le_maximal _ hker
   have : Finite σ := inferInstance
@@ -158,8 +154,7 @@ theorem irreducible_map_of_isAlgClosed (m : K[X][X]) (hm : m.Monic) (hirr : Irre
     apply hirr.not_isUnit
     rw [hm.natDegree_eq_zero] at h0
     rw [h0]; exact isUnit_one
-  ·
-    have hlc : g.leadingCoeff * h.leadingCoeff = 1 := by
+  · have hlc : g.leadingCoeff * h.leadingCoeff = 1 := by
       rw [← leadingCoeff_mul, ← hgh]; exact hm'
     by_cases hg0 : g.natDegree = 0
     · left
@@ -174,7 +169,6 @@ theorem irreducible_map_of_isAlgClosed (m : K[X][X]) (hm : m.Monic) (hirr : Irre
       rw [eq_C_of_natDegree_eq_zero hh0]
       exact isUnit_C.mpr (IsUnit.of_mul_eq_one _ hlc0)
     exfalso
-
     set g₁ : K'[X][X] := C h.leadingCoeff * g
     set h₁ : K'[X][X] := C g.leadingCoeff * h
     have hg₁ : g₁.Monic := monic_C_mul_of_mul_leadingCoeff_eq_one (by rw [mul_comm]; exact hlc)
@@ -255,7 +249,6 @@ theorem exists_primitive_integral {x : F} (hx : Transcendental K x)
   classical
   obtain ⟨y₀, hy₀⟩ := Field.exists_primitive_element K⟮x⟯ F
   have hy₀int : IsIntegral K⟮x⟯ y₀ := Algebra.IsIntegral.isIntegral y₀
-
   set μ : K⟮x⟯[X] := minpoly K⟮x⟯ y₀ with hμ
   obtain ⟨q, hq0, hq⟩ :=
     exists_common_denom hx (fun i : Fin (μ.natDegree + 1) => μ.coeff i)
@@ -293,7 +286,6 @@ theorem exists_primitive_integral {x : F} (hx : Transcendental K x)
       change aeval (AdjoinSimple.gen K x) (0 : K[X]) = _
       rw [map_zero, coeff_eq_zero_of_natDegree_lt hgt, zero_mul]
   obtain ⟨m, hmμs, hmdeg, hmmonic⟩ := lifts_and_natDegree_eq_and_monic hlifts hμs_monic
-
   have hyint : IsIntegral K⟮x⟯ y := Algebra.IsIntegral.isIntegral y
   have htop : K⟮x⟯⟮y⟯ = ⊤ := by
     rw [eq_top_iff, ← hy₀, adjoin_simple_le_iff]
@@ -315,7 +307,6 @@ theorem exists_primitive_integral {x : F} (hx : Transcendental K x)
     have h := hμs_root
     rw [← hmμs, aeval_def, eval₂_map] at h
     rwa [← algebraMap_comp_aeval_gen x]
-
   let pb := adjoin.powerBasis hyint
   refine ⟨y, m, (minpoly K⟮x⟯ y).natDegree, hmmonic, hirr, ?_, hroot, fun f => ?_⟩
   · rw [hmdeg, hμs_eq]
@@ -395,7 +386,6 @@ theorem linearIndependent_pow_algebraMap [IsAlgClosed K] {x : F}
       (mapRingHom (algebraMap K K'))
   set M : K'⟮x₁⟯[X] := m.map ψ with hM
   have hMmonic : M.Monic := hm.map ψ
-
   have hcomp : (algebraMap K'⟮x₁⟯ F').comp ψ = (algebraMap F F').comp (aeval x).toRingHom := by
     refine Polynomial.ringHom_ext (fun a => ?_) ?_
     · simp only [ψ, RingHom.coe_comp, Function.comp_apply, coe_mapRingHom, map_C,
@@ -407,7 +397,6 @@ theorem linearIndependent_pow_algebraMap [IsAlgClosed K] {x : F}
       rfl
   have hMroot : aeval y₁ M = 0 := by
     rw [aeval_def, hM, eval₂_map, hcomp, hy₁def, ← hom_eval₂, hroot, map_zero]
-
   have hMirr : Irreducible M := by
     have h0 : Irreducible (m.map (mapRingHom (algebraMap K K'))) :=
       irreducible_map_of_isAlgClosed m hm hirr
@@ -473,7 +462,6 @@ theorem eq_zero_of_sum_mul_algebraMap [IsAlgClosed K] {x : F}
   choose r hr using fun k => hspan (f k)
   obtain ⟨q, hq0, hq⟩ := exists_common_denom hx (fun kj : κ × Fin m.natDegree => r kj.1 kj.2)
   choose P hP using hq
-
   have hcoefE : ∀ j : Fin m.natDegree,
       ∑ k, algebraMap K' K'⟮algebraMap F F' x⟯ (c k) * ρ (r k j) = 0 := by
     have hsum : ∑ j : Fin m.natDegree,
@@ -488,7 +476,6 @@ theorem eq_zero_of_sum_mul_algebraMap [IsAlgClosed K] {x : F}
       rw [map_mul, map_mul, ← IsScalarTower.algebraMap_apply, hρ, map_pow]
       ring
     exact Fintype.linearIndependent_iff.mp hLD _ hsum
-
   have hρθ : ∀ p : K[X], ρ (aeval (AdjoinSimple.gen K x) p) =
       aeval (AdjoinSimple.gen K' (algebraMap F F' x)) (p.map (algebraMap K K')) := by
     intro p
@@ -508,7 +495,6 @@ theorem eq_zero_of_sum_mul_algebraMap [IsAlgClosed K] {x : F}
     refine Finset.sum_congr rfl fun k _ => ?_
     rw [← hρθ, ← hP (k, j), map_mul]
     ring
-
   have hs0 : (aeval (AdjoinSimple.gen K x) q : K⟮x⟯) ≠ 0 := by
     intro h
     apply hq0
@@ -584,7 +570,6 @@ theorem solution (K F K' F' : Type*)
     {ι : Type*} {b : ι → F} (hb : LinearIndependent K b) :
     LinearIndependent K' (fun i => algebraMap F F' (b i)) := by
   obtain ⟨x₀, hx₀, hfin₀⟩ := hfg
-
   obtain ⟨x, hx, hfin, hsep⟩ :=
     AlgebraicCurve.exists_separating_transcendental_of_perfectField hx₀ hfin₀
   have := hfin

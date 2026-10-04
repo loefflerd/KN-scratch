@@ -218,7 +218,6 @@ theorem exists_coprime_nsmul_of_zmultiples_eq {N : ℕ} (hN : N ≠ 0) {x y : M}
     conv_lhs => rw [this]
     rw [add_zsmul, mul_zsmul', hNx, zsmul_zero, add_zero]
   refine ⟨k, ?_, hmk⟩
-
   have hzk : AddSubgroup.zmultiples (k • x) = AddSubgroup.zmultiples x := by rw [← hmk]; exact h
   have hxmem : x ∈ AddSubgroup.zmultiples (k • x) := by rw [hzk]; exact AddSubgroup.mem_zmultiples x
   obtain ⟨j, hj⟩ := AddSubgroup.mem_zmultiples_iff.mp hxmem
@@ -366,7 +365,6 @@ theorem τ_eq_iff (u : Lˣ) (hu : (u : L) ^ 3 = 1) (N : ℕ) (hN : N ≠ 0) (H :
     rwa [h] at this
   · intro h
     apply Subtype.ext
-
     have hle : H.1.map (σ u hu) ≤ H.1 := by
       rintro _ ⟨T, hT, rfl⟩; exact h T hT
     have hfin : Finite H.1 := Nat.finite_of_card_ne_zero (by rw [H.2.2]; exact hN)
@@ -398,11 +396,9 @@ theorem map_autPt_eq_or (u : Lˣ) (hu : (u : L) ^ 3 = 1) (hu1 : (u : L) ≠ 1) (
     intro P
     have hγ'' : (⟨γ.u, 0, 0, 0⟩ : VariableChange L) • W0 L = W0 L := by rw [← hγ']; exact hγ
     rw [autPt_congr hγ' hγ hγ'' P, coords_autPt]
-
   have hw : c ^ 2 = 1 ∨ c ^ 2 = u ∨ c ^ 2 = (u : L) ^ 2 :=
     pow_three_eq_one_cases hu hu1 (by rw [← pow_mul]; exact hc6)
   have he : c ^ 3 = 1 ∨ c ^ 3 = -1 := sq_eq_one_cases (by rw [← pow_mul]; exact hc6)
-
   obtain ⟨g, hgH, hg⟩ : ∃ g : (W0 L).toAffine.Point →+ (W0 L).toAffine.Point,
       (H.map g = H ∨ H.map g = H.map (σ u hu) ∨ H.map g = (H.map (σ u hu)).map (σ u hu)) ∧
       ∀ P, coords (g P) = (coords P).map (fun q => (c ^ 2 * q.1, q.2)) := by
@@ -416,7 +412,6 @@ theorem map_autPt_eq_or (u : Lˣ) (hu : (u : L) ^ 3 = 1) (hu1 : (u : L) ≠ 1) (
       rw [h, coords_σ]
     · refine ⟨(σ u hu).comp (σ u hu), Or.inr (Or.inr (by rw [AddSubgroup.map_map])), fun P => ?_⟩
       rw [h, AddMonoidHom.comp_apply, coords_σ_σ]
-
   have key : (∀ P, autPt γ hγ P = g P) ∨ (∀ P, autPt γ hγ P = -(g P)) := by
     rcases he with h3 | h3
     · left; intro P; apply coords_injective; rw [hco, hg, h3]
@@ -501,7 +496,6 @@ theorem cyc_rel_of_or (u : Lˣ) (hu : (u : L) ^ 3 = 1) {T T' : {T : (W0 L).toAff
       rw [Units.val_pow_eq_pow_val, ← pow_mul]; exact hu6
     refine ⟨⟨u ^ 2, 0, 0, 0⟩, hσW (u ^ 2) hu2, k, hk, ?_⟩
     rw [hkT]; congr 1
-
     apply coords_injective
     rw [coords_σ_σ, coords_autPt]
     have e2 : (((u ^ 2)⁻¹ : Lˣ) : L) ^ 2 = (u : L) ^ 2 := by
@@ -586,7 +580,6 @@ theorem solution
   have := isElliptic_W0 (L := L)
   have hN : N ≠ 0 := NeZero.ne N
   have hNL : ((N : ℕ) : L) ≠ 0 := Nat.cast_ne_zero.mpr hN
-
   obtain ⟨uu, huu⟩ : ∃ uu : L, uu ^ 2 + uu + 1 = 0 := by
     obtain ⟨z, hz⟩ := IsAlgClosed.exists_root (X ^ 2 + X + C 1 : L[X])
       (by rw [show (X ^ 2 + X + C 1 : L[X]).degree = 2 by compute_degree!]; norm_num)
@@ -602,17 +595,14 @@ theorem solution
   set u : Lˣ := Units.mk0 uu hu0 with hudef
   have hu : (u : L) ^ 3 = 1 := hu3
   have hu1' : (u : L) ≠ 1 := hu1
-
   have h1 : Nat.card {x : ModuliPoint N L // ModuliPoint.j x = (0 : L)} = Nat.card (Quot (R (L := L) N)) := by
     have e : Nat.card {x : ModuliPoint N L // ModuliPoint.j x = (0 : L)}
         = Nat.card {x : ModuliPoint N L // ModuliPoint.j x = (W0 L).j} :=
       Nat.card_congr (Equiv.subtypeEquivRight (fun x => by rw [j_W0 (L := L)]))
     rw [e]
     exact ModularCurve.natCard_moduliPoint_j_eq_eq_natCard_quot_addOrderOf_eq N L (W0 L)
-
   let := actC3 u hu N
   have h2 := natCard_quot_R_eq N u hu hu1' hN
-
   have hfinT : Finite {T : (W0 L).toAffine.Point // addOrderOf T = N} := by
     have hc := (W0 L).card_torsion_of_isAlgClosed (K := L) hNL
     have hb : ((W0 L)⁄L) = (W0 L).toAffine := by
@@ -632,10 +622,8 @@ theorem solution
     intro H
     obtain ⟨T, hT, hTH⟩ := exists_generator N hN H
     exact ⟨⟨T, hT⟩, Subtype.ext hTH⟩
-
   have h3 := MulAction.card_mul_natCard_orbitRel_quotient_eq_of_natCard_eq_prime (Multiplicative (ZMod 3))
     (X := CycSub L N) Nat.prime_three natCard_C3
-
   have h4 : Nat.card (CycSub L N) = dedekindPsi N := by
     have h := (W0 L).natCard_addSubgroup_isAddCyclic_card_eq_dedekindPsi_of_isAlgClosed (K := L) (n := N) hNL
     have hb : ((W0 L)⁄L) = (W0 L).toAffine := by
@@ -643,18 +631,15 @@ theorem solution
       rw [WeierstrassCurve.baseChange, Algebra.algebraMap_self, WeierstrassCurve.map_id]
     rw [hb] at h
     exact h
-
   have h5 : Nat.card (MulAction.fixedPoints (Multiplicative (ZMod 3)) (CycSub L N)) = nuThree N := by
     rw [← WeierstrassCurve.natCard_isAddCyclic_addSubgroup_card_eq_fixed_vcInvFun_eq_nuThree
       (1 : L) one_ne_zero u hu hu1' N hN]
     refine Nat.card_congr ⟨fun H => ⟨H.1.1, H.1.2.1, H.1.2.2, ?_⟩, fun H => ⟨⟨H.1, H.2.1, H.2.2.1⟩, ?_⟩, ?_, ?_⟩
-    ·
-      have hfix : τ u hu N H.1 = H.1 := (mem_fixedPoints_iff u hu N H.1).mp H.2
+    · have hfix : τ u hu N H.1 = H.1 := (mem_fixedPoints_iff u hu N H.1).mp H.2
       intro T hT
       refine ⟨σ u hu T, (τ_eq_iff u hu N hN H.1).mp hfix T hT, ?_⟩
       exact (autPt_eq_iff_heq _ (hσW u hu) T _).mp rfl
-    ·
-      rw [mem_fixedPoints_iff, τ_eq_iff u hu N hN]
+    · rw [mem_fixedPoints_iff, τ_eq_iff u hu N hN]
       intro T hT
       obtain ⟨T', hT', hheq⟩ := H.2.2.2 T hT
       have : σ u hu T = T' := (autPt_eq_iff_heq _ (hσW u hu) T T').mpr hheq

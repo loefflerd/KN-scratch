@@ -371,7 +371,6 @@ lemma summable_crow_nat (z : ℂ) : Summable fun n : ℕ => crow τ z n := by
   set A : ℝ := 2 * π / K * (1 + Real.exp (2 * π * z.im)) with hA
   refine Summable.of_norm_bounded_eventually (g := fun n : ℕ => A * ρ ^ n)
     ((summable_geometric_of_lt_one hρ0 hρ1).mul_left A) ?_
-
   obtain ⟨N₀, hN₀⟩ : ∃ N₀ : ℕ, z.im / τ.im + 1 ≤ N₀ := exists_nat_ge _
   rw [Nat.cofinite_eq_atTop, Filter.eventually_atTop]
   refine ⟨max N₀ 1, fun n hn => ?_⟩

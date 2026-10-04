@@ -397,7 +397,6 @@ theorem range_cubic_norm_eq_ker_sub_id (r : V →ₗ[K] V) (hr : ∀ P, r (r (r 
     simp only [add_apply, id_apply, pow_two, Module.End.mul_apply, map_smul, h]
     module
 
-
 end LinearMap
 
 /-! # The order-three fixed-space dimension -/

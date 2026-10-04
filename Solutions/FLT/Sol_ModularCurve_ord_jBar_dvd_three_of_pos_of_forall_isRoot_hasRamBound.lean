@@ -120,7 +120,6 @@ private theorem engine_generic (N : ℕ) [NeZero N] (data : ModularPolynomialDat
           laurentBaseChange (AlgebraicClosure ℚ) (modularFunctionFieldFull N)) -
         algebraMap (AlgebraicClosure ℚ) _ j₀) ∣ (d : ℤ) := by
   classical
-
   have htr := transcendental_coeffEmb_jq (AlgebraicClosure ℚ) N
   have hinj : Function.Injective (Polynomial.aeval
       (⟨coeffEmb (AlgebraicClosure ℚ) jq,
@@ -153,7 +152,6 @@ private theorem engine_generic (N : ℕ) [NeZero N] (data : ModularPolynomialDat
   have : IsScalarTower (AlgebraicClosure ℚ) (RatFunc (AlgebraicClosure ℚ))
       ↥(laurentBaseChange (AlgebraicClosure ℚ) (modularFunctionFieldFull N)) :=
     IsScalarTower.of_algebraMap_eq' (lift.comp_algebraMap).symm
-
   have hFD : FiniteDimensional (RatFunc (AlgebraicClosure ℚ))
       ↥(laurentBaseChange (AlgebraicClosure ℚ) (modularFunctionFieldFull N)) := by
     have hfin := finiteDimensional_adjoin_coeffEmb_jq_full (AlgebraicClosure ℚ) N
@@ -192,7 +190,6 @@ private theorem engine_generic (N : ℕ) [NeZero N] (data : ModularPolynomialDat
         rw [hc']
       rw [hcc]
       exact Submodule.smul_mem _ c' hy
-
   have hp : Irreducible (Polynomial.X - Polynomial.C j₀) := Polynomial.irreducible_X_sub_C j₀
   have hroot : Polynomial.aeval j₀ (Polynomial.X - Polynomial.C j₀) = 0 := by simp
   have hder : Polynomial.aeval j₀ (Polynomial.derivative
@@ -342,7 +339,6 @@ theorem solution (N : ℕ) [NeZero N]
         coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (jq_mem_full N)⟩ :
           laurentBaseChange (AlgebraicClosure ℚ) (modularFunctionFieldFull N)) ∣ (3 : ℤ) :=
   ModularCurve.ord_jBar_dvd_three_of_pos_of_forall_isRoot_hasRamBound N data htrio v hv
-
 
 end
 end S_ModularCurve_ord_jBar_dvd_three_of_pos_of_forall_isRoot_hasRamBound

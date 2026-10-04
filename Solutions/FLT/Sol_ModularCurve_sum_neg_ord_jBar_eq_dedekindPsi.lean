@@ -31,13 +31,11 @@ theorem solution (N : ℕ) [NeZero N]
     IsCurveOver.hasPrincipalDivisors
   have hdeg : ∀ w : Place (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N), w.deg = 1 :=
     IsCurveOver.forall_deg_eq_one_of_isAlgClosed
-
   have hne : jBar N ≠ 0 := by
     intro h
     have h1 := congrArg (fun f : ↥(modularFunctionFieldBar N) => (f : LaurentSeries (AlgebraicClosure ℚ))) h
     simp only [ZeroMemClass.coe_zero] at h1
     exact jq_ne_zero ((map_eq_zero_iff _ (coeffEmb (AlgebraicClosure ℚ)).injective).mp h1)
-
   obtain ⟨D, hD, hdeg0⟩ := hHPD.exists_divisor (jBar N) hne
   have hdegD : Divisor.degree D = ∑ v ∈ D.support, v.ord (jBar N) := by
     show Finsupp.liftAddHom (fun v : Place (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) =>
@@ -47,7 +45,6 @@ theorem solution (N : ℕ) [NeZero N]
     rw [AddMonoidHom.mulRight_apply, hD, hdeg, Nat.cast_one, mul_one]
   have hsupp : ∀ v, v ∈ D.support ↔ v.ord (jBar N) ≠ 0 := fun v => by
     rw [Finsupp.mem_support_iff, hD]
-
   set Sp := D.support.filter (fun v => 0 < v.ord (jBar N)) with hSpdef
   have hSp : ∀ v, v ∈ Sp ↔
       0 < v.ord (jBar N - algebraMap (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) 0) := by
@@ -58,7 +55,6 @@ theorem solution (N : ℕ) [NeZero N]
     · exact fun h => ⟨h.ne', h⟩
   have hzero := sum_ord_jBar_sub_eq_dedekindPsi N 0 hdeg Sp hSp
   simp only [map_zero, sub_zero] at hzero
-
   have hSeq : D.support.filter (fun v => ¬ 0 < v.ord (jBar N)) = S := by
     ext v
     rw [Finset.mem_filter, hsupp, hS]

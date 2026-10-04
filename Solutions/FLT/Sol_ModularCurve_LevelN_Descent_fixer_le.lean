@@ -104,7 +104,6 @@ theorem finrank_adjoin_eq_index (Φ : ↥FF →+* K) (E' : K →ₐ[ℂ] Laurent
     Module.finrank ↥ℂ⟮(⟨t, hΦy ▸ IntermediateField.subset_adjoin ℂ _ ⟨y₀, rfl⟩⟩ :
         ↥(IntermediateField.adjoin ℂ (Set.range Φ)))⟯ ↥(IntermediateField.adjoin ℂ (Set.range Φ)) =
       (CongruenceSubgroup.Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index := by
-
   let yC : ↥FC := ⟨coeffMap ι (y₀ : LaurentSeries ℚ̄), coeffMap_mem_laurentBaseChange ι _ y₀.2⟩
   have hyC : (yC : LaurentSeries ℂ) = jqModC ℂ := by
     show coeffMap ι (y₀ : LaurentSeries ℚ̄) = jqModC ℂ
@@ -112,7 +111,6 @@ theorem finrank_adjoin_eq_index (Φ : ↥FF →+* K) (E' : K →ₐ[ℂ] Laurent
   have hfull := ModularCurve.finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_gamma1_eq_index ℂ M yC hyC
   rw [← hfull]
   symm
-
   set EE : IntermediateField ℂ K := IntermediateField.adjoin ℂ (Set.range Φ) with hEE
   have htmem : t ∈ EE := hΦy ▸ IntermediateField.subset_adjoin ℂ _ ⟨y₀, rfl⟩
   set tE : ↥EE := ⟨t, htmem⟩ with htE
@@ -132,7 +130,6 @@ theorem finrank_adjoin_eq_index (Φ : ↥FF →+* K) (E' : K →ₐ[ℂ] Laurent
     apply E'.toRingHom.injective
     change E' ((j yC : ↥EE) : K) = E' t
     rw [hjval, qExpC_apply, hyC, hE'j]
-
   have hmap : (ℂ⟮yC⟯).map j.toAlgHom = ℂ⟮tE⟯ := by
     rw [IntermediateField.adjoin_map, Set.image_singleton]
     show ℂ⟮j yC⟯ = ℂ⟮tE⟯
@@ -189,7 +186,6 @@ theorem fixer_le (t : K)
   classical
   have := hfin
   have := hgal
-
   let S₁ : Subgroup SL(2, ℤ) :=
     { carrier := {δ | ∀ u, σ δ (Φ u) = Φ u}
       mul_mem' := fun {a b} ha hb u => by
@@ -217,12 +213,10 @@ theorem fixer_le (t : K)
     intro u
     show σ (-1) (Φ u) = Φ u
     rw [hneg, AlgEquiv.one_apply]
-
   set EE : IntermediateField ℂ K := IntermediateField.adjoin ℂ (Set.range Φ) with hEE
   have htmem : t ∈ EE := hΦy ▸ IntermediateField.subset_adjoin ℂ _ ⟨y₀, rfl⟩
   have hle : ℂ⟮t⟯ ≤ EE := IntermediateField.adjoin_simple_le_iff.mpr htmem
   let E₂ : IntermediateField ↥ℂ⟮t⟯ K := IntermediateField.extendScalars hle
-
   have hfixt : ∀ d : S₁, ∀ z ∈ ℂ⟮t⟯, σ d z = z := fun d z hz =>
     apply_eq_self_of_mem_adjoin K t (σ d : K →ₐ[ℂ] K) (by rw [← hΦy]; exact d.2 y₀) z hz
   let θ : S₁ →* (K ≃ₐ[ℂ⟮t⟯] K) :=
@@ -254,7 +248,6 @@ theorem fixer_le (t : K)
       intro z
       show σ d z = z
       rw [h, AlgEquiv.one_apply]
-
   have : Finite (K ≃ₐ[ℂ⟮t⟯] K) := inferInstance
   have hcard1 : Nat.card θ.range ≤ Nat.card E₂.fixingSubgroup := Subgroup.card_le_of_le hθrange
   have hcard2 : Nat.card E₂.fixingSubgroup = Module.finrank ↥E₂ K := IsGalois.card_fixingSubgroup_eq_finrank E₂
@@ -262,7 +255,6 @@ theorem fixer_le (t : K)
     rw [← Subgroup.index_ker, hθker]; rfl
   have htower : Module.finrank ↥ℂ⟮t⟯ ↥E₂ * Module.finrank ↥E₂ K = Module.finrank ↥ℂ⟮t⟯ K :=
     Module.finrank_mul_finrank _ _ _
-
   have hE₂ : Module.finrank ↥ℂ⟮t⟯ ↥E₂ = G₁.index := by
     have h0 := finrank_adjoin_eq_index ι M K Φ E' t hE'j hE'Φ y₀ hy₀ hΦy
     rw [← h0]
@@ -275,7 +267,6 @@ theorem fixer_le (t : K)
     refine Algebra.finrank_eq_of_equiv_equiv e₁.toRingEquiv e₂ ?_
     refine RingHom.ext fun w => Subtype.ext ?_
     rfl
-
   have ha : Module.finrank ↥ℂ⟮t⟯ K = σ.ker.index := by rw [hdeg, hker]
   have hapos : 0 < Module.finrank ↥ℂ⟮t⟯ K := Module.finrank_pos
   have hrs : σ.ker.relIndex S₁ * S₁.index = σ.ker.index := Subgroup.relIndex_mul_index hkerS
@@ -288,7 +279,6 @@ theorem fixer_le (t : K)
     omega
   have hs_le : S₁.index ≤ G₁.index := Nat.le_of_dvd (Nat.pos_of_ne_zero hb0) hsb
   have hbs : G₁.index ≤ S₁.index := by
-
     have h1 : σ.ker.relIndex S₁ * S₁.index = Module.finrank ↥ℂ⟮t⟯ ↥E₂ * Module.finrank ↥E₂ K := by
       rw [hrs, ← ha, htower]
     rw [hE₂] at h1

@@ -137,7 +137,6 @@ theorem coeff_unique {d : ℕ → ℂ} (hh : 0 < h)
     (hF' : ∀ τ : ℍ, HasSum (fun m : ℕ => d m * 𝕢 h (τ : ℂ) ^ m) (F τ)) : c = d := by
   have hc := hasFPowerSeriesOnBall_update hh hF
   have hd := hasFPowerSeriesOnBall_update hh hF'
-
   have hlim : ∀ {e : ℕ → ℂ}, HasFPowerSeriesOnBall (update (cuspFunction h F) 0 (e 0)) (.ofScalars ℂ e) 0 1 →
       Tendsto (cuspFunction h F) (𝓝[≠] 0) (𝓝 (e 0)) := by
     intro e he
@@ -176,7 +175,6 @@ theorem solution {F : UpperHalfPlane → ℂ} {c : ℕ → ℂ} (hF : ∀ τ : U
   obtain ⟨κ, hκ⟩ := ModularForm.eq_const_of_weight_zero f
   have hFκ : ∀ τ : ℍ, F τ = κ := fun τ => by
     exact congr_fun hκ τ
-
   have hF' : ∀ τ : ℍ, HasSum (fun m : ℕ => (Pi.single (M := fun _ => ℂ) 0 κ m) * 𝕢 1 (τ : ℂ) ^ m) (F τ) := by
     intro τ
     rw [hFκ τ]

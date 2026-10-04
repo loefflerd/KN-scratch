@@ -167,12 +167,10 @@ theorem surjective_residueOfHeightOneSpectrum (w : HeightOneSpectrum K[X]) :
   have hxval : w.valuation (RatFunc K) x ≤ 1 :=
     (Place.isEquiv_adicValuation_ofHeightOneSpectrum (K := K)
       (F := RatFunc K) w).le_one_iff_le_one.mpr ((Place.mem_iff_adicValuation_le_one _).mp hx)
-
   have hden_ne : algebraMap K[X] (RatFunc K) x.denom ≠ 0 :=
     (map_ne_zero_iff _ (IsFractionRing.injective K[X] (RatFunc K))).mpr x.denom_ne_zero
   have hmul : x * algebraMap K[X] (RatFunc K) x.denom = algebraMap K[X] (RatFunc K) x.num :=
     ((div_eq_iff hden_ne).mp x.num_div_denom).symm
-
   have hden : x.denom ∉ w.asIdeal := by
     intro hd
     have hnum : x.num ∉ w.asIdeal := by
@@ -190,14 +188,12 @@ theorem surjective_residueOfHeightOneSpectrum (w : HeightOneSpectrum K[X]) :
       _ ≤ w.valuation (RatFunc K) (algebraMap K[X] (RatFunc K) x.denom) :=
           mul_le_of_le_one_left' hxval
       _ < 1 := (HeightOneSpectrum.valuation_lt_one_iff_mem w x.denom).mpr hd
-
   have hmax : w.asIdeal.IsMaximal := IsPrime.to_maximal_ideal w.ne_bot
   obtain ⟨t, ht⟩ : ∃ t : K[X], x.denom * t - 1 ∈ w.asIdeal := by
     obtain ⟨b, c, hc, hbc⟩ := hmax.exists_inv hden
     refine ⟨b, ?_⟩
     rw [show x.denom * b - 1 = -c by linear_combination hbc]
     exact neg_mem hc
-
   refine ⟨x.num * t, ?_⟩
   rw [residueOfHeightOneSpectrum_apply, ← sub_eq_zero, ← map_sub,
     IsLocalRing.residue_eq_zero_iff, Place.mem_maximalIdeal_iff_adicValuation_lt_one]
@@ -342,7 +338,6 @@ theorem ord_congrRingEquiv (v : Place K F) (f : F) :
   · simp
   obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible v.toValuationSubring
   obtain ⟨u, hu⟩ := v.exists_unit_mul_zpow hf hπ
-
   have hπ' : Irreducible (comapSymmRingEquiv e v.toValuationSubring π) :=
     (MulEquiv.irreducible_iff (comapSymmRingEquiv e v.toValuationSubring)).mpr hπ
   have hu' : IsUnit (comapSymmRingEquiv e v.toValuationSubring (u : v.toValuationSubring)) :=

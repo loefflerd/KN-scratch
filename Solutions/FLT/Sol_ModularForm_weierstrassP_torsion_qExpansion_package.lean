@@ -517,12 +517,10 @@ theorem hasSum_wpMon {N a₁ a₂ : ℕ} (ha₁ : a₁ < N) {τ : ℂ} (hτ : 0 
   have hq : ‖q‖ < 1 := norm_qN_lt_one hN hτ
   set G : WpIdx → ℂ := fun i ↦ wpMonCoeff N a₁ a₂ i * q ^ wpMonExp N a₁ i with hG
   set r : ℂ := zetaN N ^ a₂ * q ^ a₁ with hr
-
   have h1 : HasSum (G ∘ Sum.inl)
       (1 / 12 + if a₁ = 0 then zetaN N ^ a₂ / (1 - zetaN N ^ a₂) ^ 2 else 0) := by
     have := hasSum_fintype (G ∘ Sum.inl)
     simpa [hG, wpMonCoeff, wpMonExp] using this
-
   have h2 : HasSum (G ∘ Sum.inr ∘ Sum.inl) (if a₁ = 0 then 0 else r / (1 - r) ^ 2) := by
     by_cases ha : a₁ = 0
     · simp only [ha, ite_true]
@@ -542,7 +540,6 @@ theorem hasSum_wpMon {N a₁ a₂ : ℕ} (ha₁ : a₁ < N) {τ : ℂ} (hτ : 0 
       simp only [hG, Function.comp_apply, wpMonCoeff, wpMonExp, ha, ite_false, hr]
       rw [mul_pow, ← pow_mul, ← pow_mul]
       ring
-
   have hmaj := summable_comp_fst_fin (fun p ↦ by positivity)
     (summable_wpTail_majorant (norm_nonneg q) hq) 3
   have hq1 : ‖q‖ ≤ 1 := hq.le
@@ -742,10 +739,8 @@ theorem wpQCoeff_of_lt {N a₁ : ℕ} (ha₁ : a₁ < N) (a₂ : ℕ) {n : ℕ} 
           ((n / (N - a₁) : ℕ) : ℂ) * (zetaN N)⁻¹ ^ (a₂ * (n / (N - a₁))) else 0) := by
   rw [wpQCoeff_eq_tsum_wpFib, tsum_wpFib_split ha₁]
   have hNa : 0 < N - a₁ := Nat.sub_pos_of_lt ha₁
-
   have e1 : wpFib N a₁ a₂ n (Sum.inl ()) = 0 := by
     simp [wpFib, wpMonExp, hn0.ne]
-
   have e2 : ∑' m : ℕ+, wpFib N a₁ a₂ n (Sum.inr (Sum.inl m)) =
       if a₁ ≠ 0 ∧ a₁ ∣ n then ((n / a₁ : ℕ) : ℂ) * zetaN N ^ (a₂ * (n / a₁)) else 0 := by
     by_cases ha : a₁ = 0
@@ -773,13 +768,11 @@ theorem wpQCoeff_of_lt {N a₁ : ℕ} (ha₁ : a₁ < N) (a₂ : ℕ) {n : ℕ} 
           rw [this, hm₁, Nat.toPNat'_coe, ite_eq_left]
           rw [← this]; exact m.pos
         simp [wpFib, hE]
-
   have e3 : ∑' x : (ℕ+ × ℕ+) × Fin 3, wpFib N a₁ a₂ n (Sum.inr (Sum.inr x)) =
       if (N - a₁) ∣ n then
         ((n / (N - a₁) : ℕ) : ℂ) * (zetaN N)⁻¹ ^ (a₂ * (n / (N - a₁))) else 0 := by
     set m₀ : ℕ+ := (n / (N - a₁)).toPNat' with hm₀
     set x₀ : (ℕ+ × ℕ+) × Fin 3 := ((1, m₀), 1) with hx₀
-
     have key : ∀ x : (ℕ+ × ℕ+) × Fin 3, wpMonExp N a₁ (Sum.inr (Sum.inr x)) = n →
         x = x₀ ∧ (N - a₁) ∣ n := by
       rintro ⟨⟨c, m⟩, i⟩ hE
@@ -837,7 +830,6 @@ theorem wpQCoeff_eq_iff_neg {N a₁ a₂ b₁ b₂ : ℕ} (ha₁ : a₁ < N) (ha
   have hζ := isPrimitiveRoot_zetaN hN
   set ζ := zetaN N with hζdef
   have hζ0 : ζ ≠ 0 := zetaN_ne_zero N
-
   have powinj : ∀ {x y : ℕ}, x < N → y < N → ζ ^ x = ζ ^ y → x = y :=
     fun hx hy e ↦ hζ.pow_inj hx hy e
   have powmul : ∀ {x y : ℕ}, x < N → y < N → ζ ^ x * ζ ^ y = 1 → y = (N - x) % N := by
@@ -860,7 +852,6 @@ theorem wpQCoeff_eq_iff_neg {N a₁ a₂ b₁ b₂ : ℕ} (ha₁ : a₁ < N) (ha
     rw [← pow_zero ζ] at e
     have := powinj hx (by omega) e
     omega
-
   have match_uu : ζ ^ a₂ = ζ ^ b₂ → b₂ = a₂ := fun e ↦ (powinj ha₂ hb₂ e).symm
   have match_uv : ζ ^ a₂ = ζ⁻¹ ^ b₂ → b₂ = (N - a₂) % N := fun e ↦
     powmul ha₂ hb₂ (by rw [e]; exact invpow b₂)
@@ -870,14 +861,12 @@ theorem wpQCoeff_eq_iff_neg {N a₁ a₂ b₁ b₂ : ℕ} (ha₁ : a₁ < N) (ha
     have : ζ ^ a₂ = ζ ^ b₂ := by
       rw [inv_pow, inv_pow, inv_inj] at e; exact e
     exact (powinj ha₂ hb₂ this).symm
-
   have h0 := h 0
   rw [wpQCoeff_zero ha₁, wpQCoeff_zero hb₁, add_right_inj, ← hζdef] at h0
   have Kne : ∀ {x : ℕ}, 0 < x → x < N → ζ ^ x / (1 - ζ ^ x) ^ 2 ≠ 0 := fun hx0 hx ↦
     div_ne_zero (pow_ne_zero _ hζ0) (pow_ne_zero _ (sub_ne_zero.mpr (powne1 hx0 hx).symm))
   by_cases hA : a₁ = 0
-  ·
-    have ha₂0 : 0 < a₂ := Nat.pos_of_ne_zero (ha0.resolve_left (not_not.mpr hA))
+  · have ha₂0 : 0 < a₂ := Nat.pos_of_ne_zero (ha0.resolve_left (not_not.mpr hA))
     have hB : b₁ = 0 := by
       by_contra hB
       rw [ite_eq_left hA, ite_eq_right hB] at h0
@@ -903,14 +892,12 @@ theorem wpQCoeff_eq_iff_neg {N a₁ a₂ b₁ b₂ : ℕ} (ha₁ : a₁ < N) (ha
       exact Kne hb₂0 hb₂ h0.symm
     have hmodA : (N - a₁) % N = N - a₁ := Nat.mod_eq_of_lt (by omega)
     rw [hmodA]
-
     set ka := min a₁ (N - a₁) with hka
     set kb := min b₁ (N - b₁) with hkb
     have hka0 : 0 < ka := lt_min (Nat.pos_of_ne_zero hA) (Nat.sub_pos_of_lt ha₁)
     have hkb0 : 0 < kb := lt_min (Nat.pos_of_ne_zero hB) (Nat.sub_pos_of_lt hb₁)
     have hkaN : ka < N := lt_of_le_of_lt (min_le_left _ _) ha₁
     have hkbN : kb < N := lt_of_le_of_lt (min_le_left _ _) hb₁
-
     have eval : ∀ {x₁ : ℕ} (x₂ : ℕ), x₁ < N → x₁ ≠ 0 → ∀ {n : ℕ}, 0 < n → n ≤ min x₁ (N - x₁) →
         wpQCoeff N x₁ x₂ n =
           (if x₁ = n then ζ ^ x₂ else 0) + (if N - x₁ = n then ζ⁻¹ ^ x₂ else 0) := by
@@ -930,16 +917,13 @@ theorem wpQCoeff_eq_iff_neg {N a₁ a₂ b₁ b₂ : ℕ} (ha₁ : a₁ < N) (ha
           simp
         · have : ¬ (N - x₁ ∣ n) := fun hd ↦ e (le_antisymm (Nat.le_of_dvd hn0 hd) hn2)
           rw [ite_eq_right e, ite_eq_right this]
-
     have hkk : ka = kb := by
       by_contra hne
       rcases lt_or_gt_of_ne hne with hlt | hlt
-      ·
-        have hb := eval b₂ hb₁ hB hka0 hlt.le
+      · have hb := eval b₂ hb₁ hB hka0 hlt.le
         rw [ite_eq_right (by omega : ¬ b₁ = ka), ite_eq_right (by omega : ¬ N - b₁ = ka), add_zero] at hb
         have ha := eval a₂ ha₁ hA hka0 le_rfl
         rw [h ka, hb] at ha
-
         have : a₁ = ka ∨ N - a₁ = ka := by omega
         rcases this with e | e
         · by_cases e' : N - a₁ = ka
@@ -964,19 +948,15 @@ theorem wpQCoeff_eq_iff_neg {N a₁ a₂ b₁ b₂ : ℕ} (ha₁ : a₁ < N) (ha
           · omega
           · rw [ite_eq_right e', ite_eq_left e, zero_add] at hb
             exact pow_ne_zero _ (inv_ne_zero hζ0) hb.symm
-
     have ha := eval a₂ ha₁ hA hka0 le_rfl
     have hb := eval b₂ hb₁ hB hkb0 le_rfl
     rw [← hkk, ← h ka, ha] at hb
-
     have haon : a₁ = ka ∨ N - a₁ = ka := by omega
     have hbon : b₁ = ka ∨ N - b₁ = ka := by omega
     by_cases hmid : a₁ = ka ∧ N - a₁ = ka
-    ·
-      obtain ⟨e1, e2⟩ := hmid
+    · obtain ⟨e1, e2⟩ := hmid
       have hb12 : b₁ = ka ∧ N - b₁ = ka := by omega
       rw [ite_eq_left e1, ite_eq_left e2, ite_eq_left hb12.1, ite_eq_left hb12.2] at hb
-
       set u := ζ ^ a₂ with hu
       set u' := ζ ^ b₂ with hu'
       have hu0 : u ≠ 0 := pow_ne_zero _ hζ0
@@ -1039,7 +1019,6 @@ lemma ringHom_wpMonCoeffK {N : ℕ} (hN : N ≠ 0) (φ : kN N →+* ℂ) {s : �
     (hφ : φ (zetaK N) = zetaN N ^ s) (a₁ a₂ : ℕ) (i : WpIdx) :
     φ (wpMonCoeffK N a₁ a₂ i) = wpMonCoeff N a₁ (s * a₂ % N) i := by
   have hζN := zetaN_pow_N hN
-
   have hpow : ∀ k : ℕ, φ ⟨zetaN N ^ k, zetaN_pow_mem_kN N k⟩ = (zetaN N ^ s) ^ k := fun k ↦ by
     rw [← hφ, ← map_pow]; rfl
   have hinvpow : ∀ k : ℕ, φ ⟨(zetaN N)⁻¹ ^ k, zetaN_inv_pow_mem_kN N k⟩ = ((zetaN N ^ s)⁻¹) ^ k :=
@@ -1059,7 +1038,6 @@ lemma ringHom_wpMonCoeffK {N : ℕ} (hN : N ≠ 0) (φ : kN N →+* ℂ) {s : �
     norm_num
   have hexp1 : (zetaN N ^ s) ^ a₂ = zetaN N ^ (s * a₂ % N) := by
     rw [← pow_mul, pow_eq_pow_mod (s * a₂) hζN]
-
   have hexp : ∀ m : ℕ, (zetaN N ^ s) ^ (a₂ * m) = zetaN N ^ (s * a₂ % N * m) := fun m ↦ by
     rw [← pow_mul, ← mul_assoc, pow_mul_eq_pow_mod_mul hζN]
   have hexpinv : ∀ m : ℕ, ((zetaN N ^ s)⁻¹) ^ (a₂ * m) = (zetaN N)⁻¹ ^ (s * a₂ % N * m) :=
@@ -1067,8 +1045,7 @@ lemma ringHom_wpMonCoeffK {N : ℕ} (hN : N ≠ 0) (φ : kN N →+* ℂ) {s : �
     have hζN' : (zetaN N)⁻¹ ^ N = 1 := by rw [inv_pow, hζN, inv_one]
     rw [← inv_pow, ← pow_mul, ← mul_assoc, pow_mul_eq_pow_mod_mul hζN']
   rcases i with u | m | ⟨p, i⟩
-  ·
-    have e : wpMonCoeffK N a₁ a₂ (Sum.inl u) = ⟨1 / 12, one_div_twelve_mem_kN N⟩ +
+  · have e : wpMonCoeffK N a₁ a₂ (Sum.inl u) = ⟨1 / 12, one_div_twelve_mem_kN N⟩ +
         (if a₁ = 0 then ⟨zetaN N ^ a₂, zetaN_pow_mem_kN N a₂⟩ /
           (1 - ⟨zetaN N ^ a₂, zetaN_pow_mem_kN N a₂⟩) ^ 2 else 0) := by
       apply Subtype.ext
@@ -1185,7 +1162,6 @@ theorem qExpansion_frickeH_coeff_mem_kN {N a₁ a₂ : ℕ} (ha₁ : a₁ < N) (
     (qExpansion N (frickeH N a₁ a₂)).coeff n ∈ kN N := by
   have hN : N ≠ 0 := by omega
   have hN' : (0 : ℝ) < N := by exact_mod_cast Nat.pos_of_ne_zero hN
-
   have hperE : Function.Periodic ((⇑E₄ * ⇑E₆ : ℍ → ℂ) ∘ ofComplex) N := by
     have h4 := (periodic_comp_ofComplex E₄ one_mem_strictPeriods_SL).nat_mul N
     have h6 := (periodic_comp_ofComplex E₆ one_mem_strictPeriods_SL).nat_mul N
@@ -1273,16 +1249,13 @@ theorem solution (N : ℕ) (hN : N ≠ 0) (L : ℍ → PeriodPair)
     funext a₁ a₂ τ; rfl
   have hk : k = kN N := rfl
   refine ⟨?_, ?_, ?_, ?_, ?_, ?_, ?_⟩
-  ·
-    intro a₁ a₂ ha₁ ha₂ h0
+  · intro a₁ a₂ ha₁ ha₂ h0
     rw [hW]
     exact ⟨mdifferentiable_wpNorm ha₁ ha₂ h0, periodic_wpNorm ha₁ ha₂ h0,
       isBoundedAtImInfty_wpNorm ha₁ ha₂ h0, fun n ↦ hk ▸ qExpansion_wpNorm_coeff_mem_kN ha₁ ha₂ h0 n⟩
-  ·
-    intro a₁ a₂ b₁ b₂ ha₁ ha₂ ha0 hb₁ hb₂ hb0 heq
+  · intro a₁ a₂ b₁ b₂ ha₁ ha₂ ha0 hb₁ hb₂ hb0 heq
     exact wpNorm_eq_imp ha₁ ha₂ ha0 hb₁ hb₂ hb0 (hW ▸ heq)
-  ·
-    have hζk : ζk = zetaK N := rfl
+  · have hζk : ζk = zetaK N := rfl
     refine ⟨fun a₁ a₂ ↦ if ha₁ : a₁ < N then PowerSeries.mk (wpQCoeffK ha₁ a₂) else 0, ?_, ?_⟩
     · intro a₁ a₂ ha₁ ha₂ h0
       simp only
@@ -1304,15 +1277,11 @@ theorem solution (N : ℕ) (hN : N ≠ 0) (L : ℍ → PeriodPair)
       rw [PowerSeries.coeff_map, PowerSeries.coeff_mk]
       exact (ringHom_wpQCoeffK ha₁ φ hφ' a₂ n).trans
         (qExpansion_wpNorm_coeff ha₁ hsa₂ h0' n).symm
-  ·
-    intro f hper hhol hbd n
+  · intro f hper hhol hbd n
     exact qExpansion_coeff_width f hN (by simpa using hper) hhol hbd n
-  ·
-    exact ratCoeff_E (by norm_num) (by decide)
-  ·
-    exact ratCoeff_E (by norm_num) (by decide)
-  ·
-    exact ratCoeff_discriminant
+  · exact ratCoeff_E (by norm_num) (by decide)
+  · exact ratCoeff_E (by norm_num) (by decide)
+  · exact ratCoeff_discriminant
 
 end
 end S_ModularForm_weierstrassP_torsion_qExpansion_package

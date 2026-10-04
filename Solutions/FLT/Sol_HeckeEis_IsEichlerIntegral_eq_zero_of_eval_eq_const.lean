@@ -53,7 +53,6 @@ theorem mdifferentiable_rung (hG : IsEichlerIntegral n g G) {j : ℕ} (hj : j �
 
 theorem eq_zero_of_rung_zero_const (hG : IsEichlerIntegral n g G) {c : ℂ} (hc : ∀ τ : ℍ, rung G 0 τ = c) :
     ∀ τ : ℍ, g τ = 0 := by
-
   have hstep : ∀ j : ℕ, j ≤ n → (∃ c : ℂ, ∀ τ : ℍ, rung G j τ = c) →
       ∀ τ : ℍ, (if j = n then ((n.factorial : ℕ) : ℂ) * g τ else 0) - rung G (j + 1) τ = 0 := by
     rintro j hj ⟨c', hc'⟩ τ
@@ -64,7 +63,6 @@ theorem eq_zero_of_rung_zero_const (hG : IsEichlerIntegral n g G) {c : ℂ} (hc 
       simp only [Function.comp_apply]
       exact hc' _
     exact h1.unique h2
-
   have hconst : ∀ j : ℕ, j ≤ n → ∃ c : ℂ, ∀ τ : ℍ, rung G j τ = c := by
     intro j
     induction j with
@@ -93,7 +91,6 @@ theorem solution {n : ℕ} {g : UpperHalfPlane → ℂ}
       MvPolynomial.eval ![(1 : ℂ), -(τ : ℂ)] ((G τ : ↥(HeckeEis.BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) = c) :
     g = 0 :=
   funext fun τ => HeckeEis.LadderAux.eq_zero_of_rung_zero_const hG hc τ
-
 
 end S_HeckeEis_IsEichlerIntegral_eq_zero_of_eval_eq_const
 end P2MW

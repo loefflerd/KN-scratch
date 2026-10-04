@@ -42,11 +42,9 @@ theorem solution {𝒢 : Subgroup (GL (Fin 2) ℝ)} [𝒢.IsArithmetic] {k : ℤ
   set F := ModularForm.norm 𝒮ℒ f with hF
   have hanalytic := f.analyticAt_cuspFunction_quotientFunc_W2D hM hconj
   let _ : Fintype (𝒮ℒ ⧸ 𝒢.subgroupOf 𝒮ℒ) := Fintype.ofFinite _
-
   have hprod : qExpansion M F = ∏ q : 𝒮ℒ ⧸ 𝒢.subgroupOf 𝒮ℒ, qExpansion M (quotientFunc f q) := by
     rw [hF, ModularForm.coe_norm]
     exact UpperHalfPlane.qExpansion_prod Finset.univ fun q _ ↦ hanalytic q
-
   have hone : quotientFunc f (⟦1⟧ : 𝒮ℒ ⧸ 𝒢.subgroupOf 𝒮ℒ) = ⇑f := by
     rw [quotientFunc_mk]
     simp

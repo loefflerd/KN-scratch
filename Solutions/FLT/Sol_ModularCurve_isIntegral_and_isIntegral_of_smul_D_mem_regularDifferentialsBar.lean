@@ -164,18 +164,15 @@ theorem main (x : 𝔽) (hx : x • D 𝕂 𝔽 (jB N) ∈ regularDifferentialsB
   set ψ : ℕ := dedekindPsi N with hψdef
   have hψpos : 0 < ψ := ModularCurve.dedekindPsi_pos N (NeZero.ne N)
   have hJ0 : J ≠ 0 := jB_ne_zero N
-
   by_cases hx0 : x = 0
   · subst hx0
     refine ⟨?_, ?_⟩
     · rw [zero_pow (by norm_num), zero_mul, zero_mul]; exact isIntegral_zero
     · rw [zero_pow (by omega), zero_mul, zero_mul]; exact isIntegral_zero
-
   have hreg : ∀ v : Place 𝕂 𝔽, 0 ≤ v.ordDiff (x • D 𝕂 𝔽 J) := by
     have h1 : x • D 𝕂 𝔽 J ∈ regularDiffs 𝕂 𝔽 := by
       rw [AlgebraicCurve.regularDiffs_eq_regularDifferentials]; exact hx
     exact (AlgebraicCurve.mem_regularDiffs_iff (J : 𝔽) _).mp h1
-
   obtain ⟨Dv, hDv, -⟩ := HasPrincipalDivisors.exists_divisor (K := 𝕂) (F := 𝔽) J hJ0
   let S : Finset (Place 𝕂 𝔽) := Dv.support.filter (fun v => v.ord J < 0)
   have hS : ∀ v, v ∈ S ↔ v.ord J < 0 := by
@@ -204,7 +201,6 @@ theorem main (x : 𝔽) (hx : x • D 𝕂 𝔽 (jB N) ∈ regularDifferentialsB
     have h' : (ψ : ℤ) = 0 := hsum.symm
     omega
   obtain ⟨v₀, hv₀⟩ := hpole
-
   have htr : Transcendental 𝕂 J := by
     intro halg
     have hint : IsIntegral 𝕂 J := halg.isIntegral
@@ -221,7 +217,6 @@ theorem main (x : 𝔽) (hx : x • D 𝕂 𝔽 (jB N) ∈ regularDifferentialsB
     have := ord_algebraMap v₀ (c := (1728 : 𝕂))
     rw [← h] at this
     omega
-
   have h1728_0 : v₀.ord (algebraMap 𝕂 𝔽 1728) = 0 := ord_algebraMap v₀
   have hordJsub_of_pos : ∀ v : Place 𝕂 𝔽, 0 < v.ord J → v.ord (J - algebraMap 𝕂 𝔽 1728) = 0 := by
     intro v hv
@@ -246,11 +241,9 @@ theorem main (x : 𝔽) (hx : x • D 𝕂 𝔽 (jB N) ∈ regularDifferentialsB
       (by rw [Ne, map_eq_zero]; exact hc) hne (by rw [h1]; exact hv)
     rw [h1, add_sub_cancel] at this
     exact this
-
   have hDsub : ∀ c : 𝕂, D 𝕂 𝔽 (J - algebraMap 𝕂 𝔽 c) = D 𝕂 𝔽 J := by
     intro c
     rw [map_sub, Derivation.map_algebraMap, sub_zero]
-
   have hfinite : ∀ v : Place 𝕂 𝔽, v.ord J = 0 →
       (0 ≤ v.ord x ∧ v.ord (J - algebraMap 𝕂 𝔽 1728) = 0) ∨
       (∃ a : ℤ, 0 < a ∧ a ≤ 2 ∧ v.ord (J - algebraMap 𝕂 𝔽 1728) = a ∧ 1 - a ≤ v.ord x) := by
@@ -282,7 +275,6 @@ theorem main (x : 𝔽) (hx : x • D 𝕂 𝔽 (jB N) ∈ regularDifferentialsB
       have hb := ord_bound N x hx0 hreg v (g := J - algebraMap 𝕂 𝔽 c) (by rw [h1]; norm_num) (hDsub c)
       rw [h1] at hb
       refine ⟨by omega, ?_⟩
-
       have hcc : v.ord (algebraMap 𝕂 𝔽 (c - 1728)) = 0 := ord_algebraMap v
       have := v.ord_add_eq_of_lt (f := algebraMap 𝕂 𝔽 (c - 1728)) (g := J - algebraMap 𝕂 𝔽 c)
         (by rw [Ne, map_eq_zero]; exact sub_ne_zero.mpr hc1728)
@@ -292,16 +284,14 @@ theorem main (x : 𝔽) (hx : x • D 𝕂 𝔽 (jB N) ∈ regularDifferentialsB
       congr 1
       ring
   refine ⟨?_, ?_⟩
-  ·
-    refine AlgebraicCurve.isIntegral_adjoin_of_forall_ord_nonneg (K := 𝕂) (F := 𝔽) J _ ?_
+  · refine AlgebraicCurve.isIntegral_adjoin_of_forall_ord_nonneg (K := 𝕂) (F := 𝔽) J _ ?_
     intro v hvJ
     have hne : x ^ 6 * J ^ 4 * (J - algebraMap 𝕂 𝔽 1728) ^ 3 ≠ 0 :=
       mul_ne_zero (mul_ne_zero (pow_ne_zero _ hx0) (pow_ne_zero _ hJ0)) (pow_ne_zero _ hJne1728)
     rw [v.ord_mul (mul_ne_zero (pow_ne_zero _ hx0) (pow_ne_zero _ hJ0)) (pow_ne_zero _ hJne1728),
       v.ord_mul (pow_ne_zero _ hx0) (pow_ne_zero _ hJ0), ord_pow', ord_pow', ord_pow']
     rcases hvJ.lt_or_eq with hpos | hzero
-    ·
-      have hd := ModularCurve.ord_jBar_dvd_three N v hpos
+    · have hd := ModularCurve.ord_jBar_dvd_three N v hpos
       have ha3 : v.ord J ≤ 3 := Int.le_of_dvd (by norm_num) hd
       have hb := ord_bound N x hx0 hreg v hpos.ne' rfl
       rw [hordJsub_of_pos v hpos]
@@ -310,8 +300,7 @@ theorem main (x : 𝔽) (hx : x • D 𝕂 𝔽 (jB N) ∈ regularDifferentialsB
     · rcases hfinite v hzero.symm with ⟨hx', h1728'⟩ | ⟨a, ha0, ha2, h1728', hb⟩
       · rw [← hzero, h1728']; push_cast; nlinarith
       · rw [← hzero, h1728']; push_cast; nlinarith
-  ·
-    have htr' : Transcendental 𝕂 J⁻¹ := by
+  · have htr' : Transcendental 𝕂 J⁻¹ := by
       intro halg
       exact htr (by simpa using halg.inv)
     have hadj : IntermediateField.adjoin 𝕂 ({J⁻¹} : Set 𝔽) = IntermediateField.adjoin 𝕂 ({J} : Set 𝔽) := by
@@ -331,8 +320,7 @@ theorem main (x : 𝔽) (hx : x • D 𝕂 𝔽 (jB N) ∈ regularDifferentialsB
     rw [v.ord_mul (mul_ne_zero (pow_ne_zero _ hx0) (pow_ne_zero _ hJ0)) (pow_ne_zero _ hJne1728),
       v.ord_mul (pow_ne_zero _ hx0) (pow_ne_zero _ hJ0), ord_pow', ord_pow', ord_pow']
     rcases hvJ.lt_or_eq with hneg | hzero
-    ·
-      have hw := hwidth v hneg
+    · have hw := hwidth v hneg
       have hb := ord_bound N x hx0 hreg v hneg.ne rfl
       rw [hordJsub_of_neg v hneg]
       push_cast

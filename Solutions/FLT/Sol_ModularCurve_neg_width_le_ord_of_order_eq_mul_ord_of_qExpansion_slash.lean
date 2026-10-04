@@ -115,7 +115,6 @@ theorem slash_T_pow_eq {k : ℤ} (G : ℍ → ℂ) (σ : SL(2, ℤ)) (h : ℕ)
 
 theorem periodic_of_slash_T_pow_eq {k : ℤ} (F : ℍ → ℂ) (h : ℕ)
     (hF : F ∣[k] (ModularGroup.T ^ h) = F) : Periodic (F ∘ ofComplex) (h : ℝ) := by
-
   let Δ : Subgroup SL(2, ℤ) := Subgroup.zpowers (ModularGroup.T ^ h)
   have hΔ : Δ ≤ stab k F := (Subgroup.zpowers_le).mpr hF
   let S : SlashInvariantForm ((Δ : Subgroup SL(2, ℤ)) : Subgroup (GL (Fin 2) ℝ)) k :=
@@ -209,7 +208,6 @@ theorem dvd_order_qExpansion {F : ℍ → ℂ} {N : ℕ} (hN : 0 < N) (h : ℕ) 
   have hmpos : 0 < m := Nat.div_pos (Nat.le_of_dvd hN hdN) hdpos
   have hmd : (m : ℝ) * (d : ℝ) = (N : ℝ) := by
     rw [← Nat.cast_mul, Nat.div_mul_cancel hdN]
-
   have pd : Periodic (F ∘ ofComplex) (d : ℝ) := by
     have p1 := (ph.int_mul (Nat.gcdA h N)).add_period (pN.int_mul (Nat.gcdB h N))
     have hbez : ((d : ℤ) : ℂ) = ((h * Nat.gcdA h N + N * Nat.gcdB h N : ℤ) : ℂ) := by
@@ -276,13 +274,11 @@ theorem solution
   have hmpos : 0 < m := Nat.div_pos (Nat.le_of_dvd hNpos hdN) hdpos
   have h1 : (1 : ℝ) ∈ ((Γ : Subgroup SL(2, ℤ)) : Subgroup (GL (Fin 2) ℝ)).strictPeriods :=
     one_mem_strictPeriods Γ hT
-
   have key : ∀ x : ↥(ModularCurve.laurentBaseChange ℂ F₀), x ≠ 0 → (m : ℤ) ∣ (Φ x).order := by
     intro x hx
     obtain ⟨k, g, h₁, hh₁, hxgh⟩ :=
       ModularCurve.exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange_qExpFunctionFieldC Γ hT
         (x : LaurentSeries ℂ) (by rw [← hF]; exact x.2)
-
     have hH : h₁.mul h₁ ≠ 0 := by
       intro h0
       apply hh₁
@@ -321,13 +317,11 @@ theorem solution
       linarith
     rw [hord']
     exact dvd_sub dA dB
-
   obtain ⟨g₀, hg₀, hg₀1⟩ := AlgebraicCurve.Place.exists_forall_ord_eq_finset ({P} : Finset _) (fun _ => (1 : ℤ))
   have hP1 : P.ord g₀ = 1 := hg₀1 P (Finset.mem_singleton_self P)
   have dme : (m : ℤ) ∣ (e : ℤ) := by
     have := key g₀ hg₀
     rwa [hord g₀ hg₀, hP1, mul_one] at this
-
   have hy0 : y ≠ 0 := by
     intro h0
     rw [h0, map_zero, HahnSeries.order_zero] at hyo

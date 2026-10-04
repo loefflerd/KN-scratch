@@ -77,7 +77,6 @@ theorem solution
   have hNs : ∀ D : IsogenyEndDatum W.toAffine,
       NormFormulaAlong (HahnSeries ℚ (AlgebraicClosure ℚ)) D.ι D.hfin :=
     fun D => Ws13B.normFormulaAlong_of_elliptic D.ι D.hfin
-
   have ht' : @Transcendental ℚ (HahnSeries ℚ (AlgebraicClosure ℚ)) _ _ DivisionRing.toRatAlgebra W.j := by
     convert ht using 2 ; first | rfl | exact Subsingleton.elim _ _
   exact zmultiples_eq_of_veluQuotient_j_eq_of_forall_isogenyEndDatum_exists_int W hNs

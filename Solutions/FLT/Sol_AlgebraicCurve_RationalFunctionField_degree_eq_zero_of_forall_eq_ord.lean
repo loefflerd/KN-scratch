@@ -26,7 +26,6 @@ theorem solution {K : Type*} [Field K] {f : RatFunc K} (D : Divisor K (RatFunc K
     rw [hzero, map_zero]
   · have hden : f.denom ≠ 0 := f.denom_ne_zero
     have hdenF : algebraMap K[X] (RatFunc K) f.denom ≠ 0 := RatFunc.algebraMap_ne_zero hden
-
     set Dden : Divisor K (RatFunc K) :=
       Finsupp.ofSupportFinite
         (fun v : Place K (RatFunc K) => v.ord (algebraMap K[X] (RatFunc K) f.denom))

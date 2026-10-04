@@ -20,30 +20,23 @@ namespace W1
 theorem eisInt_not_dvd_den_shift {ℓ : ℕ} [Fact ℓ.Prime] (hℓ5 : 5 ≤ ℓ) :
     ¬ ℓ ∣ (bernoulli (ℓ - 1) + 1 / (ℓ : ℚ)).den := by
   have hℓp : ℓ.Prime := Fact.out
-
   obtain ⟨m, hm⟩ := hℓp.odd_of_ne_two (by omega)
   set k₀ := (ℓ - 1) / 2 with hk₀def
   have h2k₀ : 2 * k₀ = ℓ - 1 := by omega
-
   obtain ⟨z, hz⟩ := Bernoulli.vonStaudt_clausen k₀
-
   rw [h2k₀] at hz
   have hrange : ℓ - 1 + 2 = ℓ + 1 := by omega
   rw [hrange] at hz
-
   set S := {p ∈ range (ℓ + 1) | p.Prime ∧ p - 1 ∣ ℓ - 1} with hSdef
   have hℓS : ℓ ∈ S := by
     simp only [hSdef, mem_filter, mem_range]
     exact ⟨Nat.lt_succ_self ℓ, hℓp, dvd_refl _⟩
-
   have hsplit := (add_sum_erase S (fun p => (1 : ℚ) / (p : ℚ)) hℓS).symm
   rw [hsplit] at hz
-
   have hz' : bernoulli (ℓ - 1) + 1 / (ℓ : ℚ)
       = (z : ℚ) - ∑ p ∈ S.erase ℓ, (1 : ℚ) / (p : ℚ) := by
     linarith [hz]
   rw [hz', Rat.intCast_sub_den]
-
   have hdendvd := Rat.den_sum_dvd_prod_den (S.erase ℓ) (fun p => (1 : ℚ) / (p : ℚ))
   have hcop : (∏ p ∈ S.erase ℓ, ((1 : ℚ) / (p : ℚ)).den).Coprime ℓ := by
     refine Nat.Coprime.prod_left fun p hp => ?_
@@ -63,7 +56,6 @@ theorem ModularCurve.StarBank.eisInt_dvd_den {ℓ : ℕ} [Fact ℓ.Prime] (hℓ5
     ℓ ∣ (bernoulli (ℓ - 1)).den := by
   have hℓp : ℓ.Prime := Fact.out
   have hshift := ModularCurve.W1.eisInt_not_dvd_den_shift hℓ5
-
   have hℓden : ((1 : ℚ) / (ℓ : ℚ)).den = ℓ := by simp [hℓp.ne_zero]
   have hdvd : ℓ ∣ (bernoulli (ℓ - 1) + 1 / (ℓ : ℚ)).den * (bernoulli (ℓ - 1)).den := by
     have h := Rat.sub_den_dvd (bernoulli (ℓ - 1) + 1 / (ℓ : ℚ)) (bernoulli (ℓ - 1))
@@ -109,12 +101,10 @@ theorem ModularCurve.StarBank.eisInt_coeff {ℓ : ℕ} [Fact ℓ.Prime] (hℓ5 :
   · subst hm0
     refine ⟨B.num, ?_, fun _ => rfl, by omega⟩
     rw [hcoeff]; simp
-  ·
-    have hm1' : m ≠ 0 := hm1.ne'
+  · have hm1' : m ≠ 0 := hm1.ne'
     rw [hcoeff, ite_eq_right hm1']
     refine ⟨-(2 * (↑(ℓ - 1) : ℤ) * (↑B.den : ℤ) * (↑(σ (ℓ - 1 - 1) m) : ℤ)), ?_, ?_, ?_⟩
-    ·
-      have hnum : (B.num : ℂ) ≠ 0 := by
+    · have hnum : (B.num : ℂ) ≠ 0 := by
         exact_mod_cast Rat.num_ne_zero.mpr hB0
       have hcast : ((B : ℚ) : ℂ) = (B.num : ℂ) / (B.den : ℂ) := by
         exact_mod_cast Rat.cast_def (K := ℂ) B
@@ -162,7 +152,6 @@ theorem solution {ℓ : ℕ} [Fact ℓ.Prime] (hℓ5 : 5 ≤ ℓ)
       ∧ PowerSeries.constantCoeff T = (bernoulli (ℓ - 1)).num
       ∧ ∀ m, 1 ≤ m → (ℓ : ℤ) ∣ T.coeff m :=
   ModularCurve.StarBank.eisInt_series hℓ5 hk
-
 
 end S_ModularCurve_StarBank_eisInt_series
 end P2MW

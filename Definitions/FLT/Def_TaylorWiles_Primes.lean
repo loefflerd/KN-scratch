@@ -103,11 +103,8 @@ def IsTaylorWilesPrime (q : ℕ) : Prop :=
       (ρ (arithFrobAt ℤ (L ≃ₐ[ℚ] L) Q)).HasDistinctRationalEigenvalues
 
 structure Seed (S : Finset ℕ) where
-
   σ : L ≃ₐ[ℚ] L
-
   regular : (ρ σ).HasDistinctRationalEigenvalues
-
   congruent : ∀ ℓ : ℕ, ℓ ∉ S → RealizesCyclicAt L σ ℓ → ℓ ≡ 1 [MOD p ^ n]
 
 def SeedExists (S : Finset ℕ) : Prop := Nonempty (Seed ρ p n S)

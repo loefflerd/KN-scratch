@@ -67,7 +67,6 @@ is used here; no continuity or Galois-level condition is needed for MTT.
 
 noncomputable section
 
-
 namespace groupCohomology
 
 variable {K G : Type u} [Field K] [Group G] {H : Subgroup G} {T : Set G}
@@ -129,7 +128,6 @@ its value on the generator.
 
 noncomputable section
 
-
 namespace groupCohomology
 
 variable {K G : Type u} [Field K] [CharZero K] [Group G] {A : Rep.{u} K G}
@@ -183,7 +181,6 @@ generator. The result will be specialized to MTT cusp stabilizers.
 -/
 
 noncomputable section
-
 
 namespace groupCohomology
 

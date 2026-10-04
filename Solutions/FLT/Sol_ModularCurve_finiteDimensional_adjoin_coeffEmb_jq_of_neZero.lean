@@ -59,23 +59,19 @@ theorem finiteDimensional_adjoin_coeffEmb_jq (L : Type*) [Field L] [Algebra ℚ 
           Set (laurentBaseChange L (modularFunctionFieldFull N))))
       (laurentBaseChange L (modularFunctionFieldFull N)) := by
   classical
-
   let ι : Type := {d : ℕ // d ∣ N ∧ d ≠ 0}
   have : Finite ι := by
     refine Finite.of_injective (fun d : ι => (⟨d.1, ?_⟩ : Fin (N + 1))) ?_
     · exact Nat.lt_succ_of_le (Nat.le_of_dvd (Nat.pos_of_ne_zero (NeZero.ne N)) d.2.1)
     · intro d d' h
       exact Subtype.ext (by simpa using congrArg Fin.val h)
-
   let g : ι → laurentBaseChange L (modularFunctionFieldFull N) := fun d =>
     haveI : NeZero d.1 := ⟨d.2.2⟩
     ⟨coeffEmb L (qExpand ℚ d.1 jq), coeffEmb_mem_laurentBaseChange L (jqd_mem_full N d.2.1)⟩
   have hgval : ∀ d : ι, ((g d : laurentBaseChange L (modularFunctionFieldFull N)) : LaurentSeries L) =
       haveI : NeZero d.1 := ⟨d.2.2⟩; coeffEmb L (qExpand ℚ d.1 jq) := fun d => rfl
-
   let J : laurentBaseChange L (modularFunctionFieldFull N) :=
     ⟨coeffEmb L jq, coeffEmb_mem_laurentBaseChange L hjq⟩
-
   have hint : ∀ d : ι, IsIntegral
       (IntermediateField.adjoin L ({J} : Set (laurentBaseChange L (modularFunctionFieldFull N)))) (g d) := by
     rintro ⟨d, hdvd, hd0⟩
@@ -106,7 +102,6 @@ theorem finiteDimensional_adjoin_coeffEmb_jq (L : Type*) [Field L] [Algebra ℚ 
     rw [← Polynomial.hom_eval₂]
     have h0 : Polynomial.eval₂ evalAtJ (qExpand ℚ d jq) data.Φ = 0 := data.eval_eq_zero
     rw [h0, map_zero]
-
   have hgen : IntermediateField.adjoin
       (IntermediateField.adjoin L ({J} : Set (laurentBaseChange L (modularFunctionFieldFull N))))
       (Set.range g) = ⊤ := by
@@ -124,7 +119,6 @@ theorem finiteDimensional_adjoin_coeffEmb_jq (L : Type*) [Field L] [Algebra ℚ 
       apply IntermediateField.subset_adjoin
       refine ⟨g ⟨d, hdvd, hd0.ne⟩, Or.inr ⟨⟨d, hdvd, hd0.ne⟩, rfl⟩, ?_⟩
       rfl
-
   have hfin : FiniteDimensional
       (IntermediateField.adjoin L ({J} : Set (laurentBaseChange L (modularFunctionFieldFull N))))
       (IntermediateField.adjoin

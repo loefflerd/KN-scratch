@@ -292,7 +292,6 @@ private lemma symbol_vertical (f : UpperHalfPlane → ℂ) (a m : ℚ) (hm : m �
         funext t; ring, integral_const_mul]
   ring
 
-
 end MTTComparisonProof
 
 open MTTComparisonProof in
@@ -384,7 +383,6 @@ private lemma gauss_product {m : ℕ} [NeZero m] (χ : DirichletCharacter ℂ m)
   rw [ht] at h
   simpa [mul_comm] using h
 
-
 private lemma weighted_signed_comparison {N k m : ℕ} [NeZero m]
     {ι : Qbar →+* ℂ} (hN : 0 < N) (hk : 2 ≤ k) (f : Eigenform N k ι)
     (P : Periods k ι f.form) (s : Bool) (χ : DirichletCharacter Qbar m)
@@ -429,7 +427,6 @@ private lemma weighted_signed_comparison {N k m : ℕ} [NeZero m]
       rw [hA,hS]
       linear_combination -(2 * (Real.pi : ℂ) * (Complex.I * (m : ℂ))^j *
         (MTT.sign s : ℂ) * (-1 : ℂ)^j * W) * hc
-
 
 private lemma signed_sum_period {N k m : ℕ} [NeZero m]
     {ι : Qbar →+* ℂ} (hN : 0 < N) (hk : 2 ≤ k) (f : Eigenform N k ι)
@@ -541,7 +538,6 @@ private theorem primitive_character_fiber_cancellation {R : Type*} [Field R] {m 
     _ = _ := by
       simpa only [Equiv.coe_mulLeft, Units.val_mul] using Equiv.sum_comp (Equiv.mulLeft u)
         (fun a : (ZMod m)ˣ => χ a * F (ZMod.unitsMap hd a))
-
 
 private lemma algebraic_symbol_periodic {N k : ℕ} {ι : Qbar →+* ℂ}
     (hN : 0 < N) (hk : 2 ≤ k) (f : Eigenform N k ι)

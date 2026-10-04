@@ -134,7 +134,6 @@ theorem solution
   let Ψ := liftRingHom τ F₀
   have hΨ : ∀ f, ((Ψ f : ↥(ModularCurve.laurentBaseChange K F₀)) : LaurentSeries K) =
       ModularCurve.coeffMap τ.toRingHom (f : LaurentSeries (AlgebraicClosure ℚ)) := fun f => rfl
-
   have hjmem : ModularCurve.coeffEmb (AlgebraicClosure ℚ) (ModularCurve.jqModC ℚ) ∈
       ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) F₀ :=
     ModularCurve.coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ)

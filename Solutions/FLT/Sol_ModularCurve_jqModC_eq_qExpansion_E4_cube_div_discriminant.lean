@@ -49,12 +49,10 @@ end SolJJ1Aux
 theorem solution : ModularCurve.jqModC ℂ =
     (((qExpansion 1 (ModularForm.E₄ : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) ^ 3 /
       ((qExpansion 1 (ModularForm.discriminant : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ)) := by
-
   have hc : ∀ m : ℤ, (ModularCurve.jqModC ℂ).coeff m = ((ModularCurve.jq.coeff m : ℚ) : ℂ) := by
     intro m
     rw [← ModularCurve.coeffEmb_jq, ModularCurve.coeffEmb_coeff]
     exact eq_ratCast _ _
-
   have hjq : ∀ τ : ℍ, HasSum (fun m : ℤ => (ModularCurve.jqModC ℂ).coeff m *
       Function.Periodic.qParam 1 (τ : ℂ) ^ m)
       (ModularForm.E₄ τ ^ 3 / ModularForm.discriminant τ) := by
@@ -62,13 +60,11 @@ theorem solution : ModularCurve.jqModC ℂ =
     have h := ModularCurve.hasSum_jq_qParam τ
     simp only [← hc] at h
     exact h
-
   have hΔ : ∀ τ : ℍ, HasSum (fun m : ℤ =>
       ((qExpansion 1 (ModularForm.discriminant : ℍ → ℂ) : PowerSeries ℂ) :
         LaurentSeries ℂ).coeff m *
         Function.Periodic.qParam 1 (τ : ℂ) ^ m) (ModularForm.discriminant τ) := fun τ =>
     SolJJ1Aux.hasSum_int CuspForm.discriminant one_mem_strictPeriods_SL τ
-
   have hcube : ∀ τ : ℍ, HasSum (fun m : ℤ =>
       (((qExpansion 1 (ModularForm.E₄ : ℍ → ℂ) : PowerSeries ℂ) :
         LaurentSeries ℂ) ^ 3).coeff m *
@@ -82,7 +78,6 @@ theorem solution : ModularCurve.jqModC ℂ =
       rw [ModularForm.coe_pow, Pi.pow_apply]
     rw [h1, PowerSeries.coe_pow, h2] at h
     exact h
-
   have hmul : ∀ τ : ℍ, HasSum (fun m : ℤ =>
       ((ModularCurve.jqModC ℂ *
         ((qExpansion 1 (ModularForm.discriminant : ℍ → ℂ) : PowerSeries ℂ) :
@@ -97,13 +92,11 @@ theorem solution : ModularCurve.jqModC ℂ =
         (ModularForm.E₄ τ ^ 3 / ModularForm.discriminant τ * ModularForm.discriminant τ) :=
       ModularCurve.hasSum_qParam_mul_laurent 1 one_pos _ _ _ _ hjq hΔ τ
     rwa [div_mul_cancel₀ _ (ModularForm.discriminant_ne_zero τ)] at h
-
   have key : ModularCurve.jqModC ℂ *
       ((qExpansion 1 (ModularForm.discriminant : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) =
       ((qExpansion 1 (ModularForm.E₄ : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) ^ 3 :=
     ModularCurve.laurent_qParam_coeff_unique 1 one_pos
       (fun τ => ModularForm.E₄ τ ^ 3) _ _ hmul hcube
-
   have hΔne : ((qExpansion 1 (ModularForm.discriminant : ℍ → ℂ) : PowerSeries ℂ) :
       LaurentSeries ℂ) ≠ 0 := by
     intro h0

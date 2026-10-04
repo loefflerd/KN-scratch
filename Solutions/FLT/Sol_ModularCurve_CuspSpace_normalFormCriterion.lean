@@ -31,27 +31,22 @@ lemma dvd_sub_of_smul_eq {e : ℕ} (hN : N ≠ 0) (he : e ∣ N) {A A' ε : ℤ}
   have he0 : e ≠ 0 := by rintro rfl; exact hN (Nat.eq_zero_of_zero_dvd he)
   have he0' : (e : ℤ) ≠ 0 := by exact_mod_cast he0
   have hε2 : ε * ε = 1 := by rcases hε with rfl | rfl <;> norm_num
-
   have hN10 : (N : ℤ) ∣ γ 1 0 := Gamma0_mem_iff_dvd.mp hγ
   obtain ⟨r₁, hr₁⟩ : (e : ℤ) ∣ γ 1 0 := dvd_trans (by exact_mod_cast he) hN10
-
   have hem : (e : ℤ) * ((N / e : ℕ) : ℤ) = (N : ℤ) := by exact_mod_cast Nat.mul_div_cancel' he
   have hr₂ : ((N / e : ℕ) : ℤ) ∣ r₁ := by
     have h := hN10
     rw [hr₁, ← hem] at h
     exact (mul_dvd_mul_iff_left he0').mp h
-
   have hs : γ 1 1 = ε - r₁ * A := by
     have h2 : (e : ℤ) * γ 1 1 = (e : ℤ) * (ε - r₁ * A) := by
       have h := h1
       rw [hr₁] at h
       linear_combination h
     exact mul_left_cancel₀ he0' h2
-
   have hdet : γ 0 0 * γ 1 1 - γ 0 1 * γ 1 0 = 1 := by
     have h := γ.property
     rwa [Matrix.det_fin_two] at h
-
   obtain ⟨k, hk⟩ : ((Nat.gcd e (N / e) : ℕ) : ℤ) ∣ r₁ :=
     dvd_trans (by exact_mod_cast Nat.gcd_dvd_right e (N / e)) hr₂
   obtain ⟨l, hl⟩ : ((Nat.gcd e (N / e) : ℕ) : ℤ) ∣ (e : ℤ) := by
@@ -85,8 +80,7 @@ theorem solution {N : ℕ} (hN : N ≠ 0) :
   have he0 : e ≠ 0 := by rintro rfl; exact hN (Nat.eq_zero_of_zero_dvd he)
   have he0' : (e : ℤ) ≠ 0 := by exact_mod_cast he0
   constructor
-  ·
-    intro h
+  · intro h
     rw [mk_eq_mk_iff] at h
     obtain ⟨γ, hγ, hsmul⟩ := h
     rw [mapGL_smul_ratPoint (a := a') (c := (e : ℤ)) γ (Or.inr he0')] at hsmul
@@ -97,14 +91,12 @@ theorem solution {N : ℕ} (hN : N ≠ 0) :
         (Or.inl rfl) hγ (by linear_combination h0) (by linear_combination h1))
     · exact dvd_sub_comm.mp (dvd_sub_of_smul_eq (A := a') (A' := a) (ε := -1) hN he
         (Or.inr rfl) hγ (by linear_combination h0) (by linear_combination h1))
-  ·
-    intro h
+  · intro h
     obtain ⟨w, hw⟩ : ((Nat.gcd e (N / e) : ℕ) : ℤ) ∣ a' - a :=
       (ZMod.intCast_eq_intCast_iff_dvd_sub a a' _).mp h
     obtain ⟨b, c, hbc⟩ := ha.mul_left ha'
     have hgab := Nat.gcd_eq_gcd_ab e (N / e)
     have hem : (e : ℤ) * ((N / e : ℕ) : ℤ) = (N : ℤ) := by exact_mod_cast Nat.mul_div_cancel' he
-
     have hq : (((Nat.gcd e (N / e) : ℕ) : ℤ) * w * c + Nat.gcdA e (N / e) * w * b * (a * a'))
           * (e : ℤ)
         = a' - a - ((N / e : ℕ) : ℤ) * (Nat.gcdB e (N / e) * w * b) * (a * a') := by

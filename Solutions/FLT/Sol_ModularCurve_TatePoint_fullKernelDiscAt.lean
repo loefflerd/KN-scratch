@@ -671,13 +671,11 @@ private theorem ModularCurve.TatePoint.fullKernelDiscAt_aux
   · exact ModularCurve.TatePoint.fullKernelDiscAt_of_even N hE
   · exact ModularCurve.TatePoint.fullKernelDiscAt_of_odd N hO
 
-
 open scoped Classical
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_TatePoint_fullKernelDiscAt.ModularCurve _root_.ModularCurve.TatePoint _root_.P2MW.S_ModularCurve_TatePoint_fullKernelDiscAt.ModularCurve.TatePoint in
 
 theorem solution (N : ℕ) [NeZero N] : FullKernelDiscAt N :=
   ModularCurve.TatePoint.fullKernelDiscAt_aux N
-
 
 end S_ModularCurve_TatePoint_fullKernelDiscAt
 end P2MW

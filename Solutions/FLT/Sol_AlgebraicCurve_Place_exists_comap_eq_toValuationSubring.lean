@@ -26,11 +26,9 @@ variable {K F F' : Type*} [Field K] [Field F] [Field F']
 theorem rowMain (v : Place K F) :
     ∃ w : Place K F', w.toValuationSubring.comap (algebraMap F F') = v.toValuationSubring := by
   classical
-
   let A : Type _ := v.toValuationSubring
   let : Algebra A F' := ((algebraMap F F').comp (algebraMap A F)).toAlgebra
   have : IsScalarTower A F F' := IsScalarTower.of_algebraMap_eq (fun _ => rfl)
-
   let C : Type _ := integralClosure A F'
   have : IsDedekindDomain C := integralClosure.isDedekindDomain A F F'
   have : IsFractionRing C F' := integralClosure.isFractionRing_of_finite_extension F F'
@@ -39,7 +37,6 @@ theorem rowMain (v : Place K F) :
   have : IsScalarTower K C F' := IsScalarTower.of_algebraMap_eq (fun a => by
     show algebraMap K F' a = algebraMap C F' (algebraMap A C (algebraMap K A a))
     rw [hAC, Place.coe_algebraMap, ← IsScalarTower.algebraMap_apply])
-
   have hinj : Function.Injective (algebraMap A C) := by
     intro a b h
     have h' := congrArg (algebraMap C F') h
@@ -64,7 +61,6 @@ theorem rowMain (v : Place K F) :
       exact hfA (zero_mem _)
     have hinvA : f⁻¹ ∈ v.toValuationSubring :=
       (v.toValuationSubring.mem_or_inv_mem f).resolve_left hfA
-
     have hnu : (⟨f⁻¹, hinvA⟩ : A) ∈ IsLocalRing.maximalIdeal A := by
       rw [IsLocalRing.mem_maximalIdeal, mem_nonunits_iff]
       intro hu

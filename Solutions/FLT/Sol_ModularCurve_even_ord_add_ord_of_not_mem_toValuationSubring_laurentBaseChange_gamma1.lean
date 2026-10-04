@@ -244,7 +244,6 @@ theorem zpow_readout_unique {h : ℝ} (hh : 0 < h) (g : ℍ → ℂ) {a b : ℤ}
     (ha : Tendsto (fun τ : ℍ => g τ / Function.Periodic.qParam h (τ : ℂ) ^ a) atImInfty (𝓝 L)) (hL : L ≠ 0)
     (hb : Tendsto (fun τ : ℍ => g τ / Function.Periodic.qParam h (τ : ℂ) ^ b) atImInfty (𝓝 L')) (hL' : L' ≠ 0) :
     a = b := by
-
   have hq : ∀ τ : ℍ, Function.Periodic.qParam h (τ : ℂ) ≠ 0 := fun τ => Complex.exp_ne_zero _
   have hev : ∀ᶠ τ : ℍ in atImInfty, g τ ≠ 0 := by
     have := ha.eventually_ne hL
@@ -256,7 +255,6 @@ theorem zpow_readout_unique {h : ℝ} (hh : 0 < h) (g : ℍ → ℂ) {a b : ℤ}
     simp only [Pi.div_apply]
     rw [zpow_sub₀ (hq τ)]
     field_simp
-
   rcases lt_trichotomy (a - b) 0 with hlt | heq | hgt
   · exfalso
     obtain ⟨m, hm⟩ : ∃ m : ℕ, (b - a : ℤ) = m := ⟨(b - a).toNat, (Int.toNat_of_nonneg (by omega)).symm⟩
@@ -314,7 +312,6 @@ theorem solution
     rw [CongruenceSubgroup.Gamma1_mem]; simp [ModularGroup.T]
   have hΓ := CongruenceSubgroup.Gamma1_is_congruence M
   have hM4 : ¬ M ∣ 4 := fun h => by have := Nat.le_of_dvd (by norm_num) h; omega
-
   have hdeg : Module.finrank
       ↥(IntermediateField.adjoin ℂ ({y} : Set ↥(ModularCurve.laurentBaseChange ℂ
         (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))))
@@ -324,14 +321,11 @@ theorem solution
   obtain ⟨σ, h, hh, hmem, hordy, hread⟩ :=
     ModularCurve.exists_tendsto_realizeOf_mul_exp_of_not_mem_toValuationSubring (CongruenceSubgroup.Gamma1 M) hT hΓ
       (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)) rfl y hy hdeg P hP
-
   have hper : σ * ModularGroup.T ^ h * σ⁻¹ ∈ CongruenceSubgroup.Gamma1 M := by
     have := conj_T_zpow_mem_Gamma1 M hM4 σ (h : ℤ) (by rwa [zpow_natCast])
     rwa [zpow_natCast] at this
-
   obtain ⟨n, a, ha, hwlim⟩ :=
     ModularForm.exists_tendsto_slash_div_qParam_pow_of_conj_T_pow_mem (CongruenceSubgroup.Gamma1 M) 1 w hw σ h hh hper
-
   have h1 := PresVAux.one_mem_strictPeriods_gamma1 M
   have hv0 : v ≠ 0 := by
     intro h0
@@ -340,13 +334,11 @@ theorem solution
     have hq' : qExpansion 1 (w : ℍ → ℂ) = 0 :=
       HahnSeries.ofPowerSeries_injective (by rw [pow_eq_zero_iff two_ne_zero |>.mp hq, map_zero])
     exact (ModularForm.qExpansion_eq_zero_iff one_pos h1 w).mp hq'
-
   obtain ⟨L, hL, hvlimE⟩ := hread v hv0
   have hvlim : Tendsto (fun τ : ℍ => ModularCurve.realizeOf (CongruenceSubgroup.Gamma1 M) (v : LaurentSeries ℂ) (σ • τ) /
       Function.Periodic.qParam (h : ℝ) (τ : ℂ) ^ (P.ord v)) atImInfty (𝓝 L) := by
     refine hvlimE.congr fun τ => ?_
     rw [cexp_readout_eq h, div_eq_mul_inv]
-
   have hhr : (0 : ℝ) < (h : ℝ) := by exact_mod_cast hh
   have hev : ∀ᶠ τ : ℍ in atImInfty, ModularForm.E₄ τ ≠ 0 ∧ ModularForm.E₆ τ ≠ 0 :=
     (tendsto_E₄_atImInfty.eventually_ne one_ne_zero).and (tendsto_E₆_atImInfty.eventually_ne one_ne_zero)
@@ -387,13 +379,11 @@ theorem solution
     refine hlim.congr' ?_
     filter_upwards [hev] with τ hτ
     exact (key τ hτ.1 hτ.2).symm
-
   have hexp : P.ord v = (((2 * n + h : ℕ)) : ℤ) :=
     zpow_readout_unique hhr _ hvlim hL hvlim' (neg_ne_zero.mpr (pow_ne_zero 2 ha))
   rw [hexp, hordy]
   push_cast
   exact ⟨n, by ring⟩
-
 
 end
 end S_ModularCurve_even_ord_add_ord_of_not_mem_toValuationSubring_laurentBaseChange_gamma1

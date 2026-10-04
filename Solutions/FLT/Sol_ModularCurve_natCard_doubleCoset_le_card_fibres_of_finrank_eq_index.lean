@@ -351,7 +351,6 @@ theorem ord_sub_eq_ord_sub (t : L) (L₀ : IntermediateField ℂ L) (hL₀ : L�
   subst hL₀
   have hint : ∀ ψ : L →ₐ[ℂ] L, ψ t = t → ψ.toRingHom.IsIntegral :=
     fun ψ hψ => isIntegral_of_apply_eq t ψ hψ
-
   have key : ∀ (W₁ W₂ : AlgebraicCurve.Place ℂ L), 0 < W₁.ord (t - algebraMap ℂ L c) →
       0 < W₂.ord (t - algebraMap ℂ L c) →
       W₂.ord (t - algebraMap ℂ L c) ≤ W₁.ord (t - algebraMap ℂ L c) := by
@@ -430,7 +429,6 @@ theorem natCard_doubleCoset_le (t : L) (L₀ : IntermediateField ℂ L) (hL₀ :
     fun ψ hψ => isIntegral_of_apply_eq_sub t E x hx ψ hψ
   have hDH := AlgebraicCurve.Place.ord_restrictAlong_eq_natCard_algHom_of_isGalois ℂ x t c
     (E.val.restrictScalars ℂ) hx inferInstance inferInstance hint W hW
-
   let ψ : Γ₀ → (E →ₐ[ℂ] L) := fun γ =>
     ((σ γ⁻¹).restrictScalars ℂ : L →ₐ[ℂ] L).comp (E.val.restrictScalars ℂ)
   have hψapply : ∀ (γ : Γ₀) (e : E), ψ γ e = σ γ⁻¹ e := fun _ _ => rfl
@@ -442,14 +440,12 @@ theorem natCard_doubleCoset_le (t : L) (L₀ : IntermediateField ℂ L) (hL₀ :
     exact (σ γ⁻¹).commutes (⟨t, IntermediateField.mem_adjoin_simple_self ℂ t⟩ : ℂ⟮t⟯)
   let T := {P : AlgebraicCurve.Place ℂ E // 0 < P.ord (x - algebraMap ℂ E c)}
   let f : Γ₀ → T := fun γ => ⟨W.restrictAlong (ψ γ) (hint _ (hψ γ)), hDH.2.1 (ψ γ) (hψ γ)⟩
-
   have key : ∀ γ γ' : Γ₀, f γ = f γ' → ∃ a ∈ Γ, ∃ b ∈ Kst, γ' = a * γ * b := by
     intro γ γ' hff
     have hres : W.restrictAlong (ψ γ) (hint _ (hψ γ)) = W.restrictAlong (ψ γ') (hint _ (hψ γ')) :=
       congrArg Subtype.val hff
     obtain ⟨d, hdW, hd⟩ := (hDH.2.2.2.1 (ψ γ) (ψ γ') (hψ γ) (hψ γ')).mp hres
     obtain ⟨k, hk, hkd⟩ := hD d hdW
-
     have hfixE : ∀ e : E, σ (γ * k⁻¹ * γ'⁻¹) e = e := by
       intro e
       have h1 : ψ γ' e = d (ψ γ e) := by rw [hd]; rfl
@@ -471,7 +467,6 @@ theorem natCard_doubleCoset_le (t : L) (L₀ : IntermediateField ℂ L) (hL₀ :
         _ = z⁻¹ * (z * (a⁻¹ * γ * k⁻¹)) * z⁻¹ := by rw [this]
         _ = a⁻¹ * γ * k⁻¹ * z⁻¹ := by group
     rw [h5]; group
-
   have : Finite (Set.range f) := inferInstance
   let π : Set.range f → DoubleCoset.Quotient (Γ : Set Γ₀) (Kst : Set Γ₀) :=
     fun p => DoubleCoset.mk Γ Kst p.2.choose
@@ -914,14 +909,12 @@ theorem main_K (ι : ℚ̄ →+* ℂ) (y : FF) (hy : (y : LaurentSeries ℚ̄) =
   have := isGalois_jK M K
   have hΓM : CongruenceSubgroup.Gamma M ≤ Γ := (Gamma_le_Gamma1 M).trans hΓ
   have hT : ModularGroup.T ∈ Γ := hΓ (T_mem_Gamma1 M)
-
   obtain ⟨Φ, hΦc, hΦy, hΦfix⟩ :=
     ModularCurve.exists_ringHom_laurentBaseChange_qExpFunctionFieldC_levelN M Γ hΓM hT ι K
   set L₀ : IntermediateField ℂ K := ℂ⟮jK M K⟯ with hL₀
   let E : IntermediateField L₀ K := IntermediateField.adjoin L₀ (Set.range Φ)
   have hΦE : ∀ u, Φ u ∈ E := fun u => IntermediateField.subset_adjoin _ _ ⟨u, rfl⟩
   let ΦE : FF →+* E := Φ.codRestrict E hΦE
-
   let : Algebra ℚ̄ ℂ := ι.toAlgebra
   let : Algebra FF E := ΦE.toAlgebra
   let : Algebra ℚ̄ E := ((algebraMap ℂ E).comp ι).toAlgebra
@@ -930,7 +923,6 @@ theorem main_K (ι : ℚ̄ →+* ℂ) (y : FF) (hy : (y : LaurentSeries ℚ̄) =
     apply Subtype.ext
     change algebraMap ℂ K (ι c) = Φ (algebraMap ℚ̄ FF c)
     rw [hΦc])
-
   have hyT : Transcendental ℚ̄ y := by
     have h := transcendental_jqModC ℚ̄
     rw [← hy] at h
@@ -944,7 +936,6 @@ theorem main_K (ι : ℚ̄ →+* ℂ) (y : FF) (hy : (y : LaurentSeries ℚ̄) =
     exact Nat.pos_of_ne_zero Subgroup.FiniteIndex.index_ne_zero
   have : AlgebraicCurve.IsCurveOver ℚ̄ FF :=
     AlgebraicCurve.isCurveOver_of_transcendental_of_perfectField hyT hfin
-
   have hjE : jK M K ∈ E := E.algebraMap_mem (⟨jK M K, IntermediateField.mem_adjoin_simple_self ℂ _⟩ : L₀)
   let xE : E := ⟨jK M K, hjE⟩
   have hyt : ((algebraMap FF E y : E) : K) = jK M K := hΦy y hy
@@ -956,7 +947,6 @@ theorem main_K (ι : ℚ̄ →+* ℂ) (y : FF) (hy : (y : LaurentSeries ℚ̄) =
       ((IntermediateField.adjoin ℂ (Set.range fun u => Φ u) : IntermediateField ℂ K) : Set K)
     apply adjoin_adjoin_subset
     exact IntermediateField.subset_adjoin _ _ ⟨y, hΦy y hy⟩
-
   have hσE : ∀ γ ∈ Γ, ∀ e ∈ E, σ' M K γ e = e := by
     intro γ hγ e he
     have hle : E ≤ IntermediateField.fixedField (Subgroup.zpowers (σ' M K γ)) := by
@@ -970,7 +960,6 @@ theorem main_K (ι : ℚ̄ →+* ℂ) (y : FF) (hy : (y : LaurentSeries ℚ̄) =
       have := (Subgroup.zpowers_le.mpr hst) hg
       rwa [MulAction.mem_stabilizer_iff, AlgEquiv.smul_def] at this
     exact (IntermediateField.mem_fixedField_iff _ e).mp (hle he) _ (Subgroup.mem_zpowers _)
-
   set H := Γ.map (σ' M K) with hH
   have hEle : E ≤ IntermediateField.fixedField H := by
     rw [IntermediateField.le_iff_le]
@@ -978,7 +967,6 @@ theorem main_K (ι : ℚ̄ →+* ℂ) (y : FF) (hy : (y : LaurentSeries ℚ̄) =
     rw [IntermediateField.mem_fixingSubgroup_iff]
     intro e he
     exact hσE γ hγ e he
-
   obtain ⟨hdeg, hplaces⟩ :=
     AlgebraicCurve.finrank_le_and_natCard_places_le_of_constantFieldExtension_adjoin y hyT
       (jK M K) (transcendental_jK M K) E hyt hgen
@@ -1002,7 +990,6 @@ theorem main_K (ι : ℚ̄ →+* ℂ) (y : FF) (hy : (y : LaurentSeries ℚ̄) =
     · refine ⟨a * (a⁻¹ * g₀), Γ.mul_mem ha (hΓM h), 1, one_mem _, Subgroup.one_mem _, by group⟩
     · refine ⟨a * -(a⁻¹ * g₀), Γ.mul_mem ha (hΓM h), -1, hKst, neg_one_mem_center, ?_⟩
       simp
-
   have hy0 : y ≠ 0 := fun h => by
     rw [h] at hyT; exact hyT isAlgebraic_zero
   have hy1728 : y - 1728 ≠ 0 := fun h => by
@@ -1022,8 +1009,7 @@ theorem main_K (ι : ℚ̄ →+* ℂ) (y : FF) (hy : (y : LaurentSeries ℚ̄) =
           Nat.card {P : AlgebraicCurve.Place ℚ̄ FF // P.ord u < 0} := fun u hu =>
     (hplaces u hu).2
   refine ⟨?_, ?_, ?_⟩
-  ·
-    obtain ⟨W, hW, hD⟩ := exists_place_zero M K
+  · obtain ⟨W, hW, hD⟩ := exists_place_zero M K
     obtain ⟨hfinE, hle⟩ := hposE y hy0
     have hset : algebraMap FF E y = xE - algebraMap ℂ E 0 := by rw [map_zero, sub_zero, hΦEy]
     rw [hset] at hfinE hle
@@ -1031,8 +1017,7 @@ theorem main_K (ι : ℚ̄ →+* ℂ) (y : FF) (hy : (y : LaurentSeries ℚ̄) =
     exact (natCard_doubleCoset_le (jK M K) L₀ rfl (σ' M K) Γ
       (Subgroup.zpowers (ModularGroup.S * ModularGroup.T)) E (hfixers _ neg_one_mem_zpowers_ST)
       W 0 hW hD xE rfl).trans hle
-  ·
-    obtain ⟨W, hW, hD⟩ := exists_place_1728 M K
+  · obtain ⟨W, hW, hD⟩ := exists_place_1728 M K
     obtain ⟨hfinE, hle⟩ := hposE (y - 1728) hy1728
     have hset : algebraMap FF E (y - 1728) = xE - algebraMap ℂ E 1728 := by
       rw [map_sub, hΦEy, map_ofNat, map_ofNat]
@@ -1041,8 +1026,7 @@ theorem main_K (ι : ℚ̄ →+* ℂ) (y : FF) (hy : (y : LaurentSeries ℚ̄) =
     exact (natCard_doubleCoset_le (jK M K) L₀ rfl (σ' M K) Γ
       (Subgroup.zpowers ModularGroup.S) E (hfixers _ neg_one_mem_zpowers_S)
       W 1728 hW hD xE rfl).trans hle
-  ·
-    obtain ⟨W, hW, hD⟩ := exists_place_infty M K
+  · obtain ⟨W, hW, hD⟩ := exists_place_infty M K
     obtain ⟨hfinE, hle⟩ := hnegE y hy0
     have hxE0 : xE ≠ 0 := by
       intro h

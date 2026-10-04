@@ -23,7 +23,6 @@ theorem ModularCurve.natCard_normalized_algHom_hahnSeries_jBar_sub_eq_toNat_ord 
         (IntermediateField.adjoin (AlgebraicClosure ℚ)
           ({jBar N} : Set ↥(modularFunctionFieldBar N)))
         ↥(modularFunctionFieldBar N))
-
     (hP1 : ∀ w : Place (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N),
       0 < w.ord (jBar N - algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) j₀) →
       ∃ φ' : ↥(modularFunctionFieldBar N) →ₐ[AlgebraicClosure ℚ]
@@ -32,7 +31,6 @@ theorem ModularCurve.natCard_normalized_algHom_hahnSeries_jBar_sub_eq_toNat_ord 
           HahnSeries.single (((w.ord (jBar N - algebraMap (AlgebraicClosure ℚ)
             (modularFunctionFieldBar N) j₀)).toNat : ℤ)) 1 ∧
         ∀ x, (φ' x).order = w.ord x)
-
     :
     ∀ w : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N),
       0 < w.ord (jBar N - algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) j₀) →

@@ -198,7 +198,6 @@ theorem isParabolicHom_of_forall (hneg : (-1 : SL(2, ℤ)) ∈ Γ)
     (htors : ∀ a : A, 2 • a = 0 → a = 0) : IsParabolicHom Γ φ := by
   intro γ hγ
   obtain ⟨ε, δ, k, hε, hγε⟩ := ModularGroup.exists_eq_conj_T_zpow_of_trace_sq_eq_four γ hγ
-
   have hεmem : ε ∈ Γ := by
     rcases hε with rfl | rfl
     · exact Γ.one_mem
@@ -210,7 +209,6 @@ theorem isParabolicHom_of_forall (hneg : (-1 : SL(2, ℤ)) ∈ Γ)
       apply Subtype.ext
       rcases hε with rfl | rfl <;> simp
     rw [this, ofMul_one, map_zero]
-
   have hpmem : δ⁻¹⁻¹ * ModularGroup.T ^ k * δ⁻¹ ∈ Γ := by
     rw [inv_inv]
     have : δ * ModularGroup.T ^ k * δ⁻¹ = ε⁻¹ * γ := by

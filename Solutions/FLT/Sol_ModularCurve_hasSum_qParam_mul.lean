@@ -31,7 +31,6 @@ theorem summable_norm_of_hasSum_qParam {h : ℝ} (hh : 0 < h) {a : ℕ → ℂ} 
   have hr0 : 0 < r := (norm_nonneg q).trans_lt hqr
   have hr1' : ‖(r : ℂ)‖ < 1 := by rwa [Complex.norm_real, Real.norm_of_nonneg hr0.le]
   have hrne : (r : ℂ) ≠ 0 := ofReal_ne_zero.mpr hr0.ne'
-
   let τ' : ℍ := ⟨Periodic.invQParam h r, Periodic.im_invQParam_pos_of_norm_lt_one hh hr1' hrne⟩
   have hq' : 𝕢 h (τ' : ℂ) = r := Periodic.qParam_right_inv hh.ne' hrne
   have hs : Summable (fun m : ℕ => a m * (r : ℂ) ^ m) := by

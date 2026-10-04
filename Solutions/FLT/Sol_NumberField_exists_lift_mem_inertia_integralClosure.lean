@@ -30,7 +30,6 @@ theorem solution
         ∀ b : integralClosure ℤ (AlgebraicClosure ℚ), ∃ c ∈ 𝔔,
           (c : AlgebraicClosure ℚ) = σ b - b := by
   classical
-
   have hnormQ : Normal ℚ ℚ̄ := by
     have h : @Normal ℚ ℚ̄ _ _ (AlgebraicClosure.instAlgebra ℚ) := inferInstance
     exact h
@@ -47,14 +46,12 @@ theorem solution
   have : IsGalois L ℚ̄ := ⟨⟩
   have hτ' : ∀ x : 𝓞 L, τ • x - x ∈ Q := fun x => (AddSubgroup.mem_inertia.mp hτ) x
   have hstabτ : τ • Q = Q := Ideal.inertia_le_stabilizer Q hτ
-
   let actG : MulSemiringAction (ℚ̄ ≃ₐ[ℚ] ℚ̄) 𝔅 := inferInstance
   let actGI : DistribMulAction (ℚ̄ ≃ₐ[ℚ] ℚ̄) (Ideal 𝔅) := Ideal.pointwiseDistribMulAction
   let mulActGI : MulAction (ℚ̄ ≃ₐ[ℚ] ℚ̄) (Ideal 𝔅) := DistribMulAction.toMulAction
   let dsmulGI : DistribSMul (ℚ̄ ≃ₐ[ℚ] ℚ̄) (Ideal 𝔅) := DistribMulAction.toDistribSMul
   let smulzGI : SMulZeroClass (ℚ̄ ≃ₐ[ℚ] ℚ̄) (Ideal 𝔅) := DistribSMul.toSMulZeroClass
   let smulGI : SMul (ℚ̄ ≃ₐ[ℚ] ℚ̄) (Ideal 𝔅) := SMulZeroClass.toSMul
-
   let f : 𝓞 L →+* 𝔅 := (algebraMap (𝓞 L) ℚ̄).codRestrict (integralClosure ℤ ℚ̄) fun x =>
     (map_isIntegral_int (algebraMap (𝓞 L) ℚ̄) (Algebra.IsIntegral.isIntegral x))
   let algOB : Algebra (𝓞 L) 𝔅 := f.toAlgebra
@@ -66,20 +63,17 @@ theorem solution
     have h := congrArg (fun z : 𝔅 => (z : ℚ̄)) hxy
     simp only [hf_coe] at h
     exact NumberField.RingOfIntegers.coe_injective ((algebraMap L ℚ̄).injective h)
-
   have hres : ∀ (σ : ℚ̄ ≃ₐ[ℚ] ℚ̄) (x : 𝓞 L),
       σ • algebraMap (𝓞 L) 𝔅 x = algebraMap (𝓞 L) 𝔅 ((AlgEquiv.restrictNormalHom L σ) • x) := by
     intro σ x
     apply Subtype.ext
     change σ (algebraMap L ℚ̄ (x : L)) = algebraMap L ℚ̄ ((σ.restrictNormal L) (x : L))
     exact (AlgEquiv.restrictNormal_commutes σ L (x : L)).symm
-
   let rsh : (ℚ̄ ≃ₐ[L] ℚ̄) →* (ℚ̄ ≃ₐ[ℚ] ℚ̄) :=
     { toFun := fun g => g.restrictScalars ℚ
       map_one' := rfl
       map_mul' := fun _ _ => rfl }
   have hrsh_apply : ∀ (g : ℚ̄ ≃ₐ[L] ℚ̄) (x : ℚ̄), rsh g x = g x := fun _ _ => rfl
-
   have hresL : ∀ g : ℚ̄ ≃ₐ[L] ℚ̄, AlgEquiv.restrictNormalHom L (rsh g) = 1 := by
     intro g
     refine AlgEquiv.ext fun x => (algebraMap L ℚ̄).injective ?_
@@ -98,7 +92,6 @@ theorem solution
     ext b
     rw [Ideal.mem_pointwise_smul_iff_inv_smul_mem, Ideal.mem_pointwise_smul_iff_inv_smul_mem,
       ← map_inv, hrs]
-
   have : SMulCommClass (ℚ̄ ≃ₐ[L] ℚ̄) (𝓞 L) 𝔅 := ⟨fun g a b => by
     apply Subtype.ext
     change g ((algebraMap L ℚ̄ (a : L)) * (b : ℚ̄)) = algebraMap L ℚ̄ (a : L) * g (b : ℚ̄)
@@ -123,7 +116,6 @@ theorem solution
       intro g
       exact congrArg (fun z : 𝔅 => (z : ℚ̄)) (hb g)
     obtain ⟨y, hy⟩ := hb'
-
     have hyint : IsIntegral ℤ y := by
       obtain ⟨p, hp, hp0⟩ := (b.2 : IsIntegral ℤ (b : ℚ̄))
       refine ⟨p, hp, (algebraMap L ℚ̄).injective ?_⟩
@@ -133,10 +125,8 @@ theorem solution
     refine ⟨⟨y, hyint⟩, Subtype.ext ?_⟩
     rw [hf_coe]
     exact hy⟩
-
   have : Algebra.IsIntegral (𝓞 L) 𝔅 :=
     Algebra.IsInvariant.isIntegral_of_profinite (G := ℚ̄ ≃ₐ[L] ℚ̄)
-
   obtain ⟨𝔔, h𝔔max, h𝔔Q⟩ := Ideal.exists_ideal_over_maximal_of_isIntegral (S := 𝔅) Q (by
     intro x hx
     rw [RingHom.mem_ker] at hx
@@ -147,7 +137,6 @@ theorem solution
   have h𝔔lies : 𝔔.LiesOver Q := ⟨h𝔔Q.symm⟩
   have hmemQ : ∀ x : 𝓞 L, algebraMap (𝓞 L) 𝔅 x ∈ 𝔔 ↔ x ∈ Q := fun x => by
     rw [← Ideal.mem_under, h𝔔Q]
-
   obtain ⟨σ₀, hσ₀⟩ := AlgEquiv.restrictNormalHom_surjective (K₁ := L) ℚ̄ τ
   have hunder : Ideal.under (𝓞 L) (σ₀ • 𝔔 : Ideal 𝔅) = Ideal.under (𝓞 L) 𝔔 := by
     ext x
@@ -157,11 +146,9 @@ theorem solution
     rw [Ideal.mem_pointwise_smul_iff_inv_smul_mem]
   obtain ⟨g, hg⟩ := Algebra.IsInvariant.exists_smul_of_under_eq_of_profinite
       (A := 𝓞 L) (G := ℚ̄ ≃ₐ[L] ℚ̄) (σ₀ • 𝔔 : Ideal 𝔅) 𝔔 hunder
-
   have hσ₁𝔔 : (rsh g * σ₀) • 𝔔 = 𝔔 := by rw [mul_smul, ← hrsI, ← hg]
   have hσ₁L : AlgEquiv.restrictNormalHom L (rsh g * σ₀) = τ := by
     rw [map_mul, hresL, one_mul, hσ₀]
-
   have hσ₁stab : rsh g * σ₀ ∈ MulAction.stabilizer (ℚ̄ ≃ₐ[ℚ] ℚ̄) 𝔔 := hσ₁𝔔
   let φ₀ : (𝔅 ⧸ 𝔔) ≃ₐ[ℤ ⧸ 𝔔.under ℤ] (𝔅 ⧸ 𝔔) :=
     Ideal.Quotient.stabilizerHom 𝔔 (𝔔.under ℤ) (ℚ̄ ≃ₐ[ℚ] ℚ̄) ⟨rsh g * σ₀, hσ₁stab⟩
@@ -188,7 +175,6 @@ theorem solution
     have h := congrArg (fun e => e (Ideal.Quotient.mk 𝔔 b)) ht
     simp only [Ideal.Quotient.stabilizerHom_apply, hφ] at h
     exact h
-
   refine ⟨(rsh (t : ℚ̄ ≃ₐ[L] ℚ̄))⁻¹ * (rsh g * σ₀), ?_, 𝔔, h𝔔max, ?_, ?_⟩
   · rw [map_mul, map_inv, hresL, inv_one, one_mul, hσ₁L]
   · have h : algebraMap (𝓞 L) 𝔅 (q : 𝓞 L) ∈ 𝔔 := (hmemQ _).mpr hqQ

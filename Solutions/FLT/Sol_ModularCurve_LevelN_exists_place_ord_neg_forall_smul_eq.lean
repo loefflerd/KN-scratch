@@ -375,7 +375,6 @@ theorem precomp_apply (g : SL(2, ℤ)) (F : ℍ → ℂ) (τ : ℍ) : precomp g 
 
 theorem smul_eq_self_of_mem {F : ℍ → ℂ} (hF : F ∈ ring N) {γ : SL(2, ℤ)}
     (hγ : γ ∈ CongruenceSubgroup.Gamma N) (τ : ℍ) : F (γ • τ) = F τ := by
-
   suffices h : ring N ≤ AlgHom.equalizer (precomp γ) (AlgHom.id ℂ (ℍ → ℂ)) by
     have := h hF
     rw [AlgHom.mem_equalizer] at this
@@ -604,7 +603,6 @@ theorem ordInf_comp_T_inv {F : ℍ → ℂ} (hF : F ∈ ring N)
     funext τ
     have := congrFun h0 (ModularGroup.T • τ)
     simpa [hF₁def] using this
-
   have htend : Tendsto (fun τ : ℍ => ModularGroup.T⁻¹ • τ) atImInfty atImInfty := by
     rw [atImInfty, Filter.tendsto_comap_iff]
     have : UpperHalfPlane.im ∘ (fun τ : ℍ => ModularGroup.T⁻¹ • τ) = UpperHalfPlane.im := by
@@ -770,7 +768,6 @@ def cuspPlace : AlgebraicCurve.Place ℂ K :=
           have := congrFun h UpperHalfPlane.I
           simp [Algebra.algebraMap_eq_smul_one, ha] at this
         rw [ordFun_of_ne_zero N hne, ← WithZero.exp_zero, WithZero.exp_le_exp]
-
         have hPB : PB ((algebraMap ℂ (ring N) a : ring N) : ℍ → ℂ) 0 := by
           unfold PB
           rw [pow_zero, mul_one]
@@ -804,7 +801,6 @@ theorem ord_jK_neg : (cuspPlace N K).ord (algebraMap (ring N) K (jGen N)) < 0 :=
     rw [mem_cuspPlace_iff, not_le]
     exact one_lt_ordValuationK_jK N K
   have hy0 : y ≠ 0 := fun h => hyW (h ▸ W.toValuationSubring.zero_mem)
-
   have hmem : y⁻¹ ∈ W.toValuationSubring.nonunits :=
     (ValuationSubring.inv_mem_nonunits_iff W.toValuationSubring).mpr (Or.inr hyW)
   obtain ⟨hyiW, hmax⟩ := ValuationSubring.mem_nonunits_iff_exists_mem_maximalIdeal.mp hmem

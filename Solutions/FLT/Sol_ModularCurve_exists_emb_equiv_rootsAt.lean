@@ -127,7 +127,6 @@ theorem exists_equiv (data : ModularPolynomialData N) (j₀ : AlgebraicClosure �
     ∃ e : Emb N j₀ ≃ ModularCurve.TatePoint.RootsAt data (ModularCurve.TatePoint.jNear j₀),
       ∀ ψ : Emb N j₀, (e ψ).1 = ψ.1 (jNb N) := by
   classical
-
   let f : Emb N j₀ → ModularCurve.TatePoint.RootsAt data (ModularCurve.TatePoint.jNear j₀) :=
     fun ψ => ⟨ψ.1 (jNb N), isRoot_apply_jNb N data j₀ ψ⟩
   have hinj : Function.Injective f := fun ψ ψ' h =>

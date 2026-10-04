@@ -73,7 +73,6 @@ theorem solution
     (lift : Place K F → Place K' F') :
     ∃ D : Divisor K F, indexOfSpecialty (K := K') (Finsupp.mapDomain lift D) = 0 := by
   classical
-
   obtain ⟨x, hxt, hxfd⟩ := id hfg
   obtain ⟨x', hxt', hxfd'⟩ := id hfg'
   have : Algebra.EssFiniteType K F :=
@@ -82,17 +81,13 @@ theorem solution
     essFiniteType_of_transcendental_of_finiteDimensional hxt' hxfd'
   have hCAB : ConstantsAreBase K F := constantsAreBase hfg
   have hCAB' : ConstantsAreBase K' F' := constantsAreBase hfg'
-
   obtain ⟨hne, hfd0, γ, D₀, hD₀⟩ := stichtenothGenusExists_of_isCurveOver (K := K) (F := F) hCAB
   obtain ⟨hne', hfd0', γ', D₀', hD₀'⟩ :=
     stichtenothGenusExists_of_isCurveOver (K := K') (F := F') hCAB'
   have := hne; have := hfd0; have := hne'; have := hfd0'
-
   obtain ⟨P₀⟩ := hne
-
   obtain ⟨n, hRGA⟩ :=
     exists_riemannGenusReachedAt_nsmul_single_of_stichtenothGenusExists hD₀' (lift P₀)
-
   refine ⟨Finsupp.single P₀ (n : ℤ), ?_⟩
   have hmap : (Finsupp.mapDomain lift (Finsupp.single P₀ (n : ℤ)) : Divisor K' F')
       = (n : ℤ) • Finsupp.single (lift P₀) (1 : ℤ) := by

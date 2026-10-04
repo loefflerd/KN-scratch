@@ -121,7 +121,6 @@ lemma sum_mul_pow_eq {x : ℂ} (hx1 : x ≠ 1) (hxL : x ^ L = 1) :
   have hgeom : ∑ j ∈ Finset.range L, x ^ j = 0 := by
     rw [geom_sum_eq hx1, hxL, sub_self, zero_div]
   rw [eq_div_iff hx]
-
   have key : ∀ n : ℕ, (∑ j ∈ Finset.range n, (j : ℂ) * x ^ j) * (x - 1) =
       (n : ℂ) * x ^ n - ∑ j ∈ Finset.range n, x ^ (j + 1) := by
     intro n
@@ -257,7 +256,6 @@ theorem E0_smul (hL : 3 ≤ L) (γ : SL(2, ℤ)) (hγ : γ ∈ CongruenceSubgrou
   set d : ZMod L := ((γ 1 1 : ℤ) : ZMod L) with hd
   have hdu : IsUnit d := isUnit_entry γ hγ
   have h0 : χ⁻¹ (0 : ZMod L) = 0 := inv_zero_eq χ hL
-
   have hterm : ∀ b : ZMod L, χ⁻¹ b * eisensteinG1 L (vb L b) (γ • τ) =
       denom γ τ * (χ⁻¹ (b * d) * χ d * eisensteinG1 L (vb L (b * d)) τ) := by
     intro b
@@ -444,7 +442,6 @@ theorem A_zero (hχ : χ.IsPrimitive) (hodd : χ.Odd) :
     A χ 0 = cst χ * (-(∑ a ∈ Finset.range L, (a : ℂ) * χ (a : ZMod L)) / (2 * L)) := by
   have hL : (L : ℂ) ≠ 0 := by exact_mod_cast NeZero.ne L
   have hL3 := three_le χ hodd
-
   set S : ZMod L → ℂ := fun b => ∑ j ∈ Finset.range L, (j : ℂ) * ψL L (b * (j : ZMod L)) with hSdef
   have hterm : ∀ b : ZMod L, χ⁻¹ b * cb b 0 = 1 / L * (χ⁻¹ b * (π * I + 2 * π * I / L * S b)) := by
     intro b

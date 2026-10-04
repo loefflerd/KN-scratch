@@ -324,7 +324,6 @@ theorem psi_range_le : ψ.ι.range ≤ φ.ι.range := by
     intro T hT
     exact DFunLike.congr_fun (τ_comp_eq_of_ker ψ hNψ T (hker T hT)) g
   rw [← fieldRange_eq_fixedPoints φ hNφ] at hfix
-
   obtain ⟨g', hg'⟩ : ∃ g', φ.ι g' = ψ.ι g := by
     simpa [AlgHom.fieldRange, IntermediateField.mem_toSubfield] using hfix
   exact (AlgHom.mem_range φ.ι).mpr ⟨g', hg'⟩
@@ -345,7 +344,6 @@ theorem solution
     (hker : ∀ P : V₀.Point, φ.pointHom hNφ P = 0 → ψ.pointHom hNψ P = 0) :
     ∃ (χ : IsogenyHomDatum V₁ V₂) (hNχ : NormFormulaAlong F χ.ι χ.hfin),
       ∀ P : V₀.Point, χ.pointHom hNχ (φ.pointHom hNφ P) = ψ.pointHom hNψ P := by
-
   obtain ⟨ξ, hξ⟩ := exists_factor_of_range_le φ.ι ψ.ι (psi_range_le φ hNφ ψ hNψ hker)
   have hξfin : FiniteAlong F ξ := finiteAlong_factor φ.ι ξ (by rw [hξ]; exact ψ.hfin)
   have hξint : ξ.toRingHom.IsIntegral := isIntegral_of_finiteAlong ξ hξfin
@@ -353,7 +351,6 @@ theorem solution
   have : HasPrincipalDivisors F V₁.FunctionField := hasPrincipalDivisors_functionField V₁
   have hNχ : NormFormulaAlong F χ.ι χ.hfin := normFormulaAlong_of_finiteAlong ξ hξfin
   refine ⟨χ, hNχ, fun P => ?_⟩
-
   have hcomp : ∀ Q : V₀.Point, hmap ψ Q = hmap χ (hmap φ Q) := by
     intro Q
     have hint : (φ.ι.comp ξ).toRingHom.IsIntegral := RingHom.IsIntegral.trans _ _ hξint φ.hι

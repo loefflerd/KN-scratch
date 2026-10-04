@@ -47,13 +47,11 @@ theorem solution
   set p := H.choose with hp
   obtain ⟨k', g', h'⟩ := p
   simp only at hτ' hx' ⊢
-
   have hq : qExpansion 1 ((g' : ℍ → ℂ) * (h : ℍ → ℂ)) = qExpansion 1 ((g : ℍ → ℂ) * (h' : ℍ → ℂ)) := by
     apply (HahnSeries.ofPowerSeries_injective (Γ := ℤ) (R := ℂ))
     rw [ModularForm.qExpansion_mul_coe one_pos h1, ModularForm.qExpansion_mul_coe one_pos h1,
       PowerSeries.coe_mul, PowerSeries.coe_mul, ← hx, ← hx']
     ring
-
   have hAB : (g'.mul h : ModularForm Γ (k' + k)) = ModularForm.mcast (add_comm k k') (g.mul h') := by
     rw [← sub_eq_zero, ← ModularForm.qExpansion_eq_zero_iff one_pos h1, FunLike.coe_sub,
       ModularForm.qExpansion_sub one_pos h1, sub_eq_zero, ModularForm.coe_mcast,

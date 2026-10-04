@@ -109,7 +109,6 @@ private theorem exists_chart {N : ℕ} [NeZero N] {F : ℍ → ℂ}
         u (Periodic.qParam N τ) := by
   have hN : (0 : ℝ) < N := by exact_mod_cast Nat.pos_of_ne_zero (NeZero.ne N)
   set P := qExpansion N F with hP
-
   have hsummN : Summable fun n : ℕ => ‖P.coeff n‖ * (1 / 2 : ℝ) ^ n := by
     let : FiniteDimensional ℝ ℂ := basisOneI.finiteDimensional_of_finite
     have h1 : HasSum (fun n : ℕ => P.coeff n • ((1 / 2 : ℝ) : ℂ) ^ n)
@@ -132,7 +131,6 @@ private theorem exists_chart {N : ℕ} [NeZero N] {F : ℍ → ℂ}
       norm_num
     rw [pow_add, add_comm j P.order.toNat]
     linear_combination ‖P.coeff (P.order.toNat + j)‖ * ((1 : ℝ) / 2) ^ j * hpow
-
   set u : ℂ → ℂ := fun z => ∑' j : ℕ, P.coeff (P.order.toNat + j) * z ^ j with hu
   have hucont : ContinuousOn u (Metric.ball (0 : ℂ) (1 / 2)) := by
     refine continuousOn_tsum (fun j => ?_) hsummShift fun j z hz => ?_
@@ -456,7 +454,6 @@ private theorem isPrincipalIdealRing_orderValuationSubring :
     rw [hI]
     exact (Ideal.span_singleton_eq_bot.mpr rfl).symm
   obtain ⟨x₁, hx₁I, hx₁0⟩ := (Submodule.ne_bot_iff I).mp hI
-
   let P : ℕ → Prop := fun n =>
     ∃ x : orderValuationSubring Φ, x ∈ I ∧ x ≠ 0 ∧ (Φ (x : F)).order = n
   have hP : ∃ n, P n :=
@@ -696,7 +693,6 @@ include hN h1 in
 private theorem cuspRatio_eq_of_cross [Γ.HasDetOne] {k k' : ℤ} {g h : ModularForm Γ k} {g' h' : ModularForm Γ k'}
     (hh : h ≠ 0) (hh' : h' ≠ 0) (H : Lq 1 ⇑g * Lq 1 ⇑h' = Lq 1 ⇑g' * Lq 1 ⇑h) :
     cuspRatio σ N g h = cuspRatio σ N g' h' := by
-
   have hforms : g.mul h' = h.mul g' := by
     apply eq_of_Lq_one_eq h1
     rw [Lq_one_mul h1, Lq_one_mul h1, H, mul_comm]
@@ -1246,22 +1242,19 @@ theorem solution
     (S3readout.order_Φ_J_neg Γ σ)
   refine ⟨S3readout.Φ Γ σ, S3readout.P Γ σ, e, he, S3readout.mem_P_iff Γ σ, ?_, ?_, S3readout.Φ_algebraMap Γ σ,
     hord, ?_, ?_⟩
-  ·
-    intro x
+  · intro x
     by_cases hx : x = 0
     · subst hx
       refine ⟨fun _ => ⟨0, ?_⟩, fun _ => zero_mem _⟩
       simpa using S3readout.tendsto_realizeOf_zero Γ σ
     · exact S3readout.mem_P_iff_tendsto Γ σ hx
-  ·
-    intro x k g h hh hxgh
+  · intro x k g h hh hxgh
     have hhL : S3c.Lq (S3CuspLimit.wd Γ) (⇑h ∣[k] σ) ≠ 0 :=
       (S3c.Lq_eq_zero_iff _ _).not.mpr (S3CuspLimit.qExpansion_slash_ne_zero h σ hh)
     have := S3readout.Φ_eq Γ σ (x := x) hh hxgh
     show S3readout.Φ Γ σ x * S3c.Lq (S3CuspLimit.wd Γ) (⇑h ∣[k] σ) = S3c.Lq (S3CuspLimit.wd Γ) (⇑g ∣[k] σ)
     rw [this, div_mul_cancel₀ _ hhL]
-  ·
-    intro y hy
+  · intro y hy
     have hyeq : (y : LaurentSeries ℂ) = coeffEmb ℂ jq := hy.trans S3glue.jqModC_complex_eq_coeffEmb
     have hyel : y = S3readout.J Γ := Subtype.ext hyeq
     subst hyel
@@ -1278,8 +1271,7 @@ theorem solution
       exact h2.symm
     · rw [S3readout.mem_P_iff, not_le]
       exact S3readout.order_Φ_J_neg Γ σ
-  ·
-    intro x hx
+  · intro x hx
     obtain ⟨L, hL, hTend⟩ := S3readout.leading_term Γ σ hx
     rw [hord x hx, show S3CuspLimit.wd Γ = Γ.normalCore.index from rfl] at hTend
     refine ⟨L, hL, hTend.congr fun τ => ?_⟩

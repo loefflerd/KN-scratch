@@ -501,7 +501,6 @@ theorem engine (H : Subgroup Gp) [H.FiniteIndex] (R : Type*) [AddCommGroup R]
   have : Fintype (Cu H) := Fintype.ofFinite _
   rw [finsum_eq_sum_of_fintype] at ha
   have c₀ : Cu H := cusp H ((1 : Gp) : X H)
-
   have hreal : ∀ c : Cu H, ∃ φ : Additive H →+ ℤ,
       ∀ g : Gp, φ (Additive.ofMul (genAt H g))
         = (Pi.single c 1 - Pi.single c₀ 1 : Cu H → ℤ) (cusp H (g : X H)) :=
@@ -549,7 +548,6 @@ theorem solution
   subst ht
   obtain ⟨φ, hφ⟩ := BassSerreCusp.engine H R a ha
   exact ⟨φ, fun g hg => hφ g⟩
-
 
 end
 end S_Monoid_CoprodI_exists_addMonoidHom_conj_pow_minimalPeriod_eq_of_finsum_eq_zero

@@ -79,7 +79,6 @@ def symRepresentation (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ))
 
 end MTT.Cohomology
 
-
 /-!
 # Parabolic group cohomology for the MTT coefficient module
 

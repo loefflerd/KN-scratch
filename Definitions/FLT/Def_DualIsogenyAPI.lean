@@ -18,9 +18,7 @@ namespace AddMonoidHom
 variable {A B C : Type*} [AddCommGroup A] [AddCommGroup B] [AddCommGroup C]
 
 structure IsDualPair (φ : A →+ B) (ψ : B →+ A) (n : ℤ) : Prop where
-
   comp_left : ∀ a, ψ (φ a) = n • a
-
   comp_right : ∀ b, φ (ψ b) = n • b
 
 theorem IsDualPair.symm {φ : A →+ B} {ψ : B →+ A} {n : ℤ} (h : IsDualPair φ ψ n) :
@@ -92,17 +90,11 @@ namespace AddMonoid.End
 variable {A : Type*} [AddCommGroup A]
 
 structure DualEndData (φ : AddMonoid.End A) where
-
   dual : AddMonoid.End A
-
   trace : ℤ
-
   norm : ℤ
-
   add_dual : φ + dual = (trace : AddMonoid.End A)
-
   mul_dual : φ * dual = (norm : AddMonoid.End A)
-
   dual_mul : dual * φ = (norm : AddMonoid.End A)
 
 namespace DualEndData
@@ -136,7 +128,6 @@ theorem add_dual_apply (D : DualEndData φ) (a : A) :
 
 theorem charPoly_apply (D : DualEndData φ) (a : A) :
     φ (φ a) - D.trace • φ a + D.norm • a = 0 := by
-
   have h1 := D.isDualPair.comp_left a
   have h2 := D.add_dual_apply (φ a)
   rw [← h1, ← h2, sub_add_cancel_left]; exact neg_add_cancel _
@@ -167,7 +158,6 @@ theorem intLinComb_mul_dual (D : DualEndData φ) (a b : ℤ) :
     ((a : AddMonoid.End A) + (b : AddMonoid.End A) * φ)
       * ((a : AddMonoid.End A) + (b : AddMonoid.End A) * D.dual)
       = ((a ^ 2 + D.trace * a * b + D.norm * b ^ 2 : ℤ) : AddMonoid.End A) := by
-
   ext x
   show ((a : AddMonoid.End A) + b * φ)
       (((a : AddMonoid.End A) + b * D.dual) x)

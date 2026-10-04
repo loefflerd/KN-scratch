@@ -26,11 +26,9 @@ theorem linearIndependent_lift (w : Place K F') {ι : Type*} [Fintype ι]
   by_contra hne
   obtain ⟨i₀, hi₀⟩ : ∃ i, g i ≠ 0 := not_forall.mp hne
   set O : ValuationSubring F := (w.restrict F).toValuationSubring
-
   have hne' : (Finset.univ.filter fun i => g i ≠ 0).Nonempty := ⟨i₀, by simpa using hi₀⟩
   obtain ⟨k, hk, hkmax⟩ := Finset.exists_max_image _ (fun i => O.valuation (g i)) hne'
   have hgk : g k ≠ 0 := by simpa using hk
-
   have hb : ∀ i, g i / g k ∈ O := by
     intro i
     by_cases hi : g i = 0
@@ -41,7 +39,6 @@ theorem linearIndependent_lift (w : Place K F') {ι : Type*} [Fintype ι]
         rw [zero_lt_iff]; exact (map_ne_zero _).mpr hgk
       exact (div_le_one₀ hk0).mpr (hkmax i (by simpa using hi))
   let b : ι → O := fun i => ⟨g i / g k, hb i⟩
-
   have hrel : ∑ i, Place.restrictInclusion F w (b i) * x i = 0 := by
     apply Subtype.ext
     have hcoe : ((∑ i, Place.restrictInclusion F w (b i) * x i : w.toValuationSubring) : F') =
@@ -57,7 +54,6 @@ theorem linearIndependent_lift (w : Place K F') {ι : Type*} [Fintype ι]
       rw [Algebra.smul_def, div_eq_inv_mul, map_mul, mul_assoc]
     rw [this, hg, mul_zero]
     rfl
-
   have hres : ∑ i, (residue O (b i) : (w.restrict F).ResidueField) •
       (residue w.toValuationSubring (x i) : w.ResidueField) = 0 := by
     have h := congrArg (residue w.toValuationSubring) hrel
@@ -67,7 +63,6 @@ theorem linearIndependent_lift (w : Place K F') {ι : Type*} [Fintype ι]
     rw [Algebra.smul_def, Place.algebraMap_residueField_eq, Place.restrictResidueMap_residue,
       map_mul]
   have hk1 := (Fintype.linearIndependent_iff.mp hx) _ hres k
-
   have hbk : b k = 1 := Subtype.ext (div_self hgk)
   rw [hbk, map_one] at hk1
   exact one_ne_zero hk1
@@ -80,7 +75,6 @@ theorem finite_residueField (w : Place K F') :
   rw [← Module.rank_lt_aleph0_iff]
   refine lt_of_le_of_lt (rank_le (n := Module.finrank F F') fun s hs => ?_)
     Cardinal.natCast_lt_aleph0
-
   choose x hx using fun y : s => residue_surjective (R := w.toValuationSubring) (y : w.ResidueField)
   have hs' : LinearIndependent (w.restrict F).ResidueField
       fun i : s => (residue w.toValuationSubring (x i) : w.ResidueField) := by

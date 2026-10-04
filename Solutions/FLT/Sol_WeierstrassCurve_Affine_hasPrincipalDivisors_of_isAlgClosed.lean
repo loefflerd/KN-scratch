@@ -371,7 +371,6 @@ theorem degree_divOf {f : W.FunctionField} (hf : f ≠ 0) : Divisor.degree (divO
     (map_ne_zero_iff _ (IsFractionRing.injective W.CoordinateRing W.FunctionField)).mpr ha0
   have hb' : algebraMap W.CoordinateRing W.FunctionField b ≠ 0 :=
     (map_ne_zero_iff _ (IsFractionRing.injective W.CoordinateRing W.FunctionField)).mpr hb0
-
   have hfa := countFun_finite (W := W) (algebraMap W.CoordinateRing W.FunctionField a)
   have hfb := countFun_finite (W := W) (algebraMap W.CoordinateRing W.FunctionField b)
   have h6a : ((Algebra.norm F[X] a).natDegree : ℤ)
@@ -389,7 +388,6 @@ theorem degree_divOf {f : W.FunctionField} (hf : f ≠ 0) : Divisor.degree (divO
     rw [h6a, h6b, ← finsum_sub_distrib hfa hfb]
     refine finsum_congr fun w => ?_
     exact count_div ha0 hb0 w
-
   have hinf : (vInf W).ord (algebraMap W.CoordinateRing W.FunctionField a
       / algebraMap W.CoordinateRing W.FunctionField b)
       = ((Algebra.norm F[X] b).natDegree : ℤ) - ((Algebra.norm F[X] a).natDegree : ℤ) := by
@@ -412,7 +410,6 @@ p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_of_isAlgClos
 theorem solution {F : Type*} [Field F] [IsAlgClosed F] (W : WeierstrassCurve.Affine F)
     [W.IsElliptic] : AlgebraicCurve.HasPrincipalDivisors F W.FunctionField :=
   D5S.hasPrincipalDivisors_impl
-
 
 end S_WeierstrassCurve_Affine_hasPrincipalDivisors_of_isAlgClosed
 end P2MW

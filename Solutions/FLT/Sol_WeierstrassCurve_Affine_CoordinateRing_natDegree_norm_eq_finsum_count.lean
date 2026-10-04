@@ -27,13 +27,11 @@ variable {P : Ideal R} [P.IsPrime]
 theorem finrank_quotient_pow_succ (hP : P ≠ ⊥) (c : ℕ) [Module.Finite K (R ⧸ P ^ (c + 1))] :
     finrank K (R ⧸ P ^ (c + 1)) = finrank K (R ⧸ P ^ c) + finrank K (R ⧸ P) := by
   obtain ⟨a, ha, ha'⟩ := SetLike.exists_of_lt (Ideal.pow_succ_lt_pow hP c)
-
   let π : (R ⧸ P ^ (c + 1)) →ₐ[K] R ⧸ P ^ c :=
     Ideal.Quotient.factorₐ K (Ideal.pow_le_pow_right c.le_succ)
   have hπ : Function.Surjective π := fun x => by
     obtain ⟨y, rfl⟩ := Ideal.Quotient.mk_surjective x
     exact ⟨Ideal.Quotient.mk _ y, rfl⟩
-
   let m : (R ⧸ P) →ₗ[R] R ⧸ P ^ (c + 1) :=
     Submodule.liftQ P ((Submodule.mkQ (P ^ (c + 1))) ∘ₗ LinearMap.mulLeft R a) (by
       intro x hx
@@ -95,13 +93,11 @@ theorem finrank_quotient_eq_finsum {I : Ideal R} (hI : I ≠ ⊥) [Module.Finite
   set T := (Ideal.finite_factors hI).toFinset with hT
   have hcT : ∀ v, c v ≠ 0 → v ∈ T := fun v hv =>
     (Ideal.finite_factors hI).mem_toFinset.mpr ((Associates.count_ne_zero_iff_dvd hI v.irreducible).mp hv)
-
   have hprod : ∏ v : T, (v : HeightOneSpectrum R).asIdeal ^ c v = I := by
     rw [Finset.prod_coe_sort T fun v => v.asIdeal ^ c v, ← Ideal.finprod_heightOneSpectrum_factorization hI]
     refine (finprod_eq_prod_of_mulSupport_subset _ fun v hv => ?_).symm
     refine hcT v fun h0 => hv ?_
     simp only [h0, pow_zero]
-
   let e : (R ⧸ I) ≃ₐ[K] ∀ v : T, R ⧸ (v : HeightOneSpectrum R).asIdeal ^ c v :=
     AlgEquiv.ofRingEquiv (f := HeightOneSpectrum.quotientEquivPiOfProdEq I (fun v : T => v.1) (fun v => c v)
       (fun _ _ h => Subtype.coe_injective.ne h) hprod) (fun _ => rfl)

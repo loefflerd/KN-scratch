@@ -224,7 +224,6 @@ theorem eventually_ne_zero {k : ℤ} (h : ModularForm (Γ : Subgroup (GL (Fin 2)
   have hf : MDiff (h : ℍ → ℂ) := h.holo'
   have han : AnalyticOnNhd ℂ ((h : ℍ → ℂ) ∘ ofComplex) {z : ℂ | 0 < z.im} :=
     (UpperHalfPlane.mdifferentiable_iff.mp hf).analyticOnNhd isOpen_upperHalfPlaneSet
-
   have hC : ∀ᶠ w in 𝓝[≠] (τ : ℂ), (h : ℍ → ℂ) (ofComplex w) ≠ 0 := by
     rcases (han (τ : ℂ) τ.im_pos).eventually_eq_zero_or_eventually_ne_zero with hz | hz
     · exfalso
@@ -236,7 +235,6 @@ theorem eventually_ne_zero {k : ℤ} (h : ModularForm (Γ : Subgroup (GL (Fin 2)
       simp only [Function.comp_apply, ofComplex_apply] at this
       exact this
     · exact hz
-
   have htend : Tendsto (fun z : ℍ => (z : ℂ)) (𝓝[≠] τ) (𝓝[≠] (τ : ℂ)) := by
     refine tendsto_nhdsWithin_iff.mpr ⟨?_, ?_⟩
     · exact UpperHalfPlane.continuous_coe.continuousAt.tendsto.mono_left nhdsWithin_le_nhds
@@ -310,7 +308,6 @@ theorem exists_pt_eq [Γ.FiniteIndex] [hT : Fact (ModularGroup.T ∈ Γ)] [hx : 
     (Place.centerHeightOneSpectrum (B Γ x) P hwP).isPrime.isMaximal h𝔭0
   obtain ⟨y, hy𝔭, hyB⟩ :=
     FractionalIdeal.exists_notMem_one_of_ne_bot (K := CF Γ) h𝔭0 h𝔭max.ne_top
-
   have hyτ : ∀ τ : ℍ, y ∈ (D.pt τ).toValuationSubring := by
     intro τ
     have hwτ := forall_algebraMap_B_mem Γ x (jX_mem_pt Γ x D τ)
@@ -327,11 +324,9 @@ theorem exists_pt_eq [Γ.FiniteIndex] [hT : Fact (ModularGroup.T ∈ Γ)] [hx : 
       rwa [inv_mul_cancel₀ (FractionalIdeal.coeIdeal_ne_zero.mpr h𝔭0)] at hmem
     obtain ⟨b, hb⟩ := (FractionalIdeal.mem_one_iff _).mp hys
     exact mem_of_mul_eq Γ x hwτ hsτ hb.symm
-
   have hbdd : ∀ τ : ℍ, IsBoundedUnder (· ≤ ·) (𝓝[≠] τ)
       (fun z : ℍ => ‖realizeOf Γ (y : LaurentSeries ℂ) z‖) :=
     fun τ => (D.mem_pt_iff τ y).mp (hyτ τ)
-
   obtain ⟨k, g, h, hh, hgh⟩ :=
     exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange_qExpFunctionFieldC Γ hT.out
       (y : LaurentSeries ℂ) y.2

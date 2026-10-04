@@ -64,7 +64,6 @@ theorem single_add_single_apply_eq_ord {vinf : Place K (RatFunc K)}
   rw [Finsupp.add_apply]
   by_cases hfin : ∃ w : HeightOneSpectrum K[X], v = Place.ofHeightOneSpectrum w
   · obtain ⟨w, rfl⟩ := hfin
-
     rw [Finsupp.single_eq_of_ne (hvinf w).symm, add_zero]
     by_cases hcase :
         Place.ofHeightOneSpectrum (K := K) (F := RatFunc K) w = finitePlace K hp
@@ -85,8 +84,7 @@ theorem single_add_single_apply_eq_ord {vinf : Place K (RatFunc K)}
           (hspan.symm.trans (heightOneSpectrumOfIrreducible_asIdeal K hp).symm)
       rw [hwp]
       rfl
-  ·
-    have hv : ∀ w : HeightOneSpectrum K[X], v ≠ Place.ofHeightOneSpectrum w :=
+  · have hv : ∀ w : HeightOneSpectrum K[X], v ≠ Place.ofHeightOneSpectrum w :=
       fun w h => hfin ⟨w, h⟩
     have hveq : v = vinf := subsingleton_setOf_forall_ne_ofHeightOneSpectrum hv hvinf
     rw [Finsupp.single_eq_of_ne (show v ≠ finitePlace K hp from hv _), zero_add, hveq,

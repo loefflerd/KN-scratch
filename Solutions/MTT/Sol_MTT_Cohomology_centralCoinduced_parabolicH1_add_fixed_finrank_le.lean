@@ -189,7 +189,6 @@ theorem gammaOne_coinvariants_ker_eq_top {N n : ℕ} (hN : 0 < N) (hn : 0 < n) :
   · rintro P ⟨Q, rfl⟩
     exact Representation.Coinvariants.sub_mem_ker (gammaOneLower N) Q
 
-
 end MTT.Cohomology
 
 noncomputable section
@@ -216,7 +215,6 @@ theorem centralCoinduced_invariant_eq_zero {N n : ℕ} (hN : 0 < N) (hn : 0 < n)
     (f : centralCoinduced N n) (hf : ∀ g, (centralCoinduced N n).ρ g f = f) : f = 0 := by
   apply Subtype.ext
   exact coinduced_invariant_eq_zero hN hn f.val fun g => congrArg Subtype.val (hf g)
-
 
 end MTT.Cohomology
 
@@ -467,7 +465,6 @@ theorem exists_cusp_fixed_of_trace_sq (g : SpecialLinearGroup (Fin 2) ℤ)
       Algebra.algebraMap_self_apply]
     field_simp
     linear_combination -htrace + 4 * hdet
-
 
 end MTT.Cohomology
 

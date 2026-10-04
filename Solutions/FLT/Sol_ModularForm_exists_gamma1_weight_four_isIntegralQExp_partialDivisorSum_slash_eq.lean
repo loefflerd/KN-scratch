@@ -48,7 +48,6 @@ private theorem eisRc_isIntegralQExp_of_apply_eq (M : ℕ) [NeZero M] (hM : 3 �
     have := Nat.le_of_dvd two_pos
       (Int.natCast_dvd_natCast.mp ((ZMod.intCast_zmod_eq_zero_iff_dvd 2 M).mp h2))
     omega
-
   let T : ℕ → ℂ := fun n => ∑ d ∈ n.divisors,
       ((if ((n / d : ℕ) : ZMod M) = (c : ZMod M) then (d : ℂ) ^ (4 - 1) else 0) +
         (if ((n / d : ℕ) : ZMod M) = -(c : ZMod M) then (d : ℂ) ^ (4 - 1) else 0))
@@ -70,7 +69,6 @@ private theorem eisRc_isIntegralQExp_of_apply_eq (M : ℕ) [NeZero M] (hM : 3 �
       · by_cases hQ : ((n / d : ℕ) : ZMod M) = -(c : ZMod M)
         · rw [ite_eq_right hP, ite_eq_left hQ, ite_eq_left (Or.inr hQ), zero_add]
         · rw [ite_eq_right hP, ite_eq_right hQ, ite_eq_right (not_or.mpr ⟨hP, hQ⟩), add_zero]
-
   have hTnorm : ∀ n : ℕ, ‖T n‖ ≤ 2 * (n : ℝ) ^ 4 := by
     intro n
     rcases Nat.eq_zero_or_pos n with rfl | hn
@@ -89,7 +87,6 @@ private theorem eisRc_isIntegralQExp_of_apply_eq (M : ℕ) [NeZero M] (hM : 3 �
           gcongr
           exact_mod_cast Nat.card_divisors_le_self n
       _ = 2 * (n : ℝ) ^ 4 := by ring
-
   have hC0 : ((-2 * π * Complex.I) ^ 4 / (Nat.factorial 3 : ℂ)) ≠ 0 := by
     refine div_ne_zero (pow_ne_zero _ ?_) (by exact_mod_cast Nat.factorial_ne_zero 3)
     refine mul_ne_zero (mul_ne_zero (by norm_num) ?_) Complex.I_ne_zero
@@ -119,7 +116,6 @@ private theorem eisRc_isIntegralQExp_of_apply_eq (M : ℕ) [NeZero M] (hM : 3 �
     rw [hval]
     simp_rw [hq, smul_eq_mul]
     exact hsum.hasSum
-
   unfold ModularCurve.IsIntegralQExp
   ext n
   rw [PowerSeries.coeff_map, eq_intCast, ← hT n]
@@ -144,16 +140,13 @@ theorem solution
         ((⇑(R c) : UpperHalfPlane → ℂ) ∣[(4 : ℤ)] (γ : GL (Fin 2) ℝ)) =
           ⇑(R (c * (CohCarrier.gamma0Units M ⟨γ, hγ⟩)⁻¹))) := by
   classical
-
   set C : ℂ := ((-2 * π * Complex.I) ^ 4 / (Nat.factorial 3 : ℂ))⁻¹ with hC
-
   have hE := fun v : Fin 2 → ZMod M =>
     EisensteinSeries.exists_modularForm_coe_eq_eisensteinG M 4 (by norm_num) v
   choose F hF using fun v : Fin 2 → ZMod M => (hE v).1
   have hslash : ∀ (v : Fin 2 → ZMod M) (γ : SL(2, ℤ)),
       EisensteinSeries.eisensteinG M 4 v ∣[(4 : ℤ)] γ = EisensteinSeries.eisensteinG M 4 (v ᵥ* γ) :=
     fun v γ => (hE v).2 γ
-
   let S : ZMod M → ℍ → ℂ := fun c z => ∑ e : ZMod M, EisensteinSeries.eisensteinG M 4 ![c, e] z
   have hS : ∀ c : ZMod M, S c = ∑ e : ZMod M, EisensteinSeries.eisensteinG M 4 ![c, e] := by
     intro c; ext z; simp [S, Finset.sum_apply]
@@ -166,14 +159,12 @@ theorem solution
         (fun e : ZMod M => F ![c, e]) Finset.univ
     rw [h1, hS]
     exact Finset.sum_congr rfl fun e _ => hF _
-
   have hsum_slash : ∀ (φ : ZMod M → ℍ → ℂ) (γ : SL(2, ℤ)),
       ((∑ e : ZMod M, φ e) ∣[(4 : ℤ)] γ) = ∑ e : ZMod M, (φ e ∣[(4 : ℤ)] γ) := by
     intro φ γ
     induction (Finset.univ : Finset (ZMod M)) using Finset.induction_on with
     | empty => simp [SlashAction.zero_slash]
     | insert a s ha ih => rw [Finset.sum_insert ha, Finset.sum_insert ha, SlashAction.add_slash, ih]
-
   have hvec : ∀ (c e : ZMod M) (γ : SL(2, ℤ)),
       (![c, e] ᵥ* γ : Fin 2 → ZMod M) =
         ![c * ((γ 0 0 : ℤ) : ZMod M) + e * ((γ 1 0 : ℤ) : ZMod M),
@@ -194,7 +185,6 @@ theorem solution
       exact h
     rw [hS c, hsum_slash, hS]
     simp_rw [hslash, hvec, h10, mul_zero, add_zero]
-
     let σ : ZMod M ≃ ZMod M :=
       { toFun := fun e => c * ((γ 0 1 : ℤ) : ZMod M) + e * ((γ 1 1 : ℤ) : ZMod M)
         invFun := fun e' => (e' - c * ((γ 0 1 : ℤ) : ZMod M)) * ((γ 0 0 : ℤ) : ZMod M)
@@ -205,7 +195,6 @@ theorem solution
           show c * _ + (e' - c * _) * _ * _ = e'
           rw [mul_assoc, hdet, mul_one, add_sub_cancel] }
     exact (Fintype.sum_equiv σ _ _ fun e => rfl)
-
   have hcusp : ∀ {x : OnePoint ℝ},
       IsCusp x (CongruenceSubgroup.Gamma1 M : Subgroup (GL (Fin 2) ℝ)) →
       IsCusp x (CongruenceSubgroup.Gamma M : Subgroup (GL (Fin 2) ℝ)) := fun hx =>
@@ -224,19 +213,16 @@ theorem solution
       holo' := (FS c).holo'
       bdd_at_cusps' := fun hx => (FS c).bdd_at_cusps' (hcusp hx) }
   have hlift : ∀ c, (⇑(lift c) : ℍ → ℂ) = S c := fun c => (hcoe_sum c)
-
   let R : (ZMod M)ˣ → ModularForm (CongruenceSubgroup.Gamma1 M : Subgroup (GL (Fin 2) ℝ)) 4 :=
     fun c => C • lift (c : ZMod M)
   have hRcoe : ∀ c : (ZMod M)ˣ, (⇑(R c) : ℍ → ℂ) = C • S c := fun c => by
     simp only [R]
     rw [FunLike.coe_smul, hlift]
   refine ⟨R, fun c => ?_, fun c γ hγ => ?_⟩
-  ·
-    refine eisRc_isIntegralQExp_of_apply_eq M hM c (R c) fun z => ?_
+  · refine eisRc_isIntegralQExp_of_apply_eq M hM c (R c) fun z => ?_
     rw [hRcoe]
     simp [S, hC]
-  ·
-    have hinv : (((CohCarrier.gamma0Units M ⟨γ, hγ⟩)⁻¹ : (ZMod M)ˣ) : ZMod M) =
+  · have hinv : (((CohCarrier.gamma0Units M ⟨γ, hγ⟩)⁻¹ : (ZMod M)ˣ) : ZMod M) =
         ((γ 0 0 : ℤ) : ZMod M) := rfl
     rw [hRcoe, hRcoe, ← ModularForm.SL_slash, ModularForm.SL_smul_slash, hrow_slash _ γ hγ,
       Units.val_mul, hinv]

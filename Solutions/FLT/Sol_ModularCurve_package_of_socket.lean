@@ -907,11 +907,9 @@ theorem pkg_of_socket (L : ℕ) [NeZero L] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ
   | _ d ih =>
     intro hdL hd0
     have hLpos : 0 < L := Nat.pos_of_ne_zero (NeZero.ne L)
-
     have pkg_lt : ∀ m : ℕ, m < d → m ∣ L → Pkg K m := fun m hm hmL e he _ =>
       ih e (lt_of_le_of_lt (Nat.le_of_dvd (Nat.pos_of_dvd_of_pos hmL hLpos) he) hm) (he.trans hmL)
     have hζd : IsPrimitiveRoot ((ζ ^ (L / d) : Kˣ) : K) d := isPrimitiveRoot_pow_div hζ hdL
-
     have hgen : modularFunctionFieldC K d = fullC K d := by
       refine mffC_eq_fullC_of_steps d ?_ ?_
       · intro M _ q hq hMq
@@ -931,7 +929,6 @@ theorem pkg_of_socket (L : ℕ) [NeZero L] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ
           exact lt_mul_of_one_lt_right (Nat.pos_of_ne_zero (NeZero.ne M)) hq.one_lt
         have hML : M ∣ L := (Dvd.intro q hMq).trans hdL
         exact (pkg_lt M hMd hML M dvd_rfl).2
-
     refine ⟨?_, hgen⟩
     rw [tight_iff_relfinrank_fullC d hgen]
     rcases eq_or_ne d 1 with rfl | hd1
@@ -1006,7 +1003,6 @@ theorem solution {K : Type*} [Field K] (M : ℕ) [NeZero M] (ζ : Kˣ) (hζ : Is
         ∧ modularFunctionFieldC K d = IntermediateField.adjoin K
             {x : LaurentSeries K | ∃ (d' : ℕ) (_ : NeZero d'), d' ∣ d ∧ x = jqNModC K d'} :=
   ModularCurve.package_of_socket M ζ hζ hbase
-
 
 end S_ModularCurve_package_of_socket
 end P2MW

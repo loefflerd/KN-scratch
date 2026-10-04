@@ -45,7 +45,6 @@ theorem solution
   have : IsAlgClosed 𝕂 := HahnSeries.isAlgClosed_rat
   have : CharZero 𝕂 :=
     (RingHom.charZero_iff (HahnSeries.C (R := AlgebraicClosure ℚ) (Γ := ℚ)).injective).mp inferInstance
-
   have : W.toAffine.IsElliptic := ‹W.IsElliptic›
   have : (W.veluQuotient (W.oddOrderSummingSet Q n)).toAffine.IsElliptic := hE'
   have : IsDedekindDomain W.toAffine.CoordinateRing := CoordinateRing.isDedekindDomain W
@@ -65,11 +64,9 @@ theorem solution
   let := g'
   have := hgc'
   have := hga'
-
   obtain ⟨ι, hι, hfin, hdeg, hker⟩ :=
     WeierstrassCurve.exists_veluFunctionFieldHom_pointMapOfPushforward_ker_eq_zmultiples
       (W := W) (Q := Q) (n := n) hQ hΔ
-
   have : CharZero (W.veluQuotient (W.oddOrderSummingSet Q n)).toAffine.FunctionField :=
     charZero_of_injective_algebraMap
       (algebraMap 𝕂 (W.veluQuotient (W.oddOrderSummingSet Q n)).toAffine.FunctionField).injective

@@ -49,20 +49,14 @@ theorem realizeOf_of_not (Γ : Subgroup SL(2, ℤ)) (x : LaurentSeries ℂ) (τ 
 
 structure ComplexPlaceDictionaryOf (Γ : Subgroup SL(2, ℤ))
     (F₀ : IntermediateField ℚ (LaurentSeries ℚ)) where
-
   pt : ℍ → AlgebraicCurve.Place ℂ (laurentBaseChange ℂ F₀)
-
   ramification : ℍ → ℕ
-
   ramification_pos : ∀ τ : ℍ, 0 < ramification τ
-
   pt_smul : ∀ (γ : Γ) (τ : ℍ), pt ((γ : SL(2, ℤ)) • τ) = pt τ
-
   mem_pt_iff : ∀ (τ : ℍ) (x : laurentBaseChange ℂ F₀),
     x ∈ (pt τ).toValuationSubring ↔
       Filter.IsBoundedUnder (· ≤ ·) (𝓝[≠] τ)
         (fun z : ℍ => ‖realizeOf Γ (x : LaurentSeries ℂ) z‖)
-
   meromorphicOrderAt_realizeOf : ∀ (τ : ℍ) (x : laurentBaseChange ℂ F₀), x ≠ 0 →
     meromorphicOrderAt (fun z : ℂ => realizeOf Γ (x : LaurentSeries ℂ) (ofComplex z)) (τ : ℂ) =
       (((ramification τ : ℤ) * (pt τ).ord x : ℤ) : WithTop ℤ)

@@ -160,7 +160,6 @@ private theorem ModularCurve.StarBank.press {K : Type*} [Field K] (p : ℕ) [Fac
         ∏ b ∈ Finset.range p, (Polynomial.X - Polynomial.C (qTwist (ζ ^ b) (jqModC K))) := by
   have hp : Fact p.Prime := inferInstance
   refine ⟨monic_of_aeval_eq hR, natDegree_eq_of_aeval_eq hR, ?_⟩
-
   set A : Polynomial (LaurentSeries K) := R.map (algebraMap K (LaurentSeries K)) with hA
   set B : Polynomial (LaurentSeries K) :=
     ∏ b : Fin p, (Polynomial.X - Polynomial.C (qTwist (ζ ^ (b : ℕ)) (jqModC K))) with hB
@@ -191,7 +190,6 @@ private theorem ModularCurve.StarBank.press {K : Type*} [Field K] (p : ℕ) [Fac
           (by rw [Polynomial.degree_eq_natDegree hAmonic.ne_zero,
             Polynomial.degree_eq_natDegree hBmonic.ne_zero, hAdeg, hBdeg])
           hAmonic.ne_zero (by rw [hAmonic.leadingCoeff, hBmonic.leadingCoeff])
-
   have hconcl : A - Polynomial.C (jqNModC K p) = B := by
     rw [← key]; ring
   rw [hconcl, hB, Finset.prod_range]
@@ -213,7 +211,6 @@ theorem solution {K : Type*} [Field K] (p : ℕ) [Fact p.Prime] (ζ : Kˣ)
       R.map (algebraMap K (LaurentSeries K)) - Polynomial.C (jqNModC K p) =
         ∏ b ∈ Finset.range p, (Polynomial.X - Polynomial.C (qTwist (ζ ^ b) (jqModC K))) :=
   ModularCurve.StarBank.press p ζ hζ hR
-
 
 end
 end S_ModularCurve_StarBank_press

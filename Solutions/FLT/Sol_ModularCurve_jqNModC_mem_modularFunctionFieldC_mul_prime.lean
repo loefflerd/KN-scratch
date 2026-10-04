@@ -376,28 +376,23 @@ theorem jqNModC_mem_mffC_mul_prime_of_prod (M : ℕ) [NeZero M] (p : ℕ) [hp : 
   obtain ⟨data, -, -⟩ := ModularCurve.exists_phiIrreducible_evalSymm p
   have hM0 : 0 < M := Nat.pos_of_ne_zero (NeZero.ne M)
   have hp2 : 2 ≤ p := hp.out.two_le
-
   have hjNmem : jqNModC K (M * p) ∈ modularFunctionFieldC K (M * p) := jqNModC_mem K (M * p)
   have hle : IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K)) ≤ modularFunctionFieldC K (M * p) :=
     IntermediateField.adjoin_le_iff.mpr (Set.singleton_subset_iff.mpr (jqModC_mem K (M * p)))
   let : Algebra (modularFunctionFieldC K (M * p)) (LaurentSeries K) :=
     ((qExpand K (M * p)).comp (algebraMap (modularFunctionFieldC K (M * p)) (LaurentSeries K))).toAlgebra
-
   set A : Polynomial (modularFunctionFieldC K (M * p)) :=
     phiAtSeed data (⟨jqNModC K (M * p), hjNmem⟩ : modularFunctionFieldC K (M * p)) with hA
-
   let ι₀ : (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) →+* modularFunctionFieldC K (M * p) :=
     { toFun := fun x => ⟨(x : LaurentSeries K), hle x.2⟩
       map_one' := rfl
       map_mul' := fun _ _ => rfl
       map_zero' := rfl
       map_add' := fun _ _ => rfl }
-
   set m : Polynomial (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) :=
     minpoly (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) (jqNModC K M) with hm
   have hm0 : Polynomial.aeval (jqNModC K M) m = 0 := minpoly.aeval _ _
   set B : Polynomial (modularFunctionFieldC K (M * p)) := m.map ι₀ with hB
-
   have hmapA : A.map (algebraMap (modularFunctionFieldC K (M * p)) (LaurentSeries K))
       = phiAtSeed data (qExpand K (M * p) (jqNModC K (M * p))) :=
     phiAtSeed_map data _ _
@@ -411,19 +406,16 @@ theorem jqNModC_mem_mffC_mul_prime_of_prod (M : ℕ) [NeZero M] (p : ℕ) [hp : 
       = qExpand K (M * p * M) (qTwist (1 * ζ₂ ^ 0) (jqModC K)) := by
     rw [pow_zero, mul_one]
     exact qExpand_jqNModC (M * p) M
-
   have hrootA : ∀ y : LaurentSeries K, Polynomial.aeval y A = 0 ↔
       (y = qExpand K (p * (p * (M * p * M))) (qTwist ((1 : Kˣ) ^ (p * p)) (jqModC K)) ∨
         ∃ c < p, y = qExpand K (M * p * M) (qTwist (1 * ζ₂ ^ c) (jqModC K))) := by
     intro y
     rw [Polynomial.aeval_def, ← Polynomial.eval_map, hmapA, hseed]
     exact isRoot_prime_at_slot_iff p ζ₂ hζ₂ data (M * p * M) 1 y
-
   have hcomp : (algebraMap (modularFunctionFieldC K (M * p)) (LaurentSeries K)).comp ι₀
       = (qExpand K (M * p)).comp
           (algebraMap (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) (LaurentSeries K)) :=
     RingHom.ext fun _ => rfl
-
   have hbig : (qExpand K (M * p)).comp
         (algebraMap (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) (LaurentSeries K))
       = (qExpand K p).comp ((qExpand K M).comp
@@ -432,7 +424,6 @@ theorem jqNModC_mem_mffC_mul_prime_of_prod (M : ℕ) [NeZero M] (p : ℕ) [hp : 
     simp only [RingHom.comp_apply]
     rw [qExpand_qExpand]
     exact qExpand_congr (Nat.mul_comm M p) _
-
   have hBroot : ∀ y : LaurentSeries K, Polynomial.aeval y B = 0 →
       ∃ a : ℕ, a ∣ M ∧ ∃ b : ℕ, b < M / a ∧ ∃ (_ : NeZero a), y = TS K (p * (a * a)) (ζ₁ ^ (b * a)) := by
     intro y hy
@@ -449,7 +440,6 @@ theorem jqNModC_mem_mffC_mul_prime_of_prod (M : ℕ) [NeZero M] (p : ℕ) [hp : 
     show qExpand K p (qExpand K (a * a) (qTwist (ζ₁ ^ (b * a)) (jqModC K)))
       = qExpand K (p * (a * a)) (qTwist (ζ₁ ^ (b * a)) (jqModC K))
     rw [qExpand_qExpand]
-
   have hA0 : A ≠ 0 := (phiAtSeed_monic data _).ne_zero
   have hAs : (A.map (algebraMap (modularFunctionFieldC K (M * p)) (LaurentSeries K))).Splits := by
     rw [hmapA, hseed, phiAtSeed,
@@ -458,7 +448,6 @@ theorem jqNModC_mem_mffC_mul_prime_of_prod (M : ℕ) [NeZero M] (p : ℕ) [hp : 
   have hAnd : (A.map (algebraMap (modularFunctionFieldC K (M * p)) (LaurentSeries K))).roots.Nodup := by
     rw [hmapA, hseed, phiAtSeed]
     exact roots_prime_at_slot_roots_nodup p ζ₂ hζ₂ data (M * p * M) 1
-
   have hxA : Polynomial.aeval (qExpand K (M * p) (jqNModC K M)) A = 0 :=
     (hrootA _).mpr (Or.inr ⟨0, hp.out.pos, hdist⟩)
   have hxB : Polynomial.aeval (qExpand K (M * p) (jqNModC K M)) B = 0 := by
@@ -466,7 +455,6 @@ theorem jqNModC_mem_mffC_mul_prime_of_prod (M : ℕ) [NeZero M] (p : ℕ) [hp : 
     rw [Polynomial.aeval_def] at hm0'
     rw [Polynomial.aeval_def, ← Polynomial.eval_map, hB, Polynomial.map_map, hcomp, Polynomial.eval_map,
       ← Polynomial.hom_eval₂, hm0', map_zero]
-
   have huniq : ∀ y : LaurentSeries K, Polynomial.aeval y A = 0 → Polynomial.aeval y B = 0 →
       y = qExpand K (M * p) (jqNModC K M) := by
     intro y hyA hyB
@@ -501,7 +489,6 @@ theorem jqNModC_mem_mffC_mul_prime_of_prod (M : ℕ) [NeZero M] (p : ℕ) [hp : 
       have hc0 : c = 0 := Nat.eq_zero_of_dvd_of_lt ((hζ₂.pow_eq_one_iff_dvd c).mp hval) hc
       rw [hc0] at hy1
       exact hy1.trans hdist.symm
-
   have hrange := Polynomial.mem_range_of_unique_common_root A B hA0 hAs hAnd _ hxA hxB huniq
   obtain ⟨f, hf⟩ := RingHom.mem_range.mp hrange
   have hf' : qExpand K (M * p) (f : LaurentSeries K) = qExpand K (M * p) (jqNModC K M) := hf
@@ -547,7 +534,6 @@ theorem solution {K : Type*} [Field K]
             {x : LaurentSeries K | ∃ (d' : ℕ) (_ : NeZero d'), d' ∣ d ∧ x = jqNModC K d'}) :
     jqNModC K M ∈ modularFunctionFieldC K (M * p) :=
   ModularCurve.jqNModC_mem_modularFunctionFieldC_mul_prime M p ζ hζ hall
-
 
 end S_ModularCurve_jqNModC_mem_modularFunctionFieldC_mul_prime
 end P2MW

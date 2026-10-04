@@ -78,7 +78,6 @@ theorem jFactor_pow_mul_ev_smul {n : ℕ} (γ : SL(2, ℤ)) (τ : ℍ) {Q : MvPo
   rw [ev, ev, binarySubst, aeval_eq_bind₁]
   show jFactor γ τ ^ n * eval ![(1 : ℂ), -((γ • τ : ℍ) : ℂ)] ((bind₁ _) Q) = _
   rw [eval_bind₁']
-
   have hsm := coe_smul_mul_jFactor γ τ
   have hdet : ((γ : Matrix (Fin 2) (Fin 2) ℤ) 0 0 : ℂ) * ((γ : Matrix (Fin 2) (Fin 2) ℤ) 1 1 : ℂ)
       - ((γ : Matrix (Fin 2) (Fin 2) ℤ) 0 1 : ℂ) * ((γ : Matrix (Fin 2) (Fin 2) ℤ) 1 0 : ℂ) = 1 := by
@@ -152,7 +151,6 @@ theorem ev_eq_sum {n : ℕ} (z : ℂ) {Q : MvPolynomial (Fin 2) ℂ} (hQ : Q ∈
     intro d
     simp [Fin.prod_univ_two]
   simp_rw [hterm]
-
   have hsupp : ∀ d ∈ Q.support, d = expo n (d 1) := by
     intro d hd
     exact eq_expo_of_degree (hQ (mem_support_iff.mp hd))
@@ -237,7 +235,6 @@ theorem Edat_trV_of_cocycle (A B : ℍ → ↥(BinaryForm ℂ n)) (c : ↥(Binar
   unfold Edat trV
   rw [hA, hB, map_add, map_add, rep_inv_rep, rep_inv_rep]
   simp only [Submodule.coe_add, map_add, ev_add, binaryFormRepSL_apply_coe]
-
   have h := hcoc γ
   have h2 : conjP (zA γ : MvPolynomial (Fin 2) ℂ) - (zB γ : MvPolynomial (Fin 2) ℂ)
       = binarySubst ℂ ((γ : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) (conjP (c : MvPolynomial (Fin 2) ℂ)) - conjP c := by
@@ -315,7 +312,6 @@ theorem unpack
     fun γ => ?_⟩
   have h1 := congrFun hv γ
   simp only [Submodule.coe_sub, Pi.sub_apply] at h1
-
   have h2 := congrArg (fun X : ↥(BinaryForm ℂ n) => (X : MvPolynomial (Fin 2) ℂ)) h1
   simp only [Submodule.coe_sub] at h2
   rw [hw γ] at h2
@@ -625,8 +621,7 @@ theorem norm_aC_le {i : ℕ} (hi : i ≤ n) : ∃ K : ℝ, ∀ z ∈ strip, ‖a
   · have hzB : z ∈ Set.Icc (-1 : ℝ) 1 ×ℂ Set.Icc (1 / 2 : ℝ) 1 :=
       Complex.mem_reProdIm.mpr ⟨abs_le.mp hz.2, hz.1, h1⟩
     exact (hM z hzB).trans (le_add_of_nonneg_right hMK)
-  ·
-    set x : ℝ := z.re with hx
+  · set x : ℝ := z.re with hx
     set y : ℝ := z.im with hy
     set p : ℝ → ℂ := fun t => (x : ℂ) + (t : ℂ) * Complex.I with hp
     have hpim : ∀ t : ℝ, (p t).im = t := by intro t; simp [hp]
@@ -655,7 +650,6 @@ theorem norm_aC_le {i : ℕ} (hi : i ≤ n) : ∃ K : ℝ, ∀ z ∈ strip, ‖a
       refine (h1'.congr fun t ht => ?_).mul continuousOn_const
       exact ((hasDerivAt_aC hA i (z := p t) (by rw [hpim]; linarith [ht.1])).deriv).symm
     have hFTC := intervalIntegral.integral_eq_sub_of_hasDerivAt hderiv (hcont.intervalIntegrable)
-
     have hbound : ‖∫ t in (1 : ℝ)..y, (fC φ (p t) * ell n i (p t)) * Complex.I‖ ≤ K₂ * (2 / c) := by
       have hle : ∀ t ∈ Set.Ioc 1 y, ‖(fC φ (p t) * ell n i (p t)) * Complex.I‖ ≤ K₂ * Real.exp (-(c / 2) * t) := by
         intro t ht
@@ -665,7 +659,6 @@ theorem norm_aC_le {i : ℕ} (hi : i ≤ n) : ∃ K : ℝ, ∀ z ∈ strip, ‖a
       have hgi : IntervalIntegrable (fun t => K₂ * Real.exp (-(c / 2) * t)) MeasureTheory.volume 1 y :=
         (by fun_prop : Continuous fun t => K₂ * Real.exp (-(c / 2) * t)).intervalIntegrable _ _
       refine (intervalIntegral.norm_integral_le_of_norm_le h1.le (Filter.Eventually.of_forall hle) hgi).trans ?_
-
       have hanti : ∀ t ∈ Set.uIcc 1 y, HasDerivAt (fun s : ℝ => -(K₂ * (2 / c)) * Real.exp (-(c / 2) * s))
           (K₂ * Real.exp (-(c / 2) * t)) t := by
         intro t _
@@ -813,7 +806,6 @@ theorem tile_bounds :
       _ ≤ Cφ * CE * (K₂ * Real.exp (-(c / 2) * z.im)) := mul_le_mul_of_nonneg_left (hK₂ z.im hz0.le) (by positivity)
       _ = _ := by ring
   · have hz0 := im_pos_of_mem_strip hz
-
     set L := fC φ z * (∑ i ∈ Finset.range (n + 1), termL ψ A B c₀ i z) + EC A B c₀ z * deriv (fC φ) z with hL
     set K := fC φ z * ∑ i ∈ Finset.range (n + 1), termK n φ i z with hK
     have hop : ‖TD φ ψ A B c₀ z‖ ≤ ‖L‖ + ‖K‖ := by
@@ -1107,7 +1099,6 @@ theorem tile_green (σ : SL(2, ℤ)) :
   have hB : IsEichlerIntegral n ψ (trV σ G) := hG.slash σ
   have hφ : DifferentiableOn ℂ (fC φ) {z : ℂ | 0 < z.im} := differentiableOn_fC f σ
   have hψ : ContinuousOn (fC ψ) {z : ℂ | 0 < z.im} := continuousOn_fC g σ
-
   have hk : (0 : ℤ) ≤ (n : ℤ) + 2 := weight_nonneg
   have ha4 : (0 : ℝ) < 1 / 4 := by norm_num
   obtain ⟨c₁, hc₁, C₁, hC₁0, hC₁⟩ := fC_decay f σ hk ha4
@@ -1162,8 +1153,7 @@ theorem sum_tiles_eq_zero :
     (fun σ z => (fun _ : ℍ => (0 : ℂ)) (σ • ofComplex z) / denom (σ : GL (Fin 2) ℝ) (ofComplex z) ^ 2)
     (fun σ z => rfl) (fun σ z => rfl) (Set.Ioi (Real.sqrt 3 / 2)) measurableSet_Ioi (Set.Ioi_subset_Ioi (by positivity))
     (fun q => ?_) (fun q => ?_) (fun q => ?_) (fun q => ?_)
-  ·
-    have htile := fun q : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N => (tile_green v hF hG (rep q)).2
+  · have htile := fun q : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N => (tile_green v hF hG (rep q)).2
     simp only [rep] at htile ⊢
     rw [Finset.sum_congr rfl fun q _ => htile q, Finset.sum_sub_distrib, Finset.sum_sub_distrib, ← Finset.smul_sum,
       ← Finset.smul_sum, hsp.1]
@@ -1255,7 +1245,6 @@ theorem f_eq_zero : f = 0 := by
   have h0 := norm_sq_integral_eq_zero v hF hG zF zG hFsm hGsm hcoc
   rw [← hσ₀] at h0
   set h : ℂ → ℝ := fun z => ‖fC (⇑f ∣[((n : ℤ) + 2)] σ₀) z‖ ^ 2 * z.im ^ n with hh
-
   have hk : (0 : ℤ) ≤ (n : ℤ) + 2 := weight_nonneg
   obtain ⟨c₁, hc₁, C₁, hC₁0, hC₁⟩ := fC_decay f σ₀ hk (by norm_num : (0 : ℝ) < 1 / 4)
   obtain ⟨K, hK0, hK⟩ := poly_exp_bound (2 * c₁) (by positivity) (2 * n)
@@ -1287,7 +1276,6 @@ theorem f_eq_zero : f = 0 := by
   have hae' : h =ᵐ[volume.restrict fdInt] 0 := ae_restrict_of_ae_restrict_of_subset fdInt_subset_fdC hae
   have heq : Set.EqOn h 0 fdInt :=
     Measure.eqOn_open_of_ae_eq hae' isOpen_fdInt (hcont.mono fun z hz => hz.2.2) continuousOn_const
-
   have hvan : ∀ z ∈ fdInt, f (ofComplex z) = 0 := by
     intro z hz
     have h1 := heq hz
@@ -1300,7 +1288,6 @@ theorem f_eq_zero : f = 0 := by
       · simp [hn] at h1
       · rw [pow_eq_zero_iff hn.ne'] at h1
         exact absurd h1 hz.2.2.ne'
-
   have hanal : AnalyticOnNhd ℂ (⇑f ∘ ofComplex) {z : ℂ | 0 < z.im} :=
     (UpperHalfPlane.mdifferentiable_iff.mp (ModularFormClass.holo f)).analyticOnNhd isOpen_upperHalfPlaneSet
   have hpre : IsPreconnected {z : ℂ | 0 < z.im} := (convex_halfSpace_im_gt 0).isPreconnected

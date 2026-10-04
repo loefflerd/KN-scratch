@@ -211,10 +211,8 @@ variable {K : Type*} [Field K] [IsAlgClosed K]
 private theorem fibrePoly_biResultant {Φ : Polynomial (Polynomial ℤ)}
     (Φ' : Polynomial (Polynomial ℤ)) (hΦ : Φ.Monic) (a : K) :
     fibrePoly (biResultant Φ Φ') a = compositeFibrePoly Φ Φ' a := by
-
   rw [← specializeAt_eq_fibrePoly, biResultant, ← Polynomial.resultant_map_map,
     map_resLiftInner, map_resLiftOuter]
-
   have hmono : ((fibrePoly Φ a).map (Polynomial.C : K →+* Polynomial K)).Monic :=
     (monic_fibrePoly hΦ a).map _
   have hdeg : ((fibrePoly Φ a).map (Polynomial.C : K →+* Polynomial K)).natDegree
@@ -222,13 +220,10 @@ private theorem fibrePoly_biResultant {Φ : Polynomial (Polynomial ℤ)}
     ((monic_fibrePoly hΦ a).natDegree_map _).trans (hΦ.natDegree_map _)
   have hsplit : ((fibrePoly Φ a).map (Polynomial.C : K →+* Polynomial K)).Splits :=
     (IsAlgClosed.splits (fibrePoly Φ a)).map _
-
   rw [← hdeg, Polynomial.resultant_eq_prod_eval _ _ _
       (natDegree_resLiftOuterK_le Φ' a) hsplit, hmono.leadingCoeff, one_pow, one_mul]
-
   rw [(IsAlgClosed.splits (fibrePoly Φ a)).roots_map_of_injective Polynomial.C_injective,
     Multiset.map_map, compositeFibrePoly_def]
-
   congr 1
   exact Multiset.map_congr rfl fun b _ => eval_C_resLiftOuterK Φ' b
 
@@ -353,18 +348,15 @@ private theorem evalModularPair_biResultant_eq_zero_of_common
     {Φ Φ' : Polynomial (Polynomial ℤ)} (hΦ : Φ.Monic) (hΦpos : Φ.natDegree ≠ 0)
     {a b c : K} (hab : evalModularPair a b Φ = 0) (hbc : evalModularPair b c Φ' = 0) :
     evalModularPair a c (biResultant Φ Φ') = 0 := by
-
   rw [evalModularPair_eq_eval_fibrePoly, ← specializeAt_eq_fibrePoly, biResultant,
     ← Polynomial.resultant_map_map, map_resLiftInner, map_resLiftOuter,
     show Polynomial.eval c
         = ⇑(Polynomial.evalRingHom c : Polynomial K →+* K) from rfl,
     ← Polynomial.resultant_map_map, Polynomial.map_map]
-
   rw [show (Polynomial.evalRingHom c).comp (Polynomial.C : K →+* Polynomial K)
         = RingHom.id K from
       RingHom.ext fun _ => Polynomial.eval_C,
     Polynomial.map_id]
-
   refine Polynomial.resultant_eq_zero_of_isRoot_isRoot
     (b := b)
     ?_ ?_ (natDegree_fibrePoly hΦ a).le ?_ (Or.inl hΦpos)
@@ -414,25 +406,20 @@ p2m_open_scoped "ModularCurve.ModularPolynomialData" in
 private theorem _root_.ModularCurve.ModularPolynomialData.eval₂_biResultant_eq_zero {m n : ℕ} [NeZero m]
     [NeZero n] (data : ModularPolynomialData m) (data' : ModularPolynomialData n) :
     (biResultant data.Φ data'.Φ).eval₂ evalAtJ (jqN (m * n)) = 0 := by
-
   rw [evalAtJ_eq_eval₂RingHom_intCast_jq,
     show (biResultant data.Φ data'.Φ).eval₂
           (Polynomial.eval₂RingHom (Int.castRingHom (LaurentSeries ℚ)) jq) (jqN (m * n))
         = evalModularPair jq (jqN (m * n)) (biResultant data.Φ data'.Φ) from rfl]
-
   have hmpos : data.Φ.natDegree ≠ 0 := by
     rw [data.natDegree_eq]
     exact (dedekindPsi_pos m (NeZero.ne m)).ne'
-
   refine evalModularPair_biResultant_eq_zero_of_common data.monic hmpos
     (b := jqN m) ?_ ?_
-  ·
-    show data.Φ.eval₂ (Polynomial.eval₂RingHom (Int.castRingHom (LaurentSeries ℚ)) jq)
+  · show data.Φ.eval₂ (Polynomial.eval₂RingHom (Int.castRingHom (LaurentSeries ℚ)) jq)
         (jqN m) = 0
     rw [← evalAtJ_eq_eval₂RingHom_intCast_jq]
     exact data.eval_eq_zero
-  ·
-    show data'.Φ.eval₂
+  · show data'.Φ.eval₂
         (Polynomial.eval₂RingHom (Int.castRingHom (LaurentSeries ℚ)) (jqN m))
         (jqN (m * n)) = 0
     rw [← qExpand_comp_evalAtJ_eq_eval₂RingHom]
@@ -472,7 +459,6 @@ open _root_.ModularCurve _root_.P2MW.S_ModularCurve_dedekindPsi_mul_of_coprime.M
 
 theorem solution (M N : ℕ) (h : Nat.Coprime M N) : dedekindPsi (M * N) = dedekindPsi M * dedekindPsi N :=
   ModularCurve.dedekindPsi_mul_of_coprime M N h
-
 
 end S_ModularCurve_dedekindPsi_mul_of_coprime
 end P2MW

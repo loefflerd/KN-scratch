@@ -68,7 +68,6 @@ def toHom (z : ↥(coeffParabolicCocycles (ρ0 N))) : Additive (Gamma0 N) →+ �
   map_zero' := by
     have h := (mem_coeffCocycles_iff (ρ0 N) _).mp z.2.1 1 1
     rw [mul_one, rho0_apply] at h
-
     have h0 : (z : Gamma0 N → ↥(BinaryForm ℂ 0)) 1 = 0 := by
       have := congrArg (fun v => v - (z : Gamma0 N → ↥(BinaryForm ℂ 0)) 1) h
       have h0' : (0 : ↥(BinaryForm ℂ 0)) = (z : Gamma0 N → ↥(BinaryForm ℂ 0)) 1 := by simpa using this
@@ -186,7 +185,6 @@ theorem solution (N : ℕ) [NeZero N] :
   calc (Module.finrank ℂ (HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ 0).comp (CongruenceSubgroup.Gamma0 N).subtype)) : ℚ)
       ≤ Module.finrank ℂ ↥(ModularCurve.Period.parabolicHoms ℂ (CongruenceSubgroup.Gamma0 N) ℂ) := by exact_mod_cast h1
     _ ≤ 2 * ModularCurve.genusFormula N := h2
-
 
 end S_HeckeEis_finrank_coeffH1par_zero_le_two_mul_genusFormula
 end P2MW

@@ -23,21 +23,17 @@ theorem solution
     {γ : ℤ} {D₀ : Divisor K F} (h : RiemannGenusReachedAt γ D₀) (Q : Place K F) :
     ∃ n : ℕ, indexOfSpecialty ((n : ℤ) • Finsupp.single Q (1 : ℤ)) = 0 := by
   classical
-
   have hQdeg : (1 : ℤ) ≤ (Q.deg : ℤ) := by
     have hfin : Module.Finite K Q.ResidueField := IsCurveOver.finiteResidue Q
     have hpos : 0 < Q.deg := Module.finrank_pos
     exact_mod_cast hpos
-
   set B : ℤ := (indexOfSpecialty (0 : Divisor K F) : ℤ) + γ - 1 with hB
   refine ⟨B.natAbs + 1, ?_⟩
   set n : ℕ := B.natAbs + 1 with hn
   set Dn : Divisor K F := (n : ℤ) • Finsupp.single Q (1 : ℤ) with hDn
-
   have hdeg : Divisor.degree Dn = (n : ℤ) * (Q.deg : ℤ) := by
     simp only [hDn, zsmul_eq_mul, Finsupp.smul_single, mul_one]
     exact Divisor.degree_single Q (n : ℤ)
-
   have hBn : B < (n : ℤ) * (Q.deg : ℤ) := by
     have h1 : B < (n : ℤ) := by
       have : B ≤ |B| := le_abs_self B
@@ -50,9 +46,7 @@ theorem solution
       _ ≤ (n : ℤ) * (Q.deg : ℤ) := by
           apply mul_le_mul_of_nonneg_left hQdeg
           exact_mod_cast Nat.zero_le n
-
   by_contra hne
-
   have homegafin : Module.Finite K ↥(omegaSpace (K := K) (F := F) Dn) :=
     omegaSpace_finite_of_genusReached h Dn
   have homegane : (omegaSpace (K := K) (F := F) Dn) ≠ ⊥ := by
@@ -60,19 +54,15 @@ theorem solution
     apply hne
     rw [← finrank_omegaSpace_eq_indexOfSpecialty Dn, hbot]
     exact finrank_bot K _
-
   obtain ⟨ψ, hψ, hψne⟩ := (Submodule.ne_bot_iff _).mp homegane
-
   have hfin0 : Module.Finite K ↥(omegaSpace (K := K) (F := F) (0 : Divisor K F)) :=
     omegaSpace_finite_of_genusReached h 0
   have hle : (ell Dn : ℤ) ≤ (indexOfSpecialty (0 : Divisor K F) : ℤ) := by
     have hls := ell_sub_le_indexOfSpecialty Dn (0 : Divisor K F) hψ hψne
     simp only [sub_zero] at hls
     exact_mod_cast hls
-
   have hmax := h.isMax Dn
   rw [hdeg] at hmax
-
   linarith
 
 end S_AlgebraicCurve_exists_indexOfSpecialty_nsmul_single_eq_zero_of_genusReached

@@ -41,8 +41,7 @@ theorem exists_div_rep_or_inv_div_rep_of_ne_bot (P : Ideal (𝓞 F)) [P.IsPrime]
   obtain ⟨c, hc | hc⟩ :=
     ValuationRing.cond (algebraMap (𝓞 F) (Localization.AtPrime P) n)
       (algebraMap (𝓞 F) (Localization.AtPrime P) d)
-  ·
-    obtain ⟨⟨a, s⟩, rfl⟩ := IsLocalization.mk'_surjective P.primeCompl c
+  · obtain ⟨⟨a, s⟩, rfl⟩ := IsLocalization.mk'_surjective P.primeCompl c
     have hsP : (s : 𝓞 F) ∉ P := s.2
     have hsF : algebraMap (𝓞 F) F (s : 𝓞 F) ≠ 0 := fun h0 =>
       hsP (by rw [show (s : 𝓞 F) = 0 from hφ (by rw [h0, map_zero])]; exact P.zero_mem)
@@ -65,8 +64,7 @@ theorem exists_div_rep_or_inv_div_rep_of_ne_bot (P : Ideal (𝓞 F)) [P.IsPrime]
     · exact Or.inr ⟨a, s, haP, hsP, hxinv⟩
     · refine Or.inl ⟨(s : 𝓞 F), a, haP, ?_⟩
       rw [← inv_inv x, hxinv, inv_div]
-  ·
-    obtain ⟨⟨a, s⟩, rfl⟩ := IsLocalization.mk'_surjective P.primeCompl c
+  · obtain ⟨⟨a, s⟩, rfl⟩ := IsLocalization.mk'_surjective P.primeCompl c
     have hsP : (s : 𝓞 F) ∉ P := s.2
     have hsF : algebraMap (𝓞 F) F (s : 𝓞 F) ≠ 0 := fun h0 =>
       hsP (by rw [show (s : 𝓞 F) = 0 from hφ (by rw [h0, map_zero])]; exact P.zero_mem)
@@ -93,14 +91,11 @@ theorem M3dS12D0.d0 (A : ValuationSubring (AlgebraicClosure ℚ)) {q : ℕ} (hq 
     ∃ x s : integralClosure ℤ (AlgebraicClosure ℚ),
       (s : AlgebraicClosure ℚ) ∉ A.nonunits ∧ a * s = x := by
   classical
-
   have halg : Algebra.IsAlgebraic ℚ (AlgebraicClosure ℚ) := by
     have h : @Algebra.IsAlgebraic ℚ (AlgebraicClosure ℚ) _ _ (AlgebraicClosure.instAlgebra ℚ) := inferInstance
     exact h
-
   have int_mem : ∀ b : (AlgebraicClosure ℚ), IsIntegral ℤ b → b ∈ A := by
     intro b hb
-
     have hbA : IsIntegral A b := by
       obtain ⟨p, hp, hpb⟩ := hb
       refine ⟨p.map (Int.castRingHom A), hp.map _, ?_⟩
@@ -113,19 +108,16 @@ theorem M3dS12D0.d0 (A : ValuationSubring (AlgebraicClosure ℚ)) {q : ℕ} (hq 
       (IsIntegrallyClosed.isIntegral_iff (R := A) (K := AlgebraicClosure ℚ)).mp hbA
     rw [← hy]
     exact y.2
-
   by_cases ha0 : a = 0
   · refine ⟨0, 1, ?_, by simp [ha0]⟩
     rw [OneMemClass.coe_one, ValuationSubring.mem_nonunits_iff, map_one]
     exact lt_irrefl 1
-
   have haint : IsIntegral ℚ a := Algebra.IsIntegral.isIntegral a
   let F : IntermediateField ℚ (AlgebraicClosure ℚ) := IntermediateField.adjoin ℚ {a}
   have hFfd : FiniteDimensional ℚ F := IntermediateField.adjoin.finiteDimensional haint
   have : NumberField F :=
     { to_charZero := charZero_of_injective_algebraMap (algebraMap ℚ F).injective
       to_finiteDimensional := hFfd }
-
   have hOA : ∀ b : 𝓞 F, algebraMap F (AlgebraicClosure ℚ) (algebraMap (𝓞 F) F b) ∈ A := fun b =>
     int_mem _ (map_isIntegral_int (algebraMap F (AlgebraicClosure ℚ)) (NumberField.RingOfIntegers.isIntegral_coe b))
   let φ : 𝓞 F →+* A :=
@@ -137,7 +129,6 @@ theorem M3dS12D0.d0 (A : ValuationSubring (AlgebraicClosure ℚ)) {q : ℕ} (hq 
     intro b
     rw [← hφ, ValuationSubring.coe_mem_nonunits_iff]
     rfl
-
   have hqP : (q : 𝓞 F) ∈ P := by
     rw [hmemP, map_natCast, map_natCast]
     exact hA
@@ -145,23 +136,19 @@ theorem M3dS12D0.d0 (A : ValuationSubring (AlgebraicClosure ℚ)) {q : ℕ} (hq 
     intro hbot
     rw [hbot, Ideal.mem_bot] at hqP
     exact hq.ne_zero (Nat.cast_eq_zero.mp hqP)
-
   have hval1 : ∀ s : 𝓞 F, s ∉ P → A.valuation (algebraMap F (AlgebraicClosure ℚ) (algebraMap (𝓞 F) F s)) = 1 := by
     intro s hs
     refine le_antisymm ((A.valuation_le_one_iff _).mpr (hOA s)) (not_lt.mp fun hlt => hs ?_)
     rw [hmemP, ValuationSubring.mem_nonunits_iff]
     exact hlt
-
   let a' : F := ⟨a, IntermediateField.mem_adjoin_simple_self ℚ a⟩
   have ha' : algebraMap F (AlgebraicClosure ℚ) a' = a := rfl
   have ha'0 : a' ≠ 0 := fun h => ha0 (by rw [← ha', h, map_zero])
-
   have hint : ∀ b : 𝓞 F, IsIntegral ℤ (algebraMap F (AlgebraicClosure ℚ) (algebraMap (𝓞 F) F b)) := fun b =>
     map_isIntegral_int (algebraMap F (AlgebraicClosure ℚ)) (NumberField.RingOfIntegers.isIntegral_coe b)
   rcases exists_div_rep_or_inv_div_rep_of_ne_bot P hPbot a' ha'0 with
     ⟨b, s, hs, hrep⟩ | ⟨b, s, hb, hs, hrep⟩
-  ·
-    have hsK : algebraMap F (AlgebraicClosure ℚ) (algebraMap (𝓞 F) F s) ≠ 0 := by
+  · have hsK : algebraMap F (AlgebraicClosure ℚ) (algebraMap (𝓞 F) F s) ≠ 0 := by
       intro h0
       have := hval1 s hs
       rw [h0, map_zero] at this
@@ -172,8 +159,7 @@ theorem M3dS12D0.d0 (A : ValuationSubring (AlgebraicClosure ℚ)) {q : ℕ} (hq 
       exact lt_irrefl 1
     · change a * algebraMap F (AlgebraicClosure ℚ) (algebraMap (𝓞 F) F s) = algebraMap F (AlgebraicClosure ℚ) (algebraMap (𝓞 F) F b)
       rw [← ha', hrep, map_div₀, div_mul_cancel₀ _ hsK]
-  ·
-    exfalso
+  · exfalso
     have hlt : A.valuation a⁻¹ < 1 := by
       have : a⁻¹ = algebraMap F (AlgebraicClosure ℚ) (algebraMap (𝓞 F) F b) / algebraMap F (AlgebraicClosure ℚ) (algebraMap (𝓞 F) F s) := by
         rw [← ha', ← map_inv₀, hrep, map_div₀]
@@ -196,19 +182,16 @@ theorem solution (𝔔 : Ideal (integralClosure ℤ (AlgebraicClosure ℚ))) [�
       ∃ c ∈ 𝔔, (c : AlgebraicClosure ℚ) = σ b - b) :
     ∃ A : ValuationSubring (AlgebraicClosure ℚ), A.LiesOverPrime q ∧ σ ∈ A.inertiaSubgroupIn ℚ := by
   classical
-
   obtain ⟨A, hOA, h𝔔A⟩ := Ideal.image_subset_nonunits_valuationSubring
     (A := (integralClosure ℤ (AlgebraicClosure ℚ)).toSubring) 𝔔 (Ideal.IsMaximal.ne_top ‹_›)
   have hmemA : ∀ b : integralClosure ℤ (AlgebraicClosure ℚ), (b : AlgebraicClosure ℚ) ∈ A :=
     fun b => hOA b.2
   have h𝔔nu : ∀ c ∈ 𝔔, (c : AlgebraicClosure ℚ) ∈ A.nonunits := fun c hc =>
     h𝔔A ⟨c, hc, rfl⟩
-
   have hA : A.LiesOverPrime q := by
     have := h𝔔nu _ hq𝔔
     simp at this
     exact this
-
   let φ : integralClosure ℤ (AlgebraicClosure ℚ) →+* A :=
     (integralClosure ℤ (AlgebraicClosure ℚ)).val.toRingHom.codRestrict A.toSubring hmemA
   let J : Ideal (integralClosure ℤ (AlgebraicClosure ℚ)) :=
@@ -224,7 +207,6 @@ theorem solution (𝔔 : Ideal (integralClosure ℤ (AlgebraicClosure ℚ))) [�
       exact (hmemJ c).mpr (h𝔔nu c hc)
   have hcenter : ∀ b : integralClosure ℤ (AlgebraicClosure ℚ),
       (b : AlgebraicClosure ℚ) ∈ A.nonunits ↔ b ∈ 𝔔 := fun b => by rw [← hmemJ, hJ]
-
   have key : ∀ ρ : (AlgebraicClosure ℚ) ≃ₐ[ℚ] (AlgebraicClosure ℚ),
       (∀ b : integralClosure ℤ (AlgebraicClosure ℚ), ∃ c ∈ 𝔔, (c : AlgebraicClosure ℚ) = ρ b - b) →
       ∀ a ∈ A, ρ a ∈ A ∧ ρ a - a ∈ A.nonunits := by
@@ -251,7 +233,6 @@ theorem solution (𝔔 : Ideal (integralClosure ℤ (AlgebraicClosure ℚ))) [�
       rw [h, map_zero] at hvs; exact zero_ne_one hvs
     have hρs0 : ρ s ≠ 0 := fun h => by
       rw [h, map_zero] at hvρs; exact zero_ne_one hvρs
-
     have hρa : ρ a = ρ x / ρ s := by
       rw [eq_div_iff hρs0, ← map_mul, hax]
     have hvρx : A.valuation (ρ x) ≤ 1 := by
@@ -260,8 +241,7 @@ theorem solution (𝔔 : Ideal (integralClosure ℤ (AlgebraicClosure ℚ))) [�
     refine ⟨?_, ?_⟩
     · rw [← A.valuation_le_one_iff, hρa, map_div₀, hvρs, div_one]
       exact hvρx
-    ·
-      have ha' : a = x / s := by rw [eq_div_iff hs0, hax]
+    · have ha' : a = x / s := by rw [eq_div_iff hs0, hax]
       have hdiff : ρ a - a = (c * s - x * c') / (ρ s * s) := by
         rw [hρa, ha', hρx, hρs, div_sub_div _ _ (by rw [← hρs]; exact hρs0) hs0]
         congr 1
@@ -274,7 +254,6 @@ theorem solution (𝔔 : Ideal (integralClosure ℤ (AlgebraicClosure ℚ))) [�
         calc A.valuation (x : AlgebraicClosure ℚ) * A.valuation (c' : AlgebraicClosure ℚ)
             ≤ A.valuation (c' : AlgebraicClosure ℚ) := mul_le_of_le_one_left' hvx
           _ < 1 := hvc'
-
   have hσinv : ∀ b : integralClosure ℤ (AlgebraicClosure ℚ),
       ∃ c ∈ 𝔔, (c : AlgebraicClosure ℚ) = σ⁻¹ b - b := by
     intro b
@@ -286,7 +265,6 @@ theorem solution (𝔔 : Ideal (integralClosure ℤ (AlgebraicClosure ℚ))) [�
       = σ⁻¹ (b : AlgebraicClosure ℚ) - (b : AlgebraicClosure ℚ)
     rw [← AlgEquiv.mul_apply, mul_inv_cancel, AlgEquiv.one_apply]
     ring
-
   have hstab : σ ∈ A.decompositionSubgroup ℚ := by
     rw [ValuationSubring.decompositionSubgroup, MulAction.mem_stabilizer_iff]
     ext x
@@ -297,7 +275,6 @@ theorem solution (𝔔 : Ideal (integralClosure ℤ (AlgebraicClosure ℚ))) [�
       rwa [← AlgEquiv.mul_apply, mul_inv_cancel, AlgEquiv.one_apply] at this
     · intro hx
       exact (key σ⁻¹ hσinv _ hx).1
-
   refine ⟨A, hA, Subgroup.mem_map.mpr ⟨⟨σ, hstab⟩, ?_, rfl⟩⟩
   rw [ValuationSubring.inertiaSubgroup, MonoidHom.mem_ker]
   ext r

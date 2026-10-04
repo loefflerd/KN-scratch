@@ -85,7 +85,6 @@ theorem E₄_rho : ModularForm.E₄ rho = 0 := by
       (rho : ℂ) + 1 := by
     simp [denom, ModularGroup.coe_S, ModularGroup.coe_T, Matrix.mul_apply, Fin.sum_univ_two]
   rw [hden] at h4
-
   have hω : ((rho : ℂ) + 1) ^ 2 = ((rho : ℂ) + 1) - 1 := by linear_combination rho_sq
   have hω4 : ((rho : ℂ) + 1) ^ (4 : ℤ) = -((rho : ℂ) + 1) := by
     rw [show ((rho : ℂ) + 1) ^ (4 : ℤ) = (((rho : ℂ) + 1) ^ 2) ^ 2 by norm_cast; ring, hω]
@@ -222,7 +221,6 @@ theorem dvd_of_ST_pow_mem {N : ℕ} (hN : 2 ≤ N) {n : ℕ}
     rw [Matrix.SpecialLinearGroup.coe_pow, hST]
     fin_cases i <;> fin_cases j <;>
       simp [pow_succ, Matrix.mul_apply, Fin.sum_univ_two]
-
   obtain ⟨q, r, hr, rfl⟩ : ∃ q r : ℕ, r < 3 ∧ n = 3 * q + r :=
     ⟨n / 3, n % 3, Nat.mod_lt _ (by norm_num), (Nat.div_add_mod n 3).symm⟩
   have hpow : (ModularGroup.S * ModularGroup.T : SL(2, ℤ)) ^ (3 * q + r) =
@@ -230,7 +228,6 @@ theorem dvd_of_ST_pow_mem {N : ℕ} (hN : 2 ≤ N) {n : ℕ}
     rw [pow_add, pow_mul, hST3]
   rw [hpow] at h
   have h10 := entry_10_eq_zero_of_mem_Gpm N h
-
   interval_cases r
   · exact ⟨q, by ring⟩
   · exfalso
@@ -286,7 +283,6 @@ theorem orbit_package (t : L) [FiniteDimensional ℂ⟮t⟯ L] [IsGalois ℂ⟮t
   classical
   let : MulAction (L ≃ₐ[ℂ⟮t⟯] L) (AlgebraicCurve.Place ℂ L) := MulAction.compHom _ (toSemi ℂ⟮t⟯)
   have hsmul : ∀ (g' : (L ≃ₐ[ℂ⟮t⟯] L)) (P : AlgebraicCurve.Place ℂ L), g' • P = toSemi ℂ⟮t⟯ g' • P := fun _ _ => rfl
-
   have hDH := (AlgebraicCurve.Place.ord_restrictAlong_eq_natCard_algHom_of_isGalois ℂ t t c
     (AlgHom.id ℂ L) rfl inferInstance inferInstance hint W hW).1
   set D := MulAction.stabilizer (L ≃ₐ[ℂ⟮t⟯] L) W with hD
@@ -294,7 +290,6 @@ theorem orbit_package (t : L) [FiniteDimensional ℂ⟮t⟯ L] [IsGalois ℂ⟮t
       Nat.card D := Nat.card_congr (Equiv.subtypeEquivRight fun σ => by
         rw [hD, MulAction.mem_stabilizer_iff, hsmul, toSemi_apply])
   rw [hcardD] at hDH
-
   have hfin : (MulAction.orbit (L ≃ₐ[ℂ⟮t⟯] L) W).Finite := Set.finite_range _
   refine ⟨hfin.toFinset, Nat.card D, ?_, ?_, ?_, ?_⟩
   · intro P hP
@@ -424,7 +419,6 @@ theorem main (hN : 2 ≤ N) :
   set jK : K := algebraMap (ring N) K (jGen N) with hjK
   have := hfd
   have := hgal
-
   have hσE : ∀ (γ : SL(2, ℤ)), ∀ x ∈ ℂ⟮jK⟯, σ γ x = x := fun γ x hx => by
     rw [← hfix] at hx
     exact (IntermediateField.mem_fixedField_iff σ.range x).mp hx (σ γ) ⟨γ, rfl⟩
@@ -435,14 +429,12 @@ theorem main (hN : 2 ≤ N) :
   have hgal' : IsGalois ℂ⟮jK⁻¹⟯ K := isGalois_congr hEinv.symm
   have hrank' : Module.finrank ℂ⟮jK⁻¹⟯ K = (Gpm N).index := by
     rw [finrank_congr hEinv]; exact hrank
-
   have hint : ∀ ψ : K →ₐ[ℂ] K, ψ jK = jK → ψ.toRingHom.IsIntegral :=
     fun ψ hψ => isIntegral_of_apply_eq jK ψ hψ
   have hint' : ∀ ψ : K →ₐ[ℂ] K, ψ jK⁻¹ = jK⁻¹ → ψ.toRingHom.IsIntegral := fun ψ hψ => by
     apply isIntegral_of_apply_eq jK ψ
     rw [map_inv₀] at hψ
     exact inv_injective hψ
-
   obtain ⟨W₀, hW₀, hW₀fix⟩ := ModularCurve.LevelN.exists_place_ord_sub_pos_forall_smul_eq N K rho
   obtain ⟨W₁, hW₁, hW₁fix⟩ :=
     ModularCurve.LevelN.exists_place_ord_sub_pos_forall_smul_eq N K UpperHalfPlane.I
@@ -457,7 +449,6 @@ theorem main (hN : 2 ≤ N) :
     intro h; rw [h, AlgebraicCurve.Place.ord_zero] at hW₂; exact lt_irrefl _ hW₂
   have hW₂' : 0 < W₂.ord (jK⁻¹ - algebraMap ℂ K 0) := by
     rw [map_zero, sub_zero, AlgebraicCurve.Place.ord_inv]; omega
-
   set g₀ := liftHom ℂ⟮jK⟯ σ hσE (ModularGroup.S * ModularGroup.T) with hg₀
   set g₁ := liftHom ℂ⟮jK⟯ σ hσE ModularGroup.S with hg₁
   set g₂ := liftHom ℂ⟮jK⁻¹⟯ σ hσE' ModularGroup.T with hg₂
@@ -479,13 +470,11 @@ theorem main (hN : 2 ≤ N) :
   have hm₂ : ∀ n : ℕ, g₂ ^ n = 1 → N ∣ n := fun n hn => by
     rw [hg₂, liftHom_pow_eq_one_iff, hker] at hn
     exact dvd_of_T_pow_mem N hn
-
   obtain ⟨T₀, e₀, hT₀, he₀, hm₀e, hc₀⟩ := orbit_package jK hint W₀ 0 hW₀ g₀ hg₀W 3 hm₀
   obtain ⟨T₁, e₁, hT₁, he₁, hm₁e, hc₁⟩ := orbit_package jK hint W₁ 1728 hW₁ g₁ hg₁W 2 hm₁
   obtain ⟨T₂, e₂, hT₂, he₂, hm₂e, hc₂⟩ := orbit_package jK⁻¹ hint' W₂ 0 hW₂' g₂ hg₂W N hm₂
   rw [hrank] at hc₀ hc₁
   rw [hrank'] at hc₂
-
   have hdisj : Disjoint T₀ T₁ := by
     rw [Finset.disjoint_left]
     intro P hP0 hP1
@@ -508,7 +497,6 @@ theorem main (hN : 2 ≤ N) :
     rw [hneg, h0, h1] at hle
     have : (0 : ℤ) < min (e₀ : ℤ) (e₁ : ℤ) := lt_min (by exact_mod_cast he₀) (by exact_mod_cast he₁)
     omega
-
   have hH := AlgebraicCurve.sum_ord_sub_one_le_two_mul_genusFF_of_isSeparable ℂ jK htr hfd
     inferInstance (T₀ ∪ T₁) (fun P => if P ∈ T₀ then 0 else 1728)
     (fun P hP => by
@@ -545,7 +533,6 @@ theorem main (hN : 2 ≤ N) :
     omega
   rw [hs₀, hs₁, hs₂] at hH
   simp only [nsmul_eq_mul] at hH
-
   obtain ⟨k₀, hk₀⟩ := hm₀e
   obtain ⟨k₁, hk₁⟩ := hm₁e
   obtain ⟨k₂, hk₂⟩ := hm₂e
@@ -561,7 +548,6 @@ theorem main (hN : 2 ≤ N) :
   have hr₂ : N * T₂.card ≤ (Gpm N).index := by
     calc N * T₂.card ≤ N * T₂.card * k₂ := Nat.le_mul_of_pos_right _ hk₂p
       _ = (Gpm N).index := by rw [← hc₂, hk₂]; ring
-
   have hc₀' : (T₀.card : ℤ) * e₀ = (Gpm N).index := by exact_mod_cast hc₀
   have hc₁' : (T₁.card : ℤ) * e₁ = (Gpm N).index := by exact_mod_cast hc₁
   have hc₂' : (T₂.card : ℤ) * e₂ = (Gpm N).index := by exact_mod_cast hc₂

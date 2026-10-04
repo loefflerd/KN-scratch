@@ -1068,8 +1068,7 @@ theorem relfinrank_fullC_step (M : ℕ) [NeZero M] (p : ℕ) [hp : Fact (Nat.Pri
     rw [hup]
     exact relfinrank_fullC_insert_eq_natDegree _ hint
   rcases a with _ | b
-  ·
-    rw [ite_eq_left rfl, hd_eq]
+  · rw [ite_eq_left rfl, hd_eq]
     have hF : fullC K (M * p ^ 0) = fullC K M := by rw [pow_zero, Nat.mul_one]
     have hpF : jqNModC K p ∉ fullC K (M * p ^ 0) := by
       rw [hF]
@@ -1079,8 +1078,7 @@ theorem relfinrank_fullC_step (M : ℕ) [NeZero M] (p : ℕ) [hp : Fact (Nat.Pri
     rw [← IntermediateField.adjoin.finrank hint]
     exact finrank_adjoin_jqNModC_prime_of_not_mem' _ (jqModC_mem_fullC _) p _
       (isPrimitiveRoot_pow_div hζ (Dvd.dvd.mul_left (dvd_pow_self p (Nat.succ_ne_zero 0)) M)) hpF
-  ·
-    rw [ite_eq_right (Nat.succ_ne_zero b)]
+  · rw [ite_eq_right (Nat.succ_ne_zero b)]
     have hL0 : M * p ^ (b + 1) = M * p ^ b * p := by ring
     have hL1 : M * p ^ (b + 1 + 1) = M * p ^ (b + 1) * p := by ring
     have hpL1 : p ∣ M * p ^ (b + 1 + 1) := Dvd.dvd.mul_left (dvd_pow_self p (Nat.succ_ne_zero _)) M
@@ -1090,7 +1088,6 @@ theorem relfinrank_fullC_step (M : ℕ) [NeZero M] (p : ℕ) [hp : Fact (Nat.Pri
       rw [← hL1]
       exact hζ
     have hζp : IsPrimitiveRoot ((ζ ^ (M * p ^ (b + 1 + 1) / p) : Kˣ) : K) p := isPrimitiveRoot_pow_div hζ hpL1
-
     have hGE : eFull K p (M * p ^ b) ≤ eFull K p (M * p ^ (b + 1)) :=
       eFull_mono p (mul_dvd_mul_left M (pow_dvd_pow p (Nat.le_succ b)))
     have hG0 : eFull K p (M * p ^ b) ≤ fullC K (M * p ^ (b + 1)) := by
@@ -1101,10 +1098,8 @@ theorem relfinrank_fullC_step (M : ℕ) [NeZero M] (p : ℕ) [hp : Fact (Nat.Pri
       exact eFull_le_fullC p _
     have h01 : fullC K (M * p ^ (b + 1)) ≤ fullC K (M * p ^ (b + 1 + 1)) :=
       fullC_mono (mul_dvd_mul_left M (pow_dvd_pow p (Nat.le_succ _)))
-
     have t1 := IntermediateField.relfinrank_mul_relfinrank hG0 h01
     have t2 := IntermediateField.relfinrank_mul_relfinrank hGE hE1
-
     have hδ : IntermediateField.relfinrank (eFull K p (M * p ^ b)) (eFull K p (M * p ^ (b + 1)))
         = if b = 0 then p + 1 else p := by
       rw [eFull_eq_map, eFull_eq_map, IntermediateField.relfinrank_map_map]
@@ -1112,7 +1107,6 @@ theorem relfinrank_fullC_step (M : ℕ) [NeZero M] (p : ℕ) [hp : Fact (Nat.Pri
     have hδpos : 0 < IntermediateField.relfinrank (eFull K p (M * p ^ b)) (eFull K p (M * p ^ (b + 1))) := by
       rw [hδ]
       split_ifs <;> omega
-
     have hx : IntermediateField.relfinrank (eFull K p (M * p ^ b)) (fullC K (M * p ^ (b + 1)))
         ≤ IntermediateField.relfinrank (eFull K p (M * p ^ b)) (eFull K p (M * p ^ (b + 1))) := by
       rw [hδ, hL0, relfinrank_eFull_fullC_eq_natDegree (M * p ^ b) p _ hζ0]
@@ -1121,11 +1115,9 @@ theorem relfinrank_fullC_step (M : ℕ) [NeZero M] (p : ℕ) [hp : Fact (Nat.Pri
         exact natDegree_minpoly_jqModC_eFull_le (M * p ^ b) p
       · rw [ite_eq_right hb]
         exact natDegree_minpoly_jqModC_eFull_le_of_dvd (M * p ^ b) p (Dvd.dvd.mul_left (dvd_pow_self p hb) M)
-
     have hy : p ≤ IntermediateField.relfinrank (eFull K p (M * p ^ (b + 1))) (fullC K (M * p ^ (b + 1 + 1))) := by
       rw [hL1, relfinrank_eFull_fullC_eq_natDegree (M * p ^ (b + 1)) p ζ hζ1]
       exact le_natDegree_minpoly_jqModC_eFull (M * p ^ (b + 1)) p _ hζp
-
     have hdle : IntermediateField.relfinrank (fullC K (M * p ^ (b + 1))) (fullC K (M * p ^ (b + 1 + 1))) ≤ p := by
       rw [hd_eq]
       have hr : jqNModC K (p ^ b) ∈ fullC K (M * p ^ (b + 1)) :=
@@ -1140,7 +1132,6 @@ theorem relfinrank_fullC_step (M : ℕ) [NeZero M] (p : ℕ) [hp : Fact (Nat.Pri
       have h := natDegree_minpoly_le_of_phiAtSeed_root_of_root_mem data hs hr hrroot hup_rel htr
       rw [ModularCurve.dedekindPsi_prime hp.out] at h
       omega
-
     have hsq : IntermediateField.relfinrank (eFull K p (M * p ^ b)) (eFull K p (M * p ^ (b + 1))) * p
         ≤ IntermediateField.relfinrank (eFull K p (M * p ^ b)) (eFull K p (M * p ^ (b + 1)))
           * IntermediateField.relfinrank (fullC K (M * p ^ (b + 1))) (fullC K (M * p ^ (b + 1 + 1))) :=
@@ -1180,7 +1171,6 @@ open _root_.ModularCurve _root_.P2MW.S_ModularCurve_relfinrank_fullC_mul_prime_p
 
 theorem solution {K : Type*} [Field K] (M : ℕ) [NeZero M] (p : ℕ) [hp : Fact (Nat.Prime p)] (a : ℕ) (hpM : ¬ p ∣ M) (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) (M * p ^ (a + 1))) (hprev : ∀ b : ℕ, a = b + 1 → IntermediateField.relfinrank (IntermediateField.adjoin K {x : LaurentSeries K | ∃ (d' : ℕ) (_ : NeZero d'), d' ∣ M * p ^ b ∧ x = jqNModC K d'}) (IntermediateField.adjoin K {x : LaurentSeries K | ∃ (d' : ℕ) (_ : NeZero d'), d' ∣ M * p ^ (b + 1) ∧ x = jqNModC K d'}) = if b = 0 then p + 1 else p) (hnm : a = 0 → jqNModC K p ∉ IntermediateField.adjoin K {x : LaurentSeries K | ∃ (d' : ℕ) (_ : NeZero d'), d' ∣ M ∧ x = jqNModC K d'}) : IntermediateField.relfinrank (IntermediateField.adjoin K {x : LaurentSeries K | ∃ (d' : ℕ) (_ : NeZero d'), d' ∣ M * p ^ a ∧ x = jqNModC K d'}) (IntermediateField.adjoin K {x : LaurentSeries K | ∃ (d' : ℕ) (_ : NeZero d'), d' ∣ M * p ^ (a + 1) ∧ x = jqNModC K d'}) = if a = 0 then p + 1 else p :=
   ModularCurve.relfinrank_fullC_mul_prime_pow M p a hpM ζ hζ hprev hnm
-
 
 end S_ModularCurve_relfinrank_fullC_mul_prime_pow
 end P2MW

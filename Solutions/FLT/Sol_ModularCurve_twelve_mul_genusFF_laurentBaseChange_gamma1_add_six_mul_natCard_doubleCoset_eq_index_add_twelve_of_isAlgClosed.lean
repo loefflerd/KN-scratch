@@ -88,9 +88,7 @@ theorem solution
         ((Subgroup.zpowers ModularGroup.T ⊔ Subgroup.zpowers (-1) : Subgroup SL(2, ℤ)) : Set SL(2, ℤ))) =
       (CongruenceSubgroup.Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index + 12 := by
   classical
-
   have hQ := ModularCurve.twelve_mul_genusFF_laurentBaseChange_gamma1_add_six_mul_natCard_doubleCoset_eq_index_add_twelve M hM
-
   let algQK : Algebra (AlgebraicClosure ℚ) K := (GenusK.ι K).toRingHom.toAlgebra
   let algFF : Algebra ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) := (GenusK.φ K M).toAlgebra
   let algQF : Algebra (AlgebraicClosure ℚ) ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) := ((algebraMap K ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))).comp (GenusK.ι K).toRingHom).toAlgebra
@@ -108,7 +106,6 @@ theorem solution
         rw [show algebraMap K (LaurentSeries K) (GenusK.ι K a) = HahnSeries.C (GenusK.ι K a) by simp [HahnSeries.algebraMap_apply']]; rfl,
       ModularCurve.coeffMap_single]
     rfl
-
   have hfg := ModularCurve.JOneES.exists_transcendental_finiteDimensional_laurentBaseChange (AlgebraicClosure ℚ)
     (CongruenceSubgroup.Gamma1 M) (GenusK.hT M)
   have hfg' := ModularCurve.JOneES.exists_transcendental_finiteDimensional_laurentBaseChange K
@@ -117,7 +114,6 @@ theorem solution
     obtain ⟨x, htr, hfd⟩ := hfg; exact AlgebraicCurve.isCurveOver_of_transcendental_of_perfectField htr hfd
   have : IsCurveOver K ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) := by
     obtain ⟨x, htr, hfd⟩ := hfg'; exact AlgebraicCurve.isCurveOver_of_transcendental_of_perfectField htr hfd
-
   have hgen : IntermediateField.adjoin K (Set.range (algebraMap ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))))) = ⊤ := by
     apply IntermediateField.lift_injective
     erw [IntermediateField.lift_top K (ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))),

@@ -67,7 +67,6 @@ theorem solution (W : WeierstrassCurve H)
   have : NeZero p := ⟨(Fact.out : p.Prime).ne_zero⟩
   refine ⟨AddEquiv.ofBijective (Sol3a.torsHom W hW hΔ' p) (Sol3a.torsHom_bijective W hW hΔ' p), ?_⟩
   intro P x y h hP
-
   have hPt : p • (P : W.toAffine.Point) = 0 := Sol3a.nsmul_of_mem P.2
   have h' : ((liftModel W hW).map valuationSubringH.subtype).toAffine.Nonsingular x y := by
     rw [liftModel_map_subtype]; exact h

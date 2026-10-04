@@ -27,20 +27,17 @@ theorem solution :
       - 3 * PowerSeries.mk (fun n : ℕ => (n : ℂ) * (qExpansion 1 (⇑ModularForm.E₄ : ℍ → ℂ)).coeff n)
         * qExpansion 1 ModularForm.discriminant
       = qExpansion 1 (⇑ModularForm.E₆ : ℍ → ℂ) * qExpansion 1 ModularForm.discriminant := by
-
   have hΓ : ((Gamma 1 : Subgroup SL(2, ℤ)) : Subgroup (GL (Fin 2) ℝ)) = 𝒮ℒ := Gamma_one_coe_eq_SL
   have h1 : (1 : ℝ) ∈ ((Gamma 1 : Subgroup SL(2, ℤ)) : Subgroup (GL (Fin 2) ℝ)).strictPeriods := by
     rw [hΓ]; exact one_mem_strictPeriods_SL
   obtain ⟨B, -, hBq⟩ := ModularForm.exists_rankinCohen_one_qExpansion_eq h1
     (E₄.mcast rfl hΓ) ((CuspForm.discriminant : ModularForm 𝒮ℒ 12).mcast rfl hΓ)
-
   set P4 : PowerSeries ℂ := qExpansion 1 (⇑ModularForm.E₄ : ℍ → ℂ) with hP4
   set P6 : PowerSeries ℂ := qExpansion 1 (⇑ModularForm.E₆ : ℍ → ℂ) with hP6
   set PD : PowerSeries ℂ := qExpansion 1 ModularForm.discriminant with hPD
   change qExpansion 1 (B : ℍ → ℂ) =
       PowerSeries.C ((4 : ℤ) : ℂ) * P4 * PowerSeries.mk (fun n : ℕ => (n : ℂ) * PD.coeff n)
         - PowerSeries.C ((12 : ℤ) : ℂ) * PowerSeries.mk (fun n : ℕ => (n : ℂ) * P4.coeff n) * PD at hBq
-
   have h40 : P4.coeff 0 = 1 := E_qExpansion_coeff_zero (by norm_num) ⟨2, rfl⟩
   have h60 : P6.coeff 0 = 1 := E_qExpansion_coeff_zero (by norm_num) ⟨3, rfl⟩
   have hD0 : PD.coeff 0 = 0 := by
@@ -49,7 +46,6 @@ theorem solution :
       (SlashInvariantFormClass.periodic_comp_ofComplex _ one_mem_strictPeriods_SL)]
     exact (CuspFormClass.zero_at_infty CuspForm.discriminant).valueAtInfty_eq_zero
   have hD1 : PD.coeff 1 = 1 := discriminant_qExpansion_coeff_one
-
   set B' : ModularForm 𝒮ℒ 18 := B.mcast (by norm_num) hΓ.symm with hB'
   have hB'q : qExpansion 1 (B' : ℍ → ℂ) = qExpansion 1 (B : ℍ → ℂ) := rfl
   have hcusp : IsCuspForm B' := by
@@ -60,7 +56,6 @@ theorem solution :
     funext τ
     have := DFunLike.congr_fun hG τ
     first | exact this
-
   set M : ModularForm 𝒮ℒ 6 := (CuspForm.discriminantEquiv G).mcast (by norm_num) with hM
   obtain ⟨c, hc⟩ : ∃ c : ℂ, c • E₆ = M :=
     (finrank_eq_one_iff_of_nonzero' E₆ (E_ne_zero (by norm_num) ⟨3, rfl⟩)).mp
@@ -88,16 +83,12 @@ theorem solution :
       rw [this]
       exact ModularFormClass.analyticAt_cuspFunction_zero _ one_pos one_mem_strictPeriods_SL
   have key := hBq.symm.trans hq2
-
   have hc4 : c = 4 := by
     have := congrArg (PowerSeries.coeff 1) key
     simp [PowerSeries.coeff_mul, Finset.Nat.antidiagonal_succ, h40, h60, hD0, hD1] at this
     first
       | exact this.symm
-
-
   subst hc4
-
   have h4 : (PowerSeries.C (4 : ℂ)) ≠ 0 := by simp
   apply mul_left_cancel₀ h4
   have e12 : PowerSeries.C ((12 : ℤ) : ℂ) = PowerSeries.C (4 : ℂ) * 3 := by

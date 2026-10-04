@@ -51,7 +51,6 @@ theorem hasSum_qParam_mul_laurent' (h : ℝ) (hh : 0 < h) (A B : LaurentSeries �
     (hB : ∀ τ : ℍ, HasSum (fun m : ℤ => B.coeff m * 𝕢 h (τ : ℂ) ^ m) (G τ)) (τ : ℍ) :
     HasSum (fun m : ℤ => (A * B).coeff m * 𝕢 h (τ : ℂ) ^ m) (F τ * G τ) := by
   have hq0 : ∀ τ : ℍ, 𝕢 h (τ : ℂ) ≠ 0 := fun τ => Periodic.qParam_ne_zero _
-
   set F' : ℍ → ℂ := fun τ => F τ * (𝕢 h (τ : ℂ) ^ A.order)⁻¹ with hF'
   set G' : ℍ → ℂ := fun τ => G τ * (𝕢 h (τ : ℂ) ^ B.order)⁻¹ with hG'
   have hA' : ∀ τ : ℍ, HasSum (fun n : ℕ => PowerSeries.coeff n A.powerSeriesPart * 𝕢 h (τ : ℂ) ^ n) (F' τ) := by
@@ -65,7 +64,6 @@ theorem hasSum_qParam_mul_laurent' (h : ℝ) (hh : 0 < h) (A B : LaurentSeries �
       hG', inv_mul_cancel_right₀ (zpow_ne_zero _ (hq0 τ))]
     exact hB τ
   have H := ModularCurve.hasSum_qParam_mul h hh A.powerSeriesPart B.powerSeriesPart F' G' hA' hB' τ
-
   have hAB : HahnSeries.single (A.order + B.order) (1 : ℂ) *
       ((A.powerSeriesPart * B.powerSeriesPart : PowerSeries ℂ) : LaurentSeries ℂ) = A * B := by
     conv_rhs => rw [← A.single_order_mul_powerSeriesPart, ← B.single_order_mul_powerSeriesPart]

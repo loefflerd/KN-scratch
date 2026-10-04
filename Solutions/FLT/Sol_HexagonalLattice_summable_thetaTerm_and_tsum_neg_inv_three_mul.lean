@@ -247,8 +247,7 @@ lemma summable_middle {σ : ℂ} (hσ : 0 < σ.im) :
   rintro ⟨x, m⟩
   simp only [Function.uncurry_apply_pair, norm_mul]
   congr 1
-  ·
-    rw [Complex.norm_exp, Complex.norm_exp]
+  · rw [Complex.norm_exp, Complex.norm_exp]
     congr 1
     simp only [Complex.add_re]
     congr 1
@@ -256,8 +255,7 @@ lemma summable_middle {σ : ℂ} (hσ : 0 < σ.im) :
       show (2 * (π : ℂ) * (I * (m : ℂ) / 2) * (x : ℂ)) =
         ((π * (m : ℝ) * (x : ℝ) : ℝ) : ℂ) * I by push_cast; ring]
     rw [Complex.zero_re, Complex.re_ofReal_mul, Complex.I_re, mul_zero]
-  ·
-    refine congrArg norm (congrArg cexp ?_)
+  · refine congrArg norm (congrArg cexp ?_)
     rw [mul_zero, zero_mul, add_zero, div_eq_mul_inv]
 
 theorem hexTheta_eq_mul_self_neg_inv {σ : ℂ} (hσ : 0 < σ.im) :
@@ -357,14 +355,12 @@ lemma cpow_half_mul_cpow_half {σ : ℂ} (hσ : 0 < σ.im) :
     norm_num
   refine eq_of_sq_eq_sq_of_re_pos ?_
     (re_cpow_half_mul_cpow_half_pos (re_neg_two_I_mul hσ) (re_neg_three_I_mul_div_two hσ)) ?_
-  ·
-    rw [mul_pow, sq_cpow_half ha, sq_cpow_half hb,
+  · rw [mul_pow, sq_cpow_half ha, sq_cpow_half hb,
       show (-I * ((Real.sqrt 3 : ℝ) : ℂ) * σ) ^ 2 =
         ((Real.sqrt 3 : ℝ) : ℂ) ^ 2 * (I ^ 2 * σ ^ 2) by ring,
       hs3]
     ring
-  ·
-    rw [show (-I * ((Real.sqrt 3 : ℝ) : ℂ) * σ) = ((Real.sqrt 3 : ℝ) : ℂ) * (σ * -I) by ring,
+  · rw [show (-I * ((Real.sqrt 3 : ℝ) : ℂ) * σ) = ((Real.sqrt 3 : ℝ) : ℂ) * (σ * -I) by ring,
       Complex.re_ofReal_mul, mul_neg, Complex.neg_re, Complex.mul_I_re, neg_neg]
     exact mul_pos (Real.sqrt_pos.mpr (by norm_num)) hσ
 

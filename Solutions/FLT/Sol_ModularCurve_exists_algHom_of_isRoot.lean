@@ -98,7 +98,6 @@ theorem adjoin_jqNModC_eq_extendScalars (L : Type*) [Field L] [Algebra ℚ L] (N
     exact IntermediateField.subset_adjoin L _ (Set.mem_insert_of_mem _ rfl)
   · intro x hx
     rw [IntermediateField.mem_extendScalars, laurentBaseChange_eq_adjoin_pair L N] at hx
-
     have ha : jqModC L ∈
         IntermediateField.adjoin (jAdj L) ({jqNModC L N} : Set (LaurentSeries L)) := by
       have h := (IntermediateField.adjoin (jAdj L)
@@ -179,20 +178,16 @@ private theorem exists_algHom_of_isRoot (L : Type*) [Field L] [Algebra ℚ L] (N
       ψ ⟨coeffEmb L (qExpand ℚ N jq),
         coeffEmb_mem_laurentBaseChange L (jqd_mem_full N (dvd_refl N))⟩ = y := by
   have hB10 := minpoly_jqNModC_eq L N data
-
   let φ₀ : jAdjField L →ₐ[L] A := jBaseHom L hc
   have hφ₀c : φ₀ (jGenL L) = c := jBaseHom_jGenL L hc
-
   let : Algebra (jAdjField L) A := φ₀.toRingHom.toAlgebra
   have hamap : ∀ x, algebraMap (jAdjField L) A x = φ₀ x := fun _ => rfl
   have : IsScalarTower L (jAdjField L) A :=
     IsScalarTower.of_algebraMap_eq' (by ext x; exact (φ₀.commutes x).symm)
-
   have hΦmonic : (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (jAdjField L))
       (jGenL L))).Monic := data.monic.map _
   have hint : IsIntegral (jAdjField L) (jqNModC L N) := by
     rw [← minpoly.ne_zero_iff, hB10]; exact hΦmonic.ne_zero
-
   have hminmap : (minpoly (jAdjField L) (jqNModC L N)).map (algebraMap (jAdjField L) A)
       = data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom A) c) := by
     rw [hB10, Polynomial.map_map]
@@ -204,12 +199,10 @@ private theorem exists_algHom_of_isRoot (L : Type*) [Field L] [Algebra ℚ L] (N
   have hyroots : y ∈ (minpoly (jAdjField L) (jqNModC L N)).aroots A := by
     rw [Polynomial.mem_aroots', Polynomial.aeval_def, ← Polynomial.eval_map, hminmap]
     exact ⟨(data.monic.map _).ne_zero, hy⟩
-
   let ψ₁ : (jAdjField L)⟮jqNModC L N⟯ →ₐ[jAdjField L] A :=
     (algHomAdjoinIntegralEquiv (jAdjField L) hint).symm ⟨y, hyroots⟩
   have hψ₁gen : ψ₁ (AdjoinSimple.gen (jAdjField L) (jqNModC L N)) = y :=
     algHomAdjoinIntegralEquiv_symm_apply_gen (jAdjField L) hint ⟨y, hyroots⟩
-
   have hadj : ((jAdjField L)⟮jqNModC L N⟯).restrictScalars L
       = laurentBaseChange L (modularFunctionFieldFull N) := by
     rw [laurentBaseChange_adjoin_pair L N (functionFieldGeneration N),
@@ -219,18 +212,14 @@ private theorem exists_algHom_of_isRoot (L : Type*) [Field L] [Algebra ℚ L] (N
   let ψ : laurentBaseChange L (modularFunctionFieldFull N) →ₐ[L] A :=
     (ψ₁.restrictScalars L).comp (IntermediateField.equivOfEq hadj).symm.toAlgHom
   refine ⟨ψ, ?_, ?_⟩
-  ·
-
-    have hamb : ((equivOfEq hadj).symm
+  · have hamb : ((equivOfEq hadj).symm
           ⟨coeffEmb L jq, coeffEmb_mem_laurentBaseChange L (jq_mem_full N)⟩
           : (jAdjField L)⟮jqNModC L N⟯)
         = algebraMap (jAdjField L) ((jAdjField L)⟮jqNModC L N⟯) (jGenL L) :=
       Subtype.ext (coeffEmb_jq L)
     show ψ₁ ((equivOfEq hadj).symm ⟨coeffEmb L jq, _⟩) = c
     rw [hamb, ψ₁.commutes, hamap, hφ₀c]
-  ·
-
-    have hamb' : ((equivOfEq hadj).symm
+  · have hamb' : ((equivOfEq hadj).symm
           ⟨coeffEmb L (qExpand ℚ N jq),
             coeffEmb_mem_laurentBaseChange L (jqd_mem_full N (dvd_refl N))⟩
           : (jAdjField L)⟮jqNModC L N⟯)
@@ -254,7 +243,6 @@ theorem solution (L : Type*) [Field L] [Algebra ℚ L] (N : ℕ) [NeZero N]
       ψ ⟨coeffEmb L (qExpand ℚ N jq),
         coeffEmb_mem_laurentBaseChange L (jqd_mem_full N (dvd_refl N))⟩ = y :=
   ModularCurve.exists_algHom_of_isRoot L N data c y hc hy
-
 
 end S_ModularCurve_exists_algHom_of_isRoot
 end P2MW

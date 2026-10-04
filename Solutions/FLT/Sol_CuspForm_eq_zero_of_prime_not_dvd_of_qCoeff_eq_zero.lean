@@ -321,7 +321,6 @@ theorem qCoeff_lift (hp : p.Prime) (hpm : ¬ p ∣ m) (F : CuspForm (CongruenceS
   have hpC : (p : ℂ) ≠ 0 := by exact_mod_cast hp.ne_zero
   have hΓ : (1 : ℝ) ∈ ((CongruenceSubgroup.Gamma0 m : Subgroup SL(2, ℤ)) :
       Subgroup (GL (Fin 2) ℝ)).strictPeriods := by simp
-
   have hfun : (fun τ : ℍ => F (heckeDiagMatrix p • τ)) = (p : ℂ)⁻¹ • ⇑(lift hp hpm F hF) := by
     funext τ
     rw [Pi.smul_apply, smul_eq_mul, coe_lift_apply, ← mul_assoc, inv_mul_cancel₀ hpC, one_mul]
@@ -408,7 +407,6 @@ theorem solution {m p : ℕ} [NeZero m] (hp : p.Prime) (hpm : ¬ p ∣ m)
   have hΓ : (1 : ℝ) ∈ ((CongruenceSubgroup.Gamma0 m : Subgroup SL(2, ℤ)) :
       Subgroup (GL (Fin 2) ℝ)).strictPeriods := by simp
   by_contra hne
-
   have hex : ∃ n : ℕ, ModularFormClass.qCoeff F n ≠ 0 := by
     by_contra h
     push Not at h
@@ -424,7 +422,6 @@ theorem solution {m p : ℕ} [NeZero m] (hp : p.Prime) (hpm : ¬ p ∣ m)
     apply hn₀
     rw [h0]
     exact CuspFormClass.qExpansion_coeff_zero F one_pos hΓ
-
   have := CuspForm.finiteDimensional_Gamma0 m 2
   set d := Module.finrank ℂ (CuspForm (CongruenceSubgroup.Gamma0 m) 2) with hd
   let G₀ : Supp m p := ⟨F, hF⟩
@@ -438,8 +435,7 @@ theorem solution {m p : ℕ} [NeZero m] (hp : p.Prime) (hpm : ¬ p ∣ m)
     · rw [ite_eq_left rfl, qCoeff_iter, ite_eq_left (dvd_mul_left _ _), Nat.mul_div_cancel _ (pow_pos hp.pos _)]
     · rw [ite_eq_right hgt.ne', ite_eq_right (not_lt.mpr hgt.le), qCoeff_iter]
       split_ifs with hdvd
-      ·
-        have hq : n₀ * p ^ a / p ^ b < n₀ := by
+      · have hq : n₀ * p ^ a / p ^ b < n₀ := by
           rw [Nat.div_lt_iff_lt_mul (pow_pos hp.pos _)]
           calc n₀ * p ^ a < n₀ * p ^ b :=
                 Nat.mul_lt_mul_of_pos_left (Nat.pow_lt_pow_right hp.one_lt hgt) hn₀pos

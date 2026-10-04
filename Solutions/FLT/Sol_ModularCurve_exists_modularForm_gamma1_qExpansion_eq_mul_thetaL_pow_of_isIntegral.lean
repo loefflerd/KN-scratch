@@ -100,7 +100,6 @@ theorem solution (M : ℕ) [NeZero M] (m : ℕ) (hm : 1 ≤ m)
     rw [← CuspForm.toModularFormₗ_eq_coe, CuspForm.toModularFormₗ_apply]
     rfl
   have h1 := one_mem_strictPeriods_gamma1 M
-
   obtain ⟨P, hPdef⟩ : ∃ P : ModularForm (CongruenceSubgroup.Gamma1 M) ((4 + 4) + 6), P = (E4N.mul E4N).mul E6N := ⟨_, rfl⟩
   have hPcoe : (P : ℍ → ℂ) = fun z => ModularForm.E₄ z ^ 2 * ModularForm.E₆ z := by
     funext z
@@ -128,7 +127,6 @@ theorem solution (M : ℕ) [NeZero M] (m : ℕ) (hm : 1 ≤ m)
     rcases this with hz | hz
     · exact hz
     · exact absurd (pow_eq_zero_iff (Nat.succ_ne_zero m) |>.mp hz) (ModularForm.discriminant_ne_zero z)
-
   have hm1 : 1 ≤ m + 1 := Nat.le_add_left 1 m
   have hord : ∀ τ : ℍ, analyticOrderAt ((Ψ : ℍ → ℂ) ∘ ofComplex) (τ : ℂ) ≤
       analyticOrderAt ((Φ : ℍ → ℂ) ∘ ofComplex) (τ : ℂ) := by
@@ -144,7 +142,6 @@ theorem solution (M : ℕ) [NeZero M] (m : ℕ) (hm : 1 ≤ m)
     exact ModularCurve.eventually_norm_slash_le_mul_of_isIntegral_adjoin_jqModC_inv_sq (CongruenceSubgroup.Gamma1 M) hT (m + 1) g h X hXh h₂ A
   obtain ⟨f, hf⟩ := ModularForm.exists_modularForm_mul_eq_of_analyticOrderAt_le_of_finiteIndex (CongruenceSubgroup.Gamma1 M) (2 * ((m + 1 : ℕ) : ℤ))
     (by push_cast; ring) Φ Ψ hΨ0 hord hcusp
-
   have hfΨ : (f.mul Ψ : ℍ → ℂ) = (Φ : ℍ → ℂ) := by
     funext z
     rw [ModularForm.coe_mul, Pi.mul_apply]
@@ -166,7 +163,6 @@ theorem solution (M : ℕ) [NeZero M] (m : ℕ) (hm : 1 ≤ m)
       qExpansion 1 (g : ℍ → ℂ) * (qExpansion 1 (ModularForm.E₄ : ℍ → ℂ) * qExpansion 1 (ModularForm.E₄ : ℍ → ℂ) *
         qExpansion 1 (ModularForm.E₆ : ℍ → ℂ)) ^ (m + 1) := by
     rw [hΦdef, ModularForm.qExpansion_mul one_pos h1, hqP]
-
   set F : LaurentSeries ℂ := ((qExpansion 1 (f : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) with hF
   set Hh : LaurentSeries ℂ := ((qExpansion 1 (h : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) with hHh
   set G : LaurentSeries ℂ := ((qExpansion 1 (g : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) with hG
@@ -180,7 +176,6 @@ theorem solution (M : ℕ) [NeZero M] (m : ℕ) (hm : 1 ≤ m)
   have eq1 : F * (Hh * D ^ (m + 1)) = G * (A4 * A4 * A6) ^ (m + 1) := by
     rw [hF, hHh, hDD, hG, hA4, hA6, ← PowerSeries.coe_pow, ← PowerSeries.coe_mul, ← PowerSeries.coe_mul, ← hqΨ, hq, hqΦ,
       PowerSeries.coe_mul, PowerSeries.coe_pow, PowerSeries.coe_mul, PowerSeries.coe_mul]
-
   have hhq : Hh ≠ 0 := by
     intro h0
     apply hh
@@ -200,12 +195,10 @@ theorem solution (M : ℕ) [NeZero M] (m : ℕ) (hm : 1 ≤ m)
     exact (ModularForm.qExpansion_eq_zero_iff one_pos h1 DN).mp h0'
   have hHD : Hh * D ^ (m + 1) ≠ 0 := mul_ne_zero hhq (pow_ne_zero _ hDq)
   set X2 : LaurentSeries ℂ := A4 ^ 2 * A6 with hX2
-
   have eq1' : F * (Hh * D ^ (m + 1)) = X * Hh * X2 ^ (m + 1) := by
     rw [eq1, ← hXh, hX2]; ring
   rcases Nat.even_or_odd (m + 1) with hev | hodd
-  ·
-    obtain ⟨r, hr⟩ := hev
+  · obtain ⟨r, hr⟩ := hev
     have hsq : (T * D) ^ 2 = X2 ^ 2 := by rw [hT2]; ring
     have hP2 : X2 ^ (m + 1) = (T * D) ^ (m + 1) := by
       rw [hr, ← two_mul, pow_mul, pow_mul, hsq]
@@ -213,8 +206,7 @@ theorem solution (M : ℕ) [NeZero M] (m : ℕ) (hm : 1 ≤ m)
       rw [sub_mul, eq1', hP2, mul_pow]; ring
     have hF' : F = X * T ^ (m + 1) := sub_eq_zero.mp ((mul_eq_zero.mp key).resolve_right hHD)
     exact ⟨f, hF'⟩
-  ·
-    obtain ⟨r, hr⟩ := hodd
+  · obtain ⟨r, hr⟩ := hodd
     have hsq : (T * D) ^ 2 = X2 ^ 2 := by rw [hT2]; ring
     have hP2 : X2 ^ (m + 1) = -(T * D) ^ (m + 1) := by
       rw [hr, pow_succ, pow_succ, pow_mul, pow_mul, hsq, hT2]; ring
@@ -229,7 +221,6 @@ theorem solution (M : ℕ) [NeZero M] (m : ℕ) (hm : 1 ≤ m)
     show ((qExpansion 1 ((-f : ModularForm (CongruenceSubgroup.Gamma1 M) (2 * ((m + 1 : ℕ) : ℤ))) : ℍ → ℂ) : PowerSeries ℂ) :
       LaurentSeries ℂ) = X * T ^ (m + 1)
     rw [hneg, PowerSeries.coe_neg, ← hF, hF', neg_neg]
-
 
 end
 end S_ModularCurve_exists_modularForm_gamma1_qExpansion_eq_mul_thetaL_pow_of_isIntegral

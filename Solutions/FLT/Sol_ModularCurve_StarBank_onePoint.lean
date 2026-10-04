@@ -71,7 +71,6 @@ theorem eq_C_of_pow_eq_C {x : LaurentSeries K} {γ₀ : K} {M : ℕ}
     rw [show (HahnSeries.C γ₀ : LaurentSeries K) = HahnSeries.single 0 γ₀ from rfl,
       HahnSeries.coeff_single, ite_eq_left rfl] at h1
     exact h1.trans rfl
-
   have horder : x.order = 0 := by
     have h2 := order_laurent_pow hx0 M
     rw [hx, HahnSeries.order_C] at h2
@@ -89,7 +88,6 @@ theorem eq_C_of_pow_eq_C {x : LaurentSeries K} {γ₀ : K} {M : ℕ}
   set y : LaurentSeries K := x - HahnSeries.C γ with hydef
   set r : ℤ := y.order with hrdef
   have hyr : y.coeff r ≠ 0 := fun h => hy0 (HahnSeries.coeff_order_eq_zero.mp h)
-
   have hylow : ∀ k : ℤ, k ≤ 0 → y.coeff k = 0 := by
     intro k hk
     rcases lt_or_eq_of_le hk with hk0 | hk0
@@ -103,7 +101,6 @@ theorem eq_C_of_pow_eq_C {x : LaurentSeries K} {γ₀ : K} {M : ℕ}
     by_contra hr0
     exact hyr (hylow r (by omega))
   have hrne : r ≠ 0 := by omega
-
   have hxsplit : x = HahnSeries.C γ + y := by rw [hydef]; ring
   have hch : M.choose (M - 1) = M := by
     have h3 := Nat.choose_symm (show M - 1 ≤ M by omega)
@@ -113,25 +110,21 @@ theorem eq_C_of_pow_eq_C {x : LaurentSeries K} {γ₀ : K} {M : ℕ}
     rw [hxsplit, add_pow, HahnSeries.coeff_sum]
     rw [Finset.sum_eq_single_of_mem (M - 1) (Finset.mem_range.mpr (by omega))
       (fun b hb hbne => ?_)]
-    ·
-      have h1 : M - (M - 1) = 1 := by omega
+    · have h1 : M - (M - 1) = 1 := by omega
       have hC : (HahnSeries.C γ : LaurentSeries K) ^ (M - 1) * y ^ (M - (M - 1))
             * ((M.choose (M - 1) : ℕ) : LaurentSeries K)
           = HahnSeries.C (γ ^ (M - 1) * (M : K)) * y := by
         rw [h1, pow_one, hch, ← map_pow, ← map_natCast (HahnSeries.C (Γ := ℤ) (R := K)) M,
           mul_right_comm, ← map_mul]
       rw [hC, coeff_C_mul]
-    ·
-      have hbM : b ≤ M := by
+    · have hbM : b ≤ M := by
         have := Finset.mem_range.mp hb
         omega
       rcases eq_or_ne b M with hbeq | hbM'
-      ·
-        subst hbeq
+      · subst hbeq
         rw [Nat.sub_self, pow_zero, mul_one, Nat.choose_self, Nat.cast_one, mul_one,
           ← map_pow, coeff_C_of_ne _ hrne]
-      ·
-        have hb2 : 2 ≤ M - b := by omega
+      · have hb2 : 2 ≤ M - b := by omega
         have hCb : (HahnSeries.C γ : LaurentSeries K) ^ b * y ^ (M - b)
               * ((M.choose b : ℕ) : LaurentSeries K)
             = HahnSeries.C (γ ^ b * (M.choose b : K)) * y ^ (M - b) := by
@@ -175,7 +168,6 @@ private theorem ModularCurve.StarBank.onePoint {K : Type*} [Field K] {M : ℕ}
   set D : LaurentSeries K := HahnSeries.single (1 : ℤ) 1
     * HahnSeries.ofPowerSeries ℤ K
         (PowerSeries.map (Int.castRingHom K) ModularCurve.etaProd) ^ 24 with hD
-
   have haeval : Polynomial.aeval (jqModC K) (Polynomial.C c * (Polynomial.X - Polynomial.C β₀) ^ M)
       = HahnSeries.C c * (jqModC K - HahnSeries.C β₀) ^ M := by
     rw [map_mul, map_pow, map_sub, Polynomial.aeval_X, Polynomial.aeval_C, Polynomial.aeval_C,
@@ -183,11 +175,9 @@ private theorem ModularCurve.StarBank.onePoint {K : Type*} [Field K] {M : ℕ}
       ModularCurve.W1.algebraMap_laurent_eq_single K β₀]
     rfl
   rw [haeval] at hstar
-
   have hgroup : HahnSeries.C c * ((jqModC K - HahnSeries.C β₀) * D) ^ M = 1 := by
     rw [mul_pow, ← mul_assoc]
     exact hstar
-
   have hpow : ((jqModC K - HahnSeries.C β₀) * D) ^ M = HahnSeries.C c⁻¹ := by
     have h2 := congrArg (fun z : LaurentSeries K => HahnSeries.C c⁻¹ * z) hgroup
     rw [← mul_assoc, ← map_mul, inv_mul_cancel₀ hc, map_one, one_mul, mul_one] at h2
@@ -224,7 +214,6 @@ theorem solution {K : Type*} [Field K] {M : ℕ}
                 (PowerSeries.map (Int.castRingHom K) ModularCurve.etaProd) ^ 24)
         = HahnSeries.C γ :=
   ModularCurve.StarBank.onePoint hM hc hstar
-
 
 end S_ModularCurve_StarBank_onePoint
 end P2MW

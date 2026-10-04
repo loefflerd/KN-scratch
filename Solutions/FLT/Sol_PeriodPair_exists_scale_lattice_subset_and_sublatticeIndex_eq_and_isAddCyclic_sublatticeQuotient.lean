@@ -210,13 +210,11 @@ theorem isFinitePlace_iff_exists_placeOfEquation [IsAlgClosed F]
     IsFinitePlace v ↔ ∃ (x y : F) (h : W.Equation x y), v = placeOfEquation h := by
   constructor
   · intro hv
-
     have := hv.centre_isPrime
     have hmax : hv.centre.IsMaximal := Ideal.IsPrime.isMaximal hv.centre_isPrime hv.centre_ne_bot
     obtain ⟨x, y, hxy, hXY⟩ :=
       CoordinateRing.exists_eq_XYIdeal (W := W) (P := hv.centre) hv.centre_ne_bot
     refine ⟨x, y, hxy, ?_⟩
-
     set w : HeightOneSpectrum W.CoordinateRing := heightOneSpectrumOfEquation hxy with hw
     set A : ValuationSubring W.FunctionField :=
       HeightOneSpectrum.valuationSubringAtPrime W.FunctionField w with hA
@@ -230,19 +228,16 @@ theorem isFinitePlace_iff_exists_placeOfEquation [IsAlgClosed F]
         rw [hXY] at hmem
         exact hs hmem
       exact mul_mem (hv r) (hv.inv_mem hs')
-
     have hSP : A.ofPrime (A.idealOfLE v.toValuationSubring hle) = v.toValuationSubring :=
       ValuationSubring.ofPrime_idealOfLE A v.toValuationSubring hle
     rcases eq_or_ne (A.idealOfLE v.toValuationSubring hle) ⊥ with hP | hP
-    ·
-      exfalso
+    · exfalso
       apply v.ne_top'
       have h2 : A.ofPrime ⊥ ≤ A.ofPrime (A.idealOfLE v.toValuationSubring hle) :=
         ValuationSubring.ofPrime_le_of_le (h := hP.le)
       rw [ValuationSubring.ofPrime_bot] at h2
       exact top_le_iff.mp (le_trans h2 hSP.le)
-    ·
-      have hPmax : (A.idealOfLE v.toValuationSubring hle).IsMaximal :=
+    · have hPmax : (A.idealOfLE v.toValuationSubring hle).IsMaximal :=
         Ideal.IsPrime.isMaximal inferInstance hP
       have hPeq : A.idealOfLE v.toValuationSubring hle = IsLocalRing.maximalIdeal A :=
         IsLocalRing.eq_maximalIdeal hPmax
@@ -491,14 +486,12 @@ private theorem _root_.PeriodPair.apply_eq_apply_of_differentiable_of_forall_per
     (hf : Differentiable ℂ f) (hper : ∀ l ∈ L.lattice, ∀ z, f (z + l) = f z) (z w : ℂ) :
     f z = f w := by
   apply hf.apply_eq_apply_of_bounded
-
   have hrange : range f ⊆ f '' closure (ZSpan.fundamentalDomain L.basis) := by
     rintro - ⟨u, rfl⟩
     refine ⟨ZSpan.fract L.basis u, subset_closure (ZSpan.fract_mem_fundamentalDomain _ u), ?_⟩
     have h := hper _ (L.sub_fract_mem_lattice u) (ZSpan.fract L.basis u)
     rw [add_sub_cancel] at h
     exact h.symm
-
   refine Bornology.IsBounded.subset ?_ hrange
   refine (IsCompact.image ?_ hf.continuous).isBounded
   exact Metric.isCompact_of_isClosed_isBounded isClosed_closure
@@ -555,7 +548,6 @@ private theorem _root_.PeriodPair.exists_smul_mem_and_apply_eq_of_forall_sub_mem
     (hF : Differentiable ℂ F)
     (hper : ∀ l ∈ L.lattice, ∀ z, F (z + l) - F z ∈ L'.lattice) :
     ∃ α : ℂ, (∀ l ∈ L.lattice, α * l ∈ L'.lattice) ∧ ∀ z, F z = F 0 + α * z := by
-
   have hFc : Continuous F := hF.continuous
   have hconst : ∀ l ∈ L.lattice, ∀ z, F (z + l) - F z = F l - F 0 := by
     intro l hl z
@@ -563,7 +555,6 @@ private theorem _root_.PeriodPair.exists_smul_mem_and_apply_eq_of_forall_sub_mem
       (f := fun u => F (u + l) - F u)
       ((hFc.comp (continuous_id.add continuous_const)).sub hFc) (hper l hl) z 0
     simpa using h
-
   have hadd : ∀ z w, F (z + w) = F z + F w - F 0 := by
     intro z w
     have hper' : ∀ l ∈ L.lattice, ∀ u,
@@ -579,7 +570,6 @@ private theorem _root_.PeriodPair.exists_smul_mem_and_apply_eq_of_forall_sub_mem
       ((hF.comp (differentiable_id.add_const w)).sub hF) hper' z 0
     simp only [zero_add] at h
     linear_combination h
-
   set α : ℂ := deriv F 0 with hα
   have hderiv : ∀ z, deriv F z = α := by
     intro z
@@ -592,7 +582,6 @@ private theorem _root_.PeriodPair.exists_smul_mem_and_apply_eq_of_forall_sub_mem
     have h2 : deriv (fun w => F w + (F z - F 0)) 0 = deriv F 0 := by
       rw [deriv_add_const]
     rw [← h1, hfun, h2]
-
   have haffine : ∀ z, F z = F 0 + α * z := by
     have hG : Differentiable ℂ fun z => F z - α * z :=
       hF.sub (differentiable_id.const_mul α)
@@ -606,7 +595,6 @@ private theorem _root_.PeriodPair.exists_smul_mem_and_apply_eq_of_forall_sub_mem
     have h := is_const_of_deriv_eq_zero hG hG' z 0
     simp only [mul_zero, sub_zero] at h
     linear_combination h
-
   refine ⟨α, fun l hl => ?_, haffine⟩
   have h := hper l hl 0
   rw [zero_add, haffine l] at h
@@ -1014,20 +1002,17 @@ def latticeQuotTorsionEquiv (hn : (n : ℤ) ≠ 0) :
     ModN ↥Λ n ≃+ Submodule.torsionBy ℤ (V ⧸ Λ) (n : ℤ) := by
   refine AddEquiv.ofBijective
     (QuotientAddGroup.lift _ (latticeDivQuot Λ hn) ?_) ⟨?_, ?_⟩
-  ·
-    intro w hw
+  · intro w hw
     have : w ∈ (latticeDivQuot Λ hn).ker := by
       rw [ker_latticeDivQuot]; exact hw
     exact this
-  ·
-    rintro ⟨a⟩ ⟨b⟩ hab
+  · rintro ⟨a⟩ ⟨b⟩ hab
     refine (Submodule.Quotient.eq _).mpr ?_
     have hker : a - b ∈ (latticeDivQuot Λ hn).ker := by
       rw [AddMonoidHom.mem_ker, map_sub]
       exact sub_eq_zero.mpr hab
     rwa [ker_latticeDivQuot] at hker
-  ·
-    intro y
+  · intro y
     obtain ⟨w, hw⟩ := latticeDivQuot_surjective Λ hn y
     exact ⟨QuotientAddGroup.mk w, hw⟩
 

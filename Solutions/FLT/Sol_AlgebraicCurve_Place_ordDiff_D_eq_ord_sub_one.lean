@@ -116,17 +116,14 @@ theorem ordDiff_D_of_ord_pos (v : Place K F) {f : F} (hf : 0 < v.ord f) :
     intro h; rw [h, v.ord_zero] at hπord; exact zero_ne_one hπord
   have hnF : (n : F) ≠ 0 := Nat.cast_ne_zero.mpr hn0
   have huord : v.ord uF = 0 := v.ord_coe_unit u
-
   set cu := Place.diffCoeff (π : F) (D K F uF) with hcu
   have hcu_ge : 0 ≤ v.ord cu := Place.ord_diffCoeff_D_nonneg x v hπord huord.ge
   have hDu : cu • D K F (π : F) = D K F uF := Place.diffCoeff_smul_D_of_ord_ne_zero x v hπ0 _
-
   have hDf : D K F f = (uF * (n * (π : F) ^ (n - 1)) + (π : F) ^ n * cu) • D K F (π : F) := by
     rw [hu, Derivation.leibniz, Derivation.leibniz_pow, ← hDu, ← Nat.cast_smul_eq_nsmul F]
     simp only [smul_smul]
     rw [← add_smul]
   rw [ordDiff_eq_ord_diffCoeff x v hπord, hDf, Place.diffCoeff_smul_D_eq x v hπ0, hn]
-
   have hπn1 : v.ord ((π : F) ^ (n - 1)) = ((n - 1 : ℕ) : ℤ) := by
     rw [← zpow_natCast, v.ord_zpow, hπord, mul_one]
   have hA0 : uF * (n * (π : F) ^ (n - 1)) ≠ 0 :=
@@ -147,8 +144,7 @@ include x in
 theorem ordDiff_D_eq_ord_sub_one (v : Place K F) {f : F} (hf : v.ord f ≠ 0) :
     v.ordDiff (D K F f) = v.ord f - 1 := by
   rcases lt_or_gt_of_ne hf with hneg | hpos
-  ·
-    have hf0 : f ≠ 0 := by rintro rfl; simp at hneg
+  · have hf0 : f ≠ 0 := by rintro rfl; simp at hneg
     have hinv : 0 < v.ord f⁻¹ := by rw [v.ord_inv]; omega
     have hinv0 : v.ord f⁻¹ ≠ 0 := hinv.ne'
     have hDf : D K F f = (-(f ^ 2)) • D K F f⁻¹ := by

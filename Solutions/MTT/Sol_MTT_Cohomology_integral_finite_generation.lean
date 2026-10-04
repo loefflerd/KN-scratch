@@ -209,7 +209,6 @@ theorem Theta_injective : Function.Injective (Theta N n) := by
 
 end P2MFG
 
-
 open P2MFG in
 theorem solution {N n : ℕ} (hN : 0 < N) : Module.Finite ℤ (Hc N n ℤ) := by
   have : NeZero N := ⟨hN.ne'⟩

@@ -64,7 +64,6 @@ theorem solution
     (a : K) (D : Divisor K F) (hD : ∀ v : Place K F, D v = max 0 (v.ord (x - algebraMap K F a))) :
     Divisor.degree D = (Module.finrank (IntermediateField.adjoin K ({x} : Set F)) F : ℤ) := by
   classical
-
   have hxa : x - algebraMap K F a ≠ 0 := by
     intro h
     apply hx
@@ -73,9 +72,7 @@ theorem solution
     exact isAlgebraic_algebraMap a
   have hx0 : x ≠ 0 := by
     intro h; apply hx; rw [h]; exact isAlgebraic_zero
-
   obtain ⟨P, hP, hP0⟩ := (IsCurveOver.hasPrincipalDivisors (K := K) (F := F)).exists_divisor _ hxa
-
   let Dinf : Divisor K F := P.mapRange (fun n => max 0 (-n)) (by simp)
   have hDinf : ∀ v : Place K F, Dinf v = max 0 (-v.ord x) := by
     intro v
@@ -85,7 +82,6 @@ theorem solution
     · rw [FibreDegE96.ord_sub_algebraMap_of_neg v hx0 a hxa h]
     · have h' := FibreDegE96.ord_sub_algebraMap_nonneg v hx0 a hxa h
       rw [max_eq_left (by omega : -v.ord (x - algebraMap K F a) ≤ 0), max_eq_left (by omega : -v.ord x ≤ 0)]
-
   have hsplit : D - Dinf = P := by
     ext v
     rw [Finsupp.sub_apply, hD v]

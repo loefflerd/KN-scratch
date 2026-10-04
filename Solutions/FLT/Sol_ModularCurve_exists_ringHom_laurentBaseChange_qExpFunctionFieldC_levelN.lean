@@ -245,7 +245,6 @@ theorem precomp_apply (g : SL(2, ℤ)) (F : ℍ → ℂ) (τ : ℍ) : precomp g 
 
 theorem smul_eq_self_of_mem {F : ℍ → ℂ} (hF : F ∈ ring N) {γ : SL(2, ℤ)}
     (hγ : γ ∈ CongruenceSubgroup.Gamma N) (τ : ℍ) : F (γ • τ) = F τ := by
-
   suffices h : ring N ≤ AlgHom.equalizer (precomp γ) (AlgHom.id ℂ (ℍ → ℂ)) by
     have := h hF
     rw [AlgHom.mem_equalizer] at this
@@ -363,7 +362,6 @@ theorem Q_natCast_eq_qExpand {f : ℍ → ℂ} (hf : Good 1 f) :
     have heq := h1.eq_formalMultilinearSeries h2
     have := (FormalMultilinearSeries.ofScalars_series_eq_iff (E := ℂ) c _).mp heq
     exact fun m => congrFun this m
-
   ext k
   rw [Q, Q]
   rcases lt_or_ge k 0 with hk | hk
@@ -681,7 +679,6 @@ theorem E_div_eq {G a b : ℍ → ℂ} (ha : a ∈ ring M) (hb : b ∈ ring M) (
     rw [ne_eq, Q_eq_zero_iff hM hgoodb, mul_discriminant_pow_eq_zero_iff]
     exact hb0
   rw [hsplit, pow_add] at hEa
-
   rw [eq_div_iff (pow_ne_zero p hΔ0), div_mul_eq_mul_div, div_eq_iff hEb0]
   apply mul_right_cancel₀ (pow_ne_zero mb hΔ0)
   calc E M K (algebraMap (ring M) K ⟨a, ha⟩) * Q M (Δ : ℍ → ℂ) ^ p * Q M (Δ : ℍ → ℂ) ^ mb
@@ -714,18 +711,15 @@ theorem exists_kappa (hΓ : CongruenceSubgroup.Gamma M ≤ Γ) (hT : ModularGrou
   obtain ⟨a', b', ha', hb', hb0', hab'⟩ := exists_levelFraction M (FF_mem_famS M hΓ g g)
   refine ⟨(algebraMap (ring M) K ⟨a, ha⟩ / algebraMap (ring M) K ⟨b, hb⟩) /
     (algebraMap (ring M) K ⟨a', ha'⟩ / algebraMap (ring M) K ⟨b', hb'⟩), ?_, ?_⟩
-  ·
-    have h1 := E_div_eq M K ha hb hb0 hab (good_FF_mul_pow M hT f g)
+  · have h1 := E_div_eq M K ha hb hb0 hab (good_FF_mul_pow M hT f g)
     have h2 := E_div_eq M K ha' hb' hb0' hab' (good_FF_mul_pow M hT g g)
     simp only [map_div₀]
     rw [h1, h2, Q_FF_mul_pow M hT f g, Q_FF_mul_pow M hT g g]
     have hQg : Q M (g : ℍ → ℂ) ≠ 0 := by
       rw [ne_eq, Q_eq_zero_iff hM (Good.of_one M (good_coe hT g))]; exact hg0
     field_simp
-  ·
-    intro γ hγ hst φ hφ
+  · intro γ hγ hst φ hφ
     have hγ' : γ⁻¹ ∈ Γ := Γ.inv_mem hγ
-
     have key : ∀ (G a b : ℍ → ℂ) (ha : a ∈ ring M) (hb : b ∈ ring M), b ≠ 0 → G * b = a →
         (∀ τ, G (γ⁻¹ • τ) = G τ) →
         φ (algebraMap (ring M) K ⟨a, ha⟩ / algebraMap (ring M) K ⟨b, hb⟩) =

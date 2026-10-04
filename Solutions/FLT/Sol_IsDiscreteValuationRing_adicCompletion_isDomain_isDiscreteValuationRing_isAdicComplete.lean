@@ -44,7 +44,6 @@ theorem algebraMap_pow_ne_zero (ϖ : C) (hϖ : Irreducible ϖ) (m : ℕ) :
     rw [map_pow, h, map_zero]
   rw [AdicCompletion.evalₐ_algebraMap, Ideal.Quotient.eq_zero_iff_mem, hϖ.maximalIdeal_eq,
     Ideal.span_singleton_pow, Ideal.mem_span_singleton] at h1
-
   obtain ⟨c, hc⟩ := h1
   have hϖ0 : ϖ ≠ 0 := hϖ.ne_zero
   have h2 : ϖ ^ m * 1 = ϖ ^ m * (ϖ * c) := by rw [mul_one, ← mul_assoc, ← pow_succ]; exact hc
@@ -55,12 +54,10 @@ theorem exists_eq_unit_mul_pow (ϖ : C) (hϖ : Irreducible ϖ) (x : AdicCompleti
     ∃ (n : ℕ) (v : (AdicCompletion (maximalIdeal C) C)ˣ),
       x = (v : AdicCompletion (maximalIdeal C) C) * algebraMap C (AdicCompletion (maximalIdeal C) C) ϖ ^ n := by
   classical
-
   have hex : ∃ n, x ∉ maximalIdeal (AdicCompletion (maximalIdeal C) C) ^ n := by
     by_contra hall
     push Not at hall
     exact hx (eq_zero_of_forall_mem_pow x hall)
-
   let N := Nat.find hex
   have hN : x ∉ maximalIdeal (AdicCompletion (maximalIdeal C) C) ^ N := Nat.find_spec hex
   have hN0 : N ≠ 0 := by
@@ -75,7 +72,6 @@ theorem exists_eq_unit_mul_pow (ϖ : C) (hϖ : Irreducible ϖ) (x : AdicCompleti
     simpa using this
   rw [maximalIdeal_pow_eq_span ϖ hϖ n, Ideal.mem_span_singleton] at hxn
   obtain ⟨x', hx'⟩ := hxn
-
   have hx'u : IsUnit x' := by
     by_contra hnu
     apply hN
@@ -128,7 +124,6 @@ theorem irreducible_algebraMap (ϖ : C) (hϖ : Irreducible ϖ) :
   · right
     rw [hw, hn, pow_zero, mul_one]
     exact Units.isUnit w
-
   exfalso
   obtain ⟨k, hk⟩ : ∃ k, m + n = k + 2 := ⟨m + n - 2, by omega⟩
   have h1 : algebraMap C (AdicCompletion (maximalIdeal C) C) ϖ =

@@ -103,7 +103,6 @@ private theorem finiteDimensional_adjoin_emb [Algebra.IsAlgebraic ℚ L] (j : �
   let bK := Module.finBasis ↥K ↥F₀
   let W : Submodule ↥E ↥(laurentBaseChange L F₀) :=
     Submodule.span ↥E (Set.range fun i => emb L F₀ (bK i))
-
   have key : ∀ f : ↥F₀, emb L F₀ f ∈ W := by
     intro f
     rw [← bK.sum_repr f, map_sum]
@@ -116,7 +115,6 @@ private theorem finiteDimensional_adjoin_emb [Algebra.IsAlgebraic ℚ L] (j : �
       rw [Algebra.smul_def]; rfl
     rw [this]
     exact Submodule.smul_mem _ _ (Submodule.subset_span ⟨i, rfl⟩)
-
   have htop : W.restrictScalars L = ⊤ := by
     refine eq_top_iff.mpr ?_
     rw [← span_range_emb_eq_top L F₀, Submodule.span_le]

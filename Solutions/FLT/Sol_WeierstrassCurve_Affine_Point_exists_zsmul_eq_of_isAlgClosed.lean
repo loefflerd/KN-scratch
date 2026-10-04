@@ -60,7 +60,6 @@ theorem isCoprime_ΨSq_succ [W.IsElliptic] (n : ℕ) :
   push Not at hcon
   obtain ⟨hn0, hn1⟩ := hcon
   rw [coe_aeval_eq_eval] at hn0 hn1
-
   obtain ⟨y₀, hy₀⟩ := IsAlgClosed.exists_root
     (C (1 : K) * X ^ 2 + C ((W.baseChange K).a₁ * x₀ + (W.baseChange K).a₃) * X +
       C (-(x₀ ^ 3 + (W.baseChange K).a₂ * x₀ ^ 2 + (W.baseChange K).a₄ * x₀ +
@@ -72,7 +71,6 @@ theorem isCoprime_ΨSq_succ [W.IsElliptic] (n : ℕ) :
     linear_combination hy₀
   have hns : (W.baseChange K).toAffine.Nonsingular x₀ y₀ :=
     (Affine.equation_iff_nonsingular).mp heq
-
   have hψ0 : ((W.baseChange K).ψ (n : ℤ)).evalEval x₀ y₀ = 0 := by
     have h2 := evalEval_ψ_sq (W.baseChange K) heq (n : ℤ)
     rw [hn0] at h2
@@ -81,7 +79,6 @@ theorem isCoprime_ΨSq_succ [W.IsElliptic] (n : ℕ) :
     have h2 := evalEval_ψ_sq (W.baseChange K) heq ((n : ℤ) + 1)
     rw [hn1] at h2
     exact (pow_eq_zero_iff two_ne_zero).mp h2
-
   have h0 : (n : ℤ) • (Affine.Point.some x₀ y₀ hns) = 0 :=
     (smul_eq_zero_iff_evalEval_ψ (W.baseChange K) hns (n : ℤ)).mpr hψ0
   have h1 : ((n : ℤ) + 1) • (Affine.Point.some x₀ y₀ hns) = 0 :=
@@ -119,8 +116,7 @@ theorem smul_formula_or_zero [W.IsElliptic] {n : ℕ} (_hn : 0 < n) {x₀ y₀ :
   have heq : (W.baseChange K).toAffine.Equation x₀ y₀ := h.left
   have hψsq := (W.baseChange K).evalEval_ψ_sq heq (n : ℤ)
   constructor
-  ·
-    intro hΨ
+  · intro hΨ
     have hψ : ((W.baseChange K).ψ (n : ℤ)).evalEval x₀ y₀ ≠ 0 := by
       intro h0
       exact hΨ (by rw [← hψsq, h0]; exact zero_pow two_ne_zero)
@@ -148,8 +144,7 @@ theorem smul_formula_or_zero [W.IsElliptic] {n : ℕ} (_hn : 0 < n) {x₀ y₀ :
           ((W.baseChange K).Φ (n : ℤ)).eval x₀
       rw [← hψsq, div_mul_cancel₀ _ (pow_ne_zero 2 hψ),
         (W.baseChange K).evalEval_φ heq]
-  ·
-    intro hΨ
+  · intro hΨ
     have hψ0 : ((W.baseChange K).ψ (n : ℤ)).evalEval x₀ y₀ = 0 :=
       sq_eq_zero_iff.mp (hψsq.trans hΨ)
     rw [← natCast_zsmul]
@@ -210,22 +205,19 @@ theorem isCoprime_Φ_ΨSq [IsAlgClosed K] [W.IsElliptic] {n : ℕ} (hn : 0 < n) 
     linear_combination h1
   rcases mul_eq_zero.mp h0 with h12 | hG
   · rcases mul_eq_zero.mp h12 with hE | hF
-    ·
-      have hb : ((W.baseChange K).ΨSq ((n : ℤ) + 1)).eval x₀ = 0 := by
+    · have hb : ((W.baseChange K).ΨSq ((n : ℤ) + 1)).eval x₀ = 0 := by
         have h2 := ΨSq_eval_eq_zero_of_preΨ W (m := n + 1) (K := K)
           (by rwa [Nat.cast_add, Nat.cast_one])
         rwa [Nat.cast_add, Nat.cast_one] at h2
       exact eval_ne_of_isCoprime (isCoprime_ΨSq_succ W n) hΨ0 hb
-    ·
-      have hb : ((W.baseChange K).ΨSq ((n - 1 : ℕ) : ℤ)).eval x₀ = 0 :=
+    · have hb : ((W.baseChange K).ΨSq ((n - 1 : ℕ) : ℤ)).eval x₀ = 0 :=
         ΨSq_eval_eq_zero_of_preΨ W (m := n - 1) (K := K)
           (by rwa [Nat.cast_sub hn, Nat.cast_one])
       have hA := isCoprime_ΨSq_succ W (K := K) (n - 1)
       have hc : ((n - 1 : ℕ) : ℤ) + 1 = (n : ℤ) := by omega
       rw [hc] at hA
       exact eval_ne_of_isCoprime hA hb hΨ0
-  ·
-    by_cases hev : Even (n : ℤ)
+  · by_cases hev : Even (n : ℤ)
     · rw [ite_eq_left hev] at hG
       exact one_ne_zero hG
     · rw [ite_eq_right hev] at hG

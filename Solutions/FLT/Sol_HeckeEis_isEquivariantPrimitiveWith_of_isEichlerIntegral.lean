@@ -48,7 +48,6 @@ theorem solution
     HeckeEis.IsEquivariantPrimitiveWith ((HeckeEis.binaryFormRepSL ℂ n).comp Γ.subtype) F :=
   HeckeEis.SolMain.p1b hF hf
 
-
 end S_HeckeEis_isEquivariantPrimitiveWith_of_isEichlerIntegral
 end P2MW
 export P2MW.S_HeckeEis_isEquivariantPrimitiveWith_of_isEichlerIntegral (solution)

@@ -138,7 +138,6 @@ theorem coeff_zero_oddEisensteinSum :
       (if χ.Odd then -(∑ a ∈ Finset.range L, (a : ℂ) * χ (a : ZMod L)) / (2 * L) else 0) := fun χ => by
     rw [coeff_qExpansion_eisensteinOdd L hprim, ite_eq_left rfl]
   rw [Finset.sum_congr rfl (fun χ _ => hterm χ)]
-
   have hswap : ∑ χ : DirichletCharacter ℂ L,
       (if χ.Odd then -(∑ a ∈ Finset.range L, (a : ℂ) * χ (a : ZMod L)) / (2 * L) else 0) =
       -(∑ a ∈ Finset.range L, (a : ℂ) * oddCharSum L (a : ZMod L)) / (2 * L) := by
@@ -155,7 +154,6 @@ theorem coeff_zero_oddEisensteinSum :
     rw [oddCharSum, Finset.mul_sum]
   rw [hswap]
   have hL0 : (L : ℂ) ≠ 0 := Nat.cast_ne_zero.mpr (NeZero.ne L)
-
   have hsum : 2 * ∑ a ∈ Finset.range L, (a : ℂ) * oddCharSum L (a : ZMod L) =
       (L.totient : ℂ) * (2 - L) := by
     rw [Finset.mul_sum]
@@ -363,8 +361,7 @@ theorem solution
   classical
   obtain ⟨L, hLM, hL⟩ := ModularCurve.exists_dvd_four_or_odd_prime hM
   rcases hL with rfl | ⟨hp, hodd⟩
-  ·
-    obtain ⟨f, hf⟩ := ModularCurve.WeightOneEisensteinSum.exists_isIntegralQExp_thetaLikeSeries 4
+  · obtain ⟨f, hf⟩ := ModularCurve.WeightOneEisensteinSum.exists_isIntegralQExp_thetaLikeSeries 4
       (by norm_num) (ModularCurve.isPrimitive_of_ne_one_four) 4 1 (by norm_num)
     refine ModularCurve.nonempty_integralWeightOneForm_of_dvd κ hLM f _ hf 0 ?_
     simp [ModularCurve.WeightOneEisensteinSum.thetaLikeSeries, PowerSeries.coeff_mk]
@@ -372,7 +369,6 @@ theorem solution
     have hL2 : 2 < L := lt_of_le_of_ne hp.two_le (fun h => by rw [← h] at hodd; exact (by decide : ¬ Odd 2) hodd)
     obtain ⟨f, hf⟩ := ModularCurve.WeightOneEisensteinSum.exists_isIntegralQExp_thetaLikeSeries L
       hL2 (ModularCurve.isPrimitive_of_ne_one_of_prime hp) (2 * L) (L - 2) (by ring)
-
     by_cases h0 : (((L - 2 : ℕ) : ℤ) : κ) ≠ 0
     · refine ModularCurve.nonempty_integralWeightOneForm_of_dvd κ hLM f _ hf 0 ?_
       simpa [ModularCurve.WeightOneEisensteinSum.thetaLikeSeries, PowerSeries.coeff_mk] using h0
@@ -387,7 +383,6 @@ theorem solution
           Finset.filter_singleton, hneg]
       rw [hc1]
       push_cast
-
       obtain ⟨p, hchar⟩ := CharP.exists κ
       have hpL2 : p ∣ L - 2 := (CharP.cast_eq_zero_iff κ p (L - 2)).mp h0
       intro h2L

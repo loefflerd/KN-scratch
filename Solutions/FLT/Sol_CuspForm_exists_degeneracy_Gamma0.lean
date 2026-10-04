@@ -47,7 +47,6 @@ theorem Gamma0_le_conj_Gamma0 {M N d : ℕ} (hd : d ≠ 0) (hdiv : d * M ∣ N) 
   rintro _ ⟨A, hA, rfl⟩
   rw [Subgroup.mem_pointwise_smul_iff_inv_smul_mem, ConjAct.toConjAct_inv, inv_inv,
     ConjAct.toConjAct_smul]
-
   have hN : (N : ℤ) ∣ (A : Matrix (Fin 2) (Fin 2) ℤ) 1 0 :=
     (ZMod.intCast_zmod_eq_zero_iff_dvd _ N).mp (CongruenceSubgroup.Gamma0_mem.mp hA)
   obtain ⟨c', hc'⟩ : (d : ℤ) ∣ (A : Matrix (Fin 2) (Fin 2) ℤ) 1 0 :=
@@ -60,18 +59,15 @@ theorem Gamma0_le_conj_Gamma0 {M N d : ℕ} (hd : d ≠ 0) (hdiv : d * M ∣ N) 
   have hdet : (A : Matrix (Fin 2) (Fin 2) ℤ) 0 0 * (A : Matrix (Fin 2) (Fin 2) ℤ) 1 1 -
       (A : Matrix (Fin 2) (Fin 2) ℤ) 0 1 * (A : Matrix (Fin 2) (Fin 2) ℤ) 1 0 = 1 := by
     rw [← Matrix.det_fin_two, A.det_coe]
-
   let B : SL(2, ℤ) := ⟨!![(A : Matrix (Fin 2) (Fin 2) ℤ) 0 0, d * (A : Matrix (Fin 2) (Fin 2) ℤ) 0 1;
       c', (A : Matrix (Fin 2) (Fin 2) ℤ) 1 1], by
     rw [Matrix.det_fin_two_of]
     linear_combination hdet + (A : Matrix (Fin 2) (Fin 2) ℤ) 0 1 * hc'⟩
   refine ⟨B, ?_, ?_⟩
-  ·
-    rw [SetLike.mem_coe, CongruenceSubgroup.Gamma0_mem]
+  · rw [SetLike.mem_coe, CongruenceSubgroup.Gamma0_mem]
     show ((c' : ℤ) : ZMod M) = 0
     exact (ZMod.intCast_zmod_eq_zero_iff_dvd _ M).mpr hMc'
-  ·
-    rw [eq_mul_inv_iff_mul_eq]
+  · rw [eq_mul_inv_iff_mul_eq]
     apply Units.ext
     simp only [Units.val_mul, Matrix.SpecialLinearGroup.mapGL_coe_matrix, val_heckeDiagMatrix hd]
     ext i j

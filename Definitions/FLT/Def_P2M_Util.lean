@@ -42,7 +42,6 @@ elab "#p2m_type_eq " a:ident b:ident : command => liftTermElabM do
   let ta := ia.type.instantiateLevelParams ia.levelParams la
   let tb := ib.type.instantiateLevelParams ib.levelParams lb
   if ← isDefEq ta tb then
-
     let mut pinned : Array String := #[]
     let mut seen : Array Level := #[]
     for l in la, nm in ia.levelParams do
@@ -68,7 +67,6 @@ Shared implementation of `p2m_open` and its command-local form. -/
 meta def p2mOpenCore (s : String) : CommandElabM Unit := do
   for w in s.splitOn " " do
     if w.isEmpty then continue
-
     let parts := w.splitOn "~"
     let ns := parts.head!.toName
     let hidden := (parts.drop 1).filter (· ≠ "") |>.map (fun h => h.toName)

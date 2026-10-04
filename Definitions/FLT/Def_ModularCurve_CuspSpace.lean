@@ -70,13 +70,11 @@ lemma mapGL_smul_ratPoint (γ : SL(2, ℤ)) {a c : ℤ} (h : a ≠ 0 ∨ c ≠ 0
     mapGL ℚ γ • ratPoint a c =
       ratPoint (γ 0 0 * a + γ 0 1 * c) (γ 1 0 * a + γ 1 1 * c) := by
   rcases eq_or_ne c 0 with rfl | hc
-  ·
-    replace h : a ≠ 0 := h.resolve_right (by simp)
+  · replace h : a ≠ 0 := h.resolve_right (by simp)
     rw [ratPoint_zero_right, mapGL_smul_infty]
     simp only [mul_zero, add_zero]
     rw [mul_comm (γ 0 0) a, mul_comm (γ 1 0) a, ratPoint_mul_left h]
-  ·
-    rw [ratPoint_of_ne_zero _ hc, smul_some_eq_ite]
+  · rw [ratPoint_of_ne_zero _ hc, smul_some_eq_ite]
     have hcQ : (c : ℚ) ≠ 0 := by exact_mod_cast hc
     have hden : (mapGL ℚ γ) 1 0 * ((a : ℚ) / c) + (mapGL ℚ γ) 1 1
         = (((γ 1 0 * a + γ 1 1 * c : ℤ) : ℚ)) / (c : ℚ) := by
@@ -212,7 +210,6 @@ lemma cuspDenomAux_dvd_smul {γ : SL(2, ℤ)} (hγ : γ ∈ Gamma0 N) (x : OnePo
   have hac' : a ≠ 0 ∨ c ≠ 0 := hac.ne_zero_or_ne_zero
   rw [mapGL_smul_ratPoint γ hac', cuspDenomAux_ratPoint hac,
     cuspDenomAux_ratPoint (isCoprime_smul_pair γ hac)]
-
   have h1 : (Int.gcd c N : ℤ) ∣ γ 1 0 * a + γ 1 1 * c := by
     refine dvd_add (Dvd.dvd.mul_right ?_ a) (Dvd.dvd.mul_left (Int.gcd_dvd_left ..) _)
     exact (Int.gcd_dvd_right ..).trans (Gamma0_mem_iff_dvd.mp hγ)
@@ -291,15 +288,12 @@ theorem gcd_sq_gcd_left (c N : ℕ) : Nat.gcd (Nat.gcd c N ^ 2) N = Nat.gcd (c ^
   rcases Nat.eq_zero_or_pos c with rfl | hc
   · rw [Nat.gcd_zero_left, zero_pow two_ne_zero, Nat.gcd_zero_left,
       Nat.gcd_eq_right (dvd_pow_self N two_ne_zero)]
-
   set g : ℕ := Nat.gcd c N with hg
   have hg0 : 0 < g := Nat.gcd_pos_of_pos_left N hc
   have hgc : g ∣ c := Nat.gcd_dvd_left c N
   have hgN : g ∣ N := Nat.gcd_dvd_right c N
   have hcop : Nat.Coprime (c / g) (N / g) := Nat.coprime_div_gcd_div_gcd hg0
-
   have hL : Nat.gcd (g ^ 2) N = g * Nat.gcd g (N / g) := gcd_sq_eq_mul_gcd_div hgN
-
   have hR : Nat.gcd (c ^ 2) N = g * Nat.gcd g (N / g) := by
     have h1 : c ^ 2 = g * (c / g * c) := by
       rw [← mul_assoc, Nat.mul_div_cancel' hgc, ← pow_two]

@@ -59,19 +59,16 @@ theorem finiteDimensional_adjoin_of_transcendental {x : F} (hx : Transcendental 
   classical
   have := hfd
   have halg : Algebra.IsAlgebraic K⟮t⟯ F := isAlgebraic_adjoin_of_transcendental hx hfd ht
-
   obtain ⟨s, hs⟩ := Module.finite_def.mp hfd
   set E : IntermediateField K⟮t⟯ F :=
     IntermediateField.adjoin K⟮t⟯ (insert x (↑s : Set F)) with hE
   have hxE : x ∈ E := IntermediateField.subset_adjoin _ _ (Set.mem_insert _ _)
-
   have hrange : ∀ r : K⟮x⟯, (r : F) ∈ E := by
     intro r
     have hle : K⟮x⟯ ≤ E.restrictScalars K :=
       IntermediateField.adjoin_simple_le_iff.mpr
         ((IntermediateField.mem_restrictScalars K).mpr hxE)
     exact (IntermediateField.mem_restrictScalars K).mp (hle r.2)
-
   have hmem : ∀ y : F, y ∈ E := by
     intro y
     have hy : y ∈ Submodule.span K⟮x⟯ (↑s : Set F) := by
@@ -87,7 +84,6 @@ theorem finiteDimensional_adjoin_of_transcendental {x : F} (hx : Transcendental 
     rw [eq_top_iff]
     intro y _
     exact hmem y
-
   have : Finite ↥(insert x (↑s : Set F)) :=
     Set.Finite.to_subtype ((s.finite_toSet).insert x)
   have hfdE : FiniteDimensional K⟮t⟯ ↥E := by
@@ -119,18 +115,14 @@ theorem exists_separating [PerfectField K] {x : F} (hx : Transcendental K x)
   classical
   have := hfd
   obtain h0 | ⟨p, hp, hchar⟩ := CharP.exists' K
-  ·
-    have : CharZero K⟮x⟯ := charZero_of_injective_algebraMap (algebraMap K K⟮x⟯).injective
+  · have : CharZero K⟮x⟯ := charZero_of_injective_algebraMap (algebraMap K K⟮x⟯).injective
     have : Algebra.IsAlgebraic K⟮x⟯ F := Algebra.IsAlgebraic.of_finite K⟮x⟯ F
     exact ⟨x, hx, hfd, Algebra.IsAlgebraic.isSeparable_of_perfectField⟩
-  ·
-    have := hp
+  · have := hp
     have := hchar
     have : CharP F p := charP_of_injective_algebraMap (algebraMap K F).injective p
-
     have hdeg : Module.finrank (frobenius F p).fieldRange F = p :=
       AlgebraicCurve.finrank_frobeniusSubfield_eq_of_transcendental p x hx
-
     have hnle : ¬ ((⊤ : Subfield F) ≤ (frobenius F p).fieldRange) := by
       intro hle
       have h1 : Module.finrank (frobenius F p).fieldRange F = 1 := by
@@ -138,7 +130,6 @@ theorem exists_separating [PerfectField K] {x : F} (hx : Transcendental K x)
         exact hle
       exact hp.out.one_lt.ne (h1.symm.trans hdeg)
     obtain ⟨t, -, ht⟩ := SetLike.not_le_iff_exists.mp hnle
-
     have httr : Transcendental K t := transcendental_of_not_mem_fieldRange_frobenius p ht
     have htfd : FiniteDimensional K⟮t⟯ F :=
       finiteDimensional_adjoin_of_transcendental hx hfd httr

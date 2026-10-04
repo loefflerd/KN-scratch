@@ -585,5 +585,4 @@ theorem _root_.solution
       (ℓ : ℂ) * ι (f.coeff ℓ) * hc1 +
       (ℓ : ℂ) * ι (f.epsilon ℓ) * (ℓ : ℂ)^(k - 2 - j) * hc2
 
-
 end HorizontalDistributionProof

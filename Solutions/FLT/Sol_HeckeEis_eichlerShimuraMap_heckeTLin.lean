@@ -56,7 +56,6 @@ lemma exists_cocycle {N : ℕ} {ℓ : ℕ} (hℓ : ℓ.Prime) (hℓN : ¬ ℓ �
   have : NeZero ℓ := ⟨hℓ.ne_zero⟩
   have : Fact ℓ.Prime := ⟨hℓ⟩
   have hℓ0 : (ℓ : ℤ) ≠ 0 := by exact_mod_cast hℓ.ne_zero
-
   have hdetG : (g : Matrix (Fin 2) (Fin 2) ℤ) 0 0 * (g : Matrix (Fin 2) (Fin 2) ℤ) 1 1 -
       (g : Matrix (Fin 2) (Fin 2) ℤ) 0 1 * (g : Matrix (Fin 2) (Fin 2) ℤ) 1 0 = 1 := by
     have := g.det_coe
@@ -70,11 +69,9 @@ lemma exists_cocycle {N : ℕ} {ℓ : ℕ} (hℓ : ℓ.Prime) (hℓN : ¬ ℓ �
   set d : ℤ := (g : Matrix (Fin 2) (Fin 2) ℤ) 1 1 with hd
   have hgmat : (g : Matrix (Fin 2) (Fin 2) ℤ) = !![a, b; c, d] := by
     rw [ha, hb, hc, hd]; exact Matrix.eta_fin_two _
-
   have key : ∀ p t : ℤ, ¬ (ℓ : ℤ) ∣ p → ∃ j' : Fin ℓ, (ℓ : ℤ) ∣ t - p * (j' : ℤ) := by
     intro p t hp
     have hℓpos : (0 : ℤ) < (ℓ : ℤ) := by exact_mod_cast hℓ.pos
-
     have hcop : IsCoprime (ℓ : ℤ) p :=
       (Prime.coprime_iff_not_dvd (Nat.prime_iff_prime_int.mp hℓ)).mpr hp
     obtain ⟨u, v, huv⟩ := hcop
@@ -91,16 +88,13 @@ lemma exists_cocycle {N : ℕ} {ℓ : ℕ} (hℓ : ℓ.Prime) (hℓN : ¬ ℓ �
     linear_combination (-t) * huv + (-p) * hmod
   cases i with
   | none =>
-
     by_cases hcdvd : (ℓ : ℤ) ∣ c
-    ·
-      obtain ⟨c', hc'⟩ := hcdvd
+    · obtain ⟨c', hc'⟩ := hcdvd
       have hdetδ : Matrix.det !![a, (ℓ : ℤ) * b; c', d] = 1 := by
         rw [Matrix.det_fin_two_of]
         linear_combination hdetG + b * hc'
       refine ⟨⟨_, hdetδ⟩, ?_, none, ?_⟩
-      ·
-        rw [Gamma0_mem]
+      · rw [Gamma0_mem]
         show ((c' : ℤ) : ZMod N) = 0
         have hcopN : Nat.Coprime N ℓ := ((Nat.Prime.coprime_iff_not_dvd hℓ).mpr hℓN).symm
         have hcop : IsCoprime (N : ℤ) (ℓ : ℤ) := Int.isCoprime_iff_gcd_eq_one.mpr (by
@@ -123,8 +117,7 @@ lemma exists_cocycle {N : ℕ} {ℓ : ℕ} (hℓ : ℓ.Prime) (hℓN : ¬ ℓ �
           linear_combination hc'
         · show (0 * b + 1 * d : ℤ) = c' * 0 + d * 1
           ring
-    ·
-      obtain ⟨j', hj'⟩ := key c d hcdvd
+    · obtain ⟨j', hj'⟩ := key c d hcdvd
       obtain ⟨e, he⟩ := hj'
       have hdetδ : Matrix.det !![(ℓ : ℤ) * a, b - a * (j' : ℤ); c, e] = 1 := by
         rw [Matrix.det_fin_two_of]
@@ -147,10 +140,8 @@ lemma exists_cocycle {N : ℕ} {ℓ : ℕ} (hℓ : ℓ.Prime) (hℓN : ¬ ℓ �
         · show (0 * b + 1 * d : ℤ) = c * (j' : ℤ) + e * (ℓ : ℤ)
           linear_combination he
   | some j =>
-
     by_cases hpdvd : (ℓ : ℤ) ∣ (a + (j : ℤ) * c)
-    ·
-      obtain ⟨p', hp'⟩ := hpdvd
+    · obtain ⟨p', hp'⟩ := hpdvd
       have hdetδ : Matrix.det !![p', b + (j : ℤ) * d; c, (ℓ : ℤ) * d] = 1 := by
         rw [Matrix.det_fin_two_of]
         linear_combination hdetG - d * hp'
@@ -171,8 +162,7 @@ lemma exists_cocycle {N : ℕ} {ℓ : ℕ} (hℓ : ℓ.Prime) (hℓN : ¬ ℓ �
           ring
         · show (0 * b + (ℓ : ℤ) * d : ℤ) = c * 0 + (ℓ : ℤ) * d * 1
           ring
-    ·
-      obtain ⟨j', hj'⟩ := key (a + (j : ℤ) * c) (b + (j : ℤ) * d) hpdvd
+    · obtain ⟨j', hj'⟩ := key (a + (j : ℤ) * c) (b + (j : ℤ) * d) hpdvd
       obtain ⟨e, he⟩ := hj'
       have hdetδ : Matrix.det
           !![a + (j : ℤ) * c, e; (ℓ : ℤ) * c, d - c * (j' : ℤ)] = 1 := by
@@ -528,7 +518,6 @@ private theorem unipotentUpper_mul_bezoutRep_not_mem (hℓ : ℓ.Prime) (hℓN :
     unipotentUpper N s * bezoutRep hℓ hℓN ∉ heckeUpper N ℓ := by
   intro hmem
   rw [mem_heckeUpper] at hmem
-
   have hentry : (((unipotentUpper N s * bezoutRep hℓ hℓN : Gamma0 N) : SL(2, ℤ))) 0 1
       = 1 * -Nat.gcdB ℓ N + s * (ℓ : ℤ) :=
     (Matrix.two_mul_expl
@@ -536,7 +525,6 @@ private theorem unipotentUpper_mul_bezoutRep_not_mem (hℓ : ℓ.Prime) (hℓN :
       (((bezoutRep hℓ hℓN : Gamma0 N) : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ)).2.1
   rw [hentry,
     show (1 : ℤ) * -Nat.gcdB ℓ N + s * (ℓ : ℤ) = s * (ℓ : ℤ) - Nat.gcdB ℓ N by ring] at hmem
-
   exact not_dvd_gcdB hℓ hℓN ((dvd_sub_right (dvd_mul_left _ _)).mp hmem)
 
 theorem cosetOfRep_injective (hℓ : ℓ.Prime) (hℓN : ¬ ℓ ∣ N) :
@@ -546,20 +534,16 @@ theorem cosetOfRep_injective (hℓ : ℓ.Prime) (hℓN : ¬ ℓ ∣ N) :
   match i, i' with
   | none, none => rfl
   | some j, none =>
-
     exact absurd h (by
       rw [cosetRep_some, cosetRep_none, inv_unipotentUpper, neg_neg]
       exact unipotentUpper_mul_bezoutRep_not_mem hℓ hℓN (j : ℤ))
   | none, some j' =>
-
     refine absurd ((heckeUpper N ℓ).inv_mem h) ?_
     rw [cosetRep_some, cosetRep_none, _root_.mul_inv_rev, inv_inv, inv_unipotentUpper, neg_neg]
     exact unipotentUpper_mul_bezoutRep_not_mem hℓ hℓN (j' : ℤ)
   | some j, some j' =>
-
     rw [cosetRep_some, cosetRep_some, inv_unipotentUpper, neg_neg,
       unipotentUpper_mul_mem_iff] at h
-
     have hj := j.isLt
     have hj' := j'.isLt
     have hzero : (j : ℤ) + -(j' : ℤ) = 0 := by
@@ -585,12 +569,10 @@ theorem cosetOfRep_surjective (hℓ : ℓ.Prime) (hℓN : ¬ ℓ ∣ N) :
   intro q
   obtain ⟨γ, rfl⟩ : ∃ γ : Gamma0 N, (γ : Gamma0 N ⧸ heckeUpper N ℓ) = q :=
     ⟨Quotient.out q, QuotientGroup.out_eq' q⟩
-
   obtain ⟨δ, -, m, hm⟩ := exists_cocycle hℓ hℓN (γ⁻¹ : Gamma0 N).2 (some ⟨0, hℓ.pos⟩)
   refine ⟨m, ?_⟩
   rw [cosetOfRep_def, QuotientGroup.eq, ← (heckeUpper N ℓ).inv_mem_iff, _root_.mul_inv_rev,
     inv_inv, mem_heckeUpper]
-
   refine dvd_of_alphaMat_mul_eq_mul_alphaMat
     (Y := (δ : Matrix (Fin 2) (Fin 2) ℤ)
       * (((rawDelta hℓ hℓN m : Gamma0 N) : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ)) ?_
@@ -677,7 +659,6 @@ theorem exists_heckeCosetRep_coe_eq (γ : Gamma0 N) :
     show Quotient.out ((γ : Gamma0 N ⧸ heckeUpper N ℓ)) = γ * (h : Gamma0 N) from hout,
     _root_.mul_inv_rev, map_mul, ← mul_assoc, ← mul_assoc]
   congr 1
-
   exact (gammaToGL_heckeConj_mul_alphaGL N ℓ h⁻¹).symm
 
 theorem heckeCosetMatch (hℓ : ℓ.Prime) (hℓN : ¬ ℓ ∣ N) : HeckeCosetMatch N ℓ := by
@@ -889,7 +870,6 @@ theorem solution (N : ℕ) [NeZero N] (n : ℕ) {ℓ : ℕ} (hℓ : ℓ.Prime) (
       = HeckeEis.eichlerShimuraMap n N (CuspForm.heckeTLin ((n : ℤ) + 2) hℓ hℓN f) := by
   have : NeZero ℓ := ⟨hℓ.ne_zero⟩
   obtain ⟨F, hEI, hF, hpar⟩ := HeckeEis.exists_isEichlerIntegral_isParabolicCocycle N n f
-
   have hGEI : IsEichlerIntegral n (CuspForm.heckeTLin ((n : ℤ) + 2) hℓ hℓN f) (heckeEichler N ℓ n F) := by
     have h := isEichlerIntegral_heckeEichler (N := N) (ℓ := ℓ) hEI
     rwa [← heckeSlashSum_eq_heckeQuotSlashSum (heckeCosetMatch hℓ hℓN) _ (SlashInvariantFormClass.slash_action_eq f),

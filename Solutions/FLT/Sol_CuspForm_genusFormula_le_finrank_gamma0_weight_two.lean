@@ -77,16 +77,12 @@ theorem solution (N : ℕ) [NeZero N] :
       (K := AlgebraicClosure ℚ) (F := ↥(modularFunctionFieldBar N))
   rw [← ModularCurve.genus_modularFunctionFieldBar_eq_genusFormula N, ← hrank]
   have : Module.Finite (AlgebraicClosure ℚ) ↥(regularDifferentialsBar N) := hfinΩ
-
   suffices key : Module.finrank (AlgebraicClosure ℚ) ↥(regularDifferentialsBar N)
       ≤ Module.finrank ℂ (CuspForm (CongruenceSubgroup.Gamma0 N) 2) by
     first | exact Nat.cast_le.mpr key
-
   let b := Module.finBasis (AlgebraicClosure ℚ) ↥(regularDifferentialsBar N)
-
   have : Algebra.IsAlgebraic ℚ (AlgebraicClosure ℚ) := AlgebraicClosure.isAlgebraic ℚ
   let ι₀ : AlgebraicClosure ℚ →+* ℂ := (IsAlgClosed.lift : AlgebraicClosure ℚ →ₐ[ℚ] ℂ).toRingHom
-
   have hex : ∀ i : Fin (Module.finrank (AlgebraicClosure ℚ) ↥(regularDifferentialsBar N)),
       ∃ f : CuspForm (CongruenceSubgroup.Gamma0 N) 2,
         ModularCurve.coeffMap ι₀
@@ -95,13 +91,11 @@ theorem solution (N : ℕ) [NeZero N] :
     ModularCurve.exists_cuspForm_coeffMap_diffQExpBar_eq_qExpansion_of_mem_regularDifferentialsBar
       N ι₀ (b i : Ω[modularFunctionFieldBar N⁄AlgebraicClosure ℚ]) (b i).2
   choose f hf using hex
-
   let v : Fin (Module.finrank (AlgebraicClosure ℚ) ↥(regularDifferentialsBar N)) → ℤ → AlgebraicClosure ℚ :=
     fun i n => (ModularCurve.diffQExpBar N (b i : Ω[modularFunctionFieldBar N⁄AlgebraicClosure ℚ])).coeff n
   have hv_def : ∀ i n, v i n =
       (ModularCurve.diffQExpBar N (b i : Ω[modularFunctionFieldBar N⁄AlgebraicClosure ℚ])).coeff n :=
     fun _ _ => rfl
-
   let Θ : Ω[modularFunctionFieldBar N⁄AlgebraicClosure ℚ] →ₗ[AlgebraicClosure ℚ] LaurentSeries (AlgebraicClosure ℚ) :=
     (ModularCurve.diffQExpBar N).restrictScalars (AlgebraicClosure ℚ)
   have hΘ : ∀ ω, Θ ω = ModularCurve.diffQExpBar N ω := fun ω => rfl
@@ -112,7 +106,6 @@ theorem solution (N : ℕ) [NeZero N] :
     induction s using Finset.induction_on with
     | empty => simp
     | insert a s ha ih => rw [Finset.sum_insert ha, Finset.sum_insert ha, HahnSeries.coeff_add, ih]
-
   have hv : LinearIndependent (AlgebraicClosure ℚ) v := by
     rw [Fintype.linearIndependent_iff]
     intro d hd
@@ -131,36 +124,28 @@ theorem solution (N : ℕ) [NeZero N] :
     have hzero' : (∑ i, d i • b i) = 0 := by
       first | exact (Submodule.coe_eq_zero).mp hzero
     exact Fintype.linearIndependent_iff.mp b.linearIndependent d hzero'
-
   have hvC : LinearIndependent ℂ (fun i n => ι₀ (v i n)) :=
     linearIndependent_ringHom_comp_of_linearIndependent ι₀ hv
-
   have hΓ := CongruenceSubgroup.one_mem_strictPeriods_Gamma0 N
-
   have hcadd : ∀ φ ψ : CuspForm (CongruenceSubgroup.Gamma0 N) 2, ⇑(φ + ψ) = ⇑φ + ⇑ψ := fun _ _ => rfl
   have hcsmul : ∀ (x : ℂ) (φ : CuspForm (CongruenceSubgroup.Gamma0 N) 2), ⇑(x • φ) = x • ⇑φ := fun _ _ => rfl
   have hczero : ⇑(0 : CuspForm (CongruenceSubgroup.Gamma0 N) 2) = 0 := rfl
-
   have hqadd : ∀ φ ψ : CuspForm (CongruenceSubgroup.Gamma0 N) 2,
       UpperHalfPlane.qExpansion 1 (⇑φ + ⇑ψ) = UpperHalfPlane.qExpansion 1 ⇑φ + UpperHalfPlane.qExpansion 1 ⇑ψ := by
     intro φ ψ
     first
       | exact ModularForm.qExpansion_add one_pos hΓ φ ψ
-
   have hqsmul : ∀ (x : ℂ) (φ : CuspForm (CongruenceSubgroup.Gamma0 N) 2),
       UpperHalfPlane.qExpansion 1 (x • ⇑φ) = x • UpperHalfPlane.qExpansion 1 ⇑φ := by
     intro x φ
     first
       | exact ModularForm.qExpansion_smul one_pos hΓ x φ
-
   have hqzero : UpperHalfPlane.qExpansion 1 (0 : UpperHalfPlane → ℂ) = 0 := by
     first
       | exact UpperHalfPlane.qExpansion_zero 1
-
   have hli : LinearIndependent ℂ f := by
     rw [Fintype.linearIndependent_iff]
     intro c hc
-
     have hqsum : ∀ s : Finset (Fin (Module.finrank (AlgebraicClosure ℚ) ↥(regularDifferentialsBar N))),
         UpperHalfPlane.qExpansion 1 ⇑(∑ i ∈ s, c i • f i) =
           ∑ i ∈ s, c i • UpperHalfPlane.qExpansion 1 ⇑(f i) := by
@@ -171,7 +156,6 @@ theorem solution (N : ℕ) [NeZero N] :
         rw [Finset.sum_insert ha, Finset.sum_insert ha, hcadd, hqadd, hcsmul, hqsmul, ih]
     have hq : ∑ i, c i • UpperHalfPlane.qExpansion 1 ⇑(f i) = 0 := by
       rw [← hqsum Finset.univ, hc, hczero, hqzero]
-
     have hrel : ∑ i, c i • (fun n => ι₀ (v i n)) = 0 := by
       funext n
       simp only [Finset.sum_apply, Pi.smul_apply, smul_eq_mul, Pi.zero_apply]
@@ -181,16 +165,14 @@ theorem solution (N : ℕ) [NeZero N] :
         rw [← hf i, ModularCurve.coeffMap_coeff]
       simp_rw [hvi]
       rcases n with m | m
-      ·
-        have h1 := congr_arg (PowerSeries.coeff m) hq
+      · have h1 := congr_arg (PowerSeries.coeff m) hq
         rw [map_sum, map_zero] at h1
         rw [← h1]
         refine Finset.sum_congr rfl fun i _ => ?_
         rw [map_smul, smul_eq_mul]
         first | rw [Int.ofNat_eq_natCast]
         rw [HahnSeries.ofPowerSeries_apply_coeff]
-      ·
-        refine Finset.sum_eq_zero fun i _ => ?_
+      · refine Finset.sum_eq_zero fun i _ => ?_
         rw [HahnSeries.ofPowerSeries_apply, HahnSeries.embDomain_of_notMem_range, mul_zero]
         rintro ⟨k, hk⟩
         exact absurd hk (by simp)

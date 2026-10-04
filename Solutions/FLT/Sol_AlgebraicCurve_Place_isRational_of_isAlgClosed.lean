@@ -23,12 +23,10 @@ theorem solution {K F : Type*} [Field K] [IsAlgClosed K] [Field F] [Algebra K F]
   classical
   intro y
   obtain ⟨x, rfl⟩ := IsLocalRing.residue_surjective y
-
   let u : Place K (RatFunc K) := v.restrict (RatFunc K)
   have hu : u.IsRational :=
     (AlgebraicCurve.Place.isRational_iff_deg_eq_one u).2
       (AlgebraicCurve.RationalFunctionField.deg_eq_one_of_isAlgClosed K u)
-
   have hconst : ∀ {b : RatFunc K} (hb : algebraMap (RatFunc K) F b ∈ v.toValuationSubring),
       ∃ c : K, algebraMap K v.ResidueField c
         = IsLocalRing.residue _ (⟨algebraMap (RatFunc K) F b, hb⟩ : v.toValuationSubring) := by
@@ -41,16 +39,13 @@ theorem solution {K F : Type*} [Field K] [IsAlgClosed K] [Field F] [Algebra K F]
         = Place.restrictInclusion (RatFunc K) v ⟨b, hb'⟩ := rfl
     rw [h2, ← Place.restrictResidueMap_residue, ← h1, ← Place.algebraMap_residueField_eq,
       ← IsScalarTower.algebraMap_apply]
-
   obtain ⟨p, hp0, hpx⟩ : IsAlgebraic (RatFunc K) (x : F) := Algebra.IsAlgebraic.isAlgebraic _
-
   have hsupp : p.support.Nonempty := Polynomial.support_nonempty.mpr hp0
   obtain ⟨j, hj, hjmin⟩ := p.support.exists_min_image
     (fun i => v.ord (algebraMap (RatFunc K) F (p.coeff i))) hsupp
   have haj0 : p.coeff j ≠ 0 := Polynomial.mem_support_iff.mp hj
   have hajF : algebraMap (RatFunc K) F (p.coeff j) ≠ 0 :=
     (map_ne_zero_iff _ (algebraMap (RatFunc K) F).injective).mpr haj0
-
   have hbmem : ∀ i, algebraMap (RatFunc K) F (p.coeff i / p.coeff j) ∈ v.toValuationSubring := by
     intro i
     by_cases hi : i ∈ p.support
@@ -64,13 +59,11 @@ theorem solution {K F : Type*} [Field K] [IsAlgClosed K] [Field F] [Algebra K F]
       omega
     · rw [Polynomial.notMem_support_iff.mp hi, zero_div, map_zero]
       exact zero_mem _
-
   have haeval : ∀ (q : (RatFunc K)[X]) (z : F),
       aeval z q = ∑ i ∈ q.support, algebraMap (RatFunc K) F (q.coeff i) * z ^ i := by
     intro q z
     conv_lhs => rw [q.as_sum_support]
     simp [map_sum, ← C_mul_X_pow_eq_monomial]
-
   have hrel : ∑ i ∈ p.support,
       algebraMap (RatFunc K) F (p.coeff i / p.coeff j) * (x : F) ^ i = 0 := by
     have hsum : ∑ i ∈ p.support, algebraMap (RatFunc K) F (p.coeff i) * (x : F) ^ i = 0 := by
@@ -83,21 +76,18 @@ theorem solution {K F : Type*} [Field K] [IsAlgClosed K] [Field F] [Algebra K F]
       rw [map_div₀]
       ring
     rw [hfac, hsum, zero_div]
-
   set B : ℕ → v.toValuationSubring := fun i => ⟨_, hbmem i⟩ with hB
   have hrelO : ∑ i ∈ p.support, B i * x ^ i = 0 := by
     apply Subtype.ext
     simp only [AddSubmonoidClass.coe_finsetSum, MulMemClass.coe_mul, SubmonoidClass.coe_pow,
       ZeroMemClass.coe_zero, hB]
     exact hrel
-
   choose c hc using fun i => hconst (hbmem i)
   have hcj : c j = 1 := by
     have h1 : (B j) = 1 := Subtype.ext (by simp [hB, haj0])
     have := hc j
     rw [show (⟨_, hbmem j⟩ : v.toValuationSubring) = B j from rfl, h1, map_one] at this
     exact (algebraMap K v.ResidueField).injective (by rw [this, map_one])
-
   set R : K[X] := ∑ i ∈ p.support, C (c i) * X ^ i with hR
   have hRy : aeval (IsLocalRing.residue v.toValuationSubring x) R = 0 := by
     have h := congrArg (IsLocalRing.residue v.toValuationSubring) hrelO
@@ -116,7 +106,6 @@ theorem solution {K F : Type*} [Field K] [IsAlgClosed K] [Field F] [Algebra K F]
     have := hRj
     rw [h, coeff_zero] at this
     exact zero_ne_one this
-
   have halgy : IsAlgebraic K (IsLocalRing.residue v.toValuationSubring x) := ⟨R, hR0, hRy⟩
   have hdeg : (minpoly K (IsLocalRing.residue v.toValuationSubring x)).degree = 1 :=
     IsAlgClosed.degree_eq_one_of_irreducible K (minpoly.irreducible halgy.isIntegral)

@@ -289,8 +289,7 @@ theorem roots_prime_at_slot_nodup (N : ℕ) [NeZero N] (ζ : Kˣ) (hζ : IsPrimi
   have hζp : IsPrimitiveRoot ((ζ ^ (N / p) : Kˣ) : K) p := isPrimitiveRoot_pow_div hζ hpN
   rw [Multiset.nodup_cons]
   constructor
-  ·
-    intro hmem
+  · intro hmem
     obtain ⟨b, hb, heq⟩ := Multiset.mem_map.mp hmem
     have h := (TS_injective (K := K) (e := e) (e' := p * (p * e))
       (u := u * ζ ^ (b * (N / p))) (u' := u ^ (p * p)) heq).1
@@ -299,8 +298,7 @@ theorem roots_prime_at_slot_nodup (N : ℕ) [NeZero N] (ζ : Kˣ) (hζ : IsPrimi
     have hmono : 2 * (2 * e) ≤ p * (p * e) := Nat.mul_le_mul hp2 (Nat.mul_le_mul hp2 le_rfl)
     rw [← h] at hmono
     omega
-  ·
-    refine Multiset.Nodup.map_on ?_ (Multiset.nodup_range p)
+  · refine Multiset.Nodup.map_on ?_ (Multiset.nodup_range p)
     intro b hb b' hb' heq
     rw [Multiset.mem_range] at hb hb'
     have h := (TS_injective (K := K) (e := e) (e' := e)
@@ -535,21 +533,17 @@ private theorem ModularCurve.trace_jqN_prime {K : Type*} [Field K] [Algebra ℚ 
           + ∑ b ∈ Finset.range ℓ, qTwist (ζ ^ b) (coeffEmb K jq) := by
   have : NeZero ℓ := ⟨hp.out.ne_zero⟩
   obtain ⟨data, hirr⟩ := ModularCurve.exists_phiIrreducible ℓ
-
   have haev : Polynomial.aeval (jqN ℓ) data.toAdjoin = 0 := aeval_jqN_toAdjoin data
   have hα : IsIntegral ℚ⟮jq⟯ (jqN ℓ) :=
     ⟨data.toAdjoin, data.toAdjoin_monic, by rw [← Polynomial.aeval_def]; exact haev⟩
   have : FiniteDimensional ℚ⟮jq⟯ ℚ⟮jq⟯⟮jqN ℓ⟯ :=
     IntermediateField.adjoin.finiteDimensional hα
-
   let : Algebra ℚ⟮jq⟯ (LaurentSeries K) :=
     ((((coeffEmb K).comp (qExpand ℚ ℓ))).comp
       (algebraMap ℚ⟮jq⟯ (LaurentSeries ℚ))).toAlgebra
   set gen := IntermediateField.AdjoinSimple.gen ℚ⟮jq⟯ (jqN ℓ) with hgen
-
   have hming : minpoly ℚ⟮jq⟯ gen = data.toAdjoin := by
     rw [hgen, IntermediateField.minpoly_gen, minpoly_jqN_eq_toAdjoin data hirr]
-
   have hmap : (minpoly ℚ⟮jq⟯ gen).map (algebraMap ℚ⟮jq⟯ (LaurentSeries K))
       = phiProd ℓ (conj ℓ ζ) := by
     rw [hming, ModularPolynomialData.toAdjoin, Polynomial.map_map]
@@ -561,7 +555,6 @@ private theorem ModularCurve.trace_jqN_prime {K : Type*} [Field K] [Algebra ℚ 
       rw [h0, RingHom.comp_assoc, algebraMap_comp_evalAtJGen]
     rw [hcomp]
     exact ModularCurve.PhiGen.splits_of_prime ℓ ζ hζ data
-
   have hprod : phiProd ℓ (conj ℓ ζ)
       = ((Finset.univ.val.map (conj ℓ ζ)).map
           (fun r => Polynomial.X - Polynomial.C r)).prod := by
@@ -571,7 +564,6 @@ private theorem ModularCurve.trace_jqN_prime {K : Type*} [Field K] [Algebra ℚ 
       (algebraMap ℚ⟮jq⟯ (LaurentSeries K))).roots = Finset.univ.val.map (conj ℓ ζ) := by
     rw [hmap, hprod]
     exact Polynomial.roots_multiset_prod_X_sub_C _
-
   have hdegmap : ((minpoly ℚ⟮jq⟯ gen).map
       (algebraMap ℚ⟮jq⟯ (LaurentSeries K))).natDegree = ℓ + 1 := by
     rw [hmap, hprod]
@@ -592,7 +584,6 @@ private theorem ModularCurve.trace_jqN_prime {K : Type*} [Field K] [Algebra ℚ 
       (algebraMap ℚ⟮jq⟯ (LaurentSeries K))).Splits := by
     rw [Polynomial.splits_iff_card_roots, hroots, hdegmap, Multiset.card_map]
     simp
-
   have hgint : IsIntegral ℚ⟮jq⟯ gen := IsIntegral.of_finite ℚ⟮jq⟯ gen
   have hfin1 : Module.finrank ℚ⟮jq⟯⟮gen⟯ ℚ⟮jq⟯⟮jqN ℓ⟯ = 1 := by
     have htow := Module.finrank_mul_finrank ℚ⟮jq⟯ ℚ⟮jq⟯⟮gen⟯ ℚ⟮jq⟯⟮jqN ℓ⟯
@@ -605,10 +596,8 @@ private theorem ModularCurve.trace_jqN_prime {K : Type*} [Field K] [Algebra ℚ 
     have hpos : 0 < Module.finrank ℚ⟮jq⟯ ℚ⟮jq⟯⟮jqN ℓ⟯ := Module.finrank_pos
     rw [ha, hc, ← hb] at htow
     exact Nat.eq_of_mul_eq_mul_left hpos (by rw [htow, Nat.mul_one])
-
   have htr := trace_eq_sum_roots (F := LaurentSeries K) (x := gen) hsp
   rw [hfin1, one_smul, Polynomial.aroots_def, hroots] at htr
-
   have hlhs : algebraMap ℚ⟮jq⟯ (LaurentSeries K) (Algebra.trace ℚ⟮jq⟯ ℚ⟮jq⟯⟮jqN ℓ⟯ gen)
       = coeffEmb K (qExpand ℚ ℓ ((Algebra.trace ℚ⟮jq⟯ ℚ⟮jq⟯⟮jqN ℓ⟯ gen : ℚ⟮jq⟯)
         : LaurentSeries ℚ)) := rfl
@@ -641,7 +630,6 @@ p2m_open "ModularCurve~coeffEmb_qExpand" in open _root_.P2MW.S_ModularCurve_PhiG
 
 theorem solution {K : Type*} [Field K] [Algebra ℚ K] (ℓ : ℕ) (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) ℓ) (f : LaurentSeries K) (k : ℤ) : (∑ b ∈ Finset.range ℓ, qTwist (ζ ^ b) f).coeff k = if (ℓ : ℤ) ∣ k then (ℓ : K) * f.coeff k else 0 :=
   ModularCurve.PhiGen.sum_qTwist_coeff ℓ ζ hζ f k
-
 
 end S_ModularCurve_PhiGen_sum_qTwist_coeff
 end P2MW

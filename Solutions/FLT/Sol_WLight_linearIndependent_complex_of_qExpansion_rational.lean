@@ -152,7 +152,6 @@ theorem linearIndependent_complex_of_qExpansion_rational (N : ℕ) [NeZero N]
   have hPbd : ∀ f ∈ s, IsBoundedAtImInfty (P f) := fun f hf => (hdata f hf).2.2.1
   set vec : ↥(↑s : Set (ℍ → ℂ)) → ℕ → ↥K := fun w n =>
     ⟨(qExpansion N (P (w : ℍ → ℂ))).coeff n, (hdata _ w.2).2.2.2 n⟩ with hvec_def
-
   have hpad : ∀ (g : ↥(↑s : Set (ℍ → ℂ)) → ℂ),
       (∑ w : ↥(↑s : Set (ℍ → ℂ)), g w • P (w : ℍ → ℂ)) =
         (∑ w : ↥(↑s : Set (ℍ → ℂ)), g w • (w : ℍ → ℂ)) * ModularForm.discriminant ^ m := by
@@ -162,7 +161,6 @@ theorem linearIndependent_complex_of_qExpansion_rational (N : ℕ) [NeZero N]
     funext τ
     simp only [hP_def, Pi.smul_apply, Pi.mul_apply, Pi.pow_apply, smul_eq_mul]
     ring
-
   have hkill : ∀ (g : ↥(↑s : Set (ℍ → ℂ)) → ℂ),
       (∑ w, g w • (w : ℍ → ℂ)) = 0 → ∀ n : ℕ, (∑ w, g w * ((vec w n : ℂ))) = 0 := by
     intro g hg n
@@ -174,7 +172,6 @@ theorem linearIndependent_complex_of_qExpansion_rational (N : ℕ) [NeZero N]
       (fun w _ => hPhol _ w.2) (fun w _ => hPper _ w.2) (fun w _ => hPbd _ w.2)] at hq0
     have h2 := congrArg (fun S => PowerSeries.coeff n S) hq0
     simpa [PowerSeries.coeff_smul, smul_eq_mul] using h2
-
   have hlift : ∀ (a : ↥(↑s : Set (ℍ → ℂ)) → ↥K),
       (∀ n : ℕ, (∑ w, a w * vec w n) = 0) → (∑ w, a w • (w : ℍ → ℂ)) = 0 := by
     intro a ha
@@ -206,7 +203,6 @@ theorem linearIndependent_complex_of_qExpansion_rational (N : ℕ) [NeZero N]
         = ∑ w : ↥(↑s : Set (ℍ → ℂ)), ((a w : ℂ)) • (w : ℍ → ℂ) :=
           Finset.sum_congr rfl fun w _ => rfl
       _ = 0 := h2
-
   by_contra hC
   obtain ⟨g, hg0, j₀, hj₀⟩ : ∃ g : ↥(↑s : Set (ℍ → ℂ)) → ℂ,
       (∑ w, g w • (w : ℍ → ℂ)) = 0 ∧ ∃ j, g j ≠ 0 := by
@@ -214,7 +210,6 @@ theorem linearIndependent_complex_of_qExpansion_rational (N : ℕ) [NeZero N]
     push Not at hC
     obtain ⟨g, hg, j, hj⟩ := hC
     exact ⟨g, hg, j, hj⟩
-
   set row : ℕ → ↥(↑s : Set (ℍ → ℂ)) → ↥K := fun n w => vec w n with hrow_def
   obtain ⟨D, hD⟩ : ∃ D : Finset ℕ, ∀ n : ℕ, row n ∈
       Submodule.span ↥K (row '' ↑D : Set (↥(↑s : Set (ℍ → ℂ)) → ↥K)) := by
@@ -245,7 +240,6 @@ theorem linearIndependent_complex_of_qExpansion_rational (N : ℕ) [NeZero N]
     intro d hd
     simp only [Finset.coe_biUnion, Set.mem_iUnion]
     exact ⟨⟨x, hx'⟩, by simp, hd⟩
-
   have hDdep : ¬ LinearIndependent ℂ
       (fun w : ↥(↑s : Set (ℍ → ℂ)) =>
         algebraMap ↥K ℂ ∘ (fun d : ↥(↑D : Set ℕ) => vec w (d : ℕ))) := by
@@ -255,7 +249,6 @@ theorem linearIndependent_complex_of_qExpansion_rational (N : ℕ) [NeZero N]
     simp only [Finset.sum_apply, Pi.smul_apply, Function.comp_apply, smul_eq_mul,
       Pi.zero_apply]
     exact hkill g hg0 (d : ℕ)
-
   have hKdep : ¬ LinearIndependent ↥K
       (fun w : ↥(↑s : Set (ℍ → ℂ)) => fun d : ↥(↑D : Set ℕ) => vec w (d : ℕ)) := by
     intro hLI
@@ -266,7 +259,6 @@ theorem linearIndependent_complex_of_qExpansion_rational (N : ℕ) [NeZero N]
     push Not at hKdep
     obtain ⟨a, ha, j, hj⟩ := hKdep
     exact ⟨a, ha, j, hj⟩
-
   have haD : ∀ d : ℕ, d ∈ D → (∑ w, a w * vec w d) = 0 := by
     intro d hd
     have h1 := congrFun ha0 ⟨d, hd⟩

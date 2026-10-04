@@ -147,9 +147,7 @@ private theorem ModularCurve.StarBank.closure {K : Type*} [Field K] [IsAlgClosed
           HahnSeries.ofPowerSeries ℤ K (PowerSeries.map (Int.castRingHom K) etaProd) ^ 24) ^
         (p + 1)) :
     ∃ c : K, c ≠ 0 ∧ G.comp R ∣ Polynomial.C c * G ^ (p + 1) := by
-
   have hjp : jqNModC K p = qExpand K p (jqModC K) := rfl
-
   have F2 : ∀ α : K, algebraMap K (LaurentSeries K) (R.eval α) - jqNModC K p =
       ∏ b ∈ Finset.range p, (algebraMap K (LaurentSeries K) α - qTwist (ζ ^ b) (jqModC K)) := by
     intro α
@@ -157,7 +155,6 @@ private theorem ModularCurve.StarBank.closure {K : Type*} [Field K] [IsAlgClosed
     rw [Polynomial.eval_sub, Polynomial.eval_C, Polynomial.eval_map, Polynomial.eval₂_at_apply,
       Polynomial.eval_prod] at h
     simpa only [Polynomial.eval_sub, Polynomial.eval_X, Polynomial.eval_C] using h
-
   have F3 : Polynomial.aeval (jqNModC K p)
       ((G.roots.map fun α => Polynomial.C (R.eval α) - Polynomial.X).prod) =
       ∏ b ∈ Finset.range p, (G.roots.map fun α =>
@@ -173,34 +170,29 @@ private theorem ModularCurve.StarBank.closure {K : Type*} [Field K] [IsAlgClosed
     rw [h1]
     simp only [Finset.prod_eq_multiset_prod]
     exact Multiset.prod_map_prod_map _ _
-
   have F4 : ∏ b ∈ Finset.range p, Polynomial.aeval (qTwist (ζ ^ b) (jqModC K)) G =
       (algebraMap K (LaurentSeries K) G.leadingCoeff * (-1) ^ Multiset.card G.roots) ^ p *
         Polynomial.aeval (jqNModC K p)
           ((G.roots.map fun α => Polynomial.C (R.eval α) - Polynomial.X).prod) := by
     rw [F3, Finset.prod_congr rfl fun b _ => aeval_eq_prod_roots K G (qTwist (ζ ^ b) (jqModC K)),
       Finset.prod_mul_distrib, Finset.prod_const, Finset.card_range]
-
   have F5 : (∏ b ∈ Finset.range p, Polynomial.aeval (qTwist (ζ ^ b) (jqModC K)) G) *
       (∏ b ∈ Finset.range p, qTwist (ζ ^ b) 𝓓[K]) ^ M = 1 := by
     rw [← Finset.prod_pow, ← Finset.prod_mul_distrib]
     refine Finset.prod_eq_one fun b _ => ?_
     have h := congrArg (qTwist (ζ ^ b)) hstar
     rwa [map_mul, map_pow, (qTwist (ζ ^ b)).map_one, qTwist_aeval] at h
-
   have F6 : Polynomial.aeval (jqNModC K p) G * qExpand K p 𝓓[K] ^ M = 1 := by
     have h := congrArg (qExpand K p) hstar
     rwa [map_mul, map_pow, (qExpand K p).map_one, qExpand_aeval] at h
   have F7 : Polynomial.aeval (qExpand K (p * p) (jqModC K)) G * qExpand K (p * p) 𝓓[K] ^ M = 1 := by
     have h := congrArg (qExpand K (p * p)) hstar
     rwa [map_mul, map_pow, (qExpand K (p * p)).map_one, qExpand_aeval] at h
-
   have F54 : (algebraMap K (LaurentSeries K) G.leadingCoeff * (-1) ^ Multiset.card G.roots) ^ p *
       Polynomial.aeval (jqNModC K p)
         ((G.roots.map fun α => Polynomial.C (R.eval α) - Polynomial.X).prod) *
       (∏ b ∈ Finset.range p, qTwist (ζ ^ b) 𝓓[K]) ^ M = 1 := by
     rw [← F4]; exact F5
-
   have key : Polynomial.aeval (jqNModC K p) G ^ (p + 1) =
       (algebraMap K (LaurentSeries K) G.leadingCoeff * (-1) ^ Multiset.card G.roots) ^ p *
         HahnSeries.C (((∏ b ∈ Finset.range p, ζ ^ b : Kˣ) : K)) ^ M *
@@ -243,7 +235,6 @@ private theorem ModularCurve.StarBank.closure {K : Type*} [Field K] [IsAlgClosed
               ((G.roots.map fun α => Polynomial.C (R.eval α) - Polynomial.X).prod) *
             Polynomial.aeval (qExpand K (p * p) (jqModC K)) G := by
           rw [F6, one_pow, mul_one]
-
   have hκL : algebraMap K (LaurentSeries K)
       ((G.leadingCoeff * (-1) ^ Multiset.card G.roots) ^ p *
         (((∏ b ∈ Finset.range p, ζ ^ b : Kˣ) : K)) ^ M) =
@@ -308,7 +299,6 @@ theorem solution {K : Type*} [Field K] [IsAlgClosed K] (p : ℕ) [Fact p.Prime]
         (p + 1)) :
     ∃ c : K, c ≠ 0 ∧ G.comp R ∣ Polynomial.C c * G ^ (p + 1) :=
   ModularCurve.StarBank.closure p ζ hstar hR hpress hnorm
-
 
 end S_ModularCurve_StarBank_closure
 end P2MW

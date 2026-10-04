@@ -244,7 +244,6 @@ theorem precomp_apply (g : SL(2, ℤ)) (F : ℍ → ℂ) (τ : ℍ) : precomp g 
 
 theorem smul_eq_self_of_mem {F : ℍ → ℂ} (hF : F ∈ ring N) {γ : SL(2, ℤ)}
     (hγ : γ ∈ CongruenceSubgroup.Gamma N) (τ : ℍ) : F (γ • τ) = F τ := by
-
   suffices h : ring N ≤ AlgHom.equalizer (precomp γ) (AlgHom.id ℂ (ℍ → ℂ)) by
     have := h hF
     rw [AlgHom.mem_equalizer] at this
@@ -354,7 +353,6 @@ theorem qexpFun_mul_pow (F : ring N) {m : ℕ} (hm : PB (F : ℍ → ℂ) m) :
   have hΔ0 : Q N (Δ : ℍ → ℂ) ≠ 0 := Q_discriminant_ne_zero N
   have hgood₀ := good_of_PB N F.2 hm₀'
   have hgoodm := good_of_PB N F.2 hm
-
   have hkey : Q N ((F : ℍ → ℂ) * (Δ : ℍ → ℂ) ^ m₀) * Q N (Δ : ℍ → ℂ) ^ m =
       Q N ((F : ℍ → ℂ) * (Δ : ℍ → ℂ) ^ m) * Q N (Δ : ℍ → ℂ) ^ m₀ := by
     rw [← Q_pow hN (good_discriminant N), ← Q_pow hN (good_discriminant N),
@@ -520,7 +518,6 @@ theorem Q_natCast_eq_qExpand {f : ℍ → ℂ} (hf : Good 1 f) :
     have heq := h1.eq_formalMultilinearSeries h2
     have := (FormalMultilinearSeries.ofScalars_series_eq_iff (E := ℂ) c _).mp heq
     exact fun m => congrFun this m
-
   ext k
   rw [Q, Q]
   rcases lt_or_ge k 0 with hk | hk

@@ -165,16 +165,13 @@ def kw_E4cube_sub_E6sq_cuspForm : CuspForm 𝒮ℒ 12 :=
 theorem kw_exists_smul_discriminant_eq_E4cube_sub_E6sq :
     ∃ c : ℂ, c ≠ 0 ∧ (∀ τ : ℍ, E₄ τ ^ 3 - E₆ τ ^ 2 = c * discriminant τ) ∧
       c * (qExpansion 1 (discriminant : ℍ → ℂ)).coeff 1 = 1728 := by
-
   obtain ⟨c, hc⟩ :=
     CuspForm.exists_smul_discriminant_of_weight_eq_twelve kw_E4cube_sub_E6sq_cuspForm
-
   have hpt : ∀ τ : ℍ, E₄ τ ^ 3 - E₆ τ ^ 2 = c * discriminant τ := fun τ => by
     have h := DFunLike.congr_fun hc τ
     simp only [smul_apply, CuspForm.coe_discriminant, smul_eq_mul,
       kw_E4cube_sub_E6sq_cuspForm_apply] at h
     exact h.symm
-
   have hcoeff : c * (qExpansion 1 (discriminant : ℍ → ℂ)).coeff 1 = 1728 := by
     have hfun : (kw_E4cube_sub_E6sq_cuspForm : ℍ → ℂ)
         = c • (CuspForm.discriminant : ℍ → ℂ) := by
@@ -184,7 +181,6 @@ theorem kw_exists_smul_discriminant_eq_E4cube_sub_E6sq :
       hfun, ModularForm.qExpansion_smul one_pos one_mem_strictPeriods_SL,
       PowerSeries.coeff_smul, smul_eq_mul, CuspForm.coe_discriminant] at this
     exact this
-
   refine ⟨c, ?_, hpt, hcoeff⟩
   intro hzero
   rw [hzero, zero_mul] at hcoeff
@@ -353,11 +349,8 @@ p2m_open "PeriodPair"
 
 theorem kw_G_ofTau_eq {k : ℕ} (hk : 3 ≤ k) (τ : ℍ) :
     (ofTau τ).G k = 2 * riemannZeta k * E hk τ := by
-
   rw [G, ← (ofTau τ).latticeEquivProd.symm.toEquiv.tsum_eq]
-
   simp only [LinearEquiv.coe_toEquiv, kw_ofTau_latticeEquivProd_symm_apply]
-
   have hstep : ∀ p : ℤ × ℤ,
       ((↑p.1 * (τ : ℂ) + ↑p.2) ^ k)⁻¹ = eisSummand k ((finTwoArrowEquiv ℤ).symm p) τ := by
     intro p
@@ -366,7 +359,6 @@ theorem kw_G_ofTau_eq {k : ℕ} (hk : 3 ≤ k) (τ : ℍ) :
   simp only [hstep]
   rw [(finTwoArrowEquiv ℤ).symm.tsum_eq (f := fun v => eisSummand (k : ℤ) v τ),
     tsum_eisSummand_eq_riemannZeta_mul_eisensteinSeries hk τ]
-
   have hE : (E hk : ℍ → ℂ) τ = (1 / 2 : ℂ) * eisensteinSeries (N := 1) 0 k τ := rfl
   rw [hE]; ring
 
@@ -376,7 +368,6 @@ p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
 namespace ModularCurve
 
 theorem kw_riemannZeta_six : riemannZeta 6 = (π : ℂ) ^ 6 / 945 := by
-
   have hb5 : bernoulli' 5 = 0 := by
     have : Nat.choose 5 2 = 10 := by decide
     rw [bernoulli'_def]
@@ -388,7 +379,6 @@ theorem kw_riemannZeta_six : riemannZeta 6 = (π : ℂ) ^ 6 / 945 := by
     norm_num [Finset.sum_range_succ, hb5, h62, h64]
   have hb : bernoulli 6 = 1 / 42 := by
     rw [bernoulli_eq_bernoulli'_of_ne_one (by norm_num), hb6]
-
   have h := riemannZeta_two_mul_nat (k := 3) (by norm_num)
   simp only [show 2 * 3 = 6 from rfl, Nat.cast_ofNat, hb,
     show (6 : ℕ).factorial = 720 from by decide] at h
@@ -905,9 +895,7 @@ theorem kw_jLattice_ofTau_eq_jH {c' : ℂ} (hc' : c' ≠ 0)
 
 theorem kw_JSurjective : PeriodPair.JSurjective := by
   intro c₀
-
   obtain ⟨c', hc', hpt, -⟩ := kw_exists_smul_discriminant_eq_E4cube_sub_E6sq
-
   obtain ⟨τ, hτ⟩ := kwQepw115c_jH_surjective (c₀ * c' / 1728)
   refine ⟨ofTau τ, kw_discriminantNeZero_ofTau τ, ?_⟩
   rw [kw_jLattice_ofTau_eq_jH hc' hpt τ, hτ]

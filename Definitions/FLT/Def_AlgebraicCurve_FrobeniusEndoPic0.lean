@@ -60,7 +60,6 @@ theorem IsFrobeniusEndo.ramificationIndexAlong_eq (h : IsFrobeniusEndo ℓ φ)
     Place.ramificationIndexAlong φ w = ℓ := by
   let := algebraAlong φ
   show w.ramificationIndex F = ℓ
-
   obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible w.toValuationSubring
   have hπF : (π : F) ≠ 0 := by
     simpa [ne_eq, ZeroMemClass.coe_eq_zero] using hπ.ne_zero
@@ -74,7 +73,6 @@ theorem IsFrobeniusEndo.ramificationIndexAlong_eq (h : IsFrobeniusEndo ℓ φ)
     rw [hy, w.ord_pow, w.ord_coe_irreducible hπ, mul_one]
   have hℓmem : ℓ ∈ {n : ℕ | 0 < n ∧ ∃ f : F, f ≠ 0 ∧ w.ord (algebraMap F F f) = n} :=
     ⟨Nat.pos_of_ne_zero hℓ, y, hy0, hyord⟩
-
   have hlb : ∀ n ∈ {n : ℕ | 0 < n ∧ ∃ f : F, f ≠ 0 ∧ w.ord (algebraMap F F f) = n}, ℓ ≤ n := by
     rintro n ⟨hn, f, hf, hford⟩
     obtain ⟨x, hx⟩ := h.mem_range_pow f
@@ -147,9 +145,7 @@ theorem IsFrobeniusEndo.normFormulaAlong (h : IsFrobeniusEndo ℓ φ)
   have := isIntegral_along φ hφ
   intro f hf D hD v
   classical
-
   obtain ⟨w₀, hw₀⟩ := hsurj v
-
   rw [Divisor.pushforward_apply]
   have hw₀' : Place.restrict F w₀ = v := hw₀
   have hf1' : (Place.inertiaDeg F w₀ : ℤ) = 1 := by
@@ -167,7 +163,6 @@ theorem IsFrobeniusEndo.normFormulaAlong (h : IsFrobeniusEndo ℓ φ)
     · intro hw₀mem
       rw [Finsupp.notMem_support_iff.mp hw₀mem, zero_mul, ite_self]
   rw [hcollapse, hD w₀, hf1', mul_one]
-
   rw [h.norm_eq_frobNorm hrank f]
   rw [show v = w₀.restrictAlong φ hφ from hw₀.symm]
   exact (h.ord_restrictAlong_frobNorm hℓ hφ w₀ f).symm

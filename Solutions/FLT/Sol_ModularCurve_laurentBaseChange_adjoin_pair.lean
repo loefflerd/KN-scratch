@@ -288,8 +288,7 @@ theorem roots_prime_at_slot_nodup (N : ℕ) [NeZero N] (ζ : Kˣ) (hζ : IsPrimi
   have hζp : IsPrimitiveRoot ((ζ ^ (N / p) : Kˣ) : K) p := isPrimitiveRoot_pow_div hζ hpN
   rw [Multiset.nodup_cons]
   constructor
-  ·
-    intro hmem
+  · intro hmem
     obtain ⟨b, hb, heq⟩ := Multiset.mem_map.mp hmem
     have h := (TS_injective (K := K) (e := e) (e' := p * (p * e))
       (u := u * ζ ^ (b * (N / p))) (u' := u ^ (p * p)) heq).1
@@ -298,8 +297,7 @@ theorem roots_prime_at_slot_nodup (N : ℕ) [NeZero N] (ζ : Kˣ) (hζ : IsPrimi
     have hmono : 2 * (2 * e) ≤ p * (p * e) := Nat.mul_le_mul hp2 (Nat.mul_le_mul hp2 le_rfl)
     rw [← h] at hmono
     omega
-  ·
-    refine Multiset.Nodup.map_on ?_ (Multiset.nodup_range p)
+  · refine Multiset.Nodup.map_on ?_ (Multiset.nodup_range p)
     intro b hb b' hb' heq
     rw [Multiset.mem_range] at hb hb'
     have h := (TS_injective (K := K) (e := e) (e' := e)
@@ -458,7 +456,6 @@ private theorem ModularCurve.heckeRoof_adjoin_range_union_eq_top
   set A : Subalgebra L (laurentBaseChange L (modularFunctionFieldFull M)) :=
     Algebra.adjoin L
       (Set.range (towerSubstBar L (N * ℓ') ℓ h₂) ∪ Set.range (towerInclBar L h₁)) with hA
-
   have hmemC : ∀ (P d : ℕ) [NeZero P] [NeZero d], d ∣ P →
       jqNModC L d ∈ laurentBaseChange L (modularFunctionFieldFull P) := by
     intro P d _ _ hd
@@ -470,7 +467,6 @@ private theorem ModularCurve.heckeRoof_adjoin_range_union_eq_top
     have h := hmemC P 1 (one_dvd P)
     rwa [jqNModC_one] at h
   have hNℓ'M : N * ℓ' ∣ M := ⟨ℓ, by rw [hM]; ring⟩
-
   set xM : laurentBaseChange L (modularFunctionFieldFull M) :=
     ⟨jqNModC L M, hmemC M M dvd_rfl⟩ with hxM
   have hxMsubst : xM ∈ Set.range (towerSubstBar L (N * ℓ') ℓ h₂) := by
@@ -480,12 +476,10 @@ private theorem ModularCurve.heckeRoof_adjoin_range_union_eq_top
     rw [jqNModC, qExpand_qExpand]
     show jqNModC L (ℓ * (N * ℓ')) = jqNModC L M
     exact ModularCurve.W1.jqNModC_congr (by rw [hM]; ring)
-
   set E₂s : IntermediateField L (LaurentSeries L) :=
     laurentBaseChange L (modularFunctionFieldFull (N * ℓ)) with hE₂s
   have hle : E₂s ≤ laurentBaseChange L (modularFunctionFieldFull M) :=
     laurentBaseChange_mono L (full_degeneracy_le h₁)
-
   have hunion : IntermediateField.adjoin L ((E₂s : Set (LaurentSeries L)) ∪ {jqNModC L M}) =
       laurentBaseChange L (modularFunctionFieldFull M) := by
     refine le_antisymm ?_ ?_
@@ -502,11 +496,9 @@ private theorem ModularCurve.heckeRoof_adjoin_range_union_eq_top
       · rw [Set.mem_singleton_iff] at hy
         subst hy
         exact Set.mem_union_right _ rfl
-
   have hint : IsIntegral E₂s (jqNModC L M) := by
     have h := isIntegral_jqNModC_mul E₂s data' (N * ℓ) (hmemC (N * ℓ) (N * ℓ) dvd_rfl)
     rwa [ModularCurve.W1.jqNModC_congr (show N * ℓ * ℓ' = M from hM.symm)] at h
-
   have hring : Algebra.adjoin E₂s ({jqNModC L M} : Set (LaurentSeries L)) =
       (IntermediateField.adjoin E₂s ({jqNModC L M} : Set (LaurentSeries L))).toSubalgebra :=
     (IntermediateField.adjoin_simple_toSubalgebra_of_isAlgebraic hint.isAlgebraic).symm
@@ -521,7 +513,6 @@ private theorem ModularCurve.heckeRoof_adjoin_range_union_eq_top
     rw [hring] at hw
     rw [← hcarrier]
     exact hw
-
   have haux : ∀ y (hy : y ∈ Algebra.adjoin E₂s ({jqNModC L M} : Set (LaurentSeries L)))
       (hy' : y ∈ laurentBaseChange L (modularFunctionFieldFull M)),
       (⟨y, hy'⟩ : laurentBaseChange L (modularFunctionFieldFull M)) ∈ A := by
@@ -555,7 +546,6 @@ private theorem ModularCurve.heckeRoof_adjoin_range_union_eq_top
           ⟨u, hu'⟩ * ⟨v, hv'⟩ := rfl
       rw [hsplit]
       exact mul_mem (ihu hu') (ihv hv')
-
   rw [eq_top_iff]
   rintro ⟨z, hz⟩ -
   have hz' : z ∈ Algebra.adjoin E₂s ({jqNModC L M} : Set (LaurentSeries L)) := by
@@ -574,7 +564,6 @@ p2m_open "ModularCurve~coeffEmb_qExpand" in open _root_.P2MW.S_ModularCurve_laur
 
 theorem solution (L : Type*) [Field L] [Algebra ℚ L] (M : ℕ) [NeZero M] (hgenQ : FunctionFieldGeneration M) : laurentBaseChange L (modularFunctionFieldFull M) = IntermediateField.adjoin L {jqModC L, jqNModC L M} :=
   ModularCurve.laurentBaseChange_adjoin_pair L M hgenQ
-
 
 end S_ModularCurve_laurentBaseChange_adjoin_pair
 end P2MW

@@ -595,7 +595,6 @@ open _root_.ModularCurve _root_.P2MW.S_ModularCurve_jqNModC_prime_not_mem_adjoin
 theorem solution {K : Type*} [Field K] [CharZero K] (p : ℕ) [hp : Fact (Nat.Prime p)] : jqNModC K p ∉ IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K)) :=
   ModularCurve.jqNModC_prime_not_mem_adjoin_of_charZero p
 
-
 end S_ModularCurve_jqNModC_prime_not_mem_adjoin_of_charZero
 end P2MW
 export P2MW.S_ModularCurve_jqNModC_prime_not_mem_adjoin_of_charZero (solution)

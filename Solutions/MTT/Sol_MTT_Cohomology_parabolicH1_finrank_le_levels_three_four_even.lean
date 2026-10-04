@@ -44,7 +44,6 @@ theorem mem_sup_neg_one_iff (H : Subgroup SL(2, ℤ)) (g : SL(2, ℤ)) :
   · have hm := Subgroup.mul_mem_sup h (Subgroup.mem_zpowers (-1 : SL(2, ℤ)))
     simpa using hm
 
-
 end MTT.Cohomology
 
 /-! # Retraction after adjoining a disjoint central sign -/
@@ -179,7 +178,6 @@ theorem exists_cusp_fixed_of_trace_sq (g : SpecialLinearGroup (Fin 2) ℤ)
     field_simp
     linear_combination -htrace + 4 * hdet
 
-
 end MTT.Cohomology
 
 /-! # Comparing the MTT and existing binary-form coefficient cohomology models -/
@@ -201,7 +199,6 @@ theorem gammaOneRep_apply_eq_binaryCoeffRep (N n : ℕ)
     (g : CongruenceSubgroup.Gamma1 N) (P : gammaOneRep N n) :
     (gammaOneRep N n).ρ g P = binaryCoeffRep N n g P :=
   Subtype.ext (act_eq_binarySubst g.val.val P.val)
-
 
 end MTT.Cohomology
 
@@ -257,7 +254,6 @@ theorem act_neg_one_of_homogeneous {R : Type*} [CommRing R] {n : ℕ}
     fin_cases i <;> simp [Matrix.one_apply]
   rw [hvars]
   exact bind_smul_X_of_homogeneous hP (-1)
-
 
 end MTT.Cohomology
 
@@ -443,7 +439,6 @@ theorem gammaZero_binaryCoeffH1_dimension (N n : ℕ) [NeZero N] :
     exact (congrArg Cardinal.toNat hr).symm
   rw [LinearMap.finrank_range_of_inj hf, hgr] at hd
   omega
-
 
 end MTT.Cohomology
 

@@ -72,8 +72,7 @@ theorem exists_aeval_div_aeval_eq (t : K) (ht : t ≠ 0) :
     intro p r hr
     by_cases hp0 : p.coeff 0 = 0
     · by_cases hr0 : r.coeff 0 = 0
-      ·
-        have hp' : aeval t p = t * aeval t p.divX := by
+      · have hp' : aeval t p = t * aeval t p.divX := by
           conv_lhs => rw [← Polynomial.divX_mul_X_add p]
           rw [hp0, map_zero, add_zero, map_mul, aeval_X, mul_comm]
         have hr' : aeval t r = t * aeval t r.divX := by
@@ -103,7 +102,6 @@ theorem valinf_draft (M : ℕ) [NeZero M]
       c = aeval (algebraMap (ModularCurve.LevelN.ring M) K (ModularCurve.LevelN.jGen M))⁻¹ p /
         aeval (algebraMap (ModularCurve.LevelN.ring M) K (ModularCurve.LevelN.jGen M))⁻¹ q := by
   set jK := algebraMap (ModularCurve.LevelN.ring M) K (ModularCurve.LevelN.jGen M) with hjK
-
   have hcoeff : (E jK).coeff (-(M : ℤ)) = 1 := by
     rw [hEj, show (-(M : ℤ)) = (M : ℤ) * (-1) by ring, ModularCurve.qExpand_coeff_mul,
       ModularCurve.jqModC]
@@ -125,7 +123,6 @@ theorem valinf_draft (M : ℕ) [NeZero M]
     intro h0; rw [h0, map_zero, map_zero] at hvj; exact not_lt_of_ge zero_le_one hvj
   have hvT : Valued.v (E jK⁻¹) < 1 := by
     rw [map_inv₀, map_inv₀]; exact inv_lt_one_of_one_lt₀ hvj
-
   have hk : ∀ a : ℂ, Valued.v (algebraMap ℂ (LaurentSeries ℂ) a) ≤ 1 := by
     intro a
     rw [LaurentSeries.val_le_one_iff_eq_coe]
@@ -138,7 +135,6 @@ theorem valinf_draft (M : ℕ) [NeZero M]
     have hpos : 0 < Valued.v (algebraMap ℂ (LaurentSeries ℂ) a) := by
       rw [Valuation.pos_iff]; exact (_root_.map_ne_zero _).mpr ha
     exact (inv_le_one₀ hpos).mp h
-
   have hc' : c ∈ ℂ⟮jK⁻¹⟯ := by
     have hle : ℂ⟮jK⟯ ≤ ℂ⟮jK⁻¹⟯ := by
       rw [IntermediateField.adjoin_simple_le_iff]
@@ -146,18 +142,14 @@ theorem valinf_draft (M : ℕ) [NeZero M]
       rwa [inv_inv] at this
     exact hle hc
   obtain ⟨p₀, r₀, hc₀⟩ := (IntermediateField.mem_adjoin_simple_iff ℂ c).mp hc'
-
   obtain ⟨p, r, hpr, hcase⟩ :=
     N3Prep.exists_aeval_div_aeval_eq jK⁻¹ (inv_ne_zero hjK0) r₀.natDegree p₀ r₀ le_rfl
   rw [hpr] at hc₀
-
   rcases hcase with hr | hp | hr
-  ·
-    refine ⟨0, 1, by simp, ?_⟩
+  · refine ⟨0, 1, by simp, ?_⟩
     rw [hc₀, hr]; simp
   · by_cases hr0 : r.coeff 0 = 0
-    ·
-      by_cases hrz : aeval jK⁻¹ r = 0
+    · by_cases hrz : aeval jK⁻¹ r = 0
       · refine ⟨0, 1, by simp, ?_⟩
         rw [hc₀, hrz]; simp
       · exfalso
@@ -230,7 +222,6 @@ theorem solution
           aeval (algebraMap (ModularCurve.LevelN.ring M) K (ModularCurve.LevelN.jGen M))⁻¹ p /
             aeval (algebraMap (ModularCurve.LevelN.ring M) K (ModularCurve.LevelN.jGen M))⁻¹ q := by
   classical
-
   have : σ.ker.FiniteIndex := by
     rw [hker]; exact Subgroup.finiteIndex_of_le le_sup_left
   have : Finite σ.range :=

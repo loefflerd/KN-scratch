@@ -359,13 +359,11 @@ theorem natCard_normalized_algHom_eq_toNat_ord
     (hS : ∀ w, w ∈ S ↔ 0 < w.ord (t - algebraMap K F c))
     (hsum : ∑ w ∈ S, w.ord (t - algebraMap K F c) =
       Module.finrank (IntermediateField.adjoin K ({t} : Set F)) F)
-
     (hP1 : ∀ w : Place K F, 0 < w.ord (t - algebraMap K F c) →
       ∃ φ' : F →ₐ[K] LaurentSeries K,
         φ' (t - algebraMap K F c) =
           HahnSeries.single (((w.ord (t - algebraMap K F c)).toNat : ℤ)) 1 ∧
         ∀ x : F, (φ' x).order = w.ord x)
-
     (w : Place K F) (hw : 0 < w.ord (t - algebraMap K F c)) :
     Nat.card {ψ : F →ₐ[K] HahnSeries ℚ K //
         ψ t = HahnSeries.C c + HahnSeries.single (1 : ℚ) 1 ∧
@@ -384,7 +382,6 @@ theorem natCard_normalized_algHom_eq_toNat_ord
       (fun a b hab => Subtype.ext (by
         have := congrArg Subtype.val hab
         simpa using this))
-
   have hlow : ∀ v ∈ S, (v.ord (t - algebraMap K F c)).toNat ≤
       Nat.card {ψ : F →ₐ[K] HahnSeries ℚ K //
         ψ t = HahnSeries.C c + HahnSeries.single (1 : ℚ) 1 ∧
@@ -438,7 +435,6 @@ theorem natCard_normalized_algHom_eq_toNat_ord
     have hfe : Nat.card (Fin e) = e := by simp
     rw [hfe] at hle
     exact hle
-
   have hup : ∑ v ∈ S, Nat.card {ψ : F →ₐ[K] HahnSeries ℚ K //
       ψ t = HahnSeries.C c + HahnSeries.single (1 : ℚ) 1 ∧
       ∃ g : ℚ, 0 < g ∧ ∀ x, (v.ord x : ℚ) * g = (ψ x).order} ≤
@@ -472,7 +468,6 @@ theorem natCard_normalized_algHom_eq_toNat_ord
       subst hveq
       rfl
     exact (Nat.card_le_card_of_injective _ hinj2).trans hcardAll
-
   have hsumn : ∑ v ∈ S, (v.ord (t - algebraMap K F c)).toNat =
       Module.finrank (IntermediateField.adjoin K ({t} : Set F)) F := by
     have hcast : ((∑ v ∈ S, (v.ord (t - algebraMap K F c)).toNat : ℕ) : ℤ) =
@@ -486,7 +481,6 @@ theorem natCard_normalized_algHom_eq_toNat_ord
         ((Module.finrank (IntermediateField.adjoin K ({t} : Set F)) F : ℕ) : ℤ) := by
       rw [hcast, hsum]
     exact_mod_cast h2
-
   have hforce : ∀ v ∈ S, (v.ord (t - algebraMap K F c)).toNat =
       Nat.card {ψ : F →ₐ[K] HahnSeries ℚ K //
         ψ t = HahnSeries.C c + HahnSeries.single (1 : ℚ) 1 ∧
@@ -512,7 +506,6 @@ private theorem natCard_normalized_algHom_hahnSeries_jBar_sub_eq_toNat_ord (N : 
         (IntermediateField.adjoin (AlgebraicClosure ℚ)
           ({jBar N} : Set ↥(modularFunctionFieldBar N)))
         ↥(modularFunctionFieldBar N))
-
     (hP1 : ∀ w : Place (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N),
       0 < w.ord (jBar N - algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) j₀) →
       ∃ φ' : ↥(modularFunctionFieldBar N) →ₐ[AlgebraicClosure ℚ]
@@ -521,7 +514,6 @@ private theorem natCard_normalized_algHom_hahnSeries_jBar_sub_eq_toNat_ord (N : 
           HahnSeries.single (((w.ord (jBar N - algebraMap (AlgebraicClosure ℚ)
             (modularFunctionFieldBar N) j₀)).toNat : ℤ)) 1 ∧
         ∀ x, (φ' x).order = w.ord x)
-
     :
     ∀ w : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N),
       0 < w.ord (jBar N - algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) j₀) →
@@ -553,7 +545,6 @@ theorem solution (N : ℕ) [NeZero N]
         (IntermediateField.adjoin (AlgebraicClosure ℚ)
           ({jBar N} : Set ↥(modularFunctionFieldBar N)))
         ↥(modularFunctionFieldBar N))
-
     (hP1 : ∀ w : Place (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N),
       0 < w.ord (jBar N - algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) j₀) →
       ∃ φ' : ↥(modularFunctionFieldBar N) →ₐ[AlgebraicClosure ℚ]
@@ -562,7 +553,6 @@ theorem solution (N : ℕ) [NeZero N]
           HahnSeries.single (((w.ord (jBar N - algebraMap (AlgebraicClosure ℚ)
             (modularFunctionFieldBar N) j₀)).toNat : ℤ)) 1 ∧
         ∀ x, (φ' x).order = w.ord x)
-
     :
     ∀ w : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N),
       0 < w.ord (jBar N - algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) j₀) →
@@ -572,7 +562,6 @@ theorem solution (N : ℕ) [NeZero N]
         ∃ g : ℚ, 0 < g ∧ ∀ x, (w.ord x : ℚ) * g = (ψ x).order} =
       (w.ord (jBar N - algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) j₀)).toNat :=
   B2Peo.natCard_normalized_algHom_hahnSeries_jBar_sub_eq_toNat_ord N j₀ S hS hsum hP1
-
 
 end S_ModularCurve_natCard_normalized_algHom_hahnSeries_jBar_sub_eq_toNat_ord
 end P2MW

@@ -234,11 +234,9 @@ theorem complexCase (E E' : WeierstrassCurve.Affine ℂ) [E.IsElliptic] [E'.IsEl
     (hcard : Nat.card (pointMapOfPushforward ι hι hfin hN).ker = N)
     (data : ModularCurve.ModularPolynomialData N) :
     (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom ℂ) E.j)).eval E'.j = 0 := by
-
   obtain ⟨L, C, hE⟩ := PeriodPair.exists_variableChange_smul_weierstrassCurve_eq (E : WeierstrassCurve ℂ)
   obtain ⟨L', C', hE'⟩ := PeriodPair.exists_variableChange_smul_weierstrassCurve_eq (E' : WeierstrassCurve ℂ)
   subst hE hE'
-
   have : IsDedekindDomain L.weierstrassCurve.toAffine.CoordinateRing :=
     WeierstrassCurve.Affine.CoordinateRing.isDedekindDomain L.weierstrassCurve
   have : IsDedekindDomain L'.weierstrassCurve.toAffine.CoordinateRing :=
@@ -259,14 +257,11 @@ theorem complexCase (E E' : WeierstrassCurve.Affine ℂ) [E.IsElliptic] [E'.IsEl
   have := haL
   have := hcL'
   have := haL'
-
   obtain ⟨eE⟩ := WeierstrassCurve.nonempty_functionField_algEquiv_of_variableChange L.weierstrassCurve C
   obtain ⟨eE'⟩ := WeierstrassCurve.nonempty_functionField_algEquiv_of_variableChange L'.weierstrassCurve C'
-
   have hι'' := conjSeam_isIntegral eE eE' ι hι
   have hfin'' := conjSeam_finiteAlong eE eE' ι hfin
   have hN'' : NormFormulaAlong ℂ (conjSeam eE eE' ι) hfin'' := normFormulaAlong_of_charZero _ hfin''
-
   obtain ⟨hcyc'', hcard''⟩ :=
     WeierstrassCurve.Affine.isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj
       (C • L.weierstrassCurve).toAffine (C' • L'.weierstrassCurve).toAffine
@@ -274,15 +269,12 @@ theorem complexCase (E E' : WeierstrassCurve.Affine ℂ) [E.IsElliptic] [E'.IsEl
       ι hι hfin hN eE eE' (conjSeam eE eE' ι) (fun x => by
         rw [conjSeam_apply, AlgEquiv.apply_symm_apply]) hι'' hfin'' hN'' hcyc
   rw [hcard] at hcard''
-
   obtain ⟨β, hsub, hidx, hcycq⟩ :=
     PeriodPair.exists_scale_lattice_subset_and_sublatticeIndex_eq_and_isAddCyclic_sublatticeQuotient
       L L' (conjSeam eE eE' ι) hι'' hfin'' hN'' N hcyc'' hcard''
-
   have hroot := ModularCurve.ModularPolynomialData.eval_jLattice_eq_zero_of_isAddCyclic
     N data L (L'.scale β) hsub hidx hcycq
   rw [PeriodPair.jLattice_scale, jLattice_eq_j, jLattice_eq_j] at hroot
-
   have hj : WeierstrassCurve.j (C • L.weierstrassCurve) = L.weierstrassCurve.j :=
     WeierstrassCurve.variableChange_j _ _
   have hj' : WeierstrassCurve.j (C' • L'.weierstrassCurve) = L'.weierstrassCurve.j :=
@@ -325,7 +317,6 @@ theorem solution0
   have : CharZero (AlgebraicClosure K₀) :=
     charZero_of_injective_algebraMap (algebraMap K₀ (AlgebraicClosure K₀)).injective
   have : DecidableEq (AlgebraicClosure K₀) := Classical.decEq _
-
   have : IsDedekindDomain (E₀.baseChange (AlgebraicClosure K₀)).toAffine.CoordinateRing :=
     WeierstrassCurve.Affine.CoordinateRing.isDedekindDomain _
   have : IsDedekindDomain (E₀'.baseChange (AlgebraicClosure K₀)).toAffine.CoordinateRing :=
@@ -346,7 +337,6 @@ theorem solution0
   have := a₂
   have hN₀ : NormFormulaAlong (AlgebraicClosure K₀) ι₀ hfin₀ := normFormulaAlong_of_charZero ι₀ hfin₀
   obtain ⟨hcyc₀, hcard₀⟩ := H hN₀
-
   obtain ⟨φ₀⟩ := Field.nonempty_ringHom_complex_of_countable K₀
   let : Algebra K₀ ℂ := φ₀.toAlgebra
   have : Module.IsTorsionFree K₀ ℂ :=
@@ -356,7 +346,6 @@ theorem solution0
   let σ : AlgebraicClosure K₀ →ₐ[K₀] ℂ := IsAlgClosed.lift
   have : (E₀.baseChange ℂ).IsElliptic := isElliptic_map E₀ _
   have : (E₀'.baseChange ℂ).IsElliptic := isElliptic_map E₀' _
-
   have : IsDedekindDomain (E₀.baseChange ℂ).toAffine.CoordinateRing :=
     WeierstrassCurve.Affine.CoordinateRing.isDedekindDomain _
   have : IsDedekindDomain (E₀'.baseChange ℂ).toAffine.CoordinateRing :=
@@ -375,22 +364,18 @@ theorem solution0
   have := a₃
   have := c₄
   have := a₄
-
   obtain ⟨ι₁, hι₁, hfin₁, H₁⟩ :=
     WeierstrassCurve.Affine.exists_algHom_baseChange_of_isAddCyclic_ker_pointMapOfPushforward
       K₀ E₀ E₀' (AlgebraicClosure K₀) ℂ σ ι₀ hι₀ hfin₀ hN₀ N hcyc₀ hcard₀
   have hN₁ : NormFormulaAlong ℂ ι₁ hfin₁ := normFormulaAlong_of_charZero ι₁ hfin₁
   obtain ⟨hcyc₁, hcard₁⟩ := H₁ hN₁
-
   have hC := complexCase (E₀.baseChange ℂ).toAffine (E₀'.baseChange ℂ).toAffine
     ι₁ hι₁ hfin₁ hN₁ N hcyc₁ hcard₁ data
-
   have hjC : WeierstrassCurve.j (E₀.baseChange ℂ).toAffine = φ₀ E₀.j := E₀.map_j φ₀
   have hjC' : WeierstrassCurve.j (E₀'.baseChange ℂ).toAffine = φ₀ E₀'.j := E₀'.map_j φ₀
   rw [hjC, hjC', ← map_eval_map_Φ] at hC
   have hK₀ : (data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom K₀) E₀.j)).eval E₀'.j = 0 :=
     φ₀.injective (hC.trans (map_zero φ₀).symm)
-
   subst hE hE'
   have hjK : WeierstrassCurve.j (show WeierstrassCurve.Affine K from E₀.map (algebraMap K₀ K)) =
       algebraMap K₀ K E₀.j := E₀.map_j _

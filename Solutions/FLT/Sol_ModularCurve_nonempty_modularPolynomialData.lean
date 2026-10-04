@@ -101,8 +101,7 @@ theorem main : Nonempty (ModularPolynomialData N) := by
   have : IsFractionRing (Polynomial ℤ) K := isFractionRing_intPoly_K
   have hint := isIntegral_jN N
   refine ⟨⟨minpoly (Polynomial ℤ) (jN N), minpoly.monic hint, ?_, ?_⟩⟩
-  ·
-    have hintK : IsIntegral K (jN N) := hint.tower_top
+  · have hintK : IsIntegral K (jN N) := hint.tower_top
     have h1 : minpoly K (jN N) = (minpoly (Polynomial ℤ) (jN N)).map (algebraMap (Polynomial ℤ) K) :=
       minpoly.isIntegrallyClosed_eq_field_fractions' K hint
     have h2 : (minpoly (Polynomial ℤ) (jN N)).natDegree = (minpoly K (jN N)).natDegree := by
@@ -112,8 +111,7 @@ theorem main : Nonempty (ModularPolynomialData N) := by
       minpoly.algHom_eq _ (IsScalarTower.toAlgHom K (modularFunctionField N) LS).toRingHom.injective (jN N)
     rw [h2, ← hmin, ← IntermediateField.adjoin.finrank hintK']
     exact ModularCurve.finrank_adjoin_jqN_eq_dedekindPsi N
-  ·
-    have h := minpoly.aeval (Polynomial ℤ) (jN N)
+  · have h := minpoly.aeval (Polynomial ℤ) (jN N)
     rw [Polynomial.aeval_def] at h
     have := congrArg (algebraMap (modularFunctionField N) LS) h
     rw [Polynomial.hom_eval₂, hcomp, map_zero] at this

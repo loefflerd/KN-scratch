@@ -167,7 +167,6 @@ theorem res_injective [Γ'.FiniteIndex] (hle : Γ' ≤ Γ) : Function.Injective 
   have hw0 : res hle w = 0 := by rw [hw, map_sub, hxy, sub_self]
   apply Subtype.ext
   refine AddMonoidHom.ext fun a => ?_
-
   obtain ⟨n, hn, -, hmem⟩ :=
     Subgroup.exists_pow_mem_of_index_ne_zero (Subgroup.FiniteIndex.index_ne_zero (H := Γ'))
       ((Additive.toMul a : Γ) : SL(2, ℤ))
@@ -218,7 +217,6 @@ theorem smul_coe_eq (δ : Γ) :
     ConjAct.ofConjAct_toConjAct]
   constructor
   · rintro ⟨γ, hγ, hA⟩
-
     refine ⟨(δ : SL(2, ℤ))⁻¹ * γ * (δ : SL(2, ℤ)), conj_mem' hle hn hγ δ, ?_⟩
     have hA' : A = (Matrix.SpecialLinearGroup.mapGL ℝ (δ : SL(2, ℤ)))⁻¹ *
         Matrix.SpecialLinearGroup.mapGL ℝ γ * Matrix.SpecialLinearGroup.mapGL ℝ (δ : SL(2, ℤ)) := by
@@ -280,16 +278,13 @@ theorem hasEquivariantPrimitiveOf_act (δ : Γ) (g : CuspForm Γ' 2) {G : ℍ �
   obtain ⟨hder, _, hequiv, hlim⟩ := hG
   obtain ⟨L, hL⟩ := hlim (δ : SL(2, ℤ))
   refine ⟨L, ?_, ?_, ?_, ?_⟩
-  ·
-    intro τ
+  · intro τ
     have h := (hasDerivAt_comp_smul (G := G) (g := (g : ℍ → ℂ)) hder (δ : SL(2, ℤ)) τ).sub_const L
     exact h
-  ·
-    have : Tendsto (fun w : ℍ => G ((δ : SL(2, ℤ)) • w) - L) atImInfty (𝓝 (L - L)) :=
+  · have : Tendsto (fun w : ℍ => G ((δ : SL(2, ℤ)) • w) - L) atImInfty (𝓝 (L - L)) :=
       hL.sub_const L
     rwa [sub_self] at this
-  ·
-    intro γ
+  · intro γ
     refine ⟨hequiv.period ⟨(δ : SL(2, ℤ)) * γ * (δ : SL(2, ℤ))⁻¹, conj_mem hle hn γ.2 δ⟩, fun z => ?_⟩
     have hz : (δ : SL(2, ℤ)) • ((γ : SL(2, ℤ)) • z) =
         ((δ : SL(2, ℤ)) * γ * (δ : SL(2, ℤ))⁻¹) • ((δ : SL(2, ℤ)) • z) := by
@@ -299,8 +294,7 @@ theorem hasEquivariantPrimitiveOf_act (δ : Γ) (g : CuspForm Γ' 2) {G : ℍ �
     show G ((δ : SL(2, ℤ)) • ((γ : SL(2, ℤ)) • z)) - L - (G ((δ : SL(2, ℤ)) • z) - L) = _
     rw [hz, sub_sub_sub_cancel_right]
     exact hequiv.sub_eq_period ⟨_, conj_mem hle hn γ.2 δ⟩ ((δ : SL(2, ℤ)) • z)
-  ·
-    intro δ₁
+  · intro δ₁
     obtain ⟨L₁, hL₁⟩ := hlim ((δ : SL(2, ℤ)) * δ₁)
     refine ⟨L₁ - L, ?_⟩
     have : (fun w : ℍ => G ((δ : SL(2, ℤ)) • (δ₁ • w)) - L) =
@@ -363,7 +357,6 @@ theorem realPeriodMap_surjective [Γ.FiniteIndex] (hle : Γ' ≤ Γ) (hn : (Γ'.
     Function.Surjective (realPeriodMap Γ) := by
   intro x
   obtain ⟨g, hg⟩ := hbij.2 (res hle x)
-
   have hinv : ∀ δ : Γ, act hle hn δ g = g := by
     intro δ
     apply hbij.1
@@ -378,7 +371,6 @@ theorem realPeriodMap_surjective [Γ.FiniteIndex] (hle : Γ' ≤ Γ) (hn : (Γ'.
       (φ : Additive Γ' →+ ℝ) (Additive.ofMul γ)) hg
     simp only [realPeriodMap_apply, res_apply] at h1 h2
     rw [h1, h2]
-
     have hconj : (⟨(δ : SL(2, ℤ)) * γ * (δ : SL(2, ℤ))⁻¹, hle (conj_mem hle hn γ.2 δ)⟩ : Γ) =
         δ * ⟨(γ : SL(2, ℤ)), hle γ.2⟩ * δ⁻¹ := rfl
     rw [hconj, ofMul_mul, ofMul_mul, ofMul_inv, map_add, map_add, map_neg]

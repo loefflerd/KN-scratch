@@ -33,7 +33,6 @@ theorem N3Prep.exists_apply_eq_apply_smul
   classical
   have : Fintype H := Fintype.ofFinite H
   set Q : K[X] := ∏ h : H, (X - C ((h : K ≃ₐ[F] K) x)) with hQ
-
   have hfix : ∀ i, Q.coeff i ∈ IntermediateField.fixedField H := by
     intro i
     rw [IntermediateField.mem_fixedField_iff]
@@ -45,12 +44,10 @@ theorem N3Prep.exists_apply_eq_apply_smul
         _ _ fun h => rfl
     have := congrArg (fun P : K[X] => P.coeff i) hmap
     simpa only [Polynomial.coeff_map, RingHom.coe_coe] using this
-
   have hmapEE' : Q.map (E : K →+* L) = Q.map (E' : K →+* L) := by
     ext i
     rw [Polynomial.coeff_map, Polynomial.coeff_map, RingHom.coe_coe, RingHom.coe_coe]
     exact hagree _ (hfix i)
-
   have hQx : Q.eval x = 0 := by
     rw [hQ, eval_prod]
     exact Finset.prod_eq_zero (Finset.mem_univ (1 : H)) (by simp)
@@ -59,7 +56,6 @@ theorem N3Prep.exists_apply_eq_apply_smul
       rw [Polynomial.eval₂_hom, hQx, map_zero]
     rw [hmapEE', Polynomial.eval_map]
     simpa only [RingHom.coe_coe] using h0
-
   have hfac : Q.map (E : K →+* L) = ∏ h : H, (X - C (E ((h : K ≃ₐ[F] K) x))) := by
     rw [hQ, Polynomial.map_prod]
     simp only [Polynomial.map_sub, Polynomial.map_X, Polynomial.map_C, RingHom.coe_coe]
@@ -106,7 +102,6 @@ theorem solution
         E (Ψ u) = ModularCurve.qExpand ℂ M (u : LaurentSeries ℂ) := by
   classical
   set jK := algebraMap (ModularCurve.LevelN.ring M) K (ModularCurve.LevelN.jGen M) with hjK
-
   have : Algebra.IsAlgebraic ℚ (AlgebraicClosure ℚ) := AlgebraicClosure.isAlgebraic ℚ
   let ι : AlgebraicClosure ℚ →+* ℂ :=
     (IsAlgClosed.lift (R := ℚ) (S := AlgebraicClosure ℚ) (M := ℂ)).toRingHom
@@ -152,12 +147,10 @@ theorem solution
     show (((AlgEquiv.ofInjectiveField E₉) ((AlgEquiv.ofInjectiveField E₉).symm w)) : LaurentSeries ℂ) = _
     rw [AlgEquiv.apply_symm_apply]
     rfl
-
   have : σ.ker.FiniteIndex := by
     rw [hker]; exact Subgroup.finiteIndex_of_le le_sup_left
   have : Finite σ.range :=
     Finite.of_equiv _ (QuotientGroup.quotientKerEquivRange σ).toEquiv
-
   have hagree : ∀ c ∈ IntermediateField.fixedField σ.range, E c = E₉ c := by
     intro c hc
     rw [hfixed] at hc
@@ -165,7 +158,6 @@ theorem solution
     have key : ∀ (φ : K →ₐ[ℂ] LaurentSeries ℂ) (r : ℂ[X]), φ (aeval jK r) = aeval (φ jK) r :=
       fun φ r => (Polynomial.aeval_algHom_apply φ jK r).symm
     rw [map_div₀, map_div₀, key E, key E, key E₉, key E₉, hEj, hE₉j]
-
   obtain ⟨g, hg⟩ := N3Prep.exists_algHom_comp_eq σ.range E E₉ hagree
   exact ⟨g.comp Ψ₉, fun u => by rw [AlgHom.comp_apply, hg, hΨ₉]⟩
 

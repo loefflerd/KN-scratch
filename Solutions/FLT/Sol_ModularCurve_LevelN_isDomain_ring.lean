@@ -13,14 +13,12 @@ set_option autoImplicit false
 open scoped MatrixGroups
 
 theorem solution (M : ℕ) [NeZero M] : IsDomain (ModularCurve.LevelN.ring M) := by
-
   have hpkg := WLight.levelN_structure_package M PeriodPair.ofTau
     (fun τ => ⟨PeriodPair.ofTau_ω₁ τ, PeriodPair.ofTau_ω₂ τ⟩)
     (ModularCurve.LevelN.wp M) (fun v τ => rfl)
     (ModularCurve.LevelN.fricke M) (fun v τ => rfl)
     ModularCurve.LevelN.jAnalytic (fun τ => rfl)
   obtain ⟨-, -, -, -, -, hdom⟩ := hpkg
-
   have : NoZeroDivisors (ModularCurve.LevelN.ring M) := ⟨fun {a b} h => by
     have h' := hdom (a : UpperHalfPlane → ℂ) (b : UpperHalfPlane → ℂ) a.2 b.2
       (by simpa using congrArg Subtype.val h)

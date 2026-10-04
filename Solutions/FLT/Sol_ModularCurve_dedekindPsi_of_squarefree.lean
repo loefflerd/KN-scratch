@@ -73,7 +73,6 @@ open _root_.ModularCurve _root_.P2MW.S_ModularCurve_dedekindPsi_of_squarefree.Mo
 theorem solution {N : ℕ} (hN : Squarefree N) : dedekindPsi N = ∏ p ∈ N.primeFactors, (p + 1) :=
   ModularCurve.dedekindPsi_of_squarefree hN
 
-
 end S_ModularCurve_dedekindPsi_of_squarefree
 end P2MW
 export P2MW.S_ModularCurve_dedekindPsi_of_squarefree (solution)

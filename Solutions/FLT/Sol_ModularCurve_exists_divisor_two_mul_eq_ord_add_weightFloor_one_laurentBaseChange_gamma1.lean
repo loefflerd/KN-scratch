@@ -64,7 +64,6 @@ theorem solution
             + (if P.ord y < 0 then P.ord y else 0)) := by
   classical
   have := ModularCurve.isCurveOver_laurentBaseChange_qExpFunctionFieldC_gamma1 ℂ M
-
   obtain ⟨W, hW⟩ := AlgebraicCurve.exists_divisor_forall_eq_weightFloor ℂ y 1
   obtain ⟨Dv, hDv⟩ : ∃ Dv : AlgebraicCurve.Divisor ℂ
       ↥(ModularCurve.laurentBaseChange ℂ (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))),
@@ -78,11 +77,9 @@ theorem solution
   simp only [Nat.cast_one, mul_one, one_mul]
   apply Int.two_mul_ediv_two_of_even
   by_cases hP : y ∈ P.toValuationSubring
-  ·
-    exact ModularCurve.even_ord_add_weightFloor_of_mem_toValuationSubring_laurentBaseChange_gamma1 M
+  · exact ModularCurve.even_ord_add_weightFloor_of_mem_toValuationSubring_laurentBaseChange_gamma1 M
       (by omega) y hy w hw v hv P hP
-  ·
-    have h2 := ModularCurve.even_ord_add_ord_of_not_mem_toValuationSubring_laurentBaseChange_gamma1 M hM
+  · have h2 := ModularCurve.even_ord_add_ord_of_not_mem_toValuationSubring_laurentBaseChange_gamma1 M hM
       y hy w hw v hv P hP
     have hy0 : y ≠ 0 := fun h => hP (h ▸ zero_mem _)
     have hneg : P.ord y < 0 := by

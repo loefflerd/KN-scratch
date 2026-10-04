@@ -432,7 +432,6 @@ theorem ν_eq_top_iff (x : K) : ν N K τ₀ x = ⊤ ↔ x = 0 := by
   constructor
   · intro h
     rw [ν, meromorphicOrderAt_eq_top_iff] at h
-
     have hden := eventually_nhdsNE_of_𝓕 (eventually_ne_zero N (den N K x).2 (den_ne_zero N K x))
       (coe_mem_𝕌 τ₀)
     have hnum : ∀ᶠ z in 𝓝[≠] ((τ₀ : ℍ) : ℂ), up (num N K x : ℍ → ℂ) z = 0 := by
@@ -582,13 +581,11 @@ theorem glue_eq {m : Gm N K} {z : ℂ} (hz : z ∈ 𝕌) {g G : ℂ → ℂ} (hg
 theorem glue_eventuallyEq {m : Gm N K} (hm : LocAnalytic N K m) {z : ℂ} (hz : z ∈ 𝕌) {g G : ℂ → ℂ}
     (hg : germ N K g = m) (hG : AnalyticAt ℂ G z) (hgG : g =ᶠ[𝓝[≠] z] G) :
     glue N K m =ᶠ[𝓝 z] G := by
-
   have hp : ∀ᶠ w in 𝓝[≠] z, glue N K m w = G w := by
     filter_upwards [eventually_eventuallyEq_nhds hgG,
       mem_nhdsWithin_of_mem_nhds hG.eventually_analyticAt,
       mem_nhdsWithin_of_mem_nhds (isOpen_𝕌.mem_nhds hz)] with w hw hGw hwU
     exact glue_eq N K hwU hg hGw (hw.filter_mono nhdsWithin_le_nhds)
-
   have h0 : glue N K m z = G z := glue_eq N K hz hg hG hgG
   rw [eventually_nhdsWithin_iff] at hp
   filter_upwards [hp] with w hw
@@ -753,7 +750,6 @@ theorem Ψ_injective : Function.Injective (Ψ N K) := by
   rw [← germ_zero', germ_eq_iff] at hδ
   have hδ' : deriv (real N K π) =ᶠ[𝓝[≠] ((τ₀ : ℍ) : ℂ)] (0 : ℂ → ℂ) :=
     eventually_nhdsNE_of_𝓕 hδ (coe_mem_𝕌 τ₀)
-
   obtain ⟨g, hg, hg0, hπg⟩ :=
     (meromorphicOrderAt_eq_int_iff (meromorphicAt_real N K π (coe_mem_𝕌 τ₀))).mp hn
   obtain ⟨m, hm⟩ := Int.eq_ofNat_of_zero_le (zero_le_one.trans hn1)

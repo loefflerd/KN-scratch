@@ -287,8 +287,7 @@ theorem roots_prime_at_slot_nodup (N : ℕ) [NeZero N] (ζ : Kˣ) (hζ : IsPrimi
   have hζp : IsPrimitiveRoot ((ζ ^ (N / p) : Kˣ) : K) p := isPrimitiveRoot_pow_div hζ hpN
   rw [Multiset.nodup_cons]
   constructor
-  ·
-    intro hmem
+  · intro hmem
     obtain ⟨b, hb, heq⟩ := Multiset.mem_map.mp hmem
     have h := (TS_injective (K := K) (e := e) (e' := p * (p * e))
       (u := u * ζ ^ (b * (N / p))) (u' := u ^ (p * p)) heq).1
@@ -297,8 +296,7 @@ theorem roots_prime_at_slot_nodup (N : ℕ) [NeZero N] (ζ : Kˣ) (hζ : IsPrimi
     have hmono : 2 * (2 * e) ≤ p * (p * e) := Nat.mul_le_mul hp2 (Nat.mul_le_mul hp2 le_rfl)
     rw [← h] at hmono
     omega
-  ·
-    refine Multiset.Nodup.map_on ?_ (Multiset.nodup_range p)
+  · refine Multiset.Nodup.map_on ?_ (Multiset.nodup_range p)
     intro b hb b' hb' heq
     rw [Multiset.mem_range] at hb hb'
     have h := (TS_injective (K := K) (e := e) (e' := e)
@@ -477,8 +475,7 @@ private theorem w1_slot_factor (N a b : ℕ) [NeZero N] [NeZero a] (hN : ¬ IsSq
       (TS K N 1 - TS K (a * a) (ζ ^ (b * a))).leadingCoeff ^ (2 * N) = 1 := by
   have hne : a * a ≠ N := fun h => hN ⟨a, h.symm⟩
   rcases Nat.lt_or_gt_of_ne hne with hlt | hgt
-  ·
-    obtain ⟨hoN, hlN⟩ := w1_order_TS (K := K) N 1
+  · obtain ⟨hoN, hlN⟩ := w1_order_TS (K := K) N 1
     obtain ⟨hoa, _⟩ := w1_order_TS (K := K) (a * a) (ζ ^ (b * a))
     have hord : (TS K N 1).order < (TS K (a * a) (ζ ^ (b * a))).order := by
       rw [hoN, hoa]
@@ -489,8 +486,7 @@ private theorem w1_slot_factor (N a b : ℕ) [NeZero N] [NeZero a] (hN : ¬ IsSq
       rw [hlc, hlN, inv_one, Units.val_one]
     refine ⟨fun h0 => one_ne_zero (α := K) ?_, by rw [hlc1, one_pow]⟩
     rw [← hlc1, h0, HahnSeries.leadingCoeff_eq_zero.mpr rfl]
-  ·
-    obtain ⟨hoN, _⟩ := w1_order_TS (K := K) N 1
+  · obtain ⟨hoN, _⟩ := w1_order_TS (K := K) N 1
     obtain ⟨hoa, hla⟩ := w1_order_TS (K := K) (a * a) (ζ ^ (b * a))
     have hord : (TS K (a * a) (ζ ^ (b * a))).order < (TS K N 1).order := by
       rw [hoN, hoa]
@@ -560,10 +556,8 @@ private theorem w1_diag_lc_pow (N : ℕ) [NeZero N] (hN : ¬ IsSquare N)
   have hζ := cycUnit_spec N
   set f : LaurentSeries ℚ →+* LaurentSeries K := (coeffEmb K).comp (qExpand ℚ N) with hf
   set W : LaurentSeries ℚ := evalAtJ D with hW
-
   have hcensus := minpoly_jqN_map_eq_prod_slots (K := K) N ζ hζ
     (fun d _ _ => ⟨finrank_adjoin_jqN_eq_dedekindPsi d, modularFunctionField_eq_full d⟩)
-
   have hhom : ((((coeffEmb K).comp (qExpand ℚ N)).comp
       (algebraMap ℚ⟮jq⟯ (LaurentSeries ℚ))).comp evalAtJGen) = f.comp evalAtJ := by
     rw [RingHom.comp_assoc, algebraMap_comp_evalAtJGen, hf]
@@ -574,7 +568,6 @@ private theorem w1_diag_lc_pow (N : ℕ) [NeZero N] (hN : ¬ IsSquare N)
           letI : NeZero a := ⟨h⟩; qExpand K (a * a) (qTwist (ζ ^ (b * a)) (coeffEmb K jq)))) := by
     rw [← hcensus, ← w1_toAdjoin_eq_minpoly N data, ModularPolynomialData.toAdjoin,
       Polynomial.map_map, hhom]
-
   have hfjq : f jq = TS K N 1 := iota_jq N
   have hfact : f W = ∏ a ∈ N.divisors, ∏ b ∈ (Finset.range (N / a)).filter
       (fun b => Nat.gcd (Nat.gcd a b) (N / a) = 1),
@@ -588,7 +581,6 @@ private theorem w1_diag_lc_pow (N : ℕ) [NeZero N] (hN : ¬ IsSquare N)
     rw [Polynomial.eval_prod]
     refine Finset.prod_congr rfl fun b _ => ?_
     rw [Polynomial.eval_sub, Polynomial.eval_X, Polynomial.eval_C, hfjq]
-
   have hinner : ∀ a ∈ N.divisors,
       (∏ b ∈ (Finset.range (N / a)).filter (fun b => Nat.gcd (Nat.gcd a b) (N / a) = 1),
         (TS K N 1 - (if h : a = 0 then 0 else
@@ -611,14 +603,12 @@ private theorem w1_diag_lc_pow (N : ℕ) [NeZero N] (hN : ¬ IsSquare N)
     refine ⟨hne, ?_⟩
     rw [hlc, ← Finset.prod_pow]
     exact Finset.prod_eq_one fun b _ => (w1_slot_factor N a b hN ζ hζ).2
-
   obtain ⟨houter_ne, houter_lc⟩ := w1_prod_ne_zero_leadingCoeff (K := K) N.divisors _
     (fun a ha => (hinner a ha).1)
   have hfW_ne : f W ≠ 0 := by rw [hfact]; exact houter_ne
   have hfW_pow : (f W).leadingCoeff ^ (2 * N) = 1 := by
     rw [hfact, houter_lc, ← Finset.prod_pow]
     exact Finset.prod_eq_one fun a ha => (hinner a ha).2
-
   have hW_ne : W ≠ 0 := fun h0 => hfW_ne (by rw [h0, map_zero])
   have hD0 : D ≠ 0 := fun h0 => hW_ne (by rw [hW, h0, map_zero])
   have hEJ : evalAtJ = Polynomial.eval₂RingHom (Int.castRingHom (LaurentSeries ℚ)) jq := by
@@ -652,7 +642,6 @@ private theorem w1_diag_lc_pow (N : ℕ) [NeZero N] (hN : ¬ IsSquare N)
       rw [coeff_jq_pow_of_lt (by omega), smul_zero]
     · intro h
       exact absurd (Finset.mem_range.mpr D.natDegree.lt_succ_self) h
-
   have hPcoeff : ∀ m : ℤ, (f W).coeff ((N : ℤ) * m) = algebraMap ℚ K (W.coeff m) := by
     intro m
     rw [hf, RingHom.comp_apply, coeffEmb_coeff, qExpand_coeff_mul]
@@ -678,7 +667,6 @@ private theorem w1_diag_lc_pow (N : ℕ) [NeZero N] (hN : ¬ IsSquare N)
       · exact hPnd _ hdvd
     obtain ⟨_, hlc_eq⟩ := w1_order_eq hne_at hbelow
     rw [hlc_eq, hcoeff_at]
-
   have hQpow : ((D.leadingCoeff : ℚ)) ^ (2 * N) = 1 := by
     refine (algebraMap ℚ K).injective ?_
     rw [map_pow, map_one, ← hlcD]
@@ -727,7 +715,6 @@ p2m_open "ModularCurve~coeffEmb_qExpand" in open _root_.P2MW.S_ModularCurve_Modu
 
 theorem solution (N : ℕ) [NeZero N] (hN : ¬ IsSquare N) (data : ModularCurve.ModularPolynomialData N) : IsUnit (data.Φ.eval₂ (RingHom.id (Polynomial ℤ)) Polynomial.X).leadingCoeff :=
   ModularCurve.ModularPolynomialData.isUnit_leadingCoeff_diag_of_not_isSquare N hN data
-
 
 end S_ModularCurve_ModularPolynomialData_isUnit_leadingCoeff_diag_of_not_isSquare
 end P2MW

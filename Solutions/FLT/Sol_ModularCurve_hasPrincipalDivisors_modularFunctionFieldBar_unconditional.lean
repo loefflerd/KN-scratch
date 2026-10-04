@@ -19,7 +19,6 @@ theorem solution (M : ℕ) [NeZero M] :
     HasPrincipalDivisors (AlgebraicClosure ℚ) (modularFunctionFieldBar M) :=
   hasPrincipalDivisors_modularFunctionFieldBar modularPolynomialFamily M
 
-
 end S_ModularCurve_hasPrincipalDivisors_modularFunctionFieldBar_unconditional
 end P2MW
 export P2MW.S_ModularCurve_hasPrincipalDivisors_modularFunctionFieldBar_unconditional (solution)

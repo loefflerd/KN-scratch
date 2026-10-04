@@ -930,7 +930,6 @@ include hΓ in
 theorem isIntegral_of_forall_mem_pt (x : CF Γ) (hx : ∀ τ : ℍ, x ∈ (pt hT y hy τ).toValuationSubring) :
     IsIntegral (A y) x := by
   set P := pres hT x with hP
-
   have hb : ∀ τ : ℍ, IsBoundedUnder (· ≤ ·) (𝓝[≠] τ)
       (fun z : ℍ => ‖(P.g : ℍ → ℂ) z / (P.h : ℍ → ℂ) z‖) := by
     intro τ
@@ -958,7 +957,6 @@ theorem exists_pt_eq (P : Place ℂ (CF Γ)) (hP : y ∈ P.toValuationSubring) :
     ∃ τ : ℍ, pt hT y hy τ = P := by
   have := isDedekindDomain_B hT y hy M hΓ
   have := isFractionRing_B hT y hy M hΓ
-
   have eq_of_center_eq : ∀ {Q Q' : Place ℂ (CF Γ)}
       (hQ : ∀ b : B y, algebraMap (B y) (CF Γ) b ∈ Q.toValuationSubring)
       (hQ' : ∀ b : B y, algebraMap (B y) (CF Γ) b ∈ Q'.toValuationSubring),
@@ -969,7 +967,6 @@ theorem exists_pt_eq (P : Place ℂ (CF Γ)) (hP : y ∈ P.toValuationSubring) :
     have hc : Place.centerHeightOneSpectrum (B y) Q hQ = Place.centerHeightOneSpectrum (B y) Q' hQ' :=
       IsDedekindDomain.HeightOneSpectrum.ext h
     rw [hc]
-
   have mem_of_mul_eq : ∀ {Q : Place ℂ (CF Γ)}
       (hQ : ∀ b : B y, algebraMap (B y) (CF Γ) b ∈ Q.toValuationSubring)
       {x : CF Γ} {b s : B y}, s ∉ Place.center (B y) Q hQ →
@@ -996,7 +993,6 @@ theorem exists_pt_eq (P : Place ℂ (CF Γ)) (hP : y ∈ P.toValuationSubring) :
     (Place.centerHeightOneSpectrum (B y) P hwP).isPrime.isMaximal h𝔭0
   obtain ⟨x, hx𝔭, hxB⟩ :=
     FractionalIdeal.exists_notMem_one_of_ne_bot (K := CF Γ) h𝔭0 h𝔭max.ne_top
-
   have hxτ : ∀ τ : ℍ, x ∈ (pt hT y hy τ).toValuationSubring := by
     intro τ
     have hwτ := forall_algebraMap_B_mem y (y_mem_pt hT y hy τ)
@@ -1013,7 +1009,6 @@ theorem exists_pt_eq (P : Place ℂ (CF Γ)) (hP : y ∈ P.toValuationSubring) :
       rwa [inv_mul_cancel₀ (FractionalIdeal.coeIdeal_ne_zero.mpr h𝔭0)] at hmem
     obtain ⟨b, hb⟩ := (FractionalIdeal.mem_one_iff _).mp hxs
     exact mem_of_mul_eq hwτ hsτ hb.symm
-
   have hint' : IsIntegral (A y) x := isIntegral_of_forall_mem_pt hT y hy M hΓ x hxτ
   exact hxB ((FractionalIdeal.mem_one_iff _).mpr ⟨⟨x, (mem_B_iff y).mpr hint'⟩, rfl⟩)
 
@@ -1036,7 +1031,6 @@ theorem ord_sub_le_one (a : ℂ) (ha₀ : a ≠ 0) (ha₁₇₂₈ : a ≠ 1728)
   push Not at hgt
   set u : CF Γ := y - algebraMap ℂ (CF Γ) a with hu
   have hu0 : u ≠ 0 := sub_ne_zero.mpr (y_ne_algebraMap y hy a)
-
   have huP : u ∈ P.toValuationSubring := mem_of_ord_nonneg P (by omega)
   have hyP : y ∈ P.toValuationSubring := by
     have : y = u + algebraMap ℂ (CF Γ) a := by rw [hu]; ring
@@ -1044,10 +1038,8 @@ theorem ord_sub_le_one (a : ℂ) (ha₀ : a ≠ 0) (ha₁₇₂₈ : a ≠ 1728)
     exact P.toValuationSubring.add_mem _ _ huP (P.algebraMap_mem' a)
   obtain ⟨τ₀, hτ₀⟩ := exists_pt_eq hT y hy M hΓ P hyP
   subst hτ₀
-
   have hmu := mu_eq_ee_mul_ord hT y hy τ₀ u hu0
   have he := ee_pos hT y hy τ₀
-
   have hreal : (fun z : ℂ => realizeG (Γ := Γ) (u : LaurentSeries ℂ) (ofComplex z)) =ᶠ[𝓝[≠] (τ₀ : ℂ)]
       fun z : ℂ => jf (ofComplex z) - a := by
     have hcoe : ((u : CF Γ) : LaurentSeries ℂ) =
@@ -1060,7 +1052,6 @@ theorem ord_sub_le_one (a : ℂ) (ha₀ : a ≠ 0) (ha₁₇₂₈ : a ≠ 1728)
     rw [Pi.add_apply, realizeG_y hT y hy, sub_eq_add_neg]
   have hmu' : mu τ₀ u = meromorphicOrderAt (fun z : ℂ => jf (ofComplex z) - a) (τ₀ : ℂ) :=
     meromorphicOrderAt_congr hreal
-
   have hpos : 0 < mu τ₀ u := by
     rw [hmu, ← WithTop.coe_zero, WithTop.coe_lt_coe]
     have : (0 : ℤ) < ee hT y hy τ₀ := by exact_mod_cast he
@@ -1082,7 +1073,6 @@ theorem ord_sub_le_one (a : ℂ) (ha₀ : a ≠ 0) (ha₁₇₂₈ : a ≠ 1728)
     have hlim := tendsto_nhds_unique (hcont.tendsto.mono_left nhdsWithin_le_nhds) htend
     rw [ofComplex_apply] at hlim
     exact sub_eq_zero.mp hlim
-
   have hone : mu τ₀ u = (1 : ℤ) := by
     rw [hmu', ← hja]
     exact meromorphicOrderAt_jf_sub_eq_one (by rw [hja]; exact ha₀) (by rw [hja]; exact ha₁₇₂₈)

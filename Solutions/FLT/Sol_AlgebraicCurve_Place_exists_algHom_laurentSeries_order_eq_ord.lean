@@ -457,7 +457,6 @@ private theorem exists_algHom_laurentSeries_of_irreducible (w : Place K F) (hw :
     {π : w.toValuationSubring} (hπ : Irreducible π) :
     ∃ φ : F →ₐ[K] LaurentSeries K,
       φ (π : F) = HahnSeries.single (1 : ℤ) (1 : K) ∧ ∀ x : F, (φ x).order = w.ord x := by
-
   have hinj : Function.Injective ((HahnSeries.ofPowerSeries ℤ K).comp (expPS w hw hπ)) :=
     (injective_iff_map_eq_zero _).2 fun y hy =>
       by_contra fun hy0 => ofPowerSeries_expPS_ne_zero w hw hπ hy0 hy
@@ -465,18 +464,15 @@ private theorem exists_algHom_laurentSeries_of_irreducible (w : Place K F) (hw :
   have hφ₀ : ∀ y : w.toValuationSubring,
       φ₀ (y : F) = HahnSeries.ofPowerSeries ℤ K (expPS w hw hπ y) :=
     fun y => IsFractionRing.lift_algebraMap hinj y
-
   have hcomm : ∀ c : K, φ₀ (algebraMap K F c) = algebraMap K (LaurentSeries K) c := by
     intro c
     rw [← w.coe_algebraMap c, hφ₀, expPS_algebraMap, HahnSeries.ofPowerSeries_C,
       algebraMap_laurentSeries_eq_single]
     rfl
   refine ⟨{ φ₀ with commutes' := hcomm }, ?_, fun x => ?_⟩
-  ·
-    change φ₀ (π : F) = _
+  · change φ₀ (π : F) = _
     rw [hφ₀, expPS_self, HahnSeries.ofPowerSeries_X]
-  ·
-    change (φ₀ x).order = w.ord x
+  · change (φ₀ x).order = w.ord x
     rcases eq_or_ne x 0 with rfl | hx
     · simp
     obtain ⟨u, hu⟩ := w.exists_unit_mul_zpow hx hπ
@@ -526,7 +522,6 @@ open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_Place_exists_algHom_laur
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (w : Place K F) (hw : w.deg = 1) :
     ∃ φ : F →ₐ[K] LaurentSeries K, ∀ x : F, (φ x).order = w.ord x :=
   AlgebraicCurve.Place.exists_algHom_laurentSeries_order_eq_ord w hw
-
 
 end S_AlgebraicCurve_Place_exists_algHom_laurentSeries_order_eq_ord
 end P2MW

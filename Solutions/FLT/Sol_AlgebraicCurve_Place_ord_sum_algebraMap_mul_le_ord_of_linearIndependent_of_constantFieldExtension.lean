@@ -77,13 +77,11 @@ theorem solution
     rw [v.ord_mul (zpow_ne_zero _ hπ0) (hgj0 j hj), v.ord_zpow, hπord]; ring
   have haj_mem : ∀ j ∈ g.support, (π : F)^(-m) * g j ∈ v.toValuationSubring := fun j hj =>
     (v.mem_iff_ord_nonneg (haj_ne j hj)).mpr (by rw [haj_ord j hj]; linarith [hmle j hj])
-
   have hdig : ∀ j, ∀ hj : j ∈ g.support, ∃ cj : K, ∃ o' : v.toValuationSubring,
       (⟨_, haj_mem j hj⟩ : v.toValuationSubring) =
         algebraMap K v.toValuationSubring cj + π * o' :=
     fun j hj => exists_digit v hπ ⟨_, haj_mem j hj⟩
   choose c o' hco using hdig
-
   have hcj1 : c j₁ hj₁ ≠ 0 := by
     intro hc0
     have heq : (π : F)^(-m) * g j₁ = (π : F) * ((o' j₁ hj₁ : v.toValuationSubring) : F) := by
@@ -97,7 +95,6 @@ theorem solution
     · rw [heq, v.ord_mul hπ0 ho0, hπord] at haj1ord
       have := v.ord_nonneg_of_mem (o' j₁ hj₁).2
       omega
-
   let c' : ι → K := fun j => if hj : j ∈ g.support then c j hj else 0
   have hc'eq : ∀ j (hj : j ∈ g.support), c' j = c j hj := fun j hj => dite_eq_left hj
   let e' : ι → F := fun j => if hj : j ∈ g.support then ((o' j hj : v.toValuationSubring) : F) else 0
@@ -105,23 +102,19 @@ theorem solution
     fun j hj => dite_eq_left hj
   have he'mem : ∀ j ∈ g.support, e' j ∈ v.toValuationSubring := fun j hj =>
     (he'eq j hj) ▸ (o' j hj).2
-
   let d : K' := ∑ j ∈ g.support, c' j • B j
   have hd : d ≠ 0 := by
     intro hd0
     have := linearIndependent_iff'.1 hB g.support c' hd0 j₁ hj₁
     rw [hc'eq j₁ hj₁] at this
     exact hcj1 this
-
   have hcoe : ∀ j (hj : j ∈ g.support), (π:F)^(-m) * g j =
       algebraMap K F (c' j) + (π:F) * (e' j) := by
     intro j hj
     have h := congrArg (Subtype.val (p := (· ∈ v.toValuationSubring))) (hco j hj)
     simp only [AddMemClass.coe_add, MulMemClass.coe_mul, Place.coe_algebraMap] at h
     rw [hc'eq j hj, he'eq j hj]; exact h
-
   let R : F' := ∑ j ∈ g.support, algebraMap K' F' (B j) * algebraMap F F' (e' j)
-
   have hfact : (algebraMap F F' (π:F))^(-m) * Tot =
       algebraMap K' F' d + algebraMap F F' (π:F) * R := by
     rw [hTot, Finset.mul_sum]
@@ -133,7 +126,6 @@ theorem solution
     rw [hcoe j hj, map_add, map_mul, Algebra.smul_def, map_mul,
       ← IsScalarTower.algebraMap_apply K K' F', ← IsScalarTower.algebraMap_apply K F F']
     ring
-
   have hφπ0 : algebraMap F F' (π:F) ≠ 0 := by
     simpa using (algebraMap F F').injective.ne hπ0
   have hφπord : (lift v).ord (algebraMap F F' (π:F)) = 1 := by rw [hlift_ord]; exact hπord
@@ -154,7 +146,6 @@ theorem solution
   have hSmem : S ∈ (lift v).toValuationSubring :=
     add_mem ((lift v).algebraMap_mem' d)
       (mul_mem (((lift v).mem_iff_ord_nonneg hφπ0).mpr (by omega)) hRmem)
-
   have hSne : S ≠ 0 := by
     intro h0
     have heq : (algebraMap F F' (π:F))⁻¹ * algebraMap K' F' d = -R := by
@@ -166,7 +157,6 @@ theorem solution
     have := (lift v).ord_nonneg_of_mem hmem
     rw [(lift v).ord_mul (inv_ne_zero hφπ0) hd', (lift v).ord_inv, hφπord, hdord] at this
     omega
-
   have hSord : (lift v).ord S = 0 := by
     have hge := (lift v).ord_nonneg_of_mem hSmem
     by_contra hne
@@ -183,7 +173,6 @@ theorem solution
     have := (lift v).ord_nonneg_of_mem hπinvd
     rw [(lift v).ord_mul (inv_ne_zero hφπ0) hd', (lift v).ord_inv, hφπord, hdord] at this
     omega
-
   have hTotne : Tot ≠ 0 := fun h0 => hSne (by rw [← hfact, h0, mul_zero])
   have hTotord : (lift v).ord Tot = m := by
     have h := hSord

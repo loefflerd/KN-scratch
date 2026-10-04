@@ -17,16 +17,12 @@ namespace Place
 variable (v : Place K F)
 
 structure LocalResidueData where
-
   res : F →ₗ[K] v.ResidueField
-
   res_of_mem : ∀ f : F, f ∈ v.toValuationSubring → res f = 0
-
   res_simplePole : ∀ (f : F) (hf : v.uniformizer * f ∈ v.toValuationSubring),
     res f = IsLocalRing.residue _ ⟨v.uniformizer * f, hf⟩
 
 structure CanonicalLocalResidueDataK extends v.LocalResidueData where
-
   res_higherPoleMonomial : ∀ (n : ℕ), 1 ≤ n → res (v.uniformizer ^ (n + 1))⁻¹ = 0
 
 end Place
@@ -48,7 +44,6 @@ instance (priority := 100) instHasLocalResidue_of_hasCanonicalLocalResidueK
 variable (K F) in
 
 class HasCanonicalLocalResidueKStar where
-
   dataKStar : ∀ v : Place K F, v.CanonicalLocalResidueDataK
 
 instance (priority := 100) instHasCanonicalLocalResidueK_of_hasCanonicalLocalResidueKStar

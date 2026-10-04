@@ -174,7 +174,6 @@ theorem solution {n : ℕ} {f : UpperHalfPlane → ℂ}
     ∃ v : ↥(HeckeEis.BinaryForm ℂ n), ∀ τ : UpperHalfPlane, F τ - G τ = v :=
   HeckeEis.SolMain.const hF hG
 
-
 end S_HeckeEis_IsEichlerIntegral_exists_sub_eq_const
 end P2MW
 export P2MW.S_HeckeEis_IsEichlerIntegral_exists_sub_eq_const (solution)

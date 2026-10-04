@@ -546,13 +546,11 @@ theorem exists_monicRel_j_of_mdifferentiable_levelFraction_of_deps
   have _hW := hW
   have _hfricke := hfricke
   classical
-
   have hbmd : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) b := mdiff_of_mem_adjoin (mdiff_jf hjf) hR4a hb
   have hainv : ∀ γ ∈ CongruenceSubgroup.Gamma N, ∀ τ : ℍ, a (γ • τ) = a τ := fun γ hγ τ =>
     invariant_of_mem_adjoin (fun γ' τ' => jf_smul hjf γ' τ') hR4c ha hγ τ
   have hbinv : ∀ γ ∈ CongruenceSubgroup.Gamma N, ∀ τ : ℍ, b (γ • τ) = b τ := fun γ hγ τ =>
     invariant_of_mem_adjoin (fun γ' τ' => jf_smul hjf γ' τ') hR4c hb hγ τ
-
   have hFinv : ∀ γ ∈ CongruenceSubgroup.Gamma N, F ∘ (γ • ·) = F := by
     intro γ hγ
     have hdiff : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) (F ∘ (γ • ·) - F) :=
@@ -570,7 +568,6 @@ theorem exists_monicRel_j_of_mdifferentiable_levelFraction_of_deps
       have := congrFun h τ
       simpa [sub_eq_zero] using this
     · exact absurd h hb0
-
   have : Fintype (Matrix.SpecialLinearGroup (Fin 2) ℤ ⧸ CongruenceSubgroup.Gamma N) := Fintype.ofFinite _
   set orb := gammaOrbit N F (fun γ hγ => hFinv γ hγ) with horb
   have hperm : ∀ γ : Matrix.SpecialLinearGroup (Fin 2) ℤ,
@@ -581,7 +578,6 @@ theorem exists_monicRel_j_of_mdifferentiable_levelFraction_of_deps
     intro q
     induction q using QuotientGroup.induction_on with
     | H γ => exact mdiff_comp_smul hF γ
-
   choose mq hmq using fun q : Matrix.SpecialLinearGroup (Fin 2) ℤ ⧸ CongruenceSubgroup.Gamma N => hpb q.out
   set M := Finset.univ.sup mq with hM
   have hbd : ∀ q, IsBoundedAtImInfty (orb q * ⇑CuspForm.discriminant ^ M) := by
@@ -594,7 +590,6 @@ theorem exists_monicRel_j_of_mdifferentiable_levelFraction_of_deps
       exact hmq q
     rw [hq]
     exact IsBoundedAtImInfty.mul_discPow_mono (Finset.le_sup (Finset.mem_univ q)) h1
-
   obtain ⟨P, -, hP⟩ := orbit_integral_over_j orb M hR3 hperm hhol hbd
   set d := Fintype.card (Matrix.SpecialLinearGroup (Fin 2) ℤ ⧸ CongruenceSubgroup.Gamma N) with hd
   refine ⟨d, fun i => P (i : ℕ), fun τ => ?_⟩

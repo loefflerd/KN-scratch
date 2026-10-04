@@ -121,12 +121,10 @@ theorem kw_velu2Y_negY (hgy : W.veluGy x₀ y₀ = 0) (x y : F) :
   have hord : 2 * y₀ + W.a₁ * x₀ + W.a₃ = 0 := by
     have h := hgy; rw [veluGy, neg_eq_zero] at h; exact h
   by_cases hx : x = x₀
-  ·
-    subst hx
+  · subst hx
     simp only [velu2Y, velu2X, sub_self, ne_eq, OfNat.ofNat_ne_zero, not_false_eq_true,
       zero_pow, div_zero, sub_zero, add_zero, Affine.negY, veluQuotient2_a₁, veluQuotient2_a₃]
-  ·
-    have hd : x - x₀ ≠ 0 := sub_ne_zero.mpr hx
+  · have hd : x - x₀ ≠ 0 := sub_ne_zero.mpr hx
     simp only [velu2Y, velu2X, Affine.negY, veluQuotient2_a₁, veluQuotient2_a₃]
     field_simp
     linear_combination W.veluGx x₀ y₀ * hord
@@ -267,9 +265,7 @@ theorem kw_velu2Y_addKernel {x y : F} (hP : W.toAffine.Equation x y)
   have hyP := kw_velu2_addY_kernel hP hQ hgy hx
   simp only [velu2Y]
   have htd : W.veluGx x₀ y₀ / (x - x₀) ≠ 0 := div_ne_zero ht hd
-
   rw [hxP, add_sub_cancel_left]
-
   have key : W.veluGx x₀ y₀
         * (W.a₁ * (W.veluGx x₀ y₀ / (x - x₀))
             + W.toAffine.addY x x₀ y (W.toAffine.slope x x₀ y y₀) - y₀)
@@ -300,7 +296,6 @@ theorem kw_veluPointMap2_add_kernel_gen (hQns : W.toAffine.Nonsingular x₀ y₀
       = veluPointMap2 hchar hQ hgy hΔ P := by
   have _ := kw_veluOrderTwoAddKernel_axiomAnchor
   have ht : W.veluGx x₀ y₀ ≠ 0 := kw_veluGx_ne_zero_of_quotΔ hQ hgy hΔ
-
   have h2P₀ : (2 : ℕ) • (Affine.Point.some x₀ y₀ hQns : W.toAffine.Point) = 0 :=
     Affine.two_nsmul_some_eq_zero_of_veluGy_eq_zero hgy hQns
   cases P with
@@ -309,19 +304,16 @@ theorem kw_veluPointMap2_add_kernel_gen (hQns : W.toAffine.Nonsingular x₀ y₀
     exact veluPointMap2_some_of_eq hchar hQ hgy hΔ hQns rfl
   | some x y h =>
     by_cases hx : x = x₀
-    ·
-      have hPP₀ : Affine.Point.some x y h = Affine.Point.some x₀ y₀ hQns :=
+    · have hPP₀ : Affine.Point.some x y h = Affine.Point.some x₀ y₀ hQns :=
         Affine.Point.some_eq_of_X_eq_of_veluGy_eq_zero hQ hgy hQns h hx
       rw [hPP₀, ← two_nsmul, h2P₀, veluPointMap2_some_of_eq hchar hQ hgy hΔ hQns rfl]
       rfl
-    ·
-      have hnsA : W.toAffine.Nonsingular
+    · have hnsA : W.toAffine.Nonsingular
           (W.toAffine.addX x x₀ (W.toAffine.slope x x₀ y y₀))
           (W.toAffine.addY x x₀ y (W.toAffine.slope x x₀ y y₀)) :=
         Affine.nonsingular_add h hQns fun hc => hx hc.1
       have hPP₀ : Affine.Point.some x y h + Affine.Point.some x₀ y₀ hQns
           = Affine.Point.some _ _ hnsA := Affine.Point.add_of_X_ne hx
-
       have hxA : W.toAffine.addX x x₀ (W.toAffine.slope x x₀ y y₀) ≠ x₀ := by
         rw [kw_velu2_addX_kernel h.1 hQ hgy hx]
         simpa using div_ne_zero ht (sub_ne_zero.mpr hx)
@@ -485,7 +477,6 @@ theorem kw_velu2_slopeDiff_cleared :
   have hd₂ : x₂ - x₀ ≠ 0 := sub_ne_zero.mpr hx₂
   have hd₁₂ : x₁ - x₂ ≠ 0 := sub_ne_zero.mpr hx12
   have hX12' : W.velu2X x₀ y₀ x₁ - W.velu2X x₀ y₀ x₂ ≠ 0 := sub_ne_zero.mpr hX12
-
   have hD₁₂ : (x₁ - x₀) * (x₂ - x₀) - W.veluGx x₀ y₀ ≠ 0 := fun h =>
     hX12' (by rw [kw_velu2X_sub_velu2X hx₁ hx₂, h, mul_zero, zero_div])
   rw [Affine.slope_of_X_ne hX12, Affine.slope_of_X_ne hx12,
@@ -673,15 +664,12 @@ theorem kw_velu2X_ne_of_diffAvoid
   have _ := kw_veluOrderTwoSecantConjunctOne_axiomAnchor
   intro hXeq
   have hd₁ : x₁ - x₀ ≠ 0 := sub_ne_zero.mpr hx₁
-
   have hfib : (x₁ - x₀) * (x₂ - x₀) = W.veluGx x₀ y₀ :=
     ((kw_velu2X_eq_iff hx₁ hx₂).mp hXeq).resolve_left hx12
-
   have hx₂eq : x₂ = W.toAffine.addX x₁ x₀ (W.toAffine.slope x₁ x₀ y₁ y₀) := by
     rw [kw_velu2_addX_kernel h₁.1 hQns.1 hgy hx₁]
     field_simp
     linear_combination hfib
-
   have hnsA : W.toAffine.Nonsingular
       (W.toAffine.addX x₁ x₀ (W.toAffine.slope x₁ x₀ y₁ y₀))
       (W.toAffine.addY x₁ x₀ y₁ (W.toAffine.slope x₁ x₀ y₁ y₀)) :=
@@ -689,22 +677,18 @@ theorem kw_velu2X_ne_of_diffAvoid
   have hP1P0 : (Affine.Point.some x₁ y₁ h₁ : W.toAffine.Point) + Affine.Point.some x₀ y₀ hQns
       = Affine.Point.some _ _ hnsA :=
     Affine.Point.add_of_X_ne hx₁
-
   have hnegP₀ : -(Affine.Point.some x₀ y₀ hQns : W.toAffine.Point) = .some x₀ y₀ hQns := by
     rw [Affine.Point.neg_some]
     exact kw_v2ker_some_congr rfl (negY_eq_of_veluGy_eq_zero hgy)
-
   rcases (Affine.Point.X_eq_iff (h₁ := h₂) (h₂ := hnsA)).mp hx₂eq with hPeq | hPeq
-  ·
-    refine hsm ?_
+  · refine hsm ?_
     have hdiff : (Affine.Point.some x₁ y₁ h₁ : W.toAffine.Point) - Affine.Point.some x₂ y₂ h₂
         = Affine.Point.some x₀ y₀ hQns := by
       rw [hPeq, ← hP1P0, sub_add_cancel_left, hnegP₀]
     rw [sub_eq_add_neg, Affine.Point.neg_some, Affine.Point.add_of_X_ne hx12,
       Affine.Point.some.injEq] at hdiff
     exact hdiff.1
-  ·
-    refine hsp ?_
+  · refine hsp ?_
     have hsum : (Affine.Point.some x₁ y₁ h₁ : W.toAffine.Point) + Affine.Point.some x₂ y₂ h₂
         = Affine.Point.some x₀ y₀ hQns := by
       rw [hPeq, ← hP1P0, ← sub_eq_add_neg, sub_add_cancel_left, hnegP₀]
@@ -721,20 +705,16 @@ theorem kw_velu2Y_ne_quotNegY_of_tangent
   have _ := kw_veluOrderTwoSecantConjunctOne_axiomAnchor
   intro hcon
   have hd : x - x₀ ≠ 0 := sub_ne_zero.mpr hx
-
   have hfact : (y - W.toAffine.negY x y) * ((x - x₀) ^ 2 - W.veluGx x₀ y₀) = 0 := by
     have h0 := kw_velu2_quotNegY_sub_factored hgy y hx
     rw [sub_eq_zero.mpr hcon, mul_zero] at h0
     exact h0.symm
-
   have hd2t : (x - x₀) ^ 2 = W.veluGx x₀ y₀ :=
     sub_eq_zero.mp ((mul_eq_zero.mp hfact).resolve_left (sub_ne_zero.mpr hy))
-
   have hxPP₀ : W.toAffine.addX x x₀ (W.toAffine.slope x x₀ y y₀) = x := by
     rw [kw_velu2_addX_kernel h.1 hQns.1 hgy hx, ← hd2t]
     field_simp
     ring
-
   have hnsA : W.toAffine.Nonsingular
       (W.toAffine.addX x x₀ (W.toAffine.slope x x₀ y y₀))
       (W.toAffine.addY x x₀ y (W.toAffine.slope x x₀ y y₀)) :=
@@ -742,17 +722,13 @@ theorem kw_velu2Y_ne_quotNegY_of_tangent
   have hPP₀ : (Affine.Point.some x y h : W.toAffine.Point) + Affine.Point.some x₀ y₀ hQns
       = Affine.Point.some _ _ hnsA :=
     Affine.Point.add_of_X_ne hx
-
   have hnegP₀ : -(Affine.Point.some x₀ y₀ hQns : W.toAffine.Point) = .some x₀ y₀ hQns := by
     rw [Affine.Point.neg_some]
     exact kw_v2ker_some_congr rfl (negY_eq_of_veluGy_eq_zero hgy)
-
   rcases (Affine.Point.X_eq_iff (h₁ := hnsA) (h₂ := h)).mp hxPP₀ with hPeq | hPeq
-  ·
-    rw [← hPP₀, add_eq_left] at hPeq
+  · rw [← hPP₀, add_eq_left] at hPeq
     exact Affine.Point.some_ne_zero hQns hPeq
-  ·
-    refine hx2 ?_
+  · refine hx2 ?_
     have h2P : (Affine.Point.some x y h : W.toAffine.Point) + Affine.Point.some x y h
         = Affine.Point.some x₀ y₀ hQns := by
       have heq := hPP₀.trans hPeq
@@ -806,10 +782,8 @@ theorem kw_velu2_secX_align (hP₁ : W.toAffine.Equation x₁ y₁)
     hX12' (by rw [kw_velu2X_sub_velu2X hx₁ hx₂, h, mul_zero, zero_div])
   have hdA : W.toAffine.addX x₁ x₂ (W.toAffine.slope x₁ x₂ y₁ y₂) - x₀ ≠ 0 := sub_ne_zero.mpr hsp
   rw [Affine.slope_of_X_ne hX12, kw_velu2X_sub_velu2X hx₁ hx₂]
-
   conv_lhs => rw [velu2X, add_comm]
   rw [← eq_sub_iff_add_eq, div_eq_iff hdA, ← sub_eq_zero]
-
   simp only [velu2X, velu2Y, Affine.slope_of_X_ne hx12, Affine.addX, veluQuotient2_a₁,
     veluQuotient2_a₂]
   field_simp [hd₁, hd₂, hd₁₂, hD₁₂]
@@ -836,7 +810,6 @@ theorem kw_velu2_secY_negAddY_align (hP₁ : W.toAffine.Equation x₁ y₁)
   have hd₁₂ : x₁ - x₂ ≠ 0 := sub_ne_zero.mpr hx12
   have hX12' : W.velu2X x₀ y₀ x₁ - W.velu2X x₀ y₀ x₂ ≠ 0 := sub_ne_zero.mpr hX12
   have hdA : W.toAffine.addX x₁ x₂ (W.toAffine.slope x₁ x₂ y₁ y₂) - x₀ ≠ 0 := sub_ne_zero.mpr hsp
-
   have hColQ :
       (W.velu2X x₀ y₀ x₂ - W.velu2X x₀ y₀ x₁)
           * (W.velu2Y x₀ y₀ (W.toAffine.addX x₁ x₂ (W.toAffine.slope x₁ x₂ y₁ y₂))
@@ -845,10 +818,8 @@ theorem kw_velu2_secY_negAddY_align (hP₁ : W.toAffine.Equation x₁ y₁)
         = (W.velu2X x₀ y₀ (W.toAffine.addX x₁ x₂ (W.toAffine.slope x₁ x₂ y₁ y₂))
               - W.velu2X x₀ y₀ x₁)
           * (W.velu2Y x₀ y₀ x₂ y₂ - W.velu2Y x₀ y₀ x₁ y₁) := by
-
     set xA := W.toAffine.addX x₁ x₂ (W.toAffine.slope x₁ x₂ y₁ y₂) with hxA_def
     set nAY := W.toAffine.negAddY x₁ x₂ y₁ (W.toAffine.slope x₁ x₂ y₁ y₂) with hnAY_def
-
     have hxA_rel : (x₁ - x₂) ^ 2 * (xA - x₀)
         = (y₁ - y₂) ^ 2 + W.a₁ * (y₁ - y₂) * (x₁ - x₂)
             - (W.a₂ + x₀ + x₁ + x₂) * (x₁ - x₂) ^ 2 := by
@@ -863,7 +834,6 @@ theorem kw_velu2_secY_negAddY_align (hP₁ : W.toAffine.Equation x₁ y₁)
       ((W.veluGx x₀ y₀) * (x₁ - x₀) * (x₁ - x₂) * ((x₁ - x₂)^2 * (W.a₂ + 2*x₁ + x₂) - (y₁ - y₂)^2 - W.a₁ * (y₁ - y₂) * (x₁ - x₂))) * hSIY
       + ((W.veluGx x₀ y₀) * (x₁ - x₀) * (x₂ - xA) * (W.a₁*x₀^3*x₁ - W.a₁*x₀^3*x₂ - W.a₁*x₀^2*x₁^2 - W.a₁*x₀^2*x₁*xA + W.a₁*x₀^2*x₂^2 + W.a₁*x₀^2*x₂*xA + W.a₁*x₀*x₁^2*x₂ + W.a₁*x₀*x₁^2*xA - W.a₁*x₀*x₁*x₂^2 - W.a₁*x₀*x₂^2*xA - W.a₁*x₁^2*x₂*xA + W.a₁*x₁*x₂^2*xA + (W.veluGx x₀ y₀)*x₀*y₁ - (W.veluGx x₀ y₀)*x₀*y₂ - (W.veluGx x₀ y₀)*x₁*y₀ + (W.veluGx x₀ y₀)*x₁*y₂ + (W.veluGx x₀ y₀)*x₂*y₀ - (W.veluGx x₀ y₀)*x₂*y₁ - x₀^3*y₁ + x₀^3*y₂ + 3*x₀^2*x₁*y₀ - 3*x₀^2*x₁*y₂ - 3*x₀^2*x₂*y₀ + 3*x₀^2*x₂*y₁ - 2*x₀*x₁^2*y₀ + 2*x₀*x₁^2*y₂ - x₀*x₁*x₂*y₁ + x₀*x₁*x₂*y₂ - 2*x₀*x₁*xA*y₀ + x₀*x₁*xA*y₁ + x₀*x₁*xA*y₂ + 2*x₀*x₂^2*y₀ - 2*x₀*x₂^2*y₁ + 2*x₀*x₂*xA*y₀ - x₀*x₂*xA*y₁ - x₀*x₂*xA*y₂ + x₁^2*x₂*y₀ - x₁^2*x₂*y₂ + x₁^2*xA*y₀ - x₁^2*xA*y₂ - x₁*x₂^2*y₀ + x₁*x₂^2*y₁ - x₁*x₂*xA*y₁ + x₁*x₂*xA*y₂ - x₂^2*xA*y₀ + x₂^2*xA*y₁)) * hxA_rel
       + ((x₁ - x₀) * (x₂ - x₀) * ((x₁ - x₀)*(x₂ - x₀) - (W.veluGx x₀ y₀)) * (W.a₁*(W.veluGx x₀ y₀)*x₁*y₁ - W.a₁*(W.veluGx x₀ y₀)*x₁*y₂ - W.a₁*(W.veluGx x₀ y₀)*x₂*y₁ + W.a₁*(W.veluGx x₀ y₀)*x₂*y₂ - W.a₂*(W.veluGx x₀ y₀)*x₁^2 + 2*W.a₂*(W.veluGx x₀ y₀)*x₁*x₂ - W.a₂*(W.veluGx x₀ y₀)*x₂^2 - (W.veluGx x₀ y₀)*x₀*x₁^2 + 2*(W.veluGx x₀ y₀)*x₀*x₁*x₂ - (W.veluGx x₀ y₀)*x₀*x₂^2 - (W.veluGx x₀ y₀)*x₁^3 + (W.veluGx x₀ y₀)*x₁^2*x₂ + (W.veluGx x₀ y₀)*x₁*x₂^2 - (W.veluGx x₀ y₀)*x₂^3 + (W.veluGx x₀ y₀)*y₁^2 - 2*(W.veluGx x₀ y₀)*y₁*y₂ + (W.veluGx x₀ y₀)*y₂^2 + x₀^3*x₁^2 - 2*x₀^3*x₁*x₂ + x₀^3*x₂^2 - x₀^2*x₁^3 + 2*x₀^2*x₁^2*x₂ - 2*x₀^2*x₁^2*xA - x₀^2*x₁*x₂^2 + 4*x₀^2*x₁*x₂*xA - 2*x₀^2*x₂^2*xA + 2*x₀*x₁^3*xA - 4*x₀*x₁^2*x₂*xA + x₀*x₁^2*xA^2 + 2*x₀*x₁*x₂^2*xA - 2*x₀*x₁*x₂*xA^2 + x₀*x₂^2*xA^2 - x₁^3*xA^2 + 2*x₁^2*x₂*xA^2 - x₁*x₂^2*xA^2)) * hnAY_rel
-
   conv_rhs => rw [Affine.negAddY, ← hXalign, Affine.slope_of_X_ne hX12]
   field_simp
   linear_combination -hColQ
@@ -941,7 +911,6 @@ theorem kw_velu2_tan_quotSlope_eq (hgy : W.veluGy x₀ y₀ = 0)
   have hsdp : W.velu2Y x₀ y₀ x y
       - (W.veluQuotient2 x₀ y₀).toAffine.negY (W.velu2X x₀ y₀ x) (W.velu2Y x₀ y₀ x y) ≠ 0 :=
     sub_ne_zero.mpr hY
-
   have hD : (x - x₀) ^ 2 - W.veluGx x₀ y₀ ≠ 0 := by
     intro hD0
     refine hsdp ?_
@@ -980,7 +949,6 @@ theorem kw_velu2_tanX_align (hP : W.toAffine.Equation x y) (hQ : W.toAffine.Equa
     rw [hD0, mul_zero] at h5a
     exact (mul_eq_zero.mp h5a).resolve_left (pow_ne_zero 2 hd)
   have hNpp := velu2_tangent_addX_cleared_identity hP hQ hord
-
   rw [kw_velu2_tan_quotSlope_eq hgy hx hy hY]
   conv_lhs => rw [velu2X, add_comm]
   rw [← eq_sub_iff_add_eq, div_eq_iff (sub_ne_zero.mpr hx2), ← sub_eq_zero]
@@ -1043,10 +1011,8 @@ theorem kw_velu2_tanY_negAddY_align (hP : W.toAffine.Equation x y)
     simp only [Affine.negY]; ring
   have hSIYt := velu2_tangent_negAddY_cleared_identity hP hQ hord hy
   have hSI2c := kw_velu2_tanY_SI2c hP hQ hord
-
   rw [hsdEq] at hSI2c
   have hXalign := kw_velu2_tanX_align hP hQ hgy hy hx hx2 hY
-
   have hColQ :
       (W.velu2Y x₀ y₀ (W.toAffine.addX x x (W.toAffine.slope x x y y))
               (W.toAffine.negAddY x x y (W.toAffine.slope x x y y))
@@ -1058,10 +1024,8 @@ theorem kw_velu2_tanY_negAddY_align (hP : W.toAffine.Equation x y)
                     + 4 * (x ^ 2 + x * x₀ + x₀ ^ 2 + W.a₂ * (x + x₀) + W.a₄ - W.a₁ * y₀)))
           * (W.velu2X x₀ y₀ (W.toAffine.addX x x (W.toAffine.slope x x y y))
               - W.velu2X x₀ y₀ x) := by
-
     set x2P := W.toAffine.addX x x (W.toAffine.slope x x y y) with hx2P_def
     set nAY := W.toAffine.negAddY x x y (W.toAffine.slope x x y y) with hnAY_def
-
     have hx2P_rel : (x2P - x₀) * (y - W.toAffine.negY x y) ^ 2
         = (3 * x ^ 2 + 2 * W.a₂ * x + W.a₄ - W.a₁ * y) ^ 2
           + W.a₁ * (3 * x ^ 2 + 2 * W.a₂ * x + W.a₄ - W.a₁ * y) * (y - W.toAffine.negY x y)
@@ -1086,7 +1050,6 @@ theorem kw_velu2_tanY_negAddY_align (hP : W.toAffine.Equation x y)
           * ((x - x₀) * (x2P - x₀) - W.veluGx x₀ y₀)
           * ((x - x₀) * (x2P - x₀) + W.veluGx x₀ y₀)) * hnAY_rel
       + (-W.veluGx x₀ y₀ * (x2P - x) * ((x - x₀) * (x2P - x₀) - W.veluGx x₀ y₀)) * hSI2c
-
   conv_rhs => rw [Affine.negAddY, ← hXalign, kw_velu2_tan_quotSlope_eq hgy hx hy hY]
   rw [div_mul_eq_mul_div, ← sub_eq_iff_eq_add, eq_div_iff (mul_ne_zero hsd hD)]
   linear_combination hColQ
@@ -1180,11 +1143,9 @@ theorem kw_veluPointMap2_add_of_right_ker {K : W.toAffine.Point}
   | zero => rw [← Affine.Point.zero_def, add_zero]
   | some x y h =>
     by_cases hx : x = x₀
-    ·
-      rw [Affine.Point.some_eq_of_X_eq_of_veluGy_eq_zero hQ hgy hQns h hx]
+    · rw [Affine.Point.some_eq_of_X_eq_of_veluGy_eq_zero hQ hgy hQns h hx]
       exact kw_veluPointMap2_add_kernel_gen hchar hQ hgy hΔ hQns P
-    ·
-      rw [veluPointMap2_some_of_ne hchar hQ hgy hΔ h hx] at hK
+    · rw [veluPointMap2_some_of_ne hchar hQ hgy hΔ h hx] at hK
       exact absurd hK (Affine.Point.some_ne_zero _)
 
 include hchar hQ hgy hΔ in
@@ -1201,8 +1162,7 @@ theorem kw_veluPointMap2_add_self (htan : W.KwVeluOrderTwoTangentCompatAt x₀ y
       ← Affine.Point.zero_def, add_zero]
   | some x y h =>
     by_cases hy : y = W.toAffine.negY x y
-    ·
-      have hPnP : (Affine.Point.some x y h : W.toAffine.Point) = -Affine.Point.some x y h := by
+    · have hPnP : (Affine.Point.some x y h : W.toAffine.Point) = -Affine.Point.some x y h := by
         rw [Affine.Point.neg_some]; exact kw_v2ker_some_congr rfl hy
       have h2P0 : (Affine.Point.some x y h : W.toAffine.Point) + .some x y h = 0 := by
         nth_rw 1 [hPnP]; exact neg_add_cancel _
@@ -1211,8 +1171,7 @@ theorem kw_veluPointMap2_add_self (htan : W.KwVeluOrderTwoTangentCompatAt x₀ y
         nth_rw 1 [hPnP, kw_veluPointMap2_neg hchar hQ hgy hΔ]; exact neg_add_cancel _
       rw [h2P0, Affine.Point.zero_def, veluPointMap2_zero]
       exact h2φP.symm
-    ·
-      have hx : x ≠ x₀ := by
+    · have hx : x ≠ x₀ := by
         intro hcon
         have hPP₀ : (Affine.Point.some x y h : W.toAffine.Point)
             = Affine.Point.some x₀ y₀ hQns :=
@@ -1220,8 +1179,7 @@ theorem kw_veluPointMap2_add_self (htan : W.KwVeluOrderTwoTangentCompatAt x₀ y
         rw [Affine.Point.some.injEq] at hPP₀
         exact hy (hcon ▸ hPP₀.2 ▸ (negY_eq_of_veluGy_eq_zero hgy).symm)
       by_cases hx2 : W.toAffine.addX x x (W.toAffine.slope x x y y) = x₀
-      ·
-        have hnsA : W.toAffine.Nonsingular
+      · have hnsA : W.toAffine.Nonsingular
             (W.toAffine.addX x x (W.toAffine.slope x x y y))
             (W.toAffine.addY x x y (W.toAffine.slope x x y y)) :=
           Affine.nonsingular_add h h fun hxy => hy hxy.2
@@ -1229,11 +1187,9 @@ theorem kw_veluPointMap2_add_self (htan : W.KwVeluOrderTwoTangentCompatAt x₀ y
             = Affine.Point.some x₀ y₀ hQns := by
           rw [Affine.Point.add_self_of_Y_ne hy]
           exact Affine.Point.some_eq_of_X_eq_of_veluGy_eq_zero hQ hgy hQns hnsA hx2
-
         have hφ2P : veluPointMap2 hchar hQ hgy hΔ
             ((Affine.Point.some x y h : W.toAffine.Point) + Affine.Point.some x y h) = 0 := by
           rw [h2P]; exact veluPointMap2_some_of_eq hchar hQ hgy hΔ hQns rfl
-
         have hnegP₀ : -(Affine.Point.some x₀ y₀ hQns : W.toAffine.Point) = .some x₀ y₀ hQns := by
           rw [Affine.Point.neg_some]
           exact kw_v2ker_some_congr rfl (negY_eq_of_veluGy_eq_zero hgy)
@@ -1246,8 +1202,7 @@ theorem kw_veluPointMap2_add_self (htan : W.KwVeluOrderTwoTangentCompatAt x₀ y
             rw [← kw_veluPointMap2_neg hchar hQ hgy hΔ, hnegP,
               kw_veluPointMap2_add_kernel_gen hchar hQ hgy hΔ hQns]
         rw [hφ2P, h2φP]
-      ·
-        exact kw_veluPointMap2_add_self_of_tangent hchar hQ hgy hΔ htan h hy hx hx2
+      · exact kw_veluPointMap2_add_self_of_tangent hchar hQ hgy hΔ htan h hy hx hx2
 
 include hchar hQ hgy hΔ in
 
@@ -1267,7 +1222,6 @@ theorem kw_veluPointMap2_add' (hsec : W.KwVeluOrderTwoSecantCompatDiffAvoidAt x�
       rw [← Affine.Point.zero_def, add_zero, Affine.Point.zero_def, veluPointMap2_zero,
         ← Affine.Point.zero_def, add_zero]
     | some x₂ y₂ h₂ =>
-
       by_cases hx₂k : x₂ = x₀
       · have hK : veluPointMap2 hchar hQ hgy hΔ (Affine.Point.some x₂ y₂ h₂) = 0 :=
           veluPointMap2_some_of_eq hchar hQ hgy hΔ h₂ hx₂k
@@ -1276,13 +1230,11 @@ theorem kw_veluPointMap2_add' (hsec : W.KwVeluOrderTwoSecantCompatDiffAvoidAt x�
       · have hK : veluPointMap2 hchar hQ hgy hΔ (Affine.Point.some x₁ y₁ h₁) = 0 :=
           veluPointMap2_some_of_eq hchar hQ hgy hΔ h₁ hx₁k
         rw [add_comm, kw_veluPointMap2_add_of_right_ker hchar hQ hgy hΔ hK, hK, zero_add]
-
       by_cases hx12 : x₁ = x₂
       · rcases (Affine.Point.X_eq_iff (h₁ := h₂) (h₂ := h₁)).mp hx12.symm with hPeq | hPeq
         · rw [hPeq]; exact kw_veluPointMap2_add_self hchar hQ hgy hΔ htan _
         · rw [hPeq, add_neg_cancel, Affine.Point.zero_def, veluPointMap2_zero,
             ← Affine.Point.zero_def, kw_veluPointMap2_neg hchar hQ hgy hΔ, add_neg_cancel]
-
       by_cases hsp : W.toAffine.addX x₁ x₂ (W.toAffine.slope x₁ x₂ y₁ y₂) = x₀
       · have hAns : W.toAffine.Nonsingular
             (W.toAffine.addX x₁ x₂ (W.toAffine.slope x₁ x₂ y₁ y₂))
@@ -1300,7 +1252,6 @@ theorem kw_veluPointMap2_add' (hsec : W.KwVeluOrderTwoSecantCompatDiffAvoidAt x�
           rw [heq, kw_veluPointMap2_add_of_right_ker hchar hQ hgy hΔ hK0,
             kw_veluPointMap2_neg hchar hQ hgy hΔ]
         rw [hK0, hφ1, neg_add_cancel]
-
       by_cases hsm : W.toAffine.addX x₁ x₂ (W.toAffine.slope x₁ x₂ y₁ (W.toAffine.negY x₂ y₂))
           = x₀
       · have h₂' : W.toAffine.Nonsingular x₂ (W.toAffine.negY x₂ y₂) :=
@@ -1313,20 +1264,17 @@ theorem kw_veluPointMap2_add' (hsec : W.KwVeluOrderTwoSecantCompatDiffAvoidAt x�
             ((Affine.Point.some x₁ y₁ h₁ : W.toAffine.Point) - .some x₂ y₂ h₂) = 0 := by
           rw [sub_eq_add_neg, Affine.Point.neg_some, Affine.Point.add_of_X_ne hx12]
           exact veluPointMap2_some_of_eq hchar hQ hgy hΔ hDns hsm
-
         have hφeq : veluPointMap2 hchar hQ hgy hΔ (.some x₁ y₁ h₁)
             = veluPointMap2 hchar hQ hgy hΔ (.some x₂ y₂ h₂) := by
           have heq : (Affine.Point.some x₁ y₁ h₁ : W.toAffine.Point)
               = (Affine.Point.some x₂ y₂ h₂ : W.toAffine.Point)
                 + ((Affine.Point.some x₁ y₁ h₁ : W.toAffine.Point) - .some x₂ y₂ h₂) := by abel
           rw [heq, kw_veluPointMap2_add_of_right_ker hchar hQ hgy hΔ hKD]
-
         have heq2 : (Affine.Point.some x₁ y₁ h₁ : W.toAffine.Point) + .some x₂ y₂ h₂
             = ((Affine.Point.some x₂ y₂ h₂ : W.toAffine.Point) + .some x₂ y₂ h₂)
               + ((Affine.Point.some x₁ y₁ h₁ : W.toAffine.Point) - .some x₂ y₂ h₂) := by abel
         rw [heq2, kw_veluPointMap2_add_of_right_ker hchar hQ hgy hΔ hKD,
           kw_veluPointMap2_add_self hchar hQ hgy hΔ htan, hφeq]
-
       exact kw_veluPointMap2_add_of_secant_diffAvoid hchar hQ hgy hΔ hsec h₁ h₂ hx12 hx₁k
         hx₂k hsp hsm
 

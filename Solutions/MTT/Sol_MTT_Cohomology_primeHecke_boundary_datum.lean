@@ -10,8 +10,6 @@ namespace MTT.Cohomology
 
 /-! ### Part 0: integer matrices, `fractional` as the `GL₂(ℚ)`-action -/
 
-
-
 /-- An integer matrix viewed in `GL₂(ℚ)` (junk value `1` if the determinant vanishes). -/
 def toGLQ (A : Matrix (Fin 2) (Fin 2) ℤ) : GL (Fin 2) ℚ :=
   if h : ((Int.castRingHom ℚ).mapMatrix A).det ≠ 0 then
@@ -33,7 +31,6 @@ lemma toGL_apply {A : Matrix (Fin 2) (Fin 2) ℤ} (h : A.det ≠ 0) (i j : Fin 2
     (toGL A : Matrix (Fin 2) (Fin 2) ℝ) i j = (A i j : ℝ) := by
   rw [toGL, Matrix.GeneralLinearGroup.map_apply, toGLQ_val h]
   simp
-
 
 lemma toGLQ_apply {A : Matrix (Fin 2) (Fin 2) ℤ} (h : A.det ≠ 0) (i j : Fin 2) :
     (toGLQ A : Matrix (Fin 2) (Fin 2) ℚ) i j = (A i j : ℚ) := by
@@ -217,7 +214,6 @@ lemma reflection_smul {R : Type*} [CommRing R] (c : R) (φ : (Cusp × Cusp) → 
     reflection (c • φ) = c • reflection φ := by
   funext D; simp [reflection]
 
-
 /-! ### `act` preserves homogeneity -/
 
 lemma actAlg_X_isHomogeneous (γ : Matrix (Fin 2) (Fin 2) ℤ) (i : Fin 2) :
@@ -240,7 +236,6 @@ lemma act_mem_Sym {n : ℕ} (γ : Matrix (Fin 2) (Fin 2) ℤ) {P : Binary ℂ} (
   have e : 0 + 1 * j + 1 * (n - j) = n := by omega
   rw [e] at this
   exact this
-
 
 /-! ### Part 1: the Hecke operator on boundary data -/
 
@@ -362,13 +357,11 @@ lemma mob_injective (A B C D : K) (h : A * D - B * C = 1) :
 
 end moebius
 
-
 section key
 variable {l : ℕ} [hl : Fact l.Prime]
 
 lemma det_entries (γ : SL(2, ℤ)) : γ 0 0 * γ 1 1 - γ 0 1 * γ 1 0 = 1 := by
   have := γ.2; rwa [Matrix.det_fin_two] at this
-
 
 /-- The permutation of `P¹(F_l)` induced by `γ ∈ Γ₀(N)`. -/
 def σγ (γ : Gamma0 N) : Option (ZMod l) → Option (ZMod l) :=
@@ -517,7 +510,6 @@ lemma key_factor (γ : Gamma0 N) (x : Option (ZMod l))
           first | ring1 | linear_combination hlq | linear_combination -hlq
       · simp [γ', mkGamma0, hcN]
       · simp [γ', mkGamma0, hcN]
-
 
 lemma det_Mx_ne {x : Option (ZMod l)} : (Mx l x).det ≠ 0 := (det_Mx_pos x).ne'
 

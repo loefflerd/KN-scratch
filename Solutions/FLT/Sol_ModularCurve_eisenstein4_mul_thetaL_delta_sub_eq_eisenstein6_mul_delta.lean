@@ -59,7 +59,6 @@ theorem solution :
         HahnSeries.ofPowerSeries ℤ ℚ (PowerSeries.map (Int.castRingHom ℚ) (PowerSeries.X * dedekindEtaUnit))
       = HahnSeries.ofPowerSeries ℤ ℚ (PowerSeries.map (Int.castRingHom ℚ) eisenstein6) *
         HahnSeries.ofPowerSeries ℤ ℚ (PowerSeries.map (Int.castRingHom ℚ) (PowerSeries.X * dedekindEtaUnit)) := by
-
   have hE6 : eisenstein6 =
       (PowerSeries.mk fun n => if n = 0 then 1 else -504 * ∑ d ∈ n.divisors, (d : ℤ) ^ 5) := rfl
   have hZ : eisenstein4 * thetaPS (PowerSeries.X * dedekindEtaUnit)
@@ -79,7 +78,6 @@ theorem solution :
       rw [thetaPS_map]; rfl
     rw [e1, e2] at hC
     simpa [hE6, map_mul, map_sub, map_ofNat] using hC
-
   let ψ : PowerSeries ℤ →+* LaurentSeries ℚ :=
     (HahnSeries.ofPowerSeries ℤ ℚ).comp (PowerSeries.map (Int.castRingHom ℚ))
   have hψ : ∀ f : PowerSeries ℤ, ψ f = HahnSeries.ofPowerSeries ℤ ℚ (PowerSeries.map (Int.castRingHom ℚ) f) :=

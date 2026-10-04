@@ -91,14 +91,12 @@ theorem solution (N : ℕ) {a b : ℤ} (c : ℤ) (habc : b + c = a)
         ‖((Φ : UpperHalfPlane → ℂ) ∣[a] (A : GL (Fin 2) ℝ)) τ‖ ≤ ε * ‖((Ψ : UpperHalfPlane → ℂ) ∣[b] (A : GL (Fin 2) ℝ)) τ‖) :
     ∃ f : CuspForm (CongruenceSubgroup.Gamma0 N) c, ∀ τ : UpperHalfPlane, f τ * Ψ τ = Φ τ := by
   classical
-
   set Φ' : ℂ → ℂ := (Φ : ℍ → ℂ) ∘ ofComplex with hΦ'
   set Ψ' : ℂ → ℂ := (Ψ : ℍ → ℂ) ∘ ofComplex with hΨ'
   have hUo : IsOpen {z : ℂ | 0 < z.im} := isOpen_lt continuous_const Complex.continuous_im
   have hUconn : IsPreconnected {z : ℂ | 0 < z.im} := (convex_halfSpace_im_gt 0).isPreconnected
   have hΦa : ∀ z ∈ {z : ℂ | 0 < z.im}, AnalyticAt ℂ Φ' z := fun z hz => ANa.analyticAt_of_mdiff Φ.holo' hz
   have hΨa : ∀ z ∈ {z : ℂ | 0 < z.im}, AnalyticAt ℂ Ψ' z := fun z hz => ANa.analyticAt_of_mdiff Ψ.holo' hz
-
   have hΨ0 : ∀ z ∈ {z : ℂ | 0 < z.im}, ¬ (∀ᶠ w in 𝓝 z, Ψ' w = 0) := by
     intro z hz hloc
     apply hΨ
@@ -109,7 +107,6 @@ theorem solution (N : ℕ) {a b : ℤ} (c : ℤ) (habc : b + c = a)
     simpa [hΨ', ofComplex_apply] using this
   have hle : ∀ z ∈ {z : ℂ | 0 < z.im}, analyticOrderAt Ψ' z ≤ analyticOrderAt Φ' z :=
     fun z hz => hord ⟨z, hz⟩
-
   have hF := ANa.quo_analytic hUo hΦa hΨa hΨ0 hle
   set F : ℂ → ℂ := ANa.quo Φ' Ψ' with hFdef
   let f : ℍ → ℂ := fun τ => F τ
@@ -124,9 +121,7 @@ theorem solution (N : ℕ) {a b : ℤ} (c : ℤ) (habc : b + c = a)
       (hF z hz).1.differentiableAt.differentiableWithinAt
     refine h1.congr fun z hz => ?_
     exact congrArg F (by rw [ofComplex_apply_of_im_pos hz])
-
   have hcb : c + b = a := by omega
-
   have hf_slash : ∀ γ ∈ Subgroup.map (Matrix.SpecialLinearGroup.mapGL ℝ) (CongruenceSubgroup.Gamma0 N),
       f ∣[c] γ = f := by
     rintro _ ⟨γ₀, hγ₀, rfl⟩
@@ -140,7 +135,6 @@ theorem solution (N : ℕ) {a b : ℤ} (c : ℤ) (habc : b + c = a)
         _ = (f * (Ψ : ℍ → ℂ)) ∣[c + b] γ₀ := (ModularForm.mul_slash_SL2 c b γ₀ f Ψ).symm
         _ = (Φ : ℍ → ℂ) ∣[a] γ₀ := by rw [hfΨfun, hcb]
         _ = Φ := hΦinv
-
     have hD : ∀ τ, (f ∣[c] γ₀ - f) τ * Ψ τ = 0 := fun τ => by
       have h1 := congrFun hprod τ
       simp only [Pi.mul_apply] at h1
@@ -158,7 +152,6 @@ theorem solution (N : ℕ) {a b : ℤ} (c : ℤ) (habc : b + c = a)
       (mul_eq_zero.mp (hD τ)).resolve_left hτ
     have hall := ANa.vanish Ψ.holo' hWo hτ₀ hΨW
     exact hΨ (DFunLike.ext Ψ 0 hall)
-
   have hcusp' : ∀ γ : SL(2, ℤ), IsZeroAtImInfty (f ∣[c] γ) := by
     intro γ
     rw [UpperHalfPlane.isZeroAtImInfty_iff]
@@ -167,7 +160,6 @@ theorem solution (N : ℕ) {a b : ℤ} (c : ℤ) (habc : b + c = a)
     refine ⟨T + 1, fun τ hτ => ?_⟩
     by_contra hlt'
     have hlt : ε < ‖(f ∣[c] γ) τ‖ := not_le.mp hlt'
-
     set G : ℍ → ℂ := f ∣[c] γ with hG
     set ΨA : ℍ → ℂ := (Ψ : ℍ → ℂ) ∣[b] γ with hΨA
     have hprodA : G * ΨA = (Φ : ℍ → ℂ) ∣[a] γ := by
@@ -183,7 +175,6 @@ theorem solution (N : ℕ) {a b : ℤ} (c : ℤ) (habc : b + c = a)
       have hb := hT σ h2.le
       change ‖((Φ : ℍ → ℂ) ∣[a] γ) σ‖ ≤ ε * ‖ΨA σ‖ at hb
       rw [← hprodA, Pi.mul_apply, norm_mul] at hb
-
       have hn : ‖ΨA σ‖ ≤ 0 := by nlinarith [norm_nonneg (ΨA σ)]
       exact norm_eq_zero.mp (le_antisymm hn (norm_nonneg _))
     have hΨA0 : ∀ σ, ΨA σ = 0 := ANa.vanish hΨA_mdiff hWo ⟨hlt, by linarith⟩ hΨAW

@@ -155,12 +155,10 @@ theorem charFun_eq (x : ℚ) (m : ℕ) (k : ℤ) (hk : x * ((b * m.factorial : �
     charFun ζ b x = (rootSeq ζ m) ^ k := by
   have hd0 : x.den ≠ 0 := x.den_nz
   have hdvd : x.den ∣ x.den.factorial := Nat.dvd_factorial x.den_pos le_rfl
-
   rw [charFun, ← rootSeq_pow_of_le ζ (Nat.le_add_right x.den m),
     ← rootSeq_pow_of_le ζ (Nat.le_add_left m x.den),
     ← zpow_natCast, ← zpow_natCast, ← zpow_mul, ← zpow_mul]
   congr 1
-
   apply mul_left_cancel₀ (show (x.den : ℤ) ≠ 0 by exact_mod_cast hd0)
   have e1 : (((x.den + m).factorial / x.den.factorial : ℕ) : ℤ) * (x.den.factorial : ℤ)
       = ((x.den + m).factorial : ℤ) := by
@@ -169,7 +167,6 @@ theorem charFun_eq (x : ℚ) (m : ℕ) (k : ℤ) (hk : x * ((b * m.factorial : �
     exact_mod_cast Nat.div_mul_cancel (Dvd.dvd.mul_left hdvd b)
   have e3 : (((x.den + m).factorial / m.factorial : ℕ) : ℤ) * (m.factorial : ℤ) = ((x.den + m).factorial : ℤ) := by
     exact_mod_cast Nat.div_mul_cancel (Nat.factorial_dvd_factorial (Nat.le_add_left m x.den))
-
   have e4 : (k : ℤ) * x.den = x.num * (b * m.factorial : ℕ) := by
     have hq : (k : ℚ) * x.den = x.num * (b * m.factorial : ℕ) := by
       rw [← hk, mul_right_comm, Rat.mul_den_eq_num]
@@ -253,20 +250,16 @@ theorem den_le_natDegree [IsAlgClosed K] [CharZero K]
   classical
   have hb : 0 < q.den := q.den_pos
   have : NeZero q.den := ⟨q.den_nz⟩
-
   obtain ⟨μ, hμ⟩ := HasEnoughRootsOfUnity.exists_primitiveRoot K q.den
   have hcard : Nat.card (rootsOfUnity q.den K) = q.den := hμ.card_rootsOfUnity
-
   have hval : ∀ ζ : Kˣ, char ζ q.den (Multiplicative.ofAdd q) = ζ ^ q.num := fun ζ => by
     have e : Multiplicative.ofAdd q = Multiplicative.ofAdd ((q.num : ℚ) / (q.den : ℚ)) := by
       rw [Rat.num_div_den]
     rw [e, char_div ζ hb]
-
   let f : rootsOfUnity q.den K → {z : HahnSeries ℚ K // z ∈ p.roots.toFinset} := fun ζ =>
     ⟨twist (char ((ζ : Kˣ)) q.den) y, by
       rw [Multiset.mem_toFinset, Polynomial.mem_roots hp]
       exact isRoot_twist (char_intCast (ζ : Kˣ) ((mem_rootsOfUnity _ _).mp ζ.2)) hcoeff hy⟩
-
   have hinj : Function.Injective f := by
     intro ζ₁ ζ₂ h
     have hc : (twist (char ((ζ₁ : Kˣ)) q.den) y).coeff q = (twist (char ((ζ₂ : Kˣ)) q.den) y).coeff q := by
@@ -277,12 +270,9 @@ theorem den_le_natDegree [IsAlgClosed K] [CharZero K]
     have hyq : y.coeff q ≠ 0 := by rwa [HahnSeries.mem_support] at hq
     have hc' : ((ζ₁ : Kˣ)) ^ q.num = ((ζ₂ : Kˣ)) ^ q.num :=
       Units.ext (mul_right_cancel₀ hyq hc)
-
     have hg : Int.gcd q.num (q.den : ℤ) = 1 := by
       first
         | exact q.reduced
-
-
     have hbez := Int.gcd_eq_gcd_ab q.num (q.den : ℤ)
     rw [hg, Nat.cast_one] at hbez
     have h1 : ((ζ₁ : Kˣ)) ^ (q.den : ℤ) = 1 := by

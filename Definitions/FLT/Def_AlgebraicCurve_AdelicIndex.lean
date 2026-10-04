@@ -310,16 +310,13 @@ theorem weilSmul_mem_omegaSpace_add [HasPrincipalDivisors K F] {f : F} (hf : f �
     {φ : Module.Dual K (adeleSpace K F)} (hφ : φ ∈ omegaSpace D) :
     weilSmul K F f φ ∈ omegaSpace (D + P) := by
   rw [omegaSpace, Submodule.mem_dualAnnihilator]
-
   intro α hα
   obtain ⟨β, hβ, γ, hγ, rfl⟩ := Submodule.mem_sup.mp hα
   rw [map_add, weilSmul_apply, weilSmul_apply]
-
   have hβ' : (adeleSpaceMul K F f β : Place K F → F) ∈ adeleBdd D := by
     rw [adeleSpaceMul_coe]
     have h := mulAdele_mem_adeleBdd_sub hf hP (D := D + P) (Submodule.mem_comap.mp hβ)
     rwa [add_sub_cancel_right] at h
-
   have hγ' : (adeleSpaceMul K F f γ : Place K F → F) ∈ globalSub K F :=
     mulAdele_globalSub_le f ⟨_, Submodule.mem_comap.mp hγ, rfl⟩
   rw [omegaSpace_vanishBdd hφ hβ', omegaSpace_vanishGlobal hφ hγ', add_zero]
@@ -329,18 +326,15 @@ theorem weilSmul_mem_omegaSpace_of_mem_lSpace [HasPrincipalDivisors K F]
     {g : F} (hg : g ∈ LSpace (W - D)) :
     weilSmul K F g φ ∈ omegaSpace D := by
   rcases eq_or_ne g 0 with rfl | hg0
-  ·
-    have h0 : weilSmul K F (0 : F) φ = 0 := by
+  · have h0 : weilSmul K F (0 : F) φ = 0 := by
       ext α; simp only [weilSmul_apply]
       refine omegaSpace_vanishBdd hφ ?_
       intro v
       simp only [adeleSpaceMul_coe, mulAdele_apply, zero_mul, Valuation.map_zero]
       exact zero_le
     rw [h0]; exact (omegaSpace D).zero_mem
-  ·
-    obtain ⟨P, hPord, _⟩ := HasPrincipalDivisors.exists_divisor (K := K) g hg0
+  · obtain ⟨P, hPord, _⟩ := HasPrincipalDivisors.exists_divisor (K := K) g hg0
     refine omegaSpace_antitone ?_ (weilSmul_mem_omegaSpace_add hg0 hPord hφ)
-
     intro v
     rw [Finsupp.add_apply, hPord v]
     have hgL := (mem_lSpace_iff_ord.mp hg).resolve_left hg0 v

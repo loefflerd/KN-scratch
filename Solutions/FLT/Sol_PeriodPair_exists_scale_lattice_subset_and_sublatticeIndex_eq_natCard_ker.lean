@@ -159,9 +159,7 @@ theorem latticeDivQuot_surjective (hn : (n : ℤ) ≠ 0) :
     Function.Surjective (latticeDivQuot Λ hn) := by
   rintro ⟨x, hx⟩
   rw [Submodule.mem_torsionBy_iff] at hx
-
   obtain ⟨v, rfl⟩ := QuotientAddGroup.mk_surjective x
-
   have hvΛ : (n : ℤ) • v ∈ Λ := by
     rw [← QuotientAddGroup.eq_zero_iff, QuotientAddGroup.mk_zsmul]
     exact hx
@@ -181,7 +179,6 @@ theorem mem_ker_latticeDivQuot (hn : (n : ℤ) ≠ 0) (w : ↥Λ) :
         Submodule.torsionBy ℤ (V ⧸ Λ) (n : ℤ)) : V ⧸ Λ) = 0 := by
       rw [hker]; rfl
     rw [coe_latticeDivQuot, QuotientAddGroup.eq_zero_iff] at hcoe
-
     refine ⟨⟨divNHom (n : ℤ) hn (w : V), hcoe⟩, ?_⟩
     apply Subtype.ext
     show (n : ℤ) • divNHom (n : ℤ) hn (w : V) = (w : V)
@@ -202,24 +199,19 @@ theorem ker_latticeDivQuot (hn : (n : ℤ) ≠ 0) :
 
 def latticeQuotTorsionEquiv (hn : (n : ℤ) ≠ 0) :
     ModN ↥Λ n ≃+ Submodule.torsionBy ℤ (V ⧸ Λ) (n : ℤ) := by
-
   refine AddEquiv.ofBijective
     (QuotientAddGroup.lift _ (latticeDivQuot Λ hn) ?_) ⟨?_, ?_⟩
-  ·
-    intro w hw
+  · intro w hw
     have : w ∈ (latticeDivQuot Λ hn).ker := by
       rw [ker_latticeDivQuot]; exact hw
     exact this
-  ·
-    rintro ⟨a⟩ ⟨b⟩ hab
+  · rintro ⟨a⟩ ⟨b⟩ hab
     refine (Submodule.Quotient.eq _).mpr ?_
-
     have hker : a - b ∈ (latticeDivQuot Λ hn).ker := by
       rw [AddMonoidHom.mem_ker, map_sub]
       exact sub_eq_zero.mpr hab
     rwa [ker_latticeDivQuot] at hker
-  ·
-    intro y
+  · intro y
     obtain ⟨w, hw⟩ := latticeDivQuot_surjective Λ hn y
     exact ⟨QuotientAddGroup.mk w, hw⟩
 
@@ -612,11 +604,9 @@ theorem kw_surgehgf4_hID_card_smul_subset :
       L'.lattice.toAddSubgroup).index = N := by
     have h := kw_surgehgf4_hID_forwardIndex_eq_card_ker L L' α ψ hint
     unfold PeriodPair.sublatticeIndex at h; exact h
-
   set H := (L.scale α).lattice.toAddSubgroup.addSubgroupOf L'.lattice.toAddSubgroup with hHdef
   have hmem : N • (⟨l', hl'⟩ : L'.lattice.toAddSubgroup) ∈ H := hidx ▸ H.nsmul_index_mem _
   rw [hHdef, AddSubgroup.mem_addSubgroupOf, Submodule.mem_toAddSubgroup] at hmem
-
   have heq : ((N • (⟨l', hl'⟩ : L'.lattice.toAddSubgroup) : L'.lattice.toAddSubgroup) : ℂ)
       = (Nat.card ψ.ker : ℂ) * l' := by
     rw [AddSubmonoidClass.coe_nsmul, nsmul_eq_mul, hNdef]
@@ -670,14 +660,12 @@ def kw_surgehgf4_hID_scaleIndexHom (M : PeriodPair) {N : ℕ} (hN : 0 < N) :
   toFun l := ⟨QuotientAddGroup.mk ((N : ℂ)⁻¹ * (l : ℂ)), by
     rw [Submodule.mem_torsionBy_iff, ← QuotientAddGroup.mk_zsmul,
       QuotientAddGroup.eq_zero_iff]
-
     have hNne : (N : ℂ) ≠ 0 := by exact_mod_cast hN.ne'
     have : (N : ℤ) • ((N : ℂ)⁻¹ * (l : ℂ)) = (l : ℂ) := by
       rw [zsmul_eq_mul, Int.cast_natCast, mul_inv_cancel_left₀ hNne]
     rw [this]; exact l.2⟩
   map_zero' := Subtype.ext <| by simp
   map_add' l₁ l₂ := Subtype.ext <| by
-
     simp only [AddSubgroup.coe_add, mul_add]
     rfl
 
@@ -687,7 +675,6 @@ theorem kw_surgehgf4_hID_sublatticeIndex_scale_nat (M : PeriodPair)
   set Nu := Units.mk0 (N : ℂ) (by exact_mod_cast hN.ne') with hNudef
   have hNuval : (Nu : ℂ) = (N : ℂ) := by rw [hNudef, Units.val_mk0]
   have hNinv : (Nu : ℂ)⁻¹ = (N : ℂ)⁻¹ := by rw [hNuval]
-
   have hsurj : Function.Surjective (kw_surgehgf4_hID_scaleIndexHom M hN) := by
     rintro ⟨x, hx⟩
     rw [Submodule.mem_torsionBy_iff] at hx
@@ -699,7 +686,6 @@ theorem kw_surgehgf4_hID_sublatticeIndex_scale_nat (M : PeriodPair)
     refine ⟨⟨(N : ℂ) * z, hNz⟩, Subtype.ext ?_⟩
     show QuotientAddGroup.mk ((N : ℂ)⁻¹ * ((N : ℂ) * z)) = QuotientAddGroup.mk z
     rw [inv_mul_cancel_left₀ (by exact_mod_cast hN.ne' : (N : ℂ) ≠ 0)]
-
   have hker : (kw_surgehgf4_hID_scaleIndexHom M hN).ker
       = (M.scale Nu).lattice.toAddSubgroup.addSubgroupOf M.lattice.toAddSubgroup := by
     ext ⟨l, hl⟩
@@ -721,12 +707,10 @@ theorem kw_surgehgf4_hID_sublatticeIndex_scale_nat (M : PeriodPair)
         show l = (N : ℂ) * v from hNuval ▸ hvl,
         inv_mul_cancel_left₀ (by exact_mod_cast hN.ne' : (N : ℂ) ≠ 0)]
       exact hv
-
   have htor : Nat.card ↥(Submodule.torsionBy ℤ (ℂ ⧸ M.lattice.toAddSubgroup) (N : ℤ))
       = N ^ 2 := by
     rw [kw_card_torsionBy_zlatticeQuotient_finrank_real M.lattice
       (by exact_mod_cast hN.ne' : (N : ℤ) ≠ 0), Complex.finrank_real_complex]
-
   unfold PeriodPair.sublatticeIndex
   rw [← hker, ← htor, ← Nat.card_congr
     (QuotientAddGroup.liftEquiv _ hsurj rfl).toEquiv]
@@ -737,10 +721,8 @@ include hint in
 theorem kw_surgehgf4_hID_card_ker_pos : 0 < Nat.card ψ.ker := by
   rw [← kw_surgehgf4_hID_forwardIndex_eq_card_ker L L' α ψ hint]
   refine Nat.pos_of_ne_zero ?_
-
   have hle : (L.scale α).lattice ≤ L'.lattice :=
     fun z hz => kw_surgehgf4_hID_scale_subset L L' α ψ hint hz
-
   have hcov := ZLattice.covolume_div_covolume_eq_relIndex'
     (L.scale α).lattice L'.lattice hle
   have hpos₁ : (0 : ℝ) < ZLattice.covolume (L.scale α).lattice :=
@@ -749,10 +731,8 @@ theorem kw_surgehgf4_hID_card_ker_pos : 0 < Nat.card ψ.ker := by
     ZLattice.covolume_pos L'.lattice MeasureTheory.volume
   have hratio : (0 : ℝ) < ZLattice.covolume (L.scale α).lattice
       / ZLattice.covolume L'.lattice := div_pos hpos₁ hpos₂
-
   intro h0
   unfold PeriodPair.sublatticeIndex at h0
-
   have h0R : ((L.scale α).lattice.toAddSubgroup.relIndex L'.lattice.toAddSubgroup : ℝ)
       = 0 := by exact_mod_cast h0
   rw [← hcov] at h0R
@@ -766,11 +746,9 @@ theorem kw_surgehgf4_hID_dualIndex_eq (hN : 0 < Nat.card ψ.ker) :
   set N := Nat.card ψ.ker with hNdef
   set β := kw_surgehgf4_hID_dualUnit α ψ hN with hβdef
   set Nu := Units.mk0 (N : ℂ) (by exact_mod_cast hN.ne') with hNudef
-
   have h1 : PeriodPair.sublatticeIndex L (L'.scale β)
       = PeriodPair.sublatticeIndex (L.scale α) ((L'.scale β).scale α) :=
     (kwSublatticeIndex_scale L (L'.scale β) α).symm
-
   have hαβ : α * β = Nu := by
     apply Units.ext
     simp only [hβdef, hNudef, Units.val_mul, kw_surgehgf4_hID_dualUnit_val,
@@ -779,12 +757,10 @@ theorem kw_surgehgf4_hID_dualIndex_eq (hN : 0 < Nat.card ψ.ker) :
     exact_mod_cast hNdef.symm
   have h2 : ((L'.scale β).scale α).lattice = (L'.scale Nu).lattice := by
     rw [gate_scale_mul L' β α, hαβ]
-
   have h3 : PeriodPair.sublatticeIndex (L.scale α) ((L'.scale β).scale α)
       = PeriodPair.sublatticeIndex (L.scale α) (L'.scale Nu) :=
     kw_surgehgf4_hID_sublatticeIndex_congr_snd h2
   rw [h1, h3]
-
   have hsub1 : ((L'.scale Nu).lattice : Set ℂ) ⊆ (L.scale α).lattice := by
     intro z hz
     rw [SetLike.mem_coe, L'.mem_scale_lattice_iff] at hz
@@ -797,18 +773,15 @@ theorem kw_surgehgf4_hID_dualIndex_eq (hN : 0 < Nat.card ψ.ker) :
       = PeriodPair.sublatticeIndex (L.scale α) (L'.scale Nu)
         * PeriodPair.sublatticeIndex L' (L.scale α) := by
     unfold PeriodPair.sublatticeIndex
-
     have hle1 : (L'.scale Nu).lattice.toAddSubgroup ≤ (L.scale α).lattice.toAddSubgroup := by
       intro z hz; exact hsub1 hz
     have hle2 : (L.scale α).lattice.toAddSubgroup ≤ L'.lattice.toAddSubgroup := by
       intro z hz; exact hsub2 hz
     exact (AddSubgroup.relIndex_mul_relIndex _ _ _ hle1 hle2).symm
-
   have hN2 : PeriodPair.sublatticeIndex L' (L'.scale Nu) = N ^ 2 :=
     kw_surgehgf4_hID_sublatticeIndex_scale_nat L' hN
   have hfwd : PeriodPair.sublatticeIndex L' (L.scale α) = N :=
     kw_surgehgf4_hID_forwardIndex_eq_card_ker L L' α ψ hint
-
   rw [hN2, hfwd] at htower
   have : PeriodPair.sublatticeIndex (L.scale α) (L'.scale Nu) * N = N * N := by
     rw [← htower]; ring

@@ -16,7 +16,6 @@ open IsLocalRing AlgebraicCurve
 
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F) (hv : v.IsRational) {f : F} (hf : f ≠ 0) (h : v.ord f = 0) : v.evalAt f ≠ 0 := by
   have hmem : f ∈ v.toValuationSubring := v.mem_of_ord_nonneg hf h.ge
-
   have hunit : IsUnit (⟨f, hmem⟩ : v.toValuationSubring) := by
     obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible v.toValuationSubring
     obtain ⟨u, hu⟩ := v.exists_unit_mul_zpow hf hπ

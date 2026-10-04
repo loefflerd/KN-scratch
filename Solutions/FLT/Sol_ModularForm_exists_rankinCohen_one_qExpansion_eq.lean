@@ -118,7 +118,6 @@ theorem isBoundedAtImInfty_D {F : ℍ → ℂ} (hF : MDiff F) (hb : IsBoundedAtI
   obtain ⟨M, A, hMA⟩ := hb
   refine ⟨‖(2 * π * Complex.I)⁻¹‖ * M, max A 0 + 2, fun z hz => ?_⟩
   have hzA : max A 0 + 2 ≤ (z : ℂ).im := by rwa [coe_im]
-
   have hdisc : ∀ w : ℂ, dist w z ≤ 1 → 0 < w.im ∧ A ≤ w.im := by
     intro w hw
     have h1 : |(w - z).im| ≤ ‖w - (z : ℂ)‖ := Complex.abs_im_le_norm _

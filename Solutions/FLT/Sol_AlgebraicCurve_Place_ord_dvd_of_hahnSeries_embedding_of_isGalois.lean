@@ -39,7 +39,6 @@ theorem algebraMap_hahn_eq_C {K L : Type*} [Field K] [Field L] [Algebra K L] (c 
   | rw [HahnSeries.algebraMap_apply', IsScalarTower.algebraMap_apply K L (PowerSeries L),
       PowerSeries.algebraMap_eq, HahnSeries.ofPowerSeries_C]
 
-
 theorem eval₂_C_single_one {L : Type*} [Field L] (q : L[X]) :
     q.eval₂ (HahnSeries.C : L →+* HahnSeries ℚ L) (HahnSeries.single (1 : ℚ) (1 : L))
       = HahnSeries.ofPowerSeries ℚ L (q : PowerSeries L) := by
@@ -65,7 +64,6 @@ theorem order_ofPowerSeries_eq_one {L : Type*} [Field L] (q : L[X]) (h0 : q.coef
     rwa [this]
   have hx0 : x ≠ 0 := fun h => hc1 (by rw [h]; rfl)
   refine le_antisymm (HahnSeries.order_le_of_coeff_ne_zero hc1) ?_
-
   have hsupp : x.order ∈ x.support := by
     rw [HahnSeries.mem_support]; exact fun h => hx0 (HahnSeries.coeff_order_eq_zero.mp h)
   have hrange : x.support ⊆ Set.range (fun n : ℕ => (n : ℚ)) := by
@@ -145,7 +143,6 @@ theorem solution
   classical
   set f₀ : RatFunc K := algebraMap (Polynomial K) (RatFunc K) p with hf₀
   set f : M := algebraMap (RatFunc K) M f₀ with hf
-
   set ρ : K[X] →+* HahnSeries ℚ L :=
     ψ.toRingHom.comp ((algebraMap (RatFunc K) M).comp (algebraMap K[X] (RatFunc K))) with hρ
   have hρC : ∀ c : K, ρ (C c) = HahnSeries.C (algebraMap K L c) := by
@@ -170,15 +167,12 @@ theorem solution
     rw [h1, hρeq, Polynomial.coe_eval₂RingHom, ← Polynomial.eval₂_map, ← eval₂_C_single_one,
       hq, Polynomial.eval₂_comp, Polynomial.eval₂_add, Polynomial.eval₂_X, Polynomial.eval₂_C,
       add_comm]
-
   obtain ⟨hq0, hq1⟩ := taylor_coeffs p a ha ha'
   have horder : (ψ f).order = 1 := by
     rw [hψf]; exact order_ofPowerSeries_eq_one q hq0 hq1
-
   obtain ⟨W₀, g, hg, hW₀⟩ :=
     AlgebraicCurve.Place.exists_ord_mul_eq_order_of_hasRamBound ψ hd hψ
       ⟨f, by rw [horder]; exact one_ne_zero⟩
-
   obtain ⟨ϖ, hϖ⟩ := IsDiscreteValuationRing.exists_irreducible W₀.toValuationSubring
   have hϖ0 : (ϖ : M) ≠ 0 := by
     have := hϖ.ne_zero
@@ -208,7 +202,6 @@ theorem solution
     push Not at hle
     have : W₀.ord f * k ≤ 0 := mul_nonpos_of_nonpos_of_nonneg hle hkpos.le
     omega
-
   have hvW : W.restrict (RatFunc K) = RationalFunctionField.finitePlace K hp := by
     refine eq_finitePlace_of_ord_pos hp _ ?_
     have h := W.ord_restrict (F := RatFunc K) f₀

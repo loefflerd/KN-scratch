@@ -89,18 +89,15 @@ theorem irrational_moebius (γ : SL(2, ℤ)) {x : ℝ} (hx : Irrational x) :
   rintro ⟨q, hq⟩
   have hden := den_ne_zero γ hx
   rw [moebius, eq_comm, div_eq_iff hden] at hq
-
   rcases eq_or_ne ((γ 0 0 : ℚ) - q * (γ 1 0 : ℚ)) 0 with h | h
-  ·
-    have hR : (γ 0 0 : ℝ) - (q : ℝ) * (γ 1 0 : ℝ) = 0 := by exact_mod_cast h
+  · have hR : (γ 0 0 : ℝ) - (q : ℝ) * (γ 1 0 : ℝ) = 0 := by exact_mod_cast h
     have hb : (γ 0 1 : ℝ) = (q : ℝ) * (γ 1 1 : ℝ) := by
       linear_combination hq - x * hR
     have hdet := det_entries_real γ
     rw [show (γ 0 0 : ℝ) = (q : ℝ) * (γ 1 0 : ℝ) from by linarith, hb] at hdet
     have h01 : (0 : ℝ) = 1 := by linear_combination hdet
     exact zero_ne_one h01
-  ·
-    refine hx ⟨((q : ℚ) * (γ 1 1 : ℚ) - (γ 0 1 : ℚ)) / ((γ 0 0 : ℚ) - q * (γ 1 0 : ℚ)), ?_⟩
+  · refine hx ⟨((q : ℚ) * (γ 1 1 : ℚ) - (γ 0 1 : ℚ)) / ((γ 0 0 : ℚ) - q * (γ 1 0 : ℚ)), ?_⟩
     have hR : (γ 0 0 : ℝ) - (q : ℝ) * (γ 1 0 : ℝ) ≠ 0 := by
       intro hc
       exact h (by exact_mod_cast hc)

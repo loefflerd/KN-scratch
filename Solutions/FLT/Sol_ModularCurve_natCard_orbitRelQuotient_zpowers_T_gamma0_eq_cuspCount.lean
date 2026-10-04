@@ -75,7 +75,6 @@ theorem toCuspSpace_injective : Function.Injective (toCuspSpace N) := by
   change fromCoset N (g : SL(2, ℤ) ⧸ Gamma0 N) = fromCoset N (g' : SL(2, ℤ) ⧸ Gamma0 N) at h
   rw [fromCoset_mk, fromCoset_mk, mk_eq_mk_iff] at h
   obtain ⟨γ, hγ, hγeq⟩ := h
-
   have hfix : mapGL ℚ (g * γ * g'⁻¹) • (∞ : OnePoint ℚ) = ∞ := by
     rw [map_mul, map_mul, mul_smul, mul_smul, hγeq, ← mul_smul, ← map_mul, mul_inv_cancel,
       map_one, one_smul]
@@ -110,7 +109,6 @@ theorem solution (N : ℕ) [NeZero N] :
       = ModularCurve.cuspCount N := by
   rw [Nat.card_congr (BassSerreCuspCount.orbitEquivCuspSpace N)]
   exact ModularCurve.CuspSpace.card_cuspSpace_eq_cuspCount (NeZero.ne N)
-
 
 end S_ModularCurve_natCard_orbitRelQuotient_zpowers_T_gamma0_eq_cuspCount
 end P2MW

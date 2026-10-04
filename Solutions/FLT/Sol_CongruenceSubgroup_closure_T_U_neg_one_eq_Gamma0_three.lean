@@ -217,15 +217,13 @@ lemma schreierGens_subset_closure_gens :
     Subgroup.subset_closure (Or.inr (Or.inr rfl))
   have hcases : ∀ j : ZMod 3, j = 0 ∨ j = 1 ∨ j = 2 := by decide
   rintro x ⟨l, rfl | rfl⟩
-  ·
-    rcases l with _ | k
+  · rcases l with _ | k
     · rw [schreierGen_eq_one.2.2]; exact one_mem _
     · rcases hcases k with rfl | rfl | rfl
       · rw [schreierGen_zero_S]; exact hneg
       · rw [schreierGen_one_S]; exact mul_mem (inv_mem hT) (inv_mem hU)
       · rw [schreierGen_two_S]; exact mul_mem hneg (mul_mem hU hT)
-  ·
-    rcases l with _ | k
+  · rcases l with _ | k
     · rw [schreierGen_none_T]; exact hT
     · rcases hcases k with rfl | rfl | rfl
       · rw [schreierGen_eq_one.1]; exact one_mem _

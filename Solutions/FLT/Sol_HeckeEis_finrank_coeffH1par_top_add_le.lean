@@ -86,7 +86,6 @@ theorem z_inv (g : ↥Gt) : z g⁻¹ = -(W g⁻¹ (z g)) := by
 theorem z_eN : z eN = 0 := by
   have h := hz eN eN
   rw [eN_mul_eN, z_one hz, hneg, LinearMap.id_apply] at h
-
   have h2 : (2 : ℂ) • z eN = 0 := by rw [two_smul]; exact h.symm
   exact (smul_eq_zero.mp h2).resolve_left two_ne_zero
 
@@ -247,7 +246,6 @@ theorem E_mem_K (z : ↥(coeffParabolicCocycles W)) : E W z ∈ K W := by
     exact z_eU_rel hneg hz
   · show Submodule.mkQ _ ((z : ↥Gt → V) eU - (z : ↥Gt → V) eS) = 0
     rw [Submodule.mkQ_apply, Submodule.Quotient.mk_eq_zero]
-
     obtain ⟨v, hv⟩ := z.2.2 eT trace_T_sq
     refine ⟨W eS ((z : ↥Gt → V) eU - (z : ↥Gt → V) eS), ⟨v, ?_⟩, ?_⟩
     · rw [hv]; exact z_eT hneg hz
@@ -262,7 +260,6 @@ theorem finrank_K_add :
   set B := LinearMap.ker (1 + W eU + W eU * W eU) with hB
   set R₁ := (LinearMap.range (W eT - 1)).map (W eS) with hR₁
   set δ : (V × V) →ₗ[ℂ] V ⧸ R₁ := (Submodule.mkQ R₁).comp (LinearMap.snd ℂ V V - LinearMap.fst ℂ V V) with hδ
-
   set δ' : ↥(Submodule.prod A B) →ₗ[ℂ] V ⧸ R₁ := δ.comp (Submodule.prod A B).subtype with hδ'
   have hsurj : Function.Surjective δ' := by
     intro q
@@ -280,7 +277,6 @@ theorem finrank_K_add :
       simp only [map_sub, h3]; abel
     · show Submodule.mkQ R₁ ((W eU b - b) - (a - W eS a)) = Submodule.mkQ R₁ v
       congr 1; rw [hv]; abel
-
   have hker : Module.finrank ℂ ↥(LinearMap.ker δ') = Module.finrank ℂ ↥(K W) := by
     let e : ↥(LinearMap.ker δ') ≃ₗ[ℂ] ↥(K W) :=
       { toFun := fun p => ⟨(p : ↥(Submodule.prod A B)), (p : ↥(Submodule.prod A B)).2, p.2⟩
@@ -292,7 +288,6 @@ theorem finrank_K_add :
     exact LinearEquiv.finrank_eq e
   have hrn := LinearMap.finrank_range_add_finrank_ker δ'
   rw [LinearMap.range_eq_top.mpr hsurj, finrank_top, hker] at hrn
-
   have hq : Module.finrank ℂ (V ⧸ R₁) = Module.finrank ℂ ↥(LinearMap.ker (W eT - 1)) := by
     have h1 := Submodule.finrank_quotient_add_finrank R₁
     have h2 : Module.finrank ℂ ↥R₁ = Module.finrank ℂ ↥(LinearMap.range (W eT - 1)) := by
@@ -348,13 +343,11 @@ theorem main :
   classical
   set PC := coeffParabolicCocycles W with hPC
   set CB' : Submodule ℂ ↥PC := (coeffCoboundaries W).comap PC.subtype with hCB'
-
   have : FiniteDimensional ℂ ↥PC := Module.Finite.of_injective (E W) (E_injective W hneg)
   have hPK : Module.finrank ℂ ↥PC ≤ Module.finrank ℂ ↥(K W) :=
     LinearMap.finrank_le_finrank_of_injective
       (f := LinearMap.codRestrict (K W) (E W) (E_mem_K W hneg))
       (fun z w h => E_injective W hneg (congrArg Subtype.val h))
-
   have hcb_inj : Function.Injective (coeffCoboundaryMap W) := by
     intro v w h
     rw [← sub_eq_zero]
@@ -377,7 +370,6 @@ theorem main :
   have hCB : Module.finrank ℂ ↥CB' = Module.finrank ℂ V := by
     rw [← hcb'_range]
     exact LinearMap.finrank_range_of_inj fun v w h => hcb_inj (congrArg Subtype.val h)
-
   have hH : Module.finrank ℂ (coeffH1par W) + Module.finrank ℂ ↥CB' = Module.finrank ℂ ↥PC :=
     Submodule.finrank_quotient_add_finrank CB'
   have hK := finrank_K_add W hneg hcoinv
@@ -404,7 +396,6 @@ theorem solution {V : Type} [AddCommGroup V] [Module ℂ V] [FiniteDimensional �
       + Module.finrank ℂ ↥(LinearMap.ker (W ⟨ModularGroup.T, Subgroup.mem_top _⟩ - 1))
       ≤ Module.finrank ℂ V :=
   HeckeEis.UASol.main W hneg hinv hcoinv
-
 
 end S_HeckeEis_finrank_coeffH1par_top_add_le
 end P2MW

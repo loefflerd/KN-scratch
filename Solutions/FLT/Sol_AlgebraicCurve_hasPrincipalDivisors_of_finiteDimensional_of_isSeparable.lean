@@ -46,7 +46,6 @@ theorem degree_eq_finrank_mul {g : F}
   rw [Divisor.degree_eq_sum, Divisor.degree_eq_sum,
     ← Finset.sum_fiberwise_of_maps_to hmaps fun w => D' w * (w.deg : ℤ), Finset.mul_sum]
   refine Finset.sum_congr rfl fun v hv => ?_
-
   have hfiber : D'.support.filter (fun w => w.restrict F = v) = v.fiberOver F' := by
     ext w
     simp only [Finset.mem_filter, Finsupp.mem_support_iff, Place.mem_fiberOver,
@@ -189,7 +188,6 @@ theorem solution {K : Type*} [Field K] (E : Type*) [Field E] [Algebra K E]
     Algebra.isSeparable_tower_top_of_isSeparable (RatFunc K) E _
   have : HasPrincipalDivisors K (RatFunc K) := RationalFunctionField.hasPrincipalDivisors K
   refine ⟨fun f hf => ⟨principalDivisorOf hf, fun _ => rfl, ?_⟩⟩
-
   refine degree_eq_zero_of_tower (K := K) (F := E)
     (F' := (minpoly (RatFunc K) α).SplittingField)
     (fun h E' hE' => degree_eq_zero_of_isGalois (K := K) (F := RatFunc K)

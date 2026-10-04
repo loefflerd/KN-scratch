@@ -85,16 +85,13 @@ theorem exists_mdifferentiable_mul_eq {g h : ℍ → ℂ} (hg : MDiff g) (hh : M
     ∃ F₀ : ℍ → ℂ, MDiff F₀ ∧ ∀ τ, F₀ τ * h τ = g τ := by
   set φ : ℂ → ℂ := fun z => g (ofComplex z) / h (ofComplex z) with hφ
   set ψ : ℂ → ℂ := fun c => limUnder (𝓝[≠] c) φ with hψ
-
   have hA : ∀ c : ℂ, ∀ hc : 0 < c.im, h (ofComplex c) ≠ 0 → DifferentiableAt ℂ φ c := by
     intro c hc hne
     have hg' : DifferentiableAt ℂ (g ∘ ofComplex) c := mdifferentiableAt_iff.mp (hg ⟨c, hc⟩)
     have hh' : DifferentiableAt ℂ (h ∘ ofComplex) c := mdifferentiableAt_iff.mp (hh ⟨c, hc⟩)
     exact hg'.div hh' hne
-
   have hB : ∀ c : ℂ, 0 < c.im → h (ofComplex c) ≠ 0 → ψ c = φ c := fun c hc hne =>
     ((hA c hc hne).continuousAt.tendsto.mono_left nhdsWithin_le_nhds).limUnder_eq
-
   have hC : DifferentiableOn ℂ ψ {z : ℂ | 0 < z.im} := by
     intro c hc
     have hc' : 0 < c.im := hc
@@ -121,7 +118,6 @@ theorem exists_mdifferentiable_mul_eq {g h : ℍ → ℂ} (hg : MDiff g) (hh : M
     have hψs : DifferentiableOn ℂ ψ (Metric.ball c ε) := R.congr heq
     exact (hψs.differentiableAt (Metric.isOpen_ball.mem_nhds (Metric.mem_ball_self hε)))
       |>.differentiableWithinAt
-
   refine ⟨fun τ => ψ τ, ?_, ?_⟩
   · refine UpperHalfPlane.mdifferentiable_iff.mpr (hC.congr fun z hz => ?_)
     have hz' : 0 < z.im := hz

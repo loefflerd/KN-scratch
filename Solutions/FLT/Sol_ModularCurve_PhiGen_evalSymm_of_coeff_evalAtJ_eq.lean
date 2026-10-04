@@ -94,10 +94,8 @@ private theorem evalSymm_of_coeff_evalAtJ_eq (hζ : IsPrimitiveRoot (ζ : K) ℓ
     (hc : PhiGenDescends ℓ ζ c) (data : ModularPolynomialData ℓ)
     (hcoeff : ∀ k, evalAtJ (data.Φ.coeff k) = c k) :
     EvalSymm data.Φ := by
-
   have hsplit : data.Φ.map (((coeffEmb K).comp (qExpand ℚ ℓ)).comp evalAtJ) = phiProd ℓ (conj ℓ ζ) :=
     splits_of_coeff_evalAtJ_eq ζ hc data hcoeff
-
   have h0top : (evalAtJ (data.Φ.coeff 0)).coeff (-((dedekindPsi ℓ : ℕ) : ℤ)) = 1 := by
     rw [hcoeff 0, dedekindPsi_prime hℓ.out]
     exact hc.c_zero_coeff_lead hζ
@@ -111,9 +109,7 @@ private theorem evalSymm_of_coeff_evalAtJ_eq (hζ : IsPrimitiveRoot (ζ : K) ℓ
     intro k hk0 m hm
     rw [hcoeff k]
     exact hc.c_coeff_eq_zero_of_ne_zero k hk0 m (by rwa [dedekindPsi_prime hℓ.out] at hm)
-
   obtain ⟨hTmonic, hTdeg⟩ := data.transposeToAdjoin_monic_of_qExpansion h0top h0le hk
-
   exact evalSymm_of_splits ℓ ζ hζ data hsplit hTmonic hTdeg.le
 
 end Symmetry
@@ -127,7 +123,6 @@ open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_evalSymm_of_coeff_eva
 
 theorem solution {K : Type*} [Field K] [Algebra ℚ K] {ℓ : ℕ} [hℓ : Fact (Nat.Prime ℓ)] {ζ : Kˣ} {c : ℕ → LaurentSeries ℚ} (hζ : IsPrimitiveRoot (ζ : K) ℓ) (hc : PhiGenDescends ℓ ζ c) (data : ModularPolynomialData ℓ) (hcoeff : ∀ k, evalAtJ (data.Φ.coeff k) = c k) : EvalSymm data.Φ :=
   ModularCurve.PhiGen.evalSymm_of_coeff_evalAtJ_eq hζ hc data hcoeff
-
 
 end S_ModularCurve_PhiGen_evalSymm_of_coeff_evalAtJ_eq
 end P2MW

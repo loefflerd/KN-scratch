@@ -293,7 +293,6 @@ private lemma symbol_vertical (f : UpperHalfPlane → ℂ) (a m : ℚ) (hm : m �
         funext t; ring, integral_const_mul]
   ring
 
-
 end MTTComparisonProof
 
 open MTTComparisonProof
@@ -371,7 +370,6 @@ private lemma gauss_product {m : ℕ} [NeZero m] (χ : DirichletCharacter ℂ m)
   rw [ht] at h
   simpa [mul_comm] using h
 
-
 private lemma weighted_signed_comparison {N k m : ℕ} [NeZero m]
     {ι : Qbar →+* ℂ} (hN : 0 < N) (hk : 2 ≤ k) (f : Eigenform N k ι)
     (P : Periods k ι f.form) (s : Bool) (χ : DirichletCharacter Qbar m)
@@ -416,7 +414,6 @@ private lemma weighted_signed_comparison {N k m : ℕ} [NeZero m]
       rw [hA,hS]
       linear_combination -(2 * (Real.pi : ℂ) * (Complex.I * (m : ℂ))^j *
         (MTT.sign s : ℂ) * (-1 : ℂ)^j * W) * hc
-
 
 private lemma signed_sum_period {N k m : ℕ} [NeZero m]
     {ι : Qbar →+* ℂ} (hN : 0 < N) (hk : 2 ≤ k) (f : Eigenform N k ι)
@@ -711,7 +708,6 @@ theorem hecke_vm (hN : 0 < N) (hk : 2 ≤ k) (f : Eigenform N k ι)
 
 end Hecke
 
-
 variable {N k : ℕ}
 
 theorem sum_reflect (f : CuspForm (GammaOne N) (k : ℤ)) (j : ℕ) {p : ℕ} (hp : 0 < p) (r : ℚ) :
@@ -747,7 +743,6 @@ theorem sum_reflect (f : CuspForm (GammaOne N) (k : ℤ)) (j : ℕ) {p : ℕ} (h
         rw [hc]; field_simp; ring
       rw [h1, hshift]
       exact (vm_periodic f ((r - (a : ℚ)) / p) j).symm
-
 
 private lemma symbol_boundary_sum {p N k : ℕ} [Fact p.Prime]
     {ι : Qbar →+* ℂ} (hN : 0 < N) (hk : 2 ≤ k) (f : Eigenform N k ι)

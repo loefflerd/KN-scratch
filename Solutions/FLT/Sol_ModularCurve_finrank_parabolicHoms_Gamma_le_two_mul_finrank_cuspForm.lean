@@ -57,7 +57,6 @@ theorem toGammaOne_coe (γ : Gamma 1) : toGammaOne (γ : SL(2, ℤ)) = γ := by
 theorem eq_zero_of_mem_parabolicHoms_gamma_one (φ : Additive (Gamma 1) →+ ℤ)
     (hφ : φ ∈ parabolicHoms ℤ (Gamma 1) ℤ) : φ = 0 := by
   rw [mem_parabolicHoms_iff] at hφ
-
   let ψ : SL(2, ℤ) → ℤ := fun g => φ (Additive.ofMul (toGammaOne g))
   have hψ_mul : ∀ g h, ψ (g * h) = ψ g + ψ h := by
     intro g h
@@ -69,16 +68,12 @@ theorem eq_zero_of_mem_parabolicHoms_gamma_one (φ : Additive (Gamma 1) →+ ℤ
     have h := hψ_mul g g⁻¹
     rw [mul_inv_cancel, hψ_one] at h
     omega
-
   have hT : ψ ModularGroup.T = 0 := hφ (toGammaOne ModularGroup.T) trace_T_sq
-
   have hneg : ψ (-1) = 0 := hφ (toGammaOne (-1)) trace_neg_one_sq
-
   have hS : ψ ModularGroup.S = 0 := by
     have h := hψ_mul ModularGroup.S ModularGroup.S
     rw [S_mul_S, hneg] at h
     omega
-
   have hall : ∀ g : SL(2, ℤ), ψ g = 0 := by
     intro g
     have hg : g ∈ Subgroup.closure ({ModularGroup.S, ModularGroup.T} : Set SL(2, ℤ)) := by

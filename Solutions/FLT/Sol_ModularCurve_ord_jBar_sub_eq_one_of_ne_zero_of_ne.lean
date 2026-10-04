@@ -34,11 +34,9 @@ theorem solution (N : ℕ) [NeZero N]
   obtain ⟨E₀, hE, hj, f, hfib, hord⟩ := ModularCurve.exists_elliptic_cycSub_orbitMap N c
   let : E₀.IsElliptic := hE
   have hΔ : E₀.Δ ≠ 0 := by rw [← E₀.coe_Δ']; exact E₀.Δ'.ne_zero
-
   have hc4 : E₀.c₄ ≠ 0 := by
     intro h; apply hc0
     rw [← hj, WeierstrassCurve.j, h, zero_pow three_ne_zero, mul_zero]
-
   have hc6 : E₀.c₆ ≠ 0 := by
     intro h; apply hc1728; rw [← hj]
     have hrel : (1728 : AlgebraicClosure ℚ) * E₀.Δ = E₀.c₄ ^ 3 - E₀.c₆ ^ 2 := by
@@ -50,14 +48,12 @@ theorem solution (N : ℕ) [NeZero N]
         mul_comm (1728 : AlgebraicClosure ℚ), ← mul_assoc]
     simp only [Units.val_inv_eq_inv_val, E₀.coe_Δ']
     rw [inv_mul_cancel₀ hΔ, one_mul]
-
   have hinj : Function.Injective f := by
     intro H H' heq
     have horb := (hfib H H').mp heq
     have := (sameOrbit_iff_eq_of_c4_ne_zero_of_c6_ne_zero E₀ hc4 hc6 H.1 H'.1).mp horb
     exact (Subtype.ext this.1).symm
   have hordv := hord ⟨v, hpos⟩
-
   have : Finite (CycSub E₀ N) := ModularCurve.finite_cycSub N E₀
   have : Fintype {H : CycSub E₀ N // f H = ⟨v, hpos⟩} := Fintype.ofFinite _
   have hsub : Subsingleton {H : CycSub E₀ N // f H = ⟨v, hpos⟩} :=

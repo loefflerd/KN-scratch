@@ -91,14 +91,12 @@ theorem solution (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ)) [Γ.Fin
         ‖((Φ : UpperHalfPlane → ℂ) ∣[a] (A : GL (Fin 2) ℝ)) τ‖ ≤ C * ‖((Ψ : UpperHalfPlane → ℂ) ∣[b] (A : GL (Fin 2) ℝ)) τ‖) :
     ∃ f : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) c, ∀ τ : UpperHalfPlane, f τ * Ψ τ = Φ τ := by
   classical
-
   set Φ' : ℂ → ℂ := (Φ : ℍ → ℂ) ∘ ofComplex with hΦ'
   set Ψ' : ℂ → ℂ := (Ψ : ℍ → ℂ) ∘ ofComplex with hΨ'
   have hUo : IsOpen {z : ℂ | 0 < z.im} := isOpen_lt continuous_const Complex.continuous_im
   have hUconn : IsPreconnected {z : ℂ | 0 < z.im} := (convex_halfSpace_im_gt 0).isPreconnected
   have hΦa : ∀ z ∈ {z : ℂ | 0 < z.im}, AnalyticAt ℂ Φ' z := fun z hz => ANa.analyticAt_of_mdiff Φ.holo' hz
   have hΨa : ∀ z ∈ {z : ℂ | 0 < z.im}, AnalyticAt ℂ Ψ' z := fun z hz => ANa.analyticAt_of_mdiff Ψ.holo' hz
-
   have hΨ0 : ∀ z ∈ {z : ℂ | 0 < z.im}, ¬ (∀ᶠ w in 𝓝 z, Ψ' w = 0) := by
     intro z hz hloc
     apply hΨ
@@ -109,7 +107,6 @@ theorem solution (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ)) [Γ.Fin
     simpa [hΨ', ofComplex_apply] using this
   have hle : ∀ z ∈ {z : ℂ | 0 < z.im}, analyticOrderAt Ψ' z ≤ analyticOrderAt Φ' z :=
     fun z hz => hord ⟨z, hz⟩
-
   have hF := ANa.quo_analytic hUo hΦa hΨa hΨ0 hle
   set F : ℂ → ℂ := ANa.quo Φ' Ψ' with hFdef
   let f : ℍ → ℂ := fun τ => F τ
@@ -124,9 +121,7 @@ theorem solution (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ)) [Γ.Fin
       (hF z hz).1.differentiableAt.differentiableWithinAt
     refine h1.congr fun z hz => ?_
     exact congrArg F (by rw [ofComplex_apply_of_im_pos hz])
-
   have hcb : c + b = a := by omega
-
   have hf_slash : ∀ γ ∈ Subgroup.map (Matrix.SpecialLinearGroup.mapGL ℝ) Γ,
       f ∣[c] γ = f := by
     rintro _ ⟨γ₀, hγ₀, rfl⟩
@@ -140,7 +135,6 @@ theorem solution (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ)) [Γ.Fin
         _ = (f * (Ψ : ℍ → ℂ)) ∣[c + b] γ₀ := (ModularForm.mul_slash_SL2 c b γ₀ f Ψ).symm
         _ = (Φ : ℍ → ℂ) ∣[a] γ₀ := by rw [hfΨfun, hcb]
         _ = Φ := hΦinv
-
     have hD : ∀ τ, (f ∣[c] γ₀ - f) τ * Ψ τ = 0 := fun τ => by
       have h1 := congrFun hprod τ
       simp only [Pi.mul_apply] at h1
@@ -158,7 +152,6 @@ theorem solution (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ)) [Γ.Fin
       (mul_eq_zero.mp (hD τ)).resolve_left hτ
     have hall := ANa.vanish Ψ.holo' hWo hτ₀ hΨW
     exact hΨ (DFunLike.ext Ψ 0 hall)
-
   have hcusp' : ∀ γ : SL(2, ℤ), IsBoundedAtImInfty (f ∣[c] γ) := by
     intro γ
     rw [UpperHalfPlane.isBoundedAtImInfty_iff]
@@ -167,7 +160,6 @@ theorem solution (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ)) [Γ.Fin
     refine ⟨C, T + 1, fun τ hτ => ?_⟩
     by_contra hlt'
     have hlt : C < ‖(f ∣[c] γ) τ‖ := not_le.mp hlt'
-
     set G : ℍ → ℂ := f ∣[c] γ with hG
     set ΨA : ℍ → ℂ := (Ψ : ℍ → ℂ) ∣[b] γ with hΨA
     have hprodA : G * ΨA = (Φ : ℍ → ℂ) ∣[a] γ := by
@@ -197,7 +189,6 @@ theorem solution (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ)) [Γ.Fin
             bdd_at_cusps' := fun {cc} hc => ?_ }, hfΨ⟩
   have hc' : IsCusp cc (Matrix.SpecialLinearGroup.mapGL ℝ).range := hc.mono (Subgroup.map_le_range _ _)
   exact (OnePoint.isBoundedAt_iff_forall_SL2Z hc').mpr fun γ _ => hcusp' γ
-
 
 end
 end S_ModularForm_exists_modularForm_mul_eq_of_analyticOrderAt_le_of_finiteIndex

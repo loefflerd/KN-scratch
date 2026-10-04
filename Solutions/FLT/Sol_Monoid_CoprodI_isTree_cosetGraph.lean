@@ -129,7 +129,6 @@ theorem reachable_one (i : ι) (g : CoprodI G) (j : ι) :
   induction g using CoprodI.induction_left with
   | one => exact reachable_one_one i j
   | mul m x ih =>
-
     have step := reachable_smul (of m) ih
     rw [smul_mk, smul_mk, mul_one] at step
     exact (reachable_one_of m).trans step
@@ -148,10 +147,8 @@ theorem eq_one_of_mem_range_of_mem_range {i j : ι} (hij : i ≠ j) {x : CoprodI
   classical
   obtain ⟨a, rfl⟩ := MonoidHom.mem_range.mp hi
   obtain ⟨b, hb⟩ := MonoidHom.mem_range.mp hj
-
   have key := congrArg (lift (Pi.mulSingle i (MonoidHom.id (G i)))) hb
   rw [lift_of, lift_of, Pi.mulSingle_eq_same, Pi.mulSingle_eq_of_ne hij.symm] at key
-
   simp only [MonoidHom.one_apply, MonoidHom.id_apply] at key
   rw [← key, map_one]
 
@@ -175,7 +172,6 @@ theorem adj_base_iff {i : ι} {w : Vertex G} :
   constructor
   · rintro ⟨hiw, g, hgi, hgw⟩
     refine ⟨hiw, ?_⟩
-
     obtain ⟨a, ha⟩ := MonoidHom.mem_range.mp
       (show g ∈ (of (M := G) (i := i)).range by simpa using mk_eq_mk_iff.mp hgi)
     exact ⟨a, by rw [ha]; exact hgw⟩

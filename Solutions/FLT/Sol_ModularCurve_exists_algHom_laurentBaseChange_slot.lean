@@ -134,7 +134,6 @@ private theorem _root_.ModularCurve.exists_algHom_laurentBaseChange_slot (N : �
       ι ⟨coeffEmb K (jqN N), coeffEmb_mem_laurentBaseChange K (jqd_mem_full N (dvd_refl N))⟩ =
           qExpand K (a * a) (qTwist (ζ ^ (b * a)) (coeffEmb K jq)) := by
   obtain ⟨hint, -⟩ := minpoly_coeffEmb_jqN K N
-
   let L := AdjoinRoot.lift ((qExpand K N).comp (algebraMap K⟮coeffEmb K jq⟯ (LaurentSeries K)))
     (qExpand K (a * a) (qTwist (ζ ^ (b * a)) (coeffEmb K jq)))
     (eval₂_minpoly_slot K N ζ hζ a b ha hb hg)
@@ -153,7 +152,6 @@ private theorem _root_.ModularCurve.exists_algHom_laurentBaseChange_slot (N : �
     show L (e.symm (AdjoinSimple.gen _ _)) = _
     rw [adjoinRootEquivAdjoin_symm_apply_gen, AdjoinRoot.lift_root]
   have hF := laurentBaseChange_full_eq_adjoin_adjoin K N
-
   let ι' : (K⟮coeffEmb K jq⟯⟮coeffEmb K (jqN N)⟯).restrictScalars K →ₐ[K] LaurentSeries K :=
     { toRingHom := φ
       commutes' := fun c => by
@@ -179,7 +177,6 @@ theorem solution (K : Type*) [Field K] [Algebra ℚ K] (N : ℕ) [NeZero N] (ζ 
       ι ⟨coeffEmb K (jqN N), coeffEmb_mem_laurentBaseChange K (jqd_mem_full N (dvd_refl N))⟩ =
           qExpand K (a * a) (qTwist (ζ ^ (b * a)) (coeffEmb K jq)) :=
   ModularCurve.exists_algHom_laurentBaseChange_slot K N ζ hζ a b ha hb hg
-
 
 end S_ModularCurve_exists_algHom_laurentBaseChange_slot
 end P2MW

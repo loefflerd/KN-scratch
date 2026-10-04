@@ -47,7 +47,6 @@ theorem realizedHorizontalCharacter_even_of_odd_prime
 
 end HorizontalPadicL
 
-
 -- Platform entry point: restates the target verbatim.
 namespace HorizontalPadicL
 

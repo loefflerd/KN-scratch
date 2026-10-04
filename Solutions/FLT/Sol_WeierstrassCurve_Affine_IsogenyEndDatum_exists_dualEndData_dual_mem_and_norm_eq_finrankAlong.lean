@@ -209,13 +209,11 @@ theorem isFinitePlace_iff_exists_placeOfEquation [IsAlgClosed F]
     IsFinitePlace v ↔ ∃ (x y : F) (h : W.Equation x y), v = placeOfEquation h := by
   constructor
   · intro hv
-
     have := hv.centre_isPrime
     have hmax : hv.centre.IsMaximal := Ideal.IsPrime.isMaximal hv.centre_isPrime hv.centre_ne_bot
     obtain ⟨x, y, hxy, hXY⟩ :=
       CoordinateRing.exists_eq_XYIdeal (W := W) (P := hv.centre) hv.centre_ne_bot
     refine ⟨x, y, hxy, ?_⟩
-
     set w : HeightOneSpectrum W.CoordinateRing := heightOneSpectrumOfEquation hxy with hw
     set A : ValuationSubring W.FunctionField :=
       HeightOneSpectrum.valuationSubringAtPrime W.FunctionField w with hA
@@ -229,19 +227,16 @@ theorem isFinitePlace_iff_exists_placeOfEquation [IsAlgClosed F]
         rw [hXY] at hmem
         exact hs hmem
       exact mul_mem (hv r) (hv.inv_mem hs')
-
     have hSP : A.ofPrime (A.idealOfLE v.toValuationSubring hle) = v.toValuationSubring :=
       ValuationSubring.ofPrime_idealOfLE A v.toValuationSubring hle
     rcases eq_or_ne (A.idealOfLE v.toValuationSubring hle) ⊥ with hP | hP
-    ·
-      exfalso
+    · exfalso
       apply v.ne_top'
       have h2 : A.ofPrime ⊥ ≤ A.ofPrime (A.idealOfLE v.toValuationSubring hle) :=
         ValuationSubring.ofPrime_le_of_le (h := hP.le)
       rw [ValuationSubring.ofPrime_bot] at h2
       exact top_le_iff.mp (le_trans h2 hSP.le)
-    ·
-      have hPmax : (A.idealOfLE v.toValuationSubring hle).IsMaximal :=
+    · have hPmax : (A.idealOfLE v.toValuationSubring hle).IsMaximal :=
         Ideal.IsPrime.isMaximal inferInstance hP
       have hPeq : A.idealOfLE v.toValuationSubring hle = IsLocalRing.maximalIdeal A :=
         IsLocalRing.eq_maximalIdeal hPmax
@@ -2019,8 +2014,7 @@ private theorem _root_.AlgebraicCurve.Place.ord_add_eq_min {f g : F} (hf : f ≠
     · exact v.adicValuation_ne_zero hg h1.symm
   rcases max_cases (v.adicValuation f) (v.adicValuation g) with ⟨hmax, hle⟩ | ⟨hmax, hlt⟩ <;>
     rw [hmax] at h1
-  ·
-    have hlog := (WithZero.log_le_log (v.adicValuation_ne_zero hg)
+  · have hlog := (WithZero.log_le_log (v.adicValuation_ne_zero hg)
       (v.adicValuation_ne_zero hf)).mpr hle
     have h2 : v.ord (f + g) = v.ord f := by simp only [ord, h1]
     simp only [ord] at hlog h2 ⊢
@@ -2065,11 +2059,9 @@ private theorem _root_.AlgebraicCurve.Place.ord_ringHom_eq_natDegree_mul {φ : K
     intro hp
     subst hd
     rcases eq_or_ne p.eraseLead 0 with he | he
-    ·
-      conv_lhs => rw [← p.eraseLead_add_C_mul_X_pow, he, zero_add]
+    · conv_lhs => rw [← p.eraseLead_add_C_mul_X_pow, he, zero_add]
       exact hmono _ _ (leadingCoeff_ne_zero.mpr hp)
-    ·
-      have hlt : p.eraseLead.natDegree < p.natDegree := by
+    · have hlt : p.eraseLead.natDegree < p.natDegree := by
         rcases p.eraseLead_natDegree_lt_or_eraseLead_eq_zero with h | h
         · exact h
         · exact absurd h he
@@ -2185,13 +2177,11 @@ theorem isFinitePlace_of_mem
     refine v.mem_of_eval_monic_eq_zero (P := Polynomial.X ^ 2
       + (Polynomial.C (polyToFunctionField W c₁) * Polynomial.X
         - Polynomial.C (polyToFunctionField W cb))) ?_ ?_ (x := η) ?_
-    ·
-      refine Polynomial.monic_X_pow_add (n := 2) ?_
+    · refine Polynomial.monic_X_pow_add (n := 2) ?_
       rw [sub_eq_add_neg, ← Polynomial.C_neg]
       refine lt_of_le_of_lt Polynomial.degree_linear_le ?_
       exact_mod_cast Nat.one_lt_two
-    ·
-      intro i
+    · intro i
       rw [show (Polynomial.C (polyToFunctionField W c₁) * Polynomial.X : Polynomial _)
           = Polynomial.C (polyToFunctionField W c₁) * Polynomial.X ^ 1 by ring]
       simp only [Polynomial.coeff_add, Polynomial.coeff_sub, Polynomial.coeff_X_pow,
@@ -2204,8 +2194,7 @@ theorem isFinitePlace_of_mem
       · split
         · exact hpoly _
         · exact v.toValuationSubring.zero_mem
-    ·
-      simp only [Polynomial.eval_add, Polynomial.eval_sub, Polynomial.eval_pow,
+    · simp only [Polynomial.eval_add, Polynomial.eval_sub, Polynomial.eval_pow,
         Polynomial.eval_mul, Polynomial.eval_C, Polynomial.eval_X]
       rw [sq]
       linear_combination hrel
@@ -2270,8 +2259,7 @@ theorem two_mul_ord_Y_eq_three_mul_ord_X (hv : ¬ IsFinitePlace v) :
   · rw [hc₁0, add_zero] at hLHS
     omega
   · by_cases hBc : v.ord η = v.ord (polyToFunctionField W c₁)
-    ·
-      exfalso
+    · exfalso
       have hmin : min (v.ord η) (v.ord (polyToFunctionField W c₁))
           ≤ v.ord (η + polyToFunctionField W c₁) := v.min_ord_le_ord_add hfac0
       rw [← hBc, min_self] at hmin
@@ -2284,8 +2272,7 @@ theorem two_mul_ord_Y_eq_three_mul_ord_X (hv : ¬ IsFinitePlace v) :
         ⟨hm, hle⟩ | ⟨hm, hlt⟩ <;> rw [hm] at hsum
       · rw [hsum] at hLHS
         omega
-      ·
-        exfalso
+      · exfalso
         rw [hsum] at hLHS
         omega
 
@@ -2315,21 +2302,18 @@ theorem two_mul_ord_eq_of_not_isFinitePlace (hv : ¬ IsFinitePlace v)
   have hYord := two_mul_ord_Y_eq_three_mul_ord_X v hv
   obtain ⟨p, q, rfl⟩ := exists_smul_basis_eq f
   by_cases hq : q = 0
-  ·
-    subst hq
+  · subst hq
     have hp : p ≠ 0 := fun h => hf (by rw [h, zero_smul, zero_smul, add_zero])
     rw [natDegree_norm_smul_basis_left hp, algebraMap_smul_basis, _root_.map_zero, zero_mul, add_zero,
       v.ord_ringHom_eq_natDegree_mul polyToFunctionField_injective polyToFunctionField_C hA hp]
     ring
   · by_cases hp : p = 0
-    ·
-      subst hp
+    · subst hp
       rw [natDegree_norm_smul_basis_right hq, algebraMap_smul_basis, _root_.map_zero, zero_add,
         v.ord_mul (polyToFunctionField_ne_zero hq) hη0,
         v.ord_ringHom_eq_natDegree_mul polyToFunctionField_injective polyToFunctionField_C hA hq]
       linear_combination hYord
-    ·
-      rw [natDegree_norm_smul_basis_max hp hq, algebraMap_smul_basis]
+    · rw [natDegree_norm_smul_basis_max hp hq, algebraMap_smul_basis]
       have hordp : v.ord (polyToFunctionField W p)
           = (p.natDegree : ℤ) * v.ord (polyToFunctionField W X) :=
         v.ord_ringHom_eq_natDegree_mul polyToFunctionField_injective polyToFunctionField_C hA hp
@@ -2554,15 +2538,13 @@ theorem neg_log_valuation_fiberCenter_eq_ord (hw : w.restrict F = v) {x : F'} (h
     -log ((fiberCenter F' v hw).valuation F' x) = w.ord x := by
   refine eq_ord_of_addHom_of_nonneg_iff w
     (fun y => -log ((fiberCenter F' v hw).valuation F' y)) ?_ ?_ ?_ hx
-  ·
-    intro a b ha hb
+  · intro a b ha hb
     show -log ((fiberCenter F' v hw).valuation F' (a * b)) =
       -log ((fiberCenter F' v hw).valuation F' a) +
         -log ((fiberCenter F' v hw).valuation F' b)
     rw [map_mul, log_mul ((Valuation.ne_zero_iff _).mpr ha) ((Valuation.ne_zero_iff _).mpr hb)]
     ring
-  ·
-    obtain ⟨t, ht⟩ := (fiberCenter F' v hw).valuation_exists_uniformizer F'
+  · obtain ⟨t, ht⟩ := (fiberCenter F' v hw).valuation_exists_uniformizer F'
     refine ⟨t, ?_, ?_⟩
     · intro h
       rw [h, _root_.map_zero] at ht
@@ -2570,8 +2552,7 @@ theorem neg_log_valuation_fiberCenter_eq_ord (hw : w.restrict F = v) {x : F'} (h
     · show -log ((fiberCenter F' v hw).valuation F' t) = 1
       rw [ht, log_exp]
       ring
-  ·
-    intro y hy
+  · intro y hy
     have hy0 : (fiberCenter F' v hw).valuation F' y ≠ 0 := (Valuation.ne_zero_iff _).mpr hy
     show 0 ≤ -log ((fiberCenter F' v hw).valuation F' y) ↔ y ∈ w.toValuationSubring
     have hmem : y ∈ w.toValuationSubring ↔ (fiberCenter F' v hw).valuation F' y ≤ 1 := by
@@ -3118,17 +3099,14 @@ theorem sum_ramificationIndex_mul_inertiaDeg_of_forall_mem_iff
   push_cast
   refine Finset.sum_bij
     (fun w hw => (fiberCenter F' v ((hs w).mp hw)).asIdeal) ?_ ?_ ?_ ?_
-  ·
-    intro w hw
+  · intro w hw
     rw [IsDedekindDomain.mem_primesOverFinset_iff (maximalIdeal_ne_bot v)]
     exact ⟨(fiberCenter F' v ((hs w).mp hw)).isPrime,
       fiberCenter_liesOver ((hs w).mp hw)⟩
-  ·
-    intro w hw w' hw' h
+  · intro w hw w' hw' h
     exact eq_of_fiberCenter_eq ((hs w).mp hw) ((hs w').mp hw')
       (HeightOneSpectrum.ext h)
-  ·
-    intro P hP
+  · intro P hP
     rw [IsDedekindDomain.mem_primesOverFinset_iff (maximalIdeal_ne_bot v)] at hP
     obtain ⟨hP1, hP2⟩ := hP
     have hPne : P ≠ ⊥ := by
@@ -3143,8 +3121,7 @@ theorem sum_ramificationIndex_mul_inertiaDeg_of_forall_mem_iff
     exact congrArg HeightOneSpectrum.asIdeal
       (fiberCenter_placeOfPrime (⟨P, hP1, hPne⟩ :
         HeightOneSpectrum (integralClosureAt F' v)))
-  ·
-    intro w hw
+  · intro w hw
     rw [ramificationIndex_eq_ramificationIdx_fiberCenter ((hs w).mp hw),
       inertiaDeg_eq_inertiaDeg_fiberCenter ((hs w).mp hw)]
 
@@ -3337,8 +3314,7 @@ private theorem _root_.AlgebraicCurve.Place.ord_sub_evalAt_pos (hrat : v.IsRatio
   have hmem : f - algebraMap K F (v.evalAt f) ∈ v.toValuationSubring :=
     sub_mem hf (v.algebraMap_mem' _)
   rcases eq_or_ne (v.ord (f - algebraMap K F (v.evalAt f))) 0 with h0 | h0
-  ·
-    exfalso
+  · exfalso
     refine v.evalAt_ne_zero hrat hne h0 ?_
     have hres : algebraMap K v.ResidueField
         (v.evalAt (f - algebraMap K F (v.evalAt f))) = 0 := by
@@ -4145,12 +4121,10 @@ theorem restrictAlong_placeOfEquation {x y : F} (h : W.Equation x y) {a b : F}
   intro r hr
   simp only [Set.mem_insert_iff, Set.mem_singleton_iff] at hr
   rcases hr with rfl | rfl
-  ·
-    rw [SetLike.mem_coe, hfin.mem_centre_iff_ord_ne_zero (XClass_ne_zero _),
+  · rw [SetLike.mem_coe, hfin.mem_centre_iff_ord_ne_zero (XClass_ne_zero _),
       Place.ord_restrictAlong_ne_zero_iff, map_XClass ι hX]
     omega
-  ·
-    rw [SetLike.mem_coe, hfin.mem_centre_iff_ord_ne_zero (YClass_ne_zero _),
+  · rw [SetLike.mem_coe, hfin.mem_centre_iff_ord_ne_zero (YClass_ne_zero _),
       Place.ord_restrictAlong_ne_zero_iff, map_YClass ι hY]
     omega
 
@@ -4242,8 +4216,7 @@ theorem es1a8_coordSeamDataAt_of_restrictAlong_pbd
       rw [placeOfPoint_some] at hres
       have hpos := Place.ramificationIndexAlong_pos φ hφ v
       constructor
-      ·
-        have hsrc : 0 < (placeOfEquation h₃.left).ord
+      · have hsrc : 0 < (placeOfEquation h₃.left).ord
             (polyToFunctionField W X - algebraMap F W.FunctionField x₃) := by
           rw [show polyToFunctionField W X - algebraMap F W.FunctionField x₃
               = polyToFunctionField W (X - C x₃) by rw [map_sub, polyToFunctionField_C]]
@@ -4254,8 +4227,7 @@ theorem es1a8_coordSeamDataAt_of_restrictAlong_pbd
         rw [hres, map_sub, AlgHom.commutes] at htrans
         rw [htrans]
         exact mul_pos (by exact_mod_cast hpos) hsrc
-      ·
-        have hyeq : yGen W - algebraMap F W.FunctionField y₃
+      · have hyeq : yGen W - algebraMap F W.FunctionField y₃
             = algebraMap W.CoordinateRing W.FunctionField
                 ((-(C y₃) : F[X]) • (1 : W.CoordinateRing)
                   + (1 : F[X]) • CoordinateRing.mk W Y) := by
@@ -5306,8 +5278,7 @@ theorem mmr73_cs_evalAt_eq_of_ord_sub_pos (v : Place K F) (hv : v.IsRational)
   have _pin := Classical.em True
   by_contra hne
   rcases eq_or_ne (f - algebraMap K F (v.evalAt f)) 0 with h0 | hne0
-  ·
-    have hfa : f - algebraMap K F a = algebraMap K F (v.evalAt f - a) := by
+  · have hfa : f - algebraMap K F a = algebraMap K F (v.evalAt f - a) := by
       rw [map_sub, ← sub_eq_zero.mp h0]
     rw [hfa, AlgebraicCurve.Place.ord_algebraMap v] at hpos
     exact lt_irrefl 0 hpos
@@ -5611,16 +5582,14 @@ theorem mmr73_cs_geomMorph_add_eq_of_addSum_const (D₁ D₂ : IsogenyEndDatum W
       (placeOfPoint Q).evalAt_algebraMap W.a₃, ha₁, hb₁]
   rw [hP₁, hP₂, Point.add_of_X_ne hane]
   refine mmr48_sp_point_some_congr ?_ ?_ _ hcd
-  ·
-    rw [hslope]
+  · rw [hslope]
     have h0 : (placeOfPoint Q).evalAt (es1a6_addSumX W D₁.ι D₂.ι) = c := by
       rw [hx, (placeOfPoint Q).evalAt_algebraMap c]
     rw [hX0, hBX] at h0
     rw [← h0]
     simp only [addX]
     ring
-  ·
-    rw [hslope]
+  · rw [hslope]
     have h0 : (placeOfPoint Q).evalAt (es1a6_addSumY W D₁.ι D₂.ι) = d := by
       rw [hy, (placeOfPoint Q).evalAt_algebraMap d]
     rw [hY0, hBY] at h0
@@ -6977,8 +6946,7 @@ theorem kw_dualTraceWitness_of_shiftDatumSupply
   intro D
   have h := kw_pointEnd_mul_dualPointEnd D
   by_cases hzero : 1 + D.pointEnd' = 0
-  ·
-    have hd : (1 + D.pointEnd') * kw_dualPointEnd D = 0 := by rw [hzero, zero_mul]
+  · have hd : (1 + D.pointEnd') * kw_dualPointEnd D = 0 := by rw [hzero, zero_mul]
     have hd2 : kw_dualPointEnd D + D.pointEnd' * kw_dualPointEnd D = 0 := by
       rw [← hd, add_mul, one_mul]
     rw [h] at hd2
@@ -6989,8 +6957,7 @@ theorem kw_dualTraceWitness_of_shiftDatumSupply
     refine ⟨-1 - (D.degree : ℤ), ?_⟩
     rw [Int.cast_sub, Int.cast_neg, Int.cast_one, hφ, hψ]
     abel
-  ·
-    obtain ⟨D', hpt, hdual⟩ := hsh D hzero
+  · obtain ⟨D', hpt, hdual⟩ := hsh D hzero
     have h' := kw_pointEnd_mul_dualPointEnd D'
     rw [hpt, hdual] at h'
     have hexp : (1 + D.pointEnd') * (1 + kw_dualPointEnd D)
@@ -7310,18 +7277,15 @@ theorem kw_dcao_geomMorphDualAdditivity_of_defectPrincipal
   have hpe : D₃.pointEnd' = D₁.pointEnd' + D₂.pointEnd' :=
     kw_dcao_pointEnd_add_of_geomMorph_add hgm
   by_cases hX : D₁.ι (polyToFunctionField W X) = D₂.ι (polyToFunctionField W X)
-  ·
-    have heq₁ := es1a8_add_equation_cmp W D₁.ι
+  · have heq₁ := es1a8_add_equation_cmp W D₁.ι
     have heq₂ := es1a8_add_equation_cmp W D₂.ι
     by_cases hneg : D₁.ι (yGen W)
         = (W.map (algebraMap F W.FunctionField)).toAffine.negY
             (D₂.ι (polyToFunctionField W X)) (D₂.ι (yGen W))
-    ·
-      have hcol : es1a8_addCollapse_cmp W D₁.ι D₂.ι := ⟨hX, hneg⟩
+    · have hcol : es1a8_addCollapse_cmp W D₁.ι D₂.ι := ⟨hX, hneg⟩
       exact absurd (hpe.trans (es1a8_addCollapse_pointEnd_add_eq_zero_cmp D₁ D₂ hcol))
         (kw_pointEnd_ne_zero D₃)
-    ·
-      have hY : D₁.ι (yGen W) = D₂.ι (yGen W) := Y_eq_of_Y_ne heq₁ heq₂ hX hneg
+    · have hY : D₁.ι (yGen W) = D₂.ι (yGen W) := Y_eq_of_Y_ne heq₁ heq₂ hX hneg
       have hDeq : D₁ = D₂ :=
         kw_dcao_ext_of_iota_eq (es1a8_functionField_algHom_ext_cmp hX hY)
       subst hDeq
@@ -7341,8 +7305,7 @@ theorem kw_dcao_geomMorphDualAdditivity_of_defectPrincipal
         rw [es1a3_compDatum_pointEnd, hDN2, hpe, h2cast, add_mul, one_mul]
       rw [kw_dualPointEnd_eq_of_pointEnd_eq hCpe.symm, kw_dcao_dual_comp,
         kw_dualPointEnd_of_pointEnd_intCast DN 2 hDN2, h2cast, mul_add, mul_one]
-  ·
-    refine DFunLike.ext _ _ fun Q => ?_
+  · refine DFunLike.ext _ _ fun Q => ?_
     show kw_dualPointEnd D₃ Q = kw_dualPointEnd D₁ Q + kw_dualPointEnd D₂ Q
     have hE : Divisor.degree
         (pointDivisor Q : AlgebraicCurve.Divisor F W.FunctionField) = 0 :=
@@ -8099,16 +8062,14 @@ theorem kw_dcao_specLineOrdMatch_allAffine_proved :
       (by unfold Affine.negY; linear_combination hσ0 - W.a₁ * hδ0)
   have hΛm : Λ ∈ (placeOfPoint P).toValuationSubring := by
     rcases hnotBoth with hδnz | hσnz
-    ·
-      have hδord : (placeOfPoint P).ord (x₁ - x₂) = 0 := by
+    · have hδord : (placeOfPoint P).ord (x₁ - x₂) = 0 := by
         by_contra hne; exact hδnz (hevz hδm (lt_of_le_of_ne
           (AlgebraicCurve.Place.ord_nonneg_of_mem (placeOfPoint P) hδm) (Ne.symm hne)))
       have hδinv : (x₁ - x₂)⁻¹ ∈ (placeOfPoint P).toValuationSubring :=
         AlgebraicCurve.Place.mem_of_ord_nonneg (placeOfPoint P) (inv_ne_zero hδne)
           (by rw [(placeOfPoint P).ord_inv, hδord]; omega)
       rw [hΛeq, div_eq_mul_inv]; exact mul_mem hy12m hδinv
-    ·
-      have hσne : σ ≠ 0 := fun h0 => hσnz (h0 ▸ (placeOfPoint P).evalAt_zero)
+    · have hσne : σ ≠ 0 := fun h0 => hσnz (h0 ▸ (placeOfPoint P).evalAt_zero)
       have hσord : (placeOfPoint P).ord σ = 0 := by
         by_contra hne; exact hσnz (hevz hσm (lt_of_le_of_ne
           (AlgebraicCurve.Place.ord_nonneg_of_mem (placeOfPoint P) hσm) (Ne.symm hne)))
@@ -8355,15 +8316,13 @@ theorem kw_dcao_defectPrincipalPerPoint_of_specLineOrdMatchHgm
     KwDCAODefectPrincipalPerPoint W := by
   intro D₁ D₂ D₃ hgm hX L
   rcases L with _ | ⟨a, b, h⟩
-  ·
-    have h0 : (pointDivisor (0 : W.Point) : Divisor F W.FunctionField) = 0 := by
+  · have h0 : (pointDivisor (0 : W.Point) : Divisor F W.FunctionField) = 0 := by
       rw [coe_pointDivisor, sub_self]
     show Divisor.IsPrincipal _
     rw [show (Point.zero : W.Point) = 0 from rfl,
       h0, _root_.map_zero, _root_.map_zero, _root_.map_zero, zero_add, sub_zero]
     exact Divisor.principal.zero_mem
-  ·
-    have hVne := kw_dcao_specVert_ne_zero_of_hgm D₁ D₂ D₃ hgm a
+  · have hVne := kw_dcao_specVert_ne_zero_of_hgm D₁ D₂ D₃ hgm a
     obtain ⟨hLne, hLord⟩ := hSLO D₁ D₂ D₃ hgm hX h
     have hne : kw_dcao_specExplicit D₁ D₂ a b ≠ 0 :=
       mul_ne_zero hVne (inv_ne_zero hLne)
@@ -8437,7 +8396,6 @@ theorem solution
     ∃ DD : AddMonoid.End.DualEndData (D.pointEnd (hNs D)),
       DD.dual ∈ isogenyEndSubring W hNs ∧ DD.norm = finrankAlong F D.ι := by
   have htw : KwDualTraceWitness W := kw_dcao_htw_proved
-
   have hfun : hNs = fun D => D.normFormulaAlong_auto := rfl
   subst hfun
   exact ⟨kw_dualEndData_of_traceWitness htw D, kw_dualInSubring_of_traceWitness htw D, rfl⟩

@@ -66,7 +66,6 @@ theorem curve_package {x : F} (htr : Transcendental K x)
     essFiniteType_of_transcendental_of_finiteDimensional ht htfd
   have : HasCanonicalDivisor (K := K) (F := F) := hasCanonicalDivisor_of_isCurveOver
   have hC3 : ∀ w : Place K F, w.DCoordGenerates := dCoordGenerates_of_isCurveOver
-
   set e : RatFunc K ≃ₐ[K] K⟮t⟯ := RatFunc.algEquivOfTranscendental t ht with he
   let : Algebra (RatFunc K) F := ((algebraMap K⟮t⟯ F).comp e.toAlgHom.toRingHom).toAlgebra
   have hsq : RingHom.comp (algebraMap (RatFunc K) F) (e.symm.toRingEquiv : K⟮t⟯ →+* RatFunc K)
@@ -136,17 +135,12 @@ theorem main (N : ℕ) (hN : 2 ≤ N) :
   classical
   have : NeZero N := ⟨by omega⟩
   have : IsDomain (ring N) := isDomain_ring N
-
   let K := FractionRing (ring N)
-
   obtain ⟨_, _, _, _, _, htr, hfd, _, _⟩ :=
     ModularCurve.LevelN.exists_monoidHom_algEquiv_fixedField_eq_adjoin N K
-
   have hgen := ModularCurve.LevelN.twelve_mul_add_mul_index_le_genusFF N hN K
-
   obtain ⟨Φ, hΦ⟩ :=
     ModularCurve.LevelN.exists_linearMap_regularDifferentials_cuspForm_injective N K
-
   obtain ⟨_, _, _, hfin, hg⟩ := curve_package (K := ℂ) (F := K) htr hfd
   have := hfin
   have : FiniteDimensional ℂ (CuspForm (CongruenceSubgroup.Gamma N) 2) :=

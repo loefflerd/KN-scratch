@@ -461,7 +461,6 @@ theorem qExpansion_eq_of_hasSum (X : ℍ → ℂ) (hmd : MDifferentiable 𝓘(�
     (hsum : ∀ τ : ℍ, HasSum (fun n => cW N a₁ a₂ n * qq N τ ^ n) (X τ)) :
     Periodic (X ∘ ofComplex) N ∧ IsBoundedAtImInfty X ∧
       ∀ n, (qExpansion N X).coeff n = cW N a₁ a₂ n := by
-
   have hper : Periodic (X ∘ ofComplex) N := by
     intro w
     by_cases hw : 0 < im w
@@ -478,7 +477,6 @@ theorem qExpansion_eq_of_hasSum (X : ℍ → ℂ) (hmd : MDifferentiable 𝓘(�
     · push Not at hw
       have : im (w + N) ≤ 0 := by simpa using hw
       simp [ofComplex_apply_of_im_nonpos this, ofComplex_apply_of_im_nonpos hw]
-
   have hbd : IsBoundedAtImInfty X := by
     rw [isBoundedAtImInfty_iff]
     set r₀ : ℝ := Real.exp (-2 * π / N) with hr₀
@@ -647,10 +645,8 @@ theorem main (X : FD N) (v : Fin 2 → ZMod N) (hv : v ≠ 0) :
     fin_cases i
     · exact (ZMod.val_eq_zero (v 0)).mp h.1
     · exact (ZMod.val_eq_zero (v 1)).mp h.2
-
   obtain ⟨-, -, -, hpkg, -⟩ := WLight.weierstrassP_qExpansion_package
   obtain ⟨hseries, hmdP⟩ := hpkg X.L X.hL N a₁ a₂ ha₁N ha₂N h0
-
   set Wv : ℍ → ℂ := X.W v with hWv
   have h2pi : ((2 * (π : ℂ) * Complex.I) ^ 2) ≠ 0 := by
     apply pow_ne_zero; simp [Real.pi_ne_zero, Complex.I_ne_zero]
@@ -668,12 +664,10 @@ theorem main (X : FD N) (v : Fin 2 → ZMod N) (hv : v ≠ 0) :
     rw [this]
     exact mdifferentiable_const.mul hmdP
   obtain ⟨hperW, hbdW, hcoefW⟩ := qExpansion_eq_of_hasSum N a₁ a₂ Wv hmdW hsum
-
   have hfun : X.fricke v * Δ = (-(1 / 2592 : ℂ)) • ((⇑E46 : ℍ → ℂ) * Wv) := by
     funext τ
     simp only [Pi.mul_apply, Pi.smul_apply, smul_eq_mul, coe_E46, hWv, X.hfricke v τ]
     field_simp [discriminant_ne_zero τ]
-
   have hE : (⇑E46 : ℍ → ℂ) = ⇑E46 := rfl
   have hperE : Periodic ((⇑E46 : ℍ → ℂ) ∘ ofComplex) N :=
     periodic_ofComplex_natCast (SlashInvariantFormClass.periodic_comp_ofComplex E46 one_mem_strictPeriods_SL) N
@@ -690,7 +684,6 @@ theorem main (X : FD N) (v : Fin 2 → ZMod N) (hv : v ≠ 0) :
   have hq : qExpansion N (X.fricke v * Δ) =
       (-(1 / 2592 : ℂ)) • ((spread N (P4 * P6)).map (Int.castRingHom ℂ) * qExpansion N Wv) := by
     rw [hfun, qExpansion_smul haEW, qExpansion_mul haE haW, map_E46]
-
   refine ⟨2592 * 12 * N ^ 2, mul_ne_zero (by norm_num) (pow_ne_zero 2 (NeZero.ne N)), fun n => ?_⟩
   rw [hq, PowerSeries.coeff_smul, PowerSeries.coeff_mul, smul_eq_mul]
   have hc : ((2592 * 12 * N ^ 2 : ℕ) : ℂ) * (-(1 / 2592) *

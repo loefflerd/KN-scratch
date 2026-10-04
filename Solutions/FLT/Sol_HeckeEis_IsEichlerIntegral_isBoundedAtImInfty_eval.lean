@@ -92,7 +92,6 @@ theorem rung_vadd (hG : IsEichlerIntegral n g G) (hper : ∀ τ : ℍ, g ((h : �
     intro hj τ
     have hj' : j ≤ n := by omega
     have hperj : Periodic (rung G j ∘ ofComplex) ((h : ℝ) : ℂ) := periodic_comp_ofComplex (ih (by omega))
-
     have h1 : HasDerivAt (rung G j ∘ ofComplex)
         ((if j = n then ((n.factorial : ℕ) : ℂ) * g ((h : ℝ) +ᵥ τ) else 0) - rung G (j + 1) ((h : ℝ) +ᵥ τ)) (τ : ℂ) := by
       have h0 := hasDerivAt_rung hG hj' ((h : ℝ) +ᵥ τ)
@@ -103,7 +102,6 @@ theorem rung_vadd (hG : IsEichlerIntegral n g G) (hper : ∀ τ : ℍ, g ((h : �
     have h3 := hasDerivAt_rung hG hj' τ
     have h4 := h1.unique h3
     rw [hper τ] at h4
-
     have := congrArg (fun w => (if j = n then ((n.factorial : ℕ) : ℂ) * g τ else 0) - w) h4
     simpa using this
 
@@ -122,7 +120,6 @@ theorem isBoundedAtImInfty_rung_zero (hG : IsEichlerIntegral n g G) {h : ℤ} (h
     rw [ofComplex_coe_add_real τ h, ofComplex_apply] at this
     exact this
   have hrper := rung_vadd hG hperℍ hT
-
   have key : ∀ i : ℕ, i ≤ n + 1 → IsBoundedAtImInfty (rung G (n + 1 - i)) := by
     intro i
     induction i with
@@ -137,7 +134,6 @@ theorem isBoundedAtImInfty_rung_zero (hG : IsEichlerIntegral n g G) {h : ℤ} (h
       have hj : j ≤ n := by omega
       have hj1 : n + 1 - i = j + 1 := by omega
       have ih' : IsBoundedAtImInfty (rung G (j + 1)) := by rw [← hj1]; exact ih (by omega)
-
       set u : ℍ → ℂ := fun τ => (if j = n then ((n.factorial : ℕ) : ℂ) * g τ else 0) - rung G (j + 1) τ with hu
       have hu_per : Periodic (u ∘ ofComplex) ((h : ℝ) : ℂ) := by
         apply periodic_comp_ofComplex
@@ -179,7 +175,6 @@ theorem solution {n : ℕ} {g : UpperHalfPlane → ℂ}
     UpperHalfPlane.IsBoundedAtImInfty (fun τ : UpperHalfPlane =>
       MvPolynomial.eval ![(1 : ℂ), -(τ : ℂ)] ((G τ : ↥(HeckeEis.BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ)) :=
   HeckeEis.LadderAux2.isBoundedAtImInfty_rung_zero hG hh hper hhol hbdd hT
-
 
 end S_HeckeEis_IsEichlerIntegral_isBoundedAtImInfty_eval
 end P2MW

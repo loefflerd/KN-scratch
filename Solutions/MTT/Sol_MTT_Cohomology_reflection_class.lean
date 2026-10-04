@@ -146,7 +146,6 @@ theorem frac_comp_J (g : Matrix (Fin 2) (Fin 2) ℤ) (x : Cusp) :
 
 end P2MRC
 
-
 namespace P2MRC
 
 open MvPolynomial P2MSE
@@ -223,7 +222,6 @@ theorem act_mem_sym (A : Matrix (Fin 2) (Fin 2) ℤ) {P : Binary R}
 
 end P2MRC
 
-
 namespace P2MRC
 
 open MvPolynomial P2MSE
@@ -295,7 +293,6 @@ theorem reflection_char (φ : Hc N n R) (e : ZMod N → R)
 
 end P2MRC
 
-
 namespace P2MRC
 
 open MvPolynomial P2MSE
@@ -365,7 +362,6 @@ def sigmaEquiv (l : ℕ) : Fin l ≃ Fin l :=
 
 end P2MRC
 
-
 namespace P2MRC
 
 open MvPolynomial P2MSE
@@ -422,7 +418,6 @@ theorem reflection_primeHecke (e : R) (l : ℕ) (φ : Hc N n R) :
   rw [reflection_add, reflection_smul, reflection_sum, refl_slash_diag, hsum]
 
 end P2MRC
-
 
 open P2MRC in
 theorem solution {N n : ℕ} {R : Type*} [CommRing R] (φ : Hc N n R) :

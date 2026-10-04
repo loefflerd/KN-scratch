@@ -46,7 +46,6 @@ instance instIsEllipticBaseChange {R : Type*} {A : Type*} [CommRing R] [CommRing
 
 end WeierstrassCurve
 
-
 section PortEllSequenceCore
 
 universe u v w
@@ -262,10 +261,8 @@ theorem rel₆_eq₁₀ (c d m n r s : ℤ) :
 theorem addMulSub_sq_mul_rel₄_eq₉ (c d m n r s : ℤ) :
     (addMulSub W c d) ^ 2 * rel₄ W m n r s =
       addMulSub W m c * (rel₆ W n d r s c d - rel₆ W r d n s c d + rel₆ W s d n r c d)
-
       - addMulSub W m d * (rel₆ W n c r s c d - rel₆ W r c n s c d + rel₆ W s c n r c d)
       + addMulSub W c d * (rel₆ W n r m s c d - rel₆ W n s m r c d + rel₆ W r s m n c d) := by
-
   simp_rw [rel₆, rel₄]; ring
 
 def OddRec (m : ℤ) : Prop :=
@@ -876,7 +873,6 @@ lemma invarDenom_eq_redInvarDenom_mul :
     Int.dvd_iff_emod_eq_zero.mpr ((Int.emod_emod_of_dvd m dvd).symm.trans eq)
   have hd2 {m} := hd 2 m ⟨3, rfl⟩
   have hd3 {m} := hd 3 m ⟨2, rfl⟩
-
   have dvd_sub {a b c : ℤ} (h : a % b = c) : b ∣ a - c := by
     rw [← h, Int.emod_def, sub_sub_cancel]
     exact dvd_mul_right _ _
@@ -1076,7 +1072,6 @@ abbrev pointedCurve : WeierstrassCurve Univ.Field :=
 
 instance : pointedCurve.IsElliptic where
   isUnit := isUnit_iff_ne_zero.mpr <| by
-
     simpa only [pointedCurve, baseChange, map_Δ, map_ne_zero_iff _ algebraMap_field_injective]
       using Δ_curve_ne_zero
 
@@ -1151,7 +1146,6 @@ open Polynomial in
 def ringEval : Univ.Ring →+* R :=
   AdjoinRoot.lift (eval₂RingHom W.specialize x) y <| by
     simp_rw [← coe_eval₂RingHom, eval₂RingHom_eval₂RingHom, RingHom.comp_apply, coe_mapRingHom]
-
     rw [← Affine.map_polynomial]
     simpa only [Affine.map, map_specialize, Affine.Equation, evalEval, coe_evalRingHom] using eqn
 
@@ -1444,7 +1438,6 @@ lemma slopeOne_eq_neg_div : slopeOne = -polyToField curve.polynomialX / ψᵤ 2 
 private lemma addX_smul_one_smul_one_aux {F} [Field F] {a₁ a₂ x dx dy : F} (h0 : dy ≠ 0) :
     (-dx / dy) ^ 2 + a₁ * (-dx / dy) - a₂ - x - x - x =
       (dx ^ 2 - a₁ * dx * dy - (3 * x + a₂) * dy ^ 2) / dy ^ 2 := by
-
   field_simp; ring
 
 lemma addX_smul_one_smul_one :
@@ -1504,7 +1497,6 @@ private lemma smulY_add_sub_negY_aux {F} [Field F] {m n m₂ n₂ a s am an : F}
     (m₂ / m ^ 4 * (an * m / (a * n) ^ 2) - n₂ / n ^ 4 * (am * n / (a * m) ^ 2))
       / (a * s / (n * m) ^ 2)
       = (an * m₂ * n - am * n₂ * m) * a / (s * n * m) / a ^ 4 := by
-
   field_simp
 
 lemma smulY_add_sub_negY (hm : m ≠ 0) (hn : n ≠ 0) (add_ne : n + m ≠ 0) (sub_ne : n - m ≠ 0) :
@@ -1528,7 +1520,6 @@ instance : AddGroup (curve⟮Univ.Field⟯) := inferInstance
 theorem zsmul_point_eq_smulX_smulY : n ≠ 0 →
     ∃ h : Affine.Nonsingular curveField (smulX n) (smulY n),
       n • Affine.point = .some (smulX n) (smulY n) h := by
-
   induction n using Int.negInduction with
   | nat n =>
     refine n.strong_induction_on fun n ih h0 ↦ ?_
@@ -1628,15 +1619,12 @@ lemma nonsingular_smulField : Nonsingular curveField (smulField n) := by
 
 lemma dblXYZ_smulField : dblXYZ curveField (smulField n) = smulField (2 * n) := by
   obtain rfl | hn := eq_or_ne n 0
-  ·
-
-    rw [mul_zero]
+  · rw [mul_zero]
     have h0 : smulField (0 : ℤ) = ![1, 1, 0] := by
       ext i
       fin_cases i <;> simp [smulField, smulPoly, φ_zero, ωe_zero, ψ_zero]
     rw [h0, dblXYZ_of_Z_eq_zero equation_zero rfl]
     simp
-
   have h2 : ((2 : ℤ) • (n • Jacobian.point)).point =
       ⟦dblXYZ curveField (smulField n)⟧ := by
     rw [two_zsmul, Point.add_point, zsmul_point_eq_smulField, addMap_eq, add_self]
@@ -1658,7 +1646,6 @@ lemma addZ_smulPoly : addZ (smulPoly m) (smulPoly n) = curve.ψ (n + m) * curve.
   · rw [ψ_one]; ring
 
 lemma ωe_neg_eq_neg_negY : curve.ωe (-n) = -negY curvePoly (smulPoly n) := by
-
   simp_rw [Affine.ωe_neg' (n := n), negY, smulPoly, fin3_def_ext, curvePoly, baseChange, map,
     coe_algebraMap_eq_CC]
   ring
@@ -1730,7 +1717,6 @@ variable {W} (eqn : W.toAffine.Equation x y)
 open Univ Jacobian
 
 lemma ringEval_comp_smulRing (n : ℤ) : ringEval eqn ∘ smulRing n = smulEval W x y n := by
-
   conv_rhs => rw [smulEval, ← W.map_specialize, map_φ, map_ωe, map_ψ, ← coe_mapRingHom,
     ← Jacobian.comp_fin3, ← Function.comp_assoc, ← smulPoly, ← coe_evalEvalRingHom,
     ← RingHom.coe_comp, ← eval₂RingHom_eval₂RingHom]
@@ -1748,10 +1734,8 @@ include eqn in
 lemma addXYZ_smulEval (m n : ℤ) :
     addXYZ W (smulEval W x y m) (smulEval W x y n) =
       evalEval x y (W.ψ (n - m)) • smulEval W x y (n + m) := by
-
   simp_rw [← ringEval_comp_smulRing eqn, ← ringEval_ψ eqn]
   rw [← Jacobian.comp_smul, ← addXYZ_smulRing, ← map_addXYZ]
-
   simp_rw [curveRing_map_ringEval]
 
 include eqn in
@@ -1765,7 +1749,6 @@ open Univ
 
 theorem zsmul_eq_smulEval {x y : F} (h : Affine.Nonsingular W x y) (n : ℤ) :
     (n • Point.fromAffine (Affine.Point.some x y h)).point = ⟦smulEval W x y n⟧ := by
-
   have add_point_eq : ∀ (P Q : Jacobian.Point W) (P' Q' : Fin 3 → F),
       P.point = ⟦P'⟧ → Q.point = ⟦Q'⟧ → (P + Q).point = ⟦Jacobian.add W P' Q'⟧ := by
     intro P Q P' Q' hP hQ

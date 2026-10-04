@@ -242,18 +242,15 @@ lemma mem_H_of_four_dvd : ∀ (n : ℕ) (A : SL(2, ℤ)), (A 1 0).natAbs = n →
   intro A hn h4
   by_cases hc : A 1 0 = 0
   · exact mem_H_of_apply_one_zero_eq_zero A hc
-
   set c := A 1 0 with hc_def
   set d := A 1 1 with hd_def
   have hdet := det_eq A
-
   have hd2 : ¬ (2 : ℤ) ∣ d := by
     intro hd
     have : (2 : ℤ) ∣ A 0 0 * A 1 1 - A 0 1 * A 1 0 :=
       dvd_sub (dvd_mul_of_dvd_right hd _) (dvd_mul_of_dvd_right ((by norm_num : (2:ℤ) ∣ 4).trans h4) _)
     rw [hdet] at this
     norm_num at this
-
   have hm0 : 0 < c.natAbs := Int.natAbs_pos.mpr hc
   have hmc : ((c.natAbs : ℕ) : ℤ) = |c| := Int.natCast_natAbs c
   set d₁ : ℤ := Int.bmod d c.natAbs with hd₁
@@ -262,7 +259,6 @@ lemma mem_H_of_four_dvd : ∀ (n : ℕ) (A : SL(2, ℤ)), (A 1 0).natAbs = n →
     rw [hd₁]; linarith
   have hd₁_lb : -(((c.natAbs : ℕ) : ℤ) / 2) ≤ d₁ := Int.le_bmod hm0
   have hd₁_ub : d₁ < (((c.natAbs : ℕ) : ℤ) + 1) / 2 := Int.bmod_lt hm0
-
   obtain ⟨n₁, hn₁⟩ : ∃ n₁ : ℤ, c * n₁ = -((c.natAbs : ℤ) * Int.bdiv d c.natAbs) := by
     rw [hmc]
     rcases abs_cases c with ⟨h, -⟩ | ⟨h, -⟩ <;> rw [h]
@@ -270,7 +266,6 @@ lemma mem_H_of_four_dvd : ∀ (n : ℕ) (A : SL(2, ℤ)), (A 1 0).natAbs = n →
   set A₁ := A * ModularGroup.T ^ n₁ with hA₁
   obtain ⟨hA₁c, hA₁d, -, -⟩ := mul_T_zpow_apply A n₁
   have hA₁d' : A₁ 1 1 = d₁ := by rw [hA₁d, hd₁_eq, ← hc_def, ← hd_def, hn₁]; ring
-
   have hm4 : (4 : ℤ) ∣ ((c.natAbs : ℕ) : ℤ) := Int.dvd_natAbs.mpr h4
   have hd₁2 : ¬ (2 : ℤ) ∣ d₁ := by
     intro h2
@@ -280,7 +275,6 @@ lemma mem_H_of_four_dvd : ∀ (n : ℕ) (A : SL(2, ℤ)), (A 1 0).natAbs = n →
     have := dvd_add h2 this
     rwa [hd₁_eq, sub_add_cancel] at this
   have hd₁0 : d₁ ≠ 0 := by rintro h0; exact hd₁2 (h0 ▸ dvd_zero 2)
-
   have hm'0 : 0 < (4 * d₁).natAbs := Int.natAbs_pos.mpr (by positivity)
   have hmm' : (((4 * d₁).natAbs : ℕ) : ℤ) = 4 * |d₁| := by rw [Int.natCast_natAbs, abs_mul]; norm_num
   set c' : ℤ := Int.bmod c (4 * d₁).natAbs with hc'
@@ -296,7 +290,6 @@ lemma mem_H_of_four_dvd : ∀ (n : ℕ) (A : SL(2, ℤ)), (A 1 0).natAbs = n →
   set A₂ := A₁ * R ^ n₂ with hA₂
   obtain ⟨hA₂c, hA₂d, -, -⟩ := mul_R_zpow_apply A₁ n₂
   have hA₂c' : A₂ 1 0 = c' := by rw [hA₂c, hA₁c, hA₁d', ← hc_def, hn₂, hc'_eq]; ring
-
   have h4c' : (4 : ℤ) ∣ c' := by
     rw [hc'_eq]
     exact dvd_sub h4 (dvd_mul_of_dvd_left (Int.dvd_natAbs.mpr (dvd_mul_right 4 d₁)) _)
@@ -308,7 +301,6 @@ lemma mem_H_of_four_dvd : ∀ (n : ℕ) (A : SL(2, ℤ)), (A 1 0).natAbs = n →
     rw [hmm'] at hc'_lb hc'_ub
     rcases abs_cases c with ⟨habs, _⟩ | ⟨habs, _⟩ <;> rcases abs_cases d₁ with ⟨habs₁, _⟩ | ⟨habs₁, _⟩ <;>
       rcases abs_cases c' with ⟨habs', _⟩ | ⟨habs', _⟩ <;> omega
-
   have hA₂H : A₂ ∈ H := ih _ hlt A₂ (by rw [hA₂c']) (by rw [hA₂c']; exact h4c')
   have : A = A₂ * R ^ (-n₂) * ModularGroup.T ^ (-n₁) := by
     rw [hA₂, hA₁]; group
@@ -503,7 +495,6 @@ lemma F_isZeroAt (α β γ : ℕ) (hE : 0 < α + β + γ)
       congr 1
       simp only [F, Fc, one_mul]
       ring
-
     rw [show ((2 * E : ℕ) : ℤ) - 1 = ((2 * E : ℕ) : ℤ) + (-1) by ring, zpow_add₀ hD, zpow_natCast, zpow_neg_one,
       zpow_neg, zpow_natCast, show (12 : ℤ) - 1 = 11 by norm_num, zpow_ofNat, zpow_neg, zpow_ofNat]
     rw [← hDt]
@@ -542,7 +533,6 @@ theorem solution (a b c : ℕ) (h0 : 0 < a + b + c)
     ∃ f : CuspForm (CongruenceSubgroup.Gamma0 4) (((a + b + c) / 2 : ℕ) : ℤ),
       ∀ z : UpperHalfPlane, f z = ModularForm.eta (z : ℂ) ^ a * ModularForm.eta (2 * (z : ℂ)) ^ b *
         ModularForm.eta (4 * (z : ℂ)) ^ c := by
-
   have hb' : b % 2 = 0 := Nat.even_iff.mp hb
   obtain ⟨α, rfl⟩ : 4 ∣ a := by omega
   obtain ⟨β, rfl⟩ : 4 ∣ b := by omega
@@ -553,7 +543,6 @@ theorem solution (a b c : ℕ) (h0 : 0 < a + b + c)
   have e1 : 4 * α = 2 * (2 * α) := by ring
   have e2 : 4 * β = 2 * (2 * β) := by ring
   have e3 : 4 * γ = 2 * (2 * γ) := by ring
-
   obtain ⟨g₁, hg₁⟩ := CuspForm.exists_gamma0_apply_eq_eta_mul_pow_twentyfour 1
   obtain ⟨g₂, hg₂⟩ := CuspForm.exists_gamma0_apply_eq_eta_mul_pow_twentyfour 2
   obtain ⟨g₄, hg₄⟩ := CuspForm.exists_gamma0_apply_eq_eta_mul_pow_twentyfour 4

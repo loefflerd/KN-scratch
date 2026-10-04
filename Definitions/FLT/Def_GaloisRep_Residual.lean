@@ -24,15 +24,11 @@ def GaloisFactorsThroughFiniteLevel {M : Type} [MulOneClass M]
     ∀ σ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ, (∀ x ∈ L, σ x = x) → ρ σ = 1
 
 structure ResidualGaloisRep (k : Type) [Field k] : Type 1 where
-
   V : Type
   [instAddCommGroup : AddCommGroup V]
   [instModule : Module k V]
-
   finrank_eq : Module.finrank k V = 2
-
   ρ : (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) →* Module.End k V
-
   factorsThroughFiniteLevel : GaloisFactorsThroughFiniteLevel ρ
 
 attribute [instance] ResidualGaloisRep.instAddCommGroup ResidualGaloisRep.instModule

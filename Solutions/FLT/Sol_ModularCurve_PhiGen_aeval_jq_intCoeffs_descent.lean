@@ -265,13 +265,11 @@ private theorem aeval_jq_intCoeffs_descent (P : Polynomial ℚ)
   induction d using Nat.strong_induction_on with
   | _ d ih =>
   intro P hd hP k
-
   obtain ⟨zd, hzd⟩ := hP (-(d : ℤ))
   have hlead : P.coeff d = (zd : ℚ) := by
     rw [← coeff_aeval_jq_neg P hd.le, hzd]
   rcases lt_trichotomy k d with hk | rfl | hk
-  ·
-    set Q : Polynomial ℚ := P - Polynomial.C (P.coeff d) * Polynomial.X ^ d with hQ
+  · set Q : Polynomial ℚ := P - Polynomial.C (P.coeff d) * Polynomial.X ^ d with hQ
     have hQcoeff : Q.coeff k = P.coeff k := by
       rw [hQ, Polynomial.coeff_sub, Polynomial.coeff_C_mul, Polynomial.coeff_X_pow,
         ite_eq_right (by omega), mul_zero, sub_zero]
@@ -305,7 +303,6 @@ open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_aeval_jq_intCoeffs_de
 
 theorem solution (P : Polynomial ℚ) (hP : IntCoeffs (Polynomial.aeval jq P)) (k : ℕ) : ∃ z : ℤ, P.coeff k = (z : ℚ) :=
   ModularCurve.PhiGen.aeval_jq_intCoeffs_descent P hP k
-
 
 end S_ModularCurve_PhiGen_aeval_jq_intCoeffs_descent
 end P2MW

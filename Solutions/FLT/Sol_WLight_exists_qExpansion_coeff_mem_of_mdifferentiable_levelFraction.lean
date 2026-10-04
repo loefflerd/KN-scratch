@@ -833,14 +833,12 @@ theorem exists_qExpansion_coeff_mem_of_mdifferentiable_levelFraction_of_deps
   have _hW := hW
   have _hfricke := hfricke
   have _hK := hK
-
   rw [show (ModularForm.discriminant : ℍ → ℂ) = ⇑CuspForm.discriminant from
     CuspForm.coe_discriminant.symm]
   simp only [show (ModularForm.discriminant : ℍ → ℂ) = ⇑CuspForm.discriminant from
     CuspForm.coe_discriminant.symm] at hR2
   set gen : Option {v : Fin 2 → ZMod N // v ≠ 0} → ℍ → ℂ :=
     fun o => o.elim jf fun v => fricke v.1 with hgen_def
-
   have hgenKP : ∀ o, KPole K N (gen o) := by
     intro o
     cases o with
@@ -848,14 +846,12 @@ theorem exists_qExpansion_coeff_mem_of_mdifferentiable_levelFraction_of_deps
     | some v =>
       obtain ⟨m, hper, hbd, hmem⟩ := hR2 v.1 v.2
       exact ⟨hR4a v.1 v.2, m, hper, hbd, hmem⟩
-
   set Ptil : ℍ → ℂ := MvPolynomial.aeval gen P with hPtil_def
   set Qtil : ℍ → ℂ := MvPolynomial.aeval gen Q with hQtil_def
   have hPKP : KPole K N Ptil := kPole_aeval hgenKP hPK
   have hQKP : KPole K N Qtil := kPole_aeval hgenKP hQK
   obtain ⟨hPmd, mP, hPat⟩ := hPKP
   obtain ⟨hQmd, mQ, hQat⟩ := hQKP
-
   have hgen_inv : ∀ γ ∈ CongruenceSubgroup.Gamma N, ∀ o, gen o ∘ (γ • ·) = gen o := by
     intro γ hγ o
     cases o with
@@ -899,7 +895,6 @@ theorem exists_qExpansion_coeff_mem_of_mdifferentiable_levelFraction_of_deps
       have := congrFun h τ
       simpa [sub_eq_zero] using this
     · exact absurd h hQ0
-
   have hGper : Function.Periodic (G ∘ ofComplex) N := by
     have hT : ModularGroup.T ^ (N : ℤ) ∈ CongruenceSubgroup.Gamma N := by
       have := CongruenceSubgroup.ModularGroup_T_pow_mem_Gamma N N (dvd_refl _)
@@ -920,7 +915,6 @@ theorem exists_qExpansion_coeff_mem_of_mdifferentiable_levelFraction_of_deps
       have hw' : Complex.im (w + N) ≤ 0 := by simpa using hw0
       simp only [Function.comp_apply, ofComplex_apply_of_im_nonpos hw',
         ofComplex_apply_of_im_nonpos hw0]
-
   obtain ⟨d, p, hpK, hprel⟩ := hint
   have hcKP : ∀ i : Fin d, KPole K N (fun τ => (p i).eval (jf τ)) := fun i =>
     kPole_polyEval (kPole_jf K hjf) (hpK i)
@@ -974,14 +968,12 @@ theorem exists_qExpansion_coeff_mem_of_mdifferentiable_levelFraction_of_deps
                 ((p i).eval (jf τ) * G τ ^ (i : ℕ)) := by rw [hexp]
       simp only [Pi.mul_apply, Pi.pow_apply]
       rw [hkey, h0, mul_zero]
-
   set M : ℕ := M₀ + mP with hM_def
   have hbdGM : IsBoundedAtImInfty (G * ⇑CuspForm.discriminant ^ M) :=
     IsBoundedAtImInfty.mul_discPow_mono (by omega) hbdG
   have hperGM : Function.Periodic ((G * ⇑CuspForm.discriminant ^ M) ∘ ofComplex) N :=
     hGper.mul (periodic_discPow_comp_ofComplex M N)
   refine ⟨M, hperGM, hbdGM, ?_⟩
-
   have hPat' : ∀ n : ℕ, (qExpansion N (Ptil * ⇑CuspForm.discriminant ^ (mQ + M))).coeff n ∈ K :=
     (hPat.pad hPmd (by omega)).2.2
   obtain ⟨hQper, hQbd, hQmem⟩ := hQat
@@ -1060,16 +1052,13 @@ theorem solution
   have _h8 := h8
   refine WLight.exists_qExpansion_coeff_mem_of_mdifferentiable_levelFraction_of_deps
     N L hL W hW fricke hfricke jf hjf _ rfl ?_ ?_ ?_ hG P Q hPK hQK hQ0 hGQ hint
-  ·
-    intro v hv
+  · intro v hv
     refine ⟨1, ?_, ?_, ?_⟩ <;> rw [pow_one, hfeq]
     · exact (h5 v hv).1
     · exact h4 v hv
     · exact (h5 v hv).2
-  ·
-    rw [hfeq]; exact h3
-  ·
-    rw [hfeq]; exact fun v γ τ => h1 v γ τ
+  · rw [hfeq]; exact h3
+  · rw [hfeq]; exact fun v γ τ => h1 v γ τ
 
 end
 

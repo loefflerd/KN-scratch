@@ -167,8 +167,7 @@ private theorem one_sub_X_pow_mul_geomSeries {d : ℕ} (hd : d ≠ 0) :
   rw [sub_mul, one_mul, map_sub, ← mul_comm (geomSeries d) (X ^ d),
     PowerSeries.coeff_mul_X_pow', coeff_geomSeries, PowerSeries.coeff_one]
   by_cases hdn : d ≤ n
-  ·
-    have hn0 : ¬ (n = 0) := by omega
+  · have hn0 : ¬ (n = 0) := by omega
     rw [ite_eq_left hdn, coeff_geomSeries, ite_eq_right hn0]
     have hiff : d ∣ n ↔ d ∣ n - d := by
       constructor
@@ -179,8 +178,7 @@ private theorem one_sub_X_pow_mul_geomSeries {d : ℕ} (hd : d ≠ 0) :
     by_cases h : d ∣ n
     · rw [ite_eq_left h, ite_eq_left (hiff.mp h), sub_self]
     · rw [ite_eq_right h, ite_eq_right (fun hc => h (hiff.mpr hc)), sub_self]
-  ·
-    rw [ite_eq_right hdn, sub_zero]
+  · rw [ite_eq_right hdn, sub_zero]
     by_cases hn : n = 0
     · subst hn; rw [ite_eq_left (dvd_zero d), ite_eq_left rfl]
     · rw [ite_eq_right hn, ite_eq_right (fun hc => hdn (Nat.le_of_dvd (Nat.pos_of_ne_zero hn) hc))]
@@ -280,13 +278,11 @@ private theorem coeff_inv_congr {A B C D : PowerSeries ℤ}
     (h : ∀ k ≤ n, PowerSeries.coeff k A = PowerSeries.coeff k C) :
     ∀ k ≤ n, PowerSeries.coeff k B = PowerSeries.coeff k D := by
   intro k hk
-
   have hCB : ∀ m ≤ n, PowerSeries.coeff m (C * B) =
       PowerSeries.coeff m (1 : PowerSeries ℤ) := by
     intro m hm
     rw [← hAB]
     exact (coeff_mul_congr (fun k hk => (h k hk).symm) m hm)
-
   have key : B = D * (C * B) := by
     rw [← mul_assoc, mul_comm D C, hCD, one_mul]
   rw [key, PowerSeries.coeff_mul]
@@ -321,25 +317,21 @@ private theorem coeff_etaProd_eq_coeff_partialEta {k n : ℕ} (hk : k ≤ n) :
 private theorem coeff_dedekindEtaUnitInv_eq_coeff_partialGeom_pow (n : ℕ) :
     ∀ k ≤ n, PowerSeries.coeff k dedekindEtaUnitInv =
       PowerSeries.coeff k (partialGeom (n + 1) ^ 24) := by
-
   have hunits : ∀ k ≤ n, PowerSeries.coeff k dedekindEtaUnit =
       PowerSeries.coeff k (partialEta (n + 1) ^ 24) := by
     intro k hk
     rw [dedekindEtaUnit]
     exact coeff_pow_congr (fun k hk => coeff_etaProd_eq_coeff_partialEta hk) 24 k hk
-
   have hinv : partialEta (n + 1) ^ 24 * partialGeom (n + 1) ^ 24 = 1 := by
     rw [← mul_pow, partialEta_mul_partialGeom, one_pow]
   exact coeff_inv_congr dedekindEtaUnit_mul_inv hinv hunits
 
 private theorem one_le_coeff_partialGeom_pow (n k : ℕ) :
     1 ≤ PowerSeries.coeff k (partialGeom (n + 1) ^ 24) := by
-
   have hsplit : partialGeom (n + 1) =
       (∏ i ∈ Finset.range n, geomSeries (i + 2)) * geomSeries 1 :=
     Finset.prod_range_succ' (fun i => geomSeries (i + 1)) n
   rw [hsplit, mul_pow]
-
   have htail_nonneg : ∀ j, 0 ≤ PowerSeries.coeff j
       ((∏ i ∈ Finset.range n, geomSeries (i + 2)) ^ 24) :=
     coeff_pow_nonneg
@@ -348,7 +340,6 @@ private theorem one_le_coeff_partialGeom_pow (n k : ℕ) :
       ((∏ i ∈ Finset.range n, geomSeries (i + 2)) ^ 24) = 1 := by
     rw [map_pow, map_prod]
     simp only [constantCoeff_geomSeries, Finset.prod_const_one, one_pow]
-
   have hhead : ∀ j, 1 ≤ PowerSeries.coeff j (geomSeries 1 ^ 24) :=
     one_le_coeff_pow (fun j => le_of_eq (coeff_geomSeries_one j).symm) 23
   exact one_le_coeff_mul_of_nonneg htail_nonneg htail_cc hhead k
@@ -385,8 +376,6 @@ p2m_reactivate "P2MW.S_ModularCurve_one_le_coeff_jq.ModularCurve"
 
 theorem solution (n : ℕ) : (1 : ℚ) ≤ ModularCurve.jq.coeff (n : ℤ) :=
   ModularCurve.one_le_coeff_jq' n
-
-
 
 end
 end S_ModularCurve_one_le_coeff_jq

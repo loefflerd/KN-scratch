@@ -19,7 +19,6 @@ theorem coeff_eq_zero_of_qTwist_eq {K : Type*} [Field K] (n : ℕ) [NeZero n] (�
     (hk : ¬ (n : ℤ) ∣ k) : f.coeff k = 0 := by
   have hc := congrArg (fun g : LaurentSeries K => g.coeff k) h
   simp only [qTwist_coeff] at hc
-
   have hne : ((ζ ^ k : Kˣ) : K) ≠ 1 := by
     rw [Units.val_zpow_eq_zpow_val]
     exact fun h1 => hk ((hζ.zpow_eq_one_iff_dvd k).mp h1)
@@ -32,7 +31,6 @@ theorem mem_range_qExpand_of_qTwist_eq' {K : Type*} [Field K] (n : ℕ) [NeZero 
     (hζ : IsPrimitiveRoot (ζ : K) n) (f : LaurentSeries K) (h : qTwist ζ f = f) :
     f ∈ Set.range (qExpand K n) := by
   have hn : (0 : ℤ) < n := by exact_mod_cast Nat.pos_of_ne_zero (NeZero.ne n)
-
   have hbdd : BddBelow (Function.support fun m : ℤ => f.coeff ((n : ℤ) * m)) := by
     refine ⟨min f.order 0, fun m hm => ?_⟩
     have hm' : f.coeff ((n : ℤ) * m) ≠ 0 := hm

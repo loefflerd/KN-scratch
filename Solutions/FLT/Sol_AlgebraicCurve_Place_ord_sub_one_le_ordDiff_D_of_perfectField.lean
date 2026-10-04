@@ -73,7 +73,6 @@ private theorem _root_.AlgebraicCurve.Place.H2_pos [PerfectField K] (x : F)
     ring
   have hfeq : f = u * t ^ m := by
     rw [hudef, mul_assoc, inv_mul_cancel₀ htm0, mul_one]
-
   set cu : F := diffCoeff t (KaehlerDifferential.D K F u) with hcudef
   have hcu_nonneg : 0 ≤ v.ord cu :=
     v.ord_diffCoeff_D_nonneg_of_perfectField x ht (le_of_eq hordu.symm)
@@ -96,8 +95,7 @@ private theorem _root_.AlgebraicCurve.Place.H2_pos [PerfectField K] (x : F)
     rw [hdecomp, h0, zero_smul]
   rw [ordDiff_def, ← htdef, hcoeff]
   rcases eq_or_ne (u * ((m : F) * t ^ (m - 1))) 0 with ha | ha
-  ·
-    rw [ha, zero_add] at hsum0 ⊢
+  · rw [ha, zero_add] at hsum0 ⊢
     have hcu0 : cu ≠ 0 := fun h => hsum0 (by rw [h, mul_zero])
     rw [v.ord_mul htm0 hcu0, ord_pow_nat, ht]
     omega
@@ -120,8 +118,7 @@ private theorem _root_.AlgebraicCurve.Place.H2_pos [PerfectField K] (x : F)
       rw [this]
       ring
     rcases eq_or_ne cu 0 with hcu0 | hcu0
-    ·
-      rw [hcu0, mul_zero, add_zero, horda]
+    · rw [hcu0, mul_zero, add_zero, horda]
       omega
     · have hordb : v.ord (t ^ m * cu) = (m : ℤ) + v.ord cu := by
         rw [v.ord_mul htm0 hcu0, ord_pow_nat, ht]
@@ -140,8 +137,7 @@ private theorem H2_impl [PerfectField K] (x : F)
     v.ord f - 1 ≤ v.ordDiff (KaehlerDifferential.D K F f) := by
   rcases le_or_gt 0 (v.ord f) with hn | hn
   · exact v.H2_pos x hD hn
-  ·
-    have hf0 : f ≠ 0 := by
+  · have hf0 : f ≠ 0 := by
       rintro rfl
       rw [map_zero] at hD
       exact hD rfl

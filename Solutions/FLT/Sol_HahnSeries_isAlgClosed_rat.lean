@@ -116,13 +116,11 @@ theorem newtonStep_orderTop_lt {f : (HahnSeries ℚ K)[X]} {γ : ℚ}
     by_contra hle
     push Not at hle
     rcases lt_or_eq_of_le hle with hlt | heq
-    ·
-      have horder : (f.eval (HahnSeries.single γ c)).coeff
+    · have horder : (f.eval (HahnSeries.single γ c)).coeff
           (f.eval (HahnSeries.single γ c)).order ≠ 0 :=
         HahnSeries.coeff_order_eq_zero.not.mpr hne
       exact horder (coeff_eval_single_of_lt hslope c hlt)
-    ·
-      have horder : (f.eval (HahnSeries.single γ c)).coeff (f.natDegree • γ) ≠ 0 := by
+    · have horder : (f.eval (HahnSeries.single γ c)).coeff (f.natDegree • γ) ≠ 0 := by
         rw [← heq]; exact HahnSeries.coeff_order_eq_zero.not.mpr hne
       rw [coeff_eval_single_top, Polynomial.IsRoot.eq_zero hc] at horder
       exact horder rfl
@@ -146,7 +144,6 @@ theorem exists_newtonSlope {f : (HahnSeries ℚ K)[X]} (hf : f.Monic)
       ∃ j < f.natDegree, (newtonInitialForm f γ).coeff j ≠ 0 := by
   classical
   set n := f.natDegree
-
   set φ : ℕ → ℚ := fun j => (f.coeff j).order / (n - j : ℕ)
   obtain ⟨j₀, hj₀mem, hj₀min⟩ :=
     Finset.exists_min_image (slopeSupport f) φ (slopeSupport_nonempty hdeg h0)
@@ -156,11 +153,9 @@ theorem exists_newtonSlope {f : (HahnSeries ℚ K)[X]} (hf : f.Monic)
   have hnj₀pos : (0 : ℚ) < ((n - j₀ : ℕ) : ℚ) := by
     exact_mod_cast Nat.sub_pos_of_lt hj₀lt
   refine ⟨γ, ?_, j₀, hj₀lt, ?_⟩
-  ·
-    intro i hi hne
+  · intro i hi hne
     rcases lt_or_eq_of_le hi with hlt | heq
-    ·
-      have hmem : i ∈ slopeSupport f :=
+    · have hmem : i ∈ slopeSupport f :=
         Finset.mem_filter.mpr ⟨Finset.mem_range.mpr hlt, hne⟩
       have hni : (0 : ℚ) < ((n - i : ℕ) : ℚ) := by
         exact_mod_cast Nat.sub_pos_of_lt hlt
@@ -170,12 +165,9 @@ theorem exists_newtonSlope {f : (HahnSeries ℚ K)[X]} (hf : f.Monic)
             exact mul_le_mul_of_nonneg_left hle (le_of_lt hni)
         _ = (f.coeff i).order := by
             simp only [φ]; field_simp
-    ·
-      subst heq
+    · subst heq
       simp [hf.coeff_natDegree, HahnSeries.order_one]
-  ·
-    rw [newtonInitialForm_coeff f γ j₀ (le_of_lt hj₀lt)]
-
+  · rw [newtonInitialForm_coeff f γ j₀ (le_of_lt hj₀lt)]
     have heq : ((n - j₀ : ℕ) • γ : ℚ) = (f.coeff j₀).order := by
       rw [nsmul_eq_mul]
       simp only [γ, φ]; field_simp
@@ -187,21 +179,16 @@ theorem exists_ne_zero_root_of_coeff_ne_zero [IsAlgClosed K] {p : K[X]} (hp : p.
     ∃ c, c ≠ 0 ∧ p.IsRoot c := by
   by_contra h
   push Not at h
-
   have hsplit : p.Splits := IsAlgClosed.splits p
   have hprod := hsplit.eq_prod_roots_of_monic hp
-
   have hall0 : ∀ r ∈ p.roots, r = 0 := fun r hr =>
     by_contra fun hne => (h r hne) (Polynomial.isRoot_of_mem_roots hr)
-
   have hcard : p.roots.card = p.natDegree := IsAlgClosed.card_roots_eq_natDegree
   have hroots : p.roots = Multiset.replicate p.natDegree 0 := by
     rw [← hcard]
     exact Multiset.eq_replicate_card.mpr hall0
-
   rw [hroots] at hprod
   simp only [Multiset.map_replicate, map_zero, sub_zero, Multiset.prod_replicate] at hprod
-
   rw [hprod, Polynomial.coeff_X_pow] at hcoeff
   exact hcoeff (ite_eq_right (Nat.ne_of_lt hj))
 
@@ -258,7 +245,6 @@ theorem exists_evalNewtonSlope {f : (HahnSeries ℚ K)[X]} (hf : f.Monic)
         (f.coeff 0).order = (f.coeff j₀).order + j₀ • γ := by
   classical
   set δ : ℚ := (f.coeff 0).order
-
   set ψ : ℕ → ℚ := fun j => (δ - (f.coeff j).order) / (j : ℚ)
   obtain ⟨j₀, hj₀mem, hj₀max⟩ :=
     Finset.exists_max_image (evalSlopeSupport f) ψ (evalSlopeSupport_nonempty hf hdeg)
@@ -266,18 +252,15 @@ theorem exists_evalNewtonSlope {f : (HahnSeries ℚ K)[X]} (hf : f.Monic)
   set γ : ℚ := ψ j₀
   have hj₀pos : (0 : ℚ) < (j₀ : ℚ) := by exact_mod_cast hj₀1
   refine ⟨γ, ?_, j₀, hj₀1, hj₀le, hj₀ne, ?_⟩
-  ·
-    intro j hj1 hjle hjne
+  · intro j hj1 hjle hjne
     have hjpos : (0 : ℚ) < (j : ℚ) := by exact_mod_cast hj1
     have hmem : j ∈ evalSlopeSupport f := mem_evalSlopeSupport.mpr ⟨hjle, hj1, hjne⟩
     have hle : ψ j ≤ γ := hj₀max j hmem
-
     rw [nsmul_eq_mul]
     have hmul : δ - (f.coeff j).order ≤ (j : ℚ) * γ := by
       rw [div_le_iff₀ hjpos] at hle; linarith [hle]
     linarith
-  ·
-    rw [nsmul_eq_mul]
+  · rw [nsmul_eq_mul]
     have heq : (j₀ : ℚ) * γ = δ - (f.coeff j₀).order := by
       simp only [γ, ψ]; field_simp
     linarith
@@ -323,11 +306,9 @@ theorem coeff_eval_single_of_lt_order_zero {f : (HahnSeries ℚ K)[X]} {γ : ℚ
   refine Finset.sum_eq_zero fun j hj => ?_
   have hjle : j ≤ f.natDegree := Nat.lt_succ_iff.mp (Finset.mem_range.mp hj)
   rcases Nat.eq_zero_or_pos j with hzero | hpos
-  ·
-    subst hzero
+  · subst hzero
     rw [zero_smul, sub_zero, HahnSeries.coeff_eq_zero_of_lt_order hg, zero_mul]
-  ·
-    rcases eq_or_ne (f.coeff j) 0 with hcoeff | hcoeff
+  · rcases eq_or_ne (f.coeff j) 0 with hcoeff | hcoeff
     · simp [hcoeff]
     · have hbound : (f.coeff 0).order ≤ (f.coeff j).order + j • γ := hslope j hpos hjle hcoeff
       have hlt : g - j • γ < (f.coeff j).order := by linarith
@@ -340,13 +321,11 @@ theorem exists_addVal_eval_gt_of_eval_zero_ne_zero [IsAlgClosed K]
       HahnSeries.addVal ℚ K (f.eval 0) <
         HahnSeries.addVal ℚ K (f.eval (HahnSeries.single γ c)) := by
   obtain ⟨γ, hslope, j₀, hj₀1, hj₀le, hj₀ne, hj₀eq⟩ := exists_evalNewtonSlope hf hdeg
-
   have hconst : (evalEdgeForm f γ).coeff 0 ≠ 0 := by
     rw [evalEdgeForm_coeff_zero]; exact HahnSeries.leadingCoeff_ne_zero.mpr h0
   have hj₀coeff : (evalEdgeForm f γ).coeff j₀ ≠ 0 := by
     rw [evalEdgeForm_coeff_of_eq hj₀le hj₀eq]
     exact HahnSeries.leadingCoeff_ne_zero.mpr hj₀ne
-
   have hdegφ : 1 ≤ (evalEdgeForm f γ).natDegree :=
     le_trans hj₀1 (Polynomial.le_natDegree_of_ne_zero hj₀coeff)
   have hdegφ' : (evalEdgeForm f γ).degree ≠ 0 :=
@@ -356,7 +335,6 @@ theorem exists_addVal_eval_gt_of_eval_zero_ne_zero [IsAlgClosed K]
     rw [Polynomial.IsRoot, hc0, ← Polynomial.coeff_zero_eq_eval_zero] at hc
     exact hconst hc
   refine ⟨γ, c, hcne, ?_⟩
-
   have hvanish : ∀ g ≤ (f.coeff 0).order,
       (f.eval (HahnSeries.single γ c)).coeff g = 0 := by
     intro g hg
@@ -364,7 +342,6 @@ theorem exists_addVal_eval_gt_of_eval_zero_ne_zero [IsAlgClosed K]
     · exact coeff_eval_single_of_lt_order_zero hslope c hlt
     · subst heq
       rw [coeff_eval_single_order_zero]; exact hc
-
   have heval0 : f.eval 0 = f.coeff 0 := (Polynomial.coeff_zero_eq_eval_zero f).symm
   rw [heval0, HahnSeries.addVal_apply_of_ne h0, HahnSeries.addVal_apply]
   rcases eq_or_ne (f.eval (HahnSeries.single γ c)) 0 with heq | hne
@@ -372,7 +349,6 @@ theorem exists_addVal_eval_gt_of_eval_zero_ne_zero [IsAlgClosed K]
   · rw [← HahnSeries.order_eq_orderTop_of_ne_zero hne, WithTop.coe_lt_coe]
     by_contra hle
     push Not at hle
-
     have horder : (f.eval (HahnSeries.single γ c)).coeff
         (f.eval (HahnSeries.single γ c)).order ≠ 0 := by
       rw [← HahnSeries.leadingCoeff_eq]
@@ -383,9 +359,7 @@ variable {Γ : Type*} [LinearOrder Γ]
 
 structure IsBallChain {ι : Type*} [LinearOrder ι]
     (r : ι → HahnSeries Γ K) (δ : ι → WithTop Γ) : Prop where
-
   δ_mono : Monotone δ
-
   mem_ball : ∀ ⦃i j : ι⦄, i ≤ j → δ i ≤ (r j - r i).orderTop
 
 def pseudoLimitCoeff {ι : Type*} [LinearOrder ι]
@@ -398,7 +372,6 @@ theorem IsBallChain.coeff_eq_of_lt {ι : Type*} [LinearOrder ι]
     (r i).coeff g = (r j).coeff g := by
   wlog hij : i ≤ j generalizing i j
   · exact (this hgj hgi (le_of_not_ge hij)).symm
-
   have hdiff : (r j - r i).coeff g = 0 :=
     HahnSeries.coeff_eq_zero_of_lt_orderTop (lt_of_lt_of_le hgi (h.mem_ball hij))
   rw [HahnSeries.coeff_sub, sub_eq_zero] at hdiff
@@ -415,17 +388,14 @@ theorem IsBallChain.pseudoLimitCoeff_eq {ι : Type*} [LinearOrder ι]
 theorem IsBallChain.isPWO_support_pseudoLimitCoeff {ι : Type*} [LinearOrder ι]
     {r : ι → HahnSeries Γ K} {δ : ι → WithTop Γ} (h : IsBallChain r δ) :
     (Function.support (pseudoLimitCoeff r δ)).IsPWO := by
-
   refine Set.IsWF.isPWO ?_
   rw [Set.isWF_iff_no_descending_seq]
   intro f hanti hf
-
   have hf0 : pseudoLimitCoeff r δ (f 0) ≠ 0 := hf 0
   have hex : ∃ i, ((f 0 : Γ) : WithTop Γ) < δ i := by
     by_contra hnone
     rw [pseudoLimitCoeff, dite_eq_right hnone] at hf0; exact hf0 rfl
   obtain ⟨i₀, hi₀⟩ := hex
-
   have hfk : ∀ k, f k ∈ (r i₀).support := by
     intro k
     have hfk0 : f k ≤ f 0 := hanti.antitone (Nat.zero_le k)
@@ -434,7 +404,6 @@ theorem IsBallChain.isPWO_support_pseudoLimitCoeff {ι : Type*} [LinearOrder ι]
     have heq := h.pseudoLimitCoeff_eq hfklt
     rw [HahnSeries.mem_support, ← heq]
     exact hf k
-
   have hWF := (r i₀).isWF_support
   rw [Set.isWF_iff_no_descending_seq] at hWF
   exact hWF f hanti hfk
@@ -473,16 +442,13 @@ theorem exists_addVal_eval_gt [IsAlgClosed K] {f : (HahnSeries ℚ K)[X]} (hf : 
     (hdeg : 1 ≤ f.natDegree) {r : HahnSeries ℚ K} (hr : f.eval r ≠ 0) :
     ∃ r' : HahnSeries ℚ K,
       HahnSeries.addVal ℚ K (f.eval r) < HahnSeries.addVal ℚ K (f.eval r') := by
-
   set g := Polynomial.taylor r f with hg
   have hgmonic : g.Monic := monic_taylor hf r
   have hgdeg : 1 ≤ g.natDegree := by rw [hg, Polynomial.natDegree_taylor]; exact hdeg
   have hg0 : g.coeff 0 ≠ 0 := by
     rw [hg, Polynomial.taylor_coeff_zero]; exact hr
-
   obtain ⟨γ, c, _, hlt⟩ :=
     exists_addVal_eval_gt_of_eval_zero_ne_zero hgmonic hgdeg hg0
-
   refine ⟨r + HahnSeries.single γ c, ?_⟩
   have heval0 : g.eval 0 = f.eval r := by
     rw [hg, Polynomial.taylor_apply, Polynomial.eval_comp, Polynomial.eval_add,
@@ -618,10 +584,8 @@ theorem exists_addVal_taylor_coeff_of_addVal_eval_lt {f : (HahnSeries ℚ K)[X]}
     ∃ j, 1 ≤ j ∧ j ≤ f.natDegree ∧
       HahnSeries.addVal ℚ K ((Polynomial.taylor r' f).coeff j) +
         j • HahnSeries.addVal ℚ K (r' - r) ≤ HahnSeries.addVal ℚ K (f.eval r) := by
-
   by_contra habs
   push Not at habs
-
   have hsum : HahnSeries.addVal ℚ K (f.eval r) <
       HahnSeries.addVal ℚ K (f.eval (r' + (r - r'))) := by
     rw [show f.eval (r' + (r - r')) = f.eval r' + (f.eval (r' + (r - r')) - f.eval r') by ring,
@@ -715,7 +679,6 @@ theorem exists_kaplanskyLE_of_eval_ne_zero [IsAlgClosed K] {f : (HahnSeries ℚ 
   have hgdeg : 1 ≤ g.natDegree := by rw [hg, Polynomial.natDegree_taylor]; exact hdeg
   have hg0 : g.coeff 0 ≠ 0 := by rw [hg, Polynomial.taylor_coeff_zero]; exact hr
   obtain ⟨γ, hslope, j₀, hj₀1, hj₀le, hj₀ne, hj₀eq⟩ := exists_evalNewtonSlope hgmonic hgdeg
-
   have hconst : (evalEdgeForm g γ).coeff 0 ≠ 0 := by
     rw [evalEdgeForm_coeff_zero]; exact HahnSeries.leadingCoeff_ne_zero.mpr hg0
   have hj₀coeff : (evalEdgeForm g γ).coeff j₀ ≠ 0 := by
@@ -726,7 +689,6 @@ theorem exists_kaplanskyLE_of_eval_ne_zero [IsAlgClosed K] {f : (HahnSeries ℚ 
       (le_trans hj₀1 (Polynomial.le_natDegree_of_ne_zero hj₀coeff))).ne')
   have hcne : c ≠ 0 := fun hc0 => by
     rw [Polynomial.IsRoot, hc0, ← Polynomial.coeff_zero_eq_eval_zero] at hc; exact hconst hc
-
   have hvanish : ∀ q ≤ (g.coeff 0).order, (g.eval (HahnSeries.single γ c)).coeff q = 0 := by
     intro q hq
     rcases lt_or_eq_of_le hq with hlt' | heq
@@ -752,8 +714,7 @@ theorem exists_kaplanskyLE_of_eval_ne_zero [IsAlgClosed K] {f : (HahnSeries ℚ 
         rw [add_zero]; exact heq.symm
       exact add_left_cancel heq'
     exact HahnSeries.single_eq_zero_iff.mp h0
-  ·
-    intro j hj hjle
+  · intro j hj hjle
     rw [add_sub_cancel_left, heval0, HahnSeries.addVal_apply_of_ne hg0]
     rcases eq_or_ne ((Polynomial.taylor r f).coeff j) 0 with hzero | hne
     · rw [hzero, AddValuation.map_zero, top_add]; exact le_top
@@ -817,7 +778,6 @@ theorem KaplanskyBelowSlope.lt_addVal_sub {a b : HahnSeries ℚ K} {g : ℚ}
     (g : WithTop ℚ) < HahnSeries.addVal ℚ K (b - a) := by
   obtain ⟨j, hj1, hjle, hjlt⟩ := hbelow
   have hj := hslope j hj1 hjle
-
   have hbne : HahnSeries.addVal ℚ K ((Polynomial.taylor a f).coeff j) ≠ ⊤ := by
     intro htop; rw [htop, top_add] at hjlt; exact not_top_lt hjlt
   have hlt : ((j • g : ℚ) : WithTop ℚ) < j • HahnSeries.addVal ℚ K (b - a) :=
@@ -833,7 +793,6 @@ theorem KaplanskyBelowSlope.of_kaplanskyLE {a b : HahnSeries ℚ K} {g : ℚ}
   obtain ⟨j₀, hj₀1, hj₀le, hj₀⟩ := exists_addVal_taylor_coeff_of_addVal_eval_lt hlt
   refine ⟨j₀, hj₀1, hj₀le, ?_⟩
   have hglt : (g : WithTop ℚ) < HahnSeries.addVal ℚ K (b - a) := hbelow.lt_addVal_sub hslope
-
   have hbne : HahnSeries.addVal ℚ K ((Polynomial.taylor b f).coeff j₀) ≠ ⊤ := by
     intro htop; rw [htop, top_add] at hj₀; exact not_top_lt (lt_of_le_of_lt hj₀ hlt)
   calc HahnSeries.addVal ℚ K ((Polynomial.taylor b f).coeff j₀) + ((j₀ • g : ℚ) : WithTop ℚ)
@@ -886,11 +845,9 @@ theorem kaplanskyLimitCoeff_isPWO_support {C : Set (HahnSeries ℚ K)}
   have hex : ∃ a ∈ C, KaplanskyBelowSlope f a (s 0) := by
     by_contra hnone; rw [kaplanskyLimitCoeff, dite_eq_right hnone] at hf0; exact hf0 rfl
   obtain ⟨a₀, ha₀, hga₀⟩ := hex
-
   have hsk : ∀ k, s k ∈ a₀.support := by
     intro k
     have hsk0 : s k ≤ s 0 := hanti.antitone (Nat.zero_le k)
-
     obtain ⟨j, hj1, hjle, hjlt⟩ := hga₀
     have hgak : KaplanskyBelowSlope f a₀ (s k) := ⟨j, hj1, hjle, by
       refine lt_of_le_of_lt ?_ hjlt
@@ -912,10 +869,8 @@ theorem kaplanskySlope_kaplanskyLimit {C : Set (HahnSeries ℚ K)}
     (hC : IsChain (KaplanskyLE f) C) {a : HahnSeries ℚ K} (ha : a ∈ C) :
     KaplanskySlope f a (kaplanskyLimit hC) := by
   intro j hj hjle
-
   by_contra hlt
   push Not at hlt
-
   have hne : kaplanskyLimit hC - a ≠ 0 := by
     intro heq
     rw [heq, AddValuation.map_zero, nsmul_top_withTop hj, add_top] at hlt
@@ -924,32 +879,26 @@ theorem kaplanskySlope_kaplanskyLimit {C : Set (HahnSeries ℚ K)}
   have hqval : HahnSeries.addVal ℚ K (kaplanskyLimit hC - a) = (q : WithTop ℚ) := by
     rw [HahnSeries.addVal_apply_of_ne hne, hq]
   rw [hqval, nsmul_coe_withTop] at hlt
-
   have hbelow : KaplanskyBelowSlope f a q := ⟨j, hj, hjle, hlt⟩
-
   have hcoeff : (kaplanskyLimit hC - a).coeff q = 0 := by
     rw [HahnSeries.coeff_sub]
     show kaplanskyLimitCoeff (f := f) C q - a.coeff q = 0
     rw [kaplanskyLimitCoeff_eq hC ha hbelow, sub_self]
-
   rw [hq, ← HahnSeries.leadingCoeff_eq] at hcoeff
   exact (HahnSeries.leadingCoeff_ne_zero.mpr hne) hcoeff
 
 theorem exists_kaplanskyLE_upperBound {C : Set (HahnSeries ℚ K)}
     (hC : IsChain (KaplanskyLE f) C) :
     ∃ ub, ∀ a ∈ C, KaplanskyLE f a ub := by
-
   by_cases hmax : ∃ m ∈ C, ∀ a ∈ C, KaplanskyLE f a m
   · obtain ⟨m, _, hm⟩ := hmax; exact ⟨m, hm⟩
   push Not at hmax
-
   have hnomax : ∀ a ∈ C, ∃ b ∈ C, KaplanskyLE f a b ∧ a ≠ b := by
     intro a ha
     obtain ⟨b, hb, hnle⟩ := hmax a ha
     rcases hC.total ha hb with hab | hab
     · exact ⟨b, hb, hab, fun heq => hnle (heq ▸ KaplanskyLE.refl f a)⟩
     · exact absurd hab hnle
-
   refine ⟨kaplanskyLimit hC, fun a ha => ?_⟩
   obtain ⟨b, hb, hab, hne⟩ := hnomax a ha
   have hltab : HahnSeries.addVal ℚ K (f.eval a) < HahnSeries.addVal ℚ K (f.eval b) := by

@@ -400,9 +400,7 @@ theorem exists_ramification_frobenius (w : Place K (modularFunctionFieldC K N)) 
   let := frobImageIsIntegral K N data hKr
   refine ⟨Place.ramificationIndex (F := frobeniusGeomLevelImage K N (ℓ := ℓ)) w,
     Place.ramificationIndex_pos w, ?_, fun g => ?_⟩
-  ·
-
-    obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible w.toValuationSubring
+  · obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible w.toValuationSubring
     have hπ0 : (π : modularFunctionFieldC K N) ≠ 0 := by
       simpa [ne_eq, ZeroMemClass.coe_eq_zero] using hπ.ne_zero
     obtain ⟨y, hy⟩ := exists_frobeniusGeomLevel_eq_pow K N data hKr
@@ -421,9 +419,7 @@ theorem exists_ramification_frobenius (w : Place K (modularFunctionFieldC K N)) 
         = frobeniusGeomLevel K N data hKr y from rfl, hy, ← zpow_natCast,
       Place.ord_zpow, Place.ord_coe_irreducible w hπ, mul_one] at hdvd
     exact hdvd
-  ·
-
-    rw [show frobeniusGeomLevel K N data hKr g
+  · rw [show frobeniusGeomLevel K N data hKr g
         = algebraMap (frobeniusGeomLevelImage K N (ℓ := ℓ)) (modularFunctionFieldC K N)
             ((frobeniusGeomLevelEquiv K N (ℓ := ℓ)).toRingEquiv g) from rfl,
       Place.ord_restrict]
@@ -498,10 +494,8 @@ theorem comap_algebraMap_ne_top [Algebra.IsIntegral F F'] :
     w.toValuationSubring.comap (algebraMap F F') ≠ ⊤ := by
   intro htop
   apply w.ne_top'
-
   have hF : ∀ f : F, algebraMap F F' f ∈ w.toValuationSubring := fun f =>
     ValuationSubring.mem_comap.mp (htop ▸ ValuationSubring.mem_top f)
-
   refine SetLike.ext fun x => ⟨fun _ => ValuationSubring.mem_top x, fun _ => ?_⟩
   let : Algebra F w.toValuationSubring :=
     ((algebraMap F F').codRestrict w.toValuationSubring.toSubring hF).toAlgebra
@@ -578,7 +572,6 @@ theorem isPrincipalIdealRing_comap :
     ⟨⟨g, hgmem⟩, irreducible_mk_comap w hg0 hgmem hge, ?_⟩).toIsPrincipalIdealRing
   rintro ⟨f, hmem⟩ hx
   have hf : f ≠ 0 := by simpa [Subtype.ext_iff] using hx
-
   obtain ⟨c, hc⟩ := w.ramificationIndex_dvd_ord (F := F) hf
   have hnonneg : 0 ≤ w.ord (algebraMap F F' f) := (mem_comap_iff_ord_nonneg hf).mp hmem
   have hcnonneg : 0 ≤ c := by
@@ -590,7 +583,6 @@ theorem isPrincipalIdealRing_comap :
   set n : ℕ := c.toNat with hn
   have hcn : (n : ℤ) = c := Int.toNat_of_nonneg hcnonneg
   refine ⟨n, ?_⟩
-
   have hgn : g ^ n ≠ 0 := pow_ne_zero _ hg0
   have hdiv0 : f / g ^ n ≠ 0 := div_ne_zero hf hgn
   have hu0 : w.ord (algebraMap F F' (f / g ^ n)) = 0 := by
@@ -639,7 +631,6 @@ theorem exists_pow_eq_frobeniusGeomLevel (hperf : ∀ c : K, ∃ d : K, d ^ ℓ 
     (y : modularFunctionFieldC K N) :
     ∃ x : modularFunctionFieldC K N, frobeniusGeomLevel K N data hKr y = x ^ ℓ := by
   have : CharP (LaurentSeries K) ℓ := charP_laurentSeries K
-
   have key : ∀ z : LaurentSeries K, z ∈ modularFunctionFieldC K N →
       ∃ w : LaurentSeries K, w ∈ modularFunctionFieldC K N ∧ qExpand K ℓ z = w ^ ℓ := by
     intro z hz
@@ -918,7 +909,6 @@ def extendPlace (v : Place K F) : Place K F where
     rw [ValuationSubring.mem_comap, frobNormRingHom_apply, h.frobNorm_algebraMap]
     exact pow_mem (v.algebraMap_mem' a) ℓ
   ne_top' := by
-
     intro htop
     apply v.ne_top'
     refine SetLike.ext fun z => ⟨fun _ => ValuationSubring.mem_top z, fun _ => ?_⟩
@@ -927,7 +917,6 @@ def extendPlace (v : Place K F) : Place K F where
     rw [ValuationSubring.mem_comap, frobNormRingHom_apply, h.frobNorm_map] at hz
     exact (v.toValuationSubring.pow_mem_iff (Fact.out : ℓ.Prime).pos.ne' z).mp hz
   isPrincipalIdealRing' := by
-
     let : Algebra F F := h.frobNormRingHom.toAlgebra
     have : Algebra.IsIntegral F F := ⟨h.frobNormRingHom_isIntegral⟩
     exact v.isPrincipalIdealRing_comap (F := F)

@@ -98,7 +98,6 @@ theorem with_ratFunc {P : Prop}
   have hX : algebraMap (RatFunc k) F RatFunc.X = x := by
     show algebraMap k⟮x⟯ F (e RatFunc.X) = x
     have h := RatFunc.algEquivOfTranscendental_X x hx
-
     exact h
   have hn : Module.finrank (RatFunc k) F = Module.finrank k⟮x⟯ F :=
     Algebra.finrank_eq_of_equiv_equiv e.toRingEquiv (RingEquiv.refl F) (by ext y; rfl)
@@ -191,7 +190,6 @@ theorem ordDiff_eq_ordDifferential (v : Place K F) [v.DCoordGenerates] [Nontrivi
     (ω : Ω[F⁄K]) : v.ordDiff ω = v.ordDifferential ω := by
   obtain ⟨t₂, ht₂, hdc⟩ := exists_dCoord_eq_D v
   have ht₁ : v.ord v.uniformizer_alt = 1 := v.ord_uniformizer_alt v.exists_ord_eq_one
-
   have hc_smul : Place.diffCoeff v.uniformizer_alt (D K F t₂) • D K F v.uniformizer_alt = D K F t₂ :=
     Place.diffCoeff_smul_D_of_ord_eq_one x v ht₁ _
   have hc'_smul : Place.diffCoeff t₂ (D K F v.uniformizer_alt) • D K F t₂ = D K F v.uniformizer_alt :=
@@ -217,7 +215,6 @@ theorem ordDiff_eq_ordDifferential (v : Place K F) [v.DCoordGenerates] [Nontrivi
     have h3 := v.ord_mul hc'0 hc0
     rw [hcc', v.ord_one] at h3
     omega
-
   have ha : Place.diffCoeff v.uniformizer_alt ω • D K F v.uniformizer_alt = ω :=
     Place.diffCoeff_smul_D_of_ord_eq_one x v ht₁ ω
   have hb : v.differentialCoeff ω • v.dCoord = ω := v.differentialCoeff_smul_dCoord ω
@@ -319,12 +316,9 @@ theorem sum_bound {ι : Type*} [DecidableEq ι] (f m : ι → ℤ)
     have h1 := (hPoles P).mp hP
     have h2 := hT P hPT
     omega
-
   have hUsum : ∑ P ∈ U, f P = C := by
     rw [← hC]; exact (Finset.sum_subset hSU fun P _ hPS => hS P hPS).symm
-
   have hsplit : ∑ P ∈ U \ T, f P + ∑ P ∈ T, f P = ∑ P ∈ U, f P := Finset.sum_sdiff hTU
-
   let g : ι → ℤ := fun P => if m P < 0 then m P - 1 else 0
   have hfg : ∀ P, g P ≤ f P := fun P => by
     show (if m P < 0 then m P - 1 else 0) ≤ f P
@@ -338,19 +332,16 @@ theorem sum_bound {ι : Type*} [DecidableEq ι] (f m : ι → ℤ)
     rw [ite_eq_right (fun h => hP ((hPoles P).mpr h))]
   have hg3 : ∑ P ∈ Poles, g P = ∑ P ∈ Poles, (m P - 1) :=
     Finset.sum_congr rfl fun P hP => ite_eq_left ((hPoles P).mp hP)
-
   have hcard : ∑ P ∈ Poles, (1 : ℤ) = Poles.card := by simp
   have hsum1 : ∑ P ∈ Poles, (m P - 1) = -n - Poles.card := by
     rw [Finset.sum_sub_distrib, hcard, ← hn, Finset.sum_neg_distrib, neg_neg]
   have hsum2 : ∑ P ∈ Poles, (-m P - 1) = n - Poles.card := by
     rw [Finset.sum_sub_distrib, hcard, hn]
-
   have hTP : Tinf ⊆ Poles := fun P hP => (hPoles P).mpr (hTinf P hP)
   have hinf : ∑ P ∈ Tinf, (-m P - 1) ≤ ∑ P ∈ Poles, (-m P - 1) :=
     Finset.sum_le_sum_of_subset_of_nonneg hTP fun P hP _ => by
       have := (hPoles P).mp hP
       omega
-
   have hTle : ∑ P ∈ T, f P ≤ C + n + Poles.card := by
     have := hg1; rw [← hg2, hg3, hsum1] at this
     linarith
@@ -370,7 +361,6 @@ theorem main
   have hC : IsCurveOver k F := isCurveOver_pkg k x hx hfin hsep
   have hK : HasCanonicalDivisor (K := k) (F := F) := hasCanonicalDivisor_pkg k x hx hfin hsep
   have hG : ∀ v : Place k F, v.DCoordGenerates := dCoordGenerates_pkg k x hx hfin hsep
-
   have hω : KaehlerDifferential.D k F x ≠ 0 :=
     KaehlerDifferential.D_ne_zero_of_transcendental k x hx
   have hWapp : ∀ P : Place k F, canonicalDivisorOf hω P = P.ordDiff (D k F x) := fun P => by
@@ -384,7 +374,6 @@ theorem main
       2 * (genusFF k F : ℤ) - 2 := by
     rw [← hWdeg, degree_eq_sum_support]
     exact (Finset.sum_congr rfl fun P _ => by rw [hWapp, hdeg1, Nat.cast_one, mul_one]).symm
-
   obtain ⟨Poles, hPoles, hn⟩ : ∃ Poles : Finset (Place k F), (∀ w, w ∈ Poles ↔ w.ord x < 0) ∧
       ∑ w ∈ Poles, (-w.ord x) = (Module.finrank k⟮x⟯ F : ℤ) := by
     refine with_ratFunc k x hx hfin hsep ?_
@@ -392,7 +381,6 @@ theorem main
     have h := sum_poles_eq_finrank k (F := F) hdeg1
     rw [hX, hnn] at h
     exact h
-
   have hreg : ∀ P : Place k F, 0 ≤ P.ord x → 0 ≤ P.ordDiff (D k F x) := fun P hP => by
     rw [Place.ordDiff_def]
     exact Place.ord_diffCoeff_D_nonneg_of_perfectField x P

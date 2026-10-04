@@ -220,8 +220,7 @@ theorem exists_ord_neg_forall_ord_pos (T : Finset (Place K F)) {v : Place K F}
           Finset.le_sup (f := fun w => (1 - w.ord u).toNat) hw
         omega
       rcases lt_trichotomy (w₀.ord z) 0 with hc | hc | hc
-      ·
-        have ht0 : (z ^ (m : ℤ)) ≠ 0 := zpow_ne_zero _ hz0
+      · have ht0 : (z ^ (m : ℤ)) ≠ 0 := zpow_ne_zero _ hz0
         have htv : v.ord (z ^ (m : ℤ)) < 0 := by
           rw [v.ord_zpow]
           exact mul_neg_of_pos_of_neg (by omega) hzv
@@ -250,8 +249,7 @@ theorem exists_ord_neg_forall_ord_pos (T : Finset (Place K F)) {v : Place K F}
               mul_le_mul_of_nonneg_left (by omega) (by omega)
             have h2 := hmw w hws
             omega
-      ·
-        have ht0 : (z ^ (m : ℤ)) ≠ 0 := zpow_ne_zero _ hz0
+      · have ht0 : (z ^ (m : ℤ)) ≠ 0 := zpow_ne_zero _ hz0
         refine ⟨z ^ (m : ℤ) * u, ?_, ?_⟩
         · rw [v.ord_mul ht0 hu0, v.ord_zpow]
           have hb : (m : ℤ) * v.ord z ≤ (m : ℤ) * (-1) :=
@@ -267,8 +265,7 @@ theorem exists_ord_neg_forall_ord_pos (T : Finset (Place K F)) {v : Place K F}
               mul_le_mul_of_nonneg_left (by omega) (by omega)
             have h2 := hmw w hws
             omega
-      ·
-        exact ⟨z, hzv, fun w hw =>
+      · exact ⟨z, hzv, fun w hw =>
           (Finset.mem_insert.mp hw).elim (fun h => h ▸ hc) (hzs w)⟩
 
 theorem exists_indicator (T : Finset (Place K F)) {v : Place K F} {z : F} (hzv : v.ord z < 0)
@@ -315,19 +312,16 @@ theorem exists_forall_ord_eq_of_sep (T : Finset (Place K F)) (n : Place K F → 
   classical
   rcases T.eq_empty_or_nonempty with rfl | hT
   · exact ⟨1, one_ne_zero, by simp⟩
-
   have hunif : ∀ v : Place K F, ∃ π : F, π ≠ 0 ∧ v.ord π = 1 := fun v => by
     obtain ⟨ϖ, hϖ⟩ := IsDiscreteValuationRing.exists_irreducible v.toValuationSubring
     refine ⟨ϖ, ?_, v.ord_coe_irreducible hϖ⟩
     simpa [ne_eq, ZeroMemClass.coe_eq_zero] using hϖ.ne_zero
   choose π hπ0 hπ1 using hunif
-
   set t : Place K F → F := fun v => π v ^ n v with ht
   have ht0 : ∀ v, t v ≠ 0 := fun v => zpow_ne_zero _ (hπ0 v)
   have htord : ∀ v w : Place K F, w.ord (t v) = n v * w.ord (π v) := fun v w => by
     rw [ht, ord_zpow]
   have htv : ∀ v, v.ord (t v) = n v := fun v => by rw [htord, hπ1, mul_one]
-
   set B : ℤ := 1 + ∑ v ∈ T, ∑ w ∈ T, (|n v| + |v.ord (t w)|) with hBdef
   have hB : ∀ v ∈ T, ∀ w ∈ T, n v - v.ord (t w) + 1 ≤ B := by
     intro v hv w hw
@@ -341,7 +335,6 @@ theorem exists_forall_ord_eq_of_sep (T : Finset (Place K F)) (n : Place K F → 
     have h3 : n v ≤ |n v| := le_abs_self _
     have h4 : -v.ord (t w) ≤ |v.ord (t w)| := neg_le_abs _
     omega
-
   have hind : ∀ v : Place K F, ∃ e : F, v ∈ T →
       (v.adicValuation (e - 1) ≤ WithZero.exp (-B) ∧
         ∀ w ∈ T, w ≠ v → w.adicValuation e ≤ WithZero.exp (-B)) := by
@@ -352,7 +345,6 @@ theorem exists_forall_ord_eq_of_sep (T : Finset (Place K F)) (n : Place K F → 
       exact ⟨e, fun _ => he⟩
     · exact ⟨0, fun h => absurd h hv⟩
   choose e he using hind
-
   have main : ∀ v ∈ T, v.adicValuation (∑ w ∈ T, t w * e w) = WithZero.exp (-(n v)) := by
     intro v hv
     have hsplit : ∑ w ∈ T, t w * e w = t v + (t v * (e v - 1) + ∑ w ∈ T.erase v, t w * e w) := by

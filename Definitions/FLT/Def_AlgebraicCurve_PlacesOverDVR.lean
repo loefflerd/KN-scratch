@@ -62,12 +62,10 @@ theorem ord_neg (f : F) : w.ord (-f) = w.ord f := by
 theorem mem_of_eval_monic_eq_zero {P : Polynomial F} (hP : P.Monic)
     (hcoeff : ∀ i, P.coeff i ∈ w.toValuationSubring) {x : F} (hx : P.eval x = 0) :
     x ∈ w.toValuationSubring := by
-
   have hlift : P ∈ lifts (algebraMap w.toValuationSubring F) := by
     rw [lifts_iff_coeff_lifts]
     exact fun n => ⟨⟨P.coeff n, hcoeff n⟩, rfl⟩
   obtain ⟨Q, hQmap, -, hQmonic⟩ := lifts_and_degree_eq_and_monic hlift hP
-
   have hint : IsIntegral w.toValuationSubring x := by
     refine ⟨Q, hQmonic, ?_⟩
     rw [show eval₂ (algebraMap w.toValuationSubring F) x Q = (Q.map _).eval x from
@@ -144,7 +142,6 @@ theorem center_ne_bot (hw : ∀ r : R, algebraMap R F r ∈ w.toValuationSubring
     center R w hw ≠ ⊥ := by
   intro hbot
   apply w.ne_top'
-
   have hunit : ∀ r : R, r ≠ 0 → IsUnit (chartHom w hw r) := by
     intro r hr
     by_contra hu
@@ -152,7 +149,6 @@ theorem center_ne_bot (hw : ∀ r : R, algebraMap R F r ∈ w.toValuationSubring
       (mem_center_iff w hw).mpr ((IsLocalRing.mem_maximalIdeal _).mpr hu)
     rw [hbot] at this
     exact hr (by simpa using this)
-
   refine SetLike.ext fun x => ⟨fun _ => ValuationSubring.mem_top x, fun _ => ?_⟩
   obtain ⟨a, b, hb, hx⟩ := IsFractionRing.div_surjective (A := R) x
   rw [← hx, div_eq_mul_inv]
@@ -414,7 +410,6 @@ theorem placeOfPrime_toValuationSubring (P : HeightOneSpectrum (integralClosureA
 
 theorem restrict_placeOfPrime (P : HeightOneSpectrum (integralClosureAt F' v)) :
     (placeOfPrime P).restrict F = v := by
-
   have hle : v.toValuationSubring ≤ ((placeOfPrime P).restrict F).toValuationSubring := by
     intro g hg
     rw [restrict_toValuationSubring, ValuationSubring.mem_comap,
@@ -428,13 +423,11 @@ theorem restrict_placeOfPrime (P : HeightOneSpectrum (integralClosureAt F' v)) :
       rfl
     rw [h1]
     exact P.valuation_le_one _
-
   exact (Place.ext (ValuationSubring.eq_of_le_of_ne_top _ hle
     ((placeOfPrime P).restrict F).ne_top')).symm
 
 theorem fiberCenter_placeOfPrime (P : HeightOneSpectrum (integralClosureAt F' v)) :
     fiberCenter F' v (restrict_placeOfPrime P) = P := by
-
   have h1 : HeightOneSpectrum.valuationSubringAtPrime F'
       (fiberCenter F' v (restrict_placeOfPrime P))
         = HeightOneSpectrum.valuationSubringAtPrime F' P := by

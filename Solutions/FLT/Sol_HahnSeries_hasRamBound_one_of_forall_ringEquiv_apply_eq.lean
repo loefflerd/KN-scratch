@@ -141,12 +141,10 @@ theorem charFun_eq (x : ℚ) (m : ℕ) (k : ℤ) (hk : x * ((b * m.factorial : �
     charFun ζ b x = (rootSeq ζ m) ^ k := by
   have hd0 : x.den ≠ 0 := x.den_nz
   have hdvd : x.den ∣ x.den.factorial := Nat.dvd_factorial x.den_pos le_rfl
-
   rw [charFun, ← rootSeq_pow_of_le ζ (Nat.le_add_right x.den m),
     ← rootSeq_pow_of_le ζ (Nat.le_add_left m x.den),
     ← zpow_natCast, ← zpow_natCast, ← zpow_mul, ← zpow_mul]
   congr 1
-
   apply mul_left_cancel₀ (show (x.den : ℤ) ≠ 0 by exact_mod_cast hd0)
   have e1 : (((x.den + m).factorial / x.den.factorial : ℕ) : ℤ) * (x.den.factorial : ℤ)
       = ((x.den + m).factorial : ℤ) := by
@@ -155,7 +153,6 @@ theorem charFun_eq (x : ℚ) (m : ℕ) (k : ℤ) (hk : x * ((b * m.factorial : �
     exact_mod_cast Nat.div_mul_cancel (Dvd.dvd.mul_left hdvd b)
   have e3 : (((x.den + m).factorial / m.factorial : ℕ) : ℤ) * (m.factorial : ℤ) = ((x.den + m).factorial : ℤ) := by
     exact_mod_cast Nat.div_mul_cancel (Nat.factorial_dvd_factorial (Nat.le_add_left m x.den))
-
   have e4 : (k : ℤ) * x.den = x.num * (b * m.factorial : ℕ) := by
     have hq : (k : ℚ) * x.den = x.num * (b * m.factorial : ℕ) := by
       rw [← hk, mul_right_comm, Rat.mul_den_eq_num]
@@ -259,10 +256,8 @@ theorem orderTop_twist (χ : Multiplicative ℚ →* Kˣ) (z : HahnSeries ℚ K)
       apply hz
       rw [← HahnSeries.support_eq_empty_iff] at h ⊢
       rwa [support_twist] at h
-
     first
       | rw [HahnSeries.orderTop_of_ne_zero hz, HahnSeries.orderTop_of_ne_zero hz', WithTop.coe_eq_coe]
-
     apply le_antisymm
     · exact Set.IsWF.min_le _ _ (by rw [support_twist]; exact Set.IsWF.min_mem _ _)
     · exact Set.IsWF.min_le _ _ (by rw [← support_twist χ z]; exact Set.IsWF.min_mem _ _)
@@ -281,19 +276,16 @@ theorem solution
   intro q hq
   have hb : 0 < q.den := q.den_pos
   have : NeZero q.den := ⟨q.den_nz⟩
-
   obtain ⟨μ, hμ⟩ := HasEnoughRootsOfUnity.exists_primitiveRoot K q.den
   obtain ⟨ζ, rfl⟩ : IsUnit μ := by
     first | exact hμ.isUnit q.den_nz
   have hζ : IsPrimitiveRoot ζ q.den := IsPrimitiveRoot.coe_units_iff.mp hμ
   have hζ1 : ζ ^ q.den = 1 := hζ.pow_eq_one
-
   have hfix : twist (char ζ q.den) x = x := by
     have h := hx (twistRingEquiv (char ζ q.den))
       (fun z => by rw [twistRingEquiv_apply]; exact orderTop_twist _ z)
       (fun z hz => by rw [twistRingEquiv_apply]; exact twist_eq_self_of_hasRamBound_one (char_intCast ζ hζ1) hz)
     rwa [twistRingEquiv_apply] at h
-
   have hc : ((char ζ q.den (Multiplicative.ofAdd q) : Kˣ) : K) * x.coeff q = x.coeff q := by
     have h := congrArg (fun y : HahnSeries ℚ K => y.coeff q) hfix
     simpa only [coeff_twist] using h
@@ -307,7 +299,6 @@ theorem solution
   have hpow : ζ ^ q.num = 1 := by
     rw [← hval]
     exact Units.val_eq_one.mp hc1
-
   have hdvd : (q.den : ℤ) ∣ q.num := (hζ.zpow_eq_one_iff_dvd q.num).mp hpow
   have hdvd' : q.den ∣ q.num.natAbs := by
     have h := Int.natAbs_dvd_natAbs.mpr hdvd

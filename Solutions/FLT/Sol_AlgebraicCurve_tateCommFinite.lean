@@ -393,24 +393,20 @@ theorem kwF4gRRTate_clearPole (πh : u.adicCompletionIntegers) (hπh : Irreducib
   have hb0 : b ≠ 0 := nonZeroDivisors.ne_zero hb
   obtain ⟨M, ub, hbeq⟩ := IsDiscreteValuationRing.eq_unit_mul_pow_irreducible hb0 hπh
   refine ⟨M, ?_⟩
-
   have hcoe : ∀ x : u.adicCompletionIntegers,
       (x : u.adicCompletion) = algebraMap _ u.adicCompletion x := fun _ => rfl
   have hbK0 : (b : u.adicCompletion) ≠ 0 := by
     rw [hcoe]; exact (map_ne_zero_iff _ (IsFractionRing.injective _ _)).mpr hb0
   have hbfh : (b : u.adicCompletion) * fh = (a : u.adicCompletion) := by
     rw [← hfh, hcoe b, hcoe a, mul_div_cancel₀ _ (hcoe b ▸ hbK0)]
-
   have hπheq : ((ub⁻¹ : u.adicCompletionIntegersˣ) : u.adicCompletionIntegers) * b = πh ^ M := by
     rw [hbeq, ← mul_assoc, ← Units.val_mul, inv_mul_cancel, Units.val_one, one_mul]
-
   have hπheqK : ((((ub⁻¹ : u.adicCompletionIntegersˣ) : u.adicCompletionIntegers)
         : u.adicCompletion)) * (b : u.adicCompletion)
       = (πh : u.adicCompletion)^M := by
     have := congrArg (algebraMap u.adicCompletionIntegers u.adicCompletion) hπheq
     simp only [map_mul, map_pow] at this
     exact this
-
   rw [← hπheqK, mul_assoc, hbfh]
   exact mul_mem (Subtype.coe_prop _) a.2
 
@@ -514,17 +510,14 @@ theorem kwF4gRRTate_commFinite_of_clearPole_of_poleWindowFinite
   set Rg := LinearMap.range ((LinearMap.id - pA) ∘ₗ lmulK u gh ∘ₗ A.subtype)
   set S : Submodule K u.adicCompletion :=
     Submodule.map (pA ∘ₗ lmulK u gh) Rf ⊔ Submodule.map (pA ∘ₗ lmulK u fh) Rg
-
   have : FiniteDimensional K (Submodule.map (pA ∘ₗ lmulK u gh) Rf) := Module.Finite.map _ _
   have : FiniteDimensional K (Submodule.map (pA ∘ₗ lmulK u fh) Rg) := Module.Finite.map _ _
   have hSfin : FiniteDimensional K S := Submodule.finiteDimensional_sup _ _
-
   have hSle : S ≤ LinearMap.range pA :=
     tateComm_target_le_range u pA (lmulK u fh) (lmulK u gh) Rf Rg
   have : FiniteDimensional K (S.comap (LinearMap.range pA).subtype) := by
     have e := Submodule.comapSubtypeEquivOfLe hSle
     exact FiniteDimensional.of_injective e.toLinearMap e.injective
-
   refine Submodule.finiteDimensional_of_le (S₂ := S.comap (LinearMap.range pA).subtype) ?_
   rintro y ⟨⟨a, haR⟩, rfl⟩
   have haA : a ∈ adicIntegersKSubmod u := range_tateProj u ▸ haR
@@ -576,7 +569,6 @@ local notation "vK" => (Valued.v : Valuation (v.adicCompletion K) ℤᵐ⁰)
 
 theorem isOpen_setOf_valued_le {γ : ℤᵐ⁰} (hγ : γ ≠ 0) :
     IsOpen {y : v.adicCompletion K | Valued.v y ≤ γ} := by
-
   obtain ⟨z, hz⟩ := valuedAdicCompletion_surjective K v γ
   have hz0 : vK z ≠ 0 := by rw [hz]; exact hγ
   have hr0 : (vK).restrict z ≠ 0 := fun h =>
@@ -642,7 +634,6 @@ theorem kwF4R1V410a_algebraMap_mem_completionIdeal_pow_iff (n : ℕ) (x : O_w) :
 
 theorem kwF4R1V410a_exists_sub_mem_completionIdeal_pow (n : ℕ) (y : O_W) :
     ∃ x : O_w, y - algebraMap (O_w) (O_W) x ∈ (𝔪_W) ^ n := by
-
   have hball_open : IsOpen {z : w.adicCompletion |
       Valued.v (z - y.val) ≤ WithZero.exp (-(n : ℤ))} :=
     (adicCompletion.isOpen_setOf_valued_le F w.heightOneSpectrum
@@ -652,14 +643,12 @@ theorem kwF4R1V410a_exists_sub_mem_completionIdeal_pow (n : ℕ) (y : O_W) :
     simp only [Set.mem_ofPred_eq, sub_self, _root_.map_zero]; exact zero_le
   have hmeet := mem_closure_iff.mp
     ((denseRange_algebraMap F w.heightOneSpectrum) y.val) _ hball_open hy_mem
-
   have hexists : ∃ z : F, Valued.v (algebraMap F w.adicCompletion z - y.val)
       ≤ WithZero.exp (-(n : ℤ)) := by
     rcases hmeet with ⟨z₀, hz₀_ball, z, hz_eq⟩
     exact ⟨z, hz_eq ▸ hz₀_ball⟩
   obtain ⟨z, hz⟩ := hexists
   rw [show algebraMap F w.adicCompletion z = ((z : F) : w.adicCompletion) from rfl] at hz
-
   have hz_val_le : w.heightOneSpectrum.valuation F z ≤ 1 := by
     have hzhat : Valued.v ((z : w.adicCompletion)) ≤ (1 : ℤᵐ⁰) := by
       calc Valued.v ((z : w.adicCompletion))
@@ -817,7 +806,6 @@ theorem kwF4gRRTate_poleWindowFinite_of_DVRQuotPowKFinite
     KwF4gRRTatePoleWindowFinite K L := by
   intro u _ πh hπh M
   have := hDVR u πh hπh M
-
   have e := (poleWindowShiftEquiv u πh hπh M).toLinearMap
   let e' := Submodule.Quotient.equiv
     ((adicIntegersKSubmod u).comap (poleWindowKSubmod u πh M).subtype)
@@ -908,19 +896,16 @@ theorem finiteDimensional_restrictScalarsQuot_pow [u.FiniteResidue]
     have hle' : (Ideal.span {πh^(M+1)} : Ideal u.adicCompletionIntegers).restrictScalars K
         ≤ (Ideal.span {πh^M} : Ideal u.adicCompletionIntegers).restrictScalars K :=
       Submodule.restrictScalars_mono K hle
-
     set N : Submodule K (u.adicCompletionIntegers ⧸
         (Ideal.span {πh^(M+1)} : Ideal u.adicCompletionIntegers).restrictScalars K) :=
       (Submodule.restrictScalars K (Ideal.span {πh^M} : Ideal u.adicCompletionIntegers)).map
         (Submodule.restrictScalars K (Ideal.span {πh^(M+1)} : Ideal _)).mkQ with hN_def
-
     have hquot : FiniteDimensional K
         ((u.adicCompletionIntegers ⧸
           (Ideal.span {πh^(M+1)} : Ideal _).restrictScalars K) ⧸ N) := by
       have := ih
       exact Module.Finite.equiv
         (Submodule.quotientQuotientEquivQuotient _ _ hle').symm
-
     have hN : FiniteDimensional K N := by
       set φ : u.adicCompletionIntegers →ₗ[K] (u.adicCompletionIntegers ⧸
           (Ideal.span {πh^(M+1)} : Ideal u.adicCompletionIntegers).restrictScalars K) :=
@@ -941,7 +926,6 @@ theorem finiteDimensional_restrictScalarsQuot_pow [u.FiniteResidue]
           exact ⟨c, mul_left_cancel₀ hπM (by rw [hc, pow_succ, mul_assoc])⟩
         · rintro ⟨c, hc⟩
           exact ⟨c, by rw [hc, pow_succ, mul_assoc]⟩
-
       let e₁ : (u.adicCompletionIntegers ⧸
             (Ideal.span {πh} : Ideal u.adicCompletionIntegers).restrictScalars K)
           ≃ₗ[K] (u.adicCompletionIntegers ⧸ LinearMap.ker φ) :=

@@ -87,13 +87,11 @@ theorem exists_coprime_nsmul_of_mem_zmultiples {N : ℕ} (hN : N ≠ 0) {x y : G
   refine ⟨k, ?_, rfl⟩
   have h : addOrderOf (k • x) = addOrderOf x / (addOrderOf x).gcd k := hfin.addOrderOf_nsmul x k
   rw [hy, hx] at h
-
   have hg : N.gcd k = 1 := by
     have hpos : 0 < N.gcd k := Nat.gcd_pos_of_pos_left _ (Nat.pos_of_ne_zero hN)
     have hdvd : N.gcd k ∣ N := Nat.gcd_dvd_left N k
     have := Nat.div_mul_cancel hdvd
     rw [← h] at this
-
     have := Nat.eq_of_mul_eq_mul_left (Nat.pos_of_ne_zero hN) (this.trans (mul_one N).symm)
     exact this
   exact Nat.Coprime.symm hg
@@ -118,20 +116,16 @@ theorem solution (N : ℕ) [NeZero N]
     Nat.card (Quot (fun H H' : ModularCurve.CycSub E₀ N => ModularCurve.SameOrbit E₀ H.1 H'.1))
       = Nat.card {x : ModularCurve.ModuliPoint N (AlgebraicClosure ℚ) // ModularCurve.ModuliPoint.j x = E₀.j} := by
   rw [ModularCurve.natCard_moduliPoint_j_eq_eq_natCard_quot_addOrderOf_eq N (AlgebraicClosure ℚ) E₀]
-
   have hN : N ≠ 0 := NeZero.ne N
   let A := {T : E₀.toAffine.Point // addOrderOf T = N}
   let R : A → A → Prop := fun T T' =>
     ∃ γ : VariableChange (AlgebraicClosure ℚ), ∃ _ : γ • E₀ = E₀, ∃ k : ℕ, k.Coprime N ∧
       HEq T'.1 (k • Point.vcInvFun γ E₀.toAffine T.1)
   let S : CycSub E₀ N → CycSub E₀ N → Prop := fun H H' => SameOrbit E₀ H.1 H'.1
-
   let toCyc : A → CycSub E₀ N := fun T => ⟨AddSubgroup.zmultiples T.1, T.1, T.2, rfl⟩
-
   let gen : CycSub E₀ N → A := fun H => ⟨H.2.choose, H.2.choose_spec.1⟩
   have hgen : ∀ H : CycSub E₀ N, H.1 = AddSubgroup.zmultiples (gen H).1 :=
     fun H => H.2.choose_spec.2
-
   have hf : ∀ T T' : A, R T T' → Quot.mk S (toCyc T) = Quot.mk S (toCyc T') := by
     rintro T T' ⟨γ, hγ, k, hk, hheq⟩
     obtain ⟨g', hg'⟩ := exists_heq (V' := E₀.toAffine) hγ.symm (Point.vcInvFun γ E₀.toAffine T.1)
@@ -142,7 +136,6 @@ theorem solution (N : ℕ) [NeZero N]
     show AddSubgroup.zmultiples T'.1 = AddSubgroup.zmultiples g'
     rw [hT']
     exact zmultiples_nsmul_eq_of_coprime hord hk
-
   have hg : ∀ H H' : CycSub E₀ N, S H H' → Quot.mk R (gen H) = Quot.mk R (gen H') := by
     rintro H H' ⟨γ, hγ, a, a', hH, hH', hheq⟩
     have ha : AddSubgroup.zmultiples a = AddSubgroup.zmultiples (gen H).1 := hH.symm.trans (hgen H)

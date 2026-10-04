@@ -19,8 +19,7 @@ theorem solution {a c a' c' : ℤ} (h : IsCoprime a c)
   constructor
   · intro heq
     rcases eq_or_ne c 0 with rfl | hc
-    ·
-      have hc' : c' = 0 := by
+    · have hc' : c' = 0 := by
         rw [ratPoint_zero_right] at heq
         exact ratPoint_eq_infty_iff.mp heq.symm
       subst hc'
@@ -29,8 +28,7 @@ theorem solution {a c a' c' : ℤ} (h : IsCoprime a c)
       rcases Int.isUnit_iff.mp hu with rfl | rfl <;>
           rcases Int.isUnit_iff.mp hu' with rfl | rfl <;>
         norm_num
-    ·
-      have hc' : c' ≠ 0 := by
+    · have hc' : c' ≠ 0 := by
         intro h0
         rw [h0, ratPoint_zero_right, ratPoint_eq_infty_iff] at heq
         exact hc heq
@@ -39,7 +37,6 @@ theorem solution {a c a' c' : ℤ} (h : IsCoprime a c)
       rw [ratPoint_of_ne_zero _ hc, ratPoint_of_ne_zero _ hc', OnePoint.coe_eq_coe,
         div_eq_div_iff hcQ hcQ'] at heq
       have hZ : a * c' = a' * c := by exact_mod_cast heq
-
       have h1 : c ∣ c' := h.symm.dvd_of_dvd_mul_left ⟨a', by linear_combination hZ⟩
       have h2 : c' ∣ c := h'.symm.dvd_of_dvd_mul_left ⟨a, by linear_combination - hZ⟩
       obtain ⟨u, hu⟩ := h1
@@ -49,12 +46,10 @@ theorem solution {a c a' c' : ℤ} (h : IsCoprime a c)
           rw [mul_one, ← mul_assoc, ← hu, ← hv]
         exact mul_left_cancel₀ hc h3
       rcases Int.isUnit_iff.mp (IsUnit.of_mul_eq_one v huv) with hu1 | hu1
-      ·
-        rw [hu1, mul_one] at hu
+      · rw [hu1, mul_one] at hu
         rw [hu] at hZ
         exact Or.inl ⟨mul_right_cancel₀ hc hZ, hu.symm⟩
-      ·
-        rw [hu1, mul_neg_one] at hu
+      · rw [hu1, mul_neg_one] at hu
         have hc2 : c = -c' := by rw [hu]; ring
         have h4 : a * c' = -a' * c' := by
           rw [hc2] at hZ

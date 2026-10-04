@@ -83,14 +83,12 @@ theorem smul_mem_regularDifferentials_iff {ω₀ : Ω[F⁄K]} (hω₀ : ω₀ �
   rw [mem_regularDifferentials_iff, mem_lSpace_iff_ord, or_iff_right hh]
   refine forall_congr' fun v => ?_
   have hc : v.differentialCoeff ω₀ ≠ 0 := differentialCoeff_ne_zero hω₀ v
-
   have hdec : h • ω₀ = (h * v.differentialCoeff ω₀) • v.dCoord := by
     rw [mul_smul, v.differentialCoeff_smul_dCoord]
   have hprod : h * v.differentialCoeff ω₀ ≠ 0 := mul_ne_zero hh hc
   rw [canonicalDivisorOf_apply, Place.ordDifferential]
   constructor
   · rintro ⟨g, hg, hEq⟩
-
     have hgu : g = h * v.differentialCoeff ω₀ := by
       rw [← v.differentialCoeff_unique hEq, v.differentialCoeff_unique hdec]
     have h0 : 0 ≤ v.ord (h * v.differentialCoeff ω₀) :=
@@ -150,12 +148,10 @@ theorem riemannRoch_and_constantsAreBase [IsAlgClosed K] [Algebra.EssFiniteType 
     [∀ v : Place K F, v.DCoordGenerates] :
     FunctionFieldRiemannRoch K F ∧ ConstantsAreBase K F := by
   classical
-
   obtain ⟨t, ht, htfd, htsep⟩ :=
     IsCurveOver.exists_separating_transcendental (K := K) (F := F)
   have := htfd
   have := htsep
-
   set e : RatFunc K ≃ₐ[K] K⟮t⟯ := RatFunc.algEquivOfTranscendental t ht with he
   let : Algebra (RatFunc K) F :=
     ((algebraMap K⟮t⟯ F).comp e.toAlgHom.toRingHom).toAlgebra
@@ -174,7 +170,6 @@ theorem riemannRoch_and_constantsAreBase [IsAlgClosed K] [Algebra.EssFiniteType 
   have : Algebra.IsSeparable (RatFunc K) F :=
     Algebra.IsSeparable.of_equiv_equiv e.symm.toRingEquiv (RingEquiv.refl F) hsq
   have : Algebra.IsIntegral (RatFunc K) F := Algebra.IsIntegral.of_finite (RatFunc K) F
-
   have : IsCurveOver K (RatFunc K) := isCurveOver_ratFunc K
   have : FiniteDimensional (IntermediateField.adjoin K ({RatFunc.X} : Set (RatFunc K)))
       (RatFunc K) := by
@@ -206,19 +201,14 @@ theorem solution {K F : Type*} [Field K]
       Module.finrank K ↥(AlgebraicCurve.regularDifferentials K F) =
         AlgebraicCurve.genus K F := by
   classical
-
   have : ∀ v : Place K F, v.DCoordGenerates := dCoordGenerates_of_isCurveOver
-
   obtain ⟨hRR, hC⟩ := riemannRoch_and_constantsAreBase (K := K) (F := F)
-
   obtain ⟨ω₀, hω₀⟩ := exists_ne (0 : Ω[F⁄K])
-
   have : FiniteDimensional K ↥(LSpace (0 : Divisor K F)) := by
     rw [show LSpace (0 : Divisor K F) = _ from hC]
     infer_instance
   have : FiniteDimensional K ↥(LSpace (canonicalDivisorOf hω₀)) :=
     finiteDimensional_lSpace _
-
   set e := lSpaceCanonicalEquivRegular (K := K) (F := F) hω₀
   refine ⟨Module.Finite.equiv e, ?_⟩
   rw [← e.finrank_eq]

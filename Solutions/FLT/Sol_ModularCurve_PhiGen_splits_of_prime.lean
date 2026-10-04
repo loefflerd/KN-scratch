@@ -345,7 +345,6 @@ private theorem ModularCurve.PhiGen.splits_of_prime {K : Type*} [Field K] [Algeb
       rw [← hζ₀.embeddingsEquivPrimitiveRoots_apply_coe K hirr, Equiv.apply_symm_apply]⟩
   have hσu : Units.map (σ : CyclotomicField p ℚ →+* K).toMonoidHom (cycUnit p) = ζ :=
     Units.ext (by rw [Units.coe_map]; exact hσ)
-
   have h := congrArg (Polynomial.map (coeffMap (σ : CyclotomicField p ℚ →+* K))) (splits_of_prime_cyclotomicField p data)
   rw [map_coeffMap_phiProd, hσu, Polynomial.map_map] at h
   convert h using 2 ; try rfl
@@ -357,7 +356,6 @@ p2m_open "ModularCurve~coeffEmb_qExpand" in open _root_.P2MW.S_ModularCurve_PhiG
 
 theorem solution {K : Type*} [Field K] [Algebra ℚ K] (p : ℕ) [hp : Fact (Nat.Prime p)] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) p) (data : ModularPolynomialData p) : data.Φ.map (((coeffEmb K).comp (qExpand ℚ p)).comp evalAtJ) = phiProd p (conj p ζ) :=
   ModularCurve.PhiGen.splits_of_prime p ζ hζ data
-
 
 end
 end S_ModularCurve_PhiGen_splits_of_prime

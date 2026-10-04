@@ -156,7 +156,6 @@ theorem card_fiber {p : ℕ} (hp : p.Prime) (hσ : σ ^ p = 1) {r : X} (hr : r �
     · rintro ⟨i, -, rfl⟩
       exact ⟨apply_ne_of_pow_apply σ hr.1 i, by rw [rep_pow_apply, hr.2]⟩
   rw [heq, Finset.card_image_of_injOn, Finset.card_range]
-
   have aux : ∀ i j : ℕ, i ≤ j → j < p → (σ ^ i) r = (σ ^ j) r → i = j := by
     intro i j hij hj e
     rw [← pow_mul_pow_sub σ hij, Equiv.Perm.mul_apply] at e

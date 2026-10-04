@@ -43,7 +43,6 @@ theorem coeffMap_injective : Function.Injective (coeffMap φ) := by
 
 theorem coeffMap_mem {x : LaurentSeries K₀} (hx : x ∈ qExpFunctionFieldC K₀ Γ) :
     coeffMap φ x ∈ qExpFunctionFieldC K Γ := by
-
   let T : Subfield (LaurentSeries K₀) := (qExpFunctionFieldC K Γ).toSubfield.comap (coeffMap φ)
   have hgen : intFormRatiosC K₀ Γ ⊆ (T : Set (LaurentSeries K₀)) := by
     rintro y ⟨k, f, g, pf, pg, hf, hg, hg0, rfl⟩
@@ -143,7 +142,6 @@ theorem linearIndependent_pow_smul {ι : Type*} [Fintype ι] (v : ι → E₀)
   classical
   rw [Fintype.linearIndependent_iff]
   intro a ha
-
   let A : ι → IntermediateField.adjoin K₀ ({x₀} : Set E₀) := fun i =>
     ⟨∑ m : Fin N, a (i, m) • (x₀ : E₀) ^ (m : ℕ), by
       refine sum_mem fun m _ => IntermediateField.smul_mem _ ?_
@@ -158,10 +156,8 @@ theorem linearIndependent_pow_smul {ι : Type*} [Fintype ι] (v : ι → E₀)
       rw [smul_mul_assoc]
     rw [this]; exact ha
   have hA : ∀ i, A i = 0 := Fintype.linearIndependent_iff.mp hv A hsum
-
   intro p
   obtain ⟨i, m⟩ := p
-
   have hAi : ∑ m : Fin N, a (i, m) • ((x₀ : E₀) : LaurentSeries K₀) ^ (m : ℕ) = 0 := by
     have h1 : ((A i : E₀) : LaurentSeries K₀) = 0 := by rw [hA i]; rfl
     have h2 : ((A i : E₀) : LaurentSeries K₀)
@@ -200,12 +196,10 @@ theorem linearIndependent_iota {ι : Type*} [Fintype ι] (v : ι → E₀)
   by_contra hne
   push Not at hne
   obtain ⟨i₀, hi₀⟩ := hne
-
   have hrep : ∀ i, ∃ r s : K[X], (c i : E) = Polynomial.aeval (x : E) r / Polynomial.aeval (x : E) s := by
     intro i
     exact (IntermediateField.mem_adjoin_simple_iff (F := K) (α := x) (c i : E)).mp (c i).2
   choose r s hrs using hrep
-
   let s' : ι → K[X] := fun i => if Polynomial.aeval (x : E) (s i) = 0 then 1 else s i
   have hs' : ∀ i, Polynomial.aeval (x : E) (s' i) ≠ 0 := by
     intro i
@@ -220,7 +214,6 @@ theorem linearIndependent_iota {ι : Type*} [Fintype ι] (v : ι → E₀)
     split_ifs with h
     · rw [hrs i, h, div_zero, zero_mul, map_zero]
     · rw [hrs i, div_mul_cancel₀ _ h]
-
   let D : K[X] := ∏ i, s' i
   have hD : Polynomial.aeval (x : E) D ≠ 0 := by
     rw [map_prod]
@@ -230,7 +223,6 @@ theorem linearIndependent_iota {ι : Type*} [Fintype ι] (v : ι → E₀)
     intro i
     simp only [P, D]
     rw [map_mul, ← hrs', mul_assoc, ← map_mul, Finset.mul_prod_erase _ _ (Finset.mem_univ i)]
-
   have hrel : ∑ i, Polynomial.aeval (x : E) (P i) • (iota φ Γ (v i) : E) = 0 := by
     have : ∑ i, Polynomial.aeval (x : E) (P i) • (iota φ Γ (v i) : E)
         = Polynomial.aeval (x : E) D * ∑ i, (c i : E) • (iota φ Γ (v i) : E) := by
@@ -247,18 +239,15 @@ theorem linearIndependent_iota {ι : Type*} [Fintype ι] (v : ι → E₀)
     have := hPc i₀
     rw [h, map_zero] at this
     exact mul_ne_zero (fun h0 => hi₀ (ZeroMemClass.coe_eq_zero.mp h0)) hD this.symm
-
   let N : ℕ := (Finset.univ.sup fun i => (P i).natDegree) + 1
   have hdeg : ∀ i, (P i).natDegree < N := fun i =>
     Nat.lt_succ_of_le (Finset.le_sup (f := fun i => (P i).natDegree) (Finset.mem_univ i))
-
   have hind₀ := linearIndependent_pow_smul x₀ hx₀ v hv N
   have hind₀' : LinearIndependent K₀
       (fun p : ι × Fin N => (((x₀ : E₀) ^ (p.2 : ℕ) * v p.1 : E₀) : LaurentSeries K₀)) :=
     hind₀.map' (IntermediateField.val E₀).toLinearMap
       (LinearMap.ker_eq_bot_of_injective Subtype.val_injective)
   have hindK := linearIndependent_coeffMap φ hind₀'
-
   have hexp : ∑ p : ι × Fin N, (P p.1).coeff (p.2 : ℕ) •
       coeffMap φ (((x₀ : E₀) ^ ((p.2 : ℕ)) * v p.1 : E₀) : LaurentSeries K₀) = 0 := by
     have e1 : ∀ i, Polynomial.aeval (x : E) (P i) = ∑ m : Fin N, (P i).coeff (m : ℕ) • (x : E) ^ (m : ℕ) := by
@@ -303,7 +292,6 @@ theorem solution
   classical
   set n : ℕ := Module.finrank (IntermediateField.adjoin K ({x} : Set (qExpFunctionFieldC K Γ)))
     (qExpFunctionFieldC K Γ) with hn
-
   have hbound : ∀ s : Finset (qExpFunctionFieldC K₀ Γ),
       LinearIndependent (IntermediateField.adjoin K₀ ({x₀} : Set (qExpFunctionFieldC K₀ Γ)))
         (fun i : s => (i : qExpFunctionFieldC K₀ Γ)) → s.card ≤ n := by

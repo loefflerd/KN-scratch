@@ -104,27 +104,22 @@ theorem solution
   set e : Fin n → ↥(LSpace (K := K') (Finsupp.mapDomain lift D)) :=
     fun i => ⟨algebraMap F F' (b i).1,
       algebraMap_mem_lSpace hfg hlift_ord hlift_inj hlift_new (b i).2⟩ with he
-
   have hLI : LinearIndependent K' e := by
     have hLI0 : LinearIndependent K' (fun i => algebraMap F F' (b i : F)) :=
       linearIndependent_of_constantFieldExtension_of_isAlgClosed K F K' F' hfg hfg' hgen
         (b.linearIndependent.map' (riemannRochSpace D).subtype
           (LinearMap.ker_eq_bot.mpr Subtype.val_injective))
     exact hLI0.of_comp (LSpace (K := K') (Finsupp.mapDomain lift D)).subtype
-
   have hSpan : Submodule.span K' (Set.range e) = ⊤ := by
     rw [eq_top_iff]
     rintro ⟨f', hf'⟩ -
-
     have hmem_img : f' ∈ Submodule.span K' ((algebraMap F F') '' (LSpace (K := K) D : Set F)) :=
       AlgebraicCurve.lSpace_mapDomain_subset_span_image_lSpace_of_constantFieldExtension_of_isAlgClosed
         K F K' F' hfg hfg' hgen lift hlift_ord hlift_inj D hf'
-
     have heq : Submodule.span K' ((algebraMap F F') '' (LSpace (K := K) D : Set F)) =
         Submodule.span K' (Set.range fun i => algebraMap F F' (b i : F)) := by
       refine le_antisymm (Submodule.span_le.mpr ?_) (Submodule.span_mono ?_)
       · rintro _ ⟨g, hg, rfl⟩
-
         have : algebraMap F F' g = ∑ i, (algebraMap K K' (b.repr ⟨g, hg⟩ i)) •
             algebraMap F F' (b i : F) := by
           conv_lhs => rw [show g = ((⟨g, hg⟩ : riemannRochSpace D) : F) from rfl,
@@ -138,7 +133,6 @@ theorem solution
           Submodule.smul_mem _ _ (Submodule.subset_span ⟨i, rfl⟩)
       · rintro _ ⟨i, rfl⟩; exact ⟨_, (b i).2, rfl⟩
     rw [heq] at hmem_img
-
     have hmap : Submodule.span K' (Set.range fun i => algebraMap F F' (b i : F)) =
         (Submodule.span K' (Set.range e)).map
           (LSpace (K := K') (Finsupp.mapDomain lift D)).subtype := by
@@ -147,7 +141,6 @@ theorem solution
     rw [hmap] at hmem_img
     obtain ⟨y, hy, hyf⟩ := hmem_img
     rwa [show y = ⟨f', hf'⟩ from Subtype.ext hyf] at hy
-
   have hBasis : Module.Basis (Fin n) K' ↥(LSpace (K := K') (Finsupp.mapDomain lift D)) :=
     .mk hLI (le_of_eq hSpan.symm)
   calc ell (K := K') (D.mapDomain lift)

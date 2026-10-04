@@ -186,7 +186,6 @@ theorem solution
       = Nat.card (Quot (fun (T T' : {T : W.toAffine.Point // addOrderOf T = N}) =>
           ∃ γ : VariableChange L, ∃ _ : γ • W = W, ∃ k : ℕ, k.Coprime N ∧
             HEq T'.1 (k • Point.vcInvFun γ W.toAffine T.1))) := by
-
   let mkP : {T : W.toAffine.Point // addOrderOf T = N} → Gamma0Pair N L :=
     fun T => ⟨W, inferInstance, T.1, T.2⟩
   have hR : ∀ T T' : {T : W.toAffine.Point // addOrderOf T = N},
@@ -199,20 +198,17 @@ theorem solution
     Quot.lift (fun T => ⟨Quot.mk _ (mkP T), rfl⟩)
       (fun T T' h => Subtype.ext (Quot.sound ((hR T T').mp h)))
   refine (Nat.card_congr (Equiv.ofBijective f ⟨?_, ?_⟩)).symm
-  ·
-    intro a b
+  · intro a b
     induction a using Quot.ind with | _ T => ?_
     induction b using Quot.ind with | _ T' => ?_
     intro hab
     have h1 : (Quot.mk _ (mkP T) : ModuliPoint N L) = Quot.mk _ (mkP T') := congrArg Subtype.val hab
     exact Quot.sound ((hR T T').mpr (mk_eq_mk_iff_step.mp h1))
-  ·
-    rintro ⟨x, hx⟩
+  · rintro ⟨x, hx⟩
     induction x using Quot.ind with | _ P => ?_
     obtain ⟨E, hE, gen, hord⟩ := P
     have hj : E.j = W.j := hx
     obtain ⟨γ, hγ⟩ := WeierstrassCurve.exists_variableChange_of_j_eq E W hj
-
     subst hγ
     let T : (γ • E).toAffine.Point := Point.vcInvFun γ E.toAffine gen
     have hT : addOrderOf T = N := by rw [addOrderOf_vcInvFun]; exact hord

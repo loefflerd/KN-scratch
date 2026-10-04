@@ -86,7 +86,6 @@ theorem solution (n : ℕ) :
       ∃ P : Polynomial ℚ, P.natDegree ≤ n ∧ ModularCurve.PoleOrderLE (f - Polynomial.aeval ModularCurve.jq P) 0 :=
   ModularCurve.exists_aeval_jq_sub_holomorphicAtInfty' n
 
-
 end
 end S_ModularCurve_exists_aeval_jq_sub_holomorphicAtInfty
 end P2MW

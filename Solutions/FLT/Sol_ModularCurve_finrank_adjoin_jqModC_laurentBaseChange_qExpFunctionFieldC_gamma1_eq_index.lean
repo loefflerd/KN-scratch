@@ -211,7 +211,6 @@ theorem solution
   classical
   have : CharZero K := charZero_of_injective_algebraMap (algebraMap ℚ K).injective
   have hMK : (M : K) ≠ 0 := Nat.cast_ne_zero.mpr (NeZero.ne M)
-
   have hfi1 : (Gamma1 M).FiniteIndex := (CongruenceSubgroup.Gamma1_is_congruence M).finiteIndex
   have hfi0 : (Gamma0 M).FiniteIndex := (CongruenceSubgroup.Gamma0_is_congruence M).finiteIndex
   have hT1 : ModularGroup.T ∈ Gamma1 M := by
@@ -225,15 +224,12 @@ theorem solution
     rw [hsup] at hγ
     have h := mem_or_neg_mem_gammaH_of_mem_gammaH_sup ⊥ hγ
     rwa [ModularCurve.GammaH_bot M] at h
-
   have hle := ModularCurve.finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_le_index K
     (Gamma1 M) hT1 (Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))) le_sup_left hneg y hy
   refine le_antisymm hle ?_
-
   have hidx : (Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index =
       dedekindPsi M * (⊥ ⊔ Subgroup.zpowers (-1 : (ZMod M)ˣ)).index := by
     rw [hsup, CohCarrier.index_gammaH_eq_index_gamma0_mul_index, ModularCurve.Gamma0_index]
-
   have hEE : laurentBaseChange K (qExpFunctionFieldC ℚ (Gamma1 M)) = qExpFunctionFieldC K (Gamma1 M) :=
     laurentBaseChange_qExpFunctionFieldC_eq K (Gamma1 M)
   have hF0E : qExpFunctionFieldC K (Gamma0 M) ≤ qExpFunctionFieldC K (Gamma1 M) :=
@@ -242,7 +238,6 @@ theorem solution
     intFormRatiosC_subset K (Gamma0 M) (ModularCurve.jqModC_mem_intFormRatiosC K (Gamma0 M))
   have hJF0 : IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K)) ≤ qExpFunctionFieldC K (Gamma0 M) :=
     IntermediateField.adjoin_le_iff.mpr (Set.singleton_subset_iff.mpr hjF0)
-
   have eJE' : Module.finrank
         ↥(IntermediateField.adjoin K ({y} : Set ↥(laurentBaseChange K (qExpFunctionFieldC ℚ (Gamma1 M)))))
         ↥(laurentBaseChange K (qExpFunctionFieldC ℚ (Gamma1 M))) =
@@ -251,7 +246,6 @@ theorem solution
     have h := finrank_adjoin_eq_relfinrank (laurentBaseChange K (qExpFunctionFieldC ℚ (Gamma1 M))) y
     rw [hy] at h
     exact h
-
   have eJF0 : dedekindPsi M ≤
       (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))).relfinrank (qExpFunctionFieldC K (Gamma0 M)) := by
     obtain ⟨hfin, -⟩ := ModularCurve.finrank_adjoin_jqModC_qExpFunctionFieldC_le_index_of_isAlgClosed K

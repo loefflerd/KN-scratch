@@ -20,7 +20,6 @@ theorem solution
     (x : F) (hx : Transcendental K x)
     [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F] :
     IsCurveOver K F := by
-
   exact isCurveOver_of_transcendental_of_perfectField hx inferInstance
 
 end S_AlgebraicCurve_isCurveOver_of_isAlgClosed_of_transcendental

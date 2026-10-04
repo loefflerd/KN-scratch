@@ -210,7 +210,6 @@ lemma norm_ser_le {τ : ℍ} (hτ : 1 ≤ τ.im) {z : ℂ} {α : ℝ} (hα0 : 0 
       UpperHalfPlane.coe_im, UpperHalfPlane.coe_re, zero_mul, hzim]
     ring
   have hατ : 0 ≤ α * τ.im := mul_nonneg hα0 hτpos.le
-
   have hIm1 : 1 ≤ (z + ((m : ℂ) + 1) * τ).im := by rw [him_add]; nlinarith
   have hIm1' : (m : ℝ) ≤ (z + ((m : ℂ) + 1) * τ).im := by rw [him_add]; nlinarith
   have hA := norm_pi_cot_add_le one_pos hIm1
@@ -226,7 +225,6 @@ lemma norm_ser_le {τ : ℍ} (hτ : 1 ≤ τ.im) {z : ℂ} {α : ℝ} (hα0 : 0 
           apply div_le_div_of_nonneg_right _ hK1.le
           exact mul_le_mul_of_nonneg_left hexpA (by positivity)
       _ = 2 * π / Kof 1 * rho ^ m := by ring
-
   have hcoefneg : α - (m + 1) ≤ 0 := by linarith
   have h3 : (α - (m + 1)) * τ.im ≤ (α - (m + 1)) * 1 := mul_le_mul_of_nonpos_left hτ hcoefneg
   have hIm2 : (z - ((m : ℂ) + 1) * τ).im ≤ -(1 / N) := by rw [him_sub]; nlinarith
@@ -497,7 +495,6 @@ theorem hasSum_eisensteinG1 (b : ℤ) (hb : ¬ (N : ℤ) ∣ b) :
       (pval τ ((b : ℂ) / N)) := by
     rw [← tsum_Fterm_eq_pval τ hzn hzim]
     exact hasSum_regroup τ hzim
-
   set f : ℕ → ℂ := fun n => (if n = 0 then π / N * Complex.cot (π * b / N) else
       -(2 * π * I) / N * ∑ k ∈ n.divisors,
         (cexp (2 * π * I * b * k / N) - cexp (-(2 * π * I * b * k / N)))) *

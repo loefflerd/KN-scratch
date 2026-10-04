@@ -40,7 +40,6 @@ theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
     exact exp_lt_exp.mpr (by omega)
   obtain ⟨π₀, hπ₀⟩ := IsDiscreteValuationRing.exists_irreducible v.toValuationSubring
   have hadic_π₀ : v.adicValuation (π₀ : F) = exp (-1 : ℤ) := v.adicValuation_coe_irreducible hπ₀
-
   have hwπ₀ : w (π₀ : F) = exp (-1 : ℤ) := by
     refine le_antisymm (le_exp_neg_one_of_lt_one (hequiv.lt_one_iff_lt_one.mpr ?_)) ?_
     · rw [hadic_π₀]

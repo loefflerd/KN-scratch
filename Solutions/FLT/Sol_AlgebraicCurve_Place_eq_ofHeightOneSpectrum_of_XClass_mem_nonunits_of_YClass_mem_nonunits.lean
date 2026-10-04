@@ -45,17 +45,14 @@ theorem solution
     (w : IsDedekindDomain.HeightOneSpectrum W.CoordinateRing)
     (hw : w.asIdeal = CoordinateRing.XYIdeal W x (Polynomial.C y)) :
     v = Place.ofHeightOneSpectrum (K := F) w := by
-
   have hXO : algebraMap W.CoordinateRing W.FunctionField (CoordinateRing.mk W (C X))
       ∈ v.toValuationSubring := by
     rw [mk_C_X_eq x, map_add, ← IsScalarTower.algebraMap_apply]
     refine add_mem ?_ (v.algebraMap_mem' x)
     exact (ValuationSubring.valuation_le_one_iff _ _).mp
       (le_of_lt ((ValuationSubring.mem_nonunits_iff _).mp hX))
-
   obtain ⟨w', hw'⟩ := WeierstrassCurve.Affine.FunctionField.exists_eq_valuationSubring_of_X_mem
     W v.toValuationSubring v.ne_top' v.algebraMap_mem' hXO
-
   have hXmem : CoordinateRing.XClass W x ∈ w'.asIdeal := by
     refine (IsDedekindDomain.HeightOneSpectrum.valuation_lt_one_iff_mem (K := W.FunctionField) w' _).mp ?_
     exact adic_lt_one_of_mem_nonunits w' (hw' ▸ hX)
@@ -67,7 +64,6 @@ theorem solution
     rintro z (rfl | rfl)
     · exact hXmem
     · exact hYmem
-
   have hmax : w.asIdeal.IsMaximal := w.isPrime.isMaximal w.ne_bot
   have heq : w = w' := IsDedekindDomain.HeightOneSpectrum.ext (hmax.eq_of_le w'.isPrime.ne_top hle)
   subst heq

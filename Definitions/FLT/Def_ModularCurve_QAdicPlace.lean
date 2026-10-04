@@ -274,7 +274,6 @@ theorem qIntegersBar_isPrincipalIdealRing : IsPrincipalIdealRing (qIntegersBar L
   set n : ℕ := (qSeriesBar L F (x : F)).order.toNat with hn
   have hmn : (n : ℤ) = (qSeriesBar L F (x : F)).order := Int.toNat_of_nonneg hmnonneg
   refine ⟨n, ?_⟩
-
   have hπ0 : j⁻¹ ≠ 0 := inv_ne_zero (ne_zero_of_order_eq_neg_one hj)
   have hπn : j⁻¹ ^ n ≠ 0 := pow_ne_zero _ hπ0
   have hdiv0 : (x : F) / j⁻¹ ^ n ≠ 0 := div_ne_zero hf hπn

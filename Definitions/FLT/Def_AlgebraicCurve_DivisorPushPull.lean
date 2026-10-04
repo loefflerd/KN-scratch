@@ -73,10 +73,8 @@ private theorem comap_algebraMap_ne_top [Algebra.IsIntegral F F'] :
     w.toValuationSubring.comap (algebraMap F F') ≠ ⊤ := by
   intro htop
   apply w.ne_top'
-
   have hF : ∀ f : F, algebraMap F F' f ∈ w.toValuationSubring := fun f =>
     ValuationSubring.mem_comap.mp (htop ▸ ValuationSubring.mem_top f)
-
   refine SetLike.ext fun x => ⟨fun _ => ValuationSubring.mem_top x, fun _ => ?_⟩
   let : Algebra F w.toValuationSubring :=
     ((algebraMap F F').codRestrict w.toValuationSubring.toSubring hF).toAlgebra
@@ -171,7 +169,6 @@ theorem ramificationIndex_dvd_ord {f : F} (hf : f ≠ 0) :
     omega
   set m : ℤ := w.ord (algebraMap F F' f) with hm
   set q : ℤ := m / e with hq
-
   have hgq : algebraMap F F' (g ^ (-q)) = (algebraMap F F' g) ^ (-q) := map_zpow₀ _ _ _
   have hr : w.ord (algebraMap F F' (f * g ^ (-q))) = m - e * q := by
     rw [map_mul, w.ord_mul (algebraMap_ne_zero hf)
@@ -183,7 +180,6 @@ theorem ramificationIndex_dvd_ord {f : F} (hf : f ≠ 0) :
   have hbridge : m % e = m - e * q := by
     rw [hq]
     exact Int.emod_def m e
-
   rcases eq_or_lt_of_le (show (0 : ℤ) ≤ m - e * q by omega) with heq | hlt
   · exact ⟨q, by omega⟩
   · exfalso
@@ -198,12 +194,9 @@ theorem irreducible_mk_comap {g : F} (hg0 : g ≠ 0)
     Irreducible (⟨g, hmem⟩ : w.toValuationSubring.comap (algebraMap F F')) := by
   have hepos : 0 < ramificationIndex (F := F) w := w.ramificationIndex_pos (F := F)
   constructor
-  ·
-    rw [isUnit_mk_comap_iff hg0 hmem, hge]
+  · rw [isUnit_mk_comap_iff hg0 hmem, hge]
     omega
-  ·
-
-    rintro ⟨a, ha⟩ ⟨b, hb⟩ hab
+  · rintro ⟨a, ha⟩ ⟨b, hb⟩ hab
     have hab' : g = a * b := by simpa [Subtype.ext_iff] using hab
     have ha0 : a ≠ 0 := by
       rintro rfl
@@ -217,7 +210,6 @@ theorem irreducible_mk_comap {g : F} (hg0 : g ≠ 0)
         hge]
     have ha' : 0 ≤ w.ord (algebraMap F F' a) := (mem_comap_iff_ord_nonneg ha0).mp ha
     have hb' : 0 ≤ w.ord (algebraMap F F' b) := (mem_comap_iff_ord_nonneg hb0).mp hb
-
     rcases eq_or_lt_of_le ha' with ha0' | hapos
     · exact Or.inl ((isUnit_mk_comap_iff ha0 ha).mpr ha0'.symm)
     rcases eq_or_lt_of_le hb' with hb0' | hbpos
@@ -237,7 +229,6 @@ private theorem isPrincipalIdealRing_comap :
     ⟨⟨g, hgmem⟩, irreducible_mk_comap w hg0 hgmem hge, ?_⟩).toIsPrincipalIdealRing
   rintro ⟨f, hmem⟩ hx
   have hf : f ≠ 0 := by simpa [Subtype.ext_iff] using hx
-
   obtain ⟨c, hc⟩ := w.ramificationIndex_dvd_ord (F := F) hf
   have hnonneg : 0 ≤ w.ord (algebraMap F F' f) := (mem_comap_iff_ord_nonneg hf).mp hmem
   have hcnonneg : 0 ≤ c := by
@@ -249,7 +240,6 @@ private theorem isPrincipalIdealRing_comap :
   set n : ℕ := c.toNat with hn
   have hcn : (n : ℤ) = c := Int.toNat_of_nonneg hcnonneg
   refine ⟨n, ?_⟩
-
   have hgn : g ^ n ≠ 0 := pow_ne_zero _ hg0
   have hdiv0 : f / g ^ n ≠ 0 := div_ne_zero hf hgn
   have hu0 : w.ord (algebraMap F F' (f / g ^ n)) = 0 := by
@@ -302,11 +292,9 @@ theorem ord_restrict (f : F) :
   have hepos : 0 < ramificationIndex (F := F) w := w.ramificationIndex_pos (F := F)
   have hgmem : g ∈ w.toValuationSubring.comap (algebraMap F F') :=
     (mem_comap_iff_ord_nonneg hg0).mpr (by omega)
-
   obtain ⟨u, hu⟩ := (w.restrict F).exists_unit_mul_zpow hf
     (π := ⟨g, hgmem⟩) (irreducible_mk_comap w hg0 hgmem hge)
   set n : ℤ := (w.restrict F).ord f with hn
-
   have hune : ((u : (w.restrict F).toValuationSubring) : F) ≠ 0 := by
     intro h0
     have := u.mul_inv
@@ -316,7 +304,6 @@ theorem ord_restrict (f : F) :
     exact zero_ne_one this
   have huord : w.ord (algebraMap F F' ((u : (w.restrict F).toValuationSubring) : F)) = 0 :=
     (isUnit_mk_comap_iff hune (u : (w.restrict F).toValuationSubring).2).mp u.isUnit
-
   have hgz : (algebraMap F F' g) ^ n ≠ 0 := zpow_ne_zero _ (algebraMap_ne_zero hg0)
   calc w.ord (algebraMap F F' f)
       = w.ord (algebraMap F F' (((u : (w.restrict F).toValuationSubring) : F) * g ^ n)) := by
@@ -384,11 +371,9 @@ theorem coe_restrictInclusion (a : (w.restrict F).toValuationSubring) :
 
 instance instIsLocalHomRestrictInclusion : IsLocalHom (restrictInclusion F w) where
   map_nonunit a ha := by
-
     have hord : w.ord (algebraMap F F' (a : F)) = 0 := by
       have h := w.ord_coe_unit ha.unit
       rwa [IsUnit.unit_spec, coe_restrictInclusion] at h
-
     have ha0 : (a : F) ≠ 0 := by
       rintro h0
       obtain ⟨b, hb⟩ := isUnit_iff_exists_inv.mp ha

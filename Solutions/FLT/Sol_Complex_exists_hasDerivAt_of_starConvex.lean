@@ -18,7 +18,6 @@ namespace RadialPrimitive
 theorem main {U : Set ℂ} (hU : IsOpen U) {q : ℂ}
     (hstar : StarConvex ℝ q U) {f : ℂ → ℂ} (hf : DifferentiableOn ℂ f U) :
     ∃ g : ℂ → ℂ, g q = 0 ∧ ∀ z ∈ U, HasDerivAt g (f z) z := by
-
   have hseg : ∀ z ∈ U, ∀ t ∈ Icc (0 : ℝ) 1, q + (t : ℂ) * (z - q) ∈ U := by
     intro z hz t ht
     have h := hstar hz (sub_nonneg.2 ht.2) ht.1 (sub_add_cancel 1 t)
@@ -28,14 +27,11 @@ theorem main {U : Set ℂ} (hU : IsOpen U) {q : ℂ}
       ring
     rw [heq] at h
     exact h
-
   set F : ℂ → ℝ → ℂ := fun w t => (w - q) * f (q + (t : ℂ) * (w - q)) with hF
   set F' : ℂ → ℝ → ℂ := fun w t =>
     f (q + (t : ℂ) * (w - q)) + (w - q) * ((t : ℂ) * deriv f (q + (t : ℂ) * (w - q))) with hF'
-
   have hfc : ContinuousOn f U := hf.continuousOn
   have hf'c : ContinuousOn (deriv f) U := ((hf.analyticOnNhd hU).deriv).continuousOn
-
   have hpath : ∀ w, Continuous fun t : ℝ => q + (t : ℂ) * (w - q) := by
     intro w; fun_prop
   have hFc : ∀ w ∈ U, ContinuousOn (F w) (Icc (0 : ℝ) 1) := by
@@ -54,7 +50,6 @@ theorem main {U : Set ℂ} (hU : IsOpen U) {q : ℂ}
       (Measure.restrict_mono Ioc_subset_Icc_self le_rfl)
   refine ⟨fun w => ∫ t in (0 : ℝ)..1, F w t, ?_, fun z₀ hz₀ => ?_⟩
   · simp only [hF, sub_self, zero_mul, intervalIntegral.integral_zero]
-
   obtain ⟨δ, hδ, hball⟩ : ∃ δ > 0, closedBall z₀ δ ⊆ U :=
     nhds_basis_closedBall.mem_iff.1 (hU.mem_nhds hz₀)
   set K : Set ℂ :=
@@ -70,7 +65,6 @@ theorem main {U : Set ℂ} (hU : IsOpen U) {q : ℂ}
     left_mem_Icc.2 zero_le_one⟩, rfl⟩)
   have hM₂0 : 0 ≤ M₂ := (norm_nonneg _).trans (hM₂ _ ⟨⟨z₀, 0⟩, ⟨mem_closedBall_self hδ.le,
     left_mem_Icc.2 zero_le_one⟩, rfl⟩)
-
   have hmemK : ∀ w ∈ closedBall z₀ δ, ∀ t ∈ Ι (0 : ℝ) 1, q + (t : ℂ) * (w - q) ∈ K := by
     intro w hw t ht
     rw [uIoc_of_le zero_le_one] at ht
@@ -122,7 +116,6 @@ theorem main {U : Set ℂ} (hU : IsOpen U) {q : ℂ}
     (Eventually.of_forall fun t ht w hw => hbound t ht w hw)
     _root_.intervalIntegrable_const
     (Eventually.of_forall fun t ht w hw => hdiffF t ht w hw)
-
   have hval : (∫ t in (0 : ℝ)..1, F' z₀ t) = f z₀ := by
     set v : ℂ := z₀ - q with hv
     have hG : ∀ t ∈ uIcc (0 : ℝ) 1,
@@ -153,7 +146,6 @@ end RadialPrimitive
 theorem solution {U : Set ℂ} (hU : IsOpen U) {q : ℂ} (hq : q ∈ U)
     (hstar : StarConvex ℝ q U) {f : ℂ → ℂ} (hf : DifferentiableOn ℂ f U) :
     ∃ g : ℂ → ℂ, g q = 0 ∧ ∀ z ∈ U, HasDerivAt g (f z) z := by
-
   have _hq := hq
   exact RadialPrimitive.main hU hstar hf
 

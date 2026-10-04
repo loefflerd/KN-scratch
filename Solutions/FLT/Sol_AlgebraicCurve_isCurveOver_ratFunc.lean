@@ -112,7 +112,6 @@ theorem exists_sub_algebraMap_intDegree_neg {x : RatFunc K}
   have hden0 : x.denom ≠ 0 := x.denom_ne_zero
   rcases lt_or_eq_of_le hdeg with hlt | heq
   · exact ⟨0, Or.inr (by simpa using hlt)⟩
-
   have hndeg : x.num.natDegree = x.denom.natDegree := by
     have h2 := heq
     rw [RatFunc.intDegree, sub_eq_zero] at h2
@@ -136,7 +135,6 @@ theorem exists_sub_algebraMap_intDegree_neg {x : RatFunc K}
       (IsFractionRing.injective K[X] (RatFunc K))).mpr hnz)
     ((map_ne_zero_iff _ (IsFractionRing.injective K[X] (RatFunc K))).mpr hden0),
     RatFunc.intDegree_polynomial, RatFunc.intDegree_polynomial, sub_neg]
-
   have hCdeg : (Polynomial.C c * x.denom).degree = x.denom.degree := by
     rw [Polynomial.degree_mul, Polynomial.degree_C hc0, zero_add]
   have hdegeq : x.num.degree = (Polynomial.C c * x.denom).degree := by
@@ -231,10 +229,8 @@ private theorem _root_.AlgebraicCurve.Place.ord_eq_neg_log_of_valuationSubring_e
   have hexp_lt : (exp (-1 : ℤ) : ℤᵐ⁰) < 1 := by
     rw [show (1 : ℤᵐ⁰) = exp 0 from rfl]
     exact exp_lt_exp.mpr (by omega)
-
   obtain ⟨π₀, hπ₀⟩ := IsDiscreteValuationRing.exists_irreducible v.toValuationSubring
   have hadic_π₀ : v.adicValuation (π₀ : F) = exp (-1 : ℤ) := v.adicValuation_coe_irreducible hπ₀
-
   have hwπ₀ : w (π₀ : F) = exp (-1 : ℤ) := by
     refine le_antisymm (le_exp_neg_one_of_lt_one (hequiv.lt_one_iff_lt_one.mpr ?_)) ?_
     · rw [hadic_π₀]
@@ -245,7 +241,6 @@ private theorem _root_.AlgebraicCurve.Place.ord_eq_neg_log_of_valuationSubring_e
       refine le_exp_neg_one_of_lt_one (hequiv.lt_one_iff_lt_one.mp ?_)
       rw [hπ]
       exact hexp_lt
-
   obtain ⟨u, hu⟩ := v.exists_unit_mul_zpow hf hπ₀
   have hwu : w ((u : v.toValuationSubring) : F) = 1 :=
     hequiv.eq_one_iff_eq_one.mpr ((v.adicValuation_coe_eq_one_iff _).mpr u.isUnit)
@@ -323,18 +318,14 @@ theorem single_add_single_apply_eq_ord {p : K[X]} (hp : Irreducible p)
   have hp0 : p ≠ 0 := hp.ne_zero
   rw [Finsupp.add_apply]
   rcases eq_ofHeightOneSpectrum_or_eq_placeInfty v with ⟨w, rfl⟩ | rfl
-  ·
-    rw [Finsupp.single_eq_of_ne (Ne.symm (placeInfty_ne_ofHeightOneSpectrum K w)), add_zero]
+  · rw [Finsupp.single_eq_of_ne (Ne.symm (placeInfty_ne_ofHeightOneSpectrum K w)), add_zero]
     by_cases hcase :
         Place.ofHeightOneSpectrum (K := K) (F := RatFunc K) w = finitePlace K hp
-    ·
-      rw [hcase, Finsupp.single_eq_same]
+    · rw [hcase, Finsupp.single_eq_same]
       exact (ord_ofHeightOneSpectrum_of_span (heightOneSpectrumOfIrreducible K hp) hp0
         (heightOneSpectrumOfIrreducible_asIdeal K hp)).symm
-    ·
-      rw [Finsupp.single_eq_of_ne hcase]
+    · rw [Finsupp.single_eq_of_ne hcase]
       refine (ord_ofHeightOneSpectrum_eq_zero_of_notMem w hp0 fun hmem => hcase ?_).symm
-
       have hspan : Ideal.span {p} = w.asIdeal :=
         (PrincipalIdealRing.isMaximal_of_irreducible hp).eq_of_le w.isPrime.ne_top
           ((Ideal.span_singleton_le_iff_mem _).mpr hmem)
@@ -342,8 +333,7 @@ theorem single_add_single_apply_eq_ord {p : K[X]} (hp : Irreducible p)
         HeightOneSpectrum.ext
           (hspan.symm.trans (heightOneSpectrumOfIrreducible_asIdeal K hp).symm)
       rw [hwp, finitePlace_def]
-  ·
-    rw [Finsupp.single_eq_of_ne
+  · rw [Finsupp.single_eq_of_ne
         (show placeInfty K ≠ finitePlace K hp from
           placeInfty_ne_ofHeightOneSpectrum K (heightOneSpectrumOfIrreducible K hp)),
       Finsupp.single_eq_same, zero_add]
@@ -364,14 +354,12 @@ theorem degree_eq_zero_of_forall_eq_ord_algebraMap (q : K[X]) :
       Divisor.degree D = 0 := by
   classical
   refine UniqueFactorizationMonoid.induction_on_prime q ?_ ?_ ?_
-  ·
-    intro D hD
+  · intro D hD
     have hzero : D = 0 := by
       ext v
       simp [hD v]
     rw [hzero, map_zero]
-  ·
-    intro x hx D hD
+  · intro x hx D hD
     obtain ⟨r, -, rfl⟩ := Polynomial.isUnit_iff.mp hx
     have hC : (algebraMap K[X] (RatFunc K)) (Polynomial.C r) = algebraMap K (RatFunc K) r := by
       rw [← Polynomial.algebraMap_eq, ← IsScalarTower.algebraMap_apply]
@@ -380,8 +368,7 @@ theorem degree_eq_zero_of_forall_eq_ord_algebraMap (q : K[X]) :
       rw [hD v, hC, v.ord_algebraMap]
       simp
     rw [hzero, map_zero]
-  ·
-    intro a p ha hp ih D hD
+  · intro a p ha hp ih D hD
     have hp' : algebraMap K[X] (RatFunc K) p ≠ 0 := RatFunc.algebraMap_ne_zero hp.ne_zero
     have ha' : algebraMap K[X] (RatFunc K) a ≠ 0 := RatFunc.algebraMap_ne_zero ha
     set Dp : Divisor K (RatFunc K) :=
@@ -389,7 +376,6 @@ theorem degree_eq_zero_of_forall_eq_ord_algebraMap (q : K[X]) :
         + Finsupp.single (placeInfty K) (-(p.natDegree : ℤ)) with hDp_def
     have hDp : ∀ v : Place K (RatFunc K), Dp v = v.ord (algebraMap K[X] (RatFunc K) p) :=
       fun v => single_add_single_apply_eq_ord hp.irreducible v
-
     have hDa : ∀ v : Place K (RatFunc K),
         (D - Dp) v = v.ord (algebraMap K[X] (RatFunc K) a) := by
       intro v
@@ -422,7 +408,6 @@ theorem degree_eq_zero_of_forall_eq_ord {f : RatFunc K} (D : Divisor K (RatFunc 
     rw [hzero, map_zero]
   · have hden : f.denom ≠ 0 := f.denom_ne_zero
     have hdenF : algebraMap K[X] (RatFunc K) f.denom ≠ 0 := RatFunc.algebraMap_ne_zero hden
-
     have hsplit : ∀ v : Place K (RatFunc K),
         (D + principalDivisor hdenF) v = v.ord (algebraMap K[X] (RatFunc K) f.num) := by
       intro v

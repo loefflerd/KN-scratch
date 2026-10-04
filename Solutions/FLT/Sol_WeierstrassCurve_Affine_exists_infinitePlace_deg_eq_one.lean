@@ -327,7 +327,6 @@ theorem forall_mem_of_xF_mem (v : AlgebraicCurve.Place F W.FunctionField)
   have hφ_apply : ∀ p : F[X],
       φ p = algebraMap W.CoordinateRing W.FunctionField (mk W (C p)) := fun p => by
     rw [hφ, RingHom.comp_apply, algebraMap_poly_eq]
-
   have hpoly : ∀ p : F[X], φ p ∈ A := by
     intro p
     induction p using Polynomial.induction_on' with
@@ -340,7 +339,6 @@ theorem forall_mem_of_xF_mem (v : AlgebraicCurve.Place F W.FunctionField)
           exact v.algebraMap_mem' c
         · rw [hφ_apply]
           exact hx
-
   set η := algebraMap W.CoordinateRing W.FunctionField (mk W Y) with hηdef
   set c₁ : F[X] := C W.a₁ * X + C W.a₃ with hc₁def
   set cb : F[X] := X ^ 3 + C W.a₂ * X ^ 2 + C W.a₄ * X + C W.a₆ with hcbdef
@@ -354,7 +352,6 @@ theorem forall_mem_of_xF_mem (v : AlgebraicCurve.Place F W.FunctionField)
     have h2 := congrArg (algebraMap W.CoordinateRing W.FunctionField) h1
     rw [map_mul, hsb, map_neg, neg_mul, ← sub_eq_add_neg] at h2
     exact h2
-
   have hy : η ∈ A := by
     by_contra hcon
     have hgt : 1 < A.valuation η := lt_of_not_ge fun h => hcon ((A.valuation_le_one_iff η).mp h)
@@ -421,7 +418,6 @@ theorem deg_infPlace : (infPlace W).deg = 1 := by
   refine deg_eq_one_of_surjective v ?_
   intro z
   obtain ⟨g, rfl⟩ := Ideal.Quotient.mk_surjective z
-
   rcases eq_or_ne (g : W.FunctionField) 0 with hg0 | hg0
   · refine ⟨0, ?_⟩
     have hgz : g = 0 := Subtype.ext hg0
@@ -439,13 +435,11 @@ theorem deg_infPlace : (infPlace W).deg = 1 := by
   have hmem : (g : W.FunctionField) ∈ v.toValuationSubring := g.2
   rw [← hzab] at hmem
   have hab := (div_mem_infPlace_iff ha0 hb0).mp hmem
-
   obtain ⟨c, hc⟩ := exists_smul_sub_natDegree_norm_lt hb0 hab
   refine ⟨c, ?_⟩
   rw [IsScalarTower.algebraMap_apply F v.toValuationSubring v.ResidueField,
     IsLocalRing.ResidueField.algebraMap_eq]
   refine (Ideal.Quotient.eq (I := IsLocalRing.maximalIdeal v.toValuationSubring)).mpr ?_
-
   have hdiff : ((algebraMap F v.toValuationSubring c - g : v.toValuationSubring)
       : W.FunctionField) = -(algebraMap W.CoordinateRing W.FunctionField (a - c • b)
         / algebraMap W.CoordinateRing W.FunctionField b) := by
@@ -459,15 +453,13 @@ theorem deg_infPlace : (infPlace W).deg = 1 := by
       ← IsScalarTower.algebraMap_apply F W.CoordinateRing W.FunctionField, neg_div', neg_sub,
       sub_div, mul_div_cancel_right₀ _ hbL0]
   rcases eq_or_ne (a - c • b) 0 with hzero | hne
-  ·
-    have h2 : (algebraMap F v.toValuationSubring c - g : v.toValuationSubring) = 0 := by
+  · have h2 : (algebraMap F v.toValuationSubring c - g : v.toValuationSubring) = 0 := by
       ext
       rw [hdiff, hzero, map_zero, zero_div, neg_zero]
       rfl
     rw [h2]
     exact (IsLocalRing.maximalIdeal v.toValuationSubring).zero_mem
-  ·
-    have hlt := hc.resolve_left hne
+  · have hlt := hc.resolve_left hne
     refine mem_maximalIdeal_infPlace_of_lt ?_
     rw [hdiff, Valuation.map_neg, map_div₀, infVal_apply hne, infVal_apply hb0, ← exp_sub,
       ← exp_zero, exp_lt_exp, sub_neg, Nat.cast_lt]
@@ -494,7 +486,6 @@ theorem solution {F : Type*} [Field F] (W : WeierstrassCurve.Affine F) :
         (¬ ∀ r : W.CoordinateRing,
           algebraMap W.CoordinateRing W.FunctionField r ∈ v.toValuationSubring) → v = vInf :=
   D5S.exists_infinitePlace_deg_eq_one_impl W
-
 
 end S_WeierstrassCurve_Affine_exists_infinitePlace_deg_eq_one
 end P2MW

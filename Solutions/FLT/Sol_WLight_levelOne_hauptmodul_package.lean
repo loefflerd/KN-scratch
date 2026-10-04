@@ -164,7 +164,6 @@ theorem levelOne_ratSpan (k : ℤ) :
     have : Subsingleton (ModularForm 𝒮ℒ 2) :=
       rank_zero_iff.mp ModularForm.levelOne_weight_two_rank_zero
     exact Subsingleton.elim f 0
-
   have hk2' : k % 2 = 0 := Int.even_iff.mp hev
   have hk4 : 4 ≤ k := by omega
   have hm3 : 3 ≤ k.toNat := by omega
@@ -1137,7 +1136,6 @@ theorem solution :
       IsBoundedAtImInfty (h * ModularForm.discriminant ^ m) →
       ∃ P : Polynomial ℂ, P.natDegree ≤ m ∧
         h = fun τ => Polynomial.eval (ModularForm.E₄ τ ^ 3 / ModularForm.discriminant τ) P) ∧
-
     (∀ (k : IntermediateField ℚ ℂ) (N : ℕ), N ≠ 0 → ∀ (m : ℕ) (h : ℍ → ℂ),
       MDifferentiable 𝓘(ℂ) 𝓘(ℂ) h →
       (∀ γ : SL(2, ℤ), h ∣[(0 : ℤ)] γ = h) →
@@ -1146,15 +1144,12 @@ theorem solution :
       (∀ n : ℕ, (qExpansion N (h * ModularForm.discriminant ^ m)).coeff n ∈ k) →
       ∃ P : Polynomial ℂ, P.natDegree ≤ m ∧ (∀ i, P.coeff i ∈ k) ∧
         h = fun τ => Polynomial.eval (ModularForm.E₄ τ ^ 3 / ModularForm.discriminant τ) P) ∧
-
     Function.Surjective (fun τ : ℍ => ModularForm.E₄ τ ^ 3 / ModularForm.discriminant τ) ∧
-
     (∀ (m : ℕ) (P : Polynomial ℂ), P.natDegree ≤ m →
       (∀ n : ℕ, ∃ q : ℚ, (∑ i ∈ Finset.range (m + 1),
           PowerSeries.C (P.coeff i) * qExpansion 1 ⇑ModularForm.E₄ ^ (3 * i) *
             qExpansion 1 ModularForm.discriminant ^ (m - i)).coeff n = (q : ℂ)) →
       ∀ i : ℕ, ∃ q : ℚ, P.coeff i = (q : ℂ)) ∧
-
     (∀ (k : IntermediateField ℚ ℂ) (m : ℕ) (P : Polynomial ℂ), P.natDegree ≤ m →
       (∀ n : ℕ, (∑ i ∈ Finset.range (m + 1),
           PowerSeries.C (P.coeff i) * qExpansion 1 ⇑ModularForm.E₄ ^ (3 * i) *

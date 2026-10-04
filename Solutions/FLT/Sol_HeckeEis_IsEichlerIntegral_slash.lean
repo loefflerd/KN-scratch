@@ -152,7 +152,6 @@ theorem SolMain.slash {n : ℕ} {f : ℍ → ℂ} {F : ℍ → ↥(BinaryForm �
     (hF : IsEichlerIntegral n f F) (δ : SL(2, ℤ)) :
     IsEichlerIntegral n (f ∣[((n : ℤ) + 2)] δ) (fun τ => binaryFormRepSL ℂ n δ⁻¹ (F (δ • τ))) := by
   intro d τ
-
   set c : ℂ := f (δ • τ) * denom (Matrix.SpecialLinearGroup.mapGL ℝ δ) ↑τ ^ (-2 : ℤ) with hc
   have hH : ∀ e : Fin 2 →₀ ℕ, HasDerivAt
       (fun z : ℂ => AddMonoidAlgebra.coeff ((F (δ • ofComplex z) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) e)
@@ -167,7 +166,6 @@ theorem SolMain.slash {n : ℕ} {f : ℍ → ℂ} {F : ℍ → ↥(BinaryForm �
     ring
   have h2 := hasDerivAt_coeff_binaryFormRepSL hH δ⁻¹ d
   refine h2.congr_deriv ?_
-
   have hJ : denom (Matrix.SpecialLinearGroup.mapGL ℝ δ) (τ : ℂ) ≠ 0 := denom_ne_zero _ _
   have hinv : binaryFormRepSL ℂ n δ⁻¹ (linePow n ((δ • τ : ℍ) : ℂ))
       = (jFactor δ τ ^ n)⁻¹ • linePow n (τ : ℂ) := by
@@ -192,7 +190,6 @@ theorem solution {n : ℕ} {f : UpperHalfPlane → ℂ} {F : UpperHalfPlane → 
     (hF : HeckeEis.IsEichlerIntegral n f F) (δ : SL(2, ℤ)) :
     HeckeEis.IsEichlerIntegral n (f ∣[((n : ℤ) + 2)] δ) (fun τ => HeckeEis.binaryFormRepSL ℂ n δ⁻¹ (F (δ • τ))) :=
   HeckeEis.SolMain.slash hF δ
-
 
 end S_HeckeEis_IsEichlerIntegral_slash
 end P2MW

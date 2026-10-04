@@ -27,7 +27,6 @@ p2m_open "ModularCurve"
 
 private theorem exists_phiIrreducible_evalSymm (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] :
     ∃ data : ModularPolynomialData ℓ, PhiIrreducible data ∧ EvalSymm data.Φ := by
-
   have : NeZero ((ℓ : ℕ) : ℚ) := ⟨Nat.cast_ne_zero.mpr hℓ.out.ne_zero⟩
   have hcyc : IsCyclotomicExtension {ℓ} ℚ (CyclotomicField ℓ ℚ) :=
     CyclotomicField.isCyclotomicExtension (n := ℓ) (K := ℚ)
@@ -43,13 +42,10 @@ private theorem exists_phiIrreducible_evalSymm (ℓ : ℕ) [hℓ : Fact (Nat.Pri
   have hζ1 : hzu.unit ^ ℓ = 1 := by
     refine Units.ext ?_
     rw [Units.val_pow_eq_pow_val, hζ.pow_eq_one, Units.val_one]
-
   obtain ⟨c, hc⟩ := PhiGen.exists_phiGenDescends ℓ hzu.unit hζ
-
   have hint : ∀ k, PhiGen.IntCoeffs (c k) := fun k => hc.intCoeffs hζ1 k
   have hmem : ∀ k, c k ∈ Algebra.adjoin ℚ {jq} :=
     fun k => PhiGen.mem_adjoin_jq_of_phiGenDescends ℓ hzu.unit hζ c hc k
-
   obtain ⟨data, hcoeff⟩ := PhiGen.exists_modularPolynomialData_coeff_eq hc hint hmem
   exact ⟨data,
     PhiGen.phiIrreducible_of_splits ℓ hzu.unit hζ data (PhiGen.splits_of_coeff_evalAtJ_eq hzu.unit hc data hcoeff),
@@ -63,7 +59,6 @@ open _root_.ModularCurve _root_.P2MW.S_ModularCurve_exists_phiIrreducible_evalSy
 
 theorem solution (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] : ∃ data : ModularPolynomialData ℓ, PhiIrreducible data ∧ EvalSymm data.Φ :=
   ModularCurve.exists_phiIrreducible_evalSymm ℓ
-
 
 end S_ModularCurve_exists_phiIrreducible_evalSymm
 end P2MW

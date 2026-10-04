@@ -117,7 +117,6 @@ theorem solution
     fun ψ hψ => isIntegral_of_apply_eq_sub t E x hx ψ hψ
   have hDH := AlgebraicCurve.Place.ord_restrictAlong_eq_natCard_algHom_of_isGalois K x t c
     (E.val.restrictScalars K) hx hfin hgal hint W hW
-
   let ψ : Γ₀ → (E →ₐ[K] L) := fun γ =>
     ((σ γ⁻¹).restrictScalars K : L →ₐ[K] L).comp (E.val.restrictScalars K)
   have hψapply : ∀ (γ : Γ₀) (e : E), ψ γ e = σ γ⁻¹ e := fun _ _ => rfl
@@ -127,27 +126,22 @@ theorem solution
     have : (x : L) = ((⟨t, IntermediateField.mem_adjoin_simple_self K t⟩ : K⟮t⟯) : L) := hx
     rw [this]
     exact (σ γ⁻¹).commutes (⟨t, IntermediateField.mem_adjoin_simple_self K t⟩ : K⟮t⟯)
-
   have hcongr : ∀ (ψ₁ ψ₂ : E →ₐ[K] L) (h₁ : ψ₁.toRingHom.IsIntegral) (h₂ : ψ₂.toRingHom.IsIntegral),
       ψ₁ = ψ₂ → W.restrictAlong ψ₁ h₁ = W.restrictAlong ψ₂ h₂ := by
     rintro ψ₁ ψ₂ h₁ h₂ rfl; rfl
   let T := {P : AlgebraicCurve.Place K E // 0 < P.ord (x - algebraMap K E c)}
   let f : Γ₀ → T := fun γ => ⟨W.restrictAlong (ψ γ) (hint _ (hψ γ)), hDH.2.1 (ψ γ) (hψ γ)⟩
-
   have hsurj : Function.Surjective f := by
     rintro ⟨P, hP⟩
     obtain ⟨ψ', hψ', hres⟩ := hDH.2.2.1 P hP
-
     let ψ'' : E →ₐ[K⟮t⟯] L :=
       { ψ'.toRingHom with
         commutes' := fun l => algHom_apply_algebraMap t E x hx ψ' hψ' l }
     have hψ''apply : ∀ e : E, ψ'' e = ψ' e := fun _ => rfl
-
     let φ : L →ₐ[K⟮t⟯] L := ψ''.liftNormal L
     have hφE : ∀ e : E, φ (e : L) = ψ' e := by
       intro e
       have h := AlgHom.liftNormal_commutes ψ'' L e
-
       simp at h
       exact h
     have hφinj : Function.Injective φ := φ.toRingHom.injective
@@ -164,7 +158,6 @@ theorem solution
     apply AlgHom.ext
     intro e
     rw [hψapply, inv_inv, hγ₀, hgapply, hφE]
-
   have hconst : ∀ (γ : Γ₀) (a : Γ₀) (_ : a ∈ Γ) (b : Γ₀) (_ : b ∈ Kst), f (a * γ * b) = f γ := by
     intro γ a ha b hb
     apply Subtype.ext
@@ -177,7 +170,6 @@ theorem solution
     change ψ (a * γ * b) e = σ b⁻¹ (ψ γ e)
     rw [hψapply, hψapply, mul_inv_rev, mul_inv_rev, map_mul, map_mul, AlgEquiv.mul_apply, AlgEquiv.mul_apply,
       hE a⁻¹ (Γ.inv_mem ha) e]
-
   let fbar : DoubleCoset.Quotient (Γ : Set Γ₀) (Kst : Set Γ₀) → T :=
     Quotient.lift f (by
       intro γ γ' hrel

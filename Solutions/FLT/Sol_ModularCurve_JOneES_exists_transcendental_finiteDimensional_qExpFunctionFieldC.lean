@@ -55,7 +55,6 @@ theorem eq_C_of_isAlgebraic {y : LaurentSeries K} (hy : IsAlgebraic K y) :
     have h2 : IsAlgebraic K (algebraMap K (LaurentSeries K) (y.coeff 0)) := isAlgebraic_algebraMap _
     rw [LaurentSeries.algebraMap_apply] at h2
     exact hy.sub h2
-
   have hy1 := valuation_le_one_of_isAlgebraic hy
   have hy0 : ∀ m < (0 : ℤ), y.coeff m = 0 :=
     (LaurentSeries.valuation_le_iff_coeff_lt_eq_zero K (D := 0) (f := y)).1 (by simpa using hy1)
@@ -66,7 +65,6 @@ theorem eq_C_of_isAlgebraic {y : LaurentSeries K} (hy : IsAlgebraic K y) :
     · subst h; simp [hz, HahnSeries.C_apply]
   have hzval : Valued.v z ≤ WithZero.exp (-(1 : ℤ)) :=
     (LaurentSeries.valuation_le_iff_coeff_lt_eq_zero K).2 hcoef
-
   by_cases hz0 : z = 0
   · exact (sub_eq_zero.mp hz0)
   · exfalso
@@ -98,11 +96,9 @@ theorem linearIndependent_map {ι : Type*} {v : ι → LaurentSeries K} (hv : Li
   classical
   rw [linearIndependent_iff']
   intro s c hsum i hi
-
   let W : Submodule K L := Submodule.span K (Set.range fun j : s => c j)
   have : Module.Finite K W := Module.Finite.span_of_finite K (Set.finite_range _)
   let b := Module.finBasis K W
-
   have hcW : ∀ j : s, c j ∈ W := fun j => Submodule.subset_span ⟨j, rfl⟩
   let a : s → Fin (Module.finrank K W) → K := fun j l => b.repr ⟨c j, hcW j⟩ l
   have hca : ∀ j : s, c j = ∑ l, a j l • (b l : L) := by
@@ -112,16 +108,13 @@ theorem linearIndependent_map {ι : Type*} {v : ι → LaurentSeries K} (hv : Li
     rw [map_sum] at h2
     simp only [Submodule.subtype_apply, Submodule.coe_smul] at h2
     exact h2.symm
-
   have hcoeff : ∀ n : ℤ, ∑ j ∈ s, c j * algebraMap K L ((v j).coeff n) = 0 := by
     intro n
     have := congrArg (fun x : LaurentSeries L => x.coeff n) hsum
     simpa [HahnSeries.coeff_sum] using this
-
   have hbi : LinearIndependent K (fun l' => (b l' : L)) :=
     b.linearIndependent.map' W.subtype (Submodule.ker_subtype W)
   have hv' : LinearIndependent K (fun j : s => v j) := hv.comp _ Subtype.val_injective
-
   have hrel : ∀ l, ∑ j : s, a j l • v j = 0 := by
     intro l
     ext n
@@ -138,7 +131,6 @@ theorem linearIndependent_map {ι : Type*} {v : ι → LaurentSeries K} (hv : Li
     have := Fintype.linearIndependent_iff.mp hbi (fun l' => ∑ j : s, a j l' * (v j).coeff n) h1 l
     rw [HahnSeries.coeff_sum]
     simpa [HahnSeries.coeff_smul] using this
-
   have ha : ∀ (j : s) l, a j l = 0 := fun j l =>
     Fintype.linearIndependent_iff.mp hv' (fun j => a j l) (hrel l) j
   rw [show c i = c (⟨i, hi⟩ : s) from rfl, hca]
@@ -200,7 +192,6 @@ theorem q6_coeff_zero : PowerSeries.coeff 0 q6 = 1 :=
 
 theorem qExpansion_discriminant :
     qExpansion 1 (CuspForm.discriminant : ℍ → ℂ) = (1728 : ℂ)⁻¹ • (q4 ^ 3 - q6 ^ 2) := by
-
   let A : ModularForm 𝒮ℒ 12 := (E₄.pow 3).mcast (by norm_num)
   let B : ModularForm 𝒮ℒ 12 := (E₆.pow 2).mcast (by norm_num)
   have hfun : (CuspForm.discriminant : ℍ → ℂ) = ⇑((1728 : ℂ)⁻¹ • (A - B)) := by
@@ -252,12 +243,10 @@ theorem qExpansion_mem_monomialSpan (m : ℕ)
             rw [PowerSeries.coeff_zero_eq_constantCoeff_apply, map_pow,
               ← PowerSeries.coeff_zero_eq_constantCoeff_apply, q4_coeff_zero, one_pow]
           rw [hg, map_sub, map_smul, h4, smul_eq_mul, mul_one, ha₀, sub_self]
-
         have hΔ := ModularForm.qExpansion_eq_qExpansion_discriminant_mul g hg0
         rw [← CuspForm.coe_discriminant] at hΔ
         have hk' : k - 12 = 12 * (m : ℤ) := by rw [hk]; push_cast; ring
         have hIH := ih (k - 12) hk' (CuspForm.discriminantEquiv (g.toCuspForm hg0))
-
         have hh : qExpansion 1 (h : ℍ → ℂ) =
             a₀ • q4 ^ (3 * (m + 1)) + (1728 : ℂ)⁻¹ • (q4 ^ 3 - q6 ^ 2) *
               qExpansion 1 (CuspForm.discriminantEquiv (g.toCuspForm hg0) : ℍ → ℂ) := by
@@ -266,8 +255,7 @@ theorem qExpansion_mem_monomialSpan (m : ℕ)
         refine Submodule.add_mem _ (Submodule.smul_mem _ _ ?_) ?_
         · have := monomial_mem (m + 1) 0 (Nat.zero_le _)
           simpa using this
-        ·
-          rw [smul_mul_assoc]
+        · rw [smul_mul_assoc]
           refine Submodule.smul_mem _ _ ?_
           refine Submodule.span_induction (p := fun x _ => (q4 ^ 3 - q6 ^ 2) * x ∈ monomialSpan (m + 1))
             ?_ ?_ ?_ ?_ hIH
@@ -437,12 +425,10 @@ theorem sum_coeffForm_mul_pow_eq_zero (τ : ℍ) :
       coeffForm f g i τ * f τ ^ i * g τ ^ (Nat.card (Cos Γ) - i) = 0 := by
   simp_rw [coeffForm_apply]
   rw [← eval_homogenize_eq_sum]
-
   have hcard : Nat.card (Cos Γ) = ∑ _q ∈ (Finset.univ : Finset (Cos Γ)), 1 := by
     simp [Nat.card_eq_fintype_card]
   rw [charPolyAt, hcard, homogenize_finsetProd (fun q _ => natDegree_linear_le _ _), map_prod]
   simp_rw [eval_homogenize_linear]
-
   refine Finset.prod_eq_zero (Finset.mem_univ (QuotientGroup.mk (1 : ↥𝒮ℒ) : (Cos Γ))) ?_
   have h1 : ∀ (φ : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k),
       quotientFunc φ (QuotientGroup.mk (1 : ↥𝒮ℒ) : (Cos Γ)) = (φ : ℍ → ℂ) ∣[k] ((1 : ↥𝒮ℒ) : GL (Fin 2) ℝ)⁻¹ :=
@@ -518,7 +504,6 @@ theorem sum_qExpansion_coeffForm_mul_pow_eq_zero :
     ∑ i ∈ Finset.range (Nat.card (Cos Γ) + 1),
       qExpansion 1 (coeffForm f g i : ℍ → ℂ) * qExpansion 1 (f : ℍ → ℂ) ^ i *
         qExpansion 1 (g : ℍ → ℂ) ^ (Nat.card (Cos Γ) - i) = 0 := by
-
   set R : ℍ → ℂ := ∑ i ∈ Finset.range (Nat.card (Cos Γ) + 1),
     (coeffForm f g i : ℍ → ℂ) * (f : ℍ → ℂ) ^ i * (g : ℍ → ℂ) ^ (Nat.card (Cos Γ) - i) with hR
   have hR0 : R = 0 := by
@@ -652,7 +637,6 @@ theorem xq_transcendental : Transcendental ℚ xq := by
   obtain ⟨c, hc⟩ := JOneESAlg.eq_C_of_isAlgebraic halg
   have h1 : intSeriesC ℚ (P6 ^ 2) = HahnSeries.C c * intSeriesC ℚ (P4 ^ 3) := by
     rw [← hc, xq, div_mul_cancel₀ _ intSeriesC_P4_cube_ne_zero]
-
   have h2 : (P6 ^ 2).map (Int.castRingHom ℚ) = PowerSeries.C c * (P4 ^ 3).map (Int.castRingHom ℚ) := by
     apply HahnSeries.ofPowerSeries_injective (Γ := ℤ)
     rw [map_mul, HahnSeries.ofPowerSeries_C]
@@ -834,7 +818,6 @@ theorem exists_rat_relation {k : ℤ} (f g : ModularForm (Γ : Subgroup (GL (Fin
       (∃ ib, d ib ≠ 0) ∧
       ∑ ib, d ib • (xq ^ (ib.2 : ℕ) * (intSeriesC ℚ pf / intSeriesC ℚ pg) ^ (ib.1 : ℕ)) = 0 := by
   classical
-
   have hgne : g ≠ 0 := by
     intro h0
     apply hg0
@@ -845,7 +828,6 @@ theorem exists_rat_relation {k : ℤ} (f g : ModularForm (Γ : Subgroup (GL (Fin
   have hk : 0 ≤ k := by
     by_contra hlt
     exact hgne (ModularForm.isZero_of_neg_weight (not_le.mp hlt) g)
-
   have hw : (11 : ℕ) * k + k = 12 * k := by ring
   let f' : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) (12 * k) := ((g.pow 11).mul f).mcast hw
   let g' : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) (12 * k) := ((g.pow 11).mul g).mcast hw
@@ -862,7 +844,6 @@ theorem exists_rat_relation {k : ℤ} (f g : ModularForm (Γ : Subgroup (GL (Fin
     have : qExpansion 1 (g' : ℍ → ℂ) = 0 := by rw [h0, FunLike.coe_zero, qExpansion_zero]
     rw [hqg'] at this
     exact (mul_ne_zero (pow_ne_zero _ hqg) hqg) this
-
   have hrel := JOneESNorm.sum_qExpansion_coeffForm_mul_pow_eq_zero f' g' hT
   have htop := JOneESNorm.qExpansion_coeffForm_card_ne_zero f' g' hg'ne
   set m : ℕ := k.toNat * μ with hm
@@ -874,7 +855,6 @@ theorem exists_rat_relation {k : ℤ} (f g : ModularForm (Γ : Subgroup (GL (Fin
         JOneESLevelOne.qExpansion_mem_monomialSpan m
           ((JOneESNorm.coeffForm f' g' i).mcast hkm)
   choose c hc using fun i => (Submodule.mem_span_range_iff_exists_fun ℂ).mp (hspan i)
-
   let Φ : PowerSeries ℂ →+* LaurentSeries ℂ := HahnSeries.ofPowerSeries ℤ ℂ
   have hΦ : Function.Injective Φ := HahnSeries.ofPowerSeries_injective
   set Q4 : LaurentSeries ℂ := Φ JOneESLevelOne.q4 with hQ4
@@ -889,7 +869,6 @@ theorem exists_rat_relation {k : ℤ} (f g : ModularForm (Γ : Subgroup (GL (Fin
     have h0 := congrArg (PowerSeries.coeff 0) this
     rw [JOneESLevelOne.q4_coeff_zero, map_zero] at h0
     exact one_ne_zero h0
-
   have hrel' : ∑ i ∈ Finset.range (μ + 1), QE i * (QG ^ 11 * QF) ^ i * (QG ^ 11 * QG) ^ (μ - i) = 0 := by
     have := congrArg Φ hrel
     rw [map_sum, map_zero] at this
@@ -901,7 +880,6 @@ theorem exists_rat_relation {k : ℤ} (f g : ModularForm (Γ : Subgroup (GL (Fin
   have hratio : (QG ^ 11 * QF) / (QG ^ 11 * QG) = QF / QG :=
     mul_div_mul_left _ _ (pow_ne_zero _ hQG0)
   rw [hratio] at hdiv
-
   set Xh : LaurentSeries ℂ := Q6 ^ 2 / Q4 ^ 3 with hXh
   have hQEi : ∀ i, QE i = Q4 ^ (3 * m) * ∑ b : Fin (m + 1), HahnSeries.C (c i b) * Xh ^ (b : ℕ) := by
     intro i
@@ -911,7 +889,6 @@ theorem exists_rat_relation {k : ℤ} (f g : ModularForm (Γ : Subgroup (GL (Fin
     rw [PowerSeries.smul_eq_C_mul, map_mul, map_mul, map_pow, map_pow, monomial_eq (Nat.lt_succ_iff.mp b.2) _ _ hQ40]
     simp only [Φ, HahnSeries.ofPowerSeries_C]
     ring
-
   have hsum : ∑ ib : Fin (μ + 1) × Fin (m + 1),
       c ib.1 ib.2 • (Xh ^ (ib.2 : ℕ) * (QF / QG) ^ (ib.1 : ℕ)) = 0 := by
     have h1 : Q4 ^ (3 * m) * ∑ i : Fin (μ + 1),
@@ -925,14 +902,12 @@ theorem exists_rat_relation {k : ℤ} (f g : ModularForm (Γ : Subgroup (GL (Fin
     rw [Finset.sum_mul]
     refine Finset.sum_congr rfl fun b _ => ?_
     rw [← HahnSeries.C_mul_eq_smul, mul_assoc]
-
   have hnz : ∃ b, c μ b ≠ 0 := by
     by_contra hall
     push Not at hall
     apply htop
     rw [← hc μ]
     exact Finset.sum_eq_zero fun b _ => by rw [hall b, zero_smul]
-
   obtain ⟨b₀, hb₀⟩ := hnz
   let v : Fin (μ + 1) × Fin (m + 1) → LaurentSeries ℚ :=
     fun ib => xq ^ (ib.2 : ℕ) * (intSeriesC ℚ pf / intSeriesC ℚ pg) ^ (ib.1 : ℕ)
@@ -966,7 +941,6 @@ theorem exists_transcendental_finiteDimensional (hT : ModularGroup.T ∈ Γ) :
   classical
   let F := qExpFunctionFieldC ℚ Γ
   let X₀ : F := ⟨xq, xq_mem⟩
-
   let φ : F →+* LaurentSeries ℚ := algebraMap F (LaurentSeries ℚ)
   have hφ : ∀ y : F, φ y = (y : LaurentSeries ℚ) := fun _ => rfl
   have hφQ : φ.comp (algebraMap ℚ F) = algebraMap ℚ (LaurentSeries ℚ) := Subsingleton.elim _ _
@@ -990,7 +964,6 @@ theorem exists_transcendental_finiteDimensional (hT : ModularGroup.T ∈ Γ) :
   intro Y
   obtain ⟨k, f, g, pf, pg, hf, hg, hg0, hY⟩ := (mem_qExpFunctionFieldC_iff hT).mp Y.2
   obtain ⟨m, d, ⟨ib₀, hib₀⟩, hd⟩ := exists_rat_relation hT f g hf hg hg0
-
   let coef : Fin (Nat.card (JOneESNorm.Cos Γ) + 1) → K₀ :=
     fun i => ∑ b : Fin (m + 1), algebraMap ℚ K₀ (d (i, b)) * Xk ^ (b : ℕ)
   have hcoef : ∀ i, (((coef i : K₀) : F) : LaurentSeries ℚ) =
@@ -1010,8 +983,7 @@ theorem exists_transcendental_finiteDimensional (hT : ModularGroup.T ∈ Γ) :
       rw [ite_eq_right]
       exact fun h => hji (Fin.ext h)
   refine ⟨p, ?_, ?_, ?_⟩
-  ·
-    intro hp
+  · intro hp
     have h1 : coef ib₀.1 = 0 := by rw [← hcoeff, hp, Polynomial.coeff_zero]
     apply xq_transcendental
     let r : ℚ[X] := ∑ b : Fin (m + 1), Polynomial.monomial (b : ℕ) (d (ib₀.1, b))
@@ -1027,11 +999,9 @@ theorem exists_transcendental_finiteDimensional (hT : ModularGroup.T ∈ Γ) :
     rw [hcoef] at h2
     rw [← h2]
     simp only [r, map_sum, Polynomial.aeval_monomial]
-  ·
-    exact natDegree_sum_le_of_forall_le _ _ fun i _ =>
+  · exact natDegree_sum_le_of_forall_le _ _ fun i _ =>
       (natDegree_monomial_le _).trans (Nat.lt_succ_iff.mp i.2)
-  ·
-    apply Subtype.val_injective
+  · apply Subtype.val_injective
     rw [ZeroMemClass.coe_zero]
     have hd' : ∑ ib : Fin (Nat.card (JOneESNorm.Cos Γ) + 1) × Fin (m + 1),
         algebraMap ℚ (LaurentSeries ℚ) (d ib) *

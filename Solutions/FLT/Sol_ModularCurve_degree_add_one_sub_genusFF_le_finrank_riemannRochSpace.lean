@@ -28,7 +28,6 @@ theorem solution (N : ℕ) [NeZero N]
     D.degree + 1 - (genusFF (AlgebraicClosure ℚ) (modularFunctionFieldBar N) : ℤ)
       ≤ (Module.finrank (AlgebraicClosure ℚ) ↥(riemannRochSpace D) : ℤ) := by
   classical
-
   have : IsCurveOver (AlgebraicClosure ℚ) (modularFunctionFieldBar N) := isCurveOver_modularFunctionFieldBar N
   have : HasCanonicalDivisor (K := AlgebraicClosure ℚ) (F := modularFunctionFieldBar N) :=
     hasCanonicalDivisor_modularFunctionFieldBar N

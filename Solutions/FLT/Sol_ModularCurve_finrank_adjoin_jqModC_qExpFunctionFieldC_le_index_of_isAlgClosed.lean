@@ -48,7 +48,6 @@ theorem isAlgebraic_residueField :
   have hp : p.Prime := Fact.out
   refine ⟨fun ybar => ?_⟩
   obtain ⟨y, rfl⟩ := IsLocalRing.residue_surjective ybar
-
   have hyQ : IsAlgebraic ℚ (y : AlgebraicClosure ℚ) := by
     have h := (AlgebraicClosure.isAlgebraic ℚ).isAlgebraic (y : AlgebraicClosure ℚ)
     convert h using 2
@@ -62,7 +61,6 @@ theorem isAlgebraic_residueField :
       rw [← eq_C_content_mul_primPart]; exact hPy
     rw [map_mul, aeval_C, mul_eq_zero] at h1
     exact h1.resolve_left ((map_ne_zero_iff _ (RingHom.injective_int _)).mpr hc0)
-
   have hQyA : eval₂ (Int.castRingHom A) y Q = 0 := by
     have hinj : Function.Injective A.subtype := Subtype.val_injective
     apply hinj
@@ -70,7 +68,6 @@ theorem isAlgebraic_residueField :
     have h2 : (A.subtype.comp (Int.castRingHom A)) = algebraMap ℤ (AlgebraicClosure ℚ) := RingHom.ext_int _ _
     rw [h2]
     exact hQy
-
   set Qbar := Q.map (Int.castRingHom (ZMod p)) with hQbar
   have hQbar0 : Qbar ≠ 0 := by
     intro h0
@@ -180,8 +177,7 @@ theorem solution
   classical
   obtain ⟨p, hchar⟩ := CharP.exists K
   rcases CharP.char_is_prime_or_zero K p with hp | rfl
-  ·
-    have : Fact p.Prime := ⟨hp⟩
+  · have : Fact p.Prime := ⟨hp⟩
     obtain ⟨A, hA⟩ := ValuationSubring.exists_liesOverPrime_algebraicClosure_rat ⟨p, hp⟩
     have : CharP (IsLocalRing.ResidueField A) p :=
       ValuationSubring.charP_residueField_of_liesOverPrime_def hp hA
@@ -191,8 +187,7 @@ theorem solution
     let φ : IsLocalRing.ResidueField A →+* K :=
       (IsAlgClosed.lift (R := ZMod p) (S := IsLocalRing.ResidueField A) (M := K)).toRingHom
     exact bound_of_place K Γ hT Γ' hΓ' hneg x hx (AlgebraicClosure ℚ) A (φ.comp (IsLocalRing.residue A))
-  ·
-    have : CharZero K := CharP.charP_to_charZero K
+  · have : CharZero K := CharP.charP_to_charZero K
     exact bound_of_place K Γ hT Γ' hΓ' hneg x hx K (⊤ : ValuationSubring K) (⊤ : ValuationSubring K).subtype
 
 end S_ModularCurve_finrank_adjoin_jqModC_qExpFunctionFieldC_le_index_of_isAlgClosed

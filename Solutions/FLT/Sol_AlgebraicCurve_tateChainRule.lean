@@ -259,10 +259,8 @@ private theorem _root_.AlgebraicCurve.Place.comap_algebraMap_ne_top [Algebra.IsI
     w.toValuationSubring.comap (algebraMap F F') ≠ ⊤ := by
   intro htop
   apply w.ne_top'
-
   have hF : ∀ f : F, algebraMap F F' f ∈ w.toValuationSubring := fun f =>
     ValuationSubring.mem_comap.mp (htop ▸ ValuationSubring.mem_top f)
-
   refine SetLike.ext fun x => ⟨fun _ => ValuationSubring.mem_top x, fun _ => ?_⟩
   let : Algebra F w.toValuationSubring :=
     ((algebraMap F F').codRestrict w.toValuationSubring.toSubring hF).toAlgebra
@@ -341,7 +339,6 @@ theorem isPrincipalIdealRing_comap :
     ⟨⟨g, hgmem⟩, irreducible_mk_comap w hg0 hgmem hge, ?_⟩).toIsPrincipalIdealRing
   rintro ⟨f, hmem⟩ hx
   have hf : f ≠ 0 := by simpa [Subtype.ext_iff] using hx
-
   obtain ⟨c, hc⟩ := w.ramificationIndex_dvd_ord (F := F) hf
   have hnonneg : 0 ≤ w.ord (algebraMap F F' f) := (mem_comap_iff_ord_nonneg hf).mp hmem
   have hcnonneg : 0 ≤ c := by
@@ -353,7 +350,6 @@ theorem isPrincipalIdealRing_comap :
   set n : ℕ := c.toNat with hn
   have hcn : (n : ℤ) = c := Int.toNat_of_nonneg hcnonneg
   refine ⟨n, ?_⟩
-
   have hgn : g ^ n ≠ 0 := pow_ne_zero _ hg0
   have hdiv0 : f / g ^ n ≠ 0 := div_ne_zero hf hgn
   have hu0 : w.ord (algebraMap F F' (f / g ^ n)) = 0 := by
@@ -663,24 +659,20 @@ theorem kwF4gRRTate_clearPole (πh : u.adicCompletionIntegers) (hπh : Irreducib
   have hb0 : b ≠ 0 := nonZeroDivisors.ne_zero hb
   obtain ⟨M, ub, hbeq⟩ := IsDiscreteValuationRing.eq_unit_mul_pow_irreducible hb0 hπh
   refine ⟨M, ?_⟩
-
   have hcoe : ∀ x : u.adicCompletionIntegers,
       (x : u.adicCompletion) = algebraMap _ u.adicCompletion x := fun _ => rfl
   have hbK0 : (b : u.adicCompletion) ≠ 0 := by
     rw [hcoe]; exact (map_ne_zero_iff _ (IsFractionRing.injective _ _)).mpr hb0
   have hbfh : (b : u.adicCompletion) * fh = (a : u.adicCompletion) := by
     rw [← hfh, hcoe b, hcoe a, mul_div_cancel₀ _ (hcoe b ▸ hbK0)]
-
   have hπheq : ((ub⁻¹ : u.adicCompletionIntegersˣ) : u.adicCompletionIntegers) * b = πh ^ M := by
     rw [hbeq, ← mul_assoc, ← Units.val_mul, inv_mul_cancel, Units.val_one, one_mul]
-
   have hπheqK : ((((ub⁻¹ : u.adicCompletionIntegersˣ) : u.adicCompletionIntegers)
         : u.adicCompletion)) * (b : u.adicCompletion)
       = (πh : u.adicCompletion)^M := by
     have := congrArg (algebraMap u.adicCompletionIntegers u.adicCompletion) hπheq
     simp only [map_mul, map_pow] at this
     exact this
-
   rw [← hπheqK, mul_assoc, hbfh]
   exact mul_mem (Subtype.coe_prop _) a.2
 
@@ -726,7 +718,6 @@ local notation "vK" => (Valued.v : Valuation (v.adicCompletion K) ℤᵐ⁰)
 
 theorem isOpen_setOf_valued_le {γ : ℤᵐ⁰} (hγ : γ ≠ 0) :
     IsOpen {y : v.adicCompletion K | Valued.v y ≤ γ} := by
-
   obtain ⟨z, hz⟩ := valuedAdicCompletion_surjective K v γ
   have hz0 : vK z ≠ 0 := by rw [hz]; exact hγ
   have hr0 : (vK).restrict z ≠ 0 := fun h =>
@@ -790,7 +781,6 @@ theorem kwF4R1V410a_algebraMap_mem_completionIdeal_pow_iff (n : ℕ) (x : O_w) :
 
 theorem kwF4R1V410a_exists_sub_mem_completionIdeal_pow (n : ℕ) (y : O_W) :
     ∃ x : O_w, y - algebraMap (O_w) (O_W) x ∈ (𝔪_W) ^ n := by
-
   have hball_open : IsOpen {z : w.adicCompletion |
       Valued.v (z - y.val) ≤ WithZero.exp (-(n : ℤ))} :=
     (adicCompletion.isOpen_setOf_valued_le F w.heightOneSpectrum
@@ -800,14 +790,12 @@ theorem kwF4R1V410a_exists_sub_mem_completionIdeal_pow (n : ℕ) (y : O_W) :
     simp only [Set.mem_ofPred_eq, sub_self, _root_.map_zero]; exact zero_le
   have hmeet := mem_closure_iff.mp
     ((denseRange_algebraMap F w.heightOneSpectrum) y.val) _ hball_open hy_mem
-
   have hexists : ∃ z : F, Valued.v (algebraMap F w.adicCompletion z - y.val)
       ≤ WithZero.exp (-(n : ℤ)) := by
     rcases hmeet with ⟨z₀, hz₀_ball, z, hz_eq⟩
     exact ⟨z, hz_eq ▸ hz₀_ball⟩
   obtain ⟨z, hz⟩ := hexists
   rw [show algebraMap F w.adicCompletion z = ((z : F) : w.adicCompletion) from rfl] at hz
-
   have hz_val_le : w.heightOneSpectrum.valuation F z ≤ 1 := by
     have hzhat : Valued.v ((z : w.adicCompletion)) ≤ (1 : ℤᵐ⁰) := by
       calc Valued.v ((z : w.adicCompletion))
@@ -965,7 +953,6 @@ theorem kwF4gRRTate_poleWindowFinite_of_DVRQuotPowKFinite
     KwF4gRRTatePoleWindowFinite K L := by
   intro u _ πh hπh M
   have := hDVR u πh hπh M
-
   have e := (poleWindowShiftEquiv u πh hπh M).toLinearMap
   let e' := Submodule.Quotient.equiv
     ((adicIntegersKSubmod u).comap (poleWindowKSubmod u πh M).subtype)
@@ -1014,10 +1001,8 @@ theorem finrankTrace_comp_comm (f : M →ₗ[K] N) (g : N →ₗ[K] M)
     finrankTrace (g ∘ₗ f) = finrankTrace (f ∘ₗ g) := by
   set W := LinearMap.range (g ∘ₗ f)
   set W' := LinearMap.range (f ∘ₗ g)
-
   let fR : W →ₗ[K] W' := f.restrict (range_comp_map_left f g)
   let gR : W' →ₗ[K] W := g.restrict (range_comp_map_left g f)
-
   have hgf : (g ∘ₗ f).restrict (fun x _ => LinearMap.mem_range_self _ x) = gR ∘ₗ fR := by
     apply LinearMap.ext; intro x; apply Subtype.ext; rfl
   have hfg : (f ∘ₗ g).restrict (fun x _ => LinearMap.mem_range_self _ x) = fR ∘ₗ gR := by
@@ -1062,17 +1047,13 @@ theorem finrankTrace_eq_trace_on_superspace
       Submodule.finiteDimensional_of_le hrange
     finrankTrace φ = LinearMap.trace K W (φ.restrict hW) := by
   have : FiniteDimensional K (LinearMap.range φ) := Submodule.finiteDimensional_of_le hrange
-
   let i : LinearMap.range φ →ₗ[K] W := Submodule.inclusion hrange
-
   let π : W →ₗ[K] LinearMap.range φ :=
     { toFun := fun w => ⟨φ (w : V), LinearMap.mem_range_self φ (w : V)⟩
       map_add' := fun w₁ w₂ => by simp [Subtype.ext_iff]
       map_smul' := fun c w => by simp [Subtype.ext_iff] }
-
   have hip : i ∘ₗ π = φ.restrict hW := by
     apply LinearMap.ext; intro w; apply Subtype.ext; rfl
-
   have hpi : π ∘ₗ i = φ.restrict (fun x _ => LinearMap.mem_range_self φ x) := by
     apply LinearMap.ext; intro x; apply Subtype.ext; rfl
   unfold finrankTrace
@@ -1108,7 +1089,6 @@ theorem finrankTrace_sub_eq
   rw [finrankTrace_eq_trace_on_superspace φ W' le_sup_left hφW,
     finrankTrace_eq_trace_on_superspace ψ W' le_sup_right hψW,
     ← map_sub]
-
   refine congrArg (LinearMap.trace K W') (LinearMap.ext fun x => Subtype.ext ?_)
   rfl
 
@@ -1188,19 +1168,16 @@ theorem finiteDimensional_restrictScalarsQuot_pow [u.FiniteResidue]
     have hle' : (Ideal.span {πh^(M+1)} : Ideal u.adicCompletionIntegers).restrictScalars K
         ≤ (Ideal.span {πh^M} : Ideal u.adicCompletionIntegers).restrictScalars K :=
       Submodule.restrictScalars_mono K hle
-
     set N : Submodule K (u.adicCompletionIntegers ⧸
         (Ideal.span {πh^(M+1)} : Ideal u.adicCompletionIntegers).restrictScalars K) :=
       (Submodule.restrictScalars K (Ideal.span {πh^M} : Ideal u.adicCompletionIntegers)).map
         (Submodule.restrictScalars K (Ideal.span {πh^(M+1)} : Ideal _)).mkQ with hN_def
-
     have hquot : FiniteDimensional K
         ((u.adicCompletionIntegers ⧸
           (Ideal.span {πh^(M+1)} : Ideal _).restrictScalars K) ⧸ N) := by
       have := ih
       exact Module.Finite.equiv
         (Submodule.quotientQuotientEquivQuotient _ _ hle').symm
-
     have hN : FiniteDimensional K N := by
       set φ : u.adicCompletionIntegers →ₗ[K] (u.adicCompletionIntegers ⧸
           (Ideal.span {πh^(M+1)} : Ideal u.adicCompletionIntegers).restrictScalars K) :=
@@ -1221,7 +1198,6 @@ theorem finiteDimensional_restrictScalarsQuot_pow [u.FiniteResidue]
           exact ⟨c, mul_left_cancel₀ hπM (by rw [hc, pow_succ, mul_assoc])⟩
         · rintro ⟨c, hc⟩
           exact ⟨c, by rw [hc, pow_succ, mul_assoc]⟩
-
       let e₁ : (u.adicCompletionIntegers ⧸
             (Ideal.span {πh} : Ideal u.adicCompletionIntegers).restrictScalars K)
           ≃ₗ[K] (u.adicCompletionIntegers ⧸ LinearMap.ker φ) :=
@@ -1412,7 +1388,6 @@ theorem lmul_adicIntegers_subset_poleWindow (fh : u.adicCompletion)
     (hfhM : (πh : u.adicCompletion)^M * fh ∈ u.adicCompletionIntegers) :
     Submodule.map (lmulK u fh) (adicIntegersKSubmod u) ≤ poleWindowKSubmod u πh M := by
   rintro x ⟨a, ha, rfl⟩
-
   rw [mem_poleWindowKSubmod_iff]
   show (πh : u.adicCompletion)^M * (lmulK u fh) a ∈ u.adicCompletionIntegers
   have : (lmulK u fh) a = fh * a := rfl
@@ -1432,16 +1407,13 @@ theorem kwF4gRRTate_poleWindowImageFinite :
   intro fh
   obtain ⟨πh, hπh⟩ := IsDiscreteValuationRing.exists_irreducible u.adicCompletionIntegers
   obtain ⟨M, hfhM⟩ := kwF4gRRTate_clearPole u πh hπh fh
-
   set A := adicIntegersKSubmod u
   set P := poleWindowKSubmod u πh M
   have hsub : Submodule.map A.mkQ (Submodule.map (lmulK u fh) A)
       ≤ Submodule.map A.mkQ P :=
     Submodule.map_mono (lmul_adicIntegers_subset_poleWindow u fh πh M hfhM)
-
   suffices hPim : FiniteDimensional K (Submodule.map A.mkQ P : Submodule K _) by
     exact Submodule.finiteDimensional_of_le hsub
-
   have : FiniteDimensional K (P ⧸ (A.comap P.subtype)) :=
     kwF4gRRTate_poleWindowFinite (K := K) (L := L) u πh hπh M
   let r : P →ₗ[K] (u.adicCompletion ⧸ A) := A.mkQ ∘ₗ P.subtype
@@ -1534,12 +1506,10 @@ variable [u.FiniteResidue]
 
 theorem finiteDimensional_range_alphaMap (c : u.adicCompletion) :
     FiniteDimensional K (LinearMap.range (alphaMap u c)) := by
-
   have hF21 := kwF4gRRTate_poleWindowImageFinite u c
   set Q1 := u.adicCompletion ⧸ LinearMap.range (tateProj u)
   set Q2 := u.adicCompletion ⧸ adicIntegersKSubmod u
   let eQ : Q1 ≃ₗ[K] Q2 := Submodule.quotEquivOfEq _ _ (range_tateProj u)
-
   have hmap : (LinearMap.range (alphaMap u c)).map (eQ : Q1 →ₗ[K] Q2)
       = Submodule.map (adicIntegersKSubmod u).mkQ
           (Submodule.map (lmulK u c) (adicIntegersKSubmod u)) := by
@@ -1804,7 +1774,6 @@ theorem epsRestrict_apply (pA φ ψ : V →ₗ[K] V) (a : LinearMap.range pA) :
 theorem piRestrict_comp_eq (pA φ ψ : V →ₗ[K] V) :
     piRestrict pA (φ ∘ₗ ψ) = piRestrict pA φ ∘ₗ piRestrict pA ψ + epsRestrict pA φ ψ := by
   apply LinearMap.ext; intro a; apply Subtype.ext
-
   show pA (φ (ψ (a : V))) = pA (φ (pA (ψ (a : V)))) + (epsRestrict pA φ ψ a : V)
   rw [epsRestrict_apply, ← map_add, ← map_add]
   congr 2
@@ -1852,7 +1821,6 @@ theorem tateCommTrace_leibniz_snd (pA f g h : V →ₗ[K] V)
   have hCFH : FiniteDimensional K (LinearMap.range CFH) := by
     have : CFH = tateCommRestrict pA f h := (tateCommRestrict_eq_bracket pA f h).symm
     rw [this]; exact hfin_fh
-
   have hLHS : tateCommRestrict pA f (g ∘ₗ h)
       = (F ∘ₗ (G ∘ₗ H) - (G ∘ₗ H) ∘ₗ F)
         + (F ∘ₗ εgh - εgh ∘ₗ F) := by
@@ -1880,7 +1848,6 @@ theorem tateCommTrace_leibniz_snd (pA f g h : V →ₗ[K] V)
     apply LinearMap.ext; intro a
     simp only [LinearMap.add_apply, LinearMap.sub_apply, LinearMap.comp_apply, map_add]
     abel
-
   have hDefect : tateCommRestrict pA f (g ∘ₗ h)
       - tateCommRestrict pA (f ∘ₗ g) h - tateCommRestrict pA (f ∘ₗ h) g
       = (G ∘ₗ CFH - CFH ∘ₗ G)
@@ -1895,7 +1862,6 @@ theorem tateCommTrace_leibniz_snd (pA f g h : V →ₗ[K] V)
         - ((F ∘ₗ G) ∘ₗ H - H ∘ₗ (F ∘ₗ G))
         - ((F ∘ₗ H) ∘ₗ G - G ∘ₗ (F ∘ₗ H)) from this.symm]
     abel
-
   have hT1 : finrankTrace (G ∘ₗ CFH - CFH ∘ₗ G) = 0 :=
     finrankTrace_commutator_eq_zero G CFH
   have hT2 : finrankTrace (F ∘ₗ εgh - εgh ∘ₗ F) = 0 :=
@@ -1914,18 +1880,15 @@ theorem tateCommTrace_leibniz_snd (pA f g h : V →ₗ[K] V)
     rw [show finrankTrace (εfh ∘ₗ G - G ∘ₗ εfh)
         = finrankTrace (-(G ∘ₗ εfh - εfh ∘ₗ G)) from finrankTrace_congr hneg,
       finrankTrace_neg, hT4', _root_.neg_zero]
-
   unfold tateCommTrace
   set L := tateCommRestrict pA f (g ∘ₗ h)
   set R₁ := tateCommRestrict pA (f ∘ₗ g) h
   set R₂ := tateCommRestrict pA (f ∘ₗ h) g
-
   set D := L - R₁ - R₂ with hDdef
   have : FiniteDimensional K (LinearMap.range D) := by
     rw [hDdef]; exact instFinDimRangeSub _ _
   have hDtrace : finrankTrace D = 0 := by
     rw [finrankTrace_congr hDefect]
-
     set T1 := G ∘ₗ CFH - CFH ∘ₗ G
     set T2 := F ∘ₗ εgh - εgh ∘ₗ F
     set T3 := εfg ∘ₗ H - H ∘ₗ εfg
@@ -1943,7 +1906,6 @@ theorem tateCommTrace_leibniz_snd (pA f g h : V →ₗ[K] V)
       _ = finrankTrace T1 + finrankTrace T2 - finrankTrace T3 - finrankTrace T4 := by
           rw [finrankTrace_add T1 T2]
       _ = 0 := by rw [hT1, hT2, hT3, hT4]; ring
-
   have hLdecomp : L = R₁ + R₂ + D := by rw [hDdef]; abel
   rw [finrankTrace_congr hLdecomp, finrankTrace_add, finrankTrace_add, hDtrace, add_zero]
 
@@ -1958,9 +1920,7 @@ variable [u.FiniteResidue]
 theorem finiteDimensional_range_epsRestrict_lmulK (φ ψ : u.adicCompletion) :
     FiniteDimensional K (LinearMap.range
       (epsRestrict (tateProj u) (lmulK u φ) (lmulK u ψ))) := by
-
   have hα := finiteDimensional_range_alphaMap u ψ
-
   set pA := tateProj u
   set β : (u.adicCompletion ⧸ LinearMap.range pA) →ₗ[K] LinearMap.range pA :=
     (LinearMap.range pA).liftQ
@@ -1974,7 +1934,6 @@ theorem finiteDimensional_range_epsRestrict_lmulK (φ ψ : u.adicCompletion) :
         rw [show pA (pA y) = pA y from congrFun (congrArg DFunLike.coe (tateProj_idem u)) y,
           sub_self, _root_.map_zero, _root_.map_zero])
     with hβdef
-
   have hfactor : epsRestrict pA (lmulK u φ) (lmulK u ψ) = β ∘ₗ alphaMap u ψ := by
     apply LinearMap.ext; intro a; apply Subtype.ext
     rw [epsRestrict_apply]
@@ -1992,13 +1951,11 @@ theorem tateRes_leibniz_snd (hfin : KwF4gRRTateCommFinite K L)
   have := hfin u (f * g) h
   have := hfin u (f * h) g
   have := hfin u f h
-
   have hlmul : ∀ x y : u.adicCompletion, lmulK u (x * y) = lmulK u x ∘ₗ lmulK u y := by
     intro x y
     apply LinearMap.ext; intro z
     show (x * y) * z = x * (y * z)
     ring
-
   have hL : FiniteDimensional K (LinearMap.range
       (tateCommRestrict (tateProj u) (lmulK u f) (lmulK u g ∘ₗ lmulK u h))) := by
     rw [← hlmul g h]; exact hfin u f (g * h)
@@ -2008,13 +1965,11 @@ theorem tateRes_leibniz_snd (hfin : KwF4gRRTateCommFinite K L)
   have hR₂ : FiniteDimensional K (LinearMap.range
       (tateCommRestrict (tateProj u) (lmulK u f ∘ₗ lmulK u h) (lmulK u g))) := by
     rw [← hlmul f h]; exact hfin u (f * h) g
-
   have hleib := tateCommTrace_leibniz_snd (tateProj u) (lmulK u f) (lmulK u g) (lmulK u h)
     (hfin u f h)
     (finiteDimensional_range_epsRestrict_lmulK u g h)
     (finiteDimensional_range_epsRestrict_lmulK u f g)
     (finiteDimensional_range_epsRestrict_lmulK u f h)
-
   unfold tateRes
   unfold tateCommTrace at hleib ⊢
   rw [finrankTrace_congr (by rw [hlmul g h] : tateCommRestrict (tateProj u) (lmulK u f)
@@ -2078,13 +2033,10 @@ theorem kwF4gRRTate_chainRule_of_derivationFactor
       KwF4gRRTateDerivationFactorSnd K F hfinF) :
     KwF4gRRTateChainRule K F E hfinF := by
   intro _ _ _ _ _ v _ w _ _ fh
-
   have hDFw := hDF w fh (algebraMap E F v.uniformizer)
-
   have hker : KaehlerDifferential.D K F (algebraMap E F v.uniformizer)
       = kaehlerPullback K F E v.dCoord :=
     (kaehlerPullback_D (K := K) (F := F) (E := E) v.uniformizer).symm
-
   have hX : fh * algebraMap F w.adicCompletion
         (w.differentialCoeff (kaehlerPullback K F E v.dCoord))
       = fh * algebraMap F w.adicCompletion
@@ -2366,7 +2318,6 @@ theorem kwTateRR2_derivationFactorSnd [∀ w : Place K F, w.FiniteResidue]
   have := hfinF w f (algebraMap F _ g)
   have := hfinF w (f * algebraMap F _ (w.differentialCoeff (KaehlerDifferential.D K F g)))
     (algebraMap F _ w.uniformizer)
-
   have hδ := derivation_apply_eq_diffCoeff_smul (M := DualDom w) w (tateResSndDer w hfinF) g
   have := hfinF w (algebraMap F _ (w.differentialCoeff (KaehlerDifferential.D K F g)) * f)
     (algebraMap F _ w.uniformizer)

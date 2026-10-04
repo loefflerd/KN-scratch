@@ -212,13 +212,11 @@ theorem isFinitePlace_iff_exists_placeOfEquation [IsAlgClosed F]
     IsFinitePlace v ↔ ∃ (x y : F) (h : W.Equation x y), v = placeOfEquation h := by
   constructor
   · intro hv
-
     have := hv.centre_isPrime
     have hmax : hv.centre.IsMaximal := Ideal.IsPrime.isMaximal hv.centre_isPrime hv.centre_ne_bot
     obtain ⟨x, y, hxy, hXY⟩ :=
       CoordinateRing.exists_eq_XYIdeal (W := W) (P := hv.centre) hv.centre_ne_bot
     refine ⟨x, y, hxy, ?_⟩
-
     set w : HeightOneSpectrum W.CoordinateRing := heightOneSpectrumOfEquation hxy with hw
     set A : ValuationSubring W.FunctionField :=
       HeightOneSpectrum.valuationSubringAtPrime W.FunctionField w with hA
@@ -232,19 +230,16 @@ theorem isFinitePlace_iff_exists_placeOfEquation [IsAlgClosed F]
         rw [hXY] at hmem
         exact hs hmem
       exact mul_mem (hv r) (hv.inv_mem hs')
-
     have hSP : A.ofPrime (A.idealOfLE v.toValuationSubring hle) = v.toValuationSubring :=
       ValuationSubring.ofPrime_idealOfLE A v.toValuationSubring hle
     rcases eq_or_ne (A.idealOfLE v.toValuationSubring hle) ⊥ with hP | hP
-    ·
-      exfalso
+    · exfalso
       apply v.ne_top'
       have h2 : A.ofPrime ⊥ ≤ A.ofPrime (A.idealOfLE v.toValuationSubring hle) :=
         ValuationSubring.ofPrime_le_of_le (h := hP.le)
       rw [ValuationSubring.ofPrime_bot] at h2
       exact top_le_iff.mp (le_trans h2 hSP.le)
-    ·
-      have hPmax : (A.idealOfLE v.toValuationSubring hle).IsMaximal :=
+    · have hPmax : (A.idealOfLE v.toValuationSubring hle).IsMaximal :=
         Ideal.IsPrime.isMaximal inferInstance hP
       have hPeq : A.idealOfLE v.toValuationSubring hle = IsLocalRing.maximalIdeal A :=
         IsLocalRing.eq_maximalIdeal hPmax
@@ -518,7 +513,6 @@ variable (v : AlgebraicCurve.Place F W.FunctionField)
 
 theorem isFinitePlace_of_mem
     (hx : polyToFunctionField W X ∈ v.toValuationSubring) : IsFinitePlace v := by
-
   have hpoly : ∀ p : F[X], polyToFunctionField W p ∈ v.toValuationSubring := by
     intro p
     induction p using Polynomial.induction_on' with
@@ -528,11 +522,9 @@ theorem isFinitePlace_of_mem
         refine mul_mem ?_ (pow_mem hx n)
         rw [polyToFunctionField_C]
         exact v.algebraMap_mem' c
-
   set η := algebraMap W.CoordinateRing W.FunctionField (CoordinateRing.mk W Y) with hηdef
   set c₁ : F[X] := C W.a₁ * X + C W.a₃ with hc₁def
   set cb : F[X] := X ^ 3 + C W.a₂ * X ^ 2 + C W.a₄ * X + C W.a₆ with hcbdef
-
   have hrel : η * η = polyToFunctionField W cb - polyToFunctionField W c₁ * η := by
     have h1 := smul_basis_mul_Y (W' := W) 0 1
     rw [zero_smul, zero_add, one_smul, one_mul, one_mul, zero_sub] at h1
@@ -540,17 +532,14 @@ theorem isFinitePlace_of_mem
     rw [map_mul, algebraMap_smul_basis, _root_.map_neg, neg_mul, ← sub_eq_add_neg] at h2
     exact h2
   have hy : η ∈ v.toValuationSubring := by
-
     refine v.mem_of_eval_monic_eq_zero (P := Polynomial.X ^ 2
       + (Polynomial.C (polyToFunctionField W c₁) * Polynomial.X
         - Polynomial.C (polyToFunctionField W cb))) ?_ ?_ (x := η) ?_
-    ·
-      refine Polynomial.monic_X_pow_add (n := 2) ?_
+    · refine Polynomial.monic_X_pow_add (n := 2) ?_
       rw [sub_eq_add_neg, ← Polynomial.C_neg]
       refine lt_of_le_of_lt Polynomial.degree_linear_le ?_
       exact_mod_cast Nat.one_lt_two
-    ·
-      intro i
+    · intro i
       rw [show (Polynomial.C (polyToFunctionField W c₁) * Polynomial.X : Polynomial _)
           = Polynomial.C (polyToFunctionField W c₁) * Polynomial.X ^ 1 by ring]
       simp only [Polynomial.coeff_add, Polynomial.coeff_sub, Polynomial.coeff_X_pow,
@@ -563,12 +552,10 @@ theorem isFinitePlace_of_mem
       · split
         · exact hpoly _
         · exact v.toValuationSubring.zero_mem
-    ·
-      simp only [Polynomial.eval_add, Polynomial.eval_sub, Polynomial.eval_pow,
+    · simp only [Polynomial.eval_add, Polynomial.eval_sub, Polynomial.eval_pow,
         Polynomial.eval_mul, Polynomial.eval_C, Polynomial.eval_X]
       rw [sq]
       linear_combination hrel
-
   intro r
   obtain ⟨p, q, rfl⟩ := exists_smul_basis_eq r
   rw [algebraMap_smul_basis]
@@ -660,14 +647,12 @@ private theorem _root_.PeriodPair.apply_eq_apply_of_differentiable_of_forall_per
     (hf : Differentiable ℂ f) (hper : ∀ l ∈ L.lattice, ∀ z, f (z + l) = f z) (z w : ℂ) :
     f z = f w := by
   apply hf.apply_eq_apply_of_bounded
-
   have hrange : range f ⊆ f '' closure (ZSpan.fundamentalDomain L.basis) := by
     rintro - ⟨u, rfl⟩
     refine ⟨ZSpan.fract L.basis u, subset_closure (ZSpan.fract_mem_fundamentalDomain _ u), ?_⟩
     have h := hper _ (L.sub_fract_mem_lattice u) (ZSpan.fract L.basis u)
     rw [add_sub_cancel] at h
     exact h.symm
-
   refine Bornology.IsBounded.subset ?_ hrange
   refine (IsCompact.image ?_ hf.continuous).isBounded
   exact Metric.isCompact_of_isClosed_isBounded isClosed_closure
@@ -722,7 +707,6 @@ theorem exists_smul_mem_and_apply_eq_of_forall_sub_mem (L' : PeriodPair) {F : �
     (hF : Differentiable ℂ F)
     (hper : ∀ l ∈ L.lattice, ∀ z, F (z + l) - F z ∈ L'.lattice) :
     ∃ α : ℂ, (∀ l ∈ L.lattice, α * l ∈ L'.lattice) ∧ ∀ z, F z = F 0 + α * z := by
-
   have hFc : Continuous F := hF.continuous
   have hconst : ∀ l ∈ L.lattice, ∀ z, F (z + l) - F z = F l - F 0 := by
     intro l hl z
@@ -730,7 +714,6 @@ theorem exists_smul_mem_and_apply_eq_of_forall_sub_mem (L' : PeriodPair) {F : �
       (f := fun u => F (u + l) - F u)
       ((hFc.comp (continuous_id.add continuous_const)).sub hFc) (hper l hl) z 0
     simpa using h
-
   have hadd : ∀ z w, F (z + w) = F z + F w - F 0 := by
     intro z w
     have hper' : ∀ l ∈ L.lattice, ∀ u,
@@ -746,7 +729,6 @@ theorem exists_smul_mem_and_apply_eq_of_forall_sub_mem (L' : PeriodPair) {F : �
       ((hF.comp (differentiable_id.add_const w)).sub hF) hper' z 0
     simp only [zero_add] at h
     linear_combination h
-
   set α : ℂ := deriv F 0 with hα
   have hderiv : ∀ z, deriv F z = α := by
     intro z
@@ -759,7 +741,6 @@ theorem exists_smul_mem_and_apply_eq_of_forall_sub_mem (L' : PeriodPair) {F : �
     have h2 : deriv (fun w => F w + (F z - F 0)) 0 = deriv F 0 := by
       rw [deriv_add_const]
     rw [← h1, hfun, h2]
-
   have haffine : ∀ z, F z = F 0 + α * z := by
     have hG : Differentiable ℂ fun z => F z - α * z :=
       hF.sub (differentiable_id.const_mul α)
@@ -773,7 +754,6 @@ theorem exists_smul_mem_and_apply_eq_of_forall_sub_mem (L' : PeriodPair) {F : �
     have h := is_const_of_deriv_eq_zero hG hG' z 0
     simp only [mul_zero, sub_zero] at h
     linear_combination h
-
   refine ⟨α, fun l hl => ?_, haffine⟩
   have h := hper l hl 0
   rw [zero_add, haffine l] at h
@@ -1059,7 +1039,6 @@ theorem Place.restrictAlong_restrictAlong (hφ : φ.toRingHom.IsIntegral)
     (hχ : χ.toRingHom.IsIntegral) (hχφ : (χ.comp φ).toRingHom.IsIntegral)
     (W : Place K F'') :
     (W.restrictAlong χ hχ).restrictAlong φ hφ = W.restrictAlong (χ.comp φ) hχφ := by
-
   exact Place.ext (SetLike.ext fun _ => Iff.rfl)
 variable (K) in
 
@@ -1141,16 +1120,13 @@ theorem inertiaDegAlong_comp (hφ : φ.toRingHom.IsIntegral) (hχ : χ.toRingHom
     (hχφ : (χ.comp φ).toRingHom.IsIntegral) :
     InertiaDegComp K φ χ hφ hχ hχφ := by
   intro W
-
   set w : Place K F' := W.restrictAlong χ hχ with hw
-
   let iA : Algebra (W.restrictAlong (χ.comp φ) hχφ).ResidueField W.ResidueField :=
     (restrictResidueMapAlong (χ.comp φ) hχφ W).toAlgebra
   let iB : Algebra w.ResidueField W.ResidueField :=
     (restrictResidueMapAlong χ hχ W).toAlgebra
   let iC : Algebra (W.restrictAlong (χ.comp φ) hχφ).ResidueField w.ResidueField :=
     (restrictResidueMapAlong φ hφ w).toAlgebra
-
   have : IsScalarTower (W.restrictAlong (χ.comp φ) hχφ).ResidueField
       w.ResidueField W.ResidueField := by
     refine IsScalarTower.of_algebraMap_eq fun x => ?_
@@ -1162,11 +1138,9 @@ theorem inertiaDegAlong_comp (hφ : φ.toRingHom.IsIntegral) (hχ : χ.toRingHom
       IsLocalRing.ResidueField.map_residue, IsLocalRing.ResidueField.map_residue,
       IsLocalRing.ResidueField.map_residue]
     exact congrArg _ (Subtype.ext rfl)
-
   show Module.finrank (W.restrictAlong (χ.comp φ) hχφ).ResidueField W.ResidueField
     = Module.finrank w.ResidueField W.ResidueField
         * Module.finrank (W.restrictAlong (χ.comp φ) hχφ).ResidueField w.ResidueField
-
   rw [← Module.finrank_mul_finrank
     (W.restrictAlong (χ.comp φ) hχφ).ResidueField w.ResidueField W.ResidueField]
   exact Nat.mul_comm _ _
@@ -1441,7 +1415,6 @@ theorem kw_surgehgf4_pck_pmop_comp_apply
       = pointMapOfPushforward χ hχ hfinχ (normFormulaAlong_of_elliptic χ hfinχ)
           (pointMapOfPushforward φ hφ hfinφ (normFormulaAlong_of_elliptic φ hfinφ) P) := by
   have _ := kw_surgehgf4_pck_axiomAnchor
-
   show genusOnePic0Equiv W₁ (Pic0.pushforwardAlongHom (φ.comp χ) _ _ _
         ((genusOnePic0Equiv W₃).symm P))
     = genusOnePic0Equiv W₁ (Pic0.pushforwardAlongHom χ _ _ _
@@ -1468,7 +1441,6 @@ theorem kw_surgehgf4_pck_pmop_id
     pointMapOfPushforward (AlgHom.id ℂ W.FunctionField) hι hfin
         (normFormulaAlong_of_elliptic _ hfin) P = P := by
   have _ := kw_surgehgf4_pck_axiomAnchor
-
   have h := IsogenyEndDatum.idDatum_pointEnd W
   calc pointMapOfPushforward (AlgHom.id ℂ W.FunctionField) hι hfin
           (normFormulaAlong_of_elliptic _ hfin) P
@@ -1589,7 +1561,6 @@ theorem kw_surgehgf4_pck_pmop_conjSeam_factor
               (kw_surgehgf4_pck_algEquiv_finiteAlong eE.symm)
               (normFormulaAlong_of_elliptic _
                 (kw_surgehgf4_pck_algEquiv_finiteAlong eE.symm)) P)) := by
-
   have h1 := kw_surgehgf4_pck_pmop_comp_apply
     (eE.symm.toAlgHom.comp ι) eE'.toAlgHom
     (RingHom.IsIntegral.trans ι.toRingHom eE.symm.toAlgHom.toRingHom hι
@@ -1597,14 +1568,12 @@ theorem kw_surgehgf4_pck_pmop_conjSeam_factor
     (kw_surgehgf4_pck_algEquiv_isIntegral eE') hι''
     (ModularCurve.finiteAlong_comp hfin (kw_surgehgf4_pck_algEquiv_finiteAlong eE.symm))
     (kw_surgehgf4_pck_algEquiv_finiteAlong eE') hfin'' P
-
   have h2 := kw_surgehgf4_pck_pmop_comp_apply eE.symm.toAlgHom ι
     (kw_surgehgf4_pck_algEquiv_isIntegral eE.symm) hι
     (RingHom.IsIntegral.trans ι.toRingHom eE.symm.toAlgHom.toRingHom hι
       (kw_surgehgf4_pck_algEquiv_isIntegral eE.symm))
     (kw_surgehgf4_pck_algEquiv_finiteAlong eE.symm) hfin
     (ModularCurve.finiteAlong_comp hfin (kw_surgehgf4_pck_algEquiv_finiteAlong eE.symm)) P
-
   calc pointMapOfPushforward (kw_fdn2_qephod_hend21_conjSeam eE eE' ι) hι'' hfin''
           (normFormulaAlong_of_elliptic _ hfin'') P
       = pointMapOfPushforward eE'.toAlgHom _ _ _
@@ -1625,7 +1594,6 @@ theorem kw_surgehgf4_pck_proved_core
   intro hcyc
   have hAbij := kw_surgehgf4_pck_pmop_equiv_bijective eE.symm
   have hBinj := (kw_surgehgf4_pck_pmop_equiv_bijective eE').injective
-
   have hker_iff : ∀ x : F.Point,
       x ∈ AddMonoidHom.ker (pointMapOfPushforward
           (kw_fdn2_qephod_hend21_conjSeam eE eE' ι) hι'' hfin''
@@ -1642,7 +1610,6 @@ theorem kw_surgehgf4_pck_proved_core
       kw_surgehgf4_pck_pmop_conjSeam_factor eE eE' ι hι hfin hι'' hfin'' x]
     exact ⟨fun h => hBinj (h.trans (map_zero _).symm),
       fun h => by rw [h, map_zero]⟩
-
   obtain ⟨⟨g, hg⟩⟩ := hcyc
   obtain ⟨g', hg'⟩ := hAbij.surjective (g : E.Point)
   refine ⟨⟨⟨g', (hker_iff g').mpr (hg' ▸ g.2)⟩, ?_⟩⟩

@@ -52,7 +52,6 @@ lemma D_smul {F : ℍ → ℂ} (hF : MDiff F) (hinv : ∀ (γ : SL(2, ℤ)) (τ 
     (γ : SL(2, ℤ)) (τ : ℍ) : D F (γ • τ) = denom γ τ ^ 2 * D F τ := by
   have hdet1 : ((γ : GL (Fin 2) ℝ)).val.det = 1 := Matrix.SpecialLinearGroup.det_coe _
   have hdet : 0 < ((γ : GL (Fin 2) ℝ)).val.det := by rw [hdet1]; exact one_pos
-
   have h1 : HasDerivAt (fun z : ℂ => (↑((γ : GL (Fin 2) ℝ) • ofComplex z) : ℂ))
       (((γ : GL (Fin 2) ℝ)).val.det / denom (γ : GL (Fin 2) ℝ) τ ^ 2) (τ : ℂ) :=
     (UpperHalfPlane.hasStrictDerivAt_smul hdet τ).hasDerivAt
@@ -62,7 +61,6 @@ lemma D_smul {F : ℍ → ℂ} (hF : MDiff F) (hinv : ∀ (γ : SL(2, ℤ)) (τ 
   have h2 : HasDerivAt (F ∘ ofComplex) (deriv (F ∘ ofComplex) (↑(γ • τ) : ℂ)) (↑(γ • τ) : ℂ) :=
     hdiff.hasDerivAt
   have h3 := h2.scomp_of_eq (τ : ℂ) h1 (by simp [ModularGroup.sl_moeb])
-
   have h4 : (F ∘ ofComplex) ∘ (fun z : ℂ => (↑((γ : GL (Fin 2) ℝ) • ofComplex z) : ℂ))
       =ᶠ[𝓝 (τ : ℂ)] F ∘ ofComplex := by
     filter_upwards [isOpen_upperHalfPlaneSet.mem_nhds τ.im_pos] with z hz
@@ -484,11 +482,9 @@ lemma case_E₄_eq_zero {τ : ℍ} (h4 : E₄ τ = 0) :
   obtain ⟨c, hc0, hc⟩ := exists_D_jf_mul_Δ_eq
   have h6 : E₆ τ ≠ 0 := E₆_ne_zero_of_E₄_eq_zero h4
   have hjτ : jf τ = 0 := by simp [jf, h4]
-
   obtain ⟨k, hk⟩ := ENat.ne_top_iff_exists.mp (analyticOrderAt_ne_top mdiff_E₄ E₄_I_ne_zero τ)
   have hderiv := analyticOrderAt_deriv_jf hc0 hc τ
   rw [analyticOrderAt_eq_zero_of_ne_zero mdiff_E₆ h6, add_zero, ← hk] at hderiv
-
   have hF : (fun z : ℂ => jf (ofComplex z) - jf τ) =
       ((E₄ : ℍ → ℂ) ∘ ofComplex) ^ 3 * fun w => ((Δ ∘ ofComplex) w)⁻¹ := by
     funext z
@@ -522,7 +518,6 @@ lemma case_E₆_eq_zero {τ : ℍ} (h6 : E₆ τ = 0) :
   obtain ⟨k, hk⟩ := ENat.ne_top_iff_exists.mp (analyticOrderAt_ne_top mdiff_E₆ E₆_ρ_ne_zero τ)
   have hderiv := analyticOrderAt_deriv_jf hc0 hc τ
   rw [analyticOrderAt_eq_zero_of_ne_zero mdiff_E₄ h4, smul_zero, zero_add, ← hk] at hderiv
-
   have hF : (fun z : ℂ => jf (ofComplex z) - jf τ) =
       ((E₆ : ℍ → ℂ) ∘ ofComplex) ^ 2 * fun w => ((Δ ∘ ofComplex) w)⁻¹ := by
     funext z

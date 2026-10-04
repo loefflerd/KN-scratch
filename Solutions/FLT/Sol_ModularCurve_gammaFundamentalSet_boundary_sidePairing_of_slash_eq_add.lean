@@ -155,7 +155,6 @@ theorem sum_integral_arc [Fintype (SL(2, ℤ) ⧸ Γ)] (φ : ℍ → ℂ) :
           (Complex.I * Complex.exp (θ * Complex.I)) := by
   rw [← sum_comp_smul ModularGroup.S, ← Finset.sum_neg_distrib]
   refine Finset.sum_congr rfl fun q _ => ?_
-
   have hrefl := intervalIntegral.integral_comp_sub_left
     (fun θ : ℝ => tilePull φ (R (ModularGroup.S • q))⁻¹ (Complex.exp (θ * Complex.I)) *
       (Complex.I * Complex.exp (θ * Complex.I)))
@@ -227,26 +226,22 @@ theorem solution
             ∫ θ in (Real.pi / 3)..(2 * Real.pi / 3),
               Ψ (Quotient.out q)⁻¹ (Complex.exp (θ * Complex.I)) *
                 (Complex.I * Complex.exp (θ * Complex.I)) := by
-
   have eΦ : Φ = tilePull φ := by funext σ z; rw [hΦ, tilePull_eq_div]
   have eΨ : Ψ = tilePull ψ := by funext σ z; rw [hΨ, tilePull_eq_div]
   subst eΦ eΨ
   have hsec := isSection_out Γ
-
   have key : ∀ (g : SL(2, ℤ)) (q : SL(2, ℤ) ⧸ Γ) (z : ℂ),
       tilePull (slash2 φ (pairElt Quotient.out g q)) (Quotient.out q)⁻¹ z =
         tilePull φ (Quotient.out q)⁻¹ z + c (pairElt Quotient.out g q) * tilePull ψ (Quotient.out q)⁻¹ z := by
     intro g q z
     rw [slash2_eq_of_twist hφ (pairElt_mem hsec g q), tilePull_add_mul]
   refine ⟨?_, ?_⟩
-  ·
-    rw [sum_integral_rightRay (R := Quotient.out) φ hs hs0, ← Finset.sum_add_distrib]
+  · rw [sum_integral_rightRay (R := Quotient.out) φ hs hs0, ← Finset.sum_add_distrib]
     refine Finset.sum_congr rfl fun q _ => ?_
     simp_rw [key]
     rw [integral_add (hΦs q) ((hΨs q).const_mul _), integral_const_mul]
     rfl
-  ·
-    have harc := sum_integral_arc (R := Quotient.out) (Γ := Γ) φ
+  · have harc := sum_integral_arc (R := Quotient.out) (Γ := Γ) φ
     simp_rw [key, add_mul] at harc
     have hsplit : ∀ q : SL(2, ℤ) ⧸ Γ,
         ∫ θ in (Real.pi / 3)..(2 * Real.pi / 3),

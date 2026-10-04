@@ -372,7 +372,6 @@ theorem exists_heckeCosetRep_coe_eq (γ : Gamma0 N) :
     show Quotient.out ((γ : Gamma0 N ⧸ heckeUpper N ℓ)) = γ * (h : Gamma0 N) from hout,
     _root_.mul_inv_rev, map_mul, ← mul_assoc, ← mul_assoc]
   congr 1
-
   exact (gammaToGL_heckeConj_mul_alphaGL N ℓ h⁻¹).symm
 
 end ExistsCosetRep
@@ -622,7 +621,6 @@ theorem solution (N : ℕ) [NeZero N] (n : ℕ) {ℓ : ℕ} (hℓ : ℓ.Prime) (
       = HeckeEis.eichlerShimuraMap n N (CuspForm.heckeULin ((n : ℤ) + 2) hℓN f) := by
   have : NeZero ℓ := ⟨hℓ.ne_zero⟩
   obtain ⟨F, hEI, hF, hpar⟩ := HeckeEis.exists_isEichlerIntegral_isParabolicCocycle N n f
-
   have hGEI : IsEichlerIntegral n (CuspForm.heckeULin ((n : ℤ) + 2) hℓN f) (heckeEichler N ℓ n F) := by
     have h := isEichlerIntegral_heckeEichler (N := N) (ℓ := ℓ) hEI
     rwa [← heckeUSlashSum_eq_heckeQuotSlashSum (uCosetMatch hℓ hℓN) _ (SlashInvariantFormClass.slash_action_eq f),

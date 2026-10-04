@@ -76,7 +76,6 @@ theorem etaProductEleven_T_invariant (z : ℂ) :
     simp only [Periodic.qParam]
     rw [Complex.exp_eq_exp_iff_exists_int]
     exact ⟨11, by push_cast; ring⟩
-
   rw [etaProductEleven_eq_q_prod, etaProductEleven_eq_q_prod, hq]
   congr 2
   · congr 1
@@ -248,11 +247,8 @@ private lemma continuous_etaRatio (γ : SL(2, ℤ)) : Continuous (etaRatio γ) :
   have hsmul : Continuous fun τ : ℍ => ((γ • τ : ℍ) : ℂ) :=
     UpperHalfPlane.continuous_coe.comp (continuous_const_smul (γ : GL (Fin 2) ℝ))
   apply Continuous.div
-  ·
-
-    exact continuousOn_etaProductEleven.comp_continuous hsmul fun τ => (γ • τ).2
-  ·
-    apply Continuous.mul
+  · exact continuousOn_etaProductEleven.comp_continuous hsmul fun τ => (γ • τ).2
+  · apply Continuous.mul
     · have hden : Continuous fun τ : ℍ => denom γ (τ : ℂ) := by
         simp only [UpperHalfPlane.denom]
         fun_prop
@@ -602,35 +598,29 @@ private lemma sqrt_eleven_mul_I_sq : ((Real.sqrt 11 : ℂ) * Complex.I) ^ 2 = -1
 
 private lemma etaMultiplier_eq_one_of_apply_eq_aux (γ : SL(2, ℤ))
     (hsym : γ 1 0 = 11 * γ 0 1) (hA : 0 < γ 0 0) : etaMultiplier γ = 1 := by
-
   have hdet : γ 0 0 * γ 1 1 - γ 0 1 * γ 1 0 = 1 := by
     have h2 := γ.2
     rw [Matrix.det_fin_two] at h2
     exact h2
   have hAD : (γ 0 0 : ℤ) * γ 1 1 = 1 + 11 * γ 0 1 ^ 2 := by
     linear_combination hdet + γ 0 1 * hsym
-
   have hγ : γ ∈ Gamma0 11 := by
     rw [Gamma0_mem, hsym]
     push_cast
     exact mul_eq_zero_of_left (by decide) _
-
   have hADc : ((γ 0 0 : ℤ) : ℂ) * ((γ 1 1 : ℤ) : ℂ) = 1 + 11 * ((γ 0 1 : ℤ) : ℂ) ^ 2 := by
     exact_mod_cast congrArg (fun n : ℤ => (n : ℂ)) hAD
   have hsymc : ((γ 1 0 : ℤ) : ℂ) = 11 * ((γ 0 1 : ℤ) : ℂ) := by exact_mod_cast hsym
   have hAne : ((γ 0 0 : ℤ) : ℂ) ≠ 0 := by
     exact_mod_cast (Int.cast_ne_zero (α := ℂ)).mpr hA.ne'
-
   obtain ⟨s, hs_def⟩ : ∃ s : ℂ, s = (Real.sqrt 11 : ℂ) * Complex.I := ⟨_, rfl⟩
   have hs2 : s ^ 2 = -11 := by rw [hs_def]; exact sqrt_eleven_mul_I_sq
-
   obtain ⟨z₀, hz₀_def⟩ :
       ∃ z : ℂ, z = (-(11 * ((γ 0 1 : ℤ) : ℂ)) + s) / (11 * ((γ 0 0 : ℤ) : ℂ)) := ⟨_, rfl⟩
   have h11A : (11 : ℂ) * ((γ 0 0 : ℤ) : ℂ) ≠ 0 := mul_ne_zero (by norm_num) hAne
   have hz₀_mul : 11 * ((γ 0 0 : ℤ) : ℂ) * z₀ = -(11 * ((γ 0 1 : ℤ) : ℂ)) + s := by
     rw [hz₀_def]
     field_simp
-
   have hz₀ : z₀ ∈ ℍₒ := by
     show (0 : ℝ) < z₀.im
     have hnum : (-(11 * ((γ 0 1 : ℤ) : ℂ)) + s).im = Real.sqrt 11 := by
@@ -644,7 +634,6 @@ private lemma etaMultiplier_eq_one_of_apply_eq_aux (γ : SL(2, ℤ))
     intro h
     rw [h] at hz₀
     simp only [Set.mem_ofPred_eq, Complex.zero_im, lt_self_iff_false] at hz₀
-
   have key1 : 11 * ((γ 0 0 : ℤ) : ℂ) * z₀ ^ 2 + 22 * ((γ 0 1 : ℤ) : ℂ) * z₀
       + ((γ 1 1 : ℤ) : ℂ) = 0 := by
     apply mul_left_cancel₀ h11A
@@ -658,38 +647,30 @@ private lemma etaMultiplier_eq_one_of_apply_eq_aux (γ : SL(2, ℤ))
             + 22 * ((γ 0 1 : ℤ) : ℂ) * (-(11 * ((γ 0 1 : ℤ) : ℂ)) + s)
             + 11 * (1 + 11 * ((γ 0 1 : ℤ) : ℂ) ^ 2) := by rw [hz₀_mul, hADc]
       _ = 0 := by linear_combination hs2
-
   have key2 : (11 * ((γ 0 1 : ℤ) : ℂ) * z₀ + ((γ 1 1 : ℤ) : ℂ)) ^ 2 = -(11 * z₀ ^ 2) := by
-
     have h1 : 11 * ((γ 0 1 : ℤ) : ℂ) * z₀ + ((γ 1 1 : ℤ) : ℂ) = -(z₀ * s) := by
       linear_combination key1 - z₀ * hz₀_mul
     rw [h1, neg_sq, mul_pow, hs2]
     ring
-
   have hden : 11 * ((γ 0 1 : ℤ) : ℂ) * z₀ + ((γ 1 1 : ℤ) : ℂ) ≠ 0 := by
     intro h
     have h0 : (11 : ℂ) * z₀ ^ 2 = 0 := by
       linear_combination key2 - (11 * ((γ 0 1 : ℤ) : ℂ) * z₀ + ((γ 1 1 : ℤ) : ℂ)) * h
     exact (mul_ne_zero (by norm_num) (pow_ne_zero 2 hz₀ne)) h0
   have h11z : (11 : ℂ) * z₀ ≠ 0 := mul_ne_zero (by norm_num) hz₀ne
-
   set τ₀ : ℍ := ⟨z₀, hz₀⟩
   have hcoe : (τ₀ : ℂ) = z₀ := rfl
-
   have hsmul : ((γ • τ₀ : ℍ) : ℂ) = -1 / (11 * z₀) := by
     rw [UpperHalfPlane.coe_specialLinearGroup_apply]
     simp only [eq_intCast]
     push_cast
     rw [hcoe, hsymc, div_eq_div_iff hden h11z]
     linear_combination key1
-
   have hdenom : UpperHalfPlane.denom γ τ₀ = 11 * ((γ 0 1 : ℤ) : ℂ) * z₀ + ((γ 1 1 : ℤ) : ℂ) := by
     rw [ModularGroup.denom_apply, hcoe, hsymc]
-
   have hlaw := etaProductEleven_smul hγ τ₀
   rw [hsmul, hcoe, etaProductEleven_fricke hz₀, hdenom] at hlaw
   rw [show (2 : ℤ) = ((2 : ℕ) : ℤ) from rfl, zpow_natCast, key2] at hlaw
-
   have hX : -(11 * z₀ ^ 2) * etaProductEleven z₀ ≠ 0 := by
     apply mul_ne_zero
     · simpa using mul_ne_zero (show (11 : ℂ) ≠ 0 by norm_num) (pow_ne_zero 2 hz₀ne)
@@ -706,13 +687,11 @@ theorem etaMultiplier_eq_one_of_apply_eq (γ : SL(2, ℤ)) (hsym : γ 1 0 = 11 *
     have h2 := γ.2
     rw [Matrix.det_fin_two] at h2
     exact h2
-
   have hneg_entry : ∀ i j : Fin 2, (-γ : SL(2, ℤ)) i j = -(γ i j) := by
     intro i j
     simp [Matrix.SpecialLinearGroup.coe_neg]
   rcases lt_trichotomy ((γ 0 0 : ℤ)) 0 with hA | hA | hA
-  ·
-    have hγ : γ ∈ Gamma0 11 := by
+  · have hγ : γ ∈ Gamma0 11 := by
       rw [Gamma0_mem, hsym]
       push_cast
       exact mul_eq_zero_of_left (by decide) _
@@ -725,8 +704,7 @@ theorem etaMultiplier_eq_one_of_apply_eq (γ : SL(2, ℤ)) (hsym : γ 1 0 = 11 *
     have h2 := etaMultiplier_neg hγ
     rw [h1] at h2
     exact h2.symm
-  ·
-    exfalso
+  · exfalso
     have hsq : -11 * γ 0 1 ^ 2 = 1 := by
       linear_combination hdet + γ 0 1 * hsym - γ 1 1 * hA
     nlinarith [sq_nonneg (γ 0 1), hsq]
@@ -759,57 +737,40 @@ theorem etaMultiplier_schreierGen (l : Option (ZMod 11)) (s : SL(2, ℤ))
   have hT2 : ModularGroup.T ^ 2 ∈ Gamma0 11 := pow_mem T_mem_Gamma0 2
   have hT2inv : (ModularGroup.T ^ 2)⁻¹ ∈ Gamma0 11 := inv_mem hT2
   rcases hs with rfl | rfl
-  ·
-    rcases l with _ | k
-    ·
-      rw [show schreierGen none ModularGroup.S = 1 by decide +kernel]
+  · rcases l with _ | k
+    · rw [show schreierGen none ModularGroup.S = 1 by decide +kernel]
       exact etaMultiplier_one
     · fin_cases k
-      ·
-        refine Eq.trans (congrArg etaMultiplier ?_) etaMultiplier_neg_one
+      · refine Eq.trans (congrArg etaMultiplier ?_) etaMultiplier_neg_one
         decide
-      ·
-        refine eq_one_of_mul_left (schreierGen_mem _ _) hT2 ?_ (etaMultiplier_T_pow 2)
+      · refine eq_one_of_mul_left (schreierGen_mem _ _) hT2 ?_ (etaMultiplier_T_pow 2)
         exact etaMultiplier_eq_one_of_apply_eq _ (by decide +kernel)
-      ·
-        refine eq_one_of_mul_left (schreierGen_mem _ _) T_mem_Gamma0 ?_ etaMultiplier_T
+      · refine eq_one_of_mul_left (schreierGen_mem _ _) T_mem_Gamma0 ?_ etaMultiplier_T
         exact etaMultiplier_eq_one_of_apply_eq _ (by decide +kernel)
-      ·
-        refine eq_one_of_mul_left (schreierGen_mem _ _) T_mem_Gamma0 ?_ etaMultiplier_T
+      · refine eq_one_of_mul_left (schreierGen_mem _ _) T_mem_Gamma0 ?_ etaMultiplier_T
         exact etaMultiplier_eq_one_of_apply_eq _ (by decide +kernel)
-      ·
-        refine eq_one_of_mul_left (schreierGen_mem _ _) T_mem_Gamma0 ?_ etaMultiplier_T
+      · refine eq_one_of_mul_left (schreierGen_mem _ _) T_mem_Gamma0 ?_ etaMultiplier_T
         exact etaMultiplier_eq_one_of_apply_eq _ (by decide +kernel)
-      ·
-        refine eq_one_of_mul_right (schreierGen_mem _ _) hTinv ?_ etaMultiplier_T_inv
+      · refine eq_one_of_mul_right (schreierGen_mem _ _) hTinv ?_ etaMultiplier_T_inv
         exact etaMultiplier_eq_one_of_apply_eq _ (by decide +kernel)
-      ·
-        refine eq_one_of_mul_left (schreierGen_mem _ _) T_mem_Gamma0 ?_ etaMultiplier_T
+      · refine eq_one_of_mul_left (schreierGen_mem _ _) T_mem_Gamma0 ?_ etaMultiplier_T
         exact etaMultiplier_eq_one_of_apply_eq _ (by decide +kernel)
-      ·
-        refine eq_one_of_mul_right (schreierGen_mem _ _) hTinv ?_ etaMultiplier_T_inv
+      · refine eq_one_of_mul_right (schreierGen_mem _ _) hTinv ?_ etaMultiplier_T_inv
         exact etaMultiplier_eq_one_of_apply_eq _ (by decide +kernel)
-      ·
-        refine eq_one_of_mul_right (schreierGen_mem _ _) hTinv ?_ etaMultiplier_T_inv
+      · refine eq_one_of_mul_right (schreierGen_mem _ _) hTinv ?_ etaMultiplier_T_inv
         exact etaMultiplier_eq_one_of_apply_eq _ (by decide +kernel)
-      ·
-        refine eq_one_of_mul_right (schreierGen_mem _ _) hTinv ?_ etaMultiplier_T_inv
+      · refine eq_one_of_mul_right (schreierGen_mem _ _) hTinv ?_ etaMultiplier_T_inv
         exact etaMultiplier_eq_one_of_apply_eq _ (by decide +kernel)
-      ·
-        refine eq_one_of_mul_right (schreierGen_mem _ _) hT2inv ?_ (etaMultiplier_T_pow_inv 2)
+      · refine eq_one_of_mul_right (schreierGen_mem _ _) hT2inv ?_ (etaMultiplier_T_pow_inv 2)
         exact etaMultiplier_eq_one_of_apply_eq _ (by decide +kernel)
-  ·
-    rcases l with _ | k
-    ·
-      refine Eq.trans (congrArg etaMultiplier ?_) etaMultiplier_T
+  · rcases l with _ | k
+    · refine Eq.trans (congrArg etaMultiplier ?_) etaMultiplier_T
       decide
     · by_cases hk : k = 10
-      ·
-        subst hk
+      · subst hk
         refine eq_one_of_mul_left (schreierGen_mem _ _) hTinv ?_ etaMultiplier_T_inv
         exact etaMultiplier_eq_one_of_apply_eq _ (by decide +kernel)
-      ·
-        rw [schreierGen_T_eq_one k hk]
+      · rw [schreierGen_T_eq_one k hk]
         exact etaMultiplier_one
 
 end Generators

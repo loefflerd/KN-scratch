@@ -25,7 +25,6 @@ theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F]
       (∀ x, x ∈ P.toValuationSubring ↔ 0 ≤ μ x) ∧
       ∀ x, x ≠ 0 → μ x = (((e : ℤ) * P.ord x : ℤ) : WithTop ℤ) := by
   classical
-
   let w : WithTop ℤ → ℤᵐ⁰ := fun a => WithTop.recTopCoe (0 : ℤᵐ⁰) (fun n : ℤ => exp (-n)) a
   have w_top : w ⊤ = 0 := rfl
   have w_coe : ∀ n : ℤ, w n = exp (-n) := fun n => rfl
@@ -67,7 +66,6 @@ theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F]
   have mem_iff : ∀ x, x ∈ v.valuationSubring ↔ 0 ≤ μ x := by
     intro x
     rw [Valuation.mem_valuationSubring_iff, v_apply, ← w_zero, w_le]
-
   obtain ⟨x₀, hx₀pos, hx₀top⟩ := h_nontriv
   have hx₀ne : x₀ ≠ 0 := fun h => hx₀top ((h_top x₀).mpr h)
   have hnt : v.IsNontrivial := by
@@ -83,7 +81,6 @@ theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F]
   have : IsCyclic (MonoidWithZeroHom.valueGroup (.ofClass v)) := inferInstance
   have hPIR : IsPrincipalIdealRing v.valuationSubring :=
     Valuation.valuationSubring_isPrincipalIdealRing v
-
   have hK : ∀ a : K, algebraMap K F a ∈ v.valuationSubring := by
     intro a
     rw [mem_iff]
@@ -108,13 +105,11 @@ theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F]
       algebraMap_mem' := hK
       ne_top' := hne
       isPrincipalIdealRing' := hPIR }
-
   obtain ⟨ϖ, hϖ⟩ := IsDiscreteValuationRing.exists_irreducible P.toValuationSubring
   have hϖ0 : (ϖ : F) ≠ 0 := by
     simpa [ne_eq, ZeroMemClass.coe_eq_zero] using hϖ.ne_zero
   have hϖtop : μ (ϖ : F) ≠ ⊤ := by rwa [ne_eq, h_top]
   have hϖmem : 0 ≤ μ (ϖ : F) := (mem_iff _).mp ϖ.2
-
   have μ_unit : ∀ u : (P.toValuationSubring)ˣ, μ ((u : P.toValuationSubring) : F) = 0 := by
     intro u
     have h1 : 0 ≤ μ ((u : P.toValuationSubring) : F) :=
@@ -135,7 +130,6 @@ theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F]
     rw [← hb, ← WithTop.coe_zero, WithTop.coe_le_coe] at h2
     rw [← ha, ← WithTop.coe_zero, WithTop.coe_eq_coe]
     omega
-
   have hϖpos : 0 < μ (ϖ : F) := by
     rcases hϖmem.lt_or_eq with h | h
     · exact h
@@ -151,7 +145,6 @@ theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F]
   obtain ⟨e, he⟩ := WithTop.ne_top_iff_exists.mp hϖtop
   rw [← he, ← WithTop.coe_zero, WithTop.coe_lt_coe] at hϖpos
   refine ⟨P, e.toNat, by omega, mem_iff, fun x hx => ?_⟩
-
   obtain ⟨u, hu⟩ := P.exists_unit_mul_zpow hx hϖ
   have μ_zpow : ∀ n : ℤ, μ ((ϖ : F) ^ n) = ((n * e : ℤ) : WithTop ℤ) := by
     have μ_pow : ∀ n : ℕ, μ ((ϖ : F) ^ n) = ((n * e : ℤ) : WithTop ℤ) := by

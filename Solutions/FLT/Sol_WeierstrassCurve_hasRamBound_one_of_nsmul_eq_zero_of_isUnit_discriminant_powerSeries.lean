@@ -98,16 +98,12 @@ theorem mem_puiseuxVal_iff {f : HahnSeries ℚ K} : f ∈ puiseuxVal K ↔ 0 ≤
   first
     | rfl
 
-
-
-
 theorem not_isUnit_of_orderTop_pos {z : puiseuxVal K}
     (hz : 0 < (z : HahnSeries ℚ K).orderTop) : ¬ IsUnit z := by
   rintro ⟨u, rfl⟩
   have h1 : ((u : puiseuxVal K) : HahnSeries ℚ K) * ((u⁻¹ : (puiseuxVal K)ˣ) : puiseuxVal K) = 1 := by
     first
       | exact congrArg Subtype.val u.mul_inv
-
   have h2 := congrArg HahnSeries.orderTop h1
   rw [HahnSeries.orderTop_mul, HahnSeries.orderTop_one] at h2
   have h3 : 0 ≤ (((u⁻¹ : (puiseuxVal K)ˣ) : puiseuxVal K) : HahnSeries ℚ K).orderTop :=
@@ -252,7 +248,6 @@ theorem solution
   let L := HahnSeries ℚ Kb
   let ι : PowerSeries Kb →+* L := HahnSeries.ofPowerSeries ℚ Kb
   let A : ValuationSubring L := puiseuxVal Kb
-
   let ιA : PowerSeries Kb →+* A := ι.codRestrict A ofPowerSeries_mem
   let W : WeierstrassCurve A := E.map ιA
   have hVW : W.map A.subtype = E.map ι := by
@@ -262,11 +257,9 @@ theorem solution
     rw [WeierstrassCurve.map_residue_Δ_ne_zero_iff, WeierstrassCurve.map_Δ]
     exact hΔ.map ιA
   have hn : ((d : ℕ) : IsLocalRing.ResidueField A) ≠ 0 := natCast_residue_ne_zero hd.ne'
-
   have hψ : ((E.map ι).ψ (d : ℤ)).evalEval x y = 0 :=
     (WeierstrassCurve.Affine.Point.smul_some_eq_zero_iff (E.map ι) h (d : ℤ)).mp
       (by first | (rw [natCast_zsmul]; exact htor) )
-
   have step : ∀ σr : L ≃+* L, (∀ z : L, (σr z).orderTop = z.orderTop) →
       (∀ z : L, HahnSeries.HasRamBound 1 z → σr z = z) → σr x = x ∧ σr y = y := by
     intro σr hσv hσ1

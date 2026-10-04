@@ -572,7 +572,6 @@ theorem exists_restrictAlong_eq (w : Place K F) (hw : 0 < w.ord (x - algebraMap 
   obtain ⟨W, hWw⟩ := Place.restrictAlong_surjective ι (hint ι hι) (finiteAlong_norm x t ι hι)
     (separableAlong_norm x t ι hι) w
   dsimp only at hWw
-
   have hW : 0 < W.ord (t - algebraMap K M j₀) := by
     have hf := Place.ord_restrictAlong ι (hint ι hι) W (x - algebraMap K F j₀)
     rw [psi_sub x t j₀ ι hι, hWw] at hf
@@ -608,7 +607,6 @@ theorem restrictAlong_eq_iff (ψ ψ' : F →ₐ[K] M) (hψ : ψ x = t) (hψ' : �
       AlgHom.ext fun f => (hτ f).symm
     subst hψ'eq
     rw [restrictAlong_comp t ψ τ _ (hint ψ hψ) W₀] at h
-
     let := algebraAlong ψ
     have := isScalarTower_along (K := K) ψ
     have : Module.Finite F M := finiteAlong_norm x t ψ hψ
@@ -675,7 +673,6 @@ theorem card_stabilizer_emb (ψ : Emb x t (K := K)) :
     (Place.deg_ne_zero_of_finiteDimensional_adjoin t (transcendental_t t j₀ W₀ hW₀) W₀)
   rw [show Place.ramificationIndexAlong ψ.1 W₀ = W₀.ramificationIndex F from rfl,
     ← card_stabilizer_eq (K := K) (E := F) W₀ hdeg]
-
   have fwd_comm : ∀ d : MulAction.stabilizer (MulAction.stabilizer (M ≃ₐ[K⟮t⟯] M) W₀) ψ,
       ∀ f, ((d.1.1 : M ≃ₐ[K⟮t⟯] M) : M ≃+* M) (ψ.1 f) = ψ.1 f := by
     intro d f
@@ -711,22 +708,17 @@ theorem ord_restrictAlong_eq_card (ψ : F →ₐ[K] M) (hψ : ψ x = t) :
         W₀.restrictAlong ψ'.1 (hint ψ'.1 ψ'.2) = W₀.restrictAlong ψ (hint ψ hψ)} := by
   set D := MulAction.stabilizer (M ≃ₐ[K⟮t⟯] M) W₀ with hD
   let ψe : Emb x t (K := K) := ⟨ψ, hψ⟩
-
   have h1 := Subgroup.card_mul_index (MulAction.stabilizer D ψe)
   rw [MulAction.index_stabilizer] at h1
-
   have h2 : (MulAction.orbit D ψe).ncard = Nat.card {ψ' : Emb x t (K := K) //
       W₀.restrictAlong ψ'.1 (hint ψ'.1 ψ'.2) = W₀.restrictAlong ψ (hint ψ hψ)} := by
     rw [← setOf_sameClass_eq_orbit x t hint W₀ ψe, ← Nat.card_coe_set_eq]
     rfl
-
   have h3 := card_stabilizer_emb x t j₀ W₀ hW₀ ψe
-
   have h4 := ord_eq_card_stabilizer t j₀ W₀ hW₀
   have h5 := Place.ord_restrictAlong ψ (hint ψ hψ) W₀ (x - algebraMap K F j₀)
   rw [psi_sub x t j₀ ψ hψ] at h5
   rw [h2, h3] at h1
-
   have he : 0 < Place.ramificationIndexAlong ψ W₀ := by
     let := algebraAlong ψ
     have := isScalarTower_along (K := K) ψ

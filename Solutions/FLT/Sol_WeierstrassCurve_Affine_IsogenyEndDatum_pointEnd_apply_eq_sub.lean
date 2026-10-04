@@ -21,7 +21,6 @@ theorem solution
     D.pointEnd hN P
       = (pointEquivPlace (W := W)).symm ((placeOfPoint P).restrictAlong D.ι D.hι)
         - (pointEquivPlace (W := W)).symm ((placeOfPoint (0 : W.Point)).restrictAlong D.ι D.hι) := by
-
   set Q : W.Point := (pointEquivPlace (W := W)).symm ((placeOfPoint P).restrictAlong D.ι D.hι) with hQ
   set Q₀ : W.Point :=
     (pointEquivPlace (W := W)).symm ((placeOfPoint (0 : W.Point)).restrictAlong D.ι D.hι) with hQ₀
@@ -29,7 +28,6 @@ theorem solution
     ((pointEquivPlace (W := W)).apply_symm_apply _).symm
   have h0 : (placeOfPoint (0 : W.Point)).restrictAlong D.ι D.hι = placeOfPoint Q₀ :=
     ((pointEquivPlace (W := W)).apply_symm_apply _).symm
-
   have hdiv : (Pic0.pushforwardAlongDegZero D.ι D.hι (pointDivisor P) :
       AlgebraicCurve.Divisor F W.FunctionField)
         = Finsupp.single (placeOfPoint Q) 1 - Finsupp.single (placeOfPoint Q₀) 1 := by

@@ -22,7 +22,6 @@ theorem isAlgebraic_adjoin_of_transcendental' (x : F)
     [halg : Algebra.IsAlgebraic (IntermediateField.adjoin K ({x} : Set F)) F]
     {t : F} (ht : Transcendental K t) :
     Algebra.IsAlgebraic (IntermediateField.adjoin K ({t} : Set F)) F := by
-
   have hx : Transcendental K x := by
     intro hxalg
     have : Algebra.IsAlgebraic K (IntermediateField.adjoin K ({x} : Set F)) :=
@@ -30,19 +29,16 @@ theorem isAlgebraic_adjoin_of_transcendental' (x : F)
     have : Algebra.IsAlgebraic K F :=
       Algebra.IsAlgebraic.trans K (IntermediateField.adjoin K ({x} : Set F)) F
     exact ht (Algebra.IsAlgebraic.isAlgebraic t)
-
   have hbx : IsTranscendenceBasis K ![x] := by
     rw [isTranscendenceBasis_iff_algebraicIndependent_isAlgebraic]
     refine ⟨algebraicIndependent_iff_transcendental.mpr hx, ?_⟩
     have : Set.range ![x] = {x} := by simp
     rw [this]
     exact (IntermediateField.isAlgebraic_adjoin_iff_top (F := K) (s := ({x} : Set F))).mp halg
-
   have hind : AlgebraicIndepOn K id ({t} : Set F) := by
     rw [AlgebraicIndepOn, algebraicIndependent_unique_type_iff]
     simpa using ht
   obtain ⟨S, htS, hS⟩ := exists_isTranscendenceBasis_superset hind
-
   have hcard := hS.lift_cardinalMk_eq hbx
   simp only [Cardinal.mk_fin, Nat.cast_one, Cardinal.lift_one, Cardinal.lift_eq_one] at hcard
   have hS_eq : S = {t} :=
@@ -59,18 +55,14 @@ theorem finiteDimensional_adjoin_of_transcendental' (x : F)
     isAlgebraic_adjoin_of_transcendental' x ht
   set E := IntermediateField.adjoin K ({t} : Set F)
   set Kx := IntermediateField.adjoin K ({x} : Set F)
-
   let b := Module.finBasis Kx F
   let S : Set F := insert x (Set.range b)
   have : Finite S := Set.Finite.insert x (Set.finite_range b) |>.to_subtype
-
   have hM : FiniteDimensional E (IntermediateField.adjoin E S) :=
     IntermediateField.finiteDimensional_adjoin fun y _ => (halg.isAlgebraic y).isIntegral
-
   have htop : IntermediateField.adjoin E S = ⊤ := by
     rw [eq_top_iff]
     intro y _
-
     have hKx : ∀ c : Kx, (c : F) ∈ IntermediateField.adjoin E S := by
       intro c
       have hle : Kx ≤ (IntermediateField.adjoin E S).restrictScalars K := by
@@ -80,7 +72,6 @@ theorem finiteDimensional_adjoin_of_transcendental' (x : F)
         subst hz
         exact IntermediateField.subset_adjoin E S (Set.mem_insert _ _)
       exact hle c.2
-
     rw [← b.sum_repr y]
     refine Subfield.sum_mem _ fun i _ => ?_
     rw [IntermediateField.smul_def]

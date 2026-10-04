@@ -158,7 +158,6 @@ section WeightOneFourSeed
 
 /-! # The quadratic weight-one Eisenstein series at level four -/
 
-
 open UpperHalfPlane
 open scoped MatrixGroups
 
@@ -230,7 +229,6 @@ section WeightTwoFourSquare
 
 /-! # Squaring the quadratic weight-one Eisenstein series -/
 
-
 open UpperHalfPlane
 open scoped MatrixGroups ModularForm
 
@@ -300,7 +298,6 @@ end WeightTwoFourSquare
 section HalfTranslationFour
 
 /-! # Half-translation at level four -/
-
 
 open UpperHalfPlane
 open scoped MatrixGroups ModularForm Pointwise
@@ -404,7 +401,6 @@ section HalfTranslationQExpansion
 
 /-! # Coefficients under half-translation -/
 
-
 open UpperHalfPlane
 open scoped MatrixGroups
 
@@ -446,7 +442,6 @@ end HalfTranslationQExpansion
 section LevelFourModularPair
 
 /-! # The low-weight modular pair at level four -/
-
 
 open UpperHalfPlane
 open scoped MatrixGroups

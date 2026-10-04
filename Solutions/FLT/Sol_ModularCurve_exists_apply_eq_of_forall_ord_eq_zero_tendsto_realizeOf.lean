@@ -39,7 +39,6 @@ theorem solution
   classical
   by_contra hcon
   push Not at hcon
-
   let Pl' : Quotient (QuotientGroup.rightRel Γ) → AlgebraicCurve.Place ℂ ↥(ModularCurve.laurentBaseChange ℂ F₀) :=
     Quotient.lift Pl (by
       intro a b hab
@@ -55,7 +54,6 @@ theorem solution
     exact ⟨Quotient.mk _ σ, rfl⟩
   obtain ⟨S₀, hS₀⟩ : ∃ S₀ : Finset (AlgebraicCurve.Place ℂ ↥(ModularCurve.laurentBaseChange ℂ F₀)),
       ∀ σ, Pl σ ∈ S₀ := ⟨hfin.toFinset, fun σ => hfin.mem_toFinset.mpr ⟨σ, rfl⟩⟩
-
   obtain ⟨g, hg0, hg⟩ := AlgebraicCurve.Place.exists_forall_ord_eq_finset (insert P S₀)
     (fun v => if v = P then (1 : ℤ) else 0)
   have hPg : P.ord g = 1 := by
@@ -64,11 +62,9 @@ theorem solution
   have hσg : ∀ σ : SL(2, ℤ), (Pl σ).ord g = 0 := fun σ => by
     have h := hg (Pl σ) (Finset.mem_insert_of_mem (hS₀ σ))
     rwa [ite_eq_right (hcon σ)] at h
-
   have hcusp : ∀ σ : SL(2, ℤ), ∃ L : ℂ, L ≠ 0 ∧
       Filter.Tendsto (fun τ : UpperHalfPlane => ModularCurve.realizeOf Γ (g : LaurentSeries ℂ) (σ • τ)) UpperHalfPlane.atImInfty (nhds L) :=
     fun σ => hlim σ g hg0 (hσg σ)
-
   have h0 : P.ord g = 0 :=
     ModularCurve.ord_eq_zero_of_not_mem_of_realizeOf_tendsto Γ hT hΓ F₀ hF g
       (fun τ : UpperHalfPlane => ModularCurve.realizeOf Γ (g : LaurentSeries ℂ) τ) (fun τ => Filter.EventuallyEq.rfl) hcusp P y hy hP

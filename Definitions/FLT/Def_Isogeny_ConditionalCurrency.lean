@@ -157,11 +157,8 @@ variable {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
 variable (W : Affine F) [W.IsElliptic] [GenusOnePlaceGate W] [AbelTheorem W]
 
 structure IsogenyEndDatum where
-
   ι : W.FunctionField →ₐ[F] W.FunctionField
-
   hι : ι.toRingHom.IsIntegral
-
   hfin : FiniteAlong F ι
 
 namespace IsogenyEndDatum

@@ -83,7 +83,6 @@ theorem solution (n N : ℕ) [NeZero N]
     HeckeEis.eichlerShimuraMap n N ⇑(f + g) = HeckeEis.eichlerShimuraMap n N f + HeckeEis.eichlerShimuraMap n N g :=
   HeckeEis.SolMain.esadd n N f g
 
-
 end S_HeckeEis_eichlerShimuraMap_add
 end P2MW
 export P2MW.S_HeckeEis_eichlerShimuraMap_add (solution)

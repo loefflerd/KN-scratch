@@ -634,8 +634,7 @@ lemma summable_middle {σ : ℂ} (hσ : 0 < σ.im) :
   rintro ⟨x, m⟩
   simp only [Function.uncurry_apply_pair, norm_mul]
   congr 1
-  ·
-    rw [Complex.norm_exp, Complex.norm_exp]
+  · rw [Complex.norm_exp, Complex.norm_exp]
     congr 1
     simp only [Complex.add_re]
     congr 1
@@ -643,8 +642,7 @@ lemma summable_middle {σ : ℂ} (hσ : 0 < σ.im) :
       show (2 * (π : ℂ) * (I * (m : ℂ) / 2) * (x : ℂ)) =
         ((π * (m : ℝ) * (x : ℝ) : ℝ) : ℂ) * I by push_cast; ring]
     rw [Complex.zero_re, Complex.re_ofReal_mul, Complex.I_re, mul_zero]
-  ·
-    refine congrArg norm (congrArg cexp ?_)
+  · refine congrArg norm (congrArg cexp ?_)
     rw [mul_zero, zero_mul, add_zero, div_eq_mul_inv]
 
 theorem hexTheta_eq_mul_self_neg_inv {σ : ℂ} (hσ : 0 < σ.im) :
@@ -744,14 +742,12 @@ lemma cpow_half_mul_cpow_half {σ : ℂ} (hσ : 0 < σ.im) :
     norm_num
   refine eq_of_sq_eq_sq_of_re_pos ?_
     (re_cpow_half_mul_cpow_half_pos (re_neg_two_I_mul hσ) (re_neg_three_I_mul_div_two hσ)) ?_
-  ·
-    rw [mul_pow, sq_cpow_half ha, sq_cpow_half hb,
+  · rw [mul_pow, sq_cpow_half ha, sq_cpow_half hb,
       show (-I * ((Real.sqrt 3 : ℝ) : ℂ) * σ) ^ 2 =
         ((Real.sqrt 3 : ℝ) : ℂ) ^ 2 * (I ^ 2 * σ ^ 2) by ring,
       hs3]
     ring
-  ·
-    rw [show (-I * ((Real.sqrt 3 : ℝ) : ℂ) * σ) = ((Real.sqrt 3 : ℝ) : ℂ) * (σ * -I) by ring,
+  · rw [show (-I * ((Real.sqrt 3 : ℝ) : ℂ) * σ) = ((Real.sqrt 3 : ℝ) : ℂ) * (σ * -I) by ring,
       Complex.re_ofReal_mul, mul_neg, Complex.neg_re, Complex.mul_I_re, neg_neg]
     exact mul_pos (Real.sqrt_pos.mpr (by norm_num)) hσ
 
@@ -1053,15 +1049,13 @@ lemma schreierGens_subset_closure_gens :
     Subgroup.subset_closure (Or.inr (Or.inr rfl))
   have hcases : ∀ j : ZMod 3, j = 0 ∨ j = 1 ∨ j = 2 := by decide
   rintro x ⟨l, rfl | rfl⟩
-  ·
-    rcases l with _ | k
+  · rcases l with _ | k
     · rw [schreierGen_eq_one.2.2]; exact one_mem _
     · rcases hcases k with rfl | rfl | rfl
       · rw [schreierGen_zero_S]; exact hneg
       · rw [schreierGen_one_S]; exact mul_mem (inv_mem hT) (inv_mem hU)
       · rw [schreierGen_two_S]; exact mul_mem hneg (mul_mem hU hT)
-  ·
-    rcases l with _ | k
+  · rcases l with _ | k
     · rw [schreierGen_none_T]; exact hT
     · rcases hcases k with rfl | rfl | rfl
       · rw [schreierGen_eq_one.1]; exact one_mem _
@@ -1165,26 +1159,21 @@ theorem slash_eq_chi3_smul
     (hT : F ∣[(1 : ℤ)] ModularGroup.T = F) (hU : F ∣[(1 : ℤ)] U₃ = F)
     {γ : SL(2, ℤ)} (hγ : γ ∈ Gamma0 3) :
     F ∣[(1 : ℤ)] γ = (chi3 γ : ℂ) • F := by
-
   let p : (g : SL(2, ℤ)) → g ∈ Subgroup.closure gens → Prop :=
     fun g _ => F ∣[(1 : ℤ)] g = (chi3 g : ℂ) • F
-
   have hmem_iff : ∀ {g : SL(2, ℤ)}, g ∈ Subgroup.closure gens ↔ g ∈ Gamma0 3 := by
     intro g; rw [closure_T_U_neg_one_eq]
   refine Subgroup.closure_induction (k := gens) (p := p) ?_ ?_ ?_ ?_ (hmem_iff.mpr hγ)
-  ·
-    rintro x (rfl | rfl | rfl)
+  · rintro x (rfl | rfl | rfl)
     · show F ∣[(1 : ℤ)] ModularGroup.T = (chi3 ModularGroup.T : ℂ) • F
       rw [hT, chi3_T]; simp
     · show F ∣[(1 : ℤ)] U₃ = (chi3 U₃ : ℂ) • F
       rw [hU, chi3_U₃]; simp
     · exact slash_neg_one F
-  ·
-    show F ∣[(1 : ℤ)] (1 : SL(2, ℤ)) = (chi3 1 : ℂ) • F
+  · show F ∣[(1 : ℤ)] (1 : SL(2, ℤ)) = (chi3 1 : ℂ) • F
     rw [SlashAction.slash_one, chi3_one]
     simp
-  ·
-    intro x y hx hy hpx hpy
+  · intro x y hx hy hpx hpy
     show F ∣[(1 : ℤ)] (x * y) = (chi3 (x * y) : ℂ) • F
     have hx' : x ∈ Gamma0 3 := hmem_iff.mp hx
     have hy' : y ∈ Gamma0 3 := hmem_iff.mp hy
@@ -1195,24 +1184,20 @@ theorem slash_eq_chi3_smul
       _ = (chi3 x : ℂ) • ((chi3 y : ℂ) • F) := by rw [hpy]
       _ = ((chi3 x * chi3 y : ℤ) : ℂ) • F := by rw [smul_smul]; norm_num
       _ = (chi3 (x * y) : ℂ) • F := by rw [← chi3_mul hx' hy']
-  ·
-    intro x hx hpx
+  · intro x hx hpx
     show F ∣[(1 : ℤ)] x⁻¹ = (chi3 x⁻¹ : ℂ) • F
     have hx' : x ∈ Gamma0 3 := hmem_iff.mp hx
     have hxinv : x⁻¹ ∈ Gamma0 3 := inv_mem hx'
-
     have hchi : chi3 x⁻¹ = chi3 x := by
       have h1 : chi3 (x⁻¹ * x) = chi3 x⁻¹ * chi3 x := chi3_mul hxinv hx'
       rw [inv_mul_cancel, chi3_one] at h1
       rcases chi3_eq_one_or_neg_one x with h | h <;>
         rcases chi3_eq_one_or_neg_one x⁻¹ with h' | h' <;> rw [h, h'] <;> rw [h, h'] at h1 <;>
           omega
-
     have h2 : (F ∣[(1 : ℤ)] x) ∣[(1 : ℤ)] x⁻¹ = ((chi3 x : ℂ) • F) ∣[(1 : ℤ)] x⁻¹ := by
       rw [hpx]
     rw [← SlashAction.slash_mul, mul_inv_cancel, SlashAction.slash_one,
       ModularForm.SL_smul_slash] at h2
-
     have h3 := congrArg (fun G => (chi3 x : ℂ) • G) h2
     simp only [smul_smul] at h3
     rw [show ((chi3 x : ℂ) * (chi3 x : ℂ)) = ((chi3 x * chi3 x : ℤ) : ℂ) by push_cast; ring,
@@ -1250,7 +1235,6 @@ def slashInvariantForm_of_T_U (F : ℍ → ℂ)
   toFun := F
   slash_action_eq' := by
     rintro γ ⟨δ, hδ, rfl⟩
-
     exact slash_eq_self_of_mem_Gamma1 F hT hU hδ
 
 @[scoped simp] lemma coe_slashInvariantForm_of_T_U (F : ℍ → ℂ)
@@ -1349,7 +1333,6 @@ lemma U_smul_eq_fricke_translate_fricke {z : ℂ} (hz : 0 < z.im) :
     z / ((-3) * z + 1) = -1 / (3 * (-1 / (3 * z) + 1)) := by
   have hz0 : z ≠ 0 := ne_zero_of_im_pos hz
   have hden : (-3 : ℂ) * z + 1 ≠ 0 := U_denom_ne_zero hz
-
   have h1 : (3 : ℂ) * (-1 / (3 * z) + 1) = (3 * z - 1) / z := by
     field_simp
     ring
@@ -1375,7 +1358,6 @@ lemma fricke_double_multiplier {z : ℂ} (hz : 0 < z.im) :
 
 theorem hexTheta_U_law {z : ℂ} (hz : 0 < z.im) :
     hexTheta (z / ((-3) * z + 1)) = ((-3) * z + 1) * hexTheta z := by
-
   have hσ : 0 < (-1 / (3 * z)).im := im_neg_one_div_three_mul_pos hz
   have hσ1 : 0 < (-1 / (3 * z) + 1).im := by
     rwa [Complex.add_im, Complex.one_im, add_zero]
@@ -1422,13 +1404,11 @@ lemma thetaBound_nonneg : 0 ≤ thetaBound :=
 theorem norm_latticeSum_le_of_one_le_im {τ : ℂ} (hτ : 1 ≤ τ.im) :
     ‖latticeSum τ‖ ≤ thetaBound := by
   have hτ0 : 0 < τ.im := lt_of_lt_of_le one_pos hτ
-
   have hdom : ∀ v : ℤ × ℤ, ‖latticeTerm τ v‖
       ≤ Real.exp (-(π * (v.1 : ℝ) ^ 2)) * Real.exp (-(π * (v.2 : ℝ) ^ 2)) := by
     intro v
     have h := norm_latticeTerm_le_of_le_im one_pos hτ v
     simpa only [mul_one, one_mul] using h
-
   have hgauss : Summable fun v : ℤ × ℤ =>
       Real.exp (-(π * (v.1 : ℝ) ^ 2)) * Real.exp (-(π * (v.2 : ℝ) ^ 2)) := by
     simpa only [mul_one, one_mul] using summable_gaussian_prod one_pos
@@ -1459,18 +1439,15 @@ theorem hexThetaH_slash_repOfLabel_apply (k : ZMod 3) (z : ℍ) :
     (hexThetaH ∣[(1 : ℤ)] Gamma0Three.repOfLabel (some k)) z
       = (-Complex.I / ((Real.sqrt 3 : ℝ) : ℂ)) * hexTheta (((z : ℂ) + (k.val : ℂ)) / 3) := by
   have hz : 0 < (z : ℂ).im := by rw [UpperHalfPlane.coe_im]; exact z.im_pos
-
   have hden_im : ((z : ℂ) + (k.val : ℂ)).im = (z : ℂ).im := by
     simp only [Complex.add_im, Complex.natCast_im, add_zero]
   have hden_ne : (z : ℂ) + (k.val : ℂ) ≠ 0 := by
     intro h
     rw [← Complex.zero_im, ← h, hden_im] at hz
     exact lt_irrefl _ hz
-
   have hσ_im : 0 < (((z : ℂ) + (k.val : ℂ)) / 3).im := by
     rw [im_add_natCast_div_three]
     positivity
-
   have hsmul : ((Gamma0Three.repOfLabel (some k) • z : ℍ) : ℂ)
       = -1 / ((z : ℂ) + (k.val : ℂ)) := by
     rw [UpperHalfPlane.coe_specialLinearGroup_apply]
@@ -1480,21 +1457,18 @@ theorem hexThetaH_slash_repOfLabel_apply (k : ZMod 3) (z : ℍ) :
       show Gamma0Three.repOfLabel (some k) 1 1 = (k.val : ℤ) from rfl, eq_intCast]
     push_cast
     rw [zero_mul, zero_add, one_mul]
-
   have hdenom : denom (Gamma0Three.repOfLabel (some k)) z = (z : ℂ) + (k.val : ℂ) := by
     rw [ModularGroup.denom_apply,
       show Gamma0Three.repOfLabel (some k) 1 0 = 1 from rfl,
       show Gamma0Three.repOfLabel (some k) 1 1 = (k.val : ℤ) from rfl]
     push_cast
     rw [one_mul]
-
   have hfricke : hexTheta (-1 / ((z : ℂ) + (k.val : ℂ)))
       = -Complex.I * ((Real.sqrt 3 : ℝ) : ℂ) * (((z : ℂ) + (k.val : ℂ)) / 3)
         * hexTheta (((z : ℂ) + (k.val : ℂ)) / 3) := by
     have h := hexTheta_fricke hσ_im
     rw [show (3 : ℂ) * (((z : ℂ) + (k.val : ℂ)) / 3) = (z : ℂ) + (k.val : ℂ) by ring] at h
     exact h
-
   have hmul : -Complex.I * ((Real.sqrt 3 : ℝ) : ℂ) * (((z : ℂ) + (k.val : ℂ)) / 3)
       * ((z : ℂ) + (k.val : ℂ))⁻¹ = -Complex.I / ((Real.sqrt 3 : ℝ) : ℂ) := by
     rw [eq_div_iff sqrt_three_ne_zero,
@@ -1504,7 +1478,6 @@ theorem hexThetaH_slash_repOfLabel_apply (k : ZMod 3) (z : ℍ) :
           * (((z : ℂ) + (k.val : ℂ)) * ((z : ℂ) + (k.val : ℂ))⁻¹) / 3 by ring,
       sqrt_three_mul_sqrt_three, mul_inv_cancel₀ hden_ne]
     ring
-
   rw [ModularForm.SL_slash_apply, hdenom, _root_.zpow_neg, zpow_one]
   show latticeSum ((Gamma0Three.repOfLabel (some k) • z : ℍ) : ℂ) * _ = _
   rw [hsmul, latticeSum_eq_hexTheta, hfricke]
@@ -1512,7 +1485,6 @@ theorem hexThetaH_slash_repOfLabel_apply (k : ZMod 3) (z : ℍ) :
 
 theorem isBoundedAtImInfty_hexThetaH_slash (γ : SL(2, ℤ)) :
     IsBoundedAtImInfty (hexThetaH ∣[(1 : ℤ)] γ) := by
-
   set r := Gamma0Three.repOfLabel (Gamma0Three.label γ) with hr
   have hδ : γ * r⁻¹ ∈ Gamma0 3 :=
     (Gamma0Three.mul_inv_repOfLabel_mem_iff γ (Gamma0Three.label γ)).mpr rfl
@@ -1520,15 +1492,11 @@ theorem isBoundedAtImInfty_hexThetaH_slash (γ : SL(2, ℤ)) :
   rw [hfact, SlashAction.slash_mul,
     slash_eq_chi3_smul hexThetaH hexThetaH_slash_T hexThetaH_slash_U hδ,
     ModularForm.SL_smul_slash]
-
   refine Filter.BoundedAtFilter.smul _ ?_
-
   rcases hcase : Gamma0Three.label γ with _ | k
-  ·
-    rw [hr, hcase, Gamma0Three.repOfLabel_none, SlashAction.slash_one]
+  · rw [hr, hcase, Gamma0Three.repOfLabel_none, SlashAction.slash_one]
     exact isBoundedAtImInfty_hexThetaH
-  ·
-    rw [hr, hcase]
+  · rw [hr, hcase]
     refine UpperHalfPlane.isBoundedAtImInfty_iff.mpr ⟨thetaBound, 3, fun z hz => ?_⟩
     rw [hexThetaH_slash_repOfLabel_apply k z, norm_mul]
     have him : 1 ≤ (((z : ℂ) + (k.val : ℂ)) / 3).im := by
@@ -1573,7 +1541,6 @@ theorem not_hexTheta_U_law_weight_zero :
   have h1 := hcon frickeFixedPoint h0
   have h2 := hexTheta_U_law h0
   rw [h1] at h2
-
   have h3 : (-3 : ℂ) * frickeFixedPoint * hexTheta frickeFixedPoint = 0 := by
     linear_combination -h2
   rcases mul_eq_zero.mp h3 with h4 | h4
@@ -1824,12 +1791,10 @@ theorem unitRot_mem_unitRotOrbit {p q : ℤ × ℤ} (hq : q ∈ unitRotOrbit p) 
   · tauto
   · tauto
   · tauto
-  ·
-    exact Or.inl (unitRot_six_iterate p)
+  · exact Or.inl (unitRot_six_iterate p)
 
 theorem mem_unitRotOrbit_of_unitRot_mem {p q : ℤ × ℤ} (hq : unitRot q ∈ unitRotOrbit p) :
     q ∈ unitRotOrbit p := by
-
   have h5 : ∀ r ∈ unitRotOrbit p,
       unitRot (unitRot (unitRot (unitRot (unitRot r)))) ∈ unitRotOrbit p := fun r hr =>
     unitRot_mem_unitRotOrbit (unitRot_mem_unitRotOrbit (unitRot_mem_unitRotOrbit
@@ -1841,7 +1806,6 @@ theorem card_unitRotOrbit {p : ℤ × ℤ} (hp : p ≠ (0, 0)) : (unitRotOrbit p
   obtain ⟨x, y⟩ := p
   have hxy : ¬(x = 0 ∧ y = 0) := by
     intro ⟨hx, hy⟩; exact hp (by simp [hx, hy])
-
   simp only [unitRotOrbit, unitRot]
   rw [Finset.card_insert_of_notMem, Finset.card_insert_of_notMem,
     Finset.card_insert_of_notMem, Finset.card_insert_of_notMem,
@@ -1859,7 +1823,6 @@ theorem six_dvd_card_of_unitRot_invariant :
     rcases s.eq_empty_or_nonempty with rfl | ⟨p, hp⟩
     · simp
     · have hpne : p ≠ (0, 0) := fun h => h0 (h ▸ hp)
-
       have horb_sub : unitRotOrbit p ⊆ s := by
         intro q hq
         simp only [unitRotOrbit, Finset.mem_insert, Finset.mem_singleton] at hq
@@ -1870,7 +1833,6 @@ theorem six_dvd_card_of_unitRot_invariant :
         · exact hinv _ (hinv _ (hinv _ hp))
         · exact hinv _ (hinv _ (hinv _ (hinv _ hp)))
         · exact hinv _ (hinv _ (hinv _ (hinv _ (hinv _ hp))))
-
       have hssub : s \ unitRotOrbit p ⊂ s :=
         Finset.sdiff_ssubset horb_sub ⟨p, mem_unitRotOrbit_self p⟩
       have h0' : ((0 : ℤ), (0 : ℤ)) ∉ s \ unitRotOrbit p := fun h =>
@@ -1887,14 +1849,11 @@ theorem six_dvd_card_of_unitRot_invariant :
 
 theorem six_dvd_reprCount {n : ℕ} (hn : n ≠ 0) : 6 ∣ reprCount n := by
   apply six_dvd_card_of_unitRot_invariant
-  ·
-    intro h
+  · intro h
     have := mem_reprSols_iff.mp h
     simp only [hexForm] at this
     omega
-  ·
-
-    intro p hp
+  · intro p hp
     have hQ : hexForm (unitRot p).1 (unitRot p).2 = (n : ℤ) := by
       rw [hexForm_unitRot]; exact mem_reprSols_iff.mp hp
     exact mem_reprSols_iff.mpr hQ
@@ -2014,10 +1973,8 @@ theorem sq_add_self_add_one_eq_zero_iff_orderOf_eq_three (hp : p.Prime) (hp3 : p
   constructor
   · intro hx
     refine orderOf_eq_prime ?_ ?_
-    ·
-      linear_combination (x - 1) * hx
-    ·
-      rintro rfl
+    · linear_combination (x - 1) * hx
+    · rintro rfl
       have h3 : (3 : ZMod p) = 0 := by linear_combination hx
       have hcast : ((3 : ℕ) : ZMod p) = 0 := by exact_mod_cast h3
       have hdvd : p ∣ 3 := (CharP.cast_eq_zero_iff (ZMod p) p 3).mp hcast
@@ -2070,9 +2027,7 @@ theorem nuThree_prime (hp : p.Prime) (hp3 : p ≠ 3) :
     nuThree p = if p % 3 = 1 then 2 else 0 := by
   have : Fact p.Prime := ⟨hp⟩
   by_cases h1 : p % 3 = 1
-  ·
-
-    rw [ite_eq_left h1]
+  · rw [ite_eq_left h1]
     obtain ⟨ζ, hζord⟩ := exists_orderOf_eq_three hp h1
     have hζ : ζ ^ 2 + ζ + 1 = 0 :=
       (sq_add_self_add_one_eq_zero_iff_orderOf_eq_three hp hp3 ζ).mpr hζord
@@ -2087,9 +2042,7 @@ theorem nuThree_prime (hp : p.Prime) (hp3 : p ≠ 3) :
       rintro ⟨x, hx⟩
       simp only [Set.mem_insert_iff, Set.mem_singleton_iff, Subtype.mk.injEq]
       exact (sq_add_self_add_one_eq_zero_iff_of_prime hp hζ).mp hx
-  ·
-
-    rw [ite_eq_right h1]
+  · rw [ite_eq_right h1]
     have hempty : IsEmpty {x : ZMod p // x ^ 2 + x + 1 = 0} := by
       refine ⟨fun z => ?_⟩
       obtain ⟨x, hx⟩ := z
@@ -2355,7 +2308,6 @@ theorem reprSols_three_mul (m : ℕ) :
   · intro hQ
     have h3 : (3 : ℤ) ∣ hexForm x y := by rw [hQ]; push_cast; exact ⟨m, by ring⟩
     obtain ⟨u, hu⟩ := three_dvd_sub_of_dvd_hexForm h3
-
     refine ⟨u, y + u, ?_, by linarith, by ring⟩
     refine mul_left_cancel₀ (by norm_num : (3 : ℤ) ≠ 0) ?_
     rw [← hexForm_ramified_ascent]
@@ -2459,18 +2411,15 @@ theorem reprCountEqCoeffE1Chi3_of_residuals
     have hpk : p ^ k ≠ 0 := pow_ne_zero k hp'.pos.ne'
     rw [coeff_e1Chi3_of_ne_zero hpk]
     rcases (by omega : p % 3 = 0 ∨ p % 3 = 1 ∨ p % 3 = 2) with h0 | h1 | h2
-    ·
-      have hp3 : p = 3 := ((Nat.prime_dvd_prime_iff_eq Nat.prime_three hp').mp
+    · have hp3 : p = 3 := ((Nat.prime_dvd_prime_iff_eq Nat.prime_three hp').mp
         (Nat.dvd_of_mod_eq_zero h0)).symm
       subst hp3
       rw [reprCount_three_pow, sigmaChi_three_pow]
       norm_num
-    ·
-      rw [hsplit p k hp' h1, sigmaChi_split_pow hp' h1]
+    · rw [hsplit p k hp' h1, sigmaChi_split_pow hp' h1]
       push_cast
       ring
-    ·
-      rw [reprCount_inert_pow hp' h2, sigmaChi_inert_pow hp' h2]
+    · rw [reprCount_inert_pow hp' h2, sigmaChi_inert_pow hp' h2]
       rcases Nat.even_or_odd k with hk' | hk'
       · rw [ite_eq_left hk', ite_eq_left hk']; norm_num
       · rw [ite_eq_right (Nat.not_even_iff_odd.mpr hk'),
@@ -2531,7 +2480,6 @@ open Finset
 structure HexInt where
 
   re : ℤ
-
   im : ℤ
   deriving DecidableEq
 
@@ -2704,7 +2652,6 @@ theorem mod_def (x y : HexInt) : x % y = x - y * (x / y) := rfl
 
 theorem norm_mod_lt (x : HexInt) {y : HexInt} (hy : y ≠ 0) : (x % y).norm < y.norm := by
   have hn : 0 < y.norm := norm_pos hy
-
   have hkey : (x % y) * y.conj = x * y.conj - (y.norm : HexInt) * (x / y) := by
     rw [mod_def, sub_mul, mul_comm y (x / y), mul_assoc, mul_conj]; ring
   have hre : ((x % y) * y.conj).re
@@ -2717,14 +2664,12 @@ theorem norm_mod_lt (x : HexInt) {y : HexInt} (hy : y ≠ 0) : (x % y).norm < y.
     rw [hkey]
     simp only [im_sub, re_mul, im_mul, im_intCast, re_intCast, div_def]
     ring
-
   obtain ⟨hA1, hA2⟩ := nearestDiv_bound hn (x * y.conj).re
   obtain ⟨hB1, hB2⟩ := nearestDiv_bound hn (x * y.conj).im
   set A := ((x % y) * y.conj).re with hA_def
   set B := ((x % y) * y.conj).im with hB_def
   rw [← hre] at hA1 hA2
   rw [← him] at hB1 hB2
-
   have hbound : 4 * hexForm A B ≤ 3 * y.norm ^ 2 := by
     have h1 : (0 : ℤ) ≤ (y.norm - 2 * A) * (y.norm + 2 * A) := by nlinarith
     have h2 : (0 : ℤ) ≤ (y.norm - 2 * B) * (y.norm + 2 * B) := by nlinarith
@@ -2732,7 +2677,6 @@ theorem norm_mod_lt (x : HexInt) {y : HexInt} (hy : y ≠ 0) : (x % y).norm < y.
     have h4 : (0 : ℤ) ≤ (y.norm + 2 * A) * (y.norm - 2 * B) := by nlinarith
     simp only [hexForm]
     nlinarith
-
   have hprod : hexForm A B = (x % y).norm * y.norm := by
     rw [hA_def, hB_def]
     have : ((x % y) * y.conj).norm = (x % y).norm * y.norm := by
@@ -2824,11 +2768,9 @@ theorem exists_nat_prime_dvd {π : HexInt} (hπ : Prime π) :
 theorem norm_eq_of_prime_of_dvd {π : HexInt} (hπ : Prime π) {p : ℕ} (hp : p.Prime)
     (hdvd : (p : ℤ) ∣ π.norm) : π.norm = (p : ℤ) ∨ π.norm = (p : ℤ) ^ 2 := by
   obtain ⟨q, hq, hπq⟩ := exists_nat_prime_dvd hπ
-
   have hnq : π.norm ∣ (q : ℤ) ^ 2 := by
     have := norm_dvd_norm hπq
     rwa [norm_natCast] at this
-
   have h0 : π.norm ≠ 0 := fun h => hπ.ne_zero (norm_eq_zero_iff.mp h)
   have h1 : π.norm ≠ 1 := fun h => hπ.not_isUnit (isUnit_iff_norm_eq_one.mpr h)
   have hnn := norm_nonneg π
@@ -2837,7 +2779,6 @@ theorem norm_eq_of_prime_of_dvd {π : HexInt} (hπ : Prime π) {p : ℕ} (hp : p
       rw [Int.toNat_of_nonneg hnn]; push_cast; exact hnq
     exact_mod_cast this
   obtain ⟨j, hj2, hjeq⟩ := (Nat.dvd_prime_pow hq).mp hnat
-
   have hpnat : p ∣ π.norm.toNat := by
     have : ((p : ℕ) : ℤ) ∣ ((π.norm.toNat : ℕ) : ℤ) := by
       rw [Int.toNat_of_nonneg hnn]; exact hdvd
@@ -2847,12 +2788,10 @@ theorem norm_eq_of_prime_of_dvd {π : HexInt} (hπ : Prime π) {p : ℕ} (hp : p
     have := hp.dvd_of_dvd_pow hpnat
     exact (Nat.prime_dvd_prime_iff_eq hp hq).mp this
   subst hpq
-
   have hcast : π.norm = ((p ^ j : ℕ) : ℤ) := by
     rw [← hjeq, Int.toNat_of_nonneg hnn]
   interval_cases j
-  ·
-    exfalso
+  · exfalso
     apply h1
     simp only [pow_zero, Nat.cast_one] at hcast
     exact hcast
@@ -2863,16 +2802,13 @@ theorem exists_dvd_norm_eq {γ : HexInt} (hγ : γ ≠ 0) {p : ℕ} (hp : p.Prim
     (hdvd : (p : ℤ) ∣ γ.norm) :
     ∃ δ : HexInt, δ ∣ γ ∧ (δ.norm = (p : ℤ) ∨ δ.norm = (p : ℤ) ^ 2) := by
   obtain ⟨f, hfprime, hfprod⟩ := UniqueFactorizationMonoid.exists_prime_factors γ hγ
-
   have hnormprod : (f.map norm).prod = γ.norm := by
     have h1 : (f.map norm).prod = (f.prod).norm := by
       rw [show (f.map norm) = f.map normHom from rfl, ← MonoidHom.map_multiset_prod]
       rfl
     rw [h1]
-
     obtain ⟨u, hu⟩ := hfprod
     rw [← hu, norm_mul, isUnit_iff_norm_eq_one.mp u.isUnit, mul_one]
-
   have hpprime : Prime (p : ℤ) := Nat.prime_iff_prime_int.mp hp
   obtain ⟨x, hxmem, hpx⟩ := hpprime.exists_mem_multiset_dvd (hnormprod ▸ hdvd)
   obtain ⟨π, hπmem, rfl⟩ := Multiset.mem_map.mp hxmem
@@ -2887,7 +2823,6 @@ theorem exists_factorization :
   induction m using Nat.strong_induction_on with
   | _ m ih =>
     intro n hmn γ hγ
-
     rcases Nat.eq_zero_or_pos m with rfl | hm0
     · have hn1 : n = 1 := by simpa using hmn
       subst hn1
@@ -2895,7 +2830,6 @@ theorem exists_factorization :
       exact ⟨0, 1, by simp [hγ0], by simp, by simp⟩
     rcases eq_or_ne m 1 with rfl | hm1
     · exact ⟨1, γ, by simp, by simp, by simpa using hγ⟩
-
     have hm2 : 2 ≤ m := by omega
     set p := m.minFac with hp_def
     have hp : p.Prime := Nat.minFac_prime hm1
@@ -2915,10 +2849,8 @@ theorem exists_factorization :
       exact Dvd.dvd.mul_right (Int.natCast_dvd_natCast.mpr hpm) _
     obtain ⟨δ, hδγ, hδnorm⟩ := exists_dvd_norm_eq hγ0 hp hpγ
     obtain ⟨γ', rfl⟩ := hδγ
-
     rcases hδnorm with hδp | hδp
-    ·
-      have hlt : m / p < m := Nat.div_lt_self (by omega) hp.one_lt
+    · have hlt : m / p < m := Nat.div_lt_self (by omega) hp.one_lt
       have hdvd' : m / p ∣ m := ⟨p, (Nat.div_mul_cancel hpm).symm⟩
       have hcop : Nat.Coprime (m / p) n := Nat.Coprime.coprime_dvd_left hdvd' hmn
       have hp0 : (p : ℤ) ≠ 0 := by exact_mod_cast hp.pos.ne'
@@ -2933,8 +2865,7 @@ theorem exists_factorization :
       refine ⟨δ * α', β, by ring, ?_, hβ⟩
       rw [norm_mul, hδp, hα']
       exact_mod_cast congrArg (Nat.cast (R := ℤ)) (Nat.mul_div_cancel' hpm)
-    ·
-      have hsq : p ^ 2 ∣ m := by
+    · have hsq : p ^ 2 ∣ m := by
         have h1 : ((p ^ 2 : ℕ) : ℤ) ∣ ((m * n : ℕ) : ℤ) := by
           push_cast
           rw [← hδp]
@@ -2963,7 +2894,6 @@ theorem dvd_of_mul_eq_mul {α β α' β' : HexInt} {m n : ℕ} (hmn : Nat.Coprim
     (hα : α.norm = (m : ℤ)) (hβ' : β'.norm = (n : ℤ))
     (heq : α * β = α' * β') : α ∣ α' := by
   classical
-
   have hcop : IsCoprime α β' := by
     rw [← EuclideanDomain.gcd_isUnit_iff]
     set d := EuclideanDomain.gcd α β' with hd
@@ -2979,7 +2909,6 @@ theorem dvd_of_mul_eq_mul {α β α' β' : HexInt} {m n : ℕ} (hmn : Nat.Coprim
     refine isUnit_iff_norm_eq_one.mpr ?_
     have := norm_nonneg d
     omega
-
   exact hcop.dvd_of_dvd_mul_right (heq ▸ dvd_mul_right α β)
 
 theorem eq_unit_mul_of_mul_eq_mul {α β α' β' : HexInt} {m n : ℕ} (hmn : Nat.Coprime m n)
@@ -2990,9 +2919,7 @@ theorem eq_unit_mul_of_mul_eq_mul {α β α' β' : HexInt} {m n : ℕ} (hmn : Na
     ∃ u ∈ unitFinset, α' = u * α ∧ β' = u.conj * β := by
   have hm' : (m : ℤ) ≠ 0 := by exact_mod_cast hm
   have hα0 : α ≠ 0 := fun h => hm' (by rw [← hα, h, norm_zero])
-
   obtain ⟨u, hu⟩ := dvd_of_mul_eq_mul hmn hα hβ' heq.symm
-
   have hunorm : u.norm = 1 := by
     have h3 : (m : ℤ) * u.norm = (m : ℤ) * 1 := by
       rw [mul_one]
@@ -3002,7 +2929,6 @@ theorem eq_unit_mul_of_mul_eq_mul {α β α' β' : HexInt} {m n : ℕ} (hmn : Na
   have hu0 : u ≠ 0 := fun h => by simp [h] at hunorm
   have huα : α' = u * α := by rw [hu, mul_comm]
   refine ⟨u, norm_eq_one_iff_mem.mp hunorm, huα, ?_⟩
-
   have hcancel : (u * α) * β' = (u * α) * (u.conj * β) := by
     have h4 : (u * α) * β' = α * β := by rw [← huα]; exact heq
     rw [h4]
@@ -3043,7 +2969,6 @@ theorem card_fiber {m n : ℕ} (hmn : Nat.Coprime m n) (hm : m ≠ 0) (_hn : n �
     ((reprSols m ×ˢ reprSols n).filter
       fun pq => toPair (ofPair pq.1 * ofPair pq.2) = γp).card = 6 := by
   classical
-
   have hγnorm : (ofPair γp).norm = (m : ℤ) * (n : ℤ) := by
     rw [mem_reprSols_iff_norm.mp hγp]; push_cast; ring
   obtain ⟨α₀, β₀, hγeq, hα₀, hβ₀⟩ := exists_factorization m n hmn (ofPair γp) hγnorm
@@ -3051,7 +2976,6 @@ theorem card_fiber {m n : ℕ} (hmn : Nat.Coprime m n) (hm : m ≠ 0) (_hn : n �
     rw [h, norm_zero] at hα₀
     exact_mod_cast hα₀.symm)
   have hγp_pair : γp = toPair (α₀ * β₀) := by rw [← hγeq, toPair_ofPair]
-
   have himage : ((reprSols m ×ˢ reprSols n).filter
       fun pq => toPair (ofPair pq.1 * ofPair pq.2) = γp)
       = unitFinset.image fun u => (toPair (u * α₀), toPair (u.conj * β₀)) := by
@@ -3078,7 +3002,6 @@ theorem card_fiber {m n : ℕ} (hmn : Nat.Coprime m n) (hm : m ≠ 0) (_hn : n �
         congr 1
         calc u * α₀ * (u.conj * β₀) = (u * u.conj) * (α₀ * β₀) := by ring
           _ = α₀ * β₀ := by rw [mul_conj, hunorm, Int.cast_one, one_mul]
-
   rw [himage]
   rw [Finset.card_image_of_injOn, card_unitFinset]
   intro u _ u' _ h
@@ -3088,7 +3011,6 @@ theorem card_fiber {m n : ℕ} (hmn : Nat.Coprime m n) (hm : m ≠ 0) (_hn : n �
 theorem orbitCountMultiplicative_holds : OrbitCountMultiplicative := by
   classical
   intro m n hmn
-
   rcases eq_or_ne m 0 with rfl | hm
   · have hn1 : n = 1 := by simpa using hmn
     subst hn1
@@ -3097,7 +3019,6 @@ theorem orbitCountMultiplicative_holds : OrbitCountMultiplicative := by
   · have hm1 : m = 1 := by simpa using hmn
     subst hm1
     simp [reprCount_zero, reprCount_one]
-
   have hcount : (reprSols m ×ˢ reprSols n).card
       = ∑ γp ∈ reprSols (m * n), ((reprSols m ×ˢ reprSols n).filter
           fun pq => toPair (ofPair pq.1 * ofPair pq.2) = γp).card :=
@@ -3320,18 +3241,15 @@ theorem exists_hexForm_eq_prime {p : ℕ} (hp : p.Prime) (h1 : p % 3 = 1) :
   have htroot : t ^ 2 + t + 1 = 0 :=
     (ModularCurve.sq_add_self_add_one_eq_zero_iff_orderOf_eq_three hp hp3 t).mpr ht3
   obtain ⟨x, y, hxy0, hxabs, hyabs, hcong⟩ := thue_lemma p hp t
-
   have hdvd : (p : ℤ) ∣ hexForm x y := by
     rw [← ZMod.intCast_zmod_eq_zero_iff_dvd]
     push_cast [hexForm]
     linear_combination ((x : ZMod p) + t * (y : ZMod p) + (y : ZMod p)) * hcong +
       (y : ZMod p) ^ 2 * htroot
-
   have hpos : 0 < hexForm x y := by
     rcases (hexForm_nonneg x y).lt_or_eq with h | h
     · exact h
     · exact absurd (hexForm_eq_zero_iff.mp h.symm) hxy0
-
   have hsq : (p.sqrt : ℤ) * (p.sqrt : ℤ) < (p : ℤ) := by
     exact_mod_cast sqrt_mul_self_lt_of_prime hp
   have hb1 : (0 : ℤ) ≤ ((p.sqrt : ℤ) - x) * ((p.sqrt : ℤ) + x) :=
@@ -3345,7 +3263,6 @@ theorem exists_hexForm_eq_prime {p : ℕ} (hp : p.Prime) (h1 : p % 3 = 1) :
   have hlt : hexForm x y < 3 * (p : ℤ) := by
     simp only [hexForm]
     nlinarith
-
   obtain ⟨m, hm⟩ := hdvd
   have hppos : (0 : ℤ) < (p : ℤ) := by exact_mod_cast hp.pos
   have hm1 : 0 < m := by
@@ -3360,9 +3277,7 @@ theorem exists_hexForm_eq_prime {p : ℕ} (hp : p.Prime) (h1 : p % 3 = 1) :
     exact lt_of_mul_lt_mul_left hmm (le_of_lt hppos)
   interval_cases m
   · exact ⟨x, y, by linarith⟩
-  ·
-
-    exfalso
+  · exfalso
     have h2d : ((2 : ℕ) : ℤ) ∣ hexForm x y := ⟨(p : ℤ), by push_cast; linarith⟩
     obtain ⟨hx2, hy2⟩ := inert_dvd_of_dvd_hexForm Nat.prime_two (by norm_num) h2d
     obtain ⟨x', rfl⟩ := hx2
@@ -3408,7 +3323,6 @@ theorem exists_emul_of_dvd_hexForm {p : ℕ} (hp : p.Prime) {a b x y : ℤ}
         (p : ℤ) * hexForm v.1 v.2 = hexForm x y) := by
   have hπ' : hexForm (a + b) (-b) = (p : ℤ) := (hexForm_conj a b).trans hπ
   obtain ⟨m, hm⟩ := hz
-
   have htt : (p : ℤ) ∣ (emul (a + b, -b) (x, y)).2 * (emul (a, b) (x, y)).2 := by
     refine ⟨y ^ 2 - b ^ 2 * m, ?_⟩
     have hrw : (emul (a + b, -b) (x, y)).2 * (emul (a, b) (x, y)).2
@@ -3416,7 +3330,6 @@ theorem exists_emul_of_dvd_hexForm {p : ℕ} (hp : p.Prime) {a b x y : ℤ}
       simp only [emul, hexForm]; ring
     rw [hrw, hπ, hm]
     ring
-
   have hN1 : ((p : ℤ)) ^ 2 ∣
       hexForm (emul (a + b, -b) (x, y)).1 (emul (a + b, -b) (x, y)).2 := by
     rw [hexForm_emul_mk]
@@ -3431,8 +3344,7 @@ theorem exists_emul_of_dvd_hexForm {p : ℕ} (hp : p.Prime) {a b x y : ℤ}
     rw [hxy, hπ, hm]
     ring
   rcases Int.Prime.dvd_mul' hp htt with hT | hT
-  ·
-    left
+  · left
     have hS := dvd_fst_of_dvd_snd_of_sq_dvd_hexForm hp hN1 hT
     obtain ⟨v, hv, hnorm⟩ := exists_eq_emul_conj_of_dvd hp hπ' hS hT
     have hconv : ((a + b) + -b, -(-b)) = ((a : ℤ), (b : ℤ)) := by
@@ -3440,8 +3352,7 @@ theorem exists_emul_of_dvd_hexForm {p : ℕ} (hp : p.Prime) {a b x y : ℤ}
       exact ⟨by ring, by ring⟩
     rw [hconv] at hv
     exact ⟨v, hv, hnorm⟩
-  ·
-    right
+  · right
     have hS := dvd_fst_of_dvd_snd_of_sq_dvd_hexForm hp hN2 hT
     obtain ⟨v, hv, hnorm⟩ := exists_eq_emul_conj_of_dvd hp hπ hS hT
     exact ⟨v, hv, hnorm⟩
@@ -3454,7 +3365,6 @@ theorem dvd_of_dvd_lin {p : ℕ} (hp : p.Prime) (h1 : p % 3 = 1) {a b x y : ℤ}
     have h2 := hp.two_le
     omega
   have hp4' : (4 : ℤ) ≤ (p : ℤ) := by exact_mod_cast hp4
-
   have hpb : ¬ (p : ℤ) ∣ b := by
     intro hb
     have ha2 : (p : ℤ) ∣ a * a := by
@@ -3466,7 +3376,6 @@ theorem dvd_of_dvd_lin {p : ℕ} (hp : p.Prime) (h1 : p % 3 = 1) {a b x y : ℤ}
     obtain ⟨a', rfl⟩ := ha
     obtain ⟨b', rfl⟩ := hb
     rw [hexForm_smul] at hπ
-
     have hppos : (0 : ℤ) < (p : ℤ) := by linarith
     have hcancel : (p : ℤ) * ((p : ℤ) * hexForm a' b') = (p : ℤ) * 1 := by
       linear_combination hπ
@@ -3474,7 +3383,6 @@ theorem dvd_of_dvd_lin {p : ℕ} (hp : p.Prime) (h1 : p % 3 = 1) {a b x y : ℤ}
       mul_left_cancel₀ hppos.ne' hcancel
     have hle : (p : ℤ) ≤ 1 := Int.le_of_dvd one_pos ⟨hexForm a' b', hone.symm⟩
     linarith
-
   have h2xy : (p : ℤ) ∣ b * (2 * x + y) := by
     have hrw : b * (2 * x + y) = (a * y + b * x + b * y) - (a * y - b * x) := by ring
     rw [hrw]
@@ -3483,12 +3391,10 @@ theorem dvd_of_dvd_lin {p : ℕ} (hp : p.Prime) (h1 : p % 3 = 1) {a b x y : ℤ}
     have hrw : y * (2 * a + b) = (a * y + b * x + b * y) + (a * y - b * x) := by ring
     rw [hrw]
     exact dvd_add hT' hT
-
   have h2x : (p : ℤ) ∣ 2 * x + y := by
     rcases Int.Prime.dvd_mul' hp h2xy with h | h
     · exact absurd h hpb
     · exact h
-
   have hy : (p : ℤ) ∣ y := by
     rcases Int.Prime.dvd_mul' hp hy2ab with h | h
     · exact h
@@ -3504,7 +3410,6 @@ theorem dvd_of_dvd_lin {p : ℕ} (hp : p.Prime) (h1 : p % 3 = 1) {a b x y : ℤ}
       · have hle : (p : ℤ) ≤ 3 := Int.le_of_dvd (by norm_num) h3
         linarith
       · rcases Int.Prime.dvd_mul' hp hbb with h | h <;> exact hpb h
-
   refine ⟨?_, hy⟩
   have h2x' : (p : ℤ) ∣ 2 * x := by
     have hrw : 2 * x = (2 * x + y) - y := by ring
@@ -3521,8 +3426,7 @@ theorem dvd_of_emul_eq_of_emul_eq {p : ℕ} (hp : p.Prime) (h1 : p % 3 = 1) {a b
     (he1 : emul (a, b) w1 = (x, y)) (he2 : emul (a + b, -b) w2 = (x, y)) :
     (p : ℤ) ∣ x ∧ (p : ℤ) ∣ y := by
   apply dvd_of_dvd_lin hp h1 hπ
-  ·
-    have hchain : emul (a + b, -b) ((x : ℤ), (y : ℤ))
+  · have hchain : emul (a + b, -b) ((x : ℤ), (y : ℤ))
         = ((p : ℤ) * w1.1, (p : ℤ) * w1.2) := by
       rw [← he1, ← emul_assoc, emul_conj_self', hπ, emul_intCast]
     have h2 : (emul (a + b, -b) ((x : ℤ), (y : ℤ))).2 = (p : ℤ) * w1.2 := by
@@ -3530,8 +3434,7 @@ theorem dvd_of_emul_eq_of_emul_eq {p : ℕ} (hp : p.Prime) (h1 : p % 3 = 1) {a b
     refine ⟨w1.2, ?_⟩
     have h2' : (a + b) * y + -b * x + -b * y = (p : ℤ) * w1.2 := h2
     linear_combination h2'
-  ·
-    have hchain : emul (a, b) ((x : ℤ), (y : ℤ)) = ((p : ℤ) * w2.1, (p : ℤ) * w2.2) := by
+  · have hchain : emul (a, b) ((x : ℤ), (y : ℤ)) = ((p : ℤ) * w2.1, (p : ℤ) * w2.2) := by
       rw [← he2, ← emul_assoc, emul_conj_self, hπ, emul_intCast]
     have h2 : (emul (a, b) ((x : ℤ), (y : ℤ))).2 = (p : ℤ) * w2.2 := by
       rw [hchain]
@@ -3582,7 +3485,6 @@ theorem inter_image_one_eq_empty {p : ℕ} (hp : p.Prime) (h1 : p % 3 = 1) {a b 
   obtain ⟨w1, hw1, he1⟩ := Finset.mem_image.mp hq.1
   obtain ⟨w2, hw2, he2⟩ := Finset.mem_image.mp hq.2
   obtain ⟨hx, hy⟩ := dvd_of_emul_eq_of_emul_eq hp h1 hπ he1 he2
-
   have hmem : ((x : ℤ), (y : ℤ)) ∈ reprSols (p * 1) := by
     rw [← he1]
     exact emul_mem_reprSols hπ hw1
@@ -3590,7 +3492,6 @@ theorem inter_image_one_eq_empty {p : ℕ} (hp : p.Prime) (h1 : p % 3 = 1) {a b 
   obtain ⟨x', rfl⟩ := hx
   obtain ⟨y', rfl⟩ := hy
   rw [hexForm_smul] at hQ
-
   have hppos : (0 : ℤ) < (p : ℤ) := by exact_mod_cast hp.pos
   have hcancel : (p : ℤ) * ((p : ℤ) * hexForm x' y') = (p : ℤ) * 1 := by
     rw [Nat.mul_one] at hQ

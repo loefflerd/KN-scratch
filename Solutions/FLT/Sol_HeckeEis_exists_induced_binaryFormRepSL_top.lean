@@ -196,7 +196,6 @@ theorem coeff_eq_zero_of_T_zpow_fixed {m : ℤ} (hm : m ≠ 0) (P : Vn n) (hP : 
   classical
   by_contra hne
   have hPh : (P : MvPolynomial (Fin 2) ℂ).IsHomogeneous n := (mem_homogeneousSubmodule n _).mp P.2
-
   have hdeg : d 0 + d 1 = n := by
     have hw := hPh hne
     have hdeg' : d.degree = n := by rw [Finsupp.degree_eq_weight_one]; exact hw
@@ -206,7 +205,6 @@ theorem coeff_eq_zero_of_T_zpow_fixed {m : ℤ} (hm : m ≠ 0) (P : Vn n) (hP : 
     ext j; fin_cases j
     · simp; omega
     · simp [ha]
-
   set q := dehom (P : MvPolynomial (Fin 2) ℂ) with hq
   have hconst : q - Polynomial.C (q.eval 0) = 0 := by
     apply Polynomial.eq_zero_of_infinite_isRoot
@@ -237,8 +235,7 @@ theorem eq_of_T_zpow_fixed {m : ℤ} (hm : m ≠ 0) (P : Vn n) (hP : ρ n (Modul
   split_ifs with h
   · rw [h]
   · by_cases hd1 : d 1 = 0
-    ·
-      by_contra hne
+    · by_contra hne
       have hPh : (P : MvPolynomial (Fin 2) ℂ).IsHomogeneous n := (mem_homogeneousSubmodule n _).mp P.2
       have hw := hPh hne
       have hdeg' : d.degree = n := by rw [Finsupp.degree_eq_weight_one]; exact hw
@@ -257,7 +254,6 @@ theorem eq_zero_of_T_fixed_of_S_T_fixed (hn0 : n ≠ 0) (v : Vn n)
   have e1 := eq_of_T_zpow_fixed (m := 1) one_ne_zero v
     ((congrArg (fun g => ρ n g v) (zpow_one ModularGroup.T)).trans h1)
   have e2 := eq_of_T_zpow_fixed hm _ h2
-
   set c := AddMonoidAlgebra.coeff (v : MvPolynomial (Fin 2) ℂ) (Finsupp.single 0 n) with hc
   have hSv : ((ρ n ModularGroup.S v : Vn n) : MvPolynomial (Fin 2) ℂ) = monomial (Finsupp.single 1 n) c := by
     rw [binaryFormRepSL_apply_coe, e1, ← C_mul_X_pow_eq_monomial, map_mul, binarySubst_C, map_pow, binarySubst_X]
@@ -304,15 +300,12 @@ theorem Sinv_TN_S_mem : (ModularGroup.S : SL(2, ℤ))⁻¹ * ModularGroup.T ^ (N
 
 theorem indRep_invariants [NeZero N] (hn0 : n ≠ 0) (f : X0 N → Vn n) (hf : ∀ g : ↥Gt, indRep N n g f = f) : f = 0 := by
   set x0 : X0 N := ((1 : SL(2, ℤ)) : X0 N) with hx0
-
   have hpt : ∀ (g : SL(2, ℤ)) (x : X0 N), f x = ρ n g (f (g⁻¹ • x)) := fun g x => by
     have := congrFun (hf ⟨g, Subgroup.mem_top _⟩) x
     rw [indRep_apply] at this
     exact this.symm
-
   have htrans : ∀ g : SL(2, ℤ), f (g • x0) = ρ n g (f x0) := fun g => by
     rw [hpt g (g • x0), inv_smul_smul]
-
   set v := f x0 with hv
   have hmemfix : ∀ γ : SL(2, ℤ), γ ∈ CongruenceSubgroup.Gamma0 N → γ • x0 = x0 := fun γ hγ => by
     rw [hx0, MulAction.Quotient.smul_mk, QuotientGroup.eq]; simpa using (CongruenceSubgroup.Gamma0 N).inv_mem hγ
@@ -323,7 +316,6 @@ theorem indRep_invariants [NeZero N] (hn0 : n ≠ 0) (f : X0 N → Vn n) (hf : �
   have h2 : ρ n (ModularGroup.T ^ (N : ℤ)) (ρ n ModularGroup.S v) = ρ n ModularGroup.S v := by
     rw [← htrans ModularGroup.S]
     have := hpt (ModularGroup.T ^ (N : ℤ)) (ModularGroup.S • x0)
-
     have hfix : (ModularGroup.T ^ (N : ℤ))⁻¹ • ModularGroup.S • x0 = ModularGroup.S • x0 := by
       rw [hx0, MulAction.Quotient.smul_mk, MulAction.Quotient.smul_mk, QuotientGroup.eq]
       simp only [smul_eq_mul, mul_one, mul_inv_rev, inv_inv]
@@ -401,10 +393,8 @@ theorem BW_nondegenerate : (BW (N := N) B).Nondegenerate := by
     have h := hf (Pi.single x Q)
     rw [BW_apply, Finset.sum_eq_single x] at h
     · simp only [Pi.single_eq_same] at h
-
       have := hBsymm (f x) Q
       rw [h] at this
-
       have hu : ((-1 : ℂ) ^ n) ≠ 0 := pow_ne_zero _ (by norm_num)
       exact (mul_eq_zero.mp this.symm).resolve_left hu
     · intro y _ hyx; rw [Pi.single_eq_of_ne hyx, LinearMap.map_zero₂]
@@ -437,15 +427,12 @@ theorem sup_range_eq_top (hn0 : n ≠ 0) :
   have : Module.Finite ℂ (Vn n) := finite_binaryForm
   have hrefl := BW_isRefl (N := N) B hBsymm
   have hnd := BW_nondegenerate (N := N) B hBsymm hBnd
-
   have horth : (BW (N := N) B).orthogonal M = ⊥ := by
     rw [eq_bot_iff]
     intro f' hf'
     rw [Submodule.mem_bot]
-
     have hfix : ∀ g : ↥Gt, LinearMap.range (W g - 1) ≤ M → W g f' = f' := by
       intro g hg
-
       have key : ∀ a, BW (N := N) B a (W g⁻¹ f' - f') = 0 := by
         intro a
         have h1 : BW (N := N) B (W g a - a) f' = 0 := hf' _ (hg ⟨a, rfl⟩)
@@ -469,7 +456,6 @@ theorem sup_range_eq_top (hn0 : n ≠ 0) :
         conv_lhs => rw [← hS]
         rw [← Module.End.mul_apply, ← map_mul, inv_mul_cancel, map_one, Module.End.one_apply]
       rw [e, map_mul, Module.End.mul_apply, hU, hSinv]
-
     apply indRep_invariants hn0
     intro g
     have hg : (g : SL(2, ℤ)) ∈ Subgroup.closure ({ModularGroup.S, ModularGroup.T} : Set SL(2, ℤ)) := by
@@ -519,7 +505,6 @@ theorem solution (N : ℕ) [NeZero N] (n : ℕ) (hn : Even n) (hn0 : n ≠ 0) :
   rw [← htop, Submodule.mem_sup] at hf
   obtain ⟨y, ⟨a, rfl⟩, z, ⟨b, rfl⟩, hyz⟩ := hf
   exact ⟨a, b, by rw [← hyz]; rfl⟩
-
 
 end S_HeckeEis_exists_induced_binaryFormRepSL_top
 end P2MW

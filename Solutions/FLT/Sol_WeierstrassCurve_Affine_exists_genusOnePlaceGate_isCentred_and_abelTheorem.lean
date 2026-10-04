@@ -31,16 +31,13 @@ scoped instance : Algebra.FiniteType F W.CoordinateRing :=
 theorem exists_eq_XYIdeal_of_isMaximal [IsAlgClosed F] (𝔪 : Ideal W.CoordinateRing)
     (h𝔪 : 𝔪.IsMaximal) : ∃ x y : F, W.Equation x y ∧ XYIdeal W x (C y) = 𝔪 := by
   have := h𝔪
-
   let : Field (W.CoordinateRing ⧸ 𝔪) := Ideal.Quotient.field 𝔪
   have : Module.Finite F (W.CoordinateRing ⧸ 𝔪) :=
     finite_of_finite_type_of_isJacobsonRing F (W.CoordinateRing ⧸ 𝔪)
   have he : Function.Bijective (algebraMap F (W.CoordinateRing ⧸ 𝔪)) :=
     IsAlgClosed.algebraMap_bijective_of_isIntegral
-
   obtain ⟨x, hx⟩ := he.2 (Ideal.Quotient.mk 𝔪 (mk W (Polynomial.C Polynomial.X)))
   obtain ⟨y, hy⟩ := he.2 (Ideal.Quotient.mk 𝔪 (mk W Y))
-
   have hconst : ∀ a : F, Ideal.Quotient.mk 𝔪 ((CoordinateRing.mk W) (Polynomial.C (Polynomial.C a)))
       = algebraMap F (W.CoordinateRing ⧸ 𝔪) a := by
     intro a
@@ -322,7 +319,6 @@ theorem RRSpace_zero : RRSpace W 0 = (1 : Submodule F W.CoordinateRing) := by
   refine le_antisymm ?_ (one_le_RRSpace 0)
   rintro f hf
   obtain ⟨p, q, hp, hq, rfl⟩ := mem_RRSpace_iff.mp hf
-
   have hq0 : q = 0 := by
     rw [← degree_eq_bot]
     simpa using hq
@@ -356,29 +352,24 @@ theorem isUnit_coeIdeal_of_forall_isMaximal [IsNoetherianRing R]
     (I : Ideal R) : I ≠ ⊥ → IsUnit (I : FractionalIdeal R⁰ K) := by
   refine IsNoetherian.induction
     (P := fun I : Ideal R => I ≠ ⊥ → IsUnit (I : FractionalIdeal R⁰ K)) (fun I ih hI => ?_) I
-
   rcases eq_or_ne I ⊤ with rfl | hItop
   · rw [coeIdeal_top]
     exact isUnit_one
-
   obtain ⟨𝔪, h𝔪, hI𝔪⟩ := Ideal.exists_le_maximal I hItop
   have h𝔪0 : 𝔪 ≠ ⊥ := fun h => hI (le_bot_iff.mp (h ▸ hI𝔪))
   have h𝔪unit : IsUnit (𝔪 : FractionalIdeal R⁰ K) := hmax 𝔪 h𝔪 h𝔪0
   have h𝔪inv : (𝔪 : FractionalIdeal R⁰ K) * (𝔪 : FractionalIdeal R⁰ K)⁻¹ = 1 :=
     (mul_inv_cancel_iff_isUnit K).mpr h𝔪unit
-
   have hle : (I : FractionalIdeal R⁰ K) * (𝔪 : FractionalIdeal R⁰ K)⁻¹ ≤ 1 := by
     calc (I : FractionalIdeal R⁰ K) * (𝔪 : FractionalIdeal R⁰ K)⁻¹
         ≤ (𝔪 : FractionalIdeal R⁰ K) * (𝔪 : FractionalIdeal R⁰ K)⁻¹ := by gcongr
       _ = 1 := h𝔪inv
   obtain ⟨J, hJ⟩ := le_one_iff_exists_coeIdeal.mp hle
-
   have hJ𝔪 : J * 𝔪 = I := by
     rw [← coeIdeal_inj (K := K), coeIdeal_mul, hJ, mul_assoc,
       mul_comm (𝔪 : FractionalIdeal R⁰ K)⁻¹, h𝔪inv, mul_one]
   have hIJ : I ≤ J := hJ𝔪 ▸ Ideal.mul_le_left
   have hJ0 : J ≠ ⊥ := fun h => hI (le_bot_iff.mp (h ▸ hIJ))
-
   have hne : I ≠ J := by
     rintro rfl
     have hsmul : I ≤ 𝔪 • I := by
@@ -392,7 +383,6 @@ theorem isUnit_coeIdeal_of_forall_isMaximal [IsNoetherianRing R]
       rw [smul_eq_mul] at hrn
       exact (mul_eq_zero.mp hrn).resolve_right hn0
     exact h𝔪.ne_top (𝔪.eq_top_of_isUnit_mem (by simpa [hr0] using hr𝔪) isUnit_one.neg)
-
   have hJunit : IsUnit (J : FractionalIdeal R⁰ K) := ih J (lt_of_le_of_ne hIJ hne) hJ0
   rw [← hJ𝔪, coeIdeal_mul]
   exact hJunit.mul h𝔪unit
@@ -482,13 +472,11 @@ theorem deg_ofHeightOneSpectrum_eq_one (w : HeightOneSpectrum R)
   apply deg_eq_one_of_surjective
   intro z
   obtain ⟨a, rfl⟩ := Ideal.Quotient.mk_surjective z
-
   obtain ⟨n, d, hd, hnd⟩ : ∃ (n d : R) (_ : d ∈ w.asIdeal.primeCompl),
       (a : F) * algebraMap R F d = algebraMap R F n := by
     obtain ⟨n, d, hcase | hcase⟩ := w.exists_primeCompl_mul_eq_or_mul_eq (K := F) (a : F)
     · exact ⟨n, d, d.2, hcase⟩
     · refine ⟨(d : R), n, ?_, hcase⟩
-
       intro hn
       refine d.2 ?_
       replace hn : n ∈ w.asIdeal := hn
@@ -500,14 +488,12 @@ theorem deg_ofHeightOneSpectrum_eq_one (w : HeightOneSpectrum R)
         _ ≤ 1 * w.valuation F (algebraMap R F n) := mul_le_mul_left a.2 _
         _ = w.valuation F (algebraMap R F n) := one_mul _
         _ < 1 := hn
-
   obtain ⟨cn, hcn⟩ := hw n
   obtain ⟨cd, hcd⟩ := hw d
   have hcd0 : cd ≠ 0 := by
     rintro rfl
     rw [_root_.map_zero, sub_zero] at hcd
     exact hd hcd
-
   have hcdR : algebraMap K R cd ∉ w.asIdeal := fun hmem =>
     hd (by simpa using w.asIdeal.add_mem hcd hmem)
   have hvd : w.valuation F (algebraMap R F d) = 1 :=
@@ -519,7 +505,6 @@ theorem deg_ofHeightOneSpectrum_eq_one (w : HeightOneSpectrum R)
       (not_lt.mp fun hlt => hcdR ((w.valuation_lt_one_iff_mem (K := F) _).mp hlt))
   have hcdF : algebraMap K F cd ≠ 0 := by
     simpa using hcd0
-
   refine ⟨cn / cd, ?_⟩
   rw [IsScalarTower.algebraMap_apply K v.toValuationSubring v.ResidueField,
     IsLocalRing.ResidueField.algebraMap_eq]
@@ -704,12 +689,10 @@ theorem isFinitePlace_iff_exists_placeOfEquation [IsAlgClosed F]
     IsFinitePlace v ↔ ∃ (x y : F) (h : W.Equation x y), v = placeOfEquation h := by
   constructor
   · intro hv
-
     have := hv.centre_isPrime
     have hmax : hv.centre.IsMaximal := Ideal.IsPrime.isMaximal hv.centre_isPrime hv.centre_ne_bot
     obtain ⟨x, y, hxy, hXY⟩ := CoordinateRing.exists_eq_XYIdeal_of_isMaximal hv.centre hmax
     refine ⟨x, y, hxy, ?_⟩
-
     set w : HeightOneSpectrum W.CoordinateRing := heightOneSpectrumOfEquation hxy with hw
     set A : ValuationSubring W.FunctionField :=
       HeightOneSpectrum.valuationSubringAtPrime W.FunctionField w with hA
@@ -723,7 +706,6 @@ theorem isFinitePlace_iff_exists_placeOfEquation [IsAlgClosed F]
         rw [← hXY] at hmem
         exact hs hmem
       exact mul_mem (hv r) (hv.inv_mem hs')
-
     have hSP : A.ofPrime (A.idealOfLE v.toValuationSubring hle) = v.toValuationSubring :=
       ValuationSubring.ofPrime_idealOfLE A v.toValuationSubring hle
     rcases eq_or_ne (A.idealOfLE v.toValuationSubring hle) ⊥ with hP | hP
@@ -931,7 +913,6 @@ private theorem _root_.AlgebraicCurve.Place.ord_ringHom_eq_natDegree_mul {φ : K
     (hφC : ∀ c : K, φ (C c) = algebraMap K F c) (hz : v.ord (φ X) < 0) :
     ∀ {p : K[X]}, p ≠ 0 → v.ord (φ p) = p.natDegree * v.ord (φ X) := by
   have hX0 : φ X ≠ 0 := fun h => by simp [Place.ord, h] at hz
-
   have hmono : ∀ (c : K) (n : ℕ), c ≠ 0 → v.ord (φ (C c * X ^ n)) = n * v.ord (φ X) := by
     intro c n hc
     have hc0 : φ (C c) ≠ 0 := by
@@ -1537,14 +1518,12 @@ theorem count_spanSingleton (w : HeightOneSpectrum R) {f : L} (hf : f ≠ 0) :
     rintro rfl
     exact hf (IsLocalization.mk'_zero (M := R⁰) (S := L) d)
   have hd : (d : R) ≠ 0 := nonZeroDivisors.ne_zero d.2
-
   have hI : spanSingleton R⁰ (IsLocalization.mk' L n d) =
       spanSingleton R⁰ ((algebraMap R L) (d : R))⁻¹ * ↑(Ideal.span {n} : Ideal R) := by
     rw [coeIdeal_span_singleton, spanSingleton_mul_spanSingleton]
     congr 1
     rw [IsFractionRing.mk'_eq_div, div_eq_mul_inv, mul_comm]
   rw [count_well_defined L w (spanSingleton_ne_zero_iff.mpr hf) hI]
-
   rw [HeightOneSpectrum.valuation_of_mk',
     log_div (w.intValuation_ne_zero n hn) (w.intValuation_ne_zero (d : R) hd),
     w.intValuation_if_neg hn, w.intValuation_if_neg hd, log_exp, log_exp]
@@ -1856,7 +1835,6 @@ theorem aeval_yCoord_weierstrassQuadratic :
   simp only [weierstrassQuadratic, map_add, map_sub, map_mul, map_pow, Polynomial.aeval_X,
     Polynomial.aeval_C, hc]
   rw [sq]
-
   have hrel := yCoord_relation (W := W)
   simp only [map_add, map_mul, map_pow] at hrel ⊢
   linear_combination hrel
@@ -1869,7 +1847,6 @@ theorem adjoin_yCoord_eq_top :
     IntermediateField.adjoin (RatFunc F) {yCoord W} = ⊤ := by
   rw [eq_top_iff]
   rintro z -
-
   have hpoly : ∀ p : F[X],
       polyToFunctionField W p ∈ IntermediateField.adjoin (RatFunc F) {yCoord W} := by
     intro p
@@ -1884,7 +1861,6 @@ theorem adjoin_yCoord_eq_top :
     rw [algebraMap_smul_basis]
     exact add_mem (hpoly p)
       (mul_mem (hpoly q) (IntermediateField.mem_adjoin_simple_self _ _))
-
   obtain ⟨a, b, hb, hab⟩ := IsFractionRing.div_surjective (A := W.CoordinateRing) z
   rw [← hab]
   exact div_mem (hcoord a) (hcoord b)

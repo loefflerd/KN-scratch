@@ -136,7 +136,6 @@ theorem hc_eq_zero_of_unimodular (φ : Hc N n R)
 
 end P2MMG
 
-
 open P2MMG in
 /-- Manin: the unimodular paths generate `Div⁰(P¹(ℚ))`, so a class killing all of them is zero. -/
 theorem solution {N n : ℕ} {R : Type*} [CommRing R] (φ : Hc N n R)

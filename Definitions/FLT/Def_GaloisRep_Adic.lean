@@ -18,17 +18,13 @@ def GaloisActionIsAdicContinuous (A : Type) [CommRing A] [IsLocalRing A]
       ∀ v : V, ρ σ v - v ∈ (IsLocalRing.maximalIdeal A ^ n) • (⊤ : Submodule A V)
 
 structure GaloisRepAdic (A : Type) [CommRing A] [IsLocalRing A] : Type 1 where
-
   V : Type
   [instAddCommGroup : AddCommGroup V]
   [instModule : Module A V]
   [instFree : Module.Free A V]
   [instFinite : Module.Finite A V]
-
   finrank_eq : Module.finrank A V = 2
-
   ρ : (AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) →* Module.End A V
-
   isAdicContinuous : GaloisActionIsAdicContinuous A ρ
 
 attribute [instance] GaloisRepAdic.instAddCommGroup GaloisRepAdic.instModule
@@ -118,9 +114,7 @@ noncomputable def residual (ρ : GaloisRepAdic A) :
       | add x y hx hy => rw [map_add, map_add, hx, hy] }
 
 structure Equiv (ρ₁ ρ₂ : GaloisRepAdic A) where
-
   toLinearEquiv : ρ₁.V ≃ₗ[A] ρ₂.V
-
   map_apply : ∀ (σ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClosure ℚ) (x : ρ₁.V),
     toLinearEquiv (ρ₁.ρ σ x) = ρ₂.ρ σ (toLinearEquiv x)
 

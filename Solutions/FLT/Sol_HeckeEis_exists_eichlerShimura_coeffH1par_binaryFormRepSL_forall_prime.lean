@@ -80,7 +80,6 @@ theorem solution (N : ℕ) [NeZero N] (n : ℕ) :
     have h' : HeckeEis.eichlerShimuraMap n N a = HeckeEis.eichlerShimuraMap n N b := by rw [← hES, ← hES, h]
     exact HeckeEis.eichlerShimuraMap_injective N n h'
   have hΦinj : Function.Injective Φ := fun x y h => by rw [← hΦΦ x, ← hΦΦ y, h]
-
   have hcomm : ∀ (ℓ : ℕ) [NeZero ℓ]
       (T : HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype) →ₗ[ℂ] HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype)),
       (∀ z : ↥(HeckeEis.coeffParabolicCocycles ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype)),
@@ -92,26 +91,21 @@ theorem solution (N : ℕ) [NeZero N] (n : ℕ) :
     intro ℓ _ T hT x
     exact HeckeEis.coeffH1par_map_heckeT_comm (starRingEnd ℂ) n N ℓ Φ.toAddMonoidHom (fun z => hΦ z) T hT T hT x
   refine ⟨ES, ESbar, hinj, ?_, ?_, ?_, ?_⟩
-  ·
-    intro a b h
+  · intro a b h
     exact hinj (hΦinj h)
-  ·
-    exact HeckeEis.isCompl_range_eichlerShimuraMap_range_conj N n ES hES Φ.toAddMonoidHom (fun z => hΦ z) ESbar hESbar
-  ·
-    intro ℓ hℓ hℓN T hT
+  · exact HeckeEis.isCompl_range_eichlerShimuraMap_range_conj N n ES hES Φ.toAddMonoidHom (fun z => hΦ z) ESbar hESbar
+  · intro ℓ hℓ hℓN T hT
     have : NeZero ℓ := ⟨hℓ.ne_zero⟩
     refine ⟨fun f => ?_, fun f => ?_⟩
     · rw [hES, hES]
       exact HeckeEis.eichlerShimuraMap_heckeTLin N n hℓ hℓN T hT f
     · rw [hESbar, hESbar, hcomm ℓ T hT, hES, hES, HeckeEis.eichlerShimuraMap_heckeTLin N n hℓ hℓN T hT f]
-  ·
-    intro ℓ hℓ hℓN T hT
+  · intro ℓ hℓ hℓN T hT
     have : NeZero ℓ := ⟨hℓ.ne_zero⟩
     refine ⟨fun f => ?_, fun f => ?_⟩
     · rw [hES, hES]
       exact HeckeEis.eichlerShimuraMap_heckeULin N n hℓ hℓN T hT f
     · rw [hESbar, hESbar, hcomm ℓ T hT, hES, hES, HeckeEis.eichlerShimuraMap_heckeULin N n hℓ hℓN T hT f]
-
 
 end S_HeckeEis_exists_eichlerShimura_coeffH1par_binaryFormRepSL_forall_prime
 end P2MW

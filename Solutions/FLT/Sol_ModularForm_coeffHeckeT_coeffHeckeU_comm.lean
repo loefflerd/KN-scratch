@@ -42,25 +42,21 @@ theorem coeffHeckeT_comm (k : ℤ) {p q : ℕ} (hpq : Nat.Coprime p q) (a : ℕ 
   have hqp' : ∀ {m : ℕ}, q ∣ m → (p ∣ m / q ↔ q * p ∣ m) := fun h =>
     Nat.dvd_div_iff_mul_dvd h
   by_cases hpn : p ∣ n <;> by_cases hqn : q ∣ n
-  ·
-    have hpqn : p * q ∣ n := hpq.mul_dvd_of_dvd_of_dvd hpn hqn
+  · have hpqn : p * q ∣ n := hpq.mul_dvd_of_dvd_of_dvd hpn hqn
     rw [ite_eq_left (hq.mpr hqn), ite_eq_left hpn, ite_eq_left ((hpq' hpn).mpr hpqn), ite_eq_left (hp.mpr hpn),
       ite_eq_left hqn, ite_eq_left ((hqp' hqn).mpr (mul_comm p q ▸ hpqn)),
       Nat.mul_right_comm, Nat.div_mul_right_comm hqn, Nat.div_mul_right_comm hpn,
       Nat.div_div_eq_div_mul, Nat.div_div_eq_div_mul, mul_comm q p]
     ring
-  ·
-    have h1 : ¬ q ∣ n / p := fun h => hqn (Nat.dvd_trans (Nat.dvd_mul_left q p) ((hpq' hpn).mp h))
+  · have h1 : ¬ q ∣ n / p := fun h => hqn (Nat.dvd_trans (Nat.dvd_mul_left q p) ((hpq' hpn).mp h))
     rw [ite_eq_right (fun h => hqn (hq.mp h)), ite_eq_left hpn, ite_eq_right h1, ite_eq_left (hp.mpr hpn), ite_eq_right hqn,
       Nat.mul_right_comm, Nat.div_mul_right_comm hpn]
     ring
-  ·
-    have h1 : ¬ p ∣ n / q := fun h => hpn (Nat.dvd_trans (Nat.dvd_mul_left p q) ((hqp' hqn).mp h))
+  · have h1 : ¬ p ∣ n / q := fun h => hpn (Nat.dvd_trans (Nat.dvd_mul_left p q) ((hqp' hqn).mp h))
     rw [ite_eq_left (hq.mpr hqn), ite_eq_right hpn, ite_eq_right (fun h => hpn (hp.mp h)), ite_eq_left hqn, ite_eq_right h1,
       Nat.mul_right_comm, Nat.div_mul_right_comm hqn]
     ring
-  ·
-    rw [ite_eq_right (fun h => hqn (hq.mp h)), ite_eq_right hpn, ite_eq_right (fun h => hpn (hp.mp h)), ite_eq_right hqn,
+  · rw [ite_eq_right (fun h => hqn (hq.mp h)), ite_eq_right hpn, ite_eq_right (fun h => hpn (hp.mp h)), ite_eq_right hqn,
       Nat.mul_right_comm]
 
 end M4cP1W2

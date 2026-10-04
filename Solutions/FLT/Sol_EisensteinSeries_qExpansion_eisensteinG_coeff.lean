@@ -251,7 +251,6 @@ lemma tsum_int_eq (hk : 2 ≤ k) (b : ZMod N) (bv : ℕ) (hbv : (bv : ZMod N) = 
         ∑' m : ℕ+, ((m : ℕ) : ℂ) ^ (k - 1) *
           (ZMod.stdAddChar (b * ((m : ℕ) : ZMod N)) * Function.Periodic.qParam N τ ^ ((m : ℕ) * c)) := by
   have hN : (N : ℂ) ≠ 0 := by exact_mod_cast NeZero.ne N
-
   have hfac : ∀ j : ℤ, ((((c : ℂ)) * τ + ((bv : ℂ) + (N : ℂ) * j)) ^ k)⁻¹ =
       ((N : ℂ) ^ k)⁻¹ * (1 / (((wpt (N := N) c hc bv τ : ℍ) : ℂ) + j) ^ k) := by
     intro j
@@ -263,7 +262,6 @@ lemma tsum_int_eq (hk : 2 ≤ k) (b : ZMod N) (bv : ℕ) (hbv : (bv : ZMod N) = 
   simp_rw [hfac]
   rw [tsum_mul_left, mul_assoc]
   congr 1
-
   obtain ⟨k', rfl⟩ : ∃ k', k = k' + 1 := ⟨k - 1, by omega⟩
   have hk1 : 1 ≤ k' := by omega
   rw [EisensteinSeries.qExpansion_identity_pnat hk1 (wpt (N := N) c hc bv τ)]
@@ -383,7 +381,6 @@ omit [NeZero N] in
 lemma summable_inner (hk : 3 ≤ k) (b : ZMod N) (τ : ℍ) :
     Summable fun c : ℤ => ∑' d : cls N b, ((((c : ℂ)) * τ + d.1) ^ k)⁻¹ := by
   have hk' : 3 ≤ ((k : ℕ) : ℤ) := by exact_mod_cast hk
-
   have hfull : Summable fun p : ℤ × ℤ => ‖eisSummand (k : ℤ) ![p.1, p.2] τ‖ := by
     have := (summable_norm_eisSummand hk' τ)
     rw [← (finTwoArrowEquiv ℤ).symm.summable_iff] at this
@@ -469,7 +466,6 @@ theorem eisensteinG_eq_expansion (hk : 3 ≤ k) (a : Fin 2 → ZMod N) (τ : ℍ
           Function.Periodic.qParam N τ ^ (n : ℕ) := by
   set q := Function.Periodic.qParam N τ with hq
   have hqn : ‖q‖ < 1 := norm_qParam_lt_one τ
-
   rw [eisensteinG_eq_tsum_tsum hk a τ,
     tsum_cls_split (a 0) (fun c : ℤ => ∑' d : cls N (a 1), ((((c : ℂ)) * τ + d.1) ^ k)⁻¹)
       (summable_inner hk (a 1) τ)]
@@ -485,7 +481,6 @@ theorem eisensteinG_eq_expansion (hk : 3 ≤ k) (a : Fin 2 → ZMod N) (τ : ℍ
     intro c
     rw [tsum_cls_neg_eq (a 1) (c : ℕ) τ, tsum_cls_eq (show 2 ≤ k by omega) (-a 1) (c : ℕ) c.2 τ, kappa]
   simp only [Int.cast_zero, zero_mul, zero_add]
-
   have e0 : (if (0 : ZMod N) = a 0 then ∑' d : cls N (a 1), (((d.1 : ℂ)) ^ k)⁻¹ else 0) =
       (if a 0 = 0 then ∑' d : cls N (a 1), (((d.1 : ℂ)) ^ k)⁻¹ else 0) := by
     simp only [eq_comm]
@@ -528,7 +523,6 @@ theorem eisensteinG_eq_expansion (hk : 3 ≤ k) (a : Fin 2 → ZMod N) (τ : ℍ
       (fun c => by split_ifs <;> simp) (fun m => (norm_stdAddChar _).le) hqn (k - 1)
   rw [e0, epos, eneg, add_assoc]
   congr 1
-
   have hs1 : Summable fun n : ℕ+ => kappa N k * (Splus N k a n * q ^ (n : ℕ)) :=
     (summable_divisorSum_mul_pow (show 1 ≤ k by omega) (a 0) (a 1) hqn).mul_left _
   have hs2 : Summable fun n : ℕ+ => (-1) ^ k * (kappa N k * (Sminus N k a n * q ^ (n : ℕ))) :=
@@ -581,8 +575,7 @@ theorem qExpansion_coeff_formula (hk : 3 ≤ k) (a : Fin 2 → ZMod N) (n : ℕ)
   by_cases hn : n = 0
   · subst hn
     rfl
-  ·
-    rw [dite_eq_right hn, ite_eq_right hn]
+  · rw [dite_eq_right hn, ite_eq_right hn]
     have hN : (N : ℂ) ≠ 0 := by exact_mod_cast NeZero.ne N
     simp only [kappa, Splus, Sminus]
     rw [Nat.sum_divisorsAntidiagonal' (fun i j : ℕ =>

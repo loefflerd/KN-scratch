@@ -277,7 +277,6 @@ lemma IsEllDivSequence'.smul (h : IsEllDivSequence' W) (x : R) : IsEllDivSequenc
 
 end IsEllDivSequence430
 
-
 /-! ## Block F — notation `α ^+ M` for `FixedPoints.addSubgroup M α`: Mathlib v4.30.0 Mathlib/Algebra/Ring/Action/Submonoid.lean:43
 (verbatim). Mathlib v4.33.0 removed the notation line; the definition itself is unchanged, so re-declaring the notation keeps
 every tree statement that uses it textually and semantically identical. -/
@@ -296,7 +295,6 @@ variable {R S G : Type*} [CommRing R] [CommRing S] [Algebra R S] [Group G]
   [MulSemiringAction G S] [IsGaloisGroup G R S] [Finite G]
 
 open scoped Pointwise
-
 
 attribute [local instance] Ideal.Quotient.field in
 theorem card_stabilizer_eq_card_inertia_mul_finrank' (p : Ideal R) [p.IsMaximal]

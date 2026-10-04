@@ -112,7 +112,6 @@ theorem exists_separating (v : Place K F) (S : Finset (Place K F)) :
         · exact absurd (h.trans heq) hwv
         · exact ht₁S w h hwv
       · obtain ⟨t₂, ht₂0, ht₂v, ht₂w⟩ := exists_ord_pos_ord_neg_of_ne (Ne.symm hw₀v)
-
         set M : ℕ :=
           ((Finset.cons w₀ S' hw₀).sup fun w => (1 - w.ord t₁).toNat) + 1 with hM
         have hM1 : 1 ≤ (M : ℤ) := by
@@ -137,21 +136,18 @@ theorem exists_separating (v : Place K F) (S : Finset (Place K F)) :
           have h := add_ne_zero_of_ord_lt w₀ hw₀lt
           rwa [add_comm (t₂ ^ (M : ℤ)) t₁] at h
         refine ⟨t₁ + t₂ ^ (M : ℤ), hu0, ?_, ?_⟩
-        ·
-          have hposM : 0 < v.ord (t₂ ^ (M : ℤ)) := by
+        · have hposM : 0 < v.ord (t₂ ^ (M : ℤ)) := by
             rw [v.ord_zpow]
             exact mul_pos (by omega) ht₂v
           exact lt_of_lt_of_le (lt_min ht₁v hposM) (v.min_ord_le_ord_add ht₁0 hpow0 hu0)
         · intro w hw hwv
           rcases Finset.mem_cons.mp hw with heqw | hwS'
-          ·
-            rw [heqw, add_comm t₁ (t₂ ^ (M : ℤ)),
+          · rw [heqw, add_comm t₁ (t₂ ^ (M : ℤ)),
               ord_add_eq_of_ord_lt w₀ hpow0 ht₁0 hw₀lt, w₀.ord_zpow]
             have h5 : (M : ℤ) * w₀.ord t₂ ≤ (M : ℤ) * (-1) :=
               mul_le_mul_of_nonneg_left (by omega) (by omega)
             linarith
-          ·
-            have hward := ht₁S w hwS' hwv
+          · have hward := ht₁S w hwS' hwv
             rcases le_or_gt 0 (w.ord t₂) with hpos | hneg
             · have hlt : w.ord t₁ < w.ord (t₂ ^ (M : ℤ)) := by
                 rw [w.ord_zpow]
@@ -176,11 +172,9 @@ theorem exists_forall_ord_eq_finset (S : Finset (Place K F)) (n : Place K F → 
   classical
   rcases S.eq_empty_or_nonempty with rfl | hSne
   · exact ⟨1, one_ne_zero, fun v hv => absurd hv (Finset.notMem_empty v)⟩
-
   have hsep : ∀ v : Place K F, ∃ t : F, t ≠ 0 ∧ 0 < v.ord t ∧
       ∀ w ∈ S, w ≠ v → w.ord t < 0 := fun v => exists_separating v S
   choose t ht0 htv htS using hsep
-
   have hunif : ∀ v : Place K F, ∃ π : v.toValuationSubring, Irreducible π := fun v =>
     IsDiscreteValuationRing.exists_irreducible v.toValuationSubring
   choose π hπ using hunif
@@ -196,7 +190,6 @@ theorem exists_forall_ord_eq_finset (S : Finset (Place K F)) (n : Place K F → 
     intro v
     simp only [ha]
     rw [v.ord_zpow, v.ord_coe_irreducible (hπ v), mul_one]
-
   set P : ℕ := (S.sup fun v => S.sup fun w => (n v - v.ord (a w)).toNat) + 1 with hP
   have hP1 : 1 ≤ (P : ℤ) := by
     rw [hP]; push_cast; omega
@@ -212,7 +205,6 @@ theorem exists_forall_ord_eq_finset (S : Finset (Place K F)) (n : Place K F → 
         ≤ ((S.sup fun v' => S.sup fun w' => (n v' - v'.ord (a w')).toNat : ℕ) : ℤ) := by
       exact_mod_cast le_trans h1 h2
     rw [hP]; push_cast; omega
-
   have hpow0 : ∀ v : Place K F, t v ^ (P : ℤ) ≠ 0 := fun v => zpow_ne_zero _ (ht0 v)
   have hltden : ∀ v : Place K F, v.ord (1 : F) < v.ord (t v ^ (P : ℤ)) := by
     intro v
@@ -234,7 +226,6 @@ theorem exists_forall_ord_eq_finset (S : Finset (Place K F)) (n : Place K F → 
       linarith
     rw [add_comm ((1 : F)) (t v ^ (P : ℤ)),
       ord_add_eq_of_ord_lt w (hpow0 v) one_ne_zero hneg, w.ord_zpow]
-
   set u : Place K F → F := fun v => a v * ((1 : F) + t v ^ (P : ℤ))⁻¹ with hu
   have hu0 : ∀ v, u v ≠ 0 := by
     intro v
@@ -251,7 +242,6 @@ theorem exists_forall_ord_eq_finset (S : Finset (Place K F)) (n : Place K F → 
     simp only [hu]
     rw [w.ord_mul (ha0 v) (inv_ne_zero (hden v)), w.ord_inv, hdenord' v w hw hwv]
     ring
-
   have htail : ∀ v ∈ S, ∀ w ∈ S, w ≠ v → n v < v.ord (u w) := by
     intro v hv w hw hwv
     have h1 : v.ord (u w) = v.ord (a w) - (P : ℤ) * v.ord (t w) :=
@@ -262,7 +252,6 @@ theorem exists_forall_ord_eq_finset (S : Finset (Place K F)) (n : Place K F → 
       mul_le_mul_of_nonneg_left (by omega) (by omega)
     rw [h1]
     linarith
-
   have hmain : ∀ v ∈ S, S.sum u ≠ 0 ∧ v.ord (S.sum u) = n v := by
     intro v hv
     have hsplit : S.sum u = u v + (S.erase v).sum u :=

@@ -36,7 +36,6 @@ private lemma multipliable_factor_pow :
 private lemma coeff_mul_factor_eq {m n : ℕ} (hmn : m < n + 1) (Q : PowerSeries ℂ) :
     PowerSeries.coeff m (Q * ((1 : PowerSeries ℂ) - PowerSeries.X ^ (n + 1)) ^ 24) =
       PowerSeries.coeff m Q := by
-
   obtain ⟨R, hR⟩ : PowerSeries.X ^ (n + 1) ∣
       ((1 : PowerSeries ℂ) - PowerSeries.X ^ (n + 1)) ^ 24 - 1 := by
     have h := sub_dvd_pow_sub_pow ((1 : PowerSeries ℂ) - PowerSeries.X ^ (n + 1)) 1 24
@@ -51,13 +50,11 @@ private lemma coeff_mul_factor_eq {m n : ℕ} (hmn : m < n + 1) (Q : PowerSeries
 private lemma coeff_trunc_eq_coeff_etaPow (m : ℕ) {N : ℕ} (hN : m < N) :
     PowerSeries.coeff m (∏ n ∈ Finset.range N, ((1 : PowerSeries ℂ) - PowerSeries.X ^ (n + 1)) ^ 24) =
       PowerSeries.coeff m etaPow := by
-
   have hlim : Tendsto (fun N => PowerSeries.coeff m
       (∏ n ∈ Finset.range N, ((1 : PowerSeries ℂ) - PowerSeries.X ^ (n + 1)) ^ 24)) atTop
       (𝓝 (PowerSeries.coeff m etaPow)) :=
     ((PowerSeries.WithPiTopology.continuous_coeff ℂ m).tendsto _).comp
       multipliable_factor_pow.hasProd.tendsto_prod_nat
-
   have hconst : ∀ N', m < N' → ∀ N, N' ≤ N →
       PowerSeries.coeff m (∏ n ∈ Finset.range N, ((1 : PowerSeries ℂ) - PowerSeries.X ^ (n + 1)) ^ 24) =
       PowerSeries.coeff m (∏ n ∈ Finset.range N', ((1 : PowerSeries ℂ) - PowerSeries.X ^ (n + 1)) ^ 24) := by
@@ -108,7 +105,6 @@ private lemma tendstoLocallyUniformlyOn_trunc :
     simp
   have hc : ContinuousOn (fun q : ℂ => ∏' n : ℕ, (1 - q ^ (n + 1))) (Metric.ball (0 : ℂ) 1) :=
     ModularForm.differentiableOn_tprod_one_sub_pow.continuousOn
-
   have hpow : ∀ k : ℕ, TendstoLocallyUniformlyOn
       (fun N q => (∏ n ∈ Finset.range N, (1 - q ^ (n + 1))) ^ k)
       (fun q => (∏' n : ℕ, (1 - q ^ (n + 1))) ^ k) atTop (Metric.ball (0 : ℂ) 1) := by
@@ -151,7 +147,6 @@ private lemma iteratedDeriv_gfun_zero (m : ℕ) :
   have hlim : Tendsto (fun N => (derivative^[m] (truncPoly N)).eval 0) atTop
       (𝓝 (deriv^[m] gfun 0)) :=
     (tendstoLocallyUniformlyOn_iterate_deriv_trunc m).tendsto_at h0
-
   have hev : (fun N => (derivative^[m] (truncPoly N)).eval 0) =ᶠ[atTop]
       fun _ => (m.factorial : ℂ) * PowerSeries.coeff m etaPow := by
     refine eventually_atTop.mpr ⟨m + 1, fun N hN => ?_⟩
@@ -183,7 +178,6 @@ private lemma hasSum_coeff_X_mul_etaPow {q : ℂ} (hq : ‖q‖ < 1) :
 
 private lemma discriminant_eq_qParam_mul_gfun (τ : ℍ) :
     ModularForm.discriminant τ = 𝕢 1 (τ : ℂ) * gfun (𝕢 1 (τ : ℂ)) := by
-
   rw [ModularForm.discriminant_eq_q_prod, gfun]
 
 end ModularCurve

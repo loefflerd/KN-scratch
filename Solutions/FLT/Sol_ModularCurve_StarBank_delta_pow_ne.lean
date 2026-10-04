@@ -44,7 +44,6 @@ theorem coeff_one_etaProd : PowerSeries.coeff 1 etaProd = -1 := by
       (∏ i ∈ insert 0 (s₀.erase 0), ((1 : PowerSeries ℤ) - PowerSeries.X ^ (i + 1))) =
         PowerSeries.coeff 1 etaProd := hs₀ _ hsub
   rw [← key, Finset.prod_insert (Finset.notMem_erase 0 s₀)]
-
   obtain ⟨r, hr⟩ : ∃ r : PowerSeries ℤ,
       ∏ i ∈ s₀.erase 0, ((1 : PowerSeries ℤ) - PowerSeries.X ^ (i + 1)) =
         1 + PowerSeries.X ^ 2 * r := by
@@ -151,7 +150,6 @@ theorem ModularCurve.StarBank.etaProd_pow_ne (K : Type*) [CommRing K] {ℓ : ℕ
         (HahnSeries.ofPowerSeries ℤ K (PowerSeries.map (Int.castRingHom K) etaProd) ^ 24)).coeff
           ((ℓ ^ c : ℕ) : ℤ) := by
     rw [h]
-
   have hL : (HahnSeries.ofPowerSeries ℤ K (PowerSeries.map (Int.castRingHom K) etaProd) ^
         (24 * p)).coeff ((ℓ ^ c : ℕ) : ℤ) = -((m * p : ℕ) : K) := by
     have e1 : HahnSeries.ofPowerSeries ℤ K (PowerSeries.map (Int.castRingHom K) etaProd) ^
@@ -165,7 +163,6 @@ theorem ModularCurve.StarBank.etaProd_pow_ne (K : Type*) [CommRing K] {ℓ : ℕ
       (HahnSeries.ofPowerSeries ℤ K (PowerSeries.map (Int.castRingHom K) etaProd) ^ (m * p)) 1
     rw [mul_one] at e2
     rw [e1, e2, ModularCurve.W1.coeff_one_etaC_pow]
-
   have hR : (HahnSeries.C γ * qExpand K p
       (HahnSeries.ofPowerSeries ℤ K (PowerSeries.map (Int.castRingHom K) etaProd) ^ 24)).coeff
         ((ℓ ^ c : ℕ) : ℤ) = 0 := by
@@ -258,7 +255,6 @@ theorem solution (K : Type*) [CommRing K] {ℓ : ℕ} [Fact ℓ.Prime]
       HahnSeries.C γ * qExpand K p (HahnSeries.single (1 : ℤ) (1 : K) *
         HahnSeries.ofPowerSeries ℤ K (PowerSeries.map (Int.castRingHom K) etaProd) ^ 24) :=
   ModularCurve.StarBank.delta_pow_ne K hpℓ γ
-
 
 end S_ModularCurve_StarBank_delta_pow_ne
 end P2MW

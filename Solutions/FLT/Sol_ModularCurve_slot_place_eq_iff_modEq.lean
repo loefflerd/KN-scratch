@@ -116,7 +116,6 @@ private theorem _root_.ModularCurve.slot_place_eq_iff_modEq (N : ℕ) [NeZero N]
   constructor
   · intro hww
     subst hww
-
     have h1 := hw jb
     have h1' := hw' jb
     rw [hι₁, order_qExpand_jq] at h1
@@ -126,7 +125,6 @@ private theorem _root_.ModularCurve.slot_place_eq_iff_modEq (N : ℕ) [NeZero N]
       rw [h0, zero_mul] at h1
       exact NeZero.ne (a * d) (by exact_mod_cast (neg_eq_zero.mp h1.symm))
     obtain rfl : γ = γ' := mul_left_cancel₀ hne (h1.trans h1'.symm)
-
     have h2 := hw jbN
     have h2' := hw' jbN
     rw [hι₂, order_slot] at h2
@@ -134,7 +132,6 @@ private theorem _root_.ModularCurve.slot_place_eq_iff_modEq (N : ℕ) [NeZero N]
     have haa : a * a = a' * a' := by exact_mod_cast neg_injective (h2.symm.trans h2')
     obtain rfl : a = a' := Nat.mul_self_inj.mp haa
     refine ⟨rfl, ?_⟩
-
     obtain ⟨m, hm⟩ := Nat.gcd_dvd_left a d
     obtain ⟨n, hn⟩ := Nat.gcd_dvd_right a d
     set g := Nat.gcd a d with hg
@@ -167,7 +164,6 @@ private theorem _root_.ModularCurve.slot_place_eq_iff_modEq (N : ℕ) [NeZero N]
     have hordx : (ι' x₀).order = (ι x₀).order := (hw' x₀).symm.trans (hw x₀)
     have hM0 : (0 : ℤ) < ((a * a * n : ℕ) : ℤ) := by
       exact_mod_cast Nat.mul_pos (Nat.mul_pos ha0 ha0) hn0
-
     have hvan : (ι' x₀).coeff (-((a * a * n : ℕ) : ℤ)) = 0 := by
       by_cases hz : ι' x₀ = 0
       · rw [hz, HahnSeries.coeff_zero]
@@ -189,7 +185,6 @@ private theorem _root_.ModularCurve.slot_place_eq_iff_modEq (N : ℕ) [NeZero N]
       mul_assoc, mul_assoc] at hu
     exact (Nat.ModEq.mul_right_cancel' (Nat.mul_pos ha0 hn0).ne' hu).symm
   · rintro ⟨rfl, hbb⟩
-
     obtain ⟨q, hq⟩ := Nat.modEq_iff_dvd.mp hbb
     have hbez := Nat.gcd_eq_gcd_ab a d
     obtain ⟨k, hk⟩ : ∃ k : ℤ, (ζ ^ k) ^ ((a * a : ℕ) : ℤ) * ζ ^ (b * a) = ζ ^ (b' * a) := by
@@ -199,7 +194,6 @@ private theorem _root_.ModularCurve.slot_place_eq_iff_modEq (N : ℕ) [NeZero N]
       refine ⟨-(Nat.gcdB a d * q), ?_⟩
       push_cast
       linear_combination (-(a : ℤ)) * hq + (-(a : ℤ) * q) * hbez
-
     let T : LaurentSeries K →ₐ[K] LaurentSeries K :=
       { toRingHom := qTwist (ζ ^ k)
         commutes' := fun c => by
@@ -220,7 +214,6 @@ private theorem _root_.ModularCurve.slot_place_eq_iff_modEq (N : ℕ) [NeZero N]
     have hordeq : ∀ x, (ι' x).order = (ι x).order := fun x => by
       rw [hT]
       exact order_qTwist K (ζ ^ k) (ι x)
-
     apply Place.ext
     ext f
     rcases eq_or_ne f 0 with rfl | hf
@@ -253,7 +246,6 @@ theorem solution (K : Type*) [Field K] [Algebra ℚ K] (N : ℕ) [NeZero N] (ζ 
     (hw : ∀ x, w.ord x * γ = (ι x).order) (hw' : ∀ x, w'.ord x * γ' = (ι' x).order) :
     w = w' ↔ a = a' ∧ b ≡ b' [MOD Nat.gcd a (N / a)] :=
   ModularCurve.slot_place_eq_iff_modEq K N ζ hζ a b ha a' b' ha' ι ι' hι₁ hι₂ hι'₁ hι'₂ w w' γ γ' hγ hγ' hw hw'
-
 
 end S_ModularCurve_slot_place_eq_iff_modEq
 end P2MW

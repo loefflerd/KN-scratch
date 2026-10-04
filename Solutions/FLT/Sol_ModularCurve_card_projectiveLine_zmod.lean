@@ -31,7 +31,6 @@ private theorem isUnit_zmod_prime_pow_iff {p k : ℕ} (hp : p.Prime) (hk : k ≠
   · intro h
     by_contra hz
     apply h
-
     have hval : ¬z.val.Coprime (p ^ k) := fun hcop =>
       hz (by rw [← ZMod.natCast_zmod_val z]; exact (ZMod.isUnit_iff_coprime _ _).mpr hcop)
     have hdvd : p ∣ z.val := by
@@ -79,16 +78,13 @@ private theorem card_not_isUnit_zmod_prime_pow {p k : ℕ} (hp : p.Prime) (hk : 
     Nat.card { z : ZMod (p ^ k) // ¬IsUnit z } = p ^ (k - 1) := by
   have : NeZero (p ^ k) := ⟨pow_ne_zero k hp.pos.ne'⟩
   classical
-
   have hsplit : Nat.card { z : ZMod (p ^ k) // IsUnit z } +
       Nat.card { z : ZMod (p ^ k) // ¬IsUnit z } = p ^ k := by
     rw [← Nat.card_sum, Nat.card_congr (Equiv.sumCompl (IsUnit ·)),
       Nat.card_eq_fintype_card, ZMod.card]
-
   have hunits : Nat.card { z : ZMod (p ^ k) // IsUnit z } = (p ^ k).totient := by
     rw [Nat.card_congr (isUnitSubtypeEquivUnits (ZMod (p ^ k))), Nat.card_eq_fintype_card,
       ZMod.card_units_eq_totient]
-
   have htot : (p ^ k).totient + p ^ (k - 1) = p ^ k := by
     obtain ⟨j, rfl⟩ : ∃ j, k = j + 1 := ⟨k - 1, by omega⟩
     have hp1 : p - 1 + 1 = p := Nat.succ_pred_eq_of_pos hp.pos
@@ -102,30 +98,25 @@ private theorem card_not_isUnit_zmod_prime_pow {p k : ℕ} (hp : p.Prime) (hk : 
 private theorem card_projectiveLine_prime_pow (p k : ℕ) (hp : p.Prime) (hk : k ≠ 0) :
     Nat.card (ProjectiveLine (ZMod (p ^ k))) = p ^ k + p ^ (k - 1) := by
   have : NeZero (p ^ k) := ⟨pow_ne_zero k hp.pos.ne'⟩
-
   let f : ZMod (p ^ k) ⊕ { z : ZMod (p ^ k) // ¬IsUnit z } → ProjectiveLine (ZMod (p ^ k)) :=
     fun s => Sum.rec (fun t => ⟦⟨(1, t), isUnimodularRow_one_left t⟩⟧)
       (fun m => ⟦⟨(m.1, 1), isUnimodularRow_one_right m.1⟩⟧) s
   have hbij : Function.Bijective f := by
     constructor
     · rintro (t | m) (t' | m') hff
-      ·
-        obtain ⟨u, h1, h2⟩ := Quotient.exact hff
+      · obtain ⟨u, h1, h2⟩ := Quotient.exact hff
         have h1' : (u : ZMod (p ^ k)) * 1 = 1 := h1
         have h2' : (u : ZMod (p ^ k)) * t = t' := h2
         rw [mul_one] at h1'
         rw [h1', one_mul] at h2'
         exact congrArg Sum.inl h2'
-      ·
-        obtain ⟨u, h1, _⟩ := Quotient.exact hff
+      · obtain ⟨u, h1, _⟩ := Quotient.exact hff
         have h1' : (u : ZMod (p ^ k)) * 1 = m'.1 := h1
         exact absurd (h1' ▸ (u.isUnit.mul isUnit_one)) m'.2
-      ·
-        obtain ⟨u, h1, _⟩ := Quotient.exact hff
+      · obtain ⟨u, h1, _⟩ := Quotient.exact hff
         have h1' : (u : ZMod (p ^ k)) * m.1 = 1 := h1
         exact absurd ⟨⟨m.1, u, (mul_comm m.1 u).trans h1', h1'⟩, rfl⟩ m.2
-      ·
-        obtain ⟨u, h1, h2⟩ := Quotient.exact hff
+      · obtain ⟨u, h1, h2⟩ := Quotient.exact hff
         have h1' : (u : ZMod (p ^ k)) * m.1 = m'.1 := h1
         have h2' : (u : ZMod (p ^ k)) * 1 = 1 := h2
         rw [mul_one] at h2'
@@ -134,14 +125,12 @@ private theorem card_projectiveLine_prime_pow (p k : ℕ) (hp : p.Prime) (hk : k
     · intro q
       obtain ⟨v, rfl⟩ := Quotient.exists_rep q
       by_cases ha : IsUnit v.1.1
-      ·
-        refine ⟨Sum.inl ((ha.unit⁻¹ : (ZMod (p ^ k))ˣ) * v.1.2), Quotient.sound ⟨ha.unit, ?_, ?_⟩⟩
+      · refine ⟨Sum.inl ((ha.unit⁻¹ : (ZMod (p ^ k))ˣ) * v.1.2), Quotient.sound ⟨ha.unit, ?_, ?_⟩⟩
         · show (ha.unit : ZMod (p ^ k)) * 1 = v.1.1
           rw [mul_one, ha.unit_spec]
         · show (ha.unit : ZMod (p ^ k)) * ((ha.unit⁻¹ : (ZMod (p ^ k))ˣ) * v.1.2) = v.1.2
           rw [Units.mul_inv_cancel_left]
-      ·
-        have hc : IsUnit v.1.2 := (v.2.isUnit_or_isUnit hp hk).resolve_left ha
+      · have hc : IsUnit v.1.2 := (v.2.isUnit_or_isUnit hp hk).resolve_left ha
         have hm : ¬IsUnit ((hc.unit⁻¹ : (ZMod (p ^ k))ˣ) * v.1.1) := fun hcon => by
           have : IsUnit ((hc.unit : ZMod (p ^ k)) * ((hc.unit⁻¹ : (ZMod (p ^ k))ˣ) * v.1.1)) :=
             hc.unit.isUnit.mul hcon
@@ -179,13 +168,11 @@ private theorem card_projectiveLine_mul (M N : ℕ) [NeZero M] [NeZero N] (h : M
       Nat.card (ProjectiveLine (ZMod M)) * Nat.card (ProjectiveLine (ZMod N)) := by
   have : NeZero (M * N) := ⟨mul_ne_zero (NeZero.ne M) (NeZero.ne N)⟩
   set e := ZMod.chineseRemainder h with he
-
   let F : ProjectiveLine (ZMod (M * N)) → ProjectiveLine (ZMod M) × ProjectiveLine (ZMod N) :=
     fun q => (ProjectiveLine.map (crtFst M N h) q, ProjectiveLine.map (crtSnd M N h) q)
   have hbij : Function.Bijective F := by
     constructor
-    ·
-      intro q q'
+    · intro q q'
       refine Quotient.inductionOn₂ q q' ?_
       intro v w hvw
       obtain ⟨hM, hN⟩ := Prod.mk.injEq .. ▸ hvw
@@ -195,13 +182,11 @@ private theorem card_projectiveLine_mul (M N : ℕ) [NeZero M] [NeZero N] (h : M
       have h2M' : (u₁ : ZMod M) * crtFst M N h v.1.2 = crtFst M N h w.1.2 := h2M
       have h1N' : (u₂ : ZMod N) * crtSnd M N h v.1.1 = crtSnd M N h w.1.1 := h1N
       have h2N' : (u₂ : ZMod N) * crtSnd M N h v.1.2 = crtSnd M N h w.1.2 := h2N
-
       have hUmul : e.symm (↑u₁, ↑u₂) * e.symm (↑u₁⁻¹, ↑u₂⁻¹) = 1 := by
         rw [← map_mul, Prod.mk_mul_mk, Units.mul_inv, Units.mul_inv]
         exact map_one e.symm
       have hUmul' : e.symm (↑u₁⁻¹, ↑u₂⁻¹) * e.symm (↑u₁, ↑u₂) = 1 :=
         (mul_comm _ _).trans hUmul
-
       have key : ∀ z z' : ZMod (M * N), (u₁ : ZMod M) * (e z).1 = (e z').1 →
           (u₂ : ZMod N) * (e z).2 = (e z').2 →
           e.symm (↑u₁, ↑u₂) * z = z' := by
@@ -214,13 +199,11 @@ private theorem card_projectiveLine_mul (M N : ℕ) [NeZero M] [NeZero N] (h : M
           _ = e z' := rfl
       exact Quotient.sound ⟨⟨e.symm (↑u₁, ↑u₂), e.symm (↑u₁⁻¹, ↑u₂⁻¹), hUmul, hUmul'⟩,
         key v.1.1 w.1.1 h1M' h1N', key v.1.2 w.1.2 h2M' h2N'⟩
-    ·
-      rintro ⟨x, y⟩
+    · rintro ⟨x, y⟩
       obtain ⟨a, rfl⟩ := Quotient.exists_rep x
       obtain ⟨b, rfl⟩ := Quotient.exists_rep y
       obtain ⟨xa, ya, hab⟩ := a.2
       obtain ⟨xb, yb, hbb⟩ := b.2
-
       have hglue : IsUnimodularRow (e.symm (a.1.1, b.1.1)) (e.symm (a.1.2, b.1.2)) := by
         refine ⟨e.symm (xa, xb), e.symm (ya, yb), ?_⟩
         rw [← map_mul, ← map_mul, ← map_add, Prod.mk_mul_mk, Prod.mk_mul_mk, Prod.mk_add_mk,

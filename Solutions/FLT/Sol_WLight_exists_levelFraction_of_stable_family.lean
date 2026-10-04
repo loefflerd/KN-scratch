@@ -156,27 +156,19 @@ def frickeF (N : ℕ) (a : Fin 2 → ZMod N) (τ : ℍ) : ℂ :=
   -(ModularForm.E₄ τ * ModularForm.E₆ τ / ModularForm.discriminant τ) / 2592 * wpNormZ N a τ
 
 theorem r4a_package (N : ℕ) [NeZero N] :
-
     (∀ (a : Fin 2 → ZMod N) (γ : SL(2, ℤ)) (τ : ℍ), (frickeF N) a (γ • τ) =
         (frickeF N) (Matrix.vecMul a ((γ : Matrix (Fin 2) (Fin 2) ℤ).map ((↑) : ℤ → ZMod N))) τ) ∧
-
     (∀ a : Fin 2 → ZMod N, (frickeF N) (-a) = (frickeF N) a) ∧
-
     (∀ a : Fin 2 → ZMod N, a ≠ 0 → MDifferentiable 𝓘(ℂ) 𝓘(ℂ) ((frickeF N) a)) ∧
-
     (∀ a : Fin 2 → ZMod N, a ≠ 0 →
       IsBoundedAtImInfty ((frickeF N) a * ModularForm.discriminant)) ∧
-
     (∀ a : Fin 2 → ZMod N, a ≠ 0 →
       Function.Periodic (((frickeF N) a * ModularForm.discriminant) ∘ ofComplex) N ∧
       ∀ n : ℕ, (qExpansion N ((frickeF N) a * ModularForm.discriminant)).coeff n ∈
         IntermediateField.adjoin ℚ {cexp (2 * π * I / N)}) ∧
-
     (∀ a b : Fin 2 → ZMod N, a ≠ 0 → b ≠ 0 → (frickeF N) a = (frickeF N) b → b = a ∨ b = -a) ∧
-
     (∀ a : Fin 2 → ZMod N, ∀ γ ∈ CongruenceSubgroup.Gamma N, ∀ τ : ℍ,
       (frickeF N) a (γ • τ) = (frickeF N) a τ) ∧
-
     (∀ s : ℕ, s.Coprime N →
       ∀ φ : ↑(IntermediateField.adjoin ℚ {cexp (2 * π * I / N)}) →+* ℂ,
         (∀ z : ↑(IntermediateField.adjoin ℚ {cexp (2 * π * I / N)}),
@@ -188,13 +180,10 @@ theorem r4a_package (N : ℕ) [NeZero N] :
   frickeFunction_modularity_package N periodPairOfTau fun _ ↦ ⟨rfl, rfl⟩
 
 theorem r4b_package (N : ℕ) [NeZero N] :
-
     (MDifferentiable 𝓘(ℂ) 𝓘(ℂ) j ∧
       ∃ m : ℕ, IsBoundedAtImInfty (j * ModularForm.discriminant ^ m)) ∧
-
     (∀ v : Fin 2 → ZMod N, v ≠ 0 → MDifferentiable 𝓘(ℂ) 𝓘(ℂ) ((frickeF N) v) ∧
       ∃ m : ℕ, IsBoundedAtImInfty ((frickeF N) v * ModularForm.discriminant ^ m)) ∧
-
     (∃ P : ℕ → Polynomial ℂ,
       (∀ k i, (P k).coeff i ∈
         IntermediateField.adjoin ℚ {Complex.exp (2 * (Real.pi : ℂ) * Complex.I / N)}) ∧
@@ -249,7 +238,6 @@ theorem frickeF_eq_imp {N : ℕ} [NeZero N] (a b : FrickeIdx N)
 theorem mem_Gamma_or_neg_mem_of_vecMulSL {N : ℕ} [NeZero N] (γ : SL(2, ℤ))
     (h : ∀ a : Fin 2 → ZMod N, a ≠ 0 → vecMulSL N a γ = a ∨ vecMulSL N a γ = -a) :
     γ ∈ CongruenceSubgroup.Gamma N ∨ -γ ∈ CongruenceSubgroup.Gamma N := by
-
   rcases Nat.lt_or_ge 1 N with hN | hN
   · have : Fact (1 < N) := ⟨hN⟩
     have h10 : (1 : ZMod N) ≠ 0 := one_ne_zero

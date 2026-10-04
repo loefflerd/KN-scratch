@@ -40,7 +40,6 @@ theorem solution (N : ℕ) [NeZero N] (j₀ : AlgebraicClosure ℚ) :
     EMD N j₀ :=
   ModularCurve.emd_holds N j₀
 
-
 end S_ModularCurve_emd_holds
 end P2MW
 export P2MW.S_ModularCurve_emd_holds (solution)

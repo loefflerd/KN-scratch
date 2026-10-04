@@ -160,14 +160,12 @@ lemma realL_aeval_jq (P : Polynomial ℚ) :
 theorem mem_adjoin_jq_of_realL_invariant (f : LaurentSeries ℚ) (F : ℍ → ℂ)
     (hF : ∀ τ : ℍ, HasSum (fun m : ℤ => ((f.coeff m : ℚ) : ℂ) * 𝕢 1 (τ : ℂ) ^ m) (F τ))
     (hinv : ∀ (γ : SL(2, ℤ)) (τ : ℍ), F (γ • τ) = F τ) : f ∈ Algebra.adjoin ℚ {jq} := by
-
   obtain ⟨n, hn⟩ : ∃ n : ℕ, PoleOrderLE f n := by
     by_cases hf0 : f = 0
     · exact ⟨0, fun m _ => by simp [hf0]⟩
     refine ⟨(-f.order).toNat, fun m hm => HahnSeries.coeff_eq_zero_of_lt_order (lt_of_lt_of_le hm ?_)⟩
     have := Int.self_le_toNat (-f.order)
     omega
-
   obtain ⟨P, -, he⟩ := ModularCurve.exists_aeval_jq_sub_holomorphicAtInfty n f hn
   set e : LaurentSeries ℚ := f - Polynomial.aeval jq P with he_def
   have he0 : ∀ m : ℤ, m < 0 → e.coeff m = 0 := fun m hm => he m (by simpa using hm)
@@ -179,7 +177,6 @@ theorem mem_adjoin_jq_of_realL_invariant (f : LaurentSeries ℚ) (F : ℍ → �
       (F - fun τ => (P.map castC).eval (jt τ)) (γ • τ) = (F - fun τ => (P.map castC).eval (jt τ)) τ := by
     intro γ τ
     simp only [Pi.sub_apply, hinv γ τ, jt_smul γ τ]
-
   have hEN : ∀ τ : ℍ, HasSum (fun n : ℕ => ((e.coeff n : ℚ) : ℂ) * 𝕢 1 (τ : ℂ) ^ n)
       ((F - fun τ => (P.map castC).eval (jt τ)) τ) := by
     intro τ
@@ -195,7 +192,6 @@ theorem mem_adjoin_jq_of_realL_invariant (f : LaurentSeries ℚ) (F : ℍ → �
   have hvan : ∀ n : ℕ, n ≠ 0 → e.coeff n = 0 := fun n hn => by
     have := coeff_eq_zero_of_hasSum_of_slash_invariant hEN hEinv hn
     exact_mod_cast this
-
   have heconst : e = HahnSeries.single 0 (e.coeff 0) := by
     ext m
     rcases lt_trichotomy m 0 with hm | rfl | hm

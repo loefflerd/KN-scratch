@@ -33,37 +33,27 @@ theorem solution
     (D : Divisor K F) (hD : ∀ v : Place K F, D v = max 0 (-v.ord x)) :
     (Module.finrank (IntermediateField.adjoin K ({x} : Set F)) F : ℤ) ≤ Divisor.degree D := by
   classical
-
   set E : IntermediateField K F := IntermediateField.adjoin K ({x} : Set F) with hE
   set n : ℕ := Module.finrank E F with hn
-
   have hxE_mem : x ∈ E := IntermediateField.mem_adjoin_simple_self K x
   set xE : E := ⟨x, hxE_mem⟩ with hxE
   have hxE_coe : (xE : F) = x := rfl
-
   have hx0 : x ≠ 0 := fun h => hx (h ▸ isAlgebraic_zero)
   have hxE0 : xE ≠ 0 := fun h => hx0 (by rw [← hxE_coe, h]; rfl)
-
   have hxE_trans : Transcendental K xE := by
     intro halg
     exact hx halg.algebraMap
-
   set A : Subalgebra K E := Algebra.adjoin K ({xE} : Set E) with hA
   have hA_dom : IsDomain A := inferInstance
-
   have hfrac : IsFractionRing A E := by
-
     refine IsFractionRing.of_field A E fun z => ?_
-
     obtain ⟨r, s, hzrs⟩ :=
       (IntermediateField.mem_adjoin_simple_iff K (x := (z : F))).mp z.2
-
     have hrA : Polynomial.aeval xE r ∈ A := by
       rw [hA, Algebra.adjoin_singleton_eq_range_aeval]; exact ⟨r, rfl⟩
     have hsA : Polynomial.aeval xE s ∈ A := by
       rw [hA, Algebra.adjoin_singleton_eq_range_aeval]; exact ⟨s, rfl⟩
     refine ⟨⟨_, hrA⟩, ⟨_, hsA⟩, ?_⟩
-
     apply Subtype.ext
     have hcoeR : ((Polynomial.aeval xE r : E) : F) = Polynomial.aeval x r := by
       have : xE = IntermediateField.AdjoinSimple.gen K x := rfl
@@ -75,18 +65,14 @@ theorem solution
     rw [show algebraMap A E ⟨_, hrA⟩ = Polynomial.aeval xE r from rfl,
         show algebraMap A E ⟨_, hsA⟩ = Polynomial.aeval xE s from rfl,
         IntermediateField.coe_div, hcoeR, hcoeS, hzrs]
-
   obtain ⟨s, b, hint⟩ := FiniteDimensional.exists_is_basis_integral A E F
-
   have hcard : Fintype.card s = n := (Module.finrank_eq_card_basis b).symm
   let e : Fin n ≃ s := (Fintype.equivFinOfCardEq hcard).symm
   set u : Fin n → F := fun i => b (e i) with hu
   have hu_indep : LinearIndependent E u := (b.linearIndependent.comp e (e.injective))
   have hu_int : ∀ i, IsIntegral A (u i) := fun i => hint (e i)
-
   have hu_intF : ∀ i, IsIntegral (Algebra.adjoin K ({x} : Set F)) (u i) := by
     intro i
-
     have hrange : ∀ a : A, algebraMap A F a ∈ Algebra.adjoin K ({x} : Set F) := by
       intro a
       have hmap : (Algebra.adjoin K ({xE} : Set E)).map (IsScalarTower.toAlgHom K E F)
@@ -100,17 +86,14 @@ theorem solution
     have hcomp : (algebraMap (Algebra.adjoin K ({x} : Set F)) F).comp φ = algebraMap A F := by
       ext a; rfl
     exact (hu_int i).map_of_comp_eq φ (RingHom.id F) (by rw [RingHom.id_comp, hcomp])
-
   have hu_reg : ∀ i, ∀ v : Place K F, 0 ≤ v.ord x → 0 ≤ v.ord (u i) := by
     intro i v hvx
     have hxmem : x ∈ v.toValuationSubring := v.mem_of_ord_nonneg hx0 hvx
     exact v.ord_nonneg_of_mem
       (v.mem_toValuationSubring_of_isIntegral_adjoin hxmem (hu_intF i))
-
   have hDeff : (0 : Divisor K F) ≤ D := by
     intro v; rw [hD]; exact le_max_left 0 _
   have hDeff' : ∀ m : ℕ, (0 : Divisor K F) ≤ m • D := fun m => nsmul_nonneg hDeff m
-
   have hDsupp : ∀ v ∈ D.support, (1 : ℤ) ≤ D v := by
     intro v hv
     have hne : D v ≠ 0 := Finsupp.mem_support_iff.mp hv
@@ -127,12 +110,10 @@ theorem solution
     refine Or.inr fun v => ?_
     simp only [Finsupp.coe_smul, Pi.smul_apply, nsmul_eq_mul]
     rcases le_or_gt 0 (v.ord x) with hvx | hvx
-    ·
-      have hDv0 : D v = 0 := by rw [hD]; exact max_eq_left (by omega)
+    · have hDv0 : D v = 0 := by rw [hD]; exact max_eq_left (by omega)
       rw [hDv0, mul_zero, neg_zero]
       exact hu_reg i v hvx
-    ·
-      have hvsupp : v ∈ D.support := Finsupp.mem_support_iff.mpr (by rw [hD]; omega)
+    · have hvsupp : v ∈ D.support := Finsupp.mem_support_iff.mpr (by rw [hD]; omega)
       have hDv1 : (1 : ℤ) ≤ D v := hDsupp v hvsupp
       have hcle : (-(v.ord (u i))).toNat ≤ c := by
         refine le_trans ?_ (Finset.le_sup (f := fun i => D.support.sup fun v => (-(v.ord (u i))).toNat) (Finset.mem_univ i))
@@ -141,14 +122,12 @@ theorem solution
         have := Int.toNat_le.mp hcle
         omega
       nlinarith [Int.natCast_nonneg c, hDv1]
-
   have hx_li : LinearIndependent K (fun j : ℕ => xE ^ j) := by
     apply LinearIndependent.of_comp (R := K) E.val.toLinearMap
     have heq : E.val.toLinearMap ∘ (fun j : ℕ => xE ^ j) = fun j => x ^ j := by
       ext j; simp only [Function.comp_apply, AlgHom.toLinearMap_apply, map_pow,
         IntermediateField.coe_val, hxE_coe]
     rw [heq]
-
     have hinj := transcendental_iff_injective.mp hx
     have := (Polynomial.basisMonomials K).linearIndependent.map'
       (Polynomial.aeval (R := K) x).toLinearMap (LinearMap.ker_eq_bot.mpr hinj)
@@ -157,7 +136,6 @@ theorem solution
   have hli : LinearIndependent K (fun p : ℕ × Fin n => x ^ p.1 * u p.2) := by
     have := linearIndependent_pow_mul (K := K) (E := E) (F := F) hx_li hu_indep
     simpa only [show algebraMap E F xE = x from hxE_coe] using this
-
   have hmem : ∀ m, c ≤ m → ∀ (j : ℕ) (i : Fin n), j ≤ m - c → x ^ j * u i ∈ LSpace (m • D) := by
     intro m hm j i hj
     rw [mem_lSpace_iff_ord]
@@ -171,22 +149,18 @@ theorem solution
     simp only [Finsupp.coe_smul, Pi.smul_apply, nsmul_eq_mul]
     have huiL := (mem_lSpace_iff_ord.mp (hc i)).resolve_left hui0 v
     simp only [Finsupp.coe_smul, Pi.smul_apply, nsmul_eq_mul] at huiL
-
     rcases le_or_gt 0 (v.ord x) with hvx | hvx
     · have hDv0 : D v = 0 := by rw [hD]; exact max_eq_left (by omega)
       rw [hDv0, mul_zero, neg_zero]
       exact add_nonneg (mul_nonneg (Int.natCast_nonneg j) hvx) (hu_reg i v hvx)
     · have hDv : D v = -v.ord x := by rw [hD]; exact max_eq_right (by omega)
-
       have hjc : (j : ℤ) + c ≤ m := by omega
       have hDvpos : 0 ≤ D v := hDeff v
       have hmj : (m : ℤ) - j ≥ c := by omega
       nlinarith [huiL, mul_le_mul_of_nonneg_right hjc hDvpos, hDv]
-
   have hlow : ∀ m, c ≤ m → (n : ℤ) * (m - c + 1) ≤ ell (m • D) := by
     intro m hm
     have : FiniteDimensional K (LSpace (m • D)) := finiteDimensional_lSpace (m • D)
-
     set ι := Fin (m - c + 1) × Fin n
     have hli' : LinearIndependent K (fun p : ι => (⟨x ^ (p.1 : ℕ) * u p.2,
         hmem m hm p.1 p.2 (by omega)⟩ : LSpace (m • D))) := by
@@ -196,9 +170,7 @@ theorem solution
         exact Prod.ext hpq.1 hpq.2
       have hcomp := hli.comp _ hinj
       rw [LinearIndependent] at hcomp ⊢
-
       have hker := hcomp
-
       refine LinearIndependent.of_comp (LSpace (m • D)).subtype ?_
       exact hcomp
     have hcard : Fintype.card ι = (m - c + 1) * n := by
@@ -209,20 +181,16 @@ theorem solution
       _ ≤ (Module.finrank K (LSpace (m • D)) : ℤ) := by
           exact_mod_cast hli'.fintype_card_le_finrank
       _ = ell (m • D) := rfl
-
   have hhigh : ∀ m : ℕ, (ell (m • D) : ℤ) ≤ m * Divisor.degree D + ell (0 : Divisor K F) := by
     intro m
     have := ell_le_degree_add_ellZero (hDeff' m)
     rwa [Divisor.degree.map_nsmul, nsmul_eq_mul] at this
-
   by_contra hlt
   push Not at hlt
   have hngt : (Divisor.degree D : ℤ) + 1 ≤ n := by omega
-
   set m := c + n * c + ell (0 : Divisor K F) + 1 with hmdef
   have hm_ge_c : c ≤ m := by omega
   have hcombine := le_trans (hlow m hm_ge_c) (hhigh m)
-
   have hdeg_le : Divisor.degree D ≤ (n : ℤ) - 1 := by omega
   have hmZ : (m : ℤ) = c + n * c + ell (0 : Divisor K F) + 1 := by
     simp only [hmdef]; push_cast; ring

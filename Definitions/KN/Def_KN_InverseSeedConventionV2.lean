@@ -52,7 +52,6 @@ structure SeededHorizontalPadicLFunctionV4
   coefficient_integral : ∀ x : coefficientRing, (x : ℂ_[p]) ∈ 𝓞_ℂ_[p]
   measure : HorizontalMeasure coefficientRing p primes.exponent
 
-
 structure SeededHorizontalPrimeDataV3
     {N k : ℕ} {ι : MTT.Qbar →+* ℂ}
     (p : ℕ) [Fact p.Prime] (ιp : MTT.Qbar →+* ℂ_[p])
@@ -86,7 +85,6 @@ def SeededHorizontalPrimeDataV3.exponent
     {η : DirichletCharacterWithLevel}
     (L : SeededHorizontalPrimeDataV3 p ιp f η B) (n : ℕ) : ℕ :=
   padicValNat p (L.primeAt n - 1)
-
 
 /-- The squarefree product of the selected auxiliary primes indexed by `A`. -/
 def SeededHorizontalPrimeDataV3.supportModulus
@@ -221,7 +219,6 @@ def SeededHorizontalCharacterRealizationV3.HasExpectedProperties
     (∃ A : Finset ℕ, ψ.2.conductor ∣ L.supportModulus A) →
     ∃ χ : HorizontalCharacter p L.exponent, R.realized χ = ψ
 
-
 /-- The faithful interpolation contract for a seeded horizontal `p`-adic
 L-function.  The Dirichlet characters are obtained from the actual quotient
 maps used to push forward the theta elements. -/
@@ -260,7 +257,6 @@ def HasSeededHorizontalPadicLConstructionV4
       ν.primes.orderExponent = m ∧
       ν.InterpolatesSeededCriticalValuesV4 ∧
       ν.measure.eval (trivialHorizontalCharacterV2 p ν.primes.exponent) ≠ 0
-
 
 set_option linter.unusedVariables false in
 /-- Finite-level theta data using the faithful horizontal-character
@@ -324,7 +320,6 @@ def SeededNormalizedThetaMeasureV3.InterpolatesSeededCriticalValues
     @MTT.criticalLValue ι f.form θ.1.1 ⟨Nat.ne_of_gt θ.1.2⟩ θ.2
       (k / 2 - 1) ≠ 0
 
-
 /-- Evaluation of the finite theta element at the finite-order horizontal
 character indexing the same finite quotient. -/
 def SeededFiniteThetaDataV3.eval
@@ -351,6 +346,5 @@ def SeededFiniteThetaDataV3.HasSeededCriticalZeroSet
     let θ := primitiveProductV2 η (Θ.characters.realized χ)
     @MTT.criticalLValue ι f.form θ.1.1 ⟨Nat.ne_of_gt θ.1.2⟩ θ.2
       (k / 2 - 1) ≠ 0
-
 
 end HorizontalPadicL

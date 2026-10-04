@@ -66,7 +66,6 @@ end eval
 
 theorem swap_eq_of_evalSymm {Φ : Polynomial (Polynomial ℤ)} (h : EvalSymm Φ) : Bivariate.swap Φ = Φ := by
   set G : Polynomial (Polynomial ℤ) := Bivariate.swap Φ - Φ with hG
-
   have hL : ∀ x y : LaurentSeries ℚ, ev G x y = 0 := fun x y => by
     have hxy := h x y
     rw [aeval_toRingHom_eq, aeval_toRingHom_eq] at hxy
@@ -74,7 +73,6 @@ theorem swap_eq_of_evalSymm {Φ : Polynomial (Polynomial ℤ)} (h : EvalSymm Φ)
   let ι : ℤ →+* LaurentSeries ℚ := (algebraMap ℚ (LaurentSeries ℚ)).comp (Int.castRingHom ℚ)
   have hι : Function.Injective ι := (algebraMap ℚ (LaurentSeries ℚ)).injective.comp Int.cast_injective
   have hZ : ∀ a b : ℤ, G.evalEval a b = 0 := fun a b => hι (by rw [← ev_int, map_ev, hL, map_zero])
-
   have h1 : ∀ b : ℤ, G.eval (Polynomial.C b) = 0 := fun b =>
     Polynomial.eq_zero_of_infinite_isRoot _ (Set.infinite_of_injective_forall_mem (f := fun a : ℤ => a)
       (fun _ _ h => h) fun a => hZ a b)
@@ -163,10 +161,8 @@ include hsymm hζ in
 theorem isRoot_root (i : Fin (N + 1)) : (slice data.Φ (jqNModC K N)).IsRoot (root K ζ i) := by
   rw [Polynomial.IsRoot, eval_slice]
   refine Fin.cases ?_ (fun b => ?_) i
-  ·
-    rw [root_zero, jqNModC, ← map_ev, ← jqNModC, ev_jq data K, map_zero]
-  ·
-    rw [root_succ, ev_comm_of_evalSymm hsymm]
+  · rw [root_zero, jqNModC, ← map_ev, ← jqNModC, ev_jq data K, map_zero]
+  · rw [root_succ, ev_comm_of_evalSymm hsymm]
     have hfix : qTwist (ζ ^ (b : ℕ)) (jqNModC K N) = jqNModC K N := by
       rw [jqNModC, qTwist_qExpand, zpow_natCast, ← pow_mul, mul_comm, pow_mul, zeta_pow_N K ζ hζ, one_pow,
         qTwist_one_apply]

@@ -135,7 +135,6 @@ lemma valuation_algebraMap_sq {f : W.CoordinateRing} (hf : f ≠ 0) :
       O.valuation (algebraMap W.CoordinateRing W.FunctionField (CoordinateRing.mk W (C X))) ^
         (Algebra.norm K[X] f).natDegree := by
   classical
-
   have hγ1 : 1 < O.valuation
       (algebraMap W.CoordinateRing W.FunctionField (CoordinateRing.mk W (C X))) := by
     rw [← not_le, O.valuation_le_one_iff]; exact hx
@@ -145,7 +144,6 @@ lemma valuation_algebraMap_sq {f : W.CoordinateRing} (hf : f ≠ 0) :
   set δ := w (ι (CoordinateRing.mk W Y)) with hδdef
   have hK' : ∀ c : K, c ≠ 0 → w (algebraMap K W.FunctionField c) = 1 :=
     fun c hc => valuation_algebraMap_K hK hc
-
   have hC : ∀ {p : K[X]}, p ≠ 0 → w (ι (CoordinateRing.mk W (C p))) = γ ^ p.natDegree := by
     intro p hp
     rw [hι, algebraMap_mk_C]
@@ -155,7 +153,6 @@ lemma valuation_algebraMap_sq {f : W.CoordinateRing} (hf : f ≠ 0) :
     by_cases hp : p = 0
     · rw [hp, map_zero, map_zero, map_zero]; exact zero_le
     · exact (hC hp).le
-
   have hδ : δ ^ 2 = γ ^ 3 := by
     have hrel : w (ι (CoordinateRing.mk W Y)) *
         w (ι (CoordinateRing.mk W Y) + ι (CoordinateRing.mk W (C (C W.a₁ * X + C W.a₃)))) =
@@ -185,7 +182,6 @@ lemma valuation_algebraMap_sq {f : W.CoordinateRing} (hf : f ≠ 0) :
         = δ := w.map_add_eq_of_lt_left (lt_of_le_of_lt hc hγδ)
     rw [hadd, ← pow_two] at hrel
     exact hrel
-
   obtain ⟨p, q, rfl⟩ := CoordinateRing.exists_smul_basis_eq f
   have hsplit : ι (p • (1 : W.CoordinateRing) + q • CoordinateRing.mk W Y) =
       ι (CoordinateRing.mk W (C p)) + ι (CoordinateRing.mk W (C q)) * ι (CoordinateRing.mk W Y) := by

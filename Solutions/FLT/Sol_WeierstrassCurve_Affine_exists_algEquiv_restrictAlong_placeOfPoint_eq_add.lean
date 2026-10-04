@@ -202,13 +202,11 @@ theorem isFinitePlace_iff_exists_placeOfEquation [IsAlgClosed F]
     IsFinitePlace v ↔ ∃ (x y : F) (h : W.Equation x y), v = placeOfEquation h := by
   constructor
   · intro hv
-
     have := hv.centre_isPrime
     have hmax : hv.centre.IsMaximal := Ideal.IsPrime.isMaximal hv.centre_isPrime hv.centre_ne_bot
     obtain ⟨x, y, hxy, hXY⟩ :=
       CoordinateRing.exists_eq_XYIdeal (W := W) (P := hv.centre) hv.centre_ne_bot
     refine ⟨x, y, hxy, ?_⟩
-
     set w : HeightOneSpectrum W.CoordinateRing := heightOneSpectrumOfEquation hxy with hw
     set A : ValuationSubring W.FunctionField :=
       HeightOneSpectrum.valuationSubringAtPrime W.FunctionField w with hA
@@ -222,19 +220,16 @@ theorem isFinitePlace_iff_exists_placeOfEquation [IsAlgClosed F]
         rw [hXY] at hmem
         exact hs hmem
       exact mul_mem (hv r) (hv.inv_mem hs')
-
     have hSP : A.ofPrime (A.idealOfLE v.toValuationSubring hle) = v.toValuationSubring :=
       ValuationSubring.ofPrime_idealOfLE A v.toValuationSubring hle
     rcases eq_or_ne (A.idealOfLE v.toValuationSubring hle) ⊥ with hP | hP
-    ·
-      exfalso
+    · exfalso
       apply v.ne_top'
       have h2 : A.ofPrime ⊥ ≤ A.ofPrime (A.idealOfLE v.toValuationSubring hle) :=
         ValuationSubring.ofPrime_le_of_le (h := hP.le)
       rw [ValuationSubring.ofPrime_bot] at h2
       exact top_le_iff.mp (le_trans h2 hSP.le)
-    ·
-      have hPmax : (A.idealOfLE v.toValuationSubring hle).IsMaximal :=
+    · have hPmax : (A.idealOfLE v.toValuationSubring hle).IsMaximal :=
         Ideal.IsPrime.isMaximal inferInstance hP
       have hPeq : A.idealOfLE v.toValuationSubring hle = IsLocalRing.maximalIdeal A :=
         IsLocalRing.eq_maximalIdeal hPmax
@@ -1066,8 +1061,7 @@ private theorem _root_.AlgebraicCurve.Place.ord_add_eq_min {f g : F} (hf : f ≠
     · exact v.adicValuation_ne_zero hg h1.symm
   rcases max_cases (v.adicValuation f) (v.adicValuation g) with ⟨hmax, hle⟩ | ⟨hmax, hlt⟩ <;>
     rw [hmax] at h1
-  ·
-    have hlog := (WithZero.log_le_log (v.adicValuation_ne_zero hg)
+  · have hlog := (WithZero.log_le_log (v.adicValuation_ne_zero hg)
       (v.adicValuation_ne_zero hf)).mpr hle
     have h2 : v.ord (f + g) = v.ord f := by simp only [ord, h1]
     simp only [ord] at hlog h2 ⊢
@@ -1112,11 +1106,9 @@ private theorem _root_.AlgebraicCurve.Place.ord_ringHom_eq_natDegree_mul {φ : K
     intro hp
     subst hd
     rcases eq_or_ne p.eraseLead 0 with he | he
-    ·
-      conv_lhs => rw [← p.eraseLead_add_C_mul_X_pow, he, zero_add]
+    · conv_lhs => rw [← p.eraseLead_add_C_mul_X_pow, he, zero_add]
       exact hmono _ _ (leadingCoeff_ne_zero.mpr hp)
-    ·
-      have hlt : p.eraseLead.natDegree < p.natDegree := by
+    · have hlt : p.eraseLead.natDegree < p.natDegree := by
         rcases p.eraseLead_natDegree_lt_or_eraseLead_eq_zero with h | h
         · exact h
         · exact absurd h he
@@ -1282,13 +1274,11 @@ theorem isFinitePlace_of_mem
     refine v.mem_of_eval_monic_eq_zero (P := Polynomial.X ^ 2
       + (Polynomial.C (polyToFunctionField W c₁) * Polynomial.X
         - Polynomial.C (polyToFunctionField W cb))) ?_ ?_ (x := η) ?_
-    ·
-      refine Polynomial.monic_X_pow_add (n := 2) ?_
+    · refine Polynomial.monic_X_pow_add (n := 2) ?_
       rw [sub_eq_add_neg, ← Polynomial.C_neg]
       refine lt_of_le_of_lt Polynomial.degree_linear_le ?_
       exact_mod_cast Nat.one_lt_two
-    ·
-      intro i
+    · intro i
       rw [show (Polynomial.C (polyToFunctionField W c₁) * Polynomial.X : Polynomial _)
           = Polynomial.C (polyToFunctionField W c₁) * Polynomial.X ^ 1 by ring]
       simp only [Polynomial.coeff_add, Polynomial.coeff_sub, Polynomial.coeff_X_pow,
@@ -1301,8 +1291,7 @@ theorem isFinitePlace_of_mem
       · split
         · exact hpoly _
         · exact v.toValuationSubring.zero_mem
-    ·
-      simp only [Polynomial.eval_add, Polynomial.eval_sub, Polynomial.eval_pow,
+    · simp only [Polynomial.eval_add, Polynomial.eval_sub, Polynomial.eval_pow,
         Polynomial.eval_mul, Polynomial.eval_C, Polynomial.eval_X]
       rw [sq]
       linear_combination hrel
@@ -1367,8 +1356,7 @@ theorem two_mul_ord_Y_eq_three_mul_ord_X (hv : ¬ IsFinitePlace v) :
   · rw [hc₁0, add_zero] at hLHS
     omega
   · by_cases hBc : v.ord η = v.ord (polyToFunctionField W c₁)
-    ·
-      exfalso
+    · exfalso
       have hmin : min (v.ord η) (v.ord (polyToFunctionField W c₁))
           ≤ v.ord (η + polyToFunctionField W c₁) := v.min_ord_le_ord_add hfac0
       rw [← hBc, min_self] at hmin
@@ -1381,8 +1369,7 @@ theorem two_mul_ord_Y_eq_three_mul_ord_X (hv : ¬ IsFinitePlace v) :
         ⟨hm, hle⟩ | ⟨hm, hlt⟩ <;> rw [hm] at hsum
       · rw [hsum] at hLHS
         omega
-      ·
-        exfalso
+      · exfalso
         rw [hsum] at hLHS
         omega
 
@@ -1412,21 +1399,18 @@ theorem two_mul_ord_eq_of_not_isFinitePlace (hv : ¬ IsFinitePlace v)
   have hYord := two_mul_ord_Y_eq_three_mul_ord_X v hv
   obtain ⟨p, q, rfl⟩ := exists_smul_basis_eq f
   by_cases hq : q = 0
-  ·
-    subst hq
+  · subst hq
     have hp : p ≠ 0 := fun h => hf (by rw [h, zero_smul, zero_smul, add_zero])
     rw [natDegree_norm_smul_basis_left hp, algebraMap_smul_basis, _root_.map_zero, zero_mul, add_zero,
       v.ord_ringHom_eq_natDegree_mul polyToFunctionField_injective polyToFunctionField_C hA hp]
     ring
   · by_cases hp : p = 0
-    ·
-      subst hp
+    · subst hp
       rw [natDegree_norm_smul_basis_right hq, algebraMap_smul_basis, _root_.map_zero, zero_add,
         v.ord_mul (polyToFunctionField_ne_zero hq) hη0,
         v.ord_ringHom_eq_natDegree_mul polyToFunctionField_injective polyToFunctionField_C hA hq]
       linear_combination hYord
-    ·
-      rw [natDegree_norm_smul_basis_max hp hq, algebraMap_smul_basis]
+    · rw [natDegree_norm_smul_basis_max hp hq, algebraMap_smul_basis]
       have hordp : v.ord (polyToFunctionField W p)
           = (p.natDegree : ℤ) * v.ord (polyToFunctionField W X) :=
         v.ord_ringHom_eq_natDegree_mul polyToFunctionField_injective polyToFunctionField_C hA hp
@@ -3640,8 +3624,7 @@ theorem kw_translAffineSeamAtEqX_charFree (h : W.Nonsingular a b) (hP : W.Nonsin
   have hPeq : (placeOfEquation hP.1 : Place F W.FunctionField) = placeOfEquation h.1 := rfl
   rw [hPeq, show (Point.some a b hP : W.Point) = Point.some a b h from rfl]
   rcases eq_or_ne (kwTISDβ_charFree W a b) 0 with hβ | hβ
-  ·
-    have h2A : Point.some a b h + Point.some a b h = 0 := by
+  · have h2A : Point.some a b h + Point.some a b h = 0 := by
       have hbn : W.negY a b = b := (kw_taseq_β_eq_zero_iff_eq_negY_charFree.mp hβ).symm
       have hneg : (-Point.some a b h : W.Point) = Point.some a b h := by
         rw [Point.neg_some, Point.some.injEq]; exact ⟨rfl, hbn⟩
@@ -3649,8 +3632,7 @@ theorem kw_translAffineSeamAtEqX_charFree (h : W.Nonsingular a b) (hP : W.Nonsin
     rw [h2A]
     refine kw_translAffineSeam_at_of_coordSeamData_charFree h _ 0 ?_
     exact kw_addXFun_notMem_placeOfEquation_self_of_β_eq_zero_charFree h hβ
-  ·
-    have hYne : b ≠ W.negY a b := fun hy => hβ (kw_taseq_β_eq_zero_iff_eq_negY_charFree.mpr hy)
+  · have hYne : b ≠ W.negY a b := fun hy => hβ (kw_taseq_β_eq_zero_iff_eq_negY_charFree.mpr hy)
     rw [Point.add_self_of_Y_ne hYne]
     refine kw_translAffineSeam_at_of_coordSeamData_charFree h _ _ ?_
     exact ⟨kw_taseq_ord_addXFun_sub_double_pos_charFree h hβ,
@@ -3678,12 +3660,9 @@ theorem kw_restrictAlong_translateFF_some_placeOfPoint_charFree (h : W.Nonsingul
   | some p q hP =>
     rw [placeOfPoint_some]
     rcases eq_or_ne p a with rfl | hne
-    ·
-      rcases eq_or_ne q b with rfl | hq
-      ·
-        exact kw_translAffineSeamAtEqX_charFree h hP
-      ·
-        have hqn : q = W.negY p b :=
+    · rcases eq_or_ne q b with rfl | hq
+      · exact kw_translAffineSeamAtEqX_charFree h hP
+      · have hqn : q = W.negY p b :=
           (Affine.Y_eq_of_X_eq hP.1 h.1 rfl).resolve_left hq
         subst hqn
         have hβ : kwTISDβ_charFree W p b ≠ 0 := by
@@ -3697,8 +3676,7 @@ theorem kw_restrictAlong_translateFF_some_placeOfPoint_charFree (h : W.Nonsingul
         rw [hsum]
         refine kw_translAffineSeam_at_of_coordSeamData_charFree h _ 0 ?_
         exact kw_addXFun_notMem_placeOfEquation_negA_charFree h hβ
-    ·
-      rw [Point.add_of_X_ne hne]
+    · rw [Point.add_of_X_ne hne]
       refine kw_translAffineSeam_at_of_coordSeamData_charFree h _ _ ?_
       exact ⟨kw_ord_addXFun_sub_addX_pos_charFree W h hP hne,
         kw_ord_addYFun_sub_addY_pos_charFree W h hP hne⟩

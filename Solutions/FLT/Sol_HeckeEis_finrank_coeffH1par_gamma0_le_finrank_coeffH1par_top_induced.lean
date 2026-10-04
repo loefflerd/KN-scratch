@@ -130,7 +130,6 @@ theorem Sh_mem_coeffCocycles {z : ↥(Γ0 N) → Vn n} (hz : z ∈ coeffCocycles
   rw [show ((g * h : ↥Gt) : SL(2, ℤ)) = (g : SL(2, ℤ)) * (h : SL(2, ℤ)) from rfl, tr_mul, hz]
   rw [map_add]
   rw [add_right_inj]
-
   show ρ n x.out (ρ n ((tr (g : SL(2, ℤ)) x : ↥(Γ0 N)) : SL(2, ℤ)) (z (tr (h : SL(2, ℤ)) ((g : SL(2, ℤ))⁻¹ • x)))) = _
   rw [← Module.End.mul_apply, ← map_mul, out_mul_tr, map_mul, Module.End.mul_apply]
 
@@ -147,7 +146,6 @@ theorem mem_coeffCoboundaries_of_Sh {z : ↥(Γ0 N) → Vn n}
     (h : Sh z ∈ coeffCoboundaries W) : z ∈ coeffCoboundaries (ρΓ N n) := by
   rw [mem_coeffCoboundaries_iff] at h ⊢
   obtain ⟨F, hF⟩ := h
-
   set x0 : X0 N := ((1 : SL(2, ℤ)) : X0 N) with hx0
   have hσ0 : x0.out ∈ Γ0 N := by
     have := QuotientGroup.out_eq' x0
@@ -158,24 +156,20 @@ theorem mem_coeffCoboundaries_of_Sh {z : ↥(Γ0 N) → Vn n}
     intro γ
     rw [hx0, MulAction.Quotient.smul_coe, QuotientGroup.eq]
     simp
-
   have key : ∀ γ : ↥(Γ0 N), ρ n x0.out (z (tr (γ : SL(2, ℤ)) x0)) = ρ n (γ : SL(2, ℤ)) (F x0) - F x0 := by
     intro γ
     have := congrFun (congrFun hF ⟨(γ : SL(2, ℤ)), Subgroup.mem_top _⟩) x0
     rw [Pi.sub_apply, hW, Sh_apply] at this
     simp only [hfix] at this
     exact this.symm
-
   have htr : ∀ γ : ↥(Γ0 N), tr (γ : SL(2, ℤ)) x0 = σ0⁻¹ * γ * σ0 := by
     intro γ
     apply Subtype.ext
     rw [coe_tr, hfix]
     simp [hσ0', mul_assoc]
   refine ⟨ρΓ N n σ0⁻¹ (F x0), funext fun δ => ?_⟩
-
   have hk := key (σ0 * δ * σ0⁻¹)
   rw [htr, show σ0⁻¹ * (σ0 * δ * σ0⁻¹) * σ0 = δ by group] at hk
-
   have : z δ = ρ n ((σ0 : ↥(Γ0 N)) : SL(2, ℤ))⁻¹ (ρ n (((σ0 * δ * σ0⁻¹ : ↥(Γ0 N))) : SL(2, ℤ)) (F x0) - F x0) := by
     rw [← hk, ← Module.End.mul_apply, ← map_mul, inv_mul_cancel, map_one, Module.End.one_apply]
   rw [this, map_sub, ← Module.End.mul_apply, ← map_mul]
@@ -303,16 +297,13 @@ theorem Sh_mem_coeffParabolicCocycles {z : ↥(Γ0 N) → Vn n} (hz : z ∈ coef
   have hfix' : ∀ x : X0 N, ((g : SL(2, ℤ)) ^ M)⁻¹ • x = x := fun x => by
     conv_lhs => rw [← hfix x]
     rw [inv_smul_smul]
-
   have hγ : ∀ x : X0 N, (((tr ((g : SL(2, ℤ)) ^ M) x : ↥(Γ0 N)) : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ).trace ^ 2 = 4 := by
     intro x
     rw [coe_tr, hfix']
     exact trace_sq_conj' _ _ (trace_sq_pow _ hg M)
   choose u hu using fun x => hz.2 (tr ((g : SL(2, ℤ)) ^ M) x) (hγ x)
-
   set F : X0 N → Vn n := fun x => ρ n x.out (u x) with hF
   set A : Module.End ℂ (X0 N → Vn n) := W g with hA
-
   have h1 : Sh z (g ^ M) = (A ^ M - 1) F := by
     funext x
     rw [Sh_apply, LinearMap.sub_apply, Module.End.one_apply, hA, ← map_pow, Pi.sub_apply, hW]
@@ -323,9 +314,7 @@ theorem Sh_mem_coeffParabolicCocycles {z : ↥(Γ0 N) → Vn n} (hz : z ∈ coef
     refine congrArg₂ (· - ·) ?_ rfl
     show ρ n x.out (ρ n ((tr ((g : SL(2, ℤ)) ^ M) x : ↥(Γ0 N)) : SL(2, ℤ)) (u x)) = _
     rw [← Module.End.mul_apply (ρ n x.out), ← map_mul, out_mul_tr, hfix', map_mul, Module.End.mul_apply]
-
   have h2 := cocycle_pow (Sh_mem_coeffCocycles W hW hz.1) g M
-
   have h3 : (A ^ M - 1) F = ∑ i ∈ Finset.range M, (A ^ i) ((A - 1) F) := by
     rw [← geom_sum_mul A M, Module.End.mul_apply, LinearMap.coe_sum, Finset.sum_apply]
   have hsum : ∑ i ∈ Finset.range M, (A ^ i) (Sh z g - (A - 1) F) = 0 := by
@@ -396,7 +385,6 @@ theorem finite_binaryForm : Module.Finite ℂ (Vn n) := by
   rw [Module.Finite.iff_fg, show (BinaryForm ℂ n : Submodule ℂ (MvPolynomial (Fin 2) ℂ)) = MvPolynomial.homogeneousSubmodule (Fin 2) ℂ n from rfl,
     MvPolynomial.homogeneousSubmodule_eq_finsupp_supported, AddMonoidAlgebra.supported_eq_span_single]
   refine Submodule.fg_span (Set.Finite.image _ ?_)
-
   refine Set.Finite.subset (Set.Finite.image (fun i : ℕ => Finsupp.single (0 : Fin 2) i + Finsupp.single 1 (n - i)) (Set.finite_Iic n)) ?_
   intro d hd
   have hsum : d 0 + d 1 = n := by
@@ -491,7 +479,6 @@ theorem solution (N : ℕ) [NeZero N] (n : ℕ)
     Module.finrank ℂ (HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype))
       ≤ Module.finrank ℂ (HeckeEis.coeffH1par W) :=
   HeckeEis.UBSol.main W hW
-
 
 end S_HeckeEis_finrank_coeffH1par_gamma0_le_finrank_coeffH1par_top_induced
 end P2MW

@@ -56,16 +56,13 @@ theorem solution
         2 * (Module.finrank (IntermediateField.adjoin k ({x} : Set F)) F : ℤ) := by
   have := hfin
   have := hsep
-
   have hmain :=
     AlgebraicCurve.sum_ordDiff_D_le_two_mul_genusFF_of_isSeparable k x hx hfin hsep T
       (fun P hP =>
         HurwitzRamificationOverLine.ord_nonneg_of_ord_sub_algebraMap_pos P x (a P) (hT P hP))
       Tinf hTinf
-
   have hDx : KaehlerDifferential.D k F x ≠ 0 :=
     KaehlerDifferential.D_ne_zero_of_transcendental k x hx
-
   have hloc : ∀ P ∈ T,
       P.ord (x - algebraMap k F (a P)) - 1 ≤ P.ordDiff (KaehlerDifferential.D k F x) := by
     intro P hP

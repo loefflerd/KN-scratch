@@ -147,9 +147,7 @@ theorem solution {n : ℕ} {f : UpperHalfPlane → ℂ}
     rw [hβM, ← RingHom.mapMatrix_apply, ← RingHom.map_det]
     simp
   have hden : denom β (τ : ℂ) ≠ 0 := denom_ne_zero β τ
-
   set c : ℂ := f (β • τ) * (↑β.val.det / denom β ↑τ ^ 2) with hc
-
   have hH : ∀ e : Fin 2 →₀ ℕ, HasDerivAt
       (fun z : ℂ => AddMonoidAlgebra.coeff ((F (β • ofComplex z) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) e)
       (AddMonoidAlgebra.coeff (((c • linePow n ((β • τ : ℍ) : ℂ)) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) e) ↑τ := by
@@ -159,7 +157,6 @@ theorem solution {n : ℕ} {f : UpperHalfPlane → ℂ}
     refine h1.congr_deriv ?_
     rw [Submodule.coe_smul, coeff_smul, smul_eq_mul, hc]
     ring
-
   have hfun : (fun z : ℂ => AddMonoidAlgebra.coeff ((((binarySubst ℂ M.adjugate).toLinearMap.restrict
         (fun _ h => binarySubst_mem ℂ M.adjugate h)) (F (β • ofComplex z)) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) d)
       = fun z : ℂ => ∑ e ∈ degExps n,
@@ -178,7 +175,6 @@ theorem solution {n : ℕ} {f : UpperHalfPlane → ℂ}
   rw [← coeff_binarySubst_eq_sum M.adjugate (c • linePow n ((β • τ : ℍ) : ℂ)) d, Submodule.coe_smul, map_smul,
     binarySubst_adjugate_linePow hM hβM τ, smul_smul, coeff_smul, smul_eq_mul,
     slash_apply_of_det_pos f _ hdet τ, hc, hdetM]
-
   congr 1
   rw [show (n : ℤ) + 2 - 1 = ((n + 1 : ℕ) : ℤ) by push_cast; ring, zpow_natCast,
     show (-((n : ℤ) + 2)) = -(((n + 2 : ℕ) : ℤ)) by push_cast; ring, zpow_neg, zpow_natCast]

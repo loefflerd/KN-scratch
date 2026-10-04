@@ -53,13 +53,11 @@ scoped instance continuousSMul_gal_ringOfIntegers :
 scoped instance isInvariant_gal_ringOfIntegers :
     Algebra.IsInvariant (𝓞 E) (𝓞 ℚ̄) (ℚ̄ ≃ₐ[E] ℚ̄) where
   isInvariant b hb := by
-
     have hbE : (b : ℚ̄) ∈ (⊥ : IntermediateField E ℚ̄) := by
       rw [InfiniteGalois.mem_bot_iff_fixed]
       intro g
       exact congrArg Subtype.val (hb g)
     obtain ⟨e, he⟩ := IntermediateField.mem_bot.mp hbE
-
     have hint : IsIntegral ℤ e := by
       have hb' : IsIntegral ℤ (b : ℚ̄) := b.2
       rw [← he] at hb'
@@ -98,21 +96,17 @@ theorem solution
       ∀ x : 𝓞 (AlgebraicClosure ℚ), τ • x - x ^ ℓ ∈ Qt := by
   let : TopologicalSpace (𝓞 ℚ̄) := ⊥
   have : DiscreteTopology (𝓞 ℚ̄) := ⟨rfl⟩
-
   have hQbot : Q ≠ ⊥ := FrobeniusDensity.ne_bot_of_liesOver_ratPrimeIdeal hℓ
   have hQmax : Q.IsMaximal := Ideal.IsPrime.isMaximal inferInstance hQbot
-
   have : Algebra.IsIntegral (𝓞 E) (𝓞 ℚ̄) := IsIntegralClosure.isIntegral_algebra (𝓞 E) (A := 𝓞 ℚ̄) ℚ̄
   obtain ⟨Qt, hQt, hQtQ⟩ := Ideal.exists_maximal_ideal_liesOver_of_isIntegral (S := 𝓞 ℚ̄) Q
   have := hQt; have := hQtQ
-
   set φ : E ≃ₐ[ℚ] E := arithFrobAt ℤ (E ≃ₐ[ℚ] E) Q with hφdef
   have hφQ : φ • Q = Q := IsArithFrobAt.arithFrobAt_mem_stabilizer ℤ (E ≃ₐ[ℚ] E) Q
   have coe_smul : ∀ (g : Γℚ) (b : 𝓞 ℚ̄), ((g • b : 𝓞 ℚ̄) : ℚ̄) = g (b : ℚ̄) := fun _ _ => rfl
   have coe_smul' : ∀ (g : ℚ̄ ≃ₐ[E] ℚ̄) (b : 𝓞 ℚ̄), ((g • b : 𝓞 ℚ̄) : ℚ̄) = g (b : ℚ̄) := fun _ _ => rfl
   have coe_smulE : ∀ (g : E ≃ₐ[ℚ] E) (a : 𝓞 E), ((g • a : 𝓞 E) : E) = g (a : E) := fun _ _ => rfl
   have coe_alg : ∀ a : 𝓞 E, ((algebraMap (𝓞 E) (𝓞 ℚ̄) a : 𝓞 ℚ̄) : ℚ̄) = ((a : E) : ℚ̄) := fun _ => rfl
-
   have smul_alg : ∀ (τ : Γℚ) (a : 𝓞 E),
       τ • algebraMap (𝓞 E) (𝓞 ℚ̄) a = algebraMap (𝓞 E) (𝓞 ℚ̄) ((τ.restrictNormal E) • a) := by
     intro τ a
@@ -123,10 +117,8 @@ theorem solution
     intro δ I
     rw [Ideal.pointwise_smul_def, Ideal.pointwise_smul_def]
     congr 1
-
   obtain ⟨τ₀, hτ₀⟩ := AlgEquiv.restrictNormalHom_surjective (F := ℚ) (K₁ := E) (E := AlgebraicClosure ℚ) φ
   have hτ₀' : τ₀.restrictNormal E = φ := hτ₀
-
   have hunder : (τ₀ • Qt).under (𝓞 E) = Qt.under (𝓞 E) := by
     ext a
     rw [Ideal.under_def, Ideal.under_def, Ideal.mem_comap, Ideal.mem_comap,
@@ -138,7 +130,6 @@ theorem solution
       ← Ideal.mem_inv_pointwise_smul_iff, inv_inv, hφQ]
   obtain ⟨g, hg⟩ := Algebra.IsInvariant.exists_smul_of_under_eq_of_profinite
     (A := 𝓞 E) (B := 𝓞 ℚ̄) (G := ℚ̄ ≃ₐ[E] ℚ̄) (τ₀ • Qt) Qt hunder
-
   set τ₁ : Γℚ := g.restrictScalars ℚ * τ₀ with hτ₁def
   have hτ₁Qt : τ₁ • Qt = Qt := by
     rw [hτ₁def, mul_smul, res_scalars_ideal, ← hg]
@@ -150,7 +141,6 @@ theorem solution
   have hstab₁ : ∀ x : 𝓞 ℚ̄, τ₁ • x ∈ Qt ↔ x ∈ Qt := fun x => by
     conv_lhs => rw [← hτ₁Qt]
     exact Ideal.smul_mem_pointwise_smul_iff
-
   have hℓQ : ((ℓ : ℤ) : 𝓞 E) ∈ Q := by
     have := (Ideal.mem_of_liesOver Q (FrobeniusDensity.ratPrimeIdeal ℓ) (ℓ : ℤ)).mp
       (Ideal.mem_span_singleton_self _)
@@ -172,14 +162,12 @@ theorem solution
     rw [← map_pow]
     congr 1
     exact Subtype.ext hc
-
   have hle : ∀ τ : Γℚ, (∀ x : 𝓞 ℚ̄, τ • x ∈ Qt ↔ x ∈ Qt) →
       Qt ≤ Qt.comap (MulSemiringAction.toRingHom Γℚ (𝓞 ℚ̄) τ) := fun τ h x hx => (h x).mpr hx
   have hstab₁' : ∀ x : 𝓞 ℚ̄, τ₁⁻¹ • x ∈ Qt ↔ x ∈ Qt := fun x => by
     rw [← hstab₁ (τ₁⁻¹ • x), smul_inv_smul]
   let θinv : 𝓞 ℚ̄ ⧸ Qt →+* 𝓞 ℚ̄ ⧸ Qt := Ideal.quotientMap Qt _ (hle τ₁⁻¹ hstab₁')
   have hθinv : ∀ x : 𝓞 ℚ̄, θinv (Ideal.Quotient.mk Qt x) = Ideal.Quotient.mk Qt (τ₁⁻¹ • x) := fun x => rfl
-
   have hφfrob : ∀ a : 𝓞 E, φ • a - a ^ ℓ ∈ Q := by
     intro a
     have h := (IsArithFrobAt.arithFrobAt ℤ (E ≃ₐ[ℚ] E) Q) a
@@ -200,7 +188,6 @@ theorem solution
     rw [smul_inv_smul] at h
     rw [← neg_sub]
     exact Q.neg_mem h
-
   let θ : 𝓞 ℚ̄ ⧸ Qt →+* 𝓞 ℚ̄ ⧸ Qt := Ideal.quotientMap Qt _ (hle τ₁ hstab₁)
   have hθ : ∀ x : 𝓞 ℚ̄, θ (Ideal.Quotient.mk Qt x) = Ideal.Quotient.mk Qt (τ₁ • x) := fun x => rfl
   have hθinv_bij : Function.Bijective θinv := by
@@ -219,7 +206,6 @@ theorem solution
         exact hcomm a }
   let ψ : (𝓞 ℚ̄ ⧸ Qt) ≃ₐ[𝓞 E ⧸ Q] (𝓞 ℚ̄ ⧸ Qt) := AlgEquiv.ofBijective ψ₁ (hFbij.comp hθinv_bij)
   have hψ : ∀ x : 𝓞 ℚ̄, ψ (Ideal.Quotient.mk Qt x) = F (θinv (Ideal.Quotient.mk Qt x)) := fun _ => rfl
-
   obtain ⟨δ, hδ⟩ := Ideal.Quotient.stabilizerHom_surjective_of_profinite (G := ℚ̄ ≃ₐ[E] ℚ̄) Q Qt ψ
   have hδ' : ∀ b : 𝓞 ℚ̄, Ideal.Quotient.mk Qt ((δ : ℚ̄ ≃ₐ[E] ℚ̄) • b) = F (θinv (Ideal.Quotient.mk Qt b)) := by
     intro b
@@ -231,7 +217,6 @@ theorem solution
     have h2 : (δ : ℚ̄ ≃ₐ[E] ℚ̄) • Qt = Qt := δ.2
     have h3 := (Ideal.smul_mem_pointwise_smul_iff (a := (δ : ℚ̄ ≃ₐ[E] ℚ̄)) (S := Qt) (x := y))
     rwa [h2] at h3
-
   refine ⟨Qt, hQt, ((δ : ℚ̄ ≃ₐ[E] ℚ̄).restrictScalars ℚ) * τ₁, hQtQ, ?_, ?_, ?_⟩
   · change AlgEquiv.restrictNormalHom E (((δ : ℚ̄ ≃ₐ[E] ℚ̄).restrictScalars ℚ) * τ₁) = φ
     rw [map_mul]

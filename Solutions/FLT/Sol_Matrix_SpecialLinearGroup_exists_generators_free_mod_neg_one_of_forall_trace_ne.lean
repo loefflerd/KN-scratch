@@ -112,7 +112,6 @@ theorem finrank_addMonoidHom [Γ.FiniteIndex] (hneg : (-1 : SL(2, ℤ)) ∈ Γ)
     (K : Type) [Field K] [CharZero K] :
     Module.finrank K (Additive Γ →+ K) = 1 + Γ.index / 6 := by
   obtain ⟨gens, hcl, hext⟩ := exists_gens Γ hneg hΓ
-
   let ev : (Additive Γ →+ K) →ₗ[K] (Fin (1 + Γ.index / 6) → K) :=
     { toFun := fun φ i => φ (Additive.ofMul (gens i))
       map_add' := fun _ _ => rfl

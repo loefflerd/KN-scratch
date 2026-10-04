@@ -352,7 +352,6 @@ theorem adjoin_xK_eq_top :
   have hηmem : η W x₀ y₀ ∈ L := by
     rw [← ffHom_yK hQ hgy, ← halg]
     exact L.algebraMap_mem _
-
   have hd : xK W.toAffine - algebraMap F _ x₀ ≠ 0 := xK_sub_algebraMap_ne_zero W x₀
   have hden : (xK W.toAffine - algebraMap F _ x₀) ^ 2 - algebraMap F _ (W.veluGx x₀ y₀) ≠ 0 := by
     rw [xK_sub_algebraMap, ← map_pow, ← polyToFunctionField_C, ← map_sub]
@@ -560,7 +559,6 @@ theorem restrictAlong_placeOfPoint_some_of_ne (h2 : (2 : F) ≠ 0)
   have := CoordinateRing.isDedekindDomain (W.veluQuotient2 x₀ y₀)
   rw [veluPointMap2_some_of_ne h2 hQ hgy hΔ' h hx]
   set O := (placeOfPoint (Point.some x y h)).toValuationSubring with hO
-
   have hX : O.valuation (xK W.toAffine - algebraMap F _ x) < 1 := val_xK_sub_lt_one h
   have hY : O.valuation (yK W.toAffine - algebraMap F _ y) < 1 := val_yK_sub_lt_one h
   have hc : ∀ a : F, O.valuation (algebraMap F _ a) ≤ 1 :=
@@ -575,14 +573,12 @@ theorem restrictAlong_placeOfPoint_some_of_ne (h2 : (2 : F) ≠ 0)
   refine eq_placeOfPoint_some_of_XClass_mem_nonunits_of_YClass_mem_nonunits
     (W := (W.veluQuotient2 x₀ y₀).toAffine)
     (velu2_map_nonsingular h2 h.1 hQ hgy hx hΔ') _ ?_ ?_
-  ·
-    rw [mem_nonunits_restrictAlong_iff, ffHom_XClass, ValuationSubring.mem_nonunits_iff,
+  · rw [mem_nonunits_restrictAlong_iff, ffHom_XClass, ValuationSubring.mem_nonunits_iff,
       ξ_sub_algebraMap_velu2X W x₀ y₀ hx]
     refine val_mul_lt_one_of_lt_of_le O hX (Valuation.map_sub_le _ (by rw [map_one]) ?_)
     rw [map_div₀, map_mul, hB, hB0, one_mul, div_one]
     exact hc _
-  ·
-    rw [mem_nonunits_restrictAlong_iff, ffHom_YClass, ValuationSubring.mem_nonunits_iff,
+  · rw [mem_nonunits_restrictAlong_iff, ffHom_YClass, ValuationSubring.mem_nonunits_iff,
       η_sub_algebraMap_velu2Y W x₀ y₀ y hx]
     refine Valuation.map_sub_lt _ hY ?_
     rw [map_div₀, map_mul, map_mul, map_pow, map_pow, hB, hB0, one_pow, one_mul, div_one]

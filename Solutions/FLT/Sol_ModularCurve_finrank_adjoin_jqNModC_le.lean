@@ -118,7 +118,6 @@ open _root_.ModularCurve _root_.P2MW.S_ModularCurve_finrank_adjoin_jqNModC_le.Mo
 theorem solution (K : Type*) [Field K] {N : ℕ} [NeZero N] (data : ModularPolynomialData N) : Module.finrank (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) (IntermediateField.adjoin (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) ({jqNModC K N} : Set (LaurentSeries K))) ≤ dedekindPsi N :=
   ModularCurve.finrank_adjoin_jqNModC_le K data
 
-
 end S_ModularCurve_finrank_adjoin_jqNModC_le
 end P2MW
 export P2MW.S_ModularCurve_finrank_adjoin_jqNModC_le (solution)

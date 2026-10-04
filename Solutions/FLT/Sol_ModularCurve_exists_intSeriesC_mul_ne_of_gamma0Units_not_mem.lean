@@ -96,7 +96,6 @@ theorem solution
       ModularCurve.intSeriesC K pf * ModularCurve.intSeriesC K pg₁ ≠
         ModularCurve.intSeriesC K pg * ModularCurve.intSeriesC K pf₁ := by
   classical
-
   have hM3 : 3 ≤ M := by
     by_contra hlt
     push Not at hlt
@@ -106,14 +105,12 @@ theorem solution
       interval_cases M <;> decide
     have : Subsingleton (ZMod M)ˣ := Fintype.card_le_one_iff_subsingleton.mp hcard
     exact hd (by rw [Subsingleton.elim (CohCarrier.gamma0Units M ⟨γ, hγ⟩) 1]; exact Subgroup.one_mem _)
-
   obtain ⟨R, hRq, hRs⟩ :=
     ModularForm.exists_gamma1_weight_four_isIntegralQExp_partialDivisorSum_slash_eq M hM3
   have hRq' : ∀ c : (ZMod M)ˣ,
       qExpansion 1 (⇑(R c)) = (PowerSeries.mk (faithCoeff M c)).map (Int.castRingHom ℂ) :=
     fun c => (hRq c).symm
   obtain ⟨u, hu⟩ : ∃ u : (ZMod M)ˣ, u = CohCarrier.gamma0Units M ⟨γ, hγ⟩ := ⟨_, rfl⟩
-
   obtain ⟨H', hH'⟩ : ∃ H' : Subgroup (ZMod M)ˣ, H' = H ⊔ Subgroup.zpowers (-1) := ⟨_, rfl⟩
   have hnegH' : ∀ c ∈ H', -c ∈ H' := fun c hc => by
     rw [show -c = c * (-1) from (mul_neg_one c).symm]
@@ -126,7 +123,6 @@ theorem solution
   have hnegA : ∀ c ∈ A, -c ∈ A := fun c hc => (hmemA _).mpr (hnegH' c ((hmemA c).mp hc))
   have hnegU : ∀ c ∈ (Finset.univ : Finset (ZMod M)ˣ), -c ∈ (Finset.univ : Finset (ZMod M)ˣ) :=
     fun c _ => Finset.mem_univ _
-
   have h1per : (1 : ℝ) ∈ (CongruenceSubgroup.Gamma1 M : Subgroup (GL (Fin 2) ℝ)).strictPeriods := by
     rw [CongruenceSubgroup.strictPeriods_Gamma1]
     exact AddSubgroup.mem_zmultiples 1
@@ -148,7 +144,6 @@ theorem solution
     | insert a s ha ih =>
       rw [Finset.sum_insert ha, Finset.sum_insert ha, FunLike.coe_add,
         ModularForm.qExpansion_add one_pos h1per (Φ a) (∑ c ∈ s, Φ c), ih]
-
   have hslash_sum : ∀ (s : Finset (ZMod M)ˣ) (v : (ZMod M)ˣ) (β : SL(2, ℤ))
       (hβ : β ∈ CongruenceSubgroup.Gamma0 M),
       ((⇑(∑ c ∈ s, R (c * v))) ∣[(4 : ℤ)] (β : GL (Fin 2) ℝ)) =
@@ -172,7 +167,6 @@ theorem solution
         ∑ c ∈ (Finset.univ : Finset (ZMod M)ˣ), ⇑(R (c * 1)) := by
     intro w
     exact Fintype.sum_equiv (Equiv.mulRight w⁻¹) _ _ fun c => by simp
-
   have hinvA : ∀ (v : (ZMod M)ˣ) (β : SL(2, ℤ)), β ∈ CohCarrier.GammaH M H →
       ((⇑(∑ c ∈ A, R (c * v))) ∣[(4 : ℤ)] (β : GL (Fin 2) ℝ)) = ⇑(∑ c ∈ A, R (c * v)) := by
     intro v β hβ
@@ -184,7 +178,6 @@ theorem solution
     intro β hβ
     obtain ⟨hβ0, _⟩ := CohCarrier.mem_GammaH_iff.mp hβ
     rw [hslash_sum _ 1 β hβ0, hreindexU, hcoe_sum]
-
   have hle1 : CongruenceSubgroup.Gamma1 M ≤ CohCarrier.GammaH M H := by
     intro β hβ
     rw [CohCarrier.mem_GammaH_iff]
@@ -214,7 +207,6 @@ theorem solution
   let fH := lift (∑ c ∈ A, R (c * 1)) (hinvA 1)
   let f₁H := lift (∑ c ∈ A, R (c * u⁻¹)) (hinvA u⁻¹)
   let gH := lift (∑ c ∈ (Finset.univ : Finset (ZMod M)ˣ), R (c * 1)) hinvU
-
   have hint : ∀ (s : Finset (ZMod M)ˣ) (hs : ∀ c ∈ s, -c ∈ s) (v : (ZMod M)ˣ)
       (Φ : ModularForm (CohCarrier.GammaH M H : Subgroup (GL (Fin 2) ℝ)) 4),
       (⇑Φ : ℍ → ℂ) = ⇑(∑ c ∈ s, R (c * v)) →
@@ -235,7 +227,6 @@ theorem solution
       Int.mul_ediv_cancel_left _ two_ne_zero]
     push_cast
     ring
-
   have hone_ne : (1 : (ZMod M)ˣ) ≠ -1 := faith_ne_neg hM3 1
   have hPQ : ∀ w : (ZMod M)ˣ,
       ((1 : ZMod M) = (w : ZMod M) ∨ (1 : ZMod M) = -(w : ZMod M)) ↔ (w = 1 ∨ w = -1) := by
@@ -288,7 +279,6 @@ theorem solution
       (ModularCurve.intSeriesC K p).coeff 1 = ((PowerSeries.coeff 1 p : ℤ) : K) := fun p => by
     rw [ModularCurve.intSeriesC, show (1 : ℤ) = ((1 : ℕ) : ℤ) from rfl,
       HahnSeries.ofPowerSeries_apply_coeff, PowerSeries.coeff_map, eq_intCast]
-
   have hg0 : ModularCurve.intSeriesC K (PowerSeries.mk fun n =>
       (∑ c ∈ (Finset.univ : Finset (ZMod M)ˣ), faithCoeff M (c * 1) n) / 2) ≠ 0 := by
     intro h
@@ -306,16 +296,13 @@ theorem solution
     PowerSeries.mk fun n => (∑ c ∈ (Finset.univ : Finset (ZMod M)ˣ), faithCoeff M (c * 1) n) / 2,
     1, one_ne_zero, hint A hnegA 1 fH (hlift _ (hinvA 1)), hint _ hnegU 1 gH (hlift _ hinvU),
     hint A hnegA u⁻¹ f₁H (hlift _ (hinvA u⁻¹)), hint _ hnegU 1 gH (hlift _ hinvU), ?_, ?_, hg0, hg0, ?_⟩
-  ·
-    rw [one_smul, FunLike.coe_smul, FunLike.coe_smul, hlift _ (hinvA u⁻¹),
+  · rw [one_smul, FunLike.coe_smul, FunLike.coe_smul, hlift _ (hinvA u⁻¹),
       hlift _ (hinvA 1), key, hslash_sum A 1 γ hγ, ← hu, hcoe_sum]
     congr 1
     exact Finset.sum_congr rfl fun c _ => by rw [mul_one]
-  ·
-    rw [one_smul, FunLike.coe_smul, hlift _ hinvU, key, hslash_sum _ 1 γ hγ, ← hu,
+  · rw [one_smul, FunLike.coe_smul, hlift _ hinvU, key, hslash_sum _ 1 γ hγ, ← hu,
       hreindexU u, hcoe_sum]
-  ·
-    intro h
+  · intro h
     rw [mul_comm (ModularCurve.intSeriesC K (PowerSeries.mk fun n =>
       (∑ c ∈ (Finset.univ : Finset (ZMod M)ˣ), faithCoeff M (c * 1) n) / 2))] at h
     have h' := mul_right_cancel₀ hg0 h

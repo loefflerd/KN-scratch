@@ -28,7 +28,6 @@ theorem kaehlerResidueTerm_eq_zero_of_adeleBdd_canonical
   · refine Or.inr ?_
     have hg := v.differentialCoeff_ne_zero hω
     rw [v.ord_mul h0 hg]
-
     have hαv : -(canonicalDivisorOf hω v) ≤ v.ord (α v) := by
       have hval := hα v
       rw [v.adicValuation_eq_exp_neg_ord h0] at hval
@@ -42,7 +41,6 @@ theorem kaehlerResidueTerm_support_subset
     {D : Divisor K F} {α : Place K F → F} (hα : α ∈ adeleBdd D) :
     Function.support (kaehlerResidueTerm ω α) ⊆ ↑(D - canonicalDivisorOf hω).support := by
   intro v hv
-
   rw [Finset.mem_coe, Finsupp.mem_support_iff, Finsupp.sub_apply, ne_eq, sub_eq_zero]
   intro hDω
   apply hv

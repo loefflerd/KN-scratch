@@ -50,10 +50,8 @@ theorem main (k : Type*) [Field k] [IsAlgClosed k] {F : Type*} [Field F] [Algebr
     (D : Divisor k F) (hD : 2 * (genusFF k F : ℤ) - 1 ≤ D.degree) :
     (ell D : ℤ) = D.degree + 1 - (genusFF k F : ℤ) := by
   classical
-
   have hCO : IsCurveOver k F := isCurveOver_of_transcendental hx hfin hsep
   have : HasPrincipalDivisors k F := IsCurveOver.hasPrincipalDivisors
-
   let e := RatFunc.algEquivOfTranscendental x hx
   let : Algebra (RatFunc k) k⟮x⟯ := e.toAlgHom.toRingHom.toAlgebra
   let : Algebra (RatFunc k) F := ((algebraMap k⟮x⟯ F).comp e.toAlgHom.toRingHom).toAlgebra
@@ -80,7 +78,6 @@ theorem main (k : Type*) [Field k] [IsAlgClosed k] {F : Type*} [Field F] [Algebr
           show e.symm (algebraMap (RatFunc k) k⟮x⟯ r) = r
           exact e.symm_apply_apply r }
   have : Algebra.IsSeparable (RatFunc k) F := Algebra.IsSeparable.trans (RatFunc k) k⟮x⟯ F
-
   have : Algebra.EssFiniteType (Polynomial k) (RatFunc k) :=
     Algebra.EssFiniteType.of_isLocalization (RatFunc k) (nonZeroDivisors (Polynomial k))
   have : Algebra.EssFiniteType k (RatFunc k) := Algebra.EssFiniteType.comp k (Polynomial k) (RatFunc k)
@@ -88,10 +85,8 @@ theorem main (k : Type*) [Field k] [IsAlgClosed k] {F : Type*} [Field F] [Algebr
   have : Algebra.EssFiniteType k F := Algebra.EssFiniteType.comp k (RatFunc k) F
   have hHCD : HasCanonicalDivisor (K := k) (F := F) := hasCanonicalDivisor_of_isCurveOver
   have hDCG : ∀ w : Place k F, w.DCoordGenerates := dCoordGenerates_of_isCurveOver
-
   have : IsCurveOver k (RatFunc k) := AlgebraicCurve.instIsCurveOverRatFunc k
   have hDCGR : ∀ v : Place k (RatFunc k), v.DCoordGenerates := dCoordGenerates_of_isCurveOver
-
   have hRR : FunctionFieldRiemannRoch k F := functionFieldRiemannRoch_of_isAlgClosed_of_isCurveOver
   have hC : ConstantsAreBase k F := constantsAreBase_of_isAlgClosed k F
   have : FiniteDimensional k (LSpace (0 : Divisor k F)) :=
@@ -101,7 +96,6 @@ theorem main (k : Type*) [Field k] [IsAlgClosed k] {F : Type*} [Field F] [Algebr
   have hWDA : WeilDualityAdelic k F :=
     weilDualityAdelic_of_functionFieldRiemannRoch_of_stichtenothGenusExists hRR hSG
   have hg : genus k F = genusFF k F := genus_eq_genusFF hRR hWDA hC
-
   obtain ⟨ω, hω⟩ := exists_ne (0 : Ω[F⁄k])
   have hdegK : Divisor.degree (canonicalDivisorOf hω) = 2 * (genus k F : ℤ) - 2 :=
     degree_canonicalDivisor_eq_of_riemannRoch hRR hC hω

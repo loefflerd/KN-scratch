@@ -29,7 +29,6 @@ variable {G : Type*} [Group G] {K : Type*} [CommRing K] {V : Type*} [AddCommGrou
 theorem coeffCocycles_apply_one {ρ : Representation K G V} {z : G → V} (hz : z ∈ coeffCocycles ρ) : z 1 = 0 := by
   have h := hz 1 1
   rw [mul_one, map_one, Module.End.one_apply] at h
-
   have : z 1 + z 1 = z 1 + 0 := by rw [add_zero]; exact h.symm
   exact add_left_cancel this
 
@@ -37,7 +36,6 @@ theorem coeffCocycles_apply_inv {ρ : Representation K G V} {z : G → V} (hz : 
     z g⁻¹ = -(ρ g⁻¹ (z g)) := by
   have h := hz g⁻¹ g
   rw [inv_mul_cancel, coeffCocycles_apply_one hz] at h
-
   exact eq_neg_of_add_eq_zero_left h.symm
 
 theorem mem_of_mem_coeffCocycles_of_closure_eq_top {ρ : Representation K G V} {z : G → V} (hz : z ∈ coeffCocycles ρ)
@@ -147,7 +145,6 @@ theorem moduleFinite_coeffParabolicCocycles :
   classical
   have := moduleFinite_binaryForm n
   obtain ⟨S, hS⟩ := Group.fg_def.mp (HeckeEis.ZQAux.instGroupFG_Gamma0 N)
-
   let ev : ↥(coeffParabolicCocycles ((binaryFormRepSL ℤ n).comp (Gamma0 N).subtype)) →ₗ[ℤ] (↥S → ↥(BinaryForm ℤ n)) :=
     { toFun := fun z g => z.1 g
       map_add' := fun _ _ => rfl
@@ -229,16 +226,13 @@ theorem main (n N : ℕ) [NeZero N]
       (c : Module.Basis (Fin t) ℂ (coeffH1par ((binaryFormRepSL ℂ n).comp (Gamma0 N).subtype))),
       ∀ i, c i = ΦC (b i) := by
   classical
-
   obtain ⟨ΦQ, hΦQ⟩ := HeckeEis.exists_coeffH1par_map_ringHom (Int.castRingHom ℚ) n (Gamma0 N)
   obtain ⟨Ψ, hΨ⟩ := HeckeEis.exists_coeffH1par_map_ringHom (algebraMap ℚ ℂ) n (Gamma0 N)
   have hcomp : ∀ x, ΦC x = Ψ (ΦQ x) := comp_eq_of_clauses n N ΦC hΦC ΦQ hΦQ Ψ hΨ
-
   have := moduleFinite_coeffH1par n N
   have := free_coeffH1par n N
   let b : Module.Basis (Fin (Module.finrank ℤ (coeffH1par ((binaryFormRepSL ℤ n).comp (Gamma0 N).subtype)))) ℤ
       (coeffH1par ((binaryFormRepSL ℤ n).comp (Gamma0 N).subtype)) := Module.finBasis ℤ _
-
   have hinjQ : Function.Injective ΦQ := HeckeEis.coeffH1par_map_int_rat_injective n N ΦQ hΦQ
   have hliQ : LinearIndependent ℚ (fun i => ΦQ (b i)) := by
     rw [linearIndependent_iff']
@@ -269,7 +263,6 @@ theorem main (n N : ℕ) [NeZero N]
   let bQ : Module.Basis (Fin (Module.finrank ℤ (coeffH1par ((binaryFormRepSL ℤ n).comp (Gamma0 N).subtype)))) ℚ
       (coeffH1par ((binaryFormRepSL ℚ n).comp (Gamma0 N).subtype)) := Module.Basis.mk hliQ hspQ
   have hbQ : ∀ i, bQ i = ΦQ (b i) := fun i => Module.Basis.mk_apply _ _ i
-
   obtain ⟨S, hS⟩ := Group.fg_def.mp (HeckeEis.ZQAux.instGroupFG_Gamma0 N)
   have hliC : LinearIndependent ℂ (fun i => Ψ (ΦQ (b i))) :=
     HeckeEis.linearIndependent_coeffH1par_map_rat_complex n (Gamma0 N) Ψ hΨ (fun i => ΦQ (b i)) hliQ
@@ -312,7 +305,6 @@ theorem solution (n N : ℕ) [NeZero N]
       (c : Module.Basis (Fin t) ℂ (HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype))),
       ∀ i, c i = Φ (b i) :=
   HeckeEis.C2Aux.main n N Φ hΦ
-
 
 end S_HeckeEis_exists_basis_coeffH1par_int_complex
 end P2MW

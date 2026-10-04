@@ -160,7 +160,6 @@ theorem solution
           + (if 0 < w.ord (j - algebraMap K _ 1728) then ((m : ℤ) * w.ord (j - algebraMap K _ 1728)) / 2 else 0)
           + (if w.ord j < 0 then (m : ℤ) * w.ord j else 0) := by
     intro w; rw [map_ofNat]; exact hD w
-
   have hcoe1 : ((G ^ 6 * j ^ (4 * m) * (j - algebraMap K _ 1728) ^ (3 * m) : ↥F) :
       LaurentSeries K) = (G : LaurentSeries K) ^ 6 * (j : LaurentSeries K) ^ (4 * m) *
         ((j : LaurentSeries K) - algebraMap K (LaurentSeries K) 1728) ^ (3 * m) := by
@@ -171,7 +170,6 @@ theorem solution
     push_cast; rfl
   have hjinvcoe : ((j⁻¹ : ↥F) : LaurentSeries K) = (j : LaurentSeries K)⁻¹ := by push_cast; rfl
   rw [← hcoe1, ← hcoe2, ← hjinvcoe]
-
   rcases eq_or_ne G 0 with hG0 | hG0
   · subst hG0
     simp only [ne_eq, OfNat.ofNat_ne_zero, not_false_eq_true, zero_pow, zero_mul]
@@ -184,7 +182,6 @@ theorem solution
     exact (transcendental_jqModC K) (this ▸ isAlgebraic_zero)
   rw [mem_riemannRochSpace_iff] at hG
   have hG' : ∀ w : Place K ↥F, -D w ≤ w.ord G := fun w => (hG w).resolve_left hG0
-
   have key : ∀ w : Place K ↥F,
       (0 ≤ w.ord j → 0 ≤ 6 * w.ord G + (4 * m : ℕ) * w.ord j + (3 * m : ℕ) * w.ord (j - algebraMap K _ 1728)) ∧
       (w.ord j ≤ 0 → 0 ≤ 2 * w.ord G + (m : ℤ) * w.ord j + (m : ℤ) * w.ord (j - algebraMap K _ 1728)) := by
@@ -194,7 +191,6 @@ theorem solution
     have hjm : 0 ≤ w.ord j → j ∈ w.toValuationSubring := fun h => mem_of_ord_nonneg w h
     constructor
     · intro hj
-
       have hc0 : 0 ≤ w.ord (j - algebraMap K _ 1728) :=
         ord_nonneg_of_mem w (w.toValuationSubring.sub_mem (hjm hj) (w.algebraMap_mem' _))
       have hneg : ¬ w.ord j < 0 := not_lt.2 hj
@@ -229,7 +225,6 @@ theorem solution
           rw [hzero]; nlinarith
         · rw [ite_eq_right h1] at hDw
           rw [hzero]; nlinarith
-
   have hjc : ∀ w : Place K ↥F, True := fun _ => trivial
   have hord1 : ∀ w : Place K ↥F, j - algebraMap K _ 1728 ≠ 0 →
       w.ord (G ^ 6 * j ^ (4 * m) * (j - algebraMap K _ 1728) ^ (3 * m)) =
@@ -243,7 +238,6 @@ theorem solution
     rw [w.ord_mul (mul_ne_zero (pow_ne_zero _ hG0) (pow_ne_zero _ hj0)) (pow_ne_zero _ hjc),
       w.ord_mul (pow_ne_zero _ hG0) (pow_ne_zero _ hj0), ord_pow, ord_pow, ord_pow]
     push_cast; ring
-
   have hjc0 : j - algebraMap K ↥F 1728 ≠ 0 := by
     intro h
     have h' : (j : LaurentSeries K) = algebraMap K (LaurentSeries K) 1728 := by
@@ -251,20 +245,17 @@ theorem solution
     rw [hjcoe] at h'
     exact (transcendental_jqModC K) (h' ▸ isAlgebraic_algebraMap (1728 : K))
   constructor
-  ·
-    apply isIntegral_adjoin_coe
+  · apply isIntegral_adjoin_coe
     refine @isIntegral_adjoin_of_forall_mem_toValuationSubring K _ _ _ _ j hfd hsep j _ fun w hw => ?_
     apply mem_of_ord_nonneg
     rw [hord1 w hjc0]
     exact (key w).1 (ord_nonneg_of_mem w hw)
-  ·
-    apply isIntegral_adjoin_coe
+  · apply isIntegral_adjoin_coe
     refine @isIntegral_adjoin_of_forall_mem_toValuationSubring K _ _ _ _ j hfd hsep j⁻¹ _ fun w hw => ?_
     apply mem_of_ord_nonneg
     rw [hord2 w hjc0]
     have : w.ord j ≤ 0 := by have := ord_nonneg_of_mem w hw; rw [Place.ord_inv] at this; omega
     exact (key w).2 this
-
 
 end S_ModularCurve_isIntegral_and_isIntegral_of_mem_riemannRochSpace_weightFloor
 end P2MW

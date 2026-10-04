@@ -221,13 +221,9 @@ theorem evalAtJ_X : evalAtJ Polynomial.X = jq := by
   simp [evalAtJ]
 
 structure ModularPolynomialData (N : ℕ) [NeZero N] : Type where
-
   Φ : Polynomial (Polynomial ℤ)
-
   monic : Φ.Monic
-
   natDegree_eq : Φ.natDegree = dedekindPsi N
-
   eval_eq_zero : Φ.eval₂ evalAtJ (jqN N) = 0
 
 def modularPolynomialDataOne : ModularPolynomialData 1 where

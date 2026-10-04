@@ -448,7 +448,6 @@ theorem solution (K F K' F' : Type*)
     rw [P.ord_inv, hπ1] at this
     omega
   let B := Module.Basis.ofVectorSpace K K'
-
   have memO : ∀ Q' : Place K' F',
       Q'.toValuationSubring.comap (algebraMap F F') = P.toValuationSubring →
       ∀ o : P.toValuationSubring, algebraMap F F' (o : F) ∈ Q'.toValuationSubring := by
@@ -463,7 +462,6 @@ theorem solution (K F K' F' : Type*)
       ValuationSubring.mem_comap.2 (by rwa [map_inv₀])
     rw [hQ] at h2
     exact hπinv h2
-
   have ordPsi : ∀ w : _ →₀ P.toValuationSubring, w ≠ 0 → ∃ k : ℕ, ∀ Q' : Place K' F',
       Q'.toValuationSubring.comap (algebraMap F F') = P.toValuationSubring →
       Psi F' B P w ≠ 0 ∧
@@ -487,7 +485,6 @@ theorem solution (K F K' F' : Type*)
     rw [heq, Q'.ord_mul hpk hunit.1, ord_eq_zero_of_mem_of_inv_mem Q' hmem hunit.2,
       ← zpow_natCast, Q'.ord_zpow]
     ring
-
   have ordAny : ∀ z : F', z ≠ 0 → ∃ m : ℤ, ∀ Q' : Place K' F',
       Q'.toValuationSubring.comap (algebraMap F F') = P.toValuationSubring →
       Q'.ord z = m * Q'.ord (algebraMap F F' (π : F)) := by
@@ -506,7 +503,6 @@ theorem solution (K F K' F' : Type*)
     have := Q'.ord_mul hz hne
     rw [hzw, e₁, e₂] at this
     linarith
-
   have eOne : ∀ Q' : Place K' F',
       Q'.toValuationSubring.comap (algebraMap F F') = P.toValuationSubring →
       Q'.ord (algebraMap F F' (π : F)) = 1 := by
@@ -539,7 +535,6 @@ theorem solution (K F K' F' : Type*)
     rw [Q'.ord_mul hu0 hzp, Q'.ord_zpow, eOne Q' hQ,
       ord_eq_zero_of_mem_of_inv_mem Q' (memO Q' hQ u) huinv]
     ring
-
   have uniq : ∀ Q₁ Q₂ : Place K' F',
       Q₁.toValuationSubring.comap (algebraMap F F') = P.toValuationSubring →
       Q₂.toValuationSubring.comap (algebraMap F F') = P.toValuationSubring → Q₁ = Q₂ := by
@@ -551,7 +546,6 @@ theorem solution (K F K' F' : Type*)
     obtain ⟨m, hm⟩ := ordAny z hz
     rw [mem_iff_ord_nonneg Q₁ z, mem_iff_ord_nonneg Q₂ z, hm Q₁ h1, hm Q₂ h2, eOne Q₁ h1,
       eOne Q₂ h2]
-
   have hπA : algebraMap F F' (π : F) ∈ rangePsi F' B P := algebraMap_coe_mem_rangePsi F' B P π
   have hI : Ideal.span {(⟨algebraMap F F' (π : F), hπA⟩ : rangePsi F' B P)} ≠ ⊤ := by
     intro h
@@ -590,7 +584,6 @@ theorem solution (K F K' F' : Type*)
     have := (V.inv_mem_nonunits_iff (x := (algebraMap F F' (π : F))⁻¹)).1
       (by rw [inv_inv]; exact hnu)
     exact this.resolve_left (inv_ne_zero ((map_ne_zero _).2 hπ0))
-
   obtain ⟨t', hfin', hsep'⟩ :=
     AlgebraicCurve.exists_finiteDimensional_isSeparable_adjoin_of_constantFieldExtension_of_isAlgClosed
       K F K' F' hfg hgen
@@ -601,7 +594,6 @@ theorem solution (K F K' F' : Type*)
       ⟨_, hπVinv⟩
   have hmemP' : ∀ z, z ∈ P'.toValuationSubring ↔ z ∈ V := fun z => by
     rw [hP', ValuationSubring.mem_comap, RingHom.id_apply]
-
   have hover : P'.toValuationSubring.comap (algebraMap F F') = P.toValuationSubring := by
     ext f
     rw [ValuationSubring.mem_comap, hmemP']

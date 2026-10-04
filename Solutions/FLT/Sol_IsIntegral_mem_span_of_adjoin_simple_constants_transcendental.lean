@@ -382,7 +382,6 @@ theorem mem_span_RSet_of_adjoin_simple_transcendental
     x ∈ Submodule.span ℂ (RSet F t S) := by
   classical
   set c' : K := algebraMap ℂ K c with hc'
-
   set ψ : FractionRing ((↥(RFa F t S))[X]) →+* K :=
     IsFractionRing.lift (rfPolyEval_injective F t S htc) with hψ
   have hψalg : ∀ a : (↥(RFa F t S))[X], ψ (algebraMap _ _ a) = rfPolyEval F t S c a :=
@@ -391,7 +390,6 @@ theorem mem_span_RSet_of_adjoin_simple_transcendental
   have hDD : IsDedekindDomain ↥(RFa F t S) := isDedekindDomain_RFa F t S ht hSfin hSint
   have hFR : IsFractionRing ↥(RFa F t S) ↥(KFldT F t S) :=
     isFractionRing_RFa F t S ht hSfin hSint
-
   have hrange : ∀ z ∈ IntermediateField.adjoin ↥(KFldT F t S) {c'}, z ∈ ψ.fieldRange := by
     intro z hz
     rw [← IntermediateField.mem_toSubfield, IntermediateField.adjoin_toSubfield] at hz
@@ -406,7 +404,6 @@ theorem mem_span_RSet_of_adjoin_simple_transcendental
       rw [map_div₀, h1, h2]
       exact div_mem (RingHom.mem_fieldRange_self ψ _) (RingHom.mem_fieldRange_self ψ _)
     · exact ⟨algebraMap _ _ Polynomial.X, by rw [hψalg, hc']; simp [rfPolyEval]⟩
-
   have hxψ : x ∈ ψ.fieldRange := by
     refine hrange x ?_
     have h1 := closure_adjoin_le F S hxK
@@ -420,7 +417,6 @@ theorem mem_span_RSet_of_adjoin_simple_transcendental
           fun ⟨w, hw⟩ => ⟨⟨w, (mem_KFldT_iff F t S htS w).mp w.2⟩, hw⟩⟩
       rw [hrng]
     rw [← IntermediateField.mem_toSubfield, ← heq]; exact h1
-
   obtain ⟨P, hPmonic, hPc, hPx⟩ := (isIntegral_subalgebra_iff _ x).mp hxint
   set n := P.natDegree with hn
   have hrel : x ^ n + ∑ k ∈ Finset.range n, (P.coeff k) * x ^ k = 0 := by
@@ -434,7 +430,6 @@ theorem mem_span_RSet_of_adjoin_simple_transcendental
     rcases Nat.eq_zero_or_pos n with h0 | h0
     · rw [h0] at hrel; simp at hrel
     · exact h0
-
   choose qd hqd0 hqdW using fun (k : ℕ) (hk : k ∈ Finset.range n) =>
     exists_clear_denominator F t S htS (c := c) (hPc k)
   set Q : ℕ → (↥F)[X] := fun k => if h : k ∈ Finset.range n then qd k h else 1 with hQ
@@ -447,7 +442,6 @@ theorem mem_span_RSet_of_adjoin_simple_transcendental
   set Dv : K := Polynomial.aeval c' D with hDv
   have hDv0 : Dv ≠ 0 := evalF_ne_zero F hc hD0
   have hDvrange : Dv ∈ Set.range ⇑(rfPolyEval F t S c) := evalF_mem_range_rfPolyEval F t S htS D
-
   have hbW : ∀ k ∈ Finset.range n, Dv ^ (n - k) * (P.coeff k) ∈
       Set.range ⇑(rfPolyEval F t S c) := by
     intro k hk
@@ -466,7 +460,6 @@ theorem mem_span_RSet_of_adjoin_simple_transcendental
       congr 1
       have hkn := Finset.mem_range.mp hk; omega
     rw [hDvsplit]; ring
-
   set y : K := Dv * x with hy
   have hDψ : Dv ∈ ψ.fieldRange := by
     obtain ⟨a, ha⟩ := hDvrange
@@ -481,7 +474,6 @@ theorem mem_span_RSet_of_adjoin_simple_transcendental
         rw [← pow_add, Nat.sub_add_cancel hkn]]
       ring
     rw [Finset.sum_congr rfl h1, ← Finset.mul_sum, hy, mul_pow, ← mul_add, hrel, mul_zero]
-
   choose B hB using fun k (hk : k ∈ Finset.range n) => hbW k hk
   set BB : ℕ → (↥(RFa F t S))[X] := fun k => if h : k ∈ Finset.range n then B k h else 0 with hBB
   obtain ⟨m, hm⟩ := RingHom.mem_fieldRange.mp hyψ
@@ -493,7 +485,6 @@ theorem mem_span_RSet_of_adjoin_simple_transcendental
       Finset.sum_congr rfl fun k hk => by
         rw [map_mul, map_pow, hm, hψalg]; simp only [hBB, dite_eq_left hk]; rw [hB k hk]]
     exact hyrel
-
   have hmint : IsIntegral ((↥(RFa F t S))[X]) m := by
     refine ⟨Polynomial.X ^ n + ∑ k ∈ Finset.range n, Polynomial.C (BB k) * Polynomial.X ^ k,
       ?_, ?_⟩
@@ -518,7 +509,6 @@ theorem mem_span_RSet_of_adjoin_simple_transcendental
   have hyrange : y ∈ Set.range ⇑(rfPolyEval F t S c) :=
     ⟨a, by rw [← hψalg, ha, hm]⟩
   have hyspan := range_rfPolyEval_subset_span F t S htS hyrange
-
   have hsmul : (Polynomial.aeval c D : ℂ) • x = y := by
     rw [Algebra.smul_def, hy, hDv, Polynomial.aeval_algebraMap_apply]
   have hs0 : (Polynomial.aeval c D : ℂ) ≠ 0 := by

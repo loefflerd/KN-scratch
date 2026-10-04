@@ -84,7 +84,6 @@ theorem coeff_eq_zero_of_linearIndependent {ι : Type*} [Fintype ι] {α : E} (h
     (h : ∑ i, (∑ m ∈ Finset.range D, algebraMap K E (c i m) * α ^ m) * v i = 0) :
     ∀ i, ∀ m ∈ Finset.range D, c i m = 0 := by
   classical
-
   set P : ι → K[X] := fun i => ∑ m ∈ Finset.range D, Polynomial.C (c i m) * Polynomial.X ^ m with hP
   have hPeval : ∀ i, aeval α (P i) = ∑ m ∈ Finset.range D, algebraMap K E (c i m) * α ^ m := fun i => by
     simp only [hP, map_sum, map_mul, aeval_C, map_pow, aeval_X]
@@ -136,7 +135,6 @@ theorem exists_reduced_relation (A : ValuationSubring L) (π : A →+* k)
     ∃ β : J → k, (∃ j ∈ s, β j ≠ 0) ∧ ∑ j ∈ s, algebraMap k (LaurentSeries k) (β j) * intSeriesC k (w j) = 0 := by
   classical
   obtain ⟨j₀, hj₀s, hj₀⟩ := hne
-
   obtain ⟨j₁, hj₁s, hmax⟩ := Finset.exists_max_image s (fun j => A.valuation (α j)) ⟨j₀, hj₀s⟩
   have hα₁ : α j₁ ≠ 0 := by
     intro h0
@@ -145,7 +143,6 @@ theorem exists_reduced_relation (A : ValuationSubring L) (π : A →+* k)
     rw [h0, map_zero, le_zero_iff, Valuation.zero_iff] at h
     exact h
   have hv₁ : 0 < A.valuation (α j₁) := (Valuation.pos_iff _).mpr hα₁
-
   have hmemA : ∀ j ∈ s, α j / α j₁ ∈ A := fun j hj => by
     rw [← A.valuation_le_one_iff, map_div₀]
     exact (div_le_one₀ hv₁).mpr (hmax j hj)
@@ -153,7 +150,6 @@ theorem exists_reduced_relation (A : ValuationSubring L) (π : A →+* k)
   have hδval : ∀ j ∈ s, ((δ j : A) : L) = α j / α j₁ := fun j hj => by
     rw [hδ]; simp only [dite_eq_left hj]
   have hδ₁ : δ j₁ = 1 := Subtype.ext (by rw [hδval j₁ hj₁s, div_self hα₁]; rfl)
-
   have hrel' : ∑ j ∈ s, algebraMap L (LaurentSeries L) (α j / α j₁) * intSeriesC L (w j) = 0 := by
     have : ∑ j ∈ s, algebraMap L (LaurentSeries L) (α j / α j₁) * intSeriesC L (w j) =
         algebraMap L (LaurentSeries L) (α j₁)⁻¹ *
@@ -170,7 +166,6 @@ theorem exists_reduced_relation (A : ValuationSubring L) (π : A →+* k)
     push_cast
     refine Eq.trans (Finset.sum_congr rfl fun j hj => ?_) h
     rw [hδval j hj]
-
   refine ⟨fun j => π (δ j), ⟨j₁, hj₁s, ?_⟩, ?_⟩
   · show π (δ j₁) ≠ 0
     rw [hδ₁, map_one]; exact one_ne_zero
@@ -278,7 +273,6 @@ theorem card_le_finrank_of_linearIndependent (A : ValuationSubring L) (π : A �
     {n : ℕ} (y : Fin n → FK k Γ) (hy : ∀ i, y i ∈ monomials L k Γ) (hli : LinearIndependent k⟮x⟯ y) :
     n ≤ Module.finrank L⟮X⟯ (FL L Γ) := by
   classical
-
   have hbk : intSeriesC k b ≠ 0 := by
     intro h0
     apply htr
@@ -287,34 +281,28 @@ theorem card_le_finrank_of_linearIndependent (A : ValuationSubring L) (π : A �
   have hbL : intSeriesC L b ≠ 0 := intSeriesC_ne_zero_of_ne_zero L hbk
   choose c e he hce hyv using hy
   have heL : ∀ i, intSeriesC L (e i) ≠ 0 := fun i => intSeriesC_ne_zero_of_ne_zero L (he i)
-
   let V : Fin n → FL L Γ := fun i => ⟨intSeriesC L (c i) / intSeriesC L (e i), hce i⟩
   have hVcoe : ∀ i, (V i : LaurentSeries L) = intSeriesC L (c i) / intSeriesC L (e i) := fun i => rfl
   by_contra hlt
   push Not at hlt
-
   have hdep : ¬ LinearIndependent L⟮X⟯ V := fun hVli => by
     have := hVli.fintype_card_le_finrank
     rw [Fintype.card_fin] at this
     omega
   obtain ⟨D, γ, ⟨i₀, m₀, hm₀, hγ0⟩, hrel⟩ := exists_coeff_of_not_linearIndependent X V hdep
-
   have hrelL : ∑ i, (∑ m ∈ Finset.range D, algebraMap L (LaurentSeries L) (γ i m) * (X : LaurentSeries L) ^ m) *
       (ι L (c i) / ι L (e i)) = 0 := by
     have h := congrArg (fun z : FL L Γ => (z : LaurentSeries L)) hrel
     simp only [AddSubmonoidClass.coe_finsetSum, MulMemClass.coe_mul, SubmonoidClass.coe_pow,
       SubalgebraClass.coe_algebraMap, ZeroMemClass.coe_zero, hVcoe] at h
     exact h
-
   simp only [← ι_apply] at hX hx he heL hbk hbL hyv
-
   let w : Fin n × ℕ → PowerSeries ℤ := fun im => a ^ im.2 * b ^ (D - im.2) * (c im.1 * ∏ j ∈ Finset.univ.erase im.1, e j)
   have hw : ∀ i m, w (i, m) = a ^ m * b ^ (D - m) * (c i * ∏ j ∈ Finset.univ.erase i, e j) := fun _ _ => rfl
   have hBL : ι L (∏ j, e j) ≠ 0 := by
     rw [map_prod]; exact Finset.prod_ne_zero_iff.mpr fun j _ => heL j
   have hBk : ι k (∏ j, e j) ≠ 0 := by
     rw [map_prod]; exact Finset.prod_ne_zero_iff.mpr fun j _ => he j
-
   have hcleared : ∑ im ∈ (Finset.univ : Finset (Fin n)) ×ˢ Finset.range D,
       algebraMap L (LaurentSeries L) (γ im.1 im.2) * intSeriesC L (w im) = 0 := by
     have h := congrArg (fun z => z * (ι L b ^ D * ι L (∏ j, e j))) hrelL
@@ -325,10 +313,8 @@ theorem card_le_finrank_of_linearIndependent (A : ValuationSubring L) (π : A �
     refine Finset.sum_congr rfl fun m hm => ?_
     rw [hw, ← ι_apply]
     exact (clear_term a b c e heL hbL _ hX (γ i m) i (Finset.mem_range.mp hm).le).symm
-
   obtain ⟨β, ⟨⟨i₁, m₁⟩, him₁, hβ0⟩, hred⟩ := exists_reduced_relation A π _ (fun im : Fin n × ℕ => γ im.1 im.2) w
     hcleared ⟨(i₀, m₀), Finset.mem_product.mpr ⟨Finset.mem_univ _, hm₀⟩, hγ0⟩
-
   have hunclear : (∑ i, (∑ m ∈ Finset.range D, algebraMap k (LaurentSeries k) (β (i, m)) *
       (x : LaurentSeries k) ^ m) * (ι k (c i) / ι k (e i))) * (ι k b ^ D * ι k (∏ j, e j)) = 0 := by
     rw [← hred, Finset.sum_mul, Finset.sum_product]
@@ -342,13 +328,11 @@ theorem card_le_finrank_of_linearIndependent (A : ValuationSubring L) (π : A �
     rcases mul_eq_zero.mp hunclear with h | h
     · exact h
     · exact absurd h (mul_ne_zero (pow_ne_zero _ hbk) hBk)
-
   have hrelF : ∑ i, (∑ m ∈ Finset.range D, algebraMap k (FK k Γ) (β (i, m)) * x ^ m) * y i = 0 := by
     apply Subtype.val_injective
     simp only [AddSubmonoidClass.coe_finsetSum, MulMemClass.coe_mul, SubmonoidClass.coe_pow,
       SubalgebraClass.coe_algebraMap, ZeroMemClass.coe_zero, hyv]
     exact hrelk
-
   have hall := coeff_eq_zero_of_linearIndependent htr hli D (fun i m => β (i, m)) hrelF
   obtain ⟨-, hm₁⟩ := Finset.mem_product.mp him₁
   exact hβ0 (hall i₁ m₁ hm₁)
@@ -374,7 +358,6 @@ theorem transcendental_upstairs (A : ValuationSubring L) (π : A →+* k)
   have hbL : intSeriesC L b ≠ 0 := intSeriesC_ne_zero_of_ne_zero L hbk
   intro halg
   obtain ⟨P, hP0, hPX⟩ := halg
-
   have hPL : ∑ m ∈ Finset.range (P.natDegree + 1),
       algebraMap L (LaurentSeries L) (P.coeff m) * (X : LaurentSeries L) ^ m = 0 := by
     have h := congrArg (fun z : FL L Γ => (z : LaurentSeries L)) hPX
@@ -382,7 +365,6 @@ theorem transcendental_upstairs (A : ValuationSubring L) (π : A →+* k)
     rw [← IntermediateField.coe_val, ← aeval_algHom_apply, aeval_eq_sum_range' (Nat.lt_add_one _),
       IntermediateField.coe_val] at h
     simpa only [Algebra.smul_def] using h
-
   simp only [← ι_apply] at hX hx hbk hbL
   let w : ℕ → PowerSeries ℤ := fun m => a ^ m * b ^ (P.natDegree + 1 - m)
   have hw : ∀ m, w m = a ^ m * b ^ (P.natDegree + 1 - m) := fun _ => rfl
@@ -397,7 +379,6 @@ theorem transcendental_upstairs (A : ValuationSubring L) (π : A →+* k)
   have hne : ∃ m ∈ Finset.range (P.natDegree + 1), P.coeff m ≠ 0 :=
     ⟨P.natDegree, Finset.mem_range.mpr (Nat.lt_add_one _), fun h0 => hP0 (leadingCoeff_eq_zero.mp h0)⟩
   obtain ⟨β, ⟨m₁, hm₁, hβ0⟩, hred⟩ := exists_reduced_relation A π _ (fun m => P.coeff m) w hcleared hne
-
   have hunclear : (∑ m ∈ Finset.range (P.natDegree + 1),
       algebraMap k (LaurentSeries k) (β m) * (x : LaurentSeries k) ^ m) * ι k b ^ (P.natDegree + 1) = 0 := by
     rw [← hred, Finset.sum_mul]
@@ -430,13 +411,11 @@ theorem main (A : ValuationSubring L) (π : A →+* k) (Γ : Subgroup (Matrix.Sp
     (x : FK k Γ) (hx : (x : LaurentSeries k) = intSeriesC k a / intSeriesC k b) (htr : Transcendental k x) :
     FiniteDimensional k⟮x⟯ (FK k Γ) ∧ Module.finrank k⟮x⟯ (FK k Γ) ≤ Module.finrank L⟮X⟯ (FL L Γ) := by
   classical
-
   obtain ⟨t, ht, hfdt⟩ := hF
   have := hfdt
   have hXtr : Transcendental L X := transcendental_upstairs A π Γ a b X hX x hx htr
   have : FiniteDimensional L⟮X⟯ (FL L Γ) := AlgebraicCurve.finiteDimensional_adjoin_of_transcendental t hXtr
   set d : ℕ := Module.finrank L⟮X⟯ (FL L Γ) with hd
-
   have hbound : ∀ T : Finset (FK k Γ), (↑T : Set (FK k Γ)) ⊆ monomials L k Γ →
       LinearIndependent k⟮x⟯ (Subtype.val : (↑T : Set (FK k Γ)) → FK k Γ) → T.card ≤ d := by
     intro T hT hli
@@ -444,7 +423,6 @@ theorem main (A : ValuationSubring L) (π : A →+* k) (Γ : Subgroup (Matrix.Sp
         (fun i : Fin T.card => ((T.equivFin.symm i : (↑T : Set (FK k Γ))) : FK k Γ)) :=
       hli.comp (fun i => T.equivFin.symm i) (T.equivFin.symm.injective)
     exact card_le_finrank_of_linearIndependent A π a b X hX x hx htr _ (fun i => hT (T.equivFin.symm i).2) hli'
-
   obtain ⟨B, hBsub, hspan, hBli⟩ := exists_linearIndependent k⟮x⟯ (monomials L k Γ)
   have hBfin : B.Finite := by
     by_contra hinf
@@ -457,9 +435,7 @@ theorem main (A : ValuationSubring L) (π : A →+* k) (Γ : Subgroup (Matrix.Sp
     refine hbound _ (by rw [Set.Finite.coe_toFinset]; exact hBsub) ?_
     have hsub : (↑hBfin.toFinset : Set (FK k Γ)) ⊆ B := by rw [Set.Finite.coe_toFinset]
     exact hBli.comp (Set.inclusion hsub) (Set.inclusion_injective hsub)
-
   set V : Submodule k⟮x⟯ (FK k Γ) := Submodule.span k⟮x⟯ (monomials L k Γ) with hV
-
   have hVfd : FiniteDimensional k⟮x⟯ V := by
     rw [← hspan]; exact FiniteDimensional.span_of_finite _ hBfin
   have hmul : ∀ u ∈ V, ∀ v ∈ V, u * v ∈ V := by
@@ -479,7 +455,6 @@ theorem main (A : ValuationSubring L) (π : A →+* k) (Γ : Subgroup (Matrix.Sp
     intro u hu
     rcases eq_or_ne u 0 with rfl | hu0
     · rw [inv_zero]; exact V.zero_mem
-
     let μ : V →ₗ[k⟮x⟯] V :=
       { toFun := fun v => ⟨u * v, hmul u hu v v.2⟩
         map_add' := fun v v' => Subtype.ext (mul_add _ _ _)
@@ -491,7 +466,6 @@ theorem main (A : ValuationSubring L) (π : A →+* k) (Γ : Subgroup (Matrix.Sp
     have huv : u * v = 1 := congrArg Subtype.val hv
     rw [inv_eq_of_mul_eq_one_right huv]
     exact v.2
-
   have htop : ∀ z : FK k Γ, z ∈ V := by
     rintro ⟨z, hz⟩
     have hz' : z ∈ IntermediateField.adjoin k (intFormRatiosC k Γ) := hz
@@ -519,7 +493,6 @@ theorem main (A : ValuationSubring L) (π : A →+* k) (Γ : Subgroup (Matrix.Sp
         exact hmul (⟨w, hw⟩ : FK k Γ) (h hw) (⟨w', hw'⟩ : FK k Γ) (h' hw')
     exact key hz
   have hVtop : V = ⊤ := Submodule.eq_top_iff'.mpr htop
-
   have hspanB : Submodule.span k⟮x⟯ (↑hBfin.toFinset : Set (FK k Γ)) = ⊤ := by
     rw [Set.Finite.coe_toFinset, hspan, hVtop]
   refine ⟨?_, ?_⟩

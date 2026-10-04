@@ -130,23 +130,18 @@ theorem nonempty_zmodPowSqAddEquiv_of_card_pow {p : ℕ} (hp : p.Prime) (k : ℕ
   have : Finite M :=
     Nat.finite_of_card_ne_zero (by rw [hcard]; exact pow_ne_zero _ hp.ne_zero)
   rcases Nat.eq_zero_or_pos k with rfl | hk
-  ·
-
-    exfalso
+  · exfalso
     have h1 : Nat.card M = 1 := by simpa using hcard
     have hle : Nat.card (Submodule.torsionBy ℤ M (p : ℤ)) ≤ Nat.card M :=
       Nat.card_le_card_of_injective _ Subtype.val_injective
     rw [hcardp, h1] at hle
     exact absurd (le_trans (Nat.pow_le_pow_left hp.two_le 2) hle) (by norm_num)
-  ·
-    set K : AddSubgroup M := (pSmulHom M p).ker with hKdef
+  · set K : AddSubgroup M := (pSmulHom M p).ker with hKdef
     set R : AddSubgroup M := (pSmulHom M p).range with hRdef
     have : Nonempty R := ⟨0⟩
-
     have hKcard : Nat.card K = p ^ 2 := by
       rw [hKdef, Nat.card_congr (pSmulHomKerEquivTorsionBy M p)]
       exact hcardp
-
     have hMK : Nat.card K * K.index = Nat.card M := AddSubgroup.card_mul_index K
     have hKR : K.index = Nat.card R := by
       rw [hKdef, hRdef]
@@ -160,7 +155,6 @@ theorem nonempty_zmodPowSqAddEquiv_of_card_pow {p : ℕ} (hp : p.Prime) (k : ℕ
       have h3 : Nat.card R * Nat.card (M ⧸ R) = Nat.card R * Nat.card K := by
         rw [h2, ← h1, mul_comm]
       rw [Nat.eq_of_mul_eq_mul_left hRpos h3, hKcard]
-
     have hQkill : ∀ q : M ⧸ R, p • q = 0 := by
       intro q
       obtain ⟨t, rfl⟩ := QuotientAddGroup.mk'_surjective R q
@@ -169,14 +163,11 @@ theorem nonempty_zmodPowSqAddEquiv_of_card_pow {p : ℕ} (hp : p.Prime) (k : ℕ
         rw [hRdef]
         exact AddMonoidHom.mem_range.mpr ⟨t, pSmulHom_apply M p t⟩
       rwa [← QuotientAddGroup.ker_mk' R, AddMonoidHom.mem_ker] at hmem
-
     obtain ⟨E⟩ : Nonempty ((ZMod p × ZMod p) ≃+ (M ⧸ R)) := by
       let : Module (ZMod p) (M ⧸ R) := AddCommGroup.zmodModule hQkill
       exact nonempty_zmodSqAddEquiv_of_card_eq_sq hp (M ⧸ R) hQcard
-
     obtain ⟨x, hx⟩ := QuotientAddGroup.mk'_surjective R (E ((1 : ZMod p), (0 : ZMod p)))
     obtain ⟨y, hy⟩ := QuotientAddGroup.mk'_surjective R (E ((0 : ZMod p), (1 : ZMod p)))
-
     have hstep : ∀ t : M, ∃ (a b : ℤ) (s : M), t = a • x + b • y + (p : ℤ) • s := by
       intro t
       obtain ⟨a, ha⟩ := ZMod.intCast_surjective ((E.symm ((QuotientAddGroup.mk' R) t)).1)
@@ -199,7 +190,6 @@ theorem nonempty_zmodPowSqAddEquiv_of_card_pow {p : ℕ} (hp : p.Prime) (k : ℕ
       refine ⟨a, b, s, ?_⟩
       rw [natCast_zsmul, hs]
       abel
-
     have hgen : ∀ t : M, ∃ a b : ℤ, t = a • x + b • y :=
       forall_exists_zsmul_pair_of_step hexp hstep
     let : Module (ZMod (p ^ k)) M := AddCommGroup.zmodModule hexp

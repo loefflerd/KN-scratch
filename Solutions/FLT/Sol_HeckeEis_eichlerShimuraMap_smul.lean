@@ -60,7 +60,6 @@ open EichlerLinAux in
 theorem SolMain.essmul (n N : ℕ) [NeZero N] (c : ℂ) (f : CuspForm (Gamma0 N) ((n : ℤ) + 2)) :
     eichlerShimuraMap n N ⇑(c • f) = c • eichlerShimuraMap n N f := by
   obtain ⟨F, hEF, hF, hpF⟩ := exists_isEichlerIntegral_isParabolicCocycle N n f
-
   have hEcF : IsEichlerIntegral n (⇑(c • f)) (c • F) := hEF.smul c
   have hpcF : IsParabolicCocycle ((binaryFormRepSL ℂ n).comp (Gamma0 N).subtype) (smul hF c).cocycle := by
     intro γ hγ
@@ -80,7 +79,6 @@ theorem solution (n N : ℕ) [NeZero N] (c : ℂ)
     (f : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2)) :
     HeckeEis.eichlerShimuraMap n N ⇑(c • f) = c • HeckeEis.eichlerShimuraMap n N f :=
   HeckeEis.SolMain.essmul n N c f
-
 
 end S_HeckeEis_eichlerShimuraMap_smul
 end P2MW

@@ -120,13 +120,11 @@ end ModularCurve
 p2m_open_scoped "ModularCurve" in
 
 theorem ModularCurve.hbeta_of_emd_docks (N : ℕ) [NeZero N] (j₀ : AlgebraicClosure ℚ)
-
     (hEP : ∀ ψ : {ψ : ↥(modularFunctionFieldBar N) →ₐ[AlgebraicClosure ℚ]
           HahnSeries ℚ (AlgebraicClosure ℚ) //
         ψ (jBar N) = HahnSeries.C j₀ + HahnSeries.single (1 : ℚ) (1 : AlgebraicClosure ℚ)},
       ∃ (w : AlgebraicCurve.Place (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N)) (g : ℚ),
         0 < g ∧ ∀ x : ↥(modularFunctionFieldBar N), (w.ord x : ℚ) * g = (ψ.1 x).order)
-
     (hPEO : ∀ w : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N),
       0 < w.ord (jBar N - algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) j₀) →
       Nat.card {ψ : modularFunctionFieldBar N →ₐ[AlgebraicClosure ℚ]
@@ -134,12 +132,10 @@ theorem ModularCurve.hbeta_of_emd_docks (N : ℕ) [NeZero N] (j₀ : AlgebraicCl
         ψ (jBar N) = HahnSeries.C j₀ + HahnSeries.single (1 : ℚ) (1 : AlgebraicClosure ℚ) ∧
         ∃ g : ℚ, 0 < g ∧ ∀ x, (w.ord x : ℚ) * g = (ψ x).order} =
       (w.ord (jBar N - algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) j₀)).toNat)
-
     (hC535 : ∀ {ψ : ↥(modularFunctionFieldBar N) →ₐ[AlgebraicClosure ℚ]
           HahnSeries ℚ (AlgebraicClosure ℚ)}
       {w w' : Place (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N)},
       Induces ψ w → Induces ψ w' → w = w')
-
     (h : EMD N j₀) :
     ∃ (E₀ : WeierstrassCurve (AlgebraicClosure ℚ)) (_ : E₀.IsElliptic), E₀.j = j₀ ∧
       ∃ f : CycSub E₀ N →
@@ -153,22 +149,18 @@ theorem ModularCurve.hbeta_of_emd_docks (N : ℕ) [NeZero N] (j₀ : AlgebraicCl
             Nat.card {H : CycSub E₀ N // f H = w} := by
   classical
   obtain ⟨E₀, hell, hj, Φ, hiff⟩ := h
-
   have hInd : ∀ ψ : Emb N j₀,
       ∃ w : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N), Induces ψ.1 w := by
     intro ψ
     obtain ⟨w, g, hg, hx⟩ := hEP ψ
     exact ⟨w, g, hg, hx⟩
   choose wOf hwOf using hInd
-
   have hwOf_eq : ∀ (ψ : Emb N j₀) (w : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N)),
       Induces ψ.1 w → wOf ψ = w := fun ψ w hw => hC535 (hwOf ψ) hw
-
   have hC : ∀ c : AlgebraicClosure ℚ,
       algebraMap (AlgebraicClosure ℚ) (HahnSeries ℚ (AlgebraicClosure ℚ)) c = HahnSeries.C c := by
     intro c
     rw [HahnSeries.algebraMap_apply', PowerSeries.algebraMap_eq, HahnSeries.ofPowerSeries_C]
-
   have habove : ∀ ψ : Emb N j₀, 0 < (wOf ψ).ord
       (jBar N - algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) j₀) := by
     intro ψ
@@ -188,15 +180,13 @@ theorem ModularCurve.hbeta_of_emd_docks (N : ℕ) [NeZero N] (j₀ : AlgebraicCl
       rw [h2]
       exact div_pos one_pos hg
     exact_mod_cast h3
-
   let f : CycSub E₀ N → {w : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N) //
       0 < w.ord (jBar N - algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) j₀)} :=
     fun H => ⟨wOf (Φ.symm H), habove (Φ.symm H)⟩
   have hf : ∀ H, (f H : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N)) = wOf (Φ.symm H) :=
     fun H => rfl
   refine ⟨E₀, hell, hj, f, fun H H' => ?_, fun w => ?_⟩
-  ·
-    have key := hiff (Φ.symm H) (Φ.symm H')
+  · have key := hiff (Φ.symm H) (Φ.symm H')
     rw [Equiv.apply_symm_apply, Equiv.apply_symm_apply] at key
     rw [← key]
     constructor
@@ -208,9 +198,7 @@ theorem ModularCurve.hbeta_of_emd_docks (N : ℕ) [NeZero N] (j₀ : AlgebraicCl
     · rintro ⟨w, hw, hw'⟩
       apply Subtype.ext
       rw [hf, hf, hwOf_eq _ w hw, hwOf_eq _ w hw']
-  ·
-    have hw := w.2
-
+  · have hw := w.2
     let e1 : {H : CycSub E₀ N // f H = w} ≃ {ψ : Emb N j₀ // Induces ψ.1 w.1} :=
       { toFun := fun H => ⟨Φ.symm H.1, by
           have hH : wOf (Φ.symm H.1) = w.1 := by
@@ -226,7 +214,6 @@ theorem ModularCurve.hbeta_of_emd_docks (N : ℕ) [NeZero N] (j₀ : AlgebraicCl
         right_inv := fun ψ => by
           apply Subtype.ext
           simp }
-
     let e2 : {ψ : Emb N j₀ // Induces ψ.1 w.1} ≃
         {ψ : modularFunctionFieldBar N →ₐ[AlgebraicClosure ℚ] HahnSeries ℚ (AlgebraicClosure ℚ) //
           ψ (jBar N) = HahnSeries.C j₀ + HahnSeries.single (1 : ℚ) (1 : AlgebraicClosure ℚ) ∧

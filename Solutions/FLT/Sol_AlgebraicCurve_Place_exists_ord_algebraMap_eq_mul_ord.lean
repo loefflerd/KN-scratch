@@ -70,7 +70,6 @@ variable {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra 
 theorem rowMain (w : Place K F') (v : Place K F)
     (hv : v.toValuationSubring = w.toValuationSubring.comap (algebraMap F F')) :
     ∃ e : ℕ, 0 < e ∧ ∀ f : F, w.ord (algebraMap F F' f) = e * v.ord f := by
-
   have hmem : ∀ {f : F}, f ∈ v.toValuationSubring → algebraMap F F' f ∈ w.toValuationSubring :=
     fun {f} h => by
       rw [hv] at h
@@ -83,7 +82,6 @@ theorem rowMain (w : Place K F') (v : Place K F)
   have hπF : (π : F) ≠ 0 := by
     simpa [ne_eq, ZeroMemClass.coe_eq_zero] using hπ.ne_zero
   have hπF' : algebraMap F F' (π : F) ≠ 0 := by simpa using hπF
-
   have he0 : 0 ≤ w.ord (algebraMap F F' (π : F)) := w.ord_nonneg_of_mem' (hmem π.2)
   have hepos : 0 < w.ord (algebraMap F F' (π : F)) := by
     rcases eq_or_lt_of_le he0 with h0 | h
@@ -95,7 +93,6 @@ theorem rowMain (w : Place K F') (v : Place K F)
       rw [v.ord_inv, v.ord_coe_irreducible hπ] at h1
       omega
     · exact h
-
   have hunit : ∀ u : v.toValuationSubringˣ,
       w.ord (algebraMap F F' ((u : v.toValuationSubring) : F)) = 0 := by
     intro u

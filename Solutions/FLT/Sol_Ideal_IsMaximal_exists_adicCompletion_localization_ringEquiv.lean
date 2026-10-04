@@ -82,7 +82,6 @@ theorem solution
       (IsLocalRing.maximalIdeal (Localization.AtPrime 𝔪)) ^ n := by
     intro n
     rw [Ideal.map_pow, Localization.AtPrime.map_eq_maximalIdeal]
-
   have hunit : ∀ (n : ℕ) (s : C), s ∉ 𝔪 → IsUnit (Ideal.Quotient.mk (𝔪 ^ n) s) := by
     intro n s hs
     obtain ⟨y, i, hi, hyi⟩ := (‹𝔪.IsMaximal›).exists_inv hs
@@ -96,7 +95,6 @@ theorem solution
     rw [Algebra.algebraMapSubmonoid, Submonoid.mem_map] at hx
     obtain ⟨s, hs, rfl⟩ := hx
     exact hunit n s hs
-
   let d : ∀ n : ℕ, C ⧸ 𝔪 ^ n ≃+* Localization.AtPrime 𝔪 ⧸ (IsLocalRing.maximalIdeal (Localization.AtPrime 𝔪)) ^ n :=
     fun n =>
       (IsLocalization.atUnits (C ⧸ 𝔪 ^ n) (Algebra.algebraMapSubmonoid (C ⧸ 𝔪 ^ n) 𝔪.primeCompl)

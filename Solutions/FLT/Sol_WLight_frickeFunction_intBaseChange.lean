@@ -752,12 +752,10 @@ theorem eq_zero_of_const_relation (hg : GenMD jf fricke)
   obtain ⟨hper, hbd, hshape⟩ := combo_props (fun i : Fin d => c ^ (i : ℕ)) a hpad
   have han : ∀ i, AnalyticAt ℂ (cuspFunction N (a i * ⇑CuspForm.discriminant ^ M)) 0 := fun i =>
     analyticAt_cuspFunction_zero_of (mdiff_mul_discPow (hhol i) M) (hpad i).1 (hpad i).2.1
-
   have hrow : ∀ n : ℕ, ∑ i : Fin d, c ^ (i : ℕ) *
       (qExpansion N (a i * ⇑CuspForm.discriminant ^ M)).coeff n = 0 := by
     intro n
     rw [← qExpansion_sum_smul _ _ han, ← hshape, hrel, zero_mul, qExpansion_zero, map_zero]
-
   have hcoeff0 : ∀ (i : Fin d) (n : ℕ), (qExpansion N (a i * ⇑CuspForm.discriminant ^ M)).coeff n = 0 := by
     intro i n
     set z : Fin d → ↥F := fun i' => ⟨(qExpansion N (a i' * ⇑CuspForm.discriminant ^ M)).coeff n,
@@ -802,7 +800,6 @@ theorem transcendental_closureS (hg : GenMD jf fricke)
   intro p hpe
   by_contra hp0
   set d : ℕ := p.natDegree + 1 with hd
-
   have hy : ∀ i : Fin d, ∃ u ∈ Subring.closure gS, ∃ w ∈ Subring.closure gS,
       w ≠ 0 ∧ u / w = ((p.coeff i : ↥(Subfield.closure gS)) : KK) := by
     intro i
@@ -823,7 +820,6 @@ theorem transcendental_closureS (hg : GenMD jf fricke)
     rw [← huw i, hW, ← Finset.mul_prod_erase Finset.univ w (Finset.mem_univ i)]
     simp only [hA]
     field_simp
-
   have hrel : ∑ i : Fin d, A i * algebraMap ℂ KK c ^ (i : ℕ) = 0 := by
     have h1 : (aeval (algebraMap ℂ KK c) p : KK) = 0 := hpe
     rw [Polynomial.aeval_eq_sum_range, Finset.sum_range] at h1
@@ -835,7 +831,6 @@ theorem transcendental_closureS (hg : GenMD jf fricke)
         show algebraMap (↥(Subfield.closure gS)) KK (p.coeff i) = (p.coeff i : KK) from rfl]
       ring
     rw [h2, h1, mul_zero]
-
   choose aH haH hιa using fun i => (mem_closureS_iff F hg (A i)).mp (hAmem i)
   have hrelH : ∑ i : Fin d, (algebraMap ℂ ↥holSub c) ^ (i : ℕ) * aH i = 0 := by
     apply ι_injective
@@ -852,7 +847,6 @@ theorem transcendental_closureS (hg : GenMD jf fricke)
     simp only [Pi.smul_apply, Pi.mul_apply, Pi.pow_apply, smul_eq_mul]
     rfl
   have hall := eq_zero_of_const_relation hg hjf hkp hKF hc (fun i => (aH i : ℍ → ℂ)) haH hrelF
-
   have hcoef : ∀ i : Fin d, p.coeff (i : ℕ) = 0 := by
     intro i
     have hA0 : A i = 0 := by
@@ -910,7 +904,6 @@ theorem aeval_jf_eq_zero_imp (hjf : ∀ τ : ℍ, jf τ = ModularForm.E₄ τ ^ 
     have := CuspFormClass.zero_at_infty CuspForm.discriminant
     rw [CuspForm.coe_discriminant] at this
     exact this
-
   have hexp : ∀ τ : ℍ, p.eval (jf τ) * ModularForm.discriminant τ ^ m =
       ∑ k ∈ Finset.range (m + 1), p.coeff k * (ModularForm.E₄ τ ^ 3) ^ k *
         ModularForm.discriminant τ ^ (m - k) := by
@@ -1064,7 +1057,6 @@ lemma isIntegral_closureT_of_monicRel (F : IntermediateField ℚ ℂ) {f : ℍ �
     (hrel : ∀ τ : ℍ, f τ ^ d + ∑ i : Fin d, (p i).eval (jf τ) * f τ ^ (i : ℕ) = 0) :
     IsIntegral ↥(Subring.closure (⇑(algebraMap ℂ KK) '' (F : Set ℂ) ∪ {tK hg})) (ι ⟨f, hf⟩) := by
   set T := Subring.closure (⇑(algebraMap ℂ KK) '' (F : Set ℂ) ∪ {tK hg}) with hT
-
   have hlift : ∀ i : Fin d, ∃ q : Polynomial ↥F, q.map (algebraMap ↥F ℂ) = p i := fun i => by
     rw [← Polynomial.mem_lifts, Polynomial.lifts_iff_coeff_lifts]
     exact fun n => ⟨⟨(p i).coeff n, hpF i n⟩, rfl⟩
@@ -1236,7 +1228,6 @@ theorem holRep (h6 : R6h2Shape) {z : KK} (hz : z ∈ RS hg K) :
         Gf τ ^ D + ∑ k : Fin D, ((q k).map (algebraMap ↥K ℂ)).eval (jf τ) * Gf τ ^ (k : ℕ) = 0 := by
   classical
   obtain ⟨hzS, hzB⟩ := hz
-
   obtain ⟨uH, huH, wH, hwH, hw0, hzuw⟩ : ∃ uH : ↥holSub,
       (uH : ℍ → ℂ) ∈ Algebra.adjoin ↥K (Set.range (gen jf fricke)) ∧ ∃ wH : ↥holSub,
       (wH : ℍ → ℂ) ∈ Algebra.adjoin ↥K (Set.range (gen jf fricke)) ∧ ι wH ≠ 0 ∧
@@ -1251,11 +1242,9 @@ theorem holRep (h6 : R6h2Shape) {z : KK} (hz : z ∈ RS hg K) :
     · exact ⟨uH, huH, wH, hwH, hw0, huw.symm⟩
   have hwH0 : (wH : ℍ → ℂ) ≠ 0 := fun h => hw0 (by rw [show wH = 0 from Subtype.ext h, map_zero ι])
   have hzw : z * ι wH = ι uH := by rw [hzuw, div_mul_cancel₀ _ hw0]
-
   obtain ⟨P, hPm, hPc, hPz⟩ := (isIntegral_subring_iff _ _).mp hzB
   choose cH hcH hcHι using fun k => (mem_closureT_iff K hg (P.coeff k)).mp (hPc k)
   set D := P.natDegree with hD
-
   have hkey : ∀ k ≤ D, z ^ k * ι wH ^ D = ι uH ^ k * ι wH ^ (D - k) := fun k hk => by
     calc z ^ k * ι wH ^ D = z ^ k * (ι wH ^ k * ι wH ^ (D - k)) := by
           rw [← pow_add, Nat.add_sub_cancel' hk]
@@ -1271,7 +1260,6 @@ theorem holRep (h6 : R6h2Shape) {z : KK} (hz : z ∈ RS hg K) :
     rw [Finset.sum_mul, Finset.sum_range_succ, h2, show P.coeff D = 1 from hPm.coeff_natDegree,
       one_mul, hkey D le_rfl, Nat.sub_self, pow_zero, mul_one, add_comm] at h1
     exact h1
-
   have hrelH : uH ^ D + ∑ k ∈ Finset.range D, cH k * wH ^ (D - k) * uH ^ k = 0 := by
     apply ι_injective
     rw [map_zero ι, ← hrelK, map_add ι (uH ^ D) (∑ k ∈ Finset.range D, cH k * wH ^ (D - k) * uH ^ k),
@@ -1283,14 +1271,11 @@ theorem holRep (h6 : R6h2Shape) {z : KK} (hz : z ∈ RS hg K) :
     have := congrArg Subtype.val hrelH
     simpa only [AddMemClass.coe_add, SubmonoidClass.coe_pow, AddSubmonoidClass.coe_finsetSum,
       MulMemClass.coe_mul, ZeroMemClass.coe_zero] using this
-
   obtain ⟨Gf, hGf, hGw⟩ := h6 uH.2 wH.2 hwH0 (fun k _ => (cH k).2) hrelF
   have hιG : ι ⟨Gf, hGf⟩ = z := by
     rw [hzuw, eq_div_iff hw0, ← map_mul ι ⟨Gf, hGf⟩ wH]
     exact congrArg ι (Subtype.ext hGw)
-
   choose q hq using fun k : Fin D => Algebra.adjoin_mem_exists_aeval _ _ (hcH k)
-
   have hg0 : (⟨Gf, hGf⟩ : ↥holSub) ^ D + ∑ k ∈ Finset.range D, cH k * ⟨Gf, hGf⟩ ^ k = 0 := by
     apply ι_injective
     have h1 : ∑ k ∈ Finset.range D, P.coeff k * ι ⟨Gf, hGf⟩ ^ k + ι ⟨Gf, hGf⟩ ^ D = 0 := by

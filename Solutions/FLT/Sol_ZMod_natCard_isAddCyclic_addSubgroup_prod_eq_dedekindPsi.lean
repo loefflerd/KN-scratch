@@ -54,7 +54,6 @@ omit [NeZero N] in
 theorem IsUnimodularRow.addOrderOf_eq {a c : ZMod N} (h : IsUnimodularRow a c) :
     addOrderOf ((a, c) : ZMod N × ZMod N) = N := by
   obtain ⟨x, y, hxy⟩ := h
-
   have hdvdN : addOrderOf ((a, c) : ZMod N × ZMod N) ∣ N := by
     refine addOrderOf_dvd_iff_nsmul_eq_zero.mpr ?_
     rw [nsmul_pair]
@@ -62,7 +61,6 @@ theorem IsUnimodularRow.addOrderOf_eq {a c : ZMod N} (h : IsUnimodularRow a c) :
     have hzc : N • c = 0 := by rw [nsmul_eq_mul, ZMod.natCast_self, zero_mul]
     rw [hza, hzc]
     rfl
-
   have hN : N ∣ addOrderOf ((a, c) : ZMod N × ZMod N) := by
     have hsmul : addOrderOf ((a, c) : ZMod N × ZMod N) • ((a, c) : ZMod N × ZMod N) = 0 :=
       addOrderOf_nsmul_eq_zero _
@@ -87,7 +85,6 @@ theorem isUnimodularRow_of_addOrderOf_eq {a c : ZMod N}
   have hdN : d ∣ N := Nat.gcd_dvd_right _ _
   have hdA : d ∣ a.val := dvd_trans (Nat.gcd_dvd_left _ _) (Nat.gcd_dvd_left _ _)
   have hdC : d ∣ c.val := dvd_trans (Nat.gcd_dvd_left _ _) (Nat.gcd_dvd_right _ _)
-
   have hd1 : d = 1 := by
     have hkill : (N / d) • ((a, c) : ZMod N × ZMod N) = 0 := by
       rw [nsmul_pair]
@@ -109,7 +106,6 @@ theorem isUnimodularRow_of_addOrderOf_eq {a c : ZMod N}
     have hmul : d * (N / d) = N := Nat.mul_div_cancel' hdN
     rw [hNd] at hmul
     exact Nat.eq_of_mul_eq_mul_right (Nat.pos_of_ne_zero hN0) (hmul.trans (one_mul N).symm)
-
   have hcop : Nat.Coprime (Nat.gcd a.val c.val) N := hd1
   have hunit : IsUnit ((Nat.gcd a.val c.val : ℕ) : ZMod N) :=
     (ZMod.isUnit_iff_coprime _ N).mpr hcop
@@ -155,7 +151,6 @@ theorem zmultiples_unit_mul (u : (ZMod N)ˣ) (x : ZMod N × ZMod N) :
     · show ((((w : ZMod N).val : ℤ)) • y).2 = (w : ZMod N) * y.2
       rw [zsmul_pair_snd, zsmul_eq_mul, Int.cast_natCast, ZMod.natCast_zmod_val]
   refine le_antisymm (AddSubgroup.zmultiples_le.mpr (key u x)) (AddSubgroup.zmultiples_le.mpr ?_)
-
   have hmem := key u⁻¹ (((u : ZMod N) * x.1, (u : ZMod N) * x.2) : ZMod N × ZMod N)
   have hx : ((((u⁻¹ : (ZMod N)ˣ) : ZMod N) * (((u : ZMod N) * x.1, (u : ZMod N) * x.2) : ZMod N × ZMod N).1,
       ((u⁻¹ : (ZMod N)ˣ) : ZMod N) * (((u : ZMod N) * x.1, (u : ZMod N) * x.2) : ZMod N × ZMod N).2)
@@ -226,10 +221,8 @@ theorem projectiveLineToCyclicAddSubgroup_injective :
   intro v w hvw
   have hsub : AddSubgroup.zmultiples v.1 = AddSubgroup.zmultiples w.1 :=
     congrArg Subtype.val hvw
-
   obtain ⟨k, hk⟩ := AddSubgroup.mem_zmultiples_iff.mp
     (hsub ▸ AddSubgroup.mem_zmultiples w.1)
-
   obtain ⟨m, hm⟩ := AddSubgroup.mem_zmultiples_iff.mp
     (hsub.symm ▸ AddSubgroup.mem_zmultiples v.1)
   have hk1 : ((k : ZMod N)) * v.1.1 = w.1.1 := by
@@ -240,7 +233,6 @@ theorem projectiveLineToCyclicAddSubgroup_injective :
     have h := congrArg Prod.fst hm; rwa [zsmul_pair_fst, zsmul_eq_mul] at h
   have hm2 : ((m : ZMod N)) * w.1.2 = v.1.2 := by
     have h := congrArg Prod.snd hm; rwa [zsmul_pair_snd, zsmul_eq_mul] at h
-
   have hmk : ((m : ZMod N)) * ((k : ZMod N)) = 1 := by
     refine eq_of_mul_unimodularRow_eq N v.2 ?_ ?_
     · rw [mul_assoc, hk1, hm1, one_mul]

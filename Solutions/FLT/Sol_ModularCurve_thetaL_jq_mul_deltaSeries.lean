@@ -45,10 +45,8 @@ theorem solution :
       -(HahnSeries.ofPowerSeries ℤ ℚ (PowerSeries.map (Int.castRingHom ℚ) (eisenstein4 ^ 2 * eisenstein6))) := by
   have hι : ∀ f : PowerSeries ℤ,
       HahnSeries.ofPowerSeries ℤ ℚ (PowerSeries.map (Int.castRingHom ℚ) f) = laurentOfInt ℚ f := fun f => rfl
-
   have hC2 := ModularCurve.eisenstein4_mul_thetaL_delta_sub_eq_eisenstein6_mul_delta
   rw [hι, hι, hι, ← ModularCurve.RC18C3.deltaSeries_eq_laurentOfInt] at hC2
-
   have hjΔ := ModularCurve.RC18C3.jq_mul_deltaSeries
   rw [map_pow] at hjΔ
   have hL := ModularCurve.theta_mul jq deltaSeries

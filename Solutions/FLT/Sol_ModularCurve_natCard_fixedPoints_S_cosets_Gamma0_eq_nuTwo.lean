@@ -87,7 +87,6 @@ theorem toFixed_surjective (s : ℤ) : Function.Surjective (toFixed N s) := by
   induction y using QuotientGroup.induction_on with
   | H g =>
     rw [fixed_iff] at hy
-
     have hdet : ((g 0 0 : ℤ) : ZMod N) * ((g 1 1 : ℤ) : ZMod N)
         - ((g 0 1 : ℤ) : ZMod N) * ((g 1 0 : ℤ) : ZMod N) = 1 := by
       have h := Matrix.det_fin_two (g : Matrix (Fin 2) (Fin 2) ℤ)
@@ -99,7 +98,6 @@ theorem toFixed_surjective (s : ℤ) : Function.Surjective (toFixed N s) := by
     set b : ZMod N := ((g 0 1 : ℤ) : ZMod N)
     set c : ZMod N := ((g 1 0 : ℤ) : ZMod N)
     set d : ZMod N := ((g 1 1 : ℤ) : ZMod N)
-
     set w : ZMod N := -((s : ZMod N) * a + c) * d ^ 2 - 2 * a * b * d + b ^ 2 * c
     have hcw : c * w = 1 := by
       linear_combination (a * d - b * c + 1) * hdet - d ^ 2 * hy

@@ -855,7 +855,6 @@ private theorem rval_aux : ∀ (M : ℕ) [NeZero M] {K : Type*} [Field K]
   intro _ K _ ζ hζ hall
   classical
   have hM0 : M ≠ 0 := NeZero.ne M
-
   have hslot_root : ∀ a b : ℕ, a ∈ M.divisors →
       b ∈ (Finset.range (M / a)).filter (fun b => Nat.gcd (Nat.gcd a b) (M / a) = 1) →
       ((minpoly K⟮jqModC K⟯ (jqNModC K M)).map ((qExpand K M).comp (algebraMap K⟮jqModC K⟯ (LaurentSeries K)))).IsRoot (sv K ζ a b) := by
@@ -869,8 +868,7 @@ private theorem rval_aux : ∀ (M : ℕ) [NeZero M] {K : Type*} [Field K]
     have : NeZero a := ⟨ha0⟩
     have had : a * (M / a) = M := Nat.mul_div_cancel' haM
     by_cases hd1 : M / a = 1
-    ·
-      have haM' : a = M := by rw [hd1, mul_one] at had; exact had
+    · have haM' : a = M := by rw [hd1, mul_one] at had; exact had
       have hb0 : b = 0 := by omega
       subst hb0
       rw [show sv K ζ a 0 = sv K ζ M 0 from by rw [haM'], sv_top]
@@ -880,8 +878,7 @@ private theorem rval_aux : ∀ (M : ℕ) [NeZero M] {K : Type*} [Field K]
         rw [← Polynomial.aeval_def]
         exact minpoly.aeval _ _
       rw [h0, map_zero]
-    ·
-      have hd0 : M / a ≠ 0 := by
+    · have hd0 : M / a ≠ 0 := by
         intro h0
         rw [h0, mul_zero] at had
         exact hM0 had.symm
@@ -907,7 +904,6 @@ private theorem rval_aux : ∀ (M : ℕ) [NeZero M] {K : Type*} [Field K]
       have hpM : p ∣ M := by
         have hpd : p ∣ M / a := ⟨d'', hdd⟩
         exact hpd.trans (Nat.div_dvd_of_dvd haM)
-
       have hb''lt : b % d'' < d'' := Nat.mod_lt b (Nat.pos_of_ne_zero hd''0)
       have hbsplit : b % d'' + b / d'' * d'' = b := Nat.mod_add_div' b d''
       have hc₀p : b / d'' < p := by
@@ -927,14 +923,12 @@ private theorem rval_aux : ∀ (M : ℕ) [NeZero M] {K : Type*} [Field K]
             exact (Nat.gcd_dvd_right _ _).mul_left p
         rw [hbc] at h1
         exact Nat.dvd_one.mp h1
-
       have hζ' : IsPrimitiveRoot ((ζ ^ p : Kˣ) : K) (a * d'') := by
         have h1 := isPrimitiveRoot_pow_div hζ hM'M
         have h2 : M / (a * d'') = p := by
           rw [hMM']
           exact Nat.mul_div_cancel_left p (Nat.pos_of_ne_zero hM'0)
         rwa [h2] at h1
-
       have hIH := IH (a * d'') hM'lt (ζ ^ p) hζ' (fun e he _ => hall e (he.trans hM'M))
       have hIHM := map_qExpand_minpoly_eq p (show M = p * (a * d'') from by rw [hMM']; ring)
         (ζ ^ p) hIH
@@ -948,7 +942,6 @@ private theorem rval_aux : ∀ (M : ℕ) [NeZero M] {K : Type*} [Field K]
         · rw [hM'a]
           exact Finset.mem_filter.mpr ⟨Finset.mem_range.mpr hb''lt, hprim'⟩
         · rw [Polynomial.eval_sub, Polynomial.eval_X, Polynomial.eval_C, sub_self]
-
       obtain ⟨htM', hgM'⟩ := hall (a * d'') hM'M
       have hfd' : FiniteDimensional K⟮jqModC K⟯
           (IntermediateField.adjoin K⟮jqModC K⟯
@@ -961,7 +954,6 @@ private theorem rval_aux : ∀ (M : ℕ) [NeZero M] {K : Type*} [Field K]
               ({jqNModC K (a * d'')} : Set (LaurentSeries K))))
       obtain ⟨ψ₁, hψcomp, hψ₁⟩ := exists_ringHom_adjoin_of_isRoot hα'
         ((qExpand K M).comp (algebraMap K⟮jqModC K⟯ (LaurentSeries K))) hroot'
-
       obtain ⟨dp, -, hdpsym⟩ := ModularCurve.exists_phiIrreducible_evalSymm p
       have hup : (phiAtSeed dp (jqNModC K (a * d''))).eval (jqNModC K M) = 0 := by
         have h1 := phiAtSeed_jqNModC_eval (R := K) p dp (a * d'')
@@ -976,7 +968,6 @@ private theorem rval_aux : ∀ (M : ℕ) [NeZero M] {K : Type*} [Field K]
       have hmindvd : minpoly K⟮jqModC K⟯⟮jqNModC K (a * d'')⟯ (jqNModC K M)
           ∣ phiAtSeed dp (IntermediateField.AdjoinSimple.gen K⟮jqModC K⟯ (jqNModC K (a * d''))) :=
         minpoly.dvd _ _ haev
-
       have htow := Module.finrank_mul_finrank K⟮jqModC K⟯ K⟮jqModC K⟯⟮jqNModC K (a * d'')⟯
         K⟮jqModC K⟯⟮jqNModC K (a * d'')⟯⟮jqNModC K M⟯
       have habs : IntermediateField.adjoin K⟮jqModC K⟯
@@ -1009,7 +1000,6 @@ private theorem rval_aux : ∀ (M : ℕ) [NeZero M] {K : Type*} [Field K]
           * dedekindPsi (a * d'') = dedekindPsi M := by
         rw [← htM', ← htop, Nat.mul_comm]
         exact htow
-
       have hseed : qExpand K p (sv K (ζ ^ p) a (b % d''))
           = qExpand K (p * (a * a)) (qTwist ((ζ ^ (b % d'' * a)) ^ p) (jqModC K)) := by
         rw [sv_eq_TS, qExpand_TS]
@@ -1055,10 +1045,8 @@ private theorem rval_aux : ∀ (M : ℕ) [NeZero M] {K : Type*} [Field K]
         congr 1
         rw [show b % d'' * a + b / d'' * (a * d'')
           = (b % d'' + b / d'' * d'') * a from by ring, hbsplit]
-
       by_cases hpM' : p ∣ a * d''
-      ·
-        have hψM : dedekindPsi M = dedekindPsi (a * d'') * p := by
+      · have hψM : dedekindPsi M = dedekindPsi (a * d'') * p := by
           rw [hMM']
           exact dedekindPsi_mul_prime_dvd hM'0 hpp hpM'
         have he : Module.finrank K⟮jqModC K⟯⟮jqNModC K (a * d'')⟯ K⟮jqModC K⟯⟮jqNModC K (a * d'')⟯⟮jqNModC K M⟯ = p := by
@@ -1067,7 +1055,6 @@ private theorem rval_aux : ∀ (M : ℕ) [NeZero M] {K : Type*} [Field K]
             rw [hstep_deg, hψM]
             ring
           exact Nat.eq_of_mul_eq_mul_right (dedekindPsi_pos hM'0) h1
-
         obtain ⟨m'', hm''⟩ := hpM'
         have hm''0 : m'' ≠ 0 := by
           rintro rfl
@@ -1120,7 +1107,6 @@ private theorem rval_aux : ∀ (M : ℕ) [NeZero M] {K : Type*} [Field K]
           intro hcon
           rw [Polynomial.IsRoot, Polynomial.eval_map, Polynomial.eval₂_hom] at hcon
           exact hx''notmin ((injective_iff_map_eq_zero ψ₁).mp (RingHom.injective ψ₁) _ hcon)
-
         have htarget_ne : sv K ζ a b ≠ ψ₁ (⟨jqNModC K m'', hmem''⟩ : K⟮jqModC K⟯⟮jqNModC K (a * d'')⟯) := by
           intro hcon
           have hroot'' : ((minpoly K⟮jqModC K⟯ (jqNModC K m'')).map ((qExpand K M).comp
@@ -1204,7 +1190,6 @@ private theorem rval_aux : ∀ (M : ℕ) [NeZero M] {K : Type*} [Field K]
             Nat.dvd_gcd (Nat.dvd_gcd hpa hpb) ⟨d'', hdd⟩
           rw [hbc] at hfinal
           exact hpp.ne_one (Nat.dvd_one.mp hfinal)
-
         have hQ : (Polynomial.X - Polynomial.C (ψ₁ (⟨jqNModC K m'', hmem''⟩ :
             K⟮jqModC K⟯⟮jqNModC K (a * d'')⟯))) * (phiAtSeed dp (qExpand K p (sv K (ζ ^ p) a (b % d''))) /ₘ
             (Polynomial.X - Polynomial.C (ψ₁ (⟨jqNModC K m'', hmem''⟩ : K⟮jqModC K⟯⟮jqNModC K (a * d'')⟯))))
@@ -1287,7 +1272,6 @@ private theorem rval_aux : ∀ (M : ℕ) [NeZero M] {K : Type*} [Field K]
           rcases mul_eq_zero.mp h1 with h2 | h2
           · exact absurd (sub_eq_zero.mp h2) htarget_ne
           · exact h2
-
         have htowdvd : minpoly K⟮jqModC K⟯⟮jqNModC K (a * d'')⟯ (jqNModC K M)
             ∣ (minpoly K⟮jqModC K⟯ (jqNModC K M)).map (algebraMap K⟮jqModC K⟯ K⟮jqModC K⟯⟮jqNModC K (a * d'')⟯) :=
           minpoly.dvd_map_of_isScalarTower K⟮jqModC K⟯ K⟮jqModC K⟯⟮jqNModC K (a * d'')⟯ (jqNModC K M)
@@ -1297,8 +1281,7 @@ private theorem rval_aux : ∀ (M : ℕ) [NeZero M] {K : Type*} [Field K]
             = (qExpand K M).comp (algebraMap K⟮jqModC K⟯ (LaurentSeries K)) := hψcomp
         rw [h2] at h1
         exact Polynomial.eval_eq_zero_of_dvd_of_eval_eq_zero h1 hroot_step
-      ·
-        have hψM : dedekindPsi M = dedekindPsi (a * d'') * (p + 1) := by
+      · have hψM : dedekindPsi M = dedekindPsi (a * d'') * (p + 1) := by
           rw [hMM']
           exact dedekindPsi_mul_prime_not_dvd hpp hpM'
         have he : Module.finrank K⟮jqModC K⟯⟮jqNModC K (a * d'')⟯ K⟮jqModC K⟯⟮jqNModC K (a * d'')⟯⟮jqNModC K M⟯
@@ -1338,7 +1321,6 @@ private theorem rval_aux : ∀ (M : ℕ) [NeZero M] {K : Type*} [Field K]
             = (qExpand K M).comp (algebraMap K⟮jqModC K⟯ (LaurentSeries K)) := hψcomp
         rw [h2] at h1
         exact Polynomial.eval_eq_zero_of_dvd_of_eval_eq_zero h1 hroot_step
-
   by_cases hM1 : M = 1
   · subst hM1
     have hjq1 : jqNModC K 1 = algebraMap K⟮jqModC K⟯ (LaurentSeries K) jGenC := by
@@ -1374,7 +1356,6 @@ private theorem rval_aux : ∀ (M : ℕ) [NeZero M] {K : Type*} [Field K]
     have hdeg : (minpoly K⟮jqModC K⟯ (jqNModC K M)).natDegree = dedekindPsi M := by
       rw [← IntermediateField.adjoin.finrank hα]
       exact htM
-
     set T : Multiset (LaurentSeries K) := M.divisors.val.bind
       (fun a => ((Finset.range (M / a)).filter
         (fun b => Nat.gcd (Nat.gcd a b) (M / a) = 1)).val.map (fun b => sv K ζ a b)) with hT
@@ -1429,8 +1410,7 @@ private theorem rval_aux : ∀ (M : ℕ) [NeZero M] {K : Type*} [Field K]
               (Nat.mul_lt_mul_right (Nat.pos_of_ne_zero ha0)).mpr hbr'
             _ = M := had
         exact (sv_inj hζ ha0 ha0 hba hba' hvv).2
-      ·
-        refine Multiset.Nodup.pairwise ?_ M.divisors.nodup
+      · refine Multiset.Nodup.pairwise ?_ M.divisors.nodup
         intro a ha a' ha' hne
         show Disjoint (((Finset.range (M / a)).filter
             (fun b => Nat.gcd (Nat.gcd a b) (M / a) = 1)).val.map (fun b => sv K ζ a b))
@@ -1461,7 +1441,6 @@ private theorem rval_aux : ∀ (M : ℕ) [NeZero M] {K : Type*} [Field K]
             _ = M := Nat.div_mul_cancel haM'
         have hvv : sv K ζ a b = sv K ζ a' b' := by rw [hxb, ← hxb']
         exact hne (sv_inj hζ ha0 ha0' hba hba' hvv).1
-
     have hPne : (minpoly K⟮jqModC K⟯ (jqNModC K M)).map ((qExpand K M).comp (algebraMap K⟮jqModC K⟯ (LaurentSeries K))) ≠ 0 :=
       ((minpoly.monic hα).map _).ne_zero
     have hPdeg : ((minpoly K⟮jqModC K⟯ (jqNModC K M)).map ((qExpand K M).comp (algebraMap K⟮jqModC K⟯ (LaurentSeries K)))).natDegree = dedekindPsi M := by
@@ -1535,7 +1514,6 @@ private theorem jqNModC_prime_not_mem_adjoin (M : ℕ) [NeZero M] (p : ℕ)
   have hp0 : p ≠ 0 := hp.out.ne_zero
   have : NeZero p := ⟨hp0⟩
   have : NeZero (M * p) := ⟨Nat.mul_ne_zero hM0 hp0⟩
-
   have hζM : IsPrimitiveRoot ((ζ ^ p : Kˣ) : K) M := by
     have h1 := isPrimitiveRoot_pow_div hζ (⟨p, rfl⟩ : M ∣ M * p)
     have h2 : M * p / M = p := Nat.mul_div_cancel_left p (Nat.pos_of_ne_zero hM0)
@@ -1544,7 +1522,6 @@ private theorem jqNModC_prime_not_mem_adjoin (M : ℕ) [NeZero M] (p : ℕ)
     have h1 := isPrimitiveRoot_pow_div hζ (⟨M, Nat.mul_comm M p⟩ : p ∣ M * p)
     have h2 : M * p / p = M := Nat.mul_div_cancel M (Nat.pos_of_ne_zero hp0)
     rwa [h2] at h1
-
   obtain ⟨htM, -⟩ := hall M dvd_rfl
   have hfd : FiniteDimensional K⟮jqModC K⟯
       (IntermediateField.adjoin K⟮jqModC K⟯ ({jqNModC K M} : Set (LaurentSeries K))) :=
@@ -1556,15 +1533,12 @@ private theorem jqNModC_prime_not_mem_adjoin (M : ℕ) [NeZero M] (p : ℕ)
   have hdeg : (minpoly K⟮jqModC K⟯ (jqNModC K M)).natDegree = dedekindPsi M := by
     rw [← IntermediateField.adjoin.finrank hα]
     exact htM
-
   have hidMB := map_qExpand_minpoly_eq p (Nat.mul_comm M p) (ζ ^ p)
     (rval_aux M (ζ ^ p) hζM hall)
-
   have hιS : ∀ w : LaurentSeries K, qExpand K (M * p) w = qExpand K p (qExpand K M w) := by
     intro w
     rw [qExpand_qExpand]
     exact qExpand_congr (Nat.mul_comm M p) w
-
   set T' : Multiset (LaurentSeries K) := M.divisors.val.bind
     (fun a => ((Finset.range (M / a)).filter
       (fun b => Nat.gcd (Nat.gcd a b) (M / a) = 1)).val.map
@@ -1650,7 +1624,6 @@ private theorem jqNModC_prime_not_mem_adjoin (M : ℕ) [NeZero M] (p : ℕ)
         rw [hxb, ← hxb']
       exact hne (sv_inj hζM ha0 ha0' hba hba'
         (RingHom.injective (qExpand K p) hvv)).1
-
   have hglue : ∏ a ∈ M.divisors, ∏ b ∈ (Finset.range (M / a)).filter
       (fun b => Nat.gcd (Nat.gcd a b) (M / a) = 1),
       (Polynomial.X - Polynomial.C (qExpand K p (sv K (ζ ^ p) a b)))
@@ -1669,12 +1642,10 @@ private theorem jqNModC_prime_not_mem_adjoin (M : ℕ) [NeZero M] (p : ℕ)
   have hroots : ((minpoly K⟮jqModC K⟯ (jqNModC K M)).map ((qExpand K (M * p)).comp (algebraMap K⟮jqModC K⟯ (LaurentSeries K)))).roots = T' := by
     rw [hidMB, hglue]
     exact Polynomial.roots_multiset_prod_X_sub_C T'
-
   set s : Finset (LaurentSeries K) := T'.toFinset with hs
   have hscard : s.card = dedekindPsi M := by
     rw [hs, Multiset.toFinset_card_of_nodup hT'nodup]
     exact hT'card
-
   obtain ⟨g, hg⟩ : ∃ g : Polynomial K⟮jqModC K⟯, Polynomial.aeval (jqNModC K M) g = jqNModC K p := by
     have h1 := IntermediateField.adjoin_simple_toSubalgebra_of_isAlgebraic
       hα.isAlgebraic
@@ -1701,7 +1672,6 @@ private theorem jqNModC_prime_not_mem_adjoin (M : ℕ) [NeZero M] (p : ℕ)
       exact hdegpos
     · exact Polynomial.natDegree_lt_natDegree h0
         (Polynomial.degree_modByMonic_lt g (minpoly.monic hα))
-
   have hPne : (minpoly K⟮jqModC K⟯ (jqNModC K M)).map ((qExpand K (M * p)).comp
       (algebraMap K⟮jqModC K⟯ (LaurentSeries K))) ≠ 0 :=
     ((minpoly.monic hα).map _).ne_zero
@@ -1715,18 +1685,15 @@ private theorem jqNModC_prime_not_mem_adjoin (M : ℕ) [NeZero M] (p : ℕ)
     have hyS : y ∈ (qExpand K p).fieldRange := by
       rw [← hyval]
       exact RingHom.mem_fieldRange.mpr ⟨sv K (ζ ^ p) a₀ b₀, rfl⟩
-
     have hy_root : ((minpoly K⟮jqModC K⟯ (jqNModC K M)).map ((qExpand K (M * p)).comp
         (algebraMap K⟮jqModC K⟯ (LaurentSeries K)))).IsRoot y :=
       (Polynomial.mem_roots hPne).mp (by rw [hroots]; exact hyT')
     obtain ⟨ψy, hψycomp, hψygen⟩ := exists_ringHom_adjoin_of_isRoot hα
       ((qExpand K (M * p)).comp (algebraMap K⟮jqModC K⟯ (LaurentSeries K))) hy_root
-
     have hψgen : ∀ h : jqNModC K M ∈ IntermediateField.adjoin K⟮jqModC K⟯
         ({jqNModC K M} : Set (LaurentSeries K)), ψy ⟨jqNModC K M, h⟩ = y := by
       intro h
       exact hψygen
-
     have himg : ∀ (x : LaurentSeries K)
         (hx : x ∈ IntermediateField.adjoin K⟮jqModC K⟯ ({jqNModC K M} : Set (LaurentSeries K))),
         ψy ⟨x, hx⟩ ∈ (qExpand K p).fieldRange := by
@@ -1759,7 +1726,6 @@ private theorem jqNModC_prime_not_mem_adjoin (M : ℕ) [NeZero M] (p : ℕ)
           rw [show (⟨x₁⁻¹, inv_mem hx₁⟩ : K⟮jqModC K⟯⟮jqNModC K M⟯)
             = (⟨x₁, hx₁⟩ : K⟮jqModC K⟯⟮jqNModC K M⟯)⁻¹ from rfl, map_inv₀]
           exact Subfield.inv_mem _ ih₁
-
     have hx_pS : ψy ⟨jqNModC K p, hmem⟩ ∈ (qExpand K p).fieldRange := himg _ hmem
     obtain ⟨dp, -, -⟩ := ModularCurve.exists_phiIrreducible_evalSymm p
     have hrel : (phiAtSeed dp (jqModC K)).eval (jqNModC K p) = 0 := by
@@ -1789,8 +1755,7 @@ private theorem jqNModC_prime_not_mem_adjoin (M : ℕ) [NeZero M] (p : ℕ)
         (ψy ⟨jqNModC K p, hmem⟩) := h2
     rcases (isRoot_prime_at_slot_iff p (ζ ^ M) hζp dp M 1 (ψy ⟨jqNModC K p, hmem⟩)).mp h2'
       with hdist | ⟨b, hb, htw⟩
-    ·
-      have hspd : qExpand K (p * (p * M)) (qTwist ((1 : Kˣ) ^ (p * p)) (jqModC K))
+    · have hspd : qExpand K (p * (p * M)) (qTwist ((1 : Kˣ) ^ (p * p)) (jqModC K))
           = qExpand K (M * p) (jqNModC K p) := by
         rw [one_pow, qTwist_one_apply, qExpand_jqNModC, qExpand_jqModC_eq_TS]
         exact TS_congr (by ring) 1
@@ -1815,8 +1780,7 @@ private theorem jqNModC_prime_not_mem_adjoin (M : ℕ) [NeZero M] (p : ℕ)
       rw [hgE, hψygen] at h4
       rw [← h4]
       exact hx_pval
-    ·
-      exfalso
+    · exfalso
       obtain ⟨w, hw⟩ := RingHom.mem_fieldRange.mp hx_pS
       have hw2 : qExpand K p w = TS K M ((ζ ^ M) ^ b) := by
         rw [hw, htw, one_mul, TS]
@@ -1830,7 +1794,6 @@ private theorem jqNModC_prime_not_mem_adjoin (M : ℕ) [NeZero M] (p : ℕ)
         TS_coeff_neg M _
       rw [hw2, hz2] at hz1
       exact Units.ne_zero _ hz1
-
   obtain ⟨z, hz⟩ := mem_range_of_eval_eq_const ((qExpand K (M * p)).comp
     (algebraMap K⟮jqModC K⟯ (LaurentSeries K))) g' (qExpand K (M * p) (jqNModC K p)) s hg'deg hval
   have hzval : (algebraMap K⟮jqModC K⟯ (LaurentSeries K)) z = jqNModC K p := by
@@ -1910,7 +1873,6 @@ theorem solution {K : Type*} [Field K] (M : ℕ) [NeZero M]
     jqNModC K p ∉ IntermediateField.adjoin K
       {x : LaurentSeries K | ∃ (d' : ℕ) (_ : NeZero d'), d' ∣ M ∧ x = jqNModC K d'} :=
   ModularCurve.jqNModC_prime_not_mem_fullC M p hpM ζ hζ hall hbase
-
 
 end S_ModularCurve_jqNModC_prime_not_mem_fullC
 end P2MW

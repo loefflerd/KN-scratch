@@ -55,7 +55,6 @@ theorem of_sub_one_pow_mem (g : G) (k : ℕ) (hg : g ^ p ^ k = 1) :
     (MonoidAlgebra.of 𝒪 G g - 1) ^ p ^ k ∈ Ideal.span {(p : Λ)} := by
   obtain ⟨r, hr⟩ := exists_add_pow_prime_pow_eq (Fact.out : p.Prime) (MonoidAlgebra.of 𝒪 G g) (-1) k
   rw [sub_eq_add_neg, hr, ← map_pow, hg, map_one]
-
   rcases Nat.even_or_odd (p ^ k) with hev | hodd
   · have hp2 : p = 2 := ((Fact.out : p.Prime).even_iff).mp (Nat.even_pow.mp hev).1
     have h11 : (1 : Λ) + 1 = (p : Λ) := by rw [hp2, Nat.cast_two, one_add_one_eq_two]
@@ -72,7 +71,6 @@ variable [IsLocalRing 𝒪]
 
 theorem isUnit_one_add_of_mem_map [Finite G] {m : Λ}
     (hm : m ∈ (maximalIdeal 𝒪).map (algebraMap 𝒪 Λ)) : IsUnit (1 + m) := by
-
   let μ : Λ →ₗ[𝒪] Λ := LinearMap.mulLeft 𝒪 (1 + m)
   have hle : (⊤ : Submodule 𝒪 Λ) ≤ LinearMap.range μ ⊔ (maximalIdeal 𝒪) • ⊤ := by
     intro x _

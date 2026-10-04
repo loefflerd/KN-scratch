@@ -270,8 +270,7 @@ lemma exists_qParam_pow_le [NeZero N] {Q : ℍ → ℂ} (hhol : MDifferentiable 
   have heq : ∀ τ : ℍ, cuspFunction N Q (Function.Periodic.qParam N τ) = Q τ := fun τ =>
     eq_cuspFunction τ hN.ne' hper
   by_cases h0 : ∀ᶠ z in 𝓝 (0 : ℂ), cuspFunction N Q z = 0
-  ·
-    exfalso
+  · exfalso
     apply hQ0
     have h1 : ∀ᶠ τ : ℍ in atImInfty, Q τ = 0 :=
       (hq.eventually h0).mono fun τ hτ => by rwa [heq τ] at hτ
@@ -386,7 +385,6 @@ theorem exists_isBoundedAtImInfty_of_mul_eq (hg : GenData jf fricke) {h q p : �
     ∃ m : ℕ, IsBoundedAtImInfty (h * ⇑CuspForm.discriminant ^ m) := by
   obtain ⟨hqm, ⟨mq, hmq⟩, hqT⟩ := adjoin_props hg hq
   obtain ⟨_, ⟨mp, hmp⟩, _⟩ := adjoin_props hg hp
-
   have hQhol : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) (q * ⇑CuspForm.discriminant ^ mq) :=
     hqm.mul (mdiff_discPow mq)
   have hQper : Function.Periodic ((q * ⇑CuspForm.discriminant ^ mq : ℍ → ℂ) ∘ ofComplex) N :=
@@ -402,7 +400,6 @@ theorem exists_isBoundedAtImInfty_of_mul_eq (hg : GenData jf fricke) {h q p : �
     · exact h1
     · exact absurd h1 (ModularForm.discriminant_ne_zero τ)
   obtain ⟨r, C, A, hC, hlb⟩ := exists_qParam_pow_le hQhol hQper hmq hQ0
-
   obtain ⟨Mp, Ap, hMp⟩ := isBoundedAtImInfty_iff.mp hmp
   obtain ⟨MΔ, AΔ, hMΔ⟩ := isBoundedAtImInfty_iff.mp isBoundedAtImInfty_discriminant
   obtain ⟨c, hc, hcO⟩ := (CuspFormClass.exp_decay_atImInfty (h := 1) CuspForm.discriminant
@@ -416,7 +413,6 @@ theorem exists_isBoundedAtImInfty_of_mul_eq (hg : GenData jf fricke) {h q p : �
   have hAp' : Ap ≤ τ.im := (le_max_right _ _).trans ((le_max_left _ _).trans hτ)
   have hAΔ' : AΔ ≤ τ.im := (le_max_left _ _).trans ((le_max_right _ _).trans hτ)
   have hAc' : Ac ≤ τ.im := (le_max_right _ _).trans ((le_max_right _ _).trans hτ)
-
   set a : ℝ := ‖Function.Periodic.qParam N τ‖ with ha
   set d : ℝ := ‖CuspForm.discriminant τ‖ with hd
   have ha0 : 0 < a := by rw [ha, norm_pos_iff]; exact Complex.exp_ne_zero _
@@ -427,7 +423,6 @@ theorem exists_isBoundedAtImInfty_of_mul_eq (hg : GenData jf fricke) {h q p : �
   have hMp0 : 0 ≤ Mp := (norm_nonneg _).trans hY
   have hdM : d ≤ MΔ := hMΔ τ hAΔ'
   have hMΔ0 : 0 ≤ MΔ := hd0.trans hdM
-
   have hde : d ≤ c * a := by
     have h1 : d ≤ c * ‖Real.exp (-2 * π * τ.im / 1)‖ := hAc τ hAc'
     have h2 : Real.exp (-2 * π * τ.im / 1) ≤ a := by
@@ -445,7 +440,6 @@ theorem exists_isBoundedAtImInfty_of_mul_eq (hg : GenData jf fricke) {h q p : �
     calc d ≤ c * ‖Real.exp (-2 * π * τ.im / 1)‖ := h1
       _ = c * Real.exp (-2 * π * τ.im / 1) := by rw [Real.norm_eq_abs, abs_of_pos (Real.exp_pos _)]
       _ ≤ c * a := mul_le_mul_of_nonneg_left h2 hc.le
-
   have hX : ‖(h * ⇑CuspForm.discriminant ^ (mp + r)) τ‖ * ‖(q * ⇑CuspForm.discriminant ^ mq) τ‖
       = ‖(p * ⇑CuspForm.discriminant ^ mp) τ‖ * d ^ r * d ^ mq := by
     rw [← hhq]
@@ -1006,7 +1000,6 @@ theorem solution
     :
     ∃ (d : ℕ) (p : Fin d → Polynomial ℂ), (∀ (i : Fin d) (n : ℕ), (p i).coeff n ∈ K) ∧
       ∀ τ : ℍ, G τ ^ d + ∑ i : Fin d, (p i).eval (jf τ) * G τ ^ (i : ℕ) = 0 := by
-
   have hR6h3 : ∀ {a b F : ℍ → ℂ},
       a ∈ Algebra.adjoin ℂ
         (insert jf {g : ℍ → ℂ | ∃ v : Fin 2 → ZMod N, v ≠ 0 ∧ g = fricke v}) →
@@ -1062,7 +1055,6 @@ theorem solution
     fun o => o.elim jf fun v => fricke v.1 with hgen
   set Pt : ℍ → ℂ := MvPolynomial.aeval gen (P₀.map (algebraMap ↥K ℂ)) with hPt
   set Qt : ℍ → ℂ := MvPolynomial.aeval gen (Q₀.map (algebraMap ↥K ℂ)) with hQt
-
   have hkjf : KPole K N jf := kPole_jf K hjf
   have hkfr : ∀ v : {v : Fin 2 → ZMod N // v ≠ 0}, KPole K N (fricke v.1) := fun v =>
     kPole_fricke ((hR4b12.2 v.1 v.2).1) (hQrat v.1 v.2).1 (hQrat v.1 v.2).2.1
@@ -1070,7 +1062,6 @@ theorem solution
   have hkA : ∀ r : MvPolynomial (Option {v : Fin 2 → ZMod N // v ≠ 0}) ↥K,
       KPole K N (MvPolynomial.aeval gen (r.map (algebraMap ↥K ℂ))) := fun r =>
     kPole_aeval hkjf hkfr r
-
   have hrange : Set.range gen =
       insert jf {g : ℍ → ℂ | ∃ v : Fin 2 → ZMod N, v ≠ 0 ∧ g = fricke v} := by
     ext g
@@ -1088,18 +1079,15 @@ theorem solution
     intro r
     rw [← hrange, Algebra.adjoin_range_eq_range_aeval]
     exact ⟨r, rfl⟩
-
   have hpb := R8cGlue.isBoundedAtImInfty_smul_quotient_of_aeval N L hL W hW fricke hfricke
     jf hjf K hK hR4c hR4b12 hG P₀ Q₀ hQ0 hGQ
   obtain ⟨d, p, hrel⟩ := hR6h3 (hmemA (P₀.map (algebraMap ↥K ℂ)))
     (hmemA (Q₀.map (algebraMap ↥K ℂ))) hQ0 hG hGQ hpb
-
   rcases Nat.eq_zero_or_pos d with hd0 | hdpos
   · exfalso
     have h0 := hrel ⟨Complex.I, by simp⟩
     subst hd0
     simp at h0
-
   have hGQτ : ∀ τ : ℍ, G τ * Qt τ = Pt τ := fun τ => by
     have := congrFun hGQ τ
     simpa using this
@@ -1133,7 +1121,6 @@ theorem solution
           exact congrArg₂ (· + ·) rfl
             (Finset.sum_congr rfl fun i _ => (hterm i).symm)
       _ = 0 := h1
-
   set u : Option (Fin d × Fin D) → ℍ → ℂ := fun o => o.elim
     (MvPolynomial.aeval gen ((P₀ ^ d).map (algebraMap ↥K ℂ)))
     (fun ik => MvPolynomial.aeval gen
@@ -1152,7 +1139,6 @@ theorem solution
     cases o with
     | none => exact hkA _
     | some ik => exact hkA _
-
   set lam : Fin d × Fin D → ℂ := fun ik => (p ik.1).coeff ik.2 with hlam
   have hfunrel : u none + ∑ ik : Fin d × Fin D, lam ik • u (some ik) = 0 := by
     funext τ
@@ -1169,7 +1155,6 @@ theorem solution
       rw [hu_mon (i, k) τ, hlam]
     rw [hsum]
     exact hcleared τ
-
   obtain ⟨b, hbsub, hbspan, hbind⟩ := exists_linearIndependent ↥K (Set.range u)
   have hbfin : b.Finite := (Set.finite_range u).subset hbsub
   have : Fintype ↥b := hbfin.fintype
@@ -1191,7 +1176,6 @@ theorem solution
     exact ⟨hmd, m, hper, hbd, hmem⟩
   have hCind : LinearIndependent ℂ (fun w : ↥b => (w : ℍ → ℂ)) :=
     hR7a (fun w : ↥b => (w : ℍ → ℂ)) hdata hbind
-
   have hcoords : ∀ o, ∃ c : ↥b → ↥K, ∑ w : ↥b, c w • (w : ℍ → ℂ) = u o := by
     intro o
     have h1 : u o ∈ Submodule.span ↥K (Set.range ((↑) : b → ℍ → ℂ)) := by
@@ -1199,7 +1183,6 @@ theorem solution
       exact Submodule.subset_span (Set.mem_range_self o)
     exact (Submodule.mem_span_range_iff_exists_fun ↥K).mp h1
   choose co hco using hcoords
-
   have hKsmul : ∀ (c : ↥K) (g : ℍ → ℂ), c • g = (c : ℂ) • g := fun c g =>
     (algebraMap_smul ℂ c g).symm
   have hpiece : ∀ o, ∑ w : ↥b, (co o w : ℂ) • (w : ℍ → ℂ) = u o := by
@@ -1225,7 +1208,6 @@ theorem solution
       exact hfunrel
     intro w
     exact (Fintype.linearIndependent_iff.mp hCind) _ hcomb w
-
   set em : (Fin d × Fin D) ≃ Fin (Fintype.card (Fin d × Fin D)) :=
     Fintype.equivFin (Fin d × Fin D) with hem
   set eb : ↥b ≃ Fin (Fintype.card ↥b) := Fintype.equivFin ↥b with heb
@@ -1257,7 +1239,6 @@ theorem solution
       simp only [Equiv.apply_symm_apply]
     rw [hre, h0]
     ring
-
   set p' : Fin d → Polynomial ℂ := fun i =>
     ∑ k : Fin D, Polynomial.C ((y (i, k) : ↥K) : ℂ) * Polynomial.X ^ (k : ℕ) with hp'
   have hp'coeff : ∀ (i : Fin d) (n : ℕ), (p' i).coeff n ∈ K := by
@@ -1276,7 +1257,6 @@ theorem solution
     rw [hp', Polynomial.eval_finsetSum]
     refine Finset.sum_congr rfl fun k _ => ?_
     rw [Polynomial.eval_mul, Polynomial.eval_C, Polynomial.eval_pow, Polynomial.eval_X]
-
   have hKfun : u none + ∑ ik : Fin d × Fin D, ((y ik : ↥K) : ℂ) • u (some ik) = 0 := by
     calc u none + ∑ ik : Fin d × Fin D, ((y ik : ↥K) : ℂ) • u (some ik)
         = ∑ w : ↥b, ((co none w : ℂ) +
@@ -1331,7 +1311,6 @@ theorem solution
     have h0 := hfinal0 τ
     rw [Fintype.sum_prod_type] at h0
     exact h0
-
   have hQtmd : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) Qt := (hkA Q₀).1
   have hjfmd : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) jf := hR4b12.1.1
   have hhmd : MDifferentiable 𝓘(ℂ) 𝓘(ℂ)

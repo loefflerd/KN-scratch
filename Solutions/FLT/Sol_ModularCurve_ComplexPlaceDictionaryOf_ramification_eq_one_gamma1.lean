@@ -393,7 +393,6 @@ theorem solution
     have := mt HahnSeries.coeff_order_eq_zero.mp hne
     rw [hord] at this
     exact this h1
-
   have hkey : ((D.ramification τ : ℤ) * (D.pt τ).ord x : ℤ) =
       ((Nat.card (MulAction.stabilizer SL(2, ℤ) τ) / 2 : ℕ) : ℤ) := by
     have h := D.meromorphicOrderAt_realizeOf τ x hx0
@@ -405,10 +404,8 @@ theorem solution
     rw [hfun, ModularCurve.meromorphicOrderAt_E4_cube_div_discriminant_sub_eq_card_stabilizer_div_two τ] at h
     exact_mod_cast h.symm
   have he : 0 < D.ramification τ := D.ramification_pos τ
-
   rcases orbit_trichotomy τ with ⟨γ, rfl⟩ | ⟨γ, rfl⟩ | hgen
-  ·
-    rw [natCard_stabilizer_smul, natCard_stabilizer_I] at hkey
+  · rw [natCard_stabilizer_smul, natCard_stabilizer_I] at hkey
     have hcval : c = 1728 := by
       rw [hc]
       have := jf_eq_of_E₆_eq_zero ((E₆_smul_eq_zero_iff γ _).mpr E₆_I)
@@ -424,8 +421,7 @@ theorem solution
     rw [h2] at hkey
     norm_num at hkey
     exact_mod_cast hkey
-  ·
-    rw [natCard_stabilizer_smul, natCard_stabilizer_ρ] at hkey
+  · rw [natCard_stabilizer_smul, natCard_stabilizer_ρ] at hkey
     have hcval : c = 0 := by
       have h4 := (E₄_smul_eq_zero_iff γ _).mpr E₄_ρ
       rw [hc, h4, zero_pow three_ne_zero, zero_div]
@@ -439,13 +435,10 @@ theorem solution
     rw [h3] at hkey
     norm_num at hkey
     exact_mod_cast hkey
-  ·
-    rw [natCard_stabilizer_eq_two hgen] at hkey
+  · rw [natCard_stabilizer_eq_two hgen] at hkey
     norm_num at hkey
-
     have h1 : (D.ramification τ : ℤ) = 1 := Int.eq_one_of_mul_eq_one_right (by positivity) hkey
     exact_mod_cast h1
-
 
 end S_ModularCurve_ComplexPlaceDictionaryOf_ramification_eq_one_gamma1
 end P2MW

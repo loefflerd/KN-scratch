@@ -20,7 +20,6 @@ theorem _root_.solution
   have hLfg : L.FG := P.lattice_fg
   obtain ⟨n, g, hg⟩ :=
     Submodule.fg_iff_exists_fin_generating_family.mp hLfg
-
   -- Algebraic numbers are algebraic over `ℤ` as well as over `ℚ`, so a
   -- finite family admits one common integral denominator.
   have : Algebra.IsAlgebraic ℚ MTT.Qbar :=
@@ -30,7 +29,6 @@ theorem _root_.solution
       (C := MTT.Qbar)).2 inferInstance
   obtain ⟨d, hd, hdint⟩ :=
     Algebra.IsAlgebraic.exists_integral_multiples ℤ (Finset.univ.image g)
-
   have hgen (i : Fin n) : IsIntegral ℤ (d • g i) :=
     hdint (g i) (Finset.mem_image.mpr ⟨i, Finset.mem_univ i, rfl⟩)
   have hall {x : MTT.Qbar} (hx : x ∈ L) : IsIntegral ℤ (d • x) := by
@@ -53,7 +51,6 @@ theorem _root_.solution
     Submodule.subset_span ⟨s, j, r, hj, rfl⟩
   have hint : IsIntegral ℤ ((d : MTT.Qbar) * P.value s j r) := by
     simpa [smul_eq_mul] using hall hmem
-
   -- An algebraic integer remains integral after embedding in `ℂ_[p]`, and
   -- the integral closure lies in the valuation ring `𝓞_ℂ_[p]`.
   have hint' :

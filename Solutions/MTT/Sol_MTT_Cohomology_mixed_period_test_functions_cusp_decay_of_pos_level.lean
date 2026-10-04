@@ -23,7 +23,6 @@ section Part0
 
 /-! # Finite coordinates for binary homogeneous polynomials -/
 
-
 namespace MTT.Cohomology
 
 def homogeneousExponentEquiv (n : ℕ) :

@@ -19,7 +19,6 @@ theorem solution (L : Type*) [Field L] [Algebra ℚ L]
     (N : ℕ) [NeZero N] : HasPrincipalDivisors L (laurentBaseChange L (modularFunctionFieldFull N)) :=
   hasPrincipalDivisors_laurentBaseChange_modularFunctionFieldFull L modularPolynomialFamily N
 
-
 end S_ModularCurve_hasPrincipalDivisors_laurentBaseChange_modularFunctionFieldFull_unconditional
 end P2MW
 export P2MW.S_ModularCurve_hasPrincipalDivisors_laurentBaseChange_modularFunctionFieldFull_unconditional (solution)

@@ -22,7 +22,6 @@ theorem solution {K : Type*} [CommRing K] {n : ℕ}
   rw [Finset.sum_eq_single (Finsupp.single 1 n)]
   · simp [Finsupp.single_apply]
   · intro d hd hne
-
     have hdn : d.degree = n := by
       by_contra hc
       exact (mem_support_iff.mp hd) (hhom.coeff_eq_zero hc)

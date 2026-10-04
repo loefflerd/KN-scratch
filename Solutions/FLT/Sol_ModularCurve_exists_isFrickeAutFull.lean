@@ -44,7 +44,6 @@ theorem solution (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] : ∃ σ : modularFun
     rcases Nat.prime_mul_iff.mp hprime with ⟨_, rfl⟩ | ⟨_, rfl⟩
     · right; exact ⟨hab.symm.trans (mul_one a), rfl⟩
     · left; exact ⟨rfl, hab.symm.trans (one_mul b)⟩
-
   rcases hcases with ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩
   · have H : ∀ (y : LaurentSeries ℚ) (hy : y ∈ modularFunctionField ℓ), y = jq →
         ((σ ⟨y, hy⟩ : modularFunctionField ℓ) : LaurentSeries ℚ) = qExpand ℚ ℓ jq := by

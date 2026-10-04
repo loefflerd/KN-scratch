@@ -142,7 +142,6 @@ theorem solution
   have hb0H : (ModularCurve.qExpFunctionFieldC K (CongruenceSubgroup.Gamma0 M)) ≤ (ModularCurve.qExpFunctionFieldC K (CohCarrier.GammaH M H)) := ModularCurve.qExpFunctionFieldC_mono K hΓ
   obtain ⟨ρ, hρH, hρneg, hρfix, hρslash⟩ :=
     ModularCurve.exists_monoidHom_gamma0_algEquiv_qExpFunctionFieldC_gammaH_of_charZero K M H
-
   have hker : ρ.ker = (H ⊔ Subgroup.zpowers (-1 : (ZMod M)ˣ)).comap (CohCarrier.gamma0Units M) := by
     ext γ
     rw [MonoidHom.mem_ker, Subgroup.mem_comap]
@@ -175,7 +174,6 @@ theorem solution
         have e1 : γ = ⟨-1, hm1⟩ * ⟨-(γ : SL(2, ℤ)), hneg0⟩ := by
           ext1; simp
         rw [e1, map_mul, hρneg ⟨-1, hm1⟩ rfl, hρH ⟨-(γ : SL(2, ℤ)), hneg0⟩ hnegH, mul_one]
-
   have hidx : ρ.ker.index = (H ⊔ Subgroup.zpowers (-1 : (ZMod M)ˣ)).index := by
     rw [hker]; exact Subgroup.index_comap_of_surjective _ (CohCarrier.gamma0Units_surjective' M)
   have : (H ⊔ Subgroup.zpowers (-1 : (ZMod M)ˣ)).FiniteIndex := inferInstance
@@ -186,10 +184,8 @@ theorem solution
   have hcard : Fintype.card ρ.range = (H ⊔ Subgroup.zpowers (-1 : (ZMod M)ˣ)).index := by
     rw [Fintype.card_eq_nat_card, ← Nat.card_congr (QuotientGroup.quotientKerEquivRange ρ).toEquiv,
       ← Subgroup.index_eq_card, hidx]
-
   have hartin : Module.finrank (IntermediateField.fixedField ρ.range) (ModularCurve.qExpFunctionFieldC K (CohCarrier.GammaH M H)) =
       Fintype.card ρ.range := FixedPoints.finrank_eq_card _ _
-
   have hL : IntermediateField.lift (IntermediateField.fixedField ρ.range) ≤ (ModularCurve.qExpFunctionFieldC K (CohCarrier.GammaH M H)) :=
     IntermediateField.lift_le _
   have h0L : (ModularCurve.qExpFunctionFieldC K (CongruenceSubgroup.Gamma0 M)) ≤ IntermediateField.lift (IntermediateField.fixedField ρ.range) := by
@@ -203,12 +199,10 @@ theorem solution
   have eP : (IntermediateField.lift (IntermediateField.fixedField ρ.range)).relfinrank (ModularCurve.qExpFunctionFieldC K (CohCarrier.GammaH M H)) =
       (H ⊔ Subgroup.zpowers (-1 : (ZMod M)ˣ)).index := by
     exact (relfinrank_lift_eq_finrank _ _).trans (hartin.trans hcard)
-
   have : (CongruenceSubgroup.Gamma1 M).FiniteIndex :=
     (CongruenceSubgroup.Gamma1_is_congruence M).finiteIndex
   have : (CohCarrier.GammaH M H).FiniteIndex :=
     Subgroup.finiteIndex_of_le (CohCarrier.Gamma1_le_GammaH' M H)
-
   have hjH : ModularCurve.jqModC K ∈ ModularCurve.qExpFunctionFieldC K (CohCarrier.GammaH M H) :=
     ModularCurve.intFormRatiosC_subset K _ (ModularCurve.jqModC_mem_intFormRatiosC K _)
   obtain ⟨x0, hx0⟩ : ∃ x0 : ModularCurve.qExpFunctionFieldC K (CohCarrier.GammaH M H),
@@ -216,9 +210,7 @@ theorem solution
   have hfin : FiniteDimensional
       (IntermediateField.adjoin K ({x0} : Set (ModularCurve.qExpFunctionFieldC K (CohCarrier.GammaH M H))))
       (ModularCurve.qExpFunctionFieldC K (CohCarrier.GammaH M H)) := by
-
     obtain ⟨w, fj, gj, a, b, ha, hb, hb0, hj⟩ := ModularCurve.jqModC_mem_intFormRatiosC K (CohCarrier.GammaH M H)
-
     have hjQ : ModularCurve.jqModC ℚ ∈ ModularCurve.qExpFunctionFieldC ℚ (CohCarrier.GammaH M H) :=
       ModularCurve.intFormRatiosC_subset ℚ _ (ModularCurve.jqModC_mem_intFormRatiosC ℚ _)
     have hXmem : ModularCurve.jqModC K ∈

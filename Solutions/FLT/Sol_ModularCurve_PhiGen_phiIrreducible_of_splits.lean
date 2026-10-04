@@ -894,7 +894,6 @@ open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_phiIrreducible_of_spl
 theorem solution {K : Type*} [Field K] [Algebra ℚ K] (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) ℓ) (data : ModularPolynomialData ℓ) (hsplit : data.Φ.map (((coeffEmb K).comp (qExpand ℚ ℓ)).comp evalAtJ) = phiProd ℓ (conj ℓ ζ)) : PhiIrreducible data :=
   ModularCurve.PhiGen.phiIrreducible_of_splits ℓ ζ ModularCurve.one_le_coeff_jq hζ data hsplit
 
-
 end S_ModularCurve_PhiGen_phiIrreducible_of_splits
 end P2MW
 export P2MW.S_ModularCurve_PhiGen_phiIrreducible_of_splits (solution)

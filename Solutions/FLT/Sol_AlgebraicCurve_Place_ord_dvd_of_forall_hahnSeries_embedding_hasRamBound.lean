@@ -39,7 +39,6 @@ theorem algebraMap_hahn_eq_C {K L : Type*} [Field K] [Field L] [Algebra K L] (c 
   | rw [HahnSeries.algebraMap_apply', IsScalarTower.algebraMap_apply K L (PowerSeries L),
       PowerSeries.algebraMap_eq, HahnSeries.ofPowerSeries_C]
 
-
 theorem eval₂_C_single_one {L : Type*} [Field L] (q : L[X]) :
     q.eval₂ (HahnSeries.C : L →+* HahnSeries ℚ L) (HahnSeries.single (1 : ℚ) (1 : L))
       = HahnSeries.ofPowerSeries ℚ L (q : PowerSeries L) := by
@@ -116,7 +115,6 @@ theorem solution
   set t : HahnSeries ℚ L := HahnSeries.C a + HahnSeries.single (1 : ℚ) (1 : L) with ht
   set X₀ : RatFunc K := algebraMap (Polynomial K) (RatFunc K) Polynomial.X with hX₀
   set f₀ : RatFunc K := algebraMap (Polynomial K) (RatFunc K) p with hf₀
-
   let E := AlgebraicClosure F
   have : Algebra.IsAlgebraic (RatFunc K) E := Algebra.IsAlgebraic.trans (RatFunc K) F E
   have : IsAlgClosure (RatFunc K) E := IsAlgClosure.ofAlgebraic (RatFunc K) F E
@@ -124,7 +122,6 @@ theorem solution
   have : FiniteDimensional F M := Module.Finite.of_restrictScalars_finite (RatFunc K) F M
   have : IsScalarTower K F M := IsScalarTower.of_algebraMap_eq (fun c => rfl)
   have : Algebra.IsSeparable F M := Algebra.isSeparable_tower_top_of_isSeparable (RatFunc K) F M
-
   let φ : Polynomial K →ₐ[K] HahnSeries ℚ L := Polynomial.aeval t
   have hφ : nonZeroDivisors (Polynomial K)
       ≤ Submonoid.comap φ (nonZeroDivisors (HahnSeries ℚ L)) := by
@@ -142,7 +139,6 @@ theorem solution
   let : Algebra (RatFunc K) (HahnSeries ℚ L) := τ.toRingHom.toAlgebra
   have hτalg : ∀ r : RatFunc K, algebraMap (RatFunc K) (HahnSeries ℚ L) r = τ r := fun r => rfl
   have : IsAlgClosed (HahnSeries ℚ L) := HahnSeries.isAlgClosed_rat
-
   let ψM : M →ₐ[RatFunc K] HahnSeries ℚ L := IsAlgClosed.lift
   let ψ : M →ₐ[K] HahnSeries ℚ L :=
     { toRingHom := ψM.toRingHom
@@ -154,11 +150,9 @@ theorem solution
       = HahnSeries.C a + HahnSeries.single (1 : ℚ) (1 : L) := by
     rw [hψapply, ψM.commutes, hτalg]
     exact hτX
-
   have hLaurent : ∀ y : HahnSeries ℚ L,
       y ∈ HahnSeries.puiseuxRamSubfield L hd ↔ HahnSeries.HasRamBound d y :=
     fun y => HahnSeries.mem_puiseuxRamSubfield_iff hd
-
   have hmono : ∀ y : HahnSeries ℚ L, HahnSeries.HasRamBound 1 y → HahnSeries.HasRamBound d y := by
     intro y hy g hg
     obtain ⟨m, hm⟩ := hy hg
@@ -198,7 +192,6 @@ theorem solution
     let g' : F →ₐ[RatFunc K] M := g.codRestrict M.toSubalgebra hgy
     show ((g' y : M) : E) ∈ IntermediateField.lift S
     rw [IntermediateField.mem_lift, hmemS, hLaurent]
-
     let ψF : F →ₐ[K] HahnSeries ℚ L :=
       { toRingHom := (ψM.comp g').toRingHom
         commutes' := fun c => by
@@ -216,10 +209,8 @@ theorem solution
     have hm : m ∈ S := by rw [hS]; exact IntermediateField.mem_top
     rw [hψapply]
     exact (hLaurent _).mp ((hmemS m).mp hm)
-
   have hcore := AlgebraicCurve.Place.ord_dvd_of_hahnSeries_embedding_of_isGalois
     (K := K) (L := L) (M := M) p hp a ha ha' ψ hψX hd hψLaurent
-
   obtain ⟨W, hWw⟩ := AlgebraicCurve.Place.exists_restrict_eq (K := K) (F' := F) (M := M) w
   have hrel := W.ord_restrict (F := F) (algebraMap (RatFunc K) F f₀)
   rw [hWw, ← IsScalarTower.algebraMap_apply (RatFunc K) F M] at hrel

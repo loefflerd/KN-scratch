@@ -58,23 +58,19 @@ theorem solution
       (CongruenceSubgroup.Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index + 12 := by
   classical
   set Kb := AlgebraicClosure ℚ with hKb
-
   obtain ⟨y, hy⟩ := GenusX1.exists_coe_eq_jqModC_laurentBaseChange_qExpFunctionFieldC
     (AlgebraicClosure ℚ) (CongruenceSubgroup.Gamma1 M)
   have hfull := ModularCurve.finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_gamma1_eq_index
     (AlgebraicClosure ℚ) M y hy
-
   have hfib := ModularCurve.two_mul_genusFF_add_card_fibres_eq_finrank_add_two_of_gamma1_le M
     (CongruenceSubgroup.Gamma1 M) le_rfl y hy
   rw [hfull] at hfib
-
   have hcusp := ModularCurve.natCard_place_ord_neg_laurentBaseChange_gamma1_eq_natCard_doubleCoset
     (AlgebraicClosure ℚ) M y hy
   obtain ⟨h0, h1728⟩ := ModularCurve.ord_eq_three_of_ord_pos_and_ord_sub_eq_two_laurentBaseChange_gamma1
     (AlgebraicClosure ℚ) M (le_trans (by norm_num) hM) y hy
   obtain ⟨hμ3, hμ2⟩ :=
     CongruenceSubgroup.index_gamma1_sup_zpowers_neg_one_eq_three_mul_natCard_doubleCoset_and_eq_two_mul M hM
-
   obtain ⟨htr, hfd⟩ :=
     ModularCurve.transcendental_and_finiteDimensional_adjoin_laurentBaseChange_qExpFunctionFieldC_of_coe_eq_jqModC
       (AlgebraicClosure ℚ) (CongruenceSubgroup.Gamma1 M) (by rw [CongruenceSubgroup.Gamma1_mem]; simp [ModularGroup.T]) y hy
@@ -87,7 +83,6 @@ theorem solution
   have hmap : (algebraMap (AlgebraicClosure ℚ) ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) 1728) = 1728 := by
     exact map_ofNat _ 1728
   rw [hmap] at hS₁ hsum₁
-
   have hsum₀' : ∑ P ∈ S₀, P.ord y = 3 * (S₀.card : ℤ) := by
     rw [Finset.sum_congr rfl (fun P hP => h0 P ((hS₀ P).mp hP)), Finset.sum_const, nsmul_eq_mul, mul_comm]
   have hsum₁' : ∑ P ∈ S₁, P.ord (y - 1728) = 2 * (S₁.card : ℤ) := by
@@ -98,7 +93,6 @@ theorem solution
   have hcard₁ : Nat.card {P : AlgebraicCurve.Place (AlgebraicClosure ℚ) ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))) // 0 < P.ord (y - 1728)} = S₁.card := by
     rw [← Nat.card_eq_finsetCard]
     exact Nat.card_congr (Equiv.subtypeEquivRight (fun P => (hS₁ P).symm))
-
   rw [hcusp, hcard₀, hcard₁] at hfib
   have e0 : 3 * (S₀.card : ℤ) = ((CongruenceSubgroup.Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index : ℤ) := by
     rw [← hsum₀', hsum₀, hfull]

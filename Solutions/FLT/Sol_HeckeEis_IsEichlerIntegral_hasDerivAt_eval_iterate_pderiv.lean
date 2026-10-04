@@ -36,8 +36,7 @@ theorem coeff_pderiv_one (P : MvPolynomial (Fin 2) K) (d : Fin 2 →₀ ℕ) :
       ring
     · rw [ite_eq_right hs, mul_zero]
       split_ifs with h
-      ·
-        have hs1 : s 1 = 0 := by
+      · have hs1 : s 1 = 0 := by
           by_contra hne
           apply hs
           rw [← h]
@@ -209,10 +208,8 @@ theorem hasDerivAt_eval_iterate_pderiv {n : ℕ} {g : ℍ → ℂ} {G : ℍ → 
       ((if j = n then ((n.factorial : ℕ) : ℂ) * g τ else 0)
         - MvPolynomial.eval ![(1 : ℂ), -(τ : ℂ)]
           ((MvPolynomial.pderiv 1)^[j + 1] ((G τ : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ))) (τ : ℂ) := by
-
   have hhom : ∀ σ : ℍ, ((G σ : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ).IsHomogeneous n := fun σ =>
     (mem_homogeneousSubmodule n _).mp (G σ).2
-
   set c : ℕ → ℂ → ℂ := fun m z => AddMonoidAlgebra.coeff ((G (ofComplex z) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) (ex n m)
     with hcdef
   have hc : ∀ m, m ≤ n → HasDerivAt (c m) (g τ * ((n.choose m : ℂ) * (τ : ℂ) ^ (n - m))) (τ : ℂ) := by
@@ -220,14 +217,12 @@ theorem hasDerivAt_eval_iterate_pderiv {n : ℕ} {g : ℍ → ℂ} {G : ℍ → 
     have h := hG (ex n m) τ
     rw [coe_linePow, coeff_ex_linePow n m hm] at h
     exact h
-
   have hfun : (fun z : ℂ => MvPolynomial.eval ![(1 : ℂ), -z]
         ((MvPolynomial.pderiv 1)^[j] ((G (ofComplex z) : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ)))
       = fun z : ℂ => ∑ k ∈ Finset.range (n + 1 - j), ((k + j).descFactorial j : ℂ) * c (k + j) z * (-z) ^ k := by
     funext z
     rw [eval_iterate_pderiv_eq_sum (hhom (ofComplex z)) j (-z)]
   rw [hfun]
-
   have hsum : HasDerivAt (fun z : ℂ => ∑ k ∈ Finset.range (n + 1 - j), ((k + j).descFactorial j : ℂ) * c (k + j) z * (-z) ^ k)
       (∑ k ∈ Finset.range (n + 1 - j), ((k + j).descFactorial j : ℂ)
         * (g τ * ((n.choose (k + j) : ℂ) * (τ : ℂ) ^ (n - (k + j))) * (-(τ : ℂ)) ^ k
@@ -245,9 +240,7 @@ theorem hasDerivAt_eval_iterate_pderiv {n : ℕ} {g : ℍ → ℂ} {G : ℍ → 
     have hcofc : c (k + j) (τ : ℂ) = c (k + j) τ := rfl
     simpa [mul_assoc, ofComplex_apply] using h3
   refine hsum.congr_deriv ?_
-
   rw [Finset.sum_congr rfl fun k _ => mul_add _ _ _, Finset.sum_add_distrib]
-
   have hA : ∑ k ∈ Finset.range (n + 1 - j), ((k + j).descFactorial j : ℂ)
         * (g τ * ((n.choose (k + j) : ℂ) * (τ : ℂ) ^ (n - (k + j))) * (-(τ : ℂ)) ^ k)
       = (if j = n then ((n.factorial : ℕ) : ℂ) * g τ else 0) := by
@@ -264,7 +257,6 @@ theorem hasDerivAt_eval_iterate_pderiv {n : ℕ} {g : ℍ → ℂ} {G : ℍ → 
           · subst h
             rw [Nat.sub_self, pow_zero, mul_one, mul_comm]
           · rw [mul_zero]
-
   have hB : ∑ k ∈ Finset.range (n + 1 - j), ((k + j).descFactorial j : ℂ)
         * (c (k + j) τ * ((k : ℂ) * (-(τ : ℂ)) ^ (k - 1) * (-1)))
       = - MvPolynomial.eval ![(1 : ℂ), -(τ : ℂ)]
@@ -304,7 +296,6 @@ theorem solution {n : ℕ} {g : UpperHalfPlane → ℂ}
           ((MvPolynomial.pderiv 1)^[j + 1] ((G τ : ↥(HeckeEis.BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ)))
       (τ : ℂ) :=
   HeckeEis.BolAux.hasDerivAt_eval_iterate_pderiv hG hj τ
-
 
 end S_HeckeEis_IsEichlerIntegral_hasDerivAt_eval_iterate_pderiv
 end P2MW

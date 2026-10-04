@@ -50,7 +50,6 @@ theorem solution (K : Type*) [Field K] (h2 : (2 : K) ≠ 0) (N n : ℕ) (hn : Od
   have hz : ∀ g h : CongruenceSubgroup.Gamma0 N, (z : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) (g * h)
       = (z : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) g + ((HeckeEis.binaryFormRepSL K n).comp (CongruenceSubgroup.Gamma0 N).subtype) g ((z : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) h) :=
     (HeckeEis.mem_coeffCocycles_iff _ _).mp z.2.1
-
   have key : ∀ g : CongruenceSubgroup.Gamma0 N,
       (2 : K) • (z : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) g = (z : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) (HeckeEis.OddSol.m N)
         - ((HeckeEis.binaryFormRepSL K n).comp (CongruenceSubgroup.Gamma0 N).subtype) g ((z : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) (HeckeEis.OddSol.m N)) := by
@@ -59,7 +58,6 @@ theorem solution (K : Type*) [Field K] (h2 : (2 : K) ≠ 0) (N n : ℕ) (hn : Od
     have h3 : (z : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) (g * HeckeEis.OddSol.m N) = (z : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) (HeckeEis.OddSol.m N) - (z : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) g := by
       rw [← HeckeEis.OddSol.m_mul, hz, HeckeEis.OddSol.rho_m N n hn]; abel
     have e := h1.symm.trans h3
-
     rw [two_smul]
     calc (z : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) g + (z : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) g
         = ((z : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) g + ((HeckeEis.binaryFormRepSL K n).comp (CongruenceSubgroup.Gamma0 N).subtype) g ((z : CongruenceSubgroup.Gamma0 N → ↥(HeckeEis.BinaryForm K n)) (HeckeEis.OddSol.m N)))
@@ -72,7 +70,6 @@ theorem solution (K : Type*) [Field K] (h2 : (2 : K) ≠ 0) (N n : ℕ) (hn : Od
   dsimp only
   rw [map_neg, LinearMap.map_smul, key g, smul_sub, smul_neg, smul_neg, smul_smul, smul_smul, mul_inv_cancel₀ h2, one_smul, one_smul]
   abel
-
 
 end S_HeckeEis_coeffH1par_binaryFormRepSL_eq_zero_of_odd
 end P2MW

@@ -51,26 +51,21 @@ theorem solution (N : ℕ) [NeZero N] (n : ℕ) (hn : 2 ≤ n) (hne : Even n) :
   have : Module.Finite ℂ ↥(HeckeEis.BinaryForm ℂ n) := UHAsm.finite_binaryForm n
   have : (CongruenceSubgroup.Gamma0 N).FiniteIndex := inferInstance
   let : Fintype (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N) := (CongruenceSubgroup.Gamma0 N).fintypeQuotientOfFiniteIndex
-
   obtain ⟨W, hW, hneg, hinv, hcoinv⟩ := HeckeEis.exists_induced_binaryFormRepSL_top N n hne (by omega)
   have hB := HeckeEis.finrank_coeffH1par_gamma0_le_finrank_coeffH1par_top_induced N n W hW
   have hA := HeckeEis.finrank_coeffH1par_top_add_le W hneg hinv hcoinv
-
   obtain ⟨h1, h2⟩ := HeckeEis.le_finrank_fixed_S_and_ST_binaryFormRepSL n hne
   obtain ⟨hW0, hS, hU, hT⟩ := HeckeEis.le_finrank_fixed_induced_binaryFormRepSL N n hne W hW
-
   have hν₂ := ModularCurve.natCard_fixedPoints_S_cosets_Gamma0_eq_nuTwo N
   have hν₃ := ModularCurve.natCard_fixedPoints_ST_cosets_Gamma0_eq_nuThree N
   have hc := ModularCurve.natCard_orbitRelQuotient_zpowers_T_gamma0_eq_cuspCount N
   have hμ := ModularCurve.Gamma0_index N
-
   have hle₂ : Nat.card {x : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N // ModularGroup.S • x = x} ≤ (CongruenceSubgroup.Gamma0 N).index := by
     rw [Subgroup.index]; exact Finite.card_subtype_le _
   have hle₃ : Nat.card {x : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N // (ModularGroup.S * ModularGroup.T) • x = x} ≤ (CongruenceSubgroup.Gamma0 N).index := by
     rw [Subgroup.index]; exact Finite.card_subtype_le _
   have hq4 : 2 * ((n + 2) / 4) ≤ n + 1 := by omega
   have hq3 : 2 * ((n + 2) / 3) ≤ n + 1 := by omega
-
   set Hn := Module.finrank ℂ (HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype)) with hHn
   set Pw := Module.finrank ℂ (HeckeEis.coeffH1par W)
   set A := Module.finrank ℂ ↥(LinearMap.ker (W ⟨ModularGroup.S, Subgroup.mem_top _⟩ - 1))
@@ -82,18 +77,15 @@ theorem solution (N : ℕ) [NeZero N] (n : ℕ) (hn : 2 ≤ n) (hne : Even n) :
   set ν₃ := Nat.card {x : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N // (ModularGroup.S * ModularGroup.T) • x = x}
   set cc := Nat.card (MulAction.orbitRel.Quotient (Subgroup.zpowers ModularGroup.T) (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma0 N))
   set μ := (CongruenceSubgroup.Gamma0 N).index
-
   have hmain : 6 * Hn + 3 * (2 * (ν₂ * aS) + (μ - ν₂) * (n + 1)) + 2 * (3 * (ν₃ * aU) + (μ - ν₃) * (n + 1)) + 6 * cc
       ≤ 6 * ((n + 1) * μ) := by
     rw [hW0] at hA
     linarith [hB, hA, hS, hU, hT]
-
   have hmain' : 6 * Hn + 3 * (2 * (ν₂ * (n + 1 - 2 * ((n + 2) / 4))) + (μ - ν₂) * (n + 1))
       + 2 * (3 * (ν₃ * (n + 1 - 2 * ((n + 2) / 3))) + (μ - ν₃) * (n + 1)) + 6 * cc ≤ 6 * ((n + 1) * μ) := by
     have e1 : ν₂ * (n + 1 - 2 * ((n + 2) / 4)) ≤ ν₂ * aS := Nat.mul_le_mul_left _ h1
     have e2 : ν₃ * (n + 1 - 2 * ((n + 2) / 3)) ≤ ν₃ * aU := Nat.mul_le_mul_left _ h2
     omega
-
   have hQ : (6 : ℚ) * Hn + 3 * (2 * ((ν₂ : ℚ) * ((n : ℚ) + 1 - 2 * (((n + 2) / 4 : ℕ) : ℚ))) + ((μ : ℚ) - ν₂) * ((n : ℚ) + 1))
       + 2 * (3 * ((ν₃ : ℚ) * ((n : ℚ) + 1 - 2 * (((n + 2) / 3 : ℕ) : ℚ))) + ((μ : ℚ) - ν₃) * ((n : ℚ) + 1)) + 6 * (cc : ℚ)
       ≤ 6 * (((n : ℚ) + 1) * μ) := by
@@ -107,7 +99,6 @@ theorem solution (N : ℕ) [NeZero N] (n : ℕ) (hn : 2 ≤ n) (hne : Even n) :
     have := (Nat.cast_le (α := ℚ)).mpr hmain'
     push_cast [c1, c2, c3, c4] at this
     linarith
-
   rw [hν₂] at hQ; rw [hν₃] at hQ; rw [hc] at hQ; rw [hμ] at hQ
   have hg : ModularCurve.genusFormula N = 1 + (ModularCurve.dedekindPsi N : ℚ) / 12 - (ModularCurve.nuTwo N : ℚ) / 4
       - (ModularCurve.nuThree N : ℚ) / 3 - (ModularCurve.cuspCount N : ℚ) / 2 := rfl
@@ -121,7 +112,6 @@ theorem solution (N : ℕ) [NeZero N] (n : ℕ) (hn : 2 ≤ n) (hne : Even n) :
           + 6 * (ModularCurve.cuspCount N : ℚ)) := by
     rw [hg]; ring
   linarith [hQ, key]
-
 
 end S_HeckeEis_finrank_coeffH1par_le_two_mul_dimFormula
 end P2MW

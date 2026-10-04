@@ -82,13 +82,11 @@ theorem SolMain.A4 (n N : ℕ) [NeZero N] (m : ℤ) (hm : m ≠ 0)
   obtain ⟨z, rfl⟩ := coeffH1parMk_surjective _ x
   rw [← map_zsmul, coeffH1parMk_eq_zero_iff, mem_coeffCoboundaries_iff] at hx
   obtain ⟨v, hv⟩ := hx
-
   have hv' : ∀ g : Gamma0 N, binaryFormRepSL ℤ n (g : SL(2, ℤ)) v - v = m • (z : Gamma0 N → ↥(BinaryForm ℤ n)) g :=
     fun g => by simpa using congrFun hv g
   rw [coeffH1parMk_eq_zero_iff, mem_coeffCoboundaries_iff]
   rcases Nat.eq_zero_or_pos n with hn0 | hnpos
-  ·
-    subst hn0
+  · subst hn0
     refine ⟨0, funext fun g => ?_⟩
     have h1 : m • (z : Gamma0 N → ↥(BinaryForm ℤ 0)) g = 0 := by
       rw [← hv' g, sub_eq_zero]
@@ -96,10 +94,8 @@ theorem SolMain.A4 (n N : ℕ) [NeZero N] (m : ℤ) (hm : m ≠ 0)
     have h2 : (z : Gamma0 N → ↥(BinaryForm ℤ 0)) g = 0 := (smul_eq_zero.mp h1).resolve_left hm
     rw [h2, sub_eq_zero]
     exact binaryFormRepSL_apply_of_zero _ _
-  ·
-    obtain ⟨w₁, hw₁⟩ := z.2.2 (gammaT N) (trace_sq_gammaT N)
+  · obtain ⟨w₁, hw₁⟩ := z.2.2 (gammaT N) (trace_sq_gammaT N)
     obtain ⟨w₂, hw₂⟩ := z.2.2 (gammaL N) (trace_sq_gammaL N)
-
     have hfix : ∀ (γ : Gamma0 N) (w : ↥(BinaryForm ℤ n)), (((binaryFormRepSL ℤ n).comp (Gamma0 N).subtype) γ - 1) w = (z : Gamma0 N → _) γ →
         binaryFormRepSL ℤ n (γ : SL(2, ℤ)) (v - m • w) = v - m • w :=
       fun γ w hw => aux_fix (binaryFormRepSL ℤ n (γ : SL(2, ℤ))).toAddMonoidHom m v w _ (hv' γ)
@@ -110,12 +106,10 @@ theorem SolMain.A4 (n N : ℕ) [NeZero N] (m : ℤ) (hm : m ≠ 0)
     have hN : ((N : ℤ) : ℤ) ≠ 0 := by exact_mod_cast NeZero.ne N
     obtain ⟨c₂, hc₂⟩ := exists_eq_smul_X_pow_of_binaryFormRepSL_lowerUnipotent_eq_self (R := ℤ) n (h := (N : ℤ)) hN hjR
       (lowerSL N) (coe_lowerSL N) (v - m • w₂) (hfix (gammaL N) w₂ hw₂)
-
     have hX0 : MvPolynomial.X 0 ^ n ∈ BinaryForm ℤ n :=
       (MvPolynomial.mem_homogeneousSubmodule n _).mpr (MvPolynomial.isHomogeneous_X_pow 0 n)
     set e : ↥(BinaryForm ℤ n) := ⟨MvPolynomial.X 0 ^ n, hX0⟩ with he
     have hc₁' : v - m • w₁ = c₁ • e := Subtype.ext (by rw [hc₁]; rfl)
-
     set cf : ↥(BinaryForm ℤ n) →ₗ[ℤ] ℤ := (MvPolynomial.lcoeff ℤ (Finsupp.single 0 n)).comp (BinaryForm ℤ n).subtype with hcf
     have hcf_apply : ∀ Q : ↥(BinaryForm ℤ n), cf Q = AddMonoidAlgebra.coeff (Q : MvPolynomial (Fin 2) ℤ) (Finsupp.single 0 n) :=
       fun Q => rfl
@@ -139,7 +133,6 @@ theorem solution (n N : ℕ) [NeZero N] (m : ℤ) (hm : m ≠ 0)
     (x : HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℤ n).comp (CongruenceSubgroup.Gamma0 N).subtype))
     (hx : m • x = 0) : x = 0 :=
   HeckeEis.SolMain.A4 n N m hm x hx
-
 
 end S_HeckeEis_coeffH1par_binaryFormRepSL_int_eq_zero_of_smul_eq_zero
 end P2MW

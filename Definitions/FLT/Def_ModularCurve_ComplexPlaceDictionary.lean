@@ -30,19 +30,13 @@ def realize (N : ℕ) (x : LaurentSeries ℂ) (τ : ℍ) : ℂ := by
     else 0
 
 structure ComplexPlaceDictionary (N : ℕ) [NeZero N] where
-
   pt : ℍ → AlgebraicCurve.Place ℂ (laurentBaseChange ℂ (modularFunctionFieldFull N))
-
   ramification : ℍ → ℕ
-
   ramification_pos : ∀ τ : ℍ, 0 < ramification τ
-
   pt_smul : ∀ (γ : CongruenceSubgroup.Gamma0 N) (τ : ℍ), pt ((γ : SL(2, ℤ)) • τ) = pt τ
-
   mem_pt_iff : ∀ (τ : ℍ) (x : laurentBaseChange ℂ (modularFunctionFieldFull N)),
     x ∈ (pt τ).toValuationSubring ↔
       Filter.IsBoundedUnder (· ≤ ·) (𝓝[≠] τ) (fun z : ℍ => ‖realize N (x : LaurentSeries ℂ) z‖)
-
   meromorphicOrderAt_realize : ∀ (τ : ℍ) (x : laurentBaseChange ℂ (modularFunctionFieldFull N)),
     x ≠ 0 →
       meromorphicOrderAt (fun z : ℂ => realize N (x : LaurentSeries ℂ) (ofComplex z)) (τ : ℂ) =

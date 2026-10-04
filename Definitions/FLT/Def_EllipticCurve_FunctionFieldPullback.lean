@@ -98,18 +98,15 @@ theorem exists_eq_XYIdeal [IsAlgClosed K] {P : Ideal W.CoordinateRing} (hP : P �
   set L := W.CoordinateRing ⧸ P
   set π := Ideal.Quotient.mk P
   have hθ := algebraMap_quot_eq_comp_eval ha
-
   have : Algebra.IsIntegral K L := ⟨fun z => by
     obtain ⟨m, hm, hm0⟩ := Algebra.IsIntegral.isIntegral (R := K[X]) z
     refine ⟨m.map (evalRingHom a), hm.map _, ?_⟩
     rw [eval₂_map, ← hθ]
     exact hm0⟩
-
   obtain ⟨b, hb⟩ := (IsAlgClosed.algebraMap_bijective_of_isIntegral (k := K) (K := L)).2 (π (mk W Y))
   have hYmem : YClass W (C b) ∈ P := by
     rw [YClass, map_sub, ← Ideal.Quotient.mk_eq_mk_iff_sub_mem]
     exact hb.symm
-
   have heq : W.Equation a b := by
     have hψ : π.comp (mk W) = (algebraMap K L).comp (evalEvalRingHom a b) := by
       apply Polynomial.ringHom_ext
@@ -125,7 +122,6 @@ theorem exists_eq_XYIdeal [IsAlgClosed K] {P : Ideal W.CoordinateRing} (hP : P �
     rw [hψ, RingHom.comp_apply, coe_evalEvalRingHom, map_eq_zero] at h0
     exact h0
   refine ⟨a, b, heq, ?_⟩
-
   have hle : XYIdeal W a (C b) ≤ P := by
     rw [XYIdeal, Ideal.span_le]
     rintro z (rfl | rfl)
@@ -388,11 +384,9 @@ theorem exists_eq_baseChange_of_isIntegral_xc [DecidableEq K] [IsAlgClosed K] [W
     ∃ P : (W⁄K).Point, Q = Point.baseChange K (W⁄K).FunctionField P := by
   have : (W⁄K).IsElliptic := by
     dsimp only [Affine.baseChange, WeierstrassCurve.baseChange]; infer_instance
-
   have hdx : (minpoly K Q.xc).degree = 1 :=
     IsAlgClosed.degree_eq_one_of_irreducible K (minpoly.irreducible hx)
   obtain ⟨a, ha⟩ : Q.xc ∈ (algebraMap K (W⁄K).FunctionField).range := minpoly.mem_range_of_degree_eq_one K _ hdx
-
   have heq := (Point.nonsingular_xc_yc hQ).left
   rw [equation_iff] at heq
   have hy : _root_.IsIntegral K Q.yc := by
@@ -1035,13 +1029,11 @@ theorem valuation_map_le_of_valuation_le (ψ : K →+* K') (w : HeightOneSpectru
     hx.trans (by rw [← exp_zero, exp_le_exp, neg_nonpos]; exact Nat.cast_nonneg k)
   obtain ⟨n, d, hnd⟩ := exists_primeCompl_mul_eq_of_integer (v := w) x hx1
   have hd : (d : R) ∉ w.asIdeal := d.2
-
   have hwn : w.valuation K (algebraMap R K n) ≤ exp (-(k : ℤ)) := by
     rw [← hnd, map_mul, (valuation_eq_one_iff_notMem (K := K) w).mpr hd, mul_one]
     exact hx
   rw [valuation_of_algebraMap, intValuation_le_pow_iff_mem] at hwn
   have hψn := valuation_map_le_exp_neg_of_mem_pow ψ w v h0 h1 k n hwn
-
   have := congrArg (fun t => v.valuation K' (ψ t)) hnd
   simp only [map_mul, h2 d hd, mul_one] at this
   rw [this]
@@ -1200,7 +1192,6 @@ theorem valuation_mulPull_le {n : ℤ} (hgood : MulGood W K n) (Φ Ψ : K[X]) (�
   have hc1 := valuation_algebraMap_le_one W K P hP
   have hX := cong_genericX W K P hP
   have hY := cong_genericY W K P hP
-
   have hx : v.Cong (n • genericPoint W K).xc (algebraMap K _ (n • P).xc) := by
     rw [hξ, hxP, map_div₀, ← eval₂_at_apply, ← eval₂_at_apply]
     have hΦ := Valuation.Cong.eval₂ (v := v) (algebraMap K _) hc1 hX (hc1 _) Φ
@@ -1208,7 +1199,6 @@ theorem valuation_mulPull_le {n : ℤ} (hgood : MulGood W K n) (Φ Ψ : K[X]) (�
     refine hΦ.1.div hΨc.1 hΦ.2 ?_
     rw [eval₂_at_apply]
     exact valuation_algebraMap_eq_one W K P hP hΨ
-
   have hy : v.Cong (n • genericPoint W K).yc (algebraMap K _ (n • P).yc) := by
     rw [hη, hyP, map_div₀, map_pow, algebraMap_evalEval, algebraMap_evalEval]
     have hω := Valuation.Cong.eval₂_eval₂ (v := v) (algebraMap K _) hc1 hX (hc1 _) hY (hc1 _) ω

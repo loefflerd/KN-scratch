@@ -85,7 +85,6 @@ private theorem AlgebraicCurve.Place.ord_pos_and_dvd_of_hasRamBound {K L F : Typ
     exact hg.ne' hgπ
   obtain ⟨k, hk⟩ := hram (π₀ : F) (fun h => hπne (HahnSeries.coeff_order_eq_zero.mp h))
   dsimp only at hk
-
   have hd : (d : ℚ) ≠ 0 := by
     intro hd
     simp only [hd, div_zero] at hk
@@ -111,7 +110,6 @@ theorem isRoot_map_Φ_apply_jBar_of_dvd {d : ℕ} [NeZero d] (hd : d ∣ N) (dd 
       (φ ⟨coeffEmb L jq, coeffEmb_mem_laurentBaseChange L (jq_mem_full N)⟩))).IsRoot
       (φ ⟨coeffEmb L (qExpand ℚ d jq),
         coeffEmb_mem_laurentBaseChange L (jqd_mem_full N hd)⟩) := by
-
   have hθ : ((laurentBaseChange L (modularFunctionFieldFull N)).val :
         laurentBaseChange L (modularFunctionFieldFull N) →+* LaurentSeries L).comp
       (Polynomial.eval₂RingHom (Int.castRingHom (laurentBaseChange L (modularFunctionFieldFull N)))
@@ -221,13 +219,11 @@ private theorem ModularCurve.ord_jBar_sub_pos_and_dvd_of_forall_isRoot_hasRamBou
       v.ord (⟨ModularCurve.coeffEmb L ModularCurve.jq,
           ModularCurve.coeffEmb_mem_laurentBaseChange L (ModularCurve.jq_mem_full N)⟩
         - algebraMap L _ j₀) ∣ (d : ℤ) := by
-
   let P : IntermediateField L (HahnSeries ℚ L) :=
     (HahnSeries.puiseuxRamSubfield L hd).toIntermediateField (by
       intro a
       rw [HahnSeries.algebraMap_eq_C']
       exact HahnSeries.C_mem_puiseuxRamSubfield hd a)
-
   have hjP : (⟨ModularCurve.coeffEmb L ModularCurve.jq,
       ModularCurve.coeffEmb_mem_laurentBaseChange L (ModularCurve.jq_mem_full N)⟩ :
       ModularCurve.laurentBaseChange L (ModularCurve.modularFunctionFieldFull N)) ∈ P.comap φ := by
@@ -371,7 +367,6 @@ private theorem AlgebraicCurve.Place.ord_dvd_of_hahnSeries_embedding_of_isGalois
     (W : AlgebraicCurve.Place K M)
     (hW : 0 < W.ord (algebraMap (RatFunc K) M (algebraMap (Polynomial K) (RatFunc K) p))) :
     W.ord (algebraMap (RatFunc K) M (algebraMap (Polynomial K) (RatFunc K) p)) ∣ (d : ℤ) := by
-
   have hχ : (((ψ : M →+* HahnSeries ℚ L).comp (algebraMap (RatFunc K) M)).comp (algebraMap K[X] (RatFunc K)))
       = Polynomial.eval₂RingHom ((HahnSeries.C : L →+* HahnSeries ℚ L).comp (algebraMap K L))
           (HahnSeries.C a + HahnSeries.single (1 : ℚ) (1 : L)) := by
@@ -389,11 +384,9 @@ private theorem AlgebraicCurve.Place.ord_dvd_of_hahnSeries_embedding_of_isGalois
           (HahnSeries.C a + HahnSeries.single (1 : ℚ) (1 : L)) := RingHom.congr_fun hχ p
   have hord : (ψ (algebraMap (RatFunc K) M (algebraMap K[X] (RatFunc K) p))).order = 1 := by
     rw [hψp]; exact (HahnSeries.eval₂_C_add_single_ne_zero_and_order_eq_one p a ha ha').2
-
   obtain ⟨W₀, g, hg, hφv⟩ := AlgebraicCurve.Place.exists_ord_mul_eq_order_of_hasRamBound ψ hd hψ
     ⟨_, by rw [hord]; exact one_ne_zero⟩
   have h0 := AlgebraicCurve.Place.ord_pos_and_dvd_of_hasRamBound ψ hψ W₀ hg hφv hord
-
   have hres : ∀ V : AlgebraicCurve.Place K M,
       0 < V.ord (algebraMap (RatFunc K) M (algebraMap K[X] (RatFunc K) p)) →
         V.restrict (RatFunc K) = AlgebraicCurve.RationalFunctionField.finitePlace K hp := by
@@ -403,7 +396,6 @@ private theorem AlgebraicCurve.Place.ord_dvd_of_hahnSeries_embedding_of_isGalois
     rw [V.ord_restrict (F := RatFunc K)] at hV
     exact pos_of_mul_pos_right hV (by exact_mod_cast he.le)
   have hWW₀ : W.restrict (RatFunc K) = W₀.restrict (RatFunc K) := (hres W hW).trans (hres W₀ h0.1).symm
-
   obtain ⟨σ, hσ⟩ := AlgebraicCurve.Place.exists_algEquiv_smul_eq_of_restrict_eq W₀ W hWW₀
   have hfix : AlgebraicCurve.SemilinearAut.ofAlgAut (σ.restrictScalars K)
       • (algebraMap (RatFunc K) M (algebraMap K[X] (RatFunc K) p))
@@ -429,7 +421,6 @@ private theorem AlgebraicCurve.Place.ord_dvd_of_forall_hahnSeries_embedding_hasR
     (hw : 0 < w.ord (algebraMap (RatFunc K) F (algebraMap (Polynomial K) (RatFunc K) p))) :
     w.ord (algebraMap (RatFunc K) F (algebraMap (Polynomial K) (RatFunc K) p)) ∣ (d : ℤ) := by
   classical
-
   let φ₀ : K[X] →ₐ[K] HahnSeries ℚ L := Polynomial.aeval (HahnSeries.C a + HahnSeries.single (1 : ℚ) (1 : L))
   have hφ₀ : ∀ q : K[X], φ₀ q = q.eval₂ ((HahnSeries.C : L →+* HahnSeries ℚ L).comp (algebraMap K L))
       (HahnSeries.C a + HahnSeries.single (1 : ℚ) (1 : L)) := by
@@ -454,14 +445,12 @@ private theorem AlgebraicCurve.Place.ord_dvd_of_forall_hahnSeries_embedding_hasR
     rwa [map_one, div_one, map_one, div_one] at h
   have hψ₀X : ψ₀ (algebraMap K[X] (RatFunc K) Polynomial.X) = HahnSeries.C a + HahnSeries.single (1 : ℚ) (1 : L) := by
     rw [hψ₀]; exact Polynomial.aeval_X _
-
   have : Algebra.IsAlgebraic (RatFunc K) F := Algebra.IsAlgebraic.of_finite (RatFunc K) F
   have : IsAlgClosed (HahnSeries ℚ L) := HahnSeries.isAlgClosed_rat
   obtain ⟨Ψ, hΨ⟩ := IsAlgClosed.surjective_domRestrict_of_isAlgebraic (K := K) (L := RatFunc K)
     (M := HahnSeries ℚ L) (E := AlgebraicClosure F) ψ₀
   have hΨr : ∀ r : RatFunc K, Ψ (algebraMap (RatFunc K) (AlgebraicClosure F) r) = ψ₀ r := fun r => by
     rw [← hΨ]; rfl
-
   have hφ₀P : ∀ q : K[X], φ₀ q ∈ HahnSeries.puiseuxRamSubfield L hd := by
     intro q
     induction q using Polynomial.induction_on' with
@@ -488,7 +477,6 @@ private theorem AlgebraicCurve.Place.ord_dvd_of_forall_hahnSeries_embedding_hasR
     refine (HahnSeries.mem_puiseuxRamSubfield_iff hd).mpr (hF (Ψ.comp (f.restrictScalars K)) ?_ y)
     change Ψ (f (algebraMap (RatFunc K) F (algebraMap K[X] (RatFunc K) Polynomial.X))) = _
     rw [f.commutes, hΨr, hψ₀X]
-
   have : CharZero F := charZero_of_injective_algebraMap (algebraMap K F).injective
   have : IsGalois (RatFunc K) (AlgebraicClosure F) := ⟨⟩
   have : IsScalarTower K F (normalClosure (RatFunc K) F (AlgebraicClosure F)) :=
@@ -508,7 +496,6 @@ private theorem AlgebraicCurve.Place.ord_dvd_of_forall_hahnSeries_embedding_hasR
     change Ψ ((algebraMap (RatFunc K) (normalClosure (RatFunc K) F (AlgebraicClosure F))
       (algebraMap K[X] (RatFunc K) Polynomial.X) : AlgebraicClosure F)) = _
     rw [IntermediateField.coe_algebraMap_apply, hΨr, hψ₀X]
-
   obtain ⟨W, hWw⟩ := AlgebraicCurve.Place.exists_restrict_eq
     (M := normalClosure (RatFunc K) F (AlgebraicClosure F)) w
   have hpM : algebraMap F (normalClosure (RatFunc K) F (AlgebraicClosure F))
@@ -559,7 +546,6 @@ theorem solution (L : Type*) [Field L] [Algebra ℚ L] (N : ℕ) [NeZero N]
       (φ ⟨coeffEmb L (qExpand ℚ N jq),
         coeffEmb_mem_laurentBaseChange L (jqd_mem_full N (dvd_refl N))⟩) :=
   ModularCurve.isRoot_map_Phi_apply_jBar L N data A φ
-
 
 end S_ModularCurve_isRoot_map_Phi_apply_jBar
 end P2MW

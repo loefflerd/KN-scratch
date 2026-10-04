@@ -210,8 +210,7 @@ private theorem _root_.AlgebraicCurve.Place.ord_add_eq_min {f g : F} (hf : f ≠
     · exact v.adicValuation_ne_zero hg h1.symm
   rcases max_cases (v.adicValuation f) (v.adicValuation g) with ⟨hmax, hle⟩ | ⟨hmax, hlt⟩ <;>
     rw [hmax] at h1
-  ·
-    have hlog := (WithZero.log_le_log (v.adicValuation_ne_zero hg)
+  · have hlog := (WithZero.log_le_log (v.adicValuation_ne_zero hg)
       (v.adicValuation_ne_zero hf)).mpr hle
     have h2 : v.ord (f + g) = v.ord f := by simp only [ord, h1]
     simp only [ord] at hlog h2 ⊢
@@ -1943,8 +1942,7 @@ theorem es1a10_ncVertical_slope_ord_neg (v : AlgebraicCurve.Place F W.FunctionFi
   have hry₂ : es1a10_ncVertical_reducesTo v (φ₂ (yGen W)) d₂ :=
     es1a10_ncVertical_reducesTo_of_ord_pos v hy₂
   by_cases hξ : φ₁ (polyToFunctionField W X) = φ₂ (polyToFunctionField W X)
-  ·
-    rcases Y_eq_of_X_eq (es1a6_add_equation W φ₁) (es1a6_add_equation W φ₂) hξ with
+  · rcases Y_eq_of_X_eq (es1a6_add_equation W φ₁) (es1a6_add_equation W φ₂) hξ with
       hη | hcc
     · have hd : d₁ = d₂ := by
         by_contra hd
@@ -2010,8 +2008,7 @@ theorem es1a10_ncVertical_slope_ord_neg (v : AlgebraicCurve.Place F W.FunctionFi
       simp only [WeierstrassCurve.map_a₁, WeierstrassCurve.map_a₂, WeierstrassCurve.map_a₄]
       exact es1a10_ncVertical_ord_div_neg v hN0 hNord hdenne hdenord
     · exact absurd ⟨hξ, hcc⟩ hcol
-  ·
-    have hxden_ne : φ₁ (polyToFunctionField W X) - φ₂ (polyToFunctionField W X) ≠ 0 :=
+  · have hxden_ne : φ₁ (polyToFunctionField W X) - φ₂ (polyToFunctionField W X) ≠ 0 :=
       sub_ne_zero.mpr hξ
     have hxden_red : es1a10_ncVertical_reducesTo v
         (φ₁ (polyToFunctionField W X) - φ₂ (polyToFunctionField W X)) (c - c) :=
@@ -2024,8 +2021,7 @@ theorem es1a10_ncVertical_slope_ord_neg (v : AlgebraicCurve.Place F W.FunctionFi
       es1a10_ncVertical_ord_pos_of_vanishesAt_of_ne v hxden_van hxden_ne
     rw [slope_of_X_ne hξ]
     by_cases hd : d₁ = d₂
-    ·
-      have heq₁ := es1a6_add_equation W φ₁
+    · have heq₁ := es1a6_add_equation W φ₁
       have heq₂ := es1a6_add_equation W φ₂
       rw [equation_iff'] at heq₁ heq₂
       simp only [WeierstrassCurve.map_a₁, WeierstrassCurve.map_a₂, WeierstrassCurve.map_a₃, WeierstrassCurve.map_a₄,
@@ -2124,8 +2120,7 @@ theorem es1a10_ncVertical_slope_ord_neg (v : AlgebraicCurve.Place F W.FunctionFi
         linear_combination heq₁ - heq₂
       rw [hslope_eq]
       exact es1a10_ncVertical_ord_div_neg v hN0 hNord hD0 hDord
-    ·
-      have hnum_red : es1a10_ncVertical_reducesTo v
+    · have hnum_red : es1a10_ncVertical_reducesTo v
           (φ₁ (yGen W) - φ₂ (yGen W)) (d₁ - d₂) :=
         es1a10_ncVertical_reducesTo_sub v hry₁ hry₂
       obtain ⟨hnum0, hnumord⟩ :=
@@ -2656,8 +2651,7 @@ theorem es1a9_tangentCase_seamData_nc (v : AlgebraicCurve.Place F W.FunctionFiel
         (φ₁ (yGen W)) (φ₂ (yGen W)))
       (W.slope c c d d) := by
     by_cases hξ : φ₁ (polyToFunctionField W X) = φ₂ (polyToFunctionField W X)
-    ·
-      have hyne : φ₁ (yGen W)
+    · have hyne : φ₁ (yGen W)
           ≠ (W.map (algebraMap F W.FunctionField)).toAffine.negY
             (φ₂ (polyToFunctionField W X)) (φ₂ (yGen W)) :=
         fun hyy => hcol ⟨hξ, hyy⟩
@@ -2676,8 +2670,7 @@ theorem es1a9_tangentCase_seamData_nc (v : AlgebraicCurve.Place F W.FunctionFiel
           (es1a9_reducesTo_mul_nc v (es1a9_reducesTo_algebraMap_nc v W.a₁) hry₁))
         (es1a9_reducesTo_sub_nc v hry₁ (es1a9_negY_reducesTo_nc v hrx₁ hry₁))
         (sub_ne_zero.mpr h2tor)
-    ·
-      have heq₁ := es1a6_add_equation W φ₁
+    · have heq₁ := es1a6_add_equation W φ₁
       have heq₂ := es1a6_add_equation W φ₂
       rw [equation_iff'] at heq₁ heq₂
       simp only [WeierstrassCurve.map_a₁, WeierstrassCurve.map_a₂, WeierstrassCurve.map_a₃, WeierstrassCurve.map_a₄,
@@ -2887,10 +2880,8 @@ theorem solution
             (φ₁ (polyToFunctionField W Polynomial.X)) (φ₂ (polyToFunctionField W Polynomial.X))
             (φ₁ (yCoord W)) (φ₂ (yCoord W)))
         - algebraMap F W.FunctionField b)) := by
-
   have hinst : inst = Classical.decEq _ := Subsingleton.elim _ _
   subst hinst
-
   have h1 : es1a11_coordSeamDataAt φ₁ v Q₁ := by
     cases Q₁ with
     | zero => exact h₁0 rfl

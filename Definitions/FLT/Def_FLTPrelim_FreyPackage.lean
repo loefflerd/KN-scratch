@@ -24,26 +24,18 @@ set_option backward.isDefEq.respectTransparency.types false
 set_option autoImplicit false
 
 structure FreyPackage where
-
   a : ℤ
-
   b : ℤ
-
   c : ℤ
   ha0 : a ≠ 0
   hb0 : b ≠ 0
   hc0 : c ≠ 0
-
   p : ℕ
   pp : Nat.Prime p
   hp5 : 5 ≤ p
-
   hFLT : a ^ p + b ^ p = c ^ p
-
   hgcdab : gcd a b = 1
-
   ha4 : (a : ZMod 4) = 3
-
   hb2 : (b : ZMod 2) = 0
 
 namespace FreyPackage

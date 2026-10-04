@@ -66,7 +66,6 @@ theorem solution
     (n : ℕ) [NeZero n] {A : Type*} [AddCommGroup A]
     (e : ZMod n × ZMod n ≃+ Submodule.torsionBy ℤ A n) :
     Nat.card {H : AddSubgroup A // IsAddCyclic H ∧ Nat.card H = n} = ModularCurve.dedekindPsi n := by
-
   let ι : ZMod n × ZMod n →+ A :=
     ((Submodule.torsionBy ℤ A n).toAddSubgroup.subtype).comp e.toAddMonoidHom
   have hι : Function.Injective ι :=
@@ -77,7 +76,6 @@ theorem solution
       rw [Submodule.mem_torsionBy_iff, natCast_zsmul]; exact hx
     refine ⟨e.symm ⟨x, hx'⟩, ?_⟩
     simp [ι]
-
   rw [← ZMod.natCard_isAddCyclic_addSubgroup_prod_eq_dedekindPsi n,
     Nat.card_congr (cyclicAddSubgroupMapEquiv n ι hι)]
   refine Nat.card_congr (Equiv.subtypeEquivRight fun H => ?_)

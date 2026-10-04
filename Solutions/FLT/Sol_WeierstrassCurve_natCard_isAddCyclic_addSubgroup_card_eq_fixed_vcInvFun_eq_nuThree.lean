@@ -123,12 +123,10 @@ theorem solution
   set W : WeierstrassCurve L := ⟨0, 0, 0, 0, B⟩ with hWdef
   set γ : VariableChange L := ⟨u, 0, 0, 0⟩ with hγdef
   have h2 : (2 : L) ≠ 0 := two_ne_zero
-
   have hΔ : W.Δ = -432 * B ^ 2 := by
     simp only [hWdef, WeierstrassCurve.Δ, WeierstrassCurve.b₂, WeierstrassCurve.b₄, WeierstrassCurve.b₆,
       WeierstrassCurve.b₈]; ring
   have hE : W.IsElliptic := ⟨by rw [hΔ]; exact isUnit_iff_ne_zero.mpr (by simp [hB])⟩
-
   have hW : γ • W = W := WeierstrassCurve.variableChange_mk_smul_eq_self_of_pow_three_eq_one u hu B
   let σ : W.toAffine.Point →+ W.toAffine.Point := vcHom γ W hW
   have hi3 : ((u⁻¹ : Lˣ) : L) ^ 3 = 1 := by
@@ -136,14 +134,12 @@ theorem solution
   have hi2 : ((u⁻¹ : Lˣ) : L) ^ 2 = u := by
     rw [Units.val_inv_eq_inv_val, inv_pow]
     exact inv_eq_of_mul_eq_one_right (by rw [← pow_succ, hu])
-
   have σ_some : ∀ (x y : L) (h : W.toAffine.Nonsingular x y),
       ∃ h', σ (Point.some x y h) = Point.some ((u : L) * x) y h' := by
     intro x y h
     apply exists_eq_some_of_xy_eq
     rw [xy_vcHom]
     simp only [xy, Option.map_some, hγdef, vcXInv, vcYInv, sub_zero, zero_mul, hi2, hi3, one_mul]
-
   have hσ : ∀ P : W.toAffine.Point, σ (σ P) + σ P + P = 0 := by
     rintro (_ | ⟨x, y, h⟩)
     · simp only [← WeierstrassCurve.Affine.Point.zero_def, map_zero, add_zero]
@@ -175,19 +171,16 @@ theorem solution
         rw [e3, add_assoc, add_comm (Point.some ((u : L) * x) y h1),
           WeierstrassCurve.Affine.Point.some_add_some_eq_neg_some_of_pow_three_eq_one B (u : L) hu hu1 h h1 hw2x hx,
           add_neg_cancel]
-
   have σinj : Function.Injective σ := fun a b h => by
     have ha : a = -(σ (σ a) + σ a) := eq_neg_of_add_eq_zero_right (hσ a)
     have hb : b = -(σ (σ b) + σ b) := eq_neg_of_add_eq_zero_right (hσ b)
     rw [ha, hb, h]
-
   have hns : ∀ p : ℕ, p.Prime → p ∣ N → ∃ a : W.toAffine.Point, addOrderOf a = p ∧ ∀ k : ℕ, σ a ≠ k • a := by
     intro p hp _
     obtain ⟨T, hT, hk⟩ :=
       WeierstrassCurve.exists_addOrderOf_eq_and_vcInvFun_ne_nsmul_of_pow_three_eq_one B hB u hu hu1 p hp
     refine ⟨T, hT, fun k hk' => hk k ?_⟩
     exact (heq_vcHom γ W hW T).trans (heq_of_eq hk')
-
   have hNL : ((N : ℕ) : L) ≠ 0 := Nat.cast_ne_zero.mpr hN
   obtain ⟨e⟩ : Nonempty (ZMod N × ZMod N ≃+ Submodule.torsionBy ℤ W.toAffine.Point N) := by
     have h := W.nonempty_torsionBy_addEquiv_zmod_prod_of_isAlgClosed (K := L) hNL
@@ -196,7 +189,6 @@ theorem solution
       rw [WeierstrassCurve.baseChange, Algebra.algebraMap_self, WeierstrassCurve.map_id]
     rw [hb] at h
     exact h
-
   rw [← AddCommGroup.natCard_isAddCyclic_addSubgroup_map_eq_of_sq_add_self_add_id_eq_zero_eq_nuThree
     N e σ hσ hns]
   refine Nat.card_congr (Equiv.subtypeEquivRight fun H => ?_)

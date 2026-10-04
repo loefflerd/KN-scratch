@@ -164,35 +164,28 @@ private theorem ModularCurve.StarBank.starK (K : Type*) [Field K] {ℓ : ℕ} [F
                   (PowerSeries.map (Int.castRingHom K) etaProd) ^ 24) ^ M = 1 := by
   have hℓp : ℓ.Prime := Fact.out
   rcases lt_or_ge ℓ 5 with hℓ5 | hℓ5
-  ·
-    have hℓdvd : ℓ ∣ 240 := by
+  · have hℓdvd : ℓ ∣ 240 := by
       interval_cases ℓ <;> first | decide | exact absurd hℓp (by decide)
     exact ModularCurve.StarBank.starK_of_240 K ((CharP.cast_eq_zero_iff K ℓ 240).mpr hℓdvd)
-  ·
-    obtain ⟨T, G₀, hTdvd, hTconst, hGdeg, hGcoeff, hId⟩ := hHasse hℓ5
+  · obtain ⟨T, G₀, hTdvd, hTconst, hGdeg, hGcoeff, hId⟩ := hHasse hℓ5
     set cT := PowerSeries.constantCoeff T with hcTdef
     have hcTK : ((cT : ℤ) : K) ≠ 0 := fun h =>
       hTconst ((CharP.intCast_eq_zero_iff K ℓ cT).mp h)
-
     have hmap := congrArg (hahnMapRingHom (Int.castRingHom K)) hId
     rw [map_mul, map_pow, hahnMapRingHom_aeval_jqModC, hahnMapRingHom_etaBlock,
       hahnMapRingHom_apply, ofPowerSeries_map, powerSeries_map_eq_C_of_dvd hTdvd,
       HahnSeries.ofPowerSeries_C] at hmap
-
     refine ⟨ℓ - 1, by omega, ?_,
       Polynomial.C (((cT : ℤ) : K)⁻¹) * G₀.map (Int.castRingHom K), ?_, ?_⟩
-    ·
-      have h1 : (1 : ℕ) ≤ ℓ := hℓp.one_lt.le
+    · have h1 : (1 : ℕ) ≤ ℓ := hℓp.one_lt.le
       have : ((ℓ - 1 : ℕ) : K) = (ℓ : K) - 1 := by exact_mod_cast Nat.cast_sub h1
       rw [this, CharP.cast_eq_zero K ℓ, zero_sub]
       exact neg_ne_zero.mpr one_ne_zero
-    ·
-      have hdegK : (G₀.map (Int.castRingHom K)).natDegree = ℓ - 1 := by
+    · have hdegK : (G₀.map (Int.castRingHom K)).natDegree = ℓ - 1 := by
         refine Polynomial.natDegree_map_of_leadingCoeff_ne_zero _ ?_ |>.trans hGdeg
         rw [Polynomial.leadingCoeff, hGdeg, hGcoeff]; simpa using hcTK
       rw [Polynomial.natDegree_C_mul (inv_ne_zero hcTK), hdegK]
-    ·
-      rw [map_mul (Polynomial.aeval (jqModC K)), Polynomial.aeval_C, mul_assoc, ← hmap,
+    · rw [map_mul (Polynomial.aeval (jqModC K)), Polynomial.aeval_C, mul_assoc, ← hmap,
         ← hcTdef, HahnSeries.algebraMap_apply', PowerSeries.algebraMap_eq,
         HahnSeries.ofPowerSeries_C, ← map_mul, inv_mul_cancel₀ hcTK, map_one]
 
@@ -214,7 +207,6 @@ theorem solution (K : Type*) [Field K] {ℓ : ℕ} [Fact ℓ.Prime] [CharP K ℓ
               * HahnSeries.ofPowerSeries ℤ K
                   (PowerSeries.map (Int.castRingHom K) etaProd) ^ 24) ^ M = 1 :=
   ModularCurve.StarBank.starK K hHasse
-
 
 end S_ModularCurve_StarBank_starK
 end P2MW

@@ -237,18 +237,15 @@ theorem order_le_of_identity {p q d₁ d : ℂ → ℂ} {n : ℕ} {C : ℕ → �
     ENat.ne_top_iff_exists.mp (ne_top_of_lt hlt)
   have hd_ord : analyticOrderAt d z = 0 := hd.analyticOrderAt_eq_zero.mpr hd0
   have hd₁_ord : analyticOrderAt d₁ z = 0 := hd₁.analyticOrderAt_eq_zero.mpr hd₁0
-
   have hL : analyticOrderAt (p ^ (6 * n) * d₁) z = ((6 * n * k : ℕ) : ℕ∞) := by
     rw [analyticOrderAt_mul (hp.pow _) hd₁, analyticOrderAt_pow hp, ← hk, hd₁_ord]
     simp only [nsmul_eq_mul, add_zero]
     push_cast
     ring
-
   have hq_ord : ((k + 1 : ℕ) : ℕ∞) ≤ analyticOrderAt q z := by
     rw [← hk] at hlt
     have := Order.add_one_le_of_lt hlt
     exact_mod_cast this
-
   have hR : ∀ i ∈ Finset.range n, ((6 * n * k + 6 : ℕ) : ℕ∞) ≤
       analyticOrderAt (C i * (p ^ (6 * i) * (q ^ 6 * d) ^ (n - i))) z := by
     intro i hi
@@ -305,7 +302,6 @@ theorem core (w : ℕ) (𝔤 𝔥 : 𝒩) (X : LaurentSeries ℂ) (hX : X * ψ �
     (τ : ℍ) :
     analyticOrderAt (toC (𝔥 * 𝔡 ^ w)) (τ : ℂ) ≤ analyticOrderAt (toC (𝔤 * (𝔞 ^ 2 * 𝔟) ^ w)) (τ : ℂ) := by
   classical
-
   have e1 : ∀ (Xx Jj T H D : LaurentSeries ℂ),
       (Xx ^ 6 * Jj ^ (4 * w) * T ^ (3 * w)) * ((H * D ^ w) ^ 6 * D ^ w)
         = (Xx * H) ^ 6 * ((Jj * D) ^ 4 * (T * D) ^ 3) ^ w := by
@@ -318,7 +314,6 @@ theorem core (w : ℕ) (𝔤 𝔥 : 𝒩) (X : LaurentSeries ℂ) (hX : X * ψ �
   have key1 : (X ^ 6 * 𝐉 ^ (4 * w) * (𝐉 - algebraMap ℂ (LaurentSeries ℂ) 1728) ^ (3 * w)) *
       ((ψ 𝔥 * ψ 𝔡 ^ w) ^ 6 * ψ 𝔡 ^ w) = (ψ 𝔤 * (ψ 𝔞 ^ 2 * ψ 𝔟) ^ w) ^ 6 := by
     rw [e1, hX, J_mul_D, J_sub_mul_D, e2]
-
   obtain ⟨p, hpm, hpev⟩ := h₁
   rw [hpm.as_sum] at hpev
   simp only [Polynomial.eval₂_add, Polynomial.eval₂_pow, Polynomial.eval₂_X, Polynomial.eval₂_finsetSum,
@@ -327,7 +322,6 @@ theorem core (w : ℕ) (𝔤 𝔥 : 𝒩) (X : LaurentSeries ℂ) (hX : X * ψ �
   set Y := X ^ 6 * 𝐉 ^ (4 * w) * (𝐉 - algebraMap ℂ (LaurentSeries ℂ) 1728) ^ (3 * w) with hY
   set n := p.natDegree with hn
   clear_value Y
-
   have hmem : ∀ i, ∃ c : Polynomial ℂ,
       Polynomial.aeval (𝐉) c = algebraMap R (LaurentSeries ℂ) (p.coeff i) := by
     intro i
@@ -339,7 +333,6 @@ theorem core (w : ℕ) (𝔤 𝔥 : 𝒩) (X : LaurentSeries ℂ) (hX : X * ψ �
   set m := ∑ i ∈ Finset.range n, (c i).natDegree with hm
   have hdeg : ∀ i ∈ Finset.range n, (c i).natDegree ≤ m := fun i hi =>
     Finset.single_le_sum (f := fun j => (c j).natDegree) (fun j _ => Nat.zero_le _) hi
-
   let Cn : ℕ → 𝒩 := fun i =>
     ∑ l ∈ Finset.range ((c i).natDegree + 1), algebraMap ℂ 𝒩 ((c i).coeff l) * (𝔡 ^ (m - l) * 𝔞 ^ (3 * l))
   have key3 : ∀ i ∈ Finset.range n, ψ 𝔡 ^ m * algebraMap R (LaurentSeries ℂ) (p.coeff i) = ψ (Cn i) := by
@@ -354,7 +347,6 @@ theorem core (w : ℕ) (𝔤 𝔥 : 𝒩) (X : LaurentSeries ℂ) (hX : X * ψ �
           rw [← pow_add, Nat.sub_add_cancel hlm]
       _ = ψ 𝔡 ^ (m - l) * (𝐉 * ψ 𝔡) ^ l := by rw [mul_pow]; ring
       _ = ψ 𝔡 ^ (m - l) * ψ 𝔞 ^ (3 * l) := by rw [J_mul_D, ← pow_mul]
-
   let P : 𝒩 := 𝔤 * (𝔞 ^ 2 * 𝔟) ^ w
   let Q : 𝒩 := 𝔥 * 𝔡 ^ w
   have k1 : Y * (ψ Q ^ 6 * ψ 𝔡 ^ w) = ψ P ^ 6 := by
@@ -367,7 +359,6 @@ theorem core (w : ℕ) (𝔤 𝔥 : 𝒩) (X : LaurentSeries ℂ) (hX : X * ψ �
     calc (ψ Q ^ 6 * ψ 𝔡 ^ w) ^ n * Y ^ i = (Y * (ψ Q ^ 6 * ψ 𝔡 ^ w)) ^ i * (ψ Q ^ 6 * ψ 𝔡 ^ w) ^ (n - i) := by
           rw [e, mul_pow Y (ψ Q ^ 6 * ψ 𝔡 ^ w) i]; ring
       _ = ψ P ^ (6 * i) * (ψ Q ^ 6 * ψ 𝔡 ^ w) ^ (n - i) := by rw [k1, ← pow_mul]
-
   let E : 𝒩 := P ^ (6 * n) * 𝔡 ^ m + ∑ i ∈ Finset.range n, Cn i * (P ^ (6 * i) * (Q ^ 6 * 𝔡 ^ w) ^ (n - i))
   have hE : ψ E = (ψ Q ^ 6 * ψ 𝔡 ^ w) ^ n * ψ 𝔡 ^ m *
       (Y ^ n + ∑ i ∈ Finset.range n, algebraMap R (LaurentSeries ℂ) (p.coeff i) * Y ^ i) := by
@@ -384,7 +375,6 @@ theorem core (w : ℕ) (𝔤 𝔥 : 𝒩) (X : LaurentSeries ℂ) (hX : X * ψ �
   have hE0 : E = 0 := by
     apply ψ_injective
     rw [hE, hpev, mul_zero, map_zero]
-
   have hC := congrArg toC hE0
   simp only [E, map_add, map_sum, map_mul, map_pow, map_zero] at hC
   exact order_le_of_identity (analyticAt_toC P τ) (analyticAt_toC Q τ) ((analyticAt_toC 𝔡 τ).pow m)
@@ -409,7 +399,6 @@ theorem solution (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ)) [Γ.Fin
     rw [ANb.coeffEmb_jq]; exact h₁
   exact ANb.core m (ANb.ofMF g (ANb.one_mem_strictPeriods_of_T_mem hT)) (ANb.ofMF h (ANb.one_mem_strictPeriods_of_T_mem hT))
     X hX h₁' τ
-
 
 end
 end S_ModularCurve_analyticOrderAt_le_of_isIntegral_adjoin_jqModC_pow

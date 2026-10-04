@@ -105,7 +105,6 @@ private theorem coeff_eq_zero_of_qTwist_eq (hζ : IsPrimitiveRoot (ζ : K) ℓ)
     f.coeff m = 0 := by
   have h := congrArg (fun g => HahnSeries.coeff g m) hf
   simp only [qTwist_coeff] at h
-
   by_contra hc
   apply hm
   rw [← hζ.zpow_eq_one_iff_dvd]
@@ -213,17 +212,13 @@ theorem mem_range_coeffEmb_of_forall_coeffMap_eq
     (hfix : ∀ c : K, (∀ σ : K ≃ₐ[ℚ] K, σ c = c) → ∃ r : ℚ, algebraMap ℚ K r = c)
     {f : LaurentSeries K} (hf : ∀ σ : K ≃ₐ[ℚ] K, coeffMap (σ : K →+* K) f = f) :
     f ∈ Set.range (coeffEmb K) := by
-
   have hcoeff : ∀ m : ℤ, ∃ r : ℚ, algebraMap ℚ K r = f.coeff m := fun m =>
     hfix (f.coeff m) fun σ => by
       have hcongr := congrArg (fun g => HahnSeries.coeff g m) (hf σ)
       simpa using hcongr
   choose r hr using hcoeff
-
   refine ⟨⟨r, ?_⟩, ?_⟩
-  ·
-
-    refine f.isPWO_support'.mono fun m hm => ?_
+  · refine f.isPWO_support'.mono fun m hm => ?_
     simp only [Function.mem_support] at hm ⊢
     intro h
     exact hm (FaithfulSMul.algebraMap_injective ℚ K (by rw [hr m, h, map_zero]))
@@ -239,19 +234,15 @@ variable {K : Type*} [Field K] {ℓ : ℕ} [hℓ : Fact (Nat.Prime ℓ)] {ζ : K
 private theorem exists_galoisPerm (hζ : IsPrimitiveRoot (ζ : K) ℓ) (σ : K →+* K) :
     ∃ e : Fin ℓ ≃ Fin ℓ,
       ∀ b : Fin ℓ, σ ((ζ : K) ^ (b : ℕ)) = (ζ : K) ^ ((e b : Fin ℓ) : ℕ) := by
-
   have hσζ : (σ (ζ : K)) ^ ℓ = 1 := by
     rw [← map_pow, hζ.pow_eq_one, map_one]
   obtain ⟨a, -, ha⟩ := hζ.eq_pow_of_pow_eq_one hσζ
-
   set e₀ : Fin ℓ → Fin ℓ := fun b => ⟨(a * (b : ℕ)) % ℓ, Nat.mod_lt _ hℓ.out.pos⟩
-
   have hkey : ∀ b : Fin ℓ, σ ((ζ : K) ^ (b : ℕ)) = (ζ : K) ^ ((e₀ b : Fin ℓ) : ℕ) := by
     intro b
     show σ ((ζ : K) ^ (b : ℕ)) = (ζ : K) ^ ((a * (b : ℕ)) % ℓ)
     rw [map_pow, ← ha, ← pow_mul]
     exact pow_eq_pow_mod _ hζ.pow_eq_one
-
   have hinj : Function.Injective e₀ := by
     intro b b' hbb'
     have h1 : σ ((ζ : K) ^ (b : ℕ)) = σ ((ζ : K) ^ ((b' : Fin ℓ) : ℕ)) := by
@@ -270,7 +261,6 @@ theorem mem_range_coeffEmb_qExpand_of_mem_inter {ℓ : ℕ} [hℓ : Fact (Nat.Pr
     (h2 : f ∈ Set.range (coeffEmb K)) :
     ∃ g : LaurentSeries ℚ, f = coeffEmb K (ModularCurve.qExpand ℚ ℓ g) := by
   obtain ⟨h, hh⟩ := h2
-
   have hsupp : ∀ m : ℤ, ¬ (ℓ : ℤ) ∣ m → h.coeff m = 0 := by
     intro m hm
     obtain ⟨g, hg⟩ := h1
@@ -283,16 +273,13 @@ theorem mem_range_coeffEmb_qExpand_of_mem_inter {ℓ : ℕ} [hℓ : Fact (Nat.Pr
 theorem exists_phiGenDescends (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] (ζ : Kˣ)
     [IsGalois ℚ K] [FiniteDimensional ℚ K] (hζ : IsPrimitiveRoot (ζ : K) ℓ) :
     ∃ c : ℕ → LaurentSeries ℚ, PhiGenDescends ℓ ζ c := by
-
   have hmem : ∀ k : ℕ, ∃ g : LaurentSeries ℚ,
       (phiProd ℓ (conj ℓ ζ)).coeff k = coeffEmb K (ModularCurve.qExpand ℚ ℓ g) := by
     intro k
     refine mem_range_coeffEmb_qExpand_of_mem_inter ?_ ?_
-    ·
-      exact phiProd_coeff_mem_range_qExpand ℓ ζ (coeffEmb K jq) (conj ℓ ζ)
+    · exact phiProd_coeff_mem_range_qExpand ℓ ζ (coeffEmb K jq) (conj ℓ ζ)
         hζ (conj_zero ℓ ζ) (conj_succ ℓ ζ) k
-    ·
-      refine mem_range_coeffEmb_of_forall_coeffMap_eq
+    · refine mem_range_coeffEmb_of_forall_coeffMap_eq
         (fun x hx => (IsGalois.mem_range_algebraMap_iff_fixed x).mpr hx) ?_
       intro σ
       obtain ⟨e, he⟩ := exists_galoisPerm hζ (σ : K →+* K)
@@ -312,7 +299,6 @@ open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_exists_galoisPerm.Mod
 
 theorem solution {K : Type*} [Field K] {ℓ : ℕ} [hℓ : Fact (Nat.Prime ℓ)] {ζ : Kˣ} (hζ : IsPrimitiveRoot (ζ : K) ℓ) (σ : K →+* K) : ∃ e : Fin ℓ ≃ Fin ℓ, ∀ b : Fin ℓ, σ ((ζ : K) ^ (b : ℕ)) = (ζ : K) ^ ((e b : Fin ℓ) : ℕ) :=
   ModularCurve.PhiGen.exists_galoisPerm hζ σ
-
 
 end S_ModularCurve_PhiGen_exists_galoisPerm
 end P2MW

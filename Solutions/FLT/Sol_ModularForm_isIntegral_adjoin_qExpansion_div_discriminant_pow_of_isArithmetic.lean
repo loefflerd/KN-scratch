@@ -275,7 +275,6 @@ open PenA.ALG SlashInvariantForm in
 theorem solution {𝒢 : Subgroup (GL (Fin 2) ℝ)} [𝒢.IsArithmetic] [𝒢.HasDetOne] (h1 : (1 : ℝ) ∈ 𝒢.strictPeriods) (m : ℕ) {k : ℤ} (hk : k = 12 * m) (g : ModularForm 𝒢 k) : IsIntegral (Algebra.adjoin ℂ ({(((qExpansion 1 (ModularForm.E₄ : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) ^ 3 / ((qExpansion 1 (ModularForm.discriminant : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ))} : Set (LaurentSeries ℂ))) (((qExpansion 1 (g : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) / ((qExpansion 1 (ModularForm.discriminant : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) ^ m) := by
   classical
   subst hk
-
   set Δmf : ModularForm 𝒮ℒ 12 := (CuspForm.discriminant : ModularForm 𝒮ℒ 12) with hΔmfdef
   have hΔcoe : ⇑Δmf = (ModularForm.discriminant : ℍ → ℂ) := rfl
   set Dsl : ModularForm 𝒮ℒ (12 * (m : ℤ)) :=
@@ -301,7 +300,6 @@ theorem solution {𝒢 : Subgroup (GL (Fin 2) ℝ)} [𝒢.IsArithmetic] [𝒢.Ha
   let : Fintype (𝒮ℒ ⧸ (𝒢 ⊓ 𝒮ℒ).subgroupOf 𝒮ℒ) := Fintype.ofFinite _
   have h1' : (1 : ℝ) ∈ (𝒢 ⊓ 𝒮ℒ).strictPeriods := one_mem_strictPeriods_inf h1
   have h1'' : (1 : ℝ) ∈ ((𝒢 ⊓ 𝒮ℒ) ⊓ 𝒮ℒ).strictPeriods := one_mem_strictPeriods_inf h1'
-
   have hq0 : ∑ r : Fin (Nat.card (𝒮ℒ ⧸ (𝒢 ⊓ 𝒮ℒ).subgroupOf 𝒮ℒ) + 1),
       qExpansion 1 (Aform g' D' (r : ℕ) : ℍ → ℂ)
         * (qExpansion 1 (g' : ℍ → ℂ)) ^ (r : ℕ)
@@ -316,7 +314,6 @@ theorem solution {𝒢 : Subgroup (GL (Fin 2) ℝ)} [𝒢.IsArithmetic] [𝒢.Ha
     rw [map_zero, map_sum] at h2
     rw [← h2]
     exact Finset.sum_congr rfl fun r _ => by rw [map_mul, map_mul, map_pow, map_pow]
-
   have hVP : ∀ r : ℕ, ∃ Pco : Polynomial ℂ,
       ((qExpansion 1 (Aform g' D' r : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ)
         = Polynomial.aeval (((qExpansion 1 (ModularForm.E₄ : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) ^ 3 / ((qExpansion 1 (ModularForm.discriminant : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ)) Pco * ((qExpansion 1 (ModularForm.discriminant : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) ^ (m * Nat.card (𝒮ℒ ⧸ (𝒢 ⊓ 𝒮ℒ).subgroupOf 𝒮ℒ)) := by
@@ -327,14 +324,12 @@ theorem solution {𝒢 : Subgroup (GL (Fin 2) ℝ)} [𝒢.IsArithmetic] [𝒢.Ha
     refine ⟨Pco, ?_⟩
     rw [← hPc, ModularForm.qExpansion_mcast]
   choose Pc hP using hVP
-
   set FL : LaurentSeries ℂ := ((qExpansion 1 (g : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) / ((qExpansion 1 (ModularForm.discriminant : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) ^ m with hFLdef
   have hgL : ((qExpansion 1 (g' : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ)
       = ((qExpansion 1 (g : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) := by rw [hg'q]
   have hDqL : ((qExpansion 1 (D' : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ)
       = ((qExpansion 1 (ModularForm.discriminant : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) ^ m := by
     rw [hD'q, PowerSeries.coe_pow]
-
   have hkey : (∑ r : Fin (Nat.card (𝒮ℒ ⧸ (𝒢 ⊓ 𝒮ℒ).subgroupOf 𝒮ℒ) + 1),
       Polynomial.aeval (((qExpansion 1 (ModularForm.E₄ : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) ^ 3 / ((qExpansion 1 (ModularForm.discriminant : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ)) (Pc (r : ℕ)) * FL ^ (r : ℕ))
       * (((qExpansion 1 (ModularForm.discriminant : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) ^ (m * Nat.card (𝒮ℒ ⧸ (𝒢 ⊓ 𝒮ℒ).subgroupOf 𝒮ℒ))
@@ -378,7 +373,6 @@ theorem solution {𝒢 : Subgroup (GL (Fin 2) ℝ)} [𝒢.IsArithmetic] [𝒢.Ha
     rw [← Finset.sum_range_succ
       (fun r => Polynomial.aeval (((qExpansion 1 (ModularForm.E₄ : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) ^ 3 / ((qExpansion 1 (ModularForm.discriminant : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ)) (Pc r) * FL ^ r) (Nat.card (𝒮ℒ ⧸ (𝒢 ⊓ 𝒮ℒ).subgroupOf 𝒮ℒ))]
     exact hsum0r
-
   have hcard : (Finset.univ : Finset (𝒮ℒ ⧸ (𝒢 ⊓ 𝒮ℒ).subgroupOf 𝒮ℒ)).card = Nat.card (𝒮ℒ ⧸ (𝒢 ⊓ 𝒮ℒ).subgroupOf 𝒮ℒ) := by
     rw [Finset.card_univ, Nat.card_eq_fintype_card]
   have hAn : Aform g' D' (Nat.card (𝒮ℒ ⧸ (𝒢 ⊓ 𝒮ℒ).subgroupOf 𝒮ℒ))
@@ -418,7 +412,6 @@ theorem solution {𝒢 : Subgroup (GL (Fin 2) ℝ)} [𝒢.IsArithmetic] [𝒢.Ha
     have h4 := (hP (Nat.card (𝒮ℒ ⧸ (𝒢 ⊓ 𝒮ℒ).subgroupOf 𝒮ℒ))).symm.trans hqAnL
     exact mul_right_cancel₀ (pow_ne_zero _ hΔL) h4
   rw [hPn] at hsum1
-
   have hmem : ∀ r : ℕ, ((-1 : LaurentSeries ℂ) ^ (Nat.card (𝒮ℒ ⧸ (𝒢 ⊓ 𝒮ℒ).subgroupOf 𝒮ℒ)) * Polynomial.aeval (((qExpansion 1 (ModularForm.E₄ : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) ^ 3 / ((qExpansion 1 (ModularForm.discriminant : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ)) (Pc r))
       ∈ Algebra.adjoin ℂ ({(((qExpansion 1 (ModularForm.E₄ : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) ^ 3 / ((qExpansion 1 (ModularForm.discriminant : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ))} : Set (LaurentSeries ℂ)) := fun r =>
     Subalgebra.mul_mem _ (pow_mem (neg_mem (one_mem _)) _)
@@ -426,15 +419,13 @@ theorem solution {𝒢 : Subgroup (GL (Fin 2) ℝ)} [𝒢.IsArithmetic] [𝒢.Ha
   refine ⟨Polynomial.X ^ (Nat.card (𝒮ℒ ⧸ (𝒢 ⊓ 𝒮ℒ).subgroupOf 𝒮ℒ)) + ∑ r ∈ Finset.range (Nat.card (𝒮ℒ ⧸ (𝒢 ⊓ 𝒮ℒ).subgroupOf 𝒮ℒ)),
     Polynomial.C (⟨_, hmem r⟩ : Algebra.adjoin ℂ ({(((qExpansion 1 (ModularForm.E₄ : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) ^ 3 / ((qExpansion 1 (ModularForm.discriminant : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ))} : Set (LaurentSeries ℂ)))
       * Polynomial.X ^ r, ?_, ?_⟩
-  ·
-    refine Polynomial.monic_X_pow_add ?_
+  · refine Polynomial.monic_X_pow_add ?_
     refine lt_of_le_of_lt (Polynomial.degree_sum_le _ _) ?_
     rw [Finset.sup_lt_iff (WithBot.bot_lt_coe _)]
     intro r hr
     exact lt_of_le_of_lt (Polynomial.degree_C_mul_X_pow_le r _)
       (by exact_mod_cast Finset.mem_range.mp hr)
-  ·
-    rw [← Polynomial.aeval_def, map_add, map_pow, Polynomial.aeval_X, map_sum]
+  · rw [← Polynomial.aeval_def, map_add, map_pow, Polynomial.aeval_X, map_sum]
     have hterm : ∀ r ∈ Finset.range (Nat.card (𝒮ℒ ⧸ (𝒢 ⊓ 𝒮ℒ).subgroupOf 𝒮ℒ)),
         Polynomial.aeval FL
           (Polynomial.C (⟨_, hmem r⟩ : Algebra.adjoin ℂ ({(((qExpansion 1 (ModularForm.E₄ : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) ^ 3 / ((qExpansion 1 (ModularForm.discriminant : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ))} : Set (LaurentSeries ℂ)))

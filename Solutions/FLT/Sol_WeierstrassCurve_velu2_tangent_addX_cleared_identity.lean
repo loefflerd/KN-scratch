@@ -40,18 +40,15 @@ theorem solution
                   - (W.a₂ + 2 * x + x₀) * (2 * y + W.a₁ * x + W.a₃) ^ 2)) := by
   rw [Affine.equation_iff] at hP hQ
   refine velu2TangentAddX_assemble ?_ ?_ ?_
-  ·
-    linear_combination (-4) * hP + 4 * hQ
+  · linear_combination (-4) * hP + 4 * hQ
       + (-2 * W.a₁ * x + W.a₁ * x₀ - W.a₃ - 2 * y₀) * hord
-  ·
-    simp only [veluGx]
+  · simp only [veluGx]
     linear_combination (-W.a₁ ^ 2 - 4 * W.a₂ - 8 * x - 4 * x₀) * hP
       + (W.a₁ ^ 2 + 4 * W.a₂ + 8 * x + 4 * x₀) * hQ
       + (-W.a₁ ^ 2 * y₀ + W.a₁ * W.a₂ * x₀ + W.a₁ * W.a₄ - W.a₁ * x ^ 2 + W.a₁ * x₀ ^ 2
           - W.a₂ * W.a₃ - 2 * W.a₂ * y₀ - 2 * W.a₃ * x - W.a₃ * x₀ - 4 * x * y₀
           - 2 * x₀ * y₀) * hord
-  ·
-    simp only [veluGx]
+  · simp only [veluGx]
     linear_combination (-4 * x + 4 * x₀) * hP + (4 * x - 4 * x₀) * hQ
       + (W.a₁ ^ 2 * y₀ - 2 * W.a₁ * W.a₂ * x₀ - W.a₁ * W.a₄ - W.a₁ * x ^ 2 + W.a₁ * x * x₀
           - 3 * W.a₁ * x₀ ^ 2 - W.a₃ * x + W.a₃ * x₀ - 2 * x * y₀ + 2 * x₀ * y₀) * hord

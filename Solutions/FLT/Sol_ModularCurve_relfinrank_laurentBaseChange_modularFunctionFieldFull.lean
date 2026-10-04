@@ -242,7 +242,6 @@ theorem linearIndependent_ψ (ht : t ∈ F₀) (htr : Transcendental ℚ t) {ι 
   intro s g hg i hi
   obtain ⟨d, hd, hs⟩ := exists_common_denom L Finset.univ g
   choose! P hP using hs
-
   have hg' : ∑ j ∈ s, aeval (coeffEmb L t) (P j) * coeffEmb L ((v j : E₀ F₀ t ht) : LaurentSeries ℚ) = 0 := by
     have := congrArg (fun z : E L F₀ t ht => aeval (coeffEmb L t) d * (z : LaurentSeries L)) hg
     rw [ZeroMemClass.coe_zero, mul_zero, AddSubmonoidClass.coe_finsetSum, Finset.mul_sum] at this
@@ -252,7 +251,6 @@ theorem linearIndependent_ψ (ht : t ∈ F₀) (htr : Transcendental ℚ t) {ι 
     show _ = aeval (coeffEmb L t) d * (((g j : K L t) : LaurentSeries L) * ((ψ L ht (v j) : E L F₀ t ht) : LaurentSeries L))
     rw [← mul_assoc, hP j (Finset.mem_univ j)]
     rfl
-
   let n : ℕ := (s.sup fun j => (P j).natDegree) + 1
   have hdeg : ∀ j ∈ s, (P j).natDegree < n := fun j hj =>
     Nat.lt_succ_of_le (Finset.le_sup (f := fun j => (P j).natDegree) hj)
@@ -293,7 +291,6 @@ theorem relfinrank_eq (ht : t ∈ F₀) (htr : Transcendental ℚ t) :
     have hE' : 0 < Module.finrank (K L t) (E L F₀ t ht) := Nat.pos_of_ne_zero hE
     have : Module.Finite (K L t) (E L F₀ t ht) := Module.finite_of_finrank_pos hE'
     apply hfin
-
     have hrank : Module.rank (K₀ t) (E₀ F₀ t ht) ≤ Module.finrank (K L t) (E L F₀ t ht) := by
       refine _root_.rank_le fun s hs => ?_
       have hind := linearIndependent_ψ L ht htr hs

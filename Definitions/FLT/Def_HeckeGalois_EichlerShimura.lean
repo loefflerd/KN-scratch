@@ -200,13 +200,9 @@ variable (J' : Type*) [AddCommGroup J'] [Module HeckeAlg J']
 
 structure IsSpecialization (A : ValuationSubring L) (ℓ : ℕ) (sp : J →+ J') (F : J' →+ J') :
     Prop where
-
   hecke_comm : ∀ (T : HeckeAlg) (x : J), sp (T • x) = T • sp x
-
   inertia_comm : ∀ σ ∈ A.inertiaSubgroupIn K, ∀ x : J, sp (σ • x) = sp x
-
   frobenius_comm : ∀ σ : L ≃ₐ[K] L, A.IsFrobeniusAt σ ℓ → ∀ x : J, sp (σ • x) = F (sp x)
-
   injective_torsion : ∀ x : J, (∃ n : ℕ, p ^ n • x = 0) → sp x = 0 → x = 0
 
 def SpecialFibreRelation (ℓ : ℕ) (hℓ : ℓ.Prime) (F : J' →+ J') : Prop :=

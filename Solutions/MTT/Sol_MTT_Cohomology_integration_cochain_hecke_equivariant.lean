@@ -48,7 +48,6 @@ lemma rational_translate_integrable
     smul_eq_mul, hval t ht]
   ring
 
-
 /-- The integrand `t ↦ F(r+it) P(r+it)` of the modular integral. -/
 def vint (F : ℍ → ℂ) (P : Polynomial ℂ) (r : ℚ) (t : ℝ) : ℂ :=
   F (ofComplex ((r : ℂ) + Complex.I * t)) * P.eval ((r : ℂ) + Complex.I * t)

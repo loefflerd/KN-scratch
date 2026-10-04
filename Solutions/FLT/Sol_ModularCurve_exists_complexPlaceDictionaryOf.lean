@@ -352,8 +352,7 @@ theorem X_ne_zero : X Γ ≠ 0 := by
 theorem exists_mu_pos (τ : ℍ) : ∃ x : CF Γ, 0 < mu τ x ∧ mu τ x ≠ ⊤ := by
   have hXt := mu_ne_top τ (X_ne_zero (Γ := Γ))
   by_cases hneg : mu τ (X Γ) < 0
-  ·
-    refine ⟨(X Γ)⁻¹, ?_, mu_ne_top τ (inv_ne_zero (X_ne_zero (Γ := Γ)))⟩
+  · refine ⟨(X Γ)⁻¹, ?_, mu_ne_top τ (inv_ne_zero (X_ne_zero (Γ := Γ)))⟩
     have hsum : mu τ (X Γ)⁻¹ + mu τ (X Γ) = 0 := by
       rw [← mu_mul, inv_mul_cancel₀ (X_ne_zero (Γ := Γ)), mu_one]
     obtain ⟨m, hm⟩ := WithTop.ne_top_iff_exists.mp hXt
@@ -362,8 +361,7 @@ theorem exists_mu_pos (τ : ℍ) : ∃ x : CF Γ, 0 < mu τ x ∧ mu τ x ≠ �
     rw [← hm, ← WithTop.coe_zero, WithTop.coe_lt_coe] at hneg
     rw [← hn, ← WithTop.coe_zero, WithTop.coe_lt_coe]
     omega
-  ·
-    rw [not_lt] at hneg
+  · rw [not_lt] at hneg
     obtain ⟨c, hc⟩ :=
       (tendsto_nhds_iff_meromorphicOrderAt_nonneg (meromorphicAt_realize' (X Γ) τ)).mpr hneg
     refine ⟨X Γ - algebraMap ℂ (CF Γ) c, ?_, mu_ne_top τ (sub_ne_zero.mpr (X_ne_algebraMap c))⟩

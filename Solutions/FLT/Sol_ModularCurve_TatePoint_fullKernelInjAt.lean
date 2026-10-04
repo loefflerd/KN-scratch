@@ -38,10 +38,8 @@ private theorem fullKernelInjAt' (N : ℕ) [NeZero N] : FullKernelInjAt N := by
   intro _ W _ ht Q Q' hQ hQ' hΔ hΔ' hj
   let := isAlgClosed_H
   let := charZero_H
-
   have hV : (W.fullKernelQuotient Q N).IsElliptic := ⟨isUnit_iff_ne_zero.mpr hΔ⟩
   have hV' : (W.fullKernelQuotient Q' N).IsElliptic := ⟨isUnit_iff_ne_zero.mpr hΔ'⟩
-
   obtain ⟨gW, hcW, hAW⟩ :=
     WeierstrassCurve.Affine.exists_genusOnePlaceGate_isCentred_abelTheorem W.toAffine
   let := gW
@@ -57,14 +55,12 @@ private theorem fullKernelInjAt' (N : ℕ) [NeZero N] : FullKernelInjAt N := by
   let := gV'
   have := hcV'
   have := hAV'
-
   obtain ⟨ι, hι, hfin, hker⟩ :=
     WeierstrassCurve.exists_functionFieldHom_fullKernelQuotient_pointMapOfPushforward_ker_eq_zmultiples
       (W := W) (Q := Q) (N := N) hQ hΔ
   obtain ⟨ι', hι', hfin', hker'⟩ :=
     WeierstrassCurve.exists_functionFieldHom_fullKernelQuotient_pointMapOfPushforward_ker_eq_zmultiples
       (W := W) (Q := Q') (N := N) hQ' hΔ'
-
   have := WeierstrassCurve.Affine.hasPrincipalDivisors_of_isAlgClosed W.toAffine
   have := charZero_functionField (W.fullKernelQuotient Q N)
   have := charZero_functionField (W.fullKernelQuotient Q' N)
@@ -72,18 +68,15 @@ private theorem fullKernelInjAt' (N : ℕ) [NeZero N] : FullKernelInjAt N := by
     AlgebraicCurve.normFormulaAlong ι hfin (AlgebraicCurve.separableAlong_of_charZero ι hι)
   have hN' : AlgebraicCurve.NormFormulaAlong H ι' hfin' :=
     AlgebraicCurve.normFormulaAlong ι' hfin' (AlgebraicCurve.separableAlong_of_charZero ι' hι')
-
   have hNs :=
     WeierstrassCurve.Affine.forall_normFormulaAlong_of_isAlgClosed_of_charZero W.toAffine
   have hE : ∀ D : WeierstrassCurve.Affine.IsogenyEndDatum W.toAffine,
       ∃ m : ℤ, ∀ P : W.toAffine.Point, D.pointEnd (hNs D) P = m • P :=
     fun D => WeierstrassCurve.Affine.IsogenyEndDatum.exists_forall_pointEnd_eq_zsmul_of_transcendental_j
       W hNs (transcendental_rat_irrel ht) D
-
   have hcard : Nat.card (WeierstrassCurve.Affine.pointMapOfPushforward ι hι hfin hN).ker
       = Nat.card (WeierstrassCurve.Affine.pointMapOfPushforward ι' hι' hfin' hN').ker := by
     rw [hker hN, hker' hN', Nat.card_zmultiples, Nat.card_zmultiples, hQ, hQ']
-
   have hkk :=
     WeierstrassCurve.Affine.ker_pointMapOfPushforward_eq_of_j_eq_of_forall_pointEnd_eq_zsmul W hNs hE
       (W.fullKernelQuotient Q N) (W.fullKernelQuotient Q' N) ι hι hfin hN ι' hι' hfin' hN' hcard hj
@@ -97,7 +90,6 @@ open ModularCurve ModularCurve.TatePoint in
 
 theorem solution (N : ℕ) [NeZero N] : FullKernelInjAt N :=
   KernelTower.fullKernelInjAt' N
-
 
 end S_ModularCurve_TatePoint_fullKernelInjAt
 end P2MW

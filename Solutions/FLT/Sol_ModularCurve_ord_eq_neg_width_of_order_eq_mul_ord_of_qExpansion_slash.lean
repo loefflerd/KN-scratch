@@ -444,7 +444,6 @@ theorem neg_ord_dvd_of_readout (hT : ModularGroup.T ∈ Γ) (σ : SL(2, ℤ)) (h
     · rw [h0, mul_zero] at hm'; omega
     · exact h0
   have hNreal : (N : ℝ) = (m' : ℝ) * h := by rw [hm']; push_cast; ring
-
   have hD : ∀ x : CF Γ, x ≠ 0 → (m' : ℤ) ∣ (Φ x).order := by
     intro x hx
     obtain ⟨k, g, hf, hf0, hx'⟩ :=
@@ -482,7 +481,6 @@ theorem neg_ord_dvd_of_readout (hT : ModularGroup.T ∈ Γ) (σ : SL(2, ℤ)) (h
       rw [← hNreal]; exact hLg
     have : (Φ x).order = (Lq (N : ℝ) (⇑g ∣[k] σ)).order - (Lq (N : ℝ) (⇑hf ∣[k] σ)).order := by omega
     rw [this]; exact dvd_sub hdg hdf
-
   obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible P.toValuationSubring
   have hπ1 : P.ord (π : CF Γ) = 1 := AlgebraicCurve.Place.ord_coe_irreducible P hπ
   have hπ0 : (π : CF Γ) ≠ 0 := by
@@ -497,7 +495,6 @@ theorem neg_ord_dvd_of_readout (hT : ModularGroup.T ∈ Γ) (σ : SL(2, ℤ)) (h
   have hNZ : (N : ℤ) = (h : ℤ) * m' := by exact_mod_cast hm'
   have hneg : P.ord y < 0 := by nlinarith
   refine ⟨hneg, ⟨c, ?_⟩⟩
-
   have h1 : (m' : ℤ) * (c * P.ord y) = (m' : ℤ) * (-(h : ℤ)) := by
     calc (m' : ℤ) * (c * P.ord y) = (e : ℤ) * P.ord y := by rw [hc]; ring
       _ = -(N : ℤ) := hey
@@ -647,7 +644,6 @@ theorem ord_eq_neg_cw_of_squeeze
     (hbound : ∀ σ, (Pl σ).ord y < 0 ∧ -(Pl σ).ord y ≤ (cw Γ σ : ℤ))
     (σ : SL(2, ℤ)) : (Pl σ).ord y = -(cw Γ σ : ℤ) := by
   classical
-
   have hadj : IntermediateField.adjoin ℂ ({y⁻¹} : Set F) =
       IntermediateField.adjoin ℂ ({y} : Set F) := by
     apply le_antisymm
@@ -664,10 +660,8 @@ theorem ord_eq_neg_cw_of_squeeze
       hfin' 0
   rw [hadj, hfull] at hsum
   simp only [map_zero, sub_zero, Place.ord_inv, neg_pos] at hS hsum
-
   let : Fintype {P : Place ℂ F // P.ord y < 0} := Fintype.subtype S hS
   let : Fintype (Cusp Γ) := Fintype.ofFinite _
-
   have hout : ∀ τ : SL(2, ℤ),
       Pl (DoubleCoset.mk (Γ : Subgroup SL(2, ℤ)) KT τ : Cusp Γ).out = Pl τ := by
     intro τ
@@ -681,7 +675,6 @@ theorem ord_eq_neg_cw_of_squeeze
   have hΨbij : Function.Bijective
       (fun c : Cusp Γ => (⟨Pl c.out, (hbound c.out).1⟩ : {P : Place ℂ F // P.ord y < 0})) :=
     (Nat.bijective_iff_surjective_and_card _).mpr ⟨hΨsurj, hcard.symm⟩
-
   have hsum1 : ∑ c : Cusp Γ, (-(Pl c.out).ord y) = ((pm Γ).index : ℤ) := by
     rw [← hsum, Finset.sum_subtype (F := inferInstance) S hS]
     exact hΨbij.sum_comp (fun P : {P : Place ℂ F // P.ord y < 0} => -(P : Place ℂ F).ord y)
@@ -690,7 +683,6 @@ theorem ord_eq_neg_cw_of_squeeze
   have hle : ∀ c ∈ (Finset.univ : Finset (Cusp Γ)), (-(Pl c.out).ord y) ≤ (cw Γ c.out : ℤ) :=
     fun c _ => (hbound c.out).2
   have heq := (Finset.sum_eq_sum_iff_of_le hle).mp (hsum1.trans hsum2.symm)
-
   have h1 := heq (DoubleCoset.mk (Γ : Subgroup SL(2, ℤ)) KT σ) (Finset.mem_univ _)
   rw [hout σ] at h1
   obtain ⟨h, hh, k, hk, he⟩ := DoubleCoset.mk_out_eq_mul (Γ : Subgroup SL(2, ℤ)) KT σ
@@ -768,7 +760,6 @@ theorem ord_Pl_eq_neg_cw (hM : 5 ≤ M) (y : CF (Gamma1 M))
   have := hfin
   have hfull := ModularCurve.finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_gamma1_eq_index ℂ M y hy
   have hcard := ModularCurve.natCard_place_ord_neg_laurentBaseChange_gamma1_eq_natCard_doubleCoset ℂ M y hy
-
   have hE2 : ∀ (σ : SL(2, ℤ)) (x : CF (Gamma1 M)), x ∈ (Pl M σ).toValuationSubring ↔
       ∃ L : ℂ, Tendsto (fun τ : ℍ => ModularCurve.realizeOf (Gamma1 M) (x : LaurentSeries ℂ) (σ • τ))
         atImInfty (𝓝 L) := by
@@ -777,7 +768,6 @@ theorem ord_Pl_eq_neg_cw (hM : 5 ≤ M) (y : CF (Gamma1 M))
     exact hE2 x
   have hinv : ∀ σ σ' : SL(2, ℤ), (∃ γ ∈ Gamma1 M, ∃ k ∈ (KT : Subgroup SL(2, ℤ)), σ' = γ * σ * k) →
       Pl M σ' = Pl M σ := fun σ σ' h => place_eq_of_doubleCoset (Gamma1 M) hT (Pl M) hE2 h
-
   have hΓPl : ∀ γ ∈ Gamma1 M, ∀ σ : SL(2, ℤ), Pl M (γ * σ) = Pl M σ := fun γ hγ σ =>
     hinv σ (γ * σ) ⟨γ, hγ, 1, Subgroup.one_mem _, by simp⟩
   have hlim : ∀ (σ : SL(2, ℤ)) (x : CF (Gamma1 M)), x ≠ 0 → (Pl M σ).ord x = 0 →
@@ -792,7 +782,6 @@ theorem ord_Pl_eq_neg_cw (hM : 5 ≤ M) (y : CF (Gamma1 M))
   have hsurj : ∀ P : AlgebraicCurve.Place ℂ (CF (Gamma1 M)), P.ord y < 0 → ∃ σ, Pl M σ = P :=
     fun P hP => ModularCurve.exists_apply_eq_of_forall_ord_eq_zero_tendsto_realizeOf (Gamma1 M) hT
       (Gamma1_is_congruence M) _ rfl y hy (Pl M) hΓPl hlim P (not_mem_of_ord_neg P hP)
-
   have hbound : ∀ σ : SL(2, ℤ), (Pl M σ).ord y < 0 ∧ -(Pl M σ).ord y ≤ (cw (Gamma1 M) σ : ℤ) := by
     intro σ
     obtain ⟨e, he, hE1, hE2', hpres, hconst, hord, hy', hlimσ⟩ := Pl_spec M σ
@@ -831,7 +820,6 @@ theorem ord_eq_neg_cw_of_squeeze'
     (hbound : ∀ σ, (Pl σ).ord y < 0 ∧ -(Pl σ).ord y ≤ (cw Γ σ : ℤ))
     (σ : SL(2, ℤ)) : (Pl σ).ord y = -(cw Γ σ : ℤ) := by
   classical
-
   have hadj : IntermediateField.adjoin ℂ ({y⁻¹} : Set F) =
       IntermediateField.adjoin ℂ ({y} : Set F) := by
     apply le_antisymm
@@ -848,9 +836,7 @@ theorem ord_eq_neg_cw_of_squeeze'
       hfin' 0
   rw [hadj, hfull] at hsum
   simp only [map_zero, sub_zero, Place.ord_inv, neg_pos] at hS hsum
-
   let : Fintype (Cusp Γ) := Fintype.ofFinite _
-
   have hout : ∀ τ : SL(2, ℤ),
       Pl (DoubleCoset.mk (Γ : Subgroup SL(2, ℤ)) KT τ : Cusp Γ).out = Pl τ := by
     intro τ
@@ -865,7 +851,6 @@ theorem ord_eq_neg_cw_of_squeeze'
       exact ⟨DoubleCoset.mk (Γ : Subgroup SL(2, ℤ)) KT τ, Finset.mem_univ _, hout τ⟩
     · rintro ⟨c, _, rfl⟩
       exact (hbound c.out).1
-
   have h1 : ((pm Γ).index : ℤ) ≤ ∑ c : Cusp Γ, (-(Pl c.out).ord y) := by
     rw [← hsum, hS_eq]
     refine Finset.sum_image_le_of_nonneg fun P hP => ?_
@@ -879,7 +864,6 @@ theorem ord_eq_neg_cw_of_squeeze'
   have hsum1 : ∑ c : Cusp Γ, (-(Pl c.out).ord y) = ∑ c : Cusp Γ, (cw Γ c.out : ℤ) :=
     le_antisymm (Finset.sum_le_sum hle) (hsum2 ▸ h1)
   have heq := (Finset.sum_eq_sum_iff_of_le hle).mp hsum1
-
   have h2 := heq (DoubleCoset.mk (Γ : Subgroup SL(2, ℤ)) KT σ) (Finset.mem_univ _)
   rw [hout σ] at h2
   obtain ⟨h, hh, k, hk, he⟩ := DoubleCoset.mk_out_eq_mul (Γ : Subgroup SL(2, ℤ)) KT σ
@@ -901,7 +885,6 @@ theorem mem_toValuationSubring_iff_ord {F : Type*} [Field F] [Algebra ℂ F]
     have hx0 : x ≠ 0 := fun h => hxm (h ▸ P.toValuationSubring.zero_mem)
     have hxi : x⁻¹ ∈ P.toValuationSubring :=
       (P.toValuationSubring.mem_or_inv_mem x).resolve_left hxm
-
     have hnu : ¬IsUnit (⟨x⁻¹, hxi⟩ : P.toValuationSubring) := by
       rintro ⟨u, hu⟩
       apply hxm

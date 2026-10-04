@@ -40,7 +40,6 @@ theorem solution
     set Kt := IntermediateField.adjoin K ({t} : Set F) with hKt
     set t' := algebraMap F F' t with ht'
     set Kt' := IntermediateField.adjoin K' ({t'} : Set F') with hKt'
-
     have hmem : ∀ a : Kt, algebraMap F F' (a : F) ∈ Kt' := by
       intro a
       have hle : Kt.toSubfield ≤ Kt'.toSubfield.comap (algebraMap F F') := by
@@ -52,16 +51,13 @@ theorem solution
           exact IntermediateField.algebraMap_mem Kt' _
         · exact mem_adjoin_simple_self K' t'
       exact hle a.2
-
     let σ : Kt →+* Kt' :=
       ((algebraMap F F').comp (algebraMap Kt F)).codRestrict Kt'.toSubring hmem
     have hσF' : (algebraMap Kt' F').comp σ = (algebraMap F F').comp (algebraMap Kt F) :=
       RingHom.ext fun _ => rfl
-
     set Bt := Module.finBasis Kt F with hBt
     set S : Set F' := Set.range fun i => algebraMap F F' (Bt i : F) with hS
     have : Finite S := (Set.finite_range _).to_subtype
-
     have key : ∀ i,
         Polynomial.aeval (R := Kt') (algebraMap F F' (Bt i : F))
           ((minpoly Kt (Bt i : F)).map σ) = 0 := by
@@ -77,7 +73,6 @@ theorem solution
       have hp : ((minpoly Kt (Bt i : F)).map σ).Separable :=
         Polynomial.Separable.map (Algebra.IsSeparable.isSeparable Kt (Bt i : F))
       exact Polynomial.Separable.of_dvd hp (minpoly.dvd _ _ (key i))
-
     have hadj_top : IntermediateField.adjoin Kt' S = ⊤ := by
       rw [← IntermediateField.restrictScalars_eq_top_iff (K := K'), eq_top_iff, ← hgen]
       refine IntermediateField.adjoin_le_iff.mpr ?_
@@ -92,12 +87,10 @@ theorem solution
       exact sum_mem fun i _ => mul_mem
         (IntermediateField.algebraMap_mem (adjoin Kt' S) (σ (Bt.repr f i)))
         (subset_adjoin Kt' S ⟨i, rfl⟩)
-
   · have hfd : FiniteDimensional Kt' (adjoin Kt' S) :=
       IntermediateField.finiteDimensional_adjoin fun y hy => hint y hy
     rw [hadj_top] at hfd
     exact IntermediateField.topEquiv.toLinearEquiv.finiteDimensional
-
   · rw [← separableClosure.eq_top_iff, eq_top_iff, ← hadj_top]
     exact adjoin_le_iff.mpr fun y hy => mem_separableClosure_iff.mpr (hsepS y hy)
 

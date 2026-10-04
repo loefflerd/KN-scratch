@@ -134,7 +134,6 @@ theorem solution
   classical
   obtain ⟨m, rfl⟩ := hke
   have hm1 : 1 ≤ m := by omega
-
   have hfi : (CongruenceSubgroup.Gamma1 M).FiniteIndex := inferInstance
   have hfi' : (CongruenceSubgroup.Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).FiniteIndex := Subgroup.finiteIndex_of_le le_sup_left
   have hμpos : 0 < (CongruenceSubgroup.Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index :=
@@ -145,7 +144,6 @@ theorem solution
     have : Nonempty (DoubleCoset.Quotient (CongruenceSubgroup.Gamma1 M : Set SL(2, ℤ))
       ((Subgroup.zpowers ModularGroup.T ⊔ Subgroup.zpowers (-1) : Subgroup SL(2, ℤ)) : Set SL(2, ℤ))) := ⟨DoubleCoset.mk _ _ 1⟩
     exact Nat.card_pos
-
   obtain ⟨y, hy⟩ := exists_coe_eq_jqModC_laurentBaseChange_qExpFunctionFieldC ℂ (CongruenceSubgroup.Gamma1 M)
   have hT : ModularGroup.T ∈ CongruenceSubgroup.Gamma1 M := by
     rw [CongruenceSubgroup.Gamma1_mem]; simp [ModularGroup.T]
@@ -162,7 +160,6 @@ theorem solution
   have hdeg := AlgebraicCurve.six_mul_degree_eq_mul_finrank_of_forall_eq_weightFloor_of_ord_eq_three_two ℂ y htr hfin h0 h1728 m D hD
   rw [hfull] at hdeg
   have hg := ModularCurve.twelve_mul_genusFF_laurentBaseChange_gamma1_add_six_mul_natCard_doubleCoset_eq_index_add_twelve_of_isAlgClosed ℂ M hM
-
   set μ : ℕ := (CongruenceSubgroup.Gamma1 M ⊔ Subgroup.zpowers (-1 : SL(2, ℤ))).index with hμdef
   set cc : ℕ := Nat.card (DoubleCoset.Quotient (CongruenceSubgroup.Gamma1 M : Set SL(2, ℤ))
       ((Subgroup.zpowers ModularGroup.T ⊔ Subgroup.zpowers (-1) : Subgroup SL(2, ℤ)) : Set SL(2, ℤ))) with hccdef
@@ -171,13 +168,11 @@ theorem solution
   have hμZ : (0 : ℤ) ≤ μ := by exact_mod_cast Nat.zero_le μ
   have hmZ : (1 : ℤ) ≤ m := by exact_mod_cast hm1
   have hcZ : (1 : ℤ) ≤ cc := by exact_mod_cast hcpos
-
   have hRRhyp : 2 * (gg : ℤ) - 1 ≤ D.degree := by nlinarith [hdeg, hgZ, hμZ, hmZ, hcZ]
   have hRR := AlgebraicCurve.ell_eq_degree_add_one_sub_genusFF_of_isAlgClosed_of_isSeparable ℂ y htr hfin hsep D hRRhyp
   have := ModularCurve.finiteDimensional_riemannRochSpace_laurentBaseChange_qExpFunctionFieldC_gamma1 ℂ M D
   set d : ℕ := Module.finrank ℂ ↥(riemannRochSpace D) with hddef
   have hell : (ell D : ℤ) = d := rfl
-
   let b := Module.finBasis ℂ ↥(riemannRochSpace D)
   have hshape : ∀ i : Fin d, _ := fun i =>
     ModularCurve.isIntegral_and_isIntegral_of_mem_riemannRochSpace_weightFloor ℂ
@@ -190,13 +185,11 @@ theorem solution
   have hw : ((m + m : ℕ) : ℤ) = 2 * (m : ℤ) := by push_cast; ring
   rw [hw]
   refine ⟨d, f, ?_, ?_⟩
-  ·
-    rw [Fintype.linearIndependent_iff]
+  · rw [Fintype.linearIndependent_iff]
     intro g hg0 i
     have hq : qExpansion 1 (⇑(∑ i, g i • f i) : ℍ → ℂ) = 0 := by
       rw [hg0]; exact qExpansion_zero 1
     rw [qExpansion_sum_smul M] at hq
-
     have hval : ∀ v : ↥(riemannRochSpace D), ((v : ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) : LaurentSeries ℂ) =
         (laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M))).val ((riemannRochSpace D).subtype v) := fun v => rfl
     have h3 : (((∑ i, g i • b i : ↥(riemannRochSpace D)) : ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) : LaurentSeries ℂ) =
@@ -206,7 +199,6 @@ theorem solution
       rw [Submodule.coe_smul, IntermediateField.coe_smul]
       first
         | rw [Algebra.smul_def]
-
     have hL : (((∑ i, g i • b i : ↥(riemannRochSpace D)) : ↥(laurentBaseChange ℂ (qExpFunctionFieldC ℚ (CongruenceSubgroup.Gamma1 M)))) : LaurentSeries ℂ) * thetaL ℂ (jqModC ℂ) ^ m = 0 := by
       have h1 := congrArg (HahnSeries.ofPowerSeries ℤ ℂ) hq
       rw [map_sum, map_zero] at h1
@@ -222,12 +214,10 @@ theorem solution
       apply Subtype.val_injective; apply Subtype.val_injective
       rw [hsum]; rfl
     exact Fintype.linearIndependent_iff.1 b.linearIndependent g hsumF i
-  ·
-    have h12 : (12 : ℤ) * d = 2 * m * μ - μ + 6 * cc := by
+  · have h12 : (12 : ℤ) * d = 2 * m * μ - μ + 6 * cc := by
       rw [← hell, hRR]; linarith [hdeg, hgZ]
     zify [show 1 ≤ m + m by omega]
     nlinarith [h12, hμZ]
-
 
 end S_ModularForm_exists_linearIndependent_gamma1_dimFormula_le_card_of_even
 end P2MW

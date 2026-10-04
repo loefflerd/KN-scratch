@@ -45,7 +45,6 @@ theorem cmm5_dp_natCard_ker_comp {A B C : Type*} [AddCommGroup A] [AddCommGroup 
     [AddCommGroup C] (f : A →+ B) (g : B →+ C) (hf : Function.Surjective f) :
     Nat.card (AddMonoidHom.ker (g.comp f))
       = Nat.card (AddMonoidHom.ker g) * Nat.card (AddMonoidHom.ker f) := by
-
   have hmem : ∀ x : AddMonoidHom.ker (g.comp f),
       (f.domRestrict (AddMonoidHom.ker (g.comp f))) x ∈ AddMonoidHom.ker g := by
     intro x
@@ -53,7 +52,6 @@ theorem cmm5_dp_natCard_ker_comp {A B C : Type*} [AddCommGroup A] [AddCommGroup 
     rw [AddMonoidHom.mem_ker] at hx
     rw [AddMonoidHom.mem_ker]
     exact hx
-
   have hle : AddMonoidHom.ker f ≤ AddMonoidHom.ker (g.comp f) := by
     intro x hx
     rw [AddMonoidHom.mem_ker] at hx
@@ -64,7 +62,6 @@ theorem cmm5_dp_natCard_ker_comp {A B C : Type*} [AddCommGroup A] [AddCommGroup 
       = Nat.card (AddMonoidHom.ker f) := by
     rw [AddMonoidHom.ker_codRestrict, AddMonoidHom.ker_domRestrict]
     exact Nat.card_congr (AddSubgroup.addSubgroupOfEquivOfLe hle).toEquiv
-
   have hφsurj : Function.Surjective
       (AddMonoidHom.codRestrict (f.domRestrict (AddMonoidHom.ker (g.comp f)))
         (AddMonoidHom.ker g) hmem) := by
@@ -336,7 +333,6 @@ theorem kw_veluOddQuotientJInjOnCyclic_of_isogenyEndInt
         = (W.veluQuotient (W.oddOrderSummingSet Q' n)).j) :
     AddSubgroup.zmultiples Q = AddSubgroup.zmultiples Q' := by
   classical
-
   have hell : (W.veluQuotient (W.oddOrderSummingSet Q n)).IsElliptic :=
     ⟨isUnit_iff_ne_zero.mpr hΔ⟩
   have hell' : (W.veluQuotient (W.oddOrderSummingSet Q' n)).IsElliptic :=
@@ -355,12 +351,10 @@ theorem kw_veluOddQuotientJInjOnCyclic_of_isogenyEndInt
   have := hcV'
   have := haV
   have := haV'
-
   obtain ⟨ι, hι, hfin, -, hkerQ⟩ :=
     WeierstrassCurve.exists_veluFunctionFieldHom_pointMapOfPushforward_ker_eq_zmultiples hQ hΔ
   obtain ⟨ι', hι', hfin', -, hkerQ'⟩ :=
     WeierstrassCurve.exists_veluFunctionFieldHom_pointMapOfPushforward_ker_eq_zmultiples hQ' hΔ'
-
   obtain ⟨C, hC⟩ := WeierstrassCurve.exists_variableChange_of_j_eq
     (W.veluQuotient (W.oddOrderSummingSet Q n))
     (W.veluQuotient (W.oddOrderSummingSet Q' n)) hj
@@ -368,7 +362,6 @@ theorem kw_veluOddQuotientJInjOnCyclic_of_isogenyEndInt
       ≃ₐ[F] (W.veluQuotient (W.oddOrderSummingSet Q' n)).toAffine.FunctionField) :=
     hC ▸ WeierstrassCurve.nonempty_functionField_algEquiv_of_variableChange
       (W.veluQuotient (W.oddOrderSummingSet Q n)) C
-
   set τ : (W.veluQuotient (W.oddOrderSummingSet Q' n)).toAffine.FunctionField
       →ₐ[F] (W.veluQuotient (W.oddOrderSummingSet Q n)).toAffine.FunctionField :=
     σ.symm.toAlgHom with hτ_def
@@ -376,10 +369,8 @@ theorem kw_veluOddQuotientJInjOnCyclic_of_isogenyEndInt
   have hτint : τ.toRingHom.IsIntegral := RingHom.isIntegral_of_surjective _ hτbij.2
   have hτfin : FiniteAlong F τ := finiteAlong_of_surjective τ hτbij.2
   have hNτ : NormFormulaAlong F τ hτfin := normFormulaAlong_of_elliptic τ hτfin
-
   have hNι : NormFormulaAlong F ι hfin := normFormulaAlong_of_elliptic ι hfin
   have hNι' : NormFormulaAlong F ι' hfin' := normFormulaAlong_of_elliptic ι' hfin'
-
   have hιτint : (ι.comp τ).toRingHom.IsIntegral := RingHom.IsIntegral.trans _ _ hτint hι
   have hιτfin : FiniteAlong F (ι.comp τ) := finiteAlong_comp τ ι hτfin hfin
   have hNιτ : NormFormulaAlong F (ι.comp τ) hιτfin := normFormulaAlong_of_elliptic _ hιτfin
@@ -397,12 +388,10 @@ theorem kw_veluOddQuotientJInjOnCyclic_of_isogenyEndInt
     rw [AddMonoidHom.mem_ker, AddMonoidHom.mem_ker, hβ_comp]
     refine ⟨fun h => hτinj (h.trans (map_zero _).symm), fun h => ?_⟩
     rw [h, map_zero]
-
   have hβs : Function.Surjective β :=
     pointMapOfPushforward_surjective W.toAffine _ (ι.comp τ) hιτint hιτfin hNιτ
   have hφ's : Function.Surjective φ' :=
     pointMapOfPushforward_surjective W.toAffine _ ι' hι' hfin' hNι'
-
   have hNne : ((2 * n + 1 : ℤ) : AddMonoid.End W.toAffine.Point) ≠ 0 := by
     intro h
     have := intCast_addMonoidEnd_point_injective W.toAffine (h.trans Int.cast_zero.symm)
@@ -411,7 +400,6 @@ theorem kw_veluOddQuotientJInjOnCyclic_of_isogenyEndInt
     ((2 * n + 1 : ℤ) : AddMonoid.End W.toAffine.Point) (intCast_mem _ _) hNne
   have hMapp : ∀ P, M.pointEnd (hNs M) P = (2 * n + 1 : ℤ) • P := fun P => by
     rw [hM, AddMonoid.End.intCast_apply]
-
   let φ'D : IsogenyHomDatum W.toAffine (W.veluQuotient (W.oddOrderSummingSet Q' n)).toAffine :=
     ⟨ι', hι', hfin'⟩
   have hmem_of_ker : ∀ P, φ' P = 0 → (2 * n + 1 : ℤ) • P = 0 := by
@@ -434,7 +422,6 @@ theorem kw_veluOddQuotientJInjOnCyclic_of_isogenyEndInt
   have hdual₂ : ∀ S, φ' (ψ' S) = (2 * n + 1 : ℤ) • S := fun S => by
     obtain ⟨P, rfl⟩ := hφ's S
     rw [hdual₁, map_zsmul]
-
   have hDint : ((ι.comp τ).comp χ.ι).toRingHom.IsIntegral :=
     RingHom.IsIntegral.trans _ _ χ.hι hιτint
   let D : IsogenyEndDatum W.toAffine :=
@@ -447,7 +434,6 @@ theorem kw_veluOddQuotientJInjOnCyclic_of_isogenyEndInt
   have hθm : ∀ P, θ P = m • P := fun P => by
     show ψ' (β P) = m • P
     rw [← hD P]; exact hm P
-
   have hcardQ' : Nat.card (AddSubgroup.zmultiples Q') = 2 * n + 1 := by
     rw [Nat.card_zmultiples, hQ']
   have hcardQ : Nat.card (AddSubgroup.zmultiples Q) = 2 * n + 1 := by
@@ -461,7 +447,6 @@ theorem kw_veluOddQuotientJInjOnCyclic_of_isogenyEndInt
     have hsplit := cmm5_dp_natCard_ker_comp φ' ψ' hφ's
     rw [hcomp, hkerφ', hcardQ', sq] at hsplit
     exact (Nat.eq_of_mul_eq_mul_right (by omega) hsplit).symm
-
   have hkerθ : Nat.card θ.ker = (2 * n + 1) ^ 2 := by
     have hsplit := cmm5_dp_natCard_ker_comp β ψ' hβs
     rw [hkerβ, hcardQ, hkerψ'] at hsplit
@@ -479,12 +464,10 @@ theorem kw_veluOddQuotientJInjOnCyclic_of_isogenyEndInt
     have hcard := kw_nat_card_ker_of_zsmul (W := W.toAffine) hmne hθm
     rw [hkerθ, sq, sq] at hcard
     exact (Nat.mul_self_inj).mp hcard.symm
-
   have hkey : ∀ P, (2 * n + 1 : ℤ) • β P = m • φ' P := fun P => by
     have h1 : φ' (ψ' (β P)) = (2 * n + 1 : ℤ) • β P := hdual₂ (β P)
     have h2 : φ' (θ P) = m • φ' P := by rw [hθm, map_zsmul]
     rw [← h1]; exact h2
-
   have hmcases : m = (2 * n + 1 : ℤ) ∨ m = -(2 * n + 1 : ℤ) := by
     rcases Int.natAbs_eq m with h | h <;> [left; right] <;> omega
   have hNz : (2 * n + 1 : ℤ) ≠ 0 := by omega

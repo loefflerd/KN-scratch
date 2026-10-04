@@ -54,13 +54,11 @@ theorem order_map_zpow (x : F) (n : ℤ) : (φ (x ^ n)).order = n * (φ x).order
       neg_mul]
 
 theorem order_map_algebraMap (c : K) : (φ (algebraMap K F c)).order = 0 := by
-
   have h : (algebraMap K (HahnSeries ℚ L)) c = HahnSeries.C (algebraMap K L c) := by
     first
     | exact HahnSeries.algebraMap_apply
     | rw [HahnSeries.algebraMap_apply', IsScalarTower.algebraMap_apply K L (PowerSeries L),
         PowerSeries.algebraMap_eq, HahnSeries.ofPowerSeries_C]
-
   rw [φ.commutes, h, HahnSeries.order_C]
 
 def valuationSubring : ValuationSubring F where

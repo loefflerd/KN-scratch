@@ -286,8 +286,7 @@ theorem roots_prime_at_slot_nodup (N : ℕ) [NeZero N] (ζ : Kˣ) (hζ : IsPrimi
   have hζp : IsPrimitiveRoot ((ζ ^ (N / p) : Kˣ) : K) p := isPrimitiveRoot_pow_div hζ hpN
   rw [Multiset.nodup_cons]
   constructor
-  ·
-    intro hmem
+  · intro hmem
     obtain ⟨b, hb, heq⟩ := Multiset.mem_map.mp hmem
     have h := (TS_injective (K := K) (e := e) (e' := p * (p * e))
       (u := u * ζ ^ (b * (N / p))) (u' := u ^ (p * p)) heq).1
@@ -296,8 +295,7 @@ theorem roots_prime_at_slot_nodup (N : ℕ) [NeZero N] (ζ : Kˣ) (hζ : IsPrimi
     have hmono : 2 * (2 * e) ≤ p * (p * e) := Nat.mul_le_mul hp2 (Nat.mul_le_mul hp2 le_rfl)
     rw [← h] at hmono
     omega
-  ·
-    refine Multiset.Nodup.map_on ?_ (Multiset.nodup_range p)
+  · refine Multiset.Nodup.map_on ?_ (Multiset.nodup_range p)
     intro b hb b' hb' heq
     rw [Multiset.mem_range] at hb hb'
     have h := (TS_injective (K := K) (e := e) (e' := e)
@@ -569,7 +567,6 @@ p2m_open_scoped "ModularCurve" in
 open ModularCurve.W1 in
 private theorem ModularCurve.finrank_adjoin_jqN_pow_succ_of_not_mem (F : IntermediateField ℚ (LaurentSeries ℚ)) (p : ℕ) [hp : Fact (Nat.Prime p)] (k : ℕ) (h0 : jqN (p ^ k) ∈ F) (h1 : jqN (p ^ (k + 1)) ∈ F) (hF : jqN (p ^ (k + 2)) ∉ F) : Module.finrank F (IntermediateField.adjoin F ({jqN (p ^ (k + 2))} : Set (LaurentSeries ℚ))) = p := by
   classical
-
   obtain ⟨data, -, hs⟩ := exists_phiIrreducible_evalSymm p
   set jkF : F := ⟨jqN (p ^ k), h0⟩ with hjkF
   set jp1F : F := ⟨jqN (p ^ (k + 1)), h1⟩ with hjp1F
@@ -579,7 +576,6 @@ private theorem ModularCurve.finrank_adjoin_jqN_pow_succ_of_not_mem (F : Interme
     rw [hQdef, phiAtSeed_natDegree, dedekindPsi_prime hp.out]
   have hQmap : Q.map (algebraMap F (LaurentSeries ℚ)) = phiAtSeed data (jqN (p ^ (k + 1))) := by
     rw [hQdef, phiAtSeed_map]; rfl
-
   have hdown : (phiAtSeed data (jqN (p ^ k))).eval (jqN (p ^ (k + 1))) = 0 := by
     have h := phiAtSeed_jqN_eval p data (p ^ k)
     rwa [jqN_congr ((pow_succ p k).symm)] at h
@@ -600,7 +596,6 @@ private theorem ModularCurve.finrank_adjoin_jqN_pow_succ_of_not_mem (F : Interme
     rw [Polynomial.Monic.natDegree_mul (Polynomial.monic_X_sub_C jkF) hPmonic,
       Polynomial.natDegree_X_sub_C, hQdeg] at h
     omega
-
   have hQroot : Polynomial.aeval (jqN (p ^ (k + 2))) Q = 0 := by
     rw [← Polynomial.eval_map_algebraMap, hQmap]
     have h := phiAtSeed_jqN_eval p data (p ^ (k + 1))
@@ -632,14 +627,12 @@ private theorem ModularCurve.finrank_adjoin_jqN_pow_succ_of_not_mem (F : Interme
     · exact h2'
   have hint : IsIntegral F (jqN (p ^ (k + 2))) :=
     ⟨P, hPmonic, by rwa [Polynomial.aeval_def] at hProot⟩
-
   let K := CyclotomicField p ℚ
   let ζ : Kˣ := cycUnit p
   have hζK : IsPrimitiveRoot (ζ : K) p := cycUnit_spec p
   let ι : LaurentSeries ℚ →+* LaurentSeries K := (coeffEmb K).comp (qExpand ℚ p)
   let : Algebra F (LaurentSeries K) := (ι.comp (algebraMap F (LaurentSeries ℚ))).toAlgebra
   have halg : ∀ a : F, algebraMap F (LaurentSeries K) a = ι a := fun a => rfl
-
   have hseed : coeffEmb K (qExpand ℚ p (jqN (p ^ (k + 1))))
       = qExpand K (p * p ^ (k + 1)) (qTwist ((1 : Kˣ) ^ p) (coeffEmb K jq)) := by
     have h2 : TS K (p * p ^ (k + 1)) 1 = TS K (p * p ^ (k + 1)) ((1 : Kˣ) ^ p) := by
@@ -664,7 +657,6 @@ private theorem ModularCurve.finrank_adjoin_jqN_pow_succ_of_not_mem (F : Interme
   have hQnodup : (Q.map (algebraMap F (LaurentSeries K))).roots.Nodup := by
     rw [hQmapL, phiAtSeed]
     exact roots_prime_at_slot_roots_nodup p ζ hζK p (dvd_refl p) data (p ^ (k + 1)) 1
-
   have hjL : algebraMap F (LaurentSeries K) jkF = TS K (p ^ (k + 1)) 1 :=
     (iota_jqN p (p ^ k)).trans (TS_congr (pow_succ' p k).symm 1)
   have hQPmapL : Q.map (algebraMap F (LaurentSeries K))
@@ -676,7 +668,6 @@ private theorem ModularCurve.finrank_adjoin_jqN_pow_succ_of_not_mem (F : Interme
       = TS K (p ^ (k + 1)) 1 ::ₘ (P.map (algebraMap F (LaurentSeries K))).roots := by
     rw [hQPmapL, Polynomial.roots_mul (hQPmapL ▸ hQm0), Polynomial.roots_X_sub_C,
       Multiset.singleton_add]
-
   have : IsCyclotomicExtension {p} ℚ K := CyclotomicField.isCyclotomicExtension p ℚ
   have hirrcyc : Irreducible (Polynomial.cyclotomic p ℚ) :=
     Polynomial.cyclotomic.irreducible_rat hp.out.pos
@@ -714,7 +705,6 @@ private theorem ModularCurve.finrank_adjoin_jqN_pow_succ_of_not_mem (F : Interme
       hζmod (((g : ZMod p)).val * ((g ^ i : (ZMod p)ˣ) : ZMod p).val)]
     congr 1
     rw [pow_succ', Units.val_mul, ZMod.val_mul]
-
   have hreidx := range_map_eq_rUnit p (p ^ (k + 1)) ζ hζK g hg
   have hProots : (P.map (algebraMap F (LaurentSeries K))).roots
       = TS K (p * (p * p ^ (k + 1))) 1
@@ -730,7 +720,6 @@ private theorem ModularCurve.finrank_adjoin_jqN_pow_succ_of_not_mem (F : Interme
       Multiset.card_range, hPmonic.natDegree_map, hPdeg]
     have := hp.out.two_le
     omega
-
   have hirr : Irreducible P := by
     refine Polynomial.irreducible_of_transitive_ringAut P hPmonic hPsplits (coeffMapEquiv τ) ?_
       (TS K (p * (p * p ^ (k + 1))) 1) (rUnit (p ^ (k + 1)) ζ g) (p - 1) hProots hPnodup ?_ ?_
@@ -749,7 +738,6 @@ private theorem ModularCurve.finrank_adjoin_jqN_pow_succ_of_not_mem (F : Interme
         rw [hf, iota_jqN]
         exact TS_congr (congrArg (p * ·) (pow_succ' p (k + 1)).symm) 1
       exact hF (hval ▸ f.2)
-
   have hmin : P = minpoly F (jqN (p ^ (k + 2))) :=
     minpoly.eq_of_irreducible_of_monic hirr hProot hPmonic
   rw [IntermediateField.adjoin.finrank hint, ← hmin, hPdeg]
@@ -761,7 +749,6 @@ p2m_open "ModularCurve~coeffEmb_qExpand" in open _root_.P2MW.S_ModularCurve_finr
 
 theorem solution (F : IntermediateField ℚ (LaurentSeries ℚ)) (p : ℕ) [hp : Fact (Nat.Prime p)] (k : ℕ) (h0 : jqN (p ^ k) ∈ F) (h1 : jqN (p ^ (k + 1)) ∈ F) (hF : jqN (p ^ (k + 2)) ∉ F) : Module.finrank F (IntermediateField.adjoin F ({jqN (p ^ (k + 2))} : Set (LaurentSeries ℚ))) = p :=
   ModularCurve.finrank_adjoin_jqN_pow_succ_of_not_mem F p k h0 h1 hF
-
 
 end S_ModularCurve_finrank_adjoin_jqN_pow_succ_of_not_mem
 end P2MW

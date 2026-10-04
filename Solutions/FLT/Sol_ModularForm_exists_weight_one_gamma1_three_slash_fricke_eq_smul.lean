@@ -417,26 +417,21 @@ theorem slash_eq_chi3_smul
     (hT : F ∣[(1 : ℤ)] ModularGroup.T = F) (hU : F ∣[(1 : ℤ)] U₃ = F)
     {γ : SL(2, ℤ)} (hγ : γ ∈ Gamma0 3) :
     F ∣[(1 : ℤ)] γ = (chi3 γ : ℂ) • F := by
-
   let p : (g : SL(2, ℤ)) → g ∈ Subgroup.closure gens → Prop :=
     fun g _ => F ∣[(1 : ℤ)] g = (chi3 g : ℂ) • F
-
   have hmem_iff : ∀ {g : SL(2, ℤ)}, g ∈ Subgroup.closure gens ↔ g ∈ Gamma0 3 := by
     intro g; rw [closure_T_U_neg_one_eq]
   refine Subgroup.closure_induction (k := gens) (p := p) ?_ ?_ ?_ ?_ (hmem_iff.mpr hγ)
-  ·
-    rintro x (rfl | rfl | rfl)
+  · rintro x (rfl | rfl | rfl)
     · show F ∣[(1 : ℤ)] ModularGroup.T = (chi3 ModularGroup.T : ℂ) • F
       rw [hT, chi3_T]; simp
     · show F ∣[(1 : ℤ)] U₃ = (chi3 U₃ : ℂ) • F
       rw [hU, chi3_U₃]; simp
     · exact slash_neg_one F
-  ·
-    show F ∣[(1 : ℤ)] (1 : SL(2, ℤ)) = (chi3 1 : ℂ) • F
+  · show F ∣[(1 : ℤ)] (1 : SL(2, ℤ)) = (chi3 1 : ℂ) • F
     rw [SlashAction.slash_one, chi3_one]
     simp
-  ·
-    intro x y hx hy hpx hpy
+  · intro x y hx hy hpx hpy
     show F ∣[(1 : ℤ)] (x * y) = (chi3 (x * y) : ℂ) • F
     have hx' : x ∈ Gamma0 3 := hmem_iff.mp hx
     have hy' : y ∈ Gamma0 3 := hmem_iff.mp hy
@@ -447,24 +442,20 @@ theorem slash_eq_chi3_smul
       _ = (chi3 x : ℂ) • ((chi3 y : ℂ) • F) := by rw [hpy]
       _ = ((chi3 x * chi3 y : ℤ) : ℂ) • F := by rw [smul_smul]; norm_num
       _ = (chi3 (x * y) : ℂ) • F := by rw [← chi3_mul hx' hy']
-  ·
-    intro x hx hpx
+  · intro x hx hpx
     show F ∣[(1 : ℤ)] x⁻¹ = (chi3 x⁻¹ : ℂ) • F
     have hx' : x ∈ Gamma0 3 := hmem_iff.mp hx
     have hxinv : x⁻¹ ∈ Gamma0 3 := inv_mem hx'
-
     have hchi : chi3 x⁻¹ = chi3 x := by
       have h1 : chi3 (x⁻¹ * x) = chi3 x⁻¹ * chi3 x := chi3_mul hxinv hx'
       rw [inv_mul_cancel, chi3_one] at h1
       rcases chi3_eq_one_or_neg_one x with h | h <;>
         rcases chi3_eq_one_or_neg_one x⁻¹ with h' | h' <;> rw [h, h'] <;> rw [h, h'] at h1 <;>
           omega
-
     have h2 : (F ∣[(1 : ℤ)] x) ∣[(1 : ℤ)] x⁻¹ = ((chi3 x : ℂ) • F) ∣[(1 : ℤ)] x⁻¹ := by
       rw [hpx]
     rw [← SlashAction.slash_mul, mul_inv_cancel, SlashAction.slash_one,
       ModularForm.SL_smul_slash] at h2
-
     have h3 := congrArg (fun G => (chi3 x : ℂ) • G) h2
     simp only [smul_smul] at h3
     rw [show ((chi3 x : ℂ) * (chi3 x : ℂ)) = ((chi3 x * chi3 x : ℤ) : ℂ) by push_cast; ring,
@@ -489,7 +480,6 @@ def slashInvariantForm_of_T_U (F : ℍ → ℂ)
   toFun := F
   slash_action_eq' := by
     rintro γ ⟨δ, hδ, rfl⟩
-
     exact slash_eq_self_of_mem_Gamma1 F hT hU hδ
 
 @[scoped simp] lemma coe_slashInvariantForm_of_T_U (F : ℍ → ℂ)
@@ -569,7 +559,6 @@ lemma U_smul_eq_fricke_translate_fricke {z : ℂ} (hz : 0 < z.im) :
     z / ((-3) * z + 1) = -1 / (3 * (-1 / (3 * z) + 1)) := by
   have hz0 : z ≠ 0 := ne_zero_of_im_pos hz
   have hden : (-3 : ℂ) * z + 1 ≠ 0 := U_denom_ne_zero hz
-
   have h1 : (3 : ℂ) * (-1 / (3 * z) + 1) = (3 * z - 1) / z := by
     field_simp
     ring
@@ -595,7 +584,6 @@ lemma fricke_double_multiplier {z : ℂ} (hz : 0 < z.im) :
 
 theorem hexTheta_U_law {z : ℂ} (hz : 0 < z.im) :
     hexTheta (z / ((-3) * z + 1)) = ((-3) * z + 1) * hexTheta z := by
-
   have hσ : 0 < (-1 / (3 * z)).im := im_neg_one_div_three_mul_pos hz
   have hσ1 : 0 < (-1 / (3 * z) + 1).im := by
     rwa [Complex.add_im, Complex.one_im, add_zero]
@@ -642,13 +630,11 @@ lemma thetaBound_nonneg : 0 ≤ thetaBound :=
 theorem norm_latticeSum_le_of_one_le_im {τ : ℂ} (hτ : 1 ≤ τ.im) :
     ‖latticeSum τ‖ ≤ thetaBound := by
   have hτ0 : 0 < τ.im := lt_of_lt_of_le one_pos hτ
-
   have hdom : ∀ v : ℤ × ℤ, ‖latticeTerm τ v‖
       ≤ Real.exp (-(π * (v.1 : ℝ) ^ 2)) * Real.exp (-(π * (v.2 : ℝ) ^ 2)) := by
     intro v
     have h := norm_latticeTerm_le_of_le_im one_pos hτ v
     simpa only [mul_one, one_mul] using h
-
   have hgauss : Summable fun v : ℤ × ℤ =>
       Real.exp (-(π * (v.1 : ℝ) ^ 2)) * Real.exp (-(π * (v.2 : ℝ) ^ 2)) := by
     simpa only [mul_one, one_mul] using summable_gaussian_prod one_pos
@@ -679,18 +665,15 @@ theorem hexThetaH_slash_repOfLabel_apply (k : ZMod 3) (z : ℍ) :
     (hexThetaH ∣[(1 : ℤ)] Gamma0Three.repOfLabel (some k)) z
       = (-Complex.I / ((Real.sqrt 3 : ℝ) : ℂ)) * hexTheta (((z : ℂ) + (k.val : ℂ)) / 3) := by
   have hz : 0 < (z : ℂ).im := by rw [UpperHalfPlane.coe_im]; exact z.im_pos
-
   have hden_im : ((z : ℂ) + (k.val : ℂ)).im = (z : ℂ).im := by
     simp only [Complex.add_im, Complex.natCast_im, add_zero]
   have hden_ne : (z : ℂ) + (k.val : ℂ) ≠ 0 := by
     intro h
     rw [← Complex.zero_im, ← h, hden_im] at hz
     exact lt_irrefl _ hz
-
   have hσ_im : 0 < (((z : ℂ) + (k.val : ℂ)) / 3).im := by
     rw [im_add_natCast_div_three]
     positivity
-
   have hsmul : ((Gamma0Three.repOfLabel (some k) • z : ℍ) : ℂ)
       = -1 / ((z : ℂ) + (k.val : ℂ)) := by
     rw [UpperHalfPlane.coe_specialLinearGroup_apply]
@@ -700,21 +683,18 @@ theorem hexThetaH_slash_repOfLabel_apply (k : ZMod 3) (z : ℍ) :
       show Gamma0Three.repOfLabel (some k) 1 1 = (k.val : ℤ) from rfl, eq_intCast]
     push_cast
     rw [zero_mul, zero_add, one_mul]
-
   have hdenom : denom (Gamma0Three.repOfLabel (some k)) z = (z : ℂ) + (k.val : ℂ) := by
     rw [ModularGroup.denom_apply,
       show Gamma0Three.repOfLabel (some k) 1 0 = 1 from rfl,
       show Gamma0Three.repOfLabel (some k) 1 1 = (k.val : ℤ) from rfl]
     push_cast
     rw [one_mul]
-
   have hfricke : hexTheta (-1 / ((z : ℂ) + (k.val : ℂ)))
       = -Complex.I * ((Real.sqrt 3 : ℝ) : ℂ) * (((z : ℂ) + (k.val : ℂ)) / 3)
         * hexTheta (((z : ℂ) + (k.val : ℂ)) / 3) := by
     have h := hexTheta_fricke hσ_im
     rw [show (3 : ℂ) * (((z : ℂ) + (k.val : ℂ)) / 3) = (z : ℂ) + (k.val : ℂ) by ring] at h
     exact h
-
   have hmul : -Complex.I * ((Real.sqrt 3 : ℝ) : ℂ) * (((z : ℂ) + (k.val : ℂ)) / 3)
       * ((z : ℂ) + (k.val : ℂ))⁻¹ = -Complex.I / ((Real.sqrt 3 : ℝ) : ℂ) := by
     rw [eq_div_iff sqrt_three_ne_zero,
@@ -724,7 +704,6 @@ theorem hexThetaH_slash_repOfLabel_apply (k : ZMod 3) (z : ℍ) :
           * (((z : ℂ) + (k.val : ℂ)) * ((z : ℂ) + (k.val : ℂ))⁻¹) / 3 by ring,
       sqrt_three_mul_sqrt_three, mul_inv_cancel₀ hden_ne]
     ring
-
   rw [ModularForm.SL_slash_apply, hdenom, _root_.zpow_neg, zpow_one]
   show latticeSum ((Gamma0Three.repOfLabel (some k) • z : ℍ) : ℂ) * _ = _
   rw [hsmul, latticeSum_eq_hexTheta, hfricke]
@@ -732,7 +711,6 @@ theorem hexThetaH_slash_repOfLabel_apply (k : ZMod 3) (z : ℍ) :
 
 theorem isBoundedAtImInfty_hexThetaH_slash (γ : SL(2, ℤ)) :
     IsBoundedAtImInfty (hexThetaH ∣[(1 : ℤ)] γ) := by
-
   set r := Gamma0Three.repOfLabel (Gamma0Three.label γ) with hr
   have hδ : γ * r⁻¹ ∈ Gamma0 3 :=
     (Gamma0Three.mul_inv_repOfLabel_mem_iff γ (Gamma0Three.label γ)).mpr rfl
@@ -740,15 +718,11 @@ theorem isBoundedAtImInfty_hexThetaH_slash (γ : SL(2, ℤ)) :
   rw [hfact, SlashAction.slash_mul,
     slash_eq_chi3_smul hexThetaH hexThetaH_slash_T hexThetaH_slash_U hδ,
     ModularForm.SL_smul_slash]
-
   refine Filter.BoundedAtFilter.smul _ ?_
-
   rcases hcase : Gamma0Three.label γ with _ | k
-  ·
-    rw [hr, hcase, Gamma0Three.repOfLabel_none, SlashAction.slash_one]
+  · rw [hr, hcase, Gamma0Three.repOfLabel_none, SlashAction.slash_one]
     exact isBoundedAtImInfty_hexThetaH
-  ·
-    rw [hr, hcase]
+  · rw [hr, hcase]
     refine UpperHalfPlane.isBoundedAtImInfty_iff.mpr ⟨thetaBound, 3, fun z hz => ?_⟩
     rw [hexThetaH_slash_repOfLabel_apply k z, norm_mul]
     have him : 1 ≤ (((z : ℂ) + (k.val : ℂ)) / 3).im := by

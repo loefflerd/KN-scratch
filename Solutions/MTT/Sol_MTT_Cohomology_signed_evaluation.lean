@@ -60,7 +60,6 @@ lemma Sym_ext {n : ℕ} {P Q : Binary ℂ} (hP : P ∈ Sym ℂ n) (hQ : Q ∈ Sy
     rw [hm']
     exact h (m 0) (by omega)
 
-
 lemma binaryExponent_apply_one (n j : ℕ) : binaryExponent n j 1 = n - j := by
   simp [binaryExponent]
 

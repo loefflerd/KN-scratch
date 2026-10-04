@@ -24,14 +24,11 @@ local notation "F₀" => IntermediateField.adjoin K ({jqModC K} : Set (LaurentSe
 
 theorem step {ℓ : ℕ} [NeZero ℓ] (data : ModularPolynomialData ℓ) (d : ℕ) [NeZero d]
     (hd : IsIntegral F₀ (jqNModC K d)) : IsIntegral F₀ (jqNModC K (d * ℓ)) := by
-
   set E : IntermediateField F₀ L := IntermediateField.adjoin F₀ ({jqNModC K d} : Set L) with hE
   have : FiniteDimensional F₀ E := IntermediateField.adjoin.finiteDimensional hd
-
   have hmem : jqNModC K d ∈ E.restrictScalars K := by
     rw [IntermediateField.mem_restrictScalars]; exact IntermediateField.mem_adjoin_simple_self _ _
   have h1 : IsIntegral (E.restrictScalars K) (jqNModC K (d * ℓ)) := isIntegral_jqNModC_mul _ data d hmem
-
   have h2 : IsIntegral E (jqNModC K (d * ℓ)) := h1
   have : Algebra.IsIntegral F₀ E := Algebra.IsIntegral.of_finite F₀ E
   exact isIntegral_trans _ h2

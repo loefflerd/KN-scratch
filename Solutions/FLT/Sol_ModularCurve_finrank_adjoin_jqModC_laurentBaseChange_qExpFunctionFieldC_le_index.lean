@@ -195,11 +195,9 @@ theorem qExpansion_mem_monomialSpan (m : ℕ) :
         rw [PowerSeries.coeff_zero_eq_constantCoeff_apply, map_pow,
           ← PowerSeries.coeff_zero_eq_constantCoeff_apply, q4_coeff_zero, one_pow]
       rw [hg, map_sub, map_smul, h4, smul_eq_mul, mul_one, ha₀, sub_self]
-
     have hΔ := ModularForm.qExpansion_eq_qExpansion_discriminant_mul g hg0
     have hk' : k - 12 = 12 * (m : ℤ) := by rw [hk]; push_cast; ring
     have hIH := ih (k - 12) hk' (CuspForm.discriminantEquiv (g.toCuspForm hg0))
-
     have hh : qExpansion 1 (h : ℍ → ℂ) =
         a₀ • q4 ^ (3 * (m + 1)) +
           qΔ * qExpansion 1 (CuspForm.discriminantEquiv (g.toCuspForm hg0) : ℍ → ℂ) := by
@@ -208,8 +206,7 @@ theorem qExpansion_mem_monomialSpan (m : ℕ) :
     refine Submodule.add_mem _ (Submodule.smul_mem _ _ ?_) ?_
     · have := monomial_mem (m + 1) 0 (Nat.zero_le _)
       simpa using this
-    ·
-      refine Submodule.span_induction (p := fun x _ => qΔ * x ∈ monomialSpan (m + 1))
+    · refine Submodule.span_induction (p := fun x _ => qΔ * x ∈ monomialSpan (m + 1))
         ?_ ?_ ?_ ?_ hIH
       · rintro _ ⟨b, rfl⟩
         have hb : (b : ℕ) ≤ m := Nat.lt_succ_iff.mp b.2
@@ -801,7 +798,6 @@ theorem exists_rat_relation {k : ℤ} (f g : ModularForm (Γ : Subgroup (GL (Fin
       (∃ ib, d ib ≠ 0) ∧
       ∑ ib, d ib • (wq ^ (ib.2 : ℕ) * (intSeriesC ℚ pf / intSeriesC ℚ pg) ^ (ib.1 : ℕ)) = 0 := by
   classical
-
   have hgne : g ≠ 0 := by
     intro h0
     apply hg0
@@ -812,7 +808,6 @@ theorem exists_rat_relation {k : ℤ} (f g : ModularForm (Γ : Subgroup (GL (Fin
   have hk : 0 ≤ k := by
     by_contra hlt
     exact hgne (ModularForm.isZero_of_neg_weight (not_le.mp hlt) g)
-
   have hw : (11 : ℕ) * k + k = 12 * k := by ring
   have heven : Even (12 * k) := ⟨6 * k, by ring⟩
   let f₀ : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) (12 * k) := ((g.pow 11).mul f).mcast hw
@@ -832,7 +827,6 @@ theorem exists_rat_relation {k : ℤ} (f g : ModularForm (Γ : Subgroup (GL (Fin
     have : qExpansion 1 (g' : ℍ → ℂ) = 0 := by rw [h0, FunLike.coe_zero, qExpansion_zero]
     rw [hqg'] at this
     exact (mul_ne_zero (pow_ne_zero _ hqg) hqg) this
-
   have hT' : ModularGroup.T ∈ Γ' := hΓ' hT
   have hrel := FIdxNorm.sum_qExpansion_coeffForm_mul_pow_eq_zero f' g' hT'
   have htop := FIdxNorm.qExpansion_coeffForm_card_ne_zero f' g' hg'ne
@@ -842,7 +836,6 @@ theorem exists_rat_relation {k : ℤ} (f g : ModularForm (Γ : Subgroup (GL (Fin
   have hspan : ∀ i, qExpansion 1 (FIdxNorm.coeffForm f' g' i : ℍ → ℂ) ∈ FIdxLevelOne.monomialSpan m :=
     fun i => FIdxLevelOne.qExpansion_mem_monomialSpan m _ hkm _
   choose c hc using fun i => (Submodule.mem_span_range_iff_exists_fun ℂ).mp (hspan i)
-
   let Φ : PowerSeries ℂ →+* LaurentSeries ℂ := HahnSeries.ofPowerSeries ℤ ℂ
   have hΦ : Function.Injective Φ := HahnSeries.ofPowerSeries_injective
   set Q4 : LaurentSeries ℂ := Φ FIdxLevelOne.q4 with hQ4
@@ -857,7 +850,6 @@ theorem exists_rat_relation {k : ℤ} (f g : ModularForm (Γ : Subgroup (GL (Fin
     have h0 := congrArg (PowerSeries.coeff 0) this
     rw [FIdxLevelOne.q4_coeff_zero, map_zero] at h0
     exact one_ne_zero h0
-
   have hrel' : ∑ i ∈ Finset.range (μ + 1), QE i * (QG ^ 11 * QF) ^ i * (QG ^ 11 * QG) ^ (μ - i) = 0 := by
     have := congrArg Φ hrel
     rw [map_sum, map_zero] at this
@@ -869,7 +861,6 @@ theorem exists_rat_relation {k : ℤ} (f g : ModularForm (Γ : Subgroup (GL (Fin
   have hratio : (QG ^ 11 * QF) / (QG ^ 11 * QG) = QF / QG :=
     mul_div_mul_left _ _ (pow_ne_zero _ hQG0)
   rw [hratio] at hdiv
-
   set Wh : LaurentSeries ℂ := QD / Q4 ^ 3 with hWh
   have hQEi : ∀ i, QE i = Q4 ^ (3 * m) * ∑ b : Fin (m + 1), HahnSeries.C (c i b) * Wh ^ (b : ℕ) := by
     intro i
@@ -879,7 +870,6 @@ theorem exists_rat_relation {k : ℤ} (f g : ModularForm (Γ : Subgroup (GL (Fin
     rw [PowerSeries.smul_eq_C_mul, map_mul, map_mul, map_pow, map_pow, monomial_eq (Nat.lt_succ_iff.mp b.2) _ _ hQ40]
     simp only [Φ, HahnSeries.ofPowerSeries_C]
     ring
-
   have hsum : ∑ ib : Fin (μ + 1) × Fin (m + 1),
       c ib.1 ib.2 • (Wh ^ (ib.2 : ℕ) * (QF / QG) ^ (ib.1 : ℕ)) = 0 := by
     have h1 : Q4 ^ (3 * m) * ∑ i : Fin (μ + 1),
@@ -893,14 +883,12 @@ theorem exists_rat_relation {k : ℤ} (f g : ModularForm (Γ : Subgroup (GL (Fin
     rw [Finset.sum_mul]
     refine Finset.sum_congr rfl fun b _ => ?_
     rw [← HahnSeries.C_mul_eq_smul, mul_assoc]
-
   have hnz : ∃ b, c μ b ≠ 0 := by
     by_contra hall
     push Not at hall
     apply htop
     rw [← hc μ]
     exact Finset.sum_eq_zero fun b _ => by rw [hall b, zero_smul]
-
   obtain ⟨b₀, hb₀⟩ := hnz
   let v : Fin (μ + 1) × Fin (m + 1) → LaurentSeries ℚ :=
     fun ib => wq ^ (ib.2 : ℕ) * (intSeriesC ℚ pf / intSeriesC ℚ pg) ^ (ib.1 : ℕ)
@@ -967,7 +955,6 @@ theorem finrank_adjoin_wq_le :
   intro Y
   obtain ⟨k, f, g, pf, pg, hf, hg, hg0, hY⟩ := (mem_qExpFunctionFieldC_iff hT).mp Y.2
   obtain ⟨m, d, ⟨ib₀, hib₀⟩, hd⟩ := exists_rat_relation hT hΓ' hneg f g hf hg hg0
-
   let coef : Fin (Nat.card (FIdxNorm.Cos Γ') + 1) → K₀ :=
     fun i => ∑ b : Fin (m + 1), algebraMap ℚ K₀ (d (i, b)) * Xk ^ (b : ℕ)
   have hcoef : ∀ i, (((coef i : K₀) : F) : LaurentSeries ℚ) =
@@ -987,8 +974,7 @@ theorem finrank_adjoin_wq_le :
       rw [ite_eq_right]
       exact fun h => hji (Fin.ext h)
   refine ⟨p, ?_, ?_, ?_⟩
-  ·
-    intro hp
+  · intro hp
     have h1 : coef ib₀.1 = 0 := by rw [← hcoeff, hp, Polynomial.coeff_zero]
     apply wq_transcendental
     let r : ℚ[X] := ∑ b : Fin (m + 1), Polynomial.monomial (b : ℕ) (d (ib₀.1, b))
@@ -1004,11 +990,9 @@ theorem finrank_adjoin_wq_le :
     rw [hcoef] at h2
     rw [← h2]
     simp only [r, map_sum, Polynomial.aeval_monomial]
-  ·
-    exact natDegree_sum_le_of_forall_le _ _ fun i _ =>
+  · exact natDegree_sum_le_of_forall_le _ _ fun i _ =>
       (natDegree_monomial_le _).trans (Nat.lt_succ_iff.mp i.2)
-  ·
-    apply Subtype.val_injective
+  · apply Subtype.val_injective
     rw [ZeroMemClass.coe_zero]
     have hd' : ∑ ib : Fin (Nat.card (FIdxNorm.Cos Γ') + 1) × Fin (m + 1),
         algebraMap ℚ (LaurentSeries ℚ) (d ib) *
@@ -1063,7 +1047,6 @@ theorem finrank_le (Γ : Subgroup SL(2, ℤ)) [Γ.FiniteIndex] (hT : ModularGrou
         (IntermediateField.adjoin L ({y} : Set (laurentBaseChange L (qExpFunctionFieldC ℚ Γ))))
         (laurentBaseChange L (qExpFunctionFieldC ℚ Γ)) ≤ Γ'.index := by
   have : Γ'.FiniteIndex := Subgroup.finiteIndex_of_le hΓ'
-
   have hQ := FIdxRat.finrank_adjoin_wq_le (Γ := Γ) hT hΓ' hneg
   rw [FIdxNorm.card_cos_eq_index] at hQ
   have hQ' : IntermediateField.relfinrank (IntermediateField.adjoin ℚ ({FIdxRat.wq} : Set (LaurentSeries ℚ)))
@@ -1072,7 +1055,6 @@ theorem finrank_le (Γ : Subgroup SL(2, ℤ)) [Γ.FiniteIndex] (hT : ModularGrou
       (⟨FIdxRat.wq, FIdxRat.wq_mem⟩ : qExpFunctionFieldC ℚ Γ)
     exact h.symm.trans_le hQ
   rw [adjoin_wq_eq] at hQ'
-
   have hbc := ModularCurve.relfinrank_laurentBaseChange L (qExpFunctionFieldC ℚ Γ) (jqModC ℚ)
     FIdxRat.jqModC_mem (ModularCurve.transcendental_jqModC ℚ)
   rw [coeffEmb_jqModC] at hbc

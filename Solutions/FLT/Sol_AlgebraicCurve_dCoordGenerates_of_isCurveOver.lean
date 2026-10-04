@@ -237,14 +237,12 @@ private theorem _root_.AlgebraicCurve.Place.subsingleton_residueTensor_polynomia
   let := v.polynomialIsScalarTower
   have := v.subsingleton_residueKaehler_of_isSeparable
   refine subsingleton_of_forall_eq 0 fun t => ?_
-
   obtain ⟨c, rfl⟩ :=
     ((KaehlerDifferential.exact_kerCotangentToTensor_mapBaseChange K[X]
       v.toValuationSubring v.ResidueField
       Ideal.Quotient.mk_surjective) t).mp (Subsingleton.elim _ _)
   obtain ⟨⟨x, hx⟩, rfl⟩ := Ideal.toCotangent_surjective _ c
   simp only [KaehlerDifferential.kerCotangentToTensor_toCotangent]
-
   rw [v.ker_algebraMap_residueField_eq_span] at hx
   induction hx using Submodule.span_induction with
   | mem y hy =>
@@ -254,7 +252,6 @@ private theorem _root_.AlgebraicCurve.Place.subsingleton_residueTensor_polynomia
   | add y z _ _ hy hz =>
     rw [map_add, TensorProduct.tmul_add, hy, hz, add_zero]
   | smul a y hy IH =>
-
     have hres : (algebraMap v.toValuationSubring v.ResidueField y) = 0 := by
       rw [IsLocalRing.ResidueField.algebraMap_eq, IsLocalRing.residue_eq_zero_iff,
         v.maximalIdeal_eq_span_uniformizer]
@@ -401,10 +398,8 @@ theorem idealOfLE_ne_bot_of_ne_top_s12 {R S : ValuationSubring F} (h : R ≤ S)
 
 theorem eq_of_isDiscreteValuationRing_of_le_s12 {R S : ValuationSubring F}
     [IsDiscreteValuationRing R] (h : R ≤ S) (hS : S ≠ ⊤) : R = S := by
-
   have : IsDomain R := inferInstanceAs (IsDomain R.toSubring)
   have : IsDedekindDomain R := IsPrincipalIdealRing.isDedekindDomain R
-
   have hne : idealOfLE R S h ≠ ⊥ := idealOfLE_ne_bot_of_ne_top_s12 h hS
   have hmax : (idealOfLE R S h).IsMaximal := (prime_idealOfLE R S h).isMaximal hne
   have heq : idealOfLE R S h = IsLocalRing.maximalIdeal R := IsLocalRing.eq_maximalIdeal hmax
@@ -451,7 +446,6 @@ private theorem _root_.AlgebraicCurve.Place.isUnit_modelInclusion_of_not_mem_cen
     (hs : s ∉ v.centerIdeal A hA) :
     IsUnit (v.modelInclusion A hA s) := by
   let := v.modelAlgebra A hA
-
   rw [centerIdeal, Ideal.mem_comap, IsLocalRing.mem_maximalIdeal, mem_nonunits_iff,
     not_not] at hs
   exact hs
@@ -552,19 +546,16 @@ private theorem div_mem_of_not_mem_centerIdeal (r : A) {a : A}
 
 private theorem _root_.AlgebraicCurve.Place.centerIdeal_ne_bot_of_isFractionRing [IsFractionRing A F] :
     v.centerIdeal A hA ≠ ⊥ := by
-
   obtain ⟨f, hf⟩ : ∃ f : F, f ∉ v.toValuationSubring := by
     by_contra h; push Not at h
     exact v.ne_top' (ValuationSubring.toSubring_injective (top_le_iff.mp fun x _ => h x))
   obtain ⟨r, s, hs, hfrs⟩ := IsFractionRing.div_surjective (A := A) f
-
   have hsP : s ∈ v.centerIdeal A hA := by
     by_contra hsP
     apply hf
     have : algebraMap A F r / algebraMap A F s ∈ v.toValuationSubring :=
       div_mem_of_not_mem_centerIdeal v A hA r hsP
     rwa [hfrs] at this
-
   intro hbot
   exact (nonZeroDivisors.ne_zero hs) (Ideal.mem_bot.mp (hbot ▸ hsP))
 
@@ -606,9 +597,7 @@ private theorem _root_.AlgebraicCurve.Place.centerLocalizationSubalgebra_subset 
     ((v.centerLocalizationSubalgebra A hA : Subalgebra A F) : Set F)
       ⊆ (v.toValuationSubring : Set F) := by
   intro x hx
-
   obtain ⟨a, s, hs, rfl⟩ := hx
-
   rw [← div_eq_mul_inv]
   exact div_mem_of_not_mem_centerIdeal v A hA a hs
 
@@ -662,15 +651,11 @@ private theorem _root_.AlgebraicCurve.Place.isLocalization_centerIdeal_of_isDede
     IsLocalization.AtPrime v.toValuationSubring (v.centerIdeal A hA) := by
   let := v.modelAlgebra A hA
   refine (isLocalization_iff _ _).mpr ⟨?_, ?_, ?_⟩
-  ·
-    exact v.isUnit_modelInclusion_of_mem_primeCompl A hA
-  ·
-
-    intro x
+  · exact v.isUnit_modelInclusion_of_mem_primeCompl A hA
+  · intro x
     have hxP : (x : F) ∈ (v.centerLocalizationSubalgebra A hA : Subalgebra A F) :=
       v.mem_centerLocalizationSubalgebra_of_mem A hA (x : F) x.2
     obtain ⟨a, s, hs, hxeq⟩ := hxP
-
     refine ⟨⟨a, ⟨s, hs⟩⟩, Subtype.ext ?_⟩
     show (x : F) * ((s : A) : F) = ((a : A) : F)
     have halg_s : algebraMap A F s = ((s : A) : F) := rfl
@@ -680,8 +665,7 @@ private theorem _root_.AlgebraicCurve.Place.isLocalization_centerIdeal_of_isDede
       have hsne : s ≠ 0 := fun h => (h ▸ hs) (Ideal.zero_mem _)
       exact hsne (Subtype.ext (p := (· ∈ A)) (halg_s ▸ hF))
     rw [← halg_s, ← halg_a, hxeq, mul_assoc, inv_mul_cancel₀ hs0, mul_one]
-  ·
-    intro a₁ a₂ h
+  · intro a₁ a₂ h
     have hF : (a₁ : F) = (a₂ : F) :=
       congrArg (Subtype.val : v.toValuationSubring → F) h
     exact ⟨1, by rw [show a₁ = a₂ from Subtype.ext hF]⟩
@@ -1071,7 +1055,6 @@ theorem Place.dCoordGenerates_of_valSubringKaehlerSpanTop
       (S := v.toValuationSubring) (T := F) (nonZeroDivisors v.toValuationSubring),
     Submodule.span_le]
   rintro _ ⟨f, rfl⟩
-
   have hDf : KaehlerDifferential.D K v.toValuationSubring f
       ∈ (⊤ : Submodule v.toValuationSubring Ω[v.toValuationSubring⁄K]) := Submodule.mem_top
   rw [← hspan v] at hDf
@@ -1082,7 +1065,6 @@ theorem Place.dCoordGenerates_of_valSubringKaehlerSpanTop
     Submodule.mem_map_of_mem hDf
   rw [Submodule.map_span, Set.image_singleton,
     v.kaehlerMap_subring_D_uniformizer] at hmap
-
   exact Submodule.span_le_restrictScalars v.toValuationSubring F {v.dCoord} hmap
 
 end AbstractEngine

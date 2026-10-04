@@ -128,11 +128,9 @@ theorem solution
         ↥(ModularCurve.laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)),
       ∀ f, P.ord (Ψ f) = P₀.ord f := by
   classical
-
   have hΨeq : Ψ = liftRingHom τ (ModularCurve.qExpFunctionFieldC ℚ Γ) := by
     refine RingHom.ext fun f => Subtype.ext ?_
     rw [hΨ, coe_liftRingHom]
-
   let algQK : Algebra (AlgebraicClosure ℚ) K := τ.toRingHom.toAlgebra
   let algQF : Algebra (AlgebraicClosure ℚ) ↥(laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ Γ)) := algebraOfLift τ (ModularCurve.qExpFunctionFieldC ℚ Γ)
   have : IsScalarTower (AlgebraicClosure ℚ) K ↥(laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ Γ)) := IsScalarTower.of_algebraMap_eq fun _ => rfl
@@ -142,7 +140,6 @@ theorem solution
     show _ = Ψ (algebraMap (AlgebraicClosure ℚ) ↥(laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)) c)
     rw [hΨeq]
     exact ((liftHom τ (ModularCurve.qExpFunctionFieldC ℚ Γ)).commutes c).symm
-
   obtain ⟨x₀, hx₀tr, hx₀fd⟩ :=
     ModularCurve.JOneES.exists_transcendental_finiteDimensional_laurentBaseChange (AlgebraicClosure ℚ) Γ hT
   have := hx₀fd
@@ -153,7 +150,6 @@ theorem solution
     show IntermediateField.adjoin K (Set.range Ψ) = ⊤
     rw [hΨeq]
     exact adjoin_range_liftRingHom_eq_top τ (ModularCurve.qExpFunctionFieldC ℚ Γ)
-
   have hwK : ∀ a : AlgebraicClosure ℚ, Ψ (algebraMap (AlgebraicClosure ℚ) ↥(laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)) a) ∈ P.toValuationSubring := by
     intro a
     have : Ψ (algebraMap (AlgebraicClosure ℚ) ↥(laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)) a) = algebraMap K ↥(laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ Γ)) (τ a) := by
@@ -175,7 +171,6 @@ theorem solution
     exact P.ord_coe_unit u
   obtain ⟨P₀, hP₀⟩ := Place.exists_toValuationSubring_eq_comap_ringHom (K := AlgebraicClosure ℚ) x₀ Ψ
     P.toValuationSubring hwK hwx
-
   obtain ⟨P', -, hP'ord, huniq⟩ := Place.exists_comap_algebraMap_eq_of_constantFieldExtension
     (AlgebraicClosure ℚ) ↥(laurentBaseChange (AlgebraicClosure ℚ) (ModularCurve.qExpFunctionFieldC ℚ Γ)) K ↥(laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ Γ))
     ⟨x₀, hx₀tr, hx₀fd⟩ ⟨x₁, hx₁tr, hx₁fd⟩ hgen P₀

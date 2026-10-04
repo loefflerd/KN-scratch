@@ -60,7 +60,6 @@ private theorem ModularCurve.exists_phiIrreducible_of_finrank_eq (N : ℕ) [NeZe
   have tower : IsScalarTower (Polynomial ℤ) ℚ⟮jq⟯ (LaurentSeries ℚ) :=
     IsScalarTower.of_algebraMap_eq fun x =>
       (RingHom.congr_fun algebraMap_comp_evalAtJGen x).symm
-
   have : IsFractionRing (Polynomial ℤ) ℚ⟮jq⟯ := by
     refine { map_units := ?_, surj := ?_, exists_of_eq := ?_ }
     · rintro ⟨y, hy⟩
@@ -132,12 +131,10 @@ private theorem ModularCurve.exists_phiIrreducible_of_finrank_eq (N : ℕ) [NeZe
         exact key
     · intro x y hxy
       exact ⟨1, by rw [W1.evalAtJGen_injective hxy]⟩
-
   have hx : IsIntegral (Polynomial ℤ) (jqN N) := by
     obtain ⟨P, hP, hval⟩ := ModularCurve.exists_monic_evalAtJ_jqN_eq_zero N
     exact ⟨P, hP, hval⟩
   have hxQ : IsIntegral ℚ⟮jq⟯ (jqN N) := hx.tower_top
-
   have hmin := minpoly.isIntegrallyClosed_eq_field_fractions' ℚ⟮jq⟯ hx
   rw [IntermediateField.adjoin.finrank hxQ] at h
   have hΦm : (minpoly (Polynomial ℤ) (jqN N)).Monic := minpoly.monic hx
@@ -161,7 +158,6 @@ open _root_.ModularCurve _root_.P2MW.S_ModularCurve_exists_phiIrreducible_of_fin
 
 theorem solution (N : ℕ) [NeZero N] (h : Module.finrank (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) (IntermediateField.adjoin (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) ({jqN N} : Set (LaurentSeries ℚ))) = dedekindPsi N) : ∃ data : ModularPolynomialData N, PhiIrreducible data :=
   ModularCurve.exists_phiIrreducible_of_finrank_eq N h
-
 
 end S_ModularCurve_exists_phiIrreducible_of_finrank_eq
 end P2MW

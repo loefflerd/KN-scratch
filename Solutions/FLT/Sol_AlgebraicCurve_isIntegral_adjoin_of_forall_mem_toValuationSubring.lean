@@ -23,7 +23,6 @@ theorem isIntegral_of_mem_adjoin_inv {A F : Type*} [CommRing A] [Field F] [Algeb
   rw [Algebra.adjoin_singleton_eq_range_aeval] at hmem
   obtain ⟨p, hp⟩ := hmem
   have hp' : aeval z⁻¹ p = z := hp
-
   have hdeg : (∑ i ∈ Finset.range (p.natDegree + 1), C (p.coeff i) * X ^ (p.natDegree - i)).degree ≤
       (p.natDegree : WithBot ℕ) := by
     refine (Polynomial.degree_sum_le _ _).trans (Finset.sup_le fun i _ => ?_)
@@ -57,7 +56,6 @@ theorem isIntegral_of_forall_valuationSubring {F : Type*} [Field F] (A : Subring
   let B : Subalgebra A F := Algebra.adjoin A ({y} : Set F)
   have hyB : y ∈ B := Algebra.subset_adjoin (Set.mem_singleton y)
   have hzB : z ∉ B := fun hzB => hnot (isIntegral_of_mem_adjoin_inv hz0 hzB)
-
   have hyu : (⟨y, hyB⟩ : B) ∈ nonunits B := by
     intro hu
     obtain ⟨u, hu⟩ := hu
@@ -69,7 +67,6 @@ theorem isIntegral_of_forall_valuationSubring {F : Type*} [Field F] (A : Subring
       rw [← this, hy, inv_inv]
     exact hzB (hinv ▸ ((u⁻¹ : Bˣ) : B).2)
   obtain ⟨m, hm, hym⟩ := exists_max_ideal_of_mem_nonunits hyu
-
   let Bs : Subring F := B.toSubring
   let m' : Ideal Bs := m
   have : m'.IsMaximal := hm
@@ -84,7 +81,6 @@ theorem isIntegral_of_forall_valuationSubring {F : Type*} [Field F] (A : Subring
       exact Subalgebra.algebraMap_mem B ⟨a, ha⟩
     exact hLV (hBL this)
   have hzV : z ∈ V := h V hAV
-
   have hyL : (algebraMap Bs L.toSubring ⟨y, hyB⟩) ∈ IsLocalRing.maximalIdeal L.toSubring :=
     (IsLocalization.AtPrime.to_map_mem_maximal_iff L.toSubring m' ⟨y, hyB⟩).mpr hym
   have hcoe : ((algebraMap Bs L.toSubring ⟨y, hyB⟩ : L.toSubring) : F) = y := by

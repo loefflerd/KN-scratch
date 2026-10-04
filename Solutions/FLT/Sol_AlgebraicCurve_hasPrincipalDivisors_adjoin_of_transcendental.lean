@@ -28,22 +28,17 @@ theorem hasPrincipalDivisors_adjoin (x : LF) (hx : Transcendental K x) (T : Fins
   have hxF : x ∈ F := subset_adjoin K _ (Set.mem_insert x _)
   have hTF : ∀ t ∈ T, t ∈ F := fun t ht => subset_adjoin K _ (Set.mem_insert_of_mem x ht)
   set x' : F := ⟨x, hxF⟩ with hx'
-
   have hx't : Transcendental K x' :=
     (transcendental_algebraMap_iff (R := K) (S := F) (A := LF) Subtype.val_injective).mp hx
-
   set A : IntermediateField K F := IntermediateField.adjoin K ({x'} : Set F) with hA
   have hliftA : lift A = IntermediateField.adjoin K ({x} : Set LF) := by
     rw [hA, lift_adjoin_simple]
-
   let e : A ≃ₐ[K] IntermediateField.adjoin K ({x} : Set LF) :=
     (liftAlgEquiv A).trans (equivOfEq hliftA)
   have he : ∀ a : A, ((e a : IntermediateField.adjoin K ({x} : Set LF)) : LF) = ((a : F) : LF) := by
     intro a; rfl
-
   have hint : ∀ t (ht : t ∈ T), IsIntegral A (⟨t, hTF t ht⟩ : F) := by
     intro t ht
-
     have h1 : IsIntegral A (t : LF) := by
       refine (hT t ht).map_of_comp_eq (R := IntermediateField.adjoin K ({x} : Set LF)) (S := LF) (T := A) (U := LF)
         (e.symm : IntermediateField.adjoin K ({x} : Set LF) →+* A) (RingHom.id LF) ?_
@@ -51,14 +46,12 @@ theorem hasPrincipalDivisors_adjoin (x : LF) (hx : Transcendental K x) (T : Fins
       change (((e.symm b : A) : F) : LF) = ((b : IntermediateField.adjoin K ({x} : Set LF)) : LF)
       rw [← he (e.symm b), AlgEquiv.apply_symm_apply]
     exact (isIntegral_algHom_iff (IsScalarTower.toAlgHom A F LF) Subtype.val_injective).mp h1
-
   have : FiniteDimensional A F := by
     set T' : Set F := (fun t : T => (⟨(t : LF), hTF t t.2⟩ : F)) '' Set.univ with hT'
     have : Finite T' := Set.Finite.to_subtype ((Set.finite_univ).image _)
     have hT'int : ∀ y ∈ T', IsIntegral A y := by
       rintro _ ⟨t, -, rfl⟩; exact hint t t.2
     have : FiniteDimensional A (IntermediateField.adjoin A T') := finiteDimensional_adjoin hT'int
-
     have htop : IntermediateField.adjoin A T' = ⊤ := by
       apply restrictScalars_injective K
       rw [restrictScalars_adjoin, restrictScalars_top]

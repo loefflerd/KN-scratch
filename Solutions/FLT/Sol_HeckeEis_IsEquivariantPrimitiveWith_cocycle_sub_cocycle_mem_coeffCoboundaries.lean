@@ -46,7 +46,6 @@ theorem solution
     hF.cocycle - hG.cocycle ∈ HeckeEis.coeffCoboundaries ρ :=
   HeckeEis.SolMain.cob hF hG h
 
-
 end S_HeckeEis_IsEquivariantPrimitiveWith_cocycle_sub_cocycle_mem_coeffCoboundaries
 end P2MW
 export P2MW.S_HeckeEis_IsEquivariantPrimitiveWith_cocycle_sub_cocycle_mem_coeffCoboundaries (solution)

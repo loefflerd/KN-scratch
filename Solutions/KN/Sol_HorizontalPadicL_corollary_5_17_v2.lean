@@ -584,7 +584,6 @@ theorem HorizontalPadicL.seededInverseThetaSystem_exists_forSign
   · intro A n hn
     simp only [E, dite_eq_left hn, map_sub, MonoidAlgebra.mapRingHom_single, inverseSeedEulerFactorCp, Subring.subtype_apply]
 
-
 open scoped BigOperators
 
 namespace HorizontalPadicL.AnyParityProjection
@@ -1323,7 +1322,6 @@ theorem projection_relation
 
 end HorizontalPadicL.AnyParityProjection
 
-
 open scoped BigOperators
 
 namespace HorizontalPadicL.AnyParityEvaluation
@@ -1553,9 +1551,6 @@ theorem eval_ne_zero_iff
   exact ⟨fun h => h.2, fun h => ⟨hC, h⟩⟩
 
 end HorizontalPadicL.AnyParityEvaluation
-
-
-
 
 
 namespace HorizontalPadicL.AnyParityNorms

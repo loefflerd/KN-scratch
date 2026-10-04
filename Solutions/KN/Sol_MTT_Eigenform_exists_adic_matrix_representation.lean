@@ -112,7 +112,6 @@ theorem exists_isUnit_conj_integral
   have hinj : Function.Injective (algebraMap R K) := IsFractionRing.injective R K
   have : Module.IsTorsionFree R K := Module.isTorsionFree_iff_algebraMap_injective.mpr hinj
   have hdK : algebraMap R K d ≠ 0 := fun h0 ↦ hd (hinj (h0.trans (map_zero _).symm))
-
   let gen : Set (Fin n → K) := {y | ∃ x ∈ O, ∃ i : Fin n, y = x.mulVec (Pi.single i 1)}
   let L : Submodule R (Fin n → K) := Submodule.span R gen
   have hgenL : ∀ x ∈ O, ∀ i, x.mulVec (Pi.single i 1) ∈ L :=
@@ -121,7 +120,6 @@ theorem exists_isUnit_conj_integral
     intro i
     have := hgenL 1 O.one_mem i
     rwa [Matrix.one_mulVec] at this
-
   have hstab : ∀ x ∈ O, ∀ y ∈ L, x.mulVec y ∈ L := by
     intro x hx y hy
     induction hy using Submodule.span_induction with
@@ -134,7 +132,6 @@ theorem exists_isUnit_conj_integral
     | smul r y _ hy =>
       rw [← algebraMap_smul K r y, Matrix.mulVec_smul, algebraMap_smul]
       exact L.smul_mem r hy
-
   let N : Submodule R (Fin n → K) :=
     Submodule.span R (Set.range fun j : Fin n ↦
       ((algebraMap R K d)⁻¹ • Pi.single j (1 : K) : Fin n → K))
@@ -154,7 +151,6 @@ theorem exists_isUnit_conj_integral
         inv_mul_cancel₀ hdK, one_mul]
     rw [this]
     exact Submodule.smul_mem _ _ (Submodule.subset_span ⟨j, rfl⟩)
-
   have hNfg : N.FG := Submodule.fg_span (Set.finite_range _)
   have hLfg : L.FG := by
     have : IsNoetherian R N := isNoetherian_of_fg_of_noetherian _ hNfg
@@ -167,9 +163,7 @@ theorem exists_isUnit_conj_integral
   have : Module.Free R L := Module.free_of_finite_type_torsion_free'
   let ι := Module.Free.ChooseBasisIndex R L
   let b : Module.Basis ι R L := Module.Free.chooseBasis R L
-
   let col : ι → (Fin n → K) := fun i ↦ (b i : Fin n → K)
-
   have hli : LinearIndependent K col := by
     rw [Fintype.linearIndependent_iff]
     intro c hc i
@@ -199,7 +193,6 @@ theorem exists_isUnit_conj_integral
       rw [hri, map_zero] at h
       exact h.symm
     exact (mul_eq_zero.mp this).resolve_left hs0
-
   have hsp : ⊤ ≤ Submodule.span K (Set.range col) := by
     have hLle : ∀ y ∈ L, y ∈ Submodule.span K (Set.range col) := by
       intro y hy
@@ -221,7 +214,6 @@ theorem exists_isUnit_conj_integral
     rw [Module.finrank_fin_fun] at this
     exact this.symm
   let e : ι ≃ Fin n := Fintype.equivFinOfCardEq hcard
-
   let h : Matrix (Fin n) (Fin n) K := Matrix.of fun i j ↦ col (e.symm j) i
   have hcols : LinearIndependent K (fun j ↦ h.transpose j) := by
     have : (fun j ↦ h.transpose j) = col ∘ e.symm := by
@@ -230,7 +222,6 @@ theorem exists_isUnit_conj_integral
     exact hli.comp _ e.symm.injective
   have hU : IsUnit h := Matrix.linearIndependent_cols_iff_isUnit.mp hcols
   refine ⟨h, hU, fun x hx i j ↦ ?_⟩
-
   let C : Matrix (Fin n) (Fin n) R := Matrix.of fun k j ↦
     b.repr ⟨x.mulVec (col (e.symm j)), hstab x hx _ (b (e.symm j)).2⟩ (e.symm k)
   have hxh : x * h = h * C.map (algebraMap R K) := by
@@ -238,7 +229,6 @@ theorem exists_isUnit_conj_integral
     have hrepr := congrArg (fun z : L ↦ (z : Fin n → K) i')
       (b.sum_repr ⟨x.mulVec (col (e.symm j')), hstab x hx _ (b (e.symm j')).2⟩)
     simp only [Submodule.coe_sum, Submodule.coe_smul, Finset.sum_apply, Pi.smul_apply] at hrepr
-
     have hl : (x * h) i' j' = (x.mulVec (col (e.symm j'))) i' := by
       simp [Matrix.mul_apply, Matrix.mulVec, dotProduct, h]
     rw [hl, ← hrepr, Matrix.mul_apply]

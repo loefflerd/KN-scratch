@@ -140,16 +140,14 @@ theorem solution
         ↥(ModularCurve.laurentBaseChange K (ModularCurve.qExpFunctionFieldC ℚ Γ)) := by
   classical
   constructor
-  ·
-    have hinj : Function.Injective
+  · have hinj : Function.Injective
         (algebraMap ↥(laurentBaseChange K (qExpFunctionFieldC ℚ Γ)) (LaurentSeries K)) :=
       (algebraMap ↥(laurentBaseChange K (qExpFunctionFieldC ℚ Γ)) (LaurentSeries K)).injective
     rw [← transcendental_algebraMap_iff hinj]
     change Transcendental K (y : LaurentSeries K)
     rw [hy]
     exact ModularCurve.transcendental_jqModC K
-  ·
-    have hEE : laurentBaseChange K (qExpFunctionFieldC ℚ Γ) = qExpFunctionFieldC K Γ :=
+  · have hEE : laurentBaseChange K (qExpFunctionFieldC ℚ Γ) = qExpFunctionFieldC K Γ :=
       laurentBaseChange_qExpFunctionFieldC_eq K Γ
     have hjE' : jqModC K ∈ laurentBaseChange K (qExpFunctionFieldC ℚ Γ) := hy ▸ y.2
     have hjE : jqModC K ∈ qExpFunctionFieldC K Γ := hEE ▸ hjE'

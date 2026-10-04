@@ -102,7 +102,6 @@ theorem solution (N : ℕ) [NeZero N] (n : ℕ) :
     Function.Injective
       (fun f : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2) ↦ HeckeEis.eichlerShimuraMap n N f) := by
   have : (Gamma0 N).FiniteIndex := Subgroup.finiteIndex_of_le (Gamma_le_Gamma0 N)
-
   obtain ⟨ES, hES⟩ := existsEichlerShimuraMapLinear n N
   suffices hker : ∀ f : CuspForm (Gamma0 N) ((n : ℤ) + 2), eichlerShimuraMap n N f = 0 → f = 0 by
     intro f g hfg
@@ -116,7 +115,6 @@ theorem solution (N : ℕ) [NeZero N] (n : ℕ) :
   obtain ⟨F, hEI, hF, hpar⟩ := exists_isEichlerIntegral_isParabolicCocycle N n f
   rw [eichlerShimuraMap_eq_coeffH1parMk n N f hEI hF hpar, coeffH1parMk_eq_zero_iff] at hf0
   obtain ⟨v, hv⟩ := (mem_coeffCoboundaries_iff _ _).mp hf0
-
   set F₁ : ℍ → ↥(BinaryForm ℂ n) := fun τ => F τ + v with hF₁
   have hEI₁ : IsEichlerIntegral n f F₁ := by
     intro d τ
@@ -129,13 +127,11 @@ theorem solution (N : ℕ) [NeZero N] (n : ℕ) :
     have h2 := congrFun hv ⟨γ, hγ⟩
     simp only at h2
     rw [← h2] at h1
-
     simp only [hF₁, map_add]
     change F (γ • τ) + v = R γ (F τ) + R γ v
     have h3 : F (γ • τ) - R γ (F τ) = R γ v - v := h1
     rw [sub_eq_iff_eq_add.mp h3]
     abel
-
   set P : ℍ → ℂ := fun τ => MvPolynomial.eval ![(1 : ℂ), -(τ : ℂ)] ((F₁ τ : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ)
     with hP
   set Gδ : SL(2, ℤ) → ℍ → ↥(BinaryForm ℂ n) := fun δ τ => R δ⁻¹ (F₁ (δ • τ)) with hGδ
@@ -152,7 +148,6 @@ theorem solution (N : ℕ) [NeZero N] (n : ℕ) :
     rw [hRR, jFactor_eq_denom] at key
     rw [← key, mul_comm, zpow_natCast]
     rfl
-
   have hinv : ∀ γ ∈ Gamma0 N, P ∣[-(n : ℤ)] γ = P := by
     intro γ hγ
     funext τ
@@ -188,7 +183,6 @@ theorem solution (N : ℕ) [NeZero N] (n : ℕ) :
   obtain ⟨c, hc⟩ := exists_eq_const_of_slash_invariant (Γ := Gamma0 N) (k := -(n : ℤ)) (by omega) hinv hhol hbdd
   have hzero : (⇑f : ℍ → ℂ) = 0 := hEI₁.eq_zero_of_eval_eq_const hc
   exact DFunLike.ext f 0 fun τ => by rw [congrFun hzero τ]; rfl
-
 
 end S_HeckeEis_eichlerShimuraMap_injective
 end P2MW

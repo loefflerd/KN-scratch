@@ -32,7 +32,6 @@ private theorem _root_.ModularCurve.StarBank.count {K : Type*} [Field K] [IsAlgC
       R = (Polynomial.X - Polynomial.C β₀) ^ p + Polynomial.C β₀ := by
   classical
   have hG0 : G ≠ 0 := fun h => by simp [h] at hG
-
   have hclosure : ∀ γ : K, G.IsRoot (R.eval γ) → G.IsRoot γ := by
     intro γ hγ
     obtain ⟨H, hH⟩ := hdvd
@@ -42,13 +41,11 @@ private theorem _root_.ModularCurve.StarBank.count {K : Type*} [Field K] [IsAlgC
     rcases mul_eq_zero.mp he with h | h
     · exact absurd h hc
     · exact (pow_eq_zero_iff (by omega : p + 1 ≠ 0)).mp h
-
   set S : Finset K := G.roots.toFinset with hS
   have hmemS : ∀ {β : K}, β ∈ S ↔ G.IsRoot β := by
     intro β
     rw [hS, Multiset.mem_toFinset, mem_roots']
     exact ⟨fun h => h.2, fun h => ⟨hG0, h⟩⟩
-
   have hmonic : ∀ b : K, (R - C b).Monic := fun b =>
     hR.sub_of_left (lt_of_le_of_lt degree_C_le
       (natDegree_pos_iff_degree_pos.mp (by omega)))
@@ -56,7 +53,6 @@ private theorem _root_.ModularCurve.StarBank.count {K : Type*} [Field K] [IsAlgC
     rw [natDegree_sub_C, hRdeg]
   have hcard : ∀ b : K, (R - C b).roots.card = p := fun b =>
     (splits_iff_card_roots.mp (IsAlgClosed.splits _)).trans (hdegS b)
-
   have hsub : ∀ b ∈ S, (R - C b).roots.toFinset ⊆ S := by
     intro b hb γ hγ
     rw [Multiset.mem_toFinset, mem_roots'] at hγ
@@ -65,14 +61,12 @@ private theorem _root_.ModularCurve.StarBank.count {K : Type*} [Field K] [IsAlgC
       rw [IsRoot, eval_sub, eval_C, sub_eq_zero] at h
       exact h
     exact hmemS.mpr (hclosure γ (by rw [hev]; exact hmemS.mp hb))
-
   have hinner : ∀ b ∈ S, (∑ γ ∈ S, (R - C b).roots.count γ) = p := by
     intro b hb
     rw [← Finset.sum_subset (hsub b hb) (fun γ _ hγ =>
       Multiset.count_eq_zero.mpr fun hmem => hγ (Multiset.mem_toFinset.mpr hmem))]
     rw [Multiset.toFinset_sum_count_eq]
     exact hcard b
-
   set M : Multiset K := ∑ b ∈ S, (R - C b).roots with hM
   have hterm0 : ∀ γ b : K, b ∈ S → b ≠ R.eval γ → (R - C b).roots.count γ = 0 := by
     intro γ b _ hbne
@@ -90,7 +84,6 @@ private theorem _root_.ModularCurve.StarBank.count {K : Type*} [Field K] [IsAlgC
     intro γ hnot
     rw [hM, Multiset.count_sum']
     exact Finset.sum_eq_zero fun b hb => hterm0 γ b hb fun h => hnot (h ▸ hb)
-
   have hMle : ∀ γ ∈ S, M.count γ ≤ p := by
     intro γ _
     by_cases hin : R.eval γ ∈ S
@@ -105,7 +98,6 @@ private theorem _root_.ModularCurve.StarBank.count {K : Type*} [Field K] [IsAlgC
       _ = ∑ b ∈ S, ∑ γ ∈ S, (R - C b).roots.count γ := Finset.sum_comm
       _ = ∑ b ∈ S, p := Finset.sum_congr rfl hinner
   have hMeq : ∀ γ ∈ S, M.count γ = p := (Finset.sum_eq_sum_iff_of_le hMle).mp hMsum
-
   have hfact : ∀ γ ∈ S, R.eval γ ∈ S ∧ R - C (R.eval γ) = (X - C γ) ^ p := by
     intro γ hγ
     have hin : R.eval γ ∈ S := by
@@ -127,7 +119,6 @@ private theorem _root_.ModularCurve.StarBank.count {K : Type*} [Field K] [IsAlgC
     have h2 := (IsAlgClosed.splits (R - C (R.eval γ))).eq_prod_roots_of_monic (hmonic _)
     rw [hrep, Multiset.map_replicate, Multiset.prod_replicate] at h2
     exact h2
-
   obtain ⟨β₀, hβ₀⟩ := IsAlgClosed.exists_root G (natDegree_pos_iff_degree_pos.mp hG).ne'
   have hβ₀S : β₀ ∈ S := hmemS.mpr hβ₀
   have hcoeff : ∀ b : K, ((X - C b : Polynomial K) ^ p).coeff (p - 1) = -b * p := by
@@ -152,7 +143,6 @@ private theorem _root_.ModularCurve.StarBank.count {K : Type*} [Field K] [IsAlgC
     rw [h1] at h2
     rw [neg_mul, neg_mul, neg_inj] at h2
     exact mul_right_cancel₀ hp0 h2
-
   refine ⟨β₀, huniq, ?_⟩
   obtain ⟨hin₀, hf₀⟩ := hfact β₀ hβ₀S
   rw [sub_eq_iff_eq_add] at hf₀
@@ -193,7 +183,6 @@ theorem solution {K : Type*} [Field K] [IsAlgClosed K] {p : ℕ}
     ∃ β₀ : K, (∀ β : K, G.IsRoot β → β = β₀) ∧
       R = (Polynomial.X - Polynomial.C β₀) ^ p + Polynomial.C β₀ :=
   ModularCurve.StarBank.count hp0 hp2 hR hRdeg hG hc hdvd
-
 
 end S_ModularCurve_StarBank_count
 end P2MW

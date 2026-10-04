@@ -147,7 +147,6 @@ private theorem cd1_slotEmbedding (N : ℕ) [NeZero N] (ζ : Kˣ) (hζ : IsPrimi
       ι ⟨coeffEmb K (jqN N), coeffEmb_mem_laurentBaseChange K (jqd_mem_full N (dvd_refl N))⟩ =
           qExpand K (a * a) (qTwist (ζ ^ (b * a)) (coeffEmb K jq)) := by
   obtain ⟨hint, -⟩ := minpoly_coeffEmb_jqN K N
-
   let L := AdjoinRoot.lift ((qExpand K N).comp (algebraMap K⟮coeffEmb K jq⟯ (LaurentSeries K)))
     (qExpand K (a * a) (qTwist (ζ ^ (b * a)) (coeffEmb K jq)))
     (eval₂_minpoly_slot K N ζ hζ a b ha hb hg)
@@ -166,7 +165,6 @@ private theorem cd1_slotEmbedding (N : ℕ) [NeZero N] (ζ : Kˣ) (hζ : IsPrimi
     show L (e.symm (AdjoinSimple.gen _ _)) = _
     rw [adjoinRootEquivAdjoin_symm_apply_gen, AdjoinRoot.lift_root]
   have hF := laurentBaseChange_full_eq_adjoin_adjoin K N
-
   let ι' : (K⟮coeffEmb K jq⟯⟮coeffEmb K (jqN N)⟯).restrictScalars K →ₐ[K] LaurentSeries K :=
     { toRingHom := φ
       commutes' := fun c => by
@@ -373,13 +371,11 @@ private theorem cd3_slotWidth (N : ℕ) [NeZero N] (ζ : Kˣ) (a b : ℕ) (ha : 
         -((N / a / Nat.gcd a (N / a) : ℕ) : ℤ) ∧
     w.ord ⟨coeffEmb K (jqN N), coeffEmb_mem_laurentBaseChange K (jqd_mem_full N (dvd_refl N))⟩ =
         -((a / Nat.gcd a (N / a) : ℕ) : ℤ) := by
-
   let F := laurentBaseChange K (modularFunctionFieldFull N)
   let jbar : F := ⟨coeffEmb K jq, coeffEmb_mem_laurentBaseChange K (jq_mem_full N)⟩
   let jbarN : F :=
     ⟨coeffEmb K (jqN N), coeffEmb_mem_laurentBaseChange K (jqd_mem_full N (dvd_refl N))⟩
   let g := Nat.gcd a (N / a)
-
   have ha0 : a ≠ 0 := NeZero.ne a
   have hg0 : g ≠ 0 := Nat.gcd_ne_zero_left ha0
   have hag0 : NeZero (a * g) := ⟨Nat.mul_ne_zero ha0 hg0⟩
@@ -388,7 +384,6 @@ private theorem cd3_slotWidth (N : ℕ) [NeZero N] (ζ : Kˣ) (a b : ℕ) (ha : 
       _ = N := Nat.mul_div_cancel' ha
   have hag_dvd_aa : a * g ∣ a * a := Nat.mul_dvd_mul_left a (Nat.gcd_dvd_left _ _)
   have : NeZero (a * a) := ⟨Nat.mul_ne_zero ha0 ha0⟩
-
   have hord1 : (ι jbar).order = -(N : ℤ) := by
     rw [show ι jbar = qExpand K N (coeffEmb K jq) from hι₁, order_qExpand, order_coeffEmb_jq,
       mul_neg_one]
@@ -397,7 +392,6 @@ private theorem cd3_slotWidth (N : ℕ) [NeZero N] (ζ : Kˣ) (a b : ℕ) (ha : 
       mul_neg_one]
   have hw1 : w.ord jbar * γ = -(N : ℤ) := (hw jbar).trans hord1
   have hw2 : w.ord jbarN * γ = -((a * a : ℕ) : ℤ) := (hw jbarN).trans hord2
-
   have hγdvd : γ ∣ ((a * g : ℕ) : ℤ) := by
     have hN : γ ∣ (N : ℤ) := ⟨-(w.ord jbar), by rw [mul_neg, mul_comm γ, hw1, neg_neg]⟩
     have haa : γ ∣ ((a * a : ℕ) : ℤ) :=
@@ -407,11 +401,8 @@ private theorem cd3_slotWidth (N : ℕ) [NeZero N] (ζ : Kˣ) (a b : ℕ) (ha : 
       rw [Nat.gcd_mul_left, Nat.gcd_comm]
     rw [← key, Nat.gcd_eq_gcd_ab]
     exact dvd_add (Dvd.dvd.mul_right hN _) (Dvd.dvd.mul_right haa _)
-
   have hrange : ∀ x : F, ι x ∈ (qExpandAlgK (K := K) (a * g)).fieldRange := by
-
     have hadj := laurentBaseChange_adjoin_pair K N (functionFieldGeneration N)
-
     have htop : IntermediateField.adjoin K ({jbar, jbarN} : Set F) = ⊤ := by
       apply IntermediateField.map_injective F.val
       calc (IntermediateField.adjoin K ({jbar, jbarN} : Set F)).map F.val
@@ -429,7 +420,6 @@ private theorem cd3_slotWidth (N : ℕ) [NeZero N] (ζ : Kˣ) (a b : ℕ) (ha : 
     intro x
     have hxmem : x ∈ IntermediateField.adjoin K ({jbar, jbarN} : Set F) :=
       htop ▸ IntermediateField.mem_top
-
     induction hxmem using IntermediateField.adjoin_induction with
     | mem y hy =>
       simp only [Set.mem_insert_iff, Set.mem_singleton_iff] at hy
@@ -443,7 +433,6 @@ private theorem cd3_slotWidth (N : ℕ) [NeZero N] (ζ : Kˣ) (a b : ℕ) (ha : 
     | add y z _ _ ihy ihz => rw [map_add]; exact add_mem ihy ihz
     | inv y _ ih => rw [map_inv₀]; exact inv_mem ih
     | mul y z _ _ ihy ihz => rw [map_mul]; exact mul_mem ihy ihz
-
   obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible w.toValuationSubring
   obtain ⟨f, hfπ⟩ := hrange (π : F)
   have hγeq : γ = (ι (π : F)).order := by
@@ -455,20 +444,17 @@ private theorem cd3_slotWidth (N : ℕ) [NeZero N] (ζ : Kˣ) (a b : ℕ) (ha : 
     show ((a * g : ℕ) : ℤ) ∣ (qExpandAlgK (a * g) f).order
     rw [qExpandAlgK_apply, order_qExpand]
     exact Dvd.intro _ rfl
-
   have hagpos : 0 < ((a * g : ℕ) : ℤ) := by
     exact_mod_cast Nat.pos_of_ne_zero hag0.out
   have hγval : γ = ((a * g : ℕ) : ℤ) :=
     Int.dvd_antisymm (le_of_lt hγ) (le_of_lt hagpos) hγdvd hagdvdγ
   refine ⟨by rw [hγval]; push_cast; ring, ?_, ?_⟩
-  ·
-    have hdiv : (N / a / g) * (a * g) = N := by
+  · have hdiv : (N / a / g) * (a * g) = N := by
       rw [Nat.div_div_eq_div_mul, Nat.div_mul_cancel hag_dvd_N]
     have key : (-((N / a / g : ℕ) : ℤ)) * ((a * g : ℕ) : ℤ) = -(N : ℤ) := by
       rw [neg_mul, ← Nat.cast_mul, hdiv]
     exact mul_right_cancel₀ (ne_of_gt hagpos) ((hγval ▸ hw1).trans key.symm)
-  ·
-    have hdiv : (a / g) * (a * g) = a * a := by
+  · have hdiv : (a / g) * (a * g) = a * a := by
       rw [mul_comm a g, ← mul_assoc, Nat.div_mul_cancel (Nat.gcd_dvd_left a (N / a))]
     have key : (-((a / g : ℕ) : ℤ)) * ((a * g : ℕ) : ℤ) = -((a * a : ℕ) : ℤ) := by
       rw [neg_mul, ← Nat.cast_mul, hdiv]
@@ -578,7 +564,6 @@ private theorem cd4_slotOrbit (N : ℕ) [NeZero N] (ζ : Kˣ) (hζ : IsPrimitive
   constructor
   · intro hww
     subst hww
-
     have h1 := hw jb
     have h1' := hw' jb
     rw [hι₁, order_qExpand_jq] at h1
@@ -588,7 +573,6 @@ private theorem cd4_slotOrbit (N : ℕ) [NeZero N] (ζ : Kˣ) (hζ : IsPrimitive
       rw [h0, zero_mul] at h1
       exact NeZero.ne (a * d) (by exact_mod_cast (neg_eq_zero.mp h1.symm))
     obtain rfl : γ = γ' := mul_left_cancel₀ hne (h1.trans h1'.symm)
-
     have h2 := hw jbN
     have h2' := hw' jbN
     rw [hι₂, order_slot] at h2
@@ -596,7 +580,6 @@ private theorem cd4_slotOrbit (N : ℕ) [NeZero N] (ζ : Kˣ) (hζ : IsPrimitive
     have haa : a * a = a' * a' := by exact_mod_cast neg_injective (h2.symm.trans h2')
     obtain rfl : a = a' := Nat.mul_self_inj.mp haa
     refine ⟨rfl, ?_⟩
-
     obtain ⟨m, hm⟩ := Nat.gcd_dvd_left a d
     obtain ⟨n, hn⟩ := Nat.gcd_dvd_right a d
     set g := Nat.gcd a d with hg
@@ -629,7 +612,6 @@ private theorem cd4_slotOrbit (N : ℕ) [NeZero N] (ζ : Kˣ) (hζ : IsPrimitive
     have hordx : (ι' x₀).order = (ι x₀).order := (hw' x₀).symm.trans (hw x₀)
     have hM0 : (0 : ℤ) < ((a * a * n : ℕ) : ℤ) := by
       exact_mod_cast Nat.mul_pos (Nat.mul_pos ha0 ha0) hn0
-
     have hvan : (ι' x₀).coeff (-((a * a * n : ℕ) : ℤ)) = 0 := by
       by_cases hz : ι' x₀ = 0
       · rw [hz, HahnSeries.coeff_zero]
@@ -651,7 +633,6 @@ private theorem cd4_slotOrbit (N : ℕ) [NeZero N] (ζ : Kˣ) (hζ : IsPrimitive
       mul_assoc, mul_assoc] at hu
     exact (Nat.ModEq.mul_right_cancel' (Nat.mul_pos ha0 hn0).ne' hu).symm
   · rintro ⟨rfl, hbb⟩
-
     obtain ⟨q, hq⟩ := Nat.modEq_iff_dvd.mp hbb
     have hbez := Nat.gcd_eq_gcd_ab a d
     obtain ⟨k, hk⟩ : ∃ k : ℤ, (ζ ^ k) ^ ((a * a : ℕ) : ℤ) * ζ ^ (b * a) = ζ ^ (b' * a) := by
@@ -661,7 +642,6 @@ private theorem cd4_slotOrbit (N : ℕ) [NeZero N] (ζ : Kˣ) (hζ : IsPrimitive
       refine ⟨-(Nat.gcdB a d * q), ?_⟩
       push_cast
       linear_combination (-(a : ℤ)) * hq + (-(a : ℤ) * q) * hbez
-
     let T : LaurentSeries K →ₐ[K] LaurentSeries K :=
       { toRingHom := qTwist (ζ ^ k)
         commutes' := fun c => by
@@ -682,7 +662,6 @@ private theorem cd4_slotOrbit (N : ℕ) [NeZero N] (ζ : Kˣ) (hζ : IsPrimitive
     have hordeq : ∀ x, (ι' x).order = (ι x).order := fun x => by
       rw [hT]
       exact order_qTwist K (ζ ^ k) (ι x)
-
     apply Place.ext
     ext f
     rcases eq_or_ne f 0 with rfl | hf
@@ -775,24 +754,20 @@ theorem card_slotFibre (N : ℕ) [NeZero N] {α : Type*} [DecidableEq α] (P : (
   have ha₀ne : s₀.1 ≠ 0 := (Nat.pos_of_mem_divisors ha₀).ne'
   have hg₀pos : 0 < Nat.gcd s₀.1 (N / s₀.1) := Nat.pos_of_ne_zero (Nat.gcd_ne_zero_left ha₀ne)
   have hg₀dvd : Nat.gcd s₀.1 (N / s₀.1) ∣ N / s₀.1 := Nat.gcd_dvd_right _ _
-
   refine (Finset.card_nbij (fun b => (⟨s₀.1, b⟩ : (_ : ℕ) × ℕ))
     (s := (Finset.range (N / s₀.1)).filter (· ≡ s₀.2 [MOD Nat.gcd s₀.1 (N / s₀.1)]))
     (t := (slotFinset N).filter (fun s => P s = P s₀))
     ?_ ?_ ?_).symm.trans (card_range_filter_modEq hg₀pos hg₀dvd)
-  ·
-    intro b hb
+  · intro b hb
     rw [Finset.mem_coe, Finset.mem_filter, Finset.mem_range] at hb
     obtain ⟨hblt, hbeq⟩ := hb
     have hslot : (⟨s₀.1, b⟩ : (_ : ℕ) × ℕ) ∈ slotFinset N :=
       mem_slotFinset.mpr ⟨ha₀, hblt, (slot_cond_congr hbeq).mpr hg₀⟩
     refine Finset.mem_filter.mpr ⟨hslot, ?_⟩
     exact (hP ⟨s₀.1, b⟩ hslot s₀ hs₀).mpr ⟨rfl, hbeq⟩
-  ·
-    intro b _ b' _ h
+  · intro b _ b' _ h
     exact congrArg Sigma.snd h
-  ·
-    intro s hs
+  · intro s hs
     simp only [Finset.coe_filter, Set.mem_ofPred_eq] at hs
     obtain ⟨hsmem, hsP⟩ := hs
     obtain ⟨_, hsb, _⟩ := mem_slotFinset.mp hsmem
@@ -960,7 +935,6 @@ theorem ramificationIndex_eq_neg_ord_of_isCusp
     (hu : IsCusp (jbar K N) u) :
     (u.ramificationIndex (RatFunc K) : ℤ) = -(u.ord (jbar K N)) := by
   obtain ⟨w₀, hc₀, h₀⟩ := exists_refCusp K N
-
   have h1 := w₀.ord_restrict (F := RatFunc K) (RatFunc.X)
   rw [algebraMap_ratFunc_eq, phiRF_X, h₀] at h1
   have hepos₀ : (0 : ℤ) < (w₀.ramificationIndex (RatFunc K) : ℤ) := by
@@ -971,7 +945,6 @@ theorem ramificationIndex_eq_neg_ord_of_isCusp
   have hX : (w₀.restrict (RatFunc K)).ord RatFunc.X = -1 := by
     rw [he₀, one_mul] at h1
     linarith
-
   have h2 := u.ord_restrict (F := RatFunc K) (RatFunc.X)
   rw [algebraMap_ratFunc_eq, phiRF_X, restrict_eq_of_isCusp_pair K N u w₀ hu hc₀, hX] at h2
   omega
@@ -1021,12 +994,10 @@ theorem main_exhaustion (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) N)
         ∀ x, w.ord x * ((a * Nat.gcd a (N / a) : ℕ) : ℤ) = (ι x).order := by
   classical
   choose nz ι place hι₁ hι₂ hword hordj using exists_slotData K N ζ hζ
-
   set f : (_ : ℕ) × ℕ → Place K (laurentBaseChange K (modularFunctionFieldFull N)) :=
     fun s => if hs : s ∈ slotFinset N then place s hs else w with hf
   have hf_mem : ∀ s (hs : s ∈ slotFinset N), f s = place s hs := fun s hs => by
     simp [hf, hs]
-
   have hcusp : ∀ s (hs : s ∈ slotFinset N), IsCusp (jbar K N) (place s hs) := by
     intro s hs
     have h1 : 0 < N / s.1 := Nat.div_pos
@@ -1038,7 +1009,6 @@ theorem main_exhaustion (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) N)
     refine (isCusp_iff_ord_neg _ _).mpr ?_
     rw [hordj s hs]
     omega
-
   have hexists : ∃ s : (_ : ℕ) × ℕ, ∃ hs : s ∈ slotFinset N, w = place s hs := by
     by_contra hno
     push Not at hno
@@ -1049,7 +1019,6 @@ theorem main_exhaustion (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) N)
       simp only [Finset.mem_image, not_exists, not_and]
       intro s hs heq
       exact hno s hs (by rw [← hf_mem s hs, heq])
-
     have hS : ∀ u ∈ insert w PS, u.restrict (RatFunc K) = w.restrict (RatFunc K) := by
       intro u hu
       rcases Finset.mem_insert.mp hu with rfl | hu
@@ -1060,7 +1029,6 @@ theorem main_exhaustion (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) N)
     have hsum := Place.sum_ramificationIndex_mul_inertiaDeg_le_finrank
       (w.restrict (RatFunc K)) (insert w PS) hS
     rw [finrank_ratFunc] at hsum
-
     have hfib : ∀ u ∈ PS, ∃ (s₀ : (_ : ℕ) × ℕ) (hs₀ : s₀ ∈ slotFinset N), u = place s₀ hs₀ := by
       intro u hu
       obtain ⟨s₀, hs₀, rfl⟩ := Finset.mem_image.mp hu
@@ -1086,7 +1054,6 @@ theorem main_exhaustion (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) N)
     have hcount0 : (slotFinset N).card =
         ∑ u ∈ PS, ((slotFinset N).filter (fun s => f s = u)).card :=
       Finset.card_eq_sum_card_fiberwise (fun s hs => Finset.mem_image_of_mem f hs)
-
     have hperu : ∀ u ∈ PS, (((slotFinset N).filter (fun s => f s = u)).card : ℤ)
         ≤ (u.ramificationIndex (RatFunc K) : ℤ) * (u.inertiaDeg (RatFunc K) : ℤ) := by
       intro u hu
@@ -1104,7 +1071,6 @@ theorem main_exhaustion (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) N)
           = ((N / s₀.1 / Nat.gcd s₀.1 (N / s₀.1) : ℕ) : ℤ) := by exact_mod_cast hcard
         _ = ((place s₀ hs₀).ramificationIndex (RatFunc K) : ℤ) := he.symm
         _ ≤ _ := le_mul_of_one_le_right hepos hf1
-
     have hge : (dedekindPsi N : ℤ) ≤
         ∑ u ∈ PS, (u.ramificationIndex (RatFunc K) : ℤ) * (u.inertiaDeg (RatFunc K) : ℤ) := by
       calc (dedekindPsi N : ℤ) = ((slotFinset N).card : ℤ) := by
@@ -1164,7 +1130,6 @@ theorem solution (K : Type*) [Field K] [Algebra ℚ K] (N : ℕ) [NeZero N] (ζ 
             qExpand K (a * a) (qTwist (ζ ^ (b * a)) (coeffEmb K jq)) ∧
         ∀ x, w.ord x * ((a * Nat.gcd a (N / a) : ℕ) : ℤ) = (ι x).order :=
   ModularCurve.exists_slot_of_isCusp K N ζ hζ w hc
-
 
 end
 end S_ModularCurve_exists_slot_of_isCusp

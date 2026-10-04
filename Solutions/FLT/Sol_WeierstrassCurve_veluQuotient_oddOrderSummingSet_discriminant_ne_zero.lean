@@ -47,7 +47,6 @@ theorem solution
   have h16 : (16 : L) ≠ 0 := by
     have : (16 : L) = (2 : L) ^ 4 := by norm_num
     rw [this]; exact pow_ne_zero 4 h2
-
   have haV : W.twoTorsionPolynomial.a ≠ 0 := h4
   have hdiscrV : W.twoTorsionPolynomial.discr ≠ 0 := by
     rw [twoTorsionPolynomial_discr]; exact mul_ne_zero h16 W.Δ'.ne_zero
@@ -62,18 +61,15 @@ theorem solution
   have hev₁ : W.Ψ₂Sq.eval r₁ = 0 := hev r₁ (by simp)
   have hev₂ : W.Ψ₂Sq.eval r₂ = 0 := hev r₂ (by simp)
   have hev₃ : W.Ψ₂Sq.eval r₃ = 0 := hev r₃ (by simp)
-
   have him₁ := W.eval_psi2Sq_veluQuotient_veluX_eq_zero_of_eval_psi2Sq_eq_zero h2 n Q hQ hev₁
   have him₂ := W.eval_psi2Sq_veluQuotient_veluX_eq_zero_of_eval_psi2Sq_eq_zero h2 n Q hQ hev₂
   have him₃ := W.eval_psi2Sq_veluQuotient_veluX_eq_zero_of_eval_psi2Sq_eq_zero h2 n Q hQ hev₃
-
   have him_ne₁₂ : W.veluX S r₁ ≠ W.veluX S r₂ := fun h =>
     hne₁₂ (W.veluX_oddOrderSummingSet_injOn_psi2Sq_roots h2 n Q hQ hev₁ hev₂ h)
   have him_ne₁₃ : W.veluX S r₁ ≠ W.veluX S r₃ := fun h =>
     hne₁₃ (W.veluX_oddOrderSummingSet_injOn_psi2Sq_roots h2 n Q hQ hev₁ hev₃ h)
   have him_ne₂₃ : W.veluX S r₂ ≠ W.veluX S r₃ := fun h =>
     hne₂₃ (W.veluX_oddOrderSummingSet_injOn_psi2Sq_roots h2 n Q hQ hev₂ hev₃ h)
-
   have ha' : V'.twoTorsionPolynomial.a ≠ 0 := h4
   have hΨ₂'ne : V'.Ψ₂Sq ≠ 0 := V'.ws18_Ψ₂Sq_ne_zero h4
   have hdeg' : V'.Ψ₂Sq.natDegree = 3 := by

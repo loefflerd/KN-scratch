@@ -23,13 +23,11 @@ theorem solution
   rintro x ⟨d, hd, hdM, rfl⟩
   have := hd
   refine ModularCurve.intFormRatiosC_subset K _ ?_
-
   have hle : CongruenceSubgroup.Gamma0 M ≤ CongruenceSubgroup.Gamma0 d := by
     intro γ hγ
     rw [CongruenceSubgroup.Gamma0_mem, ZMod.intCast_zmod_eq_zero_iff_dvd] at hγ ⊢
     exact (Int.natCast_dvd_natCast.mpr hdM).trans hγ
   refine ModularCurve.intFormRatiosC_mono K hle ?_
-
   refine ModularCurve.qExpand_image_intFormRatiosC_subset K (Γ := ⊤)
     (Γ' := CongruenceSubgroup.Gamma0 d) (Subgroup.mem_top _) d ?_
     ⟨_, ModularCurve.jqModC_mem_intFormRatiosC K ⊤, rfl⟩

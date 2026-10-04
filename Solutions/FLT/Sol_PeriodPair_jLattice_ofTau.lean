@@ -70,11 +70,8 @@ p2m_open "PeriodPair"
 
 theorem kw_G_ofTau_eq {k : ℕ} (hk : 3 ≤ k) (τ : ℍ) :
     (ofTau τ).G k = 2 * riemannZeta k * E hk τ := by
-
   rw [G, ← (ofTau τ).latticeEquivProd.symm.toEquiv.tsum_eq]
-
   simp only [LinearEquiv.coe_toEquiv, kw_ofTau_latticeEquivProd_symm_apply]
-
   have hstep : ∀ p : ℤ × ℤ,
       ((↑p.1 * (τ : ℂ) + ↑p.2) ^ k)⁻¹ = eisSummand k ((finTwoArrowEquiv ℤ).symm p) τ := by
     intro p
@@ -83,7 +80,6 @@ theorem kw_G_ofTau_eq {k : ℕ} (hk : 3 ≤ k) (τ : ℍ) :
   simp only [hstep]
   rw [(finTwoArrowEquiv ℤ).symm.tsum_eq (f := fun v => eisSummand (k : ℤ) v τ),
     tsum_eisSummand_eq_riemannZeta_mul_eisensteinSeries hk τ]
-
   have hE : (E hk : ℍ → ℂ) τ = (1 / 2 : ℂ) * eisensteinSeries (N := 1) 0 k τ := rfl
   rw [hE]; ring
 
@@ -92,7 +88,6 @@ end PeriodPair
 namespace ModularCurve
 
 theorem kw_riemannZeta_six : riemannZeta 6 = (π : ℂ) ^ 6 / 945 := by
-
   have hb5 : bernoulli' 5 = 0 := by
     have : Nat.choose 5 2 = 10 := by decide
     rw [bernoulli'_def]
@@ -104,7 +99,6 @@ theorem kw_riemannZeta_six : riemannZeta 6 = (π : ℂ) ^ 6 / 945 := by
     norm_num [Finset.sum_range_succ, hb5, h62, h64]
   have hb : bernoulli 6 = 1 / 42 := by
     rw [bernoulli_eq_bernoulli'_of_ne_one (by norm_num), hb6]
-
   have h := riemannZeta_two_mul_nat (k := 3) (by norm_num)
   simp only [show 2 * 3 = 6 from rfl, Nat.cast_ofNat, hb,
     show (6 : ℕ).factorial = 720 from by decide] at h

@@ -20,7 +20,6 @@ theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F]
     (x : F) (hx : Transcendental K x) [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F]
     (v : AlgebraicCurve.Place K F) : v.deg ≠ 0 := by
   classical
-
   have hinj : Function.Injective (Polynomial.aeval x : Polynomial K →ₐ[K] F) := transcendental_iff_injective.mp hx
   let lift : RatFunc K →ₐ[K] F :=
     RatFunc.liftAlgHom (Polynomial.aeval x) (nonZeroDivisors_le_comap_nonZeroDivisors_of_injective _ hinj)

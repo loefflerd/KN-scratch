@@ -226,7 +226,6 @@ private theorem _root_.LaurentSeries.exists_algHom_order_eq_map_eq_single {K : T
     rw [h, order_zero] at hyord
     have : (n : ℤ) = 0 := hyord.symm
     omega
-
   set a := y.powerSeriesPart with ha
   have hya : single (n : ℤ) (1 : K) * (a : LaurentSeries K) = y := by
     rw [← hyord, ha, LaurentSeries.single_order_mul_powerSeriesPart]
@@ -235,7 +234,6 @@ private theorem _root_.LaurentSeries.exists_algHom_order_eq_map_eq_single {K : T
     rw [ha₀, ← PowerSeries.coeff_zero_eq_constantCoeff_apply, ha, LaurentSeries.powerSeriesPart_coeff,
       Nat.cast_zero, add_zero]
     exact mt coeff_order_eq_zero.mp hy0
-
   obtain ⟨b₀, hb₀⟩ := IsAlgClosed.exists_pow_nat_eq a₀ hn0
   have hb₀0 : b₀ ≠ 0 := by
     rintro rfl
@@ -256,7 +254,6 @@ private theorem _root_.LaurentSeries.exists_algHom_order_eq_map_eq_single {K : T
     have h := hbroot
     rw [IsRoot.def, hP, eval_sub, eval_pow, eval_X, eval_C, sub_eq_zero] at h
     exact h
-
   set σ : PowerSeries K := PowerSeries.X * b with hσ
   have hσ0 : PowerSeries.constantCoeff σ = 0 := by simp [hσ]
   have hσ1 : IsUnit (PowerSeries.coeff 1 σ) := by
@@ -267,7 +264,6 @@ private theorem _root_.LaurentSeries.exists_algHom_order_eq_map_eq_single {K : T
     rw [← hya, hσ, mul_pow, hbn, PowerSeries.coe_mul, PowerSeries.coe_pow, PowerSeries.coe_X,
       single_pow]
     simp
-
   refine ⟨{ (reparam σ hσ0 hσ1) with commutes' := fun k => ?_ }, fun z => ?_, ?_⟩
   · show reparam σ hσ0 hσ1 (algebraMap K (LaurentSeries K) k) = algebraMap K (LaurentSeries K) k
     rw [LaurentSeries.algebraMap_apply, reparam_C]
@@ -298,7 +294,6 @@ theorem solution {K F : Type*} [Field K] [IsAlgClosed K] [CharZero K]
     ∃ φ' : F →ₐ[K] LaurentSeries K,
       (∀ x : F, (φ' x).order = (φ x).order) ∧ φ' f = single (φ f).order 1 :=
   LaurentSeries.exists_algHom_comp_map_eq_single φ f hf
-
 
 end S_LaurentSeries_exists_algHom_comp_map_eq_single
 end P2MW

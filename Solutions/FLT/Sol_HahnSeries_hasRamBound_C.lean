@@ -144,7 +144,6 @@ open _root_.HahnSeries _root_.P2MW.S_HahnSeries_hasRamBound_C.HahnSeries in
 theorem solution {K : Type*} [Field K] {e : ℕ} (a : K) : HasRamBound e (C a : HahnSeries ℚ K) :=
   HahnSeries.hasRamBound_C a
 
-
 end S_HahnSeries_hasRamBound_C
 end P2MW
 export P2MW.S_HahnSeries_hasRamBound_C (solution)

@@ -78,14 +78,12 @@ private theorem ModularCurve.natCard_normalized_algHom_jBar_eq_toNat_ord (N : �
       rw [finrankAdjoinJBar]
       exact ModularCurve.dedekindPsi_pos N (NeZero.ne N))
   have hFINRANK := finrankAdjoinJBar N
-
   have hPEO2 := ModularCurve.natCard_normalized_algHom_hahnSeries_jBar_sub_eq_toNat_ord N j₀
   obtain ⟨S, hS⟩ := ModularCurve.exists_finset_ord_jBar_sub_pos N j₀
   have hdeg : ∀ w : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N), w.deg = 1 :=
     ModularCurve.deg_eq_one_modularFunctionFieldBar N
   have hsum := ModularCurve.sum_ord_jBar_sub_eq_dedekindPsi N j₀ hdeg S hS
   rw [← hFINRANK] at hsum
-
   exact hPEO2 S hS hsum (fun w hw => by
     obtain ⟨φ, hφ⟩ := AlgebraicCurve.Place.exists_algHom_laurentSeries_order_eq_ord w (hdeg w)
     have hf : 0 < (φ (jBar N -
@@ -107,7 +105,6 @@ theorem solution (N : ℕ) [NeZero N]
         ∃ g : ℚ, 0 < g ∧ ∀ x, (w.ord x : ℚ) * g = (ψ x).order} =
       (w.ord (jBar N - algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) j₀)).toNat :=
   ModularCurve.natCard_normalized_algHom_jBar_eq_toNat_ord N j₀
-
 
 end S_ModularCurve_natCard_normalized_algHom_jBar_eq_toNat_ord
 end P2MW

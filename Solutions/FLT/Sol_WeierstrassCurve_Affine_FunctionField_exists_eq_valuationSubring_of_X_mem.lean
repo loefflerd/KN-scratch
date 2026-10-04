@@ -54,7 +54,6 @@ theorem exists_eq_valuationSubring_of_X_mem_aux [IsDedekindDomain W.CoordinateRi
       O = (v.valuation W.FunctionField).valuationSubring := by
   classical
   set ι := algebraMap W.CoordinateRing W.FunctionField with hι
-
   have hCX : ∀ p : K[X], ι (CoordinateRing.mk W (C p)) ∈ O := by
     intro p
     induction p using Polynomial.induction_on with
@@ -63,7 +62,6 @@ theorem exists_eq_valuationSubring_of_X_mem_aux [IsDedekindDomain W.CoordinateRi
     | monomial n c h =>
       rw [pow_succ, ← mul_assoc, map_mul, map_mul, map_mul]
       exact mul_mem h hx
-
   have hY : ι (CoordinateRing.mk W Y) ∈ O := by
     by_contra hY
     have hYinv : (ι (CoordinateRing.mk W Y))⁻¹ ∈ O := (O.mem_or_inv_mem _).resolve_left hY
@@ -78,13 +76,11 @@ theorem exists_eq_valuationSubring_of_X_mem_aux [IsDedekindDomain W.CoordinateRi
         ι (CoordinateRing.mk W (C (C W.a₁ * X + C W.a₃))) := by
       rw [← key]; field_simp; ring
     exact hY (this ▸ sub_mem (mul_mem (hCX _) hYinv) (hCX _))
-
   have hR : ∀ f : W.CoordinateRing, ι f ∈ O := by
     intro f
     obtain ⟨p, q, rfl⟩ := CoordinateRing.exists_smul_basis_eq f
     rw [CoordinateRing.smul, CoordinateRing.smul, mul_one, map_add, map_mul]
     exact add_mem (hCX p) (mul_mem (hCX q) hY)
-
   let φ : W.CoordinateRing →+* O := ι.codRestrict O.toSubring hR
   have hinv : ∀ s : W.CoordinateRing, IsUnit (φ s) → (ι s)⁻¹ ∈ O := by
     intro s hs
@@ -110,7 +106,6 @@ theorem exists_eq_valuationSubring_of_X_mem_aux [IsDedekindDomain W.CoordinateRi
     exact mul_mem (hR a) (hinv b hbu)
   let v : HeightOneSpectrum W.CoordinateRing := ⟨𝔭, Ideal.comap_isPrime φ _, h𝔭⟩
   refine ⟨v, ?_⟩
-
   have hle : HeightOneSpectrum.valuationSubringAtPrime W.FunctionField v ≤ O := by
     rintro z ⟨a, s, hs, rfl⟩
     exact mul_mem (hR a) (hinv s ((hmem s).mp hs))

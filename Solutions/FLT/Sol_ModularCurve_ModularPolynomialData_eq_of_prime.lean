@@ -81,7 +81,6 @@ open _root_.ModularCurve _root_.P2MW.S_ModularCurve_ModularPolynomialData_eq_of_
 theorem solution (p : ℕ) [hp : Fact (Nat.Prime p)] (d d' : ModularPolynomialData p) : d = d' :=
   ModularCurve.ModularPolynomialData.eq_of_prime p d d'
 
-
 end
 end S_ModularCurve_ModularPolynomialData_eq_of_prime
 end P2MW

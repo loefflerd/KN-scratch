@@ -12,9 +12,7 @@ namespace P2MW.S_ValuationSubring_exists_liesOverPrime_algebraicClosure_rat
 theorem solution (p : Nat.Primes) :
     ∃ A : ValuationSubring (AlgebraicClosure ℚ), A.LiesOverPrime (p : ℕ) := by
   have hq : (p : ℕ).Prime := p.2
-
   set R : Subring (AlgebraicClosure ℚ) := ⊥ with hR
-
   have hqR : ¬IsUnit (((p : ℕ) : ℕ) : R) := by
     rw [isUnit_iff_exists_inv]
     rintro ⟨y, hy⟩
@@ -31,7 +29,6 @@ theorem solution (p : Nat.Primes) :
     have h1 : ((p : ℕ) : ℤ) ≤ 1 := Int.le_of_dvd one_pos ⟨n, hqn.symm⟩
     have h2 : 2 ≤ (p : ℕ) := hq.two_le
     omega
-
   obtain ⟨B, -, hB⟩ :=
     Ideal.image_subset_nonunits_valuationSubring (Ideal.span {(((p : ℕ) : ℕ) : R)})
       (fun h => hqR (Ideal.span_singleton_eq_top.mp h))

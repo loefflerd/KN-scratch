@@ -60,7 +60,6 @@ lemma IsBoundaryDatum.smul {N n : ℕ} (c : ℂ) {Φ : Cusp → Binary ℂ} (hΦ
   ⟨fun x => Submodule.smul_mem _ c (hΦ.1 x),
     fun γ x => by simp only [Pi.smul_apply, hΦ.2 γ x, map_smul]⟩
 
-
 end MTT.Cohomology
 
 theorem solution

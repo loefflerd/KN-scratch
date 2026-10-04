@@ -240,10 +240,8 @@ private theorem _root_.AlgebraicCurve.Place.comap_algebraMap_ne_top [Algebra.IsI
     w.toValuationSubring.comap (algebraMap F F') ≠ ⊤ := by
   intro htop
   apply w.ne_top'
-
   have hF : ∀ f : F, algebraMap F F' f ∈ w.toValuationSubring := fun f =>
     ValuationSubring.mem_comap.mp (htop ▸ ValuationSubring.mem_top f)
-
   refine SetLike.ext fun x => ⟨fun _ => ValuationSubring.mem_top x, fun _ => ?_⟩
   let : Algebra F w.toValuationSubring :=
     ((algebraMap F F').codRestrict w.toValuationSubring.toSubring hF).toAlgebra
@@ -322,7 +320,6 @@ theorem isPrincipalIdealRing_comap :
     ⟨⟨g, hgmem⟩, irreducible_mk_comap w hg0 hgmem hge, ?_⟩).toIsPrincipalIdealRing
   rintro ⟨f, hmem⟩ hx
   have hf : f ≠ 0 := by simpa [Subtype.ext_iff] using hx
-
   obtain ⟨c, hc⟩ := w.ramificationIndex_dvd_ord (F := F) hf
   have hnonneg : 0 ≤ w.ord (algebraMap F F' f) := (mem_comap_iff_ord_nonneg hf).mp hmem
   have hcnonneg : 0 ≤ c := by
@@ -334,7 +331,6 @@ theorem isPrincipalIdealRing_comap :
   set n : ℕ := c.toNat with hn
   have hcn : (n : ℤ) = c := Int.toNat_of_nonneg hcnonneg
   refine ⟨n, ?_⟩
-
   have hgn : g ^ n ≠ 0 := pow_ne_zero _ hg0
   have hdiv0 : f / g ^ n ≠ 0 := div_ne_zero hf hgn
   have hu0 : w.ord (algebraMap F F' (f / g ^ n)) = 0 := by
@@ -679,28 +675,22 @@ theorem kwF4gRRTate_RTCC_of_tate
     (hT : KwF4gRRTateTraceCompat K F E hfinF hfinE) :
     KwF4R1V391aResidueTraceCompletionCommute K F E := by
   intro _ _ _ v _ w _ hw g
-
   unfold kaehlerResidueTerm
   rw [diagonalHom_apply]
-
   rw [← kwHgfV352_localResidueCompletion_algebraMap w
     (g * w.differentialCoeff (kaehlerPullback K F E v.dCoord))]
-
   have := hfinF w (algebraMap F w.adicCompletion
     (g * w.differentialCoeff (kaehlerPullback K F E v.dCoord)))
     (algebraMap F w.adicCompletion w.uniformizer)
   rw [← hAF w (algebraMap F w.adicCompletion
     (g * w.differentialCoeff (kaehlerPullback K F E v.dCoord)))]
-
   rw [map_mul]
   have := hfinF w (algebraMap F w.adicCompletion g)
     (algebraMap F w.adicCompletion (algebraMap E F v.uniformizer))
   rw [← hC v w hw (algebraMap F w.adicCompletion g)]
-
   have := hfinE v (kwHgfV352_completionTraceAt v w hw g)
     (algebraMap E v.adicCompletion v.uniformizer)
   rw [hT v w hw g]
-
   rw [hAE v (kwHgfV352_completionTraceAt v w hw g)]
 
 end Wire

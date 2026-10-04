@@ -155,27 +155,19 @@ def frickeF (N : ℕ) (a : Fin 2 → ZMod N) (τ : ℍ) : ℂ :=
   -(ModularForm.E₄ τ * ModularForm.E₆ τ / ModularForm.discriminant τ) / 2592 * wpNormZ N a τ
 
 theorem r4a_package (N : ℕ) [NeZero N] :
-
     (∀ (a : Fin 2 → ZMod N) (γ : SL(2, ℤ)) (τ : ℍ), (frickeF N) a (γ • τ) =
         (frickeF N) (Matrix.vecMul a ((γ : Matrix (Fin 2) (Fin 2) ℤ).map ((↑) : ℤ → ZMod N))) τ) ∧
-
     (∀ a : Fin 2 → ZMod N, (frickeF N) (-a) = (frickeF N) a) ∧
-
     (∀ a : Fin 2 → ZMod N, a ≠ 0 → MDifferentiable 𝓘(ℂ) 𝓘(ℂ) ((frickeF N) a)) ∧
-
     (∀ a : Fin 2 → ZMod N, a ≠ 0 →
       IsBoundedAtImInfty ((frickeF N) a * ModularForm.discriminant)) ∧
-
     (∀ a : Fin 2 → ZMod N, a ≠ 0 →
       Function.Periodic (((frickeF N) a * ModularForm.discriminant) ∘ ofComplex) N ∧
       ∀ n : ℕ, (qExpansion N ((frickeF N) a * ModularForm.discriminant)).coeff n ∈
         IntermediateField.adjoin ℚ {cexp (2 * π * I / N)}) ∧
-
     (∀ a b : Fin 2 → ZMod N, a ≠ 0 → b ≠ 0 → (frickeF N) a = (frickeF N) b → b = a ∨ b = -a) ∧
-
     (∀ a : Fin 2 → ZMod N, ∀ γ ∈ CongruenceSubgroup.Gamma N, ∀ τ : ℍ,
       (frickeF N) a (γ • τ) = (frickeF N) a τ) ∧
-
     (∀ s : ℕ, s.Coprime N →
       ∀ φ : ↑(IntermediateField.adjoin ℚ {cexp (2 * π * I / N)}) →+* ℂ,
         (∀ z : ↑(IntermediateField.adjoin ℚ {cexp (2 * π * I / N)}),
@@ -187,13 +179,10 @@ theorem r4a_package (N : ℕ) [NeZero N] :
   frickeFunction_modularity_package N periodPairOfTau fun _ ↦ ⟨rfl, rfl⟩
 
 theorem r4b_package (N : ℕ) [NeZero N] :
-
     (MDifferentiable 𝓘(ℂ) 𝓘(ℂ) j ∧
       ∃ m : ℕ, IsBoundedAtImInfty (j * ModularForm.discriminant ^ m)) ∧
-
     (∀ v : Fin 2 → ZMod N, v ≠ 0 → MDifferentiable 𝓘(ℂ) 𝓘(ℂ) ((frickeF N) v) ∧
       ∃ m : ℕ, IsBoundedAtImInfty ((frickeF N) v * ModularForm.discriminant ^ m)) ∧
-
     (∃ P : ℕ → Polynomial ℂ,
       (∀ k i, (P k).coeff i ∈
         IntermediateField.adjoin ℚ {Complex.exp (2 * (Real.pi : ℂ) * Complex.I / N)}) ∧
@@ -248,7 +237,6 @@ theorem frickeF_eq_imp {N : ℕ} [NeZero N] (a b : FrickeIdx N)
 theorem mem_Gamma_or_neg_mem_of_vecMulSL {N : ℕ} [NeZero N] (γ : SL(2, ℤ))
     (h : ∀ a : Fin 2 → ZMod N, a ≠ 0 → vecMulSL N a γ = a ∨ vecMulSL N a γ = -a) :
     γ ∈ CongruenceSubgroup.Gamma N ∨ -γ ∈ CongruenceSubgroup.Gamma N := by
-
   rcases Nat.lt_or_ge 1 N with hN | hN
   · have : Fact (1 < N) := ⟨hN⟩
     have h10 : (1 : ZMod N) ≠ 0 := one_ne_zero
@@ -1198,7 +1186,6 @@ theorem solution
     ∧ (∀ P : Polynomial ℂ, (∀ τ : ℍ, P.eval (jf τ) = 0) → P = 0)
     ∧ (∀ F ∈ A_N, MDifferentiable 𝓘(ℂ) 𝓘(ℂ) F)
     ∧ (∀ a b : ℍ → ℂ, a ∈ A_N → b ∈ A_N → a * b = 0 → a = 0 ∨ b = 0) := by
-
   obtain rfl : jf = j := funext fun τ ↦ hjf τ
   have hLp : ∀ τ, L τ = periodPairOfTau τ :=
     fun τ ↦ periodPair_eq_of_ω _ _ (hL τ).1 (hL τ).2
@@ -1212,31 +1199,25 @@ theorem solution
     exact ⟨fun ⟨v, hv, hg⟩ ↦ ⟨⟨v, hv⟩, hg.symm⟩, fun ⟨i, hi⟩ ↦ ⟨i.1, i.2, hi.symm⟩⟩
   have hvm : vecMul = vecMulSL N := rfl
   refine ⟨?_, ?_, ?_, ?_, ?_, ?_⟩
-  ·
-    rw [hvm]
+  · rw [hvm]
     ext γ
     simp only [Set.mem_ofPred_eq]
     rw [← mem_levelFixer_iff_pm γ, mem_levelFixer_iff_frickeF γ]
     exact ⟨fun h i τ ↦ (frickeF_slash i.1 γ τ).trans (congrFun (h i.1 i.2) τ),
       fun h v hv ↦ funext fun τ ↦ (frickeF_slash v γ τ).symm.trans (h ⟨v, hv⟩ τ)⟩
-  ·
-    intro a b haA hbA hb0 hinv; rw [hAN] at haA hbA
+  · intro a b haA hbA hb0 hinv; rw [hAN] at haA hbA
     exact r5_fixed_frac_polynomial haA hbA hb0 hinv
-  ·
-    intro v hv
+  · intro v hv
     obtain ⟨P, hrel⟩ := frickeF_integral_over_j N
     exact ⟨_, P, hrel ⟨v, hv⟩⟩
-  ·
-    intro P hP
+  · intro P hP
     refine Polynomial.eq_zero_of_infinite_isRoot P ?_
     rw [show {x : ℂ | P.IsRoot x} = Set.univ from Set.eq_univ_of_forall fun c ↦ by
       obtain ⟨τ, hτ⟩ := j_surjective c
       exact hτ ▸ hP τ]
     exact Set.infinite_univ
-  ·
-    intro F hF; rw [hAN] at hF; exact levelRing_le_HolFn N hF
-  ·
-    intro a b haA hbA hab; rw [hAN] at haA hbA
+  · intro F hF; rw [hAN] at hF; exact levelRing_le_HolFn N hF
+  · intro a b haA hbA hab; rw [hAN] at haA hbA
     exact HolFn.eq_zero_or_eq_zero_of_mul_eq_zero (levelRing_le_HolFn N haA)
       (levelRing_le_HolFn N hbA) hab
 

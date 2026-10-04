@@ -75,12 +75,10 @@ theorem ord_eq_one_of_valuation_eq (w : Place K F) {v' : Valuation F ℤᵐ⁰}
   have hE := w.isEquiv_adicValuation_of_valuationSubring_eq hv'
   have hx0 : v' x ≠ 0 := by rw [hx]; exact exp_ne_zero
   have hu0 : w.adicValuation x ≠ 0 := (hE.eq_zero).ne.mp hx0
-
   have hlt : w.adicValuation x < 1 := by
     refine hE.lt_one_iff_lt_one.mp ?_
     rw [hx, ← exp_zero]
     exact exp_lt_exp.mpr (by norm_num)
-
   obtain ⟨ϖ, hϖ⟩ := w.heightOneSpectrum.valuation_exists_uniformizer F
   change w.adicValuation ϖ = exp (-1 : ℤ) at hϖ
   have hϖ0 : w.adicValuation ϖ ≠ 0 := by rw [hϖ]; exact exp_ne_zero
@@ -96,7 +94,6 @@ theorem ord_eq_one_of_valuation_eq (w : Place K F) {v' : Valuation F ℤᵐ⁰}
   have hge : exp (-1 : ℤ) ≤ w.adicValuation x := by
     rw [← hϖ]
     exact (hE ϖ x).mp hϖle
-
   have hle' : log (w.adicValuation x) ≤ -1 := by
     have hlog : log (w.adicValuation x) < 0 := (log_lt_iff_lt_exp hu0).mpr (by rw [exp_zero]; exact hlt)
     omega
@@ -203,11 +200,9 @@ theorem eq_basePlace_of_ord_pos (v : Place K (IntermediateField.adjoin K ({t} : 
     v = basePlace t htr c := by
   have ht : IntermediateField.AdjoinSimple.gen K t ∈ v.toValuationSubring := mem_of_ord_sub_pos v hv
   have hw := forall_algebraMap_mem t v ht
-
   have hmem : linGen t c ∈ Place.center (Algebra.adjoin K ({t} : Set F)) v hw := by
     rw [Place.mem_center_iff_ord_pos v hw (linGen_ne_zero t htr c), algebraMap_linGen]
     exact hv
-
   have hcenter : Place.center (Algebra.adjoin K ({t} : Set F)) v hw = Ideal.span {linGen t c} := by
     have : (Ideal.span {linGen t c}).IsPrime := (linPrime t htr c).isPrime
     have hmax : (Ideal.span {linGen t c}).IsMaximal :=
@@ -378,7 +373,6 @@ theorem solution (N : ℕ) [NeZero N] (j₀ : AlgebraicClosure ℚ) :
     ∃ S : Finset (Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N)), ∀ v, v ∈ S ↔
       0 < v.ord (jBar N - algebraMap (AlgebraicClosure ℚ) (modularFunctionFieldBar N) j₀) :=
   ModularCurve.exists_finset_ord_jBar_sub_pos N j₀
-
 
 end S_ModularCurve_exists_finset_ord_jBar_sub_pos
 end P2MW

@@ -84,12 +84,10 @@ theorem charFun_eq (x : ℚ) (m : ℕ) (k : ℤ) (hk : x * ((b * m.factorial : �
     charFun ζ b x = (rootSeq ζ m) ^ k := by
   have hd0 : x.den ≠ 0 := x.den_nz
   have hdvd : x.den ∣ x.den.factorial := Nat.dvd_factorial x.den_pos le_rfl
-
   rw [charFun, ← rootSeq_pow_of_le ζ (Nat.le_add_right x.den m),
     ← rootSeq_pow_of_le ζ (Nat.le_add_left m x.den),
     ← zpow_natCast, ← zpow_natCast, ← zpow_mul, ← zpow_mul]
   congr 1
-
   apply mul_left_cancel₀ (show (x.den : ℤ) ≠ 0 by exact_mod_cast hd0)
   have e1 : (((x.den + m).factorial / x.den.factorial : ℕ) : ℤ) * (x.den.factorial : ℤ)
       = ((x.den + m).factorial : ℤ) := by
@@ -98,7 +96,6 @@ theorem charFun_eq (x : ℚ) (m : ℕ) (k : ℤ) (hk : x * ((b * m.factorial : �
     exact_mod_cast Nat.div_mul_cancel (Dvd.dvd.mul_left hdvd b)
   have e3 : (((x.den + m).factorial / m.factorial : ℕ) : ℤ) * (m.factorial : ℤ) = ((x.den + m).factorial : ℤ) := by
     exact_mod_cast Nat.div_mul_cancel (Nat.factorial_dvd_factorial (Nat.le_add_left m x.den))
-
   have e4 : (k : ℤ) * x.den = x.num * (b * m.factorial : ℕ) := by
     have hq : (k : ℚ) * x.den = x.num * (b * m.factorial : ℕ) := by
       rw [← hk, mul_right_comm, Rat.mul_den_eq_num]
@@ -218,7 +215,6 @@ theorem exists_monoChar_of_induces [IsAlgClosed K] [CharZero K]
         (v (jb - algebraMap K F j₀)).toNat) :
     ∃ χ ∈ MonoChar K, ∀ x, ψ' x = hahnTwist χ (ψ x) := by
   obtain ⟨g, hg, hgx⟩ := hind
-
   have h1 : ((v (jb - algebraMap K F j₀) : ℤ) : ℚ) * g = 1 := by
     have := hgx (jb - algebraMap K F j₀)
     rwa [map_sub, hψ, AlgHom.commutes, algebraMap_hahnSeries_eq_C, add_sub_cancel_left,
@@ -238,7 +234,6 @@ theorem exists_monoChar_of_induces [IsAlgClosed K] [CharZero K]
       φ jb = HahnSeries.C j₀ + HahnSeries.single (1 : ℚ) (1 : K) ∧
       ∃ g : ℚ, 0 < g ∧ ∀ x, (v x : ℚ) * g = (φ x).order} = n := by
     rw [hcard he0, ← hn, Int.toNat_natCast]
-
   have : NeZero n := ⟨hn0.ne'⟩
   obtain ⟨μ, hμ⟩ := HasEnoughRootsOfUnity.exists_primitiveRoot K n
   have hμu : IsUnit μ := hμ.isUnit hn0.ne'
@@ -256,7 +251,6 @@ theorem exists_monoChar_of_induces [IsAlgClosed K] [CharZero K]
   have hχn : χ (Multiplicative.ofAdd (1 / (n : ℚ))) = ζ := by
     have := char_div ζ hn0 1
     rwa [Int.cast_one, zpow_one] at this
-
   obtain ⟨π, hπ⟩ := hunif
   have hπ0 : ψ π ≠ 0 := by
     intro h0
@@ -268,7 +262,6 @@ theorem exists_monoChar_of_induces [IsAlgClosed K] [CharZero K]
   have hc : (ψ π).coeff (1 / (n : ℚ)) ≠ 0 := by
     rw [← hπord]
     exact fun h => hπ0 (coeff_order_eq_zero.mp h)
-
   let Φ : Fin n → {φ : F →ₐ[K] HahnSeries ℚ K //
       φ jb = HahnSeries.C j₀ + HahnSeries.single (1 : ℚ) (1 : K) ∧
       ∃ g : ℚ, 0 < g ∧ ∀ x, (v x : ℚ) * g = (φ x).order} := fun k =>
@@ -284,7 +277,6 @@ theorem exists_monoChar_of_induces [IsAlgClosed K] [CharZero K]
       have := mul_right_cancel₀ hc h
       rwa [Units.val_pow_eq_pow_val, Units.val_pow_eq_pow_val] at this
     exact Fin.ext (hζ.pow_inj k.2 l.2 h')
-
   have : Finite {φ : F →ₐ[K] HahnSeries ℚ K //
       φ jb = HahnSeries.C j₀ + HahnSeries.single (1 : ℚ) (1 : K) ∧
       ∃ g : ℚ, 0 < g ∧ ∀ x, (v x : ℚ) * g = (φ x).order} :=
@@ -411,7 +403,6 @@ theorem exists_forall_hasRamBound (j₀ : AlgebraicClosure ℚ)
     (hψ : ψ (jb N) = HahnSeries.C j₀ + HahnSeries.single (1 : ℚ) (1 : AlgebraicClosure ℚ)) :
     ∃ e : ℕ, 0 < e ∧ ∀ z, HahnSeries.HasRamBound e (ψ z) := by
   obtain ⟨data⟩ := ModularCurve.nonempty_modularPolynomialData N
-
   set P : Polynomial (HahnSeries ℚ (AlgebraicClosure ℚ)) :=
     data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom (HahnSeries ℚ (AlgebraicClosure ℚ)))
       (HahnSeries.C j₀ + HahnSeries.single (1 : ℚ) (1 : AlgebraicClosure ℚ))) with hPdef
@@ -422,7 +413,6 @@ theorem exists_forall_hasRamBound (j₀ : AlgebraicClosure ℚ)
     rw [hPdef, Polynomial.coeff_map]
     exact (HahnSeries.mem_puiseuxRamSubfield_iff one_pos).mp
       (eval₂RingHom_mem_puiseuxRamSubfield_one _ (hasRamBound_C_add_single j₀) _)
-
   have hroot : P.IsRoot (ψ (jNb N)) := by
     rw [Polynomial.IsRoot, hPdef, Polynomial.eval_map, ← hψ]
     have hcomp : Polynomial.eval₂RingHom (Int.castRingHom (HahnSeries ℚ (AlgebraicClosure ℚ))) (ψ (jb N))
@@ -438,7 +428,6 @@ theorem exists_forall_hasRamBound (j₀ : AlgebraicClosure ℚ)
   set e := P.natDegree.factorial with hedef
   have he : 0 < e := Nat.factorial_pos _
   refine ⟨e, he, ?_⟩
-
   let S := HahnSeries.puiseuxRamSubfield (AlgebraicClosure ℚ) (e := e) he
   have hS : ∀ y, y ∈ S ↔ HahnSeries.HasRamBound e y := fun y => HahnSeries.mem_puiseuxRamSubfield_iff he
   let T : IntermediateField (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N) :=
@@ -480,7 +469,6 @@ theorem induces_unique
     intro x
     have hx := h x
     rw [← h' x] at hx
-
     constructor
     · intro h0
       have : 0 ≤ (w'.ord x : ℚ) * g' := by rw [← hx]; positivity
@@ -532,7 +520,6 @@ theorem solution (N : ℕ) [NeZero N] (j₀ : AlgebraicClosure ℚ) (ψ ψ' : Em
       obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible w.toValuationSubring
       exact ⟨(π : ↥(modularFunctionFieldBar N)), w.ord_coe_irreducible hπ⟩)
     (ModularCurve.natCard_normalized_algHom_jBar_eq_toNat_ord N j₀)
-
     (ModularCurve.SamePlaceTwist.InducedPlace.exists_induces N j₀ ψ)
 
 end S_ModularCurve_samePlace_iff_exists_hahnTwist

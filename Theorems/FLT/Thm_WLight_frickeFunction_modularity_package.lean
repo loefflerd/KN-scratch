@@ -21,27 +21,19 @@ theorem WLight.frickeFunction_modularity_package (N : ℕ) [NeZero N]
         (((2 * π * I) ^ 2)⁻¹ *
           PeriodPair.weierstrassP (L τ)
             ((((a 0).val : ℂ) * (τ : ℂ) + ((a 1).val : ℂ)) / (N : ℂ)))
-
     (∀ (a : Fin 2 → ZMod N) (γ : SL(2, ℤ)) (τ : ℍ), f a (γ • τ) =
         f (Matrix.vecMul a ((γ : Matrix (Fin 2) (Fin 2) ℤ).map ((↑) : ℤ → ZMod N))) τ) ∧
-
     (∀ a : Fin 2 → ZMod N, f (-a) = f a) ∧
-
     (∀ a : Fin 2 → ZMod N, a ≠ 0 → MDifferentiable 𝓘(ℂ) 𝓘(ℂ) (f a)) ∧
-
     (∀ a : Fin 2 → ZMod N, a ≠ 0 →
       IsBoundedAtImInfty (f a * ModularForm.discriminant)) ∧
-
     (∀ a : Fin 2 → ZMod N, a ≠ 0 →
       Function.Periodic ((f a * ModularForm.discriminant) ∘ ofComplex) N ∧
       ∀ n : ℕ, (qExpansion N (f a * ModularForm.discriminant)).coeff n ∈
         IntermediateField.adjoin ℚ {cexp (2 * π * I / N)}) ∧
-
     (∀ a b : Fin 2 → ZMod N, a ≠ 0 → b ≠ 0 → f a = f b → b = a ∨ b = -a) ∧
-
     (∀ a : Fin 2 → ZMod N, ∀ γ ∈ CongruenceSubgroup.Gamma N, ∀ τ : ℍ,
       f a (γ • τ) = f a τ) ∧
-
     (∀ s : ℕ, s.Coprime N →
       ∀ φ : ↑(IntermediateField.adjoin ℚ {cexp (2 * π * I / N)}) →+* ℂ,
         (∀ z : ↑(IntermediateField.adjoin ℚ {cexp (2 * π * I / N)}),

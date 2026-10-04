@@ -69,8 +69,7 @@ theorem two_mul_natCard_orb [Finite X] (h2 : σ ^ 2 = 1) :
   have hsum := sum_range_orderOf_natCard_fixedBy σ
   have hdvd : orderOf σ ∣ 2 := orderOf_dvd_of_pow_eq_one h2
   rcases (Nat.dvd_prime Nat.prime_two).mp hdvd with h1 | h2'
-  ·
-    have hσ : σ = 1 := orderOf_eq_one_iff.mp h1
+  · have hσ : σ = 1 := orderOf_eq_one_iff.mp h1
     subst hσ
     rw [h1, Finset.sum_range_one, pow_zero, natCard_fixedBy_one, mul_one] at hsum
     rw [← natCard_fixedBy_eq, natCard_fixedBy_one, hsum]; ring
@@ -235,7 +234,6 @@ theorem relSpace_rank_bound (h2 : σ₂ ^ 2 = 1) (h3 : σ₃ ^ 3 = 1) (hconn : C
   classical
   have hO2 := two_mul_natCard_orb σ₂ h2
   have hO3 := three_mul_natCard_orb σ₃ h3
-
   have hco := Subspace.finrank_add_finrank_dualCoannihilator_eq
     (LinearMap.range (orbFun K σ₂ σ₃))
   have hV : Module.finrank K (relSpace K σ₂ σ₃) ≤
@@ -243,7 +241,6 @@ theorem relSpace_rank_bound (h2 : σ₂ ^ 2 = 1) (h3 : σ₃ ^ 3 = 1) (hconn : C
     Submodule.finrank_mono (relSpace_le_dualCoannihilator K σ₂ σ₃)
   have hXK : Module.finrank K (X → K) = Nat.card X := by
     rw [Module.finrank_fintype_fun_eq_card, Nat.card_eq_fintype_card]
-
   have hrn := LinearMap.finrank_range_add_finrank_ker (orbFun K σ₂ σ₃)
   have hdom : Module.finrank K ((Orb σ₂ → K) × (Orb σ₃ → K)) = Nat.card (Orb σ₂) + Nat.card (Orb σ₃) := by
     rw [Module.finrank_prod, Module.finrank_fintype_fun_eq_card, Module.finrank_fintype_fun_eq_card,
@@ -586,14 +583,12 @@ theorem thetaPlus_injective : Function.Injective (thetaPlus K N) := by
     congr_arg (fun p : ↥(relSpace K (sig2 N) (sig3 N)) × K => (p.1 : X N → K) x) hw
   have hcinf : c (CuspSpace.mk N ∞) = 0 :=
     congr_arg (fun p : ↥(relSpace K (sig2 N) (sig3 N)) × K => p.2) hw
-
   have hPS : ∀ h : SL(2, ℤ), Ppot N φ c (h * S) = Ppot N φ c h := fun h => by
     have e := hθx ((h⁻¹ : SL(2, ℤ)) : X N)
     rw [nX_mk hφ, nSL, inv_inv] at e
     linear_combination -e
   have hPT : ∀ h : SL(2, ℤ), Ppot N φ c (h * T) = Ppot N φ c h := fun h =>
     Ppot_mul_right φ c h T_lower
-
   have key : ∀ k : SL(2, ℤ), k ∈ Subgroup.closure ({S, T} : Set SL(2, ℤ)) →
       ∀ h : SL(2, ℤ), Ppot N φ c (h * k) = Ppot N φ c h := by
     intro k hk
@@ -611,7 +606,6 @@ theorem thetaPlus_injective : Function.Injective (thetaPlus K N) := by
   have hconst : ∀ k : SL(2, ℤ), Ppot N φ c k = Ppot N φ c 1 := fun k => by
     have := key k (SpecialLinearGroup.SL2Z_generators ▸ Subgroup.mem_top k) 1
     rwa [one_mul] at this
-
   have hPhi : ∀ γ : SL(2, ℤ), γ ∈ Gamma0 N → Phi (Gamma0 N) φ γ = 0 := fun γ hγ => by
     have e := Ppot_mul_left hφ c hγ 1
     rw [mul_one, hconst γ] at e
@@ -620,7 +614,6 @@ theorem thetaPlus_injective : Function.Injective (thetaPlus K N) := by
     have e := hPhi ((Additive.toMul a : Gamma0 N) : SL(2, ℤ)) (Additive.toMul a).2
     rw [Phi_of_mem] at e
     exact e
-
   have hcval : ∀ σ : SL(2, ℤ), c (CuspSpace.mk N (mapGL ℚ σ • ∞)) = Ppot N φ c 1 := fun σ => by
     rw [← hconst σ, Ppot, Gpot, hPhi _ (gam_mem N _), zero_add]
   have hP1 : Ppot N φ c 1 = 0 := by

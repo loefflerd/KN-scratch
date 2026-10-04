@@ -452,7 +452,6 @@ theorem natCast_ne_zero_of_socket (d : ℕ) [NeZero d]
   have : Fact (Nat.Prime (ringChar K)) := ⟨CharP.char_prime_of_ne_zero K h0⟩
   have hfrob : jqNModC K (ringChar K) = jqModC K ^ ringChar K :=
     ModularCurve.qExpand_jqModC_eq_pow_unconditional K
-
   have hmem : jqModC K ^ ringChar K ∈ IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K)) :=
     (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))).pow_mem (IntermediateField.subset_adjoin K _ rfl)
       (ringChar K)
@@ -521,7 +520,6 @@ open _root_.ModularCurve _root_.P2MW.S_ModularCurve_finrank_adjoin_jqNModC_eq_de
 
 theorem solution {K : Type*} [Field K] (d : ℕ) [NeZero d] (hbase : ∀ (p : ℕ) [Fact (Nat.Prime p)], p ∣ d → jqNModC K p ∉ IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) : Module.finrank (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) (IntermediateField.adjoin (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) ({jqNModC K d} : Set (LaurentSeries K))) = dedekindPsi d :=
   ModularCurve.finrank_adjoin_jqNModC_eq_dedekindPsi_of_socket d hbase
-
 
 end S_ModularCurve_finrank_adjoin_jqNModC_eq_dedekindPsi_of_socket
 end P2MW

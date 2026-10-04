@@ -30,22 +30,18 @@ theorem exists_isCoprime_add_mul (a c : ℤ) {q : ℕ} (hq : q ≠ 0) (hac : IsC
     exact Int.natCast_dvd_natCast.mp h
   have ppZ : Prime (p : ℤ) := Nat.prime_iff_prime_int.mp pp
   by_cases hpa : (p : ℤ) ∣ a
-  ·
-    have hjc : (p : ℤ) ∣ j * c := by
+  · have hjc : (p : ℤ) ∣ j * c := by
       have := dvd_sub hp1 hpa
       rwa [add_sub_cancel_left] at this
     rcases ppZ.dvd_or_dvd hjc with h | h
-    ·
-      have h' : p ∣ ps.prod id := Int.natCast_dvd_natCast.mp h
+    · have h' : p ∣ ps.prod id := Int.natCast_dvd_natCast.mp h
       obtain ⟨r, hr, hpr⟩ := (pp.prime.dvd_finsetProd_iff id).mp h'
       have hr' := (Finset.mem_filter.mp hr)
       have hreq : p = r :=
         (Nat.prime_dvd_prime_iff_eq pp (Nat.prime_of_mem_primeFactors hr'.1)).mp hpr
       exact hr'.2 (hreq ▸ hpa)
-    ·
-      exact ppZ.not_isUnit (hac.isUnit_of_dvd' hpa h)
-  ·
-    have pps : p ∈ ps :=
+    · exact ppZ.not_isUnit (hac.isUnit_of_dvd' hpa h)
+  · have pps : p ∈ ps :=
       Finset.mem_filter.mpr ⟨Nat.mem_primeFactors.mpr ⟨pp, hp2, hq⟩, hpa⟩
     have hpj : (p : ℤ) ∣ j := Int.natCast_dvd_natCast.mpr (Finset.dvd_prod_of_mem id pps)
     have : (p : ℤ) ∣ a := by

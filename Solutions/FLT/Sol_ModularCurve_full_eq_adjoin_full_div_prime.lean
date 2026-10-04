@@ -284,8 +284,7 @@ theorem roots_prime_at_slot_nodup (N : ℕ) [NeZero N] (ζ : Kˣ) (hζ : IsPrimi
   have hζp : IsPrimitiveRoot ((ζ ^ (N / p) : Kˣ) : K) p := isPrimitiveRoot_pow_div hζ hpN
   rw [Multiset.nodup_cons]
   constructor
-  ·
-    intro hmem
+  · intro hmem
     obtain ⟨b, hb, heq⟩ := Multiset.mem_map.mp hmem
     have h := (TS_injective (K := K) (e := e) (e' := p * (p * e))
       (u := u * ζ ^ (b * (N / p))) (u' := u ^ (p * p)) heq).1
@@ -294,8 +293,7 @@ theorem roots_prime_at_slot_nodup (N : ℕ) [NeZero N] (ζ : Kˣ) (hζ : IsPrimi
     have hmono : 2 * (2 * e) ≤ p * (p * e) := Nat.mul_le_mul hp2 (Nat.mul_le_mul hp2 le_rfl)
     rw [← h] at hmono
     omega
-  ·
-    refine Multiset.Nodup.map_on ?_ (Multiset.nodup_range p)
+  · refine Multiset.Nodup.map_on ?_ (Multiset.nodup_range p)
     intro b hb b' hb' heq
     rw [Multiset.mem_range] at hb hb'
     have h := (TS_injective (K := K) (e := e) (e' := e)
@@ -417,7 +415,6 @@ private theorem jqN_mem_of_div_primes {K : Type*} [Field K] [Algebra ℚ K]
   have hNq0 : N / q ≠ 0 := fun h0 => NeZero.ne N (by rw [← Nat.div_mul_cancel hqN, h0, zero_mul])
   have : NeZero (N / p) := ⟨hNp0⟩
   have : NeZero (N / q) := ⟨hNq0⟩
-
   have hpe : p * (N / p * (d / p)) = N * (d / p) := by
     rw [← mul_assoc, Nat.mul_div_cancel' hpN]
   have hqe : q * (N / q * (d / q)) = N * (d / q) := by
@@ -426,20 +423,16 @@ private theorem jqN_mem_of_div_primes {K : Type*} [Field K] [Algebra ℚ K]
     rw [hpe, mul_left_comm, Nat.mul_div_cancel' hpd]
   have hqe2 : q * (q * (N / q * (d / q))) = N * d := by
     rw [hqe, mul_left_comm, Nat.mul_div_cancel' hqd]
-
   have data_p : ModularPolynomialData p := (ModularCurve.exists_phiIrreducible_evalSymm p).choose
   have data_q : ModularPolynomialData q := (ModularCurve.exists_phiIrreducible_evalSymm q).choose
-
   let : Algebra F (LaurentSeries K) :=
     (((coeffEmb K).comp (qExpand ℚ N)).comp (algebraMap F (LaurentSeries ℚ))).toAlgebra
-
   have hmapA : (phiAtSeed data_p (⟨jqN (d / p), hmp⟩ : F)).map (algebraMap F (LaurentSeries K))
       = phiAtSeed data_p (coeffEmb K (qExpand ℚ N (jqN (d / p)))) :=
     phiAtSeed_map data_p _ _
   have hmapB : (phiAtSeed data_q (⟨jqN (d / q), hmq⟩ : F)).map (algebraMap F (LaurentSeries K))
       = phiAtSeed data_q (coeffEmb K (qExpand ℚ N (jqN (d / q)))) :=
     phiAtSeed_map data_q _ _
-
   have hseed_p : coeffEmb K (qExpand ℚ N (jqN (d / p)))
       = qExpand K (p * (N / p * (d / p))) (qTwist ((1 : Kˣ) ^ p) (coeffEmb K jq)) := by
     have h2 : TS K (N * (d / p)) 1 = TS K (p * (N / p * (d / p))) ((1 : Kˣ) ^ p) := by
@@ -452,7 +445,6 @@ private theorem jqN_mem_of_div_primes {K : Type*} [Field K] [Algebra ℚ K]
       rw [one_pow]
       exact TS_congr hqe.symm 1
     exact (iota_jqN N (d / q)).trans h2
-
   have hdist_p : coeffEmb K (qExpand ℚ N (jqN d))
       = qExpand K (p * (p * (N / p * (d / p)))) (qTwist ((1 : Kˣ) ^ (p * p)) (coeffEmb K jq)) := by
     have h2 : TS K (N * d) 1 = TS K (p * (p * (N / p * (d / p)))) ((1 : Kˣ) ^ (p * p)) := by
@@ -465,7 +457,6 @@ private theorem jqN_mem_of_div_primes {K : Type*} [Field K] [Algebra ℚ K]
       rw [one_pow]
       exact TS_congr hqe2.symm 1
     exact (iota_jqN N d).trans h2
-
   have hrootA : ∀ y : LaurentSeries K,
       Polynomial.aeval y (phiAtSeed data_p (⟨jqN (d / p), hmp⟩ : F)) = 0 ↔
         (y = qExpand K (p * (p * (N / p * (d / p)))) (qTwist ((1 : Kˣ) ^ (p * p)) (coeffEmb K jq)) ∨
@@ -480,7 +471,6 @@ private theorem jqN_mem_of_div_primes {K : Type*} [Field K] [Algebra ℚ K]
     intro y
     rw [Polynomial.aeval_def, ← Polynomial.eval_map, hmapB, hseed_q]
     exact isRoot_prime_at_slot_iff N ζ hζ q hqN data_q (N / q * (d / q)) 1 y
-
   have hA0 : phiAtSeed data_p (⟨jqN (d / p), hmp⟩ : F) ≠ 0 := (phiAtSeed_monic data_p _).ne_zero
   have hAs : ((phiAtSeed data_p (⟨jqN (d / p), hmp⟩ : F)).map
       (algebraMap F (LaurentSeries K))).Splits := by
@@ -498,7 +488,6 @@ private theorem jqN_mem_of_div_primes {K : Type*} [Field K] [Algebra ℚ K]
   have hxB : Polynomial.aeval (coeffEmb K (qExpand ℚ N (jqN d)))
       (phiAtSeed data_q (⟨jqN (d / q), hmq⟩ : F)) = 0 :=
     (hrootB _).mpr (Or.inl hdist_q)
-
   have huniq : ∀ y : LaurentSeries K,
       Polynomial.aeval y (phiAtSeed data_p (⟨jqN (d / p), hmp⟩ : F)) = 0 →
       Polynomial.aeval y (phiAtSeed data_q (⟨jqN (d / q), hmq⟩ : F)) = 0 →
@@ -519,7 +508,6 @@ private theorem jqN_mem_of_div_primes {K : Type*} [Field K] [Algebra ℚ K]
         have h3 : q ∣ p * p := by rw [h2]; exact dvd_mul_right q q
         have h4 : q ∣ p := ((Nat.Prime.dvd_mul qq).mp h3).elim id id
         exact hpq (((Nat.prime_dvd_prime_iff_eq qq pp).mp h4).symm)
-
   have hrange := Polynomial.mem_range_of_unique_common_root
     (phiAtSeed data_p (⟨jqN (d / p), hmp⟩ : F)) (phiAtSeed data_q (⟨jqN (d / q), hmq⟩ : F))
     hA0 hAs hAnd (coeffEmb K (qExpand ℚ N (jqN d))) hxA hxB huniq
@@ -564,8 +552,7 @@ private theorem w1_jqN_mem_adjoin_top_insert (M : ℕ) [NeZero M] (p : ℕ)
       rcases eq_or_ne m 1 with hm1 | hm1
       · rw [jqN_congr' (show d = p ^ (a + 1) by rw [hd, hm1, one_mul])]
         exact IntermediateField.subset_adjoin ℚ _ (Set.mem_insert _ _)
-      ·
-        set q := m.minFac with hqdef
+      · set q := m.minFac with hqdef
         have hq : q.Prime := Nat.minFac_prime hm1
         have hqm : q ∣ m := Nat.minFac_dvd m
         have hqp : p ≠ q := fun h => hpM ((h ▸ hqm).trans hmM)
@@ -627,7 +614,6 @@ p2m_open "ModularCurve~coeffEmb_qExpand" in open _root_.P2MW.S_ModularCurve_full
 
 theorem solution (M : ℕ) [NeZero M] (p : ℕ) [hp : Fact (Nat.Prime p)] (a : ℕ) (hpM : ¬ p ∣ M) : modularFunctionFieldFull (M * p ^ (a + 1)) = IntermediateField.adjoin ℚ (insert (jqN (p ^ (a + 1))) (modularFunctionFieldFull (M * p ^ a) : Set (LaurentSeries ℚ))) :=
   ModularCurve.full_eq_adjoin_full_div_prime M p a hpM
-
 
 end S_ModularCurve_full_eq_adjoin_full_div_prime
 end P2MW

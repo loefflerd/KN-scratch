@@ -181,7 +181,6 @@ theorem exists_nat_mul_mem_AZ (x : ℂ) (hx : x ∈ kN N) : ∃ D : ℕ, D ≠ 0
     exact hx
   rw [Algebra.adjoin_singleton_eq_range_aeval] at hx'
   obtain ⟨p, rfl⟩ := hx'
-
   refine ⟨∏ i ∈ Finset.range (p.natDegree + 1), (p.coeff i).den, ?_, ?_⟩
   · exact Finset.prod_ne_zero_iff.mpr fun i _ => (p.coeff i).den_nz
   · change ((∏ i ∈ Finset.range (p.natDegree + 1), (p.coeff i).den : ℕ) : ℂ) * Polynomial.aeval (zetaN N) p ∈ AZ N
@@ -189,7 +188,6 @@ theorem exists_nat_mul_mem_AZ (x : ℂ) (hx : x ∈ kN N) : ∃ D : ℕ, D ≠ 0
     refine sum_mem fun i hi => ?_
     rw [Algebra.smul_def, ← mul_assoc]
     refine mul_mem ?_ (pow_mem (zetaN_mem_AZ N) _)
-
     have hdvd : ((p.coeff i).den : ℤ) ∣ ∏ j ∈ Finset.range (p.natDegree + 1), ((p.coeff j).den : ℤ) :=
       Finset.dvd_prod_of_mem _ hi
     obtain ⟨c, hc⟩ := hdvd
@@ -749,9 +747,7 @@ theorem exists_rat_monic (m : ℕ) {G : ℍ → ℂ} (hG : MDifferentiable 𝓘(
     Nat.lt_succ_of_le (Finset.single_le_sum (f := fun j => (p j).natDegree) (fun j _ => Nat.zero_le _)
       (Finset.mem_univ i))
   set M : ℕ := L + m * d with hM
-
   set Gi : Fin d × Fin (L + 1) → ℍ → ℂ := fun il => jf ^ (il.2 : ℕ) * G ^ (il.1 : ℕ) with hGi
-
   have hjm : (jf * Δ) ∈ nice N := jf_disc_mem
   have key : ∀ (l i r : ℕ), jf ^ l * G ^ i * Δ ^ (l + m * i + r) ∈ nice N ∧
       IsRat (qExpansion N (jf ^ l * G ^ i * Δ ^ (l + m * i + r))) := by
@@ -782,7 +778,6 @@ theorem exists_rat_monic (m : ℕ) {G : ℍ → ℂ} (hG : MDifferentiable 𝓘(
     have h0 : (0 : ℕ) + m * d + L = M := by omega
     rw [pow_zero, one_mul, h0] at hn hr
     exact ratAt_of_mem_nice (hG.pow _) hn hr
-
   have hmem : G ^ d ∈ Submodule.span ℂ (Set.range Gi) := by
     have hfun : G ^ d = ∑ i : Fin d, ∑ l : Fin (L + 1), (-(p i).coeff l) • Gi (i, l) := by
       funext τ
@@ -808,7 +803,6 @@ theorem exists_rat_monic (m : ℕ) {G : ℍ → ℂ} (hG : MDifferentiable 𝓘(
   refine ⟨L, fun i l => b (i, l), ?_⟩
   rw [hκ, Fintype.sum_prod_type]
   grind
-
 
 end Flat
 
@@ -907,7 +901,6 @@ theorem exists_series_data (m : ℕ) (G : ℍ → ℂ) (hG : MDifferentiable �
       y₀ ^ d + ∑ i : Fin d, c₀ i * y₀ ^ (i : ℕ) = 0 ∧
       q ≠ 0 ∧ BddA N q ∧ BddA N r ∧ y₀.map (algebraMap ℚ ℂ) * q = r := by
   classical
-
   have hperG : Periodic (G ∘ ofComplex) N := periodic_of_gamma_invariant hinv
   have hΔm : (Δ ^ m : ℍ → ℂ) ∈ nice N := pow_mem disc_mem m
   have hGm : G * Δ ^ m ∈ nice N := by
@@ -918,25 +911,20 @@ theorem exists_series_data (m : ℕ) (G : ℍ → ℂ) (hG : MDifferentiable �
     simp only [comp_apply, Pi.mul_apply] at h1 h2 ⊢
     rw [h1, h2]
   have hGrat : IsRat (qExpansion N (G * Δ ^ m)) := isRat_iff.mpr hrat
-
   have hcoeff : ∀ n, (qExpansion N (G * Δ ^ m)).coeff n ∈ kN N := by
     intro n; obtain ⟨r, hr⟩ := hrat n; rw [hr]; exact ratCast_mem (kN N) r
   obtain ⟨P, Q, hQ0, hGQ⟩ := ModularCurve.exists_mvPolynomial_mul_aeval_fricke_eq_of_qExpansion_coeff_mem N
     tauPair tauPair_spec (WW N) (WW_spec N) (fricke N) (fricke_spec N) jf jf_spec (kN N) rfl m G hG hinv hbd hcoeff
   change ev N Q ≠ 0 at hQ0
   change G * ev N Q = ev N P at hGQ
-
   obtain ⟨d, p, -, hrel⟩ := WLight.exists_monicRel_j_K_of_mdifferentiable_frickeQuotient N tauPair tauPair_spec
     (WW N) (WW_spec N) (fricke N) (fricke_spec N) jf jf_spec (kN N) rfl G hG P Q hQ0 hGQ
-
   obtain ⟨L, b, hb⟩ := exists_rat_monic m hG hGm hGrat p hrel
-
   obtain ⟨eQ, heQ⟩ := exists_goodAt_ev (N := N) Q
   obtain ⟨eP, heP⟩ := exists_goodAt_ev (N := N) P
   set e : ℕ := eQ + eP with he
   have hQe : GoodAt (N := N) e (ev N Q) := heQ.of_le (Nat.le_add_right _ _)
   have hPe : GoodAt (N := N) e (ev N P) := heP.of_le (Nat.le_add_left _ _)
-
   set E : ℕ := m + L with hE
   set gm : nice N := ⟨G * Δ ^ m, hGm⟩ with hgm
   set y : nice N := gm * dN ^ L with hy
@@ -944,7 +932,6 @@ theorem exists_series_data (m : ℕ) (G : ℍ → ℂ) (hG : MDifferentiable �
   set qn : nice N := ⟨ev N Q * Δ ^ e, hQe.1⟩ with hqn
   set pn : nice N := ⟨ev N P * Δ ^ e, hPe.1⟩ with hpn
   have hy_coe : ((y : nice N) : ℍ → ℂ) = G * Δ ^ m * Δ ^ L := rfl
-
   have hexp : ∀ (i : Fin d) (l : Fin (L + 1)), E * d = (l : ℕ) + E * i + (E * (d - i) - l) := by
     intro i l
     have hl : (l : ℕ) ≤ L := Nat.lt_succ_iff.mp l.2
@@ -953,7 +940,6 @@ theorem exists_series_data (m : ℕ) (G : ℍ → ℂ) (hG : MDifferentiable �
     have h2 : E * d = E * i + E * (d - i) := by rw [← Nat.mul_add, Nat.add_sub_cancel' i.2.le]
     omega
   set kk : Fin d → Fin (L + 1) → ℕ := fun i l => E * (d - i) - l with hkk
-
   set Z : nice N := ∑ i : Fin d, ∑ l : Fin (L + 1), ((b i l : ℚ) : ℂ) • (jn ^ (l : ℕ) * y ^ (i : ℕ) * dN ^ kk i l)
     with hZ
   have hZ_coe : ((Z : nice N) : ℍ → ℂ) =
@@ -979,7 +965,6 @@ theorem exists_series_data (m : ℕ) (G : ℍ → ℂ) (hG : MDifferentiable �
           congr 1
           rw [hexp i l, pow_add, pow_add, hkk, hE]
           ring
-
   have hS1 : (qE N y) ^ d = ∑ i : Fin d, ∑ l : Fin (L + 1),
       ((b i l : ℚ) : ℂ) • ((qE N jn) ^ (l : ℕ) * (qE N y) ^ (i : ℕ) * (qE N dN) ^ kk i l) := by
     rw [← map_pow, hId1, hZ, map_sum]
@@ -987,7 +972,6 @@ theorem exists_series_data (m : ℕ) (G : ℍ → ℂ) (hG : MDifferentiable �
     rw [map_sum]
     refine Finset.sum_congr rfl fun l _ => ?_
     rw [map_smul, map_mul, map_mul, map_pow, map_pow, map_pow]
-
   have hId2 : y * qn = pn * dN ^ E := by
     apply Subtype.ext
     change (G * Δ ^ m * Δ ^ L) * (ev N Q * Δ ^ e) = (ev N P * Δ ^ e) * Δ ^ E
@@ -995,14 +979,12 @@ theorem exists_series_data (m : ℕ) (G : ℍ → ℂ) (hG : MDifferentiable �
     ring
   have hS2 : qE N y * qE N qn = qE N pn * (qE N dN) ^ E := by
     rw [← map_mul, hId2, map_mul, map_pow]
-
   have hqEy : qE N y = qExpansion N (G * Δ ^ m) * qExpansion N (Δ : ℍ → ℂ) ^ L := by
     rw [hy, map_mul, map_pow]; rfl
   have hqEjn : qE N jn = (JZ (N := N)).map (Int.castRingHom ℂ) := by rw [map_JZ]; rfl
   have hqEdN : qE N dN = (DZ (N := N)).map (Int.castRingHom ℂ) := by rw [map_DZ]; rfl
   have hYrat : IsRat (qE N y) := by rw [hqEy]; exact hGrat.mul (isRat_disc.pow L)
   obtain ⟨y₀, hy₀⟩ := hYrat
-
   set c₀ : Fin d → PowerSeries ℚ := fun i =>
     -∑ l : Fin (L + 1), (b i l) • ((JZ (N := N) ^ (l : ℕ) * DZ (N := N) ^ kk i l).map (Int.castRingHom ℚ)) with hc₀
   have hc₀map : ∀ i, (c₀ i).map (algebraMap ℚ ℂ) =
@@ -1220,7 +1202,6 @@ theorem exists_int_multiple {d : ℕ} (y₀ : PowerSeries ℚ) (c₀ : Fin d →
   obtain ⟨Du, U, hDu, hU⟩ := hu
   set c : ℕ := ∏ i, D i with hcdef
   have hc0 : c ≠ 0 := Finset.prod_ne_zero_iff.mpr fun i _ => hD i
-
   set z : Fin d → ℕ := fun i => c ^ (d - 1 - i) * ∏ j ∈ Finset.univ.erase i, D j with hz
   have hzid : ∀ i : Fin d, z i * D i * c ^ (i : ℕ) = c ^ d := by
     intro i
@@ -1232,7 +1213,6 @@ theorem exists_int_multiple {d : ℕ} (y₀ : PowerSeries ℚ) (c₀ : Fin d →
       _ = c ^ (d - 1 - i) * c * c ^ (i : ℕ) := by rw [h1]
       _ = c ^ (d - 1 - (i : ℕ) + 1 + i) := by rw [pow_add, pow_succ]
       _ = c ^ d := by rw [h2]
-
   set ι : PowerSeries ℤ →+* PowerSeries ℚ := PowerSeries.map (Int.castRingHom ℚ) with hι
   set a : Fin d → PowerSeries ℤ := fun i => PowerSeries.C (z i : ℤ) * C i with ha
   set Φ : Polynomial (PowerSeries ℤ) := Polynomial.X ^ d + ∑ i : Fin d, Polynomial.C (a i) * Polynomial.X ^ (i : ℕ)
@@ -1257,7 +1237,6 @@ theorem exists_int_multiple {d : ℕ} (y₀ : PowerSeries ℚ) (c₀ : Fin d →
       ring
     have hlead : g ^ d = PowerSeries.C ((c : ℚ) ^ d) * y₀ ^ d := by rw [hg, mul_pow, map_pow]
     rw [Finset.sum_congr rfl fun i _ => hterm i, ← Finset.mul_sum, hlead, ← mul_add, hrel, mul_zero]
-
   set h : PowerSeries ℤ := PowerSeries.C (Du : ℤ) * H with hh
   have hH0 : H ≠ 0 := by
     intro h0
@@ -1278,7 +1257,6 @@ theorem exists_int_multiple {d : ℕ} (y₀ : PowerSeries ℚ) (c₀ : Fin d →
     simp only [hι, PowerSeries.smul_eq_C_mul, Nat.cast_mul,
       map_natCast, map_mul]
     ring
-
   have hιalg : ι = PowerSeries.map (algebraMap ℤ ℚ) := by rw [hι, algebraMap_int_eq]
   have key : g ∈ (PowerSeries.map (algebraMap ℤ ℚ)).range := by
     rw [← hιalg]
@@ -1305,7 +1283,6 @@ theorem main (m : ℕ) (G : ℍ → ℂ) (hG : MDifferentiable 𝓘(ℂ) 𝓘(�
   obtain ⟨L, d, y₀, c₀, q, r, hy₀, hc₀, hrel, hq0, hq, hr, hyq⟩ := exists_series_data (N := N) m G hG hinv hbd hrat
   obtain ⟨h₀, u₀, hh0, hh, hu, hhy⟩ := galois_descent (N := N) y₀ q r hq0 hq hr hyq
   obtain ⟨c, gZ, hc0, hgZ⟩ := exists_int_multiple y₀ c₀ hc₀ hrel h₀ u₀ hh0 hh hu hhy
-
   set Ghat : PowerSeries ℂ := qExpansion N (G * Δ ^ m) with hGhat
   have hC : gZ.map (Int.castRingHom ℂ) = (PowerSeries.C (c : ℂ) * Ghat * ((UZ (N := N)) ^ L).map (Int.castRingHom ℂ))
       * PowerSeries.X ^ (N * L) := by
@@ -1314,7 +1291,6 @@ theorem main (m : ℕ) (G : ℍ → ℂ) (hG : MDifferentiable 𝓘(ℂ) 𝓘(�
     simp only [map_natCast]
     rw [hGhat]
     ring
-
   have hdvd : (PowerSeries.X : PowerSeries ℤ) ^ (N * L) ∣ gZ := by
     rw [PowerSeries.X_pow_dvd_iff]
     intro k hk
@@ -1326,7 +1302,6 @@ theorem main (m : ℕ) (G : ℍ → ℂ) (hG : MDifferentiable 𝓘(ℂ) 𝓘(�
     have h1 := hC
     rw [hg', map_mul, map_pow, PowerSeries.map_X, mul_comm] at h1
     exact mul_right_cancel₀ (pow_ne_zero _ PowerSeries.X_ne_zero) h1
-
   have hUunit : IsUnit ((UZ (N := N)) ^ L) := by
     refine IsUnit.pow L ?_
     rw [PowerSeries.isUnit_iff_constantCoeff, constantCoeff_UZ]; exact isUnit_one

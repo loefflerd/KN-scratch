@@ -208,13 +208,11 @@ theorem isFinitePlace_iff_exists_placeOfEquation [IsAlgClosed F]
     IsFinitePlace v ↔ ∃ (x y : F) (h : W.Equation x y), v = placeOfEquation h := by
   constructor
   · intro hv
-
     have := hv.centre_isPrime
     have hmax : hv.centre.IsMaximal := Ideal.IsPrime.isMaximal hv.centre_isPrime hv.centre_ne_bot
     obtain ⟨x, y, hxy, hXY⟩ :=
       CoordinateRing.exists_eq_XYIdeal (W := W) (P := hv.centre) hv.centre_ne_bot
     refine ⟨x, y, hxy, ?_⟩
-
     set w : HeightOneSpectrum W.CoordinateRing := heightOneSpectrumOfEquation hxy with hw
     set A : ValuationSubring W.FunctionField :=
       HeightOneSpectrum.valuationSubringAtPrime W.FunctionField w with hA
@@ -228,19 +226,16 @@ theorem isFinitePlace_iff_exists_placeOfEquation [IsAlgClosed F]
         rw [hXY] at hmem
         exact hs hmem
       exact mul_mem (hv r) (hv.inv_mem hs')
-
     have hSP : A.ofPrime (A.idealOfLE v.toValuationSubring hle) = v.toValuationSubring :=
       ValuationSubring.ofPrime_idealOfLE A v.toValuationSubring hle
     rcases eq_or_ne (A.idealOfLE v.toValuationSubring hle) ⊥ with hP | hP
-    ·
-      exfalso
+    · exfalso
       apply v.ne_top'
       have h2 : A.ofPrime ⊥ ≤ A.ofPrime (A.idealOfLE v.toValuationSubring hle) :=
         ValuationSubring.ofPrime_le_of_le (h := hP.le)
       rw [ValuationSubring.ofPrime_bot] at h2
       exact top_le_iff.mp (le_trans h2 hSP.le)
-    ·
-      have hPmax : (A.idealOfLE v.toValuationSubring hle).IsMaximal :=
+    · have hPmax : (A.idealOfLE v.toValuationSubring hle).IsMaximal :=
         Ideal.IsPrime.isMaximal inferInstance hP
       have hPeq : A.idealOfLE v.toValuationSubring hle = IsLocalRing.maximalIdeal A :=
         IsLocalRing.eq_maximalIdeal hPmax
@@ -1236,15 +1231,12 @@ theorem exists_eq_XYIdeal_of_isMaximal [IsAlgClosed F] (𝔪 : Ideal W.Coordinat
       (algebraMap F (W.CoordinateRing ⧸ 𝔪)).comp
         ((Polynomial.evalRingHom x).comp (Polynomial.evalRingHom (Polynomial.C y))) := by
     refine Polynomial.ringHom_ext' (Polynomial.ringHom_ext (fun a => ?_) ?_) ?_
-    ·
-      simp only [RingHom.comp_apply, Polynomial.coe_evalRingHom, Polynomial.eval_C]
+    · simp only [RingHom.comp_apply, Polynomial.coe_evalRingHom, Polynomial.eval_C]
       exact hconst a
-    ·
-      simp only [RingHom.comp_apply, Polynomial.coe_evalRingHom, Polynomial.eval_X,
+    · simp only [RingHom.comp_apply, Polynomial.coe_evalRingHom, Polynomial.eval_X,
         Polynomial.eval_C]
       exact hx.symm
-    ·
-      simp only [RingHom.comp_apply, Polynomial.coe_evalRingHom, Polynomial.eval_X,
+    · simp only [RingHom.comp_apply, Polynomial.coe_evalRingHom, Polynomial.eval_X,
         Polynomial.eval_C]
       exact hy.symm
   have heval : W.Equation x y := by
@@ -2102,8 +2094,7 @@ private theorem _root_.AlgebraicCurve.Place.ord_add_eq_min {f g : F} (hf : f ≠
     · exact v.adicValuation_ne_zero hg h1.symm
   rcases max_cases (v.adicValuation f) (v.adicValuation g) with ⟨hmax, hle⟩ | ⟨hmax, hlt⟩ <;>
     rw [hmax] at h1
-  ·
-    have hlog := (WithZero.log_le_log (v.adicValuation_ne_zero hg)
+  · have hlog := (WithZero.log_le_log (v.adicValuation_ne_zero hg)
       (v.adicValuation_ne_zero hf)).mpr hle
     have h2 : v.ord (f + g) = v.ord f := by simp only [ord, h1]
     simp only [ord] at hlog h2 ⊢
@@ -2148,11 +2139,9 @@ private theorem _root_.AlgebraicCurve.Place.ord_ringHom_eq_natDegree_mul {φ : K
     intro hp
     subst hd
     rcases eq_or_ne p.eraseLead 0 with he | he
-    ·
-      conv_lhs => rw [← p.eraseLead_add_C_mul_X_pow, he, zero_add]
+    · conv_lhs => rw [← p.eraseLead_add_C_mul_X_pow, he, zero_add]
       exact hmono _ _ (leadingCoeff_ne_zero.mpr hp)
-    ·
-      have hlt : p.eraseLead.natDegree < p.natDegree := by
+    · have hlt : p.eraseLead.natDegree < p.natDegree := by
         rcases p.eraseLead_natDegree_lt_or_eraseLead_eq_zero with h | h
         · exact h
         · exact absurd h he
@@ -2317,13 +2306,11 @@ theorem isFinitePlace_of_mem
     refine v.mem_of_eval_monic_eq_zero (P := Polynomial.X ^ 2
       + (Polynomial.C (polyToFunctionField W c₁) * Polynomial.X
         - Polynomial.C (polyToFunctionField W cb))) ?_ ?_ (x := η) ?_
-    ·
-      refine Polynomial.monic_X_pow_add (n := 2) ?_
+    · refine Polynomial.monic_X_pow_add (n := 2) ?_
       rw [sub_eq_add_neg, ← Polynomial.C_neg]
       refine lt_of_le_of_lt Polynomial.degree_linear_le ?_
       exact_mod_cast Nat.one_lt_two
-    ·
-      intro i
+    · intro i
       rw [show (Polynomial.C (polyToFunctionField W c₁) * Polynomial.X : Polynomial _)
           = Polynomial.C (polyToFunctionField W c₁) * Polynomial.X ^ 1 by ring]
       simp only [Polynomial.coeff_add, Polynomial.coeff_sub, Polynomial.coeff_X_pow,
@@ -2336,8 +2323,7 @@ theorem isFinitePlace_of_mem
       · split
         · exact hpoly _
         · exact v.toValuationSubring.zero_mem
-    ·
-      simp only [Polynomial.eval_add, Polynomial.eval_sub, Polynomial.eval_pow,
+    · simp only [Polynomial.eval_add, Polynomial.eval_sub, Polynomial.eval_pow,
         Polynomial.eval_mul, Polynomial.eval_C, Polynomial.eval_X]
       rw [sq]
       linear_combination hrel
@@ -2402,8 +2388,7 @@ theorem two_mul_ord_Y_eq_three_mul_ord_X (hv : ¬ IsFinitePlace v) :
   · rw [hc₁0, add_zero] at hLHS
     omega
   · by_cases hBc : v.ord η = v.ord (polyToFunctionField W c₁)
-    ·
-      exfalso
+    · exfalso
       have hmin : min (v.ord η) (v.ord (polyToFunctionField W c₁))
           ≤ v.ord (η + polyToFunctionField W c₁) := v.min_ord_le_ord_add hfac0
       rw [← hBc, min_self] at hmin
@@ -2416,8 +2401,7 @@ theorem two_mul_ord_Y_eq_three_mul_ord_X (hv : ¬ IsFinitePlace v) :
         ⟨hm, hle⟩ | ⟨hm, hlt⟩ <;> rw [hm] at hsum
       · rw [hsum] at hLHS
         omega
-      ·
-        exfalso
+      · exfalso
         rw [hsum] at hLHS
         omega
 
@@ -2447,21 +2431,18 @@ theorem two_mul_ord_eq_of_not_isFinitePlace (hv : ¬ IsFinitePlace v)
   have hYord := two_mul_ord_Y_eq_three_mul_ord_X v hv
   obtain ⟨p, q, rfl⟩ := exists_smul_basis_eq f
   by_cases hq : q = 0
-  ·
-    subst hq
+  · subst hq
     have hp : p ≠ 0 := fun h => hf (by rw [h, zero_smul, zero_smul, add_zero])
     rw [natDegree_norm_smul_basis_left hp, algebraMap_smul_basis, _root_.map_zero, zero_mul, add_zero,
       v.ord_ringHom_eq_natDegree_mul polyToFunctionField_injective polyToFunctionField_C hA hp]
     ring
   · by_cases hp : p = 0
-    ·
-      subst hp
+    · subst hp
       rw [natDegree_norm_smul_basis_right hq, algebraMap_smul_basis, _root_.map_zero, zero_add,
         v.ord_mul (polyToFunctionField_ne_zero hq) hη0,
         v.ord_ringHom_eq_natDegree_mul polyToFunctionField_injective polyToFunctionField_C hA hq]
       linear_combination hYord
-    ·
-      rw [natDegree_norm_smul_basis_max hp hq, algebraMap_smul_basis]
+    · rw [natDegree_norm_smul_basis_max hp hq, algebraMap_smul_basis]
       have hordp : v.ord (polyToFunctionField W p)
           = (p.natDegree : ℤ) * v.ord (polyToFunctionField W X) :=
         v.ord_ringHom_eq_natDegree_mul polyToFunctionField_injective polyToFunctionField_C hA hp
@@ -3283,8 +3264,7 @@ private theorem _root_.AlgebraicCurve.Place.ord_sub_evalAt_pos (hrat : v.IsRatio
   have hmem : f - algebraMap K F (v.evalAt f) ∈ v.toValuationSubring :=
     sub_mem hf (v.algebraMap_mem' _)
   rcases eq_or_ne (v.ord (f - algebraMap K F (v.evalAt f))) 0 with h0 | h0
-  ·
-    exfalso
+  · exfalso
     refine v.evalAt_ne_zero hrat hne h0 ?_
     have hres : algebraMap K v.ResidueField
         (v.evalAt (f - algebraMap K F (v.evalAt f))) = 0 := by
@@ -3534,8 +3514,7 @@ private theorem _root_.WeierstrassCurve.veluDeficitCrossQuadAlphaSqClearedPoly_n
     (natDegree_le_iff_degree_le.mpr ?_) (by omega)
   unfold veluDeficitCrossQuadAlphaSqClearedPoly
   refine (degree_add_le _ _).trans (max_le ?_ ?_)
-  ·
-    rw [neg_mul, degree_neg]
+  · rw [neg_mul, degree_neg]
     refine degree_le_natDegree.trans (Nat.cast_le.mpr ?_)
     refine natDegree_mul_le.trans ?_
     have h1 : (C (3 : F) * X + C W.a₂).natDegree ≤ 1 := by compute_degree
@@ -3550,8 +3529,7 @@ private theorem _root_.WeierstrassCurve.veluDeficitCrossQuadAlphaSqClearedPoly_n
         exact (natDegree_pow_le).trans
           (Nat.mul_le_mul_left 2 (W.veluXCorrPadPoly_natDegree_le hA))
     omega
-  ·
-    refine degree_le_natDegree.trans (Nat.cast_le.mpr ?_)
+  · refine degree_le_natDegree.trans (Nat.cast_le.mpr ?_)
     refine natDegree_mul_le.trans ?_
     have hD : ((veluKernelDenom (F := F) S) ^ 2).natDegree = 2 * S.card := by
       rw [natDegree_pow, veluKernelDenom_natDegree]
@@ -4735,8 +4713,7 @@ theorem veluDeficitFun_mem_of_not_isFinitePlace (hv : ¬ IsFinitePlace v)
   refine sub_mem (sub_mem (mul_mem ?_ hδ3) (mul_mem ?_ hδ2)) (mul_mem ?_ hδ)
   · exact neg_mem (pow_mem (v.algebraMap_mem' _) 2)
   · exact mul_mem (mul_mem h3 (v.algebraMap_mem' _)) (v.algebraMap_mem' _)
-  ·
-    have hΨ : ((W').Ψ₃).eval (ι B.1) = ι (W.Ψ₃.eval B.1) := by
+  · have hΨ : ((W').Ψ₃).eval (ι B.1) = ι (W.Ψ₃.eval B.1) := by
       rw [WeierstrassCurve.map_Ψ₃, Polynomial.eval_map, Polynomial.eval₂_at_apply]
     rw [hΨ]
     exact add_mem (mul_mem h3 (pow_mem (v.algebraMap_mem' _) 2))
@@ -5632,8 +5609,7 @@ theorem veluDeficitCrossQuadBetaSDecompDegLtAt_of_betaSq_of_alphaBeta
   obtain ⟨M₁, N₁, hM₁deg, hMN₁⟩ := hBSq W hΔ x₀ y₀ h₀ hord
   obtain ⟨M₂, N₂, hM₂deg, hMN₂⟩ := hαβ W hΔ x₀ y₀ h₀ hord
   refine ⟨M₁ + C W.a₁ * M₂, N₁ + C W.a₁ * N₂, ?_, ?_⟩
-  ·
-    refine lt_of_le_of_lt (natDegree_add_le _ _) (max_lt hM₁deg ?_)
+  · refine lt_of_le_of_lt (natDegree_add_le _ _) (max_lt hM₁deg ?_)
     exact lt_of_le_of_lt (natDegree_mul_le.trans (by simp)) hM₂deg
   · intro r s hrs hav
     rw [W.veluDeficitCrossQuadBetaOnly_eq_betaSq_add_alphaBeta, add_mul, mul_assoc,
@@ -5730,8 +5706,7 @@ theorem kw_eval_veluXClearedPoly_ne_zero_of_mem (hset : W.IsOddVeluSet S)
     · exact Finset.prod_ne_zero_iff.mpr fun C hC =>
         sub_ne_zero.mpr fun h => (Finset.mem_erase.mp hC).1
           (hset.x_injOn C (Finset.mem_of_mem_erase hC) A hA h.symm)
-  ·
-    have hAerase : A ∈ S.erase B := Finset.mem_erase.mpr ⟨fun h => hBA h.symm, hA⟩
+  · have hAerase : A ∈ S.erase B := Finset.mem_erase.mpr ⟨fun h => hBA h.symm, hA⟩
     exact mul_eq_zero_of_right _
       (pow_eq_zero_iff two_ne_zero |>.mpr (Finset.prod_eq_zero hAerase (by simp)))
 
@@ -6333,8 +6308,7 @@ theorem evalAt_veluY_liftSummingSet_placeOfEquation (hS : ∀ A ∈ S, r ≠ A.1
     (placeOfEquation hrs).evalAt_div' hv hN2 (pow_ne_zero 2 hδ0) (hδpow 2), hδpoweval 2,
     (placeOfEquation hrs).evalAt_div' hv hN3 (pow_ne_zero 2 hδ0) (hδpow 2), hδpoweval 2]
   congr 1; congr 1
-  ·
-    rw [(placeOfEquation hrs).evalAt_mul hv (hF _)
+  · rw [(placeOfEquation hrs).evalAt_mul hv (hF _)
         (add_mem (add_mem (mul_mem (ofNat_mem _ 2) hY) (mul_mem (hF _) hX)) (hF _)),
       Place.evalAt_algebraMap,
       (placeOfEquation hrs).evalAt_add hv
@@ -6345,8 +6319,7 @@ theorem evalAt_veluY_liftSummingSet_placeOfEquation (hS : ∀ A ∈ S, r ≠ A.1
       (placeOfEquation hrs).evalAt_ofNat 2,
       evalAt_yGen_placeOfEquation hrs, evalAt_polyToFunctionField_X_placeOfEquation hrs,
       Place.evalAt_algebraMap, Place.evalAt_algebraMap]
-  ·
-    rw [(placeOfEquation hrs).evalAt_mul hv (hF _)
+  · rw [(placeOfEquation hrs).evalAt_mul hv (hF _)
         (sub_mem (add_mem (mul_mem (hF _) (sub_mem hX (hF _))) hY) (hF _)),
       Place.evalAt_algebraMap,
       (placeOfEquation hrs).evalAt_sub hv
@@ -6355,8 +6328,7 @@ theorem evalAt_veluY_liftSummingSet_placeOfEquation (hS : ∀ A ∈ S, r ≠ A.1
       (placeOfEquation hrs).evalAt_mul hv (hF _) (sub_mem hX (hF _)),
       hδeval, evalAt_yGen_placeOfEquation hrs,
       Place.evalAt_algebraMap, Place.evalAt_algebraMap]
-  ·
-    rw [(placeOfEquation hrs).evalAt_sub hv (mul_mem (hF _) (hF _)) (mul_mem (hF _) (hF _)),
+  · rw [(placeOfEquation hrs).evalAt_sub hv (mul_mem (hF _) (hF _)) (mul_mem (hF _) (hF _)),
       (placeOfEquation hrs).evalAt_mul hv (hF _) (hF _),
       (placeOfEquation hrs).evalAt_mul hv (hF _) (hF _),
       Place.evalAt_algebraMap, Place.evalAt_algebraMap, Place.evalAt_algebraMap,
@@ -8953,7 +8925,6 @@ theorem s2c_key (hp3 : 3 ≤ p) (hpodd : Odd p) (hord : addOrderOf Q = p)
   have hseam : ∀ P : W.toAffine.Point,
       (placeOfPoint P).restrictAlong ι hι = placeOfPoint (kwVeluPointMap hmapeq hΔV P) :=
     kw_restrictAlong_placeOfPoint_kwVeluPointMap_odd (W := W) hp3 hpodd hord hΔV
-
   have hker : ∀ P : W.toAffine.Point,
       kwVeluPointMap hmapeq hΔV P = 0 ↔ P ∈ AddSubgroup.zmultiples Q := by
     intro P
@@ -8971,7 +8942,6 @@ theorem s2c_key (hp3 : 3 ≤ p) (hpodd : Odd p) (hord : addOrderOf Q = p)
       · intro hP
         obtain ⟨A, hA, hxA⟩ := s2c_exists_fst_eq_of_mem_zmultiples hn hP
         exact kwVeluPointMap_some_of_mem hmapeq hΔV h hA hxA
-
   have hpm : ∀ (hN : NormFormulaAlong F ι hfin) (P : W.toAffine.Point),
       pointMapOfPushforward ι hι hfin hN P = kwVeluPointMap hmapeq hΔV P :=
     fun hN P => pointMapOfPushforward_eq_of_seam ι hι hfin hN _ rfl hseam P
@@ -8981,8 +8951,7 @@ theorem s2c_key (hp3 : 3 ≤ p) (hpodd : Odd p) (hord : addOrderOf Q = p)
     rw [AddMonoidHom.mem_ker, hpm hN P]
     exact hker P
   refine ⟨?_, hkerN, ?_, ?_⟩
-  ·
-    have hN₀ : NormFormulaAlong F ι hfin := normFormulaAlong_of_elliptic ι hfin
+  · have hN₀ : NormFormulaAlong F ι hfin := normFormulaAlong_of_elliptic ι hfin
     rw [← natCard_ker_pointMapOfPushforward_eq_finrankAlong W.toAffine
       (W.veluQuotient (W.oddOrderSummingSet Q ((p - 1) / 2))).toAffine ι hι hfin hN₀, hkerN hN₀, Nat.card_zmultiples]
   · intro P hP
@@ -9012,7 +8981,6 @@ theorem s2c_zero (V : WeierstrassCurve F) (hVW : V = W)
               (placeOfPoint (Point.some x y h)).restrictAlong ι hι
                 = placeOfPoint (Point.some _ _ h')) := by
   subst hVW; subst hQ; subst hS
-
   have : IsDedekindDomain V.toAffine.CoordinateRing := CoordinateRing.isDedekindDomain V
   have hgg : gV = gW := GenusOnePlaceGate.ext_of_isCentred gV gW cV cW
   subst hgg

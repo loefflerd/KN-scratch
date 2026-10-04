@@ -420,7 +420,6 @@ theorem equation_map_polyToFunctionField_yGen :
   rw [zero_smul, zero_add, one_smul, one_mul, one_mul, zero_sub] at hrel
   have h2 := congrArg (algebraMap W.CoordinateRing W.FunctionField) hrel
   rw [map_mul, algebraMap_smul_basis, _root_.map_neg, neg_mul, ← sub_eq_add_neg] at h2
-
   simp only [map_a₁, map_a₂, map_a₃, map_a₄, map_a₆]
   simp only [map_add, map_mul, map_pow, polyToFunctionField_C] at h2
   rw [show yGen W = algebraMap W.CoordinateRing W.FunctionField (CoordinateRing.mk W Y)
@@ -1543,7 +1542,6 @@ theorem kw_iotaSubd_countable_of_fg {K : Type uK} [Field K] [Algebra ℚ K]
     {K₀ : IntermediateField ℚ K} (hfg : K₀.FG) : Countable (↥K₀) := by
   obtain ⟨s, hs⟩ := hfg
   rw [← hs]
-
   have h2 : Cardinal.lift.{0} (Cardinal.mk ↥(IntermediateField.adjoin ℚ (↑s : Set K))) ≤ Cardinal.aleph0 :=
     (IntermediateField.lift_cardinalMk_adjoin_le ℚ (↑s : Set K)).trans
       (max_le (max_le (Cardinal.lift_le_aleph0.mpr Cardinal.mk_le_aleph0)
@@ -1612,7 +1610,6 @@ theorem kw_iP_equation :
       (kw_iP_xP E₀ D hcoeffs) (kw_iP_yP E₀ D hcoeffs) := by
   set xP := kw_iP_xP E₀ D hcoeffs with hxP
   set yP := kw_iP_yP E₀ D hcoeffs with hyP
-
   have hDι : ((E).map (algebraMap K (E).toAffine.FunctionField)).toAffine.Equation
       (D.ι (polyToFunctionField (E).toAffine X)) (D.ι (yGen (E).toAffine)) := by
     have h₀ := equation_map_polyToFunctionField_yGen (W := (E).toAffine)
@@ -1630,7 +1627,6 @@ theorem kw_iP_equation :
       = algebraMap K (E).toAffine.FunctionField (algebraMap K₀ K c) :=
     fun c => ((kw_iA_phi E₀).commutes c).trans
       (IsScalarTower.algebraMap_apply K₀ K (E).toAffine.FunctionField c)
-
   have hΦinj : Function.Injective (kw_iA_phi E₀) :=
     (kw_iA_phi E₀).toRingHom.injective
   refine hΦinj ?_
@@ -1642,7 +1638,6 @@ theorem kw_iP_equation :
 theorem kw_iP_transcendental :
     Function.Injective (Polynomial.aeval (R := K₀) (kw_iP_xP E₀ D hcoeffs)) := by
   refine (injective_iff_map_eq_zero _).mpr fun p hp => ?_
-
   have hK : Transcendental K (D.ι (polyToFunctionField (E).toAffine X)) := by
     intro halg
     obtain ⟨r, hr0, hreval⟩ := halg
@@ -1652,7 +1647,6 @@ theorem kw_iP_transcendental :
     exact (Polynomial.aeval_algHom_apply D.ι _ r).symm
   have hDιX : Transcendental K₀ (D.ι (polyToFunctionField (E).toAffine X)) :=
     hK.restrictScalars (R := K₀) (algebraMap K₀ K).injective
-
   refine transcendental_iff.mp hDιX p ?_
   calc Polynomial.aeval (R := K₀) (D.ι (polyToFunctionField (E).toAffine X)) p
       = Polynomial.aeval (R := K₀) (kw_iA_phi E₀ (kw_iP_xP E₀ D hcoeffs)) p := by
@@ -2083,27 +2077,21 @@ theorem kw_iPFA_finiteAlong :
     FiniteAlong K₀ (kw_iP_ι₀ E₀ D hcoeffs) := by
   set ι₀ := kw_iP_ι₀ E₀ D hcoeffs
   set xP := kw_iP_xP E₀ D hcoeffs
-
   have hxPtr : Transcendental K₀ xP :=
     transcendental_iff_injective.mpr (kw_iP_transcendental E₀ D hcoeffs)
-
   have hfd : FiniteDimensional (↥(K₀ : Type uK)⟮xP⟯) E₀.toAffine.FunctionField :=
     kw_iPFA_finiteDimensional_adjoin_transcendental E₀.toAffine hxPtr
-
   have hxPrange : xP ∈ ι₀.fieldRange :=
     ⟨polyToFunctionField E₀.toAffine X, kw_iP_ι₀_X E₀ D hcoeffs⟩
   have hle : (K₀ : Type uK)⟮xP⟯ ≤ ι₀.fieldRange :=
     IntermediateField.adjoin_simple_le_iff.mpr hxPrange
-
   let algIncl : Algebra (↥(K₀ : Type uK)⟮xP⟯) (↥ι₀.fieldRange) :=
     (IntermediateField.inclusion hle).toRingHom.toAlgebra
   have towIncl : IsScalarTower (↥(K₀ : Type uK)⟮xP⟯) (↥ι₀.fieldRange)
       E₀.toAffine.FunctionField :=
     IsScalarTower.of_algebraMap_eq (fun r => rfl)
-
   have hfdR : FiniteDimensional (↥ι₀.fieldRange) E₀.toAffine.FunctionField :=
     FiniteDimensional.right (↥(K₀ : Type uK)⟮xP⟯) (↥ι₀.fieldRange) E₀.toAffine.FunctionField
-
   show ι₀.toRingHom.Finite
   let ρ : E₀.toAffine.FunctionField →+* ↥ι₀.fieldRange :=
     { toFun := fun x => ⟨ι₀ x, x, rfl⟩
@@ -2176,10 +2164,8 @@ theorem kw_iPFE_finrankEq : KwIotaPinnedFinrankEq E₀ D hcoeffs := by
   have hfin := kw_iPFA_finiteAlong E₀ D hcoeffs
   have hint : ι₀.toRingHom.IsIntegral :=
     RingHom.Finite.to_isIntegral (f := ι₀.toRingHom) hfin
-
   let D₀ : TreeIsogenyEndDatum (E₀⁄(K₀ : Type uK)) := ⟨ι₀, hint, hfin⟩
   have hD₀_deg : D₀.degree = finrankAlong K₀ ι₀ := rfl
-
   have hdom : IsDomain ((E₀⁄(K₀ : Type uK)).FunctionField ⊗[K₀] K) :=
     kw_functionFieldTensorIsDomain_dischargeGeneralNoAC E₀ (K₀ : Type uK) K
   let T := (E₀⁄(K₀ : Type uK)).FunctionField ⊗[K₀] K
@@ -2187,22 +2173,18 @@ theorem kw_iPFE_finrankEq : KwIotaPinnedFinrankEq E₀ D hcoeffs := by
   let ψ := kw_functionFieldTensorFracEquivGeneralNoAC E₀ (K₀ : Type uK) K
   let ιFr := kw_tensorFracIotaRingHomGeneralNoAC E₀ (K₀ : Type uK) K D₀
   let Φ := kw_iA_phi E₀
-
   have hκ : ∀ a : E₀.toAffine.FunctionField,
       ψ (Φ a) = algebraMap T FrT (a ⊗ₜ[K₀] (1 : K)) := by
     have heq : (ψ : (E₀⁄K).FunctionField →+* FrT).comp Φ.toRingHom
         = (algebraMap T FrT).comp
           (Algebra.TensorProduct.includeLeftRingHom (R := K₀)) := by
       refine kw_iPFE_functionField_ringHom_ext (fun r => ?_) ?_ ?_
-      ·
-
-        show ψ (Φ (algebraMap K₀ E₀.toAffine.FunctionField r))
+      · show ψ (Φ (algebraMap K₀ E₀.toAffine.FunctionField r))
             = algebraMap T FrT (algebraMap K₀ E₀.toAffine.FunctionField r ⊗ₜ[K₀] (1 : K))
         have hL : ψ (Φ (algebraMap K₀ E₀.toAffine.FunctionField r))
             = algebraMap K FrT (algebraMap K₀ K r) := by
           rw [Φ.commutes r, IsScalarTower.algebraMap_apply K₀ K (E).toAffine.FunctionField r]
           exact ψ.commutes (algebraMap K₀ K r)
-
         have hT : (algebraMap K₀ E₀.toAffine.FunctionField r ⊗ₜ[K₀] (1 : K) : T)
             = algebraMap K T (algebraMap K₀ K r) :=
           (Algebra.TensorProduct.tmul_one_eq_one_tmul (A := E₀.toAffine.FunctionField)
@@ -2217,7 +2199,6 @@ theorem kw_iPFE_finrankEq : KwIotaPinnedFinrankEq E₀ D hcoeffs := by
         rw [kw_iPF_phi_yGen E₀]
         exact kw_functionFieldTensorFracHomGeneralNoAC_yGen E₀ (K₀ : Type uK) K
     exact fun a => DFunLike.congr_fun heq a
-
   let D₀' := kw_isogenyEndDatumBaseChangeIotaGeneralNoAC E₀ (K₀ : Type uK) K D₀
   have hψ_Φ_ι₀ : ∀ a, ψ (Φ (ι₀ a)) = ιFr (ψ (Φ a)) := by
     intro a
@@ -2232,27 +2213,22 @@ theorem kw_iPFE_finrankEq : KwIotaPinnedFinrankEq E₀ D hcoeffs := by
     exact ψ.symm_apply_apply _
   have hD₀'_eq : D₀' = D.ι := by
     refine kw_functionField_algHom_ext ?_ ?_
-    ·
-
-      calc D₀' (polyToFunctionField (E₀⁄K) X)
+    · calc D₀' (polyToFunctionField (E₀⁄K) X)
           = D₀' (Φ (polyToFunctionField E₀.toAffine X)) :=
             congrArg D₀' (kw_iPF_phi_X E₀).symm
         _ = Φ (ι₀ (polyToFunctionField E₀.toAffine X)) := hD₀'_gen _
         _ = Φ (kw_iP_xP E₀ D hcoeffs) := congrArg Φ (kw_iP_ι₀_X E₀ D hcoeffs)
         _ = D.ι (polyToFunctionField (E).toAffine X) := kw_iP_xP_spec E₀ D hcoeffs
-    ·
-      calc D₀' (yGen (E₀⁄K))
+    · calc D₀' (yGen (E₀⁄K))
           = D₀' (Φ (yGen E₀.toAffine)) := congrArg D₀' (kw_iPF_phi_yGen E₀).symm
         _ = Φ (ι₀ (yGen E₀.toAffine)) := hD₀'_gen _
         _ = Φ (kw_iP_yP E₀ D hcoeffs) := congrArg Φ (kw_iP_ι₀_yGen E₀ D hcoeffs)
         _ = D.ι (yGen (E).toAffine) := kw_iP_yP_spec E₀ D hcoeffs
-
   have hcomm : ∀ x, ιFr (ψ x) = ψ (D.ι x) := fun x => by
     have h1 : D.ι x = D₀' x := (DFunLike.congr_fun hD₀'_eq x).symm
     calc ιFr (ψ x) = ψ (ψ.symm (ιFr (ψ x))) := (ψ.apply_symm_apply _).symm
       _ = ψ (D₀' x) := rfl
       _ = ψ (D.ι x) := by rw [h1]
-
   have hfin_eq : finrankAlong K D.ι = D₀.degree := by
     obtain ⟨_, hdeg_Fr⟩ :=
       kw_tensorFracIotaFinrankSeam_dischargeGeneralNoAC E₀ (K₀ : Type uK) K D₀

@@ -242,7 +242,6 @@ theorem precomp_apply (g : SL(2, ℤ)) (F : ℍ → ℂ) (τ : ℍ) : precomp g 
 
 theorem smul_eq_self_of_mem {F : ℍ → ℂ} (hF : F ∈ ring N) {γ : SL(2, ℤ)}
     (hγ : γ ∈ CongruenceSubgroup.Gamma N) (τ : ℍ) : F (γ • τ) = F τ := by
-
   suffices h : ring N ≤ AlgHom.equalizer (precomp γ) (AlgHom.id ℂ (ℍ → ℂ)) by
     have := h hF
     rw [AlgHom.mem_equalizer] at this
@@ -384,7 +383,6 @@ theorem Q_natCast_eq_qExpand {f : ℍ → ℂ} (hf : Good 1 f) :
     have heq := h1.eq_formalMultilinearSeries h2
     have := (FormalMultilinearSeries.ofScalars_series_eq_iff (E := ℂ) c _).mp heq
     exact fun m => congrFun this m
-
   ext k
   rw [Q, Q]
   rcases lt_or_ge k 0 with hk | hk
@@ -428,7 +426,6 @@ theorem exists_chart {N : ℕ} [NeZero N] {F : ℍ → ℂ} (hF : Good N F)
   have bF := hF.bdd
   have hN : (0 : ℝ) < N := by exact_mod_cast Nat.pos_of_ne_zero (NeZero.ne N)
   set P := qExpansion N F with hP
-
   have hsummN : Summable fun n : ℕ => ‖P.coeff n‖ * (1 / 2 : ℝ) ^ n := by
     let : FiniteDimensional ℝ ℂ := Complex.basisOneI.finiteDimensional_of_finite
     have h1 : HasSum (fun n : ℕ => P.coeff n • ((1 / 2 : ℝ) : ℂ) ^ n)
@@ -451,7 +448,6 @@ theorem exists_chart {N : ℕ} [NeZero N] {F : ℍ → ℂ} (hF : Good N F)
       norm_num
     rw [pow_add, add_comm j P.order.toNat]
     linear_combination ‖P.coeff (P.order.toNat + j)‖ * ((1 : ℝ) / 2) ^ j * hpow
-
   set u : ℂ → ℂ := fun z => ∑' j : ℕ, P.coeff (P.order.toNat + j) * z ^ j with hu
   have hucont : ContinuousOn u (Metric.ball (0 : ℂ) (1 / 2)) := by
     refine continuousOn_tsum (fun j => ?_) hsummShift fun j z hz => ?_
@@ -529,12 +525,10 @@ theorem order_eq_of_tendsto_div {N : ℕ} [NeZero N] {G H : ℍ → ℂ} (hG : G
         (uG (Periodic.qParam N τ) / uH (Periodic.qParam N τ)) := by
     intro τ
     rw [idG τ, idH τ, mul_div_mul_comm]
-
   have hab : a = b := by
     by_contra hne
     rcases Nat.lt_or_gt_of_ne hne with hlt | hgt
-    ·
-      obtain ⟨d, hd⟩ := Nat.exists_eq_add_of_lt hlt
+    · obtain ⟨d, hd⟩ := Nat.exists_eq_add_of_lt hlt
       have hinv : Tendsto (fun τ : ℍ => H τ / G τ) atImInfty (𝓝 L⁻¹) := by
         have := hlim.inv₀ hL
         refine this.congr fun τ => ?_
@@ -555,8 +549,7 @@ theorem order_eq_of_tendsto_div {N : ℕ} [NeZero N] {G H : ℍ → ℂ} (hG : G
         exact h2.congr fun τ => (hform τ).symm
       have := tendsto_nhds_unique hinv hzero
       exact (inv_ne_zero hL) this
-    ·
-      obtain ⟨d, hd⟩ := Nat.exists_eq_add_of_lt hgt
+    · obtain ⟨d, hd⟩ := Nat.exists_eq_add_of_lt hgt
       have hzero : Tendsto (fun τ : ℍ => G τ / H τ) atImInfty (𝓝 0) := by
         have hform : ∀ τ : ℍ, G τ / H τ =
             Periodic.qParam (N : ℝ) (τ : ℂ) ^ (d + 1) *
@@ -572,7 +565,6 @@ theorem order_eq_of_tendsto_div {N : ℕ} [NeZero N] {G H : ℍ → ℂ} (hG : G
         rw [zero_mul] at h2
         exact h2.congr fun τ => (hform τ).symm
       exact hL (tendsto_nhds_unique hlim hzero)
-
   have hfinG : (qExpansion (N : ℝ) G).order ≠ ⊤ := fun h => hG0 (PowerSeries.order_eq_top.mp h)
   have hfinH : (qExpansion (N : ℝ) H).order ≠ ⊤ := fun h => hH0 (PowerSeries.order_eq_top.mp h)
   rw [← ENat.natCast_toNat hfinG, ← ENat.natCast_toNat hfinH]
@@ -688,11 +680,9 @@ theorem solution
     Valued.v (E (σ γ z)) ≤ 1 := by
   classical
   have hMpos : (0 : ℝ) < M := Nat.cast_pos.mpr (NeZero.pos M)
-
   suffices key : ∀ n : ℤ, n < 0 → (E (σ γ z)).coeff n = 0 by
     have := (LaurentSeries.valuation_le_iff_coeff_lt_eq_zero ℂ (D := 0)).mpr key
     simpa using this
-
   obtain ⟨a, b, hbnz, hzab⟩ := IsFractionRing.div_surjective (A := ModularCurve.LevelN.ring M) z
   have hb0 : ((b : ModularCurve.LevelN.ring M) : UpperHalfPlane → ℂ) ≠ 0 := by
     intro h0
@@ -706,7 +696,6 @@ theorem solution
   have hb'A : (fun τ : UpperHalfPlane => bf (γ⁻¹ • τ)) ∈ ModularCurve.LevelN.ring M := hst γ⁻¹ bf hbA
   set a' : UpperHalfPlane → ℂ := fun τ : UpperHalfPlane => af (γ⁻¹ • τ) with ha'
   set b' : UpperHalfPlane → ℂ := fun τ : UpperHalfPlane => bf (γ⁻¹ • τ) with hb'
-
   have hσa : σ γ (algebraMap (ModularCurve.LevelN.ring M) K a) =
       algebraMap (ModularCurve.LevelN.ring M) K ⟨a', ha'A⟩ := hσ γ af haA
   have hσb : σ γ (algebraMap (ModularCurve.LevelN.ring M) K b) =
@@ -714,7 +703,6 @@ theorem solution
   have hzσ : σ γ z = algebraMap (ModularCurve.LevelN.ring M) K ⟨a', ha'A⟩ /
       algebraMap (ModularCurve.LevelN.ring M) K ⟨b', hb'A⟩ := by
     rw [← hzab, map_div₀, hσa, hσb]
-
   obtain ⟨m₁, hm₁⟩ := exists_isBoundedAtImInfty_mul_pow M ha'A
   obtain ⟨m₂, hm₂⟩ := exists_isBoundedAtImInfty_mul_pow M hb'A
   have hPa : PB a' (m₁ + m₂) := PB.add_right hm₁ m₂
@@ -724,7 +712,6 @@ theorem solution
   set m : ℕ := m₁ + m₂ with hm
   have gd1 : Good M (a' * (ModularForm.discriminant : UpperHalfPlane → ℂ) ^ m) := good_of_PB M ha'A hPa
   have gd2 : Good M (b' * (ModularForm.discriminant : UpperHalfPlane → ℂ) ^ m) := good_of_PB M hb'A hPb
-
   have hQΔ : Q M (ModularForm.discriminant : UpperHalfPlane → ℂ) ≠ 0 := Q_discriminant_ne_zero M
   have hEa : E (algebraMap (ModularCurve.LevelN.ring M) K ⟨a', ha'A⟩) * Q M (ModularForm.discriminant : UpperHalfPlane → ℂ) ^ m =
       Q M (a' * (ModularForm.discriminant : UpperHalfPlane → ℂ) ^ m) := hEq a' ha'A m hPa
@@ -741,7 +728,6 @@ theorem solution
     exact hb'ne
   have hEz : E (σ γ z) = Q M (a' * (ModularForm.discriminant : UpperHalfPlane → ℂ) ^ m) / Q M (b' * (ModularForm.discriminant : UpperHalfPlane → ℂ) ^ m) := by
     rw [hzσ, map_div₀, ← hEa, ← hEb, mul_div_mul_right _ _ (pow_ne_zero _ hQΔ)]
-
   obtain ⟨n₁, hn₁⟩ := exists_isBoundedAtImInfty_mul_pow M haA
   obtain ⟨n₂, hn₂⟩ := exists_isBoundedAtImInfty_mul_pow M hbA
   have hPa0 : PB af (n₁ + n₂) := PB.add_right hn₁ n₂
@@ -785,7 +771,6 @@ theorem solution
         _ = bf τ * (ModularForm.discriminant : UpperHalfPlane → ℂ) τ ^ n * (g : UpperHalfPlane → ℂ) τ := this
         _ = bf τ * (g : UpperHalfPlane → ℂ) τ * (ModularForm.discriminant : UpperHalfPlane → ℂ) τ ^ n := by ring)
     exact this
-
   have hev1 : ∀ᶠ τ : UpperHalfPlane in atImInfty,
       (g : UpperHalfPlane → ℂ) (γ⁻¹ • τ) / (h : UpperHalfPlane → ℂ) (γ⁻¹ • τ) ≠ 0 :=
     hlim.eventually_ne hL
@@ -806,7 +791,6 @@ theorem solution
     rw [mul_div_mul_right _ _ hΔ, div_eq_div_iff hh' hb'τ]
     show (g : UpperHalfPlane → ℂ) (γ⁻¹ • τ) * bf (γ⁻¹ • τ) = af (γ⁻¹ • τ) * (h : UpperHalfPlane → ℂ) (γ⁻¹ • τ)
     linear_combination -hr
-
   by_cases hQa : Q M (a' * (ModularForm.discriminant : UpperHalfPlane → ℂ) ^ m) = 0
   · intro n hn
     rw [hEz, hQa, zero_div, HahnSeries.coeff_zero]

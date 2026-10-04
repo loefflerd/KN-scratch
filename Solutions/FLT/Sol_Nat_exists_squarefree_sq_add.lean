@@ -108,7 +108,6 @@ lemma kw_perPrime_count {D K p : ℕ} (hp : p.Prime) (hp3 : 3 ≤ p)
       simp only [c]; ring
     rw [hcabeq] at hcab
     have hkab : (p:ℤ)^2 ∣ ((a:ℤ) - b) := kw_psq_dvd_of_not_dvd hp hp2D hcab
-
     have h1 := Nat.div_add_mod a (p^2)
     have h2 := Nat.div_add_mod b (p^2)
     have heq : (a:ℤ) - b = ((a % p^2 : ℕ) : ℤ) - ((b % p^2 : ℕ) : ℤ) := by
@@ -170,10 +169,8 @@ theorem kw_existsSqfreeSqAdd_proved : KwExistsSqfreeSqAdd := by
   suffices h : ∃ k, Squarefree (f k) by
     obtain ⟨k, hk⟩ := h; exact ⟨2*D*k + D + 1, by omega, hk⟩
   by_contra hcon; push Not at hcon
-
   obtain ⟨N₀, hN₀⟩ :=
     eventually_atTop.mp (Chebyshev.eventually_primeCounting_le (ε := 1) one_pos)
-
   have htend : Tendsto (fun K : ℕ => (3 * D * K : ℝ)) atTop atTop := by
     refine (tendsto_natCast_atTop_atTop.const_mul_atTop (by positivity : (0:ℝ) < 3*D)).congr ?_
     intro K; ring
@@ -189,9 +186,7 @@ theorem kw_existsSqfreeSqAdd_proved : KwExistsSqfreeSqAdd := by
   have hPnat3 : 3 ≤ P := by exact_mod_cast hP3
   have hlogP : 0 < Real.log P := Real.log_pos (by linarith)
   rw [← hPR] at hKlog
-
   set S := (Finset.range P).filter (fun p => p.Prime ∧ 3 ≤ p ∧ ¬ p ∣ D) with hS_def
-
   have hcov : Finset.range K ⊆ S.biUnion fun p => (Finset.range K).filter (p^2 ∣ f ·) := by
     intro k hkK
     have hns := hcon k
@@ -221,7 +216,6 @@ theorem kw_existsSqfreeSqAdd_proved : KwExistsSqfreeSqAdd := by
     exact Finset.mem_biUnion.mpr ⟨p,
       by simp only [S, Finset.mem_filter, Finset.mem_range]; exact ⟨hpP, hp, hp3, hpnD⟩,
       Finset.mem_filter.mpr ⟨hkK, hdvd⟩⟩
-
   have hKle : (K : ℝ) ≤ ∑ p ∈ S, (((Finset.range K).filter (p^2 ∣ f ·)).card : ℝ) := by
     have h1 : K ≤ ∑ p ∈ S, ((Finset.range K).filter (p^2 ∣ f ·)).card :=
       calc K = (Finset.range K).card := (Finset.card_range K).symm
@@ -229,7 +223,6 @@ theorem kw_existsSqfreeSqAdd_proved : KwExistsSqfreeSqAdd := by
             Finset.card_le_card hcov
         _ ≤ _ := Finset.card_biUnion_le
     exact_mod_cast h1
-
   have hper : ∀ p ∈ S, (((Finset.range K).filter (p^2 ∣ f ·)).card : ℝ)
       ≤ 2 * K * ((p:ℝ)^2)⁻¹ + 2 := by
     intro p hpS
@@ -243,7 +236,6 @@ theorem kw_existsSqfreeSqAdd_proved : KwExistsSqfreeSqAdd := by
       _ ≤ 2 * ((K : ℝ) / (p^2 : ℕ)) + 2 := by
           gcongr; exact Nat.cast_div_le
       _ = 2 * K * ((p:ℝ)^2)⁻¹ + 2 := by push_cast; ring
-
   have hSsub : S ⊆ Finset.Ioc 2 P := by
     intro p hp
     simp only [S, Finset.mem_filter, Finset.mem_range] at hp
@@ -264,7 +256,6 @@ theorem kw_existsSqfreeSqAdd_proved : KwExistsSqfreeSqAdd := by
       _ ≤ 4/9 := by
           have hPinv : 0 ≤ (P:ℝ)⁻¹ := by positivity
           linarith
-
   have hScard : (S.card : ℝ) < K / 18 := by
     have hSle : S.card ≤ P.primeCounting := by
       calc S.card ≤ ((Finset.range P).filter Nat.Prime).card := by
@@ -284,12 +275,10 @@ theorem kw_existsSqfreeSqAdd_proved : KwExistsSqfreeSqAdd := by
           rw [div_lt_div_iff₀ hlogP (by norm_num : (0:ℝ) < 18)]
           have hl4 : 0 < Real.log 4 + 1 := by positivity
           have hPpos : (0:ℝ) < (P:ℝ) := by linarith
-
           have hkey : (Real.log 4 + 1) * (P:ℝ) * 18 = (K:ℝ) * (54 * D * (Real.log 4 + 1)) := by
             rw [hPR]; ring
           nlinarith [hKlog, hkey, mul_pos (show (0:ℝ) < K by positivity)
             (sub_pos.mpr hKlog)]
-
   have hcontra : (K : ℝ) < K := by
     calc (K : ℝ)
         ≤ ∑ p ∈ S, (((Finset.range K).filter (p^2 ∣ f ·)).card : ℝ) := hKle

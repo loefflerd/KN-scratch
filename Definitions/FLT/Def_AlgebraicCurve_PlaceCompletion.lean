@@ -88,12 +88,10 @@ theorem kw_ffgc_uniformContinuous_withValMapAlgebraMap :
   simp_rw [ContinuousAt, map_zero, (Valued.hasBasis_nhds_zero _ _).tendsto_iff
     (Valued.hasBasis_nhds_zero _ _), true_and, forall_const]
   intro γ
-
   have hγ0 : (ValueGroup₀.embedding (γ.val) : ℤᵐ⁰) ≠ 0 :=
     (γ.isUnit.map ValueGroup₀.embedding).ne_zero
   have hc0 : min (ValueGroup₀.embedding γ.val) (1 : ℤᵐ⁰) ≠ 0 :=
     (lt_min (zero_lt_iff.mpr hγ0) zero_lt_one).ne'
-
   obtain ⟨x₀, hx₀⟩ :=
     (W.restrict F).heightOneSpectrum.valuation_surjective F
       (min (ValueGroup₀.embedding γ.val) 1)
@@ -107,9 +105,7 @@ theorem kw_ffgc_uniformContinuous_withValMapAlgebraMap :
   refine ⟨Units.mk0 _ hδ0, fun x hx => ?_⟩
   simp only [Set.mem_ofPred_eq, Units.val_mk0] at hx ⊢
   rw [Valuation.restrict_lt_iff, hx₀v] at hx
-
   rw [Valuation.restrict_lt_iff_lt_embedding, kw_ffgc_valued_withValMapAlgebraMap F W x]
-
   calc Valued.v x ^ W.ramificationIndex F
       ≤ Valued.v x ^ 1 :=
         pow_le_pow_right_of_le_one' (hx.trans_le (min_le_right _ _)).le
@@ -439,7 +435,6 @@ theorem kwHgfV352_valued_algebraMap_adicCompletion (v : Place K E) (x : E) :
     (K := E) v.heightOneSpectrum x
   first
     | exact h
-
 
 namespace Place
 

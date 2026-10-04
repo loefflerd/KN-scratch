@@ -99,7 +99,6 @@ theorem solution
         atImInfty (𝓝 a) :=
   WCuspOrdAux.slash_main Γ k f hf σ h hh hper
 
-
 end
 end S_ModularForm_exists_tendsto_slash_div_qParam_pow_of_conj_T_pow_mem
 end P2MW

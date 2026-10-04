@@ -224,7 +224,6 @@ theorem exp_F_const [Γ.FiniteIndex] (hF : ModularCurve.HasEquivariantPrimitiveO
   have hr1 : r < 1 := by
     rw [hr, Real.exp_lt_one_iff]
     exact div_neg_of_neg_of_pos (neg_lt_zero.mpr Real.pi_pos) (hNpos hM)
-
   have hmax : ∀ j : SL(2, ℤ) ⧸ Γ, ∃ q ∈ closedBall (0 : ℂ) r,
       IsMaxOn (norm ∘ Φ M F j.out) (closedBall (0 : ℂ) r) q := fun j =>
     (isCompact_closedBall (0 : ℂ) r).exists_isMaxOn (nonempty_closedBall.mpr hr0)
@@ -233,7 +232,6 @@ theorem exp_F_const [Γ.FiniteIndex] (hF : ModularCurve.HasEquivariantPrimitiveO
   set m : SL(2, ℤ) ⧸ Γ → ℝ := fun j => ‖Φ M F j.out (q j)‖ with hm
   obtain ⟨j₀, -, hj₀⟩ := Finset.exists_max_image Finset.univ m ⟨(1 : SL(2, ℤ)), Finset.mem_univ _⟩
   set B : ℝ := m j₀ with hB
-
   have hbound : ∀ z : ℍ, ‖cexp (F z)‖ ≤ B := by
     intro z
     obtain ⟨g, hg⟩ := ModularGroup.exists_one_half_le_im_smul z
@@ -244,7 +242,6 @@ theorem exp_F_const [Γ.FiniteIndex] (hF : ModularCurve.HasEquivariantPrimitiveO
       exact (norm_exp_apply_smul hF h (inv_mem g0.2) z).symm
     rw [h1]
     exact (hqmax j (qParam_mem_closedBall hM hg)).trans (hj₀ j (Finset.mem_univ _))
-
   set ρ₀ : SL(2, ℤ) := j₀.out with hρ₀
   have hΦd : DifferentiableOn ℂ (Φ M F ρ₀) (ball 0 1) := Φ_differentiableOn hM hTM hF ρ₀
   have hnonzero : ∀ p ∈ ball (0 : ℂ) 1, p ≠ 0 → ‖Φ M F ρ₀ p‖ ≤ B := by
@@ -273,7 +270,6 @@ theorem exp_F_const [Γ.FiniteIndex] (hF : ModularCurve.HasEquivariantPrimitiveO
     intro p hp
     exact hall p hp
   have hconst := Complex.eq_const_of_exists_max hΦd hq₀ball hismax
-
   refine ⟨Φ M F ρ₀ (q j₀), fun z => ?_⟩
   have h1 : cexp (F z) = Φ M F ρ₀ (𝕢 (M : ℝ) ↑(ρ₀ • z)) := by
     rw [Φ_qParam hM hTM hF, inv_smul_smul]

@@ -228,8 +228,7 @@ theorem conjUpperMat_mem (γ : ↥(GammaHUpper M H ℓ)) :
   rw [mem_GammaH_iff]
   refine ⟨?_, ?_⟩
   · rw [Gamma0_mem, conjUpperMat_apply_10, Int.cast_mul, Gamma0_mem.mp hγ0, zero_mul]
-  ·
-    convert hγH using 1
+  · convert hγH using 1
     ext
     simp only [val_gamma0Units, Gamma0Map, MonoidHom.coe_mk, OneHom.coe_mk, conjUpperMat_apply_11]
 
@@ -429,13 +428,11 @@ theorem Gamma_subgroupOf_le_range_iotaDeg [NeZero M'] [NeZero d] (h : LevelLE M 
   have hMd' : ((M' * d : ℕ) : ℤ) ∣ (γ : SL(2, ℤ)) 1 0 := (ZMod.intCast_zmod_eq_zero_iff_dvd _ _).mp h10
   have hb : (d : ℤ) ∣ (γ : SL(2, ℤ)) 0 1 := dvd_trans (by push_cast; exact Dvd.intro_left _ rfl) hMd
   set A : SL(2, ℤ) := conjUpperMat d (γ : SL(2, ℤ)) hb with hAdef
-
   have hA0 : A ∈ Gamma0 M' := by
     rw [Gamma0_mem]
     have : A 1 0 = (γ : SL(2, ℤ)) 1 0 * d := by simp [hAdef, conjUpperMat]
     rw [this, ZMod.intCast_zmod_eq_zero_iff_dvd]
     exact Dvd.dvd.mul_right (dvd_trans (by push_cast; exact Dvd.intro _ rfl) hMd') _
-
   have hA11 : ((A 1 1 : ℤ) : ZMod M') = 1 := by
     have hA : A 1 1 = (γ : SL(2, ℤ)) 1 1 := by simp [hAdef, conjUpperMat]
     rw [hA, ← map_intCast (ZMod.castHom (dvd_mul_right M' d) (ZMod M')), h11, map_one]

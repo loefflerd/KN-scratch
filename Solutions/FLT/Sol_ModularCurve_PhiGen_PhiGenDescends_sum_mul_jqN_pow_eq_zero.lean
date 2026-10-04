@@ -262,16 +262,13 @@ private theorem PhiGenDescends.sum_mul_jqN_pow_eq_zero {K : Type*} [Field K] [Al
     {ℓ : ℕ} [hℓ : Fact (Nat.Prime ℓ)] {ζ : Kˣ} {c : ℕ → LaurentSeries ℚ}
     (hc : PhiGenDescends ℓ ζ c) :
     ∑ k ∈ Finset.range (ℓ + 2), c k * (jqN ℓ) ^ k = 0 := by
-
   set F : LaurentSeries ℚ →+* LaurentSeries K := (coeffEmb K).comp (qExpand ℚ ℓ) with hF
   have hFapp : ∀ f : LaurentSeries ℚ, F f = coeffEmb K (qExpand ℚ ℓ f) := fun f => rfl
   have hFinj : Function.Injective F := coeffEmb_qExpand_injective
-
   have hconj0 : conj ℓ ζ (0 : Fin (ℓ + 1)) = F (jqN ℓ) := by
     show conj ℓ ζ 0 = coeffMap (algebraMap ℚ K) (qExpand ℚ ℓ (jqN ℓ))
     rw [conj_zero, jqN, qExpand_qExpand, coeffMap_qExpand]
     rfl
-
   have hterm : ∀ k ∈ Finset.range (ℓ + 2),
       F (c k * (jqN ℓ) ^ k)
         = (phiProd ℓ (conj ℓ ζ)).coeff k * (conj ℓ ζ 0) ^ k := by
@@ -323,12 +320,10 @@ end ModularCurve
 
 end
 
-
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_PhiGenDescends_sum_mul_jqN_pow_eq_zero.ModularCurve _root_.ModularCurve.PhiGen _root_.P2MW.S_ModularCurve_PhiGen_PhiGenDescends_sum_mul_jqN_pow_eq_zero.ModularCurve.PhiGen in
 
 theorem solution {K : Type*} [Field K] [Algebra ℚ K] {ℓ : ℕ} [hℓ : Fact (Nat.Prime ℓ)] {ζ : Kˣ} {c : ℕ → LaurentSeries ℚ} (hc : PhiGenDescends ℓ ζ c) : ∑ k ∈ Finset.range (ℓ + 2), c k * (jqN ℓ) ^ k = 0 :=
   ModularCurve.PhiGen.PhiGenDescends.sum_mul_jqN_pow_eq_zero hc
-
 
 end S_ModularCurve_PhiGen_PhiGenDescends_sum_mul_jqN_pow_eq_zero
 end P2MW

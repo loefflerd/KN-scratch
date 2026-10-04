@@ -44,7 +44,6 @@ theorem min_ordDiff_le_ordDiff_add (v : Place K F) {ω₁ ω₂ : Ω[F⁄K]} (h�
   · rw [add_zero]; exact min_le_left _ _
   have hu : v.ord v.uniformizer_alt ≠ 0 := by
     rw [v.ord_uniformizer_alt v.exists_ord_eq_one]; exact one_ne_zero
-
   have hcoe : ∀ ω : Ω[F⁄K], ω ≠ 0 → Place.diffCoeff v.uniformizer_alt ω ≠ 0 := by
     intro ω hω h0
     have := Place.diffCoeff_smul_D_of_ord_ne_zero x v hu ω

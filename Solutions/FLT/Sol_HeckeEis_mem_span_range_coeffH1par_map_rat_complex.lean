@@ -25,7 +25,6 @@ variable {G : Type*} [Group G] {K : Type*} [CommRing K] {V : Type*} [AddCommGrou
 theorem coeffCocycles_apply_one {ρ : Representation K G V} {z : G → V} (hz : z ∈ coeffCocycles ρ) : z 1 = 0 := by
   have h := hz 1 1
   rw [mul_one, map_one, Module.End.one_apply] at h
-
   have : z 1 + z 1 = z 1 + 0 := by rw [add_zero]; exact h.symm
   exact add_left_cancel this
 
@@ -33,7 +32,6 @@ theorem coeffCocycles_apply_inv {ρ : Representation K G V} {z : G → V} (hz : 
     z g⁻¹ = -(ρ g⁻¹ (z g)) := by
   have h := hz g⁻¹ g
   rw [inv_mul_cancel, coeffCocycles_apply_one hz] at h
-
   exact eq_neg_of_add_eq_zero_left h.symm
 
 theorem mem_of_mem_coeffCocycles_of_closure_eq_top {ρ : Representation K G V} {z : G → V} (hz : z ∈ coeffCocycles ρ)
@@ -159,7 +157,6 @@ theorem pushCoeff_binarySubst (M : Matrix (Fin 2) (Fin 2) ℤ) (P : MvPolynomial
   classical
   ext d
   rw [coeff_pushCoeff, coeff_binarySubst, coeff_binarySubst, map_sum]
-
   rw [Finset.sum_subset (support_pushCoeff f P)]
   · refine Finset.sum_congr rfl fun d' _ => ?_
     rw [coeff_pushCoeff, ← zsmul_eq_mul, ← zsmul_eq_mul, map_zsmul]
@@ -345,8 +342,7 @@ theorem sum_smul_pushForm_π (P : ↥(BinaryForm ℂ n)) (A : Finset (Module.Bas
   rw [Submodule.coe_sum, coeff_sum]
   simp only [Submodule.coe_smul, coeff_smul, coe_pushForm, coeff_pushCoeff, smul_eq_mul]
   by_cases hd : d ∈ (P : MvPolynomial (Fin 2) ℂ).support
-  ·
-    set x : ℂ := AddMonoidAlgebra.coeff (P : MvPolynomial (Fin 2) ℂ) d
+  · set x : ℂ := AddMonoidAlgebra.coeff (P : MvPolynomial (Fin 2) ℂ) d
     have hx := BQC.linearCombination_repr x
     rw [Finsupp.linearCombination_apply,
       Finsupp.sum_of_support_subset (BQC.repr x) (hA d hd) (fun i a => a • (BQC i : ℂ)) (fun i _ => zero_smul ℚ _)] at hx
@@ -374,7 +370,6 @@ theorem exists_eq_sum_smul_pushPar (s : Finset Γ) (hs : Subgroup.closure (s : S
   refine ⟨A, Subtype.ext ?_⟩
   set T : ↥(coeffParabolicCocycles ((binaryFormRepSL ℂ n).comp Γ.subtype)) :=
     ∑ α ∈ A, (BQC α : ℂ) • pushPar ιQC n (pushPar (πQC α) n Z) with hT
-
   refine coeffCocycles_eq_of_eqOn Z.2.1 T.2.1 hs fun g hg => ?_
   rw [hT]
   rw [Submodule.coe_sum, Finset.sum_apply]
@@ -423,17 +418,14 @@ theorem linearIndependent_comp {ι : Type*} (y : ι → coeffH1par ((binaryFormR
   classical
   rw [linearIndependent_iff'] at hy ⊢
   intro t c hc i hi
-
   choose Y hY using fun i => coeffH1parMk_surjective ((binaryFormRepSL ℚ n).comp Γ.subtype) (y i)
   have hΨy : ∀ i, Ψ (y i) = coeffH1parMk _ (pushPar ιQC n (Y i)) := fun i => by rw [← hY i, Ψ_mk n Ψ hΨ]
   simp only [hΨy] at hc
   simp only [← LinearMap.map_smul (coeffH1parMk ((binaryFormRepSL ℂ n).comp Γ.subtype)), ← map_sum] at hc
   rw [coeffH1parMk_eq_zero_iff] at hc
   obtain ⟨v, hv⟩ := (mem_coeffCoboundaries_iff _ _).mp hc
-
   suffices hcoord : ∀ α, BQC.coord α (c i) = 0 from (BQC.forall_coord_eq_zero_iff).mp hcoord
   intro α
-
   have hrel : (∑ j ∈ t, (BQC.coord α (c j)) • (Y j : Γ → ↥(BinaryForm ℚ n)))
       ∈ coeffCoboundaries ((binaryFormRepSL ℚ n).comp Γ.subtype) := by
     rw [mem_coeffCoboundaries_iff]
@@ -442,7 +434,6 @@ theorem linearIndependent_comp {ι : Type*} (y : ι → coeffH1par ((binaryFormR
     change binaryFormRepSL ℂ n (g : SL(2, ℤ)) v - v = _ at h1
     show binaryFormRepSL ℚ n (g : SL(2, ℤ)) (pushForm (πQC α) n v) - pushForm (πQC α) n v = _
     rw [← pushForm_binaryFormRepSL, ← pushForm_sub, h1, Submodule.coe_sum, Finset.sum_apply, Finset.sum_apply]
-
     have hadd : ∀ (F : Finset ι) (G : ι → ↥(BinaryForm ℂ n)),
         pushForm (πQC α) n (∑ j ∈ F, G j) = ∑ j ∈ F, pushForm (πQC α) n (G j) := by
       intro F G
@@ -476,7 +467,6 @@ theorem solution (n : ℕ) (Γ : Subgroup SL(2, ℤ)) [Group.FG Γ]
     X ∈ Submodule.span ℂ (Set.range Ψ) := by
   obtain ⟨S, hS⟩ := Group.fg_def.mp (inferInstance : Group.FG Γ)
   exact HeckeEis.QCAux.mem_span_range n Ψ hΨ S hS X
-
 
 end S_HeckeEis_mem_span_range_coeffH1par_map_rat_complex
 end P2MW

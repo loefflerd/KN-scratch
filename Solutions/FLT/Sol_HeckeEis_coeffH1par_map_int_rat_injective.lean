@@ -97,7 +97,6 @@ theorem pushCoeff_binarySubst (M : Matrix (Fin 2) (Fin 2) ℤ) (P : MvPolynomial
   classical
   ext d
   rw [coeff_pushCoeff, coeff_binarySubst, coeff_binarySubst, map_sum]
-
   rw [Finset.sum_subset (support_pushCoeff f P)]
   · refine Finset.sum_congr rfl fun d' _ => ?_
     rw [coeff_pushCoeff, ← zsmul_eq_mul, ← zsmul_eq_mul, map_zsmul]
@@ -381,18 +380,14 @@ theorem injective_of_clause (n N : ℕ) [NeZero N]
   obtain ⟨w, hw, hΦw⟩ := hΦ y
   rw [hΦw, coeffH1parMk_eq_zero_iff] at hx
   obtain ⟨v, hv⟩ := (mem_coeffCoboundaries_iff _ _).mp hx
-
   have hwy : ∀ g, (w : Gamma0 N → ↥(BinaryForm ℚ n)) g = pushForm ιZQ n ((y : Gamma0 N → ↥(BinaryForm ℤ n)) g) := fun g =>
     Subtype.ext (by rw [hw g, coe_pushForm_ι])
-
   obtain ⟨D, hD, hDv⟩ := exists_isInt_zsmul (v : MvPolynomial (Fin 2) ℚ)
   obtain ⟨v', hv'⟩ := exists_eq_pushForm_of_isInt n (Q := D • v) (by simpa [Submodule.coe_smul] using hDv)
-
   have hcob : (D • (y : Gamma0 N → ↥(BinaryForm ℤ n))) ∈ coeffCoboundaries ((binaryFormRepSL ℤ n).comp (Gamma0 N).subtype) := by
     rw [mem_coeffCoboundaries_iff]
     refine ⟨v', funext fun g => pushForm_ι_injective n ?_⟩
     have h1 := congrFun hv g
-
     change binaryFormRepSL ℚ n (g : SL(2, ℤ)) v - v = (w : Gamma0 N → ↥(BinaryForm ℚ n)) g at h1
     show pushForm ιZQ n (binaryFormRepSL ℤ n (g : SL(2, ℤ)) v' - v') = pushForm ιZQ n ((D • (y : Gamma0 N → ↥(BinaryForm ℤ n))) g)
     rw [pushForm_sub, pushForm_binaryFormRepSL, hv', map_zsmul, ← zsmul_sub, h1, hwy g, Pi.smul_apply, pushForm_zsmul]
@@ -418,7 +413,6 @@ theorem solution (n N : ℕ) [NeZero N]
         Φ (HeckeEis.coeffH1parMk _ z) = HeckeEis.coeffH1parMk _ w) :
     Function.Injective Φ :=
   HeckeEis.RatAux.injective_of_clause n N Φ hΦ
-
 
 end S_HeckeEis_coeffH1par_map_int_rat_injective
 end P2MW

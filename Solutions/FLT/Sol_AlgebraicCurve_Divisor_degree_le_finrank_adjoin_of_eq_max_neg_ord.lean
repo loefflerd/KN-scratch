@@ -48,7 +48,6 @@ theorem solution
     simp only [Divisor.degree, Finsupp.liftAddHom_apply, AddMonoidHom.mulRight_apply,
       Finsupp.sum]
     rfl
-
   have hmem_max : ∀ (v : Place K F) (f : F) (hf : f ∈ v.toValuationSubring),
       0 < v.ord f → (⟨f, hf⟩ : v.toValuationSubring) ∈ IsLocalRing.maximalIdeal _ := by
     intro v f hf hord
@@ -57,13 +56,11 @@ theorem solution
     have hval := (v.adicValuation_coe_eq_one_iff ⟨f, hf⟩).mpr hu
     simp only [Place.ord, hval, WithZero.log_one, neg_zero] at hord
     exact lt_irrefl 0 hord
-
   have hunit_iff : ∀ (v : Place K F) (a : v.toValuationSubring),
       IsUnit a ↔ IsLocalRing.residue _ a ≠ 0 := by
     intro v a
     rw [ne_eq, ← not_iff_not, not_not, ← mem_nonunits_iff, ← IsLocalRing.mem_maximalIdeal]
     exact Ideal.Quotient.eq_zero_iff_mem.symm
-
   have hres_K : ∀ (v : Place K F) (c : K),
       IsLocalRing.residue _ (⟨algebraMap K F c, v.algebraMap_mem' c⟩ : v.toValuationSubring)
         = algebraMap K v.ResidueField c := by
@@ -72,7 +69,6 @@ theorem solution
           = algebraMap K v.toValuationSubring c from rfl,
         IsScalarTower.algebraMap_apply K v.toValuationSubring v.ResidueField]
     rfl
-
   have hord_K : ∀ (v : Place K F) (c : K), c ≠ 0 → v.ord (algebraMap K F c) = 0 := by
     intro v c hc
     have hunit : IsUnit (⟨algebraMap K F c, v.algebraMap_mem' c⟩ : v.toValuationSubring) := by
@@ -80,7 +76,6 @@ theorem solution
       exact (map_ne_zero_iff _ (algebraMap K v.ResidueField).injective).mpr hc
     have := (v.adicValuation_coe_eq_one_iff _).mpr hunit
     simp only [Place.ord, this, WithZero.log_one, neg_zero]
-
   have hkey : ∀ v ∈ S, ∀ p : K[X], p ≠ 0 →
       ∃ h : aeval x p * x ^ (-(p.natDegree : ℤ)) ∈ v.toValuationSubring,
         IsUnit (⟨_, h⟩ : v.toValuationSubring) ∧
@@ -88,7 +83,6 @@ theorem solution
     intro v hv p hp
     set d := p.natDegree with hd
     have hld : p.leadingCoeff ≠ 0 := Polynomial.leadingCoeff_ne_zero.mpr hp
-
     have hexpand : aeval x p * x ^ (-(d:ℤ)) =
         algebraMap K F p.leadingCoeff +
         ∑ i ∈ Finset.range d, algebraMap K F (p.coeff i) * x ^ ((i:ℤ) - d) := by
@@ -101,7 +95,6 @@ theorem solution
       · refine Finset.sum_congr rfl fun i hi => ?_
         rw [Algebra.smul_def, mul_assoc, ← zpow_natCast x i, ← zpow_add₀ hx0]
         ring_nf
-
     have hterm_mem : ∀ i ∈ Finset.range d,
         algebraMap K F (p.coeff i) * x ^ ((i:ℤ) - d) ∈ v.toValuationSubring := by
       intro i hi
@@ -153,7 +146,6 @@ theorem solution
       (hunit_iff v _).mpr (hres_eq ▸
         (map_ne_zero_iff _ (algebraMap K v.ResidueField).injective).mpr hld),
       hres_eq⟩
-
   have haeval_ne_zero : ∀ p : K[X], p ≠ 0 → aeval x p ≠ 0 :=
     fun p hp h => hx ⟨p, hp, h⟩
   have hord_aeval : ∀ v ∈ S, ∀ p : K[X], p ≠ 0 →
@@ -165,7 +157,6 @@ theorem solution
       simp only [Place.ord, this, WithZero.log_one, neg_zero]
     rw [v.ord_mul (haeval_ne_zero p hp) (zpow_ne_zero _ hx0), v.ord_zpow] at hordu
     linarith
-
   have hord_E : ∀ g : E, (g:F) ≠ 0 → ∃ q : ℤ, ∀ v ∈ S, v.ord (g:F) = q * D v := by
     intro g hg0
     obtain ⟨r, s, hgrs⟩ := (IntermediateField.mem_adjoin_simple_iff K (x := (g:F))).mp g.2
@@ -178,7 +169,6 @@ theorem solution
         v.ord_mul (haeval_ne_zero r hr0) (inv_ne_zero (haeval_ne_zero s hs0)),
         v.ord_inv, hord_aeval v hv r hr0, hord_aeval v hv s hs0, hDv v hv]
     ring
-
   have hres_E : ∀ v ∈ S, ∀ g : E, (g:F) ≠ 0 → v.ord (g:F) = 0 →
       ∃ c : K, c ≠ 0 ∧ ∀ hmem : (g:F) ∈ v.toValuationSubring,
         IsLocalRing.residue _ (⟨(g:F), hmem⟩ : v.toValuationSubring) = algebraMap K v.ResidueField c := by
@@ -202,7 +192,6 @@ theorem solution
     refine ⟨r.leadingCoeff / s.leadingCoeff,
       div_ne_zero (Polynomial.leadingCoeff_ne_zero.mpr hr0) (Polynomial.leadingCoeff_ne_zero.mpr hs0),
       fun hmem => ?_⟩
-
     have hgval : (⟨(g:F), hmem⟩ : v.toValuationSubring) * ⟨_, hms⟩ = ⟨_, hmr⟩ := by
       refine Subtype.ext ?_
       show (g:F) * (aeval x s * x ^ (-(s.natDegree:ℤ))) = aeval x r * x ^ (-(r.natDegree:ℤ))
@@ -215,13 +204,11 @@ theorem solution
     exact (div_eq_of_eq_mul
       ((map_ne_zero_iff _ (algebraMap K v.ResidueField).injective).mpr
         (Polynomial.leadingCoeff_ne_zero.mpr hs0)) hres_mul.symm).symm
-
   have hex_t : ∀ v ∈ S, ∃ t : F, t ≠ 0 ∧ v.ord t = 1 ∧ ∀ v' ∈ S, v' ≠ v → v'.ord t = 0 := by
     intro v hv
     obtain ⟨t, ht0, htord⟩ := Place.exists_forall_ord_eq S (fun w => if w = v then 1 else 0)
     exact ⟨t, ht0, by simpa using htord v hv, fun v' hv' hne => by simpa [hne] using htord v' hv'⟩
   choose! t ht0 htv htv' using hex_t
-
   have hfinres : ∀ v : Place K F, Module.Finite K v.ResidueField := IsCurveOver.finiteResidue
   have hex_z : ∀ (v : Place K F) (hv : v ∈ S),
       ∃ (z : Fin v.deg → F) (hreg : ∀ k, ∀ v' ∈ S, z k ∈ v'.toValuationSubring),
@@ -234,11 +221,9 @@ theorem solution
     choose z₀ hz₀ using fun k =>
       Ideal.Quotient.mk_surjective (I := IsLocalRing.maximalIdeal v.toValuationSubring) (bκ k)
     have hz₀' : ∀ k, IsLocalRing.residue _ (z₀ k) = bκ k := hz₀
-
     set zF : Fin v.deg → F := fun k => (z₀ k : F) with hzF
     have hzF_v : ∀ k, zF k ∈ v.toValuationSubring := fun k => (z₀ k).2
     have hzF_z₀ : ∀ k, (⟨zF k, hzF_v k⟩ : v.toValuationSubring) = z₀ k := fun k => rfl
-
     set N : ℕ := (Finset.univ : Finset (Fin v.deg)).sup fun k =>
       S.sup fun v' => (-(v'.ord (zF k))).toNat with hN
     obtain ⟨c, hc0, hcord⟩ := Place.exists_forall_ord_eq S
@@ -283,7 +268,6 @@ theorem solution
       exact bκ.linearIndependent.map' (LinearMap.mulLeft K (IsLocalRing.residue _ cv))
         (LinearMap.ker_eq_bot.mpr (mul_right_injective₀ hresc_ne))
   choose z hz_reg hz_unit hz_li using hex_z
-
   let ι := (v : S) × Fin (D v.1).toNat × Fin v.1.deg
   let T : ι → F := fun i => z i.1.1 i.1.2 i.2.2 * (t i.1.1) ^ (-((i.2.1:ℤ)+1))
   have hz_ne0 : ∀ (v : Place K F) (hv : v ∈ S) (k : Fin v.deg), z v hv k ≠ 0 := by
@@ -310,7 +294,6 @@ theorem solution
     rw [v'.ord_mul (hz_ne0 _ _ _) (zpow_ne_zero _ (ht0 _ i.1.2)),
         v'.ord_zpow, htv' i.1.1 i.1.2 v' hv' hne, mul_zero, add_zero]
     exact Place.ord_nonneg_of_mem v' (hz_reg _ _ _ v' hv')
-
   have hTli : LinearIndependent E T := by
     rw [Fintype.linearIndependent_iff]
     intro φ hsum
@@ -367,7 +350,6 @@ theorem solution
     have hi₃v₀ : i₃.1.1 = v₀ := by
       by_contra hne
       exact absurd (hψT_ord_ge0_other i₃ hi₃ hne) (by linarith)
-
     clear_value v₀
     subst hi₃v₀
     set vv := i₃.1.1 with hvvdef
@@ -431,7 +413,6 @@ theorem solution
       rw [← Finset.mul_sum, ← Finset.mul_sum, hsumF, mul_zero, mul_zero]
     have hres_sum : ∑ i, IsLocalRing.residue _ (⟨_, hμψT_mem i⟩ : vv.toValuationSubring) = 0 := by
       rw [← map_sum, hsum_O, map_zero]
-
     have hres_zero : ∀ i, ¬(i ∈ supp ∧ vv.ord (x ^ q₂ * ((φ i : E) : F) * T i) = m) →
         IsLocalRing.residue _ (⟨_, hμψT_mem i⟩ : vv.toValuationSubring) = 0 := by
       intro i hnot
@@ -446,9 +427,7 @@ theorem solution
           by_contra h; exact hi (Finset.mem_filter.mpr ⟨Finset.mem_univ _, h⟩)
         rw [show (⟨_, hμψT_mem i⟩ : vv.toValuationSubring) = 0 from
           Subtype.ext (by simp [hφ0]), map_zero]
-
     let j : Fin vv.deg → ι := fun k => ⟨i₃.1, i₃.2.1, k⟩
-
     have hreindex : ∑ i, IsLocalRing.residue _ (⟨_, hμψT_mem i⟩ : vv.toValuationSubring)
         = ∑ k, IsLocalRing.residue _ (⟨_, hμψT_mem (j k)⟩ : vv.toValuationSubring) := by
       rw [Fintype.sum_sigma]
@@ -473,10 +452,8 @@ theorem solution
         exact_mod_cast hai'
       rw [Fintype.sum_eq_single i₃.2.1 hside2]
     rw [hreindex] at hres_sum
-
     have hjkvv : ∀ k, (j k).1.1 = vv := fun k => rfl
     have hjk_T : ∀ k, T (j k) = z vv i₃.1.2 k * (t vv) ^ (-(a₃+1)) := fun k => rfl
-
     have hjk_simp : ∀ k (hjk : j k ∈ supp)
         (heq : vv.ord (x ^ q₂ * ((φ (j k) : E) : F) * T (j k)) = m),
         μ * (x ^ q₂ * ((φ (j k) : E) : F) * T (j k))
@@ -492,7 +469,6 @@ theorem solution
           = (x^Q * x^q₂) * ((φ (j k):E):F) * z vv i₃.1.2 k *
             ((t vv)^(a₃+1) * (t vv)^(-(a₃+1))) := by ring
         _ = x^(q₂+Q) * ((φ (j k):E):F) * z vv i₃.1.2 k := by rw [hxcan, htcan, mul_one]
-
     have hxEpow : ∀ (r : ℤ), ((xE ^ r : E) : F) = x ^ r := fun r => by
       rw [show ((xE ^ r : E) : F) = E.val (xE ^ r) from rfl, map_zpow₀]; rfl
     have hEgk : ∀ k (hjk : j k ∈ supp),
@@ -540,7 +516,6 @@ theorem solution
     simp only [γ, dite_eq_left hi₃cond] at hγk0
     exact (Classical.choose_spec
       (hres_E vv hv₀ _ (hEgk_ne0 i₃.2.2 hi₃cond.1) (hEgk_ord0 i₃.2.2 hi₃cond.1))).1 hγk0
-
   have hcard : (Fintype.card ι : ℤ) = Divisor.degree D := by
     simp only [ι, Fintype.card_sigma, Fintype.card_prod, Fintype.card_fin]
     rw [hdegD, ← Finset.sum_attach S (fun v => D v * (v.deg : ℤ))]

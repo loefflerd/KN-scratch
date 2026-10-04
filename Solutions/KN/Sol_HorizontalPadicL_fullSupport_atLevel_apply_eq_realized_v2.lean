@@ -29,7 +29,6 @@ theorem fullSupport_atLevel_apply_eq_realized
 
 end HorizontalPadicL
 
-
 -- Platform entry point: restates the target verbatim.
 namespace HorizontalPadicL
 
