@@ -1,6 +1,10 @@
-import Definitions.FLT.Def_AlgebraicCurve_AdelicIndex
-import Definitions.FLT.Def_AlgebraicCurve_CanonicalDivisor
-import Definitions.FLT.Def_ModularCurve_CanonicalDivisorUniformizer
+module
+
+public import Definitions.FLT.Def_AlgebraicCurve_AdelicIndex
+public import Definitions.FLT.Def_AlgebraicCurve_CanonicalDivisor
+public import Definitions.FLT.Def_ModularCurve_CanonicalDivisorUniformizer
+
+@[expose] public section publicSection
 
 noncomputable section
 
@@ -294,3 +298,5 @@ end CanonicalKResidueTerm
 end AlgebraicCurve
 
 end
+
+end publicSection

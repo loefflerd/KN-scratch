@@ -1,5 +1,9 @@
-import Definitions.FLT.Def_ModularCurve_QAdicPlace
-import Definitions.FLT.Def_ModularCurve_ArithmeticGalois
+module
+
+public import Definitions.FLT.Def_ModularCurve_QAdicPlace
+public import Definitions.FLT.Def_ModularCurve_ArithmeticGalois
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -107,3 +111,5 @@ end Bar
 end ModularCurve
 
 end
+
+end publicSection

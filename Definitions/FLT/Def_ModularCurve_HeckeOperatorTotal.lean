@@ -1,4 +1,8 @@
-import Definitions.FLT.Def_ModularCurve_HeckeOperator
+module
+
+public import Definitions.FLT.Def_ModularCurve_HeckeOperator
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -54,3 +58,5 @@ theorem heckeOperatorAlong_of_not (h : ¬ HeckeInputsAlong L N ℓ) :
 end ModularCurve
 
 end
+
+end publicSection

@@ -1,14 +1,18 @@
-import Mathlib.NumberTheory.Padics.RingHoms
-import Mathlib.RingTheory.AdicCompletion.RingHom
-import Mathlib.LinearAlgebra.Dimension.Free
-import Mathlib.LinearAlgebra.LinearIndependent.Lemmas
-import Mathlib.FieldTheory.Finiteness
-import Mathlib.Algebra.Module.ZMod
-import Mathlib.Algebra.Field.ZMod
-import Mathlib.GroupTheory.Coset.Card
-import Mathlib.GroupTheory.QuotientGroup.Basic
-import Mathlib.Algebra.Group.Subgroup.Finite
-import Definitions.FLT.Def_GaloisRep_Adic
+module
+
+public import Mathlib.NumberTheory.Padics.RingHoms
+public import Mathlib.RingTheory.AdicCompletion.RingHom
+public import Mathlib.LinearAlgebra.Dimension.Free
+public import Mathlib.LinearAlgebra.LinearIndependent.Lemmas
+public import Mathlib.FieldTheory.Finiteness
+public import Mathlib.Algebra.Module.ZMod
+public import Mathlib.Algebra.Field.ZMod
+public import Mathlib.GroupTheory.Coset.Card
+public import Mathlib.GroupTheory.QuotientGroup.Basic
+public import Mathlib.Algebra.Group.Subgroup.Finite
+public import Definitions.FLT.Def_GaloisRep_Adic
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -878,3 +882,5 @@ theorem tateModuleRepOfBasis_eq_tateModuleRep (W : WeierstrassCurve â„š) (p : â„
     W.tateModuleRepOfBasis p hcard b = W.tateModuleRep p hcard := rfl
 
 end WeierstrassCurve
+
+end publicSection

@@ -1,13 +1,10 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_X1
-import Definitions.FLT.Def_CohCarrier_Level
-import Definitions.FLT.Def_EllipticCurve_TateModule
+module
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
+public import Definitions.FLT.Def_CohCarrier_Level
+public import Definitions.FLT.Def_EllipticCurve_TateModule
+public import Definitions.FLT.Def_ModularCurve_X1
 
-noncomputable section
+@[expose] public noncomputable section publicSection
 
 open IntermediateField HahnSeries AlgebraicCurve CongruenceSubgroup
 
@@ -178,5 +175,4 @@ end Jacobian
 
 end ModularCurve
 
-end
-
+end publicSection

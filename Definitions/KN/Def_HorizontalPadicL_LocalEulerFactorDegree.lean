@@ -1,4 +1,8 @@
-import Definitions.KN.Def_KN_HorizontalPadicL
+module
+
+public import Definitions.KN.Def_KN_HorizontalPadicL
+
+@[expose] public section publicSection
 
 namespace HorizontalPadicL
 
@@ -20,3 +24,5 @@ def LocalEulerFactorDegreeTwo (E : WeierstrassCurve ℚ) (p : ℕ) : Prop :=
         (p : ℤ) * E.LFunction (p ^ r)
 
 end HorizontalPadicL
+
+end publicSection

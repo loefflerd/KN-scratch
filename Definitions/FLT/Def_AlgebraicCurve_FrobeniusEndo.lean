@@ -1,5 +1,9 @@
-import Definitions.FLT.Def_AlgebraicCurve_Correspondence
-import Mathlib.Algebra.CharP.Reduced
+module
+
+public import Definitions.FLT.Def_AlgebraicCurve_Correspondence
+public import Mathlib.Algebra.CharP.Reduced
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -48,3 +52,7 @@ end Package
 
 end AlgebraicCurve
 
+
+end
+
+end publicSection

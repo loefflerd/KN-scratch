@@ -1,6 +1,10 @@
-import Definitions.FLT.Def_WeierstrassCurve_OddOrderSummingSet
-import Definitions.FLT.Def_WeierstrassCurve_VeluQuotientOfSums
-import Definitions.FLT.Def_WeierstrassCurve_VeluOrderTwo
+module
+
+public import Definitions.FLT.Def_WeierstrassCurve_OddOrderSummingSet
+public import Definitions.FLT.Def_WeierstrassCurve_VeluQuotientOfSums
+public import Definitions.FLT.Def_WeierstrassCurve_VeluOrderTwo
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -143,3 +147,5 @@ theorem fullKernelQuotient_two {F : Type*} [Field F] [DecidableEq F] (W : Weiers
 
 end WeierstrassCurve
 
+
+end publicSection

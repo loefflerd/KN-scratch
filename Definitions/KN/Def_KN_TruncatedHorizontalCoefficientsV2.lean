@@ -1,4 +1,8 @@
-import Definitions.KN.Def_KN_PrimePowerPropagationV2
+module
+
+public import Definitions.KN.Def_KN_PrimePowerPropagationV2
+
+@[expose] public section publicSection
 
 noncomputable section
 
@@ -20,3 +24,7 @@ def HorizontalMeasure.truncatedFiniteLevel {R : Type*} [CommRing R]
   Finsupp.mapDomain (truncateHorizontalCoordinates m he A) (μ.finiteLevel A)
 
 end HorizontalPadicL
+
+end
+
+end publicSection

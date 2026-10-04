@@ -1,4 +1,9 @@
-import Definitions.MTT.Def_MTT_Cohomology
+module
+
+public import Definitions.MTT.Def_MTT_Cohomology
+
+@[expose] public section publicSection
+
 noncomputable section
 open scoped BigOperators
 namespace MTT.Cohomology
@@ -16,3 +21,7 @@ def boundaryCochain {R : Type*} [CommRing R] (Φ : Cusp → Binary R) :
   fun D => Φ D.2 - Φ D.1
 
 end MTT.Cohomology
+
+end
+
+end publicSection

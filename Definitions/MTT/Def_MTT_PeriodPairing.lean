@@ -1,7 +1,11 @@
-import Definitions.MTT.Def_MTT_Cohomology_Integration
-import Mathlib.Analysis.Complex.UpperHalfPlane.Measure
-import Mathlib.Analysis.Calculus.FDeriv.Basic
-import Mathlib.NumberTheory.Modular
+module
+
+public import Definitions.MTT.Def_MTT_Cohomology_Integration
+public import Mathlib.Analysis.Complex.UpperHalfPlane.Measure
+public import Mathlib.Analysis.Calculus.FDeriv.Basic
+public import Mathlib.NumberTheory.Modular
+
+@[expose] public section publicSection
 
 noncomputable section
 open scoped BigOperators ComplexConjugate
@@ -65,3 +69,7 @@ def periodPetersson (N k : ℕ) (f q : UpperHalfPlane → ℂ) : ℂ :=
   periodDomainIntegral N (fun z => f z * conj (q z) * (z.im : ℂ) ^ k)
 
 end MTT.Cohomology
+
+end
+
+end publicSection

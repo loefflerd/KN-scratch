@@ -1,4 +1,8 @@
-import Definitions.FLT.Def_AlgebraicCurve_FrobeniusEndo
+module
+
+public import Definitions.FLT.Def_AlgebraicCurve_FrobeniusEndo
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -318,3 +322,7 @@ end PullbackDescent
 
 end AlgebraicCurve
 
+
+end
+
+end publicSection

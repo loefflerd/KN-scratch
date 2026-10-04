@@ -1,8 +1,12 @@
-import Mathlib.Algebra.Field.ZMod
-import Mathlib.Algebra.Lie.OfAssociative
+module
 
-import Definitions.FLT.Def_AlgebraicCurve_Correspondence
-import Definitions.FLT.Def_AlgebraicCurve_Differentials
+public import Mathlib.Algebra.Field.ZMod
+public import Mathlib.Algebra.Lie.OfAssociative
+
+public import Definitions.FLT.Def_AlgebraicCurve_Correspondence
+public import Definitions.FLT.Def_AlgebraicCurve_Differentials
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -74,3 +78,5 @@ end IgusaDiamondData
 end ModularCurve.IgusaCover
 
 end
+
+end publicSection

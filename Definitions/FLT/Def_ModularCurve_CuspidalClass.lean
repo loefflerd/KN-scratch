@@ -1,5 +1,9 @@
-import Definitions.FLT.Def_ModularCurve_AtkinLehner
-import Definitions.FLT.Def_ModularCurve_GeometricBaseChange
+module
+
+public import Definitions.FLT.Def_ModularCurve_AtkinLehner
+public import Definitions.FLT.Def_ModularCurve_GeometricBaseChange
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -56,3 +60,5 @@ end ModularCurve
 
 end
 
+
+end publicSection

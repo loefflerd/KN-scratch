@@ -1,8 +1,12 @@
-import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
-import Mathlib.RingTheory.DedekindDomain.IntegralClosure
-import Mathlib.RingTheory.RamificationInertia.Basic
-import Mathlib.RingTheory.DedekindDomain.Factorization
-import Mathlib.Algebra.Polynomial.Lifts
+module
+
+public import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
+public import Mathlib.RingTheory.DedekindDomain.IntegralClosure
+public import Mathlib.RingTheory.RamificationInertia.Basic
+public import Mathlib.RingTheory.DedekindDomain.Factorization
+public import Mathlib.Algebra.Polynomial.Lifts
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -89,7 +93,7 @@ variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 variable {R : Type*} [CommRing R] [IsDedekindDomain R] [Algebra R F] [IsFractionRing R F]
 variable (w : Place K F)
 
-private def chartHom (hw : ∀ r : R, algebraMap R F r ∈ w.toValuationSubring) :
+def chartHom (hw : ∀ r : R, algebraMap R F r ∈ w.toValuationSubring) :
     R →+* w.toValuationSubring :=
   (algebraMap R F).codRestrict w.toValuationSubring.toSubring hw
 
@@ -535,3 +539,5 @@ end Place
 end AlgebraicCurve
 
 end
+
+end publicSection

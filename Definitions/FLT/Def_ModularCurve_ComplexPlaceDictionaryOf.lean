@@ -1,6 +1,10 @@
-import Mathlib.Analysis.CStarAlgebra.Classes
+module
 
-import Definitions.FLT.Def_ModularCurve_ComplexPlaceDictionary
+public import Mathlib.Analysis.CStarAlgebra.Classes
+
+public import Definitions.FLT.Def_ModularCurve_ComplexPlaceDictionary
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -109,3 +113,5 @@ theorem ComplexPlaceDictionaryOf.pt_toGamma0 {N : ℕ} [NeZero N]
 end ModularCurve
 
 end
+
+end publicSection

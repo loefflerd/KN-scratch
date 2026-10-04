@@ -1,11 +1,9 @@
-import Definitions.FLT.Def_AlgebraicCurve_Correspondence
-import Definitions.FLT.Def_ModularCurve_ArithmeticGalois
+module
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
+public import Definitions.FLT.Def_AlgebraicCurve_Correspondence
+public import Definitions.FLT.Def_ModularCurve_ArithmeticGalois
 
-noncomputable section
+@[expose] public noncomputable section publicSection
 
 open IsDedekindDomain
 
@@ -31,13 +29,13 @@ private theorem coeffEmb_qExpand' (L : Type*) [Field L] [Algebra ℚ L] (n : ℕ
   coeffMap_qExpand' _ n x
 
 variable (L) in
-private theorem laurentBaseChange_mono' {F₀ F₁ : IntermediateField ℚ (LaurentSeries ℚ)}
+theorem laurentBaseChange_mono' {F₀ F₁ : IntermediateField ℚ (LaurentSeries ℚ)}
     (h : F₀ ≤ F₁) : laurentBaseChange L F₀ ≤ laurentBaseChange L F₁ := by
   rw [laurentBaseChange, IntermediateField.adjoin_le_iff]
   rintro _ ⟨y, hy, rfl⟩
   exact coeffEmb_mem_laurentBaseChange L (h hy)
 
-private theorem qExpand_mem_laurentBaseChange' {F₀ : IntermediateField ℚ (LaurentSeries ℚ)} (n : ℕ)
+theorem qExpand_mem_laurentBaseChange' {F₀ : IntermediateField ℚ (LaurentSeries ℚ)} (n : ℕ)
     [NeZero n] {F₁ : IntermediateField ℚ (LaurentSeries ℚ)} (hF : ∀ y ∈ F₀, qExpand ℚ n y ∈ F₁)
     {x : LaurentSeries L} (hx : x ∈ laurentBaseChange L F₀) :
     qExpand L n x ∈ laurentBaseChange L F₁ := by
@@ -190,5 +188,4 @@ end ModularInstance
 
 end ModularCurve
 
-end
-
+end publicSection

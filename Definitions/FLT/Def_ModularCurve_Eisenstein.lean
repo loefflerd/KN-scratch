@@ -1,6 +1,10 @@
-import Definitions.FLT.Def_HeckeGalois_EichlerShimura
-import Definitions.FLT.Def_ModularCurve_HeckeOperator
-import Definitions.FLT.Def_ModularCurve_CuspidalClass
+module
+
+public import Definitions.FLT.Def_HeckeGalois_EichlerShimura
+public import Definitions.FLT.Def_ModularCurve_HeckeOperator
+public import Definitions.FLT.Def_ModularCurve_CuspidalClass
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -40,3 +44,7 @@ def EisensteinKernelKillsCuspidalClass (p : ℕ) [NeZero p]
 
 end ModularCurve
 
+
+end
+
+end publicSection

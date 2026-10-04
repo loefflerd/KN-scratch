@@ -1,4 +1,8 @@
-import Definitions.KN.Def_KN_SeededHorizontalCharacterRealizationV2B
+module
+
+public import Definitions.KN.Def_KN_SeededHorizontalCharacterRealizationV2B
+
+@[expose] public section publicSection
 
 noncomputable section
 
@@ -44,3 +48,7 @@ def HasSeededHorizontalPadicLConstructionV3
       ν.measure.eval (trivialHorizontalCharacterV2 p ν.primes.exponent) ≠ 0
 
 end HorizontalPadicL
+
+end
+
+end publicSection

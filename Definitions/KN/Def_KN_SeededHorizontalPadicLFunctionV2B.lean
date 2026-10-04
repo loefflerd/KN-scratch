@@ -1,4 +1,8 @@
-import Definitions.KN.Def_KN_HorizontalPadicLAux
+module
+
+public import Definitions.KN.Def_KN_HorizontalPadicLAux
+
+@[expose] public section publicSection
 
 noncomputable section
 
@@ -65,3 +69,7 @@ structure SeededHorizontalPadicLFunctionV2
   measure : HorizontalMeasure coefficientRing p primes.exponent
 
 end HorizontalPadicL
+
+end
+
+end publicSection

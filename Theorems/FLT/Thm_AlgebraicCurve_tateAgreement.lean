@@ -12,7 +12,7 @@ import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
 import Definitions.FLT.Def_DedekindDomain_AdicValuation_InlineSpecific
 import Definitions.FLT.Def_AlgebraicCurve_PlaceCompletion
 import Definitions.FLT.Def_AlgebraicCurve_TateResidueCurrency
-import Definitions.FLT.Def_AlgebraicCurve_CanonicalLocalResidueInstance
+import Definitions.FLT.Def_AlgebraicCurve_CanonicalLocalResidueInstanceV2
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000

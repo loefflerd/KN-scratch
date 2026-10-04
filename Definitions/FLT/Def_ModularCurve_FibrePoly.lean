@@ -1,4 +1,8 @@
-import Definitions.FLT.Def_ModularCurve_KroneckerTransport
+module
+
+public import Definitions.FLT.Def_ModularCurve_KroneckerTransport
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -54,3 +58,7 @@ theorem C_sub_X_pow_eq_neg_pow (a : k) :
 end Factorization
 
 end ModularCurve
+
+end
+
+end publicSection

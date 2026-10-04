@@ -1,9 +1,13 @@
-import Definitions.MTT.Def_MTT_Cohomology
-import Mathlib.RepresentationTheory.Rep.Basic
-import Mathlib.Tactic.Module
-import Mathlib.Tactic.FinCases
-import Mathlib.Tactic.Ring
-import Mathlib.RepresentationTheory.Homological.GroupCohomology.LowDegree
+module
+
+public import Definitions.MTT.Def_MTT_Cohomology
+public import Mathlib.RepresentationTheory.Rep.Basic
+public import Mathlib.Tactic.Module
+public import Mathlib.Tactic.FinCases
+public import Mathlib.Tactic.Ring
+public import Mathlib.RepresentationTheory.Homological.GroupCohomology.LowDegree
+
+@[expose] public section publicSection
 
 noncomputable section
 
@@ -138,3 +142,7 @@ theorem coboundaries_le_parabolicCocycles (N n : ℕ) :
 
 end MTT.Cohomology
 
+
+end
+
+end publicSection

@@ -1,5 +1,9 @@
-import Definitions.FLT.Def_AlgebraicCurve_Correspondence
-import Definitions.FLT.Def_WeierstrassCurve_GenusOnePic0
+module
+
+public import Definitions.FLT.Def_AlgebraicCurve_Correspondence
+public import Definitions.FLT.Def_WeierstrassCurve_GenusOnePic0
+
+@[expose] public section publicSection
 
 noncomputable section IsogenyCurrency
 
@@ -233,3 +237,5 @@ end IsogenyHomDatum
 end WeierstrassCurve.Affine
 
 end IsogenyCurrency
+
+end publicSection

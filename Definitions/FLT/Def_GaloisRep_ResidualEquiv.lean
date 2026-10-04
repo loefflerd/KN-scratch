@@ -1,4 +1,8 @@
-import Definitions.FLT.Def_GaloisRep_Residual
+module
+
+public import Definitions.FLT.Def_GaloisRep_Residual
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -53,3 +57,5 @@ noncomputable def baseChangeAlong {k' : Type} [Field k'] (ψ : k →+* k')
 end Equiv
 
 end ResidualGaloisRep
+
+end publicSection

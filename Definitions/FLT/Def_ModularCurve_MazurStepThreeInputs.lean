@@ -1,5 +1,9 @@
-import Definitions.FLT.Def_ModularCurve_Eisenstein
-import Definitions.FLT.Def_ModularCurve_MazurStepThree
+module
+
+public import Definitions.FLT.Def_ModularCurve_Eisenstein
+public import Definitions.FLT.Def_ModularCurve_MazurStepThree
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -125,3 +129,5 @@ end ModularCurve
 
 end
 
+
+end publicSection

@@ -1,7 +1,11 @@
-import Mathlib.AlgebraicGeometry.EllipticCurve.IsomOfJ
+module
 
-import Definitions.FLT.Def_WeierstrassCurve_RatPointHom
-import Definitions.FLT.Def_WeierstrassCurve_VariableChangePointEquiv
+public import Mathlib.AlgebraicGeometry.EllipticCurve.IsomOfJ
+
+public import Definitions.FLT.Def_WeierstrassCurve_RatPointHom
+public import Definitions.FLT.Def_WeierstrassCurve_VariableChangePointEquiv
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -161,3 +165,5 @@ end Map
 end ModularCurve
 
 end
+
+end publicSection

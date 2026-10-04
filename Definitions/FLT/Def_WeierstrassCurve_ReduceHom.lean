@@ -1,4 +1,8 @@
-import Definitions.FLT.Def_WeierstrassCurve_TorsionIntegral
+module
+
+public import Definitions.FLT.Def_WeierstrassCurve_TorsionIntegral
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -452,3 +456,5 @@ end Homomorphism
 
 end WeierstrassCurve
 
+
+end publicSection

@@ -1,4 +1,8 @@
-import Definitions.FLT.Def_ModularCurve_PhiGen
+module
+
+public import Definitions.FLT.Def_ModularCurve_PhiGen
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -48,3 +52,5 @@ noncomputable def cosetTwoVarPoly (ζ : Kˣ) (N : ℕ) (J : LaurentSeries K) : P
 end Conjugates
 
 end ModularCurve
+
+end publicSection

@@ -1,6 +1,10 @@
-import Definitions.KN.Def_KN_SeededThetaConstructionV2B
-import Mathlib.Data.ZMod.QuotientRing
-import Mathlib.Algebra.Group.Units.Hom
+module
+
+public import Definitions.KN.Def_KN_SeededThetaConstructionV2B
+public import Mathlib.Data.ZMod.QuotientRing
+public import Mathlib.Algebra.Group.Units.Hom
+
+@[expose] public section publicSection
 
 noncomputable section
 open scoped BigOperators
@@ -141,3 +145,7 @@ def SeededHorizontalCharacterRealizationV2.HasExpectedProperties
     ∃ χ : HorizontalCharacter p L.exponent, R.realized χ = ψ
 
 end HorizontalPadicL
+
+end
+
+end publicSection

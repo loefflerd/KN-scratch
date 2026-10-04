@@ -1,7 +1,11 @@
-import Definitions.FLT.Def_ModularCurve_X0
-import Definitions.FLT.Def_ModularCurve_LaurentCoeff
-import Definitions.FLT.Def_AlgebraicCurve_BaseChangeGalois
-import Mathlib.FieldTheory.IsAlgClosed.AlgebraicClosure
+module
+
+public import Definitions.FLT.Def_ModularCurve_X0
+public import Definitions.FLT.Def_ModularCurve_LaurentCoeff
+public import Definitions.FLT.Def_AlgebraicCurve_BaseChangeGalois
+public import Mathlib.FieldTheory.IsAlgClosed.AlgebraicClosure
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -141,3 +145,7 @@ end ModularInstance
 
 end ModularCurve
 
+
+end
+
+end publicSection

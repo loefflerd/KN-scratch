@@ -1,5 +1,9 @@
-import Definitions.KN.Def_KN_HorizontalPadicLAux
-import Definitions.FLT.Def_LanglandsTunnell_TowerCounting
+module
+
+public import Definitions.KN.Def_KN_HorizontalPadicLAux
+public import Definitions.FLT.Def_LanglandsTunnell_TowerCounting
+
+@[expose] public section publicSection
 
 noncomputable section
 
@@ -78,3 +82,7 @@ structure SeededOrderlyFrobeniusClassData
     orderOf (η.2 ℓ) = orderOf η.2
 
 end HorizontalPadicL
+
+end
+
+end publicSection

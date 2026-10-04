@@ -1,7 +1,11 @@
-import Definitions.KN.Def_KN_HorizontalPadicL
-import Mathlib.NumberTheory.Padics.Complex
-import Mathlib.NumberTheory.Padics.RingHoms
-import Mathlib.Topology.Instances.Real.Lemmas
+module
+
+public import Definitions.KN.Def_KN_HorizontalPadicL
+public import Mathlib.NumberTheory.Padics.Complex
+public import Mathlib.NumberTheory.Padics.RingHoms
+public import Mathlib.Topology.Instances.Real.Lemmas
+
+@[expose] public section publicSection
 
 noncomputable section
 
@@ -82,3 +86,7 @@ def IsNewEigenform {N k : ℕ} {ι : MTT.Qbar →+* ℂ}
       ∀ n : ℕ, (UpperHalfPlane.qExpansion 1 g).coeff n = ι (f.coeff n)
 
 end HorizontalPadicL
+
+end
+
+end publicSection

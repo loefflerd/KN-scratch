@@ -1,5 +1,9 @@
-import Definitions.MTT.Def_MTT_ParabolicCohomology
-import Mathlib.RepresentationTheory.Coinduced
+module
+
+public import Definitions.MTT.Def_MTT_ParabolicCohomology
+public import Mathlib.RepresentationTheory.Coinduced
+
+@[expose] public section publicSection
 
 /-! # General coefficients for full modular-group parabolic cohomology
 
@@ -70,3 +74,7 @@ abbrev centralCoinduced (N n : ℕ) := Rep.centralFixedRep
 
 end MTT.Cohomology
 
+
+end
+
+end publicSection

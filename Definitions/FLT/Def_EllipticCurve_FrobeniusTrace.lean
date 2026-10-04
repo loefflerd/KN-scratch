@@ -1,7 +1,11 @@
-import Mathlib.LinearAlgebra.Trace
-import Mathlib.RingTheory.Valuation.RamificationGroup
-import Definitions.FLT.Def_FLTPrelim_GaloisRep
-import Definitions.FLT.Def_FLTPrelim_Ramification
+module
+
+public import Mathlib.LinearAlgebra.Trace
+public import Mathlib.RingTheory.Valuation.RamificationGroup
+public import Definitions.FLT.Def_FLTPrelim_GaloisRep
+public import Definitions.FLT.Def_FLTPrelim_Ramification
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -69,3 +73,5 @@ end ValuationSubring
 
 end
 
+
+end publicSection

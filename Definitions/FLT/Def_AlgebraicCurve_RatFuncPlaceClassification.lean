@@ -1,7 +1,11 @@
-import Mathlib.NumberTheory.RatFunc.Ostrowski
+module
 
-import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaceInfty
-import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
+public import Mathlib.NumberTheory.RatFunc.Ostrowski
+
+public import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaceInfty
+public import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -84,7 +88,7 @@ theorem eq_placeOfPoint_or_eq_placeInfty [IsAlgClosed K] [DecidableEq (RatFunc K
     exact Or.inl ⟨a, hw.trans ha⟩
   · exact Or.inr hw
 
-private def ofOption [DecidableEq (RatFunc K)] : Option K → Place K (RatFunc K) :=
+def ofOption [DecidableEq (RatFunc K)] : Option K → Place K (RatFunc K) :=
   fun o => o.elim (placeInfty K) (placeOfPoint K)
 
 private theorem ofOption_bijective [IsAlgClosed K] [DecidableEq (RatFunc K)] :
@@ -102,7 +106,7 @@ private theorem ofOption_bijective [IsAlgClosed K] [DecidableEq (RatFunc K)] :
 
 def placeEquivOption [IsAlgClosed K] [DecidableEq (RatFunc K)] :
     Place K (RatFunc K) ≃ Option K :=
-  (Equiv.ofBijective (ofOption K) (ofOption_bijective K)).symm
+  (Equiv.ofBijective (ofOption K) (by exact ofOption_bijective K)).symm
 
 @[simp]
 theorem placeEquivOption_symm_some [IsAlgClosed K] [DecidableEq (RatFunc K)] (a : K) :
@@ -125,3 +129,7 @@ theorem placeEquivOption_placeInfty [IsAlgClosed K] [DecidableEq (RatFunc K)] :
 end RationalFunctionField
 
 end AlgebraicCurve
+
+end
+
+end publicSection

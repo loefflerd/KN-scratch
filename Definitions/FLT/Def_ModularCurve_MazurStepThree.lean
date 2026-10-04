@@ -1,5 +1,9 @@
-import Definitions.FLT.Def_EllipticCurve_ZeroComponentAt
-import Definitions.FLT.Def_FLTPrelim_Ramification
+module
+
+public import Definitions.FLT.Def_EllipticCurve_ZeroComponentAt
+public import Definitions.FLT.Def_FLTPrelim_Ramification
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -24,3 +28,5 @@ def MazurStepThree (p : ℕ) : Prop :=
         ∀ A : ValuationSubring (AlgebraicClosure ℚ), A.LiesOverPrime ℓ →
           ¬ W.InZeroComponentAt A Q
 
+
+end publicSection

@@ -8,7 +8,7 @@ Generation 1 means that a node has no imports from this extracted local filetree
 
 The parser reads textual `import` and `public import` commands, resolves module names from file paths, and ignores comments after an import. This intentionally does not reproduce Lean’s elaboration or transitive module-loading behavior.
 
-Classified files: **2409 / 2409** in **1308** dependency nodes, including **1101** theorem/solution pairs. Cycles found: **0**. Files with unresolved non-baseline imports: **0**.
+Classified files: **2408 / 2408** in **1307** dependency nodes, including **1101** theorem/solution pairs. Cycles found: **0**. Files with unresolved non-baseline imports: **0**.
 
 ## Summary
 
@@ -18,14 +18,14 @@ Classified files: **2409 / 2409** in **1308** dependency nodes, including **1101
 | 2 | 434 | 424 | 6 | 4 |
 | 3 | 317 | 275 | 29 | 13 |
 | 4 | 263 | 219 | 30 | 14 |
-| 5 | 203 | 155 | 42 | 6 |
-| 6 | 129 | 98 | 18 | 13 |
-| 7 | 129 | 113 | 12 | 4 |
+| 5 | 204 | 156 | 42 | 6 |
+| 6 | 130 | 99 | 18 | 13 |
+| 7 | 130 | 114 | 12 | 4 |
 | 8 | 98 | 88 | 6 | 4 |
 | 9 | 101 | 85 | 4 | 12 |
 | 10 | 96 | 67 | 6 | 23 |
-| 11 | 63 | 48 | 6 | 9 |
-| 12 | 63 | 52 | 6 | 5 |
+| 11 | 61 | 46 | 6 | 9 |
+| 12 | 61 | 50 | 6 | 5 |
 | 13 | 65 | 61 | 0 | 4 |
 | 14 | 46 | 46 | 0 | 0 |
 | 15 | 25 | 25 | 0 | 0 |
@@ -1150,6 +1150,7 @@ Classified files: **2409 / 2409** in **1308** dependency nodes, including **1101
 
 ## Generation 5
 
+- `Definitions/FLT/Def_AlgebraicCurve_CanonicalLocalResidueInstanceV2.lean`
 - `Definitions/FLT/Def_AlgebraicCurve_FrobeniusEndoPic0.lean`
 - `Definitions/FLT/Def_AlgebraicCurve_TateResidueCurrency.lean`
 - `Definitions/FLT/Def_AlgebraicCurve_WeilOfKaehler.lean`
@@ -1356,7 +1357,6 @@ Classified files: **2409 / 2409** in **1308** dependency nodes, including **1101
 
 ## Generation 6
 
-- `Definitions/FLT/Def_AlgebraicCurve_CanonicalLocalResidueInstanceV2.lean`
 - `Definitions/FLT/Def_GaloisRep_Adic.lean`
 - `Definitions/FLT/Def_ModularCurve_CharLFrobeniusGeomLevel.lean`
 - `Definitions/FLT/Def_ModularCurve_Eisenstein.lean`
@@ -1378,6 +1378,7 @@ Classified files: **2409 / 2409** in **1308** dependency nodes, including **1101
 - `Solutions/FLT/Sol_AlgebraicCurve_RationalFunctionField_ord_placeInfty.lean`
 - `Solutions/FLT/Sol_AlgebraicCurve_exists_riemannGenusReachedAt_nsmul_single_of_stichtenothGenusExists.lean`
 - `Solutions/FLT/Sol_AlgebraicCurve_genus_eq_genusFF.lean`
+- `Solutions/FLT/Sol_AlgebraicCurve_tateAgreement.lean`
 - `Solutions/FLT/Sol_AlgebraicCurve_tateChainRule.lean`
 - `Solutions/FLT/Sol_AlgebraicCurve_tateCommFinite.lean`
 - `Solutions/FLT/Sol_AlgebraicCurve_tateTraceCompat_of_isSeparable.lean`
@@ -1438,6 +1439,7 @@ Classified files: **2409 / 2409** in **1308** dependency nodes, including **1101
 - `Theorems/FLT/Thm_AlgebraicCurve_RationalFunctionField_ord_placeInfty.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_exists_riemannGenusReachedAt_nsmul_single_of_stichtenothGenusExists.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_genus_eq_genusFF.lean`
+- `Theorems/FLT/Thm_AlgebraicCurve_tateAgreement.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_tateChainRule.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_tateCommFinite.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_tateTraceCompat_of_isSeparable.lean`
@@ -1488,7 +1490,6 @@ Classified files: **2409 / 2409** in **1308** dependency nodes, including **1101
 
 ## Generation 7
 
-- `Definitions/FLT/Def_AlgebraicCurve_CanonicalLocalResidueInstance.lean`
 - `Definitions/FLT/Def_EllipticCurve_TateModule.lean`
 - `Definitions/FLT/Def_ModularCurve_MazurStepThreeInputs.lean`
 - `Definitions/FLT/Def_ModularCurve_PeriodOf.lean`
@@ -1501,6 +1502,7 @@ Classified files: **2409 / 2409** in **1308** dependency nodes, including **1101
 - `Solutions/FLT/Sol_AlgebraicCurve_RationalFunctionField_ord_placeInfty_algebraMap.lean`
 - `Solutions/FLT/Sol_AlgebraicCurve_mem_regularDiffs_iff.lean`
 - `Solutions/FLT/Sol_AlgebraicCurve_mem_span_range_algebraMap_of_constantFieldExtension_of_isAlgClosed.lean`
+- `Solutions/FLT/Sol_AlgebraicCurve_residueTraceCompletionCommute.lean`
 - `Solutions/FLT/Sol_CuspForm_eq_zero_of_prime_not_dvd_of_qCoeff_eq_zero.lean`
 - `Solutions/FLT/Sol_HeckeEis_eichlerShimuraMap_add.lean`
 - `Solutions/FLT/Sol_HeckeEis_eichlerShimuraMap_heckeTLin.lean`
@@ -1562,6 +1564,7 @@ Classified files: **2409 / 2409** in **1308** dependency nodes, including **1101
 - `Theorems/FLT/Thm_AlgebraicCurve_RationalFunctionField_ord_placeInfty_algebraMap.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_mem_regularDiffs_iff.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_mem_span_range_algebraMap_of_constantFieldExtension_of_isAlgClosed.lean`
+- `Theorems/FLT/Thm_AlgebraicCurve_residueTraceCompletionCommute.lean`
 - `Theorems/FLT/Thm_CuspForm_eq_zero_of_prime_not_dvd_of_qCoeff_eq_zero.lean`
 - `Theorems/FLT/Thm_HeckeEis_eichlerShimuraMap_add.lean`
 - `Theorems/FLT/Thm_HeckeEis_eichlerShimuraMap_heckeTLin.lean`
@@ -1643,7 +1646,7 @@ Classified files: **2409 / 2409** in **1308** dependency nodes, including **1101
 - `Solutions/FLT/Sol_AlgebraicCurve_finite_setOf_ord_ne_zero_of_finiteDimensional.lean`
 - `Solutions/FLT/Sol_AlgebraicCurve_finrank_le_and_natCard_places_le_of_constantFieldExtension_adjoin.lean`
 - `Solutions/FLT/Sol_AlgebraicCurve_isIntegral_adjoin_of_forall_ord_nonneg.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_tateAgreement.lean`
+- `Solutions/FLT/Sol_AlgebraicCurve_residueTheoremK_of_isAlgClosed.lean`
 - `Solutions/FLT/Sol_HeckeEis_existsEichlerShimuraMapLinear.lean`
 - `Solutions/FLT/Sol_ModularCurve_LevelN_exists_linearMap_regularDifferentials_cuspForm_injective.lean`
 - `Solutions/FLT/Sol_ModularCurve_LevelN_exists_place_ord_jGen_le_two_three_level.lean`
@@ -1690,7 +1693,7 @@ Classified files: **2409 / 2409** in **1308** dependency nodes, including **1101
 - `Theorems/FLT/Thm_AlgebraicCurve_finite_setOf_ord_ne_zero_of_finiteDimensional.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_finrank_le_and_natCard_places_le_of_constantFieldExtension_adjoin.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_isIntegral_adjoin_of_forall_ord_nonneg.lean`
-- `Theorems/FLT/Thm_AlgebraicCurve_tateAgreement.lean`
+- `Theorems/FLT/Thm_AlgebraicCurve_residueTheoremK_of_isAlgClosed.lean`
 - `Theorems/FLT/Thm_HeckeEis_existsEichlerShimuraMapLinear.lean`
 - `Theorems/FLT/Thm_ModularCurve_LevelN_exists_linearMap_regularDifferentials_cuspForm_injective.lean`
 - `Theorems/FLT/Thm_ModularCurve_LevelN_exists_place_ord_jGen_le_two_three_level.lean`
@@ -1734,12 +1737,12 @@ Classified files: **2409 / 2409** in **1308** dependency nodes, including **1101
 - `Solutions/FLT/Sol_AlgebraicCurve_TranscendenceTower_degree_poleDivisor_eq_finrank.lean`
 - `Solutions/FLT/Sol_AlgebraicCurve_TranscendenceTower_poleDivisor_apply.lean`
 - `Solutions/FLT/Sol_AlgebraicCurve_constantsAreBase_of_exists_isRational.lean`
+- `Solutions/FLT/Sol_AlgebraicCurve_functionFieldRiemannRoch_of_isAlgClosed.lean`
 - `Solutions/FLT/Sol_AlgebraicCurve_hasPrincipalDivisors_of_finiteDimensional_ratFunc.lean`
 - `Solutions/FLT/Sol_AlgebraicCurve_hasPrincipalDivisors_of_transcendental.lean`
 - `Solutions/FLT/Sol_AlgebraicCurve_linearIndependent_pow_mul.lean`
 - `Solutions/FLT/Sol_AlgebraicCurve_mem_riemannRochSpace_of_sum_basis_smul_algebraMap_mem_mapDomain.lean`
 - `Solutions/FLT/Sol_AlgebraicCurve_normFormulaAlong.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_residueTraceCompletionCommute.lean`
 - `Solutions/FLT/Sol_HeckeEis_eichlerShimuraMap_injective.lean`
 - `Solutions/FLT/Sol_ModularCurve_LevelN_exists_algHom_laurentBaseChange_apply_eq_qExpand.lean`
 - `Solutions/FLT/Sol_ModularCurve_ModularPolynomialData_eval_jLattice_eq_zero_of_isAddCyclic.lean`
@@ -1783,12 +1786,12 @@ Classified files: **2409 / 2409** in **1308** dependency nodes, including **1101
 - `Theorems/FLT/Thm_AlgebraicCurve_TranscendenceTower_degree_poleDivisor_eq_finrank.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_TranscendenceTower_poleDivisor_apply.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_constantsAreBase_of_exists_isRational.lean`
+- `Theorems/FLT/Thm_AlgebraicCurve_functionFieldRiemannRoch_of_isAlgClosed.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_hasPrincipalDivisors_of_finiteDimensional_ratFunc.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_hasPrincipalDivisors_of_transcendental.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_linearIndependent_pow_mul.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_mem_riemannRochSpace_of_sum_basis_smul_algebraMap_mem_mapDomain.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_normFormulaAlong.lean`
-- `Theorems/FLT/Thm_AlgebraicCurve_residueTraceCompletionCommute.lean`
 - `Theorems/FLT/Thm_HeckeEis_eichlerShimuraMap_injective.lean`
 - `Theorems/FLT/Thm_ModularCurve_LevelN_exists_algHom_laurentBaseChange_apply_eq_qExpand.lean`
 - `Theorems/FLT/Thm_ModularCurve_ModularPolynomialData_eval_jLattice_eq_zero_of_isAddCyclic.lean`
@@ -1839,12 +1842,12 @@ Classified files: **2409 / 2409** in **1308** dependency nodes, including **1101
 - `Solutions/FLT/Sol_AlgebraicCurve_RationalFunctionField_stichtenothGenusExists.lean`
 - `Solutions/FLT/Sol_AlgebraicCurve_RationalFunctionField_stichtenothGenusExists_of_ratFunc_tower.lean`
 - `Solutions/FLT/Sol_AlgebraicCurve_constantsAreBase_of_deg_eq_one.lean`
+- `Solutions/FLT/Sol_AlgebraicCurve_functionFieldRiemannRoch_of_isAlgClosed_of_isCurveOver.lean`
 - `Solutions/FLT/Sol_AlgebraicCurve_hasPrincipalDivisors_adjoin_of_transcendental.lean`
 - `Solutions/FLT/Sol_AlgebraicCurve_hasPrincipalDivisors_of_finiteDimensional_of_isSeparable.lean`
 - `Solutions/FLT/Sol_AlgebraicCurve_instIsCurveOverRatFunc.lean`
 - `Solutions/FLT/Sol_AlgebraicCurve_lSpace_mapDomain_subset_span_image_lSpace_of_constantFieldExtension_of_isAlgClosed.lean`
 - `Solutions/FLT/Sol_AlgebraicCurve_linearIndependent_pow_of_transcendental.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_residueTheoremK_of_isAlgClosed.lean`
 - `Solutions/FLT/Sol_ModularCurve_B3_exists_variableChange_specialFibre_goodModel.lean`
 - `Solutions/FLT/Sol_ModularCurve_B3_goodModel_1728_spec.lean`
 - `Solutions/FLT/Sol_ModularCurve_B3_goodModel_generic_spec.lean`
@@ -1886,12 +1889,12 @@ Classified files: **2409 / 2409** in **1308** dependency nodes, including **1101
 - `Theorems/FLT/Thm_AlgebraicCurve_RationalFunctionField_stichtenothGenusExists.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_RationalFunctionField_stichtenothGenusExists_of_ratFunc_tower.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_constantsAreBase_of_deg_eq_one.lean`
+- `Theorems/FLT/Thm_AlgebraicCurve_functionFieldRiemannRoch_of_isAlgClosed_of_isCurveOver.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_hasPrincipalDivisors_adjoin_of_transcendental.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_hasPrincipalDivisors_of_finiteDimensional_of_isSeparable.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_instIsCurveOverRatFunc.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_lSpace_mapDomain_subset_span_image_lSpace_of_constantFieldExtension_of_isAlgClosed.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_linearIndependent_pow_of_transcendental.lean`
-- `Theorems/FLT/Thm_AlgebraicCurve_residueTheoremK_of_isAlgClosed.lean`
 - `Theorems/FLT/Thm_ModularCurve_B3_exists_variableChange_specialFibre_goodModel.lean`
 - `Theorems/FLT/Thm_ModularCurve_B3_goodModel_1728_spec.lean`
 - `Theorems/FLT/Thm_ModularCurve_B3_goodModel_generic_spec.lean`
@@ -1932,7 +1935,6 @@ Classified files: **2409 / 2409** in **1308** dependency nodes, including **1101
 - `Solutions/FLT/Sol_AlgebraicCurve_RationalFunctionField_ord_placeOfPoint_algebraMap.lean`
 - `Solutions/FLT/Sol_AlgebraicCurve_ell_mapDomain_eq_of_constantFieldExtension_of_isAlgClosed.lean`
 - `Solutions/FLT/Sol_AlgebraicCurve_exists_genus_riemannIndex_of_isCurveOver.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_functionFieldRiemannRoch_of_isAlgClosed.lean`
 - `Solutions/FLT/Sol_AlgebraicCurve_hasPrincipalDivisors_of_transcendental_of_isSeparable.lean`
 - `Solutions/FLT/Sol_AlgebraicCurve_nonempty_place_of_transcendental_of_finiteDimensional.lean`
 - `Solutions/FLT/Sol_AlgebraicCurve_stichtenothGenusExists_of_isCurveOver.lean`
@@ -1963,7 +1965,6 @@ Classified files: **2409 / 2409** in **1308** dependency nodes, including **1101
 - `Theorems/FLT/Thm_AlgebraicCurve_RationalFunctionField_ord_placeOfPoint_algebraMap.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_ell_mapDomain_eq_of_constantFieldExtension_of_isAlgClosed.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_exists_genus_riemannIndex_of_isCurveOver.lean`
-- `Theorems/FLT/Thm_AlgebraicCurve_functionFieldRiemannRoch_of_isAlgClosed.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_hasPrincipalDivisors_of_transcendental_of_isSeparable.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_nonempty_place_of_transcendental_of_finiteDimensional.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_stichtenothGenusExists_of_isCurveOver.lean`
@@ -1994,7 +1995,6 @@ Classified files: **2409 / 2409** in **1308** dependency nodes, including **1101
 - `Solutions/FLT/Sol_AlgebraicCurve_Divisor_degree_eq_finrank_adjoin_of_eq_max_ord_sub_algebraMap.lean`
 - `Solutions/FLT/Sol_AlgebraicCurve_Place_isRational_of_isAlgClosed.lean`
 - `Solutions/FLT/Sol_AlgebraicCurve_exists_indexOfSpecialty_mapDomain_eq_zero_of_constantFieldExtension_of_isAlgClosed.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_functionFieldRiemannRoch_of_isAlgClosed_of_isCurveOver.lean`
 - `Solutions/FLT/Sol_AlgebraicCurve_isCurveOver_of_transcendental.lean`
 - `Solutions/FLT/Sol_AlgebraicCurve_le_genusFF_of_constantFieldExtension_of_isAlgClosed.lean`
 - `Solutions/FLT/Sol_AlgebraicCurve_natCard_place_ord_sub_pos_le_natCard_doubleCoset.lean`
@@ -2025,7 +2025,6 @@ Classified files: **2409 / 2409** in **1308** dependency nodes, including **1101
 - `Theorems/FLT/Thm_AlgebraicCurve_Divisor_degree_eq_finrank_adjoin_of_eq_max_ord_sub_algebraMap.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_Place_isRational_of_isAlgClosed.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_exists_indexOfSpecialty_mapDomain_eq_zero_of_constantFieldExtension_of_isAlgClosed.lean`
-- `Theorems/FLT/Thm_AlgebraicCurve_functionFieldRiemannRoch_of_isAlgClosed_of_isCurveOver.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_isCurveOver_of_transcendental.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_le_genusFF_of_constantFieldExtension_of_isAlgClosed.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_natCard_place_ord_sub_pos_le_natCard_doubleCoset.lean`

@@ -1,8 +1,12 @@
-import Mathlib.AlgebraicGeometry.EllipticCurve.ModelsWithJ
+module
 
-import Definitions.FLT.Def_ModularCurve_TateFormal
-import Definitions.FLT.Def_ModularCurve_PhiGen
-import Definitions.FLT.Def_WeierstrassCurve_VeluQuotientMap
+public import Mathlib.AlgebraicGeometry.EllipticCurve.ModelsWithJ
+
+public import Definitions.FLT.Def_ModularCurve_TateFormal
+public import Definitions.FLT.Def_ModularCurve_PhiGen
+public import Definitions.FLT.Def_WeierstrassCurve_VeluQuotientMap
+
+@[expose] public section publicSection
 
 noncomputable section
 
@@ -98,3 +102,5 @@ def ModuliDictionary (p : ℕ) [NeZero p] (data : ModularPolynomialData p) : Pro
 end ModularCurve.TatePoint
 
 end
+
+end publicSection

@@ -1,5 +1,9 @@
-import Definitions.FLT.Def_AutomorphicForm_FundamentalDomainVolume
-import Definitions.FLT.Def_AutomorphicForm_SiegelSetCover
+module
+
+public import Definitions.FLT.Def_AutomorphicForm_FundamentalDomainVolume
+public import Definitions.FLT.Def_AutomorphicForm_SiegelSetCover
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -122,3 +126,5 @@ theorem gate_truncated_nonempty (Γ : Subgroup SL(2, ℤ)) :
     Real.sqrt_nonneg (3 : ℝ)]
 
 end FLT.Gamma0FundamentalSet
+
+end publicSection

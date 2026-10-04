@@ -1,5 +1,9 @@
-import Definitions.FLT.Def_ModularCurve_JqCoeff
-import Mathlib.AlgebraicGeometry.EllipticCurve.Weierstrass
+module
+
+public import Definitions.FLT.Def_ModularCurve_JqCoeff
+public import Mathlib.AlgebraicGeometry.EllipticCurve.Weierstrass
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -161,3 +165,5 @@ end ModularCurve
 
 end
 
+
+end publicSection

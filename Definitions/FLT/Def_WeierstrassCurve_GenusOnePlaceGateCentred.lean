@@ -1,4 +1,8 @@
-import Definitions.FLT.Def_WeierstrassCurve_GenusOnePic0
+module
+
+public import Definitions.FLT.Def_WeierstrassCurve_GenusOnePic0
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -37,3 +41,5 @@ theorem algebraMap_YClass_mem_nonunits {x y : F} (h : W.Nonsingular x y) :
 end GenusOnePlaceGate.IsCentred
 
 end WeierstrassCurve.Affine
+
+end publicSection

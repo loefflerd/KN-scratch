@@ -1,6 +1,10 @@
-import Mathlib.RingTheory.SimpleRing.Principal
+module
 
-import Definitions.FLT.Def_WeierstrassCurve_VeluOrderTwo
+public import Mathlib.RingTheory.SimpleRing.Principal
+
+public import Definitions.FLT.Def_WeierstrassCurve_VeluOrderTwo
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -118,3 +122,5 @@ lemma veluPointMap2_some_of_ne {x y : F} (h : W.toAffine.Nonsingular x y) (hx : 
 end Field
 
 end WeierstrassCurve
+
+end publicSection

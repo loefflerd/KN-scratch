@@ -1,4 +1,8 @@
-import Definitions.FLT.Def_ModularCurve_HeckeOperator
+module
+
+public import Definitions.FLT.Def_ModularCurve_HeckeOperator
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -29,7 +33,7 @@ variable (L : Type*) [Field L] [Algebra ℚ L] {N M : ℕ} [NeZero N] [NeZero M]
 def towerInclBar (h : N ∣ M) :
     laurentBaseChange L (modularFunctionFieldFull N) →ₐ[L]
       laurentBaseChange L (modularFunctionFieldFull M) :=
-  IntermediateField.inclusion (laurentBaseChange_mono'' L (full_degeneracy_le h))
+  IntermediateField.inclusion (by exact laurentBaseChange_mono'' L (full_degeneracy_le h))
 
 @[simp]
 theorem coe_towerInclBar (h : N ∣ M) (x : laurentBaseChange L (modularFunctionFieldFull N)) :
@@ -116,7 +120,6 @@ variable (L : Type*) [Field L] [Algebra ℚ L] (N ℓ ℓ' M : ℕ) [NeZero N] [
   [NeZero M]
 
 omit [NeZero N] [NeZero ℓ] [NeZero ℓ'] [NeZero M] in
-
 theorem dvd_of_eq_roof (hM : M = N * ℓ * ℓ') : N * ℓ ∣ M ∧ N * ℓ' * ℓ ∣ M :=
   ⟨⟨ℓ', hM⟩, ⟨1, by rw [hM]; ring⟩⟩
 
@@ -139,3 +142,4 @@ end ModularCurve
 
 end
 
+end publicSection

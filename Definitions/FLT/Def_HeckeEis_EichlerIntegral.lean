@@ -1,9 +1,13 @@
-import Mathlib.Analysis.CStarAlgebra.Classes
-import Mathlib.Analysis.Calculus.Deriv.Basic
-import Mathlib.Analysis.Complex.UpperHalfPlane.Topology
+module
 
-import Definitions.FLT.Def_Gamma0CoeffCohomology
-import Definitions.FLT.Def_HeckeEis_BinaryFormRep
+public import Mathlib.Analysis.CStarAlgebra.Classes
+public import Mathlib.Analysis.Calculus.Deriv.Basic
+public import Mathlib.Analysis.Complex.UpperHalfPlane.Topology
+
+public import Definitions.FLT.Def_Gamma0CoeffCohomology
+public import Definitions.FLT.Def_HeckeEis_BinaryFormRep
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -153,3 +157,5 @@ end EichlerIntegral
 end HeckeEis
 
 end
+
+end publicSection

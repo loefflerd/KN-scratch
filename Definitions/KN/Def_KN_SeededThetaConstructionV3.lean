@@ -1,4 +1,8 @@
-import Definitions.KN.Def_KN_SeededHorizontalCharacterRealizationV2B
+module
+
+public import Definitions.KN.Def_KN_SeededHorizontalCharacterRealizationV2B
+
+@[expose] public section publicSection
 
 noncomputable section
 
@@ -67,3 +71,7 @@ def SeededNormalizedThetaMeasureV2.InterpolatesSeededCriticalValues
       (k / 2 - 1) ≠ 0
 
 end HorizontalPadicL
+
+end
+
+end publicSection

@@ -1,4 +1,8 @@
-import Definitions.MTT.Def_MTT_ParabolicCohomology
+module
+
+public import Definitions.MTT.Def_MTT_ParabolicCohomology
+
+@[expose] public section publicSection
 
 /-! # Translation-normalized parabolic cocycles -/
 
@@ -22,3 +26,7 @@ def normalizedToH1 (N n : ℕ) : normalizedParabolic N n →ₗ[ℂ] ParabolicH1
 
 end MTT.Cohomology
 
+
+end
+
+end publicSection

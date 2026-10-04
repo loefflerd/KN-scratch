@@ -1,7 +1,11 @@
-import Definitions.KN.Def_MTT_EigenformCoefficientField
-import Mathlib.NumberTheory.NumberField.Basic
-import Mathlib.NumberTheory.Padics.Complex
-import Mathlib.RingTheory.Valuation.Integral
+module
+
+public import Definitions.KN.Def_MTT_EigenformCoefficientField
+public import Mathlib.NumberTheory.NumberField.Basic
+public import Mathlib.NumberTheory.Padics.Complex
+public import Mathlib.RingTheory.Valuation.Integral
+
+@[expose] public section publicSection
 
 noncomputable section
 
@@ -60,3 +64,7 @@ theorem mem_coefficientPrime_iff
 end Eigenform
 
 end MTT
+
+end
+
+end publicSection

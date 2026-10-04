@@ -1,7 +1,11 @@
-import Definitions.FLT.Def_ModularCurve_JZeroNaiveHeight
-import Definitions.FLT.Def_AlgebraicCurve_PlaceEvaluation
-import Definitions.FLT.Def_AlgebraicCurve_Repartitions
-import Definitions.FLT.Def_Compat_Mathlib430
+module
+
+public import Definitions.FLT.Def_ModularCurve_JZeroNaiveHeight
+public import Definitions.FLT.Def_AlgebraicCurve_PlaceEvaluation
+public import Definitions.FLT.Def_AlgebraicCurve_Repartitions
+public import Definitions.FLT.Def_Compat_Mathlib430
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -197,3 +201,5 @@ end ModularCurve
 
 end
 
+
+end publicSection

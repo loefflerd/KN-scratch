@@ -1,4 +1,8 @@
-import Definitions.KN.Def_KN_SeededThetaFullSupportInterpolationV3
+module
+
+public import Definitions.KN.Def_KN_SeededThetaFullSupportInterpolationV3
+
+@[expose] public section publicSection
 
 noncomputable section
 open scoped BigOperators
@@ -24,3 +28,7 @@ def SeededFiniteThetaDataV3.HasFullSupportModularSymbolZeroSet
         ι (θ.2 a) * MTT.modularSymbol f.form (k / 2 - 1) a.val θ.1.1) ≠ 0)
 
 end HorizontalPadicL
+
+end
+
+end publicSection

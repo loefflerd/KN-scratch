@@ -1,11 +1,15 @@
-import Definitions.FLT.Def_EllipticCurve_FrobeniusTrace
-import Definitions.FLT.Def_FLTPrelim_Modularity
-import Mathlib.RingTheory.IntegralClosure.Algebra.Basic
-import Mathlib.LinearAlgebra.Charpoly.Basic
-import Mathlib.LinearAlgebra.Determinant
-import Mathlib.LinearAlgebra.TensorProduct.Tower
-import Mathlib.LinearAlgebra.Dimension.Constructions
-import Mathlib.FieldTheory.Finiteness
+module
+
+public import Definitions.FLT.Def_EllipticCurve_FrobeniusTrace
+public import Definitions.FLT.Def_FLTPrelim_Modularity
+public import Mathlib.RingTheory.IntegralClosure.Algebra.Basic
+public import Mathlib.LinearAlgebra.Charpoly.Basic
+public import Mathlib.LinearAlgebra.Determinant
+public import Mathlib.LinearAlgebra.TensorProduct.Tower
+public import Mathlib.LinearAlgebra.Dimension.Constructions
+public import Mathlib.FieldTheory.Finiteness
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -102,3 +106,5 @@ def WeierstrassCurve.residualGaloisRepOf (W : WeierstrassCurve ℚ) (p : ℕ) [F
 
 end
 
+
+end publicSection

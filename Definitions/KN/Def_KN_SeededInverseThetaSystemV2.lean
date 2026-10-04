@@ -1,4 +1,8 @@
-import Definitions.KN.Def_KN_SeededThetaFullSupportModularSymbolZeroSetV2
+module
+
+public import Definitions.KN.Def_KN_SeededThetaFullSupportModularSymbolZeroSetV2
+
+@[expose] public section publicSection
 
 noncomputable section
 open scoped BigOperators
@@ -86,3 +90,7 @@ def SeededFiniteThetaDataV3.IsInverseSeedThetaSystem
         inverseSeedEulerFactorCp Θ.characters A n hn
 
 end HorizontalPadicL
+
+end
+
+end publicSection

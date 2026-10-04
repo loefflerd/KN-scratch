@@ -1,12 +1,9 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_IgusaFunctionField
-import Definitions.FLT.Def_ModularCurve_X1
+module
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
+public import Definitions.FLT.Def_ModularCurve_IgusaFunctionField
+public import Definitions.FLT.Def_ModularCurve_X1
 
-noncomputable section
+@[expose] public noncomputable section publicSection
 
 open CongruenceSubgroup
 open scoped MatrixGroups
@@ -47,5 +44,4 @@ abbrev IgusaDiamondDataX1C (w : IntegralWeightOneForm κ M) (p : ℕ) [Fact p.Pr
 
 end ModularCurve
 
-end
-
+end publicSection

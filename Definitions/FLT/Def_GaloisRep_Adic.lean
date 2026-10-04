@@ -1,8 +1,12 @@
-import Mathlib.LinearAlgebra.Charpoly.BaseChange
-import Mathlib.LinearAlgebra.Trace
-import Mathlib.RingTheory.LocalRing.ResidueField.Basic
-import Definitions.FLT.Def_GaloisRep_Residual
-import Definitions.FLT.Def_GaloisRep_ResidualEquiv
+module
+
+public import Mathlib.LinearAlgebra.Charpoly.BaseChange
+public import Mathlib.LinearAlgebra.Trace
+public import Mathlib.RingTheory.LocalRing.ResidueField.Basic
+public import Definitions.FLT.Def_GaloisRep_Residual
+public import Definitions.FLT.Def_GaloisRep_ResidualEquiv
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -199,3 +203,5 @@ def ofResidualGaloisRep {k : Type} [Field k] (ρ : ResidualGaloisRep k) : Galois
       exact Submodule.zero_mem _ }
 
 end GaloisRepAdic
+
+end publicSection

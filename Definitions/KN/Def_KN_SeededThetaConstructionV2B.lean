@@ -1,5 +1,9 @@
-import Definitions.KN.Def_KN_SeededHorizontalPadicLFunctionV2B
-import Definitions.MTT.Def_MTT_Measures
+module
+
+public import Definitions.KN.Def_KN_SeededHorizontalPadicLFunctionV2B
+public import Definitions.MTT.Def_MTT_Measures
+
+@[expose] public section publicSection
 
 noncomputable section
 open scoped BigOperators
@@ -163,3 +167,7 @@ def SeededNormalizedThetaMeasure.InterpolatesSeededCriticalValues
       (k / 2 - 1) ≠ 0
 
 end HorizontalPadicL
+
+end
+
+end publicSection

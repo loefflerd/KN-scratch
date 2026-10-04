@@ -1,8 +1,8 @@
-import Definitions.FLT.Def_ModularCurve_CanonicalDivisor
+module
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
+public import Definitions.FLT.Def_ModularCurve_CanonicalDivisor
+
+@[expose] public section publicSection
 
 open KaehlerDifferential
 
@@ -31,3 +31,5 @@ end Place
 end AlgebraicCurve
 
 end
+
+end publicSection

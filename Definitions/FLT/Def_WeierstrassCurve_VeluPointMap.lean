@@ -1,4 +1,8 @@
-import Definitions.FLT.Def_WeierstrassCurve_VeluQuotientMap
+module
+
+public import Definitions.FLT.Def_WeierstrassCurve_VeluQuotientMap
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -87,3 +91,5 @@ theorem velu_singleton_map_equation {x₀ y₀ x y : F}
 end Field
 
 end WeierstrassCurve
+
+end publicSection

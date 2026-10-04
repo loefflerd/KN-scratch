@@ -1,4 +1,8 @@
-import Definitions.MTT.Def_MTT_ParabolicCohomology
+module
+
+public import Definitions.MTT.Def_MTT_ParabolicCohomology
+
+@[expose] public section publicSection
 
 /-! # The two Manin relations for the MTT left coefficient action -/
 
@@ -34,3 +38,7 @@ theorem mem_periodRelations_iff {n : ℕ} (P : gammaOneRep 1 n) :
 
 end MTT.Cohomology
 
+
+end
+
+end publicSection

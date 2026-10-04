@@ -1,5 +1,9 @@
-import Definitions.KN.Def_KN_SeededHorizontalPadicLFunctionV3B
-import Definitions.KN.Def_KN_SeededFiniteThetaCriticalZeroSetV2
+module
+
+public import Definitions.KN.Def_KN_SeededHorizontalPadicLFunctionV3B
+public import Definitions.KN.Def_KN_SeededFiniteThetaCriticalZeroSetV2
+
+@[expose] public section publicSection
 
 noncomputable section
 open scoped BigOperators
@@ -347,3 +351,7 @@ def SeededFiniteThetaDataV3.HasSeededCriticalZeroSet
       (k / 2 - 1) ≠ 0
 
 end HorizontalPadicL
+
+end
+
+end publicSection

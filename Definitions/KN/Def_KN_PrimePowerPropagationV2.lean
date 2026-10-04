@@ -1,4 +1,8 @@
-import Definitions.KN.Def_KN_SeededHorizontalPadicLFunctionV3B
+module
+
+public import Definitions.KN.Def_KN_SeededHorizontalPadicLFunctionV3B
+
+@[expose] public section publicSection
 
 noncomputable section
 open scoped BigOperators
@@ -107,3 +111,7 @@ structure PrimitiveProductArithmetic : Prop where
         primitiveProductV2 η ψ.val)
 
 end HorizontalPadicL
+
+end
+
+end publicSection

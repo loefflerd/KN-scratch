@@ -1,11 +1,15 @@
-import Mathlib.Algebra.Order.Ring.Star
-import Mathlib.Data.Int.Star
-import Mathlib.Order.CompletePartialOrder
-import Mathlib.RingTheory.Henselian
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.RingTheory.SimpleRing.Principal
+module
 
-import Definitions.FLT.Def_AlgebraicCurve_Repartitions
+public import Mathlib.Algebra.Order.Ring.Star
+public import Mathlib.Data.Int.Star
+public import Mathlib.Order.CompletePartialOrder
+public import Mathlib.RingTheory.Henselian
+public import Mathlib.RingTheory.RegularLocalRing.Defs
+public import Mathlib.RingTheory.SimpleRing.Principal
+
+public import Definitions.FLT.Def_AlgebraicCurve_Repartitions
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -435,3 +439,5 @@ def IndexOfSpecialtyFinite : Prop :=
 end AlgebraicCurve
 
 end
+
+end publicSection

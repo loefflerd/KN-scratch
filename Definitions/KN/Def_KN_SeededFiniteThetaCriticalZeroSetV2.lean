@@ -1,4 +1,8 @@
-import Definitions.KN.Def_KN_SeededThetaConstructionV3
+module
+
+public import Definitions.KN.Def_KN_SeededThetaConstructionV3
+
+@[expose] public section publicSection
 
 noncomputable section
 
@@ -32,3 +36,7 @@ def SeededFiniteThetaDataV2.HasSeededCriticalZeroSet
       (k / 2 - 1) ≠ 0
 
 end HorizontalPadicL
+
+end
+
+end publicSection

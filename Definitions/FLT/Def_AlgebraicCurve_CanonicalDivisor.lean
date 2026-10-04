@@ -1,4 +1,8 @@
-import Definitions.FLT.Def_ModularCurve_CanonicalDivisor
+module
+
+public import Definitions.FLT.Def_ModularCurve_CanonicalDivisor
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -41,3 +45,5 @@ def genus (K F : Type*) [Field K] [Field F] [Algebra K F]
 end AlgebraicCurve
 
 end
+
+end publicSection

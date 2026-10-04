@@ -1,7 +1,11 @@
-import Definitions.FLT.Def_FLTPrelim_FreyPackage
-import Definitions.FLT.Def_FLTPrelim_GaloisRep
-import Definitions.FLT.Def_EllipticCurve_FrobeniusTrace
-import Mathlib.LinearAlgebra.FiniteDimensional.Defs
+module
+
+public import Definitions.FLT.Def_FLTPrelim_FreyPackage
+public import Definitions.FLT.Def_FLTPrelim_GaloisRep
+public import Definitions.FLT.Def_EllipticCurve_FrobeniusTrace
+public import Mathlib.LinearAlgebra.FiniteDimensional.Defs
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -45,3 +49,5 @@ noncomputable def freyGaloisRep (P : FreyPackage) :
 
 end FreyPackage
 
+
+end publicSection

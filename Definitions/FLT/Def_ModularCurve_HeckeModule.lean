@@ -1,5 +1,9 @@
-import Definitions.FLT.Def_ModularCurve_HeckeOperatorTotal
-import Definitions.FLT.Def_HeckeGalois_EichlerShimura
+module
+
+public import Definitions.FLT.Def_ModularCurve_HeckeOperatorTotal
+public import Definitions.FLT.Def_HeckeGalois_EichlerShimura
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -122,3 +126,5 @@ end TheModule
 end ModularCurve
 
 end
+
+end publicSection

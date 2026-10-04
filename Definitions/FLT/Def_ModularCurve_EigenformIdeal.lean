@@ -1,5 +1,9 @@
-import Definitions.FLT.Def_HeckeGalois_EichlerShimura
-import Definitions.FLT.Def_FLTPrelim_Modularity
+module
+
+public import Definitions.FLT.Def_HeckeGalois_EichlerShimura
+public import Definitions.FLT.Def_FLTPrelim_Modularity
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -25,3 +29,7 @@ abbrev EichlerShimuraDataAt {K L : Type*} [Field K] [Field L] [Algebra K L] (N p
 
 end ModularCurve
 
+
+end
+
+end publicSection

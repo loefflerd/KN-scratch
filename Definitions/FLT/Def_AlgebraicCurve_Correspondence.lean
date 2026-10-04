@@ -1,5 +1,9 @@
-import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
-import Definitions.FLT.Def_AlgebraicCurve_BaseChangeGalois
+module
+
+public import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
+public import Definitions.FLT.Def_AlgebraicCurve_BaseChangeGalois
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -347,3 +351,7 @@ end SemilinearAut
 
 end AlgebraicCurve
 
+
+end
+
+end publicSection

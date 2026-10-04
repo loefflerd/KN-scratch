@@ -1,15 +1,15 @@
-import Mathlib
-import Definitions.FLT.Def_AlgebraicCurve_LocalResidue
-import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
-import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
-import Definitions.FLT.Def_AlgebraicCurve_PlaceCompletion
-import Definitions.FLT.Def_AlgebraicCurve_WeilOfKaehler
+module
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
+public import Mathlib.Algebra.GroupWithZero.Submonoid.CancelMulZero
+public import Mathlib.RingTheory.AdicCompletion.LocalRing
+
+public import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
+public import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
+public import Definitions.FLT.Def_AlgebraicCurve_LocalResidue
+
+@[expose] public section publicSection
+
 set_option backward.isDefEq.respectTransparency.types false
-
-set_option maxHeartbeats 1600000
 
 noncomputable section
 
@@ -30,11 +30,6 @@ instance HasSeparableResidue.of_perfectField_of_isCurveOver [PerfectField K]
 end AlgebraicCurve
 
 end
-
-set_option linter.unusedSectionVars false
-set_option maxHeartbeats 400000
-set_option synthInstance.maxHeartbeats 400000
-set_option maxRecDepth 4000
 
 noncomputable section
 
@@ -255,6 +250,7 @@ theorem gate_hasLocalResidue_uniformizer_inv (v : Place K F) :
     v.localResidue v.uniformizer⁻¹ = 1 :=
   v.gate_localResidue_uniformizer_inv
 
+omit [HasCanonicalLocalResidueKStar K F] in
 theorem gate_uniformizer_inv_mem_simplePoleSubmodule (v : Place K F) :
     v.uniformizer⁻¹ ∈ v.simplePoleSubmodule ∧ v.uniformizer⁻¹ ∉ v.toValuationSubring := by
   refine ⟨?_, ?_⟩
@@ -704,11 +700,6 @@ end AlgebraicCurve
 
 end
 
-set_option linter.unusedSectionVars false
-set_option maxHeartbeats 800000
-set_option synthInstance.maxHeartbeats 400000
-set_option maxRecDepth 8000
-
 noncomputable section
 
 open IsDedekindDomain WithZero IsLocalRing Polynomial
@@ -718,10 +709,6 @@ namespace ModularCurve.Ldgr35Cl
 end ModularCurve.Ldgr35Cl
 
 end
-
-set_option linter.unusedSectionVars false
-set_option maxHeartbeats 400000
-set_option maxRecDepth 8000
 
 noncomputable section
 
@@ -733,11 +720,6 @@ end ModularCurve.Ldgr35Cs
 
 end
 
-set_option linter.unusedSectionVars false
-set_option maxHeartbeats 800000
-set_option synthInstance.maxHeartbeats 400000
-set_option maxRecDepth 8000
-
 noncomputable section
 
 open IsDedekindDomain WithZero IsLocalRing Polynomial
@@ -748,10 +730,6 @@ end ModularCurve.Ldgr36Si
 
 end
 
-set_option linter.unusedSectionVars false
-set_option maxHeartbeats 400000
-set_option maxRecDepth 8000
-
 noncomputable section
 
 open IsDedekindDomain WithZero Module IsLocalRing
@@ -761,10 +739,6 @@ namespace ModularCurve.Ldgr36Rc
 end ModularCurve.Ldgr36Rc
 
 end
-
-set_option linter.unusedSectionVars false
-set_option maxHeartbeats 400000
-set_option maxRecDepth 8000
 
 noncomputable section
 
@@ -803,10 +777,6 @@ end ModularCurve.Lg37
 
 end
 
-set_option linter.unusedSectionVars false
-set_option maxHeartbeats 400000
-set_option synthInstance.maxHeartbeats 400000
-
 noncomputable section
 
 open IsDedekindDomain WithZero Module IsLocalRing Polynomial
@@ -817,8 +787,6 @@ open AlgebraicCurve
 open ModularCurve.Lg37 ModularCurve.Ldgr37Ch
 
 open scoped Polynomial
-
-attribute [local instance 2000] RatFunc.instAlgebraOfPolynomial
 
 section Engine
 
@@ -920,10 +888,6 @@ end Engine
 end Mp72a102T1
 
 end
-
-set_option linter.unusedSectionVars false
-set_option maxHeartbeats 400000
-set_option maxRecDepth 8000
 
 noncomputable section
 
@@ -1102,19 +1066,9 @@ theorem mp72a102_t3_sigma_taylor_expansion (v : Place K F)
 
 end Carrier
 
-section RatProduction
-
-attribute [local instance 2000] RatFunc.instAlgebraOfPolynomial
-
-end RatProduction
-
 end ModularCurve.Mp72a102T3
 
 end
-
-set_option linter.unusedSectionVars false
-set_option maxHeartbeats 400000
-set_option maxRecDepth 8000
 
 noncomputable section
 
@@ -1147,17 +1101,9 @@ def mp72a102_t2_residueHatAlgHom (v : Place K F) :
 
 end ResidueCalculus
 
-section RatProduction
-
-attribute [local instance 2000] RatFunc.instAlgebraOfPolynomial
-
-end RatProduction
-
 end Mp72a102T2
 
 end
-
-set_option maxHeartbeats 800000
 
 open AlgebraicCurve ModularCurve.Lg37 Polynomial IntermediateField Mp72a102T1 Mp72a102T2
 
@@ -1217,10 +1163,6 @@ noncomputable def sectionOfPrimitiveRoot {ᾱ : v.ResidueField} (hint : IsIntegr
 end GenericSection
 
 end ModularCurve.KwNo6Section
-
-set_option linter.unusedSectionVars false
-set_option maxHeartbeats 400000
-set_option maxRecDepth 8000
 
 noncomputable section
 
@@ -1331,17 +1273,9 @@ theorem mp72a103_t2_taylor_coeff_eq_zero_of_depth (v : Place K F)
 
 end Calculus
 
-section RatProduction
-
-attribute [local instance 2000] RatFunc.instAlgebraOfPolynomial
-
-end RatProduction
-
 end Mp72a103T2
 
 end
-
-set_option maxHeartbeats 1600000
 
 open Polynomial IsLocalRing AlgebraicCurve
 open ModularCurve.Lg37 ModularCurve.Mp72a102T3 Mp72a103T2 Mp72a102T1
@@ -1527,8 +1461,6 @@ theorem aCoeff_section_indep (v : Place K F)
   exact han
 
 end ModularCurve.KwNo6Pin
-
-set_option maxHeartbeats 1600000
 
 open Polynomial IsLocalRing AlgebraicCurve
 open ModularCurve.Lg37 ModularCurve.Mp72a102T3 Mp72a103T2 Mp72a102T1
@@ -1914,8 +1846,6 @@ noncomputable def canonicalLocalResidueDataKStar (v : Place K F)
 
 end ModularCurve.KwNo6Pin
 
-set_option maxHeartbeats 1600000
-
 open Polynomial IsLocalRing AlgebraicCurve
 open ModularCurve.Lg37 ModularCurve.KwNo6Section ModularCurve.KwNo6Pin
 open Mp72a102T1
@@ -1962,3 +1892,4 @@ theorem localResidue_eq_resStarₗ [IsCurveOver K F] [PerfectField K] (v : Place
 
 end AlgebraicCurve
 
+end publicSection

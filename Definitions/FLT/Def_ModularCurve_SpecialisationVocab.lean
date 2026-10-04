@@ -1,5 +1,9 @@
-import Definitions.FLT.Def_ModularCurve_EMD
-import Definitions.FLT.Def_ModularCurve_TatePoint
+module
+
+public import Definitions.FLT.Def_ModularCurve_EMD
+public import Definitions.FLT.Def_ModularCurve_TatePoint
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -144,3 +148,5 @@ end ModularCurve.B3
 
 end
 
+
+end publicSection

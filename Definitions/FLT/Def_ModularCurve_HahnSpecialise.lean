@@ -1,8 +1,12 @@
-import Definitions.FLT.Def_WeierstrassCurve_ReduceHom
-import Definitions.FLT.Def_ModularCurve_SpecialisationVocab
-import Mathlib.RingTheory.LocalRing.ResidueField.Basic
-import Mathlib.RingTheory.Ideal.Quotient.Operations
-import Mathlib.GroupTheory.OrderOfElement
+module
+
+public import Definitions.FLT.Def_WeierstrassCurve_ReduceHom
+public import Definitions.FLT.Def_ModularCurve_SpecialisationVocab
+public import Mathlib.RingTheory.LocalRing.ResidueField.Basic
+public import Mathlib.RingTheory.Ideal.Quotient.Operations
+public import Mathlib.GroupTheory.OrderOfElement
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -327,3 +331,5 @@ end ModularCurve.HahnSpecialise
 
 end
 
+
+end publicSection

@@ -1,20 +1,9 @@
-import Mathlib
-import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
-import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
-import Definitions.FLT.Def_ModularCurve_CanonicalDivisor
-import Definitions.FLT.Def_ModularCurve_CanonicalDivisorUniformizer
-import Definitions.FLT.Def_AlgebraicCurve_CanonicalDivisor
-import Definitions.FLT.Def_AlgebraicCurve_AdelicIndex
-import Definitions.FLT.Def_AlgebraicCurve_LocalResidue
-import Definitions.FLT.Def_DedekindDomain_AdicValuation_InlineSpecific
-import Definitions.FLT.Def_AlgebraicCurve_PlaceCompletion
+module
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
+public import Definitions.FLT.Def_AlgebraicCurve_LocalResidue
+public import Definitions.FLT.Def_AlgebraicCurve_PlaceCompletion
 
-set_option maxHeartbeats 1600000
-set_option linter.unusedSectionVars false
+@[expose] public section publicSection
 
 open LinearMap Submodule
 
@@ -83,11 +72,6 @@ end ModularCurve.KwF4gRRTate
 
 end
 
-set_option linter.unusedSectionVars false
-
-set_option synthInstance.maxHeartbeats 800000
-set_option maxHeartbeats 1600000
-
 noncomputable section
 
 open IsDedekindDomain WithZero Module IsLocalRing
@@ -152,10 +136,6 @@ end KaehlerCotrace
 end AlgebraicCurve
 
 end
-
-set_option maxHeartbeats 1600000
-set_option synthInstance.maxHeartbeats 800000
-set_option linter.unusedSectionVars false
 
 open AlgebraicCurve AlgebraicCurve.Place IsDedekindDomain
 
@@ -230,10 +210,6 @@ def KwHgfV352CompletionTraceSum : Prop :=
 end CompletionTraceSumMint
 
 end AlgebraicCurve
-
-set_option maxHeartbeats 1600000
-set_option synthInstance.maxHeartbeats 800000
-set_option linter.unusedSectionVars false
 
 open AlgebraicCurve AlgebraicCurve.Place LinearMap Submodule
 open ModularCurve.KwF4gRRTate
@@ -333,11 +309,7 @@ end ModularCurve.KwF4gRRTate
 
 end
 
-set_option maxHeartbeats 1600000
-set_option synthInstance.maxHeartbeats 800000
-set_option linter.unusedSectionVars false
-
-open AlgebraicCurve AlgebraicCurve.Place FunctionField KaehlerDifferential
+open AlgebraicCurve AlgebraicCurve.Place KaehlerDifferential
 
 noncomputable section
 
@@ -363,9 +335,6 @@ def KwF4R1V391aResidueTraceCompletionCommute
 end Mint
 
 end ModularCurve.KwF4R1V391a
-
-set_option maxHeartbeats 1600000
-set_option linter.unusedSectionVars false
 
 noncomputable section
 
@@ -395,9 +364,6 @@ end KCurrencyRow
 end AlgebraicCurve
 
 end
-
-set_option maxHeartbeats 1600000
-set_option linter.unusedSectionVars false
 
 noncomputable section
 
@@ -430,3 +396,8 @@ end KCurrencyRowA
 end AlgebraicCurve
 
 end
+
+end
+end
+
+end publicSection

@@ -1,11 +1,10 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_HeckeOperator
-import Definitions.FLT.Def_AlgebraicCurve_DifferentialPushPull
-import Definitions.FLT.Def_AlgebraicCurve_RegularDifferentials
+module
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
+public import Definitions.FLT.Def_AlgebraicCurve_DifferentialPushPull
+public import Definitions.FLT.Def_AlgebraicCurve_RegularDifferentials
+public import Definitions.FLT.Def_ModularCurve_HeckeOperator
+
+@[expose] public section publicSection
 
 noncomputable section
 
@@ -100,13 +99,10 @@ section Shortcuts
 
 variable {L : Type*} [Field L] (F : IntermediateField L (LaurentSeries L))
 
-set_option synthInstance.maxHeartbeats 400000 in
 instance instAlgebraIntermediateFieldLaurent : Algebra L F := inferInstance
 
-set_option synthInstance.maxHeartbeats 400000 in
 instance instModuleKaehlerIntermediateFieldLaurent : Module L Ω[F⁄L] := inferInstance
 
-set_option synthInstance.maxHeartbeats 400000 in
 instance instIsScalarTowerKaehlerIntermediateFieldLaurent : IsScalarTower L F Ω[F⁄L] :=
   inferInstance
 
@@ -187,3 +183,4 @@ end ModularCurve
 
 end
 
+end publicSection

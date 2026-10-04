@@ -1,4 +1,8 @@
-import Definitions.FLT.Def_WeierstrassCurve_ReductionMap
+module
+
+public import Definitions.FLT.Def_WeierstrassCurve_ReductionMap
+
+@[expose] public section publicSection
 
 open IsLocalRing
 
@@ -1165,3 +1169,5 @@ theorem fixed_of_mem_inertia_of_nsmul_eq_zero [DecidableEq L] {V : WeierstrassCu
   rwa [Affine.Point.some.injEq] at key
 
 end WeierstrassCurve
+
+end publicSection

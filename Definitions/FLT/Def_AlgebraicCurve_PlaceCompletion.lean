@@ -1,17 +1,21 @@
-import Mathlib.Algebra.Order.Ring.Star
-import Mathlib.Algebra.Order.Star.Real
-import Mathlib.Data.Int.Star
-import Mathlib.RingTheory.Flat.TorsionFree
-import Mathlib.RingTheory.Henselian
-import Mathlib.RingTheory.PicardGroup
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.RingTheory.SimpleRing.Principal
-import Mathlib.Topology.Algebra.Module.FiniteDimension
-import Mathlib.Topology.Algebra.Valued.NormedValued
-import Mathlib.Topology.UniformSpace.Uniformizable
+module
 
-import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
-import Definitions.FLT.Def_DedekindDomain_AdicValuation_InlineSpecific
+public import Mathlib.Algebra.Order.Ring.Star
+public import Mathlib.Algebra.Order.Star.Real
+public import Mathlib.Data.Int.Star
+public import Mathlib.RingTheory.Flat.TorsionFree
+public import Mathlib.RingTheory.Henselian
+public import Mathlib.RingTheory.PicardGroup
+public import Mathlib.RingTheory.RegularLocalRing.Defs
+public import Mathlib.RingTheory.SimpleRing.Principal
+public import Mathlib.Topology.Algebra.Module.FiniteDimension
+public import Mathlib.Topology.Algebra.Valued.NormedValued
+public import Mathlib.Topology.UniformSpace.Uniformizable
+
+public import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
+public import Definitions.FLT.Def_DedekindDomain_AdicValuation_InlineSpecific
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -528,3 +532,11 @@ end PoleWindowShift
 end ModularCurve.KwF4gRRTate
 
 end
+
+end
+end
+end
+end
+end
+
+end publicSection

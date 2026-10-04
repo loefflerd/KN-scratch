@@ -1,7 +1,11 @@
-import Definitions.FLT.Def_FLTPrelim_Ramification
-import Definitions.FLT.Def_FreyPackage_GaloisRep
-import Mathlib.RingTheory.Valuation.RamificationGroup
-import Mathlib.RingTheory.Valuation.LocalSubring
+module
+
+public import Definitions.FLT.Def_FLTPrelim_Ramification
+public import Definitions.FLT.Def_FreyPackage_GaloisRep
+public import Mathlib.RingTheory.Valuation.RamificationGroup
+public import Mathlib.RingTheory.Valuation.LocalSubring
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -240,3 +244,5 @@ theorem reducePoint_some_apply_of_mem_inertia {σ : L ≃ₐ[K] L}
 end Inertia
 
 end WeierstrassCurve
+
+end publicSection

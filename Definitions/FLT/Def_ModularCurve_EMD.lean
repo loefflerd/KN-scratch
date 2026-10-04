@@ -1,5 +1,9 @@
-import Definitions.FLT.Def_ModularCurve_ModuliPoint
-import Definitions.FLT.Def_ModularCurve_MazurStepThreeInputs
+module
+
+public import Definitions.FLT.Def_ModularCurve_ModuliPoint
+public import Definitions.FLT.Def_ModularCurve_MazurStepThreeInputs
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -54,3 +58,5 @@ end ModularCurve
 
 end
 
+
+end publicSection

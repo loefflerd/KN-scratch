@@ -1,4 +1,8 @@
-import Definitions.KN.Def_KN_SeededPrimeGaloisDataV2
+module
+
+public import Definitions.KN.Def_KN_SeededPrimeGaloisDataV2
+
+@[expose] public section publicSection
 
 noncomputable section
 
@@ -34,3 +38,7 @@ structure SeedCyclotomicGaloisCharacterDataV2
     orderOf (seedCharacter seedGenerator) = orderOf η.2
 
 end HorizontalPadicL
+
+end
+
+end publicSection

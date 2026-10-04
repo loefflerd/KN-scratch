@@ -1,8 +1,12 @@
-import Definitions.FLT.Def_ModularCurve_AtkinLehner
-import Mathlib.Algebra.Ring.Action.Submonoid
-import Mathlib.FieldTheory.Galois.Basic
-import Mathlib.NumberTheory.Height.NumberField
-import Definitions.FLT.Def_Compat_Mathlib430
+module
+
+public import Definitions.FLT.Def_ModularCurve_AtkinLehner
+public import Mathlib.Algebra.Ring.Action.Submonoid
+public import Mathlib.FieldTheory.Galois.Basic
+public import Mathlib.NumberTheory.Height.NumberField
+public import Definitions.FLT.Def_Compat_Mathlib430
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -119,3 +123,5 @@ end ModularCurve
 
 end
 
+
+end publicSection

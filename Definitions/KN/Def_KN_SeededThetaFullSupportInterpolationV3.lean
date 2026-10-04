@@ -1,4 +1,8 @@
-import Definitions.KN.Def_KN_InverseSeedConventionV2
+module
+
+public import Definitions.KN.Def_KN_InverseSeedConventionV2
+
+@[expose] public section publicSection
 
 noncomputable section
 
@@ -21,3 +25,7 @@ def SeededFiniteThetaDataV3.HasFullSupportCriticalZeroSetV2
         (k / 2 - 1) ≠ 0)
 
 end HorizontalPadicL
+
+end
+
+end publicSection

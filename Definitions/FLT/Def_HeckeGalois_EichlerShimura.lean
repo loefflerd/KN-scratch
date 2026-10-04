@@ -1,9 +1,13 @@
-import Definitions.FLT.Def_FLTPrelim_Ramification
-import Definitions.FLT.Def_EllipticCurve_FrobeniusTrace
-import Mathlib.Algebra.MvPolynomial.CommRing
-import Mathlib.Algebra.Module.Torsion.Basic
-import Mathlib.LinearAlgebra.Determinant
-import Mathlib.LinearAlgebra.Dimension.Finrank
+module
+
+public import Definitions.FLT.Def_FLTPrelim_Ramification
+public import Definitions.FLT.Def_EllipticCurve_FrobeniusTrace
+public import Mathlib.Algebra.MvPolynomial.CommRing
+public import Mathlib.Algebra.Module.Torsion.Basic
+public import Mathlib.LinearAlgebra.Determinant
+public import Mathlib.LinearAlgebra.Dimension.Finrank
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -225,3 +229,7 @@ end Citation
 
 end ModularCurve
 
+
+end
+
+end publicSection

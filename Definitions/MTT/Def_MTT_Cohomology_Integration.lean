@@ -1,4 +1,8 @@
-import Definitions.MTT.Def_MTT_Cohomology
+module
+
+public import Definitions.MTT.Def_MTT_Cohomology
+
+@[expose] public section publicSection
 
 noncomputable section
 open scoped BigOperators TensorProduct
@@ -31,3 +35,7 @@ def integrationCochain {N k : ℕ}
   fun D => cuspPrimitive f D.2 - cuspPrimitive f D.1
 
 end MTT.Cohomology
+
+end
+
+end publicSection
