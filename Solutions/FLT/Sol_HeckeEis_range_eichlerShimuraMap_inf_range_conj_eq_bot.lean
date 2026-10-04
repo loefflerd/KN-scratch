@@ -1334,8 +1334,6 @@ theorem solution (N : ℕ) [NeZero N] (n : ℕ)
   exact HeckeEis.ESDisjoint.f_eq_zero v hF hG zF zG hFsm hGsm hcoc
 
 end
-p2m_reactivate "P2MW.S_HeckeEis_range_eichlerShimuraMap_inf_range_conj_eq_bot.HeckeEis P2MW.S_HeckeEis_range_eichlerShimuraMap_inf_range_conj_eq_bot.HeckeEis.ESDisjoint"
-
 end S_HeckeEis_range_eichlerShimuraMap_inf_range_conj_eq_bot
 end P2MW
 export P2MW.S_HeckeEis_range_eichlerShimuraMap_inf_range_conj_eq_bot (solution)

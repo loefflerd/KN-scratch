@@ -465,11 +465,7 @@ p2m_export "AlgebraicCurve.Place" "exists_coeff_ord_ne_zero"
 end SupportTransfer
 
 end Place
-p2m_reactivate "P2MW.S_AlgebraicCurve_hasPrincipalDivisors_of_transcendental.AlgebraicCurve.Place"
-
 end AlgebraicCurve
-p2m_reactivate "P2MW.S_AlgebraicCurve_hasPrincipalDivisors_of_transcendental.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_hasPrincipalDivisors_of_transcendental.AlgebraicCurve"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_hasPrincipalDivisors_of_transcendental.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_hasPrincipalDivisors_of_transcendental.AlgebraicCurve"
 
@@ -507,8 +503,6 @@ private theorem ord_coe_eq_of_span_singleton_eq_pow_maximalIdeal {r : v.toValuat
   rw [hcoe, v.ord_unit_smul_zpow u⁻¹ hπ (n : ℤ)]
 
 end DVR
-p2m_reactivate "P2MW.S_AlgebraicCurve_hasPrincipalDivisors_of_transcendental.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_hasPrincipalDivisors_of_transcendental.AlgebraicCurve"
-
 end Place
 p2m_reactivate "P2MW.S_AlgebraicCurve_hasPrincipalDivisors_of_transcendental.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_hasPrincipalDivisors_of_transcendental.AlgebraicCurve"
 
@@ -694,8 +688,6 @@ private theorem ord_norm_eq_sum_fiberOver {f : F'} (hf : f ≠ 0) :
   omega
 
 end ElementNorm
-p2m_reactivate "P2MW.S_AlgebraicCurve_hasPrincipalDivisors_of_transcendental.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_hasPrincipalDivisors_of_transcendental.AlgebraicCurve"
-
 end Place
 p2m_reactivate "P2MW.S_AlgebraicCurve_hasPrincipalDivisors_of_transcendental.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_hasPrincipalDivisors_of_transcendental.AlgebraicCurve"
 

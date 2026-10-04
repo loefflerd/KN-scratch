@@ -465,8 +465,6 @@ theorem nonempty_modularPolynomialData_mul_of_coprime {m n : ℕ} [NeZero m] [Ne
   ⟨data.biResultantPacket data' hmn⟩
 
 end ModularCurve
-p2m_reactivate "P2MW.S_ModularCurve_dedekindPsi_mul_of_coprime.ModularCurve"
-
 end
 p2m_reactivate "P2MW.S_ModularCurve_dedekindPsi_mul_of_coprime.ModularCurve"
 

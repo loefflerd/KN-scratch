@@ -170,9 +170,6 @@ theorem Ψ_injective : Function.Injective (Ψ (N := N)) := by
   rw [φ_injective h]
 
 end HeckeEis.N0Sol
-p2m_reactivate "P2MW.S_HeckeEis_finrank_coeffH1par_zero_le_two_mul_genusFormula.HeckeEis P2MW.S_HeckeEis_finrank_coeffH1par_zero_le_two_mul_genusFormula.HeckeEis.N0Sol"
-p2m_reactivate "P2MW.S_HeckeEis_finrank_coeffH1par_zero_le_two_mul_genusFormula.HeckeEis"
-
 end
 p2m_reactivate "P2MW.S_HeckeEis_finrank_coeffH1par_zero_le_two_mul_genusFormula.HeckeEis P2MW.S_HeckeEis_finrank_coeffH1par_zero_le_two_mul_genusFormula.HeckeEis.N0Sol"
 

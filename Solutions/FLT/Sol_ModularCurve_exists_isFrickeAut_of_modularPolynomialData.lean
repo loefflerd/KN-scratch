@@ -292,11 +292,7 @@ theorem exists_isFrickeAut_of_modularPolynomialData (hsymm : EvalSymm data.Φ)
     (frickeEndoAlgHom_jInF data hsymm hirr) (frickeEndoAlgHom_jNInF data hsymm hirr)
 
 end Endo
-p2m_reactivate "P2MW.S_ModularCurve_exists_isFrickeAut_of_modularPolynomialData.IntermediateField.W2B"
-
 end W2B
-p2m_reactivate "P2MW.S_ModularCurve_exists_isFrickeAut_of_modularPolynomialData.IntermediateField.W2B P2MW.S_ModularCurve_exists_isFrickeAut_of_modularPolynomialData.ModularCurve.W2B"
-
 end ModularCurve
 p2m_reactivate "P2MW.S_ModularCurve_exists_isFrickeAut_of_modularPolynomialData.IntermediateField.W2B P2MW.S_ModularCurve_exists_isFrickeAut_of_modularPolynomialData.ModularCurve.W2B P2MW.S_ModularCurve_exists_isFrickeAut_of_modularPolynomialData.ModularCurve"
 
@@ -304,8 +300,6 @@ theorem solution {N : ℕ} [NeZero N] (data : ModularPolynomialData N) (hsymm : 
   ModularCurve.W2B.exists_isFrickeAut_of_modularPolynomialData data hsymm hirr
 
 end
-p2m_reactivate "P2MW.S_ModularCurve_exists_isFrickeAut_of_modularPolynomialData.IntermediateField.W2B P2MW.S_ModularCurve_exists_isFrickeAut_of_modularPolynomialData.ModularCurve.W2B P2MW.S_ModularCurve_exists_isFrickeAut_of_modularPolynomialData.ModularCurve"
-
 end S_ModularCurve_exists_isFrickeAut_of_modularPolynomialData
 end P2MW
 export P2MW.S_ModularCurve_exists_isFrickeAut_of_modularPolynomialData (solution)

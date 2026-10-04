@@ -80,8 +80,6 @@ theorem main (f : ℍ → ℂ) (h₀ : ℝ) (hh₀ : 0 < h₀)
   rw [← huniq, hc]
 
 end WidthChange
-p2m_reactivate "P2MW.S_UpperHalfPlane_qExpansion_coeff_mul_width.WidthChange"
-
 end
 p2m_reactivate "P2MW.S_UpperHalfPlane_qExpansion_coeff_mul_width.WidthChange"
 

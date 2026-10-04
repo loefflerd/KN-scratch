@@ -512,8 +512,6 @@ private theorem w1_slot_factor (N a b : ℕ) [NeZero N] [NeZero a] (hN : ¬ IsSq
       rw [hlcv, heven.neg_pow, inv_pow, hv, inv_one]
 
 end U2Kit
-p2m_reactivate "P2MW.S_ModularCurve_ModularPolynomialData_isUnit_leadingCoeff_diag_of_not_isSquare.ModularCurve P2MW.S_ModularCurve_ModularPolynomialData_isUnit_leadingCoeff_diag_of_not_isSquare.ModularCurve.W1"
-
 end ModularCurve.W1
 p2m_reactivate "P2MW.S_ModularCurve_ModularPolynomialData_isUnit_leadingCoeff_diag_of_not_isSquare.ModularCurve P2MW.S_ModularCurve_ModularPolynomialData_isUnit_leadingCoeff_diag_of_not_isSquare.ModularCurve.W1"
 p2m_reactivate "P2MW.S_ModularCurve_ModularPolynomialData_isUnit_leadingCoeff_diag_of_not_isSquare.ModularCurve P2MW.S_ModularCurve_ModularPolynomialData_isUnit_leadingCoeff_diag_of_not_isSquare.ModularCurve.W1"

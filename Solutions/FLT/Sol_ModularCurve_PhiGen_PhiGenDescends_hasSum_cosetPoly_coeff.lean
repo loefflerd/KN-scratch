@@ -283,8 +283,6 @@ theorem solution (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] (ζ : (CyclotomicFiel
   ModularCurve.hasSum_coeff_of_phiGenDescends ℓ ζ hζ c hc k τ
 
 end
-p2m_reactivate "P2MW.S_ModularCurve_PhiGen_PhiGenDescends_hasSum_cosetPoly_coeff.ModularCurve"
-
 end S_ModularCurve_PhiGen_PhiGenDescends_hasSum_cosetPoly_coeff
 end P2MW
 export P2MW.S_ModularCurve_PhiGen_PhiGenDescends_hasSum_cosetPoly_coeff (solution)

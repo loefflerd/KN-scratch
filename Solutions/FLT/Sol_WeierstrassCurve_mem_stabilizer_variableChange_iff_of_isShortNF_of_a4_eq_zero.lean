@@ -94,8 +94,6 @@ theorem mem_stabilizer_isShortNF_a₄_eq_zero_iff (h2 : (2 : F) ≠ 0) (h3 : (3 
     exact ofUnit_smul_of_isShortNF_of_a₄_eq_zero E ha₄ hu6
 
 end ShortNF
-p2m_reactivate "P2MW.S_WeierstrassCurve_mem_stabilizer_variableChange_iff_of_isShortNF_of_a4_eq_zero.WeierstrassCurve.VariableChange"
-
 end WeierstrassCurve
 p2m_reactivate "P2MW.S_WeierstrassCurve_mem_stabilizer_variableChange_iff_of_isShortNF_of_a4_eq_zero.WeierstrassCurve.VariableChange P2MW.S_WeierstrassCurve_mem_stabilizer_variableChange_iff_of_isShortNF_of_a4_eq_zero.WeierstrassCurve"
 

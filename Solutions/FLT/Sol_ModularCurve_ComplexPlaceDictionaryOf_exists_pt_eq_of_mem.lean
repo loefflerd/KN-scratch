@@ -353,10 +353,6 @@ theorem exists_pt_eq [Γ.FiniteIndex] [hT : Fact (ModularGroup.T ∈ Γ)] [hx : 
   exact hyB ((FractionalIdeal.mem_one_iff _).mpr ⟨⟨y, (mem_B_iff Γ x).mpr hint'⟩, rfl⟩)
 
 end ModularCurve.Ws49.CCPL
-p2m_reactivate "P2MW.S_ModularCurve_ComplexPlaceDictionaryOf_exists_pt_eq_of_mem.ModularCurve P2MW.S_ModularCurve_ComplexPlaceDictionaryOf_exists_pt_eq_of_mem.ModularCurve.Ws49 P2MW.S_ModularCurve_ComplexPlaceDictionaryOf_exists_pt_eq_of_mem.ModularCurve.Ws49.CCPL"
-p2m_reactivate "P2MW.S_ModularCurve_ComplexPlaceDictionaryOf_exists_pt_eq_of_mem.ModularCurve P2MW.S_ModularCurve_ComplexPlaceDictionaryOf_exists_pt_eq_of_mem.ModularCurve.Ws49"
-p2m_reactivate "P2MW.S_ModularCurve_ComplexPlaceDictionaryOf_exists_pt_eq_of_mem.ModularCurve"
-
 end
 p2m_reactivate "P2MW.S_ModularCurve_ComplexPlaceDictionaryOf_exists_pt_eq_of_mem.ModularCurve P2MW.S_ModularCurve_ComplexPlaceDictionaryOf_exists_pt_eq_of_mem.ModularCurve.Ws49 P2MW.S_ModularCurve_ComplexPlaceDictionaryOf_exists_pt_eq_of_mem.ModularCurve.Ws49.CCPL"
 

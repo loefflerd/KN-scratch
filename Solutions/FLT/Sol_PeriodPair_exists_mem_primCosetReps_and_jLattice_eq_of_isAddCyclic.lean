@@ -23,17 +23,14 @@ end AlgebraicCurve
 namespace BrandtModuleData
 end BrandtModuleData
 namespace MatrixGroups
-p2m_open "MatrixGroups"
 end MatrixGroups
 namespace ModularCurve
 p2m_export "ModularCurve" "primCosetReps mem_primCosetReps jq jqN ModularPolynomialData ModularPolynomialData.eval_eq_zero"
-p2m_open "ModularCurve"
 end ModularCurve
 namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine mk.injEq map mk reduction Δ j"
 namespace Affine
 p2m_export "WeierstrassCurve.Affine" "map polynomial"
-p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 end WeierstrassCurve.Affine
 
 section
@@ -148,13 +145,8 @@ theorem jLattice_eq_of_lattice_eq (h : L.lattice = L'.lattice) : L.jLattice = L'
 end LatticeDependence
 
 end PeriodPair
-p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair"
-
 end
-p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair"
 end
-p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair"
-
 end
 p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair"
 
@@ -191,13 +183,8 @@ theorem kw_ofTau_latticeEquivProd_symm_apply (τ : ℍ) (p : ℤ × ℤ) :
   rw [latticeEquiv_symm_apply]; simp
 
 end PeriodPair
-p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair"
-
 end
-p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair"
 end
-p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair"
-
 end
 p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair"
 
@@ -239,13 +226,8 @@ theorem kw_span_neg_fst (a b : ℂ) :
       Set.singleton_subset_iff.mpr (Submodule.subset_span (Set.mem_insert_of_mem _ rfl))⟩
 
 end PeriodPair
-p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair"
-
 end
-p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair"
 end
-p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair"
-
 end
 p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair"
 
@@ -419,18 +401,8 @@ theorem latticeOf_canonical_eq : latticeOf (aOf H) (dOf H) (bOf H) = H := by
     · linear_combination hn
 
 end StructureTheorem
-p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair"
-
-p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair"
-
-p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair"
-
 end QuaternionAlgebra
-p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair"
-
 end
-p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair"
-
 end
 p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair"
 
@@ -483,13 +455,8 @@ theorem kw_exists_scale_ofTau_lattice_eq (L : PeriodPair) :
   · exact ⟨α, ⟨L.ω₁ / L.ω₂, hpos⟩, hlat⟩
 
 end ModularCurve
-p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair"
-
 end
-p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair"
 end
-p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair"
-
 end
 p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair"
 
@@ -573,13 +540,8 @@ theorem kw_hnfPoint_scale_lattice (τ : ℍ) (a : ℕ) (b : ℤ) (d : ℕ)
     kw_hnfPoint_coe, mul_div_cancel₀ _ hd', mul_one]
 
 end ModularCurve
-p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.ModularCurve"
-
 end
-p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.ModularCurve"
 end
-p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.ModularCurve"
-
 end
 p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.ModularCurve"
 
@@ -677,14 +639,8 @@ def KwSublatticeQuotientZZTransport : Prop :=
         IsAddCyclic ((ℤ × ℤ) ⧸ kw_HZZ τ (L'.scale α))
 
 end ModularCurve
-p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.ModularCurve"
-
 end
-p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.ModularCurve"
-
 end
-p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.ModularCurve"
-
 end
 p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.ModularCurve"
 
@@ -789,15 +745,8 @@ theorem kw_surgehgf4_qtzz_proved : KwSublatticeQuotientZZTransport := by
   exact isAddCyclic_of_surjective e.symm.toAddMonoidHom e.symm.surjective
 
 end ModularCurve
-p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.ModularCurve"
-
-p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.ModularCurve"
-
 end
-p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.ModularCurve"
 end
-p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.ModularCurve"
-
 end
 p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.ModularCurve"
 

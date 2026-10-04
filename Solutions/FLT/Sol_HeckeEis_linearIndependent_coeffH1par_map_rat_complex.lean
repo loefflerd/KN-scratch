@@ -283,9 +283,6 @@ theorem pushH1par_mk (z : ↥(coeffParabolicCocycles ((binaryFormRepSL R n).comp
 end Cocycles
 
 end HeckeEis.CoeffMapAux
-p2m_reactivate "P2MW.S_HeckeEis_linearIndependent_coeffH1par_map_rat_complex.HeckeEis P2MW.S_HeckeEis_linearIndependent_coeffH1par_map_rat_complex.HeckeEis.CoeffMapAux"
-p2m_reactivate "P2MW.S_HeckeEis_linearIndependent_coeffH1par_map_rat_complex.HeckeEis"
-
 end
 p2m_reactivate "P2MW.S_HeckeEis_linearIndependent_coeffH1par_map_rat_complex.HeckeEis P2MW.S_HeckeEis_linearIndependent_coeffH1par_map_rat_complex.HeckeEis.CoeffMapAux"
 
@@ -462,9 +459,6 @@ theorem linearIndependent_comp {ι : Type*} (y : ι → coeffH1par ((binaryFormR
   exact hy t (fun j => BQC.coord α (c j)) hzero i hi
 
 end HeckeEis.QCAux
-p2m_reactivate "P2MW.S_HeckeEis_linearIndependent_coeffH1par_map_rat_complex.HeckeEis P2MW.S_HeckeEis_linearIndependent_coeffH1par_map_rat_complex.HeckeEis.CoeffMapAux"
-p2m_reactivate "P2MW.S_HeckeEis_linearIndependent_coeffH1par_map_rat_complex.HeckeEis P2MW.S_HeckeEis_linearIndependent_coeffH1par_map_rat_complex.HeckeEis.CoeffMapAux"
-
 end
 p2m_reactivate "P2MW.S_HeckeEis_linearIndependent_coeffH1par_map_rat_complex.HeckeEis P2MW.S_HeckeEis_linearIndependent_coeffH1par_map_rat_complex.HeckeEis.CoeffMapAux"
 

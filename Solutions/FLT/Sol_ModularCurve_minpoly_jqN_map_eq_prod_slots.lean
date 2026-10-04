@@ -1571,8 +1571,6 @@ private theorem rval_aux : ∀ (M : ℕ) [NeZero M] {K : Type*} [Field K] [Algeb
     rfl
 
 end RValCore
-p2m_reactivate "P2MW.S_ModularCurve_minpoly_jqN_map_eq_prod_slots.ModularCurve P2MW.S_ModularCurve_minpoly_jqN_map_eq_prod_slots.ModularCurve.W1"
-
 end ModularCurve.W1
 p2m_reactivate "P2MW.S_ModularCurve_minpoly_jqN_map_eq_prod_slots.ModularCurve P2MW.S_ModularCurve_minpoly_jqN_map_eq_prod_slots.ModularCurve.W1"
 p2m_reactivate "P2MW.S_ModularCurve_minpoly_jqN_map_eq_prod_slots.ModularCurve P2MW.S_ModularCurve_minpoly_jqN_map_eq_prod_slots.ModularCurve.W1"
@@ -1952,8 +1950,6 @@ private theorem jqN_prime_not_mem_adjoin (M : ℕ) [NeZero M] (p : ℕ) [hp : Fa
   omega
 
 end NonMem0
-p2m_reactivate "P2MW.S_ModularCurve_minpoly_jqN_map_eq_prod_slots.ModularCurve P2MW.S_ModularCurve_minpoly_jqN_map_eq_prod_slots.ModularCurve.W1"
-
 end ModularCurve.W1
 p2m_reactivate "P2MW.S_ModularCurve_minpoly_jqN_map_eq_prod_slots.ModularCurve P2MW.S_ModularCurve_minpoly_jqN_map_eq_prod_slots.ModularCurve.W1"
 p2m_reactivate "P2MW.S_ModularCurve_minpoly_jqN_map_eq_prod_slots.ModularCurve P2MW.S_ModularCurve_minpoly_jqN_map_eq_prod_slots.ModularCurve.W1"

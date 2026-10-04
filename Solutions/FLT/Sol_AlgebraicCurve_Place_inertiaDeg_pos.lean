@@ -203,11 +203,7 @@ private theorem inertiaDeg_eq_inertiaDeg_fiberCenter (hw : w.restrict F = v) :
 end ResidueDictionary
 
 end Place
-p2m_reactivate "P2MW.S_AlgebraicCurve_Place_inertiaDeg_pos.AlgebraicCurve.Place"
-
 end AlgebraicCurve
-p2m_reactivate "P2MW.S_AlgebraicCurve_Place_inertiaDeg_pos.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_Place_inertiaDeg_pos.AlgebraicCurve"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_Place_inertiaDeg_pos.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_Place_inertiaDeg_pos.AlgebraicCurve"
 

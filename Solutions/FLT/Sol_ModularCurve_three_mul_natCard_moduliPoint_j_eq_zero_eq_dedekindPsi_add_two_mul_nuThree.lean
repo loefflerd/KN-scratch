@@ -574,9 +574,6 @@ theorem natCard_quot_R_eq (u : Lˣ) (hu : (u : L) ^ 3 = 1) (hu1 : (u : L) ≠ 1)
 end Count
 
 end P2MWs13.R2b
-p2m_reactivate "P2MW.S_ModularCurve_three_mul_natCard_moduliPoint_j_eq_zero_eq_dedekindPsi_add_two_mul_nuThree.P2MWs13 P2MW.S_ModularCurve_three_mul_natCard_moduliPoint_j_eq_zero_eq_dedekindPsi_add_two_mul_nuThree.P2MWs13.R2b"
-p2m_reactivate "P2MW.S_ModularCurve_three_mul_natCard_moduliPoint_j_eq_zero_eq_dedekindPsi_add_two_mul_nuThree.P2MWs13"
-
 end
 p2m_reactivate "P2MW.S_ModularCurve_three_mul_natCard_moduliPoint_j_eq_zero_eq_dedekindPsi_add_two_mul_nuThree.P2MWs13 P2MW.S_ModularCurve_three_mul_natCard_moduliPoint_j_eq_zero_eq_dedekindPsi_add_two_mul_nuThree.P2MWs13.R2b"
 

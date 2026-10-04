@@ -863,11 +863,7 @@ theorem isIntegral_adjoin_jq : IsIntegral (Algebra.adjoin ℚ {jq}) f := by
 end Main
 
 end QExpN
-p2m_reactivate "P2MW.S_ModularCurve_isIntegral_adjoin_jq_of_hasSum_of_gamma0_invariant.ModularCurve.QExpN"
-
 end ModularCurve
-p2m_reactivate "P2MW.S_ModularCurve_isIntegral_adjoin_jq_of_hasSum_of_gamma0_invariant.ModularCurve.QExpN P2MW.S_ModularCurve_isIntegral_adjoin_jq_of_hasSum_of_gamma0_invariant.ModularCurve"
-
 end
 p2m_reactivate "P2MW.S_ModularCurve_isIntegral_adjoin_jq_of_hasSum_of_gamma0_invariant.ModularCurve.QExpN P2MW.S_ModularCurve_isIntegral_adjoin_jq_of_hasSum_of_gamma0_invariant.ModularCurve"
 

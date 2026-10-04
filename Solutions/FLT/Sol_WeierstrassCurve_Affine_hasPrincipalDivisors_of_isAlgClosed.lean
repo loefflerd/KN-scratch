@@ -406,8 +406,6 @@ theorem hasPrincipalDivisors_impl : AlgebraicCurve.HasPrincipalDivisors F W.Func
 end Closed
 
 end D5S
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_of_isAlgClosed.D5S"
-
 end
 p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_of_isAlgClosed.D5S"
 

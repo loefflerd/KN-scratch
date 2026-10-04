@@ -225,9 +225,6 @@ theorem pushH1par_mk (z : ↥(coeffParabolicCocycles ((binaryFormRepSL R n).comp
 end Cocycles
 
 end HeckeEis.ConjAux
-p2m_reactivate "P2MW.S_HeckeEis_exists_coeffH1par_semilinearMap_starRingEnd.HeckeEis P2MW.S_HeckeEis_exists_coeffH1par_semilinearMap_starRingEnd.HeckeEis.ConjAux"
-p2m_reactivate "P2MW.S_HeckeEis_exists_coeffH1par_semilinearMap_starRingEnd.HeckeEis"
-
 end
 p2m_reactivate "P2MW.S_HeckeEis_exists_coeffH1par_semilinearMap_starRingEnd.HeckeEis P2MW.S_HeckeEis_exists_coeffH1par_semilinearMap_starRingEnd.HeckeEis.ConjAux"
 
@@ -317,9 +314,6 @@ theorem pushCoeff_cj_eq_map (P : MvPolynomial (Fin 2) ℂ) : pushCoeff cj P = Mv
   rfl
 
 end HeckeEis.ConjAux
-p2m_reactivate "P2MW.S_HeckeEis_exists_coeffH1par_semilinearMap_starRingEnd.HeckeEis P2MW.S_HeckeEis_exists_coeffH1par_semilinearMap_starRingEnd.HeckeEis.ConjAux"
-p2m_reactivate "P2MW.S_HeckeEis_exists_coeffH1par_semilinearMap_starRingEnd.HeckeEis P2MW.S_HeckeEis_exists_coeffH1par_semilinearMap_starRingEnd.HeckeEis.ConjAux"
-
 end
 p2m_reactivate "P2MW.S_HeckeEis_exists_coeffH1par_semilinearMap_starRingEnd.HeckeEis P2MW.S_HeckeEis_exists_coeffH1par_semilinearMap_starRingEnd.HeckeEis.ConjAux"
 

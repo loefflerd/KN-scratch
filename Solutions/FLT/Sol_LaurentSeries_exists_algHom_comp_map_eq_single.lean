@@ -288,8 +288,6 @@ private theorem _root_.LaurentSeries.exists_algHom_comp_map_eq_single {K F : Typ
 
 p2m_alias "P2MW.S_LaurentSeries_exists_algHom_comp_map_eq_single.LaurentSeries.exists_algHom_comp_map_eq_single" "LaurentSeries.exists_algHom_comp_map_eq_single"
 end B2P1
-p2m_reactivate "P2MW.S_LaurentSeries_exists_algHom_comp_map_eq_single.B2Tors"
-
 end
 p2m_reactivate "P2MW.S_LaurentSeries_exists_algHom_comp_map_eq_single.B2Tors"
 

@@ -323,8 +323,6 @@ theorem Gamma0_four_le_H : CongruenceSubgroup.Gamma0 4 ≤ H := by
   exact mem_H_of_four_dvd _ A rfl h4
 
 end EtaGamma0Four
-p2m_reactivate "P2MW.S_CuspForm_exists_gamma0_four_apply_eq_eta_pow_mul.EtaGamma0Four"
-
 end gen
 p2m_reactivate "P2MW.S_CuspForm_exists_gamma0_four_apply_eq_eta_pow_mul.EtaGamma0Four"
 
@@ -580,8 +578,6 @@ theorem solution (a b c : ℕ) (h0 : 0 < a + b + c)
     rfl
 
 end
-p2m_reactivate "P2MW.S_CuspForm_exists_gamma0_four_apply_eq_eta_pow_mul.EtaGamma0Four"
-
 end S_CuspForm_exists_gamma0_four_apply_eq_eta_pow_mul
 end P2MW
 export P2MW.S_CuspForm_exists_gamma0_four_apply_eq_eta_pow_mul (solution)

@@ -166,11 +166,7 @@ theorem pow_char_laurentMap_intCast_eq_qExpand (sInt : LaurentSeries ℤ) :
 end IntCastImage
 
 end CharL
-p2m_reactivate "P2MW.S_ModularCurve_map_intCast_pow_char_eq_qExpand.ModularCurve.CharL"
-
 end ModularCurve
-p2m_reactivate "P2MW.S_ModularCurve_map_intCast_pow_char_eq_qExpand.ModularCurve.CharL P2MW.S_ModularCurve_map_intCast_pow_char_eq_qExpand.ModularCurve"
-
 end
 p2m_reactivate "P2MW.S_ModularCurve_map_intCast_pow_char_eq_qExpand.ModularCurve.CharL P2MW.S_ModularCurve_map_intCast_pow_char_eq_qExpand.ModularCurve"
 

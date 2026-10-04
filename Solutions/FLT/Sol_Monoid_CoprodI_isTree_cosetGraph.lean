@@ -186,8 +186,6 @@ theorem isTree_of_isAcyclic [Nonempty ι] (h : (graph G).IsAcyclic) : (graph G).
   ⟨connected, h⟩
 
 end BassSerre
-p2m_reactivate "P2MW.S_Monoid_CoprodI_isTree_cosetGraph.GroupTheory.BassSerre"
-
 end GroupTheory
 p2m_reactivate "P2MW.S_Monoid_CoprodI_isTree_cosetGraph.GroupTheory.BassSerre P2MW.S_Monoid_CoprodI_isTree_cosetGraph.GroupTheory"
 
@@ -357,8 +355,6 @@ theorem isAcyclic_two {G : Fin 2 → Type*} [∀ i, Group (G i)] : (graph G).IsA
   isAcyclic (by decide)
 
 end BassSerre
-p2m_reactivate "P2MW.S_Monoid_CoprodI_isTree_cosetGraph.GroupTheory.BassSerre P2MW.S_Monoid_CoprodI_isTree_cosetGraph.GroupTheory"
-
 end GroupTheory
 p2m_reactivate "P2MW.S_Monoid_CoprodI_isTree_cosetGraph.GroupTheory.BassSerre P2MW.S_Monoid_CoprodI_isTree_cosetGraph.GroupTheory"
 

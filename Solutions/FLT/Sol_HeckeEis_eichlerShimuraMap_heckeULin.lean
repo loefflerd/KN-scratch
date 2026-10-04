@@ -421,15 +421,8 @@ theorem uCosetMatch (hℓ : ℓ.Prime) (hℓN : ℓ ∣ N) : UCosetMatch N ℓ :
     exact exists_repGL_some_eq_mul_heckeCosetRep j⟩
 
 end UCosetMatchDischarge
-p2m_reactivate "P2MW.S_HeckeEis_eichlerShimuraMap_heckeULin.HeckeEis.HeckeESSol.HeckeAnalytic"
-
 end URepresentatives
-p2m_reactivate "P2MW.S_HeckeEis_eichlerShimuraMap_heckeULin.HeckeEis.HeckeESSol.HeckeAnalytic"
-
 end HeckeEis.HeckeESSol
-p2m_reactivate "P2MW.S_HeckeEis_eichlerShimuraMap_heckeULin.HeckeEis.HeckeESSol.HeckeAnalytic P2MW.S_HeckeEis_eichlerShimuraMap_heckeULin.HeckeEis P2MW.S_HeckeEis_eichlerShimuraMap_heckeULin.HeckeEis.HeckeESSol"
-p2m_reactivate "P2MW.S_HeckeEis_eichlerShimuraMap_heckeULin.HeckeEis.HeckeESSol.HeckeAnalytic P2MW.S_HeckeEis_eichlerShimuraMap_heckeULin.HeckeEis"
-
 end
 p2m_reactivate "P2MW.S_HeckeEis_eichlerShimuraMap_heckeULin.HeckeEis.HeckeESSol.HeckeAnalytic P2MW.S_HeckeEis_eichlerShimuraMap_heckeULin.HeckeEis P2MW.S_HeckeEis_eichlerShimuraMap_heckeULin.HeckeEis.HeckeESSol"
 
@@ -610,12 +603,7 @@ theorem isEichlerIntegral_heckeEichler {f : ℍ → ℂ} {F : ℍ → ↥(Binary
   exact h
 
 end EichlerSum
-p2m_reactivate "P2MW.S_HeckeEis_eichlerShimuraMap_heckeULin.HeckeEis.HeckeESSol.HeckeAnalytic P2MW.S_HeckeEis_eichlerShimuraMap_heckeULin.HeckeEis P2MW.S_HeckeEis_eichlerShimuraMap_heckeULin.HeckeEis.HeckeESSol"
-
 end HeckeEis.HeckeESSol
-p2m_reactivate "P2MW.S_HeckeEis_eichlerShimuraMap_heckeULin.HeckeEis.HeckeESSol.HeckeAnalytic P2MW.S_HeckeEis_eichlerShimuraMap_heckeULin.HeckeEis P2MW.S_HeckeEis_eichlerShimuraMap_heckeULin.HeckeEis.HeckeESSol"
-p2m_reactivate "P2MW.S_HeckeEis_eichlerShimuraMap_heckeULin.HeckeEis.HeckeESSol.HeckeAnalytic P2MW.S_HeckeEis_eichlerShimuraMap_heckeULin.HeckeEis P2MW.S_HeckeEis_eichlerShimuraMap_heckeULin.HeckeEis.HeckeESSol"
-
 end
 p2m_reactivate "P2MW.S_HeckeEis_eichlerShimuraMap_heckeULin.HeckeEis.HeckeESSol.HeckeAnalytic P2MW.S_HeckeEis_eichlerShimuraMap_heckeULin.HeckeEis P2MW.S_HeckeEis_eichlerShimuraMap_heckeULin.HeckeEis.HeckeESSol"
 

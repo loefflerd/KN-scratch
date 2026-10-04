@@ -280,9 +280,6 @@ theorem pushH1par_mk (z : ↥(coeffParabolicCocycles ((binaryFormRepSL R n).comp
 end Cocycles
 
 end HeckeEis.CoeffMapAux
-p2m_reactivate "P2MW.S_HeckeEis_exists_ne_zero_smul_eq_coeffH1par_map_int_rat.HeckeEis P2MW.S_HeckeEis_exists_ne_zero_smul_eq_coeffH1par_map_int_rat.HeckeEis.CoeffMapAux"
-p2m_reactivate "P2MW.S_HeckeEis_exists_ne_zero_smul_eq_coeffH1par_map_int_rat.HeckeEis"
-
 end
 p2m_reactivate "P2MW.S_HeckeEis_exists_ne_zero_smul_eq_coeffH1par_map_int_rat.HeckeEis P2MW.S_HeckeEis_exists_ne_zero_smul_eq_coeffH1par_map_int_rat.HeckeEis.CoeffMapAux"
 
@@ -416,9 +413,6 @@ theorem pushForm_zsmul {R R' : Type*} [CommRing R] [CommRing R'] (f : R →+ R')
   map_zsmul (⟨⟨pushForm f n, pushForm_zero f n⟩, pushForm_add f n⟩ : ↥(BinaryForm R n) →+ ↥(BinaryForm R' n)) m P
 
 end HeckeEis.RatAux
-p2m_reactivate "P2MW.S_HeckeEis_exists_ne_zero_smul_eq_coeffH1par_map_int_rat.HeckeEis P2MW.S_HeckeEis_exists_ne_zero_smul_eq_coeffH1par_map_int_rat.HeckeEis.CoeffMapAux"
-p2m_reactivate "P2MW.S_HeckeEis_exists_ne_zero_smul_eq_coeffH1par_map_int_rat.HeckeEis P2MW.S_HeckeEis_exists_ne_zero_smul_eq_coeffH1par_map_int_rat.HeckeEis.CoeffMapAux"
-
 end
 p2m_reactivate "P2MW.S_HeckeEis_exists_ne_zero_smul_eq_coeffH1par_map_int_rat.HeckeEis P2MW.S_HeckeEis_exists_ne_zero_smul_eq_coeffH1par_map_int_rat.HeckeEis.CoeffMapAux"
 
@@ -769,9 +763,6 @@ theorem main
     rw [this, LinearMap.map_smul, Int.cast_smul_eq_zsmul]
 
 end HeckeEis.ZQAux
-p2m_reactivate "P2MW.S_HeckeEis_exists_ne_zero_smul_eq_coeffH1par_map_int_rat.HeckeEis P2MW.S_HeckeEis_exists_ne_zero_smul_eq_coeffH1par_map_int_rat.HeckeEis.CoeffMapAux P2MW.S_HeckeEis_exists_ne_zero_smul_eq_coeffH1par_map_int_rat.HeckeEis.ZQAux"
-p2m_reactivate "P2MW.S_HeckeEis_exists_ne_zero_smul_eq_coeffH1par_map_int_rat.HeckeEis P2MW.S_HeckeEis_exists_ne_zero_smul_eq_coeffH1par_map_int_rat.HeckeEis.CoeffMapAux"
-
 end
 p2m_reactivate "P2MW.S_HeckeEis_exists_ne_zero_smul_eq_coeffH1par_map_int_rat.HeckeEis P2MW.S_HeckeEis_exists_ne_zero_smul_eq_coeffH1par_map_int_rat.HeckeEis.CoeffMapAux P2MW.S_HeckeEis_exists_ne_zero_smul_eq_coeffH1par_map_int_rat.HeckeEis.ZQAux"
 

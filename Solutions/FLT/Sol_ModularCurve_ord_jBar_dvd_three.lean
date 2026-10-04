@@ -208,8 +208,6 @@ theorem hasRamBound_three_of_isRoot_at_zero
   exact (hasRamBound_one_hahnExpMul_iff 3 (by norm_num) r).mp ((hmemL _).mp hτrL)
 
 end OrdJBarDvdThree
-p2m_reactivate "P2MW.S_ModularCurve_ord_jBar_dvd_three.OrdJBarDvdThree"
-
 end
 p2m_reactivate "P2MW.S_ModularCurve_ord_jBar_dvd_three.OrdJBarDvdThree"
 

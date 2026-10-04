@@ -19,8 +19,6 @@ local notation "𝕢" => Function.Periodic.qParam
 
 namespace ModularCurve
 p2m_export "ModularCurve" "eisenstein4"
-p2m_open "ModularCurve"
-
 end ModularCurve
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_qExpansion_E4_eq_map_eisenstein4.ModularCurve in

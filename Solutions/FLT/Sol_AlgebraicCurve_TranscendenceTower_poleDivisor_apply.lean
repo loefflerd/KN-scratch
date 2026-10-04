@@ -2030,8 +2030,6 @@ theorem gate_stichtenothGenus_le_of_transcendenceTower [IsCurveOver K F]
     (PoleDivisorPackage.ofTranscendenceTower T IB) h
 
 end AlgebraicCurve
-p2m_reactivate "P2MW.S_AlgebraicCurve_TranscendenceTower_poleDivisor_apply.AlgebraicCurve"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_TranscendenceTower_poleDivisor_apply.AlgebraicCurve"
 
@@ -2289,11 +2287,7 @@ theorem gate_adjoin_x_not_regular_at_v (T : TranscendenceTower K E F) :
   exact absurd hx (by decide)
 
 end Gates
-p2m_reactivate "P2MW.S_AlgebraicCurve_TranscendenceTower_poleDivisor_apply.AlgebraicCurve"
-
 end AlgebraicCurve
-p2m_reactivate "P2MW.S_AlgebraicCurve_TranscendenceTower_poleDivisor_apply.AlgebraicCurve"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_TranscendenceTower_poleDivisor_apply.AlgebraicCurve"
 

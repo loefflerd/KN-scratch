@@ -1449,8 +1449,6 @@ private theorem CNT_face [Algebra.IsIntegral ℚ⟮jq⟯ (modularFunctionField N
 end Squeeze
 
 end CNTUnit
-p2m_reactivate "P2MW.S_ModularCurve_natCard_ord_jBar_eq_one_eq_nuThree.CNTUnit"
-
 end
 p2m_reactivate "P2MW.S_ModularCurve_natCard_ord_jBar_eq_one_eq_nuThree.CNTUnit"
 

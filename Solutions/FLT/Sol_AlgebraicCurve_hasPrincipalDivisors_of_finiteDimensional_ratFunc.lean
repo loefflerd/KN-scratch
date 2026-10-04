@@ -464,11 +464,7 @@ p2m_export "AlgebraicCurve.Place" "exists_coeff_ord_ne_zero"
 end SupportTransfer
 
 end Place
-p2m_reactivate "P2MW.S_AlgebraicCurve_hasPrincipalDivisors_of_finiteDimensional_ratFunc.AlgebraicCurve.Place"
-
 end AlgebraicCurve
-p2m_reactivate "P2MW.S_AlgebraicCurve_hasPrincipalDivisors_of_finiteDimensional_ratFunc.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_hasPrincipalDivisors_of_finiteDimensional_ratFunc.AlgebraicCurve"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_hasPrincipalDivisors_of_finiteDimensional_ratFunc.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_hasPrincipalDivisors_of_finiteDimensional_ratFunc.AlgebraicCurve"
 
@@ -506,8 +502,6 @@ private theorem ord_coe_eq_of_span_singleton_eq_pow_maximalIdeal {r : v.toValuat
   rw [hcoe, v.ord_unit_smul_zpow u⁻¹ hπ (n : ℤ)]
 
 end DVR
-p2m_reactivate "P2MW.S_AlgebraicCurve_hasPrincipalDivisors_of_finiteDimensional_ratFunc.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_hasPrincipalDivisors_of_finiteDimensional_ratFunc.AlgebraicCurve"
-
 end Place
 p2m_reactivate "P2MW.S_AlgebraicCurve_hasPrincipalDivisors_of_finiteDimensional_ratFunc.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_hasPrincipalDivisors_of_finiteDimensional_ratFunc.AlgebraicCurve"
 
@@ -693,8 +687,6 @@ private theorem ord_norm_eq_sum_fiberOver {f : F'} (hf : f ≠ 0) :
   omega
 
 end ElementNorm
-p2m_reactivate "P2MW.S_AlgebraicCurve_hasPrincipalDivisors_of_finiteDimensional_ratFunc.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_hasPrincipalDivisors_of_finiteDimensional_ratFunc.AlgebraicCurve"
-
 end Place
 p2m_reactivate "P2MW.S_AlgebraicCurve_hasPrincipalDivisors_of_finiteDimensional_ratFunc.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_hasPrincipalDivisors_of_finiteDimensional_ratFunc.AlgebraicCurve"
 
@@ -751,8 +743,6 @@ private theorem finite_setOf_ord_ne_zero_of_finiteDimensional {f : F'} (hf : f �
     rw [w.ord_restrict, h0, mul_zero]
 
 end T029
-p2m_reactivate "P2MW.S_AlgebraicCurve_hasPrincipalDivisors_of_finiteDimensional_ratFunc.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_hasPrincipalDivisors_of_finiteDimensional_ratFunc.AlgebraicCurve"
-
 end AlgebraicCurve
 p2m_reactivate "P2MW.S_AlgebraicCurve_hasPrincipalDivisors_of_finiteDimensional_ratFunc.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_hasPrincipalDivisors_of_finiteDimensional_ratFunc.AlgebraicCurve"
 

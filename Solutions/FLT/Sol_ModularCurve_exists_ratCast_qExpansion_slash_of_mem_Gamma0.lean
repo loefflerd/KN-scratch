@@ -602,8 +602,6 @@ theorem solution (M : ℕ) [NeZero M] {k : ℤ}
   X1DiamondRationalForms.isRat_slash f hf hγ n
 
 end
-p2m_reactivate "P2MW.S_ModularCurve_exists_ratCast_qExpansion_slash_of_mem_Gamma0.X1DiamondRationalForms"
-
 end S_ModularCurve_exists_ratCast_qExpansion_slash_of_mem_Gamma0
 end P2MW
 export P2MW.S_ModularCurve_exists_ratCast_qExpansion_slash_of_mem_Gamma0 (solution)

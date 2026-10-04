@@ -485,8 +485,6 @@ theorem phiAtSeed_slot_prime_eq (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) p) (d
   exact h
 
 end ksplitEngine
-p2m_reactivate "P2MW.S_ModularCurve_PhiGen_splits_prime_at_slot_of_isPrimitiveRoot.ModularCurve P2MW.S_ModularCurve_PhiGen_splits_prime_at_slot_of_isPrimitiveRoot.ModularCurve.W1"
-
 end ModularCurve.W1
 p2m_reactivate "P2MW.S_ModularCurve_PhiGen_splits_prime_at_slot_of_isPrimitiveRoot.ModularCurve P2MW.S_ModularCurve_PhiGen_splits_prime_at_slot_of_isPrimitiveRoot.ModularCurve.W1"
 p2m_reactivate "P2MW.S_ModularCurve_PhiGen_splits_prime_at_slot_of_isPrimitiveRoot.ModularCurve P2MW.S_ModularCurve_PhiGen_splits_prime_at_slot_of_isPrimitiveRoot.ModularCurve.W1"

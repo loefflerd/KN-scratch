@@ -2039,8 +2039,6 @@ theorem gate_stichtenothGenus_le_of_transcendenceTower [IsCurveOver K F]
     (PoleDivisorPackage.ofTranscendenceTower T IB) h
 
 end AlgebraicCurve
-p2m_reactivate "P2MW.S_AlgebraicCurve_RationalFunctionField_ord_placeInfty_X.AlgebraicCurve"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_RationalFunctionField_ord_placeInfty_X.AlgebraicCurve"
 
@@ -2298,11 +2296,7 @@ theorem gate_adjoin_x_not_regular_at_v (T : TranscendenceTower K E F) :
   exact absurd hx (by decide)
 
 end Gates
-p2m_reactivate "P2MW.S_AlgebraicCurve_RationalFunctionField_ord_placeInfty_X.AlgebraicCurve"
-
 end AlgebraicCurve
-p2m_reactivate "P2MW.S_AlgebraicCurve_RationalFunctionField_ord_placeInfty_X.AlgebraicCurve"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_RationalFunctionField_ord_placeInfty_X.AlgebraicCurve"
 
@@ -2456,13 +2450,7 @@ theorem indexOfSpecialtyFinite_of_ratFunc_tower :
     (stichtenothGenusExists_of_ratFunc_tower K F)
 
 end RationalFunctionField
-p2m_reactivate "P2MW.S_AlgebraicCurve_RationalFunctionField_ord_placeInfty_X.AlgebraicCurve P2MW.S_AlgebraicCurve_RationalFunctionField_ord_placeInfty_X.AlgebraicCurve.RationalFunctionField"
-
-p2m_reactivate "P2MW.S_AlgebraicCurve_RationalFunctionField_ord_placeInfty_X.AlgebraicCurve P2MW.S_AlgebraicCurve_RationalFunctionField_ord_placeInfty_X.AlgebraicCurve.RationalFunctionField"
-
 end AlgebraicCurve
-p2m_reactivate "P2MW.S_AlgebraicCurve_RationalFunctionField_ord_placeInfty_X.AlgebraicCurve P2MW.S_AlgebraicCurve_RationalFunctionField_ord_placeInfty_X.AlgebraicCurve.RationalFunctionField"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_RationalFunctionField_ord_placeInfty_X.AlgebraicCurve P2MW.S_AlgebraicCurve_RationalFunctionField_ord_placeInfty_X.AlgebraicCurve.RationalFunctionField"
 
@@ -2529,13 +2517,7 @@ theorem riemannGenusBounded (hC : ConstantsAreBase K F) : RiemannGenusBounded K 
   riemannGenusBounded_of_poleDivisorPackage (hasPoleDivisorPackage_of_ratFunc_tower K F).some
 
 end RationalFunctionField
-p2m_reactivate "P2MW.S_AlgebraicCurve_RationalFunctionField_ord_placeInfty_X.AlgebraicCurve P2MW.S_AlgebraicCurve_RationalFunctionField_ord_placeInfty_X.AlgebraicCurve.RationalFunctionField"
-
-p2m_reactivate "P2MW.S_AlgebraicCurve_RationalFunctionField_ord_placeInfty_X.AlgebraicCurve P2MW.S_AlgebraicCurve_RationalFunctionField_ord_placeInfty_X.AlgebraicCurve.RationalFunctionField"
-
 end AlgebraicCurve
-p2m_reactivate "P2MW.S_AlgebraicCurve_RationalFunctionField_ord_placeInfty_X.AlgebraicCurve P2MW.S_AlgebraicCurve_RationalFunctionField_ord_placeInfty_X.AlgebraicCurve.RationalFunctionField"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_RationalFunctionField_ord_placeInfty_X.AlgebraicCurve P2MW.S_AlgebraicCurve_RationalFunctionField_ord_placeInfty_X.AlgebraicCurve.RationalFunctionField"
 

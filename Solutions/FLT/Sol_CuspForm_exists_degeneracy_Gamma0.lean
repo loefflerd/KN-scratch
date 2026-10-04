@@ -110,9 +110,6 @@ theorem exists_cuspForm {M N d : ℕ} [NeZero N] (hdiv : d * M ∣ N)
   rw [slash_heckeDiagMatrix_apply k hd, smul_eq_mul, ← mul_assoc, inv_mul_cancel₀ hdk, one_mul]
 
 end ModularForm.DegeneracyPort
-p2m_reactivate "P2MW.S_CuspForm_exists_degeneracy_Gamma0.ModularForm P2MW.S_CuspForm_exists_degeneracy_Gamma0.ModularForm.DegeneracyPort"
-p2m_reactivate "P2MW.S_CuspForm_exists_degeneracy_Gamma0.ModularForm"
-
 end
 p2m_reactivate "P2MW.S_CuspForm_exists_degeneracy_Gamma0.ModularForm P2MW.S_CuspForm_exists_degeneracy_Gamma0.ModularForm.DegeneracyPort"
 

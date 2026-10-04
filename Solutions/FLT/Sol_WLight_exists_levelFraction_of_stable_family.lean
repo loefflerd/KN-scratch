@@ -1298,8 +1298,6 @@ theorem exists_levelFraction_of_stable_family_core
     exact hb0 (Subtype.coe_injective (h.trans (ZeroMemClass.coe_zero _).symm))
 
 end R5bBridge
-p2m_reactivate "P2MW.S_WLight_exists_levelFraction_of_stable_family.WLight.LevelGens"
-
 end WLight
 p2m_reactivate "P2MW.S_WLight_exists_levelFraction_of_stable_family.WLight.LevelGens P2MW.S_WLight_exists_levelFraction_of_stable_family.WLight"
 
@@ -1333,8 +1331,6 @@ theorem solution
     S hhol hpb hst hinv hF
 
 end
-p2m_reactivate "P2MW.S_WLight_exists_levelFraction_of_stable_family.WLight.LevelGens P2MW.S_WLight_exists_levelFraction_of_stable_family.WLight"
-
 end S_WLight_exists_levelFraction_of_stable_family
 end P2MW
 export P2MW.S_WLight_exists_levelFraction_of_stable_family (solution)

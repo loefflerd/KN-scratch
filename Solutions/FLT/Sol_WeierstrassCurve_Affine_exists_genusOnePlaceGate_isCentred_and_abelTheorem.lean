@@ -173,8 +173,6 @@ theorem le_exp_neg_one_of_lt_one {x : ℤᵐ⁰} (hx : x < 1) : x ≤ exp (-1 : 
     omega
 
 namespace Place
-p2m_open "AlgebraicCurve.Place"
-
 end Place
 
 end AlgebraicCurve

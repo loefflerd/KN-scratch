@@ -515,8 +515,6 @@ theorem mulEquiv_of_one :
   mulEquiv_apply_of_eq 1 _ (S * T) (by rw [incl_ofAdd_one, gen_one, permU])
 
 end ModularGroupPingPong
-p2m_reactivate "P2MW.S_ModularGroup_exists_mulEquiv_freeProduct_quotient_center.ModularCurve.ModularGroupPingPong.IrrationalPt P2MW.S_ModularGroup_exists_mulEquiv_freeProduct_quotient_center.ModularCurve.ModularGroupPingPong"
-
 end ModularCurve
 p2m_reactivate "P2MW.S_ModularGroup_exists_mulEquiv_freeProduct_quotient_center.ModularCurve.ModularGroupPingPong.IrrationalPt P2MW.S_ModularGroup_exists_mulEquiv_freeProduct_quotient_center.ModularCurve.ModularGroupPingPong P2MW.S_ModularGroup_exists_mulEquiv_freeProduct_quotient_center.ModularCurve"
 

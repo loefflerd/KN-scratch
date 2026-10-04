@@ -378,8 +378,6 @@ theorem main_impl : ∃ g : GenusOnePlaceGate W,
 end Closed
 
 end D5S
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_abelTheorem.D5S"
-
 end
 p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_abelTheorem.D5S"
 

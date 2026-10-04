@@ -202,9 +202,6 @@ theorem j_eq_1728_add_single_two_one (𝓔 : WeierstrassCurve (PowerSeries K)) (
   exact hWΔ.mul_left_cancel (hΔj.trans hc4')
 
 end P2MWs13.Wire
-p2m_reactivate "P2MW.S_ModularCurve_ModularPolynomialData_hasRamBound_two_of_isRoot_at_1728_of_odd.P2MWs13 P2MW.S_ModularCurve_ModularPolynomialData_hasRamBound_two_of_isRoot_at_1728_of_odd.P2MWs13.Wire"
-p2m_reactivate "P2MW.S_ModularCurve_ModularPolynomialData_hasRamBound_two_of_isRoot_at_1728_of_odd.P2MWs13"
-
 end
 p2m_reactivate "P2MW.S_ModularCurve_ModularPolynomialData_hasRamBound_two_of_isRoot_at_1728_of_odd.P2MWs13 P2MW.S_ModularCurve_ModularPolynomialData_hasRamBound_two_of_isRoot_at_1728_of_odd.P2MWs13.Wire"
 

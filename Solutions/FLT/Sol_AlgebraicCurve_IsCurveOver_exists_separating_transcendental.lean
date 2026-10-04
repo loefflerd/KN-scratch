@@ -175,8 +175,6 @@ theorem trdeg_eq_one_of_perfectField [PerfectField K] [Algebra.EssFiniteType K F
   IsCurveOver.trdeg_eq_one trdeg_le_one
 
 end IsCurveOver
-p2m_reactivate "P2MW.S_AlgebraicCurve_IsCurveOver_exists_separating_transcendental.AlgebraicCurve.IsCurveOver P2MW.S_AlgebraicCurve_IsCurveOver_exists_separating_transcendental.AlgebraicCurve"
-
 end AlgebraicCurve
 p2m_reactivate "P2MW.S_AlgebraicCurve_IsCurveOver_exists_separating_transcendental.AlgebraicCurve.IsCurveOver P2MW.S_AlgebraicCurve_IsCurveOver_exists_separating_transcendental.AlgebraicCurve"
 
@@ -226,8 +224,6 @@ theorem exists_separating_transcendental_s6 [PerfectField K] [Algebra.EssFiniteT
   exact ⟨t, htr, Algebra.finite_of_essFiniteType_of_isAlgebraic, hsep'⟩
 
 end IsCurveOver
-p2m_reactivate "P2MW.S_AlgebraicCurve_IsCurveOver_exists_separating_transcendental.AlgebraicCurve.IsCurveOver P2MW.S_AlgebraicCurve_IsCurveOver_exists_separating_transcendental.AlgebraicCurve"
-
 end AlgebraicCurve
 p2m_reactivate "P2MW.S_AlgebraicCurve_IsCurveOver_exists_separating_transcendental.AlgebraicCurve.IsCurveOver P2MW.S_AlgebraicCurve_IsCurveOver_exists_separating_transcendental.AlgebraicCurve"
 
@@ -238,8 +234,6 @@ theorem _root_.P2MW.S_AlgebraicCurve_IsCurveOver_exists_separating_transcendenta
   AlgebraicCurve.IsCurveOver.exists_separating_transcendental_s6
 
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_IsCurveOver_exists_separating_transcendental.AlgebraicCurve.IsCurveOver P2MW.S_AlgebraicCurve_IsCurveOver_exists_separating_transcendental.AlgebraicCurve"
-
 end
 end S_AlgebraicCurve_IsCurveOver_exists_separating_transcendental
 end P2MW

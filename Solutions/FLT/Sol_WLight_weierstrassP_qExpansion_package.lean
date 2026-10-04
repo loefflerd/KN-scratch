@@ -786,8 +786,6 @@ lemma PeriodPair.ext_omega {L L' : PeriodPair} (h1 : L.ω₁ = L'.ω₁) (h2 : L
 end R1Bridge
 
 end WLight
-p2m_reactivate "P2MW.S_WLight_weierstrassP_qExpansion_package.WLight"
-
 end
 p2m_reactivate "P2MW.S_WLight_weierstrassP_qExpansion_package.WLight"
 

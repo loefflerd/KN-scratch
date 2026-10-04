@@ -785,9 +785,6 @@ theorem main (y : FF) (hy : (y : LaurentSeries ℚbar) = jqModC ℚbar) :
 end Main
 
 end ModularCurve.RiemannHurwitzCount
-p2m_reactivate "P2MW.S_ModularCurve_two_mul_genusFF_add_card_fibres_le_finrank_add_two_of_gamma1_le.ModularCurve P2MW.S_ModularCurve_two_mul_genusFF_add_card_fibres_le_finrank_add_two_of_gamma1_le.ModularCurve.RiemannHurwitzCount"
-p2m_reactivate "P2MW.S_ModularCurve_two_mul_genusFF_add_card_fibres_le_finrank_add_two_of_gamma1_le.ModularCurve"
-
 end
 p2m_reactivate "P2MW.S_ModularCurve_two_mul_genusFF_add_card_fibres_le_finrank_add_two_of_gamma1_le.ModularCurve P2MW.S_ModularCurve_two_mul_genusFF_add_card_fibres_le_finrank_add_two_of_gamma1_le.ModularCurve.RiemannHurwitzCount"
 

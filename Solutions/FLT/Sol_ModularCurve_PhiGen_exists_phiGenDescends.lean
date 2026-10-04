@@ -304,11 +304,7 @@ private theorem exists_phiGenDescends (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] 
 end Descent
 
 end PhiGen
-p2m_reactivate "P2MW.S_ModularCurve_PhiGen_exists_phiGenDescends.ModularCurve.PhiGen"
-
 end ModularCurve
-p2m_reactivate "P2MW.S_ModularCurve_PhiGen_exists_phiGenDescends.ModularCurve.PhiGen P2MW.S_ModularCurve_PhiGen_exists_phiGenDescends.ModularCurve"
-
 end
 p2m_reactivate "P2MW.S_ModularCurve_PhiGen_exists_phiGenDescends.ModularCurve.PhiGen P2MW.S_ModularCurve_PhiGen_exists_phiGenDescends.ModularCurve"
 

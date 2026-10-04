@@ -705,8 +705,6 @@ private theorem hall_all : ∀ N : ℕ, N ≠ 0 → Hall N := by
   rw [hpsi]
 
 end Final
-p2m_reactivate "P2MW.S_ModularCurve_functionFieldGeneration.ModularCurve P2MW.S_ModularCurve_functionFieldGeneration.ModularCurve.W1"
-
 end ModularCurve.W1
 p2m_reactivate "P2MW.S_ModularCurve_functionFieldGeneration.ModularCurve P2MW.S_ModularCurve_functionFieldGeneration.ModularCurve.W1"
 p2m_reactivate "P2MW.S_ModularCurve_functionFieldGeneration.ModularCurve P2MW.S_ModularCurve_functionFieldGeneration.ModularCurve.W1"

@@ -315,12 +315,7 @@ theorem tendsto_coe_smul_punctured (τ : ℍ) :
   simpa using congrArg (fun z => σ⁻¹ • z) h1
 
 end Glue
-p2m_reactivate "P2MW.S_ModularCurve_exists_tendsto_div_smul_of_eventuallyEq_realizeOf_of_tendsto.Ws49.LIMTR.S3CuspLimit"
-
 end Ws49.LIMTR
-p2m_reactivate "P2MW.S_ModularCurve_exists_tendsto_div_smul_of_eventuallyEq_realizeOf_of_tendsto.Ws49.LIMTR.S3CuspLimit P2MW.S_ModularCurve_exists_tendsto_div_smul_of_eventuallyEq_realizeOf_of_tendsto.Ws49 P2MW.S_ModularCurve_exists_tendsto_div_smul_of_eventuallyEq_realizeOf_of_tendsto.Ws49.LIMTR"
-p2m_reactivate "P2MW.S_ModularCurve_exists_tendsto_div_smul_of_eventuallyEq_realizeOf_of_tendsto.Ws49.LIMTR.S3CuspLimit P2MW.S_ModularCurve_exists_tendsto_div_smul_of_eventuallyEq_realizeOf_of_tendsto.Ws49"
-
 end
 p2m_reactivate "P2MW.S_ModularCurve_exists_tendsto_div_smul_of_eventuallyEq_realizeOf_of_tendsto.Ws49.LIMTR.S3CuspLimit P2MW.S_ModularCurve_exists_tendsto_div_smul_of_eventuallyEq_realizeOf_of_tendsto.Ws49 P2MW.S_ModularCurve_exists_tendsto_div_smul_of_eventuallyEq_realizeOf_of_tendsto.Ws49.LIMTR"
 

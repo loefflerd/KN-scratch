@@ -170,9 +170,6 @@ theorem classification_of_normalFormCriterion (hN : N ≠ 0)
   rw [Subtype.ext_iff, cuspDenomDvd_coe]
 
 end ModularCurve.CuspSpace
-p2m_reactivate "P2MW.S_ModularCurve_CuspSpace_classification.ModularCurve P2MW.S_ModularCurve_CuspSpace_classification.ModularCurve.CuspSpace"
-p2m_reactivate "P2MW.S_ModularCurve_CuspSpace_classification.ModularCurve"
-
 end
 p2m_reactivate "P2MW.S_ModularCurve_CuspSpace_classification.ModularCurve P2MW.S_ModularCurve_CuspSpace_classification.ModularCurve.CuspSpace"
 

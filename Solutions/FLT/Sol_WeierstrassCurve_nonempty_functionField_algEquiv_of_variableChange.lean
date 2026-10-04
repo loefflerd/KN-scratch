@@ -53,26 +53,21 @@ namespace Mrtw60aVCPlaceSeamS1
 end FLT.Mrtw60aVCPlaceSeamS1
 namespace IsDedekindDomain
 p2m_export "IsDedekindDomain" "mk"
-p2m_open "IsDedekindDomain"
 end IsDedekindDomain
 namespace Polynomial
 p2m_export "Polynomial" "C eval₂_sub X leadingCoeff algebraMap_eq eval₂ aeval eval₂_add eval₂_pow degree factor aeval_C map eval₂_X comp roots algebra eval₂_mul algHom_ext sum leadingCoeff_comp aeval_comp flt leadingCoeff_zero aeval_X algebraMap_apply natDegree_linear ext content eval₂_C leadingCoeff_linear ring ringHom_ext transcendental restriction leadingCoeff_ne_zero eval"
-p2m_open "Polynomial"
 end Polynomial
 namespace Polynomial
 p2m_export "Polynomial" "C eval₂_sub X leadingCoeff algebraMap_eq eval₂ aeval eval₂_add eval₂_pow degree factor aeval_C map eval₂_X comp roots algebra eval₂_mul algHom_ext sum leadingCoeff_comp aeval_comp flt leadingCoeff_zero aeval_X algebraMap_apply natDegree_linear ext content eval₂_C leadingCoeff_linear ring ringHom_ext transcendental restriction leadingCoeff_ne_zero eval"
 namespace Bivariate
-p2m_open "Polynomial.Bivariate Polynomial"
 end Polynomial.Bivariate
 namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine VariableChange.map a₁ map Ψ₃ Affine.CoordinateRing mk Affine.equation_add a₂ c₆ reduction toAffine Affine.Point map_Δ map_a₆ map_a₁ map_a₄ Δ c₄ VariableChange VariableChange.inv_def Affine.polynomial map_a₂ map_variableChange map_a₃"
-p2m_open "WeierstrassCurve"
 end WeierstrassCurve
 namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine VariableChange.map a₁ map Ψ₃ Affine.CoordinateRing mk Affine.equation_add a₂ c₆ reduction toAffine Affine.Point map_Δ map_a₆ map_a₁ map_a₄ Δ c₄ VariableChange VariableChange.inv_def Affine.polynomial map_a₂ map_variableChange map_a₃"
 namespace Affine
 p2m_export "WeierstrassCurve.Affine" "Point.add Equation equation_iff' map_a₃ slope CoordinateRing map equation_add Point.some Point.some.injEq Point.some.inj map_a₆ FunctionField map_a₂ Point CoordinateRing.mk addX map_a₁ map_a₄ CoordinateRing.basis addY equation_iff polynomial polyToFunctionField polyToFunctionField_apply polyToFunctionField_injective polyToFunctionField_C algebraMap_smul_basis vcX vcY vcXInv vcYInv equation_variableChange_iff"
-p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 end WeierstrassCurve.Affine
 namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine VariableChange.map a₁ map Ψ₃ Affine.CoordinateRing mk Affine.equation_add a₂ c₆ reduction toAffine Affine.Point map_Δ map_a₆ map_a₁ map_a₄ Δ c₄ VariableChange VariableChange.inv_def Affine.polynomial map_a₂ map_variableChange map_a₃"
@@ -80,7 +75,6 @@ namespace Affine
 p2m_export "WeierstrassCurve.Affine" "Point.add Equation equation_iff' map_a₃ slope CoordinateRing map equation_add Point.some Point.some.injEq Point.some.inj map_a₆ FunctionField map_a₂ Point CoordinateRing.mk addX map_a₁ map_a₄ CoordinateRing.basis addY equation_iff polynomial polyToFunctionField polyToFunctionField_apply polyToFunctionField_injective polyToFunctionField_C algebraMap_smul_basis vcX vcY vcXInv vcYInv equation_variableChange_iff"
 namespace Point
 p2m_export "WeierstrassCurve.Affine.Point" "add some some.injEq some.inj map zero mk"
-p2m_open "WeierstrassCurve.Affine.Point WeierstrassCurve.Affine WeierstrassCurve"
 end WeierstrassCurve.Affine.Point
 
 section
@@ -285,14 +279,10 @@ variable {K : Type*} [Field K]
 
 namespace Point
 p2m_export "WeierstrassCurve.Affine.Point" "add some some.injEq some.inj map zero mk"
-p2m_open "WeierstrassCurve.Affine.Point"
-
 end Point
 
 namespace Point
 p2m_export "WeierstrassCurve.Affine.Point" "add some some.injEq some.inj map zero mk"
-p2m_open "WeierstrassCurve.Affine.Point"
-
 end Point
 
 end WeierstrassCurve.Affine
@@ -645,14 +635,8 @@ def mrtw60aVCPlaceSeamAlgEquiv (h : C • W = V) : V.FunctionField ≃ₐ[F] W.F
     (mrtw60a_funHomInv_comp_funHom h) (mrtw60a_funHom_comp_funHomInv h)
 
 end FLT.Mrtw60aVCPlaceSeamS3
-p2m_reactivate "P2MW.S_WeierstrassCurve_nonempty_functionField_algEquiv_of_variableChange.FLT P2MW.S_WeierstrassCurve_nonempty_functionField_algEquiv_of_variableChange.FLT.Mrtw60aVCPlaceSeamS3"
-p2m_reactivate "P2MW.S_WeierstrassCurve_nonempty_functionField_algEquiv_of_variableChange.FLT"
-
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_nonempty_functionField_algEquiv_of_variableChange.FLT P2MW.S_WeierstrassCurve_nonempty_functionField_algEquiv_of_variableChange.FLT.Mrtw60aVCPlaceSeamS3"
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_nonempty_functionField_algEquiv_of_variableChange.FLT P2MW.S_WeierstrassCurve_nonempty_functionField_algEquiv_of_variableChange.FLT.Mrtw60aVCPlaceSeamS3"
-
 end
 p2m_reactivate "P2MW.S_WeierstrassCurve_nonempty_functionField_algEquiv_of_variableChange.FLT P2MW.S_WeierstrassCurve_nonempty_functionField_algEquiv_of_variableChange.FLT.Mrtw60aVCPlaceSeamS3"
 

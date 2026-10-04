@@ -36,38 +36,31 @@ set_option maxHeartbeats 6400000
 
 namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "algebraAlong FiniteAlong finrankAlong Place"
-p2m_open "AlgebraicCurve"
 end AlgebraicCurve
 namespace CoordinateRing
 end CoordinateRing
 namespace IsDedekindDomain
 p2m_export "IsDedekindDomain" "HeightOneSpectrum.eq_of_valuation_isEquiv_valuation mk HeightOneSpectrum"
-p2m_open "IsDedekindDomain"
 end IsDedekindDomain
 namespace ModularCurve
 end ModularCurve
 namespace Polynomial
 p2m_export "Polynomial" "C eval₂_sub X coeff algebraMap_eq divX eval₂ aeval eval₂_add monomial basisMonomials eval₂_pow degree C_0 factor aeval_C map_map map_C map eval₂_X comp algebra eval₂_mul exists_eq_pow_rootMultiplicity_mul_and_not_dvd X_dvd_iff algHom_ext sum divX_mul_X_add flt aeval_algHom aeval_X map_monomial algebraMap_apply coe_basisMonomials ext eval₂_C funext ring ringHom_ext transcendental"
-p2m_open "Polynomial"
 end Polynomial
 namespace Polynomial
 p2m_export "Polynomial" "C eval₂_sub X coeff algebraMap_eq divX eval₂ aeval eval₂_add monomial basisMonomials eval₂_pow degree C_0 factor aeval_C map_map map_C map eval₂_X comp algebra eval₂_mul exists_eq_pow_rootMultiplicity_mul_and_not_dvd X_dvd_iff algHom_ext sum divX_mul_X_add flt aeval_algHom aeval_X map_monomial algebraMap_apply coe_basisMonomials ext eval₂_C funext ring ringHom_ext transcendental"
 namespace Bivariate
-p2m_open "Polynomial.Bivariate Polynomial"
 end Polynomial.Bivariate
 namespace TensorProduct
 p2m_export "TensorProduct" "map_tmul congr lift_mk map_map smul_tmul zero_tmul sum_tmul lift mk ext tmul map Algebra.smul_def comm_tmul mk_surjective"
-p2m_open "TensorProduct"
 end TensorProduct
 namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine map_map map mk Jacobian IsIntegral toAffine Affine.Point map_a₆ map_a₁ map_a₄ Δ Affine.polynomial map_a₂ baseChange j map_a₃ Affine.IsogenyEndDatum"
-p2m_open "WeierstrassCurve"
 end WeierstrassCurve
 namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine map_map map mk Jacobian IsIntegral toAffine Affine.Point map_a₆ map_a₁ map_a₄ Δ Affine.polynomial map_a₂ baseChange j map_a₃ Affine.IsogenyEndDatum"
 namespace Affine
 p2m_export "WeierstrassCurve.Affine" "Point.add Equation equation_iff' map_a₃ slope CoordinateRing map baseChange Equation.baseChange map_a₆ FunctionField map_a₂ Point CoordinateRing.mk addX map_a₁ CoordinateRing.map map_a₄ CoordinateRing.basis_apply CoordinateRing.map_smul CoordinateRing.basis addY equation_iff polynomial IsogenyEndDatum polyToFunctionField polyToFunctionField_apply polyToFunctionField_injective polyToFunctionField_C algebraMap_smul_basis"
-p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 end WeierstrassCurve.Affine
 namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine map_map map mk Jacobian IsIntegral toAffine Affine.Point map_a₆ map_a₁ map_a₄ Δ Affine.polynomial map_a₂ baseChange j map_a₃ Affine.IsogenyEndDatum"
@@ -75,7 +68,6 @@ namespace Affine
 p2m_export "WeierstrassCurve.Affine" "Point.add Equation equation_iff' map_a₃ slope CoordinateRing map baseChange Equation.baseChange map_a₆ FunctionField map_a₂ Point CoordinateRing.mk addX map_a₁ CoordinateRing.map map_a₄ CoordinateRing.basis_apply CoordinateRing.map_smul CoordinateRing.basis addY equation_iff polynomial IsogenyEndDatum polyToFunctionField polyToFunctionField_apply polyToFunctionField_injective polyToFunctionField_C algebraMap_smul_basis"
 namespace Point
 p2m_export "WeierstrassCurve.Affine.Point" "add baseChange map_map map_zero map zero mk"
-p2m_open "WeierstrassCurve.Affine.Point WeierstrassCurve.Affine WeierstrassCurve"
 end WeierstrassCurve.Affine.Point
 
 universe u v w
@@ -169,8 +161,6 @@ theorem algebraMap_eq_mk_C_C (a : F) :
 
 end CoordinateRing
 
-p2m_open "WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.WeierstrassCurve.Affine.CoordinateRing"
-
 end WeierstrassCurve.Affine
 
 end
@@ -189,8 +179,6 @@ p2m_open_scoped "Polynomial.Bivariate P2MW.S_WeierstrassCurve_Affine_exists_algH
 
 namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "algebraAlong FiniteAlong finrankAlong Place"
-p2m_open "AlgebraicCurve"
-
 end AlgebraicCurve
 
 namespace WeierstrassCurve
@@ -436,8 +424,6 @@ end PointPullbackTo
 end WeierstrassCurve.Affine
 
 namespace ModularCurve
-
-p2m_open "WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.WeierstrassCurve.Affine"
 
 end ModularCurve
 
@@ -877,13 +863,8 @@ theorem kw_isogenyEndDatumBaseChangeAlong_of_tensorIsDomainGeneral
 end Setup
 
 end ModularCurve
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.ModularCurve"
-
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.ModularCurve"
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.ModularCurve"
-
 end
 p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.ModularCurve"
 
@@ -1185,16 +1166,9 @@ variable [Algebra F F'] [IsScalarTower ℚ F F']
 attribute [local instance] Algebra.TensorProduct.rightAlgebra
 
 end SatGate
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.ModularCurve"
-
 end ModularCurve
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.ModularCurve"
-
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.ModularCurve"
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.ModularCurve"
-
 end
 p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.ModularCurve"
 

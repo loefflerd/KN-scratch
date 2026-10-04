@@ -21,8 +21,6 @@ p2m_export "AlgebraicCurve" "Place"
 p2m_open "AlgebraicCurve"
 namespace Place
 p2m_export "AlgebraicCurve.Place" "fiberOver restrict_eq_of_mem_fiberOver restrict sum_ramificationIndex_mul_inertiaDeg_fiberOver"
-p2m_open "AlgebraicCurve.Place"
-
 end Place
 end AlgebraicCurve
 

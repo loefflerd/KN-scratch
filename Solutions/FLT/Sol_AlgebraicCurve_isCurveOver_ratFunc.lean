@@ -467,8 +467,6 @@ scoped instance instHasPrincipalDivisors : HasPrincipalDivisors K (RatFunc K) wh
   exists_divisor _ hf := ⟨principalDivisor hf, fun _ => rfl, degree_principalDivisor hf⟩
 
 end RationalFunctionField
-p2m_reactivate "P2MW.S_AlgebraicCurve_isCurveOver_ratFunc.AlgebraicCurve.RationalFunctionField"
-
 end AlgebraicCurve
 p2m_reactivate "P2MW.S_AlgebraicCurve_isCurveOver_ratFunc.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_isCurveOver_ratFunc.AlgebraicCurve"
 
@@ -500,8 +498,6 @@ theorem deg_ne_zero [v.FiniteResidue] : v.deg ≠ 0 :=
   v.deg_pos.ne'
 
 end DegPos
-p2m_reactivate "P2MW.S_AlgebraicCurve_isCurveOver_ratFunc.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_isCurveOver_ratFunc.AlgebraicCurve"
-
 end Place
 p2m_reactivate "P2MW.S_AlgebraicCurve_isCurveOver_ratFunc.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_isCurveOver_ratFunc.AlgebraicCurve"
 
@@ -531,8 +527,6 @@ scoped instance instFiniteResidue (v : Place K (RatFunc K)) : v.FiniteResidue :=
   · exact instFiniteResiduePlaceInfty K
 
 end RationalFunctionField
-p2m_reactivate "P2MW.S_AlgebraicCurve_isCurveOver_ratFunc.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_isCurveOver_ratFunc.AlgebraicCurve"
-
 end AlgebraicCurve
 p2m_reactivate "P2MW.S_AlgebraicCurve_isCurveOver_ratFunc.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_isCurveOver_ratFunc.AlgebraicCurve"
 
@@ -562,11 +556,7 @@ theorem kaehler_free_rank_one_ratFunc :
     (Module.finrank_eq_card_basis (kaehlerRatFuncBasis K)).trans (by simp)⟩
 
 end AlgebraicCurve
-p2m_reactivate "P2MW.S_AlgebraicCurve_isCurveOver_ratFunc.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_isCurveOver_ratFunc.AlgebraicCurve"
-
 end Kaehler
-p2m_reactivate "P2MW.S_AlgebraicCurve_isCurveOver_ratFunc.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_isCurveOver_ratFunc.AlgebraicCurve"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_isCurveOver_ratFunc.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_isCurveOver_ratFunc.AlgebraicCurve"
 

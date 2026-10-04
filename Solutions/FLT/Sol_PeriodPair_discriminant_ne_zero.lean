@@ -150,13 +150,8 @@ theorem kw_E4cube_ne_E6sq (τ : ℍ) : E₄ τ ^ 3 ≠ E₆ τ ^ 2 := by
   exact mul_ne_zero hc (discriminant_ne_zero τ) this.symm
 
 end ModularForm
-p2m_reactivate "P2MW.S_PeriodPair_discriminant_ne_zero.ModularForm"
-
 end
-p2m_reactivate "P2MW.S_PeriodPair_discriminant_ne_zero.ModularForm"
 end
-p2m_reactivate "P2MW.S_PeriodPair_discriminant_ne_zero.ModularForm"
-
 end
 p2m_reactivate "P2MW.S_PeriodPair_discriminant_ne_zero.ModularForm"
 
@@ -176,13 +171,8 @@ theorem kw_ofTau_latticeEquivProd_symm_apply (τ : ℍ) (p : ℤ × ℤ) :
   rw [latticeEquiv_symm_apply]; simp
 
 end PeriodPair
-p2m_reactivate "P2MW.S_PeriodPair_discriminant_ne_zero.ModularForm"
-
 end
-p2m_reactivate "P2MW.S_PeriodPair_discriminant_ne_zero.ModularForm"
 end
-p2m_reactivate "P2MW.S_PeriodPair_discriminant_ne_zero.ModularForm"
-
 end
 p2m_reactivate "P2MW.S_PeriodPair_discriminant_ne_zero.ModularForm"
 
@@ -195,34 +185,13 @@ p2m_open_scoped "PeriodPair P2MW.S_PeriodPair_discriminant_ne_zero.PeriodPair"
 
 namespace PeriodPair
 p2m_export "PeriodPair" "lattice ω₁ latticeEquivProd g₃ derivWeierstrassP_sq ω₂ indep latticeEquiv_symm_apply G g₂ weierstrassCurve weierstrassCurve_Δ weierstrassCurve_c₄ equation_weierstrassP DiscriminantNeZero toPoint toPoint_zero IsUniformization jLattice JSurjective ofTau ofTau_lattice scale_indep scale scale_ω₁ scale_ω₂ sublatticeIndex"
-p2m_open "PeriodPair"
-
-variable (L : PeriodPair)
-
-p2m_reactivate "P2MW.S_PeriodPair_discriminant_ne_zero.ModularForm"
-
-p2m_reactivate "P2MW.S_PeriodPair_discriminant_ne_zero.ModularForm"
-
-p2m_reactivate "P2MW.S_PeriodPair_discriminant_ne_zero.ModularForm"
-
-p2m_reactivate "P2MW.S_PeriodPair_discriminant_ne_zero.ModularForm"
-
-p2m_reactivate "P2MW.S_PeriodPair_discriminant_ne_zero.ModularForm"
-
-p2m_reactivate "P2MW.S_PeriodPair_discriminant_ne_zero.ModularForm"
-
 end PeriodPair
 p2m_reactivate "P2MW.S_PeriodPair_discriminant_ne_zero.ModularForm"
 
 namespace Projectivization
 p2m_export "Projectivization" "map card"
-p2m_open "Projectivization"
-
 end Projectivization
-p2m_reactivate "P2MW.S_PeriodPair_discriminant_ne_zero.ModularForm"
 end
-p2m_reactivate "P2MW.S_PeriodPair_discriminant_ne_zero.ModularForm"
-
 end
 p2m_reactivate "P2MW.S_PeriodPair_discriminant_ne_zero.ModularForm"
 
@@ -305,13 +274,8 @@ theorem kw_g₃_ofTau (τ : ℍ) :
   ring
 
 end PeriodPair
-p2m_reactivate "P2MW.S_PeriodPair_discriminant_ne_zero.ModularForm"
-
 end
-p2m_reactivate "P2MW.S_PeriodPair_discriminant_ne_zero.ModularForm"
 end
-p2m_reactivate "P2MW.S_PeriodPair_discriminant_ne_zero.ModularForm"
-
 end
 p2m_reactivate "P2MW.S_PeriodPair_discriminant_ne_zero.ModularForm"
 
@@ -420,16 +384,9 @@ theorem g₃_eq_of_lattice_eq (h : L.lattice = L'.lattice) : L.g₃ = L'.g₃ :=
   unfold g₃; rw [G_eq_of_lattice_eq h]
 
 end LatticeDependence
-p2m_reactivate "P2MW.S_PeriodPair_discriminant_ne_zero.ModularForm"
-
 end PeriodPair
-p2m_reactivate "P2MW.S_PeriodPair_discriminant_ne_zero.ModularForm P2MW.S_PeriodPair_discriminant_ne_zero.PeriodPair"
-
 end
-p2m_reactivate "P2MW.S_PeriodPair_discriminant_ne_zero.ModularForm P2MW.S_PeriodPair_discriminant_ne_zero.PeriodPair"
 end
-p2m_reactivate "P2MW.S_PeriodPair_discriminant_ne_zero.ModularForm P2MW.S_PeriodPair_discriminant_ne_zero.PeriodPair"
-
 end
 p2m_reactivate "P2MW.S_PeriodPair_discriminant_ne_zero.ModularForm P2MW.S_PeriodPair_discriminant_ne_zero.PeriodPair"
 
@@ -514,13 +471,8 @@ private theorem _root_.PeriodPair.kw_discriminantNeZero (L : PeriodPair) : L.Dis
 p2m_export "PeriodPair" "kw_discriminantNeZero"
 
 end PeriodPair
-p2m_reactivate "P2MW.S_PeriodPair_discriminant_ne_zero.ModularForm P2MW.S_PeriodPair_discriminant_ne_zero.PeriodPair"
-
 end
-p2m_reactivate "P2MW.S_PeriodPair_discriminant_ne_zero.ModularForm P2MW.S_PeriodPair_discriminant_ne_zero.PeriodPair"
 end
-p2m_reactivate "P2MW.S_PeriodPair_discriminant_ne_zero.ModularForm P2MW.S_PeriodPair_discriminant_ne_zero.PeriodPair"
-
 end
 p2m_reactivate "P2MW.S_PeriodPair_discriminant_ne_zero.ModularForm P2MW.S_PeriodPair_discriminant_ne_zero.PeriodPair"
 

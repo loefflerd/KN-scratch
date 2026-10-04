@@ -115,9 +115,6 @@ theorem qCoeff_comp_smul_of_modularFormClass {FF : Type*} [FunLike FF ℍ ℂ]
     (ModularFormClass.bdd_at_infty f) hd n
 
 end UpperHalfPlane.DegeneracyQExp
-p2m_reactivate "P2MW.S_UpperHalfPlane_qCoeff_comp_heckeDiagMatrix_smul.UpperHalfPlane P2MW.S_UpperHalfPlane_qCoeff_comp_heckeDiagMatrix_smul.UpperHalfPlane.DegeneracyQExp"
-p2m_reactivate "P2MW.S_UpperHalfPlane_qCoeff_comp_heckeDiagMatrix_smul.UpperHalfPlane"
-
 end
 p2m_reactivate "P2MW.S_UpperHalfPlane_qCoeff_comp_heckeDiagMatrix_smul.UpperHalfPlane P2MW.S_UpperHalfPlane_qCoeff_comp_heckeDiagMatrix_smul.UpperHalfPlane.DegeneracyQExp"
 

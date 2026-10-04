@@ -199,8 +199,6 @@ theorem hexTheta_fricke {σ : ℂ} (hσ : 0 < σ.im) :
   (HexagonalLattice.summable_thetaTerm_and_tsum_neg_inv_three_mul σ hσ).2
 
 end
-p2m_reactivate "P2MW.S_ModularForm_exists_weight_one_gamma1_three_slash_fricke_eq_smul.A2Theta3 P2MW.S_ModularForm_exists_weight_one_gamma1_three_slash_fricke_eq_smul.A2Theta3.LatticeSum"
-
 end A2Theta3
 p2m_reactivate "P2MW.S_ModularForm_exists_weight_one_gamma1_three_slash_fricke_eq_smul.A2Theta3 P2MW.S_ModularForm_exists_weight_one_gamma1_three_slash_fricke_eq_smul.A2Theta3.LatticeSum"
 
@@ -499,8 +497,6 @@ def slashInvariantForm_of_T_U (F : ℍ → ℂ)
     ⇑(slashInvariantForm_of_T_U F hT hU) = F := rfl
 
 end Packaging
-p2m_reactivate "P2MW.S_ModularForm_exists_weight_one_gamma1_three_slash_fricke_eq_smul.A2Theta3 P2MW.S_ModularForm_exists_weight_one_gamma1_three_slash_fricke_eq_smul.A2Theta3.LatticeSum P2MW.S_ModularForm_exists_weight_one_gamma1_three_slash_fricke_eq_smul.A2Theta3.Gamma0Three"
-
 end A2Theta3
 p2m_reactivate "P2MW.S_ModularForm_exists_weight_one_gamma1_three_slash_fricke_eq_smul.A2Theta3 P2MW.S_ModularForm_exists_weight_one_gamma1_three_slash_fricke_eq_smul.A2Theta3.LatticeSum P2MW.S_ModularForm_exists_weight_one_gamma1_three_slash_fricke_eq_smul.A2Theta3.Gamma0Three"
 
@@ -775,8 +771,6 @@ theorem hexThetaH_isBoundedAt_cusp (c : OnePoint ℝ)
   exact isBoundedAtImInfty_hexThetaH_slash γ
 
 end
-p2m_reactivate "P2MW.S_ModularForm_exists_weight_one_gamma1_three_slash_fricke_eq_smul.A2Theta3 P2MW.S_ModularForm_exists_weight_one_gamma1_three_slash_fricke_eq_smul.A2Theta3.LatticeSum P2MW.S_ModularForm_exists_weight_one_gamma1_three_slash_fricke_eq_smul.A2Theta3.Gamma0Three"
-
 end A2Theta3
 p2m_reactivate "P2MW.S_ModularForm_exists_weight_one_gamma1_three_slash_fricke_eq_smul.A2Theta3 P2MW.S_ModularForm_exists_weight_one_gamma1_three_slash_fricke_eq_smul.A2Theta3.LatticeSum P2MW.S_ModularForm_exists_weight_one_gamma1_three_slash_fricke_eq_smul.A2Theta3.Gamma0Three"
 
@@ -849,8 +843,6 @@ theorem mdifferentiable_hexThetaH : MDiff hexThetaH := by
   simp [hexThetaH, Function.comp_apply, UpperHalfPlane.ofComplex_apply_of_im_pos hz]
 
 end
-p2m_reactivate "P2MW.S_ModularForm_exists_weight_one_gamma1_three_slash_fricke_eq_smul.A2Theta3 P2MW.S_ModularForm_exists_weight_one_gamma1_three_slash_fricke_eq_smul.A2Theta3.LatticeSum P2MW.S_ModularForm_exists_weight_one_gamma1_three_slash_fricke_eq_smul.A2Theta3.Gamma0Three"
-
 end A2Theta3
 p2m_reactivate "P2MW.S_ModularForm_exists_weight_one_gamma1_three_slash_fricke_eq_smul.A2Theta3 P2MW.S_ModularForm_exists_weight_one_gamma1_three_slash_fricke_eq_smul.A2Theta3.LatticeSum P2MW.S_ModularForm_exists_weight_one_gamma1_three_slash_fricke_eq_smul.A2Theta3.Gamma0Three"
 
@@ -912,8 +904,6 @@ theorem thetaForm_slash_fricke (W : GL (Fin 2) ℝ) (hW : (W : Matrix (Fin 2) (F
   linear_combination (-hexTheta (τ : ℂ)) * hs3
 
 end
-p2m_reactivate "P2MW.S_ModularForm_exists_weight_one_gamma1_three_slash_fricke_eq_smul.A2Theta3 P2MW.S_ModularForm_exists_weight_one_gamma1_three_slash_fricke_eq_smul.A2Theta3.LatticeSum P2MW.S_ModularForm_exists_weight_one_gamma1_three_slash_fricke_eq_smul.A2Theta3.Gamma0Three"
-
 end A2Theta3
 p2m_reactivate "P2MW.S_ModularForm_exists_weight_one_gamma1_three_slash_fricke_eq_smul.A2Theta3 P2MW.S_ModularForm_exists_weight_one_gamma1_three_slash_fricke_eq_smul.A2Theta3.LatticeSum P2MW.S_ModularForm_exists_weight_one_gamma1_three_slash_fricke_eq_smul.A2Theta3.Gamma0Three"
 

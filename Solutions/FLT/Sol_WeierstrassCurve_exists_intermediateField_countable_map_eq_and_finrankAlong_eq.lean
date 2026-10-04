@@ -78,11 +78,9 @@ universe uK
 
 namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "algebraAlong FiniteAlong finrankAlong HasPrincipalDivisors Pic Pic0"
-p2m_open "AlgebraicCurve"
 end AlgebraicCurve
 namespace Cardinal
 p2m_export "Cardinal" "map mk_fin lift_le_aleph0 lift_eq_one lift_one mk_le_one_iff_set_subsingleton sum_add_distrib mk mk_le_aleph0_iff sum mk_le_aleph0 aleph0 map_mk univ lift"
-p2m_open "Cardinal"
 end Cardinal
 namespace CoordinateRing
 end CoordinateRing
@@ -90,44 +88,35 @@ namespace FreyPackage
 end FreyPackage
 namespace HahnSeries
 p2m_export "HahnSeries" "support single order instAlgebra coeff algebraMap_apply C map mk map_C"
-p2m_open "HahnSeries"
 end HahnSeries
 namespace IntermediateField
 p2m_export "IntermediateField" "toAlgebra map_id mk algebra' mem_restrictScalars lift AdjoinSimple.gen inclusion ext adjoin_simple_le_iff algebraMap_apply smul_def lift_cardinalMk_adjoin_le FG adjoin instAlgebraSubtypeMem AdjoinSimple.algebraMap_gen map_map topEquiv mem_top restrictScalars finiteDimensional_adjoin adjoin_map subset_adjoin smul_mem normal isAlgebraic_iff map"
-p2m_open "IntermediateField"
 end IntermediateField
 namespace IsDedekindDomain
 p2m_export "IsDedekindDomain" "mk"
-p2m_open "IsDedekindDomain"
 end IsDedekindDomain
 namespace ModularCurve
 end ModularCurve
 namespace PeriodPair
 p2m_export "PeriodPair" "mk basis_one basis_zero G"
-p2m_open "PeriodPair"
 end PeriodPair
 namespace Polynomial
 p2m_export "Polynomial" "C eval₂_sub X support as_sum_support_C_mul_X_pow aeval_map_algebraMap coeff algebraMap_eq divX eval₂ aeval eval₂_add monomial basisMonomials eval₂_pow degree C_0 factor aeval_C map_id map_map map_C map eval₂_X comp algebra eval₂_mul exists_eq_pow_rootMultiplicity_mul_and_not_dvd X_dvd_iff algHom_ext sum coe_mapRingHom divX_mul_X_add flt adjoin_X aeval_algHom map_X notMem_support_iff aeval_X map_monomial coeffs algebraMap_apply coe_basisMonomials inhabited ext mapRingHom content eval₂_C funext ring aeval_algHom_apply ringHom_ext lifts transcendental restriction eval"
-p2m_open "Polynomial"
 end Polynomial
 namespace Polynomial
 p2m_export "Polynomial" "C eval₂_sub X support as_sum_support_C_mul_X_pow aeval_map_algebraMap coeff algebraMap_eq divX eval₂ aeval eval₂_add monomial basisMonomials eval₂_pow degree C_0 factor aeval_C map_id map_map map_C map eval₂_X comp algebra eval₂_mul exists_eq_pow_rootMultiplicity_mul_and_not_dvd X_dvd_iff algHom_ext sum coe_mapRingHom divX_mul_X_add flt adjoin_X aeval_algHom map_X notMem_support_iff aeval_X map_monomial coeffs algebraMap_apply coe_basisMonomials inhabited ext mapRingHom content eval₂_C funext ring aeval_algHom_apply ringHom_ext lifts transcendental restriction eval"
 namespace Bivariate
-p2m_open "Polynomial.Bivariate Polynomial"
 end Polynomial.Bivariate
 namespace TensorProduct
 p2m_export "TensorProduct" "map_tmul congr lift_mk map_map smul_tmul zero_tmul sum_tmul lift mk ext tmul map_id map Algebra.smul_def comm_tmul mk_surjective"
-p2m_open "TensorProduct"
 end TensorProduct
 namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine isUnit_Δ a₃ map_map a₁ WeierstrassCurve.map_a₃ map Ψ₃ mk Affine.equation_add a₄ Jacobian a₂ a₆ WeierstrassCurve.map_a₆ reduction map_id IsIntegral toAffine WeierstrassCurve.map_a₂ Affine.Point WeierstrassCurve.map_a₁ WeierstrassCurve.map_a₄ map_Δ map_a₆ map_a₁ map_a₄ Δ Affine.equation_iff Affine.polynomial map_a₂ baseChange j map_a₃ Affine.finiteDimensional_ratFunc_functionField"
-p2m_open "WeierstrassCurve"
 end WeierstrassCurve
 namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine isUnit_Δ a₃ map_map a₁ WeierstrassCurve.map_a₃ map Ψ₃ mk Affine.equation_add a₄ Jacobian a₂ a₆ WeierstrassCurve.map_a₆ reduction map_id IsIntegral toAffine WeierstrassCurve.map_a₂ Affine.Point WeierstrassCurve.map_a₁ WeierstrassCurve.map_a₄ map_Δ map_a₆ map_a₁ map_a₄ Δ Affine.equation_iff Affine.polynomial map_a₂ baseChange j map_a₃ Affine.finiteDimensional_ratFunc_functionField"
 namespace Affine
 p2m_export "WeierstrassCurve.Affine" "Point.add Equation CoordinateRing.basis_one equation_iff' map_a₃ slope CoordinateRing.instIsDomain CoordinateRing map baseChange equation_add Equation.baseChange Point.some Point.some.injEq Point.some.inj map_a₆ FunctionField map_a₂ Point CoordinateRing.mk addX map_a₁ CoordinateRing.map map_a₄ CoordinateRing.basis_apply CoordinateRing.map_mk CoordinateRing.map_smul CoordinateRing.basis_zero CoordinateRing.basis addY equation_iff polynomial polyToFunctionField polyToFunctionField_apply polyToFunctionField_injective polyToFunctionField_C algebraMap_smul_basis finiteDimensional_ratFunc_functionField"
-p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 end WeierstrassCurve.Affine
 namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine isUnit_Δ a₃ map_map a₁ WeierstrassCurve.map_a₃ map Ψ₃ mk Affine.equation_add a₄ Jacobian a₂ a₆ WeierstrassCurve.map_a₆ reduction map_id IsIntegral toAffine WeierstrassCurve.map_a₂ Affine.Point WeierstrassCurve.map_a₁ WeierstrassCurve.map_a₄ map_Δ map_a₆ map_a₁ map_a₄ Δ Affine.equation_iff Affine.polynomial map_a₂ baseChange j map_a₃ Affine.finiteDimensional_ratFunc_functionField"
@@ -135,7 +124,6 @@ namespace Affine
 p2m_export "WeierstrassCurve.Affine" "Point.add Equation CoordinateRing.basis_one equation_iff' map_a₃ slope CoordinateRing.instIsDomain CoordinateRing map baseChange equation_add Equation.baseChange Point.some Point.some.injEq Point.some.inj map_a₆ FunctionField map_a₂ Point CoordinateRing.mk addX map_a₁ CoordinateRing.map map_a₄ CoordinateRing.basis_apply CoordinateRing.map_mk CoordinateRing.map_smul CoordinateRing.basis_zero CoordinateRing.basis addY equation_iff polynomial polyToFunctionField polyToFunctionField_apply polyToFunctionField_injective polyToFunctionField_C algebraMap_smul_basis finiteDimensional_ratFunc_functionField"
 namespace Point
 p2m_export "WeierstrassCurve.Affine.Point" "add map_id baseChange map_map some some.injEq some.inj map_zero map zero mk"
-p2m_open "WeierstrassCurve.Affine.Point WeierstrassCurve.Affine WeierstrassCurve"
 end WeierstrassCurve.Affine.Point
 
 section
@@ -511,8 +499,6 @@ end WeierstrassCurve.Affine
 
 namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine isUnit_Δ a₃ map_map a₁ WeierstrassCurve.map_a₃ map Ψ₃ mk Affine.equation_add a₄ Jacobian a₂ a₆ WeierstrassCurve.map_a₆ reduction map_id IsIntegral toAffine WeierstrassCurve.map_a₂ Affine.Point WeierstrassCurve.map_a₁ WeierstrassCurve.map_a₄ map_Δ map_a₆ map_a₁ map_a₄ Δ Affine.equation_iff Affine.polynomial map_a₂ baseChange j map_a₃ Affine.finiteDimensional_ratFunc_functionField"
-p2m_open "WeierstrassCurve"
-
 end WeierstrassCurve
 
 namespace ModularCurve
@@ -526,8 +512,6 @@ end ModularCurve.ElevenA1
 
 namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine isUnit_Δ a₃ map_map a₁ WeierstrassCurve.map_a₃ map Ψ₃ mk Affine.equation_add a₄ Jacobian a₂ a₆ WeierstrassCurve.map_a₆ reduction map_id IsIntegral toAffine WeierstrassCurve.map_a₂ Affine.Point WeierstrassCurve.map_a₁ WeierstrassCurve.map_a₄ map_Δ map_a₆ map_a₁ map_a₄ Δ Affine.equation_iff Affine.polynomial map_a₂ baseChange j map_a₃ Affine.finiteDimensional_ratFunc_functionField"
-p2m_open "WeierstrassCurve"
-
 end WeierstrassCurve
 
 namespace ModularCurve
@@ -558,10 +542,6 @@ namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine isUnit_Δ a₃ map_map a₁ WeierstrassCurve.map_a₃ map Ψ₃ mk Affine.equation_add a₄ Jacobian a₂ a₆ WeierstrassCurve.map_a₆ reduction map_id IsIntegral toAffine WeierstrassCurve.map_a₂ Affine.Point WeierstrassCurve.map_a₁ WeierstrassCurve.map_a₄ map_Δ map_a₆ map_a₁ map_a₄ Δ Affine.equation_iff Affine.polynomial map_a₂ baseChange j map_a₃ Affine.finiteDimensional_ratFunc_functionField"
 namespace Affine
 p2m_export "WeierstrassCurve.Affine" "Point.add Equation CoordinateRing.basis_one equation_iff' map_a₃ slope CoordinateRing.instIsDomain CoordinateRing map baseChange equation_add Equation.baseChange Point.some Point.some.injEq Point.some.inj map_a₆ FunctionField map_a₂ Point CoordinateRing.mk addX map_a₁ CoordinateRing.map map_a₄ CoordinateRing.basis_apply CoordinateRing.map_mk CoordinateRing.map_smul CoordinateRing.basis_zero CoordinateRing.basis addY equation_iff polynomial polyToFunctionField polyToFunctionField_apply polyToFunctionField_injective polyToFunctionField_C algebraMap_smul_basis finiteDimensional_ratFunc_functionField"
-p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
-
-p2m_open "WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.WeierstrassCurve.Affine.CoordinateRing AlgebraicCurve P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.AlgebraicCurve"
-
 end WeierstrassCurve.Affine
 
 end
@@ -587,19 +567,13 @@ p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_e
 
 namespace AlgHom
 p2m_export "AlgHom" "codRestrict ext toLinearMap_apply commutes toLinearMap restrictScalars id_apply liftEquiv liftEquiv_tmul toFun_eq_coe rangeRestrict comp Finite.of_surjective mk toRingHom End toRingHom_eq_coe Finite.id fieldRange card coe_id Finite commutes' bijective comap_ker comp_apply Finite.comp"
-p2m_open "AlgHom"
-
 end AlgHom
 p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField"
 
 namespace ModularCurve
 
 end ModularCurve
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField"
-
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField"
-
 end
 p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField"
 
@@ -658,20 +632,9 @@ theorem transcendental_polyToFunctionField_X :
   exact polyToFunctionField_injective (by simpa using hp)
 
 end AdjoinSurjective
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField"
-
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField"
-
 end WeierstrassCurve.Affine
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField"
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField"
-
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField"
-
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField"
-
 end
 p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField"
 
@@ -695,27 +658,9 @@ def KwIsogenyEndDatumFGFieldDescent (K : Type uK) [Field K] [Algebra ℚ K] [Dec
       (E₀ : WeierstrassCurve K₀) (_ : E₀.IsElliptic) (_ : E₀.map (algebraMap K₀ K) = E)
       (D₀ : TreeIsogenyEndDatum (E₀⁄(AlgebraicClosure K₀))), D₀.degree = N
 
-section Brick3
-
-p2m_open "Cardinal P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Cardinal IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField"
-
-end Brick3
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField"
-
-p2m_open "PeriodPair P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.PeriodPair"
-
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField"
-
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField"
-
 end ModularCurve
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField"
-
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField"
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField"
-
 end
 p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField"
 
@@ -758,16 +703,8 @@ theorem kw_subfieldDescent_of_iotaDescend (K : Type uK) [Field K] [Algebra ℚ K
   exact ⟨K₀, hfg, E₀, hE₀ell, hE₀map, ⟨ι₀, hι₀, hfin₀⟩, hdeg₀.trans hDN⟩
 
 end ModularCurve
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField"
-
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField"
-
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField"
-
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField"
-
 end
 p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField"
 
@@ -1378,19 +1315,9 @@ theorem kw_baseChangeToAC_uncond (K₀ : Type uK) [Field K₀] [DecidableEq K₀
     (Algebra.ofId K₀ (AlgebraicClosure K₀)) N hD''
 
 end BCACDischarge
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField"
-
 end ModularCurve
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
-
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
-
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
-
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
-
 end
 p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
 
@@ -1562,19 +1489,9 @@ def KwIsogenyEndDatumIotaDescendToFG'' (K : Type uK) [Field K] [Algebra ℚ K]
     finrankAlong K₀ ι₀ = D.degree
 
 end Assembly
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
-
 end ModularCurve
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
-
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
-
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
-
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
-
 end
 p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
 
@@ -1645,16 +1562,8 @@ theorem kw_fgFieldDescent_of_subfieldDescent_of_baseChangeToAC (K : Type uK) [Fi
   exact ⟨K₀, kw_iotaSubd_countable_of_fg hfg, E₀, hE₀ell, hE₀map, D₀, hD₀deg⟩
 
 end ModularCurve
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
-
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
-
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
-
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
-
 end
 p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
 
@@ -1770,19 +1679,9 @@ def KwIotaPinnedFinrank : Prop :=
     ∧ finrankAlong K₀ (kw_iP_ι₀ E₀ D hcoeffs) = D.degree
 
 end Pinned
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
-
 end ModularCurve
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
-
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
-
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
-
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
-
 end
 p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
 
@@ -1919,19 +1818,9 @@ theorem kw_iCa_ffCoeffSet_subset_Y :
   fun _ hc => IntermediateField.subset_adjoin ℚ _ (Or.inr hc)
 
 end Canonical
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
-
 end ModularCurve
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
-
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
-
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
-
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
-
 end
 p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
 
@@ -1980,19 +1869,9 @@ theorem kw_iotaPinnedFinrank_of_finiteSeam
     hfin, hdeg⟩
 
 end Commute
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
-
 end ModularCurve
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
-
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
-
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
-
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
-
 end
 p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
 
@@ -2071,19 +1950,9 @@ theorem kw_iotaDescendToFG_of_canonicalFinrank
     (hCan (kw_iCaW_hcoeffs_canonical E D))
 
 end Wire
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
-
 end ModularCurve
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
-
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
-
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
-
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
-
 end
 p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
 
@@ -2258,19 +2127,9 @@ theorem kw_iotaPinnedFiniteSeam_of_finrankEq
   ⟨kw_iPFA_finiteAlong E₀ D hcoeffs, hdeg⟩
 
 end Discharge
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
-
 end ModularCurve
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
-
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
-
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
-
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
-
 end
 p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
 
@@ -2426,19 +2285,9 @@ theorem kw_iPFE_iotaDescendToFG_uncond :
   kw_iotaDescendToFG_of_canonicalFinrank E D (kw_iPFE_canonicalFinrank_uncond E D)
 
 end Uncond
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
-
 end ModularCurve
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
-
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
-
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
-
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
-
 end
 p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
 
@@ -2498,19 +2347,9 @@ section Headline
 local notation "ℚ̄" => AlgebraicClosure ℚ
 
 end Headline
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
-
 end ModularCurve
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
-
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
-
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
-
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
-
 end
 p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
 

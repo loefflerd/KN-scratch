@@ -182,9 +182,6 @@ def E1Chi3IsModular : Prop :=
         Complex.exp (2 * (Real.pi : ℂ) * Complex.I * (n : ℂ) * (z : ℂ))
 
 end FLT.EisensteinWeightOne
-p2m_reactivate "P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.EisensteinWeightOne"
-p2m_reactivate "P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT"
-
 end File_FLT_Modularity_EisensteinWeightOne
 p2m_reactivate "P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.EisensteinWeightOne"
 
@@ -395,10 +392,6 @@ theorem repCount_one_summand (τ : ℂ) :
   norm_num
 
 end FLT.AnalyticCore.LatticeSum
-p2m_reactivate "P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.EisensteinWeightOne P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.LatticeSum"
-p2m_reactivate "P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.EisensteinWeightOne P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore"
-p2m_reactivate "P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.EisensteinWeightOne"
-
 end File_FLT_AnalyticCore_LatticeSumPlumbing
 p2m_reactivate "P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.EisensteinWeightOne P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.LatticeSum"
 
@@ -851,12 +844,7 @@ theorem not_hexTheta_eq_neg_multiplier_mul :
   exact hexTheta_frickeFixedPoint_ne_zero (CharZero.eq_neg_self_iff.mp hcon)
 
 end
-p2m_reactivate "P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.EisensteinWeightOne P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.LatticeSum"
-
 end FLT.AnalyticCore
-p2m_reactivate "P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.EisensteinWeightOne P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.LatticeSum"
-p2m_reactivate "P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.EisensteinWeightOne P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.LatticeSum"
-
 end File_FLT_AnalyticCore_RankTwoPoissonSummation
 p2m_reactivate "P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.EisensteinWeightOne P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.LatticeSum"
 
@@ -1283,12 +1271,7 @@ theorem e1Chi3IsModular_of_analytic_inputs (F : ℍ → ℂ)
             bdd_at_cusps' := fun {c} hc => hbdd c hc }, fun z => hq z⟩
 
 end Packaging
-p2m_reactivate "P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.EisensteinWeightOne P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.LatticeSum P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.Gamma0Three"
-
 end FLT.AnalyticCore
-p2m_reactivate "P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.EisensteinWeightOne P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.LatticeSum P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.Gamma0Three"
-p2m_reactivate "P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.EisensteinWeightOne P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.LatticeSum P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.Gamma0Three"
-
 end File_FLT_AnalyticCore_TwoGeneratorSweep
 p2m_reactivate "P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.EisensteinWeightOne P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.LatticeSum P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.Gamma0Three"
 
@@ -1602,12 +1585,7 @@ theorem hexThetaH_slash_TU :
   rw [SlashAction.slash_mul, hexThetaH_slash_T, hexThetaH_slash_U]
 
 end
-p2m_reactivate "P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.EisensteinWeightOne P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.LatticeSum P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.Gamma0Three"
-
 end FLT.AnalyticCore
-p2m_reactivate "P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.EisensteinWeightOne P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.LatticeSum P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.Gamma0Three"
-p2m_reactivate "P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.EisensteinWeightOne P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.LatticeSum P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.Gamma0Three"
-
 end File_FLT_AnalyticCore_EisensteinModularityAssembly
 p2m_reactivate "P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.EisensteinWeightOne P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.LatticeSum P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.Gamma0Three"
 
@@ -1706,12 +1684,7 @@ theorem continuous_hexThetaH : Continuous hexThetaH :=
   mdifferentiable_hexThetaH.continuous
 
 end
-p2m_reactivate "P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.EisensteinWeightOne P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.LatticeSum P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.Gamma0Three"
-
 end FLT.AnalyticCore
-p2m_reactivate "P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.EisensteinWeightOne P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.LatticeSum P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.Gamma0Three"
-p2m_reactivate "P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.EisensteinWeightOne P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.LatticeSum P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.Gamma0Three"
-
 end File_FLT_AnalyticCore_ThetaHolomorphy
 p2m_reactivate "P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.EisensteinWeightOne P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.LatticeSum P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.Gamma0Three"
 
@@ -2008,9 +1981,6 @@ theorem multiplier_six_load_bearing : (reprCount 1 : ℤ) ≠ sigmaChi 1 := by
   rw [reprCount_one, sigmaChi_one]; norm_num
 
 end FLT.AnalyticCore
-p2m_reactivate "P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.EisensteinWeightOne P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.LatticeSum P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.Gamma0Three"
-p2m_reactivate "P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.EisensteinWeightOne P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.LatticeSum P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.Gamma0Three"
-
 end File_FLT_AnalyticCore_RepresentationNumberIdentity
 p2m_reactivate "P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.EisensteinWeightOne P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.LatticeSum P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.Gamma0Three"
 
@@ -2231,8 +2201,6 @@ theorem nuThree_nineteen : nuThree 19 = 2 :=
   nuThree_eq_two_of_mod_three_eq_one (by norm_num) (by norm_num)
 
 end ModularCurve
-p2m_reactivate "P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.EisensteinWeightOne P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.LatticeSum P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.Gamma0Three"
-
 end File_FLT_ModularCurve_Numerics_NuThree
 p2m_reactivate "P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.EisensteinWeightOne P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.LatticeSum P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.Gamma0Three"
 
@@ -2549,9 +2517,6 @@ theorem residuals_jointly_satisfiable_on_table :
   ⟨orbitCountMultiplicative_three_four, splitPrimePowCount_at_seven⟩
 
 end FLT.AnalyticCore
-p2m_reactivate "P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.EisensteinWeightOne P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.LatticeSum P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.Gamma0Three"
-p2m_reactivate "P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.EisensteinWeightOne P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.LatticeSum P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.Gamma0Three"
-
 end File_FLT_AnalyticCore_SplittingLawHalf
 p2m_reactivate "P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.EisensteinWeightOne P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.LatticeSum P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.Gamma0Three"
 
@@ -3177,9 +3142,6 @@ theorem orbitCount_coprimality_load_bearing :
   ⟨HexInt.orbitCountMultiplicative_holds, orbitCountMultiplicative_not_without_coprime⟩
 
 end FLT.AnalyticCore
-p2m_reactivate "P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.EisensteinWeightOne P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.LatticeSum P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.Gamma0Three P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.HexInt"
-p2m_reactivate "P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.EisensteinWeightOne P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.LatticeSum P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.Gamma0Three P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.HexInt"
-
 end File_FLT_AnalyticCore_OrbitCountMultiplicative
 p2m_reactivate "P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.EisensteinWeightOne P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.LatticeSum P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.Gamma0Three P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.HexInt"
 
@@ -3251,9 +3213,6 @@ theorem representationCountAgrees_on_table :
   exact reprCountEqCoeffE1Chi3_on_table n hn
 
 end FLT.AnalyticCore
-p2m_reactivate "P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.EisensteinWeightOne P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.LatticeSum P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.Gamma0Three P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.HexInt"
-p2m_reactivate "P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.EisensteinWeightOne P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.LatticeSum P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.Gamma0Three P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.HexInt"
-
 end File_FLT_AnalyticCore_CountIdentification
 p2m_reactivate "P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.EisensteinWeightOne P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.LatticeSum P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.Gamma0Three P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.HexInt"
 
@@ -3756,9 +3715,6 @@ theorem not_exists_hexForm_eq_two : ¬∃ x y : ℤ, hexForm x y = ((2 : ℕ) : 
   exact absurd hmem (Finset.notMem_empty _)
 
 end FLT.AnalyticCore
-p2m_reactivate "P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.EisensteinWeightOne P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.LatticeSum P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.Gamma0Three P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.HexInt"
-p2m_reactivate "P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.EisensteinWeightOne P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.LatticeSum P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.Gamma0Three P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.HexInt"
-
 end File_FLT_AnalyticCore_SplitPrimePowCount
 p2m_reactivate "P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.EisensteinWeightOne P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.LatticeSum P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.Gamma0Three P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.HexInt"
 
@@ -3815,15 +3771,8 @@ theorem exists_cuspForm_two_mul_e1Chi3 (g : CuspForm (Gamma1 3) 1) :
   ⟨mulE1Chi3 g, fun z => by rw [mulE1Chi3_apply, e1Chi3ModularForm_apply]⟩
 
 end
-p2m_reactivate "P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.EisensteinWeightOne P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.LatticeSum P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.Gamma0Three P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.HexInt"
-
 end FLT.AnalyticCore
-p2m_reactivate "P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.EisensteinWeightOne P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.LatticeSum P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.Gamma0Three P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.HexInt"
-p2m_reactivate "P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.EisensteinWeightOne P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.LatticeSum P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.Gamma0Three P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.HexInt"
-
 end File_FLT_AnalyticCore_E1Chi3Modular
-p2m_reactivate "P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.EisensteinWeightOne P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.LatticeSum P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.Gamma0Three P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.HexInt"
-
 end S17E1
 p2m_reactivate "P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.EisensteinWeightOne P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.LatticeSum P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.Gamma0Three P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.HexInt P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1"
 

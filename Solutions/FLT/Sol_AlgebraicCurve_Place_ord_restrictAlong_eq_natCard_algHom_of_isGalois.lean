@@ -744,9 +744,6 @@ theorem ord_restrictAlong_eq_card (ψ : F →ₐ[K] M) (hψ : ψ x = t) :
 end Main
 
 end P2MKcA.HilbertB
-p2m_reactivate "P2MW.S_AlgebraicCurve_Place_ord_restrictAlong_eq_natCard_algHom_of_isGalois.P2MKcA P2MW.S_AlgebraicCurve_Place_ord_restrictAlong_eq_natCard_algHom_of_isGalois.P2MKcA.HilbertB"
-p2m_reactivate "P2MW.S_AlgebraicCurve_Place_ord_restrictAlong_eq_natCard_algHom_of_isGalois.P2MKcA"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_Place_ord_restrictAlong_eq_natCard_algHom_of_isGalois.P2MKcA P2MW.S_AlgebraicCurve_Place_ord_restrictAlong_eq_natCard_algHom_of_isGalois.P2MKcA.HilbertB"
 

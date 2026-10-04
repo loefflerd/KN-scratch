@@ -978,8 +978,6 @@ theorem isAlgClosed_hahnSeries_rat [IsAlgClosed K] : IsAlgClosed (HahnSeries ℚ
   exact exists_isRoot_hahnSeries hf hdeg
 
 end DorgePuiseux
-p2m_reactivate "P2MW.S_HahnSeries_isAlgClosed_rat.DorgePuiseux"
-
 end
 p2m_reactivate "P2MW.S_HahnSeries_isAlgClosed_rat.DorgePuiseux"
 

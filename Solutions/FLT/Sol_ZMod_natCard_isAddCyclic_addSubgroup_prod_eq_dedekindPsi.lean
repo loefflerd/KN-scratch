@@ -292,8 +292,6 @@ theorem card_cyclicAddSubgroup_eq_dedekindPsi :
 end Headline
 
 end ModularCurve
-p2m_reactivate "P2MW.S_ZMod_natCard_isAddCyclic_addSubgroup_prod_eq_dedekindPsi.ModularCurve"
-
 end
 p2m_reactivate "P2MW.S_ZMod_natCard_isAddCyclic_addSubgroup_prod_eq_dedekindPsi.ModularCurve"
 

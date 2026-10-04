@@ -601,8 +601,6 @@ theorem solution {K : Type*} [Field K] [Algebra ℂ K]
     (WLightR8a.isIntegral_TRng_iff_closure F t z).mp hz.2⟩
 
 end
-p2m_reactivate "P2MW.S_IsIntegral_mem_span_of_adjoin_simple_constants_transcendental.WLightR8a"
-
 end S_IsIntegral_mem_span_of_adjoin_simple_constants_transcendental
 end P2MW
 export P2MW.S_IsIntegral_mem_span_of_adjoin_simple_constants_transcendental (solution)

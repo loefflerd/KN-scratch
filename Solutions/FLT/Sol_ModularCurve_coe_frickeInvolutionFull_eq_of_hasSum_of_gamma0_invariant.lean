@@ -1133,11 +1133,7 @@ theorem fricke_transport (w : modularFunctionFieldFull ℓ ≃ₐ[ℚ] modularFu
 end FrickeTransport
 
 end QExpN
-p2m_reactivate "P2MW.S_ModularCurve_coe_frickeInvolutionFull_eq_of_hasSum_of_gamma0_invariant.ModularCurve.QExpN"
-
 end ModularCurve
-p2m_reactivate "P2MW.S_ModularCurve_coe_frickeInvolutionFull_eq_of_hasSum_of_gamma0_invariant.ModularCurve.QExpN P2MW.S_ModularCurve_coe_frickeInvolutionFull_eq_of_hasSum_of_gamma0_invariant.ModularCurve"
-
 end
 p2m_reactivate "P2MW.S_ModularCurve_coe_frickeInvolutionFull_eq_of_hasSum_of_gamma0_invariant.ModularCurve.QExpN P2MW.S_ModularCurve_coe_frickeInvolutionFull_eq_of_hasSum_of_gamma0_invariant.ModularCurve"
 

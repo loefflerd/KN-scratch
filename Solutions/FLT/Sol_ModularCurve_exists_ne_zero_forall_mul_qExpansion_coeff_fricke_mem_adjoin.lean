@@ -710,8 +710,6 @@ theorem main (X : FD N) (v : Fin 2 → ZMod N) (hv : v ≠ 0) :
 end Main
 
 end FrickeIntegral
-p2m_reactivate "P2MW.S_ModularCurve_exists_ne_zero_forall_mul_qExpansion_coeff_fricke_mem_adjoin.FrickeIntegral"
-
 end
 p2m_reactivate "P2MW.S_ModularCurve_exists_ne_zero_forall_mul_qExpansion_coeff_fricke_mem_adjoin.FrickeIntegral"
 

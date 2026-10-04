@@ -406,9 +406,6 @@ theorem main (hle : Γ' ≤ Γ) (hn : (Γ'.subgroupOf Γ).Normal)
 end Descent
 
 end ModularCurve.ESDescent
-p2m_reactivate "P2MW.S_ModularCurve_finrank_parabolicHoms_le_two_mul_finrank_cuspForm_of_le_of_normal.ModularCurve P2MW.S_ModularCurve_finrank_parabolicHoms_le_two_mul_finrank_cuspForm_of_le_of_normal.ModularCurve.ESDescent"
-p2m_reactivate "P2MW.S_ModularCurve_finrank_parabolicHoms_le_two_mul_finrank_cuspForm_of_le_of_normal.ModularCurve"
-
 end
 p2m_reactivate "P2MW.S_ModularCurve_finrank_parabolicHoms_le_two_mul_finrank_cuspForm_of_le_of_normal.ModularCurve P2MW.S_ModularCurve_finrank_parabolicHoms_le_two_mul_finrank_cuspForm_of_le_of_normal.ModularCurve.ESDescent"
 

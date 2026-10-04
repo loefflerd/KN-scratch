@@ -884,8 +884,6 @@ end Swap
 end PhiGen
 
 end ModularCurve
-p2m_reactivate "P2MW.S_ModularCurve_ModularPolynomialData_transposeToAdjoin_monic_of_qExpansion.ModularCurve"
-
 end
 p2m_reactivate "P2MW.S_ModularCurve_ModularPolynomialData_transposeToAdjoin_monic_of_qExpansion.ModularCurve"
 

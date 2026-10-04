@@ -205,9 +205,6 @@ theorem comp_eq_of_clauses
   rw [hw₃ g, hw₂ g, hw₁ g, map_map, RingHom.ext_int ((algebraMap ℚ ℂ).comp (Int.castRingHom ℚ)) (Int.castRingHom ℂ)]
 
 end HeckeEis.C2Aux
-p2m_reactivate "P2MW.S_HeckeEis_exists_basis_coeffH1par_int_complex.HeckeEis P2MW.S_HeckeEis_exists_basis_coeffH1par_int_complex.HeckeEis.ZQAux"
-p2m_reactivate "P2MW.S_HeckeEis_exists_basis_coeffH1par_int_complex.HeckeEis P2MW.S_HeckeEis_exists_basis_coeffH1par_int_complex.HeckeEis.ZQAux"
-
 end
 p2m_reactivate "P2MW.S_HeckeEis_exists_basis_coeffH1par_int_complex.HeckeEis P2MW.S_HeckeEis_exists_basis_coeffH1par_int_complex.HeckeEis.ZQAux"
 
@@ -298,9 +295,6 @@ theorem main (n N : ℕ) [NeZero N]
   rw [Module.Basis.mk_apply, hcomp]
 
 end HeckeEis.C2Aux
-p2m_reactivate "P2MW.S_HeckeEis_exists_basis_coeffH1par_int_complex.HeckeEis P2MW.S_HeckeEis_exists_basis_coeffH1par_int_complex.HeckeEis.ZQAux"
-p2m_reactivate "P2MW.S_HeckeEis_exists_basis_coeffH1par_int_complex.HeckeEis P2MW.S_HeckeEis_exists_basis_coeffH1par_int_complex.HeckeEis.ZQAux"
-
 end
 p2m_reactivate "P2MW.S_HeckeEis_exists_basis_coeffH1par_int_complex.HeckeEis P2MW.S_HeckeEis_exists_basis_coeffH1par_int_complex.HeckeEis.ZQAux"
 

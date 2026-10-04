@@ -288,9 +288,6 @@ theorem hasDerivAt_eval_iterate_pderiv {n : ℕ} {g : ℍ → ℂ} {G : ℍ → 
   rw [hA, hB, sub_eq_add_neg]
 
 end HeckeEis.BolAux
-p2m_reactivate "P2MW.S_HeckeEis_IsEichlerIntegral_hasDerivAt_eval_iterate_pderiv.HeckeEis P2MW.S_HeckeEis_IsEichlerIntegral_hasDerivAt_eval_iterate_pderiv.HeckeEis.BolAux"
-p2m_reactivate "P2MW.S_HeckeEis_IsEichlerIntegral_hasDerivAt_eval_iterate_pderiv.HeckeEis"
-
 end
 p2m_reactivate "P2MW.S_HeckeEis_IsEichlerIntegral_hasDerivAt_eval_iterate_pderiv.HeckeEis P2MW.S_HeckeEis_IsEichlerIntegral_hasDerivAt_eval_iterate_pderiv.HeckeEis.BolAux"
 

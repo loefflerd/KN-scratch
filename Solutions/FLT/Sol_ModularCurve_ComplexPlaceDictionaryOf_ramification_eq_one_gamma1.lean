@@ -358,9 +358,6 @@ theorem exists_coe_eq_jqModC :
 end Main
 
 end ModularCurve.RamOne
-p2m_reactivate "P2MW.S_ModularCurve_ComplexPlaceDictionaryOf_ramification_eq_one_gamma1.ModularCurve P2MW.S_ModularCurve_ComplexPlaceDictionaryOf_ramification_eq_one_gamma1.ModularCurve.RamOne"
-p2m_reactivate "P2MW.S_ModularCurve_ComplexPlaceDictionaryOf_ramification_eq_one_gamma1.ModularCurve"
-
 end
 p2m_reactivate "P2MW.S_ModularCurve_ComplexPlaceDictionaryOf_ramification_eq_one_gamma1.ModularCurve P2MW.S_ModularCurve_ComplexPlaceDictionaryOf_ramification_eq_one_gamma1.ModularCurve.RamOne"
 

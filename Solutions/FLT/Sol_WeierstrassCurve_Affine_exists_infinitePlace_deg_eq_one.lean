@@ -483,8 +483,6 @@ theorem exists_infinitePlace_deg_eq_one_impl (W : Affine F) :
   ⟨infPlace W, deg_infPlace, not_forall_mem_infPlace, fun v hv => eq_infPlace_of_not_forall_mem v hv⟩
 
 end D5S
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_infinitePlace_deg_eq_one.D5S"
-
 end
 p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_infinitePlace_deg_eq_one.D5S"
 

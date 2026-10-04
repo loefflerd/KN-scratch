@@ -27,98 +27,76 @@ set_option maxHeartbeats 12800000
 
 namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver HasCanonicalDivisor HasCanonicalLocalResidueKStar kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff kaehlerPullback"
-p2m_open "AlgebraicCurve"
 end AlgebraicCurve
 namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver HasCanonicalDivisor HasCanonicalLocalResidueKStar kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff kaehlerPullback"
 namespace Place
 p2m_export "AlgebraicCurve.Place" "ext ResidueField FiniteResidue heightOneSpectrum heightOneSpectrum_asIdeal ord ord_one ord_mul ord_inv ord_coe_irreducible ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ne_top' FiniteResidue.finite algebraMap_mem' toValuationSubring mk dCoord DCoordGenerates differentialCoeff differentialCoeff_smul_dCoord uniformizer ramificationIndex ramificationIndex_pos exists_ord_eq_ramificationIndex ramificationIndex_dvd_ord irreducible_mk_comap restrict adicCompletion adicCompletionIntegers"
-p2m_open "AlgebraicCurve.Place AlgebraicCurve"
 end AlgebraicCurve.Place
 namespace Filter
 p2m_export "Filter" "ker mk mem_comap mem_ker mem_top comap unique map_mono map"
-p2m_open "Filter"
 end Filter
 namespace IntermediateField
 p2m_export "IntermediateField" "toAlgebra mk val isIntegral_iff inclusion ext algebraMap_apply smul_def finiteDimensional_sup comap mem_top restrictScalars restrictScalars_top coe_smul map_mono smul_mem restrict map"
-p2m_open "IntermediateField"
 end IntermediateField
 namespace IsDedekindDomain
 p2m_export "IsDedekindDomain" "HeightOneSpectrum.ext mk HeightOneSpectrum"
-p2m_open "IsDedekindDomain"
 end IsDedekindDomain
 namespace IsDedekindDomain
 p2m_export "IsDedekindDomain" "HeightOneSpectrum.ext mk HeightOneSpectrum"
 namespace HeightOneSpectrum
 p2m_export "IsDedekindDomain.HeightOneSpectrum" "valuation_of_algebraMap intValuation_le_pow_iff_mem isMaximal mk comap valuedAdicCompletion_eq_valuation' adicCompletion valuation adicCompletionIntegers valuedAdicCompletion_surjective mem_integers_of_valuation_le_one denseRange_algebraMap intValuation completionIdeal adicCompletion.mem_completionIdeal_pow"
-p2m_open "IsDedekindDomain.HeightOneSpectrum IsDedekindDomain"
 end IsDedekindDomain.HeightOneSpectrum
 namespace IsLocalRing
 p2m_export "IsLocalRing" "ResidueField maximalIdeal maximalIdeal.isMaximal of_injective"
-p2m_open "IsLocalRing"
 end IsLocalRing
 namespace KaehlerDifferential
 p2m_export "KaehlerDifferential" "finite D map_D map"
-p2m_open "KaehlerDifferential"
 end KaehlerDifferential
 namespace LinearMap
 p2m_export "LinearMap" "mulLeft_apply coe_smul mem_range range sub_apply coe_mk add_apply ker_eq_bot range_zero id range_comp codRestrict smul_apply mulLeft ker_comp trace_comp_comm' mk id_apply ext comp isIntegral trace quotKerEquivRange finiteDimensional range_comp_le_range restrictScalars ker mem_ker comp_apply mem_range_self restrict"
-p2m_open "LinearMap"
 end LinearMap
 namespace ModularCurve
 p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4gRRTate.KwF4gRRTateChainRule"
 namespace KwF4R1V410a
-p2m_open "ModularCurve"
 end ModularCurve.KwF4R1V410a
 namespace ModularCurve
 p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4gRRTate.KwF4gRRTateChainRule"
 namespace KwF4R1V473a
-p2m_open "ModularCurve"
 end ModularCurve.KwF4R1V473a
 namespace ModularCurve
 p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4gRRTate.KwF4gRRTateChainRule"
 namespace KwF4gRRTate
 p2m_export "ModularCurve.KwF4gRRTate" "finrankTrace tateComm tateComm_apply tateCommRestrict tateCommRestrict_apply tateCommTrace adicIntegersKSubmod tateProj lmulK tateRes KwF4gRRTateCommFinite KwF4gRRTateChainRule"
-p2m_open "ModularCurve.KwF4gRRTate ModularCurve"
 end ModularCurve.KwF4gRRTate
 namespace ModularCurve
 p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4gRRTate.KwF4gRRTateChainRule"
 namespace Lg37
-p2m_open "ModularCurve"
 end ModularCurve.Lg37
 namespace Module
 p2m_export "Module" "Injective equiv Finite.equiv mk restrictScalars Finite.of_submodule_quotient"
-p2m_open "Module"
 end Module
 namespace MonoidWithZeroHom
 p2m_export "MonoidWithZeroHom" "id_apply id ext mk coe_mk coe_one comp_apply comp"
-p2m_open "MonoidWithZeroHom"
 end MonoidWithZeroHom
 namespace Multiplicative
 p2m_export "Multiplicative" "ext smul"
-p2m_open "Multiplicative"
 end Multiplicative
 namespace NumberField
 p2m_export "NumberField" "mk"
-p2m_open "NumberField"
 end NumberField
 namespace Pointwise
-p2m_open "Pointwise"
 end Pointwise
 namespace Polynomial
 p2m_export "Polynomial" "coe_one algebraMap_eq unique ext_iff toSubring map comp coe_mul coe_sub coe_smul algebraMap_apply ext ring"
-p2m_open "Polynomial"
 end Polynomial
 namespace Submodule
 p2m_export "Submodule" "quotEquivOfEq inclusion mem_sup_right coe_smul smul_mem' mk smul_mem coe_mem Quotient.mk span restrictScalars projectionOnto_apply_left restrictScalars_top mem_closure_iff Quotient.restrictScalarsEquiv mem_comap mem_top Quotient.equiv mem_span_singleton mkQ map_mono map_smul' equivMapOfInjective zero quotientQuotientEquivQuotient coe_eq_zero range_subtype Quotient.mk_surjective restrictScalars_mono map coe_mk exists_isCompl projectionOnto finiteDimensional_of_le smul_def restrictScalarsEquiv ext ker_mkQ comap finiteDimensional_sup liftQ mem_sup_left smul restrictScalars_mem"
-p2m_open "Submodule"
 end Submodule
 namespace Topology
-p2m_open "Topology"
 end Topology
 namespace WithZero
 p2m_export "WithZero" "coe_one map coe_mul exp_eq_coe_ofAdd coe exp_ne_zero exp exp_zero exp_le_exp"
-p2m_open "WithZero"
 end WithZero
 
 section
@@ -153,8 +131,6 @@ namespace ModularCurve
 p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4gRRTate.KwF4gRRTateChainRule"
 namespace KwF4gRRTate
 p2m_export "ModularCurve.KwF4gRRTate" "finrankTrace tateComm tateComm_apply tateCommRestrict tateCommRestrict_apply tateCommTrace adicIntegersKSubmod tateProj lmulK tateRes KwF4gRRTateCommFinite KwF4gRRTateChainRule"
-p2m_open "ModularCurve.KwF4gRRTate ModularCurve"
-
 end ModularCurve.KwF4gRRTate
 
 end
@@ -178,50 +154,30 @@ variable (K F : Type*) [Field K] [Field F] [Algebra K F]
 
 namespace Place
 p2m_export "AlgebraicCurve.Place" "ext ResidueField FiniteResidue heightOneSpectrum heightOneSpectrum_asIdeal ord ord_one ord_mul ord_inv ord_coe_irreducible ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ne_top' FiniteResidue.finite algebraMap_mem' toValuationSubring mk dCoord DCoordGenerates differentialCoeff differentialCoeff_smul_dCoord uniformizer ramificationIndex ramificationIndex_pos exists_ord_eq_ramificationIndex ramificationIndex_dvd_ord irreducible_mk_comap restrict adicCompletion adicCompletionIntegers"
-p2m_open "AlgebraicCurve.Place"
-
 end Place
 
 namespace Divisor
 p2m_export "AlgebraicCurve.Divisor" "smul_def smul_apply"
-p2m_open "AlgebraicCurve.Divisor"
-
 end Divisor
 
 namespace Pic0
 p2m_export "AlgebraicCurve.Pic0" "mk mk_surjective"
-p2m_open "AlgebraicCurve.Pic0"
-
 end Pic0
 
 namespace Place
 p2m_export "AlgebraicCurve.Place" "ext ResidueField FiniteResidue heightOneSpectrum heightOneSpectrum_asIdeal ord ord_one ord_mul ord_inv ord_coe_irreducible ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ne_top' FiniteResidue.finite algebraMap_mem' toValuationSubring mk dCoord DCoordGenerates differentialCoeff differentialCoeff_smul_dCoord uniformizer ramificationIndex ramificationIndex_pos exists_ord_eq_ramificationIndex ramificationIndex_dvd_ord irreducible_mk_comap restrict adicCompletion adicCompletionIntegers"
-p2m_open "AlgebraicCurve.Place"
-
-p2m_open_scoped "Pointwise P2MW.S_AlgebraicCurve_tateChainRule.Pointwise"
-
 end Place
 
 namespace Divisor
 p2m_export "AlgebraicCurve.Divisor" "smul_def smul_apply"
-p2m_open "AlgebraicCurve.Divisor"
-
-p2m_open_scoped "Pointwise P2MW.S_AlgebraicCurve_tateChainRule.Pointwise"
-
 end Divisor
 
 namespace Pic0
 p2m_export "AlgebraicCurve.Pic0" "mk mk_surjective"
-p2m_open "AlgebraicCurve.Pic0"
-
-p2m_open_scoped "Pointwise P2MW.S_AlgebraicCurve_tateChainRule.Pointwise"
-
 end Pic0
 
 namespace Place
 p2m_export "AlgebraicCurve.Place" "ext ResidueField FiniteResidue heightOneSpectrum heightOneSpectrum_asIdeal ord ord_one ord_mul ord_inv ord_coe_irreducible ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ne_top' FiniteResidue.finite algebraMap_mem' toValuationSubring mk dCoord DCoordGenerates differentialCoeff differentialCoeff_smul_dCoord uniformizer ramificationIndex ramificationIndex_pos exists_ord_eq_ramificationIndex ramificationIndex_dvd_ord irreducible_mk_comap restrict adicCompletion adicCompletionIntegers"
-p2m_open "AlgebraicCurve.Place"
-
 end Place
 
 end AlgebraicCurve
@@ -489,8 +445,6 @@ namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver HasCanonicalDivisor HasCanonicalLocalResidueKStar kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff kaehlerPullback"
 namespace Place
 p2m_export "AlgebraicCurve.Place" "ext ResidueField FiniteResidue heightOneSpectrum heightOneSpectrum_asIdeal ord ord_one ord_mul ord_inv ord_coe_irreducible ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ne_top' FiniteResidue.finite algebraMap_mem' toValuationSubring mk dCoord DCoordGenerates differentialCoeff differentialCoeff_smul_dCoord uniformizer ramificationIndex ramificationIndex_pos exists_ord_eq_ramificationIndex ramificationIndex_dvd_ord irreducible_mk_comap restrict adicCompletion adicCompletionIntegers"
-p2m_open "AlgebraicCurve.Place AlgebraicCurve"
-
 end AlgebraicCurve.Place
 
 end
@@ -513,36 +467,24 @@ variable (K F : Type*) [Field K] [Field F] [Algebra K F]
 
 namespace IsCurveOver
 p2m_export "AlgebraicCurve.IsCurveOver" "mk"
-p2m_open "AlgebraicCurve.IsCurveOver"
-
 end IsCurveOver
 
 namespace Place
 p2m_export "AlgebraicCurve.Place" "ext ResidueField FiniteResidue heightOneSpectrum heightOneSpectrum_asIdeal ord ord_one ord_mul ord_inv ord_coe_irreducible ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ne_top' FiniteResidue.finite algebraMap_mem' toValuationSubring mk dCoord DCoordGenerates differentialCoeff differentialCoeff_smul_dCoord uniformizer ramificationIndex ramificationIndex_pos exists_ord_eq_ramificationIndex ramificationIndex_dvd_ord irreducible_mk_comap restrict adicCompletion adicCompletionIntegers"
-p2m_open "AlgebraicCurve.Place"
-
 end Place
 
 end AlgebraicCurve
 
 namespace ModularCurve
 p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4gRRTate.KwF4gRRTateChainRule"
-p2m_open "ModularCurve"
-
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve"
-
 end ModularCurve
 
 namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver HasCanonicalDivisor HasCanonicalLocalResidueKStar kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff kaehlerPullback"
-p2m_open "AlgebraicCurve"
-
 end AlgebraicCurve
 
 namespace ModularCurve
 p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4gRRTate.KwF4gRRTateChainRule"
-p2m_open "ModularCurve"
-
 end ModularCurve
 
 end
@@ -604,23 +546,9 @@ p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve Poly
 
 attribute [local instance 2000] RatFunc.instAlgebraOfPolynomial
 
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve"
-
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve"
-
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve"
-
 end ModularCurve
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve"
-
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve"
 
@@ -677,22 +605,9 @@ theorem range_tateProj : LinearMap.range (tateProj u) = adicIntegersKSubmod u :=
     exact ⟨x, tateProj_of_mem u hx⟩
 
 end TateProj
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve"
-
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve"
-
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve"
-
 end ModularCurve.KwF4gRRTate
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve"
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve"
 
@@ -779,18 +694,9 @@ def KwF4gRRTatePoleWindowFinite : Prop :=
         (adicIntegersKSubmod u).comap (poleWindowKSubmod u πh M).subtype)
 
 end PoleWindow
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve"
-
 end ModularCurve.KwF4gRRTate
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve"
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve"
 
@@ -833,29 +739,8 @@ theorem isOpen_setOf_valued_le {γ : ℤᵐ⁰} (hγ : γ ≠ 0) :
   exact Valued.isOpen_closedBall _ hr0
 
 end adicCompletion
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve"
-
-section NumberField
-
-p2m_open "NumberField P2MW.S_AlgebraicCurve_tateChainRule.NumberField"
-
-end NumberField
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve"
-
 end IsDedekindDomain.HeightOneSpectrum
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve"
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve"
-
-section AxiomAudit
-
-p2m_open "IsDedekindDomain.HeightOneSpectrum P2MW.S_AlgebraicCurve_tateChainRule.IsDedekindDomain.HeightOneSpectrum"
-
-end AxiomAudit
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve"
 
@@ -967,17 +852,9 @@ theorem kwF4R1V410a_quotientEquiv_mk (n : ℕ) (x : O_w) :
       = Ideal.Quotient.mk _ (algebraMap (O_w) (O_W) x) := rfl
 
 end Bridge
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve"
-
 end ModularCurve.KwF4R1V410a
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a"
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a"
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a"
 
@@ -1098,18 +975,9 @@ theorem kwF4gRRTate_poleWindowFinite_of_DVRQuotPowKFinite
   exact FiniteDimensional.of_injective e'.toLinearMap e'.injective
 
 end PoleWindowShift
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a"
-
 end ModularCurve.KwF4gRRTate
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a"
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a"
 
@@ -1158,18 +1026,9 @@ theorem finrankTrace_comp_comm (f : M →ₗ[K] N) (g : N →ₗ[K] M)
   rw [hgf, hfg, LinearMap.trace_comp_comm']
 
 end FinrankTraceCyclicity
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a"
-
 end ModularCurve.KwF4gRRTate
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a"
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a"
 
@@ -1254,18 +1113,9 @@ theorem finrankTrace_sub_eq
   rfl
 
 end Additivity
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a"
-
 end ModularCurve.KwF4gRRTate
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a"
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a"
 
@@ -1404,18 +1254,9 @@ theorem kwF4gRRTate_DVRQuotPowKFinite_of_cotangent
   exact Module.Finite.equiv (quotPiPowEquivIdealQuot u πh M).symm
 
 end DVRQuotDischarge
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a"
-
 end ModularCurve.KwF4gRRTate
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a"
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a"
 
@@ -1486,18 +1327,9 @@ theorem kwF4gRRTate_DVRCotangentKFinite : KwF4gRRTateDVRCotangentKFinite K L := 
   exact Module.Finite.equiv (quotSpanIrreducibleEquivResidueField u πh hπh).symm
 
 end DVRCotangentDischarge
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a"
-
 end ModularCurve.KwF4gRRTate
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
 
@@ -1534,20 +1366,9 @@ def KwF4gRRTatePoleWindowImageFinite : Prop :=
       (Submodule.map (lmulK u fh) (adicIntegersKSubmod u)))
 
 end TermRangeFinite
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
-
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
-
 end ModularCurve.KwF4gRRTate
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
 
@@ -1633,18 +1454,9 @@ theorem kwF4gRRTate_poleWindowImageFinite :
   exact e.finiteDimensional
 
 end Discharge
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
-
 end ModularCurve.KwF4gRRTate
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
 
@@ -1747,22 +1559,9 @@ theorem finiteDimensional_range_alphaMap (c : u.adicCompletion) :
     (LinearMap.range (alphaMap u c))).symm.finiteDimensional
 
 end TermMaps
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
-
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
-
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
-
 end ModularCurve.KwF4gRRTate
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
 
@@ -1900,22 +1699,9 @@ theorem tateRes_add_fst (fh₁ fh₂ gh : u.adicCompletion)
   exact finrankTrace_congr (by rw [heq])
 
 end TateResAddFst
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
-
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
-
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
-
 end ModularCurve.KwF4gRRTate
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
 
@@ -2320,18 +2106,9 @@ theorem kwF4gRRTate_chainRule_of_derivationFactor
           (algebraMap F w.adicCompletion w.uniformizer) := tateRes_congr_fst w hX.symm
 
 end Reprice
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
-
 end ModularCurve.KwF4gRRTate
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
 
@@ -2607,20 +2384,9 @@ theorem kwTateRR2_derivationFactorSnd [∀ w : Place K F, w.FiniteResidue]
         tateRes_congr_fst w (mul_comm _ f)
 
 end Headline
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate.DualDom"
-
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate.DualDom"
-
 end ModularCurve.KwF4gRRTate
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate.DualDom"
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate.DualDom"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate.DualDom"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate.DualDom"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate.DualDom"
 

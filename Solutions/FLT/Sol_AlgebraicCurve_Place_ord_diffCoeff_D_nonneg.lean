@@ -497,11 +497,7 @@ theorem ord_diffCoeff_D_nonneg {K F : Type*} [Field K] [Field F] [Algebra K F] [
   exact engine x v rfl ht hf
 
 end FF2R4
-p2m_reactivate "P2MW.S_AlgebraicCurve_Place_ord_diffCoeff_D_nonneg.AlgebraicCurve.FF2R4"
-
 end AlgebraicCurve
-p2m_reactivate "P2MW.S_AlgebraicCurve_Place_ord_diffCoeff_D_nonneg.AlgebraicCurve.FF2R4 P2MW.S_AlgebraicCurve_Place_ord_diffCoeff_D_nonneg.AlgebraicCurve"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_Place_ord_diffCoeff_D_nonneg.AlgebraicCurve.FF2R4 P2MW.S_AlgebraicCurve_Place_ord_diffCoeff_D_nonneg.AlgebraicCurve"
 

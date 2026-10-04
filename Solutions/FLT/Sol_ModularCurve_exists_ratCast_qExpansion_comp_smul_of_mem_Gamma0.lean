@@ -1273,8 +1273,6 @@ theorem cardK (N : ℕ) [NeZero N] (m : ℕ) (G : ℍ → ℂ) (hG : MDifferenti
 end Main
 
 end X1DiamondRational
-p2m_reactivate "P2MW.S_ModularCurve_exists_ratCast_qExpansion_comp_smul_of_mem_Gamma0.X1DiamondRational"
-
 end
 p2m_reactivate "P2MW.S_ModularCurve_exists_ratCast_qExpansion_comp_smul_of_mem_Gamma0.X1DiamondRational"
 

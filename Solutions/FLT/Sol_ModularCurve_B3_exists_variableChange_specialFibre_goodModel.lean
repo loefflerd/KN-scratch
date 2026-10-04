@@ -2810,9 +2810,6 @@ theorem b3_specialisationEquivariance (p : ℕ) [Fact p.Prime] [NeZero p] (j₀ 
   exact b3_specialisationEquivariance_generic p j₀ hz h17 G G'
 
 end ModularCurve.B3
-p2m_reactivate "P2MW.S_ModularCurve_B3_exists_variableChange_specialFibre_goodModel.ModularCurve P2MW.S_ModularCurve_B3_exists_variableChange_specialFibre_goodModel.ModularCurve.B3"
-p2m_reactivate "P2MW.S_ModularCurve_B3_exists_variableChange_specialFibre_goodModel.ModularCurve"
-
 end
 p2m_reactivate "P2MW.S_ModularCurve_B3_exists_variableChange_specialFibre_goodModel.ModularCurve P2MW.S_ModularCurve_B3_exists_variableChange_specialFibre_goodModel.ModularCurve.B3"
 

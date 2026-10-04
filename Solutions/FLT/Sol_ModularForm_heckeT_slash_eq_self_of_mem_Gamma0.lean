@@ -354,8 +354,6 @@ theorem solution {N : ℕ} (k : ℤ) {p : ℕ} (hp : p.Prime) (hpN : ¬ p ∣ N)
   ModularForm.heckeT_slash_eq_self_of_mem_Gamma0' k hp hpN hf γ hγ
 
 end
-p2m_reactivate "P2MW.S_ModularForm_heckeT_slash_eq_self_of_mem_Gamma0.ModularForm.HeckeSlashInvariance P2MW.S_ModularForm_heckeT_slash_eq_self_of_mem_Gamma0.ModularForm"
-
 end S_ModularForm_heckeT_slash_eq_self_of_mem_Gamma0
 end P2MW
 export P2MW.S_ModularForm_heckeT_slash_eq_self_of_mem_Gamma0 (solution)

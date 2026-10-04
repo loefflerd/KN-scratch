@@ -305,9 +305,6 @@ theorem kw_existsSqfreeSqAdd_proved : KwExistsSqfreeSqAdd := by
 end Sieve
 
 end K2Seam3.SqfreeSieve
-p2m_reactivate "P2MW.S_Nat_exists_squarefree_sq_add.K2Seam3 P2MW.S_Nat_exists_squarefree_sq_add.K2Seam3.SqfreeSieve"
-p2m_reactivate "P2MW.S_Nat_exists_squarefree_sq_add.K2Seam3"
-
 end
 p2m_reactivate "P2MW.S_Nat_exists_squarefree_sq_add.K2Seam3 P2MW.S_Nat_exists_squarefree_sq_add.K2Seam3.SqfreeSieve"
 

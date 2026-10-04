@@ -689,12 +689,7 @@ theorem heckeCosetMatch (hℓ : ℓ.Prime) (hℓN : ¬ ℓ ∣ N) : HeckeCosetMa
   exact repGL_eq_rawDelta_mul hℓ hℓN i
 
 end CosetMatch
-p2m_reactivate "P2MW.S_HeckeEis_eichlerShimuraMap_heckeTLin.HeckeEis.HeckeESSol.HeckeAnalytic"
-
 end HeckeEis.HeckeESSol
-p2m_reactivate "P2MW.S_HeckeEis_eichlerShimuraMap_heckeTLin.HeckeEis.HeckeESSol.HeckeAnalytic P2MW.S_HeckeEis_eichlerShimuraMap_heckeTLin.HeckeEis P2MW.S_HeckeEis_eichlerShimuraMap_heckeTLin.HeckeEis.HeckeESSol"
-p2m_reactivate "P2MW.S_HeckeEis_eichlerShimuraMap_heckeTLin.HeckeEis.HeckeESSol.HeckeAnalytic P2MW.S_HeckeEis_eichlerShimuraMap_heckeTLin.HeckeEis"
-
 end
 p2m_reactivate "P2MW.S_HeckeEis_eichlerShimuraMap_heckeTLin.HeckeEis.HeckeESSol.HeckeAnalytic P2MW.S_HeckeEis_eichlerShimuraMap_heckeTLin.HeckeEis P2MW.S_HeckeEis_eichlerShimuraMap_heckeTLin.HeckeEis.HeckeESSol"
 
@@ -875,12 +870,7 @@ theorem isEichlerIntegral_heckeEichler {f : ℍ → ℂ} {F : ℍ → ↥(Binary
   exact h
 
 end EichlerSum
-p2m_reactivate "P2MW.S_HeckeEis_eichlerShimuraMap_heckeTLin.HeckeEis.HeckeESSol.HeckeAnalytic P2MW.S_HeckeEis_eichlerShimuraMap_heckeTLin.HeckeEis P2MW.S_HeckeEis_eichlerShimuraMap_heckeTLin.HeckeEis.HeckeESSol"
-
 end HeckeEis.HeckeESSol
-p2m_reactivate "P2MW.S_HeckeEis_eichlerShimuraMap_heckeTLin.HeckeEis.HeckeESSol.HeckeAnalytic P2MW.S_HeckeEis_eichlerShimuraMap_heckeTLin.HeckeEis P2MW.S_HeckeEis_eichlerShimuraMap_heckeTLin.HeckeEis.HeckeESSol"
-p2m_reactivate "P2MW.S_HeckeEis_eichlerShimuraMap_heckeTLin.HeckeEis.HeckeESSol.HeckeAnalytic P2MW.S_HeckeEis_eichlerShimuraMap_heckeTLin.HeckeEis P2MW.S_HeckeEis_eichlerShimuraMap_heckeTLin.HeckeEis.HeckeESSol"
-
 end
 p2m_reactivate "P2MW.S_HeckeEis_eichlerShimuraMap_heckeTLin.HeckeEis.HeckeESSol.HeckeAnalytic P2MW.S_HeckeEis_eichlerShimuraMap_heckeTLin.HeckeEis P2MW.S_HeckeEis_eichlerShimuraMap_heckeTLin.HeckeEis.HeckeESSol"
 

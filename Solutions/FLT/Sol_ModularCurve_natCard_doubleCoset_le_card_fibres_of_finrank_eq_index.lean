@@ -1087,9 +1087,6 @@ theorem main (y : FF) (hy : (y : LaurentSeries ℚ̄) = jqModC ℚ̄)
 end Main
 
 end ModularCurve.SpecialFibresLB
-p2m_reactivate "P2MW.S_ModularCurve_natCard_doubleCoset_le_card_fibres_of_finrank_eq_index.ModularCurve P2MW.S_ModularCurve_natCard_doubleCoset_le_card_fibres_of_finrank_eq_index.ModularCurve.SpecialFibresLB"
-p2m_reactivate "P2MW.S_ModularCurve_natCard_doubleCoset_le_card_fibres_of_finrank_eq_index.ModularCurve"
-
 end
 p2m_reactivate "P2MW.S_ModularCurve_natCard_doubleCoset_le_card_fibres_of_finrank_eq_index.ModularCurve P2MW.S_ModularCurve_natCard_doubleCoset_le_card_fibres_of_finrank_eq_index.ModularCurve.SpecialFibresLB"
 

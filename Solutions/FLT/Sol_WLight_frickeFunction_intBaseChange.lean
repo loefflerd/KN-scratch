@@ -1363,7 +1363,6 @@ theorem main (hjf : ∀ τ : ℍ, jf τ = ModularForm.E₄ τ ^ 3 / ModularForm.
 end Assembly
 
 end R8b
-p2m_reactivate "P2MW.S_WLight_frickeFunction_intBaseChange.WLight.R8b"
 end WLight
 p2m_reactivate "P2MW.S_WLight_frickeFunction_intBaseChange.WLight.R8b P2MW.S_WLight_frickeFunction_intBaseChange.WLight"
 

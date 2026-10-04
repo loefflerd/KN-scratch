@@ -224,9 +224,6 @@ theorem pushH1par_mk (z : ↥(coeffParabolicCocycles ((binaryFormRepSL R n).comp
 end Cocycles
 
 end HeckeEis.CoeffMapAux
-p2m_reactivate "P2MW.S_HeckeEis_exists_coeffH1par_map_ringHom.HeckeEis P2MW.S_HeckeEis_exists_coeffH1par_map_ringHom.HeckeEis.CoeffMapAux"
-p2m_reactivate "P2MW.S_HeckeEis_exists_coeffH1par_map_ringHom.HeckeEis"
-
 end
 p2m_reactivate "P2MW.S_HeckeEis_exists_coeffH1par_map_ringHom.HeckeEis P2MW.S_HeckeEis_exists_coeffH1par_map_ringHom.HeckeEis.CoeffMapAux"
 

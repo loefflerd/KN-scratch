@@ -1342,8 +1342,6 @@ theorem main (m : ℕ) (G : ℍ → ℂ) (hG : MDifferentiable 𝓘(ℂ) 𝓘(�
 end Main
 
 end GammaNBounded
-p2m_reactivate "P2MW.S_ModularCurve_exists_ne_zero_forall_intCast_mul_qExpansion_coeff_of_gamma_invariant.GammaNBounded"
-
 end
 p2m_reactivate "P2MW.S_ModularCurve_exists_ne_zero_forall_intCast_mul_qExpansion_coeff_of_gamma_invariant.GammaNBounded"
 

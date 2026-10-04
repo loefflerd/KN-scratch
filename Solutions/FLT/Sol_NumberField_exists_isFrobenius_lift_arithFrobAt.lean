@@ -83,8 +83,6 @@ theorem restrictNormal_restrictScalars (δ : ℚ̄ ≃ₐ[E] ℚ̄) :
 end T2
 
 end C6P1T2
-p2m_reactivate "P2MW.S_NumberField_exists_isFrobenius_lift_arithFrobAt.C6P1T2"
-
 end
 p2m_reactivate "P2MW.S_NumberField_exists_isFrobenius_lift_arithFrobAt.C6P1T2"
 

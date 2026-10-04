@@ -507,8 +507,6 @@ private theorem nonempty_modularPolynomialData_of_squarefree (N : ℕ) [NeZero N
   ⟨modularPolynomialDataSquarefree N hsf hN⟩
 
 end ModularCurve
-p2m_reactivate "P2MW.S_ModularCurve_nonempty_modularPolynomialData_of_squarefree.ModularCurve"
-
 end
 p2m_reactivate "P2MW.S_ModularCurve_nonempty_modularPolynomialData_of_squarefree.ModularCurve"
 

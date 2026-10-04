@@ -27,138 +27,108 @@ set_option maxHeartbeats 12800000
 
 namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver HasCanonicalLocalResidueKStar Place.mem_restrict_iff Place.mem_fiber Place.restrict_mem_fiber kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff kwHgfV352_completionTraceAt"
-p2m_open "AlgebraicCurve"
 end AlgebraicCurve
 namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver HasCanonicalLocalResidueKStar Place.mem_restrict_iff Place.mem_fiber Place.restrict_mem_fiber kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff kwHgfV352_completionTraceAt"
 namespace KwBwnmchRFTDCDischarge
-p2m_open "AlgebraicCurve"
 end AlgebraicCurve.KwBwnmchRFTDCDischarge
 namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver HasCanonicalLocalResidueKStar Place.mem_restrict_iff Place.mem_fiber Place.restrict_mem_fiber kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff kwHgfV352_completionTraceAt"
 namespace Place
 p2m_export "AlgebraicCurve.Place" "ext ResidueField FiniteResidue heightOneSpectrum heightOneSpectrum_asIdeal ord ord_one ord_mul ord_inv ord_coe_irreducible ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ne_top' FiniteResidue.finite algebraMap_mem' toValuationSubring mk uniformizer ramificationIndex ramificationIndex_pos exists_ord_eq_ramificationIndex ramificationIndex_dvd_ord irreducible_mk_comap restrict mem_restrict_iff fiber mem_fiber restrict_mem_fiber adicCompletion adicCompletionIntegers kw_ffgc_adicCompletionComap kw_ffgc_valued_adicCompletionComap kw_ffgc_adicCompletionComapIntegers kw_ffgc_algebraAdicCompletionComap kw_ffgc_algebraMap_adicCompletionComap_eq kw_ffgc_rankOne_adicCompletion kw_ffgc_absoluteValue kw_ffgc_adicCompletionComap_algebraMap_algebraMap kw_ffgc_completionLinearCombination kw_ffgc_denseRange_completionLinearCombination kw_ffgc_completionTraceF'"
-p2m_open "AlgebraicCurve.Place AlgebraicCurve"
 end AlgebraicCurve.Place
 namespace FLT
 namespace Gapsw7X3xCrossPlaceTraceDecomposition
 end FLT.Gapsw7X3xCrossPlaceTraceDecomposition
 namespace Filter
 p2m_export "Filter" "mem_bot ker mk pi mem_comap map_top mem_ker mem_top comap unique map_mono map"
-p2m_open "Filter"
 end Filter
 namespace IsDedekindDomain
 p2m_export "IsDedekindDomain" "HeightOneSpectrum.adicCompletionIntegers HeightOneSpectrum.adicCompletionIntegers.integers HeightOneSpectrum.ext mk HeightOneSpectrum"
-p2m_open "IsDedekindDomain"
 end IsDedekindDomain
 namespace IsDedekindDomain
 p2m_export "IsDedekindDomain" "HeightOneSpectrum.adicCompletionIntegers HeightOneSpectrum.adicCompletionIntegers.integers HeightOneSpectrum.ext mk HeightOneSpectrum"
 namespace HeightOneSpectrum
 p2m_export "IsDedekindDomain.HeightOneSpectrum" "valuation_of_algebraMap intValuation_le_pow_iff_mem isMaximal mk comap valuedAdicCompletion_eq_valuation' adicCompletion valuation adicCompletionIntegers valuedAdicCompletion_surjective adicCompletionIntegers.integers mem_integers_of_valuation_le_one denseRange_algebraMap intValuation completionIdeal adicCompletion.mem_completionIdeal_pow"
-p2m_open "IsDedekindDomain.HeightOneSpectrum IsDedekindDomain"
 end IsDedekindDomain.HeightOneSpectrum
 namespace IsLocalRing
 p2m_export "IsLocalRing" "ResidueField maximalIdeal maximalIdeal.isMaximal of_injective"
-p2m_open "IsLocalRing"
 end IsLocalRing
 namespace KaehlerDifferential
 p2m_export "KaehlerDifferential" "finite D map"
-p2m_open "KaehlerDifferential"
 end KaehlerDifferential
 namespace LinearMap
 p2m_export "LinearMap" "mulLeft_apply single_apply toMatrix mem_range range sub_apply coe_range rank add_apply trace_eq_matrix_trace ker_eq_bot range_zero restrictScalars_apply id sum_apply range_comp codRestrict zero_apply smul_apply mulLeft ker_comp trace_comp_comm' mk coe_coe id_apply pi proj ext comp isIntegral trace quotKerEquivRange finiteDimensional range_comp_le_range single comp_assoc restrictScalars ker proj_apply mem_ker comp_apply toMatrix_mulVec_repr mem_range_self restrict pi_apply"
-p2m_open "LinearMap"
 end LinearMap
 namespace ModularCurve
 p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4gRRTate.KwF4gRRTateTraceCompat"
 namespace KwF4R1V384a
-p2m_open "ModularCurve"
 end ModularCurve.KwF4R1V384a
 namespace ModularCurve
 p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4gRRTate.KwF4gRRTateTraceCompat"
 namespace KwF4R1V386a
-p2m_open "ModularCurve"
 end ModularCurve.KwF4R1V386a
 namespace ModularCurve
 p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4gRRTate.KwF4gRRTateTraceCompat"
 namespace KwF4R1V410a
-p2m_open "ModularCurve"
 end ModularCurve.KwF4R1V410a
 namespace ModularCurve
 p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4gRRTate.KwF4gRRTateTraceCompat"
 namespace KwF4gRRTate
 p2m_export "ModularCurve.KwF4gRRTate" "finrankTrace tateComm tateComm_apply tateCommRestrict tateCommRestrict_apply tateCommTrace tateComm_eq_of_commute adicIntegersKSubmod tateProj lmulK tateRes KwF4gRRTateCommFinite KwF4gRRTateTraceCompat"
-p2m_open "ModularCurve.KwF4gRRTate ModularCurve"
 end ModularCurve.KwF4gRRTate
 namespace ModularCurve
 p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4gRRTate.KwF4gRRTateTraceCompat"
 namespace GF24a9RRDx
-p2m_open "ModularCurve"
 end ModularCurve.GF24a9RRDx
 namespace ModularCurve
 p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4gRRTate.KwF4gRRTateTraceCompat"
 namespace Lg37
-p2m_open "ModularCurve"
 end ModularCurve.Lg37
 namespace Module
 p2m_export "Module" "Basis.repr_reindex_apply Injective Free.chooseBasis Free.ChooseBasisIndex isTorsionFree_iff_algebraMap_injective Basis.localizationLocalization_apply equiv Finite.equiv finrank Free mk IsTorsionFree free_of_finite_type_torsion_free' restrictScalars Basis.equivFun_apply IsNoetherian.finite Finite.of_submodule_quotient finBasis Basis.localizationLocalization_repr_algebraMap finrank_eq_card_chooseBasisIndex Basis.reindex_apply Basis"
-p2m_open "Module"
 end Module
 namespace MonoidWithZeroHom
 p2m_export "MonoidWithZeroHom" "id_apply id ext mk coe_coe coe_one comp_apply comp_assoc comp"
-p2m_open "MonoidWithZeroHom"
 end MonoidWithZeroHom
 namespace Multiplicative
 p2m_export "Multiplicative" "ext smul"
-p2m_open "Multiplicative"
 end Multiplicative
 namespace NNReal
 p2m_export "NNReal" "pi rpow_le_one rpow_natCast smul_def coe_pow coe_one rpow_mul coe_eq_zero rpow_one coe_nonneg"
-p2m_open "NNReal"
 end NNReal
 namespace NumberField
 p2m_export "NumberField" "mk"
-p2m_open "NumberField"
 end NumberField
 namespace Pointwise
-p2m_open "Pointwise"
 end Pointwise
 namespace Polynomial
 p2m_export "Polynomial" "X coe_one aeval_map_algebraMap aeval_def algebraMap_eq unique aeval ext_iff toSubring coe_pow isLocalization map lifts_and_degree_eq_and_monic comp_assoc Monic comp coe_mul coe_sub Separable lifts_iff_coeff_lifts algebraMap_apply ext funext ring aeval_algHom_apply lifts Separable.map"
-p2m_open "Polynomial"
 end Polynomial
 namespace Submodule
 p2m_export "Submodule" "quotEquivOfEq inclusion mem_sup_right map_top smul_mem' mk smul_mem mem_bot coe_mem Quotient.mk span restrictScalars projectionOnto_apply_left restrictScalars_top mem_closure_iff Quotient.restrictScalarsEquiv mem_comap injective_subtype mem_top Quotient.equiv mem_span_singleton mkQ map_mono map_smul' equivMapOfInjective zero quotientQuotientEquivQuotient coe_eq_zero range_subtype Quotient.mk_surjective restrictScalars_mono map mem_inf inclusion_apply Quotient.mk_eq_zero exists_isCompl projectionOnto finiteDimensional_of_le closure_eq topEquiv smul_def mk_eq_zero restrictScalarsEquiv closed_of_finiteDimensional mkQ_apply pi ext subtype_apply ker_mkQ add comap finiteDimensional_sup liftQ mem_sup_left smul restrictScalars_mem"
-p2m_open "Submodule"
 end Submodule
 namespace TensorProduct
 p2m_export "TensorProduct" "congr lift mk ext tmul map Algebra.smul_def mk_surjective"
-p2m_open "TensorProduct"
 end TensorProduct
 namespace Topology
-p2m_open "Topology"
 end Topology
 namespace Valuation
 p2m_export "Valuation" "norm_add_le map_add' valuationSubring ext mem_valuationSubring_iff map_sub map Integers.isIntegrallyClosed Integers IsRankOneDiscrete congr RankOne.hom restrict_le_iff coe_coe restrict norm_def comap restrict_eq_zero_iff mk map_sub_swap norm_nonneg RankOne isOpen_closedBall"
-p2m_open "Valuation"
 end Valuation
 namespace Valuation
 p2m_export "Valuation" "norm_add_le map_add' valuationSubring ext mem_valuationSubring_iff map_sub map Integers.isIntegrallyClosed Integers IsRankOneDiscrete congr RankOne.hom restrict_le_iff coe_coe restrict norm_def comap restrict_eq_zero_iff mk map_sub_swap norm_nonneg RankOne isOpen_closedBall"
 namespace IsRankOneDiscrete
 p2m_export "Valuation.IsRankOneDiscrete" "valueGroup₀_equiv_withZeroMulInt_restrict_apply_of_surjective mk"
-p2m_open "Valuation.IsRankOneDiscrete Valuation"
 end Valuation.IsRankOneDiscrete
 namespace Valued
 p2m_export "Valued" "mk toNormedField.norm_def v toNontriviallyNormedField toNormedField.norm_le_one_iff isOpen_closedBall toNormedField ResidueField maximalIdeal"
-p2m_open "Valued"
 end Valued
 namespace WithZero
 p2m_export "WithZero" "coe_one map coe_mul exp_eq_coe_ofAdd coe exp_ne_zero exp exp_zero lift coe_pow le exp_le_exp"
-p2m_open "WithZero"
 end WithZero
 namespace WithZeroMulInt
 p2m_export "WithZeroMulInt" "toNNReal"
-p2m_open "WithZeroMulInt"
 end WithZeroMulInt
 
 section
@@ -193,8 +163,6 @@ namespace ModularCurve
 p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4gRRTate.KwF4gRRTateTraceCompat"
 namespace KwF4gRRTate
 p2m_export "ModularCurve.KwF4gRRTate" "finrankTrace tateComm tateComm_apply tateCommRestrict tateCommRestrict_apply tateCommTrace tateComm_eq_of_commute adicIntegersKSubmod tateProj lmulK tateRes KwF4gRRTateCommFinite KwF4gRRTateTraceCompat"
-p2m_open "ModularCurve.KwF4gRRTate ModularCurve"
-
 end ModularCurve.KwF4gRRTate
 
 end
@@ -218,50 +186,30 @@ variable (K F : Type*) [Field K] [Field F] [Algebra K F]
 
 namespace Place
 p2m_export "AlgebraicCurve.Place" "ext ResidueField FiniteResidue heightOneSpectrum heightOneSpectrum_asIdeal ord ord_one ord_mul ord_inv ord_coe_irreducible ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ne_top' FiniteResidue.finite algebraMap_mem' toValuationSubring mk uniformizer ramificationIndex ramificationIndex_pos exists_ord_eq_ramificationIndex ramificationIndex_dvd_ord irreducible_mk_comap restrict mem_restrict_iff fiber mem_fiber restrict_mem_fiber adicCompletion adicCompletionIntegers kw_ffgc_adicCompletionComap kw_ffgc_valued_adicCompletionComap kw_ffgc_adicCompletionComapIntegers kw_ffgc_algebraAdicCompletionComap kw_ffgc_algebraMap_adicCompletionComap_eq kw_ffgc_rankOne_adicCompletion kw_ffgc_absoluteValue kw_ffgc_adicCompletionComap_algebraMap_algebraMap kw_ffgc_completionLinearCombination kw_ffgc_denseRange_completionLinearCombination kw_ffgc_completionTraceF'"
-p2m_open "AlgebraicCurve.Place"
-
 end Place
 
 namespace Divisor
 p2m_export "AlgebraicCurve.Divisor" "smul_def smul_apply"
-p2m_open "AlgebraicCurve.Divisor"
-
 end Divisor
 
 namespace Pic0
 p2m_export "AlgebraicCurve.Pic0" "mk mk_surjective"
-p2m_open "AlgebraicCurve.Pic0"
-
 end Pic0
 
 namespace Place
 p2m_export "AlgebraicCurve.Place" "ext ResidueField FiniteResidue heightOneSpectrum heightOneSpectrum_asIdeal ord ord_one ord_mul ord_inv ord_coe_irreducible ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ne_top' FiniteResidue.finite algebraMap_mem' toValuationSubring mk uniformizer ramificationIndex ramificationIndex_pos exists_ord_eq_ramificationIndex ramificationIndex_dvd_ord irreducible_mk_comap restrict mem_restrict_iff fiber mem_fiber restrict_mem_fiber adicCompletion adicCompletionIntegers kw_ffgc_adicCompletionComap kw_ffgc_valued_adicCompletionComap kw_ffgc_adicCompletionComapIntegers kw_ffgc_algebraAdicCompletionComap kw_ffgc_algebraMap_adicCompletionComap_eq kw_ffgc_rankOne_adicCompletion kw_ffgc_absoluteValue kw_ffgc_adicCompletionComap_algebraMap_algebraMap kw_ffgc_completionLinearCombination kw_ffgc_denseRange_completionLinearCombination kw_ffgc_completionTraceF'"
-p2m_open "AlgebraicCurve.Place"
-
-p2m_open_scoped "Pointwise P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.Pointwise"
-
 end Place
 
 namespace Divisor
 p2m_export "AlgebraicCurve.Divisor" "smul_def smul_apply"
-p2m_open "AlgebraicCurve.Divisor"
-
-p2m_open_scoped "Pointwise P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.Pointwise"
-
 end Divisor
 
 namespace Pic0
 p2m_export "AlgebraicCurve.Pic0" "mk mk_surjective"
-p2m_open "AlgebraicCurve.Pic0"
-
-p2m_open_scoped "Pointwise P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.Pointwise"
-
 end Pic0
 
 namespace Place
 p2m_export "AlgebraicCurve.Place" "ext ResidueField FiniteResidue heightOneSpectrum heightOneSpectrum_asIdeal ord ord_one ord_mul ord_inv ord_coe_irreducible ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ne_top' FiniteResidue.finite algebraMap_mem' toValuationSubring mk uniformizer ramificationIndex ramificationIndex_pos exists_ord_eq_ramificationIndex ramificationIndex_dvd_ord irreducible_mk_comap restrict mem_restrict_iff fiber mem_fiber restrict_mem_fiber adicCompletion adicCompletionIntegers kw_ffgc_adicCompletionComap kw_ffgc_valued_adicCompletionComap kw_ffgc_adicCompletionComapIntegers kw_ffgc_algebraAdicCompletionComap kw_ffgc_algebraMap_adicCompletionComap_eq kw_ffgc_rankOne_adicCompletion kw_ffgc_absoluteValue kw_ffgc_adicCompletionComap_algebraMap_algebraMap kw_ffgc_completionLinearCombination kw_ffgc_denseRange_completionLinearCombination kw_ffgc_completionTraceF'"
-p2m_open "AlgebraicCurve.Place"
-
 end Place
 
 end AlgebraicCurve
@@ -530,20 +478,14 @@ variable {K F F' : Type*} [Field K] [Field F] [Field F']
 
 namespace Place
 p2m_export "AlgebraicCurve.Place" "ext ResidueField FiniteResidue heightOneSpectrum heightOneSpectrum_asIdeal ord ord_one ord_mul ord_inv ord_coe_irreducible ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ne_top' FiniteResidue.finite algebraMap_mem' toValuationSubring mk uniformizer ramificationIndex ramificationIndex_pos exists_ord_eq_ramificationIndex ramificationIndex_dvd_ord irreducible_mk_comap restrict mem_restrict_iff fiber mem_fiber restrict_mem_fiber adicCompletion adicCompletionIntegers kw_ffgc_adicCompletionComap kw_ffgc_valued_adicCompletionComap kw_ffgc_adicCompletionComapIntegers kw_ffgc_algebraAdicCompletionComap kw_ffgc_algebraMap_adicCompletionComap_eq kw_ffgc_rankOne_adicCompletion kw_ffgc_absoluteValue kw_ffgc_adicCompletionComap_algebraMap_algebraMap kw_ffgc_completionLinearCombination kw_ffgc_denseRange_completionLinearCombination kw_ffgc_completionTraceF'"
-p2m_open "AlgebraicCurve.Place"
-
 end Place
 
 namespace Divisor
 p2m_export "AlgebraicCurve.Divisor" "smul_def smul_apply"
-p2m_open "AlgebraicCurve.Divisor"
-
 end Divisor
 
 namespace Divisor
 p2m_export "AlgebraicCurve.Divisor" "smul_def smul_apply"
-p2m_open "AlgebraicCurve.Divisor"
-
 end Divisor
 
 end AlgebraicCurve
@@ -567,8 +509,6 @@ namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver HasCanonicalLocalResidueKStar Place.mem_restrict_iff Place.mem_fiber Place.restrict_mem_fiber kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff kwHgfV352_completionTraceAt"
 namespace Place
 p2m_export "AlgebraicCurve.Place" "ext ResidueField FiniteResidue heightOneSpectrum heightOneSpectrum_asIdeal ord ord_one ord_mul ord_inv ord_coe_irreducible ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ne_top' FiniteResidue.finite algebraMap_mem' toValuationSubring mk uniformizer ramificationIndex ramificationIndex_pos exists_ord_eq_ramificationIndex ramificationIndex_dvd_ord irreducible_mk_comap restrict mem_restrict_iff fiber mem_fiber restrict_mem_fiber adicCompletion adicCompletionIntegers kw_ffgc_adicCompletionComap kw_ffgc_valued_adicCompletionComap kw_ffgc_adicCompletionComapIntegers kw_ffgc_algebraAdicCompletionComap kw_ffgc_algebraMap_adicCompletionComap_eq kw_ffgc_rankOne_adicCompletion kw_ffgc_absoluteValue kw_ffgc_adicCompletionComap_algebraMap_algebraMap kw_ffgc_completionLinearCombination kw_ffgc_denseRange_completionLinearCombination kw_ffgc_completionTraceF'"
-p2m_open "AlgebraicCurve.Place AlgebraicCurve"
-
 end AlgebraicCurve.Place
 
 end
@@ -590,8 +530,6 @@ namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver HasCanonicalLocalResidueKStar Place.mem_restrict_iff Place.mem_fiber Place.restrict_mem_fiber kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff kwHgfV352_completionTraceAt"
 namespace Place
 p2m_export "AlgebraicCurve.Place" "ext ResidueField FiniteResidue heightOneSpectrum heightOneSpectrum_asIdeal ord ord_one ord_mul ord_inv ord_coe_irreducible ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ne_top' FiniteResidue.finite algebraMap_mem' toValuationSubring mk uniformizer ramificationIndex ramificationIndex_pos exists_ord_eq_ramificationIndex ramificationIndex_dvd_ord irreducible_mk_comap restrict mem_restrict_iff fiber mem_fiber restrict_mem_fiber adicCompletion adicCompletionIntegers kw_ffgc_adicCompletionComap kw_ffgc_valued_adicCompletionComap kw_ffgc_adicCompletionComapIntegers kw_ffgc_algebraAdicCompletionComap kw_ffgc_algebraMap_adicCompletionComap_eq kw_ffgc_rankOne_adicCompletion kw_ffgc_absoluteValue kw_ffgc_adicCompletionComap_algebraMap_algebraMap kw_ffgc_completionLinearCombination kw_ffgc_denseRange_completionLinearCombination kw_ffgc_completionTraceF'"
-p2m_open "AlgebraicCurve.Place AlgebraicCurve"
-
 end AlgebraicCurve.Place
 
 end
@@ -639,12 +577,6 @@ scoped instance kw_ffgc_isTorsionFree_adicCompletionComapIntegers :
     (kw_ffgc_adicCompletionComapIntegers_injective F W)
 
 end CompletionAlgebra
-
-section IrreducibleValuation
-
-p2m_open "WithZero P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.WithZero"
-
-end IrreducibleValuation
 
 section SpectralSetup
 
@@ -770,21 +702,9 @@ theorem kw_ffgc_isIntegralClosure_adicCompletionIntegers
 
 end IntegralClosure
 
-section ClosedAdjoin
-
-p2m_open_scoped "Valued P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.Valued NNReal P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.NNReal WithZero P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.WithZero"
-
-end ClosedAdjoin
-
 end AlgebraicCurve.Place
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
 
@@ -820,19 +740,9 @@ theorem kw_ffgc_completionTraceF'_apply [FiniteDimensional F F'] (g : F') :
           (algebraMap F' W.adicCompletion g) := rfl
 
 end CompletionTrace
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
-
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
-
 end AlgebraicCurve.Place
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
 
@@ -851,49 +761,30 @@ variable (K F : Type*) [Field K] [Field F] [Algebra K F]
 
 namespace IsCurveOver
 p2m_export "AlgebraicCurve.IsCurveOver" "mk"
-p2m_open "AlgebraicCurve.IsCurveOver"
-
 end IsCurveOver
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
 
 namespace Place
 p2m_export "AlgebraicCurve.Place" "ext ResidueField FiniteResidue heightOneSpectrum heightOneSpectrum_asIdeal ord ord_one ord_mul ord_inv ord_coe_irreducible ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ne_top' FiniteResidue.finite algebraMap_mem' toValuationSubring mk uniformizer ramificationIndex ramificationIndex_pos exists_ord_eq_ramificationIndex ramificationIndex_dvd_ord irreducible_mk_comap restrict mem_restrict_iff fiber mem_fiber restrict_mem_fiber adicCompletion adicCompletionIntegers kw_ffgc_adicCompletionComap kw_ffgc_valued_adicCompletionComap kw_ffgc_adicCompletionComapIntegers kw_ffgc_algebraAdicCompletionComap kw_ffgc_algebraMap_adicCompletionComap_eq kw_ffgc_rankOne_adicCompletion kw_ffgc_absoluteValue kw_ffgc_adicCompletionComap_algebraMap_algebraMap kw_ffgc_completionLinearCombination kw_ffgc_denseRange_completionLinearCombination kw_ffgc_completionTraceF'"
-p2m_open "AlgebraicCurve.Place"
-
 end Place
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
-
 end AlgebraicCurve
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4gRRTate.KwF4gRRTateTraceCompat"
-p2m_open "ModularCurve"
-
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve"
-
 end ModularCurve
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
 
 namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver HasCanonicalLocalResidueKStar Place.mem_restrict_iff Place.mem_fiber Place.restrict_mem_fiber kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff kwHgfV352_completionTraceAt"
-p2m_open "AlgebraicCurve"
-
 end AlgebraicCurve
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4gRRTate.KwF4gRRTateTraceCompat"
-p2m_open "ModularCurve"
-
 end ModularCurve
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
 
@@ -925,19 +816,9 @@ private theorem _root_.AlgebraicCurve.Place.uniformizer_mem : v.uniformizer ∈ 
 
 p2m_export "AlgebraicCurve.Place" "uniformizer_mem"
 end Place
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
-
 end AlgebraicCurve
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
-
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
 
@@ -954,28 +835,9 @@ noncomputable section
 
 namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver HasCanonicalLocalResidueKStar Place.mem_restrict_iff Place.mem_fiber Place.restrict_mem_fiber kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff kwHgfV352_completionTraceAt"
-p2m_open "AlgebraicCurve"
-
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
-
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
-
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
-
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
-
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
-
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
-
 end AlgebraicCurve
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
 
@@ -1032,22 +894,9 @@ theorem range_tateProj : LinearMap.range (tateProj u) = adicIntegersKSubmod u :=
     exact ⟨x, tateProj_of_mem u hx⟩
 
 end TateProj
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
-
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
-
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
-
 end ModularCurve.KwF4gRRTate
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
 
@@ -1134,18 +983,9 @@ def KwF4gRRTatePoleWindowFinite : Prop :=
         (adicIntegersKSubmod u).comap (poleWindowKSubmod u πh M).subtype)
 
 end PoleWindow
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
-
 end ModularCurve.KwF4gRRTate
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
 
@@ -1188,29 +1028,8 @@ theorem isOpen_setOf_valued_le {γ : ℤᵐ⁰} (hγ : γ ≠ 0) :
   exact Valued.isOpen_closedBall _ hr0
 
 end adicCompletion
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
-
-section NumberField
-
-p2m_open "NumberField P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.NumberField"
-
-end NumberField
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
-
 end IsDedekindDomain.HeightOneSpectrum
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
-
-section AxiomAudit
-
-p2m_open "IsDedekindDomain.HeightOneSpectrum P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.IsDedekindDomain.HeightOneSpectrum"
-
-end AxiomAudit
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
 
@@ -1322,17 +1141,9 @@ theorem kwF4R1V410a_quotientEquiv_mk (n : ℕ) (x : O_w) :
       = Ideal.Quotient.mk _ (algebraMap (O_w) (O_W) x) := rfl
 
 end Bridge
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
-
 end ModularCurve.KwF4R1V410a
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a"
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a"
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a"
 
@@ -1453,18 +1264,9 @@ theorem kwF4gRRTate_poleWindowFinite_of_DVRQuotPowKFinite
   exact FiniteDimensional.of_injective e'.toLinearMap e'.injective
 
 end PoleWindowShift
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a"
-
 end ModularCurve.KwF4gRRTate
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a"
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a"
 
@@ -1513,18 +1315,9 @@ theorem tateCommRestrict_single_term
   rw [principalPart_mul_zero_of_mem_integers u hgh haInt, mul_zero, _root_.map_zero, sub_zero]
 
 end AgreementReduce
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a"
-
 end ModularCurve.KwF4gRRTate
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a"
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a"
 
@@ -1573,18 +1366,9 @@ theorem finrankTrace_comp_comm (f : M →ₗ[K] N) (g : N →ₗ[K] M)
   rw [hgf, hfg, LinearMap.trace_comp_comm']
 
 end FinrankTraceCyclicity
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a"
-
 end ModularCurve.KwF4gRRTate
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a"
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a"
 
@@ -1722,18 +1506,9 @@ theorem tateCommRestrict_diff
   ring
 
 end DiffComputation
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a"
-
 end ModularCurve.KwF4gRRTate
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a"
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a"
 
@@ -1818,18 +1593,9 @@ theorem finrankTrace_sub_eq
   rfl
 
 end Additivity
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a"
-
 end ModularCurve.KwF4gRRTate
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a"
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a"
 
@@ -1968,18 +1734,9 @@ theorem kwF4gRRTate_DVRQuotPowKFinite_of_cotangent
   exact Module.Finite.equiv (quotPiPowEquivIdealQuot u πh M).symm
 
 end DVRQuotDischarge
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a"
-
 end ModularCurve.KwF4gRRTate
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a"
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a"
 
@@ -2050,18 +1807,9 @@ theorem kwF4gRRTate_DVRCotangentKFinite : KwF4gRRTateDVRCotangentKFinite K L := 
   exact Module.Finite.equiv (quotSpanIrreducibleEquivResidueField u πh hπh).symm
 
 end DVRCotangentDischarge
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a"
-
 end ModularCurve.KwF4gRRTate
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
 
@@ -2128,18 +1876,9 @@ def KwF4gRRTateCommFiniteGen : Prop :=
       (LinearMap.range (tateCommRestrict pA' (lmulK u fh) (lmulK u gh)))
 
 end DiffTraceZero
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
-
 end ModularCurve.KwF4gRRTate
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
 
@@ -2225,18 +1964,9 @@ theorem kwF4gRRTate_poleWindowImageFinite :
   exact e.finiteDimensional
 
 end Discharge
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
-
 end ModularCurve.KwF4gRRTate
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
 
@@ -2385,18 +2115,9 @@ theorem kwF4gRRTate_commFiniteGen :
   · exact ⟨qg aO, ⟨aO, rfl⟩, rfl⟩
 
 end Discharge
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
-
 end ModularCurve.KwF4gRRTate
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
 
@@ -2691,18 +2412,9 @@ theorem kwF4gRRTate_projectorIndep : KwF4gRRTateProjectorIndep K L := by
   rw [← sub_eq_zero, hchain, finrankTrace_term_eq u h fh hgh, sub_self]
 
 end Headline
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
-
 end ModularCurve.KwF4gRRTate
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
 
@@ -2840,22 +2552,9 @@ theorem tateRes_add_fst (fh₁ fh₂ gh : u.adicCompletion)
   exact finrankTrace_congr (by rw [heq])
 
 end TateResAddFst
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
-
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
-
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
-
 end ModularCurve.KwF4gRRTate
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
 
@@ -3120,18 +2819,9 @@ theorem kwF4gRRTate_traceCompat_of_blockSum
   rw [show (∑ i ∈ Finset.univ, M i i) = ∑ i, M i i from rfl, hτ]
 
 end Headline
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
-
 end ModularCurve.KwF4gRRTate
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
 
@@ -3334,18 +3024,9 @@ scoped instance instIsScalarTowerKVhatWhat (w : Place K F) :
     exact kw_ffgc_adicCompletionComap_algebraMap_algebraMap E w (algebraMap K E c)
 
 end Headline
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
-
 end ModularCurve.KwF4gRRTate
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
 
@@ -3683,18 +3364,9 @@ theorem kwF4gRRTate_traceCompat_of_integralBasisCompat
     (kwF4gRRTate_blockSum_of_integralBasisCompat hfinF hfinE hIBC)
 
 end Headline
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
-
 end ModularCurve.KwF4gRRTate
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
 
@@ -3799,20 +3471,9 @@ def integralBasisDataOf : IntegralBasisData (E := E) w := by
       exact (algebraMap (w.restrict E).adicCompletionIntegers w.adicCompletionIntegers a).2
 
 end Construct
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
-
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
-
 end ModularCurve.KwF4gRRTate
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
 
@@ -3937,19 +3598,9 @@ scoped instance kwF4R1V384a_instModuleFiberCompletion
   Algebra.toModule
 
 end BijEngine
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
-
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
-
 end ModularCurve.KwF4R1V384a
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V384a"
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V384a"
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V384a"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V384a"
 
@@ -4038,33 +3689,9 @@ theorem kwF4R1V386a_isSeparable_fiberCompletion
       (E := w'.1.adicCompletion)).symm.toAlgHom
 
 end IsSeparableLift
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V384a"
-
-section DistinctKernels
-
-p2m_open_scoped "Valued P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.Valued NNReal P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.NNReal WithZero P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.WithZero"
-
-end DistinctKernels
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V384a"
-
-section FinrankCompletionEF
-
-p2m_open "IsLocalRing P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.IsLocalRing Valuation P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.Valuation"
-
-end FinrankCompletionEF
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V384a"
-
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V384a"
-
 end ModularCurve.KwF4R1V386a
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V384a"
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V384a"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V384a"
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V384a"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V384a"
 
@@ -4141,18 +3768,9 @@ theorem kwTateRR3_traceCompat_of_isSeparable_global [Algebra.IsSeparable E F]
     kwTateRR3_integralBasisCompat_of_isSeparable_global
 
 end Headline
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V384a"
-
 end ModularCurve.KwF4gRRTate
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V384a"
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V384a"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V384a"
-
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V384a"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V384a"
 

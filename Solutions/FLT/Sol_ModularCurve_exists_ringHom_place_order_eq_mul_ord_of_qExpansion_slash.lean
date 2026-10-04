@@ -1013,8 +1013,6 @@ private theorem order_Φσ_jq (presJ : PresJ) (reindex : Reindex N)
     mul_neg_one]
 
 end Concrete
-p2m_reactivate "P2MW.S_ModularCurve_exists_ringHom_place_order_eq_mul_ord_of_qExpansion_slash.Ws49.CUSPLIM.S3CuspLimit"
-
 end S3c
 p2m_reactivate "P2MW.S_ModularCurve_exists_ringHom_place_order_eq_mul_ord_of_qExpansion_slash.Ws49.CUSPLIM.S3CuspLimit P2MW.S_ModularCurve_exists_ringHom_place_order_eq_mul_ord_of_qExpansion_slash.Ws49.CUSPLIM.S3c"
 
@@ -1207,8 +1205,6 @@ private theorem qParam_zpow_neg_eq_exp (N : ℕ) (a b : ℤ) (τ : ℍ) :
   ring
 
 end S3readout
-p2m_reactivate "P2MW.S_ModularCurve_exists_ringHom_place_order_eq_mul_ord_of_qExpansion_slash.Ws49.CUSPLIM.S3CuspLimit P2MW.S_ModularCurve_exists_ringHom_place_order_eq_mul_ord_of_qExpansion_slash.Ws49.CUSPLIM.S3c"
-
 end Ws49.CUSPLIM
 p2m_reactivate "P2MW.S_ModularCurve_exists_ringHom_place_order_eq_mul_ord_of_qExpansion_slash.Ws49.CUSPLIM.S3CuspLimit P2MW.S_ModularCurve_exists_ringHom_place_order_eq_mul_ord_of_qExpansion_slash.Ws49.CUSPLIM.S3c P2MW.S_ModularCurve_exists_ringHom_place_order_eq_mul_ord_of_qExpansion_slash.Ws49 P2MW.S_ModularCurve_exists_ringHom_place_order_eq_mul_ord_of_qExpansion_slash.Ws49.CUSPLIM"
 p2m_reactivate "P2MW.S_ModularCurve_exists_ringHom_place_order_eq_mul_ord_of_qExpansion_slash.Ws49.CUSPLIM.S3CuspLimit P2MW.S_ModularCurve_exists_ringHom_place_order_eq_mul_ord_of_qExpansion_slash.Ws49.CUSPLIM.S3c P2MW.S_ModularCurve_exists_ringHom_place_order_eq_mul_ord_of_qExpansion_slash.Ws49"

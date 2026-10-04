@@ -18,8 +18,6 @@ p2m_export "AlgebraicCurve" "Place Place.ext SemilinearAut SemilinearAut.inv_smu
 p2m_open "AlgebraicCurve"
 namespace Place
 p2m_export "AlgebraicCurve.Place" "restrict restrict_toValuationSubring ext smul_toValuationSubring"
-p2m_open "AlgebraicCurve.Place"
-
 end Place
 end AlgebraicCurve
 

@@ -415,8 +415,6 @@ theorem ord_jb_sub_1728_dvd_two
   exact_mod_cast h
 
 end OrdJBarSub1728
-p2m_reactivate "P2MW.S_ModularCurve_ord_jBar_sub_1728_dvd_two.OrdJBarSub1728 P2MW.S_ModularCurve_ord_jBar_sub_1728_dvd_two.OrdJBarSub1728.Wire"
-
 end
 p2m_reactivate "P2MW.S_ModularCurve_ord_jBar_sub_1728_dvd_two.OrdJBarSub1728 P2MW.S_ModularCurve_ord_jBar_sub_1728_dvd_two.OrdJBarSub1728.Wire"
 

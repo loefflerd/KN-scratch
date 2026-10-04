@@ -550,8 +550,6 @@ theorem jqNModC_not_mem_adjoin_of_forall_aeval_ne
   exact h P hP
 
 end FieldLevel
-p2m_reactivate "P2MW.S_ModularCurve_jqNModC_prime_not_mem_adjoin_of_charZero.ModularCurve P2MW.S_ModularCurve_jqNModC_prime_not_mem_adjoin_of_charZero.ModularCurve.W1"
-
 end ModularCurve.W1
 p2m_reactivate "P2MW.S_ModularCurve_jqNModC_prime_not_mem_adjoin_of_charZero.ModularCurve P2MW.S_ModularCurve_jqNModC_prime_not_mem_adjoin_of_charZero.ModularCurve.W1"
 p2m_reactivate "P2MW.S_ModularCurve_jqNModC_prime_not_mem_adjoin_of_charZero.ModularCurve P2MW.S_ModularCurve_jqNModC_prime_not_mem_adjoin_of_charZero.ModularCurve.W1"

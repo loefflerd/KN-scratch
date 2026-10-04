@@ -78,9 +78,6 @@ theorem binarySubst_T_zpow_X1 (m : ℤ) :
   rw [binarySubst_X, ModularGroup.coe_T_zpow]; simp [Fin.sum_univ_two]
 
 end HeckeEis.UH3Sol
-p2m_reactivate "P2MW.S_HeckeEis_exists_induced_binaryFormRepSL_top.HeckeEis P2MW.S_HeckeEis_exists_induced_binaryFormRepSL_top.HeckeEis.UH3Sol"
-p2m_reactivate "P2MW.S_HeckeEis_exists_induced_binaryFormRepSL_top.HeckeEis"
-
 end
 p2m_reactivate "P2MW.S_HeckeEis_exists_induced_binaryFormRepSL_top.HeckeEis P2MW.S_HeckeEis_exists_induced_binaryFormRepSL_top.HeckeEis.UH3Sol"
 
@@ -173,9 +170,6 @@ theorem coeff_dehom_of_isHomogeneous {P : MvPolynomial (Fin 2) ℂ} (hP : P.IsHo
       exact hmem (hkey d hd h ▸ hd)
 
 end HeckeEis.UH3Sol
-p2m_reactivate "P2MW.S_HeckeEis_exists_induced_binaryFormRepSL_top.HeckeEis P2MW.S_HeckeEis_exists_induced_binaryFormRepSL_top.HeckeEis.UH3Sol"
-p2m_reactivate "P2MW.S_HeckeEis_exists_induced_binaryFormRepSL_top.HeckeEis P2MW.S_HeckeEis_exists_induced_binaryFormRepSL_top.HeckeEis.UH3Sol"
-
 end
 p2m_reactivate "P2MW.S_HeckeEis_exists_induced_binaryFormRepSL_top.HeckeEis P2MW.S_HeckeEis_exists_induced_binaryFormRepSL_top.HeckeEis.UH3Sol"
 
@@ -281,9 +275,6 @@ theorem eq_zero_of_T_fixed_of_S_T_fixed (hn0 : n ≠ 0) (v : Vn n)
   simp
 
 end HeckeEis.UH3Sol
-p2m_reactivate "P2MW.S_HeckeEis_exists_induced_binaryFormRepSL_top.HeckeEis P2MW.S_HeckeEis_exists_induced_binaryFormRepSL_top.HeckeEis.UH3Sol"
-p2m_reactivate "P2MW.S_HeckeEis_exists_induced_binaryFormRepSL_top.HeckeEis P2MW.S_HeckeEis_exists_induced_binaryFormRepSL_top.HeckeEis.UH3Sol"
-
 end
 p2m_reactivate "P2MW.S_HeckeEis_exists_induced_binaryFormRepSL_top.HeckeEis P2MW.S_HeckeEis_exists_induced_binaryFormRepSL_top.HeckeEis.UH3Sol"
 
@@ -348,9 +339,6 @@ theorem indRep_invariants [NeZero N] (hn0 : n ≠ 0) (f : X0 N → Vn n) (hf : �
     rfl
 
 end HeckeEis.UH3Sol
-p2m_reactivate "P2MW.S_HeckeEis_exists_induced_binaryFormRepSL_top.HeckeEis P2MW.S_HeckeEis_exists_induced_binaryFormRepSL_top.HeckeEis.UH3Sol"
-p2m_reactivate "P2MW.S_HeckeEis_exists_induced_binaryFormRepSL_top.HeckeEis P2MW.S_HeckeEis_exists_induced_binaryFormRepSL_top.HeckeEis.UH3Sol"
-
 end
 p2m_reactivate "P2MW.S_HeckeEis_exists_induced_binaryFormRepSL_top.HeckeEis P2MW.S_HeckeEis_exists_induced_binaryFormRepSL_top.HeckeEis.UH3Sol"
 
@@ -510,12 +498,7 @@ theorem sup_range_eq_top (hn0 : n ≠ 0) :
   simp
 
 end Coinv
-p2m_reactivate "P2MW.S_HeckeEis_exists_induced_binaryFormRepSL_top.HeckeEis P2MW.S_HeckeEis_exists_induced_binaryFormRepSL_top.HeckeEis.UH3Sol"
-
 end HeckeEis.UH3Sol
-p2m_reactivate "P2MW.S_HeckeEis_exists_induced_binaryFormRepSL_top.HeckeEis P2MW.S_HeckeEis_exists_induced_binaryFormRepSL_top.HeckeEis.UH3Sol"
-p2m_reactivate "P2MW.S_HeckeEis_exists_induced_binaryFormRepSL_top.HeckeEis P2MW.S_HeckeEis_exists_induced_binaryFormRepSL_top.HeckeEis.UH3Sol"
-
 end
 p2m_reactivate "P2MW.S_HeckeEis_exists_induced_binaryFormRepSL_top.HeckeEis P2MW.S_HeckeEis_exists_induced_binaryFormRepSL_top.HeckeEis.UH3Sol"
 

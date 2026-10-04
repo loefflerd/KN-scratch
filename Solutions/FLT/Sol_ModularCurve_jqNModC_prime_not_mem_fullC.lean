@@ -1500,8 +1500,6 @@ private theorem rval_aux : ∀ (M : ℕ) [NeZero M] {K : Type*} [Field K]
     rfl
 
 end RValCore
-p2m_reactivate "P2MW.S_ModularCurve_jqNModC_prime_not_mem_fullC.ModularCurve P2MW.S_ModularCurve_jqNModC_prime_not_mem_fullC.ModularCurve.W1"
-
 end ModularCurve.W1
 p2m_reactivate "P2MW.S_ModularCurve_jqNModC_prime_not_mem_fullC.ModularCurve P2MW.S_ModularCurve_jqNModC_prime_not_mem_fullC.ModularCurve.W1"
 p2m_reactivate "P2MW.S_ModularCurve_jqNModC_prime_not_mem_fullC.ModularCurve P2MW.S_ModularCurve_jqNModC_prime_not_mem_fullC.ModularCurve.W1"
@@ -1845,8 +1843,6 @@ private theorem jqNModC_prime_not_mem_adjoin (M : ℕ) [NeZero M] (p : ℕ)
   exact hbase hjpF
 
 end NonMem0
-p2m_reactivate "P2MW.S_ModularCurve_jqNModC_prime_not_mem_fullC.ModularCurve P2MW.S_ModularCurve_jqNModC_prime_not_mem_fullC.ModularCurve.W1"
-
 end ModularCurve.W1
 p2m_reactivate "P2MW.S_ModularCurve_jqNModC_prime_not_mem_fullC.ModularCurve P2MW.S_ModularCurve_jqNModC_prime_not_mem_fullC.ModularCurve.W1"
 p2m_reactivate "P2MW.S_ModularCurve_jqNModC_prime_not_mem_fullC.ModularCurve P2MW.S_ModularCurve_jqNModC_prime_not_mem_fullC.ModularCurve.W1"

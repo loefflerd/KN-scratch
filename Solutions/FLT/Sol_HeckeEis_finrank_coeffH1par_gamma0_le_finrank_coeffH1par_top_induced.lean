@@ -191,9 +191,6 @@ theorem mem_coeffCoboundaries_of_Sh {z : ↥(Γ0 N) → Vn n}
 end Shapiro
 
 end HeckeEis.UBSol
-p2m_reactivate "P2MW.S_HeckeEis_finrank_coeffH1par_gamma0_le_finrank_coeffH1par_top_induced.HeckeEis P2MW.S_HeckeEis_finrank_coeffH1par_gamma0_le_finrank_coeffH1par_top_induced.HeckeEis.UBSol"
-p2m_reactivate "P2MW.S_HeckeEis_finrank_coeffH1par_gamma0_le_finrank_coeffH1par_top_induced.HeckeEis"
-
 end
 p2m_reactivate "P2MW.S_HeckeEis_finrank_coeffH1par_gamma0_le_finrank_coeffH1par_top_induced.HeckeEis P2MW.S_HeckeEis_finrank_coeffH1par_gamma0_le_finrank_coeffH1par_top_induced.HeckeEis.UBSol"
 
@@ -338,12 +335,7 @@ theorem Sh_mem_coeffParabolicCocycles {z : ↥(Γ0 N) → Vn n} (hz : z ∈ coef
   exact ⟨w + F, by rw [map_add, hw, sub_add_cancel]⟩
 
 end Parabolic
-p2m_reactivate "P2MW.S_HeckeEis_finrank_coeffH1par_gamma0_le_finrank_coeffH1par_top_induced.HeckeEis P2MW.S_HeckeEis_finrank_coeffH1par_gamma0_le_finrank_coeffH1par_top_induced.HeckeEis.UBSol"
-
 end HeckeEis.UBSol
-p2m_reactivate "P2MW.S_HeckeEis_finrank_coeffH1par_gamma0_le_finrank_coeffH1par_top_induced.HeckeEis P2MW.S_HeckeEis_finrank_coeffH1par_gamma0_le_finrank_coeffH1par_top_induced.HeckeEis.UBSol"
-p2m_reactivate "P2MW.S_HeckeEis_finrank_coeffH1par_gamma0_le_finrank_coeffH1par_top_induced.HeckeEis P2MW.S_HeckeEis_finrank_coeffH1par_gamma0_le_finrank_coeffH1par_top_induced.HeckeEis.UBSol"
-
 end
 p2m_reactivate "P2MW.S_HeckeEis_finrank_coeffH1par_gamma0_le_finrank_coeffH1par_top_induced.HeckeEis P2MW.S_HeckeEis_finrank_coeffH1par_gamma0_le_finrank_coeffH1par_top_induced.HeckeEis.UBSol"
 
@@ -487,12 +479,7 @@ theorem main :
   exact LinearMap.finrank_le_finrank_of_injective (Ψ_injective W hW)
 
 end Final
-p2m_reactivate "P2MW.S_HeckeEis_finrank_coeffH1par_gamma0_le_finrank_coeffH1par_top_induced.HeckeEis P2MW.S_HeckeEis_finrank_coeffH1par_gamma0_le_finrank_coeffH1par_top_induced.HeckeEis.UBSol"
-
 end HeckeEis.UBSol
-p2m_reactivate "P2MW.S_HeckeEis_finrank_coeffH1par_gamma0_le_finrank_coeffH1par_top_induced.HeckeEis P2MW.S_HeckeEis_finrank_coeffH1par_gamma0_le_finrank_coeffH1par_top_induced.HeckeEis.UBSol"
-p2m_reactivate "P2MW.S_HeckeEis_finrank_coeffH1par_gamma0_le_finrank_coeffH1par_top_induced.HeckeEis P2MW.S_HeckeEis_finrank_coeffH1par_gamma0_le_finrank_coeffH1par_top_induced.HeckeEis.UBSol"
-
 end
 p2m_reactivate "P2MW.S_HeckeEis_finrank_coeffH1par_gamma0_le_finrank_coeffH1par_top_induced.HeckeEis P2MW.S_HeckeEis_finrank_coeffH1par_gamma0_le_finrank_coeffH1par_top_induced.HeckeEis.UBSol"
 

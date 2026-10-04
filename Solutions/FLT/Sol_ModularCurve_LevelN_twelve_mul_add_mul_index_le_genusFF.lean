@@ -599,8 +599,6 @@ theorem solution (N : ℕ) [NeZero N] (hN : 2 ≤ N)
   main N K hN
 
 end
-p2m_reactivate "P2MW.S_ModularCurve_LevelN_twelve_mul_add_mul_index_le_genusFF.ModularCurve P2MW.S_ModularCurve_LevelN_twelve_mul_add_mul_index_le_genusFF.ModularCurve.LevelN P2MW.S_ModularCurve_LevelN_twelve_mul_add_mul_index_le_genusFF.ModularCurve.LevelN.GenusBound"
-
 end S_ModularCurve_LevelN_twelve_mul_add_mul_index_le_genusFF
 end P2MW
 export P2MW.S_ModularCurve_LevelN_twelve_mul_add_mul_index_le_genusFF (solution)

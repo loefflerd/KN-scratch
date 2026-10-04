@@ -164,9 +164,6 @@ theorem eq_zero_of_pairing_eq_zero (P : ↥(BinaryForm ℂ n)) (h : ∀ Q, pairi
   exact hd (hc _ hle)
 
 end HeckeEis.PairingSol
-p2m_reactivate "P2MW.S_HeckeEis_exists_pairing_binaryForm_linePow.HeckeEis P2MW.S_HeckeEis_exists_pairing_binaryForm_linePow.HeckeEis.PairingSol"
-p2m_reactivate "P2MW.S_HeckeEis_exists_pairing_binaryForm_linePow.HeckeEis"
-
 end
 p2m_reactivate "P2MW.S_HeckeEis_exists_pairing_binaryForm_linePow.HeckeEis P2MW.S_HeckeEis_exists_pairing_binaryForm_linePow.HeckeEis.PairingSol"
 
@@ -309,9 +306,6 @@ theorem lineSpan_eq_top : lineSpan n = ⊤ := by
   rw [this]; exact hQ
 
 end HeckeEis.PairingSol
-p2m_reactivate "P2MW.S_HeckeEis_exists_pairing_binaryForm_linePow.HeckeEis P2MW.S_HeckeEis_exists_pairing_binaryForm_linePow.HeckeEis.PairingSol"
-p2m_reactivate "P2MW.S_HeckeEis_exists_pairing_binaryForm_linePow.HeckeEis P2MW.S_HeckeEis_exists_pairing_binaryForm_linePow.HeckeEis.PairingSol"
-
 end
 p2m_reactivate "P2MW.S_HeckeEis_exists_pairing_binaryForm_linePow.HeckeEis P2MW.S_HeckeEis_exists_pairing_binaryForm_linePow.HeckeEis.PairingSol"
 
@@ -345,9 +339,6 @@ theorem pairing_rep (g : SL(2, ℤ)) (P Q : ↥(BinaryForm ℂ n)) :
   exact this
 
 end HeckeEis.PairingSol
-p2m_reactivate "P2MW.S_HeckeEis_exists_pairing_binaryForm_linePow.HeckeEis P2MW.S_HeckeEis_exists_pairing_binaryForm_linePow.HeckeEis.PairingSol"
-p2m_reactivate "P2MW.S_HeckeEis_exists_pairing_binaryForm_linePow.HeckeEis P2MW.S_HeckeEis_exists_pairing_binaryForm_linePow.HeckeEis.PairingSol"
-
 end
 p2m_reactivate "P2MW.S_HeckeEis_exists_pairing_binaryForm_linePow.HeckeEis P2MW.S_HeckeEis_exists_pairing_binaryForm_linePow.HeckeEis.PairingSol"
 

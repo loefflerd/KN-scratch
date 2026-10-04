@@ -120,8 +120,6 @@ theorem main : Nonempty (ModularPolynomialData N) := by
     exact this
 
 end Ws10NP
-p2m_reactivate "P2MW.S_ModularCurve_nonempty_modularPolynomialData.Ws10NP"
-
 end
 p2m_reactivate "P2MW.S_ModularCurve_nonempty_modularPolynomialData.Ws10NP"
 

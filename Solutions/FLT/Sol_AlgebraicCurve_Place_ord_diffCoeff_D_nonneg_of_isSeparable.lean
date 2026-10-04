@@ -564,11 +564,7 @@ theorem ord_diffCoeff_D_nonneg_of_isSeparable {K F : Type*} [Field K] [Field F] 
   exact hg
 
 end FF2R4p
-p2m_reactivate "P2MW.S_AlgebraicCurve_Place_ord_diffCoeff_D_nonneg_of_isSeparable.AlgebraicCurve.FF2R4p"
-
 end AlgebraicCurve
-p2m_reactivate "P2MW.S_AlgebraicCurve_Place_ord_diffCoeff_D_nonneg_of_isSeparable.AlgebraicCurve.FF2R4p P2MW.S_AlgebraicCurve_Place_ord_diffCoeff_D_nonneg_of_isSeparable.AlgebraicCurve"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_Place_ord_diffCoeff_D_nonneg_of_isSeparable.AlgebraicCurve.FF2R4p P2MW.S_AlgebraicCurve_Place_ord_diffCoeff_D_nonneg_of_isSeparable.AlgebraicCurve"
 

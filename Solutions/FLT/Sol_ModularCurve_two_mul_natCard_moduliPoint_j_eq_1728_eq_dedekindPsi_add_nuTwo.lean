@@ -530,9 +530,6 @@ theorem natCard_quot_R_eq (u : Lˣ) (hu : (u : L) ^ 2 = -1) (hN : N ≠ 0) :
 end Count
 
 end P2MWs13.R2a
-p2m_reactivate "P2MW.S_ModularCurve_two_mul_natCard_moduliPoint_j_eq_1728_eq_dedekindPsi_add_nuTwo.P2MWs13 P2MW.S_ModularCurve_two_mul_natCard_moduliPoint_j_eq_1728_eq_dedekindPsi_add_nuTwo.P2MWs13.R2a"
-p2m_reactivate "P2MW.S_ModularCurve_two_mul_natCard_moduliPoint_j_eq_1728_eq_dedekindPsi_add_nuTwo.P2MWs13"
-
 end
 p2m_reactivate "P2MW.S_ModularCurve_two_mul_natCard_moduliPoint_j_eq_1728_eq_dedekindPsi_add_nuTwo.P2MWs13 P2MW.S_ModularCurve_two_mul_natCard_moduliPoint_j_eq_1728_eq_dedekindPsi_add_nuTwo.P2MWs13.R2a"
 

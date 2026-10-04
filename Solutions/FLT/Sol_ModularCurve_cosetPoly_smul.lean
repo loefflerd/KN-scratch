@@ -237,11 +237,7 @@ theorem cosetPoly_smul' (ℓ : ℕ) (hℓ : ℓ.Prime) (F : ℍ → ℂ)
         Equiv.prod_comp (MulAction.toPerm (redMatrix ℓ γ)) (fun x ↦ X - C (F (heckeRep ℓ x • τ)))
 
 end CosetPoly
-p2m_reactivate "P2MW.S_ModularCurve_cosetPoly_smul.ModularCurve.CosetPoly"
-
 end ModularCurve
-p2m_reactivate "P2MW.S_ModularCurve_cosetPoly_smul.ModularCurve.CosetPoly P2MW.S_ModularCurve_cosetPoly_smul.ModularCurve"
-
 end
 p2m_reactivate "P2MW.S_ModularCurve_cosetPoly_smul.ModularCurve.CosetPoly P2MW.S_ModularCurve_cosetPoly_smul.ModularCurve"
 

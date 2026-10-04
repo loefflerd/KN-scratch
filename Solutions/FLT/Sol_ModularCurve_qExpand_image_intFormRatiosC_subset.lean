@@ -180,8 +180,6 @@ theorem intSeriesC_expandPS (K : Type*) [Field K] (ℓ : ℕ) [NeZero ℓ] (p : 
 end Form
 
 end X1QExpandStretch
-p2m_reactivate "P2MW.S_ModularCurve_qExpand_image_intFormRatiosC_subset.X1QExpandStretch"
-
 end
 p2m_reactivate "P2MW.S_ModularCurve_qExpand_image_intFormRatiosC_subset.X1QExpandStretch"
 

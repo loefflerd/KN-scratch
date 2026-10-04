@@ -516,11 +516,7 @@ theorem main {N : ℕ} [NeZero N] (data : ModularCurve.ModularPolynomialData N)
   exact hjHmem H
 
 end Generic
-p2m_reactivate "P2MW.S_ModularCurve_ModularPolynomialData_mem_of_isRoot_map_j_of_transcendental.WeierstrassCurve P2MW.S_ModularCurve_ModularPolynomialData_mem_of_isRoot_map_j_of_transcendental.WeierstrassCurve.Affine"
-
 end A68
-p2m_reactivate "P2MW.S_ModularCurve_ModularPolynomialData_mem_of_isRoot_map_j_of_transcendental.WeierstrassCurve P2MW.S_ModularCurve_ModularPolynomialData_mem_of_isRoot_map_j_of_transcendental.WeierstrassCurve.Affine"
-
 end
 p2m_reactivate "P2MW.S_ModularCurve_ModularPolynomialData_mem_of_isRoot_map_j_of_transcendental.WeierstrassCurve P2MW.S_ModularCurve_ModularPolynomialData_mem_of_isRoot_map_j_of_transcendental.WeierstrassCurve.Affine"
 

@@ -70,8 +70,6 @@ theorem kaehlerRankOne_of_transcendental {x : F} (htr : Transcendental K x)
   exact kaehlerRankOne_of_ratFuncTower K
 
 end S12Kaehler
-p2m_reactivate "P2MW.S_AlgebraicCurve_kaehlerRankOne_of_transcendental.S12Kaehler"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_kaehlerRankOne_of_transcendental.S12Kaehler"
 

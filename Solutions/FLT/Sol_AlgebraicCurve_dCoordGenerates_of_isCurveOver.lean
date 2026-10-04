@@ -145,8 +145,6 @@ private theorem _root_.AlgebraicCurve.Place.span_D_uniformizer_eq_top_of_subsing
 
 p2m_export "AlgebraicCurve.Place" "span_D_uniformizer_eq_top_of_subsingleton"
 end CotangentEngine
-p2m_reactivate "P2MW.S_AlgebraicCurve_dCoordGenerates_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_dCoordGenerates_of_isCurveOver.AlgebraicCurve"
-
 end Place
 p2m_reactivate "P2MW.S_AlgebraicCurve_dCoordGenerates_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_dCoordGenerates_of_isCurveOver.AlgebraicCurve"
 
@@ -290,8 +288,6 @@ private theorem _root_.AlgebraicCurve.Place.subsingleton_polynomialKaehler_of_is
 
 p2m_export "AlgebraicCurve.Place" "subsingleton_polynomialKaehler_of_isSeparable_of_finite"
 end ResidueEngine
-p2m_reactivate "P2MW.S_AlgebraicCurve_dCoordGenerates_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_dCoordGenerates_of_isCurveOver.AlgebraicCurve"
-
 end Place
 p2m_reactivate "P2MW.S_AlgebraicCurve_dCoordGenerates_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_dCoordGenerates_of_isCurveOver.AlgebraicCurve"
 
@@ -340,8 +336,6 @@ private theorem _root_.AlgebraicCurve.Place.essFiniteType_of_exists_finiteType_i
 
 p2m_export "AlgebraicCurve.Place" "essFiniteType_of_exists_finiteType_isLocalization"
 end EftEngine
-p2m_reactivate "P2MW.S_AlgebraicCurve_dCoordGenerates_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_dCoordGenerates_of_isCurveOver.AlgebraicCurve"
-
 end Place
 p2m_reactivate "P2MW.S_AlgebraicCurve_dCoordGenerates_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_dCoordGenerates_of_isCurveOver.AlgebraicCurve"
 
@@ -491,8 +485,6 @@ private theorem _root_.AlgebraicCurve.Place.essFiniteType_of_finiteType_isLocali
 
 p2m_export "AlgebraicCurve.Place" "essFiniteType_of_finiteType_isLocalization_centerIdeal"
 end CenterIdeal
-p2m_reactivate "P2MW.S_AlgebraicCurve_dCoordGenerates_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_dCoordGenerates_of_isCurveOver.AlgebraicCurve"
-
 end Place
 p2m_reactivate "P2MW.S_AlgebraicCurve_dCoordGenerates_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_dCoordGenerates_of_isCurveOver.AlgebraicCurve"
 
@@ -696,8 +688,6 @@ private theorem _root_.AlgebraicCurve.Place.isLocalization_centerIdeal_of_isDede
 
 p2m_export "AlgebraicCurve.Place" "isLocalization_centerIdeal_of_isDedekindDomain"
 end LocalizationSubalgebra
-p2m_reactivate "P2MW.S_AlgebraicCurve_dCoordGenerates_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_dCoordGenerates_of_isCurveOver.AlgebraicCurve"
-
 end Place
 p2m_reactivate "P2MW.S_AlgebraicCurve_dCoordGenerates_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_dCoordGenerates_of_isCurveOver.AlgebraicCurve"
 
@@ -772,8 +762,6 @@ private theorem _root_.AlgebraicCurve.Place.integralClosure_subset_valuationSubr
 
 p2m_export "AlgebraicCurve.Place" "integralClosure_subset_valuationSubring"
 end IntegrallyClosed
-p2m_reactivate "P2MW.S_AlgebraicCurve_dCoordGenerates_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_dCoordGenerates_of_isCurveOver.AlgebraicCurve"
-
 end Place
 p2m_reactivate "P2MW.S_AlgebraicCurve_dCoordGenerates_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_dCoordGenerates_of_isCurveOver.AlgebraicCurve"
 
@@ -806,8 +794,6 @@ theorem valSubringDedekindModel_of_twoAffineCharts
     (valSubringDedekindFractionModel_of_twoAffineCharts h)
 
 end TwoCharts
-p2m_reactivate "P2MW.S_AlgebraicCurve_dCoordGenerates_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_dCoordGenerates_of_isCurveOver.AlgebraicCurve"
-
 end AlgebraicCurve
 p2m_reactivate "P2MW.S_AlgebraicCurve_dCoordGenerates_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_dCoordGenerates_of_isCurveOver.AlgebraicCurve"
 
@@ -845,8 +831,6 @@ theorem gate_adjoin_subset_valuationSubring_of_mem (v : Place K F) {t : F}
   exact Algebra.adjoin_le (Set.singleton_subset_iff.mpr ht)
 
 end Gates
-p2m_reactivate "P2MW.S_AlgebraicCurve_dCoordGenerates_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_dCoordGenerates_of_isCurveOver.AlgebraicCurve"
-
 end AlgebraicCurve
 p2m_reactivate "P2MW.S_AlgebraicCurve_dCoordGenerates_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_dCoordGenerates_of_isCurveOver.AlgebraicCurve"
 
@@ -1023,8 +1007,6 @@ theorem valSubringDedekindModel_of_hasSeparatingTranscendental
     (valSubringTwoAffineCharts_of_hasSeparatingTranscendental h)
 
 end SeparatingTranscendental
-p2m_reactivate "P2MW.S_AlgebraicCurve_dCoordGenerates_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_dCoordGenerates_of_isCurveOver.AlgebraicCurve"
-
 end AlgebraicCurve
 p2m_reactivate "P2MW.S_AlgebraicCurve_dCoordGenerates_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_dCoordGenerates_of_isCurveOver.AlgebraicCurve"
 
@@ -1104,8 +1086,6 @@ theorem Place.dCoordGenerates_of_valSubringKaehlerSpanTop
   exact Submodule.span_le_restrictScalars v.toValuationSubring F {v.dCoord} hmap
 
 end AbstractEngine
-p2m_reactivate "P2MW.S_AlgebraicCurve_dCoordGenerates_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_dCoordGenerates_of_isCurveOver.AlgebraicCurve"
-
 end AlgebraicCurve
 p2m_reactivate "P2MW.S_AlgebraicCurve_dCoordGenerates_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_dCoordGenerates_of_isCurveOver.AlgebraicCurve"
 
@@ -1180,8 +1160,6 @@ theorem Place.dCoordGenerates_of_valSubringKaehlerFinite_of_perfectField
   Place.dCoordGenerates_of_valSubringKaehlerFinite_of_isSeparable hfin v
 
 end PerfectFieldEngines
-p2m_reactivate "P2MW.S_AlgebraicCurve_dCoordGenerates_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_dCoordGenerates_of_isCurveOver.AlgebraicCurve"
-
 end AlgebraicCurve
 p2m_reactivate "P2MW.S_AlgebraicCurve_dCoordGenerates_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_dCoordGenerates_of_isCurveOver.AlgebraicCurve"
 
@@ -1229,11 +1207,7 @@ theorem hasSeparatingTranscendental_of_isCurveOver_of_perfectField
     IntermediateField.isSeparable_adjoin_inv_s12 t⟩
 
 end S12ChainWires
-p2m_reactivate "P2MW.S_AlgebraicCurve_dCoordGenerates_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_dCoordGenerates_of_isCurveOver.AlgebraicCurve"
-
 end AlgebraicCurve
-p2m_reactivate "P2MW.S_AlgebraicCurve_dCoordGenerates_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_dCoordGenerates_of_isCurveOver.AlgebraicCurve"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_dCoordGenerates_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_dCoordGenerates_of_isCurveOver.AlgebraicCurve"
 

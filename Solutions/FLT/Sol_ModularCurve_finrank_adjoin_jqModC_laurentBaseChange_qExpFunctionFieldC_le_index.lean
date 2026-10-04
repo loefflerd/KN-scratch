@@ -1028,8 +1028,6 @@ theorem finrank_adjoin_wq_le :
     ring
 
 end Bound
-p2m_reactivate "P2MW.S_ModularCurve_finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_le_index.FIdxNorm"
-
 end FIdxRat
 p2m_reactivate "P2MW.S_ModularCurve_finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_le_index.FIdxNorm P2MW.S_ModularCurve_finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_le_index.FIdxRat"
 

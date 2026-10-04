@@ -354,8 +354,6 @@ theorem solution {N : ℕ} (k : ℤ) {p : ℕ} (hpN : p ∣ N) {f : UpperHalfPla
   ModularForm.heckeU_slash_eq_self_of_mem_Gamma0' k hpN hf γ hγ
 
 end
-p2m_reactivate "P2MW.S_ModularForm_heckeU_slash_eq_self_of_mem_Gamma0.ModularForm.HeckeSlashInvariance P2MW.S_ModularForm_heckeU_slash_eq_self_of_mem_Gamma0.ModularForm"
-
 end S_ModularForm_heckeU_slash_eq_self_of_mem_Gamma0
 end P2MW
 export P2MW.S_ModularForm_heckeU_slash_eq_self_of_mem_Gamma0 (solution)

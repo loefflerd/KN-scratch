@@ -304,11 +304,7 @@ theorem exists_phiGenDescends (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)] (ζ : K�
 end Descent
 
 end PhiGen
-p2m_reactivate "P2MW.S_ModularCurve_PhiGen_mem_range_coeffEmb_of_forall_coeffMap_eq.ModularCurve.PhiGen"
-
 end ModularCurve
-p2m_reactivate "P2MW.S_ModularCurve_PhiGen_mem_range_coeffEmb_of_forall_coeffMap_eq.ModularCurve.PhiGen P2MW.S_ModularCurve_PhiGen_mem_range_coeffEmb_of_forall_coeffMap_eq.ModularCurve"
-
 end
 p2m_reactivate "P2MW.S_ModularCurve_PhiGen_mem_range_coeffEmb_of_forall_coeffMap_eq.ModularCurve.PhiGen P2MW.S_ModularCurve_PhiGen_mem_range_coeffEmb_of_forall_coeffMap_eq.ModularCurve"
 

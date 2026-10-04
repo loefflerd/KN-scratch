@@ -18,65 +18,50 @@ set_option maxHeartbeats 6400000
 
 namespace Complex
 p2m_export "Complex" "re lift im exists mk ext I"
-p2m_open "Complex"
 end Complex
 namespace EisensteinSeries
 p2m_export "EisensteinSeries" "E_qExpansion_coeff_zero eisSummand"
-p2m_open "EisensteinSeries"
 end EisensteinSeries
 namespace Filter
 p2m_export "Filter" "NeBot mk Tendsto.sub Tendsto Tendsto.isBigO_one Tendsto.eventually_ne Tendsto.const_mul Tendsto.inv₀ BoundedAtFilter map Eventually.of_forall"
-p2m_open "Filter"
 end Filter
 namespace LinearAlgebra
 namespace Projectivization
-p2m_open "LinearAlgebra.Projectivization LinearAlgebra"
 end LinearAlgebra.Projectivization
 namespace Manifold
-p2m_open "Manifold"
 end Manifold
 namespace Matrix
 p2m_export "Matrix" "J reindex SpecialLinearGroup.mapGL ext row sub_apply cons_val_zero sub zero cons_val_one scalar comp SpecialLinearGroup zpow_mul single zpow_neg smul_apply comp_apply of inv map cons_val_fin_one one mul_apply"
 namespace SpecialLinearGroup
 p2m_export "Matrix.SpecialLinearGroup" "ext coe_mul mapGL map"
-p2m_open "Matrix.SpecialLinearGroup Matrix"
 end Matrix.SpecialLinearGroup
 namespace MatrixGroups
-p2m_open "MatrixGroups"
 end MatrixGroups
 namespace ModularCurve
 end ModularCurve
 namespace ModularForm
 p2m_export "ModularForm" "mk sub_apply SL_slash_apply const pow prod toCuspForm E coe_mul holo' discriminant tendsto_atImInfty_tprod_one_sub_eta_q_pow discriminant_isZeroAtImInfty discriminant_eq_q_prod E₄_qExpansion_coeff_one ext smul_apply bdd_at_cusps' E₄ mcast E₆ discriminant_ne_zero E₆_qExpansion_coeff_one mul"
-p2m_open "ModularForm"
 end ModularForm
 namespace ModularFormClass
 p2m_export "ModularFormClass" "levelOne_neg_weight_eq_zero holo mk bdd_at_infty"
-p2m_open "ModularFormClass"
 end ModularFormClass
 namespace PeriodPair
 p2m_export "PeriodPair" "lattice ω₁ mk latticeEquivProd g₃ derivWeierstrassP_sq ω₂ latticeEquiv_symm_apply G g₂ weierstrassCurve weierstrassCurve_Δ weierstrassCurve_c₄ equation_weierstrassP DiscriminantNeZero toPoint toPoint_zero IsUniformization jLattice jLattice_eq_c₄_pow_three_div_Δ JSurjective ofTau scale sublatticeIndex discriminant_ne_zero"
-p2m_open "PeriodPair"
 end PeriodPair
 namespace PowerSeries
 p2m_export "PowerSeries" "coe_mul mk inv_eq_zero coeff_smul coeff_mul order ext map C coeff coeff_zero_eq_constantCoeff coeff_zero_eq_constantCoeff_apply"
-p2m_open "PowerSeries"
 end PowerSeries
 namespace Real
 p2m_export "Real" "pi_ne_zero mk lattice"
-p2m_open "Real"
 end Real
 namespace Set
 p2m_export "Set" "Bounded ext unit mem_range prod"
-p2m_open "Set"
 end Set
 namespace Topology
 p2m_export "Topology" "upper"
-p2m_open "Topology"
 end Topology
 namespace UpperHalfPlane
 p2m_export "UpperHalfPlane" "cuspFunction qExpansion qParam_tendsto_atImInfty isOpen_upperHalfPlaneSet ofComplex_apply_of_im_pos denom_ne_zero ρ mdifferentiable_iff coe_im_pos analyticAt_cuspFunction_zero atImInfty denom qExpansion_mul I J im_pos mk eq_cuspFunction re cuspFunction_apply_zero qExpansion_coeff_zero IsZeroAtImInfty IsBoundedAtImInfty im ofComplex qExpansion_smul qExpansion_sub valueAtInfty"
-p2m_open "UpperHalfPlane"
 end UpperHalfPlane
 
 section
@@ -213,13 +198,8 @@ theorem kw_E4cube_ne_E6sq (τ : ℍ) : E₄ τ ^ 3 ≠ E₆ τ ^ 2 := by
   exact mul_ne_zero hc (discriminant_ne_zero τ) this.symm
 
 end ModularForm
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
-
 end
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
 end
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
-
 end
 p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
 
@@ -239,13 +219,8 @@ theorem kw_ofTau_latticeEquivProd_symm_apply (τ : ℍ) (p : ℤ × ℤ) :
   rw [latticeEquiv_symm_apply]; simp
 
 end PeriodPair
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
-
 end
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
 end
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
-
 end
 p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
 
@@ -302,14 +277,8 @@ theorem kwQepw118c_eisenstein4_tendsto_one :
   exact htend
 
 end ModularCurve
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
-
 end
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
-
 end
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
-
 end
 p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
 
@@ -327,11 +296,7 @@ abbrev kwQepw124b_PencilFibreProp
   ∀ c : ℂ, ∀ τ : UpperHalfPlane, F c (↑τ : ℂ) = 0 ↔ J τ = c
 
 end ModularCurve
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
-
 end
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
-
 end
 p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
 
@@ -351,11 +316,7 @@ abbrev kwQepw129c_TopEdgeCuspVanishingProp
   Filter.Tendsto f UpperHalfPlane.atImInfty (nhds L)
 
 end ModularCurve
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
-
 end
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
-
 end
 p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
 
@@ -368,36 +329,13 @@ p2m_open_scoped "PeriodPair P2MW.S_PeriodPair_jLattice_surjective.PeriodPair"
 
 namespace PeriodPair
 p2m_export "PeriodPair" "lattice ω₁ mk latticeEquivProd g₃ derivWeierstrassP_sq ω₂ latticeEquiv_symm_apply G g₂ weierstrassCurve weierstrassCurve_Δ weierstrassCurve_c₄ equation_weierstrassP DiscriminantNeZero toPoint toPoint_zero IsUniformization jLattice jLattice_eq_c₄_pow_three_div_Δ JSurjective ofTau scale sublatticeIndex discriminant_ne_zero"
-p2m_open "PeriodPair"
-
-variable (L : PeriodPair)
-
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
-
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
-
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
-
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
-
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
-
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
-
 end PeriodPair
 p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
 
 namespace Projectivization
 p2m_export "Projectivization" "mk map card"
-p2m_open "Projectivization"
-
-p2m_open_scoped "LinearAlgebra.Projectivization P2MW.S_PeriodPair_jLattice_surjective.LinearAlgebra.Projectivization"
-
 end Projectivization
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
 end
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
-
 end
 p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
 
@@ -480,13 +418,8 @@ theorem kw_g₃_ofTau (τ : ℍ) :
   ring
 
 end PeriodPair
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
-
 end
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
 end
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
-
 end
 p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
 
@@ -548,14 +481,8 @@ theorem kwQepw123c_pencilFibre_jH :
   rw [div_eq_iff (ModularForm.discriminant_ne_zero tau)]
 
 end ModularCurve
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
-
 end
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
-
 end
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
-
 end
 p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
 
@@ -577,14 +504,8 @@ abbrev kwQepw120c_DiscriminantCuspVanishingProp : Prop :=
     (fun tau => ModularForm.discriminant tau) 0
 
 end ModularCurve
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
-
 end
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
-
 end
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
-
 end
 p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
 
@@ -625,13 +546,8 @@ theorem kw_jLattice_ofTau_eq (τ : ℍ) :
     mul_div_mul_left _ _ hK]
 
 end PeriodPair
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
-
 end
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
 end
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
-
 end
 p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
 
@@ -669,14 +585,8 @@ theorem kwQepw116c_sanity_jH_surjective_iff_pencil_has_zero :
     exact ⟨tau, (kwQepw123c_pencilFibre_jH c tau).mp htau⟩
 
 end ModularCurve
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
-
 end
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
-
 end
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
-
 end
 p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
 
@@ -740,14 +650,8 @@ theorem kwQepw121c_pencil_slashWeightTwelve :
   ring
 
 end ModularCurve
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
-
 end
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
-
 end
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
-
 end
 p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
 
@@ -784,14 +688,8 @@ theorem kwQepw119c_discriminant_cuspVanishing :
   exact ModularForm.discriminant_isZeroAtImInfty
 
 end ModularCurve
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
-
 end
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
-
 end
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
-
 end
 p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
 
@@ -861,14 +759,8 @@ theorem kwQepw117c_pencil_holomorphic :
   simp only [kwQepw123c_pencil, Pi.sub_apply, Pi.mul_apply]
 
 end ModularCurve
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
-
 end
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
-
 end
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
-
 end
 p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
 
@@ -988,14 +880,8 @@ theorem kwQepw115c_jH_surjective :
     kwQepw115c_pencil_has_zero
 
 end ModularCurve
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
-
 end
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
-
 end
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
-
 end
 p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
 
@@ -1028,13 +914,8 @@ theorem kw_JSurjective : PeriodPair.JSurjective := by
   field_simp
 
 end PeriodPair
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
-
 end
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
 end
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
-
 end
 p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
 

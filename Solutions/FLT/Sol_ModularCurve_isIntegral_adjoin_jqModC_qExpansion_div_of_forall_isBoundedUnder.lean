@@ -555,8 +555,6 @@ theorem solution
     (hΓ (ModularCurve.IntegralGammaAux.T_mem_Gamma1 M)) g h hh hb
 
 end
-p2m_reactivate "P2MW.S_ModularCurve_isIntegral_adjoin_jqModC_qExpansion_div_of_forall_isBoundedUnder.ModularCurve P2MW.S_ModularCurve_isIntegral_adjoin_jqModC_qExpansion_div_of_forall_isBoundedUnder.ModularCurve.IntegralGammaAux"
-
 end S_ModularCurve_isIntegral_adjoin_jqModC_qExpansion_div_of_forall_isBoundedUnder
 end P2MW
 export P2MW.S_ModularCurve_isIntegral_adjoin_jqModC_qExpansion_div_of_forall_isBoundedUnder (solution)

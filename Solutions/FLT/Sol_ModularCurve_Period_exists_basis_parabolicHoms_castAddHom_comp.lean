@@ -496,7 +496,6 @@ private theorem main (Γ : Subgroup SL(2, ℤ)) [Γ.FiniteIndex] :
 end Main
 
 end L2
-p2m_reactivate "P2MW.S_ModularCurve_Period_exists_basis_parabolicHoms_castAddHom_comp.DeskWA_D3.L2"
 end DeskWA_D3
 p2m_reactivate "P2MW.S_ModularCurve_Period_exists_basis_parabolicHoms_castAddHom_comp.DeskWA_D3.L2 P2MW.S_ModularCurve_Period_exists_basis_parabolicHoms_castAddHom_comp.DeskWA_D3"
 

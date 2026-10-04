@@ -525,8 +525,6 @@ theorem solution (N : ℕ) [NeZero N]
   exact smul_analyticPlace_eq N K τ₀ γ⁻¹ hδ hst φ hφ
 
 end
-p2m_reactivate "P2MW.S_ModularCurve_LevelN_exists_place_ord_sub_pos_forall_smul_eq.ModularCurve P2MW.S_ModularCurve_LevelN_exists_place_ord_sub_pos_forall_smul_eq.ModularCurve.LevelN P2MW.S_ModularCurve_LevelN_exists_place_ord_sub_pos_forall_smul_eq.ModularCurve.LevelN.AnalyticPlaces"
-
 end S_ModularCurve_LevelN_exists_place_ord_sub_pos_forall_smul_eq
 end P2MW
 export P2MW.S_ModularCurve_LevelN_exists_place_ord_sub_pos_forall_smul_eq (solution)

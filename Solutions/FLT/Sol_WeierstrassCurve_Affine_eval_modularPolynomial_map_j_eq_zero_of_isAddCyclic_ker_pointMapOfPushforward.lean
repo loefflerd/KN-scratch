@@ -399,8 +399,6 @@ theorem solution0
   rw [hjK, hjK', ← map_eval_map_Φ, hK₀, map_zero]
 
 end F4Proof
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward.PeriodPair P2MW.S_WeierstrassCurve_Affine_eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward.F4Proof"
-
 end
 p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward.PeriodPair P2MW.S_WeierstrassCurve_Affine_eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward.F4Proof"
 

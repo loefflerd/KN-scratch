@@ -322,8 +322,6 @@ theorem finite_setOf_restrict_eq (v : Place K F) :
 end FiberFiniteness
 
 end Place
-p2m_reactivate "P2MW.S_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg.AlgebraicCurve.Place"
-
 end AlgebraicCurve
 p2m_reactivate "P2MW.S_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg.AlgebraicCurve"
 
@@ -993,8 +991,6 @@ theorem sum_ramificationIndex_mul_inertiaDeg_infra [HasPrincipalDivisors K F'] :
       inertiaDeg_eq_inertiaDeg_fiberCenter (Place.mem_fiber.mp hw)]
 
 end Assembly
-p2m_reactivate "P2MW.S_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg.AlgebraicCurve"
-
 end Place
 p2m_reactivate "P2MW.S_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg.AlgebraicCurve"
 
@@ -1011,8 +1007,6 @@ theorem solution {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [
   AlgebraicCurve.Place.sum_ramificationIndex_mul_inertiaDeg_infra v
 
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg.AlgebraicCurve"
-
 end
 end
 end S_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg

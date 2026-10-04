@@ -2374,9 +2374,6 @@ theorem specialisationEquivariance_levelN (N : ℕ) [NeZero N] (j₀ : Qbar) :
   exact specialisationEquivariance_level_generic N j₀ hz h17 G G'
 
 end ModularCurve.B3
-p2m_reactivate "P2MW.S_ModularCurve_B3_specialisationEquivariance_level.ModularCurve P2MW.S_ModularCurve_B3_specialisationEquivariance_level.ModularCurve.B3"
-p2m_reactivate "P2MW.S_ModularCurve_B3_specialisationEquivariance_level.ModularCurve"
-
 end
 p2m_reactivate "P2MW.S_ModularCurve_B3_specialisationEquivariance_level.ModularCurve P2MW.S_ModularCurve_B3_specialisationEquivariance_level.ModularCurve.B3"
 

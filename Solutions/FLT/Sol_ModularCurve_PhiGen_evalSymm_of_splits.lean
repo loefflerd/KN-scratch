@@ -885,8 +885,6 @@ end Swap
 end PhiGen
 
 end ModularCurve
-p2m_reactivate "P2MW.S_ModularCurve_PhiGen_evalSymm_of_splits.ModularCurve"
-
 end
 p2m_reactivate "P2MW.S_ModularCurve_PhiGen_evalSymm_of_splits.ModularCurve"
 

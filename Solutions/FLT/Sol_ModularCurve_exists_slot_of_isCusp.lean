@@ -308,10 +308,7 @@ theorem cd2_control (N : ℕ) [NeZero N] :
   simpa using h2
 
 end CD
-p2m_reactivate "P2MW.S_ModularCurve_exists_slot_of_isCusp.Row2.CD"
-
 end
-p2m_reactivate "P2MW.S_ModularCurve_exists_slot_of_isCusp.Row2.CD"
 end Row2
 p2m_reactivate "P2MW.S_ModularCurve_exists_slot_of_isCusp.Row2.CD P2MW.S_ModularCurve_exists_slot_of_isCusp.Row2"
 
@@ -478,8 +475,6 @@ private theorem cd3_slotWidth (N : ℕ) [NeZero N] (ζ : Kˣ) (a b : ℕ) (ha : 
     exact mul_right_cancel₀ (ne_of_gt hagpos) ((hγval ▸ hw2).trans key.symm)
 
 end CD
-p2m_reactivate "P2MW.S_ModularCurve_exists_slot_of_isCusp.Row2.CD P2MW.S_ModularCurve_exists_slot_of_isCusp.Row2 P2MW.S_ModularCurve_exists_slot_of_isCusp.Row3.CD"
-
 end Row3
 p2m_reactivate "P2MW.S_ModularCurve_exists_slot_of_isCusp.Row2.CD P2MW.S_ModularCurve_exists_slot_of_isCusp.Row2 P2MW.S_ModularCurve_exists_slot_of_isCusp.Row3.CD P2MW.S_ModularCurve_exists_slot_of_isCusp.Row3"
 
@@ -700,8 +695,6 @@ private theorem cd4_slotOrbit (N : ℕ) [NeZero N] (ζ : Kˣ) (hζ : IsPrimitive
     exact e1.symm.trans e2
 
 end CD
-p2m_reactivate "P2MW.S_ModularCurve_exists_slot_of_isCusp.Row2.CD P2MW.S_ModularCurve_exists_slot_of_isCusp.Row2 P2MW.S_ModularCurve_exists_slot_of_isCusp.Row3.CD P2MW.S_ModularCurve_exists_slot_of_isCusp.Row3"
-
 end Row4
 p2m_reactivate "P2MW.S_ModularCurve_exists_slot_of_isCusp.Row2.CD P2MW.S_ModularCurve_exists_slot_of_isCusp.Row2 P2MW.S_ModularCurve_exists_slot_of_isCusp.Row3.CD P2MW.S_ModularCurve_exists_slot_of_isCusp.Row3"
 

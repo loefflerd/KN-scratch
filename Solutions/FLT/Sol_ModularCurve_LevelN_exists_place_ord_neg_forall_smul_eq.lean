@@ -895,8 +895,6 @@ theorem solution (N : ℕ) [NeZero N]
   ⟨cuspPlace N K, ord_jK_neg N K, fun φ hφ => smul_cuspPlace_eq N K hst φ hφ⟩
 
 end
-p2m_reactivate "P2MW.S_ModularCurve_LevelN_exists_place_ord_neg_forall_smul_eq.ModularCurve P2MW.S_ModularCurve_LevelN_exists_place_ord_neg_forall_smul_eq.ModularCurve.LevelN P2MW.S_ModularCurve_LevelN_exists_place_ord_neg_forall_smul_eq.ModularCurve.LevelN.CuspPlaces"
-
 end S_ModularCurve_LevelN_exists_place_ord_neg_forall_smul_eq
 end P2MW
 export P2MW.S_ModularCurve_LevelN_exists_place_ord_neg_forall_smul_eq (solution)

@@ -118,8 +118,6 @@ theorem card_orbitRelQuotient_mul_card' (hKH : ConjTrivial K H) :
 end DoubleCoset
 
 end FreeDoubleCoset
-p2m_reactivate "P2MW.S_Subgroup_card_orbitRelQuotient_mul_card_eq_index.GroupTheory.FreeDoubleCoset"
-
 end GroupTheory
 p2m_reactivate "P2MW.S_Subgroup_card_orbitRelQuotient_mul_card_eq_index.GroupTheory.FreeDoubleCoset P2MW.S_Subgroup_card_orbitRelQuotient_mul_card_eq_index.GroupTheory"
 

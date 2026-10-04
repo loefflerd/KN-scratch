@@ -550,8 +550,6 @@ theorem schreier_induction {p : (g : SL(2, ℤ)) → g ∈ Gamma0 11 → Prop}
   exact key g hg'
 
 end Gamma0Eleven
-p2m_reactivate "P2MW.S_CuspForm_exists_gamma0_apply_eq_eta_mul_pow_twentyfour.ModularCurve P2MW.S_CuspForm_exists_gamma0_apply_eq_eta_mul_pow_twentyfour.ModularCurve.Gamma0Eleven"
-
 end ModularCurve
 p2m_reactivate "P2MW.S_CuspForm_exists_gamma0_apply_eq_eta_mul_pow_twentyfour.ModularCurve P2MW.S_CuspForm_exists_gamma0_apply_eq_eta_mul_pow_twentyfour.ModularCurve.Gamma0Eleven"
 

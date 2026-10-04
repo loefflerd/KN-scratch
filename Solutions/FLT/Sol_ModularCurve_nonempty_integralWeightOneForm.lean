@@ -219,8 +219,6 @@ theorem coeff_pos_oddEisensteinSum {n : ℕ} (hn : 0 < n) :
   ring
 
 end WeightOneEisensteinSum
-p2m_reactivate "P2MW.S_ModularCurve_nonempty_integralWeightOneForm.ModularCurve.WeightOneEisensteinSum"
-
 end ModularCurve
 p2m_reactivate "P2MW.S_ModularCurve_nonempty_integralWeightOneForm.ModularCurve.WeightOneEisensteinSum P2MW.S_ModularCurve_nonempty_integralWeightOneForm.ModularCurve"
 

@@ -398,8 +398,6 @@ theorem orderTop_delta_goodModel_1728 : (goodModel 1728).Δ.orderTop = 0 := by
   exact orderTop_pow_of_eq_zero (orderTop_jNear (by norm_num)) 2
 
 end S12B3
-p2m_reactivate "P2MW.S_ModularCurve_B3_goodModel_zero_spec.S12B3"
-
 end
 p2m_reactivate "P2MW.S_ModularCurve_B3_goodModel_zero_spec.S12B3"
 

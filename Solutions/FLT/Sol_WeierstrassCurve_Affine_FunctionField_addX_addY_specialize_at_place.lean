@@ -24,7 +24,6 @@ set_option maxHeartbeats 6400000
 
 namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "Place"
-p2m_open "AlgebraicCurve"
 end AlgebraicCurve
 namespace CoordinateRing
 end CoordinateRing
@@ -32,34 +31,27 @@ namespace Es1a1
 end Es1a1
 namespace IsDedekindDomain
 p2m_export "IsDedekindDomain" "mk"
-p2m_open "IsDedekindDomain"
 end IsDedekindDomain
 namespace IsLocalRing
 p2m_export "IsLocalRing" "residue"
-p2m_open "IsLocalRing"
 end IsLocalRing
 namespace Polynomial
 p2m_export "Polynomial" "C coeff_X X coeff_add coeff ext_iff degree factor aeval_C map algebra coeff_C sum coeff_zero flt aeval_X coeff_C_mul coeff_X_pow ring transcendental"
-p2m_open "Polynomial"
 end Polynomial
 namespace Polynomial
 p2m_export "Polynomial" "C coeff_X X coeff_add coeff ext_iff degree factor aeval_C map algebra coeff_C sum coeff_zero flt aeval_X coeff_C_mul coeff_X_pow ring transcendental"
 namespace Bivariate
-p2m_open "Polynomial.Bivariate Polynomial"
 end Polynomial.Bivariate
 namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine isUnit_Δ a₃ a₁ map mk a₄ Jacobian a₂ a₆ reduction Affine.FunctionField IsIntegral toAffine map_Δ map_a₆ map_a₁ map_a₄ Δ map_a₂ map_a₃"
-p2m_open "WeierstrassCurve"
 end WeierstrassCurve
 namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine isUnit_Δ a₃ a₁ map mk a₄ Jacobian a₂ a₆ reduction Affine.FunctionField IsIntegral toAffine map_Δ map_a₆ map_a₁ map_a₄ Δ map_a₂ map_a₃"
 namespace Affine
 p2m_export "WeierstrassCurve.Affine" "Point.add Equation negY equation_iff' slope_of_X_ne Point.add_of_Y_eq equation_iff_nonsingular_of_Δ_ne_zero slope CoordinateRing map equation_add Point.some nonsingular_iff' Point.some.injEq Nonsingular negAddY FunctionField slope_of_Y_ne Point CoordinateRing.mk addX Point.add_some Point.add_of_Y_ne addY Y_eq_of_X_eq Point.add_of_X_ne equation_iff polynomial Point.zero Point.neg_some polyToFunctionField polyToFunctionField_apply polyToFunctionField_C algebraMap_smul_basis yCoord"
-p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 end WeierstrassCurve.Affine
 namespace WithZero
 p2m_export "WithZero" "log_le_log map one le"
-p2m_open "WithZero"
 end WithZero
 
 section
@@ -98,8 +90,6 @@ end WeierstrassCurve.Affine
 
 namespace ModularCurve
 
-p2m_open "WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.WeierstrassCurve.Affine"
-
 end ModularCurve
 
 end
@@ -119,18 +109,12 @@ p2m_open_scoped "Polynomial.Bivariate P2MW.S_WeierstrassCurve_Affine_FunctionFie
 
 namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "Place"
-p2m_open "AlgebraicCurve"
-
 end AlgebraicCurve
 
 namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine isUnit_Δ a₃ a₁ map mk a₄ Jacobian a₂ a₆ reduction Affine.FunctionField IsIntegral toAffine map_Δ map_a₆ map_a₁ map_a₄ Δ map_a₂ map_a₃"
 namespace Affine
 p2m_export "WeierstrassCurve.Affine" "Point.add Equation negY equation_iff' slope_of_X_ne Point.add_of_Y_eq equation_iff_nonsingular_of_Δ_ne_zero slope CoordinateRing map equation_add Point.some nonsingular_iff' Point.some.injEq Nonsingular negAddY FunctionField slope_of_Y_ne Point CoordinateRing.mk addX Point.add_some Point.add_of_Y_ne addY Y_eq_of_X_eq Point.add_of_X_ne equation_iff polynomial Point.zero Point.neg_some polyToFunctionField polyToFunctionField_apply polyToFunctionField_C algebraMap_smul_basis yCoord"
-p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
-
-p2m_open "WeierstrassCurve.Affine.CoordinateRing AlgebraicCurve P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.AlgebraicCurve"
-
 end WeierstrassCurve.Affine
 
 namespace WeierstrassCurve
@@ -245,10 +229,6 @@ namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine isUnit_Δ a₃ a₁ map mk a₄ Jacobian a₂ a₆ reduction Affine.FunctionField IsIntegral toAffine map_Δ map_a₆ map_a₁ map_a₄ Δ map_a₂ map_a₃"
 namespace Affine
 p2m_export "WeierstrassCurve.Affine" "Point.add Equation negY equation_iff' slope_of_X_ne Point.add_of_Y_eq equation_iff_nonsingular_of_Δ_ne_zero slope CoordinateRing map equation_add Point.some nonsingular_iff' Point.some.injEq Nonsingular negAddY FunctionField slope_of_Y_ne Point CoordinateRing.mk addX Point.add_some Point.add_of_Y_ne addY Y_eq_of_X_eq Point.add_of_X_ne equation_iff polynomial Point.zero Point.neg_some polyToFunctionField polyToFunctionField_apply polyToFunctionField_C algebraMap_smul_basis yCoord"
-p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
-
-p2m_open "WeierstrassCurve.Affine.CoordinateRing AlgebraicCurve P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.AlgebraicCurve"
-
 end WeierstrassCurve.Affine
 
 end

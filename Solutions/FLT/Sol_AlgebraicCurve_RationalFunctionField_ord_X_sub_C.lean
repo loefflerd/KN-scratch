@@ -1252,14 +1252,8 @@ theorem reciprocity_of_ord_placeInfty_eq_zero :
       _ = Divisor.evalFun g (principalDivisor hf) := by rw [← hgeq]
 
 end Reciprocity
-p2m_reactivate "P2MW.S_AlgebraicCurve_RationalFunctionField_ord_X_sub_C.AlgebraicCurve.RationalFunctionField"
-
 end RationalFunctionField
-p2m_reactivate "P2MW.S_AlgebraicCurve_RationalFunctionField_ord_X_sub_C.AlgebraicCurve.RationalFunctionField"
-
 end AlgebraicCurve
-p2m_reactivate "P2MW.S_AlgebraicCurve_RationalFunctionField_ord_X_sub_C.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_RationalFunctionField_ord_X_sub_C.AlgebraicCurve"
-
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_RationalFunctionField_ord_X_sub_C.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_RationalFunctionField_ord_X_sub_C.AlgebraicCurve"
 
