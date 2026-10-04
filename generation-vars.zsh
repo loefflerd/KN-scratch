@@ -5,8 +5,8 @@
 #   lake build $GEN1
 #   lake build $GEN2
 #
-# GEN1, ..., GEN$n are zsh arrays of Lean module names, where GEN_COUNT is n.
-# GEN_ALL contains every generation in order. The arrays are read from
+# GEN1, ..., GEN$n are zsh arrays of repository-relative Lean filenames, where
+# GEN_COUNT is n. GEN_ALL contains every generation in order. The arrays are read from
 # GENERATIONS.md each time this file is sourced, so there is no second long
 # file list to maintain.
 
@@ -22,7 +22,7 @@ function _p2m_load_generation_vars {
 
   local script_path=${${(%):-%N}:A}
   local generation_file=${script_path:h}/GENERATIONS.md
-  local line path module variable
+  local line path variable
   local -i generation=0
   local -i index
 
@@ -62,10 +62,8 @@ function _p2m_load_generation_vars {
       return 1
     fi
 
-    module=${path%.lean}
-    module=${module//\//.}
     variable=GEN$generation
-    set -A "$variable" "${(@P)variable}" "$module"
+    set -A "$variable" "${(@P)variable}" "$path"
   done < "$generation_file"
 
   for (( index = 1; index <= GEN_COUNT; ++index )); do
