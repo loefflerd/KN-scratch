@@ -1,9 +1,13 @@
-import Definitions.FLT.Def_Gamma0HeckeOperatorHom
-import Definitions.FLT.Def_ModularCurve_PeriodMap
-import Mathlib.RingTheory.Finiteness.Subalgebra
-import Mathlib.GroupTheory.Schreier
-import Mathlib.LinearAlgebra.Matrix.FixedDetMatrices
-import Mathlib.GroupTheory.Finiteness
+module
+
+public import Definitions.FLT.Def_Gamma0HeckeOperatorHom
+public import Definitions.FLT.Def_ModularCurve_PeriodMap
+public import Mathlib.RingTheory.Finiteness.Subalgebra
+public import Mathlib.GroupTheory.Schreier
+public import Mathlib.LinearAlgebra.Matrix.FixedDetMatrices
+public import Mathlib.GroupTheory.Finiteness
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -115,3 +119,5 @@ end ParabolicFiniteness
 
 end ModularCurve.Period
 
+
+end publicSection

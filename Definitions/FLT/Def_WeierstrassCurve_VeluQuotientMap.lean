@@ -1,4 +1,8 @@
-import Definitions.FLT.Def_WeierstrassCurve_Velu
+module
+
+public import Definitions.FLT.Def_WeierstrassCurve_Velu
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -72,3 +76,5 @@ lemma veluQuotient_Δ (S : Finset (R × R)) :
   ring
 
 end WeierstrassCurve
+
+end publicSection

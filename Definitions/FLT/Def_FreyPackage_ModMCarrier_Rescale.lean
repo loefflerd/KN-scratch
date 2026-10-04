@@ -1,7 +1,11 @@
-import Mathlib.NumberTheory.ModularForms.Basic
+module
 
-import Definitions.FLT.Def_ModularForm_AtkinLehnerDatum
-import Definitions.FLT.Def_ModularForm_HeckeOperator
+public import Mathlib.NumberTheory.ModularForms.Basic
+
+public import Definitions.FLT.Def_ModularForm_AtkinLehnerDatum
+public import Definitions.FLT.Def_ModularForm_HeckeOperator
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -144,12 +148,12 @@ private lemma aux_neZero_R (hdRM : d * R ∣ M) : NeZero R :=
 def rescaleLin (hdRM : d * R ∣ M) (k : ℤ) :
     CuspForm (Gamma0 R) k →ₗ[ℂ] CuspForm (Gamma0 M) k where
   toFun f :=
-    haveI : NeZero R := aux_neZero_R hdRM
+    haveI : NeZero R := by exact aux_neZero_R hdRM
     { toFun := ⇑f ∣[k] heckeDiagMatrix d
       slash_action_eq' := fun γ hγ => rescaleSlash_slash hdRM k
         (fun γ hγ => SlashInvariantFormClass.slash_action_eq f γ hγ) hγ
       holo' := (CuspFormClass.holo f).slash k (heckeDiagMatrix d)
-      zero_at_cusps' := fun {c} hc => rescaleSlash_isZeroAt (aux_neZero_d hdRM) k
+      zero_at_cusps' := fun {c} hc => rescaleSlash_isZeroAt (by exact aux_neZero_d hdRM) k
         (fun c' hc' => CuspFormClass.zero_at_cusps f hc') hc }
   map_add' f g := DFunLike.coe_injective <| by
     show (⇑(f + g)) ∣[k] heckeDiagMatrix d
@@ -179,3 +183,7 @@ abbrev rescaleLinAL (k : ℤ) :
 end AtkinLehnerSpecialization
 
 end FreyPackage.ModMCarrier
+
+end
+
+end publicSection

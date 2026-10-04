@@ -1,8 +1,12 @@
-import Mathlib.NumberTheory.LegendreSymbol.Basic
-import Mathlib.FieldTheory.Finite.Basic
-import Mathlib.Data.Nat.Totient
-import Mathlib.NumberTheory.Divisors
-import Definitions.FLT.Def_ModularCurve_X0
+module
+
+public import Mathlib.NumberTheory.LegendreSymbol.Basic
+public import Mathlib.FieldTheory.Finite.Basic
+public import Mathlib.Data.Nat.Totient
+public import Mathlib.NumberTheory.Divisors
+public import Definitions.FLT.Def_ModularCurve_X0
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -27,3 +31,5 @@ noncomputable def genusFormula (N : ℕ) : ℚ :=
 
 end ModularCurve
 
+
+end publicSection

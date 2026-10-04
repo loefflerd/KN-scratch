@@ -1,9 +1,13 @@
-import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
-import Mathlib.RingTheory.Valuation.LocalSubring
-import Mathlib.RingTheory.IntegralClosure.IntegrallyClosed
-import Mathlib.RingTheory.IntegralClosure.Algebra.Basic
-import Mathlib.RingTheory.Norm.Basic
-import Mathlib.LinearAlgebra.Dimension.Free
+module
+
+public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
+public import Mathlib.RingTheory.Valuation.LocalSubring
+public import Mathlib.RingTheory.IntegralClosure.IntegrallyClosed
+public import Mathlib.RingTheory.IntegralClosure.Algebra.Basic
+public import Mathlib.RingTheory.Norm.Basic
+public import Mathlib.LinearAlgebra.Dimension.Free
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -271,8 +275,8 @@ def restrict : Place K F where
   algebraMap_mem' a := by
     rw [ValuationSubring.mem_comap, ← IsScalarTower.algebraMap_apply]
     exact w.algebraMap_mem' a
-  ne_top' := w.comap_algebraMap_ne_top
-  isPrincipalIdealRing' := w.isPrincipalIdealRing_comap
+  ne_top' := by exact w.comap_algebraMap_ne_top
+  isPrincipalIdealRing' := by exact w.isPrincipalIdealRing_comap
 
 @[simp]
 theorem restrict_toValuationSubring :
@@ -715,3 +719,10 @@ end Pic0
 
 end AlgebraicCurve
 
+
+end
+end
+end
+end
+
+end publicSection

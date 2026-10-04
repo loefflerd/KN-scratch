@@ -1,8 +1,12 @@
-import Mathlib.FieldTheory.Finite.Basic
-import Mathlib.RepresentationTheory.Basic
-import Mathlib.RingTheory.MvPolynomial.IrreducibleQuadratic
+module
 
-import Definitions.FLT.Def_ModularCurve_ProjectiveLine
+public import Mathlib.FieldTheory.Finite.Basic
+public import Mathlib.RepresentationTheory.Basic
+public import Mathlib.RingTheory.MvPolynomial.IrreducibleQuadratic
+
+public import Definitions.FLT.Def_ModularCurve_ProjectiveLine
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -145,3 +149,5 @@ theorem binaryFormEval_mk (F : BinaryForm K (p - 1)) (v : UnimodularRow (ZMod p)
 end Eval
 
 end HeckeEis
+
+end publicSection

@@ -1,4 +1,8 @@
-import Definitions.FLT.Def_WeierstrassCurve_Velu
+module
+
+public import Definitions.FLT.Def_WeierstrassCurve_Velu
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -48,3 +52,5 @@ lemma map_velu2QuadDisc {S : Type*} [CommRing S] (f : R →+* S) (x₀ : R) :
 end CommRing
 
 end WeierstrassCurve
+
+end publicSection

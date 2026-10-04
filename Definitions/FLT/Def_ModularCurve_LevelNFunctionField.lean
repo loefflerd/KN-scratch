@@ -1,6 +1,10 @@
-import Mathlib.NumberTheory.ModularForms.Discriminant
+module
 
-import Definitions.FLT.Def_PeriodPair_Uniformization
+public import Mathlib.NumberTheory.ModularForms.Discriminant
+
+public import Definitions.FLT.Def_PeriodPair_Uniformization
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -54,3 +58,5 @@ theorem coe_jGen (N : ℕ) : ((jGen N : ring N) : ℍ → ℂ) = jAnalytic :=
 end ModularCurve.LevelN
 
 end
+
+end publicSection

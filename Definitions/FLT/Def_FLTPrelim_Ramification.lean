@@ -1,7 +1,11 @@
-import Mathlib.RingTheory.Valuation.RamificationGroup
-import Mathlib.RingTheory.Valuation.ValuationSubring
-import Definitions.FLT.Def_FLTPrelim_FreyPackage
-import Definitions.FLT.Def_FLTPrelim_GaloisRep
+module
+
+public import Mathlib.RingTheory.Valuation.RamificationGroup
+public import Mathlib.RingTheory.Valuation.ValuationSubring
+public import Definitions.FLT.Def_FLTPrelim_FreyPackage
+public import Definitions.FLT.Def_FLTPrelim_GaloisRep
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -53,3 +57,5 @@ end FreyPackage
 
 end
 
+
+end publicSection

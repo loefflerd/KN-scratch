@@ -1,6 +1,10 @@
-import Mathlib.Algebra.Field.ZMod
+module
 
-import Definitions.FLT.Def_ModularCurve_X0
+public import Mathlib.Algebra.Field.ZMod
+
+public import Definitions.FLT.Def_ModularCurve_X0
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -217,3 +221,7 @@ theorem jqNMod_mem (N : ℕ) [NeZero N] : jqNMod ℓ N ∈ modularFunctionFieldM
 end ModFunctionField
 
 end ModularCurve
+
+end
+
+end publicSection

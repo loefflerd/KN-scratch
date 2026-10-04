@@ -1,7 +1,11 @@
-import Definitions.FLT.Def_ModularCurve_PeriodMap
-import Mathlib.Analysis.Complex.UpperHalfPlane.FunctionsBoundedAtInfty
-import Mathlib.NumberTheory.ModularForms.Basic
-import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
+module
+
+public import Definitions.FLT.Def_ModularCurve_PeriodMap
+public import Mathlib.Analysis.Complex.UpperHalfPlane.FunctionsBoundedAtInfty
+public import Mathlib.NumberTheory.ModularForms.Basic
+public import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -32,3 +36,5 @@ theorem periodMap_def (N : ℕ) (f : CuspForm (Gamma0 N) 2) {F : ℍ → ℂ}
   exact ⟨h.choose, h.choose_spec, dite_eq_left h⟩
 
 end ModularCurve
+
+end publicSection

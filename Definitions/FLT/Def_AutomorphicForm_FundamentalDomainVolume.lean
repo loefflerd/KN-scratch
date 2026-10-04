@@ -1,6 +1,10 @@
-import Mathlib.Algebra.Order.Star.Real
+module
 
-import Definitions.FLT.Def_AutomorphicForm_HyperbolicMeasure
+public import Mathlib.Algebra.Order.Star.Real
+
+public import Definitions.FLT.Def_AutomorphicForm_HyperbolicMeasure
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -173,3 +177,5 @@ example : volume (⋃ γ ∈ (∅ : Finset SL(2, ℤ)), γ • 𝒟) < ⊤ := by
 end FLT.FundamentalDomainVolume
 
 end
+
+end publicSection

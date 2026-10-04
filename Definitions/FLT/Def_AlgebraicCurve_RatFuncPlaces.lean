@@ -1,9 +1,13 @@
-import Mathlib.FieldTheory.RatFunc.Basic
-import Mathlib.RingTheory.Henselian
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.RingTheory.SimpleRing.Principal
+module
 
-import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
+public import Mathlib.FieldTheory.RatFunc.Basic
+public import Mathlib.RingTheory.Henselian
+public import Mathlib.RingTheory.RegularLocalRing.Defs
+public import Mathlib.RingTheory.SimpleRing.Principal
+
+public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -396,3 +400,5 @@ end Place
 end AlgebraicCurve
 
 end
+
+end publicSection

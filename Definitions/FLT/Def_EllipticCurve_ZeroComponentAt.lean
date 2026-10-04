@@ -1,8 +1,12 @@
-import Mathlib.AlgebraicGeometry.EllipticCurve.Affine.Point
-import Mathlib.RingTheory.Valuation.ValuationSubring
-import Mathlib.RingTheory.LocalRing.ResidueField.Basic
-import Mathlib.FieldTheory.IsAlgClosed.AlgebraicClosure
-import Definitions.FLT.Def_FLTPrelim_GaloisRep
+module
+
+public import Mathlib.AlgebraicGeometry.EllipticCurve.Affine.Point
+public import Mathlib.RingTheory.Valuation.ValuationSubring
+public import Mathlib.RingTheory.LocalRing.ResidueField.Basic
+public import Mathlib.FieldTheory.IsAlgClosed.AlgebraicClosure
+public import Definitions.FLT.Def_FLTPrelim_GaloisRep
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -23,3 +27,5 @@ def InZeroComponentAt (W : WeierstrassCurve ℤ) (A : ValuationSubring (Algebrai
 
 end WeierstrassCurve
 
+
+end publicSection

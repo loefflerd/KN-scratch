@@ -1,6 +1,10 @@
-import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
-import Mathlib.Algebra.Ring.Action.End
-import Mathlib.LinearAlgebra.Dimension.Finrank
+module
+
+public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
+public import Mathlib.Algebra.Ring.Action.End
+public import Mathlib.LinearAlgebra.Dimension.Finrank
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -353,3 +357,7 @@ theorem torsionRep_apply {n : ℕ} (g : SemilinearAut K F) (x : Pic0.torsion K F
 end SemilinearAut
 
 end AlgebraicCurve
+
+end
+
+end publicSection

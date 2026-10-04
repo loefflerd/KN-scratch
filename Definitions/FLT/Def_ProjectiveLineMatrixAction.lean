@@ -1,7 +1,11 @@
-import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
-import Mathlib.RepresentationTheory.Basic
+module
 
-import Definitions.FLT.Def_ModularCurve_ProjectiveLine
+public import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
+public import Mathlib.RepresentationTheory.Basic
+
+public import Definitions.FLT.Def_ModularCurve_ProjectiveLine
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -186,3 +190,5 @@ noncomputable def fixedCuspCount (N : ℕ) (M : Matrix (Fin 2) (Fin 2) ℤ) : �
     ∀ P : ProjectiveLine (ZMod N), projLineCuspMk N P = c → projLineCuspMk N (projLineAct N M P) = c}
 
 end HeckeEis
+
+end publicSection

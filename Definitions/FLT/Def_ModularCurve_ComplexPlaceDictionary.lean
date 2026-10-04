@@ -1,9 +1,13 @@
-import Mathlib.NumberTheory.ModularForms.QExpansion
-import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
-import Mathlib.Analysis.Meromorphic.Order
-import Definitions.FLT.Def_ModularCurve_X0
-import Definitions.FLT.Def_ModularCurve_LaurentCoeff
-import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
+module
+
+public import Mathlib.NumberTheory.ModularForms.QExpansion
+public import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
+public import Mathlib.Analysis.Meromorphic.Order
+public import Definitions.FLT.Def_ModularCurve_X0
+public import Definitions.FLT.Def_ModularCurve_LaurentCoeff
+public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -44,3 +48,5 @@ end ModularCurve
 
 end
 
+
+end publicSection

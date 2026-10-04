@@ -1,7 +1,11 @@
-import Mathlib.FieldTheory.RatFunc.Valuation
-import Mathlib.RingTheory.SimpleRing.Principal
+module
 
-import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
+public import Mathlib.FieldTheory.RatFunc.Valuation
+public import Mathlib.RingTheory.SimpleRing.Principal
+
+public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -46,3 +50,7 @@ theorem placeInfty_toValuationSubring :
 end RationalFunctionField
 
 end AlgebraicCurve
+
+end
+
+end publicSection

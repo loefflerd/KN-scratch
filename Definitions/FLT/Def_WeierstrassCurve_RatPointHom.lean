@@ -1,4 +1,8 @@
-import Definitions.FLT.Def_WeierstrassCurve_RatPointMap_probe
+module
+
+public import Definitions.FLT.Def_WeierstrassCurve_RatPointMap_probe
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -58,3 +62,5 @@ def ratPointHom [DecidableEq F] [DecidableEq k] :
 
 end WeierstrassCurve
 
+
+end publicSection

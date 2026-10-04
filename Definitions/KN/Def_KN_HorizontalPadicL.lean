@@ -1,7 +1,11 @@
-import Definitions.MTT.Def_MTT_Arithmetic
-import Mathlib.AlgebraicGeometry.EllipticCurve.LFunction
-import Mathlib.Analysis.SpecialFunctions.Log.Basic
-import Mathlib.Analysis.SpecialFunctions.Pow.Real
+module
+
+public import Definitions.MTT.Def_MTT_Arithmetic
+public import Mathlib.AlgebraicGeometry.EllipticCurve.LFunction
+public import Mathlib.Analysis.SpecialFunctions.Log.Basic
+public import Mathlib.Analysis.SpecialFunctions.Pow.Real
+
+@[expose] public section publicSection
 
 namespace HorizontalPadicL
 
@@ -59,3 +63,5 @@ noncomputable def nonvanishingCount (ι : MTT.Qbar →+* ℂ)
     @MTT.criticalLValue ι P.form χ.1.1 ⟨Nat.ne_of_gt χ.1.2⟩ χ.2 0 ≠ 0}
 
 end HorizontalPadicL
+
+end publicSection

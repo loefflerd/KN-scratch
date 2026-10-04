@@ -1,7 +1,11 @@
-import Definitions.MTT.Def_MTT_Arithmetic
-import Mathlib.NumberTheory.Padics.Complex
-import Mathlib.NumberTheory.Padics.RingHoms
-import Mathlib.NumberTheory.Padics.Measure.Basic
+module
+
+public import Definitions.MTT.Def_MTT_Arithmetic
+public import Mathlib.NumberTheory.Padics.Complex
+public import Mathlib.NumberTheory.Padics.RingHoms
+public import Mathlib.NumberTheory.Padics.Measure.Basic
+
+@[expose] public section publicSection
 
 noncomputable section
 open scoped BigOperators
@@ -87,3 +91,7 @@ def Interpolates {N k : ℕ} {ι : Qbar →+* ℂ} (f : Eigenform N k ι)
       μ g = eulerMultiplier f ιp α n χ j * ιp v
 
 end MTT
+
+end
+
+end publicSection

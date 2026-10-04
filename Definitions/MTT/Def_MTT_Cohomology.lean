@@ -1,7 +1,11 @@
-import Definitions.MTT.Def_MTT_Arithmetic
-import Mathlib.RingTheory.MvPolynomial.Homogeneous
-import Mathlib.Topology.Compactification.OnePoint.ProjectiveLine
-import Mathlib.LinearAlgebra.TensorProduct.Basic
+module
+
+public import Definitions.MTT.Def_MTT_Arithmetic
+public import Mathlib.RingTheory.MvPolynomial.Homogeneous
+public import Mathlib.Topology.Compactification.OnePoint.ProjectiveLine
+public import Mathlib.LinearAlgebra.TensorProduct.Basic
+
+@[expose] public section publicSection
 
 noncomputable section
 
@@ -129,3 +133,7 @@ def HeckeEquivariant {N k : ℕ}
     (I g).val = primeHecke (e l) l (I f).val
 
 end MTT.Cohomology
+
+end
+
+end publicSection

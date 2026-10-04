@@ -1,9 +1,13 @@
-import Mathlib.RingTheory.Flat.FaithfullyFlat.Basic
-import Mathlib.RingTheory.Flat.TorsionFree
-import Mathlib.RingTheory.Kaehler.Basic
-import Mathlib.RingTheory.SimpleRing.Principal
+module
 
-import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
+public import Mathlib.RingTheory.Flat.FaithfullyFlat.Basic
+public import Mathlib.RingTheory.Flat.TorsionFree
+public import Mathlib.RingTheory.Kaehler.Basic
+public import Mathlib.RingTheory.SimpleRing.Principal
+
+public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
+
+@[expose] public section publicSection
 
 open KaehlerDifferential
 
@@ -18,7 +22,7 @@ namespace Place
 variable {K F}
 variable (v : Place K F)
 
-private def uniformizer : F :=
+def uniformizer : F :=
   ((IsDiscreteValuationRing.exists_irreducible v.toValuationSubring).choose : F)
 
 private theorem ord_uniformizer : v.ord v.uniformizer = 1 := by
@@ -97,3 +101,5 @@ end Place
 end AlgebraicCurve
 
 end
+
+end publicSection

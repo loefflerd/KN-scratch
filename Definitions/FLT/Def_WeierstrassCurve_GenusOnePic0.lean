@@ -1,6 +1,10 @@
-import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
-import Mathlib.AlgebraicGeometry.EllipticCurve.Affine.Point
-import Mathlib.RingTheory.SimpleRing.Principal
+module
+
+public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
+public import Mathlib.AlgebraicGeometry.EllipticCurve.Affine.Point
+public import Mathlib.RingTheory.SimpleRing.Principal
+
+@[expose] public section publicSection
 
 noncomputable section
 
@@ -167,3 +171,5 @@ end AbelTheorem
 end WeierstrassCurve.Affine
 
 end
+
+end publicSection

@@ -16,9 +16,6 @@ namespace Place
 
 variable (v : Place K F)
 
-def uniformizer : F :=
-  ((IsDiscreteValuationRing.exists_irreducible v.toValuationSubring).choose : F)
-
 theorem ord_uniformizer : v.ord v.uniformizer = 1 := by
   have hirr := (IsDiscreteValuationRing.exists_irreducible v.toValuationSubring).choose_spec
   simpa [uniformizer] using v.ord_coe_irreducible hirr

@@ -1,7 +1,11 @@
-import Mathlib.Algebra.Algebra.Hom.Rat
-import Mathlib.Algebra.Module.LinearMap.Rat
-import Mathlib.FieldTheory.LinearDisjoint
-import Definitions.FLT.Def_ModularCurve_LaurentCoeff
+module
+
+public import Mathlib.Algebra.Algebra.Hom.Rat
+public import Mathlib.Algebra.Module.LinearMap.Rat
+public import Mathlib.FieldTheory.LinearDisjoint
+public import Definitions.FLT.Def_ModularCurve_LaurentCoeff
+
+@[expose] public section publicSection
 
 noncomputable section
 
@@ -219,3 +223,5 @@ end BaseChange
 end ModularCurve
 
 end
+
+end publicSection

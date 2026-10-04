@@ -1,5 +1,9 @@
-import Definitions.FLT.Def_TaylorWiles_Primes
-import Mathlib.FieldTheory.Galois.IsGaloisGroup
+module
+
+public import Definitions.FLT.Def_TaylorWiles_Primes
+public import Mathlib.FieldTheory.Galois.IsGaloisGroup
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -48,3 +52,5 @@ theorem classIndicator_le_one (σ : L ≃ₐ[ℚ] L) (ℓ : ℕ) : classIndicato
   unfold classIndicator; split <;> simp
 
 end LanglandsTunnell
+
+end publicSection

@@ -1,4 +1,8 @@
-import Definitions.FLT.Def_WeierstrassCurve_Velu
+module
+
+public import Definitions.FLT.Def_WeierstrassCurve_Velu
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -32,3 +36,5 @@ theorem veluQuotient_eq_veluQuotientOfSums_of_sums {S : Finset (R × R)} {t w : 
 
 end WeierstrassCurve
 
+
+end publicSection

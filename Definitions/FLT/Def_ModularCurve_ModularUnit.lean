@@ -1,4 +1,8 @@
-import Definitions.FLT.Def_ModularCurve_X0
+module
+
+public import Definitions.FLT.Def_ModularCurve_X0
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -184,3 +188,5 @@ end ModularCurve
 
 end
 
+
+end publicSection

@@ -1,5 +1,9 @@
-import Definitions.FLT.Def_ModularCurve_X0
-import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
+module
+
+public import Definitions.FLT.Def_ModularCurve_X0
+public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -380,3 +384,5 @@ end ModularCurve
 
 end
 
+
+end publicSection
