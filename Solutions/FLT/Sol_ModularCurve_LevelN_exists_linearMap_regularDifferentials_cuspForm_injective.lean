@@ -12,8 +12,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_LevelN_exists_linearMap_regularDifferentials_cuspForm_injective
 
-set_option autoImplicit false
-
 noncomputable section
 
 open UpperHalfPlane

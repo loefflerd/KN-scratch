@@ -1,7 +1,6 @@
 import Theorems.KN.Thm_MTT_Cohomology_eigenform_hecke_stable_period_lattice
 import Mathlib.RingTheory.IntegralClosure.Algebra.Basic
 
-set_option autoImplicit false
 noncomputable section
 
 theorem solution

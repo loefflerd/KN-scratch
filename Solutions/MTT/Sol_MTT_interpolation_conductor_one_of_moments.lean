@@ -18,7 +18,6 @@ import Mathlib.Algebra.Ring.Periodic
 import Theorems.MTT.Thm_MTT_birch_mellin_formula
 import Theorems.MTT.Thm_MTT_character_integral_of_disk_moments
 
-set_option autoImplicit false
 set_option maxRecDepth 4000
 noncomputable section
 open scoped BigOperators ModularForm

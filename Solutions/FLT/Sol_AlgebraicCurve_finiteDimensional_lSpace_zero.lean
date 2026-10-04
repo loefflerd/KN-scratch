@@ -8,8 +8,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_AlgebraicCurve_finiteDimensional_lSpace_zero
 
-set_option autoImplicit false
-
 noncomputable section
 
 universe u v

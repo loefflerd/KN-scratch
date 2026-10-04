@@ -13,8 +13,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_CuspForm_eq_zero_of_prime_not_dvd_of_qCoeff_eq_zero
 
-set_option autoImplicit false
-
 noncomputable section
 
 open UpperHalfPlane ModularForm OnePoint Function

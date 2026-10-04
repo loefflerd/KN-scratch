@@ -25,8 +25,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WLight_exists_monicRel_j_K_of_mdifferentiable_frickeQuotient
 
-set_option autoImplicit false
-
 noncomputable section
 
 p2m_open "Complex Real UpperHalfPlane Function Filter Polynomial Real.Polynomial"

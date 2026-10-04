@@ -5,8 +5,6 @@ set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
-set_option autoImplicit false
-
 open ModularCurve
 theorem ModularCurve.eisenstein4_mul_thetaL_delta_sub_eq_eisenstein6_mul_delta :
     HahnSeries.ofPowerSeries ℤ ℚ (PowerSeries.map (Int.castRingHom ℚ) eisenstein4) *

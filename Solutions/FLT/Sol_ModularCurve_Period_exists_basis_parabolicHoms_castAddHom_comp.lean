@@ -17,8 +17,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_Period_exists_basis_parabolicHoms_castAddHom_comp
 
-set_option autoImplicit false
-
 open scoped MatrixGroups
 
 namespace DeskWA_D3

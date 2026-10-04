@@ -11,8 +11,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_AlgebraicCurve_exists_divisor_eq_max_ord_sub_algebraMap
 
-set_option autoImplicit false
-
 open AlgebraicCurve
 
 theorem solution

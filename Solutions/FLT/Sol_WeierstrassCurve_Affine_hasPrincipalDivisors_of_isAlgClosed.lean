@@ -22,8 +22,6 @@ p2m_attr_erase "simp" "AlgebraicCurve.Place.congrEquiv_symm_apply AlgebraicCurve
 
 set_option Elab.async false
 
-set_option autoImplicit false
-
 noncomputable section
 
 open Polynomial WithZero IsDedekindDomain

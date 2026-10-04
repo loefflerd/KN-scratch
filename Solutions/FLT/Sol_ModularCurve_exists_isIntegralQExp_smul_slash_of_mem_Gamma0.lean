@@ -10,8 +10,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_exists_isIntegralQExp_smul_slash_of_mem_Gamma0
 
-set_option autoImplicit false
-
 noncomputable section
 
 open UpperHalfPlane ModularForm CongruenceSubgroup Function ModularCurve

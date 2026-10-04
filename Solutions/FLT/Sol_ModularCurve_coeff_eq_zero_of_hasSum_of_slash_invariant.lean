@@ -7,8 +7,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_coeff_eq_zero_of_hasSum_of_slash_invariant
 
-set_option autoImplicit false
-
 noncomputable section
 
 open UpperHalfPlane Complex Filter Topology Function

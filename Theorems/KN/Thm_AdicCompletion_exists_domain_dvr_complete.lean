@@ -16,7 +16,6 @@ Mathlib supplies the DVR property of the localization and transfer of domain,
 DVR, and adic completeness along the completion comparison.
 -/
 
-set_option autoImplicit false
 noncomputable section
 
 open IsLocalRing

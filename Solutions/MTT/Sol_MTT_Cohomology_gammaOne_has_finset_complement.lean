@@ -1,6 +1,5 @@
 import Definitions.MTT.Def_MTT_PeriodPairing
 
-set_option autoImplicit false
 noncomputable section
 
 open MTT.Cohomology

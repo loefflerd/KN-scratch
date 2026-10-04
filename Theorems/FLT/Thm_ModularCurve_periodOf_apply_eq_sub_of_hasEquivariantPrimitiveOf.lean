@@ -5,8 +5,6 @@ set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
-set_option autoImplicit false
-
 open scoped MatrixGroups
 theorem ModularCurve.periodOf_apply_eq_sub_of_hasEquivariantPrimitiveOf (Γ : Subgroup SL(2, ℤ))
     (f : CuspForm Γ 2) {F : UpperHalfPlane → ℂ}

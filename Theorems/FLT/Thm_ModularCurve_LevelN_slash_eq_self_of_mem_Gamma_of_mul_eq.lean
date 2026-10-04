@@ -4,8 +4,6 @@ set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
-set_option autoImplicit false
-
 open scoped Manifold MatrixGroups ModularForm
 theorem ModularCurve.LevelN.slash_eq_self_of_mem_Gamma_of_mul_eq (N : ℕ) [NeZero N]
     (F : UpperHalfPlane → ℂ) (hF : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) F)

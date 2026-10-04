@@ -1,6 +1,5 @@
 import Definitions.MTT.Def_MTT_Cohomology_Boundary
 import Mathlib.NumberTheory.LSeries.PrimesInAP
-set_option autoImplicit false
 noncomputable section
 open scoped BigOperators
 open MTT.Cohomology

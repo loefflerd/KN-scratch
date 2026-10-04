@@ -7,8 +7,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_HeckeEis_coeff_single_one_eq_eval_of_mem_binaryForm
 
-set_option autoImplicit false
-
 open scoped MatrixGroups
 
 open HeckeEis MvPolynomial in

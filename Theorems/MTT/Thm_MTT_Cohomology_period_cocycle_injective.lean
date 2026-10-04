@@ -1,6 +1,5 @@
 import Definitions.MTT.Def_MTT_Cohomology_Integration
 
-set_option autoImplicit false
 noncomputable section
 open MTT.Cohomology
 theorem MTT.Cohomology.period_cocycle_injective

@@ -14,8 +14,6 @@ namespace P2MW.S_NumberField_exists_lift_mem_inertia_integralClosure
 
 open scoped NumberField Pointwise
 
-set_option autoImplicit false
-
 local notation "ℚ̄" => AlgebraicClosure ℚ
 local notation "𝔅" => integralClosure ℤ (AlgebraicClosure ℚ)
 

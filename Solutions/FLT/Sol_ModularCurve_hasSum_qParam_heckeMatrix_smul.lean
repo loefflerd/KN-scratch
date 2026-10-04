@@ -9,8 +9,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_hasSum_qParam_heckeMatrix_smul
 
-set_option autoImplicit false
-
 noncomputable section
 
 open UpperHalfPlane Complex Filter Topology Function

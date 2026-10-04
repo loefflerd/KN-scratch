@@ -6,7 +6,6 @@ set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
-set_option autoImplicit false
 theorem IsIntegral.mem_span_of_adjoin_simple_constants_transcendental {K : Type*}
     [Field K] [Algebra ℂ K]
     (F : IntermediateField ℚ ℂ) (t : K) (ht : Transcendental ℂ t)

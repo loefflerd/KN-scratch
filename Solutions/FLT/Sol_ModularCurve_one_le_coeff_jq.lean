@@ -9,8 +9,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_one_le_coeff_jq
 
-set_option autoImplicit false
-
 noncomputable section
 
 open scoped PowerSeries.WithPiTopology

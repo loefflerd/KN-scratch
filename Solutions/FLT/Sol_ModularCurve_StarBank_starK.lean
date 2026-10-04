@@ -9,8 +9,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_StarBank_starK
 
-set_option autoImplicit false
-
 open HahnSeries PowerSeries
 
 namespace ModularCurve

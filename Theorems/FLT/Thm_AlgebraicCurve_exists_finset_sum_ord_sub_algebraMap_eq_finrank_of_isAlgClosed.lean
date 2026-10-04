@@ -4,8 +4,6 @@ set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
-set_option autoImplicit false
-
 open AlgebraicCurve
 theorem AlgebraicCurve.exists_finset_sum_ord_sub_algebraMap_eq_finrank_of_isAlgClosed
     (k : Type*) [Field k] [IsAlgClosed k] {F : Type*} [Field F] [Algebra k F]

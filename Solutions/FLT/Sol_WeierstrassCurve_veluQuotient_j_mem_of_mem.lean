@@ -8,8 +8,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WeierstrassCurve_veluQuotient_j_mem_of_mem
 
-set_option autoImplicit false
-
 namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "a₃ a₁ b₂ a₄ a₂ a₆ Δ j veluGx veluGy veluT veluU veluW veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ j_mem_of_a_mem"
 p2m_open "WeierstrassCurve"

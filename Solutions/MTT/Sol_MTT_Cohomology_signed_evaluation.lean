@@ -3,7 +3,6 @@ import Theorems.MTT.Thm_MTT_Cohomology_reflection_class
 import Theorems.MTT.Thm_MTT_Cohomology_reflection_involutive
 import Definitions.MTT.Def_MTT_Cohomology_Integration
 import Mathlib.RingTheory.Flat.Basic
-set_option autoImplicit false
 noncomputable section
 open scoped BigOperators TensorProduct
 open MTT.Cohomology

@@ -32,8 +32,6 @@ p2m_open "UpperHalfPlane ModularCurve~coeffEmb_jq AlgebraicCurve"
 p2m_open "UpperHalfPlane ModularCurve~coeffEmb_jq"
 open scoped MatrixGroups ModularForm Manifold
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace ANb

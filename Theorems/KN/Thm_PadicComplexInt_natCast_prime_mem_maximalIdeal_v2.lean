@@ -1,7 +1,6 @@
 import Definitions.KN.Def_KN_SeededThetaConstructionV2B
 import Mathlib.RingTheory.LocalRing.ResidueField.Basic
 
-set_option autoImplicit false
 noncomputable section
 
 /-- The rational prime `p` lies in the maximal ideal of the valuation ring of

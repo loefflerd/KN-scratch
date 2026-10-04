@@ -15,8 +15,6 @@ p2m_attr_erase "simp" "WeierstrassCurve.Affine.Point.galoisRepModuleEnd_apply"
 
 set_option Elab.async false
 
-set_option autoImplicit false
-
 noncomputable section
 
 open IsDedekindDomain WithZero IsLocalRing

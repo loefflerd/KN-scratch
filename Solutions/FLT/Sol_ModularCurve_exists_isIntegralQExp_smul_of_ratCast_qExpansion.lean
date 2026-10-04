@@ -11,8 +11,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_exists_isIntegralQExp_smul_of_ratCast_qExpansion
 
-set_option autoImplicit false
-
 noncomputable section
 
 open Complex UpperHalfPlane ModularForm CongruenceSubgroup Function ModularCurve

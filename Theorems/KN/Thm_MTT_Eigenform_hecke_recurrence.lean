@@ -1,6 +1,5 @@
 import Definitions.MTT.Def_MTT_Arithmetic
 
-set_option autoImplicit false
 noncomputable section
 
 /-- The Fourier coefficients of an MTT eigenform satisfy the usual prime

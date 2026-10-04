@@ -4,7 +4,6 @@ import Mathlib.GroupTheory.Index
 import Mathlib.NumberTheory.Padics.PadicVal.Basic
 import Mathlib.Algebra.Group.Pi.Units
 
-set_option autoImplicit false
 noncomputable section
 open scoped BigOperators
 

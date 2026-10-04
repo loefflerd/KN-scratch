@@ -13,8 +13,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_EisensteinSeries_exists_modularForm_coe_eq_eisensteinG
 
-set_option autoImplicit false
-
 open scoped MatrixGroups CongruenceSubgroup ModularForm Topology Manifold Matrix
 p2m_open "UpperHalfPlane~I"
 open EisensteinSeries Filter Complex

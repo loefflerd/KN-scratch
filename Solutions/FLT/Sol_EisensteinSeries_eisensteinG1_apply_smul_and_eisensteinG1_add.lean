@@ -9,8 +9,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_EisensteinSeries_eisensteinG1_apply_smul_and_eisensteinG1_add
 
-set_option autoImplicit false
-
 open scoped Topology Real MatrixGroups Matrix
 p2m_open "UpperHalfPlane~I"
 open EisensteinSeries Filter Complex

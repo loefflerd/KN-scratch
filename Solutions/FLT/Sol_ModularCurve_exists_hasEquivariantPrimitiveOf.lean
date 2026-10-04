@@ -12,8 +12,6 @@ namespace P2MW.S_ModularCurve_exists_hasEquivariantPrimitiveOf
 open scoped MatrixGroups Real Manifold ModularForm
 open UpperHalfPlane Filter Topology Complex Function Metric
 
-set_option autoImplicit false
-
 namespace ModularCurve
 p2m_export "ModularCurve" "HasEquivariantPrimitiveOf period Period.IsEquivariantPrimitive"
 namespace PrimitiveConstructionOf

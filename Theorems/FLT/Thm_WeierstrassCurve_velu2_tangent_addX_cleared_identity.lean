@@ -4,8 +4,6 @@ set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
-set_option autoImplicit false
-
 open WeierstrassCurve WeierstrassCurve.Affine
 theorem WeierstrassCurve.velu2_tangent_addX_cleared_identity
     {R : Type*} [CommRing R] {W : WeierstrassCurve R} {x₀ y₀ x y : R}

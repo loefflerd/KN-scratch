@@ -10,10 +10,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_HeckeEis_exists_coeffH1par_map_ringHom
 
-set_option autoImplicit false
-
-set_option autoImplicit false
-
 noncomputable section
 
 namespace HeckeEis

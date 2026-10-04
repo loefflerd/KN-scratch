@@ -3,7 +3,6 @@ import Mathlib.NumberTheory.NumberField.Basic
 import Mathlib.NumberTheory.Padics.Complex
 import Mathlib.RingTheory.Valuation.Integral
 
-set_option autoImplicit false
 noncomputable section
 
 open NumberField

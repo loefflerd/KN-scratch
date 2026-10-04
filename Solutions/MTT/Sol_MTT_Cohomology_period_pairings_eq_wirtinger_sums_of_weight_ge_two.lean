@@ -1,6 +1,5 @@
 import Theorems.MTT.Thm_MTT_Cohomology_periodPairing_eq_transversal_integral_of_weight_ge_two
 
-set_option autoImplicit false
 noncomputable section
 open UpperHalfPlane MeasureTheory
 open scoped MatrixGroups Modular ComplexConjugate

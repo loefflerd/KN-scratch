@@ -4,8 +4,6 @@ set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
-set_option autoImplicit false
-
 open scoped MatrixGroups
 theorem ModularCurve.LevelN.exists_monoidHom_algEquiv_fixedField_eq_adjoin (N : ℕ) [NeZero N]
     (K : Type*) [Field K] [Algebra ℂ K] [Algebra (ModularCurve.LevelN.ring N) K]

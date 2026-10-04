@@ -5,8 +5,6 @@ set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
-set_option autoImplicit false
-
 open AlgebraicCurve
 theorem AlgebraicCurve.Divisor.degree_eq_finrank_adjoin_of_eq_max_ord_sub_algebraMap
     {K F : Type*} [Field K] [Field F] [Algebra K F] [IsCurveOver K F]

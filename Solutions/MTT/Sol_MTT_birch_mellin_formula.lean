@@ -6,7 +6,6 @@ import Mathlib.Tactic.FinCases
 import Mathlib.Tactic.LinearCombination
 import Mathlib.Tactic.FieldSimp
 import Mathlib.Tactic.Ring
-set_option autoImplicit false
 set_option maxRecDepth 2000
 noncomputable section
 open scoped BigOperators ModularForm

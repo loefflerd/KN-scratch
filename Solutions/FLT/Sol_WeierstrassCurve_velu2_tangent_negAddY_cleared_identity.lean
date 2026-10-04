@@ -7,8 +7,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WeierstrassCurve_velu2_tangent_negAddY_cleared_identity
 
-set_option autoImplicit false
-
 open WeierstrassCurve WeierstrassCurve.Affine
 
 set_option maxHeartbeats 16000000 in

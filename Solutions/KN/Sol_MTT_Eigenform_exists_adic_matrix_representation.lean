@@ -23,8 +23,6 @@ import Theorems.KN.Thm_MTT_Eigenform_exists_continuous_localField_representation
 -- From Solutions/AdicCompactDenominators.lean
 section BundleAdicCompactDenominators
 
-set_option autoImplicit false
-
 open scoped nonZeroDivisors
 
 namespace AdicIntegralModel
@@ -90,7 +88,6 @@ The core requires only a matrix submonoid,
 not a scalar-stable subring, and works in every finite dimension.
 -/
 
-set_option autoImplicit false
 noncomputable section BundleAdicStableLattice
 open scoped BigOperators
 
@@ -258,7 +255,6 @@ end AdicStableLattice
 end BundleAdicStableLattice
 
 -- From Solutions/AdicIntegralModel.lean
-set_option autoImplicit false
 noncomputable section BundleAdicIntegralModel
 
 namespace AdicIntegralModel
@@ -323,7 +319,6 @@ end BundleAdicIntegralModel
 /-! Elementary continuity-to-finite-level bridges for absolute Galois representations.
 The proof uses the finite-field neighborhood basis of the Krull topology. -/
 
-set_option autoImplicit false
 noncomputable section BundleAdicFiniteContinuity
 
 open scoped Topology
@@ -415,7 +410,6 @@ end BundleAdicFiniteContinuity
 -- From Solutions/AdicFieldTopology.lean
 /-! The fraction-field realization of a DVR is an open subring for its adic valuation. -/
 
-set_option autoImplicit false
 noncomputable section BundleAdicFieldTopology
 
 open scoped WithZero
@@ -451,7 +445,6 @@ theorem AlgebraicClosure.compactSpace_rat_galoisGroup :
 end BundleAdicFieldTopology
 
 -- From Solutions/ResidualEigenformBridge.lean
-set_option autoImplicit false
 noncomputable section BundleResidualEigenformBridge
 
 open NumberField
@@ -493,7 +486,6 @@ end MTT.Eigenform
 end BundleResidualEigenformBridge
 
 -- From Solutions/AdicRepresentationSolution.lean
-set_option autoImplicit false
 noncomputable section BundleAdicRepresentationSolution
 
 open NumberField

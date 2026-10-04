@@ -17,8 +17,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WLight_qExpansion_sigmaTransport_package
 
-set_option autoImplicit false
-
 noncomputable section
 
 p2m_open "Complex Real UpperHalfPlane Function Filter Polynomial Real.Polynomial"

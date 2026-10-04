@@ -1,7 +1,6 @@
 import Theorems.KN.Thm_HorizontalPadicL_eigenform_residualGaloisRepresentation_exists_v2
 import Definitions.KN.Def_KN_SeededPrimeGaloisDataV2
 
-set_option autoImplicit false
 noncomputable section
 
 namespace HorizontalPadicL

@@ -11,8 +11,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_CongruenceSubgroup_eq_one_or_eq_neg_one_of_mem_Gamma1_of_smul_eq
 
-set_option autoImplicit false
-
 open scoped MatrixGroups
 open UpperHalfPlane
 

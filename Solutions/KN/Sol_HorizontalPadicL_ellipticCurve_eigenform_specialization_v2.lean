@@ -3,7 +3,6 @@ import Definitions.FLT.Def_FLTPrelim_Modularity
 import Theorems.MTT.Thm_MTT_hasSum_heckePrime
 import Theorems.KN.Thm_HorizontalPadicL_ellipticCurve_attachedForm_isNormalizedEigenform
 
-set_option autoImplicit false
 noncomputable section
 
 open scoped ModularForm

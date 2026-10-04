@@ -7,8 +7,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_AlgebraicCurve_Place_ord_smul_of_ne_zero
 
-set_option autoImplicit false
-
 open AlgebraicCurve
 
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F) {c : K} (hc : c ≠ 0) (x : F) : v.ord (c • x) = v.ord x := by

@@ -1,6 +1,5 @@
 import Definitions.KN.Def_KN_SeedCyclotomicGaloisCharactersV3B
 
-set_option autoImplicit false
 noncomputable section
 
 namespace HorizontalPadicL

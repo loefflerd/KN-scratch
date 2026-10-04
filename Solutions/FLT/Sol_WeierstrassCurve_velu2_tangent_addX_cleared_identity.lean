@@ -7,8 +7,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WeierstrassCurve_velu2_tangent_addX_cleared_identity
 
-set_option autoImplicit false
-
 open WeierstrassCurve WeierstrassCurve.Affine
 
 private theorem velu2TangentAddX_assemble {R : Type*} [CommRing R] {A M C D t u : R}

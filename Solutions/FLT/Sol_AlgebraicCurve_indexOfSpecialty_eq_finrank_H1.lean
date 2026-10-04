@@ -7,8 +7,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_AlgebraicCurve_indexOfSpecialty_eq_finrank_H1
 
-set_option autoImplicit false
-
 namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors HasPrincipalDivisors.exists_divisor repartitions mem_repartitions_of_forall_le_exp repartitionsOf principalRepartitions mem_principalRepartitions_iff H1 adeleBdd diagonalHom adeleSpace adeleBdd_le_adeleSpace globalSub indexOfSpecialty mem_adeleSpace_iff adeleBddPrincipal indexOfSpecialty_eq"
 p2m_open "AlgebraicCurve"

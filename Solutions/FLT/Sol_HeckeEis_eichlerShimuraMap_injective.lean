@@ -18,8 +18,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_HeckeEis_eichlerShimuraMap_injective
 
-set_option autoImplicit false
-
 namespace HeckeEis
 p2m_export "HeckeEis" "BinaryForm binaryFormRepSL mem_coeffCoboundaries_iff coeffH1parMk_eq_zero_iff jFactor_eq_denom IsEichlerIntegral eichlerShimuraMap jFactor_pow_mul_eval_binaryFormRepSL exists_isEichlerIntegral_isParabolicCocycle eichlerShimuraMap_eq_coeffH1parMk existsEichlerShimuraMapLinear"
 namespace MainAux

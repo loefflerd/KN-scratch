@@ -9,8 +9,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularForm_exists_tendsto_slash_div_qParam_pow_of_conj_T_pow_mem
 
-set_option autoImplicit false
-
 open UpperHalfPlane Filter Topology
 open scoped MatrixGroups ModularForm Pointwise
 

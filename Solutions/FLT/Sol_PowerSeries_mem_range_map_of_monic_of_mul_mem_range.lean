@@ -12,8 +12,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_PowerSeries_mem_range_map_of_monic_of_mul_mem_range
 
-set_option autoImplicit false
-
 namespace PowerSeriesNormalityPID
 
 open Polynomial

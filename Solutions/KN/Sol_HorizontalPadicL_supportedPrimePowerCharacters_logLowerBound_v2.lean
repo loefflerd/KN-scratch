@@ -4,7 +4,6 @@ import Mathlib.NumberTheory.MulChar.Duality
 import Mathlib.RingTheory.IntegralDomain
 import Mathlib.RingTheory.RootsOfUnity.AlgebraicallyClosed
 
-set_option autoImplicit false
 noncomputable section
 open scoped BigOperators
 

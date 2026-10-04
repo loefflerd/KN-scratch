@@ -9,7 +9,6 @@ import Mathlib.MeasureTheory.Integral.IntegralEqImproper
 import Mathlib.Analysis.SpecialFunctions.ImproperIntegrals
 import Mathlib.MeasureTheory.Integral.ExpDecay
 import Mathlib.NumberTheory.ModularForms.LFunction
-set_option autoImplicit false
 noncomputable section
 open scoped BigOperators MatrixGroups ModularForm
 open MeasureTheory Complex Set Filter Topology intervalIntegral

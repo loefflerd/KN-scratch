@@ -1,6 +1,5 @@
 import Definitions.MTT.Def_MTT_Arithmetic
 
-set_option autoImplicit false
 noncomputable section
 
 namespace MTT

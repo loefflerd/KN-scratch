@@ -2,7 +2,6 @@ import Theorems.MTT.Thm_MTT_Cohomology_boundary_hecke_cusp_sum_at_one
 import Definitions.MTT.Def_MTT_Cohomology_Boundary
 import Mathlib.NumberTheory.LSeries.PrimesInAP
 
-set_option autoImplicit false
 noncomputable section
 
 open scoped BigOperators

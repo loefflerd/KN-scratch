@@ -4,8 +4,6 @@ import Definitions.FLT.Def_ModularCurve_TateFormal
 import Definitions.FLT.Def_ModularCurve_PhiGen
 import Definitions.FLT.Def_WeierstrassCurve_VeluQuotientMap
 
-set_option autoImplicit false
-
 noncomputable section
 
 open ModularCurve WeierstrassCurve Polynomial

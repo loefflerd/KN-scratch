@@ -2,7 +2,6 @@ import Mathlib.Analysis.Normed.Field.Instances
 
 import Definitions.MTT.Def_MTT_Measures
 
-set_option autoImplicit false
 noncomputable section
 open Finset MTT
 

@@ -1,7 +1,6 @@
 import Definitions.KN.Def_KN_PrimePowerPropagationV2
 import Mathlib.NumberTheory.DirichletCharacter.Orthogonality
 
-set_option autoImplicit false
 noncomputable section
 open scoped BigOperators
 

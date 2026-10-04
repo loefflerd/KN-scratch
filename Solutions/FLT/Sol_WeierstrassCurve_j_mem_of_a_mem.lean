@@ -8,8 +8,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WeierstrassCurve_j_mem_of_a_mem
 
-set_option autoImplicit false
-
 open WeierstrassCurve in
 theorem solution {F : Type*} [Field F] {S : Type*} [SetLike S F] [SubfieldClass S F]
     (W : WeierstrassCurve F) [W.IsElliptic] (K : S)

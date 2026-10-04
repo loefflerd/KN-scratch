@@ -12,8 +12,6 @@ set_option backward.isDefEq.respectTransparency.types false
 namespace P2MW.S_ModularCurve_StarBank_hassePolyDescent
 p2m_attr_erase "simp" "ModularCurve.coeffEmb_coeff ModularCurve.coeffMap_coeff ModularCurve.coeffMap_id ModularCurve.coeffMap_single"
 
-set_option autoImplicit false
-
 p2m_open "Polynomial HahnSeries ModularCurve P2MW.S_ModularCurve_StarBank_hassePolyDescent.ModularCurve UpperHalfPlane"
 open scoped MatrixGroups
 

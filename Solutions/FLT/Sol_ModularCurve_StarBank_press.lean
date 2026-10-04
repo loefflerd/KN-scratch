@@ -12,8 +12,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_StarBank_press
 
-set_option autoImplicit false
-
 noncomputable section
 
 p2m_open "HahnSeries PowerSeries ModularCurve P2MW.S_ModularCurve_StarBank_press.ModularCurve"

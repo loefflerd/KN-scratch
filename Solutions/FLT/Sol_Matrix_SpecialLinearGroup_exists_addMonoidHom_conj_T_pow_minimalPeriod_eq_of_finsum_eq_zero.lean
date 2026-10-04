@@ -10,7 +10,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_Matrix_SpecialLinearGroup_exists_addMonoidHom_conj_T_pow_minimalPeriod_eq_of_finsum_eq_zero
 
-set_option autoImplicit false
 set_option linter.unusedSectionVars false
 
 open Matrix MatrixGroups Subgroup MulAction

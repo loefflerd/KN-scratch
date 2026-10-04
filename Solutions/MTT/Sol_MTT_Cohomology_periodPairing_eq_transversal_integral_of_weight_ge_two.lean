@@ -9,7 +9,6 @@ import Mathlib.NumberTheory.ModularForms.Bounds
 
 /-! # The corrected finite-transversal comparison -/
 
-set_option autoImplicit false
 noncomputable section
 open UpperHalfPlane MeasureTheory
 open scoped MatrixGroups Modular ComplexConjugate

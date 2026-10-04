@@ -9,8 +9,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_transcendental_of_coe_eq_coeffEmb_jq
 
-set_option autoImplicit false
-
 namespace LaurentSeries
 p2m_open "LaurentSeries"
 

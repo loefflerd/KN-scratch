@@ -9,8 +9,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_Ideal_IsMaximal_exists_adicCompletion_localization_ringEquiv
 
-set_option autoImplicit false
-
 universe u
 
 namespace AdicIso

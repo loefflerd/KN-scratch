@@ -11,8 +11,6 @@ namespace P2MW.S_WeierstrassCurve_Affine_Point_some_add_some_eq_neg_some_of_pow_
 
 open WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
 
-set_option autoImplicit false
-
 theorem ws13_some_congr {k : Type*} [Field k] {V : Affine k} {x₁ x₂ y₁ y₂ : k}
     {h₁ : V.Nonsingular x₁ y₁} {h₂ : V.Nonsingular x₂ y₂} (hx : x₁ = x₂) (hy : y₁ = y₂) :
     (Point.some x₁ y₁ h₁ : V.Point) = Point.some x₂ y₂ h₂ := by

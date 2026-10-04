@@ -24,7 +24,6 @@ p2m_attr_erase "instance" "AlgebraicCurve.SemilinearAut.instDistribMulActionSubt
 p2m_attr_erase "simp" "AlgebraicCurve.IsFrobeniusEndo.frobNormRingHom_apply ModularCurve.frobeniusPushforwardGeomLevelPic0_mk ModularCurve.coe_frobeniusGeomLevelEquiv_apply ModularCurve.coe_frobeniusPushforwardGeomLevelDegZero ModularCurve.heckeFibreGeomLevelPic0OfIsCurveOver_mk ModularCurve.frobeniusGeomLevel_apply_coe ModularCurve.frobeniusPullbackGeomLevelPic0OfIsCurveOver_mk ModularCurve.coe_heckeFibreGeomLevelDegZero ModularCurve.coe_frobeniusPullbackGeomLevelDegZero ModularCurve.frobeniusPullbackGeomLevelPic0_mk ModularCurve.frobeniusPullbackGeomLevel_single ModularCurve.heckeFibreGeomLevelPic0_mk ModularCurve.frobeniusPushforwardGeomLevelPic0OfIsCurveOver_mk ModularCurve.frobeniusPushforwardGeomLevel_single ModularCurve.qExpandAlgC_apply AlgebraicCurve.Divisor.degree_pushforwardAlong AlgebraicCurve.Pic0.coe_degZeroCorrespondence AlgebraicCurve.Place.mem_fiberAlong AlgebraicCurve.SemilinearAut.toRingAut_inv AlgebraicCurve.SemilinearAut.smul_def AlgebraicCurve.SemilinearAut.smul_single AlgebraicCurve.SemilinearAut.smul_toValuationSubring AlgebraicCurve.SemilinearAut.baseAut_inv AlgebraicCurve.SemilinearAut.baseAut_ofAlgAut AlgebraicCurve.SemilinearAut.toRingAut_ofAlgAut AlgebraicCurve.SemilinearAut.torsionRep_apply AlgebraicCurve.SemilinearAut.toRingAut_one AlgebraicCurve.SemilinearAut.deg_smul AlgebraicCurve.SemilinearAut.degree_smul AlgebraicCurve.SemilinearAut.coe_degZeroSMulHom AlgebraicCurve.SemilinearAut.baseAut_mul AlgebraicCurve.SemilinearAut.coe_smulValuationSubringEquiv_apply AlgebraicCurve.SemilinearAut.baseAut_one AlgebraicCurve.SemilinearAut.ofAlgAut_smul AlgebraicCurve.SemilinearAut.coe_torsion_smul AlgebraicCurve.SemilinearAut.toRingAut_mul AlgebraicCurve.coe_frobeniusPushforwardDegZero AlgebraicCurve.IsFrobeniusEndo.coe_frobeniusPullbackDegZero ModularCurve.jqNModC_one ModularCurve.qExpand_coeff_mul"
 p2m_attr_erase "simp" "ModularCurve.qExpandₐ_apply ModularCurve.jqN_one ModularCurve.qExpand_single ModularCurve.dedekindPsi_one ModularCurve.ModularPolynomialData.mk.sizeOf_spec ModularCurve.evalAtJ_X ModularCurve.ModularPolynomialData.mk.injEq ModularCurve.constantCoeff_jNum ModularCurve.constantCoeff_eisenstein4 ModularCurve.qExpand_C ModularCurve.coeff_jq_neg_one ModularCurve.constantCoeff_jNumQ ModularCurve.reduceModBivar_C_X ModularCurve.laurentMap_coeff ModularCurve.reduceModBivar_X ModularCurve.laurentMap_single ModularCurve.evalAtJInt_X ModularCurve.evalAtJMod_X ModularCurve.jqNMod_one ModularCurve.aeval_heckeGen ModularCurve.coe_mTorsionGaloisRep_apply ModularCurve.eisensteinSystem_of_dvd ModularCurve.eisensteinSystem_of_not_dvd FreyPackage.mk.sizeOf_spec FreyPackage.mk.injEq WeierstrassCurve.Affine.Point.galoisRepModuleEnd_apply AlgebraicCurve.RationalFunctionField.placeEquivOption_placeInfty AlgebraicCurve.RationalFunctionField.placeEquivOption_symm_some AlgebraicCurve.RationalFunctionField.placeEquivOption_placeOfPoint AlgebraicCurve.RationalFunctionField.placeEquivOption_symm_none AlgebraicCurve.Place.placeOfPrime_toValuationSubring AlgebraicCurve.Place.mem_fiberOver AlgebraicCurve.Place.fiberEquiv_symm_apply AlgebraicCurve.Place.fiberEquiv_apply AlgebraicCurve.Place.centerHeightOneSpectrum_asIdeal"
 
-set_option autoImplicit false
 set_option maxHeartbeats 3200000
 
 open Polynomial
@@ -102,8 +101,6 @@ theorem ell_eq_zero_of_degree_neg [IsCurveOver K F] (hD : Divisor.degree D < 0) 
     ell D = 0 := by
   rw [ell, lSpace_eq_bot_of_degree_neg hD, finrank_bot]
 end AlgebraicCurve
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -347,8 +344,6 @@ theorem ell_le_degree_add_one [IsCurveOver K F] (hC : ConstantsAreBase K F)
 end AlgebraicCurve
 
 end
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -689,8 +684,6 @@ theorem gate_finrank_adeleBdd_quotient_single_point [IsCurveOver K F] (P : Place
 end AlgebraicCurve
 
 end
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -1036,8 +1029,6 @@ end AlgebraicCurve
 
 end
 
-set_option autoImplicit false
-
 noncomputable section
 
 open Module IsDedekindDomain WithZero
@@ -1159,8 +1150,6 @@ end AlgebraicCurve
 
 end
 
-set_option autoImplicit false
-
 noncomputable section
 
 open Module IsDedekindDomain WithZero
@@ -1273,8 +1262,6 @@ theorem residuePairing_surjective_of_rankOne_max [HasPrincipalDivisors K F]
 end AlgebraicCurve
 
 end
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -1438,8 +1425,6 @@ theorem gate_indexOfSpecialtyFinite_at_zero [IsCurveOver K F] [Nonempty (Place K
 end AlgebraicCurve
 
 end
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -1690,8 +1675,6 @@ scoped instance instSumRamificationInertia_port {K F F' : Type*} [Field K] [Fiel
 end AlgebraicCurve
 p2m_reactivate "P2MW.S_AlgebraicCurve_RationalFunctionField_stichtenothGenusExists.AlgebraicCurve"
 
-set_option autoImplicit false
-
 noncomputable section
 
 open Module IsDedekindDomain WithZero
@@ -1927,8 +1910,6 @@ theorem gate_stichtenothGenus_le_of_transcendenceTower [IsCurveOver K F]
 end AlgebraicCurve
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_RationalFunctionField_stichtenothGenusExists.AlgebraicCurve"
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -2179,8 +2160,6 @@ end AlgebraicCurve
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_RationalFunctionField_stichtenothGenusExists.AlgebraicCurve"
 
-set_option autoImplicit false
-
 noncomputable section
 
 open Module Polynomial
@@ -2331,8 +2310,6 @@ end RationalFunctionField
 end AlgebraicCurve
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_RationalFunctionField_stichtenothGenusExists.AlgebraicCurve P2MW.S_AlgebraicCurve_RationalFunctionField_stichtenothGenusExists.AlgebraicCurve.RationalFunctionField"
-
-set_option autoImplicit false
 
 noncomputable section
 

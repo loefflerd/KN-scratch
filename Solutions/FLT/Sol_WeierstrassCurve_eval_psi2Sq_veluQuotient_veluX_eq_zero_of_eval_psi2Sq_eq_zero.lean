@@ -11,8 +11,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WeierstrassCurve_eval_psi2Sq_veluQuotient_veluX_eq_zero_of_eval_psi2Sq_eq_zero
 
-set_option autoImplicit false
-
 p2m_open "Polynomial WeierstrassCurve P2MW.S_WeierstrassCurve_eval_psi2Sq_veluQuotient_veluX_eq_zero_of_eval_psi2Sq_eq_zero.WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point"
 
 noncomputable section

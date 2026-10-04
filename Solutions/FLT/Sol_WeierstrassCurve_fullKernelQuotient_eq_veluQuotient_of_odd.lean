@@ -9,8 +9,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WeierstrassCurve_fullKernelQuotient_eq_veluQuotient_of_odd
 
-set_option autoImplicit false
-
 noncomputable section
 
 p2m_open "ModularCurve P2MW.S_WeierstrassCurve_fullKernelQuotient_eq_veluQuotient_of_odd.ModularCurve WeierstrassCurve P2MW.S_WeierstrassCurve_fullKernelQuotient_eq_veluQuotient_of_odd.WeierstrassCurve Polynomial"

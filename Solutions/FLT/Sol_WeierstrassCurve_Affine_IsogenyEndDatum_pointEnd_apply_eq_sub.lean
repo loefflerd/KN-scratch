@@ -8,8 +8,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_pointEnd_apply_eq_sub
 
-set_option autoImplicit false
-
 open WeierstrassCurve WeierstrassCurve.Affine AlgebraicCurve
 
 universe u

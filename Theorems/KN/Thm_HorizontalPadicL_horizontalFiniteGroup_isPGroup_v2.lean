@@ -1,7 +1,6 @@
 import Definitions.KN.Def_KN_SeededThetaConstructionV2B
 import Mathlib.GroupTheory.PGroup
 
-set_option autoImplicit false
 noncomputable section
 open scoped BigOperators
 

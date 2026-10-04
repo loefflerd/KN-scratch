@@ -13,8 +13,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_AlgebraicCurve_Place_exists_of_valuationSubring
 
-set_option autoImplicit false
-
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_Place_exists_of_valuationSubring.AlgebraicCurve IsDedekindDomain"
 open scoped IntermediateField.algebraAdjoinAdjoin
 

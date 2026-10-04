@@ -8,8 +8,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_Algebra_IsSeparable_of_finrank_fieldRange_frobenius_eq
 
-set_option autoImplicit false
-
 theorem solution
     {E F : Type*} [Field E] [Field F] [Algebra E F] [FiniteDimensional E F]
     (p : ℕ) [Fact p.Prime] [CharP F p]

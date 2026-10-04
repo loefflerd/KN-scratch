@@ -2,7 +2,6 @@ import Definitions.MTT.Def_MTT_PeriodPairing
 import Mathlib.NumberTheory.ModularForms.Bounds
 import Mathlib.GroupTheory.Complement
 
-set_option autoImplicit false
 noncomputable section
 open UpperHalfPlane MeasureTheory
 open scoped MatrixGroups Modular ComplexConjugate

@@ -13,8 +13,6 @@ p2m_attr_erase "simp" "ModularCurve.coe_mTorsionGaloisRep_apply ModularCurve.eis
 
 open AlgebraicCurve
 
-set_option autoImplicit false
-
 theorem solution (K F : Type*) [Field K] [Field F]
     [Algebra K F] (x : F) (hx : Transcendental K x)
     (hfin : FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F)

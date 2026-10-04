@@ -12,8 +12,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularForm_exists_gamma1_weight_four_isIntegralQExp_partialDivisorSum_slash_eq
 
-set_option autoImplicit false
-
 open UpperHalfPlane
 
 section FracLemma

@@ -9,10 +9,7 @@ set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
-set_option autoImplicit false
 set_option maxHeartbeats 1600000
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -34,7 +31,6 @@ end AlgebraicCurve
 
 end
 
-set_option autoImplicit false
 set_option linter.unusedSectionVars false
 set_option maxHeartbeats 400000
 set_option synthInstance.maxHeartbeats 400000
@@ -48,50 +44,9 @@ namespace ModularCurve.Ldgr37Ch
 
 universe u v
 
-section HenselEngine
-
-variable {R : Type u} [CommRing R] [HenselianLocalRing R]
-variable {F : Type v} [Field F] [Algebra F (IsLocalRing.ResidueField R)]
-variable (i : F →+* R)
-variable (hi : (IsLocalRing.residue R).comp i
-  = algebraMap F (IsLocalRing.ResidueField R))
-variable (abar : IsLocalRing.ResidueField R)
-
-include hi
-
-end HenselEngine
-
-section CoefficientEmbedding
-
-variable {R : Type u} [CommRing R] [HenselianLocalRing R]
-variable {F : Type v} [Field F] [Algebra F (IsLocalRing.ResidueField R)]
-variable (i : F →+* R)
-variable (hi : (IsLocalRing.residue R).comp i
-  = algebraMap F (IsLocalRing.ResidueField R))
-variable (abar : IsLocalRing.ResidueField R)
-
-include hi
-
-end CoefficientEmbedding
-
-section SectionIdentity
-
-variable {R : Type u} [CommRing R] [HenselianLocalRing R]
-variable {F : Type v} [Field F] [Algebra F (IsLocalRing.ResidueField R)]
-variable (i : F →+* R)
-variable (hi : (IsLocalRing.residue R).comp i
-  = algebraMap F (IsLocalRing.ResidueField R))
-variable (abar : IsLocalRing.ResidueField R)
-
-include hi
-
-end SectionIdentity
-
 end ModularCurve.Ldgr37Ch
 
 end
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -175,8 +130,6 @@ end Place
 end AlgebraicCurve
 
 end
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -316,8 +269,6 @@ end AlgebraicCurve
 
 end
 
-set_option autoImplicit false
-
 noncomputable section
 
 open IsDedekindDomain WithZero Module IsLocalRing
@@ -452,8 +403,6 @@ end AlgebraicCurve
 
 end
 
-set_option autoImplicit false
-
 noncomputable section
 
 open IsDedekindDomain WithZero Module IsLocalRing
@@ -495,8 +444,6 @@ end AlgebraicCurve
 
 end
 
-set_option autoImplicit false
-
 noncomputable section
 
 open IsDedekindDomain WithZero Module IsLocalRing
@@ -536,8 +483,6 @@ end Place
 end AlgebraicCurve
 
 end
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -686,8 +631,6 @@ end AlgebraicCurve
 
 end
 
-set_option autoImplicit false
-
 noncomputable section
 
 open IsDedekindDomain WithZero Module IsLocalRing
@@ -761,7 +704,6 @@ end AlgebraicCurve
 
 end
 
-set_option autoImplicit false
 set_option linter.unusedSectionVars false
 set_option maxHeartbeats 800000
 set_option synthInstance.maxHeartbeats 400000
@@ -777,7 +719,6 @@ end ModularCurve.Ldgr35Cl
 
 end
 
-set_option autoImplicit false
 set_option linter.unusedSectionVars false
 set_option maxHeartbeats 400000
 set_option maxRecDepth 8000
@@ -792,13 +733,6 @@ end ModularCurve.Ldgr35Cs
 
 end
 
-set_option autoImplicit false
-
-noncomputable section
-
-end
-
-set_option autoImplicit false
 set_option linter.unusedSectionVars false
 set_option maxHeartbeats 800000
 set_option synthInstance.maxHeartbeats 400000
@@ -814,7 +748,6 @@ end ModularCurve.Ldgr36Si
 
 end
 
-set_option autoImplicit false
 set_option linter.unusedSectionVars false
 set_option maxHeartbeats 400000
 set_option maxRecDepth 8000
@@ -829,13 +762,6 @@ end ModularCurve.Ldgr36Rc
 
 end
 
-set_option autoImplicit false
-
-noncomputable section
-
-end
-
-set_option autoImplicit false
 set_option linter.unusedSectionVars false
 set_option maxHeartbeats 400000
 set_option maxRecDepth 8000
@@ -877,7 +803,6 @@ end ModularCurve.Lg37
 
 end
 
-set_option autoImplicit false
 set_option linter.unusedSectionVars false
 set_option maxHeartbeats 400000
 set_option synthInstance.maxHeartbeats 400000
@@ -996,7 +921,6 @@ end Mp72a102T1
 
 end
 
-set_option autoImplicit false
 set_option linter.unusedSectionVars false
 set_option maxHeartbeats 400000
 set_option maxRecDepth 8000
@@ -1188,7 +1112,6 @@ end ModularCurve.Mp72a102T3
 
 end
 
-set_option autoImplicit false
 set_option linter.unusedSectionVars false
 set_option maxHeartbeats 400000
 set_option maxRecDepth 8000
@@ -1234,7 +1157,6 @@ end Mp72a102T2
 
 end
 
-set_option autoImplicit false
 set_option maxHeartbeats 800000
 
 open AlgebraicCurve ModularCurve.Lg37 Polynomial IntermediateField Mp72a102T1 Mp72a102T2
@@ -1296,7 +1218,6 @@ end GenericSection
 
 end ModularCurve.KwNo6Section
 
-set_option autoImplicit false
 set_option linter.unusedSectionVars false
 set_option maxHeartbeats 400000
 set_option maxRecDepth 8000
@@ -1420,7 +1341,6 @@ end Mp72a103T2
 
 end
 
-set_option autoImplicit false
 set_option maxHeartbeats 1600000
 
 open Polynomial IsLocalRing AlgebraicCurve
@@ -1608,7 +1528,6 @@ theorem aCoeff_section_indep (v : Place K F)
 
 end ModularCurve.KwNo6Pin
 
-set_option autoImplicit false
 set_option maxHeartbeats 1600000
 
 open Polynomial IsLocalRing AlgebraicCurve
@@ -1993,16 +1912,8 @@ noncomputable def canonicalLocalResidueDataKStar (v : Place K F)
   res_simplePole f hf := resStar_simplePole v S f hf
   res_higherPoleMonomial _n hn := resStar_higherPoleMonomial v S hn
 
-section WitnessW
-variable {v : Place K F} {ℓ : v.toValuationSubring}
-  (hℓ : IsLocalRing.residue v.toValuationSubring ℓ ∉ Set.range (algebraMap K v.ResidueField))
-include hℓ
-
-end WitnessW
-
 end ModularCurve.KwNo6Pin
 
-set_option autoImplicit false
 set_option maxHeartbeats 1600000
 
 open Polynomial IsLocalRing AlgebraicCurve

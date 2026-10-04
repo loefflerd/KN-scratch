@@ -13,8 +13,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_AlgebraicCurve_Place_exists_of_orderMap
 
-set_option autoImplicit false
-
 open WithZero
 
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F]

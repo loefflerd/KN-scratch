@@ -13,8 +13,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_PhiGen_PhiGenDescends_sum_mul_jqN_pow_eq_zero
 
-set_option autoImplicit false
-
 noncomputable section
 
 open Polynomial

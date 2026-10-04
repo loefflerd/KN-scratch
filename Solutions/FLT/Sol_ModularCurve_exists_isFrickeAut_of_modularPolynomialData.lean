@@ -11,8 +11,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_exists_isFrickeAut_of_modularPolynomialData
 
-set_option autoImplicit false
-
 p2m_open "ModularCurve P2MW.S_ModularCurve_exists_isFrickeAut_of_modularPolynomialData.ModularCurve AlgebraicCurve IntermediateField P2MW.S_ModularCurve_exists_isFrickeAut_of_modularPolynomialData.IntermediateField"
 
 noncomputable section

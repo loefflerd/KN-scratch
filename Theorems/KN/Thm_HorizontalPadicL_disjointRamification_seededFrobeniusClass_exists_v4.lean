@@ -1,7 +1,5 @@
 import Definitions.KN.Def_KN_SeedCyclotomicGaloisCharactersV3B
 
-set_option autoImplicit false
-
 namespace HorizontalPadicL
 
 /-- Disjoint ramification between the residual/cyclotomic extension and the

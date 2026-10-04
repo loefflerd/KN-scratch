@@ -34,7 +34,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WLight_exists_levelFraction_of_stable_family
 
-set_option autoImplicit false
 set_option synthInstance.maxHeartbeats 1600000
 noncomputable section
 open Complex Real

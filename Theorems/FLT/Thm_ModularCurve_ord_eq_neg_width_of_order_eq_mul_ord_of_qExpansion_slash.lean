@@ -10,8 +10,6 @@ set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
-set_option autoImplicit false
-
 open CongruenceSubgroup ModularCurve
 open scoped MatrixGroups ModularForm
 theorem ModularCurve.ord_eq_neg_width_of_order_eq_mul_ord_of_qExpansion_slash

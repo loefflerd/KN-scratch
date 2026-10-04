@@ -1,7 +1,5 @@
 import Definitions.KN.Def_HorizontalPadicL_LocalEulerFactorDegree
 
-set_option autoImplicit false
-
 namespace HorizontalPadicL
 
 /-- The prime support of the least modular level is exactly the set of places

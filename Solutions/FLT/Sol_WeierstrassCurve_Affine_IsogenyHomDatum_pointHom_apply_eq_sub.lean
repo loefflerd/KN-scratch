@@ -8,8 +8,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WeierstrassCurve_Affine_IsogenyHomDatum_pointHom_apply_eq_sub
 
-set_option autoImplicit false
-
 noncomputable section
 
 open WeierstrassCurve WeierstrassCurve.Affine AlgebraicCurve

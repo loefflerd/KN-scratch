@@ -21,7 +21,6 @@ set_option backward.isDefEq.respectTransparency.types false
 p2m_attr_erase "ext" "IsDedekindDomain.HeightOneSpectrum.adicCompletion.ext"
 namespace P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable
 
-set_option autoImplicit false
 set_option synthInstance.maxHeartbeats 6400000
 set_option maxHeartbeats 12800000
 

@@ -9,8 +9,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_HeckeEis_mem_range_binaryFormRepSL_T_zpow_sub_one
 
-set_option autoImplicit false
-
 open scoped MatrixGroups
 
 noncomputable section

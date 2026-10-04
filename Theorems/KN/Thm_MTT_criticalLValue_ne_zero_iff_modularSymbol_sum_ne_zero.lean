@@ -1,6 +1,5 @@
 import Theorems.MTT.Thm_MTT_birch_mellin_formula
 
-set_option autoImplicit false
 noncomputable section
 open scoped BigOperators
 

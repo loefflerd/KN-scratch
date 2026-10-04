@@ -10,8 +10,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_CohCarrier_index_gammaH_eq_index_gamma0_mul_index
 
-set_option autoImplicit false
-
 open scoped MatrixGroups in
 
 private theorem igIDX_gamma0Units_surjective (M : ℕ) [NeZero M] :

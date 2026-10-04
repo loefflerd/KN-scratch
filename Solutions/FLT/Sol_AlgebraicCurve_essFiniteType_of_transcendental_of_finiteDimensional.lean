@@ -10,8 +10,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_AlgebraicCurve_essFiniteType_of_transcendental_of_finiteDimensional
 
-set_option autoImplicit false
-
 open IntermediateField Polynomial
 
 theorem solution

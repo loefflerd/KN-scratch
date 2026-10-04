@@ -9,8 +9,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_JOneES_exists_transcendental_finiteDimensional_laurentBaseChange
 
-set_option autoImplicit false
-
 namespace JOneESAlgBC
 
 open HahnSeries Polynomial

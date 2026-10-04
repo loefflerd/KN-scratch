@@ -9,7 +9,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_Period_exists_basis_parabolicHoms_of_isAddTorsionFree
 
-set_option autoImplicit false
 set_option linter.unusedSectionVars false
 
 namespace ParInt

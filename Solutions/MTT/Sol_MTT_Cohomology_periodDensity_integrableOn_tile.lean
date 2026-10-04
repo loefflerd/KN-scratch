@@ -26,7 +26,6 @@ Adapted from AINTLIB, PeterssonInnerProduct.lean, commit
 eb9621e7bcb0ce220ad53983ec45d987cb5b9002. Uses mathlib's canonical measure.
 -/
 
-set_option autoImplicit false
 open MeasureTheory MeasureTheory.Measure UpperHalfPlane Complex Set
 open scoped MatrixGroups Modular ComplexConjugate NNReal
 
@@ -104,7 +103,6 @@ The coefficient and contraction proofs are adapted from cbirkbeck's accepted
 Prove2Me proof 777707bf-f8aa-4fd9-8d82-71afe645b027, Part A.
 -/
 
-set_option autoImplicit false
 open UpperHalfPlane MeasureTheory
 open scoped MatrixGroups Modular ComplexConjugate
 
@@ -194,7 +192,6 @@ end Part1
 
 section Part2
 
-set_option autoImplicit false
 open UpperHalfPlane MeasureTheory
 open scoped MatrixGroups Modular ComplexConjugate NNReal
 

@@ -1,6 +1,5 @@
 import Theorems.MTT.Thm_MTT_hasSum_heckePrime
 
-set_option autoImplicit false
 noncomputable section
 
 set_option linter.unusedVariables false in

@@ -4,7 +4,6 @@ import Theorems.KN.Thm_MTT_Eigenform_coeff_mem_ringOfIntegers
 import Theorems.KN.Thm_MTT_Eigenform_nebentype_mem_ringOfIntegers
 import Mathlib.NumberTheory.NumberField.Ideal.Basic
 
-set_option autoImplicit false
 noncomputable section
 
 open NumberField

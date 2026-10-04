@@ -3,8 +3,6 @@ import Definitions.FLT.Def_FLTPrelim_Modularity
 import Mathlib.FieldTheory.Cardinality
 import Theorems.KN.Thm_HorizontalPadicL_ellipticCurve_minimalModularLevel_iff_localEulerFactorDegree_lt_two
 
-set_option autoImplicit false
-
 open HorizontalPadicL
 
 theorem solution

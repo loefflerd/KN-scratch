@@ -28,8 +28,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_instIsCurveOverRatFunc.AlgebraicCurve"
 
 section
 
-set_option autoImplicit false
-
 noncomputable section
 
 open IsDedekindDomain WithZero IsLocalRing
@@ -88,8 +86,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_instIsCurveOverRatFunc.AlgebraicCurve P2MW
 
 section
 
-set_option autoImplicit false
-
 noncomputable section
 
 open KaehlerDifferential
@@ -130,8 +126,6 @@ end
 p2m_reactivate "P2MW.S_AlgebraicCurve_instIsCurveOverRatFunc.AlgebraicCurve P2MW.S_AlgebraicCurve_instIsCurveOverRatFunc.AlgebraicCurve.RationalFunctionField"
 
 section
-
-set_option autoImplicit false
 
 noncomputable section
 

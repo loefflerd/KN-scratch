@@ -24,7 +24,6 @@ p2m_attr_erase "simp" "ModularCurve.B3.scaleAddEquiv_apply ModularCurve.B3.cycOf
 
 open ModularCurve AlgebraicCurve HahnSeries KaehlerDifferential
 
-set_option autoImplicit false
 set_option synthInstance.maxHeartbeats 1600000
 
 noncomputable section

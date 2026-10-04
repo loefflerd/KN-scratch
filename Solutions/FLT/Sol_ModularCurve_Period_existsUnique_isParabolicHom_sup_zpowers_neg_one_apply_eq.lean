@@ -7,8 +7,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_Period_existsUnique_isParabolicHom_sup_zpowers_neg_one_apply_eq
 
-set_option autoImplicit false
-
 open scoped MatrixGroups
 
 namespace ParabolicPlusMinus

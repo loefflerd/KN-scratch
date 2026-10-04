@@ -7,8 +7,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularForm_levelOne_eq_zero_of_lt_order_qExpansion
 
-set_option autoImplicit false
-
 noncomputable section
 
 open Complex Filter Function UpperHalfPlane ModularForm SlashInvariantFormClass ModularFormClass

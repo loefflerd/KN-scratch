@@ -1,6 +1,5 @@
 import Definitions.KN.Def_MTT_EigenformCoefficientPrime
 
-set_option autoImplicit false
 noncomputable section
 
 /-- The prime selected by a `p`-adic embedding is a prime ideal. -/

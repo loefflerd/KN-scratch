@@ -11,8 +11,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ValuationSubring_isFrobeniusAt_of_forall_smul_sub_pow_mem
 
-set_option autoImplicit false
-
 open scoped NumberField Pointwise
 
 namespace C6PortS10T3b

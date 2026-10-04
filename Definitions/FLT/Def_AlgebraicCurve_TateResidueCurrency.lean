@@ -13,9 +13,6 @@ set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
-set_option autoImplicit false
-
-set_option autoImplicit false
 set_option maxHeartbeats 1600000
 set_option linter.unusedSectionVars false
 
@@ -86,7 +83,6 @@ end ModularCurve.KwF4gRRTate
 
 end
 
-set_option autoImplicit false
 set_option linter.unusedSectionVars false
 
 set_option synthInstance.maxHeartbeats 800000
@@ -111,8 +107,6 @@ end CorrectedCarrier
 end AlgebraicCurve
 
 end
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -139,8 +133,6 @@ end AlgebraicCurve
 
 end
 
-set_option autoImplicit false
-
 noncomputable section
 
 open IsDedekindDomain WithZero Module IsLocalRing
@@ -161,7 +153,6 @@ end AlgebraicCurve
 
 end
 
-set_option autoImplicit false
 set_option maxHeartbeats 1600000
 set_option synthInstance.maxHeartbeats 800000
 set_option linter.unusedSectionVars false
@@ -240,7 +231,6 @@ end CompletionTraceSumMint
 
 end AlgebraicCurve
 
-set_option autoImplicit false
 set_option maxHeartbeats 1600000
 set_option synthInstance.maxHeartbeats 800000
 set_option linter.unusedSectionVars false
@@ -343,7 +333,6 @@ end ModularCurve.KwF4gRRTate
 
 end
 
-set_option autoImplicit false
 set_option maxHeartbeats 1600000
 set_option synthInstance.maxHeartbeats 800000
 set_option linter.unusedSectionVars false
@@ -375,7 +364,6 @@ end Mint
 
 end ModularCurve.KwF4R1V391a
 
-set_option autoImplicit false
 set_option maxHeartbeats 1600000
 set_option linter.unusedSectionVars false
 
@@ -408,7 +396,6 @@ end AlgebraicCurve
 
 end
 
-set_option autoImplicit false
 set_option maxHeartbeats 1600000
 set_option linter.unusedSectionVars false
 

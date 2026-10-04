@@ -2,7 +2,6 @@ import Theorems.MTT.Thm_MTT_Cohomology_mixed_period_test_functions_local_equivar
 import Theorems.MTT.Thm_MTT_Cohomology_mixed_period_test_functions_cusp_decay_of_pos_level
 import Theorems.MTT.Thm_MTT_Cohomology_mixed_period_test_functions_tile_integrable_of_pos_level
 
-set_option autoImplicit false
 noncomputable section
 open UpperHalfPlane MeasureTheory
 open scoped MatrixGroups Modular ComplexConjugate

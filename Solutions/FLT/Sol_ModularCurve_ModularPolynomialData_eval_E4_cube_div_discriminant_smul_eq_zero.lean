@@ -12,8 +12,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_ModularPolynomialData_eval_E4_cube_div_discriminant_smul_eq_zero
 
-set_option autoImplicit false
-
 noncomputable section
 
 p2m_open "ModularCurve P2MW.S_ModularCurve_ModularPolynomialData_eval_E4_cube_div_discriminant_smul_eq_zero.ModularCurve UpperHalfPlane Polynomial"

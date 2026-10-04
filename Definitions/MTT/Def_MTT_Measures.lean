@@ -3,7 +3,6 @@ import Mathlib.NumberTheory.Padics.Complex
 import Mathlib.NumberTheory.Padics.RingHoms
 import Mathlib.NumberTheory.Padics.Measure.Basic
 
-set_option autoImplicit false
 noncomputable section
 open scoped BigOperators
 namespace MTT

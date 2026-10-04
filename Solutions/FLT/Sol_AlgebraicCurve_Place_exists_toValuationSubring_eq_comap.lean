@@ -10,8 +10,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_AlgebraicCurve_Place_exists_toValuationSubring_eq_comap
 
-set_option autoImplicit false
-
 noncomputable section
 
 open IsDedekindDomain WithZero IsLocalRing

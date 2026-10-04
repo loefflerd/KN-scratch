@@ -5,8 +5,6 @@ import Theorems.FLT.Thm_Rep_finiteDimensional_coind_and_finrank_coind_eq_index_m
 
 /-! # Parabolic Shapiro comparison with central-fixed coinduced coefficients -/
 
-set_option autoImplicit false
-
 noncomputable section
 
 universe u

@@ -14,11 +14,8 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_AlgebraicCurve_IsCurveOver_exists_separating_transcendental
 
-set_option autoImplicit false
 set_option linter.unusedSectionVars false
 noncomputable section
-
-set_option autoImplicit false
 
 open KaehlerDifferential Algebra IntermediateField
 
@@ -79,8 +76,6 @@ theorem IsCurveOver.trdeg_eq_one [PerfectField K] [IsCurveOver K F]
 
 end AlgebraicCurve
 p2m_reactivate "P2MW.S_AlgebraicCurve_IsCurveOver_exists_separating_transcendental.AlgebraicCurve.IsCurveOver P2MW.S_AlgebraicCurve_IsCurveOver_exists_separating_transcendental.AlgebraicCurve"
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -167,8 +162,6 @@ theorem trdeg_eq_one_of_perfectField [PerfectField K] [Algebra.EssFiniteType K F
 end IsCurveOver
 end AlgebraicCurve
 p2m_reactivate "P2MW.S_AlgebraicCurve_IsCurveOver_exists_separating_transcendental.AlgebraicCurve.IsCurveOver P2MW.S_AlgebraicCurve_IsCurveOver_exists_separating_transcendental.AlgebraicCurve"
-
-set_option autoImplicit false
 
 p2m_open "IntermediateField Algebra TensorProduct.Algebra Algebra.TensorProduct.Algebra"
 

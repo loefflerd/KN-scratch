@@ -11,8 +11,6 @@ noncomputable section
 
 section PeriodMeasureComparison
 
-set_option autoImplicit false
-
 open UpperHalfPlane MeasureTheory
 open scoped MatrixGroups Modular ComplexConjugate
 
@@ -117,7 +115,6 @@ The coefficient and contraction proofs are adapted from cbirkbeck's accepted
 Prove2Me proof 777707bf-f8aa-4fd9-8d82-71afe645b027, Part A.
 -/
 
-set_option autoImplicit false
 open UpperHalfPlane MeasureTheory
 open scoped MatrixGroups Modular ComplexConjugate
 
@@ -207,7 +204,6 @@ end PeriodContractionComputations
 
 section PeriodPairingTiles
 
-set_option autoImplicit false
 open UpperHalfPlane MeasureTheory
 open scoped MatrixGroups Modular ComplexConjugate
 

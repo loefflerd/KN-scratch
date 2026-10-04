@@ -14,7 +14,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_HeckeEis_finrank_coeffH1par_gamma0_le_finrank_coeffH1par_top_induced
 
-set_option autoImplicit false
 set_option maxHeartbeats 800000
 set_option synthInstance.maxHeartbeats 80000
 

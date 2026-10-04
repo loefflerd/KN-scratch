@@ -3,7 +3,6 @@ import Mathlib.Analysis.Complex.UpperHalfPlane.Measure
 import Mathlib.Analysis.Calculus.FDeriv.Basic
 import Mathlib.NumberTheory.Modular
 
-set_option autoImplicit false
 noncomputable section
 open scoped BigOperators ComplexConjugate
 open MeasureTheory

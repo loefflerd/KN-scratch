@@ -13,8 +13,6 @@ import Mathlib.GroupTheory.Schreier
 import Mathlib.LinearAlgebra.Matrix.FixedDetMatrices
 import Definitions.MTT.Def_MTT_NormalizedParabolicCocycles
 
-set_option autoImplicit false
-
 /-! # Finite coordinates for binary homogeneous polynomials -/
 
 noncomputable section

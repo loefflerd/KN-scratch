@@ -2202,23 +2202,10 @@ p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.
 
 namespace Place
 
-section Congr
-
-variable {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F']
-variable (e : F ≃+* F')
-
-variable (he : ∀ a : K, e (algebraMap K F a) = algebraMap K F' a)
-include he
-
-end Congr
 end Place
 p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
 
 namespace Pic0
-
-variable {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F']
-variable (e : F ≃+* F') (he : ∀ a : K, e (algebraMap K F a) = algebraMap K F' a)
-include e he
 
 end Pic0
 end AlgebraicCurve

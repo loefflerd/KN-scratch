@@ -11,8 +11,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_HahnSeries_hasRamBound_C
 
-set_option autoImplicit false
-
 namespace HahnSeries
 p2m_export "HahnSeries" "support C_apply support_single_subset support_one single support_zero support_mul_subset support_add_subset C support_neg ramScale puiseuxRamEmb HasRamBound puiseuxRamSubfield mem_puiseuxRamSubfield_iff"
 p2m_open "HahnSeries"

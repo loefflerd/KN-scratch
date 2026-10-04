@@ -33,7 +33,6 @@ p2m_attr_erase "simp" "ModularCurve.HahnSpecialise.resH_apply ModularCurve.HahnS
 
 open ModularCurve AlgebraicCurve
 
-set_option autoImplicit false
 set_option synthInstance.maxHeartbeats 1600000
 
 theorem linearIndependent_ringHom_comp_of_linearIndependent' {K L : Type*} [Field K] [Field L]

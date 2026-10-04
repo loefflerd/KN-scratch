@@ -35,7 +35,6 @@ p2m_attr_erase "simp" "AlgebraicCurve.RationalFunctionField.placeInfty_toValuati
 
 open ModularCurve AlgebraicCurve HahnSeries KaehlerDifferential
 
-set_option autoImplicit false
 set_option synthInstance.maxHeartbeats 1600000
 set_option maxHeartbeats 6400000
 

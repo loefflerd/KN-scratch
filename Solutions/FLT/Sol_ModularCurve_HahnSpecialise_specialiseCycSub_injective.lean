@@ -7,8 +7,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_HahnSpecialise_specialiseCycSub_injective
 
-set_option autoImplicit false
-
 noncomputable section
 
 open ModularCurve ModularCurve.B3 ModularCurve.HahnSpecialise

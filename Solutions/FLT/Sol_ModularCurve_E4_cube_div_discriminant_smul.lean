@@ -8,8 +8,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_E4_cube_div_discriminant_smul
 
-set_option autoImplicit false
-
 noncomputable section
 
 open Matrix.SpecialLinearGroup UpperHalfPlane Polynomial

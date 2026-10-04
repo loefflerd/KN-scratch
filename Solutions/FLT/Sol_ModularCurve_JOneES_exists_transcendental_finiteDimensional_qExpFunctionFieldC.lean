@@ -11,8 +11,6 @@ import Definitions.FLT.Def_P2M_Util
 
 namespace P2MW.S_ModularCurve_JOneES_exists_transcendental_finiteDimensional_qExpFunctionFieldC
 
-set_option autoImplicit false
-
 namespace JOneESAlg
 
 open HahnSeries Polynomial

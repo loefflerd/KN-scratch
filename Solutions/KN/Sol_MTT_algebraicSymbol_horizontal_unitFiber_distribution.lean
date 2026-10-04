@@ -1,6 +1,5 @@
 import Theorems.KN.Thm_MTT_algebraicSymbol_horizontal_distribution
 
-set_option autoImplicit false
 noncomputable section
 open scoped BigOperators
 

@@ -8,8 +8,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_HeckeEis_coeffH1par_map_heckeT_comm
 
-set_option autoImplicit false
-
 namespace HeckeEis
 p2m_export "HeckeEis" "coeffParabolicCocycles coeffH1par coeffH1parMk coeffH1parMk_surjective coeffHeckeFun coeffHeckeFun_apply BinaryForm binarySubst binarySubst_X binarySubst_C binaryFormRepSL binaryFormRepSL_apply_coe binaryFormAlphaAdj binaryFormAlphaAdj_apply_coe"
 p2m_open "HeckeEis"

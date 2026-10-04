@@ -12,8 +12,6 @@ import Mathlib.RepresentationTheory.Rep.Res
 import Mathlib.Tactic
 import Mathlib.Tactic.Module
 
-set_option autoImplicit false
-
 /-! # Coinduction of a restricted representation as functions on left cosets -/
 
 noncomputable section

@@ -3,7 +3,6 @@ import Definitions.KN.Def_MTT_EigenformCoefficientLocalField
 import Definitions.FLT.Def_GaloisRep_Residual
 import Mathlib.FieldTheory.KrullTopology
 
-set_option autoImplicit false
 noncomputable section
 
 open NumberField

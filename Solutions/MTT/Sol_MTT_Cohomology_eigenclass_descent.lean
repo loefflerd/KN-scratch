@@ -7,7 +7,6 @@ import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.RingTheory.TotallySplit
 
 import Definitions.MTT.Def_MTT_Cohomology
-set_option autoImplicit false
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
 noncomputable section

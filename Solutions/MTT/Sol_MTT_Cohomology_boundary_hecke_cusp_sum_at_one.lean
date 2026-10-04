@@ -4,7 +4,6 @@ import Mathlib.Algebra.Field.ZMod
 import Mathlib.Algebra.MvPolynomial.Funext
 import Mathlib.Data.Nat.Prime.Int
 import Mathlib.NumberTheory.LSeries.PrimesInAP
-set_option autoImplicit false
 noncomputable section
 open scoped BigOperators MatrixGroups
 open Matrix CongruenceSubgroup

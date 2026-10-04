@@ -10,8 +10,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_UpperHalfPlane_linearIndependent_complex_of_qExpansion_coeff_mem
 
-set_option autoImplicit false
-
 noncomputable section
 
 open Complex Real

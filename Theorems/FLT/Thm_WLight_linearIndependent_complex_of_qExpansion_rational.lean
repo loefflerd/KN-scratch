@@ -8,7 +8,6 @@ set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
-set_option autoImplicit false
 open Complex UpperHalfPlane Function
 open scoped Topology Manifold ModularForm
 theorem WLight.linearIndependent_complex_of_qExpansion_rational (N : ℕ) [NeZero N]

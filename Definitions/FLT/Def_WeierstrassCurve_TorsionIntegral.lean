@@ -1,7 +1,5 @@
 import Definitions.FLT.Def_WeierstrassCurve_ReductionMap
 
-set_option autoImplicit false
-
 open IsLocalRing
 
 namespace ValuationSubring

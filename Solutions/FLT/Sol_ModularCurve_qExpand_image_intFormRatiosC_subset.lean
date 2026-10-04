@@ -11,8 +11,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_qExpand_image_intFormRatiosC_subset
 
-set_option autoImplicit false
-
 noncomputable section
 
 open UpperHalfPlane ModularForm CongruenceSubgroup OnePoint Function HahnSeries

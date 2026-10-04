@@ -1,6 +1,5 @@
 import Definitions.KN.Def_MTT_EigenformCoefficientField
 
-set_option autoImplicit false
 noncomputable section
 
 /-- The Fourier coefficients and nebentype values of an MTT eigenform generate

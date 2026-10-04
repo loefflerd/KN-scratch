@@ -6,7 +6,6 @@ import Theorems.KN.Thm_HorizontalPadicL_primitiveCharacters_boundedConductor_fin
 import Theorems.KN.Thm_HorizontalPadicL_CharacterCountingTransfer_logLowerBound_v2
 import Theorems.KN.Thm_HorizontalPadicL_finiteCorrection_realization_countingTransfer_inverseSeed_v2
 
-set_option autoImplicit false
 noncomputable section
 open HorizontalPadicL
 

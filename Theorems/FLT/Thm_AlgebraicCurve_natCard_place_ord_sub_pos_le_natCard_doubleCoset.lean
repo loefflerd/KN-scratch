@@ -6,8 +6,6 @@ set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
-set_option autoImplicit false
-
 open AlgebraicCurve
 open scoped IntermediateField
 theorem AlgebraicCurve.natCard_place_ord_sub_pos_le_natCard_doubleCoset

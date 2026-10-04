@@ -8,7 +8,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_AlgebraicCurve_lSpace_eq_bot_of_degree_neg
 
-set_option autoImplicit false
 set_option maxHeartbeats 3200000
 
 namespace AlgebraicCurve

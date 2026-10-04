@@ -2,7 +2,6 @@ import Definitions.KN.Def_KN_EigenformResidualGaloisRepresentationV2
 import Definitions.KN.Def_MTT_EigenformCoefficientCompletion
 import Definitions.FLT.Def_GaloisRep_Residual
 
-set_option autoImplicit false
 noncomputable section
 
 open NumberField

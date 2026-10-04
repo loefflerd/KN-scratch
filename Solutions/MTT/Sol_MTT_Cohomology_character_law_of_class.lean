@@ -4,7 +4,6 @@ import Theorems.MTT.Thm_MTT_period_vanishing
 import Theorems.MTT.Thm_MTT_Cohomology_evaluation_faithful
 import Definitions.MTT.Def_MTT_Cohomology_Integration
 import Mathlib.RingTheory.Flat.Basic
-set_option autoImplicit false
 noncomputable section
 open scoped BigOperators TensorProduct
 open MTT.Cohomology

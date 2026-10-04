@@ -16,7 +16,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq
 
-set_option autoImplicit false
 set_option linter.unusedSectionVars false
 set_option linter.unusedVariables false
 set_option synthInstance.maxHeartbeats 800000

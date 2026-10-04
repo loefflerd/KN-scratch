@@ -8,8 +8,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_periodOf_apply_eq_sub_of_hasEquivariantPrimitiveOf
 
-set_option autoImplicit false
-
 open scoped MatrixGroups
 open UpperHalfPlane
 

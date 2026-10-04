@@ -3,7 +3,6 @@ import Mathlib.NumberTheory.DirichletCharacter.Bounds
 import Mathlib.Tactic.LinearCombination
 import Mathlib.Tactic.Linarith
 import Mathlib.Tactic.Ring
-set_option autoImplicit false
 noncomputable section
 
 private lemma unit_root {K : Type*} [NormedField K] [IsAlgClosed K]

@@ -1,6 +1,5 @@
 import Theorems.KN.Thm_MTT_Eigenform_p_mem_coefficientPrime
 
-set_option autoImplicit false
 noncomputable section
 
 theorem solution

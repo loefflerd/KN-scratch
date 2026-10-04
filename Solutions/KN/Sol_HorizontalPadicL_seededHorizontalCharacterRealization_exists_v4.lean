@@ -5,7 +5,6 @@ import Mathlib.RingTheory.RootsOfUnity.AlgebraicallyClosed
 import Mathlib.RingTheory.RootsOfUnity.PrimitiveRoots
 import Mathlib.Algebra.Group.Pi.Units
 
-set_option autoImplicit false
 noncomputable section
 open scoped BigOperators
 

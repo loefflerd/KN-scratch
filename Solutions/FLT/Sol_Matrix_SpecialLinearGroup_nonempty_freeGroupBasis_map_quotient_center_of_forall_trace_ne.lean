@@ -12,8 +12,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_Matrix_SpecialLinearGroup_nonempty_freeGroupBasis_map_quotient_center_of_forall_trace_ne
 
-set_option autoImplicit false
-
 open Matrix MatrixGroups ModularGroup Subgroup
 open scoped Pointwise
 

@@ -9,8 +9,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_AlgebraicCurve_RationalFunctionField_finite_setOf_ord_ne_zero
 
-set_option autoImplicit false
-
 noncomputable section
 
 open IsDedekindDomain WithZero IsLocalRing

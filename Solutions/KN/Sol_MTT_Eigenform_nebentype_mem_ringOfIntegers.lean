@@ -3,7 +3,6 @@ import Mathlib.Algebra.Algebra.Hom.Rat
 import Mathlib.NumberTheory.MulChar.Lemmas
 import Mathlib.RingTheory.RootsOfUnity.Minpoly
 
-set_option autoImplicit false
 noncomputable section
 
 theorem solution

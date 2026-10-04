@@ -11,7 +11,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_HeckeEis_coeffH1par_binaryFormRepSL_eq_zero_of_odd
 
-set_option autoImplicit false
 set_option maxHeartbeats 800000
 set_option synthInstance.maxHeartbeats 80000
 

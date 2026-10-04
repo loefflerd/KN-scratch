@@ -11,7 +11,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WeierstrassCurve_nonempty_functionField_algEquiv_of_variableChange
 
-set_option autoImplicit false
 set_option linter.unusedSectionVars false
 set_option linter.unusedVariables false
 set_option synthInstance.maxHeartbeats 800000

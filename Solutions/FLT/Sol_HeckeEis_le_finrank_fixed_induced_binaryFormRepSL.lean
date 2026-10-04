@@ -9,8 +9,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_HeckeEis_le_finrank_fixed_induced_binaryFormRepSL
 
-set_option autoImplicit false
-
 namespace HeckeEis
 p2m_export "HeckeEis" "BinaryForm binarySubst_X binaryFormRepSL binaryFormRepSL_apply_coe binaryFormRepSL_neg_one_apply"
 namespace UH2

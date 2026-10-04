@@ -3,7 +3,6 @@ import Theorems.KN.Thm_MTT_Eigenform_coefficientPrime_ne_bot
 import Theorems.KN.Thm_MTT_numberField_coefficientField
 import Mathlib.RingTheory.DedekindDomain.Basic
 
-set_option autoImplicit false
 noncomputable section
 
 theorem solution

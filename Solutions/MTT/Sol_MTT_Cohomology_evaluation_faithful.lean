@@ -1,6 +1,5 @@
 import Definitions.MTT.Def_MTT_Cohomology
 
-set_option autoImplicit false
 set_option maxHeartbeats 800000
 noncomputable section
 open scoped BigOperators

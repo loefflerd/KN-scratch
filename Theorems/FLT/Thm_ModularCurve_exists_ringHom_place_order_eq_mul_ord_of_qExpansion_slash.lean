@@ -7,8 +7,6 @@ set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
-set_option autoImplicit false
-
 open UpperHalfPlane
 open scoped MatrixGroups Topology ModularForm
 theorem ModularCurve.exists_ringHom_place_order_eq_mul_ord_of_qExpansion_slash

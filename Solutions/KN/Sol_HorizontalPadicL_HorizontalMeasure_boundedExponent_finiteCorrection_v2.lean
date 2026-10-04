@@ -1,6 +1,5 @@
 import Theorems.KN.Thm_HorizontalPadicL_HorizontalMeasure_truncatedFiniteLevel_norm_le_of_primitive_twists_vanish_v2
 
-set_option autoImplicit false
 noncomputable section
 
 open HorizontalPadicL

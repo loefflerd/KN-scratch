@@ -8,8 +8,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_AlgebraicCurve_Place_exists_ord_mul_eq_order_of_algHom_laurentSeries
 
-set_option autoImplicit false
-
 noncomputable section
 
 open ModularCurve AlgebraicCurve

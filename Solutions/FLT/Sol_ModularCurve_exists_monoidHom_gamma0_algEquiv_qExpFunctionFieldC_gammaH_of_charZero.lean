@@ -9,8 +9,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_exists_monoidHom_gamma0_algEquiv_qExpFunctionFieldC_gammaH_of_charZero
 
-set_option autoImplicit false
-
 noncomputable section
 
 open scoped MatrixGroups ModularForm

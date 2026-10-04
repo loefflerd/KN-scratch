@@ -7,8 +7,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_AlgebraicCurve_exists_divisor_forall_eq_weightFloor
 
-set_option autoImplicit false
-
 open AlgebraicCurve
 
 namespace DivexG

@@ -10,7 +10,6 @@ import Theorems.MTT.Thm_MTT_Cohomology_signed_packet_multiplicity_one
 import Theorems.MTT.Thm_MTT_Cohomology_eigenclass_descent
 import Theorems.MTT.Thm_MTT_Cohomology_evaluation_lattice
 
-set_option autoImplicit false
 set_option maxHeartbeats 1000000
 noncomputable section
 open scoped BigOperators TensorProduct

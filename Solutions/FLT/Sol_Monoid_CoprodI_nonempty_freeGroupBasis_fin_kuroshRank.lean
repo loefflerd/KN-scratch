@@ -17,8 +17,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank
 
-set_option autoImplicit false
-
 open Subgroup
 
 namespace GroupTheory

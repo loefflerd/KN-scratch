@@ -14,8 +14,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularGroup_exists_mulEquiv_freeProduct_quotient_center
 
-set_option autoImplicit false
-
 open Matrix MatrixGroups ModularGroup
 open scoped Pointwise
 

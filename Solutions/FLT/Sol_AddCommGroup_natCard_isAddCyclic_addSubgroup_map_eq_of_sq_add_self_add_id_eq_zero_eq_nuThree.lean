@@ -7,7 +7,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_AddCommGroup_natCard_isAddCyclic_addSubgroup_map_eq_of_sq_add_self_add_id_eq_zero_eq_nuThree
 
-set_option autoImplicit false
 set_option maxHeartbeats 6400000
 
 open ModularCurve

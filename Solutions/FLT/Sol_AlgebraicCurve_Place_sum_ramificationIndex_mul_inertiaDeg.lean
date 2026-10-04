@@ -24,8 +24,6 @@ p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_Place_sum_ramificationIndex_mul_i
 
 noncomputable section
 
-set_option autoImplicit false
-
 noncomputable section
 
 open IsDedekindDomain Polynomial
@@ -309,8 +307,6 @@ end FiberFiniteness
 end Place
 end AlgebraicCurve
 p2m_reactivate "P2MW.S_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg.AlgebraicCurve"
-
-set_option autoImplicit false
 
 noncomputable section
 

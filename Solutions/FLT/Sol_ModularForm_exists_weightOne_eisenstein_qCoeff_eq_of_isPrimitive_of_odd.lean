@@ -14,8 +14,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularForm_exists_weightOne_eisenstein_qCoeff_eq_of_isPrimitive_of_odd
 
-set_option autoImplicit false
-
 open scoped Topology Real MatrixGroups Matrix CongruenceSubgroup ModularForm Manifold
 p2m_open "UpperHalfPlane~I"
 open EisensteinSeries Filter Complex

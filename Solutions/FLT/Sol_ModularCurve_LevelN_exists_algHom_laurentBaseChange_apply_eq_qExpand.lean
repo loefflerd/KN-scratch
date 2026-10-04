@@ -11,8 +11,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_LevelN_exists_algHom_laurentBaseChange_apply_eq_qExpand
 
-set_option autoImplicit false
-
 open scoped MatrixGroups IntermediateField
 open Polynomial
 

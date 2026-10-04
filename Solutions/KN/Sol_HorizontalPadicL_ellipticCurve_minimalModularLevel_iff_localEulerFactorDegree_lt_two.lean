@@ -2,7 +2,6 @@ import Theorems.KN.Thm_HorizontalPadicL_minimalModularLevel_dvd_iff_localEulerFa
 import Theorems.KN.Thm_HorizontalPadicL_not_minimalModularLevel_dvd_iff_localEulerFactorDegreeTwo
 import Definitions.KN.Def_HorizontalPadicL_LocalEulerFactorDegree
 
-set_option autoImplicit false
 set_option maxRecDepth 100000
 set_option maxHeartbeats 400000
 set_option linter.all false

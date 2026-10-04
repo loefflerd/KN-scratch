@@ -10,8 +10,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_exists_intSeriesC_mul_ne_of_gamma0Units_not_mem
 
-set_option autoImplicit false
-
 section FaithHelpers
 
 open scoped MatrixGroups ModularForm

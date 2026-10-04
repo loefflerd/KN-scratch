@@ -12,7 +12,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_AlgebraicCurve_omegaSpace_finite_of_genusReached
 
-set_option autoImplicit false
 set_option maxHeartbeats 3200000
 
 namespace AlgebraicCurve
@@ -90,8 +89,6 @@ theorem ell_eq_zero_of_degree_neg [IsCurveOver K F] (hD : Divisor.degree D < 0) 
     ell D = 0 := by
   rw [ell, lSpace_eq_bot_of_degree_neg hD, finrank_bot]
 end AlgebraicCurve
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -335,8 +332,6 @@ theorem ell_le_degree_add_one [IsCurveOver K F] (hC : ConstantsAreBase K F)
 end AlgebraicCurve
 
 end
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -677,8 +672,6 @@ theorem gate_finrank_adeleBdd_quotient_single_point [IsCurveOver K F] (P : Place
 end AlgebraicCurve
 
 end
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -1024,8 +1017,6 @@ end AlgebraicCurve
 
 end
 
-set_option autoImplicit false
-
 noncomputable section
 
 open Module IsDedekindDomain WithZero
@@ -1146,8 +1137,6 @@ theorem two_mul_ell_le_indexOfSpecialty [HasPrincipalDivisors K F] (W D : Diviso
 end AlgebraicCurve
 
 end
-
-set_option autoImplicit false
 
 noncomputable section
 

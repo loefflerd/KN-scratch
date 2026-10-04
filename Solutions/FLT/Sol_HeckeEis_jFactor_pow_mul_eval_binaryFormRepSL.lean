@@ -10,8 +10,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_HeckeEis_jFactor_pow_mul_eval_binaryFormRepSL
 
-set_option autoImplicit false
-
 namespace HeckeEis
 p2m_export "HeckeEis" "eval_smul_of_isHomogeneous BinaryForm binarySubst binarySubst_X binaryFormRepSL binaryFormRepSL_apply_coe jFactor jFactor_ne_zero coe_smul_mul_jFactor"
 namespace PeriodFnAux

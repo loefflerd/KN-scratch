@@ -3,7 +3,6 @@ import Definitions.KN.Def_KN_SeededPrimeGaloisDataV2
 import Mathlib.NumberTheory.DirichletCharacter.Bounds
 import Mathlib.RingTheory.Valuation.Integral
 
-set_option autoImplicit false
 noncomputable section
 
 attribute [local instance] AlgebraicClosure.isAlgebraic

@@ -10,8 +10,6 @@ namespace P2MW.S_ModularCurve_TatePoint_b3Act_dictN_of_monodromy
 
 open scoped Classical
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace S15CycSubN

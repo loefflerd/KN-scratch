@@ -15,10 +15,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_HeckeEis_exists_basis_coeffH1par_int_complex
 
-set_option autoImplicit false
-
-set_option autoImplicit false
-
 namespace HeckeEis
 p2m_export "HeckeEis" "BinaryForm binaryFormRepSL coeffCocycles coeffParabolicCocycles coeffH1par coeffH1parMk coeffH1parMk_surjective exists_coeffH1par_map_ringHom coeffH1par_map_int_rat_injective exists_ne_zero_smul_eq_coeffH1par_map_int_rat mem_span_range_coeffH1par_map_rat_complex linearIndependent_coeffH1par_map_rat_complex coeffH1par_binaryFormRepSL_int_eq_zero_of_smul_eq_zero"
 namespace GenAux

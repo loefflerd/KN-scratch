@@ -6,7 +6,6 @@ import Theorems.MTT.Thm_MTT_Cohomology_image_packet_unique
 import Theorems.MTT.Thm_MTT_Cohomology_boundary_packet_zero
 import Theorems.MTT.Thm_MTT_Cohomology_reflection_class
 import Theorems.MTT.Thm_MTT_Cohomology_reflection_involutive
-set_option autoImplicit false
 noncomputable section
 open scoped BigOperators TensorProduct
 open MTT.Cohomology

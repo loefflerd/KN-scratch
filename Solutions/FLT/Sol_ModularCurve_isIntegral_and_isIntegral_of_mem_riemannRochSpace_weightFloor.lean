@@ -13,8 +13,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_isIntegral_and_isIntegral_of_mem_riemannRochSpace_weightFloor
 
-set_option autoImplicit false
-
 open AlgebraicCurve ModularCurve
 
 namespace DictC1p

@@ -3,7 +3,6 @@ import Theorems.MTT.Thm_MTT_hasSum_heckePrime
 import Mathlib.RingTheory.RootsOfUnity.Minpoly
 import Mathlib.NumberTheory.MulChar.Lemmas
 
-set_option autoImplicit false
 noncomputable section
 
 open scoped Polynomial

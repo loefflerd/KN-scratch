@@ -1,8 +1,6 @@
 import Definitions.FLT.Def_AlgebraicCurve_Correspondence
 import Definitions.FLT.Def_WeierstrassCurve_GenusOnePic0
 
-set_option autoImplicit false
-
 noncomputable section IsogenyCurrency
 
 section Delta

@@ -2,7 +2,6 @@ import Definitions.KN.Def_KN_SeededThetaConstructionV2B
 import Mathlib.Data.ZMod.QuotientRing
 import Mathlib.Algebra.Group.Units.Hom
 
-set_option autoImplicit false
 noncomputable section
 open scoped BigOperators
 

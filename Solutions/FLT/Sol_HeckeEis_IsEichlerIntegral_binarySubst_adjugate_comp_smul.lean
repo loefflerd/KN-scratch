@@ -10,8 +10,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_HeckeEis_IsEichlerIntegral_binarySubst_adjugate_comp_smul
 
-set_option autoImplicit false
-
 open scoped Manifold MatrixGroups ModularForm
 
 noncomputable section

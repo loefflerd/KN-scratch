@@ -1,7 +1,6 @@
 import Theorems.MTT.Thm_MTT_interpolation_positive_conductor_of_moments
 import Theorems.MTT.Thm_MTT_interpolation_conductor_one_of_moments
 
-set_option autoImplicit false
 noncomputable section
 open scoped BigOperators
 

@@ -18,8 +18,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_StarBank_count
 
-set_option autoImplicit false
-
 open Polynomial
 
 namespace ModularCurve.StarBank

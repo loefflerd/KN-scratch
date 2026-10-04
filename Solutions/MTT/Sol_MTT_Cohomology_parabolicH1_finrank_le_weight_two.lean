@@ -6,8 +6,6 @@ import Mathlib.Tactic.LinearCombination
 import Theorems.FLT.Thm_ModularCurve_Period_exists_basis_parabolicHoms_of_isAddTorsionFree
 import Theorems.FLT.Thm_ModularCurve_finrank_parabolicHoms_le_two_mul_finrank_cuspForm_of_isCongruenceSubgroup
 
-set_option autoImplicit false
-
 /-! # From degree-zero MTT cocycles to scalar parabolic homomorphisms
 
 The comparison uses only the definitions: degree-zero homogeneous polynomials

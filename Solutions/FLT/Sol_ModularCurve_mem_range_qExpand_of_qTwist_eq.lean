@@ -8,8 +8,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_mem_range_qExpand_of_qTwist_eq
 
-set_option autoImplicit false
-
 namespace ModularCurve
 p2m_export "ModularCurve" "qTwist qTwist_coeff qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd"
 p2m_open "ModularCurve"

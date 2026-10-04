@@ -8,8 +8,6 @@ import Theorems.FLT.Thm_HeckeEis_finrank_coeffH1par_top_add_le
 
 /-! # The central-fixed coinduced cohomology bound via three fixed spaces -/
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace MTT.Cohomology

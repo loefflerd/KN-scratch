@@ -14,8 +14,6 @@ import Mathlib.RepresentationTheory.Coinduced
 import Mathlib.RepresentationTheory.Rep.Res
 import Mathlib.Tactic
 
-set_option autoImplicit false
-
 /-! # Coinduction of a restricted representation as functions on left cosets -/
 
 noncomputable section

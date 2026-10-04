@@ -9,8 +9,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_exists_perm_gamma0_cosetReps
 
-set_option autoImplicit false
-
 noncomputable section
 
 open CongruenceSubgroup

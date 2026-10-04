@@ -9,8 +9,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_UpperHalfPlane_qExpansion_coeff_mul_width
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace WidthChange

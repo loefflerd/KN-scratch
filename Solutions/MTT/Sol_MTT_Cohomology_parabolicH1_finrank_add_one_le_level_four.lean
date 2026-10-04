@@ -2,8 +2,6 @@ import Mathlib
 import Definitions.MTT.Def_MTT_NormalizedParabolicCocycles
 import Theorems.MTT.Thm_MTT_Cohomology_normalizedParabolic_finrank
 
-set_option autoImplicit false
-
 /-! # A six-coset Schreier computation for Gamma0(4)
 
 The transversal argument follows the platform's level-three generator proof

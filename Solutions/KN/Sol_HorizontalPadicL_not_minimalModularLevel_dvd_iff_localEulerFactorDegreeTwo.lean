@@ -1,7 +1,6 @@
 import Theorems.KN.Thm_HorizontalPadicL_minimalModularLevel_dvd_iff_localEulerFactorDegreeBelowTwo
 import Theorems.KN.Thm_HorizontalPadicL_localEulerFactorDegreeTwo_iff_not_degreeBelowTwo
 
-set_option autoImplicit false
 noncomputable section
 
 open HorizontalPadicL

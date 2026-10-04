@@ -10,8 +10,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_CuspSpace_classification
 
-set_option autoImplicit false
-
 open Matrix Matrix.SpecialLinearGroup OnePoint CongruenceSubgroup
 open scoped MatrixGroups
 p2m_open "ModularCurve P2MW.S_ModularCurve_CuspSpace_classification.ModularCurve ModularCurve.CuspSpace P2MW.S_ModularCurve_CuspSpace_classification.ModularCurve.CuspSpace"

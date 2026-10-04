@@ -14,8 +14,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_HeckeEis_IsEichlerIntegral_vadd_sub_T_zpow_apply_mem_range
 
-set_option autoImplicit false
-
 open scoped Manifold MatrixGroups
 
 noncomputable section

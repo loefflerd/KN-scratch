@@ -4,7 +4,6 @@ import Theorems.MTT.Thm_MTT_exists_cuspForm_slash_gamma0
 import Definitions.MTT.Def_MTT_Cohomology_Integration
 import Definitions.MTT.Def_MTT_Cohomology_Boundary
 import Mathlib.RingTheory.Flat.Basic
-set_option autoImplicit false
 noncomputable section
 open scoped BigOperators TensorProduct
 open MTT.Cohomology

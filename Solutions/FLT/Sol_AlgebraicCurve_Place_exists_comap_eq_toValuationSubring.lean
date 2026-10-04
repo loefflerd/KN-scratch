@@ -9,8 +9,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_AlgebraicCurve_Place_exists_comap_eq_toValuationSubring
 
-set_option autoImplicit false
-
 open IsDedekindDomain
 
 namespace AlgebraicCurve

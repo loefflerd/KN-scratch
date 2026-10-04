@@ -9,8 +9,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_StarBank_onePoint
 
-set_option autoImplicit false
-
 p2m_open "Polynomial HahnSeries ModularCurve P2MW.S_ModularCurve_StarBank_onePoint.ModularCurve"
 
 namespace ModularCurve

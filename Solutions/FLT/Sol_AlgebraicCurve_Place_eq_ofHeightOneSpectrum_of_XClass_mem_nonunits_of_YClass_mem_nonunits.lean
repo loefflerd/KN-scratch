@@ -8,8 +8,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_AlgebraicCurve_Place_eq_ofHeightOneSpectrum_of_XClass_mem_nonunits_of_YClass_mem_nonunits
 
-set_option autoImplicit false
-
 open AlgebraicCurve WeierstrassCurve WeierstrassCurve.Affine Polynomial
 
 universe u

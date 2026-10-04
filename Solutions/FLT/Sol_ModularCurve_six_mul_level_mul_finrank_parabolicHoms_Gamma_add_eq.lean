@@ -17,8 +17,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_six_mul_level_mul_finrank_parabolicHoms_Gamma_add_eq
 
-set_option autoImplicit false
-
 open scoped MatrixGroups
 
 namespace BettiPrincipal

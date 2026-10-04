@@ -12,8 +12,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_Matrix_SpecialLinearGroup_finrank_addMonoidHom_eq_of_forall_trace_ne
 
-set_option autoImplicit false
-
 open Matrix MatrixGroups Subgroup
 
 namespace ModularCurve

@@ -14,7 +14,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_AlgebraicCurve_exists_riemannGenusReachedAt_nsmul_single_of_stichtenothGenusExists
 
-set_option autoImplicit false
 set_option maxHeartbeats 4000000
 
 open AlgebraicCurve

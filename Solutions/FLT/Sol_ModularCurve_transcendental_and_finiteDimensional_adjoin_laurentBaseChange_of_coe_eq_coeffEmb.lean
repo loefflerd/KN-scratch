@@ -13,7 +13,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_transcendental_and_finiteDimensional_adjoin_laurentBaseChange_of_coe_eq_coeffEmb
 
-set_option autoImplicit false
 set_option synthInstance.maxHeartbeats 1600000
 set_option maxHeartbeats 3200000
 

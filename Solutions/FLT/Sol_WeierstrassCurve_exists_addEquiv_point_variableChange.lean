@@ -7,8 +7,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WeierstrassCurve_exists_addEquiv_point_variableChange
 
-set_option autoImplicit false
-
 p2m_open "WeierstrassCurve P2MW.S_WeierstrassCurve_exists_addEquiv_point_variableChange.WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point"
 
 namespace WeierstrassCurve

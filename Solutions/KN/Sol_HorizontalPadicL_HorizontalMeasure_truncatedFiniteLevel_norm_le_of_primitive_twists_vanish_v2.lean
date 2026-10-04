@@ -7,7 +7,6 @@ import Mathlib.GroupTheory.FiniteAbelian.Duality
 import Mathlib.RingTheory.RootsOfUnity.AlgebraicallyClosed
 
 -- CharacterDescent
-set_option autoImplicit false
 noncomputable section
 
 namespace HorizontalPadicL
@@ -130,7 +129,6 @@ end HorizontalPadicL
 end
 
 -- HorizontalTransport
-set_option autoImplicit false
 noncomputable section
 open scoped BigOperators
 
@@ -215,7 +213,6 @@ end HorizontalPadicL
 end
 
 -- OrbitNorm
-set_option autoImplicit false
 noncomputable section
 open scoped BigOperators
 
@@ -288,7 +285,6 @@ end HorizontalPadicL
 end
 
 -- FiniteFourier
-set_option autoImplicit false
 noncomputable section
 open scoped BigOperators
 namespace HorizontalPadicL.FiniteFourier
@@ -439,7 +435,6 @@ end HorizontalPadicL.FiniteFourier
 end
 
 -- HorizontalTwists
-set_option autoImplicit false
 noncomputable section
 
 namespace HorizontalPadicL
@@ -482,7 +477,6 @@ end HorizontalPadicL
 end
 
 -- MainFiniteCorrection
-set_option autoImplicit false
 noncomputable section
 open scoped BigOperators
 open HorizontalPadicL

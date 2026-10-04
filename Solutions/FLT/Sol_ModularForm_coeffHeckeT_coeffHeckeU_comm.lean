@@ -11,8 +11,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularForm_coeffHeckeT_coeffHeckeU_comm
 
-set_option autoImplicit false
-
 namespace M4cP1W2
 
 open ModularForm

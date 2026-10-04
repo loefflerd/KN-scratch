@@ -110,7 +110,6 @@ The coefficient and contraction proofs are adapted from cbirkbeck's accepted
 Prove2Me proof 777707bf-f8aa-4fd9-8d82-71afe645b027, Part A.
 -/
 
-set_option autoImplicit false
 open UpperHalfPlane MeasureTheory
 open scoped MatrixGroups Modular ComplexConjugate
 
@@ -182,7 +181,6 @@ Authors: Chris Birkbeck
 
 /-! # Polynomial coefficient growth in integral cusp charts -/
 
-set_option autoImplicit false
 open UpperHalfPlane Complex Filter
 open scoped Topology BigOperators MatrixGroups Modular ComplexConjugate
 
@@ -337,7 +335,6 @@ Authors: Chris Birkbeck
 
 /-! # From exponential decay on cusp strips to uniform decay at infinity -/
 
-set_option autoImplicit false
 open UpperHalfPlane Complex Filter ModularForm
 open scoped Topology MatrixGroups Modular ComplexConjugate Pointwise
 
@@ -489,7 +486,6 @@ Authors: Chris Birkbeck
 
 /-! # Uniform cusp decay of mixed-period test functions -/
 
-set_option autoImplicit false
 open UpperHalfPlane Complex Filter MvPolynomial
 open scoped Topology BigOperators MatrixGroups Modular ComplexConjugate
 

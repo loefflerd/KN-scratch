@@ -15,7 +15,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver
 
-set_option autoImplicit false
 set_option synthInstance.maxHeartbeats 1600000
 set_option maxHeartbeats 6400000
 set_option linter.unusedSectionVars false

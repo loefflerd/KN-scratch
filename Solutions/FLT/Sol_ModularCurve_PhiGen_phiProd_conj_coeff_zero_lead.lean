@@ -12,8 +12,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_PhiGen_phiProd_conj_coeff_zero_lead
 
-set_option autoImplicit false
-
 noncomputable section
 
 open Polynomial

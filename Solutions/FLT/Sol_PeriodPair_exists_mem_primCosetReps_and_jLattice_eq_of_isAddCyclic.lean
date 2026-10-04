@@ -13,8 +13,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic
 
-set_option autoImplicit false
-
 set_option synthInstance.maxHeartbeats 800000
 set_option maxHeartbeats 6400000
 

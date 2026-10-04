@@ -8,8 +8,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_UpperHalfPlane_eq_of_forall_qCoeff_eq
 
-set_option autoImplicit false
-
 noncomputable section
 
 open Complex Function Filter

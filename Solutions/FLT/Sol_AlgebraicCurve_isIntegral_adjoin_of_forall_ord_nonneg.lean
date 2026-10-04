@@ -17,8 +17,6 @@ p2m_attr_erase "simp" "WeierstrassCurve.Affine.Point.galoisRepModuleEnd_apply"
 
 open AlgebraicCurve Polynomial
 
-set_option autoImplicit false
-
 namespace INTGlue
 
 theorem isIntegral_of_mem_adjoin_inv {A F : Type*} [CommRing A] [Field F] [Algebra A F]

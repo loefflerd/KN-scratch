@@ -3,7 +3,6 @@ import Theorems.KN.Thm_MTT_Cohomology_eigenform_uniform_hecke_stable_period_latt
 import Theorems.KN.Thm_MTT_Eigenform_hecke_recurrence
 import Mathlib.Algebra.Algebra.Hom.Rat
 
-set_option autoImplicit false
 noncomputable section
 
 namespace CoefficientFieldFinite

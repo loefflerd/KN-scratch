@@ -2,8 +2,6 @@ import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 import Mathlib.AlgebraicGeometry.EllipticCurve.Affine.Point
 import Mathlib.RingTheory.SimpleRing.Principal
 
-set_option autoImplicit false
-
 noncomputable section
 
 open AlgebraicCurve

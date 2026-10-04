@@ -11,8 +11,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_Monoid_CoprodI_isTree_cosetGraph
 
-set_option autoImplicit false
-
 p2m_open "Subgroup SimpleGraph P2MW.S_Monoid_CoprodI_isTree_cosetGraph.SimpleGraph"
 
 namespace GroupTheory

@@ -6,8 +6,6 @@ set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
-set_option autoImplicit false
-
 open scoped MatrixGroups
 theorem HeckeEis.finrank_coeffH1par_top_add_le {V : Type} [AddCommGroup V] [Module ℂ V] [FiniteDimensional ℂ V]
     (W : Representation ℂ (⊤ : Subgroup SL(2, ℤ)) V)

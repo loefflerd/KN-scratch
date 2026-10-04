@@ -5,7 +5,6 @@ set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
-set_option autoImplicit false
 theorem ModularCurve.transcendental_of_coe_eq_coeffEmb_jq
     (L : Type) [Field L] [CharZero L]
     (K : IntermediateField L (LaurentSeries L))

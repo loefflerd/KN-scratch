@@ -13,8 +13,6 @@ namespace P2MW.S_ModularForm_exists_cuspForm_mul_eq_of_analyticOrderAt_le
 open UpperHalfPlane Filter
 open scoped MatrixGroups ModularForm Manifold Topology
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace ANa

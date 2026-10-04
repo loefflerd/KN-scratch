@@ -20,7 +20,6 @@ for a cusp form `f` of weight `k ≥ 2` on `Γ₁(N)`,
   and the identity theorem gives `f = 0`.
 -/
 
-set_option autoImplicit false
 noncomputable section
 open MeasureTheory UpperHalfPlane
 open scoped MatrixGroups Modular ComplexConjugate NNReal ENNReal

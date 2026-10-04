@@ -11,7 +11,6 @@ namespace P2MW.S_AlgebraicCurve_isIntegral_adjoin_of_forall_mem_toValuationSubri
 
 open AlgebraicCurve Polynomial
 
-set_option autoImplicit false
 set_option maxHeartbeats 800000
 set_option synthInstance.maxHeartbeats 80000
 

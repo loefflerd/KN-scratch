@@ -2,7 +2,6 @@ import Definitions.KN.Def_KN_SeededPrimeGaloisDataV2
 import Definitions.KN.Def_KN_EigenformResidualGaloisRepresentationV2
 import Mathlib.NumberTheory.NumberField.Discriminant.Different
 
-set_option autoImplicit false
 noncomputable section
 
 namespace HorizontalPadicL

@@ -3,7 +3,6 @@ import Theorems.MTT.Thm_MTT_ordinary_root_exists_unique
 import Theorems.MTT.Thm_MTT_measure_extension
 import Theorems.MTT.Thm_MTT_interpolation_of_moments
 
-set_option autoImplicit false
 noncomputable section
 open scoped BigOperators
 open MTT in

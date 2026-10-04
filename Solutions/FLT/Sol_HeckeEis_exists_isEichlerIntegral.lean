@@ -11,8 +11,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_HeckeEis_exists_isEichlerIntegral
 
-set_option autoImplicit false
-
 open scoped Manifold MatrixGroups
 
 noncomputable section

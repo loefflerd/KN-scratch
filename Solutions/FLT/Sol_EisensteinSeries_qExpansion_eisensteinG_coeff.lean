@@ -12,8 +12,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_EisensteinSeries_qExpansion_eisensteinG_coeff
 
-set_option autoImplicit false
-
 open scoped MatrixGroups CongruenceSubgroup ModularForm Topology Manifold Matrix Nat
 p2m_open "UpperHalfPlane~I"
 open EisensteinSeries Filter Complex Real

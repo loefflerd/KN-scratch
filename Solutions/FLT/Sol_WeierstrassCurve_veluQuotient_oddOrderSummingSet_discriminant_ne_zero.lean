@@ -13,8 +13,6 @@ set_option backward.isDefEq.respectTransparency.types false
 namespace P2MW.S_WeierstrassCurve_veluQuotient_oddOrderSummingSet_discriminant_ne_zero
 p2m_attr_erase "simp" "WeierstrassCurve.veluY_empty"
 
-set_option autoImplicit false
-
 p2m_open "WeierstrassCurve P2MW.S_WeierstrassCurve_veluQuotient_oddOrderSummingSet_discriminant_ne_zero.WeierstrassCurve"
 
 namespace WeierstrassCurve

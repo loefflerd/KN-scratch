@@ -18,8 +18,6 @@ set_option backward.isDefEq.respectTransparency.types false
 namespace P2MW.S_ModularCurve_TatePoint_fullKernelInjAt
 p2m_attr_erase "simp" "WeierstrassCurve.veluPointMap2_zero"
 
-set_option autoImplicit false
-
 open ModularCurve ModularCurve.TatePoint WeierstrassCurve AlgebraicCurve
 
 namespace KernelTower

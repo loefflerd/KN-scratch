@@ -9,8 +9,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_HahnSeries_mem_puiseuxRamSubfield_iff
 
-set_option autoImplicit false
-
 open HahnSeries
 
 namespace P2MWs13

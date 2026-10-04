@@ -10,8 +10,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_place_eq_of_induces
 
-set_option autoImplicit false
-
 open ModularCurve AlgebraicCurve
 
 namespace S12Q

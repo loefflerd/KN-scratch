@@ -8,8 +8,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_IsAddCyclic_of_squarefree_natCard
 
-set_option autoImplicit false
-
 theorem solution
     {A : Type*} [AddCommGroup A] (hA : Squarefree (Nat.card A)) : IsAddCyclic A := by
   have : Finite A := Nat.finite_of_card_ne_zero hA.ne_zero

@@ -1,6 +1,5 @@
 import Definitions.KN.Def_KN_InverseSeedConventionV2
 
-set_option autoImplicit false
 noncomputable section
 
 namespace HorizontalPadicL

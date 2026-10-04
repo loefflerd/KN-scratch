@@ -3,7 +3,6 @@ import Mathlib.RingTheory.Algebraic.Integral
 import Mathlib.RingTheory.Localization.Integral
 import Mathlib.RingTheory.Valuation.Integral
 
-set_option autoImplicit false
 noncomputable section
 
 open HorizontalPadicL

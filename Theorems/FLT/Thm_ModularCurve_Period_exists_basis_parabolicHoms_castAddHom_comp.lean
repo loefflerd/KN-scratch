@@ -5,8 +5,6 @@ set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
-set_option autoImplicit false
-
 open scoped MatrixGroups
 theorem ModularCurve.Period.exists_basis_parabolicHoms_castAddHom_comp
     (Γ : Subgroup SL(2, ℤ)) [Γ.FiniteIndex] :

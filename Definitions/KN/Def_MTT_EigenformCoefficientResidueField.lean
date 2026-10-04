@@ -5,7 +5,6 @@ import Theorems.KN.Thm_MTT_numberField_coefficientField
 import Mathlib.RingTheory.Ideal.Quotient.HasFiniteQuotients.Basic
 import Mathlib.RingTheory.Ideal.Quotient.HasFiniteQuotients.Norm
 
-set_option autoImplicit false
 noncomputable section
 
 open NumberField

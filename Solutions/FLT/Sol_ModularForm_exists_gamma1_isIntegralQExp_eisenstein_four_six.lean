@@ -8,8 +8,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularForm_exists_gamma1_isIntegralQExp_eisenstein_four_six
 
-set_option autoImplicit false
-
 open ModularCurve CongruenceSubgroup
 open scoped MatrixGroups ArithmeticFunction.sigma
 

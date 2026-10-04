@@ -1,6 +1,5 @@
 import Definitions.MTT.Def_MTT_Cohomology_Integration
 
-set_option autoImplicit false
 noncomputable section
 open MTT.Cohomology
 theorem MTT.Cohomology.parabolic_period_cocycle_surjective

@@ -14,8 +14,6 @@ import Mathlib.RingTheory.RootsOfUnity.Complex
 import Mathlib.Algebra.Ring.GeomSum
 import Mathlib.NumberTheory.ModularForms.LevelOne.DimensionFormula
 
-set_option autoImplicit false
-
 /-! # Finite coordinates for binary homogeneous polynomials -/
 
 noncomputable section

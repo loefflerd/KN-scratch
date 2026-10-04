@@ -1,7 +1,5 @@
 import Definitions.KN.Def_HorizontalPadicL_LocalEulerFactorDegree
 
-set_option autoImplicit false
-
 namespace HorizontalPadicL
 
 theorem not_minimalModularLevel_dvd_iff_localEulerFactorDegreeTwo

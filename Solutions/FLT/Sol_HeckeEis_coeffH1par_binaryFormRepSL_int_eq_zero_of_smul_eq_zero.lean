@@ -11,8 +11,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_HeckeEis_coeffH1par_binaryFormRepSL_int_eq_zero_of_smul_eq_zero
 
-set_option autoImplicit false
-
 namespace HeckeEis
 p2m_export "HeckeEis" "BinaryForm binarySubst_C binaryFormRepSL binaryFormRepSL_apply_coe mem_coeffCoboundaries_iff coeffH1par coeffH1parMk_surjective coeffH1parMk_eq_zero_iff exists_eq_smul_X_pow_of_binaryFormRepSL_T_zpow_eq_self exists_eq_smul_X_pow_of_binaryFormRepSL_lowerUnipotent_eq_self"
 p2m_open "HeckeEis"

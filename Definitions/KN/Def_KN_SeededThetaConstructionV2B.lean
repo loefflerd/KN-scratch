@@ -1,7 +1,6 @@
 import Definitions.KN.Def_KN_SeededHorizontalPadicLFunctionV2B
 import Definitions.MTT.Def_MTT_Measures
 
-set_option autoImplicit false
 noncomputable section
 open scoped BigOperators
 

@@ -13,8 +13,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_Rep_finiteDimensional_coind_and_finrank_coind_eq_index_mul
 
-set_option autoImplicit false
-
 universe u
 
 open CategoryTheory

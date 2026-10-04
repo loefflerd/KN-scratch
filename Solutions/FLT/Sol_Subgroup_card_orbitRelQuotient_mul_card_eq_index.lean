@@ -10,8 +10,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_Subgroup_card_orbitRelQuotient_mul_card_eq_index
 
-set_option autoImplicit false
-
 open Subgroup MulAction
 
 namespace GroupTheory

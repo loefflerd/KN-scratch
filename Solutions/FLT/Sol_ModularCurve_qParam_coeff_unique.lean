@@ -7,8 +7,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_qParam_coeff_unique
 
-set_option autoImplicit false
-
 noncomputable section
 
 open UpperHalfPlane Complex Filter Topology Function

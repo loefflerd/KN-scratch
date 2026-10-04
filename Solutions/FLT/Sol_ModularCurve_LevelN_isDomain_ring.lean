@@ -8,8 +8,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_LevelN_isDomain_ring
 
-set_option autoImplicit false
-
 open scoped MatrixGroups
 
 theorem solution (M : ℕ) [NeZero M] : IsDomain (ModularCurve.LevelN.ring M) := by

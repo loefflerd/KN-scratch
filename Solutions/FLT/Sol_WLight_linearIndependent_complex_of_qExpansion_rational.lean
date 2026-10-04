@@ -15,8 +15,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WLight_linearIndependent_complex_of_qExpansion_rational
 
-set_option autoImplicit false
-
 noncomputable section
 
 open Complex UpperHalfPlane Function

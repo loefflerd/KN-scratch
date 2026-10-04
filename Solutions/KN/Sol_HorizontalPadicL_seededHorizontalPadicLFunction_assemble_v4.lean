@@ -2,7 +2,6 @@ import Definitions.KN.Def_KN_InverseSeedConventionV2
 import Definitions.KN.Def_KN_SeededHorizontalPadicLFunctionV3B
 import Definitions.KN.Def_KN_SeededThetaConstructionV2B
 
-set_option autoImplicit false
 noncomputable section
 
 open HorizontalPadicL

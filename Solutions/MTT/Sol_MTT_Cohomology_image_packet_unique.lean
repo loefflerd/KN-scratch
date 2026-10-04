@@ -4,7 +4,6 @@ import Theorems.MTT.Thm_MTT_hasSum_heckePrime
 import Theorems.MTT.Thm_MTT_coeff_eq_of_hecke_recurrence
 import Theorems.MTT.Thm_MTT_period_vanishing
 import Definitions.MTT.Def_MTT_Cohomology_Boundary
-set_option autoImplicit false
 noncomputable section
 open scoped BigOperators TensorProduct
 open MTT.Cohomology

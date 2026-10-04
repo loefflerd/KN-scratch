@@ -10,8 +10,6 @@ import Mathlib.Tactic.Group
 import Definitions.MTT.Def_MTT_ParabolicCohomology
 import Mathlib.GroupTheory.OrderOfElement
 
-set_option autoImplicit false
-
 universe u
 
 /-! # Finite-coset coordinates for coinduced coefficients

@@ -5,8 +5,6 @@ import Definitions.FLT.Def_P2M_Util
 
 namespace P2MW.S_ModularCurve_natCard_quot_sameOrbit_cycSub_eq_natCard_moduliPoint_j_eq
 
-set_option autoImplicit false
-
 open WeierstrassCurve WeierstrassCurve.Affine
 
 namespace P2MWs12

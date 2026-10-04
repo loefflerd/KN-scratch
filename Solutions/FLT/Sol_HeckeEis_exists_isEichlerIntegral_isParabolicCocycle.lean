@@ -13,8 +13,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_HeckeEis_exists_isEichlerIntegral_isParabolicCocycle
 
-set_option autoImplicit false
-
 open scoped Manifold MatrixGroups ModularForm
 
 theorem solution (N n : ℕ) [NeZero N]

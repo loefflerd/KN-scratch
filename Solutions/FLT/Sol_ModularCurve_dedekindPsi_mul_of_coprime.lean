@@ -12,8 +12,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_dedekindPsi_mul_of_coprime
 
-set_option autoImplicit false
-
 noncomputable section
 
 open Polynomial

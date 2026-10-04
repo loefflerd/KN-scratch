@@ -8,8 +8,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WeierstrassCurve_Affine_placeOfPoint_some_eq_ofHeightOneSpectrum
 
-set_option autoImplicit false
-
 open AlgebraicCurve WeierstrassCurve WeierstrassCurve.Affine
 
 universe u

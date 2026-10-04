@@ -1,8 +1,6 @@
 import Definitions.KN.Def_KN_InverseSeedConventionV2
 import Definitions.KN.Def_KN_SeededPrimeGaloisDataV2
 
-set_option autoImplicit false
-
 open HorizontalPadicL
 
 private lemma padicComplex_norm_add_eq_left_of_lt

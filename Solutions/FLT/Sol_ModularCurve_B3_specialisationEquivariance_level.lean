@@ -22,8 +22,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_B3_specialisationEquivariance_level
 
-set_option autoImplicit false
-
 open scoped Classical
 
 noncomputable section

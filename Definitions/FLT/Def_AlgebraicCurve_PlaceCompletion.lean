@@ -27,8 +27,6 @@ instance {K L : Type*} [Field K] [Semiring L] (O : ValuationSubring K) [Algebra 
   commutes' _ _ := by simp [Algebra.commutes]
   smul_def' _ _ := by simp [← Algebra.smul_def]; rfl
 
-set_option autoImplicit false
-
 set_option synthInstance.maxHeartbeats 800000
 set_option maxHeartbeats 1600000
 
@@ -178,8 +176,6 @@ end CompletionComap
 
 end AlgebraicCurve.Place
 
-set_option autoImplicit false
-
 set_option synthInstance.maxHeartbeats 800000
 set_option maxHeartbeats 1600000
 
@@ -217,7 +213,6 @@ end IntegerComap
 
 end AlgebraicCurve.Place
 
-set_option autoImplicit false
 set_option synthInstance.maxHeartbeats 800000
 set_option maxHeartbeats 1600000
 
@@ -324,7 +319,6 @@ end ClosedAdjoin
 
 end AlgebraicCurve.Place
 
-set_option autoImplicit false
 set_option synthInstance.maxHeartbeats 800000
 set_option maxHeartbeats 1600000
 
@@ -414,7 +408,6 @@ end CompletionTrace
 
 end AlgebraicCurve.Place
 
-set_option autoImplicit false
 set_option maxHeartbeats 1600000
 set_option synthInstance.maxHeartbeats 800000
 set_option linter.unusedSectionVars false
@@ -500,7 +493,6 @@ end LocalResidueCompletion
 
 end AlgebraicCurve
 
-set_option autoImplicit false
 set_option maxHeartbeats 1600000
 set_option synthInstance.maxHeartbeats 800000
 set_option linter.unusedSectionVars false

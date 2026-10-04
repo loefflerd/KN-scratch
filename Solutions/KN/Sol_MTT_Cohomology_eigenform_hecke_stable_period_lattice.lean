@@ -11,7 +11,6 @@ import Mathlib.LinearAlgebra.Basis.VectorSpace
 import Mathlib.NumberTheory.ModularForms.LevelOne.Basic
 import Mathlib.LinearAlgebra.Matrix.FixedDetMatrices
 
-set_option autoImplicit false
 set_option maxHeartbeats 4000000
 noncomputable section
 open scoped BigOperators TensorProduct

@@ -2,7 +2,6 @@ import Theorems.KN.Thm_NumberField_not_dvd_discr_sup_of_not_dvd_discr
 import Theorems.KN.Thm_IsCyclotomicExtension_Rat_prime_dvd_discr_dvd_conductor
 import Theorems.KN.Thm_HorizontalPadicL_coprimeRamification_productFrobeniusClass_exists_v2
 
-set_option autoImplicit false
 noncomputable section
 
 namespace HorizontalPadicL

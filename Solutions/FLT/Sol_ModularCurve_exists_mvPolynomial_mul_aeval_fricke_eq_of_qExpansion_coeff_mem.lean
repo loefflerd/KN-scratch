@@ -16,8 +16,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_exists_mvPolynomial_mul_aeval_fricke_eq_of_qExpansion_coeff_mem
 
-set_option autoImplicit false
-
 noncomputable section
 
 open Complex UpperHalfPlane ModularForm CongruenceSubgroup Function

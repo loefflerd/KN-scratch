@@ -21,8 +21,6 @@ p2m_attr_erase "simp" "ModularCurve.jqNModC_one"
 open ModularCurve UpperHalfPlane HahnSeries
 open scoped MatrixGroups ModularForm
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace ANGlueM

@@ -5,7 +5,6 @@ import Mathlib.RingTheory.RootsOfUnity.AlgebraicallyClosed
 import Mathlib.FieldTheory.Galois.Basic
 import Mathlib.FieldTheory.IntermediateField.Adjoin.Basic
 
-set_option autoImplicit false
 set_option maxHeartbeats 4000000
 noncomputable section
 

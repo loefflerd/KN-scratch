@@ -18,8 +18,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_HeckeEis_eichlerShimuraMap_heckeTLin
 
-set_option autoImplicit false
-
 open scoped Manifold MatrixGroups
 
 noncomputable section

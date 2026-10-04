@@ -2,7 +2,6 @@ import Definitions.MTT.Def_MTT_Cohomology
 import Theorems.MTT.Thm_MTT_Cohomology_integration_map
 import Theorems.MTT.Thm_MTT_Cohomology_packet_span
 import Theorems.MTT.Thm_MTT_Cohomology_reflection_involutive
-set_option autoImplicit false
 noncomputable section
 open scoped BigOperators TensorProduct
 open MTT.Cohomology

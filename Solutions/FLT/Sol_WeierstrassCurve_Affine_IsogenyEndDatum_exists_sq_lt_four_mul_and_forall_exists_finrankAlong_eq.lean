@@ -22,8 +22,6 @@ open WeierstrassCurve WeierstrassCurve.Affine AlgebraicCurve
 
 universe u
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace Ws13S7

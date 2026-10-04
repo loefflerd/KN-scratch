@@ -4,8 +4,6 @@ set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
-set_option autoImplicit false
-
 open UpperHalfPlane
 open scoped MatrixGroups Topology
 theorem ModularCurve.exists_tendsto_div_smul_of_eventuallyEq_realizeOf_of_tendsto

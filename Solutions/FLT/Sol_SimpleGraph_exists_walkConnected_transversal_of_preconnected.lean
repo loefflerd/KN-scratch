@@ -10,8 +10,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_SimpleGraph_exists_walkConnected_transversal_of_preconnected
 
-set_option autoImplicit false
-
 open Subgroup MulAction SimpleGraph Monoid
 
 namespace GroupTheory

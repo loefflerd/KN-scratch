@@ -1,7 +1,5 @@
 import Definitions.KN.Def_KN_HorizontalPadicL
 
-set_option autoImplicit false
-
 open scoped BigOperators NNReal
 
 namespace HorizontalPadicL

@@ -8,8 +8,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_qExpansion_E4_eq_map_eisenstein4
 
-set_option autoImplicit false
-
 noncomputable section
 
 open UpperHalfPlane Complex Filter Topology

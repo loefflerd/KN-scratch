@@ -1,7 +1,6 @@
 import Definitions.MTT.Def_MTT_Cohomology_Boundary
 import Definitions.MTT.Def_MTT_Cohomology_Integration
 import Mathlib.Algebra.Field.ZMod
-set_option autoImplicit false
 noncomputable section
 open scoped BigOperators MatrixGroups
 open Matrix CongruenceSubgroup

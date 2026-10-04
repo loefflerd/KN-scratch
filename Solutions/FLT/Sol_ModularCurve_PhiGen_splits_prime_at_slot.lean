@@ -15,8 +15,6 @@ set_option backward.isDefEq.respectTransparency.types false
 namespace P2MW.S_ModularCurve_PhiGen_splits_prime_at_slot
 p2m_attr_erase "simp" "ModularForm.val_heckeDiagMatrix ModularForm.heckeU_zero ModularForm.heckeU_zero_left ModularForm.heckeT_zero ModularForm.val_heckeMatrix ModularForm.heckeMatrix_zero ModularForm.heckeT_zero_left ModularForm.heckeDiagMatrix_zero ModularForm.val_upperTriangularGL"
 
-set_option autoImplicit false
-
 noncomputable section
 
 p2m_open "ModularCurve~coeffEmb_qExpand P2MW.S_ModularCurve_PhiGen_splits_prime_at_slot.ModularCurve ModularCurve.PhiGen P2MW.S_ModularCurve_PhiGen_splits_prime_at_slot.ModularCurve.PhiGen"

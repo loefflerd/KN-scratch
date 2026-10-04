@@ -7,8 +7,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_AlgebraicCurve_Place_exists_ord_algebraMap_eq_mul_ord
 
-set_option autoImplicit false
-
 noncomputable section
 
 open IsDedekindDomain WithZero IsLocalRing

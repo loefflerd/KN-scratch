@@ -12,7 +12,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_LevelN_exists_linearMap_regularDifferentials_mdifferentiable
 
-set_option autoImplicit false
 set_option synthInstance.maxHeartbeats 1600000
 set_option linter.unusedSectionVars false
 set_option linter.unusedVariables false

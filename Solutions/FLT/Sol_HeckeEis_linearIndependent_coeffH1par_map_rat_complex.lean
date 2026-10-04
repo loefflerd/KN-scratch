@@ -11,10 +11,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_HeckeEis_linearIndependent_coeffH1par_map_rat_complex
 
-set_option autoImplicit false
-
-set_option autoImplicit false
-
 namespace HeckeEis
 p2m_export "HeckeEis" "BinaryForm binarySubst binarySubst_X binarySubst_C binaryFormRepSL coeffCocycles coeffCoboundaries mem_coeffCoboundaries_iff IsParabolicCocycle coeffParabolicCocycles coeffH1par coeffH1parMk coeffH1parMk_surjective coeffH1parMk_eq_zero_iff"
 namespace GenAux
@@ -68,8 +64,6 @@ theorem coeffCocycles_eq_of_eqOn {ρ : Representation K G V} {z z' : G → V} (h
   exact sub_eq_zero.mp this
 
 end HeckeEis.GenAux
-
-set_option autoImplicit false
 
 noncomputable section
 

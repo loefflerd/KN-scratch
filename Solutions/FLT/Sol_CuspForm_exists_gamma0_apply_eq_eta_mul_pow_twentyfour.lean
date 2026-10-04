@@ -14,8 +14,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_CuspForm_exists_gamma0_apply_eq_eta_mul_pow_twentyfour
 
-set_option autoImplicit false
-
 p2m_open "Set Function Complex Function.Complex ModularForm CongruenceSubgroup Filter"
 
 p2m_open "UpperHalfPlane~I"

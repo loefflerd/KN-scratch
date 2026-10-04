@@ -1,7 +1,6 @@
 import Definitions.KN.Def_MTT_EigenformCoefficientField
 import Mathlib.NumberTheory.NumberField.Basic
 
-set_option autoImplicit false
 noncomputable section
 
 theorem MTT.numberField_coefficientField

@@ -8,7 +8,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_AlgebraicCurve_Divisor_degree_eq_sum_support
 
-set_option autoImplicit false
 set_option maxHeartbeats 3200000
 
 namespace AlgebraicCurve

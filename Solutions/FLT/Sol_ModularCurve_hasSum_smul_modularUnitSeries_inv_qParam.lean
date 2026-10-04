@@ -15,8 +15,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_hasSum_smul_modularUnitSeries_inv_qParam
 
-set_option autoImplicit false
-
 noncomputable section
 
 open UpperHalfPlane Complex Filter Topology Function HahnSeries

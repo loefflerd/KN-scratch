@@ -13,7 +13,6 @@ import Definitions.MTT.Def_MTT_PeriodPairing
 
 /- Eichler primitive infrastructure reused from Chris Birkbeck (cbirkbeck),
 Prove2Me accepted submission 919ac521-842b-4cd0-a813-afe3d8eacaf5. -/
-set_option autoImplicit false
 noncomputable section
 open scoped BigOperators MatrixGroups ModularForm
 open MeasureTheory Complex Set Filter Topology intervalIntegral
@@ -1147,7 +1146,6 @@ end CuspForms
 
 end MTT.Eichler
 
-set_option autoImplicit false
 noncomputable section
 open scoped BigOperators MatrixGroups ModularForm ComplexConjugate
 open MeasureTheory Complex Set Filter Topology intervalIntegral
@@ -1224,7 +1222,6 @@ lemma mixed_Gvec_deriv {N k : ℕ} (hN : 0 < N)
 
 end MTT.Eichler
 
-set_option autoImplicit false
 set_option maxHeartbeats 800000
 noncomputable section
 open scoped BigOperators MatrixGroups ModularForm ComplexConjugate
@@ -1337,7 +1334,6 @@ lemma coeff_Gvec_cusp_bound {N k : ℕ} (hN : 0 < N) (hk : 2 ≤ k)
 
 end MTT.Eichler
 
-set_option autoImplicit false
 noncomputable section
 open scoped BigOperators MatrixGroups ModularForm ComplexConjugate
 open MeasureTheory Complex Set Filter Topology intervalIntegral
@@ -1399,7 +1395,6 @@ lemma reflected_cusp_primitive {N k : ℕ}
 
 end MTT.Eichler
 
-set_option autoImplicit false
 set_option maxHeartbeats 800000
 noncomputable section
 open scoped BigOperators MatrixGroups ModularForm ComplexConjugate

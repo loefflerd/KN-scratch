@@ -22,7 +22,6 @@ https://www.apache.org/licenses/LICENSE-2.0
 The other arithmetic lemmas and the prime-power generalization are new here.
 -/
 
-set_option autoImplicit false
 noncomputable section
 open scoped BigOperators
 
@@ -319,8 +318,6 @@ The auxiliary descent construction is adapted from the completed Prove2Me
 solution `S_CuspForm_eq_zero_of_prime_not_dvd_of_qCoeff_eq_zero`.
 -/
 
-set_option autoImplicit false
-
 noncomputable section
 
 open UpperHalfPlane ModularForm OnePoint Function
@@ -582,7 +579,6 @@ theorem CuspForm.exists_qExpansion_descent_of_prime_support
 end
 
 -- From Solutions/HeckePrimeCoefficients.lean
-set_option autoImplicit false
 noncomputable section
 open scoped BigOperators ModularForm MatrixGroups Manifold
 open UpperHalfPlane
@@ -704,7 +700,6 @@ end HorizontalPadicL
 end
 
 -- From Solutions/MinimalLevelReduction.lean
-set_option autoImplicit false
 noncomputable section
 
 open UpperHalfPlane
@@ -792,7 +787,6 @@ end HorizontalPadicL
 end
 
 -- From Solutions/MinimalLevelSolution.lean
-set_option autoImplicit false
 noncomputable section
 
 open HorizontalPadicL

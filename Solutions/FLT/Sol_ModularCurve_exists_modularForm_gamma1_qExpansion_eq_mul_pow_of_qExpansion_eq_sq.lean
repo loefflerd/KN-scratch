@@ -14,8 +14,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_exists_modularForm_gamma1_qExpansion_eq_mul_pow_of_qExpansion_eq_sq
 
-set_option autoImplicit false
-
 open CongruenceSubgroup ModularCurve UpperHalfPlane HahnSeries
 open scoped MatrixGroups ModularForm
 

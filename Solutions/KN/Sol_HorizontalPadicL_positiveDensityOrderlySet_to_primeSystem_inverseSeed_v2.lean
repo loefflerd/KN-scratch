@@ -2,7 +2,6 @@ import Definitions.KN.Def_KN_InverseSeedConventionV2
 import Theorems.KN.Thm_HorizontalPadicL_positiveDensityPrimeSet_infinite_v2
 import Definitions.KN.Def_KN_SeededPrimeGaloisDataV2
 
-set_option autoImplicit false
 noncomputable section
 
 open HorizontalPadicL

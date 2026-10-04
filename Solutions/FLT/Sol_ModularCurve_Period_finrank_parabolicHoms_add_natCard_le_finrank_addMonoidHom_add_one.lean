@@ -15,7 +15,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_Period_finrank_parabolicHoms_add_natCard_le_finrank_addMonoidHom_add_one
 
-set_option autoImplicit false
 set_option linter.unusedSectionVars false
 
 open Matrix MatrixGroups Subgroup MulAction ModularCurve.Period

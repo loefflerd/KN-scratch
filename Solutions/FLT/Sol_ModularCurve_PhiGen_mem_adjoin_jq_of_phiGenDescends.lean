@@ -18,8 +18,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_PhiGen_mem_adjoin_jq_of_phiGenDescends
 
-set_option autoImplicit false
-
 noncomputable section
 
 open UpperHalfPlane Complex Filter Topology Function Polynomial

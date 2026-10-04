@@ -7,8 +7,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_realizeOf_eq_div
 
-set_option autoImplicit false
-
 open UpperHalfPlane
 open scoped MatrixGroups Topology Manifold
 

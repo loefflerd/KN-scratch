@@ -5,7 +5,6 @@ set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
-set_option autoImplicit false
 theorem ModularCurve.isIntegral_and_isIntegral_of_mem_riemannRochSpace_weightFloor
     (K : Type*) [Field K] (F : IntermediateField K (LaurentSeries K))
     (y : ↥F) (hy : (y : LaurentSeries K) = ModularCurve.jqModC K)

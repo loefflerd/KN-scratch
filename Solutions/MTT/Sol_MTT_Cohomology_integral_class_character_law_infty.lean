@@ -3,7 +3,6 @@ import Definitions.MTT.Def_MTT_Cohomology_Integration
 import Mathlib.RingTheory.Flat.Basic
 import Mathlib.MeasureTheory.Integral.Bochner.Set
 import Theorems.MTT.Thm_MTT_Cohomology_cuspPrimitive_slash_relation
-set_option autoImplicit false
 noncomputable section
 open scoped BigOperators TensorProduct
 open MTT.Cohomology

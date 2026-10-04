@@ -9,8 +9,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WeierstrassCurve_Affine_adjoin_yCoord_eq_top
 
-set_option autoImplicit false
-
 open Polynomial WeierstrassCurve.Affine in
 theorem solution {F : Type*} [Field F] {W : WeierstrassCurve.Affine F} :
     IntermediateField.adjoin (RatFunc F) {WeierstrassCurve.Affine.yCoord W} = ⊤ := by

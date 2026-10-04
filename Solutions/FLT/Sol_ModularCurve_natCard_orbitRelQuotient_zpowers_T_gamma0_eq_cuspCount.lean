@@ -7,8 +7,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_natCard_orbitRelQuotient_zpowers_T_gamma0_eq_cuspCount
 
-set_option autoImplicit false
-
 open OnePoint
 open scoped MatrixGroups
 

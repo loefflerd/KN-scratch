@@ -3,7 +3,6 @@ import Theorems.MTT.Thm_MTT_Cohomology_principal_period_equivariant_primitive
 import Theorems.MTT.Thm_MTT_Cohomology_equivariant_primitive_pairings_zero
 import Theorems.MTT.Thm_MTT_Cohomology_period_pairing_petersson_definite
 
-set_option autoImplicit false
 noncomputable section
 open scoped ComplexConjugate
 open MTT.Cohomology

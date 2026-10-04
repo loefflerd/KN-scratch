@@ -15,8 +15,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_AddCommGroup_nonempty_zmod_prod_addEquiv_torsionBy_of_card_torsionBy_eq_sq
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace P2MWs13

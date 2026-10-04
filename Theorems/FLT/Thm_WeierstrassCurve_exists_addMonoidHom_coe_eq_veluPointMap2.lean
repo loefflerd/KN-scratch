@@ -4,8 +4,6 @@ set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
-set_option autoImplicit false
-
 open Polynomial WeierstrassCurve WeierstrassCurve.Affine
 theorem WeierstrassCurve.exists_addMonoidHom_coe_eq_veluPointMap2
     {F : Type*} [Field F] [DecidableEq F] (W : WeierstrassCurve F) [W.IsElliptic]

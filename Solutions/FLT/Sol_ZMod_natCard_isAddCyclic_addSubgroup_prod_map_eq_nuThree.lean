@@ -7,8 +7,6 @@ import Definitions.FLT.Def_P2M_Util
 
 namespace P2MW.S_ZMod_natCard_isAddCyclic_addSubgroup_prod_map_eq_nuThree
 
-set_option autoImplicit false
-
 open ModularCurve
 
 namespace L3zCore

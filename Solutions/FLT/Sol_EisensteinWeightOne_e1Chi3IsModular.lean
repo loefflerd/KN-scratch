@@ -397,8 +397,6 @@ p2m_reactivate "P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT P2MW.S_Eise
 
 section File_FLT_AnalyticCore_RankTwoPoissonSummation
 
-set_option autoImplicit false
-
 open Complex Real
 
 open scoped Topology
@@ -846,8 +844,6 @@ p2m_reactivate "P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT P2MW.S_Eise
 
 section File_FLT_AnalyticCore_TwoGeneratorSweep
 
-set_option autoImplicit false
-
 open Matrix CongruenceSubgroup Subgroup ModularForm UpperHalfPlane
 open scoped MatrixGroups ModularForm Manifold Pointwise
 
@@ -1261,8 +1257,6 @@ p2m_reactivate "P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT P2MW.S_Eise
 
 section File_FLT_AnalyticCore_EisensteinModularityAssembly
 
-set_option autoImplicit false
-
 open Complex Real Matrix CongruenceSubgroup Subgroup ModularForm UpperHalfPlane
 open FLT.AnalyticCore.LatticeSum FLT.EisensteinWeightOne
 open scoped MatrixGroups ModularForm Manifold
@@ -1557,8 +1551,6 @@ end File_FLT_AnalyticCore_EisensteinModularityAssembly
 p2m_reactivate "P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.EisensteinWeightOne P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.LatticeSum P2MW.S_EisensteinWeightOne_e1Chi3IsModular.S17E1.FLT.AnalyticCore.Gamma0Three"
 
 section File_FLT_AnalyticCore_ThetaHolomorphy
-
-set_option autoImplicit false
 
 open Complex Real Filter
 open FLT.AnalyticCore.LatticeSum FLT.EisensteinWeightOne

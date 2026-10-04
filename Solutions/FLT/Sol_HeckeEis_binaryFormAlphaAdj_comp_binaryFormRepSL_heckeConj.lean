@@ -8,8 +8,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_HeckeEis_binaryFormAlphaAdj_comp_binaryFormRepSL_heckeConj
 
-set_option autoImplicit false
-
 namespace HeckeEis
 p2m_export "HeckeEis" "heckeConjMat heckeUpper mem_heckeUpper heckeConjSL coe_heckeConjSL heckeConj binarySubst binarySubst_mul binaryFormRepSL binaryFormAlphaAdj"
 p2m_open "HeckeEis"

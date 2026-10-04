@@ -12,7 +12,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_LevelN_exists_monoidHom_algEquiv_fixedField_eq_adjoin
 
-set_option autoImplicit false
 set_option synthInstance.maxHeartbeats 1600000
 set_option linter.unusedSectionVars false
 

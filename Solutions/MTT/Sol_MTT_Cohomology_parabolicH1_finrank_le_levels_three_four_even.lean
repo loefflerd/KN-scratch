@@ -12,8 +12,6 @@ import Mathlib.Tactic.LinearCombination
 import Theorems.FLT.Thm_HeckeEis_exists_eichlerShimura_coeffH1par_binaryFormRepSL
 import Theorems.FLT.Thm_ModularForm_finiteDimensional_of_isArithmetic
 
-set_option autoImplicit false
-
 /-! # The index change on adjoining the central involution -/
 
 open scoped MatrixGroups

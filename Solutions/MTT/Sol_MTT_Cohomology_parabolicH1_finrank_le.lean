@@ -3,8 +3,6 @@ import Theorems.MTT.Thm_MTT_Cohomology_parabolicH1_finrank_le_weight_two
 import Theorems.MTT.Thm_MTT_Cohomology_parabolicH1_finrank_le_higher_level_weight
 import Mathlib.Tactic
 
-set_option autoImplicit false
-
 theorem solution {N k : ℕ} (hN : 0 < N) (hk : 2 ≤ k) :
     Module.finrank ℂ (MTT.Cohomology.ParabolicH1 N (k - 2)) ≤
       2 * Module.finrank ℂ (CuspForm (MTT.GammaOne N) (k : ℤ)) := by

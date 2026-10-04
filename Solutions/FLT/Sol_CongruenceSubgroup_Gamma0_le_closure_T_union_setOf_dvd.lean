@@ -10,8 +10,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_CongruenceSubgroup_Gamma0_le_closure_T_union_setOf_dvd
 
-set_option autoImplicit false
-
 namespace AlliAux1Gen
 
 theorem exists_isCoprime_add_mul (a c : ℤ) {q : ℕ} (hq : q ≠ 0) (hac : IsCoprime a c) :

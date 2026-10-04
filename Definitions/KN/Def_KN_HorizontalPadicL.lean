@@ -3,8 +3,6 @@ import Mathlib.AlgebraicGeometry.EllipticCurve.LFunction
 import Mathlib.Analysis.SpecialFunctions.Log.Basic
 import Mathlib.Analysis.SpecialFunctions.Pow.Real
 
-set_option autoImplicit false
-
 namespace HorizontalPadicL
 
 /-- Quantitative lower-bound notation used in Theorem 1.1. -/

@@ -9,8 +9,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_EisensteinSeries_weierstrassZeta_add_one_and_add_tau_and_smul
 
-set_option autoImplicit false
-
 open scoped Topology Real MatrixGroups Matrix
 p2m_open "UpperHalfPlane~I"
 open EisensteinSeries Filter Complex Asymptotics

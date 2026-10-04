@@ -2,8 +2,6 @@ import Definitions.FLT.Def_AlgebraicCurve_AdelicIndex
 import Definitions.FLT.Def_AlgebraicCurve_CanonicalDivisor
 import Definitions.FLT.Def_ModularCurve_CanonicalDivisorUniformizer
 
-set_option autoImplicit false
-
 noncomputable section
 
 open IsDedekindDomain WithZero Module IsLocalRing KaehlerDifferential

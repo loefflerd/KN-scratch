@@ -15,8 +15,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularGroup_exists_eq_conj_T_zpow_of_trace_sq_eq_four
 
-set_option autoImplicit false
-
 open scoped MatrixGroups
 
 namespace ModularGroup

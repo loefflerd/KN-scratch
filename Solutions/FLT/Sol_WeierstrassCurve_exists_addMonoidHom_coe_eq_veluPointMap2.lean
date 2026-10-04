@@ -97,8 +97,6 @@ end WeierstrassCurve.Affine
 end PieceKernelExact
 
 section Piece_KwVeluOrderTwoNeg
-set_option autoImplicit false
-
 open Polynomial
 
 namespace WeierstrassCurve
@@ -164,8 +162,6 @@ end WeierstrassCurve
 end Piece_KwVeluOrderTwoNeg
 
 section Piece_KwVeluOrderTwoAddKernel
-set_option autoImplicit false
-
 open Polynomial
 
 namespace WeierstrassCurve
@@ -328,8 +324,6 @@ end WeierstrassCurve
 end Piece_KwVeluOrderTwoAddKernel
 
 section Piece_KwVeluOrderTwoSecantXContent
-set_option autoImplicit false
-
 p2m_open "Polynomial WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_exists_addMonoidHom_coe_eq_veluPointMap2.WeierstrassCurve.Affine"
 
 namespace WeierstrassCurve
@@ -386,7 +380,6 @@ end WeierstrassCurve
 end Piece_KwVeluOrderTwoSecantXContent
 
 section Piece_KwVeluOrderTwoTangentYContent
-set_option autoImplicit false
 set_option maxHeartbeats 16000000
 set_option maxRecDepth 8000
 
@@ -431,8 +424,6 @@ end WeierstrassCurve
 end Piece_KwVeluOrderTwoTangentYContent
 
 section Piece_KwVeluOrderTwoSecantAtoms
-set_option autoImplicit false
-
 p2m_open "Polynomial WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_exists_addMonoidHom_coe_eq_veluPointMap2.WeierstrassCurve.Affine"
 
 namespace WeierstrassCurve
@@ -517,8 +508,6 @@ end WeierstrassCurve
 end Piece_KwVeluOrderTwoSecantAtoms
 
 section Piece_KwVeluOrderTwoSecantCarrier
-set_option autoImplicit false
-
 open Polynomial
 
 namespace WeierstrassCurve
@@ -618,8 +607,6 @@ end WeierstrassCurve
 end Piece_KwVeluOrderTwoSecantCarrier
 
 section Piece_KwVeluOrderTwoSecantConjunctOne
-set_option autoImplicit false
-
 p2m_open "Polynomial WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_exists_addMonoidHom_coe_eq_veluPointMap2.WeierstrassCurve.Affine"
 
 namespace WeierstrassCurve
@@ -742,7 +729,6 @@ end WeierstrassCurve
 end Piece_KwVeluOrderTwoSecantConjunctOne
 
 section Piece_KwVeluOrderTwoSecantAlign
-set_option autoImplicit false
 set_option maxHeartbeats 160000000
 set_option maxRecDepth 100000
 
@@ -862,7 +848,6 @@ end WeierstrassCurve
 end Piece_KwVeluOrderTwoSecantAlign
 
 section Piece_KwVeluOrderTwoTangentXAlign
-set_option autoImplicit false
 set_option maxHeartbeats 32000000
 set_option maxRecDepth 8000
 
@@ -964,7 +949,6 @@ end WeierstrassCurve
 end Piece_KwVeluOrderTwoTangentXAlign
 
 section Piece_KwVeluOrderTwoTangentYAlign
-set_option autoImplicit false
 set_option maxHeartbeats 160000000
 set_option maxRecDepth 100000
 
@@ -1101,8 +1085,6 @@ end WeierstrassCurve
 end PieceAbbrev
 
 section Piece_KwVeluOrderTwoAddCompatReduce
-set_option autoImplicit false
-
 p2m_open "Polynomial WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_exists_addMonoidHom_coe_eq_veluPointMap2.WeierstrassCurve.Affine"
 
 namespace WeierstrassCurve
@@ -1292,8 +1274,6 @@ end WeierstrassCurve
 end Piece_KwVeluOrderTwoAddCompatReduce
 
 section Piece_KwVeluOrderTwoCarrierDischarge
-set_option autoImplicit false
-
 noncomputable section
 
 namespace WeierstrassCurve
@@ -1371,8 +1351,6 @@ end WeierstrassCurve
 
 end
 end Piece_KwVeluOrderTwoCarrierDischarge
-
-set_option autoImplicit false
 
 p2m_open "WeierstrassCurve P2MW.S_WeierstrassCurve_exists_addMonoidHom_coe_eq_veluPointMap2.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_exists_addMonoidHom_coe_eq_veluPointMap2.WeierstrassCurve.Affine"
 

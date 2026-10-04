@@ -25,8 +25,6 @@ p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_Divisor_pushforwardNormFormula.Al
 
 noncomputable section
 
-set_option autoImplicit false
-
 noncomputable section
 
 open IsDedekindDomain Polynomial
@@ -310,8 +308,6 @@ end FiberFiniteness
 end Place
 end AlgebraicCurve
 p2m_reactivate "P2MW.S_AlgebraicCurve_Divisor_pushforwardNormFormula.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_Divisor_pushforwardNormFormula.AlgebraicCurve"
-
-set_option autoImplicit false
 
 noncomputable section
 
@@ -955,8 +951,6 @@ scoped instance instSumRamificationInertia {K F F' : Type*} [Field K] [Field F] 
 
 end AlgebraicCurve
 p2m_reactivate "P2MW.S_AlgebraicCurve_Divisor_pushforwardNormFormula.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_Divisor_pushforwardNormFormula.AlgebraicCurve"
-
-set_option autoImplicit false
 
 noncomputable section
 

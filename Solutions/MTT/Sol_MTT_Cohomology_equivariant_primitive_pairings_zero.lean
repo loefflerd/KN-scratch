@@ -3,7 +3,6 @@ import Theorems.MTT.Thm_MTT_Cohomology_gammaOne_has_finset_complement
 import Theorems.MTT.Thm_MTT_Cohomology_mixed_period_test_functions_wirtinger_data_of_pos_level
 import Theorems.MTT.Thm_MTT_Cohomology_period_pairings_eq_wirtinger_sums_of_weight_ge_two
 
-set_option autoImplicit false
 noncomputable section
 open UpperHalfPlane MeasureTheory
 open scoped MatrixGroups Modular ComplexConjugate

@@ -10,7 +10,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_AlgebraicCurve_ell_le_degree_add_ellZero
 
-set_option autoImplicit false
 set_option maxHeartbeats 3200000
 
 namespace AlgebraicCurve
@@ -88,8 +87,6 @@ theorem ell_eq_zero_of_degree_neg [IsCurveOver K F] (hD : Divisor.degree D < 0) 
     ell D = 0 := by
   rw [ell, lSpace_eq_bot_of_degree_neg hD, finrank_bot]
 end AlgebraicCurve
-
-set_option autoImplicit false
 
 noncomputable section
 

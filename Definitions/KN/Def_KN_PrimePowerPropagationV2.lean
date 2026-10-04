@@ -1,6 +1,5 @@
 import Definitions.KN.Def_KN_SeededHorizontalPadicLFunctionV3B
 
-set_option autoImplicit false
 noncomputable section
 open scoped BigOperators
 

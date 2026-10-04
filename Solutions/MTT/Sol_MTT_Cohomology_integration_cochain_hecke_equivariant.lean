@@ -2,7 +2,6 @@ import Definitions.MTT.Def_MTT_Cohomology_Integration
 import Mathlib.RingTheory.Flat.Basic
 import Mathlib.NumberTheory.ModularForms.LFunction
 import Mathlib.NumberTheory.ModularForms.Identities
-set_option autoImplicit false
 noncomputable section
 open scoped BigOperators ModularForm TensorProduct
 open MeasureTheory MatrixGroups Complex UpperHalfPlane

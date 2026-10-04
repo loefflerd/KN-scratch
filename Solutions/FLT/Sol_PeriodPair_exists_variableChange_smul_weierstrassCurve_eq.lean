@@ -10,8 +10,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_PeriodPair_exists_variableChange_smul_weierstrassCurve_eq
 
-set_option autoImplicit false
-
 theorem solution (E : WeierstrassCurve ℂ) [E.IsElliptic] :
     ∃ (L : PeriodPair) (C : WeierstrassCurve.VariableChange ℂ), C • L.weierstrassCurve = E := by
   obtain ⟨L, hΔ, hj⟩ := PeriodPair.jLattice_surjective E.j

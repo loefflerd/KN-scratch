@@ -8,8 +8,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_AlgebraicCurve_Place_mem_toValuationSubring_of_isIntegral_adjoin
 
-set_option autoImplicit false
-
 open AlgebraicCurve
 
 namespace ModularCurve

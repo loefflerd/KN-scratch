@@ -9,8 +9,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_HeckeEis_exists_eq_smul_X_pow_of_binaryFormRepSL_lowerUnipotent_eq_self
 
-set_option autoImplicit false
-
 namespace HeckeEis
 p2m_export "HeckeEis" "BinaryForm binarySubst binarySubst_X binaryFormRepSL binaryFormRepSL_apply_coe exists_eq_smul_X_pow_of_binaryFormRepSL_T_zpow_eq_self"
 p2m_open "HeckeEis"

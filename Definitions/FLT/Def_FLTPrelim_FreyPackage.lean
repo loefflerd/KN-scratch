@@ -21,8 +21,6 @@ set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
-set_option autoImplicit false
-
 structure FreyPackage where
   a : ℤ
   b : ℤ

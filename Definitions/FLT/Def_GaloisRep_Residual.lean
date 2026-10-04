@@ -11,8 +11,6 @@ set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
-set_option autoImplicit false
-
 noncomputable section
 
 open scoped WeierstrassCurve.Affine TensorProduct

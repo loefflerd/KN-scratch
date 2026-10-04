@@ -11,8 +11,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_IsIntegral_mem_span_of_adjoin_simple_constants
 
-set_option autoImplicit false
-
 noncomputable section
 
 open Polynomial

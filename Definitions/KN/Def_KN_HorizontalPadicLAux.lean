@@ -3,7 +3,6 @@ import Mathlib.NumberTheory.Padics.Complex
 import Mathlib.NumberTheory.Padics.RingHoms
 import Mathlib.Topology.Instances.Real.Lemmas
 
-set_option autoImplicit false
 noncomputable section
 
 namespace HorizontalPadicL

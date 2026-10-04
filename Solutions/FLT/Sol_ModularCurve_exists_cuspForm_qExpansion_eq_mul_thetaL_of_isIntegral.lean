@@ -21,8 +21,6 @@ p2m_attr_erase "simp" "ModularCurve.jqNModC_one"
 open ModularCurve UpperHalfPlane HahnSeries
 open scoped MatrixGroups ModularForm
 
-set_option autoImplicit false
-
 namespace ANGlue
 
 theorem one_mem_strictPeriods_gamma0 (N : ℕ) :

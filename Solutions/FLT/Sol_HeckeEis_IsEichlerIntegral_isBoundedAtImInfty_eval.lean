@@ -14,8 +14,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_HeckeEis_IsEichlerIntegral_isBoundedAtImInfty_eval
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace HeckeEis

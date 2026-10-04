@@ -22,8 +22,6 @@ namespace P2MW.S_ModularCurve_exists_modularForm_gamma1_qExpansion_eq_mul_thetaL
 open ModularCurve UpperHalfPlane HahnSeries
 open scoped MatrixGroups ModularForm
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace ANGlueM

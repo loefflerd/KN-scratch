@@ -1,7 +1,5 @@
 import Definitions.KN.Def_KN_HorizontalPadicLAux
 
-set_option autoImplicit false
-
 namespace HorizontalPadicL
 
 theorem corollary_5_17_v2

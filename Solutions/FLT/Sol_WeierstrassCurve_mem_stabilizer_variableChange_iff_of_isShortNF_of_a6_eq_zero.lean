@@ -11,8 +11,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WeierstrassCurve_mem_stabilizer_variableChange_iff_of_isShortNF_of_a6_eq_zero
 
-set_option autoImplicit false
-
 namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "a₃_of_isShortNF VariableChange.ext a₃ c₄_of_isShortNF a₁ a₁_of_isShortNF IsShortNF variableChange_a₃ a₂_of_isShortNF a₄ a₂ a₆ variableChange_a₆ variableChange_a₂ variableChange_c₄ variableChange_a₁ variableChange_a₄ c₄ VariableChange"
 p2m_open "WeierstrassCurve"

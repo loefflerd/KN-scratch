@@ -9,8 +9,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_nonempty_integralWeightOneForm
 
-set_option autoImplicit false
-
 noncomputable section
 
 open CongruenceSubgroup UpperHalfPlane

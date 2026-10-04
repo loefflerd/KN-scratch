@@ -12,8 +12,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_HeckeEis_IsEichlerIntegral_eq_zero_of_eval_eq_const
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace HeckeEis

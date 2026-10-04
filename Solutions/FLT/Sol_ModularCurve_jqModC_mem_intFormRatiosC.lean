@@ -11,8 +11,6 @@ set_option backward.isDefEq.respectTransparency.types false
 namespace P2MW.S_ModularCurve_jqModC_mem_intFormRatiosC
 
 set_option linter.unusedSectionVars false
-set_option autoImplicit false
-
 noncomputable section
 
 namespace JqMemRatios

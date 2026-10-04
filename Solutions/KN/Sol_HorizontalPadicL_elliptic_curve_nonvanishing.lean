@@ -1,8 +1,6 @@
 import Theorems.KN.Thm_HorizontalPadicL_corollary_5_17_v2
 import Theorems.KN.Thm_HorizontalPadicL_ellipticCurve_eigenform_specialization_v2
 
-set_option autoImplicit false
-
 open HorizontalPadicL
 
 theorem solution

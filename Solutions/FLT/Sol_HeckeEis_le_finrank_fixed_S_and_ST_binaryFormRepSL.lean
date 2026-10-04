@@ -12,7 +12,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_HeckeEis_le_finrank_fixed_S_and_ST_binaryFormRepSL
 
-set_option autoImplicit false
 set_option maxHeartbeats 1600000
 set_option synthInstance.maxHeartbeats 160000
 

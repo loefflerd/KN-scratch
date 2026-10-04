@@ -1,6 +1,5 @@
 import Definitions.KN.Def_HorizontalPadicL_LocalEulerFactorDegree
 
-set_option autoImplicit false
 noncomputable section
 
 namespace HorizontalPadicL

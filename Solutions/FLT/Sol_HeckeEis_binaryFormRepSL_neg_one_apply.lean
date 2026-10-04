@@ -7,8 +7,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_HeckeEis_binaryFormRepSL_neg_one_apply
 
-set_option autoImplicit false
-
 open scoped MatrixGroups
 
 open HeckeEis MvPolynomial in

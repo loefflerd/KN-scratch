@@ -9,7 +9,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_finrank_adjoin_qExpFunctionFieldC_le_of_valuationSubring
 
-set_option autoImplicit false
 set_option linter.unusedSectionVars false
 
 noncomputable section

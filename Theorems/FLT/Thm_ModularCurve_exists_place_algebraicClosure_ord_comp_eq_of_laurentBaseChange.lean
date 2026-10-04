@@ -7,7 +7,6 @@ set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
-set_option autoImplicit false
 theorem ModularCurve.exists_place_algebraicClosure_ord_comp_eq_of_laurentBaseChange
     (K : Type*) [Field K] [Algebra ℚ K] [IsAlgClosed K]
     (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ)) (hT : ModularGroup.T ∈ Γ) [Γ.FiniteIndex]

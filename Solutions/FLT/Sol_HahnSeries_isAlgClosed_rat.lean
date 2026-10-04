@@ -15,8 +15,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_HahnSeries_isAlgClosed_rat
 
-set_option autoImplicit false
-
 open Polynomial HahnSeries
 open scoped Classical
 

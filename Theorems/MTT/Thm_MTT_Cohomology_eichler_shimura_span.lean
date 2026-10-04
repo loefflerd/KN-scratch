@@ -1,5 +1,4 @@
 import Definitions.MTT.Def_MTT_Cohomology_Boundary
-set_option autoImplicit false
 noncomputable section
 open scoped BigOperators TensorProduct
 open MTT.Cohomology

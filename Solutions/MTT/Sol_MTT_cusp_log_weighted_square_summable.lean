@@ -19,7 +19,6 @@ bound `y ^ k * ‖f (x + i y)‖ ^ 2 ≤ C` (Lemma 1.1(b), available in Mathlib 
 (1) in the proof of Theorem 1.2); dyadic summation then yields the stated convergence.
 -/
 
-set_option autoImplicit false
 noncomputable section
 open scoped BigOperators
 open MTT.Cohomology

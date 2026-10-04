@@ -1,7 +1,6 @@
 import Theorems.MTT.Thm_MTT_Cohomology_cuspPrimitive_analytic_relations
 import Definitions.MTT.Def_MTT_Cohomology_Integration
 import Mathlib.RingTheory.Flat.Basic
-set_option autoImplicit false
 noncomputable section
 open scoped BigOperators TensorProduct
 open MTT.Cohomology

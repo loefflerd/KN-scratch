@@ -3,7 +3,6 @@ import Theorems.KN.Thm_MonoidAlgebra_isUnit_iff_augmentation_of_isPGroup_v2
 import Theorems.KN.Thm_HorizontalPadicL_horizontalFiniteGroup_isPGroup_v2
 import Theorems.KN.Thm_PadicComplexInt_natCast_prime_mem_maximalIdeal_v2
 
-set_option autoImplicit false
 noncomputable section
 
 namespace HorizontalPadicL

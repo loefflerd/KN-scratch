@@ -10,8 +10,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_PeriodPair_lattice_eq_of_g2_eq_of_g3_eq
 
-set_option autoImplicit false
-
 noncomputable section
 
 open Complex Filter Topology

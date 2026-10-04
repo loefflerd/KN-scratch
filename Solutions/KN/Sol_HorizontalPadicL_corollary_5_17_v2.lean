@@ -30,7 +30,6 @@ proof by David Loeffler of `even_algebraicSymbol_sum_ne_zero_iff_modularSymbol_s
 The reflection identity here retains the character value at -1, allowing
 either parity when the modular-symbol sign matches the twisting character. -/
 
-set_option autoImplicit false
 noncomputable section BundleMatchingSignSymbol
 open scoped BigOperators
 
@@ -262,7 +261,6 @@ relations submission `f1d595ec`, and frknbls's evaluation submission `69fe8a06`.
 The zero-set descent and final assembly also use davidloeffler's platform proofs.
 -/
 
-set_option autoImplicit false
 set_option maxHeartbeats 800000
 noncomputable section BundleSeededThetaAnyParity
 open scoped BigOperators
@@ -1725,8 +1723,6 @@ section BundleAnyParityPrimeSystem
 /- Adapted from David Loeffler's Prove2Me submission
 3810e639-fbf4-4220-98db-aec1ba0f2beb: remove the unused seed-parity hypothesis. -/
 
-set_option autoImplicit false
-
 open HorizontalPadicL
 
 theorem HorizontalPadicL.seededPositiveDensityPrimeSystem_exists_anyParity
@@ -1766,7 +1762,6 @@ The iteration and counting argument are unchanged. The seed invariant drops
 its parity clause, and the propagation input quantifies over all seed parities.
 -/
 
-set_option autoImplicit false
 noncomputable section BundleArbitraryParityIteration
 open scoped BigOperators
 
@@ -2045,7 +2040,6 @@ theorem HorizontalPadicL.primePowerPropagation_iterate_anyParity
 end BundleArbitraryParityIteration
 
 -- From Solutions/AnyParityPropagation.lean
-set_option autoImplicit false
 noncomputable section BundleAnyParityPropagation
 
 namespace HorizontalPadicL
@@ -2108,8 +2102,6 @@ end BundleAnyParityPropagation
 -- From Solutions/AnyParityConstruction.lean
 section BundleAnyParityConstruction
 
-set_option autoImplicit false
-
 namespace HorizontalPadicL
 
 /-- Construct the seeded horizontal measure using the sign matching the seed. -/
@@ -2135,8 +2127,6 @@ end BundleAnyParityConstruction
 
 -- From Solutions/AnyParityCorollary.lean
 section BundleAnyParityCorollary
-
-set_option autoImplicit false
 
 open HorizontalPadicL
 

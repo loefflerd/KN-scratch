@@ -7,7 +7,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WeierstrassCurve_fiberAdd_veluGx_cleared_four
 
-set_option autoImplicit false
 set_option Elab.async false
 
 namespace WeierstrassCurve

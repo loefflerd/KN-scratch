@@ -17,8 +17,6 @@ namespace P2MW.S_WeierstrassCurve_Affine_exists_infinitePlace_deg_eq_one
 
 set_option Elab.async false
 
-set_option autoImplicit false
-
 noncomputable section
 
 open Module Polynomial WithZero

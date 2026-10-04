@@ -1,7 +1,6 @@
 import Definitions.KN.Def_MTT_EigenformCoefficientResidueField
 import Mathlib.RingTheory.AdicCompletion.Algebra
 
-set_option autoImplicit false
 noncomputable section
 
 open NumberField

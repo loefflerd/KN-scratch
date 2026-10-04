@@ -1,7 +1,5 @@
 import Definitions.KN.Def_KN_HorizontalPadicL
 
-set_option autoImplicit false
-
 namespace HorizontalPadicL
 
 /-- Friedberg--Hoffstein nonvanishing with finite conductor avoidance, allowing

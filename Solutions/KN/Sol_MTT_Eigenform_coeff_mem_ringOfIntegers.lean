@@ -2,7 +2,6 @@ import Definitions.KN.Def_MTT_EigenformCoefficientField
 import Theorems.KN.Thm_MTT_Eigenform_coeff_isIntegral
 import Mathlib.Algebra.Algebra.Hom.Rat
 
-set_option autoImplicit false
 noncomputable section
 
 theorem solution

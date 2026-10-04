@@ -9,8 +9,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_StarBank_eisInt_not_dvd_num
 
-set_option autoImplicit false
-
 open scoped ArithmeticFunction.sigma
 open Finset
 

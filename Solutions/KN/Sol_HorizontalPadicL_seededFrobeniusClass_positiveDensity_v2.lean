@@ -1,8 +1,6 @@
 import Definitions.KN.Def_KN_SeededPrimeGaloisDataV2
 import Theorems.KN.Thm_FrobeniusDensity_chebotarev_natural_density
 
-set_option autoImplicit false
-
 open NumberField Ideal Filter Topology
 
 open HorizontalPadicL

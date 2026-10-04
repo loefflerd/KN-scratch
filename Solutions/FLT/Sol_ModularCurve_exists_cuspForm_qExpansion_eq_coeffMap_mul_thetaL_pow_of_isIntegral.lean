@@ -16,7 +16,6 @@ p2m_attr_erase "simp" "ModularCurve.jqNModC_one ModularForm.val_heckeDiagMatrix 
 
 open ModularCurve HahnSeries
 
-set_option autoImplicit false
 set_option synthInstance.maxHeartbeats 1600000
 
 noncomputable section

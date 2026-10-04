@@ -2,7 +2,6 @@ import Theorems.MTT.Thm_MTT_Cohomology_boundary_hecke_scalar_at_one
 import Theorems.MTT.Thm_MTT_cusp_log_weighted_square_summable
 import Definitions.MTT.Def_MTT_Cohomology_Boundary
 import Mathlib.NumberTheory.LSeries.PrimesInAP
-set_option autoImplicit false
 noncomputable section
 open scoped BigOperators
 open MTT.Cohomology

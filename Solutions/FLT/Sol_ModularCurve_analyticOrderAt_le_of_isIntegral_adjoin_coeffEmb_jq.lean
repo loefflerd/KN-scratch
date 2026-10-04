@@ -18,8 +18,6 @@ namespace P2MW.S_ModularCurve_analyticOrderAt_le_of_isIntegral_adjoin_coeffEmb_j
 p2m_open "UpperHalfPlane ModularCurve~coeffEmb_jq"
 open scoped MatrixGroups ModularForm Manifold
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace ANb

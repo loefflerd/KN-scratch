@@ -8,7 +8,6 @@ completion's domain, DVR, and completeness structures specialize the generic
 prime-adic completion theorem without changing its existing ring structure.
 -/
 
-set_option autoImplicit false
 noncomputable section
 
 open NumberField IsLocalRing

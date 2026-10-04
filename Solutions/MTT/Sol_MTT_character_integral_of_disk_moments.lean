@@ -1,7 +1,6 @@
 import Definitions.MTT.Def_MTT_Measures
 import Mathlib.RingTheory.Coprime.Lemmas
 
-set_option autoImplicit false
 noncomputable section
 open scoped BigOperators
 open MTT

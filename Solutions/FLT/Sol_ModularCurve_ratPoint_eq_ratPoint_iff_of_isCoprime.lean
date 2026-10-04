@@ -7,8 +7,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_ratPoint_eq_ratPoint_iff_of_isCoprime
 
-set_option autoImplicit false
-
 open Matrix Matrix.SpecialLinearGroup OnePoint CongruenceSubgroup
 open scoped MatrixGroups
 open ModularCurve ModularCurve.CuspSpace

@@ -6,8 +6,6 @@ set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
-set_option autoImplicit false
-
 open scoped MatrixGroups ModularForm in
 theorem ModularForm.exists_gamma1_weight_four_isIntegralQExp_partialDivisorSum_slash_eq
     (M : ℕ) [NeZero M] (hM : 3 ≤ M) :

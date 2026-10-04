@@ -1,6 +1,5 @@
 import Definitions.MTT.Def_MTT_ParabolicCohomology
 import Mathlib.RepresentationTheory.Coinduced
-set_option autoImplicit false
 noncomputable section
 
 theorem MTT.Cohomology.exists_parabolic_coinduced_cocycle {N n : ℕ} (hN : 0 < N)

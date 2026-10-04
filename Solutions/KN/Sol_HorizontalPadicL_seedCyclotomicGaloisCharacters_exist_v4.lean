@@ -4,7 +4,6 @@ import Mathlib.NumberTheory.MulChar.Lemmas
 import Mathlib.RingTheory.IntegralDomain
 import Mathlib.RingTheory.RootsOfUnity.AlgebraicallyClosed
 
-set_option autoImplicit false
 noncomputable section
 
 namespace HorizontalPadicL

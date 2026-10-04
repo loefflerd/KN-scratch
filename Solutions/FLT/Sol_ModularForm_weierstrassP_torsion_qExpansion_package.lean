@@ -31,8 +31,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularForm_weierstrassP_torsion_qExpansion_package
 
-set_option autoImplicit false
-
 noncomputable section
 
 open Complex Real

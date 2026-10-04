@@ -1,7 +1,6 @@
 import Definitions.KN.Def_KN_SeededHorizontalPadicLFunctionV3B
 import Definitions.KN.Def_KN_SeededFiniteThetaCriticalZeroSetV2
 
-set_option autoImplicit false
 noncomputable section
 open scoped BigOperators
 

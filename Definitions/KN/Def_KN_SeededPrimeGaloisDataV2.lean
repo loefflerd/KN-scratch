@@ -1,7 +1,6 @@
 import Definitions.KN.Def_KN_HorizontalPadicLAux
 import Definitions.FLT.Def_LanglandsTunnell_TowerCounting
 
-set_option autoImplicit false
 noncomputable section
 
 namespace HorizontalPadicL

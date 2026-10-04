@@ -10,7 +10,6 @@ import Mathlib.NumberTheory.ModularForms.Bounds
 
 /-! # Reducing mixed-period integrability to the local calculus identities -/
 
-set_option autoImplicit false
 noncomputable section
 open UpperHalfPlane MeasureTheory
 open scoped MatrixGroups Modular ComplexConjugate

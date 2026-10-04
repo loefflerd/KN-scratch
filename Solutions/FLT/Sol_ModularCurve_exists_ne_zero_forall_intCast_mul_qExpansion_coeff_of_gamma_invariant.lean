@@ -12,8 +12,6 @@ import Definitions.FLT.Def_P2M_Util
 
 namespace P2MW.S_ModularCurve_exists_ne_zero_forall_intCast_mul_qExpansion_coeff_of_gamma_invariant
 
-set_option autoImplicit false
-
 noncomputable section
 
 open Complex UpperHalfPlane ModularForm CongruenceSubgroup Function

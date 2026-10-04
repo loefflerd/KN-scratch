@@ -10,8 +10,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_HeckeEis_IsEichlerIntegral_hasDerivAt_eval_iterate_pderiv
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace HeckeEis

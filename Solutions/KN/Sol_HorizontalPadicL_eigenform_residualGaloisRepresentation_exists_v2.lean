@@ -12,7 +12,6 @@ import Theorems.FLT.Thm_NumberField_exists_valuationSubring_eq_localization
 import Theorems.FLT.Thm_ValuationSubring_isFrobeniusAt_of_forall_smul_sub_pow_mem
 
 -- From Solutions/ResidualMatrixReduction.lean
-set_option autoImplicit false
 noncomputable section BundleResidualMatrixReduction
 
 open NumberField
@@ -71,7 +70,6 @@ end MTT.Eigenform
 end BundleResidualMatrixReduction
 
 -- From Solutions/ResidualFiniteDescent.lean
-set_option autoImplicit false
 set_option backward.isDefEq.respectTransparency.types false
 noncomputable section BundleResidualFiniteDescent
 
@@ -229,7 +227,6 @@ end NumberField
 end BundleResidualFrobeniusLift
 
 -- From Solutions/ResidualGaloisSolution.lean
-set_option autoImplicit false
 noncomputable section BundleResidualGaloisSolution
 
 open NumberField HorizontalPadicL FrobeniusDensity

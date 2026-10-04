@@ -1,7 +1,6 @@
 import Definitions.MTT.Def_MTT_Arithmetic
 import Mathlib.RingTheory.IntegralClosure.Algebra.Basic
 
-set_option autoImplicit false
 noncomputable section
 
 theorem MTT.Eigenform.heckeEigenvalue_isIntegral

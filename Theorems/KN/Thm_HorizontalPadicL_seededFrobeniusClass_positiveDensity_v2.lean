@@ -1,7 +1,5 @@
 import Definitions.KN.Def_KN_SeededPrimeGaloisDataV2
 
-set_option autoImplicit false
-
 namespace HorizontalPadicL
 
 theorem seededFrobeniusClass_positiveDensity_v2

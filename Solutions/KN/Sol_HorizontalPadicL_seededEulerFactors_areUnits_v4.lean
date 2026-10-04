@@ -2,7 +2,6 @@ import Definitions.KN.Def_KN_InverseSeedConventionV2
 import Theorems.KN.Thm_HorizontalPadicL_horizontalGroupAlgebra_isUnit_of_augmentation_norm_one_v2
 import Definitions.KN.Def_KN_SeededThetaConstructionV2B
 
-set_option autoImplicit false
 noncomputable section
 
 open HorizontalPadicL

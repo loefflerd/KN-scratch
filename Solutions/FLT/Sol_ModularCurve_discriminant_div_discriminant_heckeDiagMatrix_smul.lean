@@ -10,8 +10,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_discriminant_div_discriminant_heckeDiagMatrix_smul
 
-set_option autoImplicit false
-
 noncomputable section
 
 open UpperHalfPlane Matrix.SpecialLinearGroup

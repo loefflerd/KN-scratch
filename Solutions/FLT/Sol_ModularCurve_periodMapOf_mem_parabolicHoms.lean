@@ -9,8 +9,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_periodMapOf_mem_parabolicHoms
 
-set_option autoImplicit false
-
 open scoped MatrixGroups
 open UpperHalfPlane Filter Topology
 

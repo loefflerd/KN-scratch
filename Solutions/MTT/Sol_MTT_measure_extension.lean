@@ -4,7 +4,6 @@ import Theorems.MTT.Thm_MTT_distribution_relation
 import Mathlib.NumberTheory.ModularForms.Identities
 import Mathlib.Tactic.FieldSimp
 import Mathlib.Tactic.Ring
-set_option autoImplicit false
 noncomputable section
 open MTT MeasureTheory
 open scoped BigOperators

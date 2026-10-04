@@ -8,8 +8,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_CongruenceSubgroup_conj_T_zpow_mem_Gamma1_of_mem_sup_zpowers_neg_one
 
-set_option autoImplicit false
-
 open scoped MatrixGroups
 
 namespace RegCuspAux

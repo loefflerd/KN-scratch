@@ -21,7 +21,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WLight_frickeFunction_intBaseChange
 
-set_option autoImplicit false
 set_option synthInstance.maxHeartbeats 1600000
 set_option maxHeartbeats 3200000
 

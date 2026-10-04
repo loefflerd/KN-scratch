@@ -43,8 +43,6 @@ p2m_attr_erase "simp" "AddMonoid.End.dualEndData_intCast_trace AddMonoid.End.Dua
 set_option maxHeartbeats 6400000
 set_option synthInstance.maxHeartbeats 1600000
 
-set_option autoImplicit false
-
 namespace ModularCurve
 p2m_export "ModularCurve" "jBar modularFunctionFieldBar jq coeff_jq_neg_one dedekindPsi coeffEmb coeffEmb_coeff nuTwo nuThree cuspCount genusFormula EMD ModuliPoint ModuliPoint.j sum_ord_jBar_sub_eq_dedekindPsi deg_eq_one_modularFunctionFieldBar jCoordinate_spec_modularFunctionFieldBar sum_neg_ord_jBar_eq_dedekindPsi ord_jBar_dvd_three ord_jBar_sub_1728_dvd_two card_eq_cuspCount_of_forall_mem_iff_ord_jBar_neg natCard_ord_jBar_sub_1728_eq_one_eq_nuTwo natCard_ord_jBar_eq_one_eq_nuThree card_eq_natCard_moduliPoint_j_eq_of_EMD emd_holds transcendental_coeffEmb_jq isCurveOver_modularFunctionFieldBar finiteDimensional_adjoin_coeffEmb_jq_of_neZero dedekindPsi_pos"
 namespace LDivDegree
@@ -386,7 +384,6 @@ end ModularCurve.LDivDegree
 
 p2m_open "ModularCurve P2MW.S_ModularCurve_exists_divisor_degree_weight_and_isIntegral_of_mem_riemannRochSpace.ModularCurve AlgebraicCurve"
 
-set_option autoImplicit false
 set_option synthInstance.maxHeartbeats 1600000
 set_option maxHeartbeats 6400000
 

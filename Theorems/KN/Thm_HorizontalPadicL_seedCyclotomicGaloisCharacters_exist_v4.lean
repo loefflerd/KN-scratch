@@ -1,7 +1,5 @@
 import Definitions.KN.Def_KN_SeedCyclotomicGaloisCharactersV3B
 
-set_option autoImplicit false
-
 namespace HorizontalPadicL
 
 /-- The actual cyclotomic character modulo `p ^ m * N` and the character cut

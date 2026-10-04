@@ -19,8 +19,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_mem_adjoin_jq_of_hasSum_of_slash_invariant
 
-set_option autoImplicit false
-
 noncomputable section
 
 open UpperHalfPlane Complex Filter Topology Function Polynomial

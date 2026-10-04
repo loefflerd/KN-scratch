@@ -1,8 +1,6 @@
 import Definitions.KN.Def_KN_SeededPrimeGaloisDataV2
 import Definitions.KN.Def_KN_InverseSeedConventionV2
 
-set_option autoImplicit false
-
 namespace HorizontalPadicL
 
 theorem seededFrobeniusClass_isOrderly_inverseSeed_v2

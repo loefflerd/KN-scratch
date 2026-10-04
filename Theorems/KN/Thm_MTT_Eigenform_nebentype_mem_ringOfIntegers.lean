@@ -1,7 +1,6 @@
 import Definitions.KN.Def_MTT_EigenformCoefficientField
 import Mathlib.RingTheory.IntegralClosure.Algebra.Basic
 
-set_option autoImplicit false
 noncomputable section
 
 /-- Every nebentype value, regarded as an element of the coefficient field,

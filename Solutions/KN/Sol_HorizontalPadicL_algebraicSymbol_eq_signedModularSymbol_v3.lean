@@ -4,7 +4,6 @@ import Mathlib.NumberTheory.ModularForms.LFunction
 import Mathlib.NumberTheory.ModularForms.Identities
 import Mathlib.Tactic.FinCases
 
-set_option autoImplicit false
 set_option maxRecDepth 4000
 noncomputable section
 open scoped BigOperators ModularForm

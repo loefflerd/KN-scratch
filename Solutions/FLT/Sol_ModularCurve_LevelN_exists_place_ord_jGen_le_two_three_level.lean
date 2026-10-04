@@ -16,7 +16,6 @@ set_option backward.isDefEq.respectTransparency.types false
 namespace P2MW.S_ModularCurve_LevelN_exists_place_ord_jGen_le_two_three_level
 p2m_attr_erase "simp" "HahnSeries.ramScale_apply"
 
-set_option autoImplicit false
 set_option linter.unusedSectionVars false
 set_option linter.unusedVariables false
 

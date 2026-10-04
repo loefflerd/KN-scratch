@@ -1,7 +1,5 @@
 import Definitions.KN.Def_KN_HorizontalPadicL
 
-set_option autoImplicit false
-
 namespace HorizontalPadicL
 
 /-- Coefficient-side formulation that the local Euler polynomial of `E` at `p`

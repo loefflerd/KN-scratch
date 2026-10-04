@@ -12,7 +12,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_AlgebraicCurve_exists_indexOfSpecialty_nsmul_single_eq_zero_of_genusReached
 
-set_option autoImplicit false
 set_option maxHeartbeats 4000000
 
 open AlgebraicCurve

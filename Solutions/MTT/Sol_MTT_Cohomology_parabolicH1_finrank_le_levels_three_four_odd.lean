@@ -3,8 +3,6 @@ import Theorems.MTT.Thm_MTT_Cohomology_cuspForm_finrank_lower_bound_level_four_o
 import Theorems.MTT.Thm_MTT_Cohomology_parabolicH1_finrank_le_level_three_odd
 import Mathlib.Tactic
 
-set_option autoImplicit false
-
 open MTT.Cohomology
 
 theorem solution {N k : ℕ} (hN : 3 ≤ N) (hN' : N ≤ 4) (hk : 3 ≤ k) (hko : Odd k) :

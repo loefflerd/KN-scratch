@@ -12,8 +12,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WLight_exists_mdifferentiable_div_of_monicRel
 
-set_option autoImplicit false
-
 noncomputable section
 
 p2m_open "Complex Real UpperHalfPlane ModularForm Polynomial Real.Polynomial"

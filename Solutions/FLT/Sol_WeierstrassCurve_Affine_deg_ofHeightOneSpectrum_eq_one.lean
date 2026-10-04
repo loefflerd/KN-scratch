@@ -14,8 +14,6 @@ namespace P2MW.S_WeierstrassCurve_Affine_deg_ofHeightOneSpectrum_eq_one
 
 set_option Elab.async false
 
-set_option autoImplicit false
-
 open AlgebraicCurve IsDedekindDomain Polynomial WeierstrassCurve WeierstrassCurve.Affine
 open WeierstrassCurve.Affine.CoordinateRing
 open scoped Polynomial.Bivariate

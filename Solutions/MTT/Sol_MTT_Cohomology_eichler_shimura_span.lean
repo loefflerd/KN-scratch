@@ -12,7 +12,6 @@ Extracted from our accepted Hecke-equivariance proof, submission
 409661e4-aebb-482e-a7ec-21de19561db6. No analytic input is used here.
 -/
 
-set_option autoImplicit false
 noncomputable section
 open scoped BigOperators
 open MTT.Cohomology
@@ -94,7 +93,6 @@ The kernel computation in the boundary exact sequence is valid over every
 commutative coefficient ring. No analytic input is used.
 -/
 
-set_option autoImplicit false
 noncomputable section
 namespace MTT.Cohomology
 
@@ -137,7 +135,6 @@ section
 The base cusp is arbitrary. The cocycle is principal on each cusp stabilizer.
 -/
 
-set_option autoImplicit false
 noncomputable section
 namespace MTT.Cohomology
 
@@ -170,7 +167,6 @@ section
 The boundary datum is reconstructed explicitly from the residual modular symbol.
 -/
 
-set_option autoImplicit false
 noncomputable section
 open MTT.Cohomology
 

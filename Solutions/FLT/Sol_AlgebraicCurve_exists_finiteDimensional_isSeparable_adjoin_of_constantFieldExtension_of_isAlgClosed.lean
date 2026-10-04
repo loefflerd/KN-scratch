@@ -15,7 +15,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_AlgebraicCurve_exists_finiteDimensional_isSeparable_adjoin_of_constantFieldExtension_of_isAlgClosed
 
-set_option autoImplicit false
 set_option maxHeartbeats 4000000
 
 open IntermediateField

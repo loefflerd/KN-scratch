@@ -10,7 +10,6 @@ Extracted from our accepted Hecke-equivariance proof, submission
 409661e4-aebb-482e-a7ec-21de19561db6. No analytic input is used here.
 -/
 
-set_option autoImplicit false
 noncomputable section
 open scoped BigOperators
 open MTT.Cohomology
@@ -92,7 +91,6 @@ Evaluating a vanishing sum at `(∞, γ∞)` turns an equivariant boundary datum
 into a single principal cocycle. The remaining analytic input is explicit.
 -/
 
-set_option autoImplicit false
 noncomputable section
 open MTT.Cohomology
 

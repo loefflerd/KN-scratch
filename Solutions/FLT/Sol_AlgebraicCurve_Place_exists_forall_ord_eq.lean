@@ -7,8 +7,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_AlgebraicCurve_Place_exists_forall_ord_eq
 
-set_option autoImplicit false
-
 open IsDedekindDomain
 
 namespace AlgebraicCurve

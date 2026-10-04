@@ -12,8 +12,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_exists_smul_eq_of_E4_cube_div_discriminant_eq
 
-set_option autoImplicit false
-
 noncomputable section
 
 open UpperHalfPlane ModularForm EisensteinSeries Complex

@@ -16,8 +16,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_AlgebraicCurve_Place_exists_comap_algebraMap_eq_of_constantFieldExtension
 
-set_option autoImplicit false
-
 open AlgebraicCurve
 
 namespace W7XUnram

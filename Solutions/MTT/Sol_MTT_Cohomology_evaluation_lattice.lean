@@ -1,6 +1,5 @@
 import Definitions.MTT.Def_MTT_Cohomology
 import Mathlib.RingTheory.Flat.Basic
-set_option autoImplicit false
 set_option maxHeartbeats 1000000
 set_option synthInstance.maxHeartbeats 400000
 noncomputable section

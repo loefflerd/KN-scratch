@@ -4,8 +4,6 @@ import Definitions.MTT.Def_MTT_LevelOnePeriodRelations
 import Theorems.MTT.Thm_MTT_Cohomology_normalizedParabolic_finrank
 import Theorems.FLT.Thm_CongruenceSubgroup_closure_T_U_neg_one_eq_Gamma0_three
 
-set_option autoImplicit false
-
 noncomputable section
 
 open scoped MatrixGroups

@@ -11,8 +11,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_EisensteinSeries_hasSum_weierstrassZeta_sub_mul_G2
 
-set_option autoImplicit false
-
 open scoped Topology Real
 p2m_open "UpperHalfPlane~I"
 open EisensteinSeries Filter Complex Asymptotics

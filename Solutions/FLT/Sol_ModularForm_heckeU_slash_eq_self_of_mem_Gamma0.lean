@@ -10,8 +10,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularForm_heckeU_slash_eq_self_of_mem_Gamma0
 
-set_option autoImplicit false
-
 noncomputable section
 
 open Matrix.SpecialLinearGroup UpperHalfPlane

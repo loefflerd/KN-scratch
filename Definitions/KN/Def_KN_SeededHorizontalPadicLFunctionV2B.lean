@@ -1,6 +1,5 @@
 import Definitions.KN.Def_KN_HorizontalPadicLAux
 
-set_option autoImplicit false
 noncomputable section
 
 namespace HorizontalPadicL

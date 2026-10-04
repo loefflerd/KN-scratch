@@ -9,7 +9,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WeierstrassCurve_Affine_finiteDimensional_ratFunc_functionField
 
-set_option autoImplicit false
 set_option synthInstance.maxHeartbeats 800000
 
 open WeierstrassCurve.Affine in

@@ -8,8 +8,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_MulAction_card_mul_natCard_orbitRel_quotient_eq_of_natCard_eq_prime
 
-set_option autoImplicit false
-
 open MulAction in
 theorem solution
     (G : Type*) {X : Type*} [Group G] [MulAction G X] [Finite G] [Finite X]

@@ -13,8 +13,6 @@ namespace P2MW.S_ModularCurve_eq_zero_of_forall_re_periodOf_eq_zero
 open scoped MatrixGroups Real Manifold ModularForm
 open UpperHalfPlane Filter Topology Complex Function Metric
 
-set_option autoImplicit false
-
 namespace ModularCurve
 p2m_export "ModularCurve" "periodOf HasEquivariantPrimitiveOf period exists_hasEquivariantPrimitiveOf periodOf_apply_eq_sub_of_hasEquivariantPrimitiveOf"
 namespace PeriodRealInjectivityOf

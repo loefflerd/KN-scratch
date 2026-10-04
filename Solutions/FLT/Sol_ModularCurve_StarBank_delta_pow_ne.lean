@@ -8,8 +8,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_StarBank_delta_pow_ne
 
-set_option autoImplicit false
-
 noncomputable section
 
 open scoped PowerSeries.WithPiTopology

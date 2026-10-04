@@ -8,7 +8,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_AlgebraicCurve_Place_restrict_ofAlgAut_smul
 
-set_option autoImplicit false
 noncomputable section
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_Place_restrict_ofAlgAut_smul.AlgebraicCurve IsDedekindDomain"
 open scoped Pointwise

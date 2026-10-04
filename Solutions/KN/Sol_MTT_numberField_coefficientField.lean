@@ -1,7 +1,6 @@
 import Theorems.KN.Thm_MTT_Eigenform_coefficientField_finiteDimensional
 import Mathlib.NumberTheory.NumberField.Basic
 
-set_option autoImplicit false
 noncomputable section
 
 theorem solution

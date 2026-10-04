@@ -9,8 +9,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_exists_sl2_heckeDiagMatrix_smul_eq
 
-set_option autoImplicit false
-
 noncomputable section
 
 open UpperHalfPlane

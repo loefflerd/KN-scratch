@@ -3,7 +3,6 @@ import Mathlib.LinearAlgebra.FreeModule.PID
 import Mathlib.RingTheory.Flat.TorsionFree
 import Theorems.MTT.Thm_MTT_Cohomology_manin_generation_span
 
-set_option autoImplicit false
 set_option maxHeartbeats 1000000
 noncomputable section
 open scoped BigOperators TensorProduct

@@ -1,5 +1,4 @@
 import Definitions.MTT.Def_MTT_Cohomology
-set_option autoImplicit false
 noncomputable section
 open scoped BigOperators
 namespace MTT.Cohomology

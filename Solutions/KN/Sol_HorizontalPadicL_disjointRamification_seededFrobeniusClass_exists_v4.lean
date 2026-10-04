@@ -3,8 +3,6 @@ import Theorems.KN.Thm_HorizontalPadicL_residualKernel_discr_prime_dvd_level_mul
 import Theorems.KN.Thm_HorizontalPadicL_SeedCyclotomicGaloisCharacterDataV2_exists_fullOrder_value_v2
 import Theorems.KN.Thm_HorizontalPadicL_coprimeDiscriminant_simultaneousSeededFrobeniusClass_exists_v2
 
-set_option autoImplicit false
-
 namespace HorizontalPadicL
 
 theorem _root_.solution

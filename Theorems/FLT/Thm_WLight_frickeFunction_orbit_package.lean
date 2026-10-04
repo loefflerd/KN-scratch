@@ -10,7 +10,6 @@ set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
-set_option autoImplicit false
 open Complex Real UpperHalfPlane
 open scoped Manifold MatrixGroups ModularForm
 theorem WLight.frickeFunction_orbit_package

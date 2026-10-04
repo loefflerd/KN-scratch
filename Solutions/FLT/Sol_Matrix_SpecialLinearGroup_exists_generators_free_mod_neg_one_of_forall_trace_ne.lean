@@ -12,8 +12,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_Matrix_SpecialLinearGroup_exists_generators_free_mod_neg_one_of_forall_trace_ne
 
-set_option autoImplicit false
-
 open Matrix MatrixGroups Subgroup
 
 namespace ModularCurve

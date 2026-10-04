@@ -2,7 +2,6 @@ import Definitions.MTT.Def_MTT_Cohomology
 import Mathlib.RingTheory.Flat.Basic
 import Theorems.MTT.Thm_MTT_Cohomology_integral_class_character_law_infty
 
-set_option autoImplicit false
 set_option maxHeartbeats 800000
 noncomputable section
 open scoped BigOperators TensorProduct

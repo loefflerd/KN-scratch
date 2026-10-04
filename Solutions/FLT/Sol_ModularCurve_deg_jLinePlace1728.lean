@@ -7,8 +7,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_deg_jLinePlace1728
 
-set_option autoImplicit false
-
 open IntermediateField AlgebraicCurve AlgebraicCurve.RationalFunctionField
 
 attribute [local instance 2000] RatFunc.instAlgebraOfPolynomial

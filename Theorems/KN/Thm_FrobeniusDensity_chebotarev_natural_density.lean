@@ -1,8 +1,6 @@
 import Definitions.FLT.Def_LanglandsTunnell_TowerCounting
 import Mathlib.Topology.Instances.Real.Lemmas
 
-set_option autoImplicit false
-
 open NumberField Ideal Filter Topology
 
 namespace FrobeniusDensity

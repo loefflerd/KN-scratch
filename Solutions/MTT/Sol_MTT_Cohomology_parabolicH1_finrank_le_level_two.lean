@@ -11,8 +11,6 @@ We compare coefficient conventions and use the existing Gamma0
 Eichler--Shimura decomposition, preserving its conjugate-linear summand.
 -/
 
-set_option autoImplicit false
-
 noncomputable section
 
 open scoped MatrixGroups

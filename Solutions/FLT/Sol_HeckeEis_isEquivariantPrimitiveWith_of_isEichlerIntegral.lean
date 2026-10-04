@@ -12,8 +12,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_HeckeEis_isEquivariantPrimitiveWith_of_isEichlerIntegral
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace HeckeEis

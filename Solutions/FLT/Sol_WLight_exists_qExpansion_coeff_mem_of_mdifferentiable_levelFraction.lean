@@ -18,8 +18,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WLight_exists_qExpansion_coeff_mem_of_mdifferentiable_levelFraction
 
-set_option autoImplicit false
-
 noncomputable section
 
 p2m_open "Complex Real UpperHalfPlane Function Filter Polynomial Real.Polynomial"

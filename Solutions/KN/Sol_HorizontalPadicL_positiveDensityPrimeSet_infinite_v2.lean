@@ -1,8 +1,6 @@
 import Definitions.KN.Def_KN_HorizontalPadicLAux
 import Mathlib.Algebra.Order.Archimedean.IndicatorCard
 
-set_option autoImplicit false
-
 open Filter
 open HorizontalPadicL
 

@@ -12,8 +12,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_HeckeEis_eichlerShimuraMap_eq_coeffH1parMk
 
-set_option autoImplicit false
-
 noncomputable section
 
 namespace HeckeEis

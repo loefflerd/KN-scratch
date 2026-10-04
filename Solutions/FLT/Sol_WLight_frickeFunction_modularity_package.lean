@@ -30,8 +30,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WLight_frickeFunction_modularity_package
 
-set_option autoImplicit false
-
 noncomputable section
 
 open Complex Real

@@ -9,8 +9,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_laurentBaseChange_qExpFunctionFieldC_eq
 
-set_option autoImplicit false
-
 open scoped MatrixGroups
 p2m_open "ModularCurve P2MW.S_ModularCurve_laurentBaseChange_qExpFunctionFieldC_eq.ModularCurve"
 

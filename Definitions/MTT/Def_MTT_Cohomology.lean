@@ -3,8 +3,6 @@ import Mathlib.RingTheory.MvPolynomial.Homogeneous
 import Mathlib.Topology.Compactification.OnePoint.ProjectiveLine
 import Mathlib.LinearAlgebra.TensorProduct.Basic
 
-set_option autoImplicit false
-
 noncomputable section
 
 open scoped BigOperators TensorProduct
