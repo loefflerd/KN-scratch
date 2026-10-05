@@ -8,7 +8,7 @@ Generation 1 means that a node has no imports from this extracted local filetree
 
 The parser reads textual `import` and `public import` commands, resolves module names from file paths, and ignores comments after an import. This intentionally does not reproduce Lean’s elaboration or transitive module-loading behavior.
 
-Classified files: **2073 / 2073** in **1307** dependency nodes, including **766** theorem/solution pairs. Cycles found: **0**. Files with unresolved non-baseline imports: **0**.
+Classified files: **1953 / 1953** in **1307** dependency nodes, including **646** theorem/solution pairs. Cycles found: **0**. Files with unresolved non-baseline imports: **0**.
 
 ## Summary
 
@@ -17,7 +17,7 @@ Classified files: **2073 / 2073** in **1307** dependency nodes, including **766*
 | 1 | 50 | 42 | 6 | 2 |
 | 2 | 243 | 233 | 6 | 4 |
 | 3 | 173 | 148 | 16 | 9 |
-| 4 | 263 | 219 | 30 | 14 |
+| 4 | 143 | 118 | 17 | 8 |
 | 5 | 204 | 156 | 42 | 6 |
 | 6 | 130 | 99 | 18 | 13 |
 | 7 | 130 | 114 | 12 | 4 |
@@ -572,126 +572,6 @@ Classified files: **2073 / 2073** in **1307** dependency nodes, including **766*
 - `Definitions/MTT/Def_MTT_LevelOnePeriodRelations.lean`
 - `Definitions/MTT/Def_MTT_NormalizedParabolicCocycles.lean`
 - `Definitions/MTT/Def_MTT_PeriodPairing.lean`
-- `Solutions/FLT/Sol_AddCommGroup_natCard_isAddCyclic_addSubgroup_map_eq_of_sq_add_self_add_id_eq_zero_eq_nuThree.lean`
-- `Solutions/FLT/Sol_AddCommGroup_natCard_isAddCyclic_addSubgroup_map_eq_of_sq_eq_neg_one_eq_nuTwo.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_Divisor_degree_eq_sum_support.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_Divisor_evalFun_mul.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_Divisor_evalFun_single_sub_single.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_Pic0_nsmul_mk_eq_zero_of_isPrincipal.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_Place_evalAt_congr.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_Place_exists_algEquiv_smul_eq_of_restrict_eq.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_Place_inertiaDegAlong_comp.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_Place_ord_eq_neg_log_of_valuationSubring_eq.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_Place_restrictAlong_restrictAlong.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_Place_transcendental_of_ord_ne_zero.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_RationalFunctionField_eq_placeInfty_iff_forall_ne_ofHeightOneSpectrum.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_RationalFunctionField_toValuationSubring_eq_of_forall_ne_ofHeightOneSpectrum.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_SemilinearAut_inertiaDeg_smul.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_SemilinearAut_ord_algebraMap_smul.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_dCoordGenerates_of_isCurveOver.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_ell_eq_zero_of_degree_neg.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_ell_le_degree_add_ellZero.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_exists_finiteDimensional_isSeparable_adjoin_of_constantFieldExtension_of_isAlgClosed.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_exists_genus_riemannIndex_of_stichtenothGenusExists.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_finiteAlong_comp.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_finiteAlong_of_surjective.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_finiteDimensional_lSpace.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_finiteDimensional_lSpace_zero.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_indexOfSpecialty_eq_finrank_H1.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_indexOfSpecialty_eq_of_genusReached.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_indexOfSpecialty_eq_zero_of_genusReached.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_isCurveOver_ratFunc.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_lSpace_eq_bot_of_degree_neg.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_linearIndependent_of_constantFieldExtension_of_isAlgClosed.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_omegaSpace_finite_of_genusReached.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_separableAlong_of_charZero.lean`
-- `Solutions/FLT/Sol_CuspForm_exists_gamma0_four_apply_eq_eta_pow_mul.lean`
-- `Solutions/FLT/Sol_CuspForm_heckeTLin_comm.lean`
-- `Solutions/FLT/Sol_CuspForm_heckeTLin_heckeULin_comm.lean`
-- `Solutions/FLT/Sol_CuspForm_heckeULin_comm.lean`
-- `Solutions/FLT/Sol_EisensteinSeries_eisensteinG1_apply_smul_and_eisensteinG1_add.lean`
-- `Solutions/FLT/Sol_HeckeEis_IsEichlerIntegral_add.lean`
-- `Solutions/FLT/Sol_HeckeEis_IsEichlerIntegral_binarySubst_adjugate_comp_smul.lean`
-- `Solutions/FLT/Sol_HeckeEis_IsEichlerIntegral_exists_sub_eq_const.lean`
-- `Solutions/FLT/Sol_HeckeEis_IsEichlerIntegral_hasDerivAt_eval_iterate_pderiv.lean`
-- `Solutions/FLT/Sol_HeckeEis_IsEichlerIntegral_slash.lean`
-- `Solutions/FLT/Sol_HeckeEis_IsEichlerIntegral_smul.lean`
-- `Solutions/FLT/Sol_HeckeEis_IsEichlerIntegral_vadd_sub_T_zpow_apply_mem_range.lean`
-- `Solutions/FLT/Sol_HeckeEis_IsEquivariantPrimitiveWith_cocycle_sub_cocycle_mem_coeffCoboundaries.lean`
-- `Solutions/FLT/Sol_HeckeEis_coeffH1par_binaryFormRepSL_eq_zero_of_odd.lean`
-- `Solutions/FLT/Sol_HeckeEis_exists_eq_smul_X_pow_of_binaryFormRepSL_lowerUnipotent_eq_self.lean`
-- `Solutions/FLT/Sol_HeckeEis_exists_isEichlerIntegral.lean`
-- `Solutions/FLT/Sol_HeckeEis_exists_ne_zero_smul_eq_coeffH1par_map_int_rat.lean`
-- `Solutions/FLT/Sol_HeckeEis_exists_pairing_binaryForm_linePow.lean`
-- `Solutions/FLT/Sol_HeckeEis_jFactor_pow_mul_eval_binaryFormRepSL.lean`
-- `Solutions/FLT/Sol_HeckeEis_le_finrank_fixed_induced_binaryFormRepSL.lean`
-- `Solutions/FLT/Sol_Matrix_SpecialLinearGroup_nonempty_freeGroupBasis_map_quotient_center_of_forall_trace_ne.lean`
-- `Solutions/FLT/Sol_ModularCurve_CuspSpace_classification.lean`
-- `Solutions/FLT/Sol_ModularCurve_ModularPolynomialData_transposeToAdjoin_monic_of_qExpansion.lean`
-- `Solutions/FLT/Sol_ModularCurve_Period_finrank_parabolicHoms_add_natCard_le_finrank_addMonoidHom_add_one.lean`
-- `Solutions/FLT/Sol_ModularCurve_PhiGen_PhiGenDescends_c_eq_zero.lean`
-- `Solutions/FLT/Sol_ModularCurve_PhiGen_PhiGenDescends_c_top.lean`
-- `Solutions/FLT/Sol_ModularCurve_PhiGen_PhiGenDescends_poleOrderLE.lean`
-- `Solutions/FLT/Sol_ModularCurve_PhiGen_PhiGenDescends_sum_mul_jqN_pow_eq_zero.lean`
-- `Solutions/FLT/Sol_ModularCurve_PhiGen_evalAtJ_injective.lean`
-- `Solutions/FLT/Sol_ModularCurve_PhiGen_evalSymm_of_splits.lean`
-- `Solutions/FLT/Sol_ModularCurve_PhiGen_phiIrreducible_of_splits.lean`
-- `Solutions/FLT/Sol_ModularCurve_StarBank_press.lean`
-- `Solutions/FLT/Sol_ModularCurve_card_projectiveLine_zmod.lean`
-- `Solutions/FLT/Sol_ModularCurve_card_roots_fibrePoly_of_monic.lean`
-- `Solutions/FLT/Sol_ModularCurve_dedekindPsi_of_squarefree.lean`
-- `Solutions/FLT/Sol_ModularCurve_hasSum_jNum_qParam.lean`
-- `Solutions/FLT/Sol_ModularCurve_hasSum_modularUnitSeries_inv_qParam.lean`
-- `Solutions/FLT/Sol_ModularCurve_hasSum_modularUnitSeries_qParam.lean`
-- `Solutions/FLT/Sol_ModularCurve_hasSum_smul_modularUnitSeries_inv_qParam.lean`
-- `Solutions/FLT/Sol_ModularCurve_hasSum_smul_modularUnitSeries_qParam.lean`
-- `Solutions/FLT/Sol_ModularCurve_isIntegral_and_isIntegral_of_mem_riemannRochSpace_weightFloor.lean`
-- `Solutions/FLT/Sol_ModularCurve_isIntegral_jqNModC_mul.lean`
-- `Solutions/FLT/Sol_ModularCurve_isIntegral_jqNModC_of_modularPolynomialData.lean`
-- `Solutions/FLT/Sol_ModularCurve_laurentBaseChange_modularFunctionField.lean`
-- `Solutions/FLT/Sol_ModularCurve_laurentBaseChange_modularFunctionFieldFull.lean`
-- `Solutions/FLT/Sol_ModularCurve_meromorphicOrderAt_E4_cube_div_discriminant_sub_eq_card_stabilizer_div_two.lean`
-- `Solutions/FLT/Sol_ModularCurve_natCard_moduliPoint_j_eq_eq_natCard_quot_addOrderOf_eq.lean`
-- `Solutions/FLT/Sol_ModularCurve_realizeOf_eq_div.lean`
-- `Solutions/FLT/Sol_ModularForm_finiteDimensional_of_isArithmetic.lean`
-- `Solutions/FLT/Sol_ModularForm_qExpansion_heckeDiagMatrix_smul_eq_qExpand_of_levelOne.lean`
-- `Solutions/FLT/Sol_P2M_Dup_AlgebraicCurve_Place_ord_neg.lean`
-- `Solutions/FLT/Sol_P2M_Dup_AlgebraicCurve_RationalFunctionField_deg_ofHeightOneSpectrum.lean`
-- `Solutions/FLT/Sol_P2M_Dup_AlgebraicCurve_RationalFunctionField_placeOfPoint_ne_placeInfty.lean`
-- `Solutions/FLT/Sol_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.lean`
-- `Solutions/FLT/Sol_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.lean`
-- `Solutions/FLT/Sol_ValuationSubring_isFrobeniusAt_of_forall_smul_sub_pow_mem.lean`
-- `Solutions/FLT/Sol_WLight_frickeFunction_modularity_package.lean`
-- `Solutions/FLT/Sol_WeierstrassCurve_Affine_Point_vcInvFun_neg_heq_neg.lean`
-- `Solutions/FLT/Sol_WeierstrassCurve_Affine_placeOfPoint_some_eq_ofHeightOneSpectrum.lean`
-- `Solutions/FLT/Sol_WeierstrassCurve_card_torsion_of_isAlgClosed_light.lean`
-- `Solutions/FLT/Sol_WeierstrassCurve_exists_addMonoidHom_coe_eq_veluPointMap2.lean`
-- `Solutions/FLT/Sol_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.lean`
-- `Solutions/FLT/Sol_WeierstrassCurve_finite_torsionBy_of_natCast_ne_zero.lean`
-- `Solutions/FLT/Sol_WeierstrassCurve_nonempty_torsionBy_addEquiv_zmod_prod_of_isAlgClosed.lean`
-- `Solutions/FLT/Sol_WeierstrassCurve_velu2QuadDisc_ne_zero_of_two_torsion.lean`
-- `Solutions/FLT/Sol_WeierstrassCurve_veluGx_ne_zero_of_two_torsion.lean`
-- `Solutions/FLT/Sol_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.lean`
-- `Solutions/KN/Sol_HorizontalPadicL_localEulerFactorDegreeTwo_iff_not_degreeBelowTwo.lean`
-- `Solutions/KN/Sol_HorizontalPadicL_positiveDensityPrimeSet_infinite_v2.lean`
-- `Solutions/KN/Sol_MTT_Eigenform_coefficientPrime_isPrime.lean`
-- `Solutions/KN/Sol_MTT_Eigenform_p_mem_coefficientPrime.lean`
-- `Solutions/KN/Sol_MTT_algebraicSymbol_horizontal_unitFiber_distribution.lean`
-- `Solutions/KN/Sol_MTT_criticalLValue_ne_zero_iff_modularSymbol_sum_ne_zero.lean`
-- `Solutions/MTT/Sol_MTT_Cohomology_boundary_hecke_cusp_sum_at_one.lean`
-- `Solutions/MTT/Sol_MTT_Cohomology_cuspPrimitive_slash_relation.lean`
-- `Solutions/MTT/Sol_MTT_Cohomology_exists_parabolic_coinduced_cocycle.lean`
-- `Solutions/MTT/Sol_MTT_Cohomology_exists_weighted_cusp_seeds_level_three.lean`
-- `Solutions/MTT/Sol_MTT_Cohomology_integral_classes_span.lean`
-- `Solutions/MTT/Sol_MTT_Cohomology_integration_cochain_hecke_equivariant.lean`
-- `Solutions/MTT/Sol_MTT_Cohomology_integration_cochain_integral_class.lean`
-- `Solutions/MTT/Sol_MTT_Cohomology_parabolicH1_finiteDimensional.lean`
-- `Solutions/MTT/Sol_MTT_Cohomology_primeHecke_boundary_datum.lean`
-- `Solutions/MTT/Sol_MTT_cusp_log_weighted_square_summable.lean`
-- `Solutions/MTT/Sol_MTT_interpolation_conductor_one_of_moments.lean`
-- `Solutions/MTT/Sol_MTT_interpolation_positive_conductor_of_moments.lean`
-- `Solutions/MTT/Sol_MTT_measure_extension.lean`
 - `Theorems/FLT/Thm_AddCommGroup_natCard_isAddCyclic_addSubgroup_map_eq_of_sq_add_self_add_id_eq_zero_eq_nuThree.lean`
 - `Theorems/FLT/Thm_AddCommGroup_natCard_isAddCyclic_addSubgroup_map_eq_of_sq_eq_neg_one_eq_nuTwo.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_Divisor_degree_eq_sum_support.lean`
