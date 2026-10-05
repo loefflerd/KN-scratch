@@ -3,7 +3,7 @@ module
 public import Mathlib.Algebra.MonoidAlgebra.Basic
 public import Mathlib.RingTheory.Valuation.ValuationSubring
 
-@[expose] public noncomputable section DL_nouriture
+@[expose] public noncomputable section publicSection
 
 namespace MonoidAlgebra
 
@@ -28,4 +28,5 @@ def subtypeToSubringEquiv {K : Type*} [Field K] (A : ValuationSubring K) :
   map_mul' _ _ := rfl
 
 end ValuationSubring
-end DL_nouriture
+
+end publicSection

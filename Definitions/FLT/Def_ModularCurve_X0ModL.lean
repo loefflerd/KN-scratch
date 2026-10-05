@@ -1,7 +1,11 @@
-import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
-import Theorems.FLT.Thm_ModularCurve_coeffMap_qExpand
-import Theorems.FLT.Thm_ModularCurve_coeff_jqModC_neg_one
-import Theorems.FLT.Thm_ModularCurve_coeff_jqModC_pow_of_lt
+module
+
+public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
+public import Theorems.FLT.Thm_ModularCurve_coeffMap_qExpand
+public import Theorems.FLT.Thm_ModularCurve_coeff_jqModC_neg_one
+public import Theorems.FLT.Thm_ModularCurve_coeff_jqModC_pow_of_lt
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -152,3 +156,5 @@ end Jacobian
 end ModularCurve
 
 end
+
+end publicSection

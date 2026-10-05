@@ -838,7 +838,7 @@ p2m_reactivate "P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlon
 section
 
 
-@[expose] public section
+section
 
 p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg~Place.ord_algebraMap P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.AlgebraicCurve"
 
@@ -1155,7 +1155,7 @@ p2m_reactivate "P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlon
 
 section
 
-@[expose] public section
+section
 
 p2m_open "_root_.Ideal~map_mul"
 
@@ -1696,7 +1696,7 @@ p2m_reactivate "P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlon
 
 section
 
-@[expose] public section
+section
 
 p2m_open "FractionalIdeal P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.FractionalIdeal Polynomial P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.Polynomial"
 
@@ -7031,7 +7031,7 @@ p2m_reactivate "P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlon
 section
 
 
-@[expose] public section
+section
 
 p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg~Place.ord_algebraMap P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.AlgebraicCurve"
 

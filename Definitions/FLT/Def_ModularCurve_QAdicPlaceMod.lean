@@ -1,11 +1,14 @@
-import Mathlib.Algebra.Field.ZMod
-import Mathlib.RingTheory.Henselian
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.RingTheory.SimpleRing.Principal
+module
 
-import Definitions.FLT.Def_ModularCurve_QAdicPlace
-import Theorems.FLT.Thm_ModularCurve_coeff_jqModC_neg_one
-import Theorems.FLT.Thm_ModularCurve_coeff_jqModC_pow_of_lt
+public import Mathlib.Algebra.Field.ZMod
+public import Mathlib.RingTheory.Henselian
+public import Mathlib.RingTheory.RegularLocalRing.Defs
+public import Mathlib.RingTheory.SimpleRing.Principal
+public import Definitions.FLT.Def_ModularCurve_QAdicPlace
+public import Theorems.FLT.Thm_ModularCurve_coeff_jqModC_neg_one
+public import Theorems.FLT.Thm_ModularCurve_coeff_jqModC_pow_of_lt
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -366,3 +369,6 @@ theorem gate_ord_cuspInftyGeom_fbar_two_ne_zero :
 end Gates
 
 end ModularCurve
+end
+
+end publicSection

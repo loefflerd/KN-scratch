@@ -691,7 +691,7 @@ p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_algEquiv_restrictAlong_pla
 section
 
 
-@[expose] public section
+section
 
 set_option synthInstance.maxHeartbeats 1600000
 
@@ -1458,8 +1458,7 @@ p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_algEquiv_restrictAlong_pla
 
 section
 
-
-@[expose] public section
+section
 
 p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg~Place.ord_algebraMap~Place.ord_eq_neg_log_of_valuationSubring_eq P2MW.S_WeierstrassCurve_Affine_exists_algEquiv_restrictAlong_placeOfPoint_eq_add.AlgebraicCurve IsDedekindDomain P2MW.S_WeierstrassCurve_Affine_exists_algEquiv_restrictAlong_placeOfPoint_eq_add.IsDedekindDomain FractionalIdeal P2MW.S_WeierstrassCurve_Affine_exists_algEquiv_restrictAlong_placeOfPoint_eq_add.FractionalIdeal WithZero P2MW.S_WeierstrassCurve_Affine_exists_algEquiv_restrictAlong_placeOfPoint_eq_add.WithZero Polynomial P2MW.S_WeierstrassCurve_Affine_exists_algEquiv_restrictAlong_placeOfPoint_eq_add.Polynomial"
 
@@ -2046,7 +2045,7 @@ p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_algEquiv_restrictAlong_pla
 section
 
 
-@[expose] public section
+section
 
 set_option synthInstance.maxHeartbeats 3200000
 set_option maxHeartbeats 6400000

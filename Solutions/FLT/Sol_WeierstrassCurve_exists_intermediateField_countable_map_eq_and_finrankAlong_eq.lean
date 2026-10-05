@@ -512,7 +512,7 @@ end
 section
 
 
-@[expose] public section
+section
 
 p2m_open "Polynomial P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Polynomial"
 

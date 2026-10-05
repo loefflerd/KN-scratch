@@ -618,7 +618,7 @@ p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_restrictAl
 section
 
 
-@[expose] public section
+section
 
 p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.ord_algebraMap P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_restrictAlong_placeOfPoint_eq_add.AlgebraicCurve"
 

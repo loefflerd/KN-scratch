@@ -1,9 +1,51 @@
-import Mathlib.FieldTheory.RatFunc.Valuation
-import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
+module
+
+public import Mathlib.FieldTheory.RatFunc.Valuation
+public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
+
+import Mathlib.NumberTheory.RatFunc.Ostrowski
+import Theorems.FLT.Thm_P2M_Dup_AlgebraicCurve_Place_adicValuation_valuationSubring
+import Theorems.FLT.Thm_AlgebraicCurve_Place_adicValuation_isRankOneDiscrete
+import Theorems.FLT.Thm_AlgebraicCurve_Place_adicValuation_isTrivialOn
+import Definitions.FLT.Def_P2M_Util
+
+section privateSection
+
+set_option maxHeartbeats 4000000
+set_option synthInstance.maxHeartbeats 400000
+set_option backward.isDefEq.respectTransparency.types false
+
+namespace P2MW.S_AlgebraicCurve_RationalFunctionField_toValuationSubring_eq_of_forall_ne_ofHeightOneSpectrum
+p2m_attr_erase "instance" "AlgebraicCurve.Place.instIsRankOneDiscreteWithZeroMultiplicativeIntAdicValuation AlgebraicCurve.Place.instIsTrivialOnWithZeroMultiplicativeIntAdicValuation"
+p2m_attr_erase "simp" "AlgebraicCurve.Place.congrEquiv_symm_apply AlgebraicCurve.RationalFunctionField.heightOneSpectrumOfIrreducible_asIdeal AlgebraicCurve.Place.congrRingEquiv_toValuationSubring AlgebraicCurve.Place.congrEquiv_apply AlgebraicCurve.Place.coe_comapSymmRingEquiv_apply AlgebraicCurve.RationalFunctionField.deg_placeOfPoint"
+
+open AlgebraicCurve
+open IsDedekindDomain WithZero IsLocalRing
+open scoped Polynomial
+
+theorem solution {K : Type*} [Field K] [DecidableEq (RatFunc K)] (v : Place K (RatFunc K)) (hv : ∀ w : IsDedekindDomain.HeightOneSpectrum (Polynomial K), v ≠ Place.ofHeightOneSpectrum w) : v.toValuationSubring = (RatFunc.inftyValuation K).valuationSubring := by
+  have := v.adicValuation_isRankOneDiscrete
+  have := v.adicValuation_isTrivialOn
+  rcases (RatFunc.valuation_isEquiv_infty_or_adic (v := v.adicValuation)).or with h | h
+  · exact v.adicValuation_valuationSubring.symm.trans
+      ((Valuation.isEquiv_iff_valuationSubring _ _).mp h)
+  · obtain ⟨w, hw, -⟩ := h
+    exact absurd (Place.ext (v.adicValuation_valuationSubring.symm.trans
+      ((Valuation.isEquiv_iff_valuationSubring _ _).mp hw))) (hv w)
+
+end S_AlgebraicCurve_RationalFunctionField_toValuationSubring_eq_of_forall_ne_ofHeightOneSpectrum
+end P2MW
+export P2MW.S_AlgebraicCurve_RationalFunctionField_toValuationSubring_eq_of_forall_ne_ofHeightOneSpectrum (solution)
+
+end privateSection
+
+public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
 open AlgebraicCurve
-theorem AlgebraicCurve.RationalFunctionField.toValuationSubring_eq_of_forall_ne_ofHeightOneSpectrum {K : Type*} [Field K] [DecidableEq (RatFunc K)] (v : Place K (RatFunc K)) (hv : ∀ w : IsDedekindDomain.HeightOneSpectrum (Polynomial K), v ≠ Place.ofHeightOneSpectrum w) : v.toValuationSubring = (RatFunc.inftyValuation K).valuationSubring := by sorry
+theorem AlgebraicCurve.RationalFunctionField.toValuationSubring_eq_of_forall_ne_ofHeightOneSpectrum {K : Type*} [Field K] [DecidableEq (RatFunc K)] (v : Place K (RatFunc K)) (hv : ∀ w : IsDedekindDomain.HeightOneSpectrum (Polynomial K), v ≠ Place.ofHeightOneSpectrum w) : v.toValuationSubring = (RatFunc.inftyValuation K).valuationSubring := _root_.P2MW.S_AlgebraicCurve_RationalFunctionField_toValuationSubring_eq_of_forall_ne_ofHeightOneSpectrum.solution v hv
+
+end publicSection

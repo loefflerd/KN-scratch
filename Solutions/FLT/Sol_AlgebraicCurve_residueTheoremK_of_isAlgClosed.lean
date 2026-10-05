@@ -1442,7 +1442,7 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_of_isAlgClosed.AlgebraicCu
 section
 
 
-@[expose] public noncomputable section
+noncomputable section
 
 p2m_open "IsDedekindDomain P2MW.S_AlgebraicCurve_residueTheoremK_of_isAlgClosed.IsDedekindDomain WithZero P2MW.S_AlgebraicCurve_residueTheoremK_of_isAlgClosed.WithZero IsLocalRing P2MW.S_AlgebraicCurve_residueTheoremK_of_isAlgClosed.IsLocalRing"
 
