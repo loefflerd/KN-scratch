@@ -3,14 +3,10 @@ Copyright (c) 2026 Chris Birkbeck. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Chris Birkbeck
 -/
-import Mathlib.Analysis.Complex.UpperHalfPlane.Measure
 import Mathlib.Analysis.SpecialFunctions.ImproperIntegrals
 import Mathlib.NumberTheory.ModularForms.Bounds
+
 import Definitions.MTT.Def_MTT_PeriodPairing
-import Mathlib.Tactic.FieldSimp
-import Mathlib.Tactic.FinCases
-import Mathlib.Tactic.Ring
-import Mathlib.MeasureTheory.Integral.Bochner.ContinuousLinearMap
 
 /-! # Integrability of the period density on modular tiles -/
 

@@ -1,8 +1,6 @@
 import Definitions.FLT.Def_ModularCurve_AtkinLehner
 import Definitions.FLT.Def_ModularCurve_PhiGen
 import Theorems.FLT.Thm_ModularCurve_ModularPolynomialData_isIntegral_jqN
-import Mathlib.FieldTheory.IntermediateField.Adjoin.Basic
-import Mathlib.RingTheory.AdjoinRoot
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000
@@ -111,9 +109,6 @@ variable (N : ℕ) [NeZero N]
 
 def frickeBaseHom : ℚ⟮jq⟯ →+* LaurentSeries ℚ :=
   (qExpand ℚ N).comp (algebraMap ℚ⟮jq⟯ (LaurentSeries ℚ))
-
-@[scoped simp]
-theorem frickeBaseHom_jGen : frickeBaseHom N jGen = jqN N := rfl
 
 theorem frickeBaseHom_comp_evalAtJGen :
     (frickeBaseHom N).comp evalAtJGen = evalAtJqN N := by

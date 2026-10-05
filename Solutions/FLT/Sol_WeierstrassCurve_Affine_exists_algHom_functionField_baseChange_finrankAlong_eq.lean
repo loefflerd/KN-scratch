@@ -1,7 +1,7 @@
-import Mathlib
+import Mathlib.Algebra.Polynomial.Basis
+import Mathlib.RingTheory.Flat.TorsionFree
+
 import Definitions.FLT.Def_Isogeny_ConditionalCurrency
-import Definitions.FLT.Def_WeierstrassCurve_GenusOnePlaceGateCentred
-import Definitions.FLT.Def_AlgebraicCurve_Correspondence
 import Definitions.FLT.Def_WeierstrassCurve_FunctionFieldQuadratic
 import Definitions.FLT.Def_P2M_Util
 
@@ -126,13 +126,6 @@ variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 
 variable {R : Type*} [CommRing R] [IsDedekindDomain R] [Algebra R F] [IsFractionRing R F]
 variable [Algebra K R] [IsScalarTower K R F]
-
-theorem ofHeightOneSpectrum_injective :
-    Function.Injective (ofHeightOneSpectrum (K := K) (R := R) (F := F)) := by
-  intro w₁ w₂ h
-  refine HeightOneSpectrum.eq_of_valuation_isEquiv_valuation (K := F) ?_
-  rw [Valuation.isEquiv_iff_valuationSubring]
-  exact congrArg toValuationSubring h
 
 end AlgebraicCurve.Place
 

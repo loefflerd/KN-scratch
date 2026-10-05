@@ -126,10 +126,6 @@ theorem isUnimodularRow_of_addOrderOf_eq {a c : ZMod N}
     _ = (↑u : ZMod N) * (↑u⁻¹ : ZMod N) := by rw [hu]
     _ = 1 := u.mul_inv
 
-theorem isUnimodularRow_iff_addOrderOf_eq {a c : ZMod N} :
-    IsUnimodularRow a c ↔ addOrderOf ((a, c) : ZMod N × ZMod N) = N :=
-  ⟨IsUnimodularRow.addOrderOf_eq N, isUnimodularRow_of_addOrderOf_eq N⟩
-
 end OrderUnimodular
 
 section Scaling
@@ -171,20 +167,6 @@ theorem eq_of_mul_unimodularRow_eq {a c : ZMod N} (h : IsUnimodularRow a c) {r s
     _ = s * (x * a + y * c) := by ring
     _ = s := by rw [hxy, mul_one]
 
-p2m_open_scoped "ModularCurve.IsUnimodularRow" in
-omit [NeZero N] in
-
-theorem IsUnimodularRow.unit_mul {a c : ZMod N} (h : IsUnimodularRow a c) (u : (ZMod N)ˣ) :
-    IsUnimodularRow ((u : ZMod N) * a) ((u : ZMod N) * c) := by
-  obtain ⟨x, y, hxy⟩ := h
-  refine ⟨x * ((u⁻¹ : (ZMod N)ˣ) : ZMod N), y * ((u⁻¹ : (ZMod N)ˣ) : ZMod N), ?_⟩
-  calc x * ((u⁻¹ : (ZMod N)ˣ) : ZMod N) * ((u : ZMod N) * a)
-        + y * ((u⁻¹ : (ZMod N)ˣ) : ZMod N) * ((u : ZMod N) * c)
-      = (((u⁻¹ : (ZMod N)ˣ) : ZMod N) * (u : ZMod N)) * (x * a)
-          + (((u⁻¹ : (ZMod N)ˣ) : ZMod N) * (u : ZMod N)) * (y * c) := by ring
-    _ = x * a + y * c := by rw [u.inv_mul, one_mul, one_mul]
-    _ = 1 := hxy
-
 end Scaling
 
 section Bijection
@@ -206,11 +188,6 @@ def projectiveLineToCyclicAddSubgroup :
     have hw : w.1 = (((u : ZMod N) * v.1.1, (u : ZMod N) * v.1.2) : ZMod N × ZMod N) := by
       rw [h1, h2]
     rw [hw, zmultiples_unit_mul]
-
-@[scoped simp]
-theorem projectiveLineToCyclicAddSubgroup_mk (v : UnimodularRow (ZMod N)) :
-    projectiveLineToCyclicAddSubgroup N ⟦v⟧ = unimodularRowToCyclicAddSubgroup N v :=
-  rfl
 
 theorem projectiveLineToCyclicAddSubgroup_injective :
     Function.Injective (projectiveLineToCyclicAddSubgroup N) := by

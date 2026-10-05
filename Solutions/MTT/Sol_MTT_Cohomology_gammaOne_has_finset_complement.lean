@@ -1,8 +1,7 @@
-import Definitions.MTT.Def_MTT_PeriodPairing
+import Mathlib.GroupTheory.Complement
+import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
 
 noncomputable section
-
-open MTT.Cohomology
 
 theorem solution
     {N : ℕ} (hN : 0 < N) :

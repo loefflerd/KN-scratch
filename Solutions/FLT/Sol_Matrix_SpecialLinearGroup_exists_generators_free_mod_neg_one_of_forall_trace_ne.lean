@@ -1,8 +1,3 @@
-import Mathlib.Analysis.Normed.Ring.Lemmas
-import Mathlib.RingTheory.Henselian
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.RingTheory.SimpleRing.Principal
-
 import Theorems.FLT.Thm_Matrix_SpecialLinearGroup_nonempty_freeGroupBasis_map_quotient_center_of_forall_trace_ne
 import Definitions.FLT.Def_P2M_Util
 
@@ -103,52 +98,6 @@ theorem exists_gens [Γ.FiniteIndex] (hneg : (-1 : SL(2, ℤ)) ∈ Γ)
     refine ⟨(b.lift v).comp (toBar Γ), fun i => ?_⟩
     rw [MonoidHom.comp_apply, hgens i]
     exact lift_apply_basis b v i
-
-theorem finrank_addMonoidHom [Γ.FiniteIndex] (hneg : (-1 : SL(2, ℤ)) ∈ Γ)
-    (hΓ : ∀ γ ∈ Γ, (γ : Matrix (Fin 2) (Fin 2) ℤ).trace ≠ 0 ∧
-      (γ : Matrix (Fin 2) (Fin 2) ℤ).trace ≠ 1 ∧ (γ : Matrix (Fin 2) (Fin 2) ℤ).trace ≠ -1)
-    (K : Type) [Field K] [CharZero K] :
-    Module.finrank K (Additive Γ →+ K) = 1 + Γ.index / 6 := by
-  obtain ⟨gens, hcl, hext⟩ := exists_gens Γ hneg hΓ
-  let ev : (Additive Γ →+ K) →ₗ[K] (Fin (1 + Γ.index / 6) → K) :=
-    { toFun := fun φ i => φ (Additive.ofMul (gens i))
-      map_add' := fun _ _ => rfl
-      map_smul' := fun _ _ => rfl }
-  have hneg0 : ∀ φ : Additive Γ →+ K, φ (Additive.ofMul (⟨-1, hneg⟩ : Γ)) = 0 := by
-    intro φ
-    have h2 : (⟨-1, hneg⟩ : Γ) * ⟨-1, hneg⟩ = 1 := by
-      apply Subtype.ext
-      show (-1 : SL(2, ℤ)) * -1 = 1
-      rw [neg_mul_neg, one_mul]
-    have : φ (Additive.ofMul (⟨-1, hneg⟩ : Γ)) + φ (Additive.ofMul (⟨-1, hneg⟩ : Γ)) = 0 := by
-      rw [← map_add, ← ofMul_mul, h2, ofMul_one, map_zero]
-    have h3 : (2 : K) * φ (Additive.ofMul (⟨-1, hneg⟩ : Γ)) = 0 := by rw [two_mul]; exact this
-    exact (mul_eq_zero.mp h3).resolve_left two_ne_zero
-  have hinj : Function.Injective ev := by
-    intro φ ψ h
-    have key : ∀ γ : Γ, φ (Additive.ofMul γ) = ψ (Additive.ofMul γ) := by
-      intro γ
-      have hγ : γ ∈ Subgroup.closure (Set.range gens ∪ {⟨-1, hneg⟩}) := by
-        rw [hcl]; exact Subgroup.mem_top γ
-      induction hγ using Subgroup.closure_induction with
-      | mem x hx =>
-        rcases hx with ⟨i, rfl⟩ | hx
-        · exact congrFun h i
-        · rw [Set.mem_singleton_iff] at hx
-          subst hx
-          rw [hneg0, hneg0]
-      | one => rw [ofMul_one, map_zero, map_zero]
-      | mul x y _ _ hx hy => rw [ofMul_mul, map_add, map_add, hx, hy]
-      | inv x _ hx => rw [ofMul_inv, map_neg, map_neg, hx]
-    exact AddMonoidHom.ext fun a => key (Additive.toMul a)
-  have hsurj : Function.Surjective ev := by
-    intro v
-    obtain ⟨f, hf⟩ := hext (Multiplicative K) (fun i => Multiplicative.ofAdd (v i))
-    refine ⟨(MonoidHom.toAdditive f), funext fun i => ?_⟩
-    show Multiplicative.toAdd (f (gens i)) = v i
-    rw [hf i]
-    rfl
-  rw [(LinearEquiv.ofBijective ev ⟨hinj, hsurj⟩).finrank_eq, Module.finrank_fin_fun]
 
 end ModularCurve.FreeModNegOne
 

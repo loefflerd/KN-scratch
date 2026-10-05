@@ -1,9 +1,5 @@
 import Mathlib.Algebra.Order.Ring.Star
 import Mathlib.Data.Int.Star
-import Mathlib.RingTheory.Henselian
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.RingTheory.SimpleRing.Principal
-import Mathlib.RingTheory.Valuation.LocalSubring
 
 import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
 import Theorems.FLT.Thm_AlgebraicCurve_Place_exists_toValuationSubring_eq_comap_ringHom_of_isSeparable
@@ -72,12 +68,6 @@ theorem mem_iff_ord_nonneg (f : F) : f ∈ v.toValuationSubring ↔ 0 ≤ v.ord 
   have := one_le_ord_of_mem_of_inv_not_mem v hinv (by simpa using hmem)
   rw [v.ord_inv] at this
   omega
-
-theorem ord_algebraMap_eq_zero {L : Type*} [Field L] [Algebra F L] {K' : Type*} [Field K']
-    [Algebra K' L] (w : Place K' L) {f : F}
-    (h1 : algebraMap F L f ∈ w.toValuationSubring)
-    (h2 : algebraMap F L f⁻¹ ∈ w.toValuationSubring) : w.ord (algebraMap F L f) = 0 :=
-  ord_eq_zero_of_mem_of_inv_mem w h1 (by simpa using h2)
 
 end Basic
 
@@ -153,8 +143,6 @@ noncomputable def rangePsi : Subring F' where
     rintro _ ⟨w, rfl⟩
     exact ⟨-w, map_neg _ _⟩
 
-theorem mem_rangePsi_iff {y : F'} : y ∈ rangePsi F' B P ↔ ∃ w, Psi F' B P w = y := Iff.rfl
-
 theorem algebraMap_mem_rangePsi (d : K') : algebraMap K' F' d ∈ rangePsi F' B P :=
   ⟨pureW B P d 1, by simp [Psi_pureW]⟩
 
@@ -187,9 +175,6 @@ noncomputable def fracPsi : Subalgebra K' F' where
     ring
   zero_mem' := ⟨0, 1, by simp, by simp⟩
   algebraMap_mem' d := ⟨pureW B P d 1, 1, by simp, by simp [Psi_pureW]⟩
-
-theorem mem_fracPsi_iff {y : F'} : y ∈ fracPsi F' B P ↔ ∃ w, ∃ s : P.toValuationSubring,
-    (s : F) ≠ 0 ∧ y * algebraMap F F' (s : F) = Psi F' B P w := Iff.rfl
 
 theorem algebraMap_mem_fracPsi (f : F) : algebraMap F F' f ∈ fracPsi F' B P := by
   rcases P.toValuationSubring.mem_or_inv_mem f with h | h

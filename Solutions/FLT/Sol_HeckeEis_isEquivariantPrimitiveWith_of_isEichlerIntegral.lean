@@ -1,9 +1,5 @@
-import Mathlib
-import Definitions.FLT.Def_HeckeEis_BinaryFormRep
-import Definitions.FLT.Def_Gamma0CoeffCohomology
-import Definitions.FLT.Def_HeckeEis_EichlerIntegral
-import Theorems.FLT.Thm_HeckeEis_IsEichlerIntegral_slash
 import Theorems.FLT.Thm_HeckeEis_IsEichlerIntegral_exists_sub_eq_const
+import Theorems.FLT.Thm_HeckeEis_IsEichlerIntegral_slash
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

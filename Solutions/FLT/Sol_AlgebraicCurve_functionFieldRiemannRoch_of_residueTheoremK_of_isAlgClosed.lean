@@ -1,15 +1,11 @@
-import Mathlib
-import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
-import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
+import Mathlib.Algebra.Polynomial.Basis
+import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
+import Mathlib.NumberTheory.RatFunc.Ostrowski
+import Mathlib.RingTheory.PicardGroup
+
+import Definitions.FLT.Def_AlgebraicCurve_LocalResidue
 import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
 import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
-import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
-import Definitions.FLT.Def_ModularCurve_CanonicalDivisor
-import Definitions.FLT.Def_ModularCurve_CanonicalDivisorUniformizer
-import Definitions.FLT.Def_AlgebraicCurve_Repartitions
-import Definitions.FLT.Def_AlgebraicCurve_AdelicIndex
-import Definitions.FLT.Def_AlgebraicCurve_CanonicalDivisor
-import Definitions.FLT.Def_AlgebraicCurve_LocalResidue
 import Definitions.FLT.Def_AlgebraicCurve_RiemannRochRows
 import Definitions.FLT.Def_P2M_Util
 
@@ -28,8 +24,6 @@ end AlgebraicCurve
 namespace Classical
 p2m_export "Classical" "choose_spec by_cases choose not_not not_forall"
 end Classical
-namespace CongruenceSubgroup
-end CongruenceSubgroup
 namespace IntermediateField
 p2m_export "IntermediateField" "toAlgebra inclusion_injective map_le_iff_le_comap mk val isIntegral_iff topEquiv_apply lift inclusion ext bot_eq_top_iff_finrank_eq_one equivOfEq algebraMap_apply smul_def adjoin mem_inf mk.injEq comap topEquiv mem_top adjoinRootEquivAdjoin restrictScalars rec adjoinRootEquivAdjoin_apply_root coe_smul AdjoinSimple.coe_gen map_sup mem_bot mem_map smul_mem restrict map"
 end IntermediateField
@@ -42,51 +36,12 @@ end IsLocalRing
 namespace KaehlerDifferential
 p2m_export "KaehlerDifferential" "D map"
 end KaehlerDifferential
-namespace ModularCurve
-namespace KwNo6Pin
-end ModularCurve.KwNo6Pin
-namespace ModularCurve
-namespace KwNo6Section
-end ModularCurve.KwNo6Section
-namespace ModularCurve
-namespace Ldgr35Cs
-end ModularCurve.Ldgr35Cs
-namespace ModularCurve
-namespace Ldgr36Rc
-end ModularCurve.Ldgr36Rc
-namespace ModularCurve
-namespace Ldgr36Si
-end ModularCurve.Ldgr36Si
-namespace ModularCurve
-namespace Lg37
-end ModularCurve.Lg37
-namespace ModularCurve
-namespace Ldgr37Ch
-end ModularCurve.Ldgr37Ch
-namespace ModularCurve
-namespace Ldgr39Hf
-end ModularCurve.Ldgr39Hf
-namespace ModularCurve
-namespace Mp72a102T3
-end ModularCurve.Mp72a102T3
 namespace Module
 p2m_export "Module" "Finite.of_finite finrank_zero_of_subsingleton Injective support Basis.span equiv Finite.equiv rec finrank_eq_card_basis finrank mk Dual finrank_self Finite.of_injective restrictScalars finrank_zero_iff Basis.span_apply Finite.of_submodule_quotient finrank_pos finrank_prod mem_support_iff Basis"
 end Module
-namespace Mp72a101T2
-end Mp72a101T2
-namespace Mp72a102T1
-end Mp72a102T1
-namespace Mp72a102T2
-end Mp72a102T2
-namespace Mp72a103T2
-end Mp72a103T2
-namespace Pointwise
-end Pointwise
 namespace Polynomial
 p2m_export "Polynomial" "C X support derivative_map aeval_def leadingCoeff algebraMap_eq aeval basisMonomials ext_iff degree mapEquiv factor toSubring map degree_C Monic comp natDegree_X_pow coe_mul algHom_ext sum coe_smul Separable leadingCoeff_C natDegree transcendental_X X_ne_zero rec coe_zero natDegree_lt_natDegree leadingCoeff_mul mem_support_iff coe_add derivative degree_sub_lt algebraMap_apply coe_basisMonomials eval_map ext degree_eq_natDegree funext isUnit_iff ring degree_mul aeval_algebraMap_apply leadingCoeff_ne_zero eval monomial_one_right_eq_X_pow"
 end Polynomial
-namespace RationalFunctionField
-end RationalFunctionField
 namespace WithZero
 p2m_export "WithZero" "coe_add map coe_mul exp_lt_exp log_exp map' exp_ne_zero log exp exp_zero log_mul lift exp_le_exp exp_log"
 end WithZero
@@ -156,17 +111,9 @@ end Place
 
 end AlgebraicCurve
 
-namespace ModularCurve
-
-end ModularCurve
-
 namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "Place Place.ext Place.coe_algebraMap Place.deg Place.ord_zero Divisor Divisor.degree Divisor.degree_single HasPrincipalDivisors Pic0 Place.ofHeightOneSpectrum HasPrincipalDivisors.exists_divisor Place.ord_restrict Place.mem_fiber Divisor.pullback Divisor.pullback_apply Divisor.degree_pullback SumRamificationInertia Place.valuationSubringAlgebra Place.integralClosureAt Place.algebraMap_integralClosureAt_injective Place.placeOfPrime Place.restrict_placeOfPrime Place.mem_maximalIdeal_iff_adicValuation_lt_one IsCurveOver IsCurveOver.finite_residueField IsCurveOver.deg_eq_one_of_isAlgClosed Place.ordDifferential LSpace ell mem_lSpace_iff_ord lSpace_mono algebraMap_mem_lSpace_zero one_mem_lSpace_zero ConstantsAreBase ell_zero_eq_one_of_constantsAreBase adeleBdd mem_adeleBdd adeleBdd_mono diagonalHom diagonal_mem_adeleBdd_iff adeleSpace adeleBdd_le_adeleSpace diagonal_mem_adeleSpace globalSub diagonal_mem_globalSub map_diagonal_lSpace indexOfSpecialty adeleBddPrincipal indexOfSpecialty_eq omegaSpace omegaSpace_vanishBdd omegaSpace_antitone omegaSpaceEquivIndexDual finrank_omegaSpace_eq_indexOfSpecialty weilDifferentialModule omegaSpace_le_weilDifferentialModule mem_weilDifferentialModule_iff mulAdele_apply adeleSpaceMul adeleSpaceMul_coe weilSmul weilSmul_apply weilSmul_one weilSmul_mul weilSmul_injective weilSmul_mem_omegaSpace_add residuePairing residuePairing_apply_coe residuePairing_injective WeilDifferentialRankOne RiemannGenusReachedAt RiemannGenusReached StichtenothGenusExists RiemannGenusBounded HasCanonicalDivisor canonicalDivisorOf canonicalDivisorOf_apply genus HasLocalResidue HasCanonicalLocalResidueKStar single_mem_adeleBdd adeleSingle adeleSingle_coe HasSeparableResidue kaehlerResidueTermKFam kaehlerResidueTermKFam_apply weilOfKaehlerK weilOfKaehlerK_apply weilOfKaehlerK_vanish_adeleBdd_canonical ResidueTheoremK HasSeparableResidue.trace_ne_zero RiemannIndexFormula WeilDualityAdelic WeilDuality WeilOmegaEllAgrees FunctionFieldRiemannRoch functionFieldRiemannRoch_of_riemann_and_duality weilDuality_of_riemannIndex_of_adelic"
 end AlgebraicCurve
-
-namespace ModularCurve
-
-end ModularCurve
 
 end
 
@@ -179,17 +126,8 @@ noncomputable section
 p2m_open "IsDedekindDomain P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.IsDedekindDomain WithZero P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.WithZero Module P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.Module IsLocalRing P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.IsLocalRing Module.IsLocalRing"
 namespace ModularCurve
 namespace Lg37
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve"
-open ModularCurve.Ldgr36Si
-open ModularCurve.Ldgr36Rc
-open ModularCurve.Ldgr35Cs
-section CompletionCarrier
-variable {K F : Type*} [Field K] [Field F] [Algebra K F]
-
-abbrev lg37_completion (v : Place K F) : Type _ :=
-  AdicCompletion (IsLocalRing.maximalIdeal v.toValuationSubring) v.toValuationSubring
-end CompletionCarrier
-end ModularCurve.Lg37
+end Lg37
+end ModularCurve
 end
 
 set_option linter.unusedSectionVars false
@@ -199,18 +137,8 @@ noncomputable section
 p2m_open "IsDedekindDomain P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.IsDedekindDomain WithZero P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.WithZero Module P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.Module IsLocalRing P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.IsLocalRing Module.IsLocalRing"
 namespace ModularCurve
 namespace Lg37
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve"
-open ModularCurve.Ldgr36Si
-open ModularCurve.Ldgr36Rc
-open ModularCurve.Ldgr35Cs
-section CompletionCarrier
-variable {K F : Type*} [Field K] [Field F] [Algebra K F]
-
-def lg37_residueHat (v : Place K F) :
-    lg37_completion v →+* v.ResidueField :=
-  (AdicCompletion.evalOneₐ (IsLocalRing.maximalIdeal v.toValuationSubring)).toRingHom
-end CompletionCarrier
-end ModularCurve.Lg37
+end Lg37
+end ModularCurve
 end
 
 set_option linter.unusedSectionVars false
@@ -220,19 +148,8 @@ noncomputable section
 p2m_open "IsDedekindDomain P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.IsDedekindDomain WithZero P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.WithZero Module P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.Module IsLocalRing P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.IsLocalRing Module.IsLocalRing"
 namespace ModularCurve
 namespace Lg37
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve"
-open ModularCurve.Ldgr36Si
-open ModularCurve.Ldgr36Rc
-open ModularCurve.Ldgr35Cs
-section CompletionCarrier
-variable {K F : Type*} [Field K] [Field F] [Algebra K F]
-
-theorem lg37_residueHat_algebraMap (v : Place K F) (x : v.toValuationSubring) :
-    lg37_residueHat v
-        (algebraMap v.toValuationSubring (lg37_completion v) x)
-      = IsLocalRing.residue v.toValuationSubring x := rfl
-end CompletionCarrier
-end ModularCurve.Lg37
+end Lg37
+end ModularCurve
 end
 
 set_option linter.unusedSectionVars false
@@ -242,18 +159,8 @@ noncomputable section
 p2m_open "IsDedekindDomain P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.IsDedekindDomain WithZero P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.WithZero Module P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.Module IsLocalRing P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.IsLocalRing Module.IsLocalRing"
 namespace ModularCurve
 namespace Lg37
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve"
-open ModularCurve.Ldgr36Si
-open ModularCurve.Ldgr36Rc
-open ModularCurve.Ldgr35Cs
-section CompletionCarrier
-variable {K F : Type*} [Field K] [Field F] [Algebra K F]
-
-structure Lg37CompletionSection (v : Place K F) where
-  lift : v.ResidueField →ₐ[K] lg37_completion v
-  residueHat_lift : ∀ a, lg37_residueHat v (lift a) = a
-end CompletionCarrier
-end ModularCurve.Lg37
+end Lg37
+end ModularCurve
 end
 
 end
@@ -306,13 +213,6 @@ private theorem _root_.AlgebraicCurve.Place.mem_iff_ord_nonneg {f : F} (hf : f �
   ⟨v.ord_nonneg_of_mem, v.mem_of_ord_nonneg hf⟩
 
 p2m_export "AlgebraicCurve.Place" "mem_iff_ord_nonneg"
-theorem exists_ord_pos : ∃ f : F, f ≠ 0 ∧ 0 < v.ord f := by
-  obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible v.toValuationSubring
-  refine ⟨(π : F), ?_, ?_⟩
-  · simpa [ne_eq, ZeroMemClass.coe_eq_zero] using hπ.ne_zero
-  · rw [v.ord_coe_irreducible hπ]
-    exact one_pos
-
 end SinglePlace
 
 section Restrict
@@ -320,128 +220,10 @@ section Restrict
 variable {K F F' : Type*} [Field K] [Field F] [Field F']
   [Algebra K F'] [Algebra F F']
 
-private theorem algebraMap_ne_zero {f : F} (hf : f ≠ 0) : algebraMap F F' f ≠ 0 := by
-  simpa using hf
-
 variable (w : Place K F')
 
-private theorem _root_.AlgebraicCurve.Place.comap_algebraMap_ne_top [Algebra.IsIntegral F F'] :
-    w.toValuationSubring.comap (algebraMap F F') ≠ ⊤ := by
-  intro htop
-  apply w.ne_top'
-  have hF : ∀ f : F, algebraMap F F' f ∈ w.toValuationSubring := fun f =>
-    ValuationSubring.mem_comap.mp (htop ▸ ValuationSubring.mem_top f)
-  refine SetLike.ext fun x => ⟨fun _ => ValuationSubring.mem_top x, fun _ => ?_⟩
-  let : Algebra F w.toValuationSubring :=
-    ((algebraMap F F').codRestrict w.toValuationSubring.toSubring hF).toAlgebra
-  let : IsScalarTower F w.toValuationSubring F' :=
-    IsScalarTower.of_algebraMap_eq fun f => rfl
-  have hx : _root_.IsIntegral w.toValuationSubring x :=
-    (Algebra.IsIntegral.isIntegral (R := F) x).tower_top
-  obtain ⟨y, hy⟩ := IsIntegrallyClosed.isIntegral_iff.mp hx
-  exact hy ▸ y.2
-
 p2m_export "AlgebraicCurve.Place" "comap_algebraMap_ne_top"
-variable {w} in
-
-theorem mem_comap_iff_ord_nonneg {f : F} (hf : f ≠ 0) :
-    f ∈ w.toValuationSubring.comap (algebraMap F F') ↔
-      0 ≤ w.ord (algebraMap F F' f) := by
-  rw [ValuationSubring.mem_comap]
-  exact w.mem_iff_ord_nonneg (algebraMap_ne_zero hf)
-
-variable {w} in
-
-theorem isUnit_mk_comap_iff {f : F} (hf : f ≠ 0)
-    (hmem : f ∈ w.toValuationSubring.comap (algebraMap F F')) :
-    IsUnit (⟨f, hmem⟩ : w.toValuationSubring.comap (algebraMap F F')) ↔
-      w.ord (algebraMap F F' f) = 0 := by
-  constructor
-  · rintro h
-    obtain ⟨b, hb⟩ := isUnit_iff_exists_inv.mp h
-    have hb' : f * (b : F) = 1 := by
-      simpa [Subtype.ext_iff] using hb
-    have hbne : (b : F) ≠ 0 := by
-      intro h0
-      rw [h0, mul_zero] at hb'
-      exact zero_ne_one hb'
-    have hsum : w.ord (algebraMap F F' f) + w.ord (algebraMap F F' (b : F)) = 0 := by
-      rw [← w.ord_mul (algebraMap_ne_zero hf) (algebraMap_ne_zero hbne), ← map_mul, hb',
-        map_one, w.ord_one]
-    have h1 : 0 ≤ w.ord (algebraMap F F' f) := (mem_comap_iff_ord_nonneg hf).mp hmem
-    have h2 : 0 ≤ w.ord (algebraMap F F' (b : F)) := (mem_comap_iff_ord_nonneg hbne).mp b.2
-    omega
-  · intro h0
-    have hinv : f⁻¹ ∈ w.toValuationSubring.comap (algebraMap F F') :=
-      (mem_comap_iff_ord_nonneg (inv_ne_zero hf)).mpr (by rw [map_inv₀, w.ord_inv]; omega)
-    exact ⟨⟨⟨f, hmem⟩, ⟨f⁻¹, hinv⟩, Subtype.ext (mul_inv_cancel₀ hf),
-      Subtype.ext (inv_mul_cancel₀ hf)⟩, rfl⟩
-
-private theorem _root_.AlgebraicCurve.Place.exists_ord_algebraMap_pos [Algebra.IsIntegral F F'] :
-    ∃ f : F, f ≠ 0 ∧ 0 < w.ord (algebraMap F F' f) := by
-  have h := w.comap_algebraMap_ne_top (F := F)
-  rw [ne_eq, SetLike.ext_iff, not_forall] at h
-  obtain ⟨g, hg⟩ := h
-  simp only [ValuationSubring.mem_top, iff_true] at hg
-  have hg0 : g ≠ 0 := by
-    rintro rfl
-    exact hg (zero_mem _)
-  refine ⟨g⁻¹, inv_ne_zero hg0, ?_⟩
-  rw [map_inv₀, w.ord_inv]
-  have := (mem_comap_iff_ord_nonneg hg0).not.mp hg
-  omega
-
 p2m_export "AlgebraicCurve.Place" "exists_ord_algebraMap_pos"
-variable [Algebra.IsIntegral F F']
-
-private theorem ramificationIndex_set_nonempty :
-    {n : ℕ | 0 < n ∧ ∃ f : F, f ≠ 0 ∧ w.ord (algebraMap F F' f) = n}.Nonempty := by
-  obtain ⟨f, hf0, hf⟩ := w.exists_ord_algebraMap_pos (F := F)
-  exact ⟨(w.ord (algebraMap F F' f)).toNat, by omega, f, hf0, by omega⟩
-
-theorem isPrincipalIdealRing_comap :
-    IsPrincipalIdealRing (w.toValuationSubring.comap (algebraMap F F')) := by
-  obtain ⟨g, hg0, hge⟩ := w.exists_ord_eq_ramificationIndex (F := F)
-  have hepos : 0 < ramificationIndex (F := F) w := w.ramificationIndex_pos (F := F)
-  have hgmem : g ∈ w.toValuationSubring.comap (algebraMap F F') :=
-    (mem_comap_iff_ord_nonneg hg0).mpr (by omega)
-  refine (IsDiscreteValuationRing.ofHasUnitMulPowIrreducibleFactorization
-    ⟨⟨g, hgmem⟩, irreducible_mk_comap w hg0 hgmem hge, ?_⟩).toIsPrincipalIdealRing
-  rintro ⟨f, hmem⟩ hx
-  have hf : f ≠ 0 := by simpa [Subtype.ext_iff] using hx
-  obtain ⟨c, hc⟩ := w.ramificationIndex_dvd_ord (F := F) hf
-  have hnonneg : 0 ≤ w.ord (algebraMap F F' f) := (mem_comap_iff_ord_nonneg hf).mp hmem
-  have hcnonneg : 0 ≤ c := by
-    by_contra hneg
-    have hcle : c ≤ -1 := by omega
-    have : (ramificationIndex (F := F) w : ℤ) * c ≤ (ramificationIndex (F := F) w : ℤ) * -1 :=
-      mul_le_mul_of_nonneg_left hcle (by omega)
-    omega
-  set n : ℕ := c.toNat with hn
-  have hcn : (n : ℤ) = c := Int.toNat_of_nonneg hcnonneg
-  refine ⟨n, ?_⟩
-  have hgn : g ^ n ≠ 0 := pow_ne_zero _ hg0
-  have hdiv0 : f / g ^ n ≠ 0 := div_ne_zero hf hgn
-  have hu0 : w.ord (algebraMap F F' (f / g ^ n)) = 0 := by
-    have hkey : algebraMap F F' (f / g ^ n)
-        = algebraMap F F' f * (algebraMap F F' g) ^ (-(n : ℤ)) := by
-      rw [div_eq_mul_inv, map_mul, map_inv₀, map_pow, ← zpow_natCast (algebraMap F F' g) n,
-        ← _root_.zpow_neg]
-    rw [hkey, w.ord_mul (algebraMap_ne_zero hf) (zpow_ne_zero _ (algebraMap_ne_zero hg0)),
-      w.ord_zpow, hge, hc, ← hcn]
-    ring
-  have humem : f / g ^ n ∈ w.toValuationSubring.comap (algebraMap F F') :=
-    (mem_comap_iff_ord_nonneg hdiv0).mpr (le_of_eq hu0.symm)
-  have hu : IsUnit (⟨f / g ^ n, humem⟩ : w.toValuationSubring.comap (algebraMap F F')) :=
-    (isUnit_mk_comap_iff hdiv0 humem).mpr hu0
-  refine ⟨hu.unit, ?_⟩
-  refine Subtype.ext ?_
-  have hcoe : ((hu.unit : w.toValuationSubring.comap (algebraMap F F')) : F) = f / g ^ n := by
-    rw [IsUnit.unit_spec]
-  push_cast
-  rw [hcoe, mul_comm, div_mul_cancel₀]
-  exact hgn
-
 end Restrict
 
 end Place
@@ -625,6 +407,7 @@ end DegInfty
 end RationalFunctionField
 end AlgebraicCurve
 end
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve"
 
 
@@ -648,9 +431,6 @@ private def _root_.AlgebraicCurve.Place.uniformizerSubring : v.toValuationSubrin
   (IsDiscreteValuationRing.exists_irreducible v.toValuationSubring).choose
 
 p2m_export "AlgebraicCurve.Place" "uniformizerSubring"
-@[scoped simp]
-private theorem _root_.AlgebraicCurve.Place.coe_uniformizerSubring : (v.uniformizerSubring : F) = v.uniformizer := rfl
-
 p2m_export "AlgebraicCurve.Place" "coe_uniformizerSubring"
 private theorem _root_.AlgebraicCurve.Place.irreducible_uniformizerSubring : Irreducible v.uniformizerSubring :=
   (IsDiscreteValuationRing.exists_irreducible v.toValuationSubring).choose_spec
@@ -725,6 +505,7 @@ p2m_export "AlgebraicCurve.Place" "localResidueExtend_apply_of_mem"
 end Place
 end AlgebraicCurve
 end
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 section
@@ -740,112 +521,18 @@ p2m_open "IsDedekindDomain P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_res
 namespace Mp72a102T1
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.RationalFunctionField AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField"
-open ModularCurve.Lg37 ModularCurve.Ldgr37Ch
-open Mp72a101T2
+open ModularCurve.Lg37
+
 
 p2m_open_scoped "Polynomial P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.Polynomial"
 
 attribute [local instance 2000] RatFunc.instAlgebraOfPolynomial
 
-section Engine
-
-variable {K F : Type*} [Field K] [Field F] [Algebra K F]
-
-noncomputable abbrev mp72a102_t1_maximalIdealHat (v : Place K F) :
-    Ideal (lg37_completion v) :=
-  (IsLocalRing.maximalIdeal v.toValuationSubring).map
-    (algebraMap v.toValuationSubring (lg37_completion v))
-
-theorem mp72a102_t1_isScalarTower (v : Place K F) :
-    IsScalarTower K v.toValuationSubring (lg37_completion v) :=
-  IsScalarTower.of_algebraMap_eq fun _ => rfl
-
-theorem mp72a102_t1_isAdicComplete_maximalIdealHat (v : Place K F) :
-    IsAdicComplete (mp72a102_t1_maximalIdealHat v) (lg37_completion v) :=
-  (IsAdicComplete.map_algebraMap_iff (IsLocalRing.maximalIdeal v.toValuationSubring)
-      (lg37_completion v)).mpr
-    (AdicCompletion.isAdicComplete
-      (IsPrincipalIdealRing.principal
-        (IsLocalRing.maximalIdeal v.toValuationSubring)).fg)
-
-theorem mp72a102_t1_henselianRing_completion (v : Place K F) :
-    HenselianRing (lg37_completion v) (mp72a102_t1_maximalIdealHat v) :=
-  letI := mp72a102_t1_isAdicComplete_maximalIdealHat v
-  IsAdicComplete.henselianRing (lg37_completion v) (mp72a102_t1_maximalIdealHat v)
-
-theorem mp72a102_t1_maximalIdealHat_le_ker_residueHat (v : Place K F) :
-    mp72a102_t1_maximalIdealHat v ≤ RingHom.ker (lg37_residueHat v) :=
-  Ideal.map_le_iff_le_comap.mpr fun s hs => by
-    rw [Ideal.mem_comap, RingHom.mem_ker, lg37_residueHat_algebraMap]
-    exact (IsLocalRing.residue_eq_zero_iff s).mpr hs
-
-theorem mp72a102_t1_exists_completion_root_of_residue_root
-    (v : Place K F) {p : K[X]} (hpmon : p.Monic) (hpsep : p.Separable)
-    {rbar : v.ResidueField} (hrbar : Polynomial.aeval rbar p = 0) :
-    ∃ α : lg37_completion v,
-      Polynomial.aeval α p = 0 ∧ lg37_residueHat v α = rbar := by
-  classical
-  have _htower : IsScalarTower K v.toValuationSubring (lg37_completion v) :=
-    mp72a102_t1_isScalarTower v
-  obtain ⟨a, ha⟩ := IsLocalRing.residue_surjective (R := v.toValuationSubring) rbar
-  have hapI : Polynomial.aeval a p ∈ IsLocalRing.maximalIdeal v.toValuationSubring := by
-    rw [← IsLocalRing.residue_eq_zero_iff]
-    have h1 : IsLocalRing.residue v.toValuationSubring (Polynomial.aeval a p)
-        = Polynomial.aeval rbar p := by
-      rw [← ha, ← IsLocalRing.ResidueField.algebraMap_eq,
-        Polynomial.aeval_algebraMap_apply]
-    rw [h1, hrbar]
-  have hapIhat : Polynomial.aeval
-      (algebraMap v.toValuationSubring (lg37_completion v) a) p
-        ∈ mp72a102_t1_maximalIdealHat v := by
-    rw [Polynomial.aeval_algebraMap_apply]
-    exact Ideal.mem_map_of_mem _ hapI
-  have hfeval : ∀ x : lg37_completion v,
-      (p.map (algebraMap K (lg37_completion v))).eval x = Polynomial.aeval x p :=
-    fun x => by rw [Polynomial.eval_map, ← Polynomial.aeval_def]
-  have hfderiv :
-      (p.map (algebraMap K (lg37_completion v))).derivative.eval
-          (algebraMap v.toValuationSubring (lg37_completion v) a)
-        = Polynomial.aeval
-            (algebraMap v.toValuationSubring (lg37_completion v) a)
-            (Polynomial.derivative p) := by
-    rw [Polynomial.derivative_map, Polynomial.eval_map, ← Polynomial.aeval_def]
-  obtain ⟨u, w, huw⟩ := hpsep
-  have hunit : IsUnit (Ideal.Quotient.mk (mp72a102_t1_maximalIdealHat v)
-      ((p.map (algebraMap K (lg37_completion v))).derivative.eval
-        (algebraMap v.toValuationSubring (lg37_completion v) a))) := by
-    rw [hfderiv]
-    set a₀ := algebraMap v.toValuationSubring (lg37_completion v) a
-    have h1 : Polynomial.aeval a₀ u * Polynomial.aeval a₀ p
-        + Polynomial.aeval a₀ w * Polynomial.aeval a₀ (Polynomial.derivative p)
-        = 1 := by
-      have h0 := congrArg (Polynomial.aeval (R := K) a₀) huw
-      simpa only [map_add, map_mul, map_one] using h0
-    have h2 := congrArg (Ideal.Quotient.mk (mp72a102_t1_maximalIdealHat v)) h1
-    rw [map_add, map_mul, map_mul, map_one,
-      Ideal.Quotient.eq_zero_iff_mem.mpr hapIhat, mul_zero, zero_add] at h2
-    exact IsUnit.of_mul_eq_one _ ((mul_comm _ _).trans h2)
-  obtain ⟨α, hαroot, hαnear⟩ :=
-    (mp72a102_t1_henselianRing_completion v).is_henselian
-      (p.map (algebraMap K (lg37_completion v))) (hpmon.map _)
-      (algebraMap v.toValuationSubring (lg37_completion v) a)
-      (by rw [hfeval]; exact hapIhat) hunit
-  refine ⟨α, ?_, ?_⟩
-  · rw [← hfeval]
-    exact hαroot
-  · have h0 : lg37_residueHat v
-        (α - algebraMap v.toValuationSubring (lg37_completion v) a) = 0 :=
-      RingHom.mem_ker.mp (mp72a102_t1_maximalIdealHat_le_ker_residueHat v hαnear)
-    have heq : lg37_residueHat v α
-        = lg37_residueHat v
-            (algebraMap v.toValuationSubring (lg37_completion v) a) := by
-      rwa [map_sub, sub_eq_zero] at h0
-    rw [heq, lg37_residueHat_algebraMap, ha]
-
-end Engine
 end Mp72a102T1
 end
+
 end
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 section
@@ -856,23 +543,10 @@ noncomputable section
 p2m_open "IsDedekindDomain P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.IsDedekindDomain WithZero P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.WithZero Module P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.Module IsLocalRing P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.IsLocalRing Module.IsLocalRing Polynomial P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.Polynomial"
 namespace Mp72a102T2
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.RationalFunctionField AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField"
-open ModularCurve.Lg37 ModularCurve.Ldgr39Hf ModularCurve.Ldgr35Cs
-open Mp72a101T2
-p2m_open_scoped "Polynomial P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.Polynomial"
-section ResidueCalculus
-variable {K F : Type*} [Field K] [Field F] [Algebra K F]
-
-theorem mp72a102_t2_residueHat_algebraMap_base (v : Place K F) (c : K) :
-    lg37_residueHat v (algebraMap K (lg37_completion v) c)
-      = algebraMap K v.ResidueField c := by
-  have h : algebraMap K (lg37_completion v) c
-      = algebraMap v.toValuationSubring (lg37_completion v)
-          (algebraMap K v.toValuationSubring c) := rfl
-  rw [h, lg37_residueHat_algebraMap v]
-  rfl
-end ResidueCalculus
+open ModularCurve.Lg37
 end Mp72a102T2
 end
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 set_option linter.unusedSectionVars false
@@ -882,20 +556,12 @@ noncomputable section
 p2m_open "IsDedekindDomain P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.IsDedekindDomain WithZero P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.WithZero Module P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.Module IsLocalRing P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.IsLocalRing Module.IsLocalRing Polynomial P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.Polynomial"
 namespace Mp72a102T2
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.RationalFunctionField AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField"
-open ModularCurve.Lg37 ModularCurve.Ldgr39Hf ModularCurve.Ldgr35Cs
-open Mp72a101T2
-p2m_open_scoped "Polynomial P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.Polynomial"
-section ResidueCalculus
-variable {K F : Type*} [Field K] [Field F] [Algebra K F]
-
-def mp72a102_t2_residueHatAlgHom (v : Place K F) :
-    lg37_completion v →ₐ[K] v.ResidueField where
-  toRingHom := lg37_residueHat v
-  commutes' := mp72a102_t2_residueHat_algebraMap_base v
-end ResidueCalculus
+open ModularCurve.Lg37
 end Mp72a102T2
 end
+
 end
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 
@@ -924,6 +590,7 @@ p2m_export "AlgebraicCurve.Divisor" "degree degree_single principal smul_def smu
 end Divisor
 end AlgebraicCurve
 end
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 noncomputable section
@@ -936,24 +603,10 @@ variable {K F F' : Type*} [Field K] [Field F] [Field F']
   [Algebra.IsIntegral F F']
 namespace Place
 p2m_export "AlgebraicCurve.Place" "ext coe_algebraMap ResidueField deg FiniteResidue adicValuation adicValuation_coe_eq_one_iff ord ord_zero ord_one ord_mul ord_inv ord_coe_unit ord_coe_irreducible ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ofHeightOneSpectrum mk.injEq rec ne_top' algebraMap_mem' toValuationSubring isPrincipalIdealRing' mk ramificationIndex ramificationIndex_pos exists_ord_eq_ramificationIndex ramificationIndex_dvd_ord irreducible_mk_comap restrict mem_restrict_iff ord_restrict restrictInclusion coe_restrictInclusion inertiaDeg fiber mem_fiber mem_maximalIdeal_iff_ord_pos valuationSubringAlgebra integralClosureAt algebraMap_integralClosureAt_injective maximalIdeal_ne_bot forall_mem_of_restrict_eq fiberCenter mem_fiberCenter_iff_ord_pos toValuationSubring_eq_of_restrict_eq algebraMap_integralClosureAt_ne_zero ord_algebraMap_integralClosureAt fiberCenter_liesOver placeOfPrime restrict_placeOfPrime fiberCenter_placeOfPrime eq_of_fiberCenter_eq adicValuation_valuationSubring isEquiv_adicValuation_of_valuationSubring_eq mem_maximalIdeal_iff_adicValuation_lt_one ord_eq_zero_iff_adicValuation_eq_one DCoordGenerates differentialCoeff ordDifferential uniformizer ord_uniformizer uniformizer_ne_zero adicValuation_eq_exp_neg_ord LocalResidueData CanonicalLocalResidueDataK differentialCoeff_ne_zero"
-p2m_open "AlgebraicCurve.Place"
-variable (w : Place K F')
-
-scoped instance : IsLocalHom (restrictInclusion F w) where
-  map_nonunit a ha := by
-    have hord : w.ord (algebraMap F F' (a : F)) = 0 := by
-      have h := w.ord_coe_unit ha.unit
-      rwa [IsUnit.unit_spec, coe_restrictInclusion] at h
-    have ha0 : (a : F) ≠ 0 := by
-      rintro h0
-      obtain ⟨b, hb⟩ := isUnit_iff_exists_inv.mp ha
-      have hb' : algebraMap F F' (a : F) * (b : F') = 1 := congrArg Subtype.val hb
-      rw [h0, map_zero, zero_mul] at hb'
-      exact zero_ne_one hb'
-    exact (isUnit_mk_comap_iff ha0 a.2).mpr hord
 end Place
 end AlgebraicCurve
 end
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 
@@ -1036,13 +689,9 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheorem
 namespace Divisor
 p2m_export "AlgebraicCurve.Divisor" "degree degree_single principal smul_def smul_apply pullback pullback_apply degree_pullback"
 end Divisor
-p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
-
-namespace WeilDatum
-
-end WeilDatum
 end AlgebraicCurve
 end
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 section
@@ -1064,6 +713,7 @@ theorem Divisor.degree_nonneg_of_nonneg [IsCurveOver K F]
   exact Finset.sum_nonneg fun v _ => mul_nonneg (hD v) (Int.natCast_nonneg _)
 end AlgebraicCurve
 end
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 noncomputable section
@@ -1092,6 +742,7 @@ theorem lSpace_eq_bot_of_degree_neg [IsCurveOver K F]
   exact absurd hdegPD (not_le.mpr hD)
 end AlgebraicCurve
 end
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 noncomputable section
@@ -1106,7 +757,9 @@ theorem ell_eq_zero_of_degree_neg [IsCurveOver K F] (hD : Divisor.degree D < 0) 
   rw [ell, lSpace_eq_bot_of_degree_neg hD, finrank_bot]
 end AlgebraicCurve
 end
+
 end
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 section
@@ -1132,6 +785,7 @@ end PlaceInfty
 end RationalFunctionField
 end AlgebraicCurve
 end
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 noncomputable section
@@ -1186,6 +840,7 @@ end PlaceInfty
 end RationalFunctionField
 end AlgebraicCurve
 end
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 noncomputable section
@@ -1222,7 +877,9 @@ end PlaceInfty
 end RationalFunctionField
 end AlgebraicCurve
 end
+
 end
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 section
@@ -1233,19 +890,10 @@ p2m_export "AlgebraicCurve" "Place Place.ext Place.coe_algebraMap Place.deg Plac
 p2m_open "AlgebraicCurve"
 namespace Place
 p2m_export "AlgebraicCurve.Place" "ext coe_algebraMap ResidueField deg FiniteResidue adicValuation adicValuation_coe_eq_one_iff ord ord_zero ord_one ord_mul ord_inv ord_coe_unit ord_coe_irreducible ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ofHeightOneSpectrum mk.injEq rec ne_top' algebraMap_mem' toValuationSubring isPrincipalIdealRing' mk ramificationIndex ramificationIndex_pos exists_ord_eq_ramificationIndex ramificationIndex_dvd_ord irreducible_mk_comap restrict mem_restrict_iff ord_restrict restrictInclusion coe_restrictInclusion inertiaDeg fiber mem_fiber mem_maximalIdeal_iff_ord_pos valuationSubringAlgebra integralClosureAt algebraMap_integralClosureAt_injective maximalIdeal_ne_bot forall_mem_of_restrict_eq fiberCenter mem_fiberCenter_iff_ord_pos toValuationSubring_eq_of_restrict_eq algebraMap_integralClosureAt_ne_zero ord_algebraMap_integralClosureAt fiberCenter_liesOver placeOfPrime restrict_placeOfPrime fiberCenter_placeOfPrime eq_of_fiberCenter_eq adicValuation_valuationSubring isEquiv_adicValuation_of_valuationSubring_eq mem_maximalIdeal_iff_adicValuation_lt_one ord_eq_zero_iff_adicValuation_eq_one DCoordGenerates differentialCoeff ordDifferential uniformizer ord_uniformizer uniformizer_ne_zero adicValuation_eq_exp_neg_ord LocalResidueData CanonicalLocalResidueDataK differentialCoeff_ne_zero"
-p2m_open "AlgebraicCurve.Place"
-section Chart
-variable {K F : Type*} [Field K] [Field F] [Algebra K F]
-variable {R : Type*} [CommRing R] [IsDedekindDomain R] [Algebra R F] [IsFractionRing R F]
-variable (w : Place K F)
-
-private def chartHom (hw : ∀ r : R, algebraMap R F r ∈ w.toValuationSubring) :
-    R →+* w.toValuationSubring :=
-  (algebraMap R F).codRestrict w.toValuationSubring.toSubring hw
-end Chart
 end Place
 end AlgebraicCurve
 end
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 noncomputable section
@@ -1255,30 +903,12 @@ p2m_export "AlgebraicCurve" "Place Place.ext Place.coe_algebraMap Place.deg Plac
 p2m_open "AlgebraicCurve"
 namespace Place
 p2m_export "AlgebraicCurve.Place" "ext coe_algebraMap ResidueField deg FiniteResidue adicValuation adicValuation_coe_eq_one_iff ord ord_zero ord_one ord_mul ord_inv ord_coe_unit ord_coe_irreducible ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ofHeightOneSpectrum mk.injEq rec ne_top' algebraMap_mem' toValuationSubring isPrincipalIdealRing' mk ramificationIndex ramificationIndex_pos exists_ord_eq_ramificationIndex ramificationIndex_dvd_ord irreducible_mk_comap restrict mem_restrict_iff ord_restrict restrictInclusion coe_restrictInclusion inertiaDeg fiber mem_fiber mem_maximalIdeal_iff_ord_pos valuationSubringAlgebra integralClosureAt algebraMap_integralClosureAt_injective maximalIdeal_ne_bot forall_mem_of_restrict_eq fiberCenter mem_fiberCenter_iff_ord_pos toValuationSubring_eq_of_restrict_eq algebraMap_integralClosureAt_ne_zero ord_algebraMap_integralClosureAt fiberCenter_liesOver placeOfPrime restrict_placeOfPrime fiberCenter_placeOfPrime eq_of_fiberCenter_eq adicValuation_valuationSubring isEquiv_adicValuation_of_valuationSubring_eq mem_maximalIdeal_iff_adicValuation_lt_one ord_eq_zero_iff_adicValuation_eq_one DCoordGenerates differentialCoeff ordDifferential uniformizer ord_uniformizer uniformizer_ne_zero adicValuation_eq_exp_neg_ord LocalResidueData CanonicalLocalResidueDataK differentialCoeff_ne_zero"
-p2m_open "AlgebraicCurve.Place"
-section Chart
-variable {K F : Type*} [Field K] [Field F] [Algebra K F]
-variable {R : Type*} [CommRing R] [IsDedekindDomain R] [Algebra R F] [IsFractionRing R F]
-variable (w : Place K F)
-omit [IsDedekindDomain R] [IsFractionRing R F] in
-
-private theorem inv_algebraMap_mem (hw : ∀ r : R, algebraMap R F r ∈ w.toValuationSubring)
-    {s : R} (hs : IsUnit (chartHom w hw s)) :
-    (algebraMap R F s)⁻¹ ∈ w.toValuationSubring := by
-  obtain ⟨u, hu⟩ := hs
-  have hcoe : ((u : w.toValuationSubring) : F) = algebraMap R F s := by rw [hu]; rfl
-  have h1 : (((u⁻¹ : w.toValuationSubringˣ) : w.toValuationSubring) : F)
-      * algebraMap R F s = 1 := by
-    have hmul := congrArg (fun a : w.toValuationSubring => (a : F)) u.inv_mul
-    push_cast at hmul
-    rwa [hcoe] at hmul
-  rw [← eq_inv_of_mul_eq_one_left h1]
-  exact SetLike.coe_mem _
-end Chart
 end Place
 end AlgebraicCurve
 end
+
 end
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 
@@ -1358,6 +988,7 @@ theorem gate_poleSubmodule_strictMono (v : Place K F) (n : ℕ) :
 
 end AlgebraicCurve
 end
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 section
@@ -1377,173 +1008,8 @@ namespace Mp72a102T3
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.ModularCurve.Lg37"
 
-section General
-
-variable {R : Type*} [CommRing R] (I : Ideal R)
-
-theorem mp72a102_t3_evalₐ_zero_depth (z : AdicCompletion I R) :
-    AdicCompletion.evalₐ I 0 z = 0 := by
-  have : Subsingleton (R ⧸ (I ^ 0)) :=
-    Ideal.Quotient.subsingleton_iff.mpr (by rw [pow_zero, Ideal.one_eq_top])
-  exact Subsingleton.elim _ _
-
-theorem mp72a102_t3_evalₐ_algebraMap (n : ℕ) (r : R) :
-    AdicCompletion.evalₐ I n (algebraMap R (AdicCompletion I R) r)
-      = Ideal.Quotient.mk (I ^ n) r := by
-  rw [AdicCompletion.algebraMap_apply, Algebra.algebraMap_self, RingHom.id_apply,
-    AdicCompletion.evalₐ_of]
-
-theorem mp72a102_t3_evalₐ_factor {m n : ℕ} (hmn : m ≤ n) (z : AdicCompletion I R) :
-    Ideal.Quotient.factor (Ideal.pow_le_pow_right hmn) (AdicCompletion.evalₐ I n z)
-      = AdicCompletion.evalₐ I m z := by
-  obtain ⟨c, rfl⟩ := AdicCompletion.mk_surjective I R z
-  rw [AdicCompletion.evalₐ_mk, AdicCompletion.evalₐ_mk, Ideal.Quotient.factor_mk]
-  exact AdicCompletion.Ideal.mk_eq_mk I hmn c
-
-theorem mp72a102_t3_exists_rep_of_evalₐ_eq_zero {n : ℕ} {z : AdicCompletion I R}
-    (h : AdicCompletion.evalₐ I n z = 0) :
-    ∃ w ∈ I ^ n, AdicCompletion.evalₐ I (n + 1) z = Ideal.Quotient.mk (I ^ (n + 1)) w := by
-  obtain ⟨w, hw⟩ := Ideal.Quotient.mk_surjective (AdicCompletion.evalₐ I (n + 1) z)
-  refine ⟨w, ?_, hw.symm⟩
-  have hfac := mp72a102_t3_evalₐ_factor I (Nat.le_succ n) z
-  rw [← hw, Ideal.Quotient.factor_mk, h] at hfac
-  exact Ideal.Quotient.eq_zero_iff_mem.mp hfac
-
-theorem mp72a102_t3_evalₐ_succ_mul_eq_zero {n : ℕ} {r : R} (hr : r ∈ I)
-    {z : AdicCompletion I R} (h : AdicCompletion.evalₐ I n z = 0) :
-    AdicCompletion.evalₐ I (n + 1) (algebraMap R (AdicCompletion I R) r * z) = 0 := by
-  obtain ⟨w, hw, hwz⟩ := mp72a102_t3_exists_rep_of_evalₐ_eq_zero I h
-  rw [map_mul, mp72a102_t3_evalₐ_algebraMap, hwz, ← map_mul,
-    Ideal.Quotient.eq_zero_iff_mem, pow_succ']
-  exact Ideal.mul_mem_mul hr hw
-
-theorem mp72a102_t3_evalₐ_one_eq_zero_of_evalOneₐ {z : AdicCompletion I R}
-    (h : AdicCompletion.evalOneₐ I z = 0) : AdicCompletion.evalₐ I 1 z = 0 := by
-  obtain ⟨w, hw⟩ := Ideal.Quotient.mk_surjective (AdicCompletion.evalₐ I 1 z)
-  have hfac := AdicCompletion.factorₐ_evalₐ_one I z
-  rw [← hw, Ideal.Quotient.factor_mk, h] at hfac
-  rw [← hw, Ideal.Quotient.eq_zero_iff_mem, pow_one]
-  exact Ideal.Quotient.eq_zero_iff_mem.mp hfac
-
-end General
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
-section Carrier
-
-variable {K F : Type*} [Field K] [Field F] [Algebra K F]
-
-theorem mp72a102_t3_evalDepth_add (v : Place K F) (n : ℕ)
-    (x y : lg37_completion v) :
-    AdicCompletion.evalₐ (maximalIdeal v.toValuationSubring) n (x + y)
-      = AdicCompletion.evalₐ (maximalIdeal v.toValuationSubring) n x
-        + AdicCompletion.evalₐ (maximalIdeal v.toValuationSubring) n y :=
-  map_add _ x y
-
-theorem mp72a102_t3_evalDepth_mul (v : Place K F) (n : ℕ)
-    (x y : lg37_completion v) :
-    AdicCompletion.evalₐ (maximalIdeal v.toValuationSubring) n (x * y)
-      = AdicCompletion.evalₐ (maximalIdeal v.toValuationSubring) n x
-        * AdicCompletion.evalₐ (maximalIdeal v.toValuationSubring) n y :=
-  map_mul _ x y
-
-theorem mp72a102_t3_residueHat_congr_of_depth_one (v : Place K F)
-    {x y : lg37_completion v}
-    (h : AdicCompletion.evalₐ (maximalIdeal v.toValuationSubring) 1 x
-        = AdicCompletion.evalₐ (maximalIdeal v.toValuationSubring) 1 y) :
-    lg37_residueHat v x = lg37_residueHat v y := by
-  show AdicCompletion.evalOneₐ (maximalIdeal v.toValuationSubring) x
-      = AdicCompletion.evalOneₐ (maximalIdeal v.toValuationSubring) y
-  rw [← AdicCompletion.factorₐ_evalₐ_one, ← AdicCompletion.factorₐ_evalₐ_one, h]
-
-theorem mp72a102_t3_evalDepth_one_eq_zero_of_residueHat (v : Place K F)
-    {x : lg37_completion v} (hx : lg37_residueHat v x = 0) :
-    AdicCompletion.evalₐ (maximalIdeal v.toValuationSubring) 1 x = 0 :=
-  mp72a102_t3_evalₐ_one_eq_zero_of_evalOneₐ _ hx
-
-theorem mp72a102_t3_eq_uniformizer_mul_of_mem_maximalIdeal (v : Place K F)
-    {w : v.toValuationSubring} (hw : w ∈ maximalIdeal v.toValuationSubring) :
-    ∃ u : v.toValuationSubring, w = v.uniformizerSubring * u := by
-  rw [v.irreducible_uniformizerSubring.maximalIdeal_eq, Ideal.mem_span_singleton] at hw
-  exact hw
-
-theorem mp72a102_t3_exists_uniformizer_factor (v : Place K F)
-    {x : lg37_completion v} (hx : lg37_residueHat v x = 0) (n : ℕ) :
-    ∃ u : v.toValuationSubring,
-      AdicCompletion.evalₐ (maximalIdeal v.toValuationSubring) n
-        (x - algebraMap v.toValuationSubring (lg37_completion v) v.uniformizerSubring
-          * algebraMap v.toValuationSubring (lg37_completion v) u) = 0 := by
-  rcases n with _ | n
-  · exact ⟨0, mp72a102_t3_evalₐ_zero_depth _ _⟩
-  · obtain ⟨w, hw⟩ := Ideal.Quotient.mk_surjective
-      (AdicCompletion.evalₐ (maximalIdeal v.toValuationSubring) (n + 1) x)
-    have h1 : AdicCompletion.evalₐ (maximalIdeal v.toValuationSubring) 1 x = 0 :=
-      mp72a102_t3_evalDepth_one_eq_zero_of_residueHat v hx
-    have hfac := mp72a102_t3_evalₐ_factor (maximalIdeal v.toValuationSubring)
-      (Nat.one_le_iff_ne_zero.mpr (Nat.succ_ne_zero n)) x
-    rw [← hw, Ideal.Quotient.factor_mk, h1] at hfac
-    have hwm : w ∈ maximalIdeal v.toValuationSubring := by
-      have hmem := Ideal.Quotient.eq_zero_iff_mem.mp hfac
-      rwa [pow_one] at hmem
-    obtain ⟨u, hu⟩ := mp72a102_t3_eq_uniformizer_mul_of_mem_maximalIdeal v hwm
-    refine ⟨u, ?_⟩
-    rw [map_sub, map_mul, mp72a102_t3_evalₐ_algebraMap, mp72a102_t3_evalₐ_algebraMap,
-      ← map_mul, ← hu, ← hw, sub_self]
-
-theorem mp72a102_t3_sigma_taylor_expansion (v : Place K F)
-    (S : Lg37CompletionSection v) (n : ℕ) (x : lg37_completion v) :
-    ∃ a : ℕ → v.ResidueField,
-      AdicCompletion.evalₐ (maximalIdeal v.toValuationSubring) n
-        (x - ∑ i ∈ Finset.range n, S.lift (a i)
-          * algebraMap v.toValuationSubring (lg37_completion v)
-              v.uniformizerSubring ^ i) = 0 := by
-  induction n generalizing x with
-  | zero => exact ⟨fun _ => 0, mp72a102_t3_evalₐ_zero_depth _ _⟩
-  | succ n ih =>
-    have hres : lg37_residueHat v (x - S.lift (lg37_residueHat v x)) = 0 := by
-      rw [map_sub, S.residueHat_lift, sub_self]
-    obtain ⟨u, hu⟩ := mp72a102_t3_exists_uniformizer_factor v hres (n + 1)
-    obtain ⟨a, ha⟩ := ih (algebraMap v.toValuationSubring (lg37_completion v) u)
-    have hshift := mp72a102_t3_evalₐ_succ_mul_eq_zero
-      (maximalIdeal v.toValuationSubring) v.uniformizerSubring_mem_maximalIdeal ha
-    refine ⟨fun i => Nat.rec (motive := fun _ => v.ResidueField)
-      (lg37_residueHat v x) (fun j _ => a j) i, ?_⟩
-    rw [Finset.sum_range_succ']
-    show AdicCompletion.evalₐ (maximalIdeal v.toValuationSubring) (n + 1)
-        (x - ((∑ i ∈ Finset.range n, S.lift (a i)
-            * algebraMap v.toValuationSubring (lg37_completion v)
-                v.uniformizerSubring ^ (i + 1))
-          + S.lift (lg37_residueHat v x)
-            * algebraMap v.toValuationSubring (lg37_completion v)
-                v.uniformizerSubring ^ 0)) = 0
-    have hsum : ∑ i ∈ Finset.range n, S.lift (a i)
-          * algebraMap v.toValuationSubring (lg37_completion v)
-              v.uniformizerSubring ^ (i + 1)
-        = algebraMap v.toValuationSubring (lg37_completion v) v.uniformizerSubring
-          * ∑ i ∈ Finset.range n, S.lift (a i)
-            * algebraMap v.toValuationSubring (lg37_completion v)
-                v.uniformizerSubring ^ i := by
-      rw [Finset.mul_sum]
-      exact Finset.sum_congr rfl fun i _ => by ring
-    rw [hsum, pow_zero, mul_one]
-    have hdecomp : x - (algebraMap v.toValuationSubring (lg37_completion v)
-            v.uniformizerSubring
-          * ∑ i ∈ Finset.range n, S.lift (a i)
-            * algebraMap v.toValuationSubring (lg37_completion v)
-                v.uniformizerSubring ^ i
-          + S.lift (lg37_residueHat v x))
-        = (x - S.lift (lg37_residueHat v x)
-            - algebraMap v.toValuationSubring (lg37_completion v)
-                v.uniformizerSubring
-              * algebraMap v.toValuationSubring (lg37_completion v) u)
-          + algebraMap v.toValuationSubring (lg37_completion v) v.uniformizerSubring
-            * (algebraMap v.toValuationSubring (lg37_completion v) u
-              - ∑ i ∈ Finset.range n, S.lift (a i)
-                * algebraMap v.toValuationSubring (lg37_completion v)
-                    v.uniformizerSubring ^ i) := by
-      ring
-    rw [hdecomp, map_add, hu, hshift, add_zero]
-
-end Carrier
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 section RatProduction
@@ -1553,84 +1019,28 @@ p2m_open "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_i
 attribute [local instance 2000] RatFunc.instAlgebraOfPolynomial
 
 end RatProduction
-end ModularCurve.Mp72a102T3
+end Mp72a102T3
+end ModularCurve
 end
+
 end
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 section
 set_option maxHeartbeats 3200000
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.ModularCurve.Lg37 Polynomial P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.Polynomial IntermediateField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.IntermediateField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.Mp72a102T1 P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.Mp72a102T2"
-namespace ModularCurve
-namespace KwNo6Section
-section GenericIso
-variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
-
-noncomputable def residueFieldAdjoinRootEquiv {ᾱ : v.ResidueField} (hint : IsIntegral K ᾱ)
-    (htop : K⟮ᾱ⟯ = ⊤) :
-    AdjoinRoot (minpoly K ᾱ) ≃ₐ[K] v.ResidueField :=
-  (adjoinRootEquivAdjoin K hint).trans
-    ((IntermediateField.equivOfEq htop).trans IntermediateField.topEquiv)
-end GenericIso
-end ModularCurve.KwNo6Section
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 set_option maxHeartbeats 3200000
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.ModularCurve.Lg37 Polynomial P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.Polynomial IntermediateField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.IntermediateField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.Mp72a102T1 P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.Mp72a102T2"
-namespace ModularCurve
-namespace KwNo6Section
-section GenericIso
-variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
-
-theorem residueFieldAdjoinRootEquiv_root {ᾱ : v.ResidueField} (hint : IsIntegral K ᾱ)
-    (htop : K⟮ᾱ⟯ = ⊤) :
-    residueFieldAdjoinRootEquiv v hint htop (AdjoinRoot.root (minpoly K ᾱ)) = ᾱ := by
-  have hgen := adjoinRootEquivAdjoin_apply_root K hint
-  simp only [residueFieldAdjoinRootEquiv, AlgEquiv.trans_apply, hgen,
-    IntermediateField.topEquiv_apply]
-  exact AdjoinSimple.coe_gen K ᾱ
-end GenericIso
-end ModularCurve.KwNo6Section
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 set_option maxHeartbeats 3200000
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.ModularCurve.Lg37 Polynomial P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.Polynomial IntermediateField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.IntermediateField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.Mp72a102T1 P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.Mp72a102T2"
-namespace ModularCurve
-namespace KwNo6Section
-section GenericSection
-variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
-
-noncomputable def sectionOfPrimitiveRoot {ᾱ : v.ResidueField} (hint : IsIntegral K ᾱ)
-    (htop : K⟮ᾱ⟯ = ⊤) (αhat : lg37_completion v)
-    (hroot : (aeval αhat) (minpoly K ᾱ) = 0)
-    (hres : lg37_residueHat v αhat = ᾱ) :
-    Lg37CompletionSection v where
-  lift :=
-    (AdjoinRoot.liftAlgHom (minpoly K ᾱ) (Algebra.ofId K (lg37_completion v)) αhat
-      (by rw [aeval_def] at hroot; exact hroot)).comp
-      (residueFieldAdjoinRootEquiv v hint htop).symm.toAlgHom
-  residueHat_lift a := by
-    have hres' : lg37_residueHat v αhat
-        = residueFieldAdjoinRootEquiv v hint htop (AdjoinRoot.root (minpoly K ᾱ)) :=
-      hres.trans (residueFieldAdjoinRootEquiv_root v hint htop).symm
-    have hkey : (mp72a102_t2_residueHatAlgHom v).comp
-          (AdjoinRoot.liftAlgHom (minpoly K ᾱ) (Algebra.ofId K (lg37_completion v)) αhat
-            (by rw [aeval_def] at hroot; exact hroot))
-        = (residueFieldAdjoinRootEquiv v hint htop).toAlgHom := by
-      refine AdjoinRoot.algHom_ext ?_
-      rw [AlgHom.comp_apply, AdjoinRoot.liftAlgHom_root]
-      exact hres'
-    have h1 := DFunLike.congr_fun hkey ((residueFieldAdjoinRootEquiv v hint htop).symm a)
-    rw [AlgHom.comp_apply] at h1
-    have h2 : (residueFieldAdjoinRootEquiv v hint htop).toAlgHom
-        ((residueFieldAdjoinRootEquiv v hint htop).symm a) = a :=
-      (residueFieldAdjoinRootEquiv v hint htop).apply_symm_apply a
-    exact h1.trans h2
-end GenericSection
-end ModularCurve.KwNo6Section
 end
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 noncomputable section
@@ -1670,6 +1080,7 @@ p2m_export "AlgebraicCurve.Place" "ord_sub_evalAt_pos"
 end Place
 end AlgebraicCurve
 end
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 noncomputable section
@@ -1695,6 +1106,7 @@ p2m_export "AlgebraicCurve.Place" "isRational_of_deg_eq_one"
 end Place
 end AlgebraicCurve
 end
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 section
@@ -1738,6 +1150,7 @@ p2m_export "AlgebraicCurve.Place" "mk_mem_maximalIdeal_iff"
 end Place
 end AlgebraicCurve
 end
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 noncomputable section
@@ -1752,6 +1165,7 @@ theorem one_le_deg [IsCurveOver K F] (P : Place K F) : 1 ≤ P.deg := by
   exact Module.finrank_pos
 end AlgebraicCurve
 end
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 noncomputable section
@@ -1796,7 +1210,9 @@ def lSpaceShiftEquiv (D : Divisor K F) {g : F} (hg : g ≠ 0)
     rw [mul_assoc, mul_inv_cancel₀ hg, mul_one]
 end AlgebraicCurve
 end
+
 end
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 
@@ -1808,6 +1224,7 @@ namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "Place Place.ext Place.coe_algebraMap Place.deg Place.ord_zero Divisor Divisor.degree Divisor.degree_single HasPrincipalDivisors Pic0 Place.ofHeightOneSpectrum HasPrincipalDivisors.exists_divisor Place.ord_restrict Place.mem_fiber Divisor.pullback Divisor.pullback_apply Divisor.degree_pullback SumRamificationInertia Place.valuationSubringAlgebra Place.integralClosureAt Place.algebraMap_integralClosureAt_injective Place.placeOfPrime Place.restrict_placeOfPrime Place.mem_maximalIdeal_iff_adicValuation_lt_one IsCurveOver IsCurveOver.finite_residueField IsCurveOver.deg_eq_one_of_isAlgClosed Place.ordDifferential LSpace ell mem_lSpace_iff_ord lSpace_mono algebraMap_mem_lSpace_zero one_mem_lSpace_zero ConstantsAreBase ell_zero_eq_one_of_constantsAreBase adeleBdd mem_adeleBdd adeleBdd_mono diagonalHom diagonal_mem_adeleBdd_iff adeleSpace adeleBdd_le_adeleSpace diagonal_mem_adeleSpace globalSub diagonal_mem_globalSub map_diagonal_lSpace indexOfSpecialty adeleBddPrincipal indexOfSpecialty_eq omegaSpace omegaSpace_vanishBdd omegaSpace_antitone omegaSpaceEquivIndexDual finrank_omegaSpace_eq_indexOfSpecialty weilDifferentialModule omegaSpace_le_weilDifferentialModule mem_weilDifferentialModule_iff mulAdele_apply adeleSpaceMul adeleSpaceMul_coe weilSmul weilSmul_apply weilSmul_one weilSmul_mul weilSmul_injective weilSmul_mem_omegaSpace_add residuePairing residuePairing_apply_coe residuePairing_injective WeilDifferentialRankOne RiemannGenusReachedAt RiemannGenusReached StichtenothGenusExists RiemannGenusBounded HasCanonicalDivisor canonicalDivisorOf canonicalDivisorOf_apply genus HasLocalResidue HasCanonicalLocalResidueKStar single_mem_adeleBdd adeleSingle adeleSingle_coe HasSeparableResidue kaehlerResidueTermKFam kaehlerResidueTermKFam_apply weilOfKaehlerK weilOfKaehlerK_apply weilOfKaehlerK_vanish_adeleBdd_canonical ResidueTheoremK HasSeparableResidue.trace_ne_zero RiemannIndexFormula WeilDualityAdelic WeilDuality WeilOmegaEllAgrees FunctionFieldRiemannRoch functionFieldRiemannRoch_of_riemann_and_duality weilDuality_of_riemannIndex_of_adelic"
 end AlgebraicCurve
 end
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 
@@ -2195,166 +1612,32 @@ scoped instance instSumRamificationInertia {K F F' : Type*} [Field K] [Field F] 
 
 end AlgebraicCurve
 end
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 section
 set_option maxHeartbeats 6400000
 p2m_open "Polynomial P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.Polynomial IsLocalRing P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.IsLocalRing AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve"
-open ModularCurve.Lg37 ModularCurve.Mp72a102T3 Mp72a103T2 Mp72a102T1
-open ModularCurve.KwNo6Section
-namespace ModularCurve
-namespace KwNo6Pin
-variable {K F : Type*} [Field K] [Field F] [Algebra K F]
-
-noncomputable def aCoeff (v : Place K F) (S : Lg37CompletionSection v)
-    (n : ℕ) (x : lg37_completion v) : v.ResidueField :=
-  (Classical.choose (mp72a102_t3_sigma_taylor_expansion v S (n + 1) x)) n
-end ModularCurve.KwNo6Pin
+open ModularCurve.Lg37 ModularCurve.Mp72a102T3 Mp72a102T1
 end
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 section
 set_option linter.unusedSectionVars false
 set_option maxHeartbeats 1600000
 set_option maxRecDepth 8000
-noncomputable section
-p2m_open "IsDedekindDomain P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.IsDedekindDomain IsLocalRing P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.IsLocalRing Polynomial P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.Polynomial"
-p2m_open_scoped "Polynomial P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.Polynomial"
-namespace Mp72a103T2
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.RationalFunctionField AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField"
-open ModularCurve.Lg37 ModularCurve.Mp72a102T3
-open Mp72a102T2
-section Calculus
-variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 
-theorem mp72a103_t2_evalDepth_of_uniformizer_mul (v : Place K F) {n : ℕ}
-    {z : lg37_completion v}
-    (h : AdicCompletion.evalₐ (maximalIdeal v.toValuationSubring) (n + 1)
-        (algebraMap v.toValuationSubring (lg37_completion v)
-            v.uniformizerSubring * z) = 0) :
-    AdicCompletion.evalₐ (maximalIdeal v.toValuationSubring) n z = 0 := by
-  obtain ⟨w, hw⟩ := Ideal.Quotient.mk_surjective
-    (AdicCompletion.evalₐ (maximalIdeal v.toValuationSubring) (n + 1) z)
-  rw [map_mul, mp72a102_t3_evalₐ_algebraMap, ← hw, ← map_mul,
-    Ideal.Quotient.eq_zero_iff_mem, v.irreducible_uniformizerSubring.maximalIdeal_eq,
-    Ideal.span_singleton_pow, Ideal.mem_span_singleton] at h
-  obtain ⟨u, hu⟩ := h
-  have hw' : v.uniformizerSubring * w
-      = v.uniformizerSubring * (v.uniformizerSubring ^ n * u) := by
-    rw [hu, pow_succ', mul_assoc]
-  have hcancel : w = v.uniformizerSubring ^ n * u :=
-    mul_left_cancel₀ v.irreducible_uniformizerSubring.ne_zero hw'
-  have hfac := mp72a102_t3_evalₐ_factor (maximalIdeal v.toValuationSubring)
-    (Nat.le_succ n) z
-  rw [← hw, Ideal.Quotient.factor_mk] at hfac
-  rw [← hfac, Ideal.Quotient.eq_zero_iff_mem, hcancel,
-    v.irreducible_uniformizerSubring.maximalIdeal_eq, Ideal.span_singleton_pow,
-    Ideal.mem_span_singleton]
-  exact ⟨u, rfl⟩
-end Calculus
-end Mp72a103T2
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 set_option linter.unusedSectionVars false
 set_option maxHeartbeats 1600000
 set_option maxRecDepth 8000
 noncomputable section
-p2m_open "IsDedekindDomain P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.IsDedekindDomain IsLocalRing P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.IsLocalRing Polynomial P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.Polynomial"
-p2m_open_scoped "Polynomial P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.Polynomial"
-namespace Mp72a103T2
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.RationalFunctionField AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField"
-open ModularCurve.Lg37 ModularCurve.Mp72a102T3
-open Mp72a102T2
-section Calculus
-variable {K F : Type*} [Field K] [Field F] [Algebra K F]
-
-theorem mp72a103_t2_lift_eq_zero_of_depth_one (v : Place K F)
-    (S : Lg37CompletionSection v) {c : v.ResidueField}
-    (h : AdicCompletion.evalₐ (maximalIdeal v.toValuationSubring) 1 (S.lift c) = 0) :
-    c = 0 := by
-  have hres : lg37_residueHat v (S.lift c) = lg37_residueHat v 0 :=
-    mp72a102_t3_residueHat_congr_of_depth_one v (by rw [h, map_zero])
-  rwa [S.residueHat_lift, map_zero] at hres
-end Calculus
-end Mp72a103T2
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
-set_option linter.unusedSectionVars false
-set_option maxHeartbeats 1600000
-set_option maxRecDepth 8000
-noncomputable section
-p2m_open "IsDedekindDomain P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.IsDedekindDomain IsLocalRing P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.IsLocalRing Polynomial P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.Polynomial"
-p2m_open_scoped "Polynomial P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.Polynomial"
-namespace Mp72a103T2
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.RationalFunctionField AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField"
-open ModularCurve.Lg37 ModularCurve.Mp72a102T3
-open Mp72a102T2
-section Calculus
-variable {K F : Type*} [Field K] [Field F] [Algebra K F]
+end
 
-theorem mp72a103_t2_taylor_coeff_eq_zero_of_depth (v : Place K F)
-    (S : Lg37CompletionSection v) :
-    ∀ (n : ℕ) (a : ℕ → v.ResidueField),
-      AdicCompletion.evalₐ (maximalIdeal v.toValuationSubring) n
-        (∑ i ∈ Finset.range n, S.lift (a i)
-          * algebraMap v.toValuationSubring (lg37_completion v)
-              v.uniformizerSubring ^ i) = 0 →
-      ∀ i < n, a i = 0 := by
-  intro n
-  induction n with
-  | zero => intro a _ i hi; exact absurd hi (Nat.not_lt_zero i)
-  | succ n ih =>
-    intro a h
-    have hsplit : (∑ i ∈ Finset.range (n + 1), S.lift (a i)
-          * algebraMap v.toValuationSubring (lg37_completion v)
-              v.uniformizerSubring ^ i)
-        = algebraMap v.toValuationSubring (lg37_completion v) v.uniformizerSubring
-            * (∑ i ∈ Finset.range n, S.lift (a (i + 1))
-              * algebraMap v.toValuationSubring (lg37_completion v)
-                  v.uniformizerSubring ^ i)
-          + S.lift (a 0) := by
-      rw [Finset.sum_range_succ', pow_zero, mul_one, Finset.mul_sum]
-      congr 1
-      exact Finset.sum_congr rfl fun i _ => by ring
-    have hfac1 := mp72a102_t3_evalₐ_factor (maximalIdeal v.toValuationSubring)
-      (show 1 ≤ n + 1 by omega)
-      (∑ i ∈ Finset.range (n + 1), S.lift (a i)
-        * algebraMap v.toValuationSubring (lg37_completion v)
-            v.uniformizerSubring ^ i)
-    rw [h, map_zero] at hfac1
-    have hT1 : AdicCompletion.evalₐ (maximalIdeal v.toValuationSubring) 1
-        (algebraMap v.toValuationSubring (lg37_completion v) v.uniformizerSubring
-          * (∑ i ∈ Finset.range n, S.lift (a (i + 1))
-            * algebraMap v.toValuationSubring (lg37_completion v)
-                v.uniformizerSubring ^ i)) = 0 :=
-      mp72a102_t3_evalₐ_succ_mul_eq_zero (maximalIdeal v.toValuationSubring)
-        v.uniformizerSubring_mem_maximalIdeal
-        (mp72a102_t3_evalₐ_zero_depth (maximalIdeal v.toValuationSubring) _)
-    have h1 : AdicCompletion.evalₐ (maximalIdeal v.toValuationSubring) 1
-        (S.lift (a 0)) = 0 := by
-      have h1' := hfac1.symm
-      rw [hsplit, map_add, hT1, zero_add] at h1'
-      exact h1'
-    have ha0 : a 0 = 0 := mp72a103_t2_lift_eq_zero_of_depth_one v S h1
-    have hT : AdicCompletion.evalₐ (maximalIdeal v.toValuationSubring) n
-        (∑ i ∈ Finset.range n, S.lift (a (i + 1))
-          * algebraMap v.toValuationSubring (lg37_completion v)
-              v.uniformizerSubring ^ i) = 0 := by
-      apply mp72a103_t2_evalDepth_of_uniformizer_mul v
-      have h' := h
-      rw [hsplit, ha0, map_zero, add_zero] at h'
-      exact h'
-    have hrec := ih (fun j => a (j + 1)) hT
-    intro i hi
-    cases i with
-    | zero => exact ha0
-    | succ j => exact hrec j (Nat.lt_of_succ_lt_succ hi)
-end Calculus
-end Mp72a103T2
-end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 section
@@ -2394,6 +1677,7 @@ theorem eq_algebraMap_of_forall_ord_nonneg (v₀ : Place K F) (hrat : v₀.IsRat
 end Place
 end AlgebraicCurve
 end
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 noncomputable section
@@ -2415,6 +1699,7 @@ theorem constantsAreBase_of_exists_isRational [HasPrincipalDivisors K F]
     exact ⟨c, hc.symm⟩
 end AlgebraicCurve
 end
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 noncomputable section
@@ -2430,7 +1715,9 @@ theorem constantsAreBase_of_deg_eq_one [HasPrincipalDivisors K F]
     (hdeg ▸ one_ne_zero)
 end AlgebraicCurve
 end
+
 end
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 
@@ -2742,6 +2029,7 @@ theorem adeleBdd_inf_sup_globalSub {D₁ D₂ : Divisor K F} (hD : D₁ ≤ D₂
 
 end AlgebraicCurve
 end
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 noncomputable section
@@ -2759,6 +2047,7 @@ theorem weilDualityAdelic_of_residueRows (hΩℓ : WeilOmegaEllAgrees K F) :
   exact hΩℓ hω D
 end AlgebraicCurve
 end
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 
@@ -3070,6 +2359,7 @@ theorem gate_riemannInequality_of_genusReached [IsCurveOver K F] [Nonempty (Plac
 
 end AlgebraicCurve
 end
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 
@@ -3279,6 +2569,7 @@ theorem weilDifferentialRankOne_of_riemannIndexFormula
 
 end AlgebraicCurve
 end
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 noncomputable section
@@ -3304,6 +2595,7 @@ def ResiduePairingSurjective [HasPrincipalDivisors K F] : Prop :=
 
 end AlgebraicCurve
 end
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 
@@ -3449,6 +2741,7 @@ theorem genus_eq_degree_div :
 end Identification
 end AlgebraicCurve
 end
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 
@@ -3580,6 +2873,7 @@ p2m_export "AlgebraicCurve.Place" "ext coe_algebraMap ResidueField deg FiniteRes
 end Place
 end AlgebraicCurve
 end
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 section
@@ -3587,390 +2881,10 @@ section
 set_option maxHeartbeats 6400000
 
 p2m_open "Polynomial P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.Polynomial IsLocalRing P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.IsLocalRing AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve"
-open ModularCurve.Lg37 ModularCurve.Mp72a102T3 Mp72a103T2 Mp72a102T1
-open ModularCurve.KwNo6Section
+open ModularCurve.Lg37 ModularCurve.Mp72a102T3 Mp72a102T1
 
-namespace ModularCurve
-namespace KwNo6Pin
-
-variable {K F : Type*} [Field K] [Field F] [Algebra K F]
-
-theorem aCoeff_zero (v : Place K F) (S : Lg37CompletionSection v)
-    (x : lg37_completion v) :
-    aCoeff v S 0 x = lg37_residueHat v x := by
-  have ha := Classical.choose_spec (mp72a102_t3_sigma_taylor_expansion v S 1 x)
-  set a := Classical.choose (mp72a102_t3_sigma_taylor_expansion v S 1 x) with ha_def
-  rw [Finset.sum_range_one, pow_zero, mul_one] at ha
-  have hres : lg37_residueHat v (x - S.lift (a 0)) = lg37_residueHat v 0 :=
-    mp72a102_t3_residueHat_congr_of_depth_one v (by rw [ha, _root_.map_zero])
-  rw [map_sub, S.residueHat_lift, _root_.map_zero, sub_eq_zero] at hres
-  simp only [aCoeff, ← ha_def]
-  exact hres.symm
-
-theorem aCoeff_add (v : Place K F) (S : Lg37CompletionSection v) (m : ℕ)
-    (x y : lg37_completion v) :
-    aCoeff v S m (x + y) = aCoeff v S m x + aCoeff v S m y := by
-  have hx := Classical.choose_spec (mp72a102_t3_sigma_taylor_expansion v S (m + 1) x)
-  have hy := Classical.choose_spec (mp72a102_t3_sigma_taylor_expansion v S (m + 1) y)
-  have hxy := Classical.choose_spec (mp72a102_t3_sigma_taylor_expansion v S (m + 1) (x + y))
-  set ax := Classical.choose (mp72a102_t3_sigma_taylor_expansion v S (m + 1) x) with hax_def
-  set ay := Classical.choose (mp72a102_t3_sigma_taylor_expansion v S (m + 1) y) with hay_def
-  set axy := Classical.choose (mp72a102_t3_sigma_taylor_expansion v S (m + 1) (x + y))
-    with haxy_def
-  have hsum : AdicCompletion.evalₐ (maximalIdeal v.toValuationSubring) (m + 1)
-      ((x + y) - ∑ i ∈ Finset.range (m + 1), S.lift ((fun i => ax i + ay i) i)
-        * algebraMap v.toValuationSubring (lg37_completion v)
-            v.uniformizerSubring ^ i) = 0 := by
-    have e : (x + y) - ∑ i ∈ Finset.range (m + 1), S.lift (ax i + ay i)
-          * algebraMap v.toValuationSubring (lg37_completion v)
-              v.uniformizerSubring ^ i
-        = (x - ∑ i ∈ Finset.range (m + 1), S.lift (ax i)
-            * algebraMap v.toValuationSubring (lg37_completion v)
-                v.uniformizerSubring ^ i)
-          + (y - ∑ i ∈ Finset.range (m + 1), S.lift (ay i)
-            * algebraMap v.toValuationSubring (lg37_completion v)
-                v.uniformizerSubring ^ i) := by
-      rw [Finset.sum_congr rfl (fun i _ => by rw [map_add, add_mul]),
-        Finset.sum_add_distrib]
-      ring
-    rw [e, mp72a102_t3_evalDepth_add, hx, hy, add_zero]
-  have key : AdicCompletion.evalₐ (maximalIdeal v.toValuationSubring) (m + 1)
-      (∑ i ∈ Finset.range (m + 1), S.lift ((fun i => (ax i + ay i) - axy i) i)
-        * algebraMap v.toValuationSubring (lg37_completion v)
-            v.uniformizerSubring ^ i) = 0 := by
-    have e1 : (∑ i ∈ Finset.range (m + 1), S.lift ((ax i + ay i) - axy i)
-          * algebraMap v.toValuationSubring (lg37_completion v)
-              v.uniformizerSubring ^ i)
-        = ((x + y) - ∑ i ∈ Finset.range (m + 1), S.lift (axy i)
-            * algebraMap v.toValuationSubring (lg37_completion v)
-                v.uniformizerSubring ^ i)
-          - ((x + y) - ∑ i ∈ Finset.range (m + 1), S.lift (ax i + ay i)
-            * algebraMap v.toValuationSubring (lg37_completion v)
-                v.uniformizerSubring ^ i) := by
-      rw [Finset.sum_congr rfl (fun i _ => by rw [map_sub, sub_mul]),
-        Finset.sum_sub_distrib]
-      ring
-    rw [e1, map_sub, hxy, hsum, sub_zero]
-  have hzero := mp72a103_t2_taylor_coeff_eq_zero_of_depth v S (m + 1)
-    (fun i => (ax i + ay i) - axy i) key m (Nat.lt_succ_self m)
-  have han : axy m = ax m + ay m := (sub_eq_zero.mp hzero).symm
-  simp only [aCoeff, ← hax_def, ← hay_def, ← haxy_def]
-  exact han
-
-theorem aCoeff_smul (v : Place K F) (S : Lg37CompletionSection v) (m : ℕ) (c : K)
-    (x : lg37_completion v) :
-    aCoeff v S m (algebraMap K (lg37_completion v) c * x)
-      = algebraMap K v.ResidueField c * aCoeff v S m x := by
-  have hx := Classical.choose_spec (mp72a102_t3_sigma_taylor_expansion v S (m + 1) x)
-  have hcx := Classical.choose_spec (mp72a102_t3_sigma_taylor_expansion v S (m + 1)
-    (algebraMap K (lg37_completion v) c * x))
-  set ax := Classical.choose (mp72a102_t3_sigma_taylor_expansion v S (m + 1) x) with hax_def
-  set acx := Classical.choose (mp72a102_t3_sigma_taylor_expansion v S (m + 1)
-    (algebraMap K (lg37_completion v) c * x)) with hacx_def
-  have hsmul : AdicCompletion.evalₐ (maximalIdeal v.toValuationSubring) (m + 1)
-      ((algebraMap K (lg37_completion v) c * x)
-        - ∑ i ∈ Finset.range (m + 1),
-            S.lift ((fun i => algebraMap K v.ResidueField c * ax i) i)
-          * algebraMap v.toValuationSubring (lg37_completion v)
-              v.uniformizerSubring ^ i) = 0 := by
-    have e : (algebraMap K (lg37_completion v) c * x)
-          - ∑ i ∈ Finset.range (m + 1), S.lift (algebraMap K v.ResidueField c * ax i)
-            * algebraMap v.toValuationSubring (lg37_completion v)
-                v.uniformizerSubring ^ i
-        = algebraMap K (lg37_completion v) c
-          * (x - ∑ i ∈ Finset.range (m + 1), S.lift (ax i)
-              * algebraMap v.toValuationSubring (lg37_completion v)
-                  v.uniformizerSubring ^ i) := by
-      rw [mul_sub, Finset.mul_sum]
-      congr 1
-      refine Finset.sum_congr rfl (fun i _ => ?_)
-      have hlift : S.lift (algebraMap K v.ResidueField c * ax i)
-          = algebraMap K (lg37_completion v) c * S.lift (ax i) := by
-        rw [← Algebra.smul_def c (ax i), map_smul, Algebra.smul_def]
-      rw [hlift, mul_assoc]
-    rw [e, mp72a102_t3_evalDepth_mul, hx, mul_zero]
-  have key : AdicCompletion.evalₐ (maximalIdeal v.toValuationSubring) (m + 1)
-      (∑ i ∈ Finset.range (m + 1),
-          S.lift ((fun i => algebraMap K v.ResidueField c * ax i - acx i) i)
-        * algebraMap v.toValuationSubring (lg37_completion v)
-            v.uniformizerSubring ^ i) = 0 := by
-    have e1 : (∑ i ∈ Finset.range (m + 1),
-            S.lift (algebraMap K v.ResidueField c * ax i - acx i)
-          * algebraMap v.toValuationSubring (lg37_completion v)
-              v.uniformizerSubring ^ i)
-        = ((algebraMap K (lg37_completion v) c * x)
-            - ∑ i ∈ Finset.range (m + 1), S.lift (acx i)
-              * algebraMap v.toValuationSubring (lg37_completion v)
-                  v.uniformizerSubring ^ i)
-          - ((algebraMap K (lg37_completion v) c * x)
-            - ∑ i ∈ Finset.range (m + 1), S.lift (algebraMap K v.ResidueField c * ax i)
-              * algebraMap v.toValuationSubring (lg37_completion v)
-                  v.uniformizerSubring ^ i) := by
-      rw [Finset.sum_congr rfl (fun i _ => by rw [map_sub, sub_mul]),
-        Finset.sum_sub_distrib]
-      ring
-    rw [e1, map_sub, hcx, hsmul, sub_zero]
-  have hzero := mp72a103_t2_taylor_coeff_eq_zero_of_depth v S (m + 1)
-    (fun i => algebraMap K v.ResidueField c * ax i - acx i) key m (Nat.lt_succ_self m)
-  have han : acx m = algebraMap K v.ResidueField c * ax m := (sub_eq_zero.mp hzero).symm
-  simp only [aCoeff, ← hax_def, ← hacx_def]
-  exact han
-
-theorem aCoeff_shift (v : Place K F) (S : Lg37CompletionSection v) (n : ℕ)
-    (x : lg37_completion v) :
-    aCoeff v S (n + 1)
-        (algebraMap v.toValuationSubring (lg37_completion v) v.uniformizerSubring * x)
-      = aCoeff v S n x := by
-  have ha := Classical.choose_spec (mp72a102_t3_sigma_taylor_expansion v S (n + 1) x)
-  have hpx := Classical.choose_spec (mp72a102_t3_sigma_taylor_expansion v S (n + 2)
-    (algebraMap v.toValuationSubring (lg37_completion v) v.uniformizerSubring * x))
-  set a := Classical.choose (mp72a102_t3_sigma_taylor_expansion v S (n + 1) x) with ha_def
-  set b := Classical.choose (mp72a102_t3_sigma_taylor_expansion v S (n + 2)
-    (algebraMap v.toValuationSubring (lg37_completion v) v.uniformizerSubring * x))
-    with hb_def
-  set c : ℕ → v.ResidueField :=
-    fun i => Nat.rec (motive := fun _ => v.ResidueField) 0 (fun j _ => a j) i with hc_def
-  have hshift : AdicCompletion.evalₐ (maximalIdeal v.toValuationSubring) (n + 2)
-      ((algebraMap v.toValuationSubring (lg37_completion v) v.uniformizerSubring * x)
-        - ∑ i ∈ Finset.range (n + 2), S.lift (c i)
-          * algebraMap v.toValuationSubring (lg37_completion v)
-              v.uniformizerSubring ^ i) = 0 := by
-    have hmul := mp72a102_t3_evalₐ_succ_mul_eq_zero (maximalIdeal v.toValuationSubring)
-      v.uniformizerSubring_mem_maximalIdeal ha
-    have e : (algebraMap v.toValuationSubring (lg37_completion v) v.uniformizerSubring * x)
-          - ∑ i ∈ Finset.range (n + 2), S.lift (c i)
-            * algebraMap v.toValuationSubring (lg37_completion v)
-                v.uniformizerSubring ^ i
-        = algebraMap v.toValuationSubring (lg37_completion v) v.uniformizerSubring
-          * (x - ∑ i ∈ Finset.range (n + 1), S.lift (a i)
-              * algebraMap v.toValuationSubring (lg37_completion v)
-                  v.uniformizerSubring ^ i) := by
-      have hc0 : c 0 = 0 := rfl
-      have hcs : ∀ i, c (i + 1) = a i := fun _ => rfl
-      rw [Finset.sum_range_succ', hc0, _root_.map_zero, zero_mul, add_zero, mul_sub, Finset.mul_sum]
-      congr 1
-      refine Finset.sum_congr rfl (fun i _ => ?_)
-      rw [hcs i, pow_succ]
-      ring
-    rw [e]
-    exact hmul
-  have key : AdicCompletion.evalₐ (maximalIdeal v.toValuationSubring) (n + 2)
-      (∑ i ∈ Finset.range (n + 2), S.lift ((fun i => c i - b i) i)
-        * algebraMap v.toValuationSubring (lg37_completion v)
-            v.uniformizerSubring ^ i) = 0 := by
-    have e1 : (∑ i ∈ Finset.range (n + 2), S.lift (c i - b i)
-          * algebraMap v.toValuationSubring (lg37_completion v)
-              v.uniformizerSubring ^ i)
-        = ((algebraMap v.toValuationSubring (lg37_completion v) v.uniformizerSubring * x)
-            - ∑ i ∈ Finset.range (n + 2), S.lift (b i)
-              * algebraMap v.toValuationSubring (lg37_completion v)
-                  v.uniformizerSubring ^ i)
-          - ((algebraMap v.toValuationSubring (lg37_completion v) v.uniformizerSubring * x)
-            - ∑ i ∈ Finset.range (n + 2), S.lift (c i)
-              * algebraMap v.toValuationSubring (lg37_completion v)
-                  v.uniformizerSubring ^ i) := by
-      rw [Finset.sum_congr rfl (fun i _ => by rw [map_sub, sub_mul]),
-        Finset.sum_sub_distrib]
-      ring
-    rw [e1, map_sub, hpx, hshift, sub_zero]
-  have hzero := mp72a103_t2_taylor_coeff_eq_zero_of_depth v S (n + 2)
-    (fun i => c i - b i) key (n + 1) (Nat.lt_succ_self (n + 1))
-  have hcn : c (n + 1) = a n := rfl
-  have hbn : b (n + 1) = a n := by
-    have := sub_eq_zero.mp hzero
-    rw [hcn] at this
-    exact this.symm
-  simp only [aCoeff, ← ha_def, ← hb_def]
-  exact hbn
-
-theorem aCoeff_shift_pow (v : Place K F) (S : Lg37CompletionSection v) (n k : ℕ)
-    (x : lg37_completion v) :
-    aCoeff v S (n + k)
-        ((algebraMap v.toValuationSubring (lg37_completion v) v.uniformizerSubring) ^ k
-          * x)
-      = aCoeff v S n x := by
-  induction k with
-  | zero => simp
-  | succ k ih =>
-    have hstep : (algebraMap v.toValuationSubring (lg37_completion v)
-          v.uniformizerSubring) ^ (k + 1) * x
-        = algebraMap v.toValuationSubring (lg37_completion v) v.uniformizerSubring
-          * ((algebraMap v.toValuationSubring (lg37_completion v)
-                v.uniformizerSubring) ^ k * x) := by
-      rw [pow_succ]; ring
-    rw [show n + (k + 1) = (n + k) + 1 from by omega, hstep, aCoeff_shift, ih]
-
-theorem aCoeff_one_eq_zero (v : Place K F) (S : Lg37CompletionSection v)
-    {n : ℕ} (hn : 1 ≤ n) : aCoeff v S n 1 = 0 := by
-  have hc := Classical.choose_spec (mp72a102_t3_sigma_taylor_expansion v S (n + 1) 1)
-  set cc := Classical.choose (mp72a102_t3_sigma_taylor_expansion v S (n + 1) 1) with hcc_def
-  set e : ℕ → v.ResidueField := fun i => if i = 0 then 1 else 0 with he_def
-  have hesum : (∑ i ∈ Finset.range (n + 1), S.lift (e i)
-      * algebraMap v.toValuationSubring (lg37_completion v)
-          v.uniformizerSubring ^ i) = 1 := by
-    rw [Finset.sum_eq_single 0]
-    · simp [he_def]
-    · intro i _ hi; simp [he_def, hi]
-    · intro h; exact absurd (Finset.mem_range.mpr (by omega)) h
-  have hevalid : AdicCompletion.evalₐ (maximalIdeal v.toValuationSubring) (n + 1)
-      ((1 : lg37_completion v) - ∑ i ∈ Finset.range (n + 1), S.lift (e i)
-        * algebraMap v.toValuationSubring (lg37_completion v)
-            v.uniformizerSubring ^ i) = 0 := by
-    rw [hesum, sub_self, _root_.map_zero]
-  have key : AdicCompletion.evalₐ (maximalIdeal v.toValuationSubring) (n + 1)
-      (∑ i ∈ Finset.range (n + 1), S.lift ((fun i => e i - cc i) i)
-        * algebraMap v.toValuationSubring (lg37_completion v)
-            v.uniformizerSubring ^ i) = 0 := by
-    have e1 : (∑ i ∈ Finset.range (n + 1), S.lift (e i - cc i)
-          * algebraMap v.toValuationSubring (lg37_completion v)
-              v.uniformizerSubring ^ i)
-        = ((1 : lg37_completion v) - ∑ i ∈ Finset.range (n + 1), S.lift (cc i)
-            * algebraMap v.toValuationSubring (lg37_completion v)
-                v.uniformizerSubring ^ i)
-          - ((1 : lg37_completion v) - ∑ i ∈ Finset.range (n + 1), S.lift (e i)
-            * algebraMap v.toValuationSubring (lg37_completion v)
-                v.uniformizerSubring ^ i) := by
-      rw [Finset.sum_congr rfl (fun i _ => by rw [map_sub, sub_mul]),
-        Finset.sum_sub_distrib]
-      ring
-    rw [e1, map_sub, hc, hevalid, sub_zero]
-  have hzero := mp72a103_t2_taylor_coeff_eq_zero_of_depth v S (n + 1)
-    (fun i => e i - cc i) key n (Nat.lt_succ_self n)
-  have hen : e n = 0 := by simp [he_def, Nat.one_le_iff_ne_zero.mp hn]
-  have : e n - cc n = 0 := hzero
-  rw [hen, zero_sub, neg_eq_zero] at this
-  simp only [aCoeff, ← hcc_def]
-  exact this
-
-theorem clearPow_mem (v : Place K F) (f : F) {N : ℕ} (hN : (-v.ord f).toNat ≤ N) :
-    v.uniformizer ^ (N + 1) * f ∈ v.toValuationSubring := by
-  rcases eq_or_ne f 0 with rfl | hf0
-  · rw [mul_zero]; exact zero_mem _
-  · refine (v.mem_iff_ord_nonneg (mul_ne_zero (v.uniformizer_pow_ne_zero _) hf0)).mpr ?_
-    rw [v.ord_mul (v.uniformizer_pow_ne_zero _) hf0, v.ord_uniformizer_pow]
-    have h := Int.self_le_toNat (-v.ord f)
-    have hNc : ((-v.ord f).toNat : ℤ) ≤ (N : ℤ) := by exact_mod_cast hN
-    omega
-
-noncomputable def clearedHat (v : Place K F) (f : F) {N : ℕ} (hN : (-v.ord f).toNat ≤ N) :
-    lg37_completion v :=
-  algebraMap v.toValuationSubring (lg37_completion v)
-    ⟨v.uniformizer ^ (N + 1) * f, clearPow_mem v f hN⟩
-
-noncomputable def resStar (v : Place K F) (S : Lg37CompletionSection v) (f : F) :
-    v.ResidueField :=
-  aCoeff v S ((-v.ord f).toNat) (clearedHat v f (le_refl _))
-
-theorem aCoeff_clearedHat_of_le (v : Place K F) (S : Lg37CompletionSection v) (f : F)
-    {N : ℕ} (hN : (-v.ord f).toNat ≤ N) :
-    aCoeff v S N (clearedHat v f hN) = resStar v S f := by
-  obtain ⟨k, rfl⟩ := Nat.exists_eq_add_of_le hN
-  unfold clearedHat resStar
-  have hfac : (⟨v.uniformizer ^ (((-v.ord f).toNat + k) + 1) * f,
-        clearPow_mem v f hN⟩ : v.toValuationSubring)
-      = v.uniformizerSubring ^ k
-        * ⟨v.uniformizer ^ ((-v.ord f).toNat + 1) * f, clearPow_mem v f (le_refl _)⟩ := by
-    apply Subtype.ext
-    push_cast [v.coe_uniformizerSubring]
-    ring
-  rw [hfac, map_mul, map_pow]
-  exact aCoeff_shift_pow v S ((-v.ord f).toNat) k _
-
-theorem resStar_add (v : Place K F) (S : Lg37CompletionSection v) (f g : F) :
-    resStar v S (f + g) = resStar v S f + resStar v S g := by
-  set N := (-v.ord f).toNat ⊔ (-v.ord g).toNat ⊔ (-v.ord (f + g)).toNat with hN
-  have hf : (-v.ord f).toNat ≤ N := le_trans le_sup_left le_sup_left
-  have hg : (-v.ord g).toNat ≤ N := le_trans le_sup_right le_sup_left
-  have hfg : (-v.ord (f + g)).toNat ≤ N := le_sup_right
-  rw [← aCoeff_clearedHat_of_le v S f hf, ← aCoeff_clearedHat_of_le v S g hg,
-    ← aCoeff_clearedHat_of_le v S (f + g) hfg, ← aCoeff_add]
-  congr 1
-  unfold clearedHat
-  rw [← map_add]
-  congr 1
-  apply Subtype.ext
-  push_cast
-  ring
-
-theorem resStar_smul (v : Place K F) (S : Lg37CompletionSection v) (c : K) (f : F) :
-    resStar v S (c • f) = c • resStar v S f := by
-  set N := (-v.ord (c • f)).toNat ⊔ (-v.ord f).toNat with hN
-  have hcf : (-v.ord (c • f)).toNat ≤ N := le_sup_left
-  have hf : (-v.ord f).toNat ≤ N := le_sup_right
-  rw [← aCoeff_clearedHat_of_le v S (c • f) hcf, ← aCoeff_clearedHat_of_le v S f hf,
-    Algebra.smul_def c (aCoeff v S N (clearedHat v f hf)), ← aCoeff_smul]
-  congr 1
-  unfold clearedHat
-  rw [IsScalarTower.algebraMap_apply K v.toValuationSubring (lg37_completion v) c, ← map_mul]
-  congr 1
-  apply Subtype.ext
-  push_cast [v.coe_algebraMap, Algebra.smul_def]
-  ring
-
-noncomputable def resStarₗ (v : Place K F) (S : Lg37CompletionSection v) :
-    F →ₗ[K] v.ResidueField where
-  toFun := resStar v S
-  map_add' := resStar_add v S
-  map_smul' c f := by rw [RingHom.id_apply]; exact resStar_smul v S c f
-
-theorem resStar_simplePole (v : Place K F) (S : Lg37CompletionSection v) (f : F)
-    (hf : v.uniformizer * f ∈ v.toValuationSubring) :
-    resStar v S f = IsLocalRing.residue _ ⟨v.uniformizer * f, hf⟩ := by
-  have hM : (-v.ord f).toNat ≤ 1 := by
-    rcases eq_or_ne f 0 with rfl | hf0
-    · rw [v.ord_zero]; simp
-    · have hge : (0 : ℤ) ≤ v.ord (v.uniformizer * f) :=
-        (v.mem_iff_ord_nonneg (mul_ne_zero v.uniformizer_ne_zero hf0)).mp hf
-      rw [v.ord_mul v.uniformizer_ne_zero hf0, v.ord_uniformizer] at hge
-      have := Int.self_le_toNat (-v.ord f)
-      omega
-  rw [← aCoeff_clearedHat_of_le v S f hM]
-  unfold clearedHat
-  have hfac : (⟨v.uniformizer ^ (1 + 1) * f, clearPow_mem v f hM⟩ : v.toValuationSubring)
-      = v.uniformizerSubring * ⟨v.uniformizer * f, hf⟩ := by
-    apply Subtype.ext
-    push_cast [v.coe_uniformizerSubring]
-    ring
-  rw [hfac, map_mul, aCoeff_shift, aCoeff_zero, lg37_residueHat_algebraMap]
-
-theorem resStar_of_mem (v : Place K F) (S : Lg37CompletionSection v) {f : F}
-    (hf : f ∈ v.toValuationSubring) : resStar v S f = 0 := by
-  rw [resStar_simplePole v S f (mul_mem v.uniformizer_mem hf), IsLocalRing.residue_eq_zero_iff]
-  have : (⟨v.uniformizer * f, mul_mem v.uniformizer_mem hf⟩ : v.toValuationSubring)
-      = v.uniformizerSubring * ⟨f, hf⟩ := Subtype.ext rfl
-  rw [this]
-  exact Ideal.mul_mem_right _ _ v.uniformizerSubring_mem_maximalIdeal
-
-theorem resStar_higherPoleMonomial (v : Place K F) (S : Lg37CompletionSection v)
-    {n : ℕ} (hn : 1 ≤ n) : resStar v S (v.uniformizer ^ (n + 1))⁻¹ = 0 := by
-  have hord : v.ord (v.uniformizer ^ (n + 1))⁻¹ = -((n : ℤ) + 1) := by
-    rw [v.ord_inv, v.ord_uniformizer_pow]; push_cast; ring
-  have hM : (-v.ord (v.uniformizer ^ (n + 1))⁻¹).toNat = n + 1 := by
-    rw [hord]; simp
-  have hle : (-v.ord (v.uniformizer ^ (n + 1))⁻¹).toNat ≤ n + 1 := le_of_eq hM
-  rw [← aCoeff_clearedHat_of_le v S (v.uniformizer ^ (n + 1))⁻¹ hle]
-  unfold clearedHat
-  have hfac : (⟨v.uniformizer ^ ((n + 1) + 1) * (v.uniformizer ^ (n + 1))⁻¹,
-        clearPow_mem v (v.uniformizer ^ (n + 1))⁻¹ hle⟩ : v.toValuationSubring)
-      = v.uniformizerSubring := by
-    apply Subtype.ext
-    push_cast [v.coe_uniformizerSubring]
-    rw [pow_succ, mul_right_comm, mul_inv_cancel₀ (v.uniformizer_pow_ne_zero (n + 1)), one_mul]
-  rw [hfac]
-  have : algebraMap v.toValuationSubring (lg37_completion v) v.uniformizerSubring
-      = algebraMap v.toValuationSubring (lg37_completion v) v.uniformizerSubring * 1 := by
-    rw [mul_one]
-  rw [this, aCoeff_shift, aCoeff_one_eq_zero v S hn]
-
-noncomputable def canonicalLocalResidueDataKStar (v : Place K F)
-    (S : Lg37CompletionSection v) : v.CanonicalLocalResidueDataK where
-  res := resStarₗ v S
-  res_of_mem _f hf := resStar_of_mem v S hf
-  res_simplePole f hf := resStar_simplePole v S f hf
-  res_higherPoleMonomial _n hn := resStar_higherPoleMonomial v S hn
-
-end ModularCurve.KwNo6Pin
 end
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 section
@@ -4005,6 +2919,7 @@ theorem mem_lSpace_of_weilSmul_mem_omegaSpace [HasPrincipalDivisors K F]
     linarith
 end AlgebraicCurve
 end
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 noncomputable section
@@ -4028,6 +2943,7 @@ theorem residuePairing_surjective [HasPrincipalDivisors K F]
   exact ⟨⟨f, hfL⟩, Subtype.ext hf.symm⟩
 end AlgebraicCurve
 end
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 noncomputable section
@@ -4044,6 +2960,7 @@ theorem residuePairingSurjective_of_weilDifferentialRankOne [HasPrincipalDivisor
 
 end AlgebraicCurve
 end
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 noncomputable section
@@ -4061,7 +2978,9 @@ theorem residuePairingSurjective_of_riemannIndexFormula
 
 end AlgebraicCurve
 end
+
 end
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 noncomputable section
@@ -4095,6 +3014,7 @@ end SupportMachinery
 end CanonicalKResidueTerm
 end AlgebraicCurve
 end
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 
@@ -4173,6 +3093,7 @@ end Place
 p2m_export "AlgebraicCurve" "Place.exists_trace_residue_ne_zero"
 end AlgebraicCurve
 end
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 section
@@ -4201,6 +3122,7 @@ theorem exists_riemannGenusReachedAt_of_bounded
     linarith
 end AlgebraicCurve
 end
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 noncomputable section
@@ -4218,32 +3140,21 @@ theorem stichtenothGenusExists_of_bounded
   ⟨‹_›, ‹_›, exists_riemannGenusReachedAt_of_bounded hbdd⟩
 end AlgebraicCurve
 end
+
 end
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 section
 set_option maxHeartbeats 6400000
 p2m_open "Polynomial P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.Polynomial IsLocalRing P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.IsLocalRing AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve"
-open ModularCurve.Lg37 ModularCurve.KwNo6Section ModularCurve.KwNo6Pin
+open ModularCurve.Lg37
 open Mp72a102T1
 namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "Place Place.ext Place.coe_algebraMap Place.deg Place.ord_zero Divisor Divisor.degree Divisor.degree_single HasPrincipalDivisors Pic0 Place.ofHeightOneSpectrum HasPrincipalDivisors.exists_divisor Place.ord_restrict Place.mem_fiber Divisor.pullback Divisor.pullback_apply Divisor.degree_pullback SumRamificationInertia Place.valuationSubringAlgebra Place.integralClosureAt Place.algebraMap_integralClosureAt_injective Place.placeOfPrime Place.restrict_placeOfPrime Place.mem_maximalIdeal_iff_adicValuation_lt_one IsCurveOver IsCurveOver.finite_residueField IsCurveOver.deg_eq_one_of_isAlgClosed Place.ordDifferential LSpace ell mem_lSpace_iff_ord lSpace_mono algebraMap_mem_lSpace_zero one_mem_lSpace_zero ConstantsAreBase ell_zero_eq_one_of_constantsAreBase adeleBdd mem_adeleBdd adeleBdd_mono diagonalHom diagonal_mem_adeleBdd_iff adeleSpace adeleBdd_le_adeleSpace diagonal_mem_adeleSpace globalSub diagonal_mem_globalSub map_diagonal_lSpace indexOfSpecialty adeleBddPrincipal indexOfSpecialty_eq omegaSpace omegaSpace_vanishBdd omegaSpace_antitone omegaSpaceEquivIndexDual finrank_omegaSpace_eq_indexOfSpecialty weilDifferentialModule omegaSpace_le_weilDifferentialModule mem_weilDifferentialModule_iff mulAdele_apply adeleSpaceMul adeleSpaceMul_coe weilSmul weilSmul_apply weilSmul_one weilSmul_mul weilSmul_injective weilSmul_mem_omegaSpace_add residuePairing residuePairing_apply_coe residuePairing_injective WeilDifferentialRankOne RiemannGenusReachedAt RiemannGenusReached StichtenothGenusExists RiemannGenusBounded HasCanonicalDivisor canonicalDivisorOf canonicalDivisorOf_apply genus HasLocalResidue HasCanonicalLocalResidueKStar single_mem_adeleBdd adeleSingle adeleSingle_coe HasSeparableResidue kaehlerResidueTermKFam kaehlerResidueTermKFam_apply weilOfKaehlerK weilOfKaehlerK_apply weilOfKaehlerK_vanish_adeleBdd_canonical ResidueTheoremK HasSeparableResidue.trace_ne_zero RiemannIndexFormula WeilDualityAdelic WeilDuality WeilOmegaEllAgrees FunctionFieldRiemannRoch functionFieldRiemannRoch_of_riemann_and_duality weilDuality_of_riemannIndex_of_adelic"
-p2m_open "AlgebraicCurve"
-variable {K F : Type*} [Field K] [Field F] [Algebra K F]
-
-theorem completionSection_nonempty_generic (v : Place K F)
-    [FiniteDimensional K v.ResidueField] [Algebra.IsSeparable K v.ResidueField] :
-    Nonempty (Lg37CompletionSection v) := by
-  obtain ⟨ᾱ, htop⟩ := Field.exists_primitive_element K v.ResidueField
-  have hint : IsIntegral K ᾱ := Algebra.IsIntegral.isIntegral ᾱ
-  have hmon : (minpoly K ᾱ).Monic := minpoly.monic hint
-  have hsep : (minpoly K ᾱ).Separable := Algebra.IsSeparable.isSeparable K ᾱ
-  have haevalbar : (aeval ᾱ) (minpoly K ᾱ) = 0 := minpoly.aeval K ᾱ
-  obtain ⟨αhat, hαroot, hαres⟩ :=
-    mp72a102_t1_exists_completion_root_of_residue_root v hmon hsep haevalbar
-  exact ⟨sectionOfPrimitiveRoot v hint htop αhat hαroot hαres⟩
 end AlgebraicCurve
 end
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 
@@ -4437,6 +3348,7 @@ theorem stichtenothGenusExists_of_hasPoleDivisorPackage [IsCurveOver K F]
 
 end AlgebraicCurve
 end
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 
@@ -4634,6 +3546,7 @@ theorem hasPoleDivisorPackage_of_hasIntegralBasisRegularOutside
 
 end AlgebraicCurve
 end
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 
@@ -4799,6 +3712,7 @@ theorem stichtenothGenusExists_of_adjoin_x_isFractionRing [IsCurveOver K F]
 end Headline
 end AlgebraicCurve
 end
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 
@@ -4903,6 +3817,7 @@ theorem stichtenothGenusExists_of_ratFunc_tower :
 end RationalFunctionField
 end AlgebraicCurve
 end
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 section
@@ -4933,6 +3848,7 @@ end LyingOver
 end RationalFunctionField
 end AlgebraicCurve
 end
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 noncomputable section
@@ -4963,6 +3879,7 @@ end LyingOver
 end RationalFunctionField
 end AlgebraicCurve
 end
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 noncomputable section
@@ -4986,6 +3903,7 @@ end LyingOver
 end RationalFunctionField
 end AlgebraicCurve
 end
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 noncomputable section
@@ -5008,6 +3926,7 @@ theorem finiteDimensional_lSpace_zero_of_constantsAreBase (hC : ConstantsAreBase
 end RationalFunctionField
 end AlgebraicCurve
 end
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 noncomputable section
@@ -5032,7 +3951,9 @@ theorem stichtenothGenusExists (hC : ConstantsAreBase K F) :
 end RationalFunctionField
 end AlgebraicCurve
 end
+
 end
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 section
@@ -5042,7 +3963,6 @@ set_option linter.unusedSectionVars false
 noncomputable section
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve"
 namespace ModularCurve
-local notation "Qbar" => AlgebraicClosure ℚ
 p2m_open "IsLocalRing P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.IsLocalRing"
 section AlgClosedEngine
 variable (K F : Type*) [Field K] [Field F] [Algebra K F] [HasCanonicalLocalResidueKStar K F]
@@ -5057,7 +3977,9 @@ theorem p0n20_rr_constantsAreBase_of_isAlgClosed : ConstantsAreBase K F := by
 end AlgClosedEngine
 end ModularCurve
 end
+
 end
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 section
@@ -5074,8 +3996,6 @@ p2m_open "IsDedekindDomain P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_res
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve"
 
 namespace ModularCurve
-
-local notation "Qbar" => AlgebraicClosure ℚ
 
 section CanonicalProbe
 
@@ -5333,7 +4253,9 @@ theorem p0n25_wkc_functionFieldRiemannRoch_of_residueTheoremK
 end MirrorAssembly
 end ModularCurve
 end
+
 end
+
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 theorem solution

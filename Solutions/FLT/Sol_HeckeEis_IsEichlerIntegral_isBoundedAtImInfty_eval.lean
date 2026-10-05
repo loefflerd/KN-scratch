@@ -1,11 +1,7 @@
-import Mathlib
-import Definitions.FLT.Def_HeckeEis_BinaryFormRep
-import Definitions.FLT.Def_Gamma0CoeffCohomology
-import Definitions.FLT.Def_HeckeEis_EichlerIntegral
 import Theorems.FLT.Thm_HeckeEis_IsEichlerIntegral_hasDerivAt_eval_iterate_pderiv
+import Theorems.FLT.Thm_HeckeEis_jFactor_pow_mul_eval_binaryFormRepSL
 import Theorems.FLT.Thm_MvPolynomial_IsHomogeneous_iterate_pderiv_eq_zero_of_lt
 import Theorems.FLT.Thm_UpperHalfPlane_isBoundedAtImInfty_of_hasDerivAt_of_periodic
-import Theorems.FLT.Thm_HeckeEis_jFactor_pow_mul_eval_binaryFormRepSL
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

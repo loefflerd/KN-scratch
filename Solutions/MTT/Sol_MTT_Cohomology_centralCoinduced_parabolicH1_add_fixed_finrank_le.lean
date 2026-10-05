@@ -1,10 +1,13 @@
-import Mathlib
+import Mathlib.Analysis.CStarAlgebra.Classes
+import Mathlib.Combinatorics.Quiver.ReflQuiver
+import Mathlib.GroupTheory.Schreier
+import Mathlib.RepresentationTheory.FiniteIndex
+
 import Definitions.MTT.Def_MTT_FullParabolicCohomology
 import Definitions.MTT.Def_MTT_NormalizedParabolicCocycles
-import Definitions.FLT.Def_Gamma0CoeffCohomology
 import Theorems.FLT.Thm_HeckeEis_exists_eq_smul_X_pow_of_binaryFormRepSL_T_zpow_eq_self
-import Theorems.FLT.Thm_Rep_finiteDimensional_coind_and_finrank_coind_eq_index_mul
 import Theorems.FLT.Thm_HeckeEis_finrank_coeffH1par_top_add_le
+import Theorems.FLT.Thm_Rep_finiteDimensional_coind_and_finrank_coind_eq_index_mul
 
 /-! # The central-fixed coinduced cohomology bound via three fixed spaces -/
 
@@ -598,4 +601,3 @@ theorem solution {N n : ℕ} (hN : 0 < N) (hn : 0 < n) :
           ModularGroup.T - LinearMap.id).ker ≤
       Module.finrank ℂ (MTT.Cohomology.centralCoinduced N n) :=
   MTT.Cohomology.centralCoinduced_parabolicH1_add_fixed_finrank_le hN hn
-

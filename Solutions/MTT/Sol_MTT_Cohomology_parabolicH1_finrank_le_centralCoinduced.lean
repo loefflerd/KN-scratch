@@ -1,7 +1,8 @@
-import Mathlib
+import Mathlib.LinearAlgebra.Matrix.FixedDetMatrices
+
 import Definitions.MTT.Def_MTT_FullParabolicCohomology
-import Theorems.MTT.Thm_MTT_Cohomology_exists_parabolic_coinduced_cocycle
 import Theorems.FLT.Thm_Rep_finiteDimensional_coind_and_finrank_coind_eq_index_mul
+import Theorems.MTT.Thm_MTT_Cohomology_exists_parabolic_coinduced_cocycle
 
 /-! # Parabolic Shapiro comparison with central-fixed coinduced coefficients -/
 
@@ -94,10 +95,6 @@ theorem centralAverage_cocycle (c : groupCohomology.cocycles₁ A) (g : G) :
   change (2 : ℂ)⁻¹ • (c g + A.ρ z (c g)) = _
   rw [h', map_smul]
   module
-
-theorem centralFixedRep_action (v : centralFixedRep A z hz) :
-    (centralFixedRep A z hz).ρ z v = v :=
-  Subtype.ext ((mem_centralFixed A z v.val).mp v.property)
 
 end Rep
 

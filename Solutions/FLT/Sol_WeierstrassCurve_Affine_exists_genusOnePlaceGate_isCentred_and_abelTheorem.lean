@@ -1,7 +1,6 @@
 import Mathlib.RingTheory.Polynomial.DegreeLT
 
 import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
-import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
 import Definitions.FLT.Def_WeierstrassCurve_GenusOnePlaceGateCentred
 import Theorems.FLT.Thm_AlgebraicCurve_Place_ord_eq_neg_log_of_valuationSubring_eq
 import Definitions.FLT.Def_P2M_Util
@@ -154,14 +153,6 @@ open scoped Polynomial
 
 namespace AlgebraicCurve
 p2m_open "AlgebraicCurve"
-
-theorem le_exp_neg_one_of_lt_one {x : ℤᵐ⁰} (hx : x < 1) : x ≤ exp (-1 : ℤ) := by
-  rcases eq_or_ne x 0 with rfl | hx0
-  · exact zero_le
-  · rw [← exp_log hx0] at hx ⊢
-    rw [show (1 : ℤᵐ⁰) = exp 0 from rfl, exp_lt_exp] at hx
-    rw [exp_le_exp]
-    omega
 
 namespace Place
 end Place
@@ -789,12 +780,6 @@ def geomPointEquivPlace : W.Point ≃ AlgebraicCurve.Place F W.FunctionField :=
 omit [DecidableEq F] in
 @[scoped simp]
 theorem geomPointEquivPlace_apply (P : W.Point) : geomPointEquivPlace P = geomPlaceOfPoint P := rfl
-
-omit [DecidableEq F] in
-@[scoped simp]
-theorem geomPointEquivPlace_symm_geomPlaceOfPoint (P : W.Point) :
-    geomPointEquivPlace.symm (geomPlaceOfPoint (W := W) P) = P :=
-  geomPointEquivPlace.symm_apply_apply P
 
 def geomDivisorSum : AlgebraicCurve.Divisor F W.FunctionField →+ W.Point :=
   Finsupp.liftAddHom fun v => zmultiplesHom W.Point (geomPointEquivPlace.symm v)
@@ -1733,115 +1718,6 @@ p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 p2m_open "WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing AlgebraicCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.AlgebraicCurve"
 
 variable {F : Type*} [Field F] {W : Affine F}
-
-theorem algebraMap_polynomial_eq_polyToFunctionField :
-    algebraMap F[X] W.FunctionField = polyToFunctionField W :=
-  IsScalarTower.algebraMap_eq F[X] W.CoordinateRing W.FunctionField
-
-theorem algebraMap_polynomial_injective :
-    Function.Injective (algebraMap F[X] W.FunctionField) := by
-  rw [algebraMap_polynomial_eq_polyToFunctionField]
-  exact polyToFunctionField_injective
-
-variable (W) in
-def ratFuncToFunctionField : RatFunc F →+* W.FunctionField :=
-  IsFractionRing.lift algebraMap_polynomial_injective
-
-@[scoped simp]
-theorem ratFuncToFunctionField_algebraMap (p : F[X]) :
-    ratFuncToFunctionField W (algebraMap F[X] (RatFunc F) p)
-      = algebraMap F[X] W.FunctionField p :=
-  IsFractionRing.lift_algebraMap algebraMap_polynomial_injective p
-
-scoped instance : Algebra (RatFunc F) W.FunctionField :=
-  (ratFuncToFunctionField W).toAlgebra
-
-scoped instance : IsScalarTower F[X] (RatFunc F) W.FunctionField :=
-  IsScalarTower.of_algebraMap_eq fun p => (ratFuncToFunctionField_algebraMap p).symm
-
-scoped instance : IsScalarTower F (RatFunc F) W.FunctionField := by
-  refine IsScalarTower.of_algebraMap_eq fun c => ?_
-  rw [IsScalarTower.algebraMap_apply F F[X] (RatFunc F) c,
-    ← IsScalarTower.algebraMap_apply F[X] (RatFunc F) W.FunctionField,
-    Polynomial.algebraMap_eq, algebraMap_polynomial_eq_polyToFunctionField]
-  exact (polyToFunctionField_C c).symm
-
-variable (W) in
-def yCoord : W.FunctionField :=
-  algebraMap W.CoordinateRing W.FunctionField (CoordinateRing.mk W Y)
-
-variable (W) in
-def weierstrassQuadratic : Polynomial (RatFunc F) :=
-  X ^ 2 + (C (algebraMap F[X] (RatFunc F) (C W.a₁ * X + C W.a₃)) * X
-    - C (algebraMap F[X] (RatFunc F) (X ^ 3 + C W.a₂ * X ^ 2 + C W.a₄ * X + C W.a₆)))
-
-theorem weierstrassQuadratic_sub_degree_lt :
-    (C (algebraMap F[X] (RatFunc F) (C W.a₁ * X + C W.a₃)) * X
-      - C (algebraMap F[X] (RatFunc F)
-        (X ^ 3 + C W.a₂ * X ^ 2 + C W.a₄ * X + C W.a₆))).degree < ((2 : ℕ) : WithBot ℕ) := by
-  rw [sub_eq_add_neg, ← Polynomial.C_neg]
-  exact lt_of_le_of_lt Polynomial.degree_linear_le (by exact_mod_cast Nat.one_lt_two)
-
-theorem weierstrassQuadratic_monic : (weierstrassQuadratic W).Monic :=
-  monic_X_pow_add weierstrassQuadratic_sub_degree_lt
-
-theorem yCoord_relation :
-    yCoord W * yCoord W
-      = polyToFunctionField W (X ^ 3 + C W.a₂ * X ^ 2 + C W.a₄ * X + C W.a₆)
-        - polyToFunctionField W (C W.a₁ * X + C W.a₃) * yCoord W := by
-  have h1 := smul_basis_mul_Y (W' := W) 0 1
-  rw [zero_smul, zero_add, one_smul, one_mul, one_mul, zero_sub] at h1
-  have h2 := congrArg (algebraMap W.CoordinateRing W.FunctionField) h1
-  rw [map_mul, algebraMap_smul_basis, _root_.map_neg, neg_mul, ← sub_eq_add_neg] at h2
-  exact h2
-
-theorem aeval_yCoord_weierstrassQuadratic :
-    Polynomial.aeval (yCoord W) (weierstrassQuadratic W) = 0 := by
-  have hc : ∀ p : F[X],
-      algebraMap (RatFunc F) W.FunctionField (algebraMap F[X] (RatFunc F) p)
-        = polyToFunctionField W p := fun p => by
-    rw [← IsScalarTower.algebraMap_apply F[X] (RatFunc F) W.FunctionField,
-      algebraMap_polynomial_eq_polyToFunctionField]
-  simp only [weierstrassQuadratic, map_add, map_sub, map_mul, map_pow, Polynomial.aeval_X,
-    Polynomial.aeval_C, hc]
-  rw [sq]
-  have hrel := yCoord_relation (W := W)
-  simp only [map_add, map_mul, map_pow] at hrel ⊢
-  linear_combination hrel
-
-theorem isIntegral_yCoord : _root_.IsIntegral (RatFunc F) (yCoord W) :=
-  ⟨weierstrassQuadratic W, weierstrassQuadratic_monic, by
-    rw [← Polynomial.aeval_def]; exact aeval_yCoord_weierstrassQuadratic⟩
-
-theorem adjoin_yCoord_eq_top :
-    IntermediateField.adjoin (RatFunc F) {yCoord W} = ⊤ := by
-  rw [eq_top_iff]
-  rintro z -
-  have hpoly : ∀ p : F[X],
-      polyToFunctionField W p ∈ IntermediateField.adjoin (RatFunc F) {yCoord W} := by
-    intro p
-    rw [← algebraMap_polynomial_eq_polyToFunctionField,
-      IsScalarTower.algebraMap_apply F[X] (RatFunc F) W.FunctionField]
-    exact IntermediateField.algebraMap_mem _ _
-  have hcoord : ∀ r : W.CoordinateRing,
-      algebraMap W.CoordinateRing W.FunctionField r
-        ∈ IntermediateField.adjoin (RatFunc F) {yCoord W} := by
-    intro r
-    obtain ⟨p, q, rfl⟩ := exists_smul_basis_eq r
-    rw [algebraMap_smul_basis]
-    exact add_mem (hpoly p)
-      (mul_mem (hpoly q) (IntermediateField.mem_adjoin_simple_self _ _))
-  obtain ⟨a, b, hb, hab⟩ := IsFractionRing.div_surjective (A := W.CoordinateRing) z
-  rw [← hab]
-  exact div_mem (hcoord a) (hcoord b)
-
-scoped instance : FiniteDimensional (RatFunc F) W.FunctionField := by
-  have h1 : FiniteDimensional (RatFunc F)
-      (IntermediateField.adjoin (RatFunc F) {yCoord W}) :=
-    IntermediateField.adjoin.finiteDimensional isIntegral_yCoord
-  rw [adjoin_yCoord_eq_top] at h1
-  exact (IntermediateField.topEquiv
-    (F := RatFunc F) (E := W.FunctionField)).toLinearEquiv.finiteDimensional
 
 end WeierstrassCurve.Affine
 end

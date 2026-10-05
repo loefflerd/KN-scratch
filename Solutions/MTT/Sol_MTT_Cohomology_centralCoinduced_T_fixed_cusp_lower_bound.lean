@@ -1,16 +1,6 @@
-import Definitions.MTT.Def_MTT_FullParabolicCohomology
-import Definitions.MTT.Def_MTT_ParabolicCohomology
-import Mathlib.GroupTheory.Coset.Basic
 import Mathlib.GroupTheory.DoubleCoset
-import Mathlib.GroupTheory.GroupAction.Quotient
-import Mathlib.GroupTheory.Index
-import Mathlib.LinearAlgebra.Dimension.Constructions
-import Mathlib.LinearAlgebra.Matrix.Trace
-import Mathlib.LinearAlgebra.Pi
-import Mathlib.RepresentationTheory.Coinduced
-import Mathlib.RepresentationTheory.Rep.Res
-import Mathlib.Tactic
-import Mathlib.Tactic.Module
+
+import Definitions.MTT.Def_MTT_FullParabolicCohomology
 
 /-! # Coinduction of a restricted representation as functions on left cosets -/
 
@@ -86,9 +76,6 @@ def fullSymRep (n : ℕ) : Rep ℂ SL(2, ℤ) :=
     { toFun := fun g => ⟨g, Subgroup.mem_top g⟩
       map_one' := rfl
       map_mul' := fun _ _ => rfl })
-
-theorem gammaOneRep_eq_res_fullSymRep (N n : ℕ) :
-    gammaOneRep N n = Rep.res (CongruenceSubgroup.Gamma1 N).subtype (fullSymRep n) := rfl
 
 end MTT.Cohomology
 
@@ -300,10 +287,6 @@ section
 open scoped MatrixGroups Classical
 
 namespace MTT.Cohomology
-
-abbrev translationOrbits (N : ℕ) :=
-  MulAction.orbitRel.Quotient (Subgroup.zpowers ModularGroup.T)
-    (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma1 N)
 
 abbrev signedTranslationOrbits (N : ℕ) :=
   MulAction.orbitRel.Quotient

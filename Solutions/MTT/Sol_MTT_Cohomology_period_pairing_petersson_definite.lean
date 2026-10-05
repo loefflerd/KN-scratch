@@ -1,8 +1,7 @@
-import Definitions.MTT.Def_MTT_PeriodPairing
-import Mathlib.NumberTheory.ModularForms.Bounds
-import Mathlib.Analysis.Complex.CauchyIntegral
-import Mathlib.MeasureTheory.Integral.Prod
 import Mathlib.Analysis.SpecialFunctions.ImproperIntegrals
+import Mathlib.NumberTheory.ModularForms.Bounds
+
+import Definitions.MTT.Def_MTT_PeriodPairing
 
 /-!
 # The period contraction is a nonzero multiple of the Petersson norm

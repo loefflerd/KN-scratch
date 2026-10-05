@@ -1,4 +1,3 @@
-import Definitions.FLT.Def_ModularCurve_JqCoeff
 import Definitions.FLT.Def_ModularCurve_PhiGen
 import Theorems.FLT.Thm_ModularCurve_isIntegral_jqNModC_mul
 import Definitions.FLT.Def_P2M_Util

@@ -1,10 +1,7 @@
 import Definitions.FLT.Def_AlgebraicCurve_Differentials
-import Theorems.FLT.Thm_KaehlerDifferential_span_D_eq_top_of_transcendental
-import Theorems.FLT.Thm_KaehlerDifferential_D_ne_zero_of_transcendental
-import Theorems.FLT.Thm_AlgebraicCurve_isAlgebraic_adjoin_of_transcendental
 import Theorems.FLT.Thm_AlgebraicCurve_Place_transcendental_of_ord_ne_zero
-import Theorems.FLT.Thm_AlgebraicCurve_Place_exists_ord_eq_one
-import Mathlib.FieldTheory.Perfect
+import Theorems.FLT.Thm_AlgebraicCurve_isAlgebraic_adjoin_of_transcendental
+import Theorems.FLT.Thm_KaehlerDifferential_D_ne_zero_of_transcendental
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000
@@ -41,38 +38,10 @@ theorem D_ne_zero_of_ord_ne_zero (v : Place K F) {t : F} (ht : v.ord t ≠ 0) : 
   KaehlerDifferential.D_ne_zero_of_transcendental K t (v.transcendental_of_ord_ne_zero ht)
 
 include x in
-theorem exists_eq_smul_D_of_ord_ne_zero (v : Place K F) {t : F} (ht : v.ord t ≠ 0) (ω : Ω[F⁄K]) :
-    ∃ g : F, ω = g • D K F t := by
-  have := isSeparable_adjoin x v ht
-  have hspan := KaehlerDifferential.span_D_eq_top_of_transcendental K t (v.transcendental_of_ord_ne_zero ht)
-  have hω : ω ∈ Submodule.span F {D K F t} := by rw [hspan]; trivial
-  obtain ⟨g, hg⟩ := Submodule.mem_span_singleton.mp hω
-  exact ⟨g, hg.symm⟩
-
-include x in
-theorem diffCoeff_smul_D_of_ord_ne_zero (v : Place K F) {t : F} (ht : v.ord t ≠ 0) (ω : Ω[F⁄K]) :
-    Place.diffCoeff t ω • D K F t = ω :=
-  Place.diffCoeff_smul_D (exists_eq_smul_D_of_ord_ne_zero x v ht ω)
-
-include x in
 theorem diffCoeff_smul_of_ord_ne_zero (v : Place K F) {t : F} (ht : v.ord t ≠ 0) (g : F) :
     Place.diffCoeff t (g • D K F t) = g :=
   smul_left_injective F (D_ne_zero_of_ord_ne_zero x v ht)
     (Place.diffCoeff_smul_D ⟨g, rfl⟩)
-
-include x in
-theorem ordDiff_smul_D_uniformizer (v : Place K F) (g : F) :
-    v.ordDiff (g • D K F v.uniformizer_alt) = v.ord g := by
-  have h1 : v.ord v.uniformizer_alt = 1 := v.ord_uniformizer_alt v.exists_ord_eq_one
-  rw [Place.ordDiff_def, diffCoeff_smul_of_ord_ne_zero x v (by rw [h1]; exact one_ne_zero)]
-
-include x in
-theorem ordDiff_zero (v : Place K F) : v.ordDiff 0 = 0 := by
-  simpa using ordDiff_smul_D_uniformizer x v 0
-
-include x in
-theorem ordDiff_D_uniformizer (v : Place K F) : v.ordDiff (D K F v.uniformizer_alt) = 0 := by
-  simpa using ordDiff_smul_D_uniformizer x v 1
 
 end AlgebraicCurve.FF2R3
 

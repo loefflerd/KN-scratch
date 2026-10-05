@@ -1,7 +1,7 @@
-import Mathlib
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Data.Int.Star
+
 import Definitions.FLT.Def_ModularCurve_X1
-import Definitions.FLT.Def_ModularForm_HeckeOperator
-import Definitions.FLT.Def_FLTPrelim_Modularity
 import Theorems.FLT.Thm_UpperHalfPlane_qCoeff_comp_heckeDiagMatrix_smul
 import Definitions.FLT.Def_P2M_Util
 

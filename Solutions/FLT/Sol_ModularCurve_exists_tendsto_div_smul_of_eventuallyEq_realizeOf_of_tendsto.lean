@@ -1,5 +1,3 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_ComplexPlaceDictionaryOf
 import Theorems.FLT.Thm_ModularCurve_realizeOf_eq_div
 import Definitions.FLT.Def_P2M_Util
 
@@ -182,32 +180,6 @@ private theorem eventually_ne_zero_atImInfty {N : ℕ} [NeZero N] {F : ℍ → �
   rw [hid τ]
   exact mul_ne_zero (pow_ne_zero _ (Complex.exp_ne_zero _)) hτ
 
-private theorem tendsto_div_atImInfty_of_triple {N : ℕ} [NeZero N] {G H : ℍ → ℂ}
-    (pG : Periodic (G ∘ ofComplex) N) (dG : MDiff G) (bG : IsBoundedAtImInfty G)
-    (pH : Periodic (H ∘ ofComplex) N) (dH : MDiff H) (bH : IsBoundedAtImInfty H)
-    (hG0 : qExpansion N G ≠ 0) (hH0 : qExpansion N H ≠ 0)
-    (hord : (qExpansion N G).order = (qExpansion N H).order) :
-    ∃ L : ℂ, L ≠ 0 ∧ Tendsto (fun τ : ℍ => G τ / H τ) atImInfty (𝓝 L) := by
-  have hN : (0 : ℝ) < N := by exact_mod_cast Nat.pos_of_ne_zero (NeZero.ne N)
-  obtain ⟨uG, cG, -, nG, idG⟩ := exists_chart pG dG bG hG0
-  obtain ⟨uH, cH, -, nH, idH⟩ := exists_chart pH dH bH hH0
-  have hm : (qExpansion (N : ℝ) G).order.toNat = (qExpansion (N : ℝ) H).order.toNat := by
-    rw [hord]
-  refine ⟨uG 0 / uH 0, div_ne_zero nG nH, ?_⟩
-  have hTG : Tendsto (fun τ : ℍ => uG (Periodic.qParam N τ)) atImInfty (𝓝 (uG 0)) :=
-    cG.tendsto.comp (qParam_tendsto_atImInfty hN)
-  have hTH : Tendsto (fun τ : ℍ => uH (Periodic.qParam N τ)) atImInfty (𝓝 (uH 0)) :=
-    cH.tendsto.comp (qParam_tendsto_atImInfty hN)
-  refine (hTG.div hTH nH).congr fun τ => ?_
-  have hqne : Periodic.qParam (N : ℝ) (τ : ℂ) ^ (qExpansion (N : ℝ) H).order.toNat ≠ 0 :=
-    pow_ne_zero _ (Complex.exp_ne_zero _)
-  rw [Pi.div_apply, idG τ, idH τ, hm, mul_div_mul_left _ _ hqne]
-
-private theorem div_comp_smul_eq_div_slash (k : ℤ) (g h : ℍ → ℂ) (σ : SL(2, ℤ)) (τ : ℍ) :
-    g (σ • τ) / h (σ • τ) = (g ∣[k] σ) τ / (h ∣[k] σ) τ := by
-  rw [SL_slash_apply, SL_slash_apply,
-    mul_div_mul_right _ _ (zpow_ne_zero _ (denom_ne_zero _ τ))]
-
 theorem qExpansion_slash_ne_zero
     (h : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) (σ : SL(2, ℤ)) (hh : h ≠ 0) :
     qExpansion (wd Γ) (⇑h ∣[k] σ) ≠ 0 := by
@@ -222,51 +194,6 @@ theorem qExpansion_slash_ne_zero
   ext τ
   rw [h1]
   rfl
-
-private theorem qParam_one_eq_pow (N : ℕ) [NeZero N] (z : ℂ) :
-    Periodic.qParam 1 z = Periodic.qParam N z ^ (N : ℕ) := by
-  unfold Periodic.qParam
-  rw [← Complex.exp_nat_mul]
-  congr 1
-  have hN : (N : ℂ) ≠ 0 := Nat.cast_ne_zero.mpr (NeZero.ne N)
-  push_cast
-  field_simp
-
-private theorem qExpansion_natCast_coeff {F : ℍ → ℂ} (N : ℕ) [NeZero N]
-    (p1 : Periodic (F ∘ ofComplex) 1) (dF : MDiff F) (bF : IsBoundedAtImInfty F)
-    (n : ℕ) :
-    (qExpansion N F).coeff n =
-      if N ∣ n then (qExpansion 1 F).coeff (n / N) else 0 := by
-  classical
-  have hN : (0 : ℝ) < N := by exact_mod_cast Nat.pos_of_ne_zero (NeZero.ne N)
-  have pN : Periodic (F ∘ ofComplex) (N : ℝ) := by
-    simpa using p1.nat_mul N
-  set c : ℕ → ℂ := fun j => if N ∣ j then (qExpansion 1 F).coeff (j / N) else 0 with hc
-  have key : ∀ τ : ℍ, HasSum (fun j : ℕ => c j • Periodic.qParam N τ ^ j) (F τ) := by
-    intro τ
-    have h1 : HasSum (fun j : ℕ => (qExpansion 1 F).coeff j • Periodic.qParam 1 τ ^ j)
-        (F τ) := hasSum_qExpansion one_pos p1 dF bF τ
-    have h2 : ∀ j : ℕ, (qExpansion 1 F).coeff j • Periodic.qParam 1 (τ : ℂ) ^ j =
-        c (N * j) • Periodic.qParam N (τ : ℂ) ^ (N * j) := by
-      intro j
-      rw [qParam_one_eq_pow N, ← pow_mul, hc]
-      simp [Nat.mul_div_cancel_left j (Nat.pos_of_ne_zero (NeZero.ne N))]
-    have hinj : Function.Injective (fun j : ℕ => N * j) :=
-      fun a b hab => Nat.eq_of_mul_eq_mul_left (Nat.pos_of_ne_zero (NeZero.ne N)) hab
-    have hoff : ∀ j : ℕ, j ∉ Set.range (fun i : ℕ => N * i) →
-        c j • Periodic.qParam N (τ : ℂ) ^ j = 0 := by
-      intro j hj
-      have hdvd : ¬ N ∣ j := by
-        rintro ⟨i, rfl⟩
-        exact hj ⟨i, rfl⟩
-      rw [hc]
-      simp [hdvd]
-    simp only [h2] at h1
-    exact (hinj.hasSum_iff hoff).mp h1
-  have hA : AnalyticAt ℂ (cuspFunction (N : ℝ) F) 0 :=
-    analyticAt_cuspFunction_zero hN pN dF bF
-  let : FunLike (ℍ → ℂ) ℍ ℂ := ⟨id, fun _ _ hfg => hfg⟩
-  exact (qExpansion_coeff_unique F hN hA key n).symm
 
 end S3CuspLimit
 p2m_reactivate "P2MW.S_ModularCurve_exists_tendsto_div_smul_of_eventuallyEq_realizeOf_of_tendsto.Ws49.LIMTR.S3CuspLimit"

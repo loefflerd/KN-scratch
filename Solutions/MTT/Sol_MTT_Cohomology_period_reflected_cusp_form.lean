@@ -1,5 +1,4 @@
 import Definitions.MTT.Def_MTT_PeriodPairing
-import Mathlib.Tactic.FinCases
 noncomputable section
 open scoped BigOperators ComplexConjugate MatrixGroups Pointwise ModularForm
 open UpperHalfPlane MTT.Cohomology

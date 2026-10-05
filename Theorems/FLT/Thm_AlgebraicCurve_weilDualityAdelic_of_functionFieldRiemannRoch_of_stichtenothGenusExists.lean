@@ -1,5 +1,3 @@
-import Mathlib
-import Definitions.FLT.Def_AlgebraicCurve_AdelicIndex
 import Definitions.FLT.Def_AlgebraicCurve_RiemannRochRows
 
 set_option maxHeartbeats 4000000

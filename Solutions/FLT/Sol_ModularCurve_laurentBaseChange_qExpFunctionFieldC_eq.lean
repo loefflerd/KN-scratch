@@ -1,6 +1,4 @@
-import Mathlib
 import Definitions.FLT.Def_ModularCurve_X1
-import Definitions.FLT.Def_ModularCurve_LaurentCoeff
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

@@ -1,34 +1,18 @@
-import Mathlib
-import Definitions.FLT.Def_HeckeEis_BinaryFormRep
-import Definitions.FLT.Def_Gamma0CoeffCohomology
-import Definitions.FLT.Def_HeckeEis_EichlerIntegral
 import Theorems.FLT.Thm_HeckeEis_IsEichlerIntegral_hasDerivAt_eval_iterate_pderiv
 import Theorems.FLT.Thm_MvPolynomial_IsHomogeneous_iterate_pderiv_eq_zero_of_lt
-import Definitions.FLT.Def_P2M_Util
-
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
-namespace P2MW.S_HeckeEis_IsEichlerIntegral_eq_zero_of_eval_eq_const
 
 noncomputable section
 
 namespace HeckeEis
-p2m_export "HeckeEis" "BinaryForm IsEichlerIntegral IsEichlerIntegral.hasDerivAt_eval_iterate_pderiv"
 namespace LadderAux
-p2m_open "HeckeEis"
 
 open UpperHalfPlane MvPolynomial Filter Function
-open scoped MatrixGroups Manifold Topology
+open scoped MatrixGroups Topology
 
 variable {n : ℕ} {g : ℍ → ℂ} {G : ℍ → ↥(BinaryForm ℂ n)}
 
 def rung (G : ℍ → ↥(BinaryForm ℂ n)) (j : ℕ) (τ : ℍ) : ℂ :=
   MvPolynomial.eval ![(1 : ℂ), -(τ : ℂ)] ((MvPolynomial.pderiv 1)^[j] ((G τ : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ))
-
-theorem rung_zero (G : ℍ → ↥(BinaryForm ℂ n)) (τ : ℍ) :
-    rung G 0 τ = MvPolynomial.eval ![(1 : ℂ), -(τ : ℂ)] ((G τ : ↥(BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) := rfl
 
 theorem rung_succ_n (G : ℍ → ↥(BinaryForm ℂ n)) (τ : ℍ) : rung G (n + 1) τ = 0 := by
   rw [rung, MvPolynomial.IsHomogeneous.iterate_pderiv_eq_zero_of_lt ((mem_homogeneousSubmodule n _).mp (G τ).2) 1
@@ -42,12 +26,6 @@ theorem hasDerivAt_rung (hG : IsEichlerIntegral n g G) {j : ℕ} (hj : j ≤ n) 
   filter_upwards [isOpen_upperHalfPlaneSet.mem_nhds τ.2] with z hz
   simp only [Function.comp_apply, rung]
   rw [ofComplex_apply_of_im_pos hz]
-
-theorem mdifferentiable_rung (hG : IsEichlerIntegral n g G) {j : ℕ} (hj : j ≤ n) :
-    MDifferentiable 𝓘(ℂ) 𝓘(ℂ) (rung G j) := by
-  rw [UpperHalfPlane.mdifferentiable_iff]
-  intro z hz
-  exact (hasDerivAt_rung hG hj ⟨z, hz⟩).differentiableAt.differentiableWithinAt
 
 theorem eq_zero_of_rung_zero_const (hG : IsEichlerIntegral n g G) {c : ℂ} (hc : ∀ τ : ℍ, rung G 0 τ = c) :
     ∀ τ : ℍ, g τ = 0 := by
@@ -89,7 +67,3 @@ theorem solution {n : ℕ} {g : UpperHalfPlane → ℂ}
       MvPolynomial.eval ![(1 : ℂ), -(τ : ℂ)] ((G τ : ↥(HeckeEis.BinaryForm ℂ n)) : MvPolynomial (Fin 2) ℂ) = c) :
     g = 0 :=
   funext fun τ => HeckeEis.LadderAux.eq_zero_of_rung_zero_const hG hc τ
-
-end S_HeckeEis_IsEichlerIntegral_eq_zero_of_eval_eq_const
-end P2MW
-export P2MW.S_HeckeEis_IsEichlerIntegral_eq_zero_of_eval_eq_const (solution)

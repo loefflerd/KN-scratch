@@ -1,14 +1,6 @@
-import Definitions.MTT.Def_MTT_Cohomology_Integration
-import Mathlib.RingTheory.Flat.Basic
 import Mathlib.Analysis.Complex.HasPrimitives
-import Mathlib.Analysis.Complex.CauchyIntegral
-import Mathlib.Analysis.Complex.Convex
-import Mathlib.Analysis.Calculus.MeanValue
-import Mathlib.Analysis.Complex.RealDeriv
-import Mathlib.MeasureTheory.Integral.IntegralEqImproper
-import Mathlib.Analysis.SpecialFunctions.ImproperIntegrals
-import Mathlib.MeasureTheory.Integral.ExpDecay
 import Mathlib.NumberTheory.ModularForms.LFunction
+
 import Definitions.MTT.Def_MTT_PeriodPairing
 
 /- Eichler primitive infrastructure reused from Chris Birkbeck (cbirkbeck),
@@ -930,25 +922,6 @@ lemma cuspAct_infty_SL (σ : SL(2, ℤ)) :
   rw [OnePoint.smul_infty_eq_ite]
   simp only [mapGL_apply_Q]
 
-lemma cuspAct_mul (γ δ : SL(2, ℤ)) (x : Cusp) :
-    cuspAct (γ * δ) x = cuspAct γ (cuspAct δ x) := by
-  simp only [cuspAct, map_mul, mul_smul]
-
-lemma exists_SL_infty_eq (r : ℚ) : ∃ σ : SL(2, ℤ), cuspAct σ OnePoint.infty = (r : Cusp) := by
-  have hcop : IsCoprime r.num (r.den : ℤ) := Int.isCoprime_iff_gcd_eq_one.mpr r.reduced
-  obtain ⟨s, t, hst⟩ := hcop
-  let σ : SL(2, ℤ) := ⟨!![r.num, -t; (r.den : ℤ), s], by
-    rw [Matrix.det_fin_two_of]; linear_combination hst⟩
-  refine ⟨σ, ?_⟩
-  rw [cuspAct_infty_SL]
-  have h10 : (σ : Matrix (Fin 2) (Fin 2) ℤ) 1 0 = (r.den : ℤ) := rfl
-  have h00 : (σ : Matrix (Fin 2) (Fin 2) ℤ) 0 0 = r.num := rfl
-  have hd : ((r.den : ℤ) : ℚ) ≠ 0 := by exact_mod_cast r.den_ne_zero
-  rw [h10, h00, ite_eq_right hd]
-  congr 1
-  push_cast
-  exact Rat.num_div_den r
-
 lemma cuspPrimitive_coe (f : CuspForm (MTT.GammaOne N) (k : ℤ)) (r : ℚ) :
     cuspPrimitive f (r : Cusp) = cuspPeriodPolynomial f r := rfl
 
@@ -971,11 +944,6 @@ lemma modularIntegral_X_pow (f : ℍ → ℂ) (j : ℕ) (r : ℚ) :
   rw [mul_comm I (t : ℂ)]
 
 /-! #### The value at `σ∞` -/
-
-lemma mob_mul (γ σ : SL(2, ℤ)) {z : ℂ} (hz : z ∈ UHP) :
-    mob ((γ * σ : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) z = mob γ (mob σ z) := by
-  rw [mob_eq_coe_smul (γ * σ) hz, mob_eq_coe_smul γ (mob_mem_UHP σ hz), ofComplex_mob σ hz,
-    map_mul, mul_smul]
 
 lemma vecOfConst_zero (n : ℕ) : vecOfConst n (fun _ => (0 : ℂ)) = 0 := by
   simp [vecOfConst]
@@ -1097,50 +1065,6 @@ theorem cuspPrimitive_eq_Kconst (hN : 0 < N) (hk : 2 ≤ k) (f : CuspForm (MTT.G
       ∫ t : ℝ in Ioi (0 : ℝ), Fj f j ((q : ℂ) + t * I)) * Complex.I_sq
 
 /-! #### The cocycle and the main theorem -/
-
-theorem Kconst_cocycle (hN : 0 < N) (hk : 2 ≤ k) (g : CuspForm (MTT.GammaOne N) (k : ℤ))
-    (γ σ : SL(2, ℤ)) (g' : CuspForm (MTT.GammaOne N) (k : ℤ))
-    (hg' : ⇑g' = ⇑g ∣[(k : ℤ)] Matrix.SpecialLinearGroup.mapGL ℝ γ) :
-    Kconst (γ * σ) g (⇑g ∣[(k : ℤ)] Matrix.SpecialLinearGroup.mapGL ℝ (γ * σ)) (k - 2) =
-      act γ (Kconst σ g' (⇑g' ∣[(k : ℤ)] Matrix.SpecialLinearGroup.mapGL ℝ σ) (k - 2)) +
-        Kconst γ g (⇑g ∣[(k : ℤ)] Matrix.SpecialLinearGroup.mapGL ℝ γ) (k - 2) := by
-  have hI := I_mem_UHP
-  have h1 := transport_cuspForm hN hk g (γ * σ) hI
-  have h2 := transport_cuspForm hN hk g γ (mob_mem_UHP σ hI)
-  have h3 := transport_cuspForm hN hk g' σ hI
-  have hfun : ⇑g ∣[(k : ℤ)] Matrix.SpecialLinearGroup.mapGL ℝ (γ * σ) =
-      ⇑g' ∣[(k : ℤ)] Matrix.SpecialLinearGroup.mapGL ℝ σ := by
-    rw [hg', map_mul, SlashAction.slash_mul]
-  rw [← hg'] at h2 ⊢
-  rw [hfun] at h1 ⊢
-  rw [mob_mul γ σ hI, h2, h3, map_add, act_act, ← Matrix.SpecialLinearGroup.coe_mul] at h1
-  linear_combination (-1 : Binary ℂ) * h1
-
-/-- The slash relation for cusp primitives. -/
-theorem cuspPrimitive_slash_relation_proof (hN : 0 < N) (hk : 2 ≤ k)
-    (g g' : CuspForm (MTT.GammaOne N) (k : ℤ)) (γ : CongruenceSubgroup.Gamma0 N)
-    (hg' : ∀ z : ℍ, g ((Matrix.SpecialLinearGroup.mapGL ℝ γ.val) • z) =
-      (((γ.val 1 0 : ℤ) : ℂ) * z + ((γ.val 1 1 : ℤ) : ℂ)) ^ k * g' z)
-    (x : Cusp) :
-    cuspPrimitive g (cuspAct γ.val x) =
-      act γ.val.val (cuspPrimitive g' x) + cuspPrimitive g (cuspAct γ.val OnePoint.infty) := by
-  have hfun : ⇑g' = ⇑g ∣[(k : ℤ)] Matrix.SpecialLinearGroup.mapGL ℝ γ.val := by
-    funext τ
-    have h := slash_rel (k := k) (⇑g) γ.val τ
-    rw [hg' τ] at h
-    have hd : (((γ.val 1 0 : ℤ) : ℂ) * τ + ((γ.val 1 1 : ℤ) : ℂ)) ^ k ≠ 0 :=
-      pow_ne_zero _ (denom_SL_ne_zero γ.val τ)
-    exact mul_left_cancel₀ hd h
-  rcases x with _ | r
-  · show cuspPrimitive g (cuspAct γ.val OnePoint.infty) =
-      act γ.val.val (cuspPrimitive g' OnePoint.infty) + cuspPrimitive g (cuspAct γ.val OnePoint.infty)
-    rw [cuspPrimitive_infty, map_zero, zero_add]
-  · show cuspPrimitive g (cuspAct γ.val (r : Cusp)) =
-      act γ.val.val (cuspPrimitive g' (r : Cusp)) + cuspPrimitive g (cuspAct γ.val OnePoint.infty)
-    obtain ⟨σ, hσ⟩ := exists_SL_infty_eq r
-    rw [← hσ, ← cuspAct_mul, cuspPrimitive_eq_Kconst hN hk g (γ.val * σ),
-      cuspPrimitive_eq_Kconst hN hk g' σ, cuspPrimitive_eq_Kconst hN hk g γ.val,
-      Kconst_cocycle hN hk g γ.val σ g' hfun, smul_add, map_smul]
 
 end CuspForms
 

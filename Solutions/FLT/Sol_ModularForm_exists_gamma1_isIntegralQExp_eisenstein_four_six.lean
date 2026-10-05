@@ -1,4 +1,5 @@
-import Mathlib
+import Mathlib.NumberTheory.ModularForms.EisensteinSeries.QExpansion
+
 import Definitions.FLT.Def_ModularCurve_X1
 import Definitions.FLT.Def_P2M_Util
 

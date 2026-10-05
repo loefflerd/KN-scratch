@@ -1,5 +1,5 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_X1
+import Definitions.FLT.Def_ModularCurve_LaurentCoeff
+import Definitions.FLT.Def_ModularCurve_X0
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000

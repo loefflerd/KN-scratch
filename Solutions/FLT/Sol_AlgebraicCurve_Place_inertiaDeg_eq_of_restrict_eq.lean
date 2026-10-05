@@ -1,5 +1,3 @@
-import Definitions.FLT.Def_AlgebraicCurve_Correspondence
-import Mathlib.FieldTheory.Galois.Basic
 import Theorems.FLT.Thm_AlgebraicCurve_Place_exists_algEquiv_smul_eq_of_restrict_eq
 import Theorems.FLT.Thm_AlgebraicCurve_SemilinearAut_inertiaDeg_smul
 import Definitions.FLT.Def_P2M_Util

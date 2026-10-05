@@ -1,4 +1,3 @@
-import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 import Theorems.FLT.Thm_AlgebraicCurve_Pic0_nsmul_mk_eq_zero_of_isPrincipal
 import Definitions.FLT.Def_P2M_Util
 

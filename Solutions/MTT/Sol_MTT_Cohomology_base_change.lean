@@ -1,9 +1,5 @@
-import Definitions.MTT.Def_MTT_Cohomology
-import Mathlib.RingTheory.Flat.Basic
-import Mathlib.LinearAlgebra.DirectSum.Finsupp
-import Mathlib.RingTheory.TensorProduct.Basic
-import Theorems.MTT.Thm_MTT_Cohomology_manin_generation
 import Theorems.MTT.Thm_MTT_Cohomology_integral_classes_span
+import Theorems.MTT.Thm_MTT_Cohomology_manin_generation
 set_option maxHeartbeats 1000000
 set_option synthInstance.maxHeartbeats 400000
 noncomputable section

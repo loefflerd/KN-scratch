@@ -1,7 +1,7 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_X1
-import Definitions.FLT.Def_ModularCurve_LaurentCoeff
+import Mathlib.RingTheory.Flat.TorsionFree
+
 import Definitions.FLT.Def_ModularCurve_X0ModL
+import Definitions.FLT.Def_ModularCurve_X1
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000
@@ -126,12 +126,6 @@ variable (x₀ : qExpFunctionFieldC K₀ Γ) (x : qExpFunctionFieldC K Γ)
 
 local notation "E₀" => (qExpFunctionFieldC K₀ Γ)
 local notation "E" => (qExpFunctionFieldC K Γ)
-
-include hx₀ in
-
-theorem transcendental_x₀ : Transcendental K₀ x₀ := by
-  have hinj : Function.Injective (algebraMap E₀ (LaurentSeries K₀)) := Subtype.val_injective
-  exact (transcendental_algebraMap_iff hinj).mp hx₀
 
 include hx₀ in
 

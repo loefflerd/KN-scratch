@@ -1,4 +1,3 @@
-import Definitions.FLT.Def_AlgebraicCurve_Correspondence
 import Theorems.FLT.Thm_AlgebraicCurve_SemilinearAut_ord_algebraMap_smul
 import Definitions.FLT.Def_P2M_Util
 

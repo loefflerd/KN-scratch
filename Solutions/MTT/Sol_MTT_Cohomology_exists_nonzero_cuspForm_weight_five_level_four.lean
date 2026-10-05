@@ -1,7 +1,3 @@
-import Mathlib.Data.Int.Star
-import Mathlib.GroupTheory.Schreier
-import Mathlib.NumberTheory.ModularForms.Discriminant
-
 import Definitions.MTT.Def_MTT_Arithmetic
 import Theorems.FLT.Thm_CuspForm_exists_gamma0_four_apply_eq_eta_pow_mul
 

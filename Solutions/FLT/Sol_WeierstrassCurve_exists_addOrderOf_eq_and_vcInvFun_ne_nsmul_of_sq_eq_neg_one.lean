@@ -1,17 +1,11 @@
-import Mathlib.Algebra.Field.ZMod
-import Mathlib.Algebra.Order.Ring.Star
-import Mathlib.AlgebraicGeometry.EllipticCurve.DivisionPolynomial.Degree
 import Mathlib.AlgebraicGeometry.EllipticCurve.Reduction
-import Mathlib.Data.Int.Star
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.RingTheory.SimpleRing.Principal
 
 import Definitions.FLT.Def_WeierstrassCurve_VariableChangePointEquiv
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_Point_smul_some_eq_zero_iff
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_Point_zsmul_some_eq_some_div
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_evalEval_psi_sq
-import Theorems.FLT.Thm_WeierstrassCurve_card_torsion_of_isAlgClosed
 import Theorems.FLT.Thm_WeierstrassCurve_exists_addEquiv_point_variableChange
 import Theorems.FLT.Thm_WeierstrassCurve_nonempty_torsionBy_addEquiv_zmod_prod_of_isAlgClosed
 import Theorems.FLT.Thm_WeierstrassCurve_variableChange_mk_smul_eq_self_of_sq_eq_neg_one

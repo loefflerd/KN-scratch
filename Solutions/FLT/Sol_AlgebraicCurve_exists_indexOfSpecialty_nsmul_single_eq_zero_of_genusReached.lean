@@ -1,8 +1,3 @@
-import Mathlib
-import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
-import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
-import Definitions.FLT.Def_AlgebraicCurve_Repartitions
-import Definitions.FLT.Def_AlgebraicCurve_AdelicIndex
 import Theorems.FLT.Thm_AlgebraicCurve_omegaSpace_finite_of_genusReached
 import Definitions.FLT.Def_P2M_Util
 

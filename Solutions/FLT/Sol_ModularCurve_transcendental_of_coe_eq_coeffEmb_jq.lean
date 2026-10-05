@@ -1,5 +1,5 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_X1
+import Mathlib.RingTheory.SimpleRing.Principal
+
 import Definitions.FLT.Def_ModularCurve_AtkinLehner
 import Definitions.FLT.Def_P2M_Util
 

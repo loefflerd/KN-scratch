@@ -1,25 +1,11 @@
-import Mathlib
-import Definitions.FLT.Def_HeckeEis_BinaryFormRep
-import Definitions.FLT.Def_Gamma0CoeffCohomology
-import Definitions.FLT.Def_HeckeEis_EichlerIntegral
 import Theorems.FLT.Thm_HeckeEis_IsEichlerIntegral_exists_sub_eq_const
 import Theorems.FLT.Thm_HeckeEis_IsEquivariantPrimitiveWith_cocycle_sub_cocycle_mem_coeffCoboundaries
-import Definitions.FLT.Def_P2M_Util
-
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
-namespace P2MW.S_HeckeEis_eichlerShimuraMap_eq_coeffH1parMk
 
 noncomputable section
 
 namespace HeckeEis
-p2m_export "HeckeEis" "BinaryForm binaryFormRepSL IsParabolicCocycle coeffH1parMk coeffH1parMk_eq_zero_iff IsEquivariantPrimitiveWith IsEichlerIntegral eichlerShimuraMap eichlerShimuraMap_def IsEichlerIntegral.exists_sub_eq_const IsEquivariantPrimitiveWith.cocycle_sub_cocycle_mem_coeffCoboundaries"
-p2m_open "HeckeEis"
 
-open UpperHalfPlane MvPolynomial ModularForm CongruenceSubgroup
-open scoped MatrixGroups ModularForm
+open UpperHalfPlane CongruenceSubgroup
 
 theorem SolMain.eqmk (n N : ℕ) (f : ℍ → ℂ) {F : ℍ → ↥(BinaryForm ℂ n)}
     (hEI : IsEichlerIntegral n f F)
@@ -36,7 +22,6 @@ end HeckeEis
 
 end
 
-open scoped MatrixGroups ModularForm in
 theorem solution (n N : ℕ) (f : UpperHalfPlane → ℂ)
     {F : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n)}
     (hEI : HeckeEis.IsEichlerIntegral n f F)
@@ -47,7 +32,3 @@ theorem solution (n N : ℕ) (f : UpperHalfPlane → ℂ)
     HeckeEis.eichlerShimuraMap n N f
       = HeckeEis.coeffH1parMk _ ⟨hF.cocycle, ⟨hF.cocycle_mem_coeffCocycles, hpar⟩⟩ :=
   HeckeEis.SolMain.eqmk n N f hEI hF hpar
-
-end S_HeckeEis_eichlerShimuraMap_eq_coeffH1parMk
-end P2MW
-export P2MW.S_HeckeEis_eichlerShimuraMap_eq_coeffH1parMk (solution)

@@ -1,12 +1,4 @@
-import Mathlib
 import Definitions.FLT.Def_AlgebraicCurve_RiemannRochRows
-import Definitions.FLT.Def_P2M_Util
-
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
-namespace P2MW.S_AlgebraicCurve_degree_canonicalDivisor_eq_of_riemannRoch
 
 open AlgebraicCurve KaehlerDifferential
 
@@ -19,7 +11,3 @@ theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] [IsCurveOver K 
   rw [sub_self, ell_zero_eq_one_of_constantsAreBase hC] at hW
   push_cast at hW
   linarith
-
-end S_AlgebraicCurve_degree_canonicalDivisor_eq_of_riemannRoch
-end P2MW
-export P2MW.S_AlgebraicCurve_degree_canonicalDivisor_eq_of_riemannRoch (solution)

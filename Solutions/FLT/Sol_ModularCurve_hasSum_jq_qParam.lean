@@ -1,7 +1,4 @@
-import Definitions.FLT.Def_ModularCurve_X0
 import Theorems.FLT.Thm_ModularCurve_hasSum_jNum_qParam
-import Mathlib.NumberTheory.ModularForms.Discriminant
-import Mathlib.NumberTheory.ModularForms.EisensteinSeries.Basic
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

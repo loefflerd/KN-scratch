@@ -1,8 +1,4 @@
 import Theorems.MTT.Thm_MTT_Cohomology_cuspPrimitive_slash_relation
-import Definitions.MTT.Def_MTT_Cohomology_Integration
-import Mathlib.RingTheory.Flat.Basic
-import Mathlib.NumberTheory.ModularForms.LFunction
-import Mathlib.NumberTheory.ModularForms.Identities
 noncomputable section
 open scoped BigOperators ModularForm TensorProduct MatrixGroups Pointwise
 open MeasureTheory Complex UpperHalfPlane Matrix CongruenceSubgroup
@@ -45,32 +41,14 @@ lemma toGL_det {A : Matrix (Fin 2) (Fin 2) ℤ} (h : A.det ≠ 0) :
     (Matrix.GeneralLinearGroup.det (toGL A) : ℝ) = (A.det : ℝ) := by
   rw [Matrix.GeneralLinearGroup.val_det_apply, toGL_det_matrix h]
 
-lemma toGL_mul {A B : Matrix (Fin 2) (Fin 2) ℤ} (hA : A.det ≠ 0) (hB : B.det ≠ 0) :
-    toGL (A * B) = toGL A * toGL B := by
-  have hAB : (A * B).det ≠ 0 := by rw [Matrix.det_mul]; exact mul_ne_zero hA hB
-  ext i j
-  rw [Units.val_mul, Matrix.mul_apply, toGL_apply hAB, Matrix.mul_apply]
-  simp only [toGL_apply hA, toGL_apply hB]
-  push_cast; rfl
-
 lemma toGL_SL (γ : SL(2, ℤ)) :
     toGL (γ : Matrix (Fin 2) (Fin 2) ℤ) = Matrix.SpecialLinearGroup.mapGL ℝ γ := by
   ext i j
   rw [toGL_apply (by simp), Matrix.SpecialLinearGroup.mapGL_coe_matrix]
   simp
 
-lemma toGL_det_pos {A : Matrix (Fin 2) (Fin 2) ℤ} (h : 0 < A.det) :
-    0 < (Matrix.GeneralLinearGroup.det (toGL A) : ℝ) := by
-  rw [toGL_det h.ne']; exact_mod_cast h
-
 lemma σ_toGL {A : Matrix (Fin 2) (Fin 2) ℤ} (h : 0 < A.det) (z : ℂ) : σ (toGL A) z = z := by
   simp [σ, toGL_det_matrix h.ne', h]
-
-lemma coe_toGL_smul {A : Matrix (Fin 2) (Fin 2) ℤ} (h : 0 < A.det) (τ : ℍ) :
-    ((toGL A • τ : ℍ) : ℂ) =
-      ((A 0 0 : ℂ) * τ + (A 0 1 : ℂ)) / ((A 1 0 : ℂ) * τ + (A 1 1 : ℂ)) := by
-  rw [coe_smul_of_det_pos (toGL_det_pos h)]
-  simp [num, denom, toGL_apply h.ne']
 
 lemma slash_toGL_apply {A : Matrix (Fin 2) (Fin 2) ℤ} (h : 0 < A.det) (k : ℤ) (f : ℍ → ℂ)
     (τ : ℍ) :

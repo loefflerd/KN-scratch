@@ -1,18 +1,9 @@
-import Definitions.MTT.Def_MTT_Cohomology
 import Mathlib.Algebra.MvPolynomial.CommRing
-import Mathlib.Algebra.MonoidAlgebra.Module
-import Mathlib.LinearAlgebra.Dimension.Constructions
-import Mathlib.LinearAlgebra.Finsupp.VectorSpace
-import Definitions.MTT.Def_MTT_ParabolicCohomology
-import Mathlib.Tactic.Module
-import Definitions.MTT.Def_MTT_LevelOnePeriodRelations
-import Mathlib.LinearAlgebra.Matrix.FixedDetMatrices
-import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
 import Mathlib.Algebra.MvPolynomial.Funext
-import Mathlib.LinearAlgebra.Trace
-import Mathlib.RingTheory.RootsOfUnity.Complex
-import Mathlib.Algebra.Ring.GeomSum
 import Mathlib.NumberTheory.ModularForms.LevelOne.DimensionFormula
+import Mathlib.RingTheory.RootsOfUnity.Complex
+
+import Definitions.MTT.Def_MTT_LevelOnePeriodRelations
 
 /-! # Finite coordinates for binary homogeneous polynomials -/
 
@@ -218,10 +209,6 @@ def principalParabolic (N n : ℕ) (P : gammaOneRep N n) : parabolicCocycles N n
   ⟨d₀₁ (gammaOneRep N n) P,
     coboundaries_le_parabolicCocycles N n ⟨P, rfl⟩⟩
 
-@[simp] theorem principalParabolic_apply (N n : ℕ) (P : gammaOneRep N n)
-    (g : CongruenceSubgroup.Gamma1 N) :
-    (principalParabolic N n P).val g = (gammaOneRep N n).ρ g P - P := rfl
-
 theorem principalParabolic_mem (N n : ℕ) (P : gammaOneRep N n) :
     principalParabolic N n P ∈ parabolicCoboundaries N n :=
   (mem_parabolicCoboundaries_iff _).mpr ⟨P, fun _ => rfl⟩
@@ -229,9 +216,6 @@ theorem principalParabolic_mem (N n : ℕ) (P : gammaOneRep N n) :
 /-- Normalized parabolic cocycles vanish on the standard translation. -/
 def normalizedParabolic (N n : ℕ) : Submodule ℂ (parabolicCocycles N n) :=
   LinearMap.ker ((LinearMap.proj (gammaOneT N)).comp (parabolicCocycles N n).subtype)
-
-theorem mem_normalizedParabolic_iff {N n : ℕ} (c : parabolicCocycles N n) :
-    c ∈ normalizedParabolic N n ↔ c.val (gammaOneT N) = 0 := Iff.rfl
 
 theorem exists_normalizedParabolic {N n : ℕ} (c : parabolicCocycles N n) :
     ∃ P : gammaOneRep N n, c - principalParabolic N n P ∈ normalizedParabolic N n := by
@@ -965,10 +949,6 @@ def symmetricPowerChangeEquiv (a b c d : K) (hdet : a * d - b * c ≠ 0) (n : �
     have h' := congrArg (symmetricPowerChange (d / (a * d - b * c))
       (-b / (a * d - b * c)) (-c / (a * d - b * c)) (a / (a * d - b * c)) n) h
     simpa only [← LinearMap.comp_apply, hi, LinearMap.id_apply] using h')
-
-theorem symmetricPowerChangeEquiv_apply (a b c d : K) (hdet : a * d - b * c ≠ 0)
-    (n : ℕ) (P : Sym K n) :
-    symmetricPowerChangeEquiv a b c d hdet n P = symmetricPowerChange a b c d n P := rfl
 
 theorem symmetricPowerChange_basis_val (a b c d : K) {n : ℕ} (j : Fin (n + 1)) :
     (symmetricPowerChange a b c d n (symmetricPowerBasis K n j)).val =

@@ -1,8 +1,9 @@
-import Mathlib
-import Definitions.FLT.Def_HeckeEis_BinaryFormRep
+import Mathlib.LinearAlgebra.BilinearForm.Orthogonal
+import Mathlib.LinearAlgebra.Matrix.FixedDetMatrices
+import Mathlib.RingTheory.SimpleRing.Principal
 
-import Theorems.FLT.Thm_HeckeEis_exists_pairing_binaryForm_linePow
 import Theorems.FLT.Thm_HeckeEis_binaryFormRepSL_neg_one_apply
+import Theorems.FLT.Thm_HeckeEis_exists_pairing_binaryForm_linePow
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000
@@ -68,13 +69,6 @@ theorem indRep_neg_one (hn : Even n) : indRep N n ⟨-1, Subgroup.mem_top _⟩ =
   rw [indRep_apply, LinearMap.id_apply]
   show ρ n (-1) (f ((-1 : SL(2, ℤ))⁻¹ • x)) = f x
   rw [show ((-1 : SL(2, ℤ)))⁻¹ = -1 by rw [inv_neg, inv_one], neg_one_smul_coset, binaryFormRepSL_neg_one_apply, hn.neg_one_pow, one_smul]
-
-theorem binarySubst_T_zpow_X0 (m : ℤ) : binarySubst ℂ ((ModularGroup.T ^ m : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) (X 0) = X 0 := by
-  rw [binarySubst_X, ModularGroup.coe_T_zpow]; simp [Fin.sum_univ_two]
-
-theorem binarySubst_T_zpow_X1 (m : ℤ) :
-    binarySubst ℂ ((ModularGroup.T ^ m : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) (X 1) = C (m : ℂ) * X 0 + X 1 := by
-  rw [binarySubst_X, ModularGroup.coe_T_zpow]; simp [Fin.sum_univ_two]
 
 end HeckeEis.UH3Sol
 end

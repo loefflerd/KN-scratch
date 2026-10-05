@@ -1,10 +1,9 @@
-import Mathlib
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.RegularLocalRing.Defs
+
 import Definitions.FLT.Def_EllipticCurve_FunctionFieldPullback
-import Definitions.FLT.Def_WeierstrassCurve_GenusOnePic0
-import Definitions.FLT.Def_WeierstrassCurve_GenusOnePlaceGateCentred
-import Theorems.FLT.Thm_WeierstrassCurve_Affine_placeOfPoint_some_eq_ofHeightOneSpectrum
-import Theorems.FLT.Thm_P2M_Dup_WeierstrassCurve_Affine_CoordinateRing_XYIdeal_isMaximal
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_CoordinateRing_XYIdeal_ne_bot
+import Theorems.FLT.Thm_WeierstrassCurve_Affine_placeOfPoint_some_eq_ofHeightOneSpectrum
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

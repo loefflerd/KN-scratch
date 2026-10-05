@@ -1,7 +1,5 @@
 import Mathlib.Algebra.Polynomial.Homogenize
 import Mathlib.LinearAlgebra.Lagrange
-import Mathlib.NumberTheory.ArithmeticFunction.Misc
-import Mathlib.NumberTheory.ModularForms.EisensteinSeries.QExpansion
 import Mathlib.NumberTheory.ModularForms.LevelOne.GradedRing
 import Mathlib.NumberTheory.ModularForms.NormTrace
 import Mathlib.RingTheory.Valuation.Integral
@@ -75,13 +73,6 @@ theorem eq_C_of_isAlgebraic {y : LaurentSeries K} (hy : IsAlgebraic K y) :
     have := mul_lt_one_of_lt_of_le hlt h2
     rw [hprod] at this
     exact lt_irrefl _ this
-
-theorem transcendental_of_coeff_ne_zero {y : LaurentSeries K} {n : ℤ} (hn : n ≠ 0)
-    (hy : y.coeff n ≠ 0) : Transcendental K y := by
-  intro halg
-  obtain ⟨c, hc⟩ := eq_C_of_isAlgebraic halg
-  apply hy
-  rw [hc, HahnSeries.C_apply, HahnSeries.coeff_single_of_ne hn]
 
 end A1
 
@@ -183,9 +174,6 @@ theorem monomial_mem (m : ℕ) (b : ℕ) (hb : b ≤ m) :
   Submodule.subset_span ⟨⟨b, Nat.lt_succ_of_le hb⟩, rfl⟩
 
 theorem q4_coeff_zero : PowerSeries.coeff 0 q4 = 1 :=
-  E_qExpansion_coeff_zero (by norm_num) (by decide)
-
-theorem q6_coeff_zero : PowerSeries.coeff 0 q6 = 1 :=
   E_qExpansion_coeff_zero (by norm_num) (by decide)
 
 theorem qExpansion_discriminant :
@@ -654,11 +642,6 @@ theorem intSeriesC_add {K : Type*} [Field K] (p p' : PowerSeries ℤ) :
     intSeriesC K (p + p') = intSeriesC K p + intSeriesC K p' := by
   simp [intSeriesC]
 
-omit [Γ.FiniteIndex] in
-theorem intSeriesC_neg {K : Type*} [Field K] (p : PowerSeries ℤ) :
-    intSeriesC K (-p) = -intSeriesC K p := by
-  simp [intSeriesC]
-
 section Ratio
 variable (hT : ModularGroup.T ∈ Γ)
 include hT
@@ -694,16 +677,6 @@ theorem add_mem_intFormRatiosC {a b : LaurentSeries ℚ} (ha : a ∈ intFormRati
     exact (ModularForm.qExpansion_mul_coe one_pos (hper hT) g₁ g₂).symm
   · rw [intSeriesC_mul]; exact mul_ne_zero hg₁0 hg₂0
   · rw [intSeriesC_add, intSeriesC_mul, intSeriesC_mul, intSeriesC_mul, div_add_div _ _ hg₁0 hg₂0]
-
-omit [Γ.FiniteIndex] in
-
-theorem neg_mem_intFormRatiosC {a : LaurentSeries ℚ} (ha : a ∈ intFormRatiosC ℚ Γ) :
-    -a ∈ intFormRatiosC ℚ Γ := by
-  obtain ⟨k, f, g, pf, pg, hf, hg, hg0, rfl⟩ := ha
-  refine ⟨k, -f, g, -pf, pg, ?_, hg, hg0, ?_⟩
-  · rw [IsIntegralQExp, map_neg, hf, FunLike.coe_neg]
-    exact (ModularForm.qExpansion_neg one_pos (hper hT) f).symm
-  · rw [intSeriesC_neg, neg_div]
 
 omit hT [Γ.FiniteIndex] in
 theorem inv_mem_intFormRatiosC {a : LaurentSeries ℚ} (ha : a ∈ intFormRatiosC ℚ Γ) :

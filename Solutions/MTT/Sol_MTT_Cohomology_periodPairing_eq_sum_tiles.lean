@@ -1,11 +1,7 @@
+import Mathlib.Analysis.CStarAlgebra.Classes
+import Mathlib.NumberTheory.ModularForms.Petersson
+
 import Definitions.MTT.Def_MTT_PeriodPairing
-import Mathlib.MeasureTheory.Integral.Bochner.ContinuousLinearMap
-import Mathlib.MeasureTheory.Group.Integral
-import Mathlib.GroupTheory.Complement
-import Mathlib.Tactic.FieldSimp
-import Mathlib.NumberTheory.ModularForms.Bounds
-import Mathlib.Tactic.FinCases
-import Mathlib.Tactic.Ring
 
 noncomputable section
 

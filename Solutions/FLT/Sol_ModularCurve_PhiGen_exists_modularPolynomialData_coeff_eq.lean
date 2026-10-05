@@ -1,14 +1,10 @@
-import Definitions.FLT.Def_ModularCurve_X0
-import Definitions.FLT.Def_ModularCurve_PhiGen
-import Theorems.FLT.Thm_ModularCurve_PhiGen_PhiGenDescends_c_top
 import Theorems.FLT.Thm_ModularCurve_PhiGen_PhiGenDescends_c_eq_zero
+import Theorems.FLT.Thm_ModularCurve_PhiGen_PhiGenDescends_c_top
 import Theorems.FLT.Thm_ModularCurve_PhiGen_PhiGenDescends_poleOrderLE
 import Theorems.FLT.Thm_ModularCurve_PhiGen_PhiGenDescends_sum_mul_jqN_pow_eq_zero
-import Theorems.FLT.Thm_ModularCurve_PhiGen_evalAtJ_injective
 import Theorems.FLT.Thm_ModularCurve_PhiGen_aeval_jq_intCoeffs_descent
+import Theorems.FLT.Thm_ModularCurve_PhiGen_evalAtJ_injective
 import Theorems.FLT.Thm_ModularCurve_dedekindPsi_prime
-import Mathlib.Algebra.Polynomial.Lifts
-import Mathlib.RingTheory.Adjoin.Polynomial.Basic
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000
@@ -107,13 +103,6 @@ section Splitting
 
 variable {K : Type*} [Field K] [Algebra ℚ K] {ℓ : ℕ} [hℓ : Fact (Nat.Prime ℓ)]
 variable (ζ : Kˣ) {c : ℕ → LaurentSeries ℚ}
-
-theorem splits_of_coeff_evalAtJ_eq (hc : PhiGenDescends ℓ ζ c)
-    (data : ModularPolynomialData ℓ)
-    (hcoeff : ∀ k, evalAtJ (data.Φ.coeff k) = c k) :
-    data.Φ.map (((coeffEmb K).comp (qExpand ℚ ℓ)).comp evalAtJ) = phiProd ℓ (conj ℓ ζ) := by
-  refine Polynomial.ext fun k => ?_
-  rw [Polynomial.coeff_map, RingHom.comp_apply, RingHom.comp_apply, hcoeff k, hc k]
 
 end Splitting
 

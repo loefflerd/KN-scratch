@@ -1,7 +1,3 @@
-import Definitions.MTT.Def_MTT_Cohomology
-import Definitions.MTT.Def_MTT_Cohomology_Integration
-import Mathlib.RingTheory.Flat.Basic
-import Mathlib.MeasureTheory.Integral.Bochner.Set
 import Theorems.MTT.Thm_MTT_Cohomology_cuspPrimitive_slash_relation
 noncomputable section
 open scoped BigOperators TensorProduct

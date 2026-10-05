@@ -1,6 +1,5 @@
-import Definitions.FLT.Def_AlgebraicCurve_Correspondence
-import Theorems.FLT.Thm_AlgebraicCurve_Place_restrictAlong_restrictAlong
 import Theorems.FLT.Thm_AlgebraicCurve_Place_inertiaDegAlong_comp
+import Theorems.FLT.Thm_AlgebraicCurve_Place_restrictAlong_restrictAlong
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

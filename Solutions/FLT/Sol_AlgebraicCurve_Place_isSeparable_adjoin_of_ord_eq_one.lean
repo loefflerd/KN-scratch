@@ -1,12 +1,7 @@
-import Definitions.FLT.Def_AlgebraicCurve_Differentials
-import Theorems.FLT.Thm_AlgebraicCurve_isAlgebraic_adjoin_of_transcendental
-import Theorems.FLT.Thm_AlgebraicCurve_Place_transcendental_of_ord_ne_zero
-import Mathlib.FieldTheory.IntermediateField.Adjoin.Basic
-import Mathlib.FieldTheory.Perfect
-import Mathlib.FieldTheory.KummerPolynomial
 import Mathlib.FieldTheory.Relrank
-import Mathlib.LinearAlgebra.Dimension.Free
-import Mathlib.RingTheory.Unramified.Field
+
+import Theorems.FLT.Thm_AlgebraicCurve_Place_transcendental_of_ord_ne_zero
+import Theorems.FLT.Thm_AlgebraicCurve_isAlgebraic_adjoin_of_transcendental
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000
@@ -289,23 +284,6 @@ private theorem finrank_frobeniusSubfield_adjoin_transcendental [PerfectField K]
     _ = p := natDegree_X_pow_sub_C
 
 end AdjoinIndex
-
-private theorem finrank_frobeniusSubfield_eq_of_transcendental {K M : Type*} [Field K] [Field M]
-    [Algebra K M] [PerfectField K] (p : ℕ) [hp : Fact p.Prime] [CharP K p]
-    (t : M) (htr : Transcendental K t)
-    [FiniteDimensional (IntermediateField.adjoin K ({t} : Set M)) M] :
-    haveI : ExpChar M p := expChar_of_injective_algebraMap (algebraMap K M).injective p
-    Module.finrank (frobeniusSubfield M p) M = p := by
-  have : ExpChar M p := expChar_of_injective_algebraMap (algebraMap K M).injective p
-  have : ExpChar (↥(IntermediateField.adjoin K ({t} : Set M))) p :=
-    expChar_of_injective_algebraMap (algebraMap K _).injective p
-  have : FiniteDimensional
-      (frobeniusSubfield (↥(IntermediateField.adjoin K ({t} : Set M))) p)
-      (↥(IntermediateField.adjoin K ({t} : Set M))) :=
-    FiniteDimensional.of_finrank_pos (by
-      rw [finrank_frobeniusSubfield_adjoin_transcendental p htr]; exact hp.out.pos)
-  rw [finrank_frobeniusSubfield_eq (E := ↥(IntermediateField.adjoin K ({t} : Set M))) p,
-    finrank_frobeniusSubfield_adjoin_transcendental p htr]
 
 section PDigitsExists
 

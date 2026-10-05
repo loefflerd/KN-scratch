@@ -1,16 +1,8 @@
-import Mathlib.Algebra.MvPolynomial.Polynomial
 import Mathlib.Algebra.MvPolynomial.CommRing
-import Definitions.MTT.Def_MTT_Cohomology
-import Mathlib.Algebra.MonoidAlgebra.Module
-import Mathlib.LinearAlgebra.Dimension.Constructions
-import Mathlib.LinearAlgebra.Finsupp.VectorSpace
 import Mathlib.Algebra.MvPolynomial.Funext
-import Mathlib.RepresentationTheory.Homological.GroupCohomology.LowDegree
-import Mathlib.GroupTheory.Finiteness
-import Mathlib.LinearAlgebra.FiniteDimensional.Basic
-import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
 import Mathlib.GroupTheory.Schreier
 import Mathlib.LinearAlgebra.Matrix.FixedDetMatrices
+
 import Definitions.MTT.Def_MTT_NormalizedParabolicCocycles
 
 /-! # Finite coordinates for binary homogeneous polynomials -/
@@ -48,9 +40,6 @@ def symmetricPowerCoordinates (R : Type*) [CommRing R] (n : ℕ) :
   (LinearEquiv.ofEq _ _ (MvPolynomial.homogeneousSubmodule_eq_finsupp_supported (Fin 2) R n))
     ≪≫ₗ AddMonoidAlgebra.supportedEquivFinsupp _
     ≪≫ₗ Finsupp.domLCongr (homogeneousExponentEquiv n)
-
-theorem finrank_sym (n : ℕ) : Module.finrank ℂ (Sym ℂ n) = n + 1 := by
-  rw [(symmetricPowerCoordinates ℂ n).finrank_eq, Module.finrank_finsupp_self, Fintype.card_fin]
 
 def symmetricPowerBasis (R : Type*) [CommRing R] (n : ℕ) :
     Module.Basis (Fin (n + 1)) R (Sym R n) :=
@@ -286,11 +275,6 @@ theorem finiteDimensional_parabolicCocycles (N n : ℕ) [NeZero N] :
       from inf_le_left)
   exact FiniteDimensional.of_injective ι (Submodule.inclusion_injective _)
 
-theorem finiteDimensional_parabolicH1 (N n : ℕ) [NeZero N] :
-    FiniteDimensional ℂ (ParabolicH1 N n) := by
-  have := finiteDimensional_parabolicCocycles N n
-  infer_instance
-
 end MTT.Cohomology
 end
 
@@ -317,16 +301,9 @@ def principalParabolic (N n : ℕ) (P : gammaOneRep N n) : parabolicCocycles N n
   ⟨d₀₁ (gammaOneRep N n) P,
     coboundaries_le_parabolicCocycles N n ⟨P, rfl⟩⟩
 
-@[simp] theorem principalParabolic_apply (N n : ℕ) (P : gammaOneRep N n)
-    (g : CongruenceSubgroup.Gamma1 N) :
-    (principalParabolic N n P).val g = (gammaOneRep N n).ρ g P - P := rfl
-
 theorem principalParabolic_mem (N n : ℕ) (P : gammaOneRep N n) :
     principalParabolic N n P ∈ parabolicCoboundaries N n :=
   (mem_parabolicCoboundaries_iff _).mpr ⟨P, fun _ => rfl⟩
-
-theorem mem_normalizedParabolic_iff {N n : ℕ} (c : parabolicCocycles N n) :
-    c ∈ normalizedParabolic N n ↔ c.val (gammaOneT N) = 0 := Iff.rfl
 
 theorem exists_normalizedParabolic {N n : ℕ} (c : parabolicCocycles N n) :
     ∃ P : gammaOneRep N n, c - principalParabolic N n P ∈ normalizedParabolic N n := by

@@ -1,4 +1,6 @@
-import Mathlib
+import Mathlib.Algebra.GroupWithZero.Submonoid.CancelMulZero
+import Mathlib.Order.CompletePartialOrder
+
 import Definitions.FLT.Def_ModularCurve_X1
 import Theorems.FLT.Thm_AlgebraicCurve_finiteDimensional_adjoin_of_transcendental
 import Definitions.FLT.Def_P2M_Util

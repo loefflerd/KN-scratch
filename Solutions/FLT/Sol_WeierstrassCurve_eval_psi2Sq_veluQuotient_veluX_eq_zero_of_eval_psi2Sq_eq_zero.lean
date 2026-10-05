@@ -1,7 +1,3 @@
-import Mathlib
-import Definitions.FLT.Def_WeierstrassCurve_VeluQuotientMap
-import Definitions.FLT.Def_WeierstrassCurve_OddOrderSummingSet
-import Definitions.FLT.Def_WeierstrassCurve_VeluPointMap
 import Theorems.FLT.Thm_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet
 import Definitions.FLT.Def_P2M_Util
 

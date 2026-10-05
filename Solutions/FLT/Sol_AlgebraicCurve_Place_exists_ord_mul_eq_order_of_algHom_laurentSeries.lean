@@ -1,16 +1,10 @@
-import Definitions.FLT.Def_ModularCurve_AtkinLehner
+import Mathlib.RingTheory.LaurentSeries
+
 import Theorems.FLT.Thm_AlgebraicCurve_Place_exists_ord_mul_eq_order_of_hasRamBound
-import Definitions.FLT.Def_P2M_Util
-
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
-namespace P2MW.S_AlgebraicCurve_Place_exists_ord_mul_eq_order_of_algHom_laurentSeries
 
 noncomputable section
 
-open ModularCurve AlgebraicCurve
+open AlgebraicCurve
 
 namespace CD
 
@@ -106,38 +100,11 @@ private theorem _root_.AlgebraicCurve.Place.exists_ord_mul_eq_order_of_algHom_la
   rw [Int.toNat_of_nonneg hpos.le]
   exact h2
 
-p2m_alias "P2MW.S_AlgebraicCurve_Place_exists_ord_mul_eq_order_of_algHom_laurentSeries.AlgebraicCurve.Place.exists_ord_mul_eq_order_of_algHom_laurentSeries" "AlgebraicCurve.Place.exists_ord_mul_eq_order_of_algHom_laurentSeries"
 end Generic
 
-variable (K : Type*) [Field K] [Algebra ℚ K]
-
-theorem cd2_control (N : ℕ) [NeZero N] :
-    ∃ w : Place K (laurentBaseChange K (modularFunctionFieldFull N)),
-      ∀ x, w.ord x = (x : LaurentSeries K).order := by
-  have hmem := coeffEmb_mem_laurentBaseChange K (jq_mem_full N)
-  have hjq : ((laurentBaseChange K (modularFunctionFieldFull N)).val
-      ⟨coeffEmb K jq, hmem⟩).order = -1 := order_coeffEmb_jq K
-  obtain ⟨w, γ, hγ, hw⟩ := AlgebraicCurve.Place.exists_ord_mul_eq_order_of_algHom_laurentSeries K
-    (laurentBaseChange K (modularFunctionFieldFull N)).val
-    ⟨⟨coeffEmb K jq, hmem⟩, by rw [hjq]; norm_num⟩
-  have h1 : w.ord ⟨coeffEmb K jq, hmem⟩ * (γ : ℤ) = -1 := by
-    rw [hw ⟨coeffEmb K jq, hmem⟩, hjq]
-  have hdvd : (γ : ℤ) ∣ 1 :=
-    ⟨-(w.ord ⟨coeffEmb K jq, hmem⟩), by rw [mul_neg, mul_comm, h1]; norm_num⟩
-  have hle : (γ : ℤ) ≤ 1 := Int.le_of_dvd one_pos hdvd
-  have hγ1 : γ = 1 := by omega
-  refine ⟨w, fun x => ?_⟩
-  have h2 := hw x
-  rw [hγ1] at h2
-  simpa using h2
-
 end CD
-p2m_reactivate "P2MW.S_AlgebraicCurve_Place_exists_ord_mul_eq_order_of_algHom_laurentSeries.CD"
 
-
-
-open AlgebraicCurve
-open AlgebraicCurve.Place in
+open AlgebraicCurve.Place
 
 theorem solution (K : Type*) [Field K] {F : Type*} [Field F] [Algebra K F] (ι : F →ₐ[K] LaurentSeries K)
     (h : ∃ x : F, (ι x).order ≠ 0) :
@@ -145,6 +112,3 @@ theorem solution (K : Type*) [Field K] {F : Type*} [Field F] [Algebra K F] (ι :
   AlgebraicCurve.Place.exists_ord_mul_eq_order_of_algHom_laurentSeries K ι h
 
 end
-end S_AlgebraicCurve_Place_exists_ord_mul_eq_order_of_algHom_laurentSeries
-end P2MW
-export P2MW.S_AlgebraicCurve_Place_exists_ord_mul_eq_order_of_algHom_laurentSeries (solution)

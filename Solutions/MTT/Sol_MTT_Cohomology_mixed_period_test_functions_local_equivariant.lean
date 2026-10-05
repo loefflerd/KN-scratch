@@ -1,6 +1,6 @@
+import Mathlib.Analysis.CStarAlgebra.Classes
+
 import Definitions.MTT.Def_MTT_PeriodPairing
-import Mathlib.NumberTheory.ModularForms.Bounds
-import Mathlib.Analysis.Complex.CauchyIntegral
 
 
 noncomputable section
@@ -58,20 +58,6 @@ lemma periodContraction_smul_smul (n : ℕ) (a b : ℂ) (P Q : Binary ℂ) :
   rw [Finset.mul_sum]
   refine Finset.sum_congr rfl fun j _ => ?_
   simp only [MvPolynomial.coeff_smul, smul_eq_mul]
-  ring
-
-lemma periodContraction_periodPower (n : ℕ) (z w : ℂ) :
-    periodContraction n (periodPower n z) (periodPower n w) = (z - w) ^ n := by
-  unfold periodContraction
-  rw [sub_eq_add_neg, add_pow]
-  refine Finset.sum_congr rfl fun j hj => ?_
-  rw [Finset.mem_range] at hj
-  have hj' : j ≤ n := by omega
-  rw [coeff_periodPower n j hj' z, coeff_periodPower n (n - j) (Nat.sub_le n j) w,
-    Nat.choose_symm hj']
-  have hc : (n.choose j : ℂ) ≠ 0 := by exact_mod_cast (Nat.choose_pos hj').ne'
-  rw [neg_pow]
-  field_simp
   ring
 
 lemma differential_apply (a b w : ℂ) : periodDifferential a b w = a * w + b * conj w := by

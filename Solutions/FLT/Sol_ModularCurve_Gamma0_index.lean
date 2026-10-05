@@ -1,11 +1,6 @@
-import Definitions.FLT.Def_ModularCurve_ProjectiveLine
-import Definitions.FLT.Def_ModularCurve_X0
-import Theorems.FLT.Thm_ModularCurve_card_projectiveLine_zmod
 import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
-import Mathlib.GroupTheory.Index
-import Mathlib.GroupTheory.Coset.Card
-import Mathlib.Data.Int.GCD
-import Mathlib.Data.Nat.Factorization.PrimePow
+
+import Theorems.FLT.Thm_ModularCurve_card_projectiveLine_zmod
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

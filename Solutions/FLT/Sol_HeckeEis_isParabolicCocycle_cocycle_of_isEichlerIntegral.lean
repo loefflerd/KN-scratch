@@ -1,11 +1,7 @@
-import Mathlib
-import Definitions.FLT.Def_HeckeEis_BinaryFormRep
-import Definitions.FLT.Def_Gamma0CoeffCohomology
-import Definitions.FLT.Def_HeckeEis_EichlerIntegral
-import Theorems.FLT.Thm_ModularGroup_exists_eq_conj_T_zpow_of_trace_sq_eq_four
+import Theorems.FLT.Thm_HeckeEis_IsEichlerIntegral_slash
 import Theorems.FLT.Thm_HeckeEis_IsEichlerIntegral_vadd_sub_T_zpow_apply_mem_range
 import Theorems.FLT.Thm_HeckeEis_binaryFormRepSL_neg_one_apply
-import Theorems.FLT.Thm_HeckeEis_IsEichlerIntegral_slash
+import Theorems.FLT.Thm_ModularGroup_exists_eq_conj_T_zpow_of_trace_sq_eq_four
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

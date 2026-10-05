@@ -1,18 +1,6 @@
-import Definitions.MTT.Def_MTT_Cohomology
+import Mathlib.LinearAlgebra.FreeModule.PID
+
 import Definitions.MTT.Def_MTT_FullParabolicCohomology
-import Definitions.MTT.Def_MTT_ParabolicCohomology
-import Mathlib.Algebra.MonoidAlgebra.Module
-import Mathlib.Algebra.Ring.GeomSum
-import Mathlib.GroupTheory.Coset.Basic
-import Mathlib.GroupTheory.Index
-import Mathlib.LinearAlgebra.Dimension.Constructions
-import Mathlib.LinearAlgebra.Finsupp.VectorSpace
-import Mathlib.LinearAlgebra.Matrix.Trace
-import Mathlib.LinearAlgebra.StdBasis
-import Mathlib.LinearAlgebra.Trace
-import Mathlib.RepresentationTheory.Coinduced
-import Mathlib.RepresentationTheory.Rep.Res
-import Mathlib.Tactic
 
 /-! # Coinduction of a restricted representation as functions on left cosets -/
 
@@ -179,9 +167,6 @@ def fullSymRep (n : ℕ) : Rep ℂ SL(2, ℤ) :=
     { toFun := fun g => ⟨g, Subgroup.mem_top g⟩
       map_one' := rfl
       map_mul' := fun _ _ => rfl })
-
-theorem gammaOneRep_eq_res_fullSymRep (N n : ℕ) :
-    gammaOneRep N n = Rep.res (CongruenceSubgroup.Gamma1 N).subtype (fullSymRep n) := rfl
 
 end MTT.Cohomology
 

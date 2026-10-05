@@ -1,7 +1,5 @@
-import Mathlib.NumberTheory.ModularForms.CuspFormSubmodule
-import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
-import Mathlib.NumberTheory.ModularForms.Cusps
 import Mathlib.GroupTheory.DoubleCoset
+
 import Theorems.FLT.Thm_ModularForm_finiteDimensional_of_isArithmetic
 
 /-! # The codimension of cusp forms is at most the number of cusps -/

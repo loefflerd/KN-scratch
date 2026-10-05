@@ -1,4 +1,3 @@
-import Mathlib
 import Definitions.FLT.Def_AlgebraicCurve_RiemannRochRows
 import Definitions.FLT.Def_P2M_Util
 
