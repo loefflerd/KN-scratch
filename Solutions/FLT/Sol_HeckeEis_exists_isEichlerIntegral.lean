@@ -1,6 +1,6 @@
-import Mathlib
-import Definitions.FLT.Def_HeckeEis_BinaryFormRep
-import Definitions.FLT.Def_Gamma0CoeffCohomology
+import Mathlib.Analysis.Calculus.Deriv.Polynomial
+import Mathlib.Analysis.Complex.UpperHalfPlane.Manifold
+
 import Definitions.FLT.Def_HeckeEis_EichlerIntegral
 import Theorems.FLT.Thm_Complex_exists_hasDerivAt_of_starConvex
 import Definitions.FLT.Def_P2M_Util

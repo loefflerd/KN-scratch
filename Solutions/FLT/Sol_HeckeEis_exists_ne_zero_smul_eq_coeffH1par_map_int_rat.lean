@@ -1,8 +1,13 @@
-import Mathlib
-import Definitions.FLT.Def_HeckeEis_BinaryFormRep
+import Mathlib.Algebra.CharP.Invertible
+import Mathlib.Algebra.MvPolynomial.Monad
+import Mathlib.GroupTheory.Schreier
+import Mathlib.LinearAlgebra.Matrix.FixedDetMatrices
+import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.RingTheory.SimpleRing.Principal
+
 import Definitions.FLT.Def_Gamma0CoeffCohomology
-import Theorems.FLT.Thm_ModularGroup_exists_eq_conj_T_zpow_of_trace_sq_eq_four
 import Theorems.FLT.Thm_HeckeEis_binaryFormRepSL_neg_one_apply
+import Theorems.FLT.Thm_ModularGroup_exists_eq_conj_T_zpow_of_trace_sq_eq_four
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

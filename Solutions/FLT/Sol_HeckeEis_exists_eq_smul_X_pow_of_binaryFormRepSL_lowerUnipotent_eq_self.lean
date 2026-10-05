@@ -1,5 +1,3 @@
-import Mathlib
-import Definitions.FLT.Def_HeckeEis_BinaryFormRep
 import Theorems.FLT.Thm_HeckeEis_exists_eq_smul_X_pow_of_binaryFormRepSL_T_zpow_eq_self
 import Definitions.FLT.Def_P2M_Util
 

@@ -1,11 +1,7 @@
-import Mathlib
-import Definitions.FLT.Def_HeckeEis_BinaryFormRep
-import Definitions.FLT.Def_Gamma0CoeffCohomology
 import Definitions.FLT.Def_HeckeEis_EichlerIntegral
-
 import Theorems.FLT.Thm_HeckeEis_coeff_single_one_eq_eval_of_mem_binaryForm
-import Theorems.FLT.Thm_UpperHalfPlane_apply_add_eq_apply_of_hasDerivAt_of_isZeroAtImInfty
 import Theorems.FLT.Thm_HeckeEis_mem_range_binaryFormRepSL_T_zpow_sub_one
+import Theorems.FLT.Thm_UpperHalfPlane_apply_add_eq_apply_of_hasDerivAt_of_isZeroAtImInfty
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

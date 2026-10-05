@@ -1,6 +1,8 @@
-import Mathlib
-import Definitions.FLT.Def_HeckeEis_BinaryFormRep
-import Definitions.FLT.Def_Gamma0CoeffCohomology
+import Mathlib.Analysis.Calculus.Deriv.Add
+import Mathlib.Analysis.Calculus.Deriv.Mul
+import Mathlib.Analysis.Calculus.Deriv.Pow
+import Mathlib.RingTheory.MvPolynomial.EulerIdentity
+
 import Definitions.FLT.Def_HeckeEis_EichlerIntegral
 import Definitions.FLT.Def_P2M_Util
 

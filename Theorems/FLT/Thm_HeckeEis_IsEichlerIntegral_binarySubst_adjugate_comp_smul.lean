@@ -1,13 +1,8 @@
-import Mathlib
-import Definitions.FLT.Def_HeckeEis_BinaryFormRep
-import Definitions.FLT.Def_Gamma0CoeffCohomology
+import Mathlib.NumberTheory.ModularForms.SlashActions
 import Definitions.FLT.Def_HeckeEis_EichlerIntegral
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
+open scoped MatrixGroups ModularForm
 
-open scoped Manifold MatrixGroups ModularForm
 theorem HeckeEis.IsEichlerIntegral.binarySubst_adjugate_comp_smul {n : ℕ} {f : UpperHalfPlane → ℂ}
     {F : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n)} (hF : HeckeEis.IsEichlerIntegral n f F)
     {M : Matrix (Fin 2) (Fin 2) ℤ} (hM : 0 < M.det) {β : GL (Fin 2) ℝ}

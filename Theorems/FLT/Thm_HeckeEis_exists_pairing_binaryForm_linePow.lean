@@ -1,5 +1,3 @@
-import Mathlib
-import Definitions.FLT.Def_HeckeEis_BinaryFormRep
 import Definitions.FLT.Def_HeckeEis_EichlerIntegral
 
 set_option maxHeartbeats 4000000

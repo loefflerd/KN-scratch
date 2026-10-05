@@ -1,7 +1,9 @@
-import Mathlib
-import Definitions.FLT.Def_Gamma0CoeffCohomology
-import Definitions.FLT.Def_HeckeEis_BinaryFormRep
+import Mathlib.RingTheory.Etale.Weakly
+import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.TotallySplit
 
+import Definitions.FLT.Def_Gamma0CoeffCohomology
 import Theorems.FLT.Thm_HeckeEis_binaryFormRepSL_neg_one_apply
 import Definitions.FLT.Def_P2M_Util
 

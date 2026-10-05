@@ -1,6 +1,6 @@
-import Mathlib
-import Definitions.FLT.Def_HeckeEis_BinaryFormRep
-import Definitions.FLT.Def_Gamma0CoeffCohomology
+import Mathlib.Analysis.Complex.UpperHalfPlane.FunctionsBoundedAtInfty
+import Mathlib.Analysis.Complex.UpperHalfPlane.Manifold
+
 import Definitions.FLT.Def_HeckeEis_EichlerIntegral
 
 set_option maxHeartbeats 4000000

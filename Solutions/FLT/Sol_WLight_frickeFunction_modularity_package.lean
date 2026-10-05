@@ -1,43 +1,14 @@
-import Mathlib.NumberTheory.ModularForms.EisensteinSeries.QExpansion
-import Mathlib.NumberTheory.ModularForms.LevelOne.GradedRing
-import Mathlib.Geometry.Manifold.Notation
-import Mathlib.Analysis.SpecialFunctions.Elliptic.Weierstrass
-import Mathlib.RingTheory.DedekindDomain.IntegralClosure
-import Mathlib.RingTheory.DedekindDomain.Ideal.Lemmas
-import Mathlib.RingTheory.Unramified.Field
-import Mathlib.Analysis.Meromorphic.NormalForm
-import Mathlib.RingTheory.Discriminant
-import Mathlib.RingTheory.Adjoin.PowerBasis
-import Mathlib.FieldTheory.PrimitiveElement
-import Mathlib.RingTheory.RootsOfUnity.Complex
-import Mathlib.Analysis.Complex.Polynomial.Basic
-import Mathlib.LinearAlgebra.Lagrange
-import Mathlib.FieldTheory.LinearDisjoint
-import Mathlib.FieldTheory.Galois.Infinite
-import Mathlib.RingTheory.AlgebraicIndependent.TranscendenceBasis
-import Mathlib.RingTheory.AlgebraicIndependent.AlgebraicClosure
-import Mathlib.RingTheory.AlgebraicIndependent.Adjoin
-import Mathlib.RingTheory.Polynomial.RationalRoot
-import Mathlib.Analysis.Analytic.Order
-import Mathlib.RingTheory.PowerSeries.Order
-import Mathlib.RingTheory.Polynomial.IsIntegral
 import Theorems.FLT.Thm_ModularForm_weierstrassP_torsion_qExpansion_package
-import Definitions.FLT.Def_P2M_Util
-
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
-namespace P2MW.S_WLight_frickeFunction_modularity_package
 
 noncomputable section
 
-open Complex Real
+open Complex Real ModularForm ModularFormClass PeriodPair Matrix.SpecialLinearGroup
+open scoped Manifold MatrixGroups
+open UpperHalfPlane hiding I
+
 namespace WLight
 
 section B1_homogeneity
-
-open PeriodPair
 
 def smulPeriodPair (a : ℂ) (ha : a ≠ 0) (L : PeriodPair) : PeriodPair where
   ω₁ := a * L.ω₁
@@ -88,9 +59,6 @@ theorem weierstrassP_smulPeriodPair (a : ℂ) (ha : a ≠ 0) (L : PeriodPair) (z
 end B1_homogeneity
 
 section R4aFloor
-open scoped UpperHalfPlane Manifold MatrixGroups
-p2m_open "UpperHalfPlane~I"
-p2m_open "ModularForm ModularFormClass CuspForm ModularForm.CuspForm Polynomial Real.Polynomial Filter"
 
 def periodPairOfTau (τ : ℍ) : PeriodPair where
   ω₁ := (τ : ℂ)
@@ -109,108 +77,15 @@ def periodPairOfTau (τ : ℍ) : PeriodPair where
 
 def zetaN (N : ℕ) : ℂ := cexp (2 * π * I / N)
 
-def qN (N : ℕ) (τ : ℂ) : ℂ := cexp (2 * π * I * τ / N)
-
-lemma zetaN_ne_zero (N : ℕ) : zetaN N ≠ 0 := Complex.exp_ne_zero _
-
-def wpTail (N a₁ a₂ : ℕ) (p : ℕ+ × ℕ+) (τ : ℂ) : ℂ :=
-  ((p.2 : ℕ) : ℂ) *
-    (zetaN N ^ (a₂ * (p.2 : ℕ)) * qN N τ ^ (((p.1 : ℕ) * N + a₁) * (p.2 : ℕ)) +
-      (zetaN N)⁻¹ ^ (a₂ * (p.2 : ℕ)) * qN N τ ^ (((p.1 : ℕ) * N - a₁) * (p.2 : ℕ)) -
-        2 * qN N τ ^ ((p.1 : ℕ) * N * (p.2 : ℕ)))
-
 def wpTorsion (N a₁ a₂ : ℕ) (τ : ℍ) : ℂ :=
   PeriodPair.weierstrassP (periodPairOfTau τ) (((a₁ : ℂ) * τ + a₂) / N)
-
-def wpTorsionSeries (N a₁ a₂ : ℕ) (τ : ℂ) : ℂ :=
-  (2 * π * I) ^ 2 *
-    (zetaN N ^ a₂ * qN N τ ^ a₁ / (1 - zetaN N ^ a₂ * qN N τ ^ a₁) ^ 2 + 1 / 12 +
-      ∑' p : ℕ+ × ℕ+, wpTail N a₁ a₂ p τ)
-
-section RatCoeffClosure
-
-lemma ratCoeff_mul {p q : PowerSeries ℂ}
-    (hp : ∀ n : ℕ, ∃ a : ℚ, p.coeff n = (a : ℂ)) (hq : ∀ n : ℕ, ∃ a : ℚ, q.coeff n = (a : ℂ)) :
-    ∀ n : ℕ, ∃ a : ℚ, (p * q).coeff n = (a : ℂ) := by
-  choose F hF using hp
-  choose G hG using hq
-  intro n
-  refine ⟨∑ ij ∈ Finset.HasAntidiagonal.antidiagonal n, F ij.1 * G ij.2, ?_⟩
-  rw [PowerSeries.coeff_mul]
-  push_cast
-  exact Finset.sum_congr rfl fun ij _ => by rw [hF, hG]
-
-lemma ratCoeff_sub {p q : PowerSeries ℂ}
-    (hp : ∀ n : ℕ, ∃ a : ℚ, p.coeff n = (a : ℂ)) (hq : ∀ n : ℕ, ∃ a : ℚ, q.coeff n = (a : ℂ)) :
-    ∀ n : ℕ, ∃ a : ℚ, (p - q).coeff n = (a : ℂ) := by
-  intro n
-  obtain ⟨a, ha⟩ := hp n
-  obtain ⟨b, hb⟩ := hq n
-  exact ⟨a - b, by rw [map_sub, ha, hb]; push_cast; ring⟩
-
-end RatCoeffClosure
 
 def kN (N : ℕ) : IntermediateField ℚ ℂ := IntermediateField.adjoin ℚ {zetaN N}
 
 lemma zetaN_mem_kN (N : ℕ) : zetaN N ∈ kN N :=
   IntermediateField.mem_adjoin_simple_self ℚ _
 
-lemma zetaN_pow_mem_kN (N k : ℕ) : zetaN N ^ k ∈ kN N := pow_mem (zetaN_mem_kN N) k
-
-lemma zetaN_inv_pow_mem_kN (N k : ℕ) : (zetaN N)⁻¹ ^ k ∈ kN N :=
-  pow_mem (inv_mem (zetaN_mem_kN N)) k
-
-lemma natCast_mem_kN (N m : ℕ) : (m : ℂ) ∈ kN N := natCast_mem _ m
-
-lemma one_div_twelve_mem_kN (N : ℕ) : (1 / 12 : ℂ) ∈ kN N :=
-  div_mem (one_mem _) (by exact_mod_cast natCast_mem_kN N 12)
-
-def wpNormSeries (N a₁ a₂ : ℕ) (τ : ℂ) : ℂ :=
-  zetaN N ^ a₂ * qN N τ ^ a₁ / (1 - zetaN N ^ a₂ * qN N τ ^ a₁) ^ 2 + 1 / 12 +
-    ∑' p : ℕ+ × ℕ+, wpTail N a₁ a₂ p τ
-
-lemma wpTorsionSeries_eq (N a₁ a₂ : ℕ) (τ : ℂ) :
-    wpTorsionSeries N a₁ a₂ τ = (2 * π * I) ^ 2 * wpNormSeries N a₁ a₂ τ := rfl
-
 def wpNorm (N a₁ a₂ : ℕ) (τ : ℍ) : ℂ := ((2 * π * I) ^ 2)⁻¹ * wpTorsion N a₁ a₂ τ
-
-abbrev WpIdx : Type := Unit ⊕ ℕ+ ⊕ ((ℕ+ × ℕ+) × Fin 3)
-
-def wpMonCoeff (N a₁ a₂ : ℕ) : WpIdx → ℂ
-  | Sum.inl _ => 1 / 12 + if a₁ = 0 then zetaN N ^ a₂ / (1 - zetaN N ^ a₂) ^ 2 else 0
-  | Sum.inr (Sum.inl m) => if a₁ = 0 then 0 else ((m : ℕ) : ℂ) * zetaN N ^ (a₂ * (m : ℕ))
-  | Sum.inr (Sum.inr (p, i)) =>
-      ![((p.2 : ℕ) : ℂ) * zetaN N ^ (a₂ * (p.2 : ℕ)),
-        ((p.2 : ℕ) : ℂ) * (zetaN N)⁻¹ ^ (a₂ * (p.2 : ℕ)),
-        -2 * ((p.2 : ℕ) : ℂ)] i
-
-def wpMonExp (N a₁ : ℕ) : WpIdx → ℕ
-  | Sum.inl _ => 0
-  | Sum.inr (Sum.inl m) => if a₁ = 0 then (m : ℕ) else a₁ * (m : ℕ)
-  | Sum.inr (Sum.inr (p, i)) =>
-      ![((p.1 : ℕ) * N + a₁) * (p.2 : ℕ), ((p.1 : ℕ) * N - a₁) * (p.2 : ℕ),
-        (p.1 : ℕ) * N * (p.2 : ℕ)] i
-
-def wpQCoeff (N a₁ a₂ : ℕ) (n : ℕ) : ℂ :=
-  ∑' i : (wpMonExp N a₁ ⁻¹' {n}), wpMonCoeff N a₁ a₂ i
-
-lemma wpMonCoeff_mem_kN (N a₁ a₂ : ℕ) (i : WpIdx) : wpMonCoeff N a₁ a₂ i ∈ kN N := by
-  rcases i with u | m | ⟨p, i⟩
-  · simp only [wpMonCoeff]
-    split_ifs
-    · exact add_mem (one_div_twelve_mem_kN N) (div_mem (zetaN_pow_mem_kN N _)
-        (pow_mem (sub_mem (one_mem _) (zetaN_pow_mem_kN N _)) 2))
-    · exact add_mem (one_div_twelve_mem_kN N) (zero_mem _)
-  · simp only [wpMonCoeff]
-    split_ifs
-    · exact zero_mem _
-    · exact mul_mem (natCast_mem_kN N _) (zetaN_pow_mem_kN N _)
-  · simp only [wpMonCoeff]
-    fin_cases i
-    · exact mul_mem (natCast_mem_kN N _) (zetaN_pow_mem_kN N _)
-    · exact mul_mem (natCast_mem_kN N _) (zetaN_inv_pow_mem_kN N _)
-    · simp only [Fin.reduceFinMk, Matrix.cons_val]
-      exact mul_mem (neg_mem (by exact_mod_cast natCast_mem_kN N 2)) (natCast_mem_kN N _)
 
 def frickeH (N a₁ a₂ : ℕ) : ℍ → ℂ := (⇑E₄ * ⇑E₆ : ℍ → ℂ) * wpNorm N a₁ a₂
 
@@ -319,9 +194,6 @@ end R4aFloor
 
 section B3_fricke
 
-open PeriodPair
-open scoped UpperHalfPlane MatrixGroups
-
 def latticeEquivOfEq {L L' : PeriodPair} (h : L.lattice = L'.lattice) :
     L.lattice ≃ L'.lattice where
   toFun l := ⟨l.1, h.le l.2⟩
@@ -329,71 +201,15 @@ def latticeEquivOfEq {L L' : PeriodPair} (h : L.lattice = L'.lattice) :
   left_inv _ := rfl
   right_inv _ := rfl
 
-@[scoped simp] lemma latticeEquivOfEq_coe {L L' : PeriodPair} (h : L.lattice = L'.lattice)
-    (l : L.lattice) : ((latticeEquivOfEq h l : L'.lattice) : ℂ) = (l : ℂ) := rfl
-
 theorem weierstrassP_of_lattice_eq {L L' : PeriodPair} (h : L.lattice = L'.lattice) (z : ℂ) :
     weierstrassP L z = weierstrassP L' z := by
   simp only [weierstrassP]
   rw [← (latticeEquivOfEq h).tsum_eq]
   rfl
 
-theorem G_of_lattice_eq {L L' : PeriodPair} (h : L.lattice = L'.lattice) (n : ℕ) :
-    L.G n = L'.G n := by
-  simp only [G]
-  rw [← (latticeEquivOfEq h).tsum_eq]
-  rfl
-
-theorem G_smulPeriodPair (a : ℂ) (ha : a ≠ 0) (L : PeriodPair) (n : ℕ) :
-    (smulPeriodPair a ha L).G n = a⁻¹ ^ n * L.G n := by
-  simp only [G]
-  rw [← (smulLatticeEquiv a ha L).tsum_eq, ← tsum_mul_left]
-  congr with l
-  simp only [smulLatticeEquiv_coe, mul_pow]
-  rw [mul_inv, inv_pow]
-
-theorem g₂_smulPeriodPair (a : ℂ) (ha : a ≠ 0) (L : PeriodPair) :
-    (smulPeriodPair a ha L).g₂ = a⁻¹ ^ 4 * L.g₂ := by
-  simp only [g₂, G_smulPeriodPair]; ring
-
-theorem g₃_smulPeriodPair (a : ℂ) (ha : a ≠ 0) (L : PeriodPair) :
-    (smulPeriodPair a ha L).g₃ = a⁻¹ ^ 6 * L.g₃ := by
-  simp only [g₃, G_smulPeriodPair]; ring
-
-def latticeDisc (L : PeriodPair) : ℂ := L.g₂ ^ 3 - 27 * L.g₃ ^ 2
-
-theorem latticeDisc_smulPeriodPair (a : ℂ) (ha : a ≠ 0) (L : PeriodPair) :
-    latticeDisc (smulPeriodPair a ha L) = a⁻¹ ^ 12 * latticeDisc L := by
-  simp only [latticeDisc, g₂_smulPeriodPair, g₃_smulPeriodPair]; ring
-
-theorem g₂_of_lattice_eq {L L' : PeriodPair} (h : L.lattice = L'.lattice) : L.g₂ = L'.g₂ := by
-  simp [g₂, G_of_lattice_eq h]
-
-theorem g₃_of_lattice_eq {L L' : PeriodPair} (h : L.lattice = L'.lattice) : L.g₃ = L'.g₃ := by
-  simp [g₃, G_of_lattice_eq h]
-
-theorem latticeDisc_of_lattice_eq {L L' : PeriodPair} (h : L.lattice = L'.lattice) :
-    latticeDisc L = latticeDisc L' := by
-  simp [latticeDisc, g₂_of_lattice_eq h, g₃_of_lattice_eq h]
-
-def frickePrefactor (L : PeriodPair) : ℂ := L.g₂ * L.g₃ / latticeDisc L
-
-theorem frickePrefactor_smulPeriodPair (a : ℂ) (ha : a ≠ 0) (L : PeriodPair) :
-    frickePrefactor (smulPeriodPair a ha L) = a ^ 2 * frickePrefactor L := by
-  have h12 : (a : ℂ)⁻¹ ^ 12 ≠ 0 := pow_ne_zero _ (inv_ne_zero ha)
-  simp only [frickePrefactor, g₂_smulPeriodPair, g₃_smulPeriodPair, latticeDisc_smulPeriodPair]
-  field_simp
-
-theorem frickePrefactor_of_lattice_eq {L L' : PeriodPair} (h : L.lattice = L'.lattice) :
-    frickePrefactor L = frickePrefactor L' := by
-  simp [frickePrefactor, g₂_of_lattice_eq h, g₃_of_lattice_eq h, latticeDisc_of_lattice_eq h]
-
 end B3_fricke
 
 section B3_fricke_tier2
-
-open PeriodPair Matrix
-open scoped UpperHalfPlane MatrixGroups
 
 theorem span_SL2_basis_change {a b c d : ℤ} (hdet : a * d - b * c = 1) (ω₁ ω₂ : ℂ) :
     (Submodule.span ℤ {(a : ℂ) * ω₁ + (b : ℂ) * ω₂, (c : ℂ) * ω₁ + (d : ℂ) * ω₂} : Submodule ℤ ℂ)
@@ -513,48 +329,12 @@ lemma weierstrassP_torsionPt_lift_irrel {N : ℕ} [NeZero N] (a : Fin 2 → ZMod
     unfold frickeTorsionPt; rw [e₁, e₂]; field_simp; ring
   rw [step, (periodPairOfTau τ).weierstrassP_add_coe _ ⟨_, hmem⟩]
 
-def frickeFn (N : ℕ) (a : Fin 2 → ZMod N) (τ : ℍ) : ℂ :=
-  frickePrefactor (periodPairOfTau τ) *
-    weierstrassP (periodPairOfTau τ) (frickeTorsionPt N a τ)
-
 def vecMulSL (N : ℕ) (a : Fin 2 → ZMod N) (γ : SL(2, ℤ)) : Fin 2 → ZMod N :=
   Matrix.vecMul a ((γ : Matrix (Fin 2) (Fin 2) ℤ).map ((↑) : ℤ → ZMod N))
 
 lemma vecMulSL_apply (N : ℕ) (a : Fin 2 → ZMod N) (γ : SL(2, ℤ)) (j : Fin 2) :
     vecMulSL N a γ j = a 0 * (γ 0 j : ℤ) + a 1 * (γ 1 j : ℤ) := by
   simp [vecMulSL, Matrix.vecMul, dotProduct, Fin.sum_univ_two, Matrix.map_apply]
-
-theorem frickeFn_slash {N : ℕ} [NeZero N] (a : Fin 2 → ZMod N) (γ : SL(2, ℤ)) (τ : ℍ) :
-    frickeFn N a (γ • τ) = frickeFn N (vecMulSL N a γ) τ := by
-  have hd : denomZ γ (τ : ℂ) ≠ 0 := denomZ_ne_zero γ τ
-  have hdi : (denomZ γ τ)⁻¹ ≠ 0 := inv_ne_zero hd
-  unfold frickeFn
-  have hlat := periodPairOfTau_smul_lattice_eq γ τ
-  rw [frickePrefactor_of_lattice_eq hlat, weierstrassP_of_lattice_eq hlat,
-      frickePrefactor_smulPeriodPair,
-      show frickeTorsionPt N a (γ • τ)
-        = (denomZ γ τ)⁻¹ * (denomZ γ τ * frickeTorsionPt N a (γ • τ)) by
-          rw [inv_mul_cancel_left₀ hd],
-      weierstrassP_smulPeriodPair, inv_inv]
-  rw [show ((denomZ γ τ)⁻¹ ^ 2 * frickePrefactor (periodPairOfTau τ))
-          * ((denomZ γ τ) ^ 2 * weierstrassP (periodPairOfTau τ)
-              (denomZ γ τ * frickeTorsionPt N a (γ • τ)))
-        = frickePrefactor (periodPairOfTau τ)
-          * weierstrassP (periodPairOfTau τ) (denomZ γ τ * frickeTorsionPt N a (γ • τ)) by
-      field_simp]
-  congr 1
-  have hN : (N : ℂ) ≠ 0 := Nat.cast_ne_zero.mpr (NeZero.ne N)
-  have hpt : denomZ γ τ * frickeTorsionPt N a (γ • τ)
-      = ((((a 0).val : ℤ) * γ 0 0 + ((a 1).val : ℤ) * γ 1 0 : ℤ) * (τ : ℂ)
-          + (((a 0).val : ℤ) * γ 0 1 + ((a 1).val : ℤ) * γ 1 1 : ℤ)) / (N : ℂ) := by
-    have e : denomZ γ τ * frickeTorsionPt N a (γ • τ)
-        = (((a 0).val : ℂ) * numZ γ τ + ((a 1).val : ℂ) * denomZ γ τ) / (N : ℂ) := by
-      unfold frickeTorsionPt; rw [coe_SL2Z_smul]; field_simp
-    rw [e, numZ, denomZ]; push_cast; ring
-  rw [hpt]
-  refine weierstrassP_torsionPt_lift_irrel (vecMulSL N a γ) τ _ _ ?_ ?_
-  · rw [vecMulSL_apply]; push_cast; simp only [ZMod.natCast_val, ZMod.cast_id]
-  · rw [vecMulSL_apply]; push_cast; simp only [ZMod.natCast_val, ZMod.cast_id]
 
 theorem weierstrassP_frickeTorsionPt_slash {N : ℕ} [NeZero N] (a : Fin 2 → ZMod N)
     (γ : SL(2, ℤ)) (τ : ℍ) :
@@ -588,11 +368,6 @@ lemma vecMulSL_of_mem_Gamma {N : ℕ} (a : Fin 2 → ZMod N) {γ : SL(2, ℤ)}
   funext j
   fin_cases j <;> simp [vecMulSL_apply, h₀₀, h₀₁, h₁₀, h₁₁]
 
-theorem frickeFn_invariant_Gamma {N : ℕ} [NeZero N] (a : Fin 2 → ZMod N)
-    {γ : SL(2, ℤ)} (hγ : γ ∈ CongruenceSubgroup.Gamma N) (τ : ℍ) :
-    frickeFn N a (γ • τ) = frickeFn N a τ := by
-  rw [frickeFn_slash, vecMulSL_of_mem_Gamma a hγ]
-
 lemma weierstrassP_frickeTorsionPt_neg {N : ℕ} [NeZero N] (a : Fin 2 → ZMod N) (τ : ℍ) :
     weierstrassP (periodPairOfTau τ) (frickeTorsionPt N (-a) τ)
       = weierstrassP (periodPairOfTau τ) (frickeTorsionPt N a τ) := by
@@ -606,17 +381,10 @@ lemma weierstrassP_frickeTorsionPt_neg {N : ℕ} [NeZero N] (a : Fin 2 → ZMod 
   push_cast
   ring
 
-theorem frickeFn_neg {N : ℕ} [NeZero N] (a : Fin 2 → ZMod N) (τ : ℍ) :
-    frickeFn N (-a) τ = frickeFn N a τ := by
-  unfold frickeFn; rw [weierstrassP_frickeTorsionPt_neg]
-
 end B3_fricke_tier2
 
 section B3_spelling2
 
-open scoped UpperHalfPlane Manifold MatrixGroups
-p2m_open "UpperHalfPlane~I"
-open Matrix.SpecialLinearGroup
 
 lemma denom_mapGL_eq_denomZ (γ : SL(2, ℤ)) (τ : ℍ) :
     denom (mapGL ℝ γ) τ = denomZ γ τ := by
@@ -655,50 +423,7 @@ theorem frickeF_invariant_Gamma {N : ℕ} [NeZero N] (a : Fin 2 → ZMod N) {γ 
     (hγ : γ ∈ CongruenceSubgroup.Gamma N) (τ : ℍ) : frickeF N a (γ • τ) = frickeF N a τ := by
   rw [frickeF_slash, vecMulSL_of_mem_Gamma a hγ]
 
-lemma vecMulSL_mul (N : ℕ) (a : Fin 2 → ZMod N) (γ δ : SL(2, ℤ)) :
-    vecMulSL N a (γ * δ) = vecMulSL N (vecMulSL N a γ) δ := by
-  have hmap : ((γ * δ : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ).map ((↑) : ℤ → ZMod N) =
-      (γ : Matrix (Fin 2) (Fin 2) ℤ).map ((↑) : ℤ → ZMod N) *
-        (δ : Matrix (Fin 2) (Fin 2) ℤ).map ((↑) : ℤ → ZMod N) := by
-    rw [Matrix.SpecialLinearGroup.coe_mul]
-    exact Matrix.map_mul (f := Int.castRingHom (ZMod N))
-  simp only [vecMulSL, hmap, Matrix.vecMul_vecMul]
-
-lemma vecMulSL_one (N : ℕ) (a : Fin 2 → ZMod N) : vecMulSL N a 1 = a := by
-  simp [vecMulSL]
-
-def vecMulSLEquiv (N : ℕ) (γ : SL(2, ℤ)) : Equiv.Perm (Fin 2 → ZMod N) where
-  toFun a := vecMulSL N a γ
-  invFun a := vecMulSL N a γ⁻¹
-  left_inv a := by
-    show vecMulSL N (vecMulSL N a γ) γ⁻¹ = a
-    rw [← vecMulSL_mul, mul_inv_cancel, vecMulSL_one]
-  right_inv a := by
-    show vecMulSL N (vecMulSL N a γ⁻¹) γ = a
-    rw [← vecMulSL_mul, inv_mul_cancel, vecMulSL_one]
-
-lemma vecMulSL_zero (N : ℕ) (γ : SL(2, ℤ)) : vecMulSL N 0 γ = 0 := by
-  funext j; simp [vecMulSL_apply]
-
-lemma vecMulSL_ne_zero {N : ℕ} {a : Fin 2 → ZMod N} (ha : a ≠ 0) (γ : SL(2, ℤ)) :
-    vecMulSL N a γ ≠ 0 := by
-  intro h
-  apply ha
-  have := congrArg (fun b ↦ vecMulSL N b γ⁻¹) h
-  simpa [← vecMulSL_mul, vecMulSL_one, vecMulSL_zero] using this
-
 abbrev FrickeIdx (N : ℕ) : Type := {a : Fin 2 → ZMod N // a ≠ 0}
-
-scoped instance (N : ℕ) [NeZero N] : Fintype (FrickeIdx N) := by unfold FrickeIdx; infer_instance
-
-def frickeIdxPerm (N : ℕ) (γ : SL(2, ℤ)) : Equiv.Perm (FrickeIdx N) :=
-  (vecMulSLEquiv N γ).subtypeEquiv fun a ↦
-    ⟨fun ha ↦ vecMulSL_ne_zero ha γ, fun h ha ↦ h (by rw [ha]; exact vecMulSL_zero N γ)⟩
-
-theorem frickeF_hperm {N : ℕ} [NeZero N] (γ : SL(2, ℤ)) :
-    ∃ σ : Equiv.Perm (FrickeIdx N), ∀ (i : FrickeIdx N) (τ : ℍ),
-      frickeF N i.1 (γ • τ) = frickeF N (σ i).1 τ :=
-  ⟨frickeIdxPerm N γ, fun i τ ↦ frickeF_slash i.1 γ τ⟩
 
 lemma frickeIdx_hyps {N : ℕ} [NeZero N] (i : FrickeIdx N) :
     (i.1 0).val < N ∧ (i.1 1).val < N ∧ ((i.1 0).val ≠ 0 ∨ (i.1 1).val ≠ 0) := by
@@ -952,49 +677,11 @@ theorem frickeF_eq_imp {N : ℕ} [NeZero N] (a b : FrickeIdx N)
     funext j
     fin_cases j <;> simp [f0, f1]
 
-theorem mem_Gamma_or_neg_mem_of_vecMulSL {N : ℕ} [NeZero N] (γ : SL(2, ℤ))
-    (h : ∀ a : Fin 2 → ZMod N, a ≠ 0 → vecMulSL N a γ = a ∨ vecMulSL N a γ = -a) :
-    γ ∈ CongruenceSubgroup.Gamma N ∨ -γ ∈ CongruenceSubgroup.Gamma N := by
-  rcases Nat.lt_or_ge 1 N with hN | hN
-  · have : Fact (1 < N) := ⟨hN⟩
-    have h10 : (1 : ZMod N) ≠ 0 := one_ne_zero
-    have r1 := h ![1, 0] (fun e ↦ h10 (by simpa using congrFun e 0))
-    have r2 := h ![0, 1] (fun e ↦ h10 (by simpa using congrFun e 1))
-    have r3 := h ![1, 1] (fun e ↦ h10 (by simpa using congrFun e 0))
-    simp only [funext_iff, Fin.forall_fin_two, vecMulSL_apply, Matrix.cons_val_zero,
-      Matrix.cons_val_one, Matrix.cons_val_fin_one, one_mul, zero_mul, add_zero, zero_add,
-      Pi.neg_apply, neg_zero] at r1 r2 r3
-    have e01 : ((γ 0 1 : ℤ) : ZMod N) = 0 := by rcases r1 with ⟨_, e⟩ | ⟨_, e⟩ <;> exact e
-    have e10 : ((γ 1 0 : ℤ) : ZMod N) = 0 := by rcases r2 with ⟨e, _⟩ | ⟨e, _⟩ <;> exact e
-    have e0011 : ((γ 0 0 : ℤ) : ZMod N) = ((γ 1 1 : ℤ) : ZMod N) := by
-      rcases r3 with ⟨c1, c2⟩ | ⟨c1, c2⟩ <;>
-        (rw [e10, add_zero] at c1; rw [e01, zero_add] at c2; rw [c1, c2])
-    rw [CongruenceSubgroup.Gamma_mem, CongruenceSubgroup.Gamma_mem]
-    simp only [Matrix.SpecialLinearGroup.coe_neg, Matrix.neg_apply, Int.cast_neg, neg_eq_zero]
-    rcases r1 with ⟨a1, _⟩ | ⟨a1, _⟩
-    · left; exact ⟨a1, e01, e10, by rw [← e0011]; exact a1⟩
-    · right; exact ⟨by rw [a1, neg_neg], e01, e10, by rw [← e0011, a1, neg_neg]⟩
-  · have : N = 1 := by have := NeZero.ne N; omega
-    subst this
-    left
-    simp [CongruenceSubgroup.Gamma_one_top]
-
-theorem frickeF_faithful {N : ℕ} [NeZero N] (γ : SL(2, ℤ))
-    (h : ∀ i : FrickeIdx N, ∀ τ : ℍ, frickeF N i.1 (γ • τ) = frickeF N i.1 τ) :
-    γ ∈ CongruenceSubgroup.Gamma N ∨ -γ ∈ CongruenceSubgroup.Gamma N := by
-  refine mem_Gamma_or_neg_mem_of_vecMulSL γ fun a ha ↦ ?_
-  have hfun : frickeF N a = frickeF N (vecMulSL N a γ) := by
-    funext τ; rw [← frickeF_slash, h ⟨a, ha⟩ τ]
-  rcases frickeF_eq_imp ⟨a, ha⟩ ⟨vecMulSL N a γ, vecMulSL_ne_zero ha γ⟩ hfun with e | e
-  · exact Or.inl e
-  · exact Or.inr e
-
 end B3_spelling2
 
 section R4aBridge
 
 open WLight
-p2m_open "UpperHalfPlane~I"
 open scoped Manifold MatrixGroups ModularForm
 
 private lemma periodPair_ext' {L₁ L₂ : PeriodPair} (h₁ : L₁.ω₁ = L₂.ω₁)
@@ -1004,11 +691,9 @@ private lemma periodPair_ext' {L₁ L₂ : PeriodPair} (h₁ : L₁.ω₁ = L₂
 end R4aBridge
 
 end WLight
-p2m_reactivate "P2MW.S_WLight_frickeFunction_modularity_package.WLight"
 
-p2m_open "UpperHalfPlane~I" in
-open scoped UpperHalfPlane Manifold MatrixGroups ModularForm in
-open WLight in
+open WLight
+
 theorem solution (N : ℕ) [NeZero N]
     (L : ℍ → PeriodPair) (hL : ∀ τ : ℍ, (L τ).ω₁ = (τ : ℂ) ∧ (L τ).ω₂ = 1) :
     let f : (Fin 2 → ZMod N) → ℍ → ℂ := fun a τ =>
@@ -1165,6 +850,3 @@ theorem solution (N : ℕ) [NeZero N]
     rfl
 
 end
-end S_WLight_frickeFunction_modularity_package
-end P2MW
-export P2MW.S_WLight_frickeFunction_modularity_package (solution)

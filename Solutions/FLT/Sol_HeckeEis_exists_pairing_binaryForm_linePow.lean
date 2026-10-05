@@ -1,5 +1,5 @@
-import Mathlib
-import Definitions.FLT.Def_HeckeEis_BinaryFormRep
+import Mathlib.LinearAlgebra.Lagrange
+
 import Definitions.FLT.Def_HeckeEis_EichlerIntegral
 import Definitions.FLT.Def_P2M_Util
 

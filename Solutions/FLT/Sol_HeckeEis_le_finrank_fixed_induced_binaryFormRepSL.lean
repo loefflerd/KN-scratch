@@ -1,5 +1,16 @@
-import Mathlib
-import Definitions.FLT.Def_HeckeEis_BinaryFormRep
+import Mathlib.Algebra.Module.StablyFree.Basic
+import Mathlib.Analysis.CStarAlgebra.Classes
+import Mathlib.Analysis.Complex.Polynomial.Basic
+import Mathlib.LinearAlgebra.FreeModule.PID
+import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
+import Mathlib.RingTheory.Etale.Weakly
+import Mathlib.RingTheory.Finiteness.ModuleFinitePresentation
+import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.TotallySplit
+
 import Theorems.FLT.Thm_HeckeEis_binaryFormRepSL_neg_one_apply
 import Definitions.FLT.Def_P2M_Util
 

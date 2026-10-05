@@ -1,13 +1,6 @@
-import Mathlib
-import Definitions.FLT.Def_HeckeEis_BinaryFormRep
-import Definitions.FLT.Def_Gamma0CoeffCohomology
 import Definitions.FLT.Def_HeckeEis_EichlerIntegral
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
-open scoped Manifold MatrixGroups ModularForm
+open scoped MatrixGroups
 theorem HeckeEis.jFactor_pow_mul_eval_binaryFormRepSL (n : ℕ) (g : SL(2, ℤ)) (τ : UpperHalfPlane)
     (P : ↥(HeckeEis.BinaryForm ℂ n)) :
     HeckeEis.jFactor g τ ^ n * MvPolynomial.eval ![(1 : ℂ), -(((g • τ : UpperHalfPlane)) : ℂ)]

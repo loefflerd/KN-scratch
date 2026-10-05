@@ -1,13 +1,8 @@
-import Mathlib
-import Definitions.FLT.Def_HeckeEis_BinaryFormRep
-import Definitions.FLT.Def_Gamma0CoeffCohomology
+import Mathlib.Algebra.MvPolynomial.PDeriv
+
 import Definitions.FLT.Def_HeckeEis_EichlerIntegral
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
-open scoped Manifold MatrixGroups ModularForm
+open scoped MatrixGroups
 theorem HeckeEis.IsEichlerIntegral.hasDerivAt_eval_iterate_pderiv {n : ℕ} {g : UpperHalfPlane → ℂ}
     {G : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n)} (hG : HeckeEis.IsEichlerIntegral n g G) {j : ℕ} (hj : j ≤ n)
     (τ : UpperHalfPlane) :
