@@ -149,7 +149,6 @@ scoped instance instAlgebraSubtypeMemValuationSubring_fLT {K L : Type*} [Field K
 end
 
 section
-section
 
 set_option maxHeartbeats 6400000
 set_option linter.unusedSectionVars false
@@ -168,10 +167,7 @@ end
 
 end
 
-end
 
-section
-section
 
 noncomputable section
 
@@ -214,12 +210,8 @@ end Place
 end AlgebraicCurve
 
 end
-end
 
-end
 
-section
-section
 
 noncomputable section
 
@@ -410,12 +402,8 @@ end Place
 end AlgebraicCurve
 
 end
-end
 
-end
 
-section
-section
 
 section
 
@@ -454,12 +442,8 @@ theorem ValuationSubring.isUnit_iff_valued_eq_one {K : Type*} [Field K] {Γ₀ :
 
 end
 
-end
 
-end
 
-section
-section
 
 noncomputable section
 
@@ -486,11 +470,8 @@ end Divisor
 end AlgebraicCurve
 
 end
-end
 
-end
 
-section
 section
 
 set_option synthInstance.maxHeartbeats 3200000
@@ -509,9 +490,7 @@ end AlgebraicCurve.Place
 end
 end
 
-end
 
-section
 section
 
 set_option synthInstance.maxHeartbeats 3200000
@@ -530,9 +509,7 @@ end AlgebraicCurve.Place
 end
 end
 
-end
 
-section
 section
 
 set_option synthInstance.maxHeartbeats 3200000
@@ -695,10 +672,8 @@ end IntegralClosure
 end AlgebraicCurve.Place
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
 
-section
 section
 
 set_option synthInstance.maxHeartbeats 3200000
@@ -733,11 +708,8 @@ end CompletionTrace
 end AlgebraicCurve.Place
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
 
-section
-section
 
 noncomputable section
 
@@ -774,12 +746,8 @@ namespace ModularCurve
 p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4gRRTate.KwF4gRRTateTraceCompat"
 end ModularCurve
 end
-end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
 
-section
-section
 
 noncomputable section
 
@@ -808,11 +776,8 @@ p2m_export "AlgebraicCurve.Place" "uniformizer_mem"
 end Place
 end AlgebraicCurve
 end
-end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
 
-section
 section
 
 set_option maxHeartbeats 6400000
@@ -828,10 +793,8 @@ p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver
 end AlgebraicCurve
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
 
-section
 section
 
 set_option maxHeartbeats 6400000
@@ -887,10 +850,8 @@ end TateProj
 end ModularCurve.KwF4gRRTate
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
 
-section
 section
 
 set_option maxHeartbeats 6400000
@@ -972,10 +933,8 @@ end PoleWindow
 end ModularCurve.KwF4gRRTate
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
 
-section
 section
 
 set_option maxHeartbeats 3200000
@@ -1015,10 +974,8 @@ theorem isOpen_setOf_valued_le {γ : ℤᵐ⁰} (hγ : γ ≠ 0) :
 end adicCompletion
 end IsDedekindDomain.HeightOneSpectrum
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place"
 
-section
 section
 
 set_option maxHeartbeats 6400000
@@ -1126,10 +1083,8 @@ end Bridge
 end ModularCurve.KwF4R1V410a
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a"
 
-section
 section
 
 set_option maxHeartbeats 6400000
@@ -1248,10 +1203,8 @@ end PoleWindowShift
 end ModularCurve.KwF4gRRTate
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a"
 
-section
 section
 
 set_option maxHeartbeats 6400000
@@ -1299,10 +1252,8 @@ end AgreementReduce
 end ModularCurve.KwF4gRRTate
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a"
 
-section
 section
 
 set_option maxHeartbeats 6400000
@@ -1348,10 +1299,8 @@ end FinrankTraceCyclicity
 end ModularCurve.KwF4gRRTate
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a"
 
-section
 section
 
 set_option maxHeartbeats 6400000
@@ -1480,10 +1429,8 @@ end DiffComputation
 end ModularCurve.KwF4gRRTate
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a"
 
-section
 section
 
 set_option maxHeartbeats 6400000
@@ -1562,10 +1509,8 @@ end Additivity
 end ModularCurve.KwF4gRRTate
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a"
 
-section
 section
 
 set_option maxHeartbeats 6400000
@@ -1699,10 +1644,8 @@ end DVRQuotDischarge
 end ModularCurve.KwF4gRRTate
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a"
 
-section
 section
 
 set_option maxHeartbeats 6400000
@@ -1772,10 +1715,8 @@ end DVRCotangentDischarge
 end ModularCurve.KwF4gRRTate
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
 
-section
 section
 
 set_option maxHeartbeats 12800000
@@ -1841,10 +1782,8 @@ end DiffTraceZero
 end ModularCurve.KwF4gRRTate
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
 
-section
 section
 
 set_option maxHeartbeats 12800000
@@ -1925,10 +1864,8 @@ end Discharge
 end ModularCurve.KwF4gRRTate
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
 
-section
 section
 
 set_option maxHeartbeats 12800000
@@ -2065,10 +2002,8 @@ end Discharge
 end ModularCurve.KwF4gRRTate
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
 
-section
 section
 
 set_option maxHeartbeats 12800000
@@ -2339,10 +2274,8 @@ end Headline
 end ModularCurve.KwF4gRRTate
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
 
-section
 section
 
 set_option maxHeartbeats 12800000
@@ -2479,10 +2412,8 @@ end TateResAddFst
 end ModularCurve.KwF4gRRTate
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
 
-section
 section
 
 set_option maxHeartbeats 12800000
@@ -2730,10 +2661,8 @@ end Headline
 end ModularCurve.KwF4gRRTate
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
 
-section
 section
 
 set_option maxHeartbeats 25600000
@@ -2930,10 +2859,8 @@ end Headline
 end ModularCurve.KwF4gRRTate
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
 
-section
 section
 
 set_option maxHeartbeats 51200000
@@ -3258,10 +3185,8 @@ end Headline
 end ModularCurve.KwF4gRRTate
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
 
-section
 section
 
 set_option maxHeartbeats 25600000
@@ -3357,10 +3282,8 @@ end Construct
 end ModularCurve.KwF4gRRTate
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate"
 
-section
 section
 
 set_option maxHeartbeats 6400000
@@ -3484,10 +3407,8 @@ end BijEngine
 end ModularCurve.KwF4R1V384a
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V384a"
 
-section
 section
 
 set_option maxHeartbeats 6400000
@@ -3569,10 +3490,8 @@ end IsSeparableLift
 end ModularCurve.KwF4R1V386a
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V384a"
 
-section
 section
 
 set_option maxHeartbeats 25600000
@@ -3646,7 +3565,6 @@ theorem kwTateRR3_traceCompat_of_isSeparable_global [Algebra.IsSeparable E F]
 
 end Headline
 end ModularCurve.KwF4gRRTate
-end
 end
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.KwF4R1V384a"

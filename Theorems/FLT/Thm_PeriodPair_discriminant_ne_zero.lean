@@ -5,9 +5,7 @@ public import Definitions.FLT.Def_PeriodPair_Uniformization
 import Mathlib.NumberTheory.ModularForms.LevelOne.DimensionFormula
 import Definitions.FLT.Def_P2M_Util
 
-section privateSection
-
-noncomputable section
+noncomputable section privateSection
 
 open scoped MatrixGroups Real
 open Complex UpperHalfPlane ModularForm ModularFormClass EisensteinSeries PowerSeries
@@ -34,20 +32,20 @@ def kw_E4cube_sub_E6sq : ModularForm 𝒮ℒ 12 := kw_E4cube - kw_E6sq
     kw_E4cube_sub_E6sq τ = E₄ τ ^ 3 - E₆ τ ^ 2 := by
   simp [kw_E4cube_sub_E6sq]
 
-private theorem kw_qExpansion_E4cube :
+theorem kw_qExpansion_E4cube :
     qExpansion 1 (kw_E4cube : ℍ → ℂ) = qExpansion 1 (E₄ : ℍ → ℂ) ^ 3 := by
   show qExpansion 1 (((E₄.mul E₄).mul E₄ : ModularForm _ _) : ℍ → ℂ) = _
   rw [ModularForm.qExpansion_mul one_pos one_mem_strictPeriods_SL,
     ModularForm.qExpansion_mul one_pos one_mem_strictPeriods_SL]
   ring
 
-private theorem kw_qExpansion_E6sq :
+theorem kw_qExpansion_E6sq :
     qExpansion 1 (kw_E6sq : ℍ → ℂ) = qExpansion 1 (E₆ : ℍ → ℂ) ^ 2 := by
   show qExpansion 1 ((E₆.mul E₆ : ModularForm _ _) : ℍ → ℂ) = _
   rw [ModularForm.qExpansion_mul one_pos one_mem_strictPeriods_SL]
   ring
 
-private theorem kw_qExpansion_E4cube_sub_E6sq :
+theorem kw_qExpansion_E4cube_sub_E6sq :
     qExpansion 1 (kw_E4cube_sub_E6sq : ℍ → ℂ)
       = qExpansion 1 (E₄ : ℍ → ℂ) ^ 3 - qExpansion 1 (E₆ : ℍ → ℂ) ^ 2 := by
   rw [show (kw_E4cube_sub_E6sq : ℍ → ℂ) = (kw_E4cube : ℍ → ℂ) - (kw_E6sq : ℍ → ℂ) from
@@ -55,10 +53,10 @@ private theorem kw_qExpansion_E4cube_sub_E6sq :
     ModularForm.qExpansion_sub one_pos one_mem_strictPeriods_SL,
     kw_qExpansion_E4cube, kw_qExpansion_E6sq]
 
-private theorem kw_E4_coeff_zero : (qExpansion 1 (E₄ : ℍ → ℂ)).coeff 0 = 1 :=
+theorem kw_E4_coeff_zero : (qExpansion 1 (E₄ : ℍ → ℂ)).coeff 0 = 1 :=
   E_qExpansion_coeff_zero (by norm_num) ⟨2, rfl⟩
 
-private theorem kw_E6_coeff_zero : (qExpansion 1 (E₆ : ℍ → ℂ)).coeff 0 = 1 :=
+theorem kw_E6_coeff_zero : (qExpansion 1 (E₆ : ℍ → ℂ)).coeff 0 = 1 :=
   E_qExpansion_coeff_zero (by norm_num) ⟨3, rfl⟩
 
 theorem kw_E4cube_sub_E6sq_coeff_zero :
@@ -68,19 +66,19 @@ theorem kw_E4cube_sub_E6sq_coeff_zero :
     ← PowerSeries.coeff_zero_eq_constantCoeff_apply, kw_E4_coeff_zero, kw_E6_coeff_zero]
   ring
 
-private theorem kw_antidiagonal_one :
+theorem kw_antidiagonal_one :
     (Finset.HasAntidiagonal.antidiagonal 1 : Finset (ℕ × ℕ)) = {(0, 1), (1, 0)} := by decide
 
-private theorem kw_coeff_one_mul (p q : PowerSeries ℂ) :
+theorem kw_coeff_one_mul (p q : PowerSeries ℂ) :
     (p * q).coeff 1 = p.coeff 0 * q.coeff 1 + p.coeff 1 * q.coeff 0 := by
   rw [PowerSeries.coeff_mul, kw_antidiagonal_one]
   simp
 
-private theorem kw_coeff_one_sq (p : PowerSeries ℂ) :
+theorem kw_coeff_one_sq (p : PowerSeries ℂ) :
     (p ^ 2).coeff 1 = 2 * p.coeff 0 * p.coeff 1 := by
   rw [sq, kw_coeff_one_mul]; ring
 
-private theorem kw_coeff_one_cube (p : PowerSeries ℂ) :
+theorem kw_coeff_one_cube (p : PowerSeries ℂ) :
     (p ^ 3).coeff 1 = 3 * p.coeff 0 ^ 2 * p.coeff 1 := by
   have hsq0 : (p ^ 2).coeff 0 = p.coeff 0 ^ 2 := by
     simp only [PowerSeries.coeff_zero_eq_constantCoeff, map_pow]
@@ -203,19 +201,13 @@ section Scale
 
 variable (α : ℂˣ)
 
-private def mulLeftR (a : ℂ) : ℂ →ₗ[ℝ] ℂ := Algebra.lmul ℝ ℂ a
+def mulLeftR (a : ℂ) : ℂ →ₗ[ℝ] ℂ := Algebra.lmul ℝ ℂ a
 
-@[scoped simp] private theorem mulLeftR_apply (a z : ℂ) : mulLeftR a z = a * z := rfl
+def mulLeftZ (a : ℂ) : ℂ →ₗ[ℤ] ℂ := (mulLeftR a).restrictScalars ℤ
 
-private theorem mulLeftR_injective {a : ℂ} (ha : a ≠ 0) :
-    Function.Injective (mulLeftR a) := fun _ _ h => by
-  simpa using mul_left_cancel₀ ha h
+@[scoped simp] theorem mulLeftZ_apply (a z : ℂ) : mulLeftZ a z = a * z := rfl
 
-private def mulLeftZ (a : ℂ) : ℂ →ₗ[ℤ] ℂ := (mulLeftR a).restrictScalars ℤ
-
-@[scoped simp] private theorem mulLeftZ_apply (a z : ℂ) : mulLeftZ a z = a * z := rfl
-
-private theorem _root_.PeriodPair.scale_lattice : (L.scale α).lattice = Submodule.map (mulLeftZ (α : ℂ)) L.lattice := by
+theorem _root_.PeriodPair.scale_lattice : (L.scale α).lattice = Submodule.map (mulLeftZ (α : ℂ)) L.lattice := by
   unfold lattice scale
   rw [Submodule.map_span]
   congr 1
@@ -223,7 +215,7 @@ private theorem _root_.PeriodPair.scale_lattice : (L.scale α).lattice = Submodu
   simp only [Set.mem_insert_iff, Set.mem_singleton_iff, Set.mem_image, mulLeftZ_apply]
   grind
 
-private def _root_.PeriodPair.scaleLatticeEquiv : L.lattice ≃ₗ[ℤ] (L.scale α).lattice :=
+def _root_.PeriodPair.scaleLatticeEquiv : L.lattice ≃ₗ[ℤ] (L.scale α).lattice :=
   (Submodule.equivMapOfInjective (mulLeftZ (α : ℂ))
     (fun _ _ h => mul_left_cancel₀ α.ne_zero (by simpa using h)) L.lattice).trans
     (LinearEquiv.ofEq _ _ (L.scale_lattice α).symm)
@@ -266,7 +258,7 @@ section LatticeDependence
 
 variable {L L' : PeriodPair}
 
-private def latticeEquivOfEq (h : L.lattice = L'.lattice) : L.lattice ≃ L'.lattice where
+def latticeEquivOfEq (h : L.lattice = L'.lattice) : L.lattice ≃ L'.lattice where
   toFun l := ⟨(l : ℂ), h ▸ l.2⟩
   invFun l := ⟨(l : ℂ), h.symm ▸ l.2⟩
   left_inv _ := rfl
@@ -323,7 +315,7 @@ theorem kw_span_neg_fst (a b : ℂ) :
     exact ⟨by assumption,
       Set.singleton_subset_iff.mpr (Submodule.subset_span (Set.mem_insert_of_mem _ rfl))⟩
 
-private theorem _root_.PeriodPair.kw_discriminantNeZero (L : PeriodPair) : L.DiscriminantNeZero := by
+theorem _root_.PeriodPair.kw_discriminantNeZero (L : PeriodPair) : L.DiscriminantNeZero := by
   have hω₂ : L.ω₂ ≠ 0 := by have := L.indep.ne_zero 1; simpa using this
   set α : ℂˣ := (Units.mk0 L.ω₂ hω₂)⁻¹
   have hα : (α : ℂ) = (L.ω₂)⁻¹ := by
@@ -344,18 +336,11 @@ private theorem _root_.PeriodPair.kw_discriminantNeZero (L : PeriodPair) : L.Dis
 
 end PeriodPair
 
-theorem solution (L : PeriodPair) : L.DiscriminantNeZero :=
-  L.kw_discriminantNeZero
-
-end
-
 end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-theorem PeriodPair.discriminant_ne_zero (L : PeriodPair) : L.DiscriminantNeZero := _root_.solution L
+theorem PeriodPair.discriminant_ne_zero (L : PeriodPair) : L.DiscriminantNeZero :=
+  L.kw_discriminantNeZero
 
 end publicSection

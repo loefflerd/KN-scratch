@@ -5,9 +5,7 @@ public import Mathlib.Algebra.Module.LinearMap.Rat
 public import Mathlib.FieldTheory.LinearDisjoint
 public import Definitions.FLT.Def_ModularCurve_LaurentCoeff
 
-@[expose] public section publicSection
-
-noncomputable section
+@[expose] public noncomputable section publicSection
 
 open scoped TensorProduct
 open IntermediateField
@@ -221,7 +219,5 @@ theorem coe_geomAut_coeffEmb (σ : F₀ ≃ₐ[ℚ] F₀) (f : F₀) :
 end BaseChange
 
 end ModularCurve
-
-end
 
 end publicSection

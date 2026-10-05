@@ -42,8 +42,6 @@ namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine Affine.negY Affine.slope_of_X_ne a₃ a₁ map a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq Affine.negAddY reduction toAffine Affine.Point Affine.addX Affine.Point.some_ne_zero Δ c₄ Affine.addY Affine.Point.add_of_X_ne Affine.equation_iff Affine.Point.neg_some j"
 end WeierstrassCurve
 
-section
-section
 
 noncomputable section
 
@@ -121,11 +119,8 @@ p2m_export "PeriodPair" "kw_analyticOrderAt_derivWeierstrassP"
 end PeriodPair
 
 end
-end
 
-end
 
-section
 section
 
 p2m_open "Complex P2MW.S_PeriodPair_isUniformization_toPoint.Complex Filter P2MW.S_PeriodPair_isUniformization_toPoint.Filter Set P2MW.S_PeriodPair_isUniformization_toPoint.Set"
@@ -205,10 +200,7 @@ p2m_export "Projectivization" "map card"
 end Projectivization
 end
 
-end
 
-section
-section
 
 noncomputable section
 
@@ -296,12 +288,8 @@ p2m_export "PeriodPair" "kw_deriv2_derivWeierstrassP"
 end PeriodPair
 
 end
-end
 
-end
 
-section
-section
 
 noncomputable section
 
@@ -420,12 +408,8 @@ p2m_export "PeriodPair" "kw_toPoint_surjective"
 end PeriodPair
 
 end
-end
 
-end
 
-section
-section
 
 noncomputable section
 
@@ -646,12 +630,8 @@ p2m_export "PeriodPair" "kw_addCoreE_order_ge_four"
 end PeriodPair
 
 end
-end
 
-end
 
-section
-section
 
 noncomputable section
 
@@ -786,12 +766,8 @@ p2m_export "PeriodPair" "kw_addCoreE_add_R_order_ge_four"
 end PeriodPair
 
 end
-end
 
-end
 
-section
-section
 
 noncomputable section
 
@@ -1379,12 +1355,8 @@ p2m_export "PeriodPair" "kw_toPoint_add"
 end PeriodPair
 
 end
-end
 
-end
 
-section
-section
 
 noncomputable section
 
@@ -1402,9 +1374,7 @@ p2m_export "PeriodPair" "kw_isUniformization"
 end PeriodPair
 
 end
-end
 
-end
 
 theorem solution (L : PeriodPair) (h : L.DiscriminantNeZero) : L.IsUniformization h :=
   L.kw_isUniformization

@@ -72,7 +72,6 @@ end WeierstrassCurve.Affine.Point
 universe u v w
 
 section
-section
 
 set_option maxHeartbeats 6400000
 set_option synthInstance.maxHeartbeats 1600000
@@ -109,10 +108,7 @@ end ModularCurve
 end
 end
 
-end
 
-section
-section
 
 noncomputable section
 
@@ -163,12 +159,8 @@ end CoordinateRing
 end WeierstrassCurve.Affine
 
 end
-end
 
-end
 
-section
-section
 
 noncomputable section
 
@@ -231,11 +223,8 @@ end VeluPicSeam
 end WeierstrassCurve.Affine
 
 end
-end
 
-end
 
-section
 section
 
 set_option maxHeartbeats 6400000
@@ -310,9 +299,7 @@ end ModularCurve
 end
 end
 
-end
 
-section
 section
 
 set_option maxHeartbeats 25600000
@@ -430,10 +417,7 @@ end
 
 end
 
-end
 
-section
-section
 
 noncomputable section
 
@@ -488,11 +472,8 @@ end GenericPoint
 end WeierstrassCurve.Affine
 
 end
-end
 
-end
 
-section
 section
 
 p2m_open "Polynomial P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.Polynomial WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.WeierstrassCurve.Affine WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.WeierstrassCurve.Affine.Point"
@@ -548,9 +529,7 @@ end
 
 end
 
-end
 
-section
 section
 
 set_option maxHeartbeats 6400000
@@ -864,10 +843,8 @@ end Setup
 end ModularCurve
 end
 end
-end
 p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.ModularCurve"
 
-section
 section
 
 set_option maxHeartbeats 6400000
@@ -1166,7 +1143,6 @@ attribute [local instance] Algebra.TensorProduct.rightAlgebra
 
 end SatGate
 end ModularCurve
-end
 end
 end
 p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.ModularCurve"

@@ -4,80 +4,16 @@ public import Definitions.FLT.Def_PeriodPair_Uniformization
 
 import Mathlib.Data.Int.Star
 import Mathlib.NumberTheory.ModularForms.LevelOne.DimensionFormula
-import Definitions.FLT.Def_P2M_Util
 
-section privateSection
-
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
-namespace P2MW.S_PeriodPair_jLattice_surjective
-
-set_option linter.unusedSectionVars false
-set_option linter.unusedVariables false
-set_option synthInstance.maxHeartbeats 800000
-set_option maxHeartbeats 6400000
-
-namespace Complex
-p2m_export "Complex" "re lift im exists mk ext I"
-end Complex
-namespace EisensteinSeries
-p2m_export "EisensteinSeries" "E_qExpansion_coeff_zero eisSummand"
-end EisensteinSeries
-namespace Filter
-p2m_export "Filter" "NeBot mk Tendsto.sub Tendsto Tendsto.isBigO_one Tendsto.eventually_ne Tendsto.const_mul Tendsto.inv₀ BoundedAtFilter map Eventually.of_forall"
-end Filter
-namespace LinearAlgebra
-namespace Projectivization
-end LinearAlgebra.Projectivization
-namespace Manifold
-end Manifold
-namespace Matrix
-p2m_export "Matrix" "J reindex SpecialLinearGroup.mapGL ext row sub_apply cons_val_zero sub zero cons_val_one scalar comp SpecialLinearGroup zpow_mul single zpow_neg smul_apply comp_apply of inv map cons_val_fin_one one mul_apply"
-namespace SpecialLinearGroup
-p2m_export "Matrix.SpecialLinearGroup" "ext coe_mul mapGL map"
-end Matrix.SpecialLinearGroup
-namespace MatrixGroups
-end MatrixGroups
-namespace ModularCurve
-end ModularCurve
-namespace ModularForm
-p2m_export "ModularForm" "mk sub_apply SL_slash_apply const pow prod toCuspForm E coe_mul holo' discriminant tendsto_atImInfty_tprod_one_sub_eta_q_pow discriminant_isZeroAtImInfty discriminant_eq_q_prod E₄_qExpansion_coeff_one ext smul_apply bdd_at_cusps' E₄ mcast E₆ discriminant_ne_zero E₆_qExpansion_coeff_one mul"
-end ModularForm
-namespace ModularFormClass
-p2m_export "ModularFormClass" "levelOne_neg_weight_eq_zero holo mk bdd_at_infty"
-end ModularFormClass
-namespace PeriodPair
-p2m_export "PeriodPair" "lattice ω₁ mk latticeEquivProd g₃ derivWeierstrassP_sq ω₂ latticeEquiv_symm_apply G g₂ weierstrassCurve weierstrassCurve_Δ weierstrassCurve_c₄ equation_weierstrassP DiscriminantNeZero toPoint toPoint_zero IsUniformization jLattice jLattice_eq_c₄_pow_three_div_Δ JSurjective ofTau scale sublatticeIndex discriminant_ne_zero"
-end PeriodPair
-namespace PowerSeries
-p2m_export "PowerSeries" "coe_mul mk inv_eq_zero coeff_smul coeff_mul order ext map C coeff coeff_zero_eq_constantCoeff coeff_zero_eq_constantCoeff_apply"
-end PowerSeries
-namespace Real
-p2m_export "Real" "pi_ne_zero mk lattice"
-end Real
-namespace Set
-p2m_export "Set" "Bounded ext unit mem_range prod"
-end Set
-namespace Topology
-p2m_export "Topology" "upper"
-end Topology
-namespace UpperHalfPlane
-p2m_export "UpperHalfPlane" "cuspFunction qExpansion qParam_tendsto_atImInfty isOpen_upperHalfPlaneSet ofComplex_apply_of_im_pos denom_ne_zero ρ mdifferentiable_iff coe_im_pos analyticAt_cuspFunction_zero atImInfty denom qExpansion_mul I J im_pos mk eq_cuspFunction re cuspFunction_apply_zero qExpansion_coeff_zero IsZeroAtImInfty IsBoundedAtImInfty im ofComplex qExpansion_smul qExpansion_sub valueAtInfty"
-end UpperHalfPlane
+noncomputable section privateSection
 
 section
-section
 
-noncomputable section
-
-p2m_open_scoped "MatrixGroups P2MW.S_PeriodPair_jLattice_surjective.MatrixGroups UpperHalfPlane P2MW.S_PeriodPair_jLattice_surjective.UpperHalfPlane"
-p2m_open "UpperHalfPlane P2MW.S_PeriodPair_jLattice_surjective.UpperHalfPlane ModularForm P2MW.S_PeriodPair_jLattice_surjective.ModularForm ModularFormClass P2MW.S_PeriodPair_jLattice_surjective.ModularFormClass EisensteinSeries P2MW.S_PeriodPair_jLattice_surjective.EisensteinSeries PowerSeries P2MW.S_PeriodPair_jLattice_surjective.PowerSeries"
+open scoped MatrixGroups UpperHalfPlane
+open UpperHalfPlane ModularForm ModularFormClass EisensteinSeries PowerSeries
 
 namespace ModularForm
-p2m_export "ModularForm" "mk sub_apply SL_slash_apply const pow prod toCuspForm E coe_mul holo' discriminant tendsto_atImInfty_tprod_one_sub_eta_q_pow discriminant_isZeroAtImInfty discriminant_eq_q_prod E₄_qExpansion_coeff_one ext smul_apply bdd_at_cusps' E₄ mcast E₆ discriminant_ne_zero E₆_qExpansion_coeff_one mul"
-p2m_open "ModularForm"
+open ModularForm
 
 def kw_E4cube : ModularForm 𝒮ℒ 12 :=
   ModularForm.mcast (by ring) ((E₄.mul E₄).mul E₄)
@@ -198,20 +134,13 @@ theorem kw_E4cube_ne_E6sq (τ : ℍ) : E₄ τ ^ 3 ≠ E₆ τ ^ 2 := by
 
 end ModularForm
 end
-end
-end
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
 
 section
-section
 
-noncomputable section
-
-p2m_open "UpperHalfPlane P2MW.S_PeriodPair_jLattice_surjective.UpperHalfPlane Complex P2MW.S_PeriodPair_jLattice_surjective.Complex"
+open UpperHalfPlane Complex
 
 namespace PeriodPair
-p2m_export "PeriodPair" "lattice ω₁ mk latticeEquivProd g₃ derivWeierstrassP_sq ω₂ latticeEquiv_symm_apply G g₂ weierstrassCurve weierstrassCurve_Δ weierstrassCurve_c₄ equation_weierstrassP DiscriminantNeZero toPoint toPoint_zero IsUniformization jLattice jLattice_eq_c₄_pow_three_div_Δ JSurjective ofTau scale sublatticeIndex discriminant_ne_zero"
-p2m_open "PeriodPair"
+open PeriodPair
 
 theorem kw_ofTau_latticeEquivProd_symm_apply (τ : ℍ) (p : ℤ × ℤ) :
     ((ofTau τ).latticeEquivProd.symm p : ℂ) = p.1 * (τ : ℂ) + p.2 := by
@@ -219,20 +148,11 @@ theorem kw_ofTau_latticeEquivProd_symm_apply (τ : ℍ) (p : ℤ × ℤ) :
 
 end PeriodPair
 end
-end
-end
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
+
 
 section
-section
 
-set_option synthInstance.maxHeartbeats 1600000
-set_option maxHeartbeats 3200000
-set_option maxRecDepth 8000
-
-noncomputable section
-
-p2m_open "Filter P2MW.S_PeriodPair_jLattice_surjective.Filter Topology P2MW.S_PeriodPair_jLattice_surjective.Topology UpperHalfPlane P2MW.S_PeriodPair_jLattice_surjective.UpperHalfPlane"
+open Filter Topology UpperHalfPlane
 
 namespace ModularCurve
 
@@ -268,16 +188,7 @@ theorem kwQepw118c_eisenstein4_tendsto_one :
 
 end ModularCurve
 end
-end
-end
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
-
 section
-section
-
-set_option synthInstance.maxHeartbeats 1600000
-set_option maxHeartbeats 3200000
-set_option maxRecDepth 8000
 
 namespace ModularCurve
 
@@ -287,17 +198,9 @@ abbrev kwQepw124b_PencilFibreProp
 
 end ModularCurve
 end
-end
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
-
-section
 section
 
-set_option synthInstance.maxHeartbeats 1600000
-set_option maxHeartbeats 3200000
-set_option maxRecDepth 8000
-
-p2m_open "Filter P2MW.S_PeriodPair_jLattice_surjective.Filter Topology P2MW.S_PeriodPair_jLattice_surjective.Topology"
+open Filter Topology
 
 namespace ModularCurve
 
@@ -307,39 +210,21 @@ abbrev kwQepw129c_TopEdgeCuspVanishingProp
 
 end ModularCurve
 end
+section
+
+open Complex Filter Set
+
+open scoped PeriodPair
+
 end
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
 
 section
-section
 
-p2m_open "Complex P2MW.S_PeriodPair_jLattice_surjective.Complex Filter P2MW.S_PeriodPair_jLattice_surjective.Filter Set P2MW.S_PeriodPair_jLattice_surjective.Set"
-
-p2m_open_scoped "PeriodPair P2MW.S_PeriodPair_jLattice_surjective.PeriodPair"
+open scoped UpperHalfPlane Real
+open Complex UpperHalfPlane EisensteinSeries ModularForm
 
 namespace PeriodPair
-p2m_export "PeriodPair" "lattice ω₁ mk latticeEquivProd g₃ derivWeierstrassP_sq ω₂ latticeEquiv_symm_apply G g₂ weierstrassCurve weierstrassCurve_Δ weierstrassCurve_c₄ equation_weierstrassP DiscriminantNeZero toPoint toPoint_zero IsUniformization jLattice jLattice_eq_c₄_pow_three_div_Δ JSurjective ofTau scale sublatticeIndex discriminant_ne_zero"
-end PeriodPair
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
-
-namespace Projectivization
-p2m_export "Projectivization" "mk map card"
-end Projectivization
-end
-end
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
-
-section
-section
-
-noncomputable section
-
-p2m_open_scoped "UpperHalfPlane P2MW.S_PeriodPair_jLattice_surjective.UpperHalfPlane Real P2MW.S_PeriodPair_jLattice_surjective.Real"
-p2m_open "Complex P2MW.S_PeriodPair_jLattice_surjective.Complex UpperHalfPlane P2MW.S_PeriodPair_jLattice_surjective.UpperHalfPlane EisensteinSeries P2MW.S_PeriodPair_jLattice_surjective.EisensteinSeries ModularForm P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
-
-namespace PeriodPair
-p2m_export "PeriodPair" "lattice ω₁ mk latticeEquivProd g₃ derivWeierstrassP_sq ω₂ latticeEquiv_symm_apply G g₂ weierstrassCurve weierstrassCurve_Δ weierstrassCurve_c₄ equation_weierstrassP DiscriminantNeZero toPoint toPoint_zero IsUniformization jLattice jLattice_eq_c₄_pow_three_div_Δ JSurjective ofTau scale sublatticeIndex discriminant_ne_zero"
-p2m_open "PeriodPair"
+open PeriodPair
 
 theorem kw_G_ofTau_eq {k : ℕ} (hk : 3 ≤ k) (τ : ℍ) :
     (ofTau τ).G k = 2 * riemannZeta k * E hk τ := by
@@ -357,8 +242,6 @@ theorem kw_G_ofTau_eq {k : ℕ} (hk : 3 ≤ k) (τ : ℍ) :
   rw [hE]; ring
 
 end PeriodPair
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
-
 namespace ModularCurve
 
 theorem kw_riemannZeta_six : riemannZeta 6 = (π : ℂ) ^ 6 / 945 := by
@@ -381,11 +264,8 @@ theorem kw_riemannZeta_six : riemannZeta 6 = (π : ℂ) ^ 6 / 945 := by
   rw [h]; ring
 
 end ModularCurve
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
-
 namespace PeriodPair
-p2m_export "PeriodPair" "lattice ω₁ mk latticeEquivProd g₃ derivWeierstrassP_sq ω₂ latticeEquiv_symm_apply G g₂ weierstrassCurve weierstrassCurve_Δ weierstrassCurve_c₄ equation_weierstrassP DiscriminantNeZero toPoint toPoint_zero IsUniformization jLattice jLattice_eq_c₄_pow_three_div_Δ JSurjective ofTau scale sublatticeIndex discriminant_ne_zero"
-p2m_open "PeriodPair"
+open PeriodPair
 
 open ModularCurve
 
@@ -403,20 +283,10 @@ theorem kw_g₃_ofTau (τ : ℍ) :
 
 end PeriodPair
 end
-end
-end
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
 
 section
-section
 
-set_option synthInstance.maxHeartbeats 1600000
-set_option maxHeartbeats 3200000
-set_option maxRecDepth 8000
-
-noncomputable section
-
-p2m_open_scoped "MatrixGroups P2MW.S_PeriodPair_jLattice_surjective.MatrixGroups"
+open scoped MatrixGroups
 
 namespace ModularCurve
 
@@ -455,20 +325,10 @@ theorem kwQepw123c_pencilFibre_jH :
 
 end ModularCurve
 end
-end
-end
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
 
 section
-section
 
-set_option synthInstance.maxHeartbeats 1600000
-set_option maxHeartbeats 3200000
-set_option maxRecDepth 8000
-
-noncomputable section
-
-p2m_open "Filter P2MW.S_PeriodPair_jLattice_surjective.Filter Topology P2MW.S_PeriodPair_jLattice_surjective.Topology"
+open Filter Topology
 
 namespace ModularCurve
 
@@ -478,21 +338,14 @@ abbrev kwQepw120c_DiscriminantCuspVanishingProp : Prop :=
 
 end ModularCurve
 end
-end
-end
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
 
 section
-section
 
-noncomputable section
-
-p2m_open_scoped "UpperHalfPlane P2MW.S_PeriodPair_jLattice_surjective.UpperHalfPlane Real P2MW.S_PeriodPair_jLattice_surjective.Real"
-p2m_open "Complex P2MW.S_PeriodPair_jLattice_surjective.Complex UpperHalfPlane P2MW.S_PeriodPair_jLattice_surjective.UpperHalfPlane ModularForm P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
+open scoped UpperHalfPlane Real
+open Complex UpperHalfPlane ModularForm
 
 namespace PeriodPair
-p2m_export "PeriodPair" "lattice ω₁ mk latticeEquivProd g₃ derivWeierstrassP_sq ω₂ latticeEquiv_symm_apply G g₂ weierstrassCurve weierstrassCurve_Δ weierstrassCurve_c₄ equation_weierstrassP DiscriminantNeZero toPoint toPoint_zero IsUniformization jLattice jLattice_eq_c₄_pow_three_div_Δ JSurjective ofTau scale sublatticeIndex discriminant_ne_zero"
-p2m_open "PeriodPair"
+open PeriodPair
 
 theorem kw_discriminant_ofTau_eq (τ : ℍ) :
     (ofTau τ).g₂ ^ 3 - 27 * (ofTau τ).g₃ ^ 2
@@ -520,20 +373,10 @@ theorem kw_jLattice_ofTau_eq (τ : ℍ) :
 
 end PeriodPair
 end
-end
-end
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
 
 section
-section
 
-set_option synthInstance.maxHeartbeats 1600000
-set_option maxHeartbeats 3200000
-set_option maxRecDepth 8000
-
-noncomputable section
-
-p2m_open "Filter P2MW.S_PeriodPair_jLattice_surjective.Filter Topology P2MW.S_PeriodPair_jLattice_surjective.Topology UpperHalfPlane P2MW.S_PeriodPair_jLattice_surjective.UpperHalfPlane"
+open Filter Topology UpperHalfPlane
 
 namespace ModularCurve
 
@@ -551,20 +394,10 @@ theorem kwQepw116c_sanity_jH_surjective_iff_pencil_has_zero :
 
 end ModularCurve
 end
-end
-end
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
 
 section
-section
 
-set_option synthInstance.maxHeartbeats 1600000
-set_option maxHeartbeats 3200000
-set_option maxRecDepth 8000
-
-noncomputable section
-
-p2m_open_scoped "MatrixGroups P2MW.S_PeriodPair_jLattice_surjective.MatrixGroups"
+open scoped MatrixGroups
 
 namespace ModularCurve
 
@@ -608,20 +441,10 @@ theorem kwQepw121c_pencil_slashWeightTwelve :
 
 end ModularCurve
 end
-end
-end
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
 
 section
-section
 
-set_option synthInstance.maxHeartbeats 1600000
-set_option maxHeartbeats 3200000
-set_option maxRecDepth 8000
-
-noncomputable section
-
-p2m_open "Filter P2MW.S_PeriodPair_jLattice_surjective.Filter Topology P2MW.S_PeriodPair_jLattice_surjective.Topology"
+open Filter Topology
 
 namespace ModularCurve
 
@@ -637,20 +460,10 @@ theorem kwQepw119c_discriminant_cuspVanishing :
 
 end ModularCurve
 end
-end
-end
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
 
 section
-section
 
-set_option synthInstance.maxHeartbeats 1600000
-set_option maxHeartbeats 3200000
-set_option maxRecDepth 8000
-
-noncomputable section
-
-p2m_open "Filter P2MW.S_PeriodPair_jLattice_surjective.Filter Topology P2MW.S_PeriodPair_jLattice_surjective.Topology UpperHalfPlane P2MW.S_PeriodPair_jLattice_surjective.UpperHalfPlane"
+open Filter Topology UpperHalfPlane
 
 namespace ModularCurve
 
@@ -697,22 +510,12 @@ theorem kwQepw117c_pencil_holomorphic :
 
 end ModularCurve
 end
-end
-end
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
 
 section
-section
 
-set_option synthInstance.maxHeartbeats 1600000
-set_option maxHeartbeats 3200000
-set_option maxRecDepth 8000
+open Filter Topology UpperHalfPlane ModularForm Matrix.SpecialLinearGroup
 
-noncomputable section
-
-p2m_open "Filter P2MW.S_PeriodPair_jLattice_surjective.Filter Topology P2MW.S_PeriodPair_jLattice_surjective.Topology UpperHalfPlane P2MW.S_PeriodPair_jLattice_surjective.UpperHalfPlane ModularForm P2MW.S_PeriodPair_jLattice_surjective.ModularForm Matrix.SpecialLinearGroup P2MW.S_PeriodPair_jLattice_surjective.Matrix.SpecialLinearGroup"
-
-p2m_open_scoped "MatrixGroups P2MW.S_PeriodPair_jLattice_surjective.MatrixGroups Manifold P2MW.S_PeriodPair_jLattice_surjective.Manifold"
+open scoped MatrixGroups Manifold
 
 namespace ModularCurve
 
@@ -805,23 +608,18 @@ theorem kwQepw115c_jH_surjective :
 
 end ModularCurve
 end
-end
-end
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
 
 section
-section
 
-noncomputable section
-
-p2m_open_scoped "UpperHalfPlane P2MW.S_PeriodPair_jLattice_surjective.UpperHalfPlane"
-p2m_open "Complex P2MW.S_PeriodPair_jLattice_surjective.Complex UpperHalfPlane P2MW.S_PeriodPair_jLattice_surjective.UpperHalfPlane ModularForm P2MW.S_PeriodPair_jLattice_surjective.ModularForm P2MW.S_PeriodPair_jLattice_surjective.ModularCurve"
+open scoped UpperHalfPlane
+open Complex UpperHalfPlane ModularForm
 
 namespace PeriodPair
-p2m_export "PeriodPair" "lattice ω₁ mk latticeEquivProd g₃ derivWeierstrassP_sq ω₂ latticeEquiv_symm_apply G g₂ weierstrassCurve weierstrassCurve_Δ weierstrassCurve_c₄ equation_weierstrassP DiscriminantNeZero toPoint toPoint_zero IsUniformization jLattice jLattice_eq_c₄_pow_three_div_Δ JSurjective ofTau scale sublatticeIndex discriminant_ne_zero"
-p2m_open "PeriodPair"
+open PeriodPair
 
-theorem kw_jLattice_ofTau_eq_jH {c' : ℂ} (hc' : c' ≠ 0)
+open ModularCurve
+
+theorem kw_jLattice_ofTau_eq_jH (c' : ℂ)
     (hpt : ∀ τ : ℍ, E₄ τ ^ 3 - E₆ τ ^ 2 = c' * discriminant τ) (τ : ℍ) :
     (ofTau τ).jLattice = (1728 / c') * kwQepw123c_jH τ := by
   rw [kw_jLattice_ofTau_eq, hpt τ, kwQepw123c_jH, div_mul_eq_mul_div, mul_div_assoc,
@@ -832,29 +630,16 @@ theorem kw_JSurjective : PeriodPair.JSurjective := by
   obtain ⟨c', hc', hpt, -⟩ := kw_exists_smul_discriminant_eq_E4cube_sub_E6sq
   obtain ⟨τ, hτ⟩ := kwQepw115c_jH_surjective (c₀ * c' / 1728)
   refine ⟨ofTau τ, kw_discriminantNeZero_ofTau τ, ?_⟩
-  rw [kw_jLattice_ofTau_eq_jH hc' hpt τ, hτ]
+  rw [kw_jLattice_ofTau_eq_jH c' hpt τ, hτ]
   field_simp
 
 end PeriodPair
 end
-end
-end
-p2m_reactivate "P2MW.S_PeriodPair_jLattice_surjective.ModularForm"
-
-theorem solution : PeriodPair.JSurjective :=
-  PeriodPair.kw_JSurjective
-
-end S_PeriodPair_jLattice_surjective
-end P2MW
-export P2MW.S_PeriodPair_jLattice_surjective (solution)
-
 end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-theorem PeriodPair.jLattice_surjective : PeriodPair.JSurjective := _root_.P2MW.S_PeriodPair_jLattice_surjective.solution
+theorem PeriodPair.jLattice_surjective : PeriodPair.JSurjective :=
+  PeriodPair.kw_JSurjective
 
 end publicSection

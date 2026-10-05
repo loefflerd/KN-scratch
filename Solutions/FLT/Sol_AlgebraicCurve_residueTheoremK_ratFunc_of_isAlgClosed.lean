@@ -78,8 +78,6 @@ namespace WithZero
 p2m_export "WithZero" "log_le_log map coe_mul exp_lt_exp log_zpow exp_neg coe log_exp exp_ne_zero log exp exp_zero log_mul lift le log_one exp_le_exp inv exp_log exp_injective"
 end WithZero
 
-section
-section
 
 noncomputable section
 
@@ -122,11 +120,8 @@ end Place
 end AlgebraicCurve
 
 end
-end
 
-end
 
-section
 section
 
 p2m_open "Polynomial P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.Polynomial Module P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.Module Algebra P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.Algebra"
@@ -212,10 +207,7 @@ end FLT.EulerDualBasis.Gates
 
 end
 
-end
 
-section
-section
 
 noncomputable section
 
@@ -259,12 +251,8 @@ namespace ModularCurve
 end ModularCurve
 
 end
-end
 
-end
 
-section
-section
 
 noncomputable section
 
@@ -276,12 +264,8 @@ end AlgebraicCurve
 
 end
 
-end
 
-end
 
-section
-section
 
 noncomputable section
 
@@ -334,11 +318,8 @@ p2m_export "WeierstrassCurve.Affine" "CoordinateRing map baseChange FunctionFiel
 end WeierstrassCurve.Affine
 
 end
-end
 
-end
 
-section
 section
 
 set_option linter.unusedSectionVars false
@@ -380,10 +361,7 @@ end
 
 end
 
-end
 
-section
-section
 
 noncomputable section
 
@@ -575,12 +553,8 @@ end Place
 end AlgebraicCurve
 
 end
-end
 
-end
 
-section
-section
 
 noncomputable section
 
@@ -622,12 +596,8 @@ namespace ModularCurve
 end ModularCurve
 
 end
-end
 
-end
 
-section
-section
 
 noncomputable section
 
@@ -841,12 +811,8 @@ end DegInfty
 end RationalFunctionField
 end AlgebraicCurve
 end
-end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve"
 
-section
-section
 
 noncomputable section
 
@@ -874,11 +840,8 @@ theorem exists_smul_eq_of_ne_zero (v : Place K F) {ω ω₀ : Ω[F⁄K]}
 
 end AlgebraicCurve
 end
-end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve"
 
-section
 section
 
 p2m_open "CongruenceSubgroup P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.CongruenceSubgroup IsDedekindDomain P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.IsDedekindDomain WithZero P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.WithZero"
@@ -937,11 +900,8 @@ namespace ModularCurve
 
 end ModularCurve
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place"
 
-section
-section
 
 noncomputable section
 
@@ -999,11 +959,8 @@ theorem gate_algebraMap_polynomial_mem_span_P1PolynomialGenerators (q : K[X]) :
 end P1Gates
 end AlgebraicCurve
 end
-end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place"
 
-section
 section
 
 set_option linter.unusedSectionVars false
@@ -1120,10 +1077,8 @@ end Engine
 end Mp72a102T1
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place"
 
-section
 section
 
 set_option linter.unusedSectionVars false
@@ -1172,11 +1127,8 @@ end RatProduction
 end Mp72a102T2
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place"
 
-section
-section
 
 noncomputable section
 
@@ -1217,12 +1169,8 @@ p2m_export "AlgebraicCurve.Divisor" "degree degree_single principal smul_def smu
 end Divisor
 end AlgebraicCurve
 end
-end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place"
 
-section
-section
 
 noncomputable section
 
@@ -1269,12 +1217,8 @@ theorem mk_mem_maximalIdeal_iff {f : F} (hf : f ∈ v.toValuationSubring) :
 end Place
 end AlgebraicCurve
 end
-end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place"
 
-section
-section
 
 noncomputable section
 
@@ -1401,12 +1345,8 @@ theorem gate_uniformizer_inv_mem_simplePoleSubmodule (v : Place K F) :
 
 end AlgebraicCurve
 end
-end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place"
 
-section
-section
 
 noncomputable section
 
@@ -1438,12 +1378,8 @@ p2m_export "ModularCurve.MilneAvAg9bRd14CubeRowCartierSliceStart" "ag9b14c_res_u
 end MilneAvAg9bRd14CubeRowCartierSliceStart
 end ModularCurve
 end
-end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place"
 
-section
-section
 
 noncomputable section
 
@@ -1502,12 +1438,8 @@ p2m_export "AlgebraicCurve.Place" "ext coe_algebraMap ResidueField deg FiniteRes
 end Place
 end AlgebraicCurve
 end
-end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place"
 
-section
-section
 
 noncomputable section
 
@@ -1597,12 +1529,8 @@ theorem finitePlace_ne_placeInfty {p : K[X]} (hp : Irreducible p) :
 end P1PrincipalPartSubrows
 end AlgebraicCurve
 end
-end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place"
 
-section
-section
 
 noncomputable section
 
@@ -1779,12 +1707,8 @@ namespace ModularCurve
 
 end ModularCurve
 end
-end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place"
 
-section
-section
 
 noncomputable section
 
@@ -1919,11 +1843,8 @@ theorem finite_setOf_ord_ne_zero_of_finiteDimensional {f : F'} (hf : f ≠ 0) :
 end Assembly
 end AlgebraicCurve
 end
-end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place"
 
-section
 section
 
 p2m_open "CongruenceSubgroup P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.CongruenceSubgroup IsDedekindDomain P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.IsDedekindDomain WithZero P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.WithZero Polynomial P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.Polynomial"
@@ -2045,11 +1966,8 @@ namespace ModularCurve
 
 end ModularCurve
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place"
 
-section
-section
 
 noncomputable section
 
@@ -2132,11 +2050,8 @@ theorem p1PartialFractionSpan_eq_top :
 
 end AlgebraicCurve
 end
-end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place"
 
-section
 section
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.ModularCurve.Lg37 Polynomial P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.Polynomial IntermediateField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.IntermediateField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.Mp72a102T1 P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.Mp72a102T2"
@@ -2199,11 +2114,8 @@ noncomputable def sectionOfPrimitiveRoot {ᾱ : v.ResidueField} (hint : _root_.I
 end GenericSection
 end ModularCurve.KwNo6Section
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place"
 
-section
-section
 
 noncomputable section
 
@@ -2347,11 +2259,8 @@ theorem gate_localResidueData_uniformizer_inv (v : Place K F) (R : v.LocalResidu
 
 end AlgebraicCurve
 end
-end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place"
 
-section
 section
 
 set_option linter.unusedSectionVars false
@@ -2546,11 +2455,8 @@ end RatProduction
 end ModularCurve.Mp72a102T3
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place"
 
-section
-section
 
 noncomputable section
 
@@ -2582,12 +2488,8 @@ theorem p1PrincipalPartAtom_ne_zero {p : K[X]} (hp : p ≠ 0) {c : K[X]} (hc : c
 end OrdIntegrand
 end AlgebraicCurve
 end
-end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place"
 
-section
-section
 
 noncomputable section
 
@@ -2842,12 +2744,8 @@ scoped instance instHasPrincipalDivisors : HasPrincipalDivisors K (RatFunc K) wh
 end RationalFunctionField
 end AlgebraicCurve
 end
-end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place"
 
-section
-section
 
 noncomputable section
 
@@ -2941,12 +2839,8 @@ theorem ordDifferential_placeInfty_D_ratFuncX
 end OrdDifferential
 end AlgebraicCurve
 end
-end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place"
 
-section
-section
 
 noncomputable section
 
@@ -3280,11 +3174,8 @@ end ResidueDictionary
 end Place
 end AlgebraicCurve
 end
-end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place"
 
-section
 section
 
 p2m_open "CongruenceSubgroup P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.CongruenceSubgroup IsDedekindDomain P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.IsDedekindDomain WithZero P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.WithZero Polynomial P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.Polynomial IsLocalRing P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.IsLocalRing"
@@ -3467,11 +3358,8 @@ namespace ModularCurve
 
 end ModularCurve
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place"
 
-section
-section
 
 noncomputable section
 
@@ -3506,12 +3394,8 @@ p2m_export "AlgebraicCurve.Place" "ext coe_algebraMap ResidueField deg FiniteRes
 end Place
 end AlgebraicCurve
 end
-end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place"
 
-section
-section
 
 noncomputable section
 
@@ -3641,12 +3525,8 @@ p2m_export "AlgebraicCurve.Place" "ext coe_algebraMap ResidueField deg FiniteRes
 end Place
 end AlgebraicCurve
 end
-end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place"
 
-section
-section
 
 noncomputable section
 
@@ -3692,12 +3572,8 @@ theorem gate_canonicalLocalResidueDataK_uniformizer_inv (v : Place K F)
 
 end AlgebraicCurve
 end
-end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place"
 
-section
-section
 
 noncomputable section
 
@@ -3844,11 +3720,8 @@ p2m_export "ModularCurve.MilneAvAg9bRd15UnitNormalFormLaurentSeed" "ag9b15u_diff
 end MilneAvAg9bRd15UnitNormalFormLaurentSeed
 end ModularCurve
 end
-end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place"
 
-section
 section
 
 p2m_open "Polynomial P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.Polynomial IsLocalRing P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.IsLocalRing AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve"
@@ -3866,10 +3739,8 @@ noncomputable def aCoeff (v : Place K F) (S : Lg37CompletionSection v)
 
 end ModularCurve.KwNo6Pin
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place"
 
-section
 section
 
 set_option linter.unusedSectionVars false
@@ -3994,11 +3865,8 @@ end RatProduction
 end Mp72a103T2
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place"
 
-section
-section
 
 noncomputable section
 
@@ -4275,12 +4143,8 @@ theorem p1DifferentialCoeffRegularFinite_dX :
 end Discharge
 end AlgebraicCurve
 end
-end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place"
 
-section
-section
 
 noncomputable section
 
@@ -4369,12 +4233,8 @@ theorem one_le_ord_placeInfty_p1PrincipalPartAtom
 
 end AlgebraicCurve
 end
-end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place"
 
-section
-section
 
 noncomputable section
 
@@ -4414,12 +4274,8 @@ theorem isCurveOver_of_kaehlerRankOne (hΩ : KaehlerRankOne K (RatFunc K)) :
 end RationalFunctionField
 end AlgebraicCurve
 end
-end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place"
 
-section
-section
 
 noncomputable section
 
@@ -4594,12 +4450,8 @@ theorem hasPrincipalDivisors_of_isGalois [IsGalois (RatFunc K) F']
 end RationalFunctionField
 end AlgebraicCurve
 end
-end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place"
 
-section
-section
 
 noncomputable section
 
@@ -4705,11 +4557,8 @@ end Place
 end IntegralRecursion
 end AlgebraicCurve
 end
-end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place"
 
-section
 section
 
 p2m_open "CongruenceSubgroup P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.CongruenceSubgroup IsDedekindDomain P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.IsDedekindDomain WithZero P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.WithZero Polynomial P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.Polynomial IsLocalRing P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.IsLocalRing"
@@ -4765,10 +4614,8 @@ namespace ModularCurve
 
 end ModularCurve
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place"
 
-section
 section
 
 p2m_open "Polynomial P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.Polynomial IsLocalRing P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.IsLocalRing AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve"
@@ -5156,11 +5003,8 @@ noncomputable def canonicalLocalResidueDataKStar (v : Place K F)
 
 end ModularCurve.KwNo6Pin
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place"
 
-section
-section
 
 noncomputable section
 
@@ -5495,12 +5339,8 @@ theorem ordDifferentialWellDefined_ratFunc (K : Type*) [Field K] [CharZero K] :
 
 end AlgebraicCurve
 end
-end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place"
 
-section
-section
 
 noncomputable section
 
@@ -5588,12 +5428,8 @@ theorem p1DifferentialCoeffRegularFinite_of_unitFinite
 end UnitFinite
 end AlgebraicCurve
 end
-end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place"
 
-section
-section
 
 noncomputable section
 
@@ -5629,16 +5465,12 @@ namespace ModularCurve
 
 end ModularCurve
 end
-end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place"
 
 section
-section
 
-@[expose] public section
 
-noncomputable section
+@[expose] public noncomputable section
 
 p2m_open "IsDedekindDomain P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.IsDedekindDomain WithZero P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.WithZero IsLocalRing P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.IsLocalRing"
 
@@ -5738,12 +5570,8 @@ scoped instance (priority := 50) instHasPrincipalDivisorsOfIsGalois [IsGalois (R
 end RationalFunctionField
 end AlgebraicCurve
 end
-end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place"
 
-section
-section
 
 noncomputable section
 
@@ -5867,11 +5695,8 @@ theorem p1FinitePlaceCanonicalResidueAtomMGeTwoHigherDeg_of_algClosed :
 end AlgClosed
 end AlgebraicCurve
 end
-end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place"
 
-section
 section
 
 p2m_open "CongruenceSubgroup P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.CongruenceSubgroup IsDedekindDomain P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.IsDedekindDomain WithZero P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.WithZero Polynomial P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.Polynomial IsLocalRing P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.IsLocalRing"
@@ -6021,10 +5846,8 @@ namespace ModularCurve
 
 end ModularCurve
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place"
 
-section
 section
 
 p2m_open "Polynomial P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.Polynomial IsLocalRing P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.IsLocalRing AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve"
@@ -6062,11 +5885,8 @@ noncomputable scoped instance instHasCanonicalLocalResidueKStar [IsCurveOver K F
 
 end AlgebraicCurve
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place"
 
-section
-section
 
 noncomputable section
 
@@ -6109,12 +5929,8 @@ theorem ordDifferentialWellDefined_ratFunc_of_perfectField (K : Type*) [Field K]
 
 end AlgebraicCurve
 end
-end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place"
 
-section
-section
 
 noncomputable section
 
@@ -6151,12 +5967,8 @@ theorem p1DifferentialCoeffUnitFinite_dX :
 end UnitFinite
 end AlgebraicCurve
 end
-end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place"
 
-section
-section
 
 noncomputable section
 
@@ -6291,12 +6103,8 @@ def P1PrincipalPartMOneSimplePoleCancel {ω₀ : Ω[(RatFunc K)⁄K]} (_hω₀ :
 end MOneSimplePoleRow
 end AlgebraicCurve
 end
-end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place"
 
-section
-section
 
 noncomputable section
 
@@ -6321,12 +6129,8 @@ scoped instance instHasPrincipalDivisorsRatFuncSelf : HasPrincipalDivisors K (Ra
 end Corollaries
 end ModularCurve
 end
-end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.ModularCurve"
 
-section
-section
 
 noncomputable section
 
@@ -6433,11 +6237,8 @@ theorem p1FinitePlaceCanonicalResidueAtomMGeTwoTraceHigherDeg_of_algClosed :
 end AlgClosed
 end AlgebraicCurve
 end
-end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.ModularCurve"
 
-section
 section
 
 p2m_open "IsLocalRing P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.IsLocalRing"
@@ -6645,10 +6446,8 @@ namespace ModularCurve
 
 end ModularCurve
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.ModularCurve"
 
-section
 section
 
 set_option linter.unusedSectionVars false
@@ -6806,10 +6605,8 @@ end HigherDegReduction
 end AlgebraicCurve
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.ModularCurve"
 
-section
 section
 
 p2m_open "IsLocalRing P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.IsLocalRing"
@@ -6944,10 +6741,8 @@ theorem gate_adjoin_subset_valuationSubring_of_mem (v : Place K F) {t : F}
 end Gates
 end AlgebraicCurve
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.ModularCurve"
 
-section
 section
 
 set_option linter.unusedSectionVars false
@@ -7280,10 +7075,8 @@ end ComposedEngine
 end AlgebraicCurve
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.ModularCurve"
 
-section
 section
 
 p2m_open "IsLocalRing P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.IsLocalRing IntermediateField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.IntermediateField IntermediateField.algebraAdjoinAdjoin P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.IntermediateField.algebraAdjoinAdjoin"
@@ -7476,10 +7269,8 @@ namespace ModularCurve
 
 end ModularCurve
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.ModularCurve"
 
-section
 section
 
 set_option linter.unusedSectionVars false
@@ -7749,10 +7540,8 @@ end ComposedEngine
 end AlgebraicCurve
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.ModularCurve"
 
-section
 section
 
 p2m_open "IntermediateField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.IntermediateField"
@@ -7860,10 +7649,8 @@ namespace ModularCurve
 
 end ModularCurve
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.ModularCurve"
 
-section
 section
 
 set_option linter.unusedSectionVars false
@@ -8054,10 +7841,8 @@ end ComposedEngine
 end AlgebraicCurve
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.ModularCurve"
 
-section
 section
 
 p2m_open "IntermediateField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.IntermediateField"
@@ -8137,10 +7922,8 @@ namespace ModularCurve
 
 end ModularCurve
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.ModularCurve"
 
-section
 section
 
 set_option linter.unusedSectionVars false
@@ -8246,10 +8029,8 @@ end ComposedEngine
 end AlgebraicCurve
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.ModularCurve"
 
-section
 section
 
 p2m_open "IntermediateField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.IntermediateField"
@@ -8334,10 +8115,8 @@ namespace ModularCurve
 
 end ModularCurve
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.ModularCurve"
 
-section
 section
 
 p2m_open "IntermediateField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.IntermediateField"
@@ -8422,11 +8201,8 @@ theorem gate_dCoordGenerates_of_ratFunc_sat
 
 end ModularCurve
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.ModularCurve"
 
-section
-section
 
 noncomputable section
 
@@ -8461,12 +8237,8 @@ attribute [local instance 2000] RatFunc.instAlgebraOfPolynomial
 end RatBasePinned
 end ModularCurve
 end
-end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.ModularCurve"
 
-section
-section
 
 noncomputable section
 
@@ -8547,11 +8319,8 @@ namespace ModularCurve
 
 end ModularCurve
 end
-end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.ModularCurve"
 
-section
 section
 
 set_option linter.unusedSectionVars false
@@ -9010,11 +8779,8 @@ end AlgClosedDischarge
 end AlgebraicCurve
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.ModularCurve"
 
-section
-section
 
 noncomputable section
 
@@ -9135,12 +8901,8 @@ end PerfectInstance
 end Profile
 end AlgebraicCurve
 end
-end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.ModularCurve"
 
-section
-section
 
 noncomputable section
 
@@ -9189,12 +8951,8 @@ p2m_export "ModularCurve.MilneAvAg9bRd13T2CoordIndepChar3" "ag9b13t_res_differen
 end MilneAvAg9bRd13T2CoordIndepChar3
 end ModularCurve
 end
-end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.ModularCurve"
 
-section
-section
 
 noncomputable section
 
@@ -9232,12 +8990,8 @@ theorem residueTheoremK_placeInfty_clause_X_pow
 end RatFuncPlaceInftyClause
 end AlgebraicCurve
 end
-end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.ModularCurve"
 
-section
-section
 
 noncomputable section
 
@@ -9585,12 +9339,8 @@ theorem ag9b12c_p1MOneSimplePoleCancel_dX_of_inftyEulerValue_of_perfectField
 end TraceValue
 end AlgebraicCurve
 end
-end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.ModularCurve"
 
-section
-section
 
 noncomputable section
 
@@ -9715,11 +9465,8 @@ namespace MilneAvAg9bRd13X113FourRowUpgrade
 end MilneAvAg9bRd13X113FourRowUpgrade
 end ModularCurve
 end
-end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.ModularCurve"
 
-section
 section
 
 set_option linter.unusedSectionVars false
@@ -10011,11 +9758,9 @@ end
 
 end
 
-end
 
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.ModularCurve"
 
-section
 section
 
 set_option linter.unusedSectionVars false
@@ -10253,11 +9998,8 @@ end ResidualLocation
 end AlgebraicCurve
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.ModularCurve"
 
-section
-section
 
 noncomputable section
 
@@ -11109,8 +10851,6 @@ local notation "Qbar" => AlgebraicClosure ℚ
 
 end Bc2Carrier
 end AlgebraicCurve
-end
-end
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed.ModularCurve"
 

@@ -31,8 +31,6 @@ namespace Affine
 p2m_export "WeierstrassCurve.Affine" "map polynomial"
 end WeierstrassCurve.Affine
 
-section
-section
 
 noncomputable section
 
@@ -144,12 +142,8 @@ end LatticeDependence
 
 end PeriodPair
 end
-end
-end
 p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair"
 
-section
-section
 
 noncomputable section
 
@@ -180,12 +174,8 @@ theorem kw_ofTau_latticeEquivProd_symm_apply (τ : ℍ) (p : ℤ × ℤ) :
 
 end PeriodPair
 end
-end
-end
 p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair"
 
-section
-section
 
 noncomputable section
 
@@ -222,11 +212,8 @@ theorem kw_span_neg_fst (a b : ℂ) :
 
 end PeriodPair
 end
-end
-end
 p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair"
 
-section
 section
 
 namespace QuaternionAlgebra
@@ -393,11 +380,8 @@ theorem latticeOf_canonical_eq : latticeOf (aOf H) (dOf H) (bOf H) = H := by
 end StructureTheorem
 end QuaternionAlgebra
 end
-end
 p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair"
 
-section
-section
 
 noncomputable section
 
@@ -446,12 +430,8 @@ theorem kw_exists_scale_ofTau_lattice_eq (L : PeriodPair) :
 
 end ModularCurve
 end
-end
-end
 p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair"
 
-section
-section
 
 noncomputable section
 
@@ -531,11 +511,8 @@ theorem kw_hnfPoint_scale_lattice (τ : ℍ) (a : ℕ) (b : ℤ) (d : ℕ)
 
 end ModularCurve
 end
-end
-end
 p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.ModularCurve"
 
-section
 section
 
 set_option maxHeartbeats 6400000
@@ -631,10 +608,8 @@ def KwSublatticeQuotientZZTransport : Prop :=
 end ModularCurve
 end
 end
-end
 p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.ModularCurve"
 
-section
 section
 
 set_option maxHeartbeats 6400000
@@ -725,7 +700,6 @@ theorem kw_surgehgf4_qtzz_proved : KwSublatticeQuotientZZTransport := by
   exact isAddCyclic_of_surjective e.symm.toAddMonoidHom e.symm.surjective
 
 end ModularCurve
-end
 end
 end
 p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.ModularCurve"

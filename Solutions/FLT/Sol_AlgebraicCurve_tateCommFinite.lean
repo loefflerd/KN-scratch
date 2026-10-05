@@ -96,7 +96,6 @@ theorem IsLocalRing.maximalIdeal_le {R : Type*} [CommSemiring R] [IsLocalRing R]
 end
 
 section
-section
 
 set_option maxHeartbeats 6400000
 set_option linter.unusedSectionVars false
@@ -115,10 +114,7 @@ end
 
 end
 
-end
 
-section
-section
 
 noncomputable section
 
@@ -161,12 +157,8 @@ end Place
 end AlgebraicCurve
 
 end
-end
 
-end
 
-section
-section
 
 noncomputable section
 
@@ -214,12 +206,8 @@ end Place
 end AlgebraicCurve
 
 end
-end
 
-end
 
-section
-section
 
 section
 
@@ -258,11 +246,8 @@ theorem ValuationSubring.isUnit_iff_valued_eq_one {K : Type*} [Field K] {Γ₀ :
 
 end
 
-end
 
-end
 
-section
 section
 
 set_option synthInstance.maxHeartbeats 3200000
@@ -281,9 +266,7 @@ end AlgebraicCurve.Place
 end
 end
 
-end
 
-section
 section
 
 set_option maxHeartbeats 6400000
@@ -338,9 +321,7 @@ end
 
 end
 
-end
 
-section
 section
 
 set_option maxHeartbeats 6400000
@@ -540,9 +521,7 @@ end
 
 end
 
-end
 
-section
 section
 
 set_option maxHeartbeats 3200000
@@ -585,9 +564,7 @@ end IsDedekindDomain.HeightOneSpectrum
 
 end
 
-end
 
-section
 section
 
 set_option maxHeartbeats 6400000
@@ -696,10 +673,8 @@ end Bridge
 end ModularCurve.KwF4R1V410a
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateCommFinite.ModularCurve P2MW.S_AlgebraicCurve_tateCommFinite.ModularCurve.KwF4R1V410a"
 
-section
 section
 
 set_option maxHeartbeats 6400000
@@ -823,10 +798,8 @@ end PoleWindowShift
 end ModularCurve.KwF4gRRTate
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateCommFinite.ModularCurve P2MW.S_AlgebraicCurve_tateCommFinite.ModularCurve.KwF4R1V410a"
 
-section
 section
 
 set_option maxHeartbeats 6400000
@@ -966,10 +939,8 @@ end DVRQuotDischarge
 end ModularCurve.KwF4gRRTate
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateCommFinite.ModularCurve P2MW.S_AlgebraicCurve_tateCommFinite.ModularCurve.KwF4R1V410a"
 
-section
 section
 
 set_option maxHeartbeats 6400000
@@ -1041,7 +1012,6 @@ theorem kwF4gRRTate_commFinite [∀ u : Place K L, u.FiniteResidue] :
 
 end DVRCotangentDischarge
 end ModularCurve.KwF4gRRTate
-end
 end
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateCommFinite.ModularCurve P2MW.S_AlgebraicCurve_tateCommFinite.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateCommFinite.ModularCurve.KwF4gRRTate"

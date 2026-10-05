@@ -3,183 +3,45 @@ module
 public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 public import Definitions.FLT.Def_WeierstrassCurve_FunctionFieldQuadratic
 
-import Definitions.FLT.Def_P2M_Util
+noncomputable section privateSection
 
-section privateSection
+open Polynomial WeierstrassCurve WeierstrassCurve.Affine CoordinateRing
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
-namespace P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place
-
-set_option linter.unusedVariables false
-set_option linter.unusedSectionVars false
-set_option linter.unusedSimpArgs false
-set_option maxHeartbeats 3200000
-
-noncomputable section
-
-scoped instance instFactNatPrime2_s13e5 : Fact (Nat.Prime 2) := ⟨Nat.prime_two⟩
-scoped instance instFactNatPrime3_s13e5 : Fact (Nat.Prime 3) := ⟨Nat.prime_three⟩
-
-set_option synthInstance.maxHeartbeats 800000
-set_option maxHeartbeats 6400000
-
-namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place"
-end AlgebraicCurve
-namespace CoordinateRing
-end CoordinateRing
-namespace Es1a1
-end Es1a1
-namespace IsDedekindDomain
-p2m_export "IsDedekindDomain" "mk"
-end IsDedekindDomain
-namespace IsLocalRing
-p2m_export "IsLocalRing" "residue"
-end IsLocalRing
-namespace Polynomial
-p2m_export "Polynomial" "C coeff_X X coeff_add coeff ext_iff degree factor aeval_C map algebra coeff_C sum coeff_zero flt aeval_X coeff_C_mul coeff_X_pow ring transcendental"
-end Polynomial
-namespace Polynomial
-p2m_export "Polynomial" "C coeff_X X coeff_add coeff ext_iff degree factor aeval_C map algebra coeff_C sum coeff_zero flt aeval_X coeff_C_mul coeff_X_pow ring transcendental"
-namespace Bivariate
-end Polynomial.Bivariate
-namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine isUnit_Δ a₃ a₁ map mk a₄ Jacobian a₂ a₆ reduction Affine.FunctionField IsIntegral toAffine map_Δ map_a₆ map_a₁ map_a₄ Δ map_a₂ map_a₃"
-end WeierstrassCurve
-namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine isUnit_Δ a₃ a₁ map mk a₄ Jacobian a₂ a₆ reduction Affine.FunctionField IsIntegral toAffine map_Δ map_a₆ map_a₁ map_a₄ Δ map_a₂ map_a₃"
-namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Point.add Equation negY equation_iff' slope_of_X_ne Point.add_of_Y_eq equation_iff_nonsingular_of_Δ_ne_zero slope CoordinateRing map equation_add Point.some nonsingular_iff' Point.some.injEq Nonsingular negAddY FunctionField slope_of_Y_ne Point CoordinateRing.mk addX Point.add_some Point.add_of_Y_ne addY Y_eq_of_X_eq Point.add_of_X_ne equation_iff polynomial Point.zero Point.neg_some polyToFunctionField polyToFunctionField_apply polyToFunctionField_C algebraMap_smul_basis yCoord"
-end WeierstrassCurve.Affine
-namespace WithZero
-p2m_export "WithZero" "log_le_log map one le"
-end WithZero
+open scoped Polynomial.Bivariate
 
 section
-section
-
-set_option maxHeartbeats 25600000
-set_option synthInstance.maxHeartbeats 1600000
-set_option linter.unusedSectionVars false
-
-noncomputable section
-
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.Polynomial WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.WeierstrassCurve.Affine"
-
-p2m_open_scoped "Polynomial.Bivariate P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.Polynomial.Bivariate"
 
 universe u
 
-namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine isUnit_Δ a₃ a₁ map mk a₄ Jacobian a₂ a₆ reduction Affine.FunctionField IsIntegral toAffine map_Δ map_a₆ map_a₁ map_a₄ Δ map_a₂ map_a₃"
-namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Point.add Equation negY equation_iff' slope_of_X_ne Point.add_of_Y_eq equation_iff_nonsingular_of_Δ_ne_zero slope CoordinateRing map equation_add Point.some nonsingular_iff' Point.some.injEq Nonsingular negAddY FunctionField slope_of_Y_ne Point CoordinateRing.mk addX Point.add_some Point.add_of_Y_ne addY Y_eq_of_X_eq Point.add_of_X_ne equation_iff polynomial Point.zero Point.neg_some polyToFunctionField polyToFunctionField_apply polyToFunctionField_C algebraMap_smul_basis yCoord"
-p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
-
-p2m_open "WeierstrassCurve.Affine.CoordinateRing"
-
 variable {F : Type u} [Field F]
 
-theorem exists_algebraMap_eq_of_isAlgebraic [IsAlgClosed F] {L : Type u} [Field L] [Algebra F L]
+theorem WeierstrassCurve.Affine.exists_algebraMap_eq_of_isAlgebraic
+  [IsAlgClosed F] {L : Type u} [Field L] [Algebra F L]
     {z : L} (hz : IsAlgebraic F z) : ∃ c : F, algebraMap F L c = z := by
-  have hint : _root_.IsIntegral F z := hz.isIntegral
+  have hint : IsIntegral F z := hz.isIntegral
   have hdeg : (minpoly F z).degree = 1 :=
     IsAlgClosed.degree_eq_one_of_irreducible F (minpoly.irreducible hint)
   exact minpoly.degree_eq_one_iff.mp hdeg
 
-end WeierstrassCurve.Affine
-
-namespace ModularCurve
-
-end ModularCurve
-
-end
-
-end
-
 end
 
 section
-section
 
-noncomputable section
+variable {F : Type*} [Field F] {W : Affine F}
 
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.Polynomial IsDedekindDomain P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.IsDedekindDomain"
-
-p2m_open_scoped "Polynomial.Bivariate P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.Polynomial.Bivariate"
-
-namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place"
-end AlgebraicCurve
-
-namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine isUnit_Δ a₃ a₁ map mk a₄ Jacobian a₂ a₆ reduction Affine.FunctionField IsIntegral toAffine map_Δ map_a₆ map_a₁ map_a₄ Δ map_a₂ map_a₃"
-namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Point.add Equation negY equation_iff' slope_of_X_ne Point.add_of_Y_eq equation_iff_nonsingular_of_Δ_ne_zero slope CoordinateRing map equation_add Point.some nonsingular_iff' Point.some.injEq Nonsingular negAddY FunctionField slope_of_Y_ne Point CoordinateRing.mk addX Point.add_some Point.add_of_Y_ne addY Y_eq_of_X_eq Point.add_of_X_ne equation_iff polynomial Point.zero Point.neg_some polyToFunctionField polyToFunctionField_apply polyToFunctionField_C algebraMap_smul_basis yCoord"
-end WeierstrassCurve.Affine
-
-namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine isUnit_Δ a₃ a₁ map mk a₄ Jacobian a₂ a₆ reduction Affine.FunctionField IsIntegral toAffine map_Δ map_a₆ map_a₁ map_a₄ Δ map_a₂ map_a₃"
-namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Point.add Equation negY equation_iff' slope_of_X_ne Point.add_of_Y_eq equation_iff_nonsingular_of_Δ_ne_zero slope CoordinateRing map equation_add Point.some nonsingular_iff' Point.some.injEq Nonsingular negAddY FunctionField slope_of_Y_ne Point CoordinateRing.mk addX Point.add_some Point.add_of_Y_ne addY Y_eq_of_X_eq Point.add_of_X_ne equation_iff polynomial Point.zero Point.neg_some polyToFunctionField polyToFunctionField_apply polyToFunctionField_C algebraMap_smul_basis yCoord"
-p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
-
-p2m_open "WeierstrassCurve.Affine.CoordinateRing AlgebraicCurve P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.AlgebraicCurve"
-
-variable {F : Type*} [Field F] (W : Affine F)
-
-variable {W}
-
-def yGen (W : Affine F) : W.FunctionField :=
+def WeierstrassCurve.Affine.yGen (W : Affine F) : W.FunctionField :=
   algebraMap W.CoordinateRing W.FunctionField (CoordinateRing.mk W Y)
 
-end WeierstrassCurve.Affine
-
-namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine isUnit_Δ a₃ a₁ map mk a₄ Jacobian a₂ a₆ reduction Affine.FunctionField IsIntegral toAffine map_Δ map_a₆ map_a₁ map_a₄ Δ map_a₂ map_a₃"
-namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Point.add Equation negY equation_iff' slope_of_X_ne Point.add_of_Y_eq equation_iff_nonsingular_of_Δ_ne_zero slope CoordinateRing map equation_add Point.some nonsingular_iff' Point.some.injEq Nonsingular negAddY FunctionField slope_of_Y_ne Point CoordinateRing.mk addX Point.add_some Point.add_of_Y_ne addY Y_eq_of_X_eq Point.add_of_X_ne equation_iff polynomial Point.zero Point.neg_some polyToFunctionField polyToFunctionField_apply polyToFunctionField_C algebraMap_smul_basis yCoord"
-p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
-
-p2m_open "WeierstrassCurve.Affine.CoordinateRing AlgebraicCurve P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.AlgebraicCurve"
-
-universe u
-
-variable {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
-variable {W : Affine F} [W.IsElliptic]
-
-namespace VeluPicSeam
-
-end VeluPicSeam
-
-end WeierstrassCurve.Affine
-
-end
-end
-
 end
 
 section
-section
-
-noncomputable section
-
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.Polynomial IsDedekindDomain P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.IsDedekindDomain"
-
-p2m_open_scoped "Polynomial.Bivariate P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.Polynomial.Bivariate"
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place"
 namespace Place
-p2m_export "AlgebraicCurve.Place" "deg adicValuation adicValuation_ne_zero ord ord_zero ord_mul ord_inv ord_unit_smul_zpow exists_unit_mul_zpow algebraMap_mem' toValuationSubring mk"
-p2m_open "AlgebraicCurve.Place AlgebraicCurve"
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
 
-private theorem _root_.AlgebraicCurve.Place.min_ord_le_ord_add {f g : F} (hfg : f + g ≠ 0) :
+private theorem min_ord_le_ord_add {f g : F} (hfg : f + g ≠ 0) :
     min (v.ord f) (v.ord g) ≤ v.ord (f + g) := by
   rcases eq_or_ne f 0 with rfl | hf
   · simp
@@ -197,8 +59,7 @@ private theorem _root_.AlgebraicCurve.Place.min_ord_le_ord_add {f g : F} (hfg : 
     simp only [ord]
     omega
 
-p2m_export "AlgebraicCurve.Place" "min_ord_le_ord_add"
-private theorem _root_.AlgebraicCurve.Place.ord_add_eq_min {f g : F} (hf : f ≠ 0) (hg : g ≠ 0) (h : v.ord f ≠ v.ord g) :
+private theorem ord_add_eq_min {f g : F} (hf : f ≠ 0) (hg : g ≠ 0) (h : v.ord f ≠ v.ord g) :
     v.ord (f + g) = min (v.ord f) (v.ord g) := by
   have hval : v.adicValuation f ≠ v.adicValuation g := by
     intro hcon
@@ -225,40 +86,22 @@ private theorem _root_.AlgebraicCurve.Place.ord_add_eq_min {f g : F} (hf : f ≠
     simp only [ord] at hlog h2 ⊢
     omega
 
-p2m_export "AlgebraicCurve.Place" "ord_add_eq_min"
-end AlgebraicCurve.Place
-
-namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine isUnit_Δ a₃ a₁ map mk a₄ Jacobian a₂ a₆ reduction Affine.FunctionField IsIntegral toAffine map_Δ map_a₆ map_a₁ map_a₄ Δ map_a₂ map_a₃"
-namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Point.add Equation negY equation_iff' slope_of_X_ne Point.add_of_Y_eq equation_iff_nonsingular_of_Δ_ne_zero slope CoordinateRing map equation_add Point.some nonsingular_iff' Point.some.injEq Nonsingular negAddY FunctionField slope_of_Y_ne Point CoordinateRing.mk addX Point.add_some Point.add_of_Y_ne addY Y_eq_of_X_eq Point.add_of_X_ne equation_iff polynomial Point.zero Point.neg_some polyToFunctionField polyToFunctionField_apply polyToFunctionField_C algebraMap_smul_basis yCoord"
-end WeierstrassCurve.Affine
-
-end
-end
+end Place
+end AlgebraicCurve
 
 end
 
 section
-section
-
-noncomputable section
-
-p2m_open "IsDedekindDomain P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.IsDedekindDomain WithZero P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.WithZero IsLocalRing P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.IsLocalRing"
 
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Place"
-p2m_open "AlgebraicCurve"
 
 namespace Place
-p2m_export "AlgebraicCurve.Place" "deg adicValuation adicValuation_ne_zero ord ord_zero ord_mul ord_inv ord_unit_smul_zpow exists_unit_mul_zpow algebraMap_mem' toValuationSubring mk"
-p2m_open "AlgebraicCurve.Place"
 
 section SinglePlace
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
 
-private theorem _root_.AlgebraicCurve.Place.ord_nonneg_of_mem {f : F} (hf : f ∈ v.toValuationSubring) : 0 ≤ v.ord f := by
+private theorem ord_nonneg_of_mem {f : F} (hf : f ∈ v.toValuationSubring) : 0 ≤ v.ord f := by
   rcases eq_or_ne f 0 with rfl | hf0
   · simp
   obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible v.toValuationSubring
@@ -273,8 +116,7 @@ private theorem _root_.AlgebraicCurve.Place.ord_nonneg_of_mem {f : F} (hf : f �
   rw [hcoe, v.ord_unit_smul_zpow u hπ (n : ℤ)]
   exact Int.natCast_nonneg n
 
-p2m_export "AlgebraicCurve.Place" "ord_nonneg_of_mem"
-private theorem _root_.AlgebraicCurve.Place.mem_of_ord_nonneg {f : F} (hf : f ≠ 0) (h : 0 ≤ v.ord f) :
+private theorem mem_of_ord_nonneg {f : F} (hf : f ≠ 0) (h : 0 ≤ v.ord f) :
     f ∈ v.toValuationSubring := by
   obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible v.toValuationSubring
   obtain ⟨u, hu⟩ := v.exists_unit_mul_zpow hf hπ
@@ -282,7 +124,6 @@ private theorem _root_.AlgebraicCurve.Place.mem_of_ord_nonneg {f : F} (hf : f �
     zpow_natCast]
   exact mul_mem (u : v.toValuationSubring).2 (pow_mem (π : v.toValuationSubring).2 _)
 
-p2m_export "AlgebraicCurve.Place" "mem_of_ord_nonneg"
 end SinglePlace
 
 end Place
@@ -290,26 +131,12 @@ end Place
 end AlgebraicCurve
 
 end
-end
-
-end
 
 section
-section
-
-noncomputable section
-
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.Polynomial IsDedekindDomain P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.IsDedekindDomain"
-
-p2m_open_scoped "Polynomial.Bivariate P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.Polynomial.Bivariate"
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine isUnit_Δ a₃ a₁ map mk a₄ Jacobian a₂ a₆ reduction Affine.FunctionField IsIntegral toAffine map_Δ map_a₆ map_a₁ map_a₄ Δ map_a₂ map_a₃"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Point.add Equation negY equation_iff' slope_of_X_ne Point.add_of_Y_eq equation_iff_nonsingular_of_Δ_ne_zero slope CoordinateRing map equation_add Point.some nonsingular_iff' Point.some.injEq Nonsingular negAddY FunctionField slope_of_Y_ne Point CoordinateRing.mk addX Point.add_some Point.add_of_Y_ne addY Y_eq_of_X_eq Point.add_of_X_ne equation_iff polynomial Point.zero Point.neg_some polyToFunctionField polyToFunctionField_apply polyToFunctionField_C algebraMap_smul_basis yCoord"
-p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
-p2m_open "WeierstrassCurve.Affine.CoordinateRing AlgebraicCurve P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.AlgebraicCurve"
 
 universe u
 
@@ -336,25 +163,12 @@ theorem equation_map_polyToFunctionField_yGen :
 
 end GenericPoint
 
-end WeierstrassCurve.Affine
-
-end
-end
+end Affine
+end WeierstrassCurve
 
 end
 
 section
-section
-
-set_option linter.unusedSectionVars false
-set_option maxHeartbeats 3200000
-set_option synthInstance.maxHeartbeats 1600000
-
-noncomputable section
-
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.Polynomial AlgebraicCurve P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.AlgebraicCurve WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.WeierstrassCurve.Affine"
-
-p2m_open_scoped "Polynomial.Bivariate P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.Polynomial.Bivariate"
 
 namespace ModularCurve
 namespace Es1a1
@@ -375,26 +189,12 @@ def es1a11_coordSeamDataAt (φ : W.FunctionField →ₐ[F] W.FunctionField)
 
 end CoordSeamEs1a11
 
-end ModularCurve.Es1a1
-
-end
-
-end
+end Es1a1
+end ModularCurve
 
 end
 
 section
-section
-
-set_option linter.unusedSectionVars false
-set_option maxHeartbeats 3200000
-set_option synthInstance.maxHeartbeats 1600000
-
-noncomputable section
-
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.Polynomial AlgebraicCurve P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.AlgebraicCurve WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.WeierstrassCurve.Affine"
-
-p2m_open_scoped "Polynomial.Bivariate P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.Polynomial.Bivariate"
 
 namespace ModularCurve
 namespace Es1a1
@@ -502,23 +302,12 @@ def es1a6_addSumSeamDataAt (v : AlgebraicCurve.Place F W.FunctionField) :
 
 end SeamEngines
 
-end ModularCurve.Es1a1
-
-end
-
-end
+end Es1a1
+end ModularCurve
 
 end
 
 section
-section
-
-set_option linter.unusedSectionVars false
-set_option maxHeartbeats 3200000
-
-noncomputable section
-
-p2m_open "WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.WeierstrassCurve.Affine AlgebraicCurve P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.AlgebraicCurve Polynomial P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.Polynomial"
 
 namespace ModularCurve
 
@@ -542,22 +331,8 @@ end Es1a1
 end ModularCurve
 
 end
-end
-
-end
 
 section
-section
-
-set_option linter.unusedSectionVars false
-set_option maxHeartbeats 3200000
-set_option synthInstance.maxHeartbeats 1600000
-
-noncomputable section
-
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.Polynomial AlgebraicCurve P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.AlgebraicCurve WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.WeierstrassCurve.Affine"
-
-p2m_open_scoped "Polynomial.Bivariate P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.Polynomial.Bivariate"
 
 namespace ModularCurve
 namespace Es1a1
@@ -1196,8 +971,7 @@ end PoleBlock
 
 section PoleSeamEngines
 
-variable {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
-variable {W : WeierstrassCurve.Affine F} [W.IsElliptic]
+variable {F : Type u} [Field F] {W : WeierstrassCurve.Affine F}
 variable (φ₁ φ₂ : W.FunctionField →ₐ[F] W.FunctionField)
 
 theorem es1a10_ncPole_phi_equation (φ : W.FunctionField →ₐ[F] W.FunctionField) :
@@ -1213,6 +987,7 @@ theorem es1a10_ncPole_phi_equation (φ : W.FunctionField →ₐ[F] W.FunctionFie
   simpa only [WeierstrassCurve.map_a₁, WeierstrassCurve.map_a₂, WeierstrassCurve.map_a₃, WeierstrassCurve.map_a₄,
     WeierstrassCurve.map_a₆] using h
 
+variable [IsAlgClosed F] [CharZero F]
 theorem es1a10_ncPole_addSumY_ne_const
     (hcol : ¬ es1a6_addCollapse W φ₁ φ₂)
     (hnc : ∀ c : F, es1a6_addSumX W φ₁ φ₂ ≠ algebraMap F W.FunctionField c) :
@@ -1238,7 +1013,8 @@ theorem es1a10_ncPole_addSumY_ne_const
     linear_combination -heq
   exact es1a6_add_sumX_transcendental_of_forall_ne W φ₁ φ₂ hnc halgX
 
-theorem es1a10_ncPole_mixedOne_seamData (v : AlgebraicCurve.Place F W.FunctionField)
+theorem es1a10_ncPole_mixedOne_seamData [DecidableEq F]
+    (v : AlgebraicCurve.Place F W.FunctionField)
     (hcol : ¬ es1a6_addCollapse W φ₁ φ₂)
     (hnc : ∀ c : F, es1a6_addSumX W φ₁ φ₂ ≠ algebraMap F W.FunctionField c)
     {c d : F} (h : W.Nonsingular c d)
@@ -1462,6 +1238,7 @@ theorem es1a10_ncPole_mixedTwo_seamData (v : AlgebraicCurve.Place F W.FunctionFi
     es1a10_ncPole_ord_pos_of_reducesTo_of_ne v hYred
       (es1a10_ncPole_addSumY_ne_const φ₁ φ₂ hcol hnc d)⟩
 
+omit [IsAlgClosed F] [CharZero F] in
 theorem es1a10_ncPole_bothPole_notMem (v : AlgebraicCurve.Place F W.FunctionField)
     (hΔ : W.Δ ≠ 0)
     (hcol : ¬ es1a6_addCollapse W φ₁ φ₂)
@@ -1623,26 +1400,12 @@ theorem es1a10_ncPole_bothPole_notMem (v : AlgebraicCurve.Place F W.FunctionFiel
 
 end PoleSeamEngines
 
-end ModularCurve.Es1a1
-
-end
-
-end
+end Es1a1
+end ModularCurve
 
 end
 
 section
-section
-
-set_option linter.unusedSectionVars false
-set_option maxHeartbeats 3200000
-set_option synthInstance.maxHeartbeats 1600000
-
-noncomputable section
-
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.Polynomial AlgebraicCurve P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.AlgebraicCurve WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.WeierstrassCurve.Affine"
-
-p2m_open_scoped "Polynomial.Bivariate P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.Polynomial.Bivariate"
 
 namespace ModularCurve
 namespace Es1a1
@@ -1886,8 +1649,7 @@ end VanishingCalculusNcVertical
 
 section VerticalCaseEngines
 
-variable {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
-variable {W : WeierstrassCurve.Affine F} [W.IsElliptic]
+variable {F : Type u} [Field F] {W : WeierstrassCurve.Affine F}
 
 local instance instDecEqFunctionFieldEs1a10NcVertical :
     DecidableEq W.FunctionField :=
@@ -2179,7 +1941,7 @@ theorem es1a10_ncVertical_seamDataAt_zero (v : AlgebraicCurve.Place F W.Function
     (h : es1a6_addSumX W φ₁ φ₂ ∉ v.toValuationSubring) :
     es1a6_addSumSeamDataAt φ₁ φ₂ v 0 := h
 
-theorem es1a10_ncVertical_seamData (v : AlgebraicCurve.Place F W.FunctionField)
+theorem es1a10_ncVertical_seamData [DecidableEq F] (v : AlgebraicCurve.Place F W.FunctionField)
     (hcol : ¬ es1a6_addCollapse W φ₁ φ₂)
     {c d₁ d₂ : F} (h₁ : W.Nonsingular c d₁) (h₂ : W.Nonsingular c d₂)
     (hopp : d₁ = W.negY c d₂)
@@ -2208,26 +1970,12 @@ theorem es1a10_ncVertical_seamData (v : AlgebraicCurve.Place F W.FunctionField)
 
 end VerticalCaseEngines
 
-end ModularCurve.Es1a1
-
-end
-
-end
+end Es1a1
+end ModularCurve
 
 end
 
 section
-section
-
-set_option linter.unusedSectionVars false
-set_option maxHeartbeats 3200000
-set_option synthInstance.maxHeartbeats 1600000
-
-noncomputable section
-
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.Polynomial AlgebraicCurve P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.AlgebraicCurve WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.WeierstrassCurve.Affine"
-
-p2m_open_scoped "Polynomial.Bivariate P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.Polynomial.Bivariate"
 
 namespace ModularCurve
 namespace Es1a1
@@ -2478,8 +2226,7 @@ end VanishingCalculusNc
 
 section ChordTangentNc
 
-variable {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
-variable {W : WeierstrassCurve.Affine F} [W.IsElliptic]
+variable {F : Type u} [Field F] {W : WeierstrassCurve.Affine F}
 
 theorem es1a9_addX_reducesTo_nc (v : AlgebraicCurve.Place F W.FunctionField)
     {ξ₁ ξ₂ Λ : W.FunctionField} {c₁ c₂ ℓ : F}
@@ -2554,7 +2301,7 @@ theorem es1a9_addY_reducesTo_nc (v : AlgebraicCurve.Place F W.FunctionField)
   exact es1a9_negY_reducesTo_nc v (es1a9_addX_reducesTo_nc v hx₁ hx₂ hΛ)
     (es1a9_negAddY_reducesTo_nc v hx₁ hx₂ hy₁ hΛ)
 
-variable (φ₁ φ₂ : W.FunctionField →ₐ[F] W.FunctionField)
+variable (φ₁ φ₂ : W.FunctionField →ₐ[F] W.FunctionField) [IsAlgClosed F]
 
 theorem es1a9_addSumY_ne_const_nc
     (hcol : ¬ es1a6_addCollapse W φ₁ φ₂)
@@ -2581,7 +2328,9 @@ theorem es1a9_addSumY_ne_const_nc
     linear_combination -heq
   exact es1a6_add_sumX_transcendental_of_forall_ne W φ₁ φ₂ hnc halgX
 
-theorem es1a9_chordCase_seamData_nc (v : AlgebraicCurve.Place F W.FunctionField)
+variable [DecidableEq F]
+theorem es1a9_chordCase_seamData_nc
+    (v : AlgebraicCurve.Place F W.FunctionField)
     (hnc : ∀ c : F, es1a6_addSumX W φ₁ φ₂ ≠ algebraMap F W.FunctionField c)
     {c₁ d₁ c₂ d₂ : F} (h₁ : W.Nonsingular c₁ d₁) (h₂ : W.Nonsingular c₂ d₂)
     (hne : c₁ ≠ c₂)
@@ -2632,7 +2381,8 @@ theorem es1a9_chordCase_seamData_nc (v : AlgebraicCurve.Place F W.FunctionField)
       (es1a9_addSumY_ne_const_nc φ₁ φ₂
         (es1a6_add_not_collapse_of_X_ne W φ₁ φ₂ hxne) hnc _)⟩
 
-theorem es1a9_tangentCase_seamData_nc (v : AlgebraicCurve.Place F W.FunctionField)
+theorem es1a9_tangentCase_seamData_nc
+    (v : AlgebraicCurve.Place F W.FunctionField)
     (hcol : ¬ es1a6_addCollapse W φ₁ φ₂)
     (hnc : ∀ c : F, es1a6_addSumX W φ₁ φ₂ ≠ algebraMap F W.FunctionField c)
     {c d : F} (h : W.Nonsingular c d) (h2tor : d ≠ W.negY c d)
@@ -2769,23 +2519,12 @@ theorem es1a9_tangentCase_seamData_nc (v : AlgebraicCurve.Place F W.FunctionFiel
 
 end ChordTangentNc
 
-end ModularCurve.Es1a1
-
-end
-
-end
+end Es1a1
+end ModularCurve
 
 end
 
 section
-section
-
-set_option linter.unusedSectionVars false
-set_option maxHeartbeats 3200000
-
-noncomputable section
-
-p2m_open "WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.WeierstrassCurve.Affine AlgebraicCurve P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.AlgebraicCurve Polynomial P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.Polynomial"
 
 namespace ModularCurve
 
@@ -2834,11 +2573,8 @@ end Es1a1
 end ModularCurve
 
 end
-end
 
-end
-
-open _root_.WeierstrassCurve _root_.P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.WeierstrassCurve _root_.WeierstrassCurve.Affine _root_.P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.WeierstrassCurve.Affine _root_.AlgebraicCurve _root_.P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.AlgebraicCurve ModularCurve.Es1a1 in
+open ModularCurve.Es1a1 in
 universe u in
 theorem solution
     {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
@@ -2900,20 +2636,11 @@ theorem solution
   · rw [h0] at H; exact H
   · rw [hs] at H; exact H
 
-end
-end S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place
-end P2MW
-export P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place (solution)
-
 end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
-open WeierstrassCurve WeierstrassCurve.Affine AlgebraicCurve
+open WeierstrassCurve Affine AlgebraicCurve
 
 universe u
 theorem WeierstrassCurve.Affine.FunctionField.addX_addY_specialize_at_place
@@ -2959,6 +2686,7 @@ theorem WeierstrassCurve.Affine.FunctionField.addX_addY_specialize_at_place
           ((W.map (algebraMap F W.FunctionField)).toAffine.slope
             (φ₁ (polyToFunctionField W Polynomial.X)) (φ₂ (polyToFunctionField W Polynomial.X))
             (φ₁ (yCoord W)) (φ₂ (yCoord W)))
-        - algebraMap F W.FunctionField b)) := _root_.P2MW.S_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place.solution W φ₁ φ₂ hcol hnc v Q₁ Q₂ h₁0 h₁s h₂0 h₂s
+        - algebraMap F W.FunctionField b)) :=
+  solution W φ₁ φ₂ hcol hnc v Q₁ Q₂ h₁0 h₁s h₂0 h₂s
 
 end publicSection

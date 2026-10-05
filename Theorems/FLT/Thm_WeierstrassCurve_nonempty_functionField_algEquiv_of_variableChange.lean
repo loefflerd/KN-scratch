@@ -6,28 +6,14 @@ import Mathlib.AlgebraicGeometry.EllipticCurve.DivisionPolynomial.Basic
 import Mathlib.FieldTheory.IsAlgClosed.AlgebraicClosure
 import Definitions.FLT.Def_WeierstrassCurve_FunctionFieldQuadratic
 import Definitions.FLT.Def_WeierstrassCurve_VariableChangePointEquiv
-import Definitions.FLT.Def_P2M_Util
 
 section privateSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
-namespace P2MW.S_WeierstrassCurve_nonempty_functionField_algEquiv_of_variableChange
-
-set_option linter.unusedSectionVars false
-set_option linter.unusedVariables false
-set_option synthInstance.maxHeartbeats 800000
-set_option maxHeartbeats 6400000
-
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine VariableChange.map a₁ map Ψ₃ Affine.CoordinateRing mk Affine.equation_add a₂ c₆ reduction toAffine Affine.Point map_Δ map_a₆ map_a₁ map_a₄ Δ c₄ VariableChange VariableChange.inv_def Affine.polynomial map_a₂ map_variableChange map_a₃"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Point.add Equation equation_iff' map_a₃ slope CoordinateRing map equation_add Point.some Point.some.injEq Point.some.inj map_a₆ FunctionField map_a₂ Point CoordinateRing.mk addX map_a₁ map_a₄ CoordinateRing.basis addY equation_iff polynomial polyToFunctionField polyToFunctionField_apply polyToFunctionField_injective polyToFunctionField_C algebraMap_smul_basis vcX vcY vcXInv vcYInv equation_variableChange_iff"
-p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_nonempty_functionField_algEquiv_of_variableChange.Polynomial"
-p2m_open_scoped "Polynomial.Bivariate P2MW.S_WeierstrassCurve_nonempty_functionField_algEquiv_of_variableChange.Polynomial.Bivariate"
+open WeierstrassCurve.Affine WeierstrassCurve
+open Polynomial
+open scoped Polynomial.Bivariate
 variable {F : Type*} [Field F] {W : Affine F}
 
 theorem algebraMap_polynomial_eq_mk_C (p : F[X]) :
@@ -36,73 +22,29 @@ theorem algebraMap_polynomial_eq_mk_C (p : F[X]) :
 
 noncomputable def yGen (W : Affine F) : W.FunctionField :=
   algebraMap W.CoordinateRing W.FunctionField (CoordinateRing.mk W Y)
-namespace CoordinateRing
-p2m_export "WeierstrassCurve.Affine.CoordinateRing" "mk map smul_basis_mul_Y"
-end CoordinateRing
-p2m_open_scoped "WeierstrassCurve.Affine.CoordinateRing" in
+open scoped WeierstrassCurve.Affine.CoordinateRing in
 
 theorem CoordinateRing.algebraMap_eq_mk_C_C (a : F) :
     algebraMap F W.CoordinateRing a = CoordinateRing.mk W (C (C a)) := by
   rw [AdjoinRoot.algebraMap_eq', RingHom.comp_apply, Polynomial.algebraMap_apply,
     Algebra.algebraMap_self_apply]
   rfl
-end WeierstrassCurve.Affine
-
-namespace AlgebraicCurve
-end AlgebraicCurve
-namespace CoordinateRing
-end CoordinateRing
-namespace FLT
-namespace Mrtw60aVCPlaceSeamS1
-end FLT.Mrtw60aVCPlaceSeamS1
-namespace IsDedekindDomain
-p2m_export "IsDedekindDomain" "mk"
-end IsDedekindDomain
-namespace Polynomial
-p2m_export "Polynomial" "C eval₂_sub X leadingCoeff algebraMap_eq eval₂ aeval eval₂_add eval₂_pow degree factor aeval_C map eval₂_X comp roots algebra eval₂_mul algHom_ext sum leadingCoeff_comp aeval_comp flt leadingCoeff_zero aeval_X algebraMap_apply natDegree_linear ext content eval₂_C leadingCoeff_linear ring ringHom_ext transcendental restriction leadingCoeff_ne_zero eval"
-end Polynomial
-namespace Polynomial
-p2m_export "Polynomial" "C eval₂_sub X leadingCoeff algebraMap_eq eval₂ aeval eval₂_add eval₂_pow degree factor aeval_C map eval₂_X comp roots algebra eval₂_mul algHom_ext sum leadingCoeff_comp aeval_comp flt leadingCoeff_zero aeval_X algebraMap_apply natDegree_linear ext content eval₂_C leadingCoeff_linear ring ringHom_ext transcendental restriction leadingCoeff_ne_zero eval"
-namespace Bivariate
-end Polynomial.Bivariate
-namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine VariableChange.map a₁ map Ψ₃ Affine.CoordinateRing mk Affine.equation_add a₂ c₆ reduction toAffine Affine.Point map_Δ map_a₆ map_a₁ map_a₄ Δ c₄ VariableChange VariableChange.inv_def Affine.polynomial map_a₂ map_variableChange map_a₃"
+end Affine
 end WeierstrassCurve
-namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine VariableChange.map a₁ map Ψ₃ Affine.CoordinateRing mk Affine.equation_add a₂ c₆ reduction toAffine Affine.Point map_Δ map_a₆ map_a₁ map_a₄ Δ c₄ VariableChange VariableChange.inv_def Affine.polynomial map_a₂ map_variableChange map_a₃"
-namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Point.add Equation equation_iff' map_a₃ slope CoordinateRing map equation_add Point.some Point.some.injEq Point.some.inj map_a₆ FunctionField map_a₂ Point CoordinateRing.mk addX map_a₁ map_a₄ CoordinateRing.basis addY equation_iff polynomial polyToFunctionField polyToFunctionField_apply polyToFunctionField_injective polyToFunctionField_C algebraMap_smul_basis vcX vcY vcXInv vcYInv equation_variableChange_iff"
-end WeierstrassCurve.Affine
-namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine VariableChange.map a₁ map Ψ₃ Affine.CoordinateRing mk Affine.equation_add a₂ c₆ reduction toAffine Affine.Point map_Δ map_a₆ map_a₁ map_a₄ Δ c₄ VariableChange VariableChange.inv_def Affine.polynomial map_a₂ map_variableChange map_a₃"
-namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Point.add Equation equation_iff' map_a₃ slope CoordinateRing map equation_add Point.some Point.some.injEq Point.some.inj map_a₆ FunctionField map_a₂ Point CoordinateRing.mk addX map_a₁ map_a₄ CoordinateRing.basis addY equation_iff polynomial polyToFunctionField polyToFunctionField_apply polyToFunctionField_injective polyToFunctionField_C algebraMap_smul_basis vcX vcY vcXInv vcYInv equation_variableChange_iff"
-namespace Point
-p2m_export "WeierstrassCurve.Affine.Point" "add some some.injEq some.inj map zero mk"
-end WeierstrassCurve.Affine.Point
-
-section
-section
-
-set_option maxHeartbeats 25600000
-set_option synthInstance.maxHeartbeats 1600000
-set_option linter.unusedSectionVars false
 
 noncomputable section
 
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_nonempty_functionField_algEquiv_of_variableChange.Polynomial WeierstrassCurve P2MW.S_WeierstrassCurve_nonempty_functionField_algEquiv_of_variableChange.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_nonempty_functionField_algEquiv_of_variableChange.WeierstrassCurve.Affine"
+open Polynomial WeierstrassCurve.Affine
 
-p2m_open_scoped "Polynomial.Bivariate P2MW.S_WeierstrassCurve_nonempty_functionField_algEquiv_of_variableChange.Polynomial.Bivariate"
+open scoped Polynomial.Bivariate Polynomial.Bivariate
 
 universe u
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine VariableChange.map a₁ map Ψ₃ Affine.CoordinateRing mk Affine.equation_add a₂ c₆ reduction toAffine Affine.Point map_Δ map_a₆ map_a₁ map_a₄ Δ c₄ VariableChange VariableChange.inv_def Affine.polynomial map_a₂ map_variableChange map_a₃"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Point.add Equation equation_iff' map_a₃ slope CoordinateRing map equation_add Point.some Point.some.injEq Point.some.inj map_a₆ FunctionField map_a₂ Point CoordinateRing.mk addX map_a₁ map_a₄ CoordinateRing.basis addY equation_iff polynomial polyToFunctionField polyToFunctionField_apply polyToFunctionField_injective polyToFunctionField_C algebraMap_smul_basis vcX vcY vcXInv vcYInv equation_variableChange_iff"
-p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
+open WeierstrassCurve.Affine WeierstrassCurve
 
-p2m_open "WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_nonempty_functionField_algEquiv_of_variableChange.WeierstrassCurve.Affine.CoordinateRing"
+open WeierstrassCurve.Affine.CoordinateRing WeierstrassCurve.Affine.CoordinateRing
 
 variable {F : Type u} [Field F]
 
@@ -191,38 +133,28 @@ theorem pointPullbackHomTo_yGen {xP yP : L}
 
 end PointPullbackTo
 
-end WeierstrassCurve.Affine
+end Affine
+end WeierstrassCurve
 
 namespace ModularCurve
 
-p2m_open "WeierstrassCurve P2MW.S_WeierstrassCurve_nonempty_functionField_algEquiv_of_variableChange.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_nonempty_functionField_algEquiv_of_variableChange.WeierstrassCurve.Affine"
-
-local notation "Qbar" => AlgebraicClosure ℚ
+open WeierstrassCurve WeierstrassCurve.Affine
 
 end ModularCurve
 
 end
 
-end
-
-end
-
-section
-section
-
 noncomputable section
 
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_nonempty_functionField_algEquiv_of_variableChange.Polynomial IsDedekindDomain P2MW.S_WeierstrassCurve_nonempty_functionField_algEquiv_of_variableChange.IsDedekindDomain"
+open Polynomial IsDedekindDomain
 
-p2m_open_scoped "Polynomial.Bivariate P2MW.S_WeierstrassCurve_nonempty_functionField_algEquiv_of_variableChange.Polynomial.Bivariate"
+open scoped Polynomial.Bivariate Polynomial.Bivariate
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine VariableChange.map a₁ map Ψ₃ Affine.CoordinateRing mk Affine.equation_add a₂ c₆ reduction toAffine Affine.Point map_Δ map_a₆ map_a₁ map_a₄ Δ c₄ VariableChange VariableChange.inv_def Affine.polynomial map_a₂ map_variableChange map_a₃"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Point.add Equation equation_iff' map_a₃ slope CoordinateRing map equation_add Point.some Point.some.injEq Point.some.inj map_a₆ FunctionField map_a₂ Point CoordinateRing.mk addX map_a₁ map_a₄ CoordinateRing.basis addY equation_iff polynomial polyToFunctionField polyToFunctionField_apply polyToFunctionField_injective polyToFunctionField_C algebraMap_smul_basis vcX vcY vcXInv vcYInv equation_variableChange_iff"
-p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
+open WeierstrassCurve.Affine WeierstrassCurve
 
-p2m_open "WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_nonempty_functionField_algEquiv_of_variableChange.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_nonempty_functionField_algEquiv_of_variableChange.AlgebraicCurve"
+open WeierstrassCurve.Affine.CoordinateRing
 
 universe u
 
@@ -262,80 +194,39 @@ theorem equation_map_polyToFunctionField_yGen :
 
 end GenericPoint
 
-end WeierstrassCurve.Affine
+end Affine
+end WeierstrassCurve
 
 end
-end
-
-end
-
-section
-section
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine VariableChange.map a₁ map Ψ₃ Affine.CoordinateRing mk Affine.equation_add a₂ c₆ reduction toAffine Affine.Point map_Δ map_a₆ map_a₁ map_a₄ Δ c₄ VariableChange VariableChange.inv_def Affine.polynomial map_a₂ map_variableChange map_a₃"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Point.add Equation equation_iff' map_a₃ slope CoordinateRing map equation_add Point.some Point.some.injEq Point.some.inj map_a₆ FunctionField map_a₂ Point CoordinateRing.mk addX map_a₁ map_a₄ CoordinateRing.basis addY equation_iff polynomial polyToFunctionField polyToFunctionField_apply polyToFunctionField_injective polyToFunctionField_C algebraMap_smul_basis vcX vcY vcXInv vcYInv equation_variableChange_iff"
-p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
+open WeierstrassCurve.Affine WeierstrassCurve
 
 variable {K : Type*} [Field K]
 
-namespace Point
-p2m_export "WeierstrassCurve.Affine.Point" "add some some.injEq some.inj map zero mk"
-end Point
-
-namespace Point
-p2m_export "WeierstrassCurve.Affine.Point" "add some some.injEq some.inj map zero mk"
-end Point
-
-end WeierstrassCurve.Affine
-
-end
-
-end
+end Affine
+end WeierstrassCurve
 
 section
-section
 
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_nonempty_functionField_algEquiv_of_variableChange.Polynomial WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_nonempty_functionField_algEquiv_of_variableChange.WeierstrassCurve.Affine WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_nonempty_functionField_algEquiv_of_variableChange.WeierstrassCurve.Affine.Point"
+open Polynomial WeierstrassCurve.Affine.Point
 
-p2m_open_scoped "WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_nonempty_functionField_algEquiv_of_variableChange.WeierstrassCurve.Affine Polynomial.Bivariate P2MW.S_WeierstrassCurve_nonempty_functionField_algEquiv_of_variableChange.Polynomial.Bivariate"
+open scoped WeierstrassCurve.Affine WeierstrassCurve.Affine Polynomial.Bivariate Polynomial.Bivariate
 
 noncomputable section
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine VariableChange.map a₁ map Ψ₃ Affine.CoordinateRing mk Affine.equation_add a₂ c₆ reduction toAffine Affine.Point map_Δ map_a₆ map_a₁ map_a₄ Δ c₄ VariableChange VariableChange.inv_def Affine.polynomial map_a₂ map_variableChange map_a₃"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Point.add Equation equation_iff' map_a₃ slope CoordinateRing map equation_add Point.some Point.some.injEq Point.some.inj map_a₆ FunctionField map_a₂ Point CoordinateRing.mk addX map_a₁ map_a₄ CoordinateRing.basis addY equation_iff polynomial polyToFunctionField polyToFunctionField_apply polyToFunctionField_injective polyToFunctionField_C algebraMap_smul_basis vcX vcY vcXInv vcYInv equation_variableChange_iff"
-p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
-
-p2m_open "WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_nonempty_functionField_algEquiv_of_variableChange.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_nonempty_functionField_algEquiv_of_variableChange.AlgebraicCurve"
+open WeierstrassCurve.Affine.CoordinateRing
 
 universe u
 
 variable {F : Type u} [Field F]
 
-section TranslationCoords
-
-variable (W : Affine F) (a b : F)
-
-local notation "ι" => algebraMap F W.FunctionField
-
-end TranslationCoords
-
-section GenericPointGroup
-
-variable {W : Affine F}
-
-local notation "ι" => algebraMap F W.FunctionField
-
-end GenericPointGroup
-
 section AdjoinSurjective
 
 variable {W : Affine F} (hΔ : W.Δ ≠ 0) {a b : F} (hA : W.Equation a b)
-
-local notation "ι" => algebraMap F W.FunctionField
 
 theorem transcendental_polyToFunctionField_X :
     Transcendental F (polyToFunctionField W X) := by
@@ -346,26 +237,18 @@ theorem transcendental_polyToFunctionField_X :
 
 end AdjoinSurjective
 
-end WeierstrassCurve.Affine
+end Affine
+end WeierstrassCurve
 
 end
 
 end
-
-end
-
-section
-section
-
-set_option maxHeartbeats 3200000
-set_option synthInstance.maxHeartbeats 1600000
-set_option linter.unusedSectionVars false
 
 noncomputable section
 
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_nonempty_functionField_algEquiv_of_variableChange.Polynomial WeierstrassCurve P2MW.S_WeierstrassCurve_nonempty_functionField_algEquiv_of_variableChange.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_nonempty_functionField_algEquiv_of_variableChange.WeierstrassCurve.Affine WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_nonempty_functionField_algEquiv_of_variableChange.WeierstrassCurve.Affine.CoordinateRing"
+open Polynomial WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.CoordinateRing
 
-p2m_open_scoped "Polynomial.Bivariate P2MW.S_WeierstrassCurve_nonempty_functionField_algEquiv_of_variableChange.Polynomial.Bivariate"
+open scoped Polynomial.Bivariate
 
 namespace FLT
 namespace Mrtw60aVCPlaceSeamS1
@@ -508,25 +391,16 @@ theorem mrtw60a_coordHom_ext {W : Affine F} {S : Type u} [CommRing S] [Algebra F
     (RingHom.cancel_right AdjoinRoot.mk_surjective).mp hh
   exact AlgHom.ext fun z => DFunLike.congr_fun hRing z
 
-end FLT.Mrtw60aVCPlaceSeamS1
+end Mrtw60aVCPlaceSeamS1
+end FLT
 
 end
-end
-
-end
-
-section
-section
-
-set_option maxHeartbeats 3200000
-set_option synthInstance.maxHeartbeats 1600000
-set_option linter.unusedSectionVars false
 
 noncomputable section
 
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_nonempty_functionField_algEquiv_of_variableChange.Polynomial WeierstrassCurve P2MW.S_WeierstrassCurve_nonempty_functionField_algEquiv_of_variableChange.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_nonempty_functionField_algEquiv_of_variableChange.WeierstrassCurve.Affine WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_nonempty_functionField_algEquiv_of_variableChange.WeierstrassCurve.Affine.CoordinateRing"
+open Polynomial WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.CoordinateRing
 
-p2m_open_scoped "Polynomial.Bivariate P2MW.S_WeierstrassCurve_nonempty_functionField_algEquiv_of_variableChange.Polynomial.Bivariate"
+open scoped Polynomial.Bivariate
 
 namespace FLT
 namespace Mrtw60aVCPlaceSeamS3
@@ -637,32 +511,23 @@ def mrtw60aVCPlaceSeamAlgEquiv (h : C • W = V) : V.FunctionField ≃ₐ[F] W.F
   AlgEquiv.ofAlgHom (mrtw60aVCFunHomInv h) (mrtw60aVCFunHom h)
     (mrtw60a_funHomInv_comp_funHom h) (mrtw60a_funHom_comp_funHomInv h)
 
-end FLT.Mrtw60aVCPlaceSeamS3
+end Mrtw60aVCPlaceSeamS3
+end FLT
 end
-end
-end
-p2m_reactivate "P2MW.S_WeierstrassCurve_nonempty_functionField_algEquiv_of_variableChange.FLT P2MW.S_WeierstrassCurve_nonempty_functionField_algEquiv_of_variableChange.FLT.Mrtw60aVCPlaceSeamS3"
 
 universe u in
 theorem solution {F : Type u} [Field F] (W : WeierstrassCurve F) (C : WeierstrassCurve.VariableChange F) :
     Nonempty (W.toAffine.FunctionField ≃ₐ[F] (C • W).toAffine.FunctionField) :=
   ⟨(FLT.Mrtw60aVCPlaceSeamS3.mrtw60aVCPlaceSeamAlgEquiv (C := C) (W := W.toAffine) (V := (C • W).toAffine) rfl).symm⟩
 
-end S_WeierstrassCurve_nonempty_functionField_algEquiv_of_variableChange
-end P2MW
-export P2MW.S_WeierstrassCurve_nonempty_functionField_algEquiv_of_variableChange (solution)
-
 end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
 universe u
 theorem WeierstrassCurve.nonempty_functionField_algEquiv_of_variableChange
     {F : Type u} [Field F] (W : WeierstrassCurve F) (C : WeierstrassCurve.VariableChange F) :
-    Nonempty (W.toAffine.FunctionField ≃ₐ[F] (C • W).toAffine.FunctionField) := _root_.P2MW.S_WeierstrassCurve_nonempty_functionField_algEquiv_of_variableChange.solution W C
+    Nonempty (W.toAffine.FunctionField ≃ₐ[F] (C • W).toAffine.FunctionField) :=
+  solution W C
 
 end publicSection

@@ -2,9 +2,7 @@ module
 
 public import Definitions.MTT.Def_MTT_Arithmetic
 
-@[expose] public section publicSection
-
-noncomputable section
+@[expose] public noncomputable section publicSection
 
 namespace MTT
 
@@ -37,7 +35,5 @@ theorem nebentype_mem_coefficientField
 end Eigenform
 
 end MTT
-
-end
 
 end publicSection

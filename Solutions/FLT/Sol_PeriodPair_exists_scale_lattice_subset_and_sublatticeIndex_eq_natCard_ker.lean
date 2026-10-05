@@ -69,7 +69,6 @@ p2m_export "WeierstrassCurve.Affine" "map Point polynomial"
 end WeierstrassCurve.Affine
 
 section
-section
 
 p2m_open "Complex P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.Complex Filter P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.Filter Set P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.Set"
 
@@ -84,9 +83,7 @@ p2m_export "Projectivization" "mk map card"
 end Projectivization
 end
 
-end
 
-section
 section
 
 set_option maxHeartbeats 6400000
@@ -225,11 +222,8 @@ end LatticeQuotient
 end ModularCurve
 end
 end
-end
 p2m_reactivate "P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.ModularCurve"
 
-section
-section
 
 noncomputable section
 
@@ -270,12 +264,8 @@ namespace ModularCurve
 
 end ModularCurve
 end
-end
-end
 p2m_reactivate "P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.ModularCurve"
 
-section
-section
 
 noncomputable section
 
@@ -340,11 +330,8 @@ theorem gate_scale_mul (α β : ℂˣ) :
 end Gates
 end PeriodPair
 end
-end
-end
 p2m_reactivate "P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.ModularCurve P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.PeriodPair"
 
-section
 section
 
 set_option maxHeartbeats 3200000
@@ -410,11 +397,8 @@ theorem kw_card_torsionBy_zlatticeQuotient_finrank_real
 end ModularCurve
 end
 end
-end
 p2m_reactivate "P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.ModularCurve P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.PeriodPair"
 
-section
-section
 
 noncomputable section
 
@@ -441,11 +425,8 @@ theorem kwSublatticeIndex_scale (L L' : PeriodPair) (α : ℂˣ) :
 
 end ModularCurve
 end
-end
-end
 p2m_reactivate "P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.ModularCurve P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.PeriodPair"
 
-section
 section
 
 set_option maxHeartbeats 6400000
@@ -479,10 +460,8 @@ end IndexDualMint
 end ModularCurve
 end
 end
-end
 p2m_reactivate "P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.ModularCurve P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.PeriodPair"
 
-section
 section
 
 set_option maxHeartbeats 6400000
@@ -782,7 +761,6 @@ theorem kw_surgehgf4_hID_betweenCurvesIndexDual_proved :
 
 end BetweenCurves
 end ModularCurve
-end
 end
 end
 p2m_reactivate "P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.ModularCurve P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.PeriodPair"

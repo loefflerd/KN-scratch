@@ -23,7 +23,6 @@ p2m_attr_erase "simp" "AlgebraicCurve.SemilinearAut.coe_torsion_smul AlgebraicCu
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_Divisor_pushforwardNormFormula.AlgebraicCurve"
 
-noncomputable section
 
 noncomputable section
 
@@ -1206,7 +1205,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_Divisor_pushforwardNormFormula.AlgebraicCu
 theorem solution {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F'] [Algebra F F'] [IsScalarTower K F F'] [FiniteDimensional F F'] [Algebra.IsSeparable F F'] [CharZero F] [HasPrincipalDivisors K F'] : Divisor.PushforwardNormFormula K F F' :=
   AlgebraicCurve.Divisor.pushforwardNormFormula_infra
 
-end
 end
 end
 end

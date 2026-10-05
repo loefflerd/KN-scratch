@@ -126,7 +126,6 @@ p2m_export "WeierstrassCurve.Affine.Point" "add map_id baseChange map_map some s
 end WeierstrassCurve.Affine.Point
 
 section
-section
 
 set_option maxHeartbeats 6400000
 set_option synthInstance.maxHeartbeats 1600000
@@ -165,9 +164,7 @@ end ModularCurve
 end
 end
 
-end
 
-section
 section
 
 set_option maxHeartbeats 6400000
@@ -245,9 +242,7 @@ end ModularCurve
 end
 end
 
-end
 
-section
 section
 
 set_option maxHeartbeats 25600000
@@ -371,10 +366,7 @@ end
 
 end
 
-end
 
-section
-section
 
 noncomputable section
 
@@ -431,11 +423,8 @@ end GenericPoint
 end WeierstrassCurve.Affine
 
 end
-end
 
-end
 
-section
 section
 /-
 Copyright (c) 2025 Kevin Buzzard. All rights reserved.
@@ -463,10 +452,7 @@ end
 
 end
 
-end
 
-section
-section
 
 noncomputable section
 
@@ -521,16 +507,12 @@ local notation "Qbar" => AlgebraicClosure ℚ
 end ModularCurve
 
 end
-end
 
-end
 
 section
-section
 
-@[expose] public section
 
-noncomputable section
+@[expose] public noncomputable section
 
 p2m_open "Polynomial P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Polynomial"
 
@@ -543,11 +525,8 @@ p2m_export "WeierstrassCurve.Affine" "Point.add Equation CoordinateRing.basis_on
 end WeierstrassCurve.Affine
 
 end
-end
 
-end
 
-section
 section
 
 p2m_open "IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField"
@@ -572,10 +551,8 @@ namespace ModularCurve
 
 end ModularCurve
 end
-end
 p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField"
 
-section
 section
 
 p2m_open "Polynomial P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Polynomial WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.WeierstrassCurve.Affine WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.WeierstrassCurve.Affine.Point"
@@ -633,11 +610,8 @@ end AdjoinSurjective
 end WeierstrassCurve.Affine
 end
 end
-end
 p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField"
 
-section
-section
 
 noncomputable section
 
@@ -658,11 +632,8 @@ def KwIsogenyEndDatumFGFieldDescent (K : Type uK) [Field K] [Algebra ℚ K] [Dec
 
 end ModularCurve
 end
-end
-end
 p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField"
 
-section
 section
 
 set_option linter.unusedSectionVars false
@@ -703,10 +674,8 @@ theorem kw_subfieldDescent_of_iotaDescend (K : Type uK) [Field K] [Algebra ℚ K
 end ModularCurve
 end
 end
-end
 p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField"
 
-section
 section
 
 set_option maxHeartbeats 6400000
@@ -1316,10 +1285,8 @@ end BCACDischarge
 end ModularCurve
 end
 end
-end
 p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
 
-section
 section
 
 set_option linter.unusedSectionVars false
@@ -1490,11 +1457,8 @@ end Assembly
 end ModularCurve
 end
 end
-end
 p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
 
-section
-section
 
 noncomputable section
 
@@ -1560,11 +1524,8 @@ theorem kw_fgFieldDescent_of_subfieldDescent_of_baseChangeToAC (K : Type uK) [Fi
 
 end ModularCurve
 end
-end
-end
 p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
 
-section
 section
 
 set_option linter.unusedSectionVars false
@@ -1675,10 +1636,8 @@ end Pinned
 end ModularCurve
 end
 end
-end
 p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
 
-section
 section
 
 set_option linter.unusedSectionVars false
@@ -1814,10 +1773,8 @@ end Canonical
 end ModularCurve
 end
 end
-end
 p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
 
-section
 section
 
 set_option linter.unusedSectionVars false
@@ -1865,10 +1822,8 @@ end Commute
 end ModularCurve
 end
 end
-end
 p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
 
-section
 section
 
 set_option linter.unusedSectionVars false
@@ -1946,10 +1901,8 @@ end Wire
 end ModularCurve
 end
 end
-end
 p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
 
-section
 section
 
 set_option linter.unusedSectionVars false
@@ -2117,10 +2070,8 @@ end Discharge
 end ModularCurve
 end
 end
-end
 p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
 
-section
 section
 
 set_option linter.unusedSectionVars false
@@ -2263,10 +2214,8 @@ end Uncond
 end ModularCurve
 end
 end
-end
 p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
 
-section
 section
 
 set_option linter.unusedSectionVars false
@@ -2323,7 +2272,6 @@ local notation "ℚ̄" => AlgebraicClosure ℚ
 
 end Headline
 end ModularCurve
-end
 end
 end
 p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"

@@ -117,7 +117,6 @@ scoped instance instAlgebraSubtypeMemValuationSubring_fLT {K L : Type*} [Field K
 end
 
 section
-section
 
 set_option maxHeartbeats 6400000
 set_option linter.unusedSectionVars false
@@ -136,10 +135,7 @@ end
 
 end
 
-end
 
-section
-section
 
 noncomputable section
 
@@ -182,12 +178,8 @@ end Place
 end AlgebraicCurve
 
 end
-end
 
-end
 
-section
-section
 
 noncomputable section
 
@@ -378,12 +370,8 @@ end Place
 end AlgebraicCurve
 
 end
-end
 
-end
 
-section
-section
 
 section
 
@@ -422,11 +410,8 @@ theorem ValuationSubring.isUnit_iff_valued_eq_one {K : Type*} [Field K] {Γ₀ :
 
 end
 
-end
 
-end
 
-section
 section
 
 set_option synthInstance.maxHeartbeats 3200000
@@ -445,10 +430,7 @@ end AlgebraicCurve.Place
 end
 end
 
-end
 
-section
-section
 
 noncomputable section
 
@@ -483,11 +465,8 @@ p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4gRRTate.KwF4gRR
 end ModularCurve
 
 end
-end
 
-end
 
-section
 section
 
 set_option linter.unusedSectionVars false
@@ -544,10 +523,8 @@ attribute [local instance 2000] RatFunc.instAlgebraOfPolynomial
 end ModularCurve
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve"
 
-section
 section
 
 set_option maxHeartbeats 6400000
@@ -603,10 +580,8 @@ end TateProj
 end ModularCurve.KwF4gRRTate
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve"
 
-section
 section
 
 set_option maxHeartbeats 6400000
@@ -688,10 +663,8 @@ end PoleWindow
 end ModularCurve.KwF4gRRTate
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve"
 
-section
 section
 
 set_option maxHeartbeats 3200000
@@ -731,10 +704,8 @@ theorem isOpen_setOf_valued_le {γ : ℤᵐ⁰} (hγ : γ ≠ 0) :
 end adicCompletion
 end IsDedekindDomain.HeightOneSpectrum
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve"
 
-section
 section
 
 set_option maxHeartbeats 6400000
@@ -842,10 +813,8 @@ end Bridge
 end ModularCurve.KwF4R1V410a
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a"
 
-section
 section
 
 set_option maxHeartbeats 6400000
@@ -964,10 +933,8 @@ end PoleWindowShift
 end ModularCurve.KwF4gRRTate
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a"
 
-section
 section
 
 set_option maxHeartbeats 6400000
@@ -1013,10 +980,8 @@ end FinrankTraceCyclicity
 end ModularCurve.KwF4gRRTate
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a"
 
-section
 section
 
 set_option maxHeartbeats 6400000
@@ -1095,10 +1060,8 @@ end Additivity
 end ModularCurve.KwF4gRRTate
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a"
 
-section
 section
 
 set_option maxHeartbeats 6400000
@@ -1232,10 +1195,8 @@ end DVRQuotDischarge
 end ModularCurve.KwF4gRRTate
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a"
 
-section
 section
 
 set_option maxHeartbeats 6400000
@@ -1305,10 +1266,8 @@ end DVRCotangentDischarge
 end ModularCurve.KwF4gRRTate
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
 
-section
 section
 
 set_option maxHeartbeats 12800000
@@ -1344,10 +1303,8 @@ end TermRangeFinite
 end ModularCurve.KwF4gRRTate
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
 
-section
 section
 
 set_option maxHeartbeats 12800000
@@ -1428,10 +1385,8 @@ end Discharge
 end ModularCurve.KwF4gRRTate
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
 
-section
 section
 
 set_option maxHeartbeats 12800000
@@ -1531,10 +1486,8 @@ end TermMaps
 end ModularCurve.KwF4gRRTate
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
 
-section
 section
 
 set_option maxHeartbeats 12800000
@@ -1671,10 +1624,8 @@ end TateResAddFst
 end ModularCurve.KwF4gRRTate
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
 
-section
 section
 
 set_option maxHeartbeats 12800000
@@ -2060,10 +2011,8 @@ end Reprice
 end ModularCurve.KwF4gRRTate
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
 
-section
 section
 
 set_option maxHeartbeats 12800000
@@ -2335,7 +2284,6 @@ theorem kwTateRR2_derivationFactorSnd [∀ w : Place K F, w.FiniteResidue]
 
 end Headline
 end ModularCurve.KwF4gRRTate
-end
 end
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate.DualDom"

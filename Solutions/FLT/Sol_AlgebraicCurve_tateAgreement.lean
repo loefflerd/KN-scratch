@@ -287,7 +287,6 @@ p2m_export "WithZero" "map exp_lt_exp exp_eq_coe_ofAdd exp_neg coe exp_ne_zero e
 end WithZero
 
 section
-section
 
 set_option maxHeartbeats 6400000
 set_option linter.unusedSectionVars false
@@ -306,10 +305,7 @@ end
 
 end
 
-end
 
-section
-section
 
 noncomputable section
 
@@ -352,12 +348,8 @@ end Place
 end AlgebraicCurve
 
 end
-end
 
-end
 
-section
-section
 
 noncomputable section
 
@@ -412,11 +404,8 @@ end Place
 end AlgebraicCurve
 
 end
-end
 
-end
 
-section
 section
 
 p2m_open_scoped "Multiplicative P2MW.S_AlgebraicCurve_tateAgreement.Multiplicative WithZero P2MW.S_AlgebraicCurve_tateAgreement.WithZero"
@@ -540,10 +529,8 @@ end Henselian
 
 end MazurTorsion
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion"
 
-section
 section
 
 set_option synthInstance.maxHeartbeats 3200000
@@ -573,10 +560,8 @@ end Henselian
 end AlgebraicCurve.Place
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place"
 
-section
 section
 
 set_option linter.unusedSectionVars false
@@ -594,10 +579,8 @@ p2m_export "ModularCurve.Lg37" "lg37_completion lg37_residueHat lg37_residueHat_
 end ModularCurve.Lg37
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place"
 
-section
 section
 
 set_option linter.unusedSectionVars false
@@ -656,10 +639,8 @@ end RatProduction
 end Mp72a103T2
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place"
 
-section
 section
 
 set_option maxHeartbeats 6400000
@@ -731,10 +712,8 @@ end LocalResidueCompletion
 end AlgebraicCurve
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place"
 
-section
 section
 
 set_option maxHeartbeats 6400000
@@ -790,10 +769,8 @@ end TateProj
 end ModularCurve.KwF4gRRTate
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place"
 
-section
 section
 
 set_option maxHeartbeats 6400000
@@ -875,10 +852,8 @@ end PoleWindow
 end ModularCurve.KwF4gRRTate
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place"
 
-section
 section
 
 set_option maxHeartbeats 3200000
@@ -918,10 +893,8 @@ theorem isOpen_setOf_valued_le {γ : ℤᵐ⁰} (hγ : γ ≠ 0) :
 end adicCompletion
 end IsDedekindDomain.HeightOneSpectrum
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place"
 
-section
 section
 
 set_option maxHeartbeats 6400000
@@ -1133,10 +1106,8 @@ end Bridge
 end ModularCurve.KwF4R1V410a
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a"
 
-section
 section
 
 set_option maxHeartbeats 6400000
@@ -1255,10 +1226,8 @@ end PoleWindowShift
 end ModularCurve.KwF4gRRTate
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a"
 
-section
 section
 
 set_option maxHeartbeats 6400000
@@ -1306,10 +1275,8 @@ end AgreementReduce
 end ModularCurve.KwF4gRRTate
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a"
 
-section
 section
 
 set_option maxHeartbeats 6400000
@@ -1355,10 +1322,8 @@ end FinrankTraceCyclicity
 end ModularCurve.KwF4gRRTate
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a"
 
-section
 section
 
 set_option maxHeartbeats 6400000
@@ -1487,10 +1452,8 @@ end DiffComputation
 end ModularCurve.KwF4gRRTate
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a"
 
-section
 section
 
 set_option maxHeartbeats 6400000
@@ -1569,10 +1532,8 @@ end Additivity
 end ModularCurve.KwF4gRRTate
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a"
 
-section
 section
 
 set_option maxHeartbeats 6400000
@@ -1706,10 +1667,8 @@ end DVRQuotDischarge
 end ModularCurve.KwF4gRRTate
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a"
 
-section
 section
 
 set_option maxHeartbeats 6400000
@@ -1779,10 +1738,8 @@ end DVRCotangentDischarge
 end ModularCurve.KwF4gRRTate
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
-section
 section
 
 set_option maxHeartbeats 12800000
@@ -1848,10 +1805,8 @@ end DiffTraceZero
 end ModularCurve.KwF4gRRTate
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
-section
 section
 
 set_option maxHeartbeats 12800000
@@ -1932,10 +1887,8 @@ end Discharge
 end ModularCurve.KwF4gRRTate
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
-section
 section
 
 set_option maxHeartbeats 12800000
@@ -2072,10 +2025,8 @@ end Discharge
 end ModularCurve.KwF4gRRTate
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
-section
 section
 
 set_option maxHeartbeats 12800000
@@ -2346,10 +2297,8 @@ end Headline
 end ModularCurve.KwF4gRRTate
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
-section
 section
 
 set_option maxHeartbeats 12800000
@@ -2423,10 +2372,8 @@ end Reprice
 end ModularCurve.KwF4gRRTate
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
-section
 section
 
 set_option maxHeartbeats 12800000
@@ -2571,10 +2518,8 @@ end Headline
 end ModularCurve.KwF4gRRTate
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
-section
 section
 
 set_option maxHeartbeats 6400000
@@ -2624,10 +2569,8 @@ end LinearWrappers
 end ModularCurve.KwF4R1V394a
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
-section
 section
 
 set_option maxHeartbeats 12800000
@@ -2883,10 +2826,8 @@ end Headline
 end ModularCurve.KwTateRR3
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
-section
 section
 
 set_option maxHeartbeats 6400000
@@ -3036,10 +2977,8 @@ attribute [local instance 2000] RatFunc.instAlgebraOfPolynomial
 end ModularCurve.KwNo6HrouteR
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
-section
 section
 
 p2m_open_scoped "PadicInt P2MW.S_AlgebraicCurve_tateAgreement.PadicInt AlgebraicGeometry P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicGeometry"
@@ -3082,9 +3021,8 @@ p2m_open "ModularCurve.KwNo6Section P2MW.S_AlgebraicCurve_tateAgreement.ModularC
 p2m_open "IsLocalRing P2MW.S_AlgebraicCurve_tateAgreement.IsLocalRing Module.IsLocalRing"
 p2m_open_scoped "Polynomial P2MW.S_AlgebraicCurve_tateAgreement.Polynomial AlgebraicGeometry.Polynomial"
 
-noncomputable section
 
-section
+noncomputable section
 
 namespace ModularCurve
 p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4gRRTate.KwF4gRRTateAgreement"
@@ -3161,11 +3099,8 @@ end Generic
 end ModularCurve.KwOdaDHDR
 end
 end
-end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
-section
 section
 
 p2m_open_scoped "PadicInt P2MW.S_AlgebraicCurve_tateAgreement.PadicInt AlgebraicGeometry P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicGeometry"
@@ -3208,9 +3143,8 @@ p2m_open "ModularCurve.KwNo6Section P2MW.S_AlgebraicCurve_tateAgreement.ModularC
 p2m_open "IsLocalRing P2MW.S_AlgebraicCurve_tateAgreement.IsLocalRing Module.IsLocalRing"
 p2m_open_scoped "Polynomial P2MW.S_AlgebraicCurve_tateAgreement.Polynomial AlgebraicGeometry.Polynomial"
 
-noncomputable section
 
-section
+noncomputable section
 
 namespace ModularCurve
 p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4gRRTate.KwF4gRRTateAgreement"
@@ -3343,11 +3277,8 @@ end Generic
 end ModularCurve.KwOdaDHDR
 end
 end
-end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
-section
 section
 
 set_option maxHeartbeats 12800000
@@ -3633,10 +3564,8 @@ end Headline
 end ModularCurve.KwTateRR3
 end
 end
-end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
-section
 section
 
 set_option maxHeartbeats 12800000
@@ -4008,7 +3937,6 @@ theorem kwTateRR3_cohenKernelDataExists :
 
 end Headline
 end ModularCurve.KwTateRR3
-end
 end
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"

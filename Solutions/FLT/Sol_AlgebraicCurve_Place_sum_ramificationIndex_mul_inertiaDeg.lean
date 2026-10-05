@@ -22,7 +22,6 @@ p2m_attr_erase "simp" "AlgebraicCurve.SemilinearAut.coe_torsion_smul AlgebraicCu
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg.AlgebraicCurve"
 
-noncomputable section
 
 noncomputable section
 
@@ -954,7 +953,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg
 theorem solution {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F'] [Algebra F F'] [IsScalarTower K F F'] [FiniteDimensional F F'] [Algebra.IsSeparable F F'] [HasPrincipalDivisors K F'] (v : Place K F) : ∑ w ∈ v.fiber F', (w.ramificationIndex F : ℤ) * (w.inertiaDeg F : ℤ) = (Module.finrank F F' : ℤ) :=
   AlgebraicCurve.Place.sum_ramificationIndex_mul_inertiaDeg_infra v
 
-end
 end
 end
 end S_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg

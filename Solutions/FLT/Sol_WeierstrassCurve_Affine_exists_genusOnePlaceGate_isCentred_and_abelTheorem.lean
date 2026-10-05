@@ -97,8 +97,6 @@ end WeierstrassCurve.Affine
 
 p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
 
-section
-section
 
 noncomputable section
 
@@ -147,11 +145,7 @@ end Place
 
 end AlgebraicCurve
 end
-end
-end
 
-section
-section
 
 noncomputable section
 
@@ -174,10 +168,7 @@ end Place
 
 end AlgebraicCurve
 end
-end
-end
 
-section
 section
 
 open Module Polynomial
@@ -330,9 +321,7 @@ theorem RRSpace_zero : RRSpace W 0 = (1 : Submodule F W.CoordinateRing) := by
 
 end WeierstrassCurve.Affine.CoordinateRing
 end
-end
 
-section
 section
 
 section
@@ -437,10 +426,7 @@ end CoordinateRing
 
 end WeierstrassCurve.Affine
 end
-end
 
-section
-section
 
 noncomputable section
 
@@ -776,13 +762,9 @@ theorem geomPlaceOfPoint_surjective [InfinitePlace W] [IsAlgClosed F] (hÎ” : W.Î
 
 end WeierstrassCurve.Affine
 end
-end
-end
 
 section
-section
 
-section
 
 noncomputable section
 
@@ -830,11 +812,7 @@ class GeomAbelTheorem : Prop where
 
 end WeierstrassCurve.Affine
 end
-end
-end
 
-section
-section
 
 noncomputable section
 
@@ -1490,13 +1468,9 @@ scoped instance instInfinitePlace [IsAlgClosed F] [IsDedekindDomain W.Coordinate
 
 end WeierstrassCurve.Affine
 end
-end
-end
 
 section
-section
 
-section
 
 noncomputable section
 
@@ -1742,13 +1716,9 @@ scoped instance instAbelTheorem [HasPrincipalDivisors F W.FunctionField] : GeomA
 
 end WeierstrassCurve.Affine
 end
-end
-end
 
 section
-section
 
-section
 
 noncomputable section
 
@@ -1874,8 +1844,6 @@ scoped instance : FiniteDimensional (RatFunc F) W.FunctionField := by
     (F := RatFunc F) (E := W.FunctionField)).toLinearEquiv.finiteDimensional
 
 end WeierstrassCurve.Affine
-end
-end
 end
 
 universe u in

@@ -100,7 +100,6 @@ namespace WithZeroMulInt
 end WithZeroMulInt
 
 section
-section
 
 set_option maxHeartbeats 6400000
 set_option linter.unusedSectionVars false
@@ -119,10 +118,7 @@ end
 
 end
 
-end
 
-section
-section
 
 noncomputable section
 
@@ -161,12 +157,8 @@ end Place
 end AlgebraicCurve
 
 end
-end
 
-end
 
-section
-section
 
 noncomputable section
 
@@ -357,12 +349,8 @@ end Place
 end AlgebraicCurve
 
 end
-end
 
-end
 
-section
-section
 
 noncomputable section
 
@@ -387,11 +375,8 @@ end Divisor
 end AlgebraicCurve
 
 end
-end
 
-end
 
-section
 section
 
 set_option synthInstance.maxHeartbeats 3200000
@@ -410,9 +395,7 @@ end AlgebraicCurve.Place
 end
 end
 
-end
 
-section
 section
 
 set_option synthInstance.maxHeartbeats 3200000
@@ -431,9 +414,7 @@ end AlgebraicCurve.Place
 end
 end
 
-end
 
-section
 section
 
 set_option synthInstance.maxHeartbeats 3200000
@@ -454,10 +435,7 @@ end AlgebraicCurve.Place
 end
 end
 
-end
 
-section
-section
 
 noncomputable section
 
@@ -491,12 +469,8 @@ p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4R1V391a.KwF4R1V
 end ModularCurve
 
 end
-end
 
-end
 
-section
-section
 
 noncomputable section
 
@@ -508,11 +482,8 @@ end AlgebraicCurve
 
 end
 
-end
 
-end
 
-section
 section
 
 set_option linter.unusedSectionVars false
@@ -557,9 +528,7 @@ end
 
 end
 
-end
 
-section
 section
 
 set_option maxHeartbeats 6400000
@@ -611,9 +580,7 @@ end AlgebraicCurve
 end
 end
 
-end
 
-section
 section
 
 set_option maxHeartbeats 6400000
@@ -635,9 +602,7 @@ end
 
 end
 
-end
 
-section
 section
 
 set_option maxHeartbeats 6400000
@@ -698,7 +663,6 @@ end
 
 end
 
-end
 
 theorem solution
     {K F E : Type*} [Field K] [Field F] [Algebra K F]

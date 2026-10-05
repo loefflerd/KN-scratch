@@ -5,10 +5,10 @@ public import Mathlib.NumberTheory.Padics.Complex
 public import Mathlib.NumberTheory.Padics.RingHoms
 public import Mathlib.NumberTheory.Padics.Measure.Basic
 
-@[expose] public section publicSection
+@[expose] public noncomputable section publicSection
 
-noncomputable section
 open scoped BigOperators
+
 namespace MTT
 
 variable {p : ℕ} [Fact p.Prime]
@@ -91,7 +91,5 @@ def Interpolates {N k : ℕ} {ι : Qbar →+* ℂ} (f : Eigenform N k ι)
       μ g = eulerMultiplier f ιp α n χ j * ιp v
 
 end MTT
-
-end
 
 end publicSection

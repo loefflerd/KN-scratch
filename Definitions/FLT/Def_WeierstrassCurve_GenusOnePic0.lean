@@ -4,9 +4,7 @@ public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 public import Mathlib.AlgebraicGeometry.EllipticCurve.Affine.Point
 public import Mathlib.RingTheory.SimpleRing.Principal
 
-@[expose] public section publicSection
-
-noncomputable section
+@[expose] public noncomputable section publicSection
 
 open AlgebraicCurve
 
@@ -169,7 +167,5 @@ theorem pointClass_add (P Q : W.Point) :
 end AbelTheorem
 
 end WeierstrassCurve.Affine
-
-end
 
 end publicSection
