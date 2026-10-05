@@ -1,5 +1,60 @@
-import Definitions.FLT.Def_Gamma0HeckeOperatorHom
-import Definitions.FLT.Def_HeckeEis_BinaryFormRep
+module
+
+public import Definitions.FLT.Def_Gamma0HeckeOperatorHom
+public import Definitions.FLT.Def_HeckeEis_BinaryFormRep
+
+import Definitions.FLT.Def_P2M_Util
+
+section privateSection
+
+set_option maxHeartbeats 4000000
+set_option synthInstance.maxHeartbeats 400000
+set_option backward.isDefEq.respectTransparency.types false
+
+namespace P2MW.S_HeckeEis_binaryFormAlphaAdj_comp_binaryFormRepSL_heckeConj
+
+namespace HeckeEis
+p2m_export "HeckeEis" "heckeConjMat heckeUpper mem_heckeUpper heckeConjSL coe_heckeConjSL heckeConj binarySubst binarySubst_mul binaryFormRepSL binaryFormAlphaAdj"
+p2m_open "HeckeEis"
+
+open CongruenceSubgroup
+open scoped MatrixGroups
+
+theorem alphaAdjMat_mul_heckeConjMat {ℓ : ℕ} {g : Matrix (Fin 2) (Fin 2) ℤ} (hg : (ℓ : ℤ) ∣ g 0 1) :
+    !![(ℓ : ℤ), 0; 0, 1] * heckeConjMat ℓ g = g * !![(ℓ : ℤ), 0; 0, 1] := by
+  ext i j
+  fin_cases i <;> fin_cases j <;>
+    simp [Matrix.mul_apply, Fin.sum_univ_two, heckeConjMat, Int.mul_ediv_cancel' hg, mul_comm]
+
+theorem SolMain.A1 (K : Type*) [CommRing K] (n N ℓ : ℕ) [NeZero ℓ]
+    (u : ↥(heckeUpper N ℓ)) :
+    binaryFormAlphaAdj K n ℓ ∘ₗ ((binaryFormRepSL K n).comp (Gamma0 N).subtype) (heckeConj N ℓ u)
+      = ((binaryFormRepSL K n).comp (Gamma0 N).subtype) (u : Gamma0 N) ∘ₗ binaryFormAlphaAdj K n ℓ := by
+  refine LinearMap.ext fun v => Subtype.ext ?_
+  change binarySubst K !![(ℓ : ℤ), 0; 0, 1]
+      (binarySubst K ((heckeConjSL N ℓ u : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) (v : MvPolynomial (Fin 2) K))
+    = binarySubst K ((((u : Gamma0 N) : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ))
+      (binarySubst K !![(ℓ : ℤ), 0; 0, 1] (v : MvPolynomial (Fin 2) K))
+  rw [← AlgHom.comp_apply, ← binarySubst_mul, ← AlgHom.comp_apply, ← binarySubst_mul, coe_heckeConjSL,
+    alphaAdjMat_mul_heckeConjMat ((mem_heckeUpper N ℓ).mp u.2)]
+
+end HeckeEis
+
+open scoped MatrixGroups in
+theorem solution (K : Type*) [CommRing K] (n N ℓ : ℕ) [NeZero ℓ]
+    (u : ↥(HeckeEis.heckeUpper N ℓ)) :
+    HeckeEis.binaryFormAlphaAdj K n ℓ ∘ₗ ((HeckeEis.binaryFormRepSL K n).comp (CongruenceSubgroup.Gamma0 N).subtype) (HeckeEis.heckeConj N ℓ u)
+      = ((HeckeEis.binaryFormRepSL K n).comp (CongruenceSubgroup.Gamma0 N).subtype) (u : CongruenceSubgroup.Gamma0 N)
+          ∘ₗ HeckeEis.binaryFormAlphaAdj K n ℓ :=
+  HeckeEis.SolMain.A1 K n N ℓ u
+
+end S_HeckeEis_binaryFormAlphaAdj_comp_binaryFormRepSL_heckeConj
+end P2MW
+export P2MW.S_HeckeEis_binaryFormAlphaAdj_comp_binaryFormRepSL_heckeConj (solution)
+
+end privateSection
+
+public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -10,4 +65,6 @@ theorem HeckeEis.binaryFormAlphaAdj_comp_binaryFormRepSL_heckeConj (K : Type*) [
     (u : ↥(HeckeEis.heckeUpper N ℓ)) :
     HeckeEis.binaryFormAlphaAdj K n ℓ ∘ₗ ((HeckeEis.binaryFormRepSL K n).comp (CongruenceSubgroup.Gamma0 N).subtype) (HeckeEis.heckeConj N ℓ u)
       = ((HeckeEis.binaryFormRepSL K n).comp (CongruenceSubgroup.Gamma0 N).subtype) (u : CongruenceSubgroup.Gamma0 N)
-          ∘ₗ HeckeEis.binaryFormAlphaAdj K n ℓ := by sorry
+          ∘ₗ HeckeEis.binaryFormAlphaAdj K n ℓ := _root_.P2MW.S_HeckeEis_binaryFormAlphaAdj_comp_binaryFormRepSL_heckeConj.solution K n N ℓ u
+
+end publicSection

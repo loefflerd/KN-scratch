@@ -1,4 +1,8 @@
-import Definitions.KN.Def_KN_HorizontalPadicL
+module
+
+public import Definitions.KN.Def_KN_HorizontalPadicL
+
+public section publicSection
 
 namespace HorizontalPadicL
 
@@ -16,3 +20,5 @@ theorem friedberg_hoffstein_quadratic_twist_nonzero_anyParity_v2
         η.1.1 ⟨Nat.ne_of_gt η.1.2⟩ η.2 (k / 2 - 1) ≠ 0 := by sorry
 
 end HorizontalPadicL
+
+end publicSection

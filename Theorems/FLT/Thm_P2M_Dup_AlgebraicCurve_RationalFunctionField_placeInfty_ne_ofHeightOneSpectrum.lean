@@ -1,8 +1,42 @@
-import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaceInfty
+module
+
+public import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaceInfty
+
+import Mathlib.FieldTheory.RatFunc.AsPolynomial
+import Mathlib.NumberTheory.RatFunc.Ostrowski
+import Definitions.FLT.Def_P2M_Util
+
+section privateSection
+
+set_option maxHeartbeats 4000000
+set_option synthInstance.maxHeartbeats 400000
+set_option backward.isDefEq.respectTransparency.types false
+
+namespace P2MW.S_AlgebraicCurve_RationalFunctionField_placeInfty_ne_ofHeightOneSpectrum
+
+open IsDedekindDomain AlgebraicCurve AlgebraicCurve.RationalFunctionField
+
+theorem solution (K : Type*) [Field K] [DecidableEq (RatFunc K)] (w : IsDedekindDomain.HeightOneSpectrum (Polynomial K)) : placeInfty K ≠ Place.ofHeightOneSpectrum w := by
+  intro h
+  refine RatFunc.adicValuation_not_isEquiv_infty_valuation w
+    ((Valuation.isEquiv_iff_valuationSubring _ _).mpr ?_)
+  have h2 := congrArg Place.toValuationSubring h
+  rw [placeInfty_toValuationSubring, Place.ofHeightOneSpectrum_toValuationSubring] at h2
+  exact h2.symm
+
+end S_AlgebraicCurve_RationalFunctionField_placeInfty_ne_ofHeightOneSpectrum
+end P2MW
+export P2MW.S_AlgebraicCurve_RationalFunctionField_placeInfty_ne_ofHeightOneSpectrum (solution)
+
+end privateSection
+
+public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
 open AlgebraicCurve AlgebraicCurve.RationalFunctionField
-theorem P2M.Dup.AlgebraicCurve.RationalFunctionField.placeInfty_ne_ofHeightOneSpectrum (K : Type*) [Field K] [DecidableEq (RatFunc K)] (w : IsDedekindDomain.HeightOneSpectrum (Polynomial K)) : placeInfty K ≠ Place.ofHeightOneSpectrum w := by sorry
+theorem P2M.Dup.AlgebraicCurve.RationalFunctionField.placeInfty_ne_ofHeightOneSpectrum (K : Type*) [Field K] [DecidableEq (RatFunc K)] (w : IsDedekindDomain.HeightOneSpectrum (Polynomial K)) : placeInfty K ≠ Place.ofHeightOneSpectrum w := _root_.P2MW.S_AlgebraicCurve_RationalFunctionField_placeInfty_ne_ofHeightOneSpectrum.solution K w
+
+end publicSection

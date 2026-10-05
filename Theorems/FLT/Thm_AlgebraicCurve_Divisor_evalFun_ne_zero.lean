@@ -1,8 +1,36 @@
-import Definitions.FLT.Def_AlgebraicCurve_PlaceEvaluation
+module
+
+public import Definitions.FLT.Def_AlgebraicCurve_PlaceEvaluation
+
+import Definitions.FLT.Def_P2M_Util
+
+section privateSection
+
+set_option maxHeartbeats 4000000
+set_option synthInstance.maxHeartbeats 400000
+set_option backward.isDefEq.respectTransparency.types false
+
+namespace P2MW.S_AlgebraicCurve_Divisor_evalFun_ne_zero
+
+open AlgebraicCurve
+
+theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] {f : F} {D : Divisor K F} (h : ∀ v ∈ D.support, Place.evalAt v f ≠ 0) : Divisor.evalFun f D ≠ 0 := by
+  rw [Divisor.evalFun_def]
+  exact Finset.prod_ne_zero_iff.mpr fun v hv => zpow_ne_zero _ (h v hv)
+
+end S_AlgebraicCurve_Divisor_evalFun_ne_zero
+end P2MW
+export P2MW.S_AlgebraicCurve_Divisor_evalFun_ne_zero (solution)
+
+end privateSection
+
+public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
 open AlgebraicCurve
-theorem AlgebraicCurve.Divisor.evalFun_ne_zero {K F : Type*} [Field K] [Field F] [Algebra K F] {f : F} {D : Divisor K F} (h : ∀ v ∈ D.support, Place.evalAt v f ≠ 0) : Divisor.evalFun f D ≠ 0 := by sorry
+theorem AlgebraicCurve.Divisor.evalFun_ne_zero {K F : Type*} [Field K] [Field F] [Algebra K F] {f : F} {D : Divisor K F} (h : ∀ v ∈ D.support, Place.evalAt v f ≠ 0) : Divisor.evalFun f D ≠ 0 := _root_.P2MW.S_AlgebraicCurve_Divisor_evalFun_ne_zero.solution h
+
+end publicSection

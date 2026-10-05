@@ -1,13 +1,17 @@
-import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
-import Definitions.FLT.Def_ModularForm_HeckeOperator
-import Theorems.FLT.Thm_ModularForm_heckeT_slash_eq_self_of_mem_Gamma0
-import Theorems.FLT.Thm_ModularForm_heckeU_slash_eq_self_of_mem_Gamma0
-import Theorems.FLT.Thm_ModularForm_mdifferentiable_heckeT
-import Theorems.FLT.Thm_ModularForm_mdifferentiable_heckeU
-import Theorems.FLT.Thm_ModularFormClass_isBoundedAt_heckeT
-import Theorems.FLT.Thm_ModularFormClass_isBoundedAt_heckeU
-import Theorems.FLT.Thm_CuspFormClass_isZeroAt_heckeT
-import Theorems.FLT.Thm_CuspFormClass_isZeroAt_heckeU
+module
+
+public import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
+public import Definitions.FLT.Def_ModularForm_HeckeOperator
+public import Theorems.FLT.Thm_ModularForm_heckeT_slash_eq_self_of_mem_Gamma0
+public import Theorems.FLT.Thm_ModularForm_heckeU_slash_eq_self_of_mem_Gamma0
+public import Theorems.FLT.Thm_ModularForm_mdifferentiable_heckeT
+public import Theorems.FLT.Thm_ModularForm_mdifferentiable_heckeU
+public import Theorems.FLT.Thm_ModularFormClass_isBoundedAt_heckeT
+public import Theorems.FLT.Thm_ModularFormClass_isBoundedAt_heckeU
+public import Theorems.FLT.Thm_CuspFormClass_isZeroAt_heckeT
+public import Theorems.FLT.Thm_CuspFormClass_isZeroAt_heckeU
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -112,3 +116,5 @@ theorem heckeULin_apply_apply (k : ℤ) [NeZero N] (hpN : p ∣ N)
 end CuspForm
 
 end
+
+end publicSection

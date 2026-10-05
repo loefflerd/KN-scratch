@@ -1,5 +1,9 @@
-import Definitions.FLT.Def_LanglandsTunnell_TowerCounting
-import Mathlib.Topology.Instances.Real.Lemmas
+module
+
+public import Definitions.FLT.Def_LanglandsTunnell_TowerCounting
+public import Mathlib.Topology.Instances.Real.Lemmas
+
+public section publicSection
 
 open NumberField Ideal Filter Topology
 
@@ -20,3 +24,5 @@ theorem chebotarev_natural_density
         (Nat.card (L ≃ₐ[ℚ] L) : ℝ))) := by sorry
 
 end FrobeniusDensity
+
+end publicSection
