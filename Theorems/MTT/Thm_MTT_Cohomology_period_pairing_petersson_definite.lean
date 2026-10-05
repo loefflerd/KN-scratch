@@ -1,4 +1,348 @@
-import Definitions.MTT.Def_MTT_PeriodPairing
+module
+
+public import Definitions.MTT.Def_MTT_PeriodPairing
+
+import Mathlib.Analysis.SpecialFunctions.ImproperIntegrals
+import Mathlib.NumberTheory.ModularForms.Bounds
+
+section privateSection
+
+/-!
+# The period contraction is a nonzero multiple of the Petersson norm
+
+We prove `MTT.Cohomology.period_pairing_petersson_definite`:
+for a cusp form `f` of weight `k ≥ 2` on `Γ₁(N)`,
+`𝓑_{k-2}(f,f) = (2i)^{k-2} ⟨f,f⟩` and `𝓑_{k-2}(f,f) = 0 ↔ f = 0`.
+
+* Part A: the determinant contraction of pure powers is `(z - w)^n`, so the
+  integrands agree pointwise.
+* Part B: the hyperbolic measure on `ℍ` is positive on open sets, and the standard
+  fundamental domain `𝒟` has finite hyperbolic area.
+* Part C: the Petersson integrand `|f|² y^k` is bounded (Mathlib's Hecke bound), hence
+  integrable on `𝒟`; a vanishing term forces `f ∘ σ = 0` on the open domain `𝒟ᵒ`,
+  and the identity theorem gives `f = 0`.
+-/
+
+noncomputable section
+open MeasureTheory UpperHalfPlane
+open scoped MatrixGroups Modular ComplexConjugate NNReal ENNReal
+
+namespace MTT.PeterssonDefinite
+open MTT.Cohomology
+
+/-! ### Part A: the contraction of pure powers -/
+
+lemma binaryExponent_apply (n j : ℕ) (i : Fin 2) :
+    binaryExponent n j i = if i = 0 then j else n - j := by
+  simp [binaryExponent]
+
+lemma single_add_single_eq (n j : ℕ) :
+    Finsupp.single (0 : Fin 2) j + Finsupp.single 1 (n - j) = binaryExponent n j := by
+  ext i
+  fin_cases i <;> simp [binaryExponent_apply]
+
+lemma coeff_periodPower (n j : ℕ) (hj : j ≤ n) (z : ℂ) :
+    AddMonoidAlgebra.coeff (periodPower n z) (binaryExponent n j) = (n.choose j : ℂ) * z ^ j := by
+  unfold periodPower
+  rw [add_pow, MvPolynomial.coeff_sum]
+  have key : ∀ m ∈ Finset.range (n + 1),
+      AddMonoidAlgebra.coeff ((MvPolynomial.C z * MvPolynomial.X 0) ^ m * MvPolynomial.X 1 ^ (n - m) *
+          (n.choose m : MvPolynomial (Fin 2) ℂ)) (binaryExponent n j)
+        = if m = j then (n.choose j : ℂ) * z ^ j else 0 := by
+    intro m _
+    have hmono : (MvPolynomial.C z * MvPolynomial.X 0) ^ m * MvPolynomial.X 1 ^ (n - m) *
+          (n.choose m : MvPolynomial (Fin 2) ℂ)
+        = MvPolynomial.monomial (Finsupp.single (0 : Fin 2) m + Finsupp.single 1 (n - m))
+            ((n.choose m : ℂ) * z ^ m) := by
+      rw [mul_pow, ← MvPolynomial.C_pow, MvPolynomial.X_pow_eq_monomial,
+        MvPolynomial.X_pow_eq_monomial, ← map_natCast MvPolynomial.C (n.choose m),
+        MvPolynomial.C_mul_monomial, MvPolynomial.monomial_mul_monomial,
+        mul_comm (MvPolynomial.monomial _ _) (MvPolynomial.C _), MvPolynomial.C_mul_monomial]
+      congr 1
+      ring
+    rw [hmono, MvPolynomial.coeff_monomial]
+    by_cases hmj : m = j
+    · subst hmj
+      rw [ite_eq_left (single_add_single_eq n m), ite_eq_left rfl]
+    · have hne : Finsupp.single (0 : Fin 2) m + Finsupp.single 1 (n - m) ≠ binaryExponent n j := by
+        intro h
+        apply hmj
+        have := DFunLike.congr_fun h 0
+        simpa [binaryExponent_apply] using this
+      rw [ite_eq_right hne, ite_eq_right hmj]
+  rw [Finset.sum_congr rfl key]
+  simp [Finset.sum_ite_eq', Nat.lt_succ_of_le hj]
+
+lemma periodContraction_smul_smul (n : ℕ) (a b : ℂ) (P Q : Binary ℂ) :
+    periodContraction n (a • P) (b • Q) = a * b * periodContraction n P Q := by
+  unfold periodContraction
+  rw [Finset.mul_sum]
+  refine Finset.sum_congr rfl fun j _ => ?_
+  simp only [MvPolynomial.coeff_smul, smul_eq_mul]
+  ring
+
+lemma periodContraction_periodPower (n : ℕ) (z w : ℂ) :
+    periodContraction n (periodPower n z) (periodPower n w) = (z - w) ^ n := by
+  unfold periodContraction
+  rw [sub_eq_add_neg, add_pow]
+  refine Finset.sum_congr rfl fun j hj => ?_
+  rw [Finset.mem_range] at hj
+  have hj' : j ≤ n := by omega
+  rw [coeff_periodPower n j hj' z, coeff_periodPower n (n - j) (Nat.sub_le n j) w,
+    Nat.choose_symm hj']
+  have hc : (n.choose j : ℂ) ≠ 0 := by exact_mod_cast (Nat.choose_pos hj').ne'
+  rw [neg_pow]
+  field_simp
+  ring
+
+/-- The pointwise identity between the two integrands. -/
+lemma integrand_eq {k : ℕ} (hk : 2 ≤ k) (F : ℍ → ℂ) (z : ℍ) :
+    (z.im : ℂ) ^ 2 * periodContraction (k - 2) (F z • periodPower (k - 2) z)
+        (conj (F z) • periodPower (k - 2) (conj (z : ℂ))) =
+      (2 * Complex.I) ^ (k - 2) * (F z * conj (F z) * (z.im : ℂ) ^ k) := by
+  obtain ⟨n, rfl⟩ : ∃ n, k = n + 2 := ⟨k - 2, by omega⟩
+  simp only [Nat.add_sub_cancel]
+  rw [periodContraction_smul_smul, periodContraction_periodPower, Complex.sub_conj,
+    UpperHalfPlane.coe_im]
+  push_cast
+  ring
+
+/-! ### Part B: the hyperbolic measure -/
+
+lemma continuous_smul_SL (σ : SL(2, ℤ)) : Continuous (fun z : ℍ => σ • z) := by
+  have : (fun z : ℍ => σ • z) = fun z : ℍ =>
+      (Matrix.SpecialLinearGroup.toGL
+        ((Matrix.SpecialLinearGroup.map (Int.castRingHom ℝ)) σ)) • z := by
+    funext z; exact ModularGroup.sl_moeb σ z
+  rw [this]; exact continuous_const_smul _
+
+/-- The hyperbolic measure gives positive mass to nonempty open sets. -/
+instance : (volume : Measure ℍ).IsOpenPosMeasure := by
+  refine ⟨fun U hU hne => ?_⟩
+  rw [volume_eq_lintegral]
+  have hUo : IsOpen (UpperHalfPlane.coe '' U) := isOpenEmbedding_coe.isOpenMap U hU
+  have hpos : 0 < volume (UpperHalfPlane.coe '' U) := hUo.measure_pos _ (hne.image _)
+  have hmeas : Measurable fun z : ℂ => (((1 / ‖z.im‖₊) ^ 2 : ℝ≥0) : ℝ≥0∞) := by
+    fun_prop
+  refine ((setLIntegral_pos_iff hmeas).mpr
+    (lt_of_lt_of_le hpos (measure_mono fun z hz => ?_))).ne'
+  refine ⟨?_, hz⟩
+  obtain ⟨w, -, rfl⟩ := hz
+  show (((1 / ‖(w : ℂ).im‖₊) ^ 2 : ℝ≥0) : ℝ≥0∞) ≠ 0
+  simp [w.im_ne_zero]
+
+lemma coe_fd_subset :
+    UpperHalfPlane.coe '' (𝒟 : Set ℍ) ⊆
+      {z : ℂ | z.re ∈ Set.Icc (-(1 / 2 : ℝ)) (1 / 2) ∧ z.im ∈ Set.Ioi (1 / 2 : ℝ)} := by
+  rintro _ ⟨z, ⟨h1, h2⟩, rfl⟩
+  have hre : -(1 / 2 : ℝ) ≤ (z : ℂ).re ∧ (z : ℂ).re ≤ 1 / 2 := abs_le.mp h2
+  have him : 0 < (z : ℂ).im := z.im_pos
+  rw [Complex.normSq_apply] at h1
+  refine ⟨⟨hre.1, hre.2⟩, ?_⟩
+  show (1 / 2 : ℝ) < (z : ℂ).im
+  nlinarith
+
+lemma nnnorm_sq_eq_ofReal (y : ℝ) (hy : 0 < y) :
+    (((1 / ‖y‖₊) ^ 2 : ℝ≥0) : ℝ≥0∞) = ENNReal.ofReal (y ^ (-2 : ℝ)) := by
+  rw [← ENNReal.ofReal_coe_nnreal]
+  congr 1
+  rw [Real.rpow_neg hy.le, Real.rpow_two]
+  push_cast
+  rw [Real.norm_of_nonneg hy.le, one_div, inv_pow]
+
+lemma lintegral_strip_lt_top :
+    ∫⁻ z : ℂ in {z : ℂ | z.re ∈ Set.Icc (-(1 / 2 : ℝ)) (1 / 2) ∧ z.im ∈ Set.Ioi (1 / 2 : ℝ)},
+      (((1 / ‖z.im‖₊) ^ 2 : ℝ≥0) : ℝ≥0∞) < ⊤ := by
+  have hset : {z : ℂ | z.re ∈ Set.Icc (-(1 / 2 : ℝ)) (1 / 2) ∧ z.im ∈ Set.Ioi (1 / 2 : ℝ)} =
+      Complex.measurableEquivRealProd ⁻¹'
+        (Set.Icc (-(1 / 2 : ℝ)) (1 / 2) ×ˢ Set.Ioi (1 / 2 : ℝ)) := by
+    ext z
+    simp [Complex.measurableEquivRealProd, Set.mem_prod]
+  rw [hset]
+  have hcomp := Complex.volume_preserving_equiv_real_prod.setLIntegral_comp_emb
+    Complex.measurableEquivRealProd.measurableEmbedding
+    (fun p : ℝ × ℝ => (((1 / ‖p.2‖₊) ^ 2 : ℝ≥0) : ℝ≥0∞))
+    (Complex.measurableEquivRealProd ⁻¹'
+        (Set.Icc (-(1 / 2 : ℝ)) (1 / 2) ×ˢ Set.Ioi (1 / 2 : ℝ)))
+  have hfun : (fun z : ℂ => (((1 / ‖(Complex.measurableEquivRealProd z).2‖₊) ^ 2 : ℝ≥0) : ℝ≥0∞))
+      = fun z : ℂ => (((1 / ‖z.im‖₊) ^ 2 : ℝ≥0) : ℝ≥0∞) := by
+    funext z; rfl
+  rw [hfun, Set.image_preimage_eq _ Complex.measurableEquivRealProd.surjective] at hcomp
+  rw [hcomp]
+  -- the integrand only depends on the second coordinate
+  have hcongr : ∫⁻ p : ℝ × ℝ in Set.Icc (-(1 / 2 : ℝ)) (1 / 2) ×ˢ Set.Ioi (1 / 2 : ℝ),
+        (((1 / ‖p.2‖₊) ^ 2 : ℝ≥0) : ℝ≥0∞) =
+      ∫⁻ p : ℝ × ℝ in Set.Icc (-(1 / 2 : ℝ)) (1 / 2) ×ˢ Set.Ioi (1 / 2 : ℝ),
+        (1 : ℝ≥0∞) * ENNReal.ofReal (p.2 ^ (-2 : ℝ)) := by
+    refine setLIntegral_congr_fun (measurableSet_Icc.prod measurableSet_Ioi) ?_
+    intro p hp
+    beta_reduce
+    rw [one_mul]
+    exact nnnorm_sq_eq_ofReal p.2 (lt_trans (by norm_num) hp.2)
+  rw [hcongr, Measure.volume_eq_prod, ← Measure.prod_restrict]
+  have hprod := lintegral_prod_mul (μ := volume.restrict (Set.Icc (-(1 / 2 : ℝ)) (1 / 2)))
+    (ν := volume.restrict (Set.Ioi (1 / 2 : ℝ))) (f := fun _ : ℝ => (1 : ℝ≥0∞))
+    (g := fun y : ℝ => ENNReal.ofReal (y ^ (-2 : ℝ))) aemeasurable_const (by fun_prop)
+  beta_reduce at hprod
+  rw [hprod, lintegral_const, Measure.restrict_apply_univ, Real.volume_Icc]
+  refine ENNReal.mul_lt_top (ENNReal.mul_lt_top (by simp) ENNReal.ofReal_lt_top) ?_
+  have hInt : IntegrableOn (fun y : ℝ => y ^ (-2 : ℝ)) (Set.Ioi (1 / 2 : ℝ)) volume :=
+    (integrableOn_Ioi_rpow_iff (by norm_num)).mpr (by norm_num)
+  exact hInt.lintegral_lt_top
+
+/-- The standard fundamental domain has finite hyperbolic area. -/
+lemma volume_fd_ne_top : volume (𝒟 : Set ℍ) ≠ ⊤ := by
+  rw [volume_eq_lintegral]
+  exact ne_top_of_le_ne_top lintegral_strip_lt_top.ne (lintegral_mono_set coe_fd_subset)
+
+/-! ### Part C: the main theorem -/
+
+variable {N k : ℕ}
+
+/-- Hecke's bound: `|f|² y^k` is bounded on `ℍ` for a cusp form `f`. -/
+lemma normSq_mul_im_pow_bounded (hN : 0 < N) (f : CuspForm (MTT.GammaOne N) (k : ℤ)) :
+    ∃ C : ℝ, ∀ τ : ℍ, Complex.normSq (f τ) * τ.im ^ k ≤ C := by
+  let : NeZero N := ⟨by omega⟩
+  let : (MTT.GammaOne N).IsArithmetic := by dsimp [MTT.GammaOne]; infer_instance
+  obtain ⟨C, hC⟩ := CuspFormClass.petersson_bounded_left (k : ℤ) (MTT.GammaOne N) f f
+  refine ⟨C, fun τ => le_trans (le_of_eq ?_) (hC τ)⟩
+  rw [petersson, norm_mul, norm_mul, Complex.norm_conj, zpow_natCast, norm_pow,
+    Complex.norm_real, Real.norm_of_nonneg τ.im_pos.le, ← sq, Complex.normSq_eq_norm_sq]
+
+lemma continuous_cuspForm (f : CuspForm (MTT.GammaOne N) (k : ℤ)) : Continuous f :=
+  (ModularFormClass.holo f).continuous
+
+/-- A cusp form vanishing on the translate of the open fundamental domain is zero. -/
+lemma eq_zero_of_forall_fdo (f : CuspForm (MTT.GammaOne N) (k : ℤ)) (σ : SL(2, ℤ))
+    (h : ∀ z ∈ (𝒟ᵒ : Set ℍ), f (σ • z) = 0) : f = 0 := by
+  set V : Set ℍ := {w : ℍ | σ⁻¹ • w ∈ (𝒟ᵒ : Set ℍ)} with hVdef
+  have hV : IsOpen V := ModularGroup.isOpen_fdo.preimage (continuous_smul_SL σ⁻¹)
+  have hfV : ∀ w ∈ V, f w = 0 := fun w hw => by
+    have := h (σ⁻¹ • w) hw
+    rwa [smul_inv_smul] at this
+  let z₀ : ℍ := ⟨2 * Complex.I, by simp⟩
+  have hz₀ : z₀ ∈ (𝒟ᵒ : Set ℍ) := by
+    refine ⟨?_, ?_⟩
+    · show 1 < Complex.normSq (2 * Complex.I)
+      rw [Complex.normSq_apply]; simp; norm_num
+    · show |(2 * Complex.I).re| < 1 / 2
+      simp
+  have hw₀ : σ • z₀ ∈ V := by
+    show σ⁻¹ • (σ • z₀) ∈ (𝒟ᵒ : Set ℍ)
+    rwa [inv_smul_smul]
+  set F : ℂ → ℂ := f ∘ ofComplex with hFdef
+  have hF : DifferentiableOn ℂ F {z : ℂ | 0 < z.im} :=
+    UpperHalfPlane.mdifferentiable_iff.mp (ModularFormClass.holo f)
+  have hopen : IsOpen {z : ℂ | 0 < z.im} := isOpen_lt continuous_const Complex.continuous_im
+  have hAn : AnalyticOnNhd ℂ F {z : ℂ | 0 < z.im} := hF.analyticOnNhd hopen
+  have hconn : IsPreconnected {z : ℂ | 0 < z.im} := (convex_halfSpace_im_gt 0).isPreconnected
+  have hU : IsOpen (UpperHalfPlane.coe '' V) := isOpenEmbedding_coe.isOpenMap _ hV
+  have hev : F =ᶠ[nhds ((σ • z₀ : ℍ) : ℂ)] 0 := by
+    refine Filter.eventuallyEq_of_mem (hU.mem_nhds ⟨σ • z₀, hw₀, rfl⟩) ?_
+    rintro _ ⟨w, hw, rfl⟩
+    simp only [hFdef, Function.comp, ofComplex_apply, Pi.zero_apply]
+    exact hfV w hw
+  have hzero := hAn.eqOn_zero_of_preconnected_of_eventuallyEq_zero hconn
+    (show ((σ • z₀ : ℍ) : ℂ) ∈ {z : ℂ | 0 < z.im} from (σ • z₀).im_pos) hev
+  ext w
+  have := hzero (show (w : ℂ) ∈ {z : ℂ | 0 < z.im} from w.im_pos)
+  simpa [hFdef, ofComplex_apply] using this
+
+/-- **Definiteness and normalization of the period contraction.** -/
+theorem period_pairing_petersson_definite_proof (hN : 0 < N) (hk : 2 ≤ k)
+    (f : CuspForm (MTT.GammaOne N) (k : ℤ)) :
+    periodPairing N (k - 2) f f =
+      (2 * Complex.I) ^ (k - 2) * periodPetersson N k f f ∧
+    (periodPairing N (k - 2) f f = 0 ↔ f = 0) := by
+  have hid : periodPairing N (k - 2) f f =
+      (2 * Complex.I) ^ (k - 2) * periodPetersson N k f f := by
+    unfold periodPairing periodPetersson periodDomainIntegral
+    rw [← tsum_mul_left]
+    refine tsum_congr fun q => ?_
+    rw [← integral_const_mul]
+    congr 1
+    funext z
+    exact integrand_eq hk f _
+  refine ⟨hid, ?_⟩
+  constructor
+  · intro h0
+    have hP : periodPetersson N k f f = 0 := by
+      rw [hid] at h0
+      rcases mul_eq_zero.mp h0 with h | h
+      · exact absurd h (pow_ne_zero _ (by simp))
+      · exact h
+    -- the real, nonnegative integrand
+    let G : SL(2, ℤ) → ℍ → ℝ := fun σ z => Complex.normSq (f (σ • z)) * (σ • z).im ^ k
+    have hGeq : ∀ (σ : SL(2, ℤ)) (z : ℍ),
+        f (σ • z) * conj (f (σ • z)) * ((σ • z).im : ℂ) ^ k = ((G σ z : ℝ) : ℂ) := by
+      intro σ z
+      simp only [G]
+      rw [Complex.mul_conj]
+      push_cast
+      ring
+    have hGnn : ∀ (σ : SL(2, ℤ)) (z : ℍ), 0 ≤ G σ z := fun σ z =>
+      mul_nonneg (Complex.normSq_nonneg _) (pow_nonneg (σ • z).im_pos.le _)
+    have hGcont : ∀ σ : SL(2, ℤ), Continuous (G σ) := fun σ =>
+      ((Complex.continuous_normSq.comp ((continuous_cuspForm f).comp (continuous_smul_SL σ))).mul
+        ((continuous_im.comp (continuous_smul_SL σ)).pow k))
+    obtain ⟨C, hC⟩ := normSq_mul_im_pow_bounded hN f
+    have hGint : ∀ σ : SL(2, ℤ), IntegrableOn (G σ) (𝒟 : Set ℍ) volume := fun σ =>
+      Measure.integrableOn_of_bounded volume_fd_ne_top (hGcont σ).aestronglyMeasurable
+        (ae_of_all _ fun z => by rw [Real.norm_of_nonneg (hGnn σ z)]; exact hC _)
+    have hPreal : periodPetersson N k f f =
+        ((∑' q : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma1 N, ∫ z in (𝒟 : Set ℍ), G q.out⁻¹ z : ℝ) : ℂ) := by
+      unfold periodPetersson periodDomainIntegral
+      rw [Complex.ofReal_tsum]
+      refine tsum_congr fun q => ?_
+      rw [← integral_complex_ofReal]
+      congr 1
+      funext z
+      exact hGeq _ _
+    have hsum0 : (∑' q : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma1 N,
+        ∫ z in (𝒟 : Set ℍ), G q.out⁻¹ z : ℝ) = 0 := by
+      rw [hPreal] at hP
+      exact_mod_cast hP
+    have : NeZero N := ⟨by omega⟩
+    have : Fintype (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma1 N) :=
+      Subgroup.fintypeQuotientOfFiniteIndex
+    rw [tsum_fintype] at hsum0
+    have hnn : ∀ q ∈ (Finset.univ : Finset (SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma1 N)),
+        0 ≤ ∫ z in (𝒟 : Set ℍ), G q.out⁻¹ z := fun q _ => integral_nonneg (fun z => hGnn _ _)
+    have hterm := (Finset.sum_eq_zero_iff_of_nonneg hnn).mp hsum0
+      (QuotientGroup.mk 1) (Finset.mem_univ _)
+    set σ : SL(2, ℤ) :=
+      (QuotientGroup.mk (1 : SL(2, ℤ)) : SL(2, ℤ) ⧸ CongruenceSubgroup.Gamma1 N).out⁻¹ with hσ
+    have hae : (fun z => G σ z) =ᵐ[volume.restrict (𝒟 : Set ℍ)] 0 :=
+      (integral_eq_zero_iff_of_nonneg (fun z => hGnn σ z) (hGint σ)).mp hterm
+    have hae' : (fun z => G σ z) =ᵐ[volume.restrict (𝒟ᵒ : Set ℍ)] 0 :=
+      ae_restrict_of_ae_restrict_of_subset ModularGroup.fdo_subset_fd hae
+    have hEq : Set.EqOn (fun z => G σ z) 0 (𝒟ᵒ : Set ℍ) :=
+      Measure.eqOn_open_of_ae_eq hae' ModularGroup.isOpen_fdo (hGcont σ).continuousOn
+        continuousOn_const
+    refine eq_zero_of_forall_fdo f σ fun z hz => ?_
+    have h1 := hEq hz
+    simp only [G, Pi.zero_apply] at h1
+    rcases mul_eq_zero.mp h1 with h | h
+    · exact Complex.normSq_eq_zero.mp h
+    · exact absurd h (pow_ne_zero _ (σ • z).im_pos.ne')
+  · rintro rfl
+    simp [periodPairing, periodDomainIntegral, periodContraction]
+
+end MTT.PeterssonDefinite
+
+open MTT.Cohomology in
+theorem solution
+    {N k : ℕ} (hN : 0 < N) (hk : 2 ≤ k)
+    (f : CuspForm (MTT.GammaOne N) (k : ℤ)) :
+    periodPairing N (k - 2) f f =
+      (2 * Complex.I) ^ (k - 2) * periodPetersson N k f f ∧
+    (periodPairing N (k - 2) f f = 0 ↔ f = 0) :=
+  MTT.PeterssonDefinite.period_pairing_petersson_definite_proof hN hk f
+end
+
+end privateSection
+
+public section publicSection
 
 noncomputable section
 open scoped ComplexConjugate
@@ -9,4 +353,7 @@ theorem MTT.Cohomology.period_pairing_petersson_definite
     (f : CuspForm (MTT.GammaOne N) (k : ℤ)) :
     periodPairing N (k - 2) f f =
       (2 * Complex.I) ^ (k - 2) * periodPetersson N k f f ∧
-    (periodPairing N (k - 2) f f = 0 ↔ f = 0) := by sorry
+    (periodPairing N (k - 2) f f = 0 ↔ f = 0) := _root_.solution hN hk f
+end
+
+end publicSection

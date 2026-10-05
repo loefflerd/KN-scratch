@@ -1,6 +1,61 @@
-import Mathlib.NumberTheory.ModularForms.SlashActions
+module
 
-import Definitions.FLT.Def_HeckeEis_EichlerIntegral
+public import Mathlib.NumberTheory.ModularForms.SlashActions
+public import Definitions.FLT.Def_HeckeEis_EichlerIntegral
+
+import Theorems.FLT.Thm_HeckeEis_IsEichlerIntegral_exists_sub_eq_const
+import Theorems.FLT.Thm_HeckeEis_IsEichlerIntegral_slash
+import Definitions.FLT.Def_P2M_Util
+
+section privateSection
+
+set_option maxHeartbeats 4000000
+set_option synthInstance.maxHeartbeats 400000
+set_option backward.isDefEq.respectTransparency.types false
+
+namespace P2MW.S_HeckeEis_isEquivariantPrimitiveWith_of_isEichlerIntegral
+
+noncomputable section
+
+namespace HeckeEis
+p2m_export "HeckeEis" "BinaryForm binaryFormRepSL IsEquivariantPrimitiveWith IsEichlerIntegral IsEichlerIntegral.slash IsEichlerIntegral.exists_sub_eq_const"
+p2m_open "HeckeEis"
+
+open UpperHalfPlane MvPolynomial ModularForm CongruenceSubgroup
+open scoped MatrixGroups ModularForm
+
+theorem SolMain.p1b
+    {n : ℕ} {Γ : Subgroup SL(2, ℤ)} {f : ℍ → ℂ} {F : ℍ → ↥(BinaryForm ℂ n)}
+    (hF : IsEichlerIntegral n f F)
+    (hf : ∀ γ ∈ Γ, (f ∣[((n : ℤ) + 2)] γ) = f) :
+    IsEquivariantPrimitiveWith ((binaryFormRepSL ℂ n).comp Γ.subtype) F := by
+  intro γ
+  have hslash := hF.slash (γ : SL(2, ℤ))
+  rw [hf _ γ.2] at hslash
+  obtain ⟨v, hv⟩ := hslash.exists_sub_eq_const hF
+  refine ⟨binaryFormRepSL ℂ n (γ : SL(2, ℤ)) v, fun τ => ?_⟩
+  change F ((γ : SL(2, ℤ)) • τ) - binaryFormRepSL ℂ n (γ : SL(2, ℤ)) (F τ) = _
+  rw [← hv τ, map_sub, ← Module.End.mul_apply, ← map_mul, mul_inv_cancel, map_one, Module.End.one_apply]
+
+end HeckeEis
+
+end
+
+open scoped MatrixGroups ModularForm in
+theorem solution
+    {n : ℕ} {Γ : Subgroup SL(2, ℤ)} {f : UpperHalfPlane → ℂ} {F : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n)}
+    (hF : HeckeEis.IsEichlerIntegral n f F)
+    (hf : ∀ γ ∈ Γ, (f ∣[((n : ℤ) + 2)] γ) = f) :
+    HeckeEis.IsEquivariantPrimitiveWith ((HeckeEis.binaryFormRepSL ℂ n).comp Γ.subtype) F :=
+  HeckeEis.SolMain.p1b hF hf
+
+end S_HeckeEis_isEquivariantPrimitiveWith_of_isEichlerIntegral
+end P2MW
+export P2MW.S_HeckeEis_isEquivariantPrimitiveWith_of_isEichlerIntegral (solution)
+
+end privateSection
+
+public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -11,4 +66,6 @@ theorem HeckeEis.isEquivariantPrimitiveWith_of_isEichlerIntegral
     {n : ℕ} {Γ : Subgroup SL(2, ℤ)} {f : UpperHalfPlane → ℂ} {F : UpperHalfPlane → ↥(HeckeEis.BinaryForm ℂ n)}
     (hF : HeckeEis.IsEichlerIntegral n f F)
     (hf : ∀ γ ∈ Γ, (f ∣[((n : ℤ) + 2)] γ) = f) :
-    HeckeEis.IsEquivariantPrimitiveWith ((HeckeEis.binaryFormRepSL ℂ n).comp Γ.subtype) F := by sorry
+    HeckeEis.IsEquivariantPrimitiveWith ((HeckeEis.binaryFormRepSL ℂ n).comp Γ.subtype) F := _root_.P2MW.S_HeckeEis_isEquivariantPrimitiveWith_of_isEichlerIntegral.solution hF hf
+
+end publicSection

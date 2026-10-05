@@ -1,6 +1,222 @@
-import Mathlib.NumberTheory.ModularForms.CuspFormSubmodule
-import Mathlib.GroupTheory.DoubleCoset
-import Mathlib.LinearAlgebra.FiniteDimensional.Defs
+module
+
+public import Mathlib.NumberTheory.ModularForms.CuspFormSubmodule
+public import Mathlib.GroupTheory.DoubleCoset
+public import Mathlib.LinearAlgebra.FiniteDimensional.Defs
+
+import Theorems.FLT.Thm_ModularForm_finiteDimensional_of_isArithmetic
+
+section privateSection
+
+/-! # The codimension of cusp forms is at most the number of cusps -/
+
+noncomputable section
+
+open UpperHalfPlane Filter Topology Matrix.SpecialLinearGroup OnePoint
+open scoped MatrixGroups ModularForm
+
+namespace MTT.Cohomology
+
+variable {Γ : Subgroup (GL (Fin 2) ℝ)} {k : ℤ}
+
+theorem tendsto_valueAtInfty [Γ.IsArithmetic] (f : ModularForm Γ k) :
+    Tendsto f atImInfty (𝓝 (valueAtInfty f)) := by
+  have hh : 0 < Γ.strictWidthInfty := Γ.strictWidthInfty_pos_iff.mpr Fact.out
+  have hp := Γ.strictWidthInfty_mem_strictPeriods
+  have ha := ModularFormClass.analyticAt_cuspFunction_zero f hh hp
+  have hper := SlashInvariantFormClass.periodic_comp_ofComplex f hp
+  rw [← cuspFunction_apply_zero hh ha hper]
+  convert ha.continuousAt.tendsto.comp (qParam_tendsto_atImInfty hh) using 1
+  ext z
+  exact (eq_cuspFunction z hh.ne' hper).symm
+
+def valueAtInftyLinear [Γ.IsArithmetic] [Γ.HasDetOne] : ModularForm Γ k →ₗ[ℂ] ℂ where
+  toFun f := valueAtInfty f
+  map_add' f g := (tendsto_valueAtInfty f |>.add (tendsto_valueAtInfty g)).limUnder_eq
+  map_smul' a f := (tendsto_valueAtInfty f |>.const_smul a).limUnder_eq
+
+open ConjAct Pointwise in
+theorem isArithmetic_translate [Γ.IsArithmetic] (g : SL(2, ℤ)) :
+    (toConjAct (g : GL (Fin 2) ℝ)⁻¹ • Γ).IsArithmetic := by
+  simpa [(show Rat.castHom ℝ = algebraMap ℚ ℝ from rfl), map_inv, map_mapGL]
+    using! Subgroup.IsArithmetic.conj Γ (mapGL ℚ g)⁻¹
+
+open ConjAct Pointwise in
+def cuspEvaluation [Γ.IsArithmetic] [Γ.HasDetOne] (g : SL(2, ℤ)) :
+    ModularForm Γ k →ₗ[ℂ] ℂ := by
+  have := isArithmetic_translate (Γ := Γ) g
+  let tr : ModularForm Γ k →ₗ[ℂ]
+      ModularForm (toConjAct (g : GL (Fin 2) ℝ)⁻¹ • Γ) k :=
+    { toFun := fun f => ModularForm.translate f g
+      map_add' := fun f h => DFunLike.ext _ _ fun z => by
+        change ((⇑f + ⇑h) ∣[k] g) z = ((⇑f ∣[k] g) + (⇑h ∣[k] g)) z
+        rw [SlashAction.add_slash]
+      map_smul' := fun a f => DFunLike.ext _ _ fun z => by
+        change ((a • ⇑f) ∣[k] g) z = (a • (⇑f ∣[k] g)) z
+        rw [ModularForm.SL_smul_slash] }
+  exact valueAtInftyLinear.comp tr
+
+theorem cuspEvaluation_eq_zero_iff [Γ.IsArithmetic] [Γ.HasDetOne] (g : SL(2, ℤ))
+    (f : ModularForm Γ k) :
+    cuspEvaluation g f = 0 ↔ (mapGL ℝ g • (∞ : OnePoint ℝ)).IsZeroAt f k := by
+  have := isArithmetic_translate (Γ := Γ) g
+  change valueAtInfty (ModularForm.translate f g) = 0 ↔ _
+  rw [OnePoint.isZeroAt_iff (g := mapGL ℝ g) rfl]
+  exact ⟨ModularForm.isZeroAtImInfty_of_valueAtInfty_eq_zero _,
+    IsZeroAtImInfty.valueAtInfty_eq_zero⟩
+
+def cuspRepresentative [Γ.IsArithmetic] (c : CuspOrbits Γ) : SL(2, ℤ) :=
+  (isCusp_SL2Z_iff'.mp
+    ((Subgroup.IsArithmetic.isCusp_iff_isCusp_SL2Z Γ).mp c.out.property)).choose
+
+theorem cuspRepresentative_spec [Γ.IsArithmetic] (c : CuspOrbits Γ) :
+    c.out.val = mapGL ℝ (cuspRepresentative c) • ∞ :=
+  (isCusp_SL2Z_iff'.mp
+    ((Subgroup.IsArithmetic.isCusp_iff_isCusp_SL2Z Γ).mp c.out.property)).choose_spec
+
+def cuspBoundary [Γ.IsArithmetic] [Γ.HasDetOne] :
+    ModularForm Γ k →ₗ[ℂ] (CuspOrbits Γ → ℂ) :=
+  LinearMap.pi fun c => cuspEvaluation (cuspRepresentative c)
+
+theorem cuspBoundary_ker [Γ.IsArithmetic] [Γ.HasDetOne] :
+    (cuspBoundary (Γ := Γ) (k := k)).ker = ModularForm.cuspFormSubmodule Γ k := by
+  ext f
+  rw [LinearMap.mem_ker, ModularForm.mem_cuspFormSubmodule_iff, ModularForm.isCuspForm_iff]
+  constructor
+  · intro hf c hc
+    let c' : cuspsSubMulAction Γ := ⟨c, hc⟩
+    let q : CuspOrbits Γ := ⟦c'⟧
+    have hq : q.out.val.IsZeroAt f k := by
+      rw [cuspRepresentative_spec]
+      exact (cuspEvaluation_eq_zero_iff _ f).mp (congrFun hf q)
+    obtain ⟨g, hg⟩ := Quotient.exact (Quotient.out_eq q)
+    have hgc : (g : GL (Fin 2) ℝ) • c = q.out.val := congrArg Subtype.val hg
+    rw [← hgc, OnePoint.IsZeroAt.smul_iff] at hq
+    have hs : (⇑f ∣[k] (g : GL (Fin 2) ℝ)) = ⇑f :=
+      f.slash_action_eq' _ g.property
+    rw [hs] at hq
+    exact hq
+  · intro hf
+    funext q
+    apply (cuspEvaluation_eq_zero_iff _ f).mpr
+    rw [← cuspRepresentative_spec]
+    exact hf q.out.property
+
+theorem finrank_modularForm_le_cuspForm_add_cusps [Γ.IsArithmetic] [Γ.HasDetOne]
+    [FiniteDimensional ℂ (ModularForm Γ k)] :
+    Module.finrank ℂ (ModularForm Γ k) ≤
+      Module.finrank ℂ (CuspForm Γ k) + Nat.card (CuspOrbits Γ) := by
+  let := Fintype.ofFinite (CuspOrbits Γ)
+  have hr := LinearMap.finrank_range_add_finrank_ker (cuspBoundary (Γ := Γ) (k := k))
+  have hb := Submodule.finrank_le (cuspBoundary (Γ := Γ) (k := k)).range
+  rw [cuspBoundary_ker] at hr
+  rw [← ModularForm.CuspForm.equivCuspFormSubmodule Γ k |>.finrank_eq] at hr
+  simp only [Module.finrank_fintype_fun_eq_card, ← Nat.card_eq_fintype_card] at hb
+  omega
+
+end MTT.Cohomology
+
+/-! # Comparing cusp orbits with modular double cosets -/
+
+section
+
+open Matrix.SpecialLinearGroup OnePoint
+open scoped MatrixGroups
+
+namespace MTT.Cohomology
+
+theorem finite_doubleCoset_quotient {G : Type*} [Group G]
+    (H K : Subgroup G) [H.FiniteIndex] :
+    Finite (DoubleCoset.Quotient (H : Set G) (K : Set G)) := by
+  let f : G ⧸ H → DoubleCoset.Quotient (H : Set G) (K : Set G) :=
+    Quotient.lift (s := QuotientGroup.leftRel H)
+    (fun g => DoubleCoset.mk H K g⁻¹) (by
+      intro a b hab
+      change (QuotientGroup.leftRel H) a b at hab
+      rw [QuotientGroup.leftRel_apply] at hab
+      apply DoubleCoset.eq.mpr
+      exact ⟨b⁻¹ * a, by simpa using H.inv_mem hab, 1, K.one_mem, by simp⟩)
+  refine Finite.of_surjective f ?_
+  intro q
+  refine ⟨⟦q.out⁻¹⟧, ?_⟩
+  change DoubleCoset.mk H K (q.out⁻¹)⁻¹ = q
+  rw [inv_inv, DoubleCoset.out_eq']
+
+abbrev cuspStabilizer : Subgroup SL(2, ℤ) :=
+  Subgroup.zpowers ModularGroup.T ⊔ Subgroup.zpowers (-1)
+
+theorem cuspStabilizer_fixes_infty {g : SL(2, ℤ)} (hg : g ∈ cuspStabilizer) :
+    mapGL ℝ g • (∞ : OnePoint ℝ) = ∞ := by
+  have hle : cuspStabilizer ≤ (MulAction.stabilizer (GL (Fin 2) ℝ)
+      (∞ : OnePoint ℝ)).comap (mapGL ℝ) := by
+    apply sup_le <;> apply Subgroup.zpowers_le.mpr
+    · change mapGL ℝ ModularGroup.T • (∞ : OnePoint ℝ) = ∞
+      rw [smul_infty_eq_self_iff]
+      rw [mapGL_coe_matrix]
+      rw [map_apply_coe]
+      norm_num [ModularGroup.T, RingHom.mapMatrix_apply, Matrix.map_apply]
+    · change mapGL ℝ (-1) • (∞ : OnePoint ℝ) = ∞
+      simp [smul_infty_eq_self_iff]
+  exact hle hg
+
+variable (H : Subgroup SL(2, ℤ)) [H.FiniteIndex]
+
+def modularCusp (g : SL(2, ℤ)) : cuspsSubMulAction (H.map (mapGL ℝ)) :=
+  ⟨mapGL ℝ g • ∞, (Subgroup.IsArithmetic.isCusp_iff_isCusp_SL2Z _).mpr
+    (isCusp_SL2Z_iff'.mpr ⟨g, rfl⟩)⟩
+
+def doubleCosetToCuspOrbit :
+    DoubleCoset.Quotient (H : Set SL(2, ℤ)) (cuspStabilizer : Set SL(2, ℤ)) →
+      CuspOrbits (H.map (mapGL ℝ)) :=
+  Quotient.lift (fun g => ⟦modularCusp H g⟧) (by
+    intro x y hxy
+    obtain ⟨a, ha, b, hb, rfl⟩ := DoubleCoset.rel_iff.mp hxy
+    apply Quotient.sound
+    refine ⟨⟨mapGL ℝ a⁻¹, Subgroup.mem_map.mpr ⟨a⁻¹, H.inv_mem ha, rfl⟩⟩, ?_⟩
+    apply Subtype.ext
+    change mapGL ℝ a⁻¹ • (mapGL ℝ (a * x * b) • (∞ : OnePoint ℝ)) =
+      mapGL ℝ x • ∞
+    simp only [map_mul, mul_smul, cuspStabilizer_fixes_infty hb, map_inv,
+      inv_smul_smul])
+
+theorem doubleCosetToCuspOrbit_surjective : Function.Surjective (doubleCosetToCuspOrbit H) := by
+  intro q
+  obtain ⟨g, hg⟩ := isCusp_SL2Z_iff'.mp
+    ((Subgroup.IsArithmetic.isCusp_iff_isCusp_SL2Z _).mp q.out.property)
+  refine ⟨DoubleCoset.mk H cuspStabilizer g, ?_⟩
+  change ⟦modularCusp H g⟧ = q
+  rw [← Quotient.out_eq q]
+  congr 1
+  exact Subtype.ext hg.symm
+
+theorem card_cuspOrbits_le_doubleCosets :
+    Nat.card (CuspOrbits (H.map (mapGL ℝ))) ≤
+      Nat.card (DoubleCoset.Quotient (H : Set SL(2, ℤ))
+        (cuspStabilizer : Set SL(2, ℤ))) := by
+  have := finite_doubleCoset_quotient H cuspStabilizer
+  exact Nat.card_le_card_of_surjective _ (doubleCosetToCuspOrbit_surjective H)
+
+end MTT.Cohomology
+
+open MTT.Cohomology
+
+theorem solution
+    (H : Subgroup SL(2, ℤ)) [H.FiniteIndex] (k : ℤ) :
+    Module.finrank ℂ (ModularForm H k) ≤ Module.finrank ℂ (CuspForm H k) +
+      Nat.card (DoubleCoset.Quotient (H : Set SL(2, ℤ))
+        ((Subgroup.zpowers ModularGroup.T ⊔ Subgroup.zpowers (-1) : Subgroup SL(2, ℤ)) :
+          Set SL(2, ℤ))) := by
+  have := ModularForm.finiteDimensional_of_isArithmetic (H.map
+    (Matrix.SpecialLinearGroup.mapGL ℝ)) k
+  exact finrank_modularForm_le_cuspForm_add_cusps.trans
+    (Nat.add_le_add_left (card_cuspOrbits_le_doubleCosets H) _)
+end
+end
+
+end privateSection
+
+public section publicSection
+
 open scoped MatrixGroups
 
 theorem MTT.Cohomology.finrank_modularForm_le_cuspForm_add_doubleCosets
@@ -8,4 +224,6 @@ theorem MTT.Cohomology.finrank_modularForm_le_cuspForm_add_doubleCosets
     Module.finrank ℂ (ModularForm H k) ≤ Module.finrank ℂ (CuspForm H k) +
       Nat.card (DoubleCoset.Quotient (H : Set SL(2, ℤ))
         ((Subgroup.zpowers ModularGroup.T ⊔ Subgroup.zpowers (-1) : Subgroup SL(2, ℤ)) :
-          Set SL(2, ℤ))) := by sorry
+          Set SL(2, ℤ))) := _root_.solution H k
+
+end publicSection

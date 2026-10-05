@@ -1,7 +1,11 @@
-import Definitions.FLT.Def_ModularForm_HeckeOperatorForms
-import Theorems.FLT.Thm_CuspForm_heckeTLin_comm
-import Theorems.FLT.Thm_CuspForm_heckeTLin_heckeULin_comm
-import Theorems.FLT.Thm_CuspForm_heckeULin_comm
+module
+
+public import Definitions.FLT.Def_ModularForm_HeckeOperatorForms
+public import Theorems.FLT.Thm_CuspForm_heckeTLin_comm
+public import Theorems.FLT.Thm_CuspForm_heckeTLin_heckeULin_comm
+public import Theorems.FLT.Thm_CuspForm_heckeULin_comm
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -93,3 +97,5 @@ def heckeAlgebra.U {q : ℕ} (hq : q.Prime) (hqN : q ∣ N) (hqS : q ∉ S) : he
 end CuspForm
 
 end
+
+end publicSection
