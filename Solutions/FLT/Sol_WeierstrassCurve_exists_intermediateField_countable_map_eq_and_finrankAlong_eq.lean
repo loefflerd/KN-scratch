@@ -131,7 +131,7 @@ set_option maxHeartbeats 6400000
 set_option synthInstance.maxHeartbeats 1600000
 set_option linter.unusedSectionVars false
 
-noncomputable section
+section
 
 p2m_open "WeierstrassCurve P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
 p2m_open "Polynomial P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Polynomial"
@@ -171,7 +171,7 @@ set_option maxHeartbeats 6400000
 set_option synthInstance.maxHeartbeats 1600000
 set_option linter.unusedSectionVars false
 
-noncomputable section
+section
 
 p2m_open "WeierstrassCurve P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve AlgebraicCurve P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.AlgebraicCurve"
 p2m_open "Polynomial P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Polynomial"
@@ -249,7 +249,7 @@ set_option maxHeartbeats 25600000
 set_option synthInstance.maxHeartbeats 1600000
 set_option linter.unusedSectionVars false
 
-noncomputable section
+section
 
 p2m_open "Polynomial P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Polynomial WeierstrassCurve P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.WeierstrassCurve.Affine"
 
@@ -368,7 +368,7 @@ end
 
 
 
-noncomputable section
+section
 
 p2m_open "Polynomial P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Polynomial IsDedekindDomain P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IsDedekindDomain"
 
@@ -454,7 +454,7 @@ end
 
 
 
-noncomputable section
+section
 
 set_option linter.unusedSectionVars false
 
@@ -512,7 +512,7 @@ end
 section
 
 
-@[expose] public noncomputable section
+@[expose] public section
 
 p2m_open "Polynomial P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Polynomial"
 
@@ -559,7 +559,7 @@ p2m_open "Polynomial P2MW.S_WeierstrassCurve_exists_intermediateField_countable_
 
 p2m_open_scoped "WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.WeierstrassCurve.Affine Polynomial.Bivariate P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Polynomial.Bivariate"
 
-noncomputable section
+section
 
 namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine isUnit_Δ a₃ map_map a₁ WeierstrassCurve.map_a₃ map Ψ₃ mk Affine.equation_add a₄ Jacobian a₂ a₆ WeierstrassCurve.map_a₆ reduction map_id IsIntegral toAffine WeierstrassCurve.map_a₂ Affine.Point WeierstrassCurve.map_a₁ WeierstrassCurve.map_a₄ map_Δ map_a₆ map_a₁ map_a₄ Δ Affine.equation_iff Affine.polynomial map_a₂ baseChange j map_a₃ Affine.finiteDimensional_ratFunc_functionField"
@@ -613,7 +613,7 @@ end
 p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField"
 
 
-noncomputable section
+section
 
 universe u
 
@@ -638,7 +638,7 @@ section
 
 set_option linter.unusedSectionVars false
 
-noncomputable section
+section
 
 namespace ModularCurve
 
@@ -683,7 +683,7 @@ set_option synthInstance.maxHeartbeats 1600000
 set_option linter.unusedSectionVars false
 set_option linter.unusedSimpArgs false
 
-noncomputable section
+section
 
 p2m_open "WeierstrassCurve P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve AlgebraicCurve P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.AlgebraicCurve"
 p2m_open "Polynomial P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.Polynomial"
@@ -1292,7 +1292,7 @@ section
 set_option linter.unusedSectionVars false
 set_option linter.unusedSimpArgs false
 
-noncomputable section
+section
 
 namespace ModularCurve
 
@@ -1460,7 +1460,7 @@ end
 p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.ModularCurve"
 
 
-noncomputable section
+section
 
 namespace ModularCurve
 
@@ -1533,7 +1533,7 @@ set_option linter.unusedSimpArgs false
 set_option synthInstance.maxHeartbeats 1600000
 set_option maxHeartbeats 6400000
 
-noncomputable section
+section
 
 namespace ModularCurve
 
@@ -1645,7 +1645,7 @@ set_option linter.unusedSimpArgs false
 set_option synthInstance.maxHeartbeats 1600000
 set_option maxHeartbeats 6400000
 
-noncomputable section
+section
 
 namespace ModularCurve
 
@@ -1782,7 +1782,7 @@ set_option linter.unusedSimpArgs false
 set_option synthInstance.maxHeartbeats 1600000
 set_option maxHeartbeats 6400000
 
-noncomputable section
+section
 
 namespace ModularCurve
 
@@ -1831,7 +1831,7 @@ set_option linter.unusedSimpArgs false
 set_option synthInstance.maxHeartbeats 1600000
 set_option maxHeartbeats 6400000
 
-noncomputable section
+section
 
 namespace ModularCurve
 
@@ -1910,7 +1910,7 @@ set_option linter.unusedSimpArgs false
 set_option synthInstance.maxHeartbeats 1600000
 set_option maxHeartbeats 6400000
 
-noncomputable section
+section
 
 namespace ModularCurve
 
@@ -2079,7 +2079,7 @@ set_option linter.unusedSimpArgs false
 set_option synthInstance.maxHeartbeats 3200000
 set_option maxHeartbeats 12800000
 
-noncomputable section
+section
 
 namespace ModularCurve
 
@@ -2223,7 +2223,7 @@ set_option linter.unusedSimpArgs false
 set_option synthInstance.maxHeartbeats 1600000
 set_option maxHeartbeats 6400000
 
-noncomputable section
+section
 
 namespace ModularCurve
 

@@ -277,7 +277,7 @@ end groupCohomology
 
 /-! # Finite coordinates for binary homogeneous polynomials -/
 
-noncomputable section
+section
 
 namespace MTT.Cohomology
 
@@ -323,7 +323,7 @@ are constants, and an integral determinant-one matrix of trace squared four
 fixes a rational cusp. No period-map injectivity is used.
 -/
 
-noncomputable section
+section
 
 namespace MTT.Cohomology
 
@@ -356,7 +356,7 @@ end MTT.Cohomology
 
 /-! # A generator bound for level-four parabolic cohomology -/
 
-noncomputable section
+section
 
 namespace MTT.Cohomology
 

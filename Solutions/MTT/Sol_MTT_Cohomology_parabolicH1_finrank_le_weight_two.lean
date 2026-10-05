@@ -125,7 +125,7 @@ The two imported theorems are already proved platform results, respectively
 polynomial-valued cohomology is proved in `WeightTwoScalarBridge`.
 -/
 
-noncomputable section
+section
 
 namespace MTT.Cohomology
 

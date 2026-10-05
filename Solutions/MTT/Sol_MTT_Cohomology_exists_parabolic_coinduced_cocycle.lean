@@ -63,7 +63,7 @@ cocycle values. Compare the proved platform lifting theorem
 is used here; no continuity or Galois-level condition is needed for MTT.
 -/
 
-noncomputable section
+section
 
 namespace groupCohomology
 
@@ -124,7 +124,7 @@ to coinvariants makes the cocycle's value on the m-th power equal to m times
 its value on the generator.
 -/
 
-noncomputable section
+section
 
 namespace groupCohomology
 
@@ -178,7 +178,7 @@ pointwise principal; characteristic zero then descends principality to the
 generator. The result will be specialized to MTT cusp stabilizers.
 -/
 
-noncomputable section
+section
 
 namespace groupCohomology
 
@@ -221,7 +221,7 @@ Its conjugates preserve rational cusps, so pointwise parabolic principality
 and characteristic-zero power restriction prove the lifted cocycle parabolic.
 -/
 
-noncomputable section
+section
 
 namespace MTT.Cohomology
 

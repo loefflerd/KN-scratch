@@ -209,7 +209,7 @@ lemma second_test_contDiff {N k : ℕ}
 
 end MTT.LocalPeriod
 
-noncomputable section
+section
 open UpperHalfPlane
 open scoped MatrixGroups Modular ComplexConjugate
 namespace MTT.LocalPeriod
@@ -366,7 +366,7 @@ lemma eval_act_mob {n : ℕ} {P : Binary ℂ}
 
 end MTT.LocalPeriod
 
-noncomputable section
+section
 open UpperHalfPlane MeasureTheory
 open scoped MatrixGroups Modular ComplexConjugate
 namespace MTT.LocalPeriod
@@ -468,7 +468,7 @@ lemma second_test_derivative {N k : ℕ}
 
 end MTT.LocalPeriod
 
-noncomputable section
+section
 open UpperHalfPlane
 open scoped MatrixGroups Modular ComplexConjugate
 namespace MTT.LocalPeriod
@@ -550,7 +550,7 @@ lemma second_test_equivariant {N k : ℕ} (hk : 2 ≤ k)
 
 end MTT.LocalPeriod
 
-noncomputable section
+section
 open UpperHalfPlane MeasureTheory
 open scoped MatrixGroups Modular ComplexConjugate
 open MTT.Cohomology

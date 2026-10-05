@@ -464,7 +464,7 @@ end OnePoint
 
 /-! # A nonzero weight-five cusp form on Gamma1(4) -/
 
-noncomputable section
+section
 
 open UpperHalfPlane
 open scoped MatrixGroups ModularForm

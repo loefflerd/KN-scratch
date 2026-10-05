@@ -81,7 +81,7 @@ theorem IsCurveOver.trdeg_eq_one [PerfectField K] [IsCurveOver K F]
 end AlgebraicCurve
 p2m_reactivate "P2MW.S_AlgebraicCurve_IsCurveOver_exists_separating_transcendental.AlgebraicCurve.IsCurveOver P2MW.S_AlgebraicCurve_IsCurveOver_exists_separating_transcendental.AlgebraicCurve"
 
-noncomputable section
+section
 
 p2m_open "KaehlerDifferential IntermediateField TensorProduct Algebra.TensorProduct Module"
 open scoped IntermediateField.algebraAdjoinAdjoin

@@ -308,7 +308,7 @@ end Place
 end AlgebraicCurve
 p2m_reactivate "P2MW.S_AlgebraicCurve_Divisor_pushforwardNormFormula.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_Divisor_pushforwardNormFormula.AlgebraicCurve"
 
-noncomputable section
+section
 
 open IsDedekindDomain WithZero IsLocalRing
 
@@ -951,7 +951,7 @@ scoped instance instSumRamificationInertia {K F F' : Type*} [Field K] [Field F] 
 end AlgebraicCurve
 p2m_reactivate "P2MW.S_AlgebraicCurve_Divisor_pushforwardNormFormula.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_Divisor_pushforwardNormFormula.AlgebraicCurve"
 
-noncomputable section
+section
 
 open IsDedekindDomain WithZero IsLocalRing UniqueFactorizationMonoid
 

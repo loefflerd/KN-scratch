@@ -214,7 +214,7 @@ end AlgebraicCurve
 open AlgebraicCurve AlgebraicCurve.Place LinearMap Submodule
 open ModularCurve.KwF4gRRTate
 
-noncomputable section
+section
 
 namespace ModularCurve.KwF4gRRTate
 
@@ -311,7 +311,7 @@ end
 
 open AlgebraicCurve AlgebraicCurve.Place KaehlerDifferential
 
-noncomputable section
+section
 
 namespace ModularCurve.KwF4R1V391a
 
@@ -336,7 +336,7 @@ end Mint
 
 end ModularCurve.KwF4R1V391a
 
-noncomputable section
+section
 
 namespace AlgebraicCurve
 
@@ -365,7 +365,7 @@ end AlgebraicCurve
 
 end
 
-noncomputable section
+section
 
 namespace AlgebraicCurve
 

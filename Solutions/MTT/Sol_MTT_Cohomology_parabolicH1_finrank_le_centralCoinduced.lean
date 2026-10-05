@@ -47,7 +47,7 @@ theorem finiteDimensional_cocycles₁ [Group.FG G] [FiniteDimensional K A] :
 
 end groupCohomology
 
-noncomputable section
+section
 
 namespace Rep
 
@@ -196,7 +196,7 @@ theorem fullParabolicH1_finrank_le_centralFixed
 
 end MTT.Cohomology
 
-noncomputable section
+section
 
 namespace MTT.Cohomology
 
@@ -286,7 +286,7 @@ theorem parabolicCoindH1Eval_surjective (hN : 0 < N) :
 
 end MTT.Cohomology
 
-noncomputable section
+section
 
 namespace MTT.Cohomology
 

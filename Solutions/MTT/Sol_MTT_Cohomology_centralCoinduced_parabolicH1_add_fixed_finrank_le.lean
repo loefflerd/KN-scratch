@@ -47,7 +47,7 @@ theorem finrank_sym (n : ℕ) : Module.finrank ℂ (Sym ℂ n) = n + 1 := by
 
 end MTT.Cohomology
 
-noncomputable section
+section
 
 namespace MTT.Cohomology
 
@@ -143,7 +143,7 @@ theorem eval_y_gammaOneDifference (N n : ℕ) (P : gammaOneRep N n) :
 
 end MTT.Cohomology
 
-noncomputable section
+section
 namespace MTT.Cohomology
 
 theorem gammaOneLower_difference_notMem_translation_range {N n : ℕ}
@@ -189,7 +189,7 @@ theorem gammaOne_coinvariants_ker_eq_top {N n : ℕ} (hN : 0 < N) (hn : 0 < n) :
 
 end MTT.Cohomology
 
-noncomputable section
+section
 namespace MTT.Cohomology
 
 theorem coinduced_invariant_eq_zero {N n : ℕ} (hN : 0 < N) (hn : 0 < n)
@@ -216,7 +216,7 @@ theorem centralCoinduced_invariant_eq_zero {N n : ℕ} (hN : 0 < N) (hn : 0 < n)
 
 end MTT.Cohomology
 
-noncomputable section
+section
 
 namespace Rep
 
@@ -265,7 +265,7 @@ theorem centralAverage_fixed (v : centralFixedRep A z hz) :
 
 end Rep
 
-noncomputable section
+section
 
 namespace MTT.Cohomology
 
@@ -331,7 +331,7 @@ theorem centralCoinduced_invariantLinear_eq_zero {N n : ℕ} (hN : 0 < N) (hn : 
 
 end MTT.Cohomology
 
-noncomputable section
+section
 
 namespace Rep
 
@@ -394,7 +394,7 @@ theorem centralCoinduced_generator_ranges_eq_top {N n : ℕ} (hN : 0 < N) (hn : 
 
 end MTT.Cohomology
 
-noncomputable section
+section
 
 universe u
 
@@ -436,7 +436,7 @@ theorem finiteDimensional_cocycles₁ [Group.FG G] [FiniteDimensional K A] :
 
 end groupCohomology
 
-noncomputable section
+section
 namespace MTT.Cohomology
 
 open Matrix
@@ -466,7 +466,7 @@ theorem exists_cusp_fixed_of_trace_sq (g : SpecialLinearGroup (Fin 2) ℤ)
 
 end MTT.Cohomology
 
-noncomputable section
+section
 
 namespace MTT.Cohomology
 
@@ -544,7 +544,7 @@ theorem fullParabolicH1_finrank_le_topCoeffH1 [FiniteDimensional ℂ A] :
 
 end MTT.Cohomology
 
-noncomputable section
+section
 
 namespace MTT.Cohomology
 

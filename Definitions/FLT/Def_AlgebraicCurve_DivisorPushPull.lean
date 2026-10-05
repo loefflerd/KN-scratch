@@ -342,7 +342,7 @@ end Place
 
 end AlgebraicCurve
 
-noncomputable section
+section
 
 open IsDedekindDomain WithZero IsLocalRing
 
@@ -490,7 +490,7 @@ end Divisor
 
 end AlgebraicCurve
 
-noncomputable section
+section
 
 namespace AlgebraicCurve
 
@@ -628,7 +628,7 @@ end Divisor
 
 end AlgebraicCurve
 
-noncomputable section
+section
 
 namespace AlgebraicCurve
 

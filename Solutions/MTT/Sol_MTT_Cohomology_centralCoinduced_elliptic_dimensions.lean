@@ -77,7 +77,7 @@ end Rep
 
 /-! # Fixed-space dimensions from traces of cyclic averaging -/
 
-noncomputable section
+section
 
 namespace LinearMap
 
@@ -123,7 +123,7 @@ end LinearMap
 
 /-! # Vanishing traces for fixed-point-free coset actions -/
 
-noncomputable section
+section
 
 namespace LinearMap
 
@@ -168,7 +168,7 @@ end Rep
 
 /-! # The global symmetric-power representation underlying the MTT coefficients -/
 
-noncomputable section
+section
 
 open scoped MatrixGroups
 
@@ -261,7 +261,7 @@ end MTT.Cohomology
 
 /-! # Finite coordinates for binary homogeneous polynomials -/
 
-noncomputable section
+section
 
 namespace MTT.Cohomology
 
@@ -302,7 +302,7 @@ end MTT.Cohomology
 
 /-! # Finite-order fixed dimensions in the full coinduced coefficient module -/
 
-noncomputable section
+section
 
 open scoped MatrixGroups
 
@@ -377,7 +377,7 @@ end MTT.Cohomology
 
 /-! # Generator-fixed vectors are fixed by a central power -/
 
-noncomputable section
+section
 
 namespace Rep
 
@@ -464,7 +464,7 @@ end MTT.Cohomology
 
 /-! # Central coefficient dimension and elliptic fixed spaces -/
 
-noncomputable section
+section
 
 open scoped MatrixGroups
 

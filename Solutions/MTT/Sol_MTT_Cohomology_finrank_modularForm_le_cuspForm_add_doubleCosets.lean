@@ -114,7 +114,7 @@ end MTT.Cohomology
 
 /-! # Comparing cusp orbits with modular double cosets -/
 
-noncomputable section
+section
 
 open Matrix.SpecialLinearGroup OnePoint
 open scoped MatrixGroups

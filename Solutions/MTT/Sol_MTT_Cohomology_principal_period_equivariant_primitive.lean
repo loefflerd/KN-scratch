@@ -1146,7 +1146,7 @@ end CuspForms
 
 end MTT.Eichler
 
-noncomputable section
+section
 open scoped BigOperators MatrixGroups ModularForm ComplexConjugate
 open MeasureTheory Complex Set Filter Topology intervalIntegral
 open scoped UpperHalfPlane Manifold
@@ -1223,7 +1223,7 @@ lemma mixed_Gvec_deriv {N k : ℕ} (hN : 0 < N)
 end MTT.Eichler
 
 set_option maxHeartbeats 800000
-noncomputable section
+section
 open scoped BigOperators MatrixGroups ModularForm ComplexConjugate
 open MeasureTheory Complex Set Filter Topology intervalIntegral
 open scoped UpperHalfPlane Manifold
@@ -1334,7 +1334,7 @@ lemma coeff_Gvec_cusp_bound {N k : ℕ} (hN : 0 < N) (hk : 2 ≤ k)
 
 end MTT.Eichler
 
-noncomputable section
+section
 open scoped BigOperators MatrixGroups ModularForm ComplexConjugate
 open MeasureTheory Complex Set Filter Topology intervalIntegral
 open scoped UpperHalfPlane Manifold
@@ -1396,7 +1396,7 @@ lemma reflected_cusp_primitive {N k : ℕ}
 end MTT.Eichler
 
 set_option maxHeartbeats 800000
-noncomputable section
+section
 open scoped BigOperators MatrixGroups ModularForm ComplexConjugate
 open MeasureTheory Complex Set Filter Topology intervalIntegral
 open scoped UpperHalfPlane Manifold

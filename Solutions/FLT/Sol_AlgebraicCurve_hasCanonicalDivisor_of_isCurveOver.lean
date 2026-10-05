@@ -1146,7 +1146,7 @@ end PerfectFieldEngines
 end AlgebraicCurve
 p2m_reactivate "P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve"
 
-noncomputable section
+section
 
 namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "IsCurveOver Place Place.FiniteResidue HasPrincipalDivisors HasPrincipalDivisors.exists_divisor Place.FiniteResidue.finite HasCanonicalDivisor IsCurveOver.exists_separating_transcendental"
@@ -1194,7 +1194,7 @@ end AlgebraicCurve
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve"
 
-noncomputable section
+section
 
 namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "IsCurveOver Place Place.FiniteResidue HasPrincipalDivisors HasPrincipalDivisors.exists_divisor Place.FiniteResidue.finite HasCanonicalDivisor IsCurveOver.exists_separating_transcendental"
@@ -1372,7 +1372,7 @@ end AlgebraicCurve
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve"
 
-noncomputable section
+section
 
 namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "IsCurveOver Place Place.FiniteResidue HasPrincipalDivisors HasPrincipalDivisors.exists_divisor Place.FiniteResidue.finite HasCanonicalDivisor IsCurveOver.exists_separating_transcendental"

@@ -75,7 +75,7 @@ end Rep
 
 /-! # The global symmetric-power representation underlying the MTT coefficients -/
 
-noncomputable section
+section
 
 open scoped MatrixGroups
 
@@ -94,7 +94,7 @@ end MTT.Cohomology
 
 /-! # Finite-order fixed dimensions in the full coinduced coefficient module -/
 
-noncomputable section
+section
 
 open scoped MatrixGroups
 
@@ -188,7 +188,7 @@ end MTT.Cohomology
 
 /-! # Functions supported on one selected smaller orbit in each larger orbit -/
 
-noncomputable section
+section
 
 open scoped Classical
 
@@ -255,7 +255,7 @@ trivial central action. Averaging at a central involution changes a cocycle by
 a principal cocycle and takes values in the fixed subrepresentation.
 -/
 
-noncomputable section
+section
 
 namespace Rep
 
@@ -295,7 +295,7 @@ end Rep
 
 /-! # Independent central-fixed translation invariants from cusp orbits -/
 
-noncomputable section
+section
 
 open scoped MatrixGroups Classical
 
@@ -418,7 +418,7 @@ end MTT.Cohomology
 
 /-! # From subgroup orbits of left cosets to double cosets by inversion -/
 
-noncomputable section
+section
 
 namespace DoubleCoset
 

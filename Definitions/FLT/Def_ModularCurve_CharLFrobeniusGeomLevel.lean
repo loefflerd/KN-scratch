@@ -65,7 +65,7 @@ end DegOneBridge
 
 end ModularCurve
 
-noncomputable section
+section
 
 open AlgebraicCurve Polynomial
 
@@ -608,7 +608,7 @@ end RestrictPriv
 end Place
 end AlgebraicCurve
 
-noncomputable section
+section
 
 open AlgebraicCurve Polynomial
 
@@ -828,7 +828,7 @@ end NormFormula
 
 end ModularCurve
 
-noncomputable section
+section
 
 namespace AlgebraicCurve
 
@@ -1041,7 +1041,7 @@ end Consumers
 
 end ModularCurve
 
-noncomputable section
+section
 
 open AlgebraicCurve Polynomial
 
@@ -1163,7 +1163,7 @@ end Principal
 
 end ModularCurve
 
-noncomputable section
+section
 
 open AlgebraicCurve
 
@@ -1445,7 +1445,7 @@ end Relation
 
 end ModularCurve
 
-noncomputable section
+section
 
 open AlgebraicCurve
 

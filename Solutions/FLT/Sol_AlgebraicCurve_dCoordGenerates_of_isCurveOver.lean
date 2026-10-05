@@ -1144,7 +1144,7 @@ end PerfectFieldEngines
 end AlgebraicCurve
 p2m_reactivate "P2MW.S_AlgebraicCurve_dCoordGenerates_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_dCoordGenerates_of_isCurveOver.AlgebraicCurve"
 
-noncomputable section
+section
 
 namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "IsCurveOver Place Place.FiniteResidue Place.FiniteResidue.finite IsCurveOver.exists_separating_transcendental"

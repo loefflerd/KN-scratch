@@ -147,7 +147,7 @@ are constants, and an integral determinant-one matrix of trace squared four
 fixes a rational cusp. No period-map injectivity is used.
 -/
 
-noncomputable section
+section
 
 namespace MTT.Cohomology
 
@@ -180,7 +180,7 @@ end MTT.Cohomology
 
 /-! # Comparing the MTT and existing binary-form coefficient cohomology models -/
 
-noncomputable section
+section
 
 open scoped MatrixGroups
 
@@ -202,7 +202,7 @@ end MTT.Cohomology
 
 /-! # The global symmetric-power representation underlying the MTT coefficients -/
 
-noncomputable section
+section
 
 open scoped MatrixGroups
 
@@ -257,7 +257,7 @@ end MTT.Cohomology
 
 /-! # Even-degree coefficient comparison at levels three and four -/
 
-noncomputable section
+section
 
 open scoped MatrixGroups
 
@@ -406,7 +406,7 @@ end CuspForm
 
 /-! # The level-two dimension bound via the existing Gamma0 decomposition -/
 
-noncomputable section
+section
 
 open scoped MatrixGroups
 

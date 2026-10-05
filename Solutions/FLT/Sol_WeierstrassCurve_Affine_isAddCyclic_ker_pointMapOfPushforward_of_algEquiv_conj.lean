@@ -952,7 +952,7 @@ def KwD5BetweenCurvesHoloLift : Prop :=
 end ModularCurve
 p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.PeriodPair"
 
-noncomputable section
+section
 
 p2m_open "WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.WeierstrassCurve.Affine AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.AlgebraicCurve"
 
@@ -1015,7 +1015,7 @@ p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushfor
 
 section
 
-noncomputable section
+section
 
 open IsDedekindDomain
 
@@ -1077,7 +1077,7 @@ p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushfor
 
 section
 
-noncomputable section
+section
 
 open IsDedekindDomain
 
@@ -1174,7 +1174,7 @@ p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushfor
 
 section
 
-noncomputable section
+section
 
 set_option linter.unusedSectionVars false
 
@@ -1259,7 +1259,7 @@ p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushfor
 
 section
 
-noncomputable section
+section
 
 set_option linter.unusedSectionVars false
 
@@ -1320,7 +1320,7 @@ section
 set_option maxHeartbeats 6400000
 set_option synthInstance.maxHeartbeats 1600000
 
-noncomputable section
+section
 
 p2m_open_scoped "PeriodPair P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.PeriodPair UpperHalfPlane MatrixGroups"
 p2m_open "PeriodPair P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.PeriodPair Polynomial QuaternionAlgebra P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.ModularCurve"
@@ -1350,7 +1350,7 @@ section
 
 set_option synthInstance.maxHeartbeats 1600000
 
-noncomputable section
+section
 
 namespace ModularCurve
 
@@ -1383,7 +1383,7 @@ p2m_open_scoped "PeriodPair P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_point
 p2m_open "PeriodPair P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.PeriodPair Polynomial QuaternionAlgebra P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.ModularCurve"
 p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.AlgebraicCurve WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.WeierstrassCurve.Affine Matrix"
 
-noncomputable section
+section
 
 set_option maxHeartbeats 6400000
 set_option linter.unusedSectionVars false

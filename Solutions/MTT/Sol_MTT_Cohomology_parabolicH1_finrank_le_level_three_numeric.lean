@@ -115,7 +115,7 @@ of the coefficient module. This is the finite-generation input for the MTT
 parabolic-cohomology dimension argument; it assumes no Eichler–Shimura theorem.
 -/
 
-noncomputable section
+section
 
 universe u
 
@@ -145,7 +145,7 @@ end groupCohomology
 
 /-! # Finite coordinates for binary homogeneous polynomials -/
 
-noncomputable section
+section
 
 namespace MTT.Cohomology
 
@@ -228,7 +228,7 @@ end MTT.Cohomology
 
 /-! # Invertible linear substitutions on binary symmetric powers -/
 
-noncomputable section
+section
 
 namespace MTT.Cohomology
 
@@ -361,7 +361,7 @@ end MTT.Cohomology
 
 /-! # The global symmetric-power representation underlying the MTT coefficients -/
 
-noncomputable section
+section
 
 open scoped MatrixGroups
 
@@ -399,7 +399,7 @@ end LinearMap
 
 /-! # The order-three fixed-space dimension -/
 
-noncomputable section
+section
 
 namespace LinearMap
 
@@ -542,7 +542,7 @@ are constants, and an integral determinant-one matrix of trace squared four
 fixes a rational cusp. No period-map injectivity is used.
 -/
 
-noncomputable section
+section
 
 namespace MTT.Cohomology
 
@@ -592,7 +592,7 @@ end MTT.Cohomology
 
 /-! # The elliptic correction in level-three parabolic cohomology -/
 
-noncomputable section
+section
 
 namespace MTT.Cohomology
 
@@ -726,7 +726,7 @@ end MTT.Cohomology
 
 /-! # The odd-degree elliptic fixed-space count at level three -/
 
-noncomputable section
+section
 
 open scoped MatrixGroups
 

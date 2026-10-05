@@ -183,7 +183,7 @@ end AlgebraicCurve.Place
 set_option synthInstance.maxHeartbeats 800000
 set_option maxHeartbeats 1600000
 
-noncomputable section
+section
 
 open IsDedekindDomain IsDedekindDomain.HeightOneSpectrum IsLocalRing WithZero MonoidWithZeroHom
 
@@ -220,7 +220,7 @@ end AlgebraicCurve.Place
 set_option synthInstance.maxHeartbeats 800000
 set_option maxHeartbeats 1600000
 
-noncomputable section
+section
 
 open Polynomial IsLocalRing IsDedekindDomain
 
@@ -326,7 +326,7 @@ end AlgebraicCurve.Place
 set_option synthInstance.maxHeartbeats 800000
 set_option maxHeartbeats 1600000
 
-noncomputable section
+section
 
 open IsDedekindDomain IsDedekindDomain.HeightOneSpectrum IsLocalRing WithZero
 
@@ -418,7 +418,7 @@ set_option linter.unusedSectionVars false
 
 open AlgebraicCurve AlgebraicCurve.Place IsDedekindDomain
 
-noncomputable section
+section
 
 namespace AlgebraicCurve
 
@@ -504,7 +504,7 @@ set_option linter.unusedSectionVars false
 open AlgebraicCurve AlgebraicCurve.Place LinearMap Submodule
 open IsDedekindDomain IsDedekindDomain.HeightOneSpectrum IsLocalRing
 
-noncomputable section
+section
 
 namespace ModularCurve.KwF4gRRTate
 

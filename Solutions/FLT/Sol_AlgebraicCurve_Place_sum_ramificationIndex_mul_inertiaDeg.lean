@@ -307,7 +307,7 @@ end Place
 end AlgebraicCurve
 p2m_reactivate "P2MW.S_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg.AlgebraicCurve"
 
-noncomputable section
+section
 
 open IsDedekindDomain WithZero IsLocalRing
 

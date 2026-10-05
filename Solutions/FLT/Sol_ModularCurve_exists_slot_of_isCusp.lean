@@ -181,7 +181,7 @@ end Row1
 
 namespace Row2
 
-noncomputable section
+section
 
 open ModularCurve AlgebraicCurve
 
