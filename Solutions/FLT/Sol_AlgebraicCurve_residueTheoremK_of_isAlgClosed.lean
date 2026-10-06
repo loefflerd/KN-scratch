@@ -252,42 +252,12 @@ section SinglePlace
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
 
---XXprivate theorem _root_.AlgebraicCurve.Place.ord_nonneg_of_mem {f : F} (hf : f ∈ v.toValuationSubring) : 0 ≤ v.ord f := by
---XX  rcases eq_or_ne f 0 with rfl | hf0
---XX  · simp
---XX  obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible v.toValuationSubring
---XX  obtain ⟨n, u, hu⟩ :=
---XX    IsDiscreteValuationRing.eq_unit_mul_pow_irreducible
---XX      (x := (⟨f, hf⟩ : v.toValuationSubring)) (by simpa [Subtype.ext_iff] using hf0) hπ
---XX  have hcoe : f = ((u : v.toValuationSubring) : F) * ((π : F) ^ (n : ℤ)) := by
---XX    have h := congrArg (Subtype.val) hu
---XX    push_cast at h
---XX    rw [zpow_natCast]
---XX    exact h
---XX  rw [hcoe, v.ord_unit_smul_zpow u hπ (n : ℤ)]
---XX  exact Int.natCast_nonneg n
 
 p2m_export "AlgebraicCurve.Place" "ord_nonneg_of_mem"
---XXprivate theorem _root_.AlgebraicCurve.Place.mem_of_ord_nonneg {f : F} (hf : f ≠ 0) (h : 0 ≤ v.ord f) :
---XX    f ∈ v.toValuationSubring := by
---XX  obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible v.toValuationSubring
---XX  obtain ⟨u, hu⟩ := v.exists_unit_mul_zpow hf hπ
---XX  rw [hu, show v.ord f = (((v.ord f).toNat : ℕ) : ℤ) from (Int.toNat_of_nonneg h).symm,
---XX    zpow_natCast]
---XX  exact mul_mem (u : v.toValuationSubring).2 (pow_mem (π : v.toValuationSubring).2 _)
 
 p2m_export "AlgebraicCurve.Place" "mem_of_ord_nonneg"
---XXprivate theorem _root_.AlgebraicCurve.Place.mem_iff_ord_nonneg {f : F} (hf : f ≠ 0) :
---XX    f ∈ v.toValuationSubring ↔ 0 ≤ v.ord f :=
---XX  ⟨v.ord_nonneg_of_mem, v.mem_of_ord_nonneg hf⟩
 
 p2m_export "AlgebraicCurve.Place" "mem_iff_ord_nonneg"
---XXprivate theorem _root_.AlgebraicCurve.Place.exists_ord_pos : ∃ f : F, f ≠ 0 ∧ 0 < v.ord f := by
---XX  obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible v.toValuationSubring
---XX  refine ⟨(π : F), ?_, ?_⟩
---XX  · simpa [ne_eq, ZeroMemClass.coe_eq_zero] using hπ.ne_zero
---XX  · rw [v.ord_coe_irreducible hπ]
---XX    exact one_pos
 
 p2m_export "AlgebraicCurve.Place" "exists_ord_pos"
 end SinglePlace

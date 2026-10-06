@@ -39,13 +39,6 @@ section Engine
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 
---XXtheorem mem_of_ord_nonneg (w : Place K F) {f : F} (hf : f ≠ 0) (h : 0 ≤ w.ord f) :
---XX    f ∈ w.toValuationSubring := by
---XX  obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible w.toValuationSubring
---XX  obtain ⟨u, hu⟩ := w.exists_unit_mul_zpow hf hπ
---XX  rw [hu, show w.ord f = (((w.ord f).toNat : ℕ) : ℤ) from (Int.toNat_of_nonneg h).symm,
---XX    zpow_natCast]
---XX  exact mul_mem (u : w.toValuationSubring).2 (pow_mem (π : w.toValuationSubring).2 _)
 
 theorem mem_of_ord_sub_pos (w : Place K F) {f : F} {c : K}
     (h : 0 < w.ord (f - algebraMap K F c)) : f ∈ w.toValuationSubring := by

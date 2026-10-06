@@ -884,7 +884,7 @@ theorem solution
       have hjmem := hT j hj
       change f.coeff l *
         (AddMonoidAlgebra.coeff ((ψ s).val (OnePoint.infty, (r : Cusp)))
-          (binaryExponent (k - 2) j) / ((k - 2).choose j : MTT.Qbar)) ∈ L
+          (P2MStable.binaryExponent (k - 2) j) / ((k - 2).choose j : MTT.Qbar)) ∈ L
       simpa [MvPolynomial.coeff_smul, smul_eq_mul, mul_div_assoc]
         using hjmem
     · simp only [mul_zero]

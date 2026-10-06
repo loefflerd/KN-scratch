@@ -41,13 +41,6 @@ section SinglePlace
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
 
---XXtheorem mem_of_ord_nonneg {f : F} (hf : f ≠ 0) (h : 0 ≤ v.ord f) :
---XX    f ∈ v.toValuationSubring := by
---XX  obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible v.toValuationSubring
---XX  obtain ⟨u, hu⟩ := v.exists_unit_mul_zpow hf hπ
---XX  rw [hu, show v.ord f = (((v.ord f).toNat : ℕ) : ℤ) from (Int.toNat_of_nonneg h).symm,
---XX    zpow_natCast]
---XX  exact mul_mem (u : v.toValuationSubring).2 (pow_mem (π : v.toValuationSubring).2 _)
 
 end SinglePlace
 

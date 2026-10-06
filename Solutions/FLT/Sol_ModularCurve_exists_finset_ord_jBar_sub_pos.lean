@@ -38,29 +38,7 @@ section General
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 
---XXtheorem ord_nonneg_of_mem (v : Place K F) {f : F} (hf : f ∈ v.toValuationSubring) :
---XX    0 ≤ v.ord f := by
---XX  rcases eq_or_ne f 0 with rfl | hf0
---XX  · simp
---XX  obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible v.toValuationSubring
---XX  obtain ⟨n, u, hu⟩ :=
---XX    IsDiscreteValuationRing.eq_unit_mul_pow_irreducible
---XX      (x := (⟨f, hf⟩ : v.toValuationSubring)) (by simpa [Subtype.ext_iff] using hf0) hπ
---XX  have hcoe : f = ((u : v.toValuationSubring) : F) * ((π : F) ^ (n : ℤ)) := by
---XX    have h := congrArg (Subtype.val) hu
---XX    push_cast at h
---XX    rw [zpow_natCast]
---XX    exact h
---XX  rw [hcoe, v.ord_unit_smul_zpow u hπ (n : ℤ)]
---XX  exact Int.natCast_nonneg n
 
---XXtheorem mem_of_ord_nonneg (w : Place K F) {f : F} (hf : f ≠ 0) (h : 0 ≤ w.ord f) :
---XX    f ∈ w.toValuationSubring := by
---XX  obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible w.toValuationSubring
---XX  obtain ⟨u, hu⟩ := w.exists_unit_mul_zpow hf hπ
---XX  rw [hu, show w.ord f = (((w.ord f).toNat : ℕ) : ℤ) from (Int.toNat_of_nonneg h).symm,
---XX    zpow_natCast]
---XX  exact mul_mem (u : w.toValuationSubring).2 (pow_mem (π : w.toValuationSubring).2 _)
 
 theorem mem_of_ord_sub_pos (w : Place K F) {f : F} {c : K}
     (h : 0 < w.ord (f - algebraMap K F c)) : f ∈ w.toValuationSubring := by

@@ -444,39 +444,9 @@ namespace Place
 section SinglePlace
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
 
---XXtheorem ord_nonneg_of_mem {f : F} (hf : f ∈ v.toValuationSubring) : 0 ≤ v.ord f := by
---XX  rcases eq_or_ne f 0 with rfl | hf0
---XX  · simp
---XX  obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible v.toValuationSubring
---XX  obtain ⟨n, u, hu⟩ :=
---XX    IsDiscreteValuationRing.eq_unit_mul_pow_irreducible
---XX      (x := (⟨f, hf⟩ : v.toValuationSubring)) (by simpa [Subtype.ext_iff] using hf0) hπ
---XX  have hcoe : f = ((u : v.toValuationSubring) : F) * ((π : F) ^ (n : ℤ)) := by
---XX    have h := congrArg (Subtype.val) hu
---XX    push_cast at h
---XX    rw [zpow_natCast]
---XX    exact h
---XX  rw [hcoe, v.ord_unit_smul_zpow u hπ (n : ℤ)]
---XX  exact Int.natCast_nonneg n
 
---XXtheorem mem_of_ord_nonneg {f : F} (hf : f ≠ 0) (h : 0 ≤ v.ord f) :
---XX    f ∈ v.toValuationSubring := by
---XX  obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible v.toValuationSubring
---XX  obtain ⟨u, hu⟩ := v.exists_unit_mul_zpow hf hπ
---XX  rw [hu, show v.ord f = (((v.ord f).toNat : ℕ) : ℤ) from (Int.toNat_of_nonneg h).symm,
---XX    zpow_natCast]
---XX  exact mul_mem (u : v.toValuationSubring).2 (pow_mem (π : v.toValuationSubring).2 _)
 
---XXtheorem mem_iff_ord_nonneg {f : F} (hf : f ≠ 0) :
---XX    f ∈ v.toValuationSubring ↔ 0 ≤ v.ord f :=
---XX  ⟨v.ord_nonneg_of_mem, v.mem_of_ord_nonneg hf⟩
 
---XXtheorem exists_ord_pos : ∃ f : F, f ≠ 0 ∧ 0 < v.ord f := by
---XX  obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible v.toValuationSubring
---XX  refine ⟨(π : F), ?_, ?_⟩
---XX  · simpa [ne_eq, ZeroMemClass.coe_eq_zero] using hπ.ne_zero
---XX  · rw [v.ord_coe_irreducible hπ]
---XX    exact one_pos
 
 end SinglePlace
 
@@ -484,125 +454,18 @@ section RestrictPriv
 variable {K F F' : Type*} [Field K] [Field F] [Field F']
   [Algebra K F'] [Algebra F F']
 
---XXtheorem algebraMap_ne_zero {f : F} (hf : f ≠ 0) : algebraMap F F' f ≠ 0 := by
---XX  simpa using hf
 
 variable (w : Place K F')
 
---XXtheorem comap_algebraMap_ne_top [Algebra.IsIntegral F F'] :
---XX    w.toValuationSubring.comap (algebraMap F F') ≠ ⊤ := by
---XX  intro htop
---XX  apply w.ne_top'
---XX  have hF : ∀ f : F, algebraMap F F' f ∈ w.toValuationSubring := fun f =>
---XX    ValuationSubring.mem_comap.mp (htop ▸ ValuationSubring.mem_top f)
---XX  refine SetLike.ext fun x => ⟨fun _ => ValuationSubring.mem_top x, fun _ => ?_⟩
---XX  let : Algebra F w.toValuationSubring :=
---XX    ((algebraMap F F').codRestrict w.toValuationSubring.toSubring hF).toAlgebra
---XX  let : IsScalarTower F w.toValuationSubring F' :=
---XX    IsScalarTower.of_algebraMap_eq fun f => rfl
---XX  have hx : IsIntegral w.toValuationSubring x :=
---XX    (Algebra.IsIntegral.isIntegral (R := F) x).tower_top
---XX  obtain ⟨y, hy⟩ := IsIntegrallyClosed.isIntegral_iff.mp hx
---XX  exact hy ▸ y.2
 
---XXvariable {w} in
 
---XXtheorem mem_comap_iff_ord_nonneg {f : F} (hf : f ≠ 0) :
---XX    f ∈ w.toValuationSubring.comap (algebraMap F F') ↔
---XX      0 ≤ w.ord (algebraMap F F' f) := by
---XX  rw [ValuationSubring.mem_comap]
---XX  exact w.mem_iff_ord_nonneg (algebraMap_ne_zero hf)
 
---XXvariable {w} in
 
---XXtheorem isUnit_mk_comap_iff {f : F} (hf : f ≠ 0)
---XX    (hmem : f ∈ w.toValuationSubring.comap (algebraMap F F')) :
---XX    IsUnit (⟨f, hmem⟩ : w.toValuationSubring.comap (algebraMap F F')) ↔
---XX      w.ord (algebraMap F F' f) = 0 := by
---XX  constructor
---XX  · rintro h
---XX    obtain ⟨b, hb⟩ := isUnit_iff_exists_inv.mp h
---XX    have hb' : f * (b : F) = 1 := by
---XX      simpa [Subtype.ext_iff] using hb
---XX    have hbne : (b : F) ≠ 0 := by
---XX      intro h0
---XX      rw [h0, mul_zero] at hb'
---XX      exact zero_ne_one hb'
---XX    have hsum : w.ord (algebraMap F F' f) + w.ord (algebraMap F F' (b : F)) = 0 := by
---XX      rw [← w.ord_mul (algebraMap_ne_zero hf) (algebraMap_ne_zero hbne), ← map_mul, hb',
---XX        map_one, w.ord_one]
---XX    have h1 : 0 ≤ w.ord (algebraMap F F' f) := (mem_comap_iff_ord_nonneg hf).mp hmem
---XX    have h2 : 0 ≤ w.ord (algebraMap F F' (b : F)) := (mem_comap_iff_ord_nonneg hbne).mp b.2
---XX    omega
---XX  · intro h0
---XX    have hinv : f⁻¹ ∈ w.toValuationSubring.comap (algebraMap F F') :=
---XX      (mem_comap_iff_ord_nonneg (inv_ne_zero hf)).mpr (by rw [map_inv₀, w.ord_inv]; omega)
---XX    exact ⟨⟨⟨f, hmem⟩, ⟨f⁻¹, hinv⟩, Subtype.ext (mul_inv_cancel₀ hf),
---XX      Subtype.ext (inv_mul_cancel₀ hf)⟩, rfl⟩
 
---XXtheorem exists_ord_algebraMap_pos [Algebra.IsIntegral F F'] :
---XX    ∃ f : F, f ≠ 0 ∧ 0 < w.ord (algebraMap F F' f) := by
---XX  have h := w.comap_algebraMap_ne_top (F := F)
---XX  rw [ne_eq, SetLike.ext_iff, not_forall] at h
---XX  obtain ⟨g, hg⟩ := h
---XX  simp only [ValuationSubring.mem_top, iff_true] at hg
---XX  have hg0 : g ≠ 0 := by
---XX    rintro rfl
---XX    exact hg (zero_mem _)
---XX  refine ⟨g⁻¹, inv_ne_zero hg0, ?_⟩
---XX  rw [map_inv₀, w.ord_inv]
---XX  have := (mem_comap_iff_ord_nonneg hg0).not.mp hg
---XX  omega
 
 variable [Algebra.IsIntegral F F']
 
---XXtheorem ramificationIndex_set_nonempty :
---XX    {n : ℕ | 0 < n ∧ ∃ f : F, f ≠ 0 ∧ w.ord (algebraMap F F' f) = n}.Nonempty := by
---XX  obtain ⟨f, hf0, hf⟩ := w.exists_ord_algebraMap_pos (F := F)
---XX  exact ⟨(w.ord (algebraMap F F' f)).toNat, by omega, f, hf0, by omega⟩
 
---XXtheorem isPrincipalIdealRing_comap :
---XX    IsPrincipalIdealRing (w.toValuationSubring.comap (algebraMap F F')) := by
---XX  obtain ⟨g, hg0, hge⟩ := w.exists_ord_eq_ramificationIndex (F := F)
---XX  have hepos : 0 < ramificationIndex (F := F) w := w.ramificationIndex_pos (F := F)
---XX  have hgmem : g ∈ w.toValuationSubring.comap (algebraMap F F') :=
---XX    (mem_comap_iff_ord_nonneg hg0).mpr (by omega)
---XX  refine (IsDiscreteValuationRing.ofHasUnitMulPowIrreducibleFactorization
---XX    ⟨⟨g, hgmem⟩, irreducible_mk_comap w hg0 hgmem hge, ?_⟩).toIsPrincipalIdealRing
---XX  rintro ⟨f, hmem⟩ hx
---XX  have hf : f ≠ 0 := by simpa [Subtype.ext_iff] using hx
---XX  obtain ⟨c, hc⟩ := w.ramificationIndex_dvd_ord (F := F) hf
---XX  have hnonneg : 0 ≤ w.ord (algebraMap F F' f) := (mem_comap_iff_ord_nonneg hf).mp hmem
---XX  have hcnonneg : 0 ≤ c := by
---XX    by_contra hneg
---XX    have hcle : c ≤ -1 := by omega
---XX    have : (ramificationIndex (F := F) w : ℤ) * c ≤ (ramificationIndex (F := F) w : ℤ) * -1 :=
---XX      mul_le_mul_of_nonneg_left hcle (by omega)
---XX    omega
---XX  set n : ℕ := c.toNat with hn
---XX  have hcn : (n : ℤ) = c := Int.toNat_of_nonneg hcnonneg
---XX  refine ⟨n, ?_⟩
---XX  have hgn : g ^ n ≠ 0 := pow_ne_zero _ hg0
---XX  have hdiv0 : f / g ^ n ≠ 0 := div_ne_zero hf hgn
---XX  have hu0 : w.ord (algebraMap F F' (f / g ^ n)) = 0 := by
---XX    have hkey : algebraMap F F' (f / g ^ n)
---XX        = algebraMap F F' f * (algebraMap F F' g) ^ (-(n : ℤ)) := by
---XX      rw [div_eq_mul_inv, map_mul, map_inv₀, map_pow, ← zpow_natCast (algebraMap F F' g) n,
---XX        ← zpow_neg]
---XX    rw [hkey, w.ord_mul (algebraMap_ne_zero hf) (zpow_ne_zero _ (algebraMap_ne_zero hg0)),
---XX      w.ord_zpow, hge, hc, ← hcn]
---XX    ring
---XX  have humem : f / g ^ n ∈ w.toValuationSubring.comap (algebraMap F F') :=
---XX    (mem_comap_iff_ord_nonneg hdiv0).mpr (le_of_eq hu0.symm)
---XX  have hu : IsUnit (⟨f / g ^ n, humem⟩ : w.toValuationSubring.comap (algebraMap F F')) :=
---XX    (isUnit_mk_comap_iff hdiv0 humem).mpr hu0
---XX  refine ⟨hu.unit, ?_⟩
---XX  refine Subtype.ext ?_
---XX  have hcoe : ((hu.unit : w.toValuationSubring.comap (algebraMap F F')) : F) = f / g ^ n := by
---XX    rw [IsUnit.unit_spec]
---XX  push_cast
---XX  rw [hcoe, mul_comm, div_mul_cancel₀]
---XX  exact hgn
 
 end RestrictPriv
 

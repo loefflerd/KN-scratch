@@ -1,6 +1,10 @@
-import Definitions.FLT.Def_CuspForm_Petersson
-import Definitions.FLT.Def_ModularCurve_PeriodLattice
-import Definitions.FLT.Def_ModularCurve_PeriodMapBundled
+module
+
+public import Definitions.FLT.Def_CuspForm_Petersson
+public import Definitions.FLT.Def_ModularCurve_PeriodLattice
+public import Definitions.FLT.Def_ModularCurve_PeriodMapBundled
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -130,3 +134,5 @@ theorem peterssonOf_gamma0 {N : ℕ} (f g : CuspForm (CongruenceSubgroup.Gamma0 
 end CuspForm
 
 end
+
+end publicSection
