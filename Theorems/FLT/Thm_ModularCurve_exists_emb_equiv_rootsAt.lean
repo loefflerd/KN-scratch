@@ -1,4 +1,3 @@
-import Mathlib
 import Definitions.FLT.Def_ModularCurve_EMD
 import Definitions.FLT.Def_ModularCurve_TatePoint
 

@@ -1,6 +1,4 @@
-import Mathlib
 import Definitions.FLT.Def_ModularCurve_X1
-import Definitions.FLT.Def_ModularForm_EisensteinChiNegThree
 import Theorems.FLT.Thm_EisensteinWeightOne_e1Chi3IsModular
 import Theorems.FLT.Thm_ModularCurve_exists_ratCast_qExpansion_comp_smul_of_mem_Gamma0
 import Definitions.FLT.Def_P2M_Util

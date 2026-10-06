@@ -1,5 +1,3 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_X1
 import Definitions.FLT.Def_ModularCurve_X0ModL
 import Theorems.FLT.Thm_ModularCurve_jqModC_mem_intFormRatiosC
 import Theorems.FLT.Thm_ModularCurve_qExpand_image_intFormRatiosC_subset

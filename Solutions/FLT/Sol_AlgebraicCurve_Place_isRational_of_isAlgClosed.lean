@@ -1,9 +1,8 @@
-import Mathlib
-import Definitions.FLT.Def_AlgebraicCurve_PlaceEvaluation
+import Mathlib.Algebra.BigOperators.Field
+
 import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
-import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_deg_eq_one_of_isAlgClosed
 import Theorems.FLT.Thm_AlgebraicCurve_Place_isRational_iff_deg_eq_one
-import Theorems.FLT.Thm_P2M_Dup_AlgebraicCurve_Place_mem_of_ord_nonneg
+import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_deg_eq_one_of_isAlgClosed
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

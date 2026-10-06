@@ -1,9 +1,8 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_JLinePlaces
+import Mathlib.Analysis.Normed.Field.Lemmas
+
 import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
-import Definitions.FLT.Def_ModularCurve_GenusNumerics
 import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaceClassification
-import Theorems.FLT.Thm_P2M_Dup_AlgebraicCurve_RationalFunctionField_eq_ofHeightOneSpectrum_or_eq_placeInfty
+import Definitions.FLT.Def_ModularCurve_JLinePlaces
 import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_ord_ofHeightOneSpectrum_of_span
 import Definitions.FLT.Def_P2M_Util
 

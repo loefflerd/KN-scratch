@@ -1,9 +1,13 @@
-import Mathlib
+import Mathlib.Algebra.Polynomial.Homogenize
+import Mathlib.LinearAlgebra.Lagrange
+import Mathlib.NumberTheory.ModularForms.LevelOne.DimensionFormula
+import Mathlib.NumberTheory.ModularForms.NormTrace
+import Mathlib.RingTheory.Flat.TorsionFree
+
 import Definitions.FLT.Def_ModularCurve_X1
-import Definitions.FLT.Def_ModularCurve_JqCoeff
 import Theorems.FLT.Thm_ModularCurve_qExpansion_discriminant_eq_map_X_mul_dedekindEtaUnit
-import Theorems.FLT.Thm_ModularCurve_transcendental_jqModC
 import Theorems.FLT.Thm_ModularCurve_relfinrank_laurentBaseChange
+import Theorems.FLT.Thm_ModularCurve_transcendental_jqModC
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

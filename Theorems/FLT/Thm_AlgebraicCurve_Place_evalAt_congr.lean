@@ -3,17 +3,8 @@ module
 public import Definitions.FLT.Def_AlgebraicCurve_PlaceEvaluation
 
 import Theorems.FLT.Thm_P2M_Dup_AlgebraicCurve_Place_mem_maximalIdeal_iff_adicValuation_lt_one
-import Definitions.FLT.Def_P2M_Util
 
 section privateSection
-
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
-namespace P2MW.S_AlgebraicCurve_Place_evalAt_congr
-p2m_attr_erase "instance" "AlgebraicCurve.Place.instIsRankOneDiscreteWithZeroMultiplicativeIntAdicValuation AlgebraicCurve.Place.instIsTrivialOnWithZeroMultiplicativeIntAdicValuation"
-p2m_attr_erase "simp" "AlgebraicCurve.Place.congrEquiv_symm_apply AlgebraicCurve.RationalFunctionField.heightOneSpectrumOfIrreducible_asIdeal AlgebraicCurve.Place.congrRingEquiv_toValuationSubring AlgebraicCurve.Place.congrEquiv_apply AlgebraicCurve.Place.coe_comapSymmRingEquiv_apply AlgebraicCurve.RationalFunctionField.deg_placeOfPoint"
 
 open IsDedekindDomain WithZero IsLocalRing AlgebraicCurve
 
@@ -43,19 +34,13 @@ theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
     exact (IsLocalRing.residue_eq_zero_iff _).mpr hmem
   rw [v.evalAt_of_mem hf, v.evalAt_of_mem hg, hres]
 
-end S_AlgebraicCurve_Place_evalAt_congr
-end P2MW
-export P2MW.S_AlgebraicCurve_Place_evalAt_congr (solution)
-
 end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
-open AlgebraicCurve
-theorem AlgebraicCurve.Place.evalAt_congr {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F) {f g : F} (hf : f ∈ v.toValuationSubring) (hg : g ∈ v.toValuationSubring) (h : f - g = 0 ∨ 0 < v.ord (f - g)) : v.evalAt f = v.evalAt g := _root_.P2MW.S_AlgebraicCurve_Place_evalAt_congr.solution v hf hg h
+theorem AlgebraicCurve.Place.evalAt_congr {K F : Type*} [Field K] [Field F] [Algebra K F]
+    (v : Place K F) {f g : F} (hf : f ∈ v.toValuationSubring) (hg : g ∈ v.toValuationSubring)
+    (h : f - g = 0 ∨ 0 < v.ord (f - g)) : v.evalAt f = v.evalAt g :=
+  solution v hf hg h
 
 end publicSection

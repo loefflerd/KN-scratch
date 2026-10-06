@@ -17,8 +17,6 @@ set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_card_projectiveLine_zmod
-p2m_attr_erase "instance" "ModularCurve.PhiGen.instNeZeroPhiGenCosetA"
-p2m_attr_erase "simp" "ModularCurve.evalAtJqN_X ModularCurve.qTwistFun_coeff ModularCurve.swapBivar_C_X ModularCurve.PhiGen.cosetA_succ ModularCurve.qTwist_coeff ModularCurve.PhiGen.cosetB_zero ModularCurve.PhiGen.cosetA_zero ModularCurve.qTwist_single ModularCurve.swapBivar_X ModularCurve.aeval_toRingHom_X ModularCurve.PhiGen.cosetB_succ ModularCurve.coeffEmb_coeff ModularCurve.coeffMap_coeff ModularCurve.coeffMap_id ModularCurve.coeffMap_single"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "IsUnimodularRow isUnimodularRow_one_left isUnimodularRow_one_right ProjectiveLine ProjectiveLine.map dedekindPsi dedekindPsi_one dedekindPsi_prime_pow dedekindPsi_mul_of_coprime"

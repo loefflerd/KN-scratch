@@ -1,4 +1,6 @@
-import Mathlib
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.RegularLocalRing.Defs
+
 import Definitions.FLT.Def_Isogeny_ConditionalCurrency
 import Theorems.FLT.Thm_AlgebraicCurve_Place_restrictAlong_surjective
 import Definitions.FLT.Def_P2M_Util

@@ -1,8 +1,9 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_X0
-import Definitions.FLT.Def_ModularCurve_LaurentCoeff
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
+
 import Definitions.FLT.Def_ModularCurve_ArithmeticGalois
-import Definitions.FLT.Def_ModularCurve_CuspidalClass
+import Definitions.FLT.Def_ModularCurve_QAdicPlace
 import Theorems.FLT.Thm_ModularCurve_nonempty_modularPolynomialData
 import Definitions.FLT.Def_P2M_Util
 

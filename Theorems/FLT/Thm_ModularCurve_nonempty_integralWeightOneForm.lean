@@ -1,5 +1,3 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_X1
 import Definitions.FLT.Def_ModularCurve_IgusaFunctionFieldX1
 
 set_option maxHeartbeats 4000000

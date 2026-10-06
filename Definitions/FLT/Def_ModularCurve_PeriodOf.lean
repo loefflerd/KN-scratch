@@ -1,8 +1,6 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_PeriodLattice
-import Definitions.FLT.Def_ModularCurve_PeriodMap
-import Definitions.FLT.Def_ModularCurve_PeriodMapBundled
 import Definitions.FLT.Def_CuspForm_Petersson
+import Definitions.FLT.Def_ModularCurve_PeriodLattice
+import Definitions.FLT.Def_ModularCurve_PeriodMapBundled
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000

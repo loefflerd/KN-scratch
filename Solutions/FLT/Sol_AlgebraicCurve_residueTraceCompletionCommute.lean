@@ -1,22 +1,7 @@
-import Mathlib
-import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
-import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
-import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
-import Definitions.FLT.Def_ModularCurve_CanonicalDivisor
-import Definitions.FLT.Def_ModularCurve_CanonicalDivisorUniformizer
-import Definitions.FLT.Def_AlgebraicCurve_Repartitions
-import Definitions.FLT.Def_AlgebraicCurve_AdelicIndex
-import Definitions.FLT.Def_AlgebraicCurve_CanonicalDivisor
-import Definitions.FLT.Def_AlgebraicCurve_LocalResidue
-import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
-import Definitions.FLT.Def_DedekindDomain_AdicValuation_InlineSpecific
-import Definitions.FLT.Def_AlgebraicCurve_PlaceCompletion
-import Definitions.FLT.Def_AlgebraicCurve_TateResidueCurrency
-import Definitions.FLT.Def_AlgebraicCurve_CanonicalLocalResidueInstanceV2
-import Theorems.FLT.Thm_AlgebraicCurve_tateCommFinite
-import Theorems.FLT.Thm_AlgebraicCurve_tateTraceCompat_of_isSeparable
 import Theorems.FLT.Thm_AlgebraicCurve_tateAgreement
 import Theorems.FLT.Thm_AlgebraicCurve_tateChainRule
+import Theorems.FLT.Thm_AlgebraicCurve_tateCommFinite
+import Theorems.FLT.Thm_AlgebraicCurve_tateTraceCompat_of_isSeparable
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000
@@ -519,8 +504,6 @@ p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4R1V391a.KwF4R1V
 p2m_open "ModularCurve"
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.AlgebraicCurve Polynomial P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.Polynomial IntermediateField P2MW.S_AlgebraicCurve_residueTraceCompletionCommute.IntermediateField"
-
-attribute [local instance 2000] RatFunc.instAlgebraOfPolynomial
 
 end ModularCurve
 

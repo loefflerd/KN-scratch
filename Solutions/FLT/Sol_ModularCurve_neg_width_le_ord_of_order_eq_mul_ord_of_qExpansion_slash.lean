@@ -1,14 +1,9 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_X1
-import Definitions.FLT.Def_ModularCurve_JqCoeff
-import Definitions.FLT.Def_ModularCurve_LaurentCoeff
-import Definitions.FLT.Def_ModularCurve_QExpansionDiff
-import Definitions.FLT.Def_AlgebraicCurve_Repartitions
-import Definitions.FLT.Def_ModularCurve_ComplexPlaceDictionaryOf
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Data.Int.Star
 
+import Theorems.FLT.Thm_AlgebraicCurve_Place_exists_forall_ord_eq_finset
 import Theorems.FLT.Thm_ModularCurve_exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange_qExpFunctionFieldC
 import Theorems.FLT.Thm_UpperHalfPlane_qExpansion_coeff_mul_width
-import Theorems.FLT.Thm_AlgebraicCurve_Place_exists_forall_ord_eq_finset
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

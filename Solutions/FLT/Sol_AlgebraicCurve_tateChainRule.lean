@@ -1,16 +1,6 @@
-import Mathlib
-import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
-import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
-import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
-import Definitions.FLT.Def_ModularCurve_CanonicalDivisor
-import Definitions.FLT.Def_ModularCurve_CanonicalDivisorUniformizer
-import Definitions.FLT.Def_AlgebraicCurve_Repartitions
-import Definitions.FLT.Def_AlgebraicCurve_AdelicIndex
-import Definitions.FLT.Def_AlgebraicCurve_CanonicalDivisor
-import Definitions.FLT.Def_AlgebraicCurve_LocalResidue
-import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
-import Definitions.FLT.Def_DedekindDomain_AdicValuation_InlineSpecific
-import Definitions.FLT.Def_AlgebraicCurve_PlaceCompletion
+import Mathlib.Algebra.GroupWithZero.Submonoid.CancelMulZero
+import Mathlib.Algebra.Lie.OfAssociative
+
 import Definitions.FLT.Def_AlgebraicCurve_TateResidueCurrency
 import Definitions.FLT.Def_P2M_Util
 
@@ -84,16 +74,12 @@ end Multiplicative
 namespace NumberField
 p2m_export "NumberField" "mk"
 end NumberField
-namespace Pointwise
-end Pointwise
 namespace Polynomial
 p2m_export "Polynomial" "coe_one algebraMap_eq unique ext_iff toSubring map comp coe_mul coe_sub coe_smul algebraMap_apply ext ring"
 end Polynomial
 namespace Submodule
 p2m_export "Submodule" "quotEquivOfEq inclusion mem_sup_right coe_smul smul_mem' mk smul_mem coe_mem Quotient.mk span restrictScalars projectionOnto_apply_left restrictScalars_top mem_closure_iff Quotient.restrictScalarsEquiv mem_comap mem_top Quotient.equiv mem_span_singleton mkQ map_mono map_smul' equivMapOfInjective zero quotientQuotientEquivQuotient coe_eq_zero range_subtype Quotient.mk_surjective restrictScalars_mono map coe_mk exists_isCompl projectionOnto finiteDimensional_of_le smul_def restrictScalarsEquiv ext ker_mkQ comap finiteDimensional_sup liftQ mem_sup_left smul restrictScalars_mem"
 end Submodule
-namespace Topology
-end Topology
 namespace WithZero
 p2m_export "WithZero" "coe_one map coe_mul exp_eq_coe_ofAdd coe exp_ne_zero exp exp_zero exp_le_exp"
 end WithZero
@@ -482,19 +468,6 @@ namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver HasCanonicalDivisor HasCanonicalLocalResidueKStar kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff kaehlerPullback"
 p2m_open "AlgebraicCurve"
 
-section NoGoEngine
-
-variable {K F : Type*} [Field K] [Field F] [Algebra K F]
-variable {E : Type*} [Field E] [Algebra K E] [Algebra E F] [IsScalarTower K E F]
-variable [Algebra.IsIntegral E F]
-variable [HasCanonicalLocalResidueKStar K E] [HasCanonicalLocalResidueKStar K F]
-
-namespace FiberKaehlerLocalDatum
-
-end FiberKaehlerLocalDatum
-
-end NoGoEngine
-
 section CorrectedCarrier
 
 variable (K F : Type*) [Field K] [Field F] [Algebra K F]
@@ -514,12 +487,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4gRRTate.KwF4gRRTateChainRule"
-p2m_open "ModularCurve"
-
-p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve Polynomial P2MW.S_AlgebraicCurve_tateChainRule.Polynomial IntermediateField P2MW.S_AlgebraicCurve_tateChainRule.IntermediateField"
-
-attribute [local instance 2000] RatFunc.instAlgebraOfPolynomial
-
 end ModularCurve
 end
 end

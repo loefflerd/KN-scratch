@@ -1,10 +1,7 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_X0
-import Definitions.FLT.Def_ModularCurve_JqCoeff
 import Definitions.FLT.Def_ModularCurve_PrimCosetReps
 import Definitions.FLT.Def_ModularForm_HeckeOperator
-import Theorems.FLT.Thm_ModularCurve_ModularPolynomialData_eval_E4_cube_div_discriminant_smul_eq_zero
 import Theorems.FLT.Thm_Matrix_SpecialLinearGroup_exists_eq_mul_diagonal_mul_of_gcd_eq_one
+import Theorems.FLT.Thm_ModularCurve_ModularPolynomialData_eval_E4_cube_div_discriminant_smul_eq_zero
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

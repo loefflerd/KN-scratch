@@ -1,10 +1,9 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_X1
-import Definitions.FLT.Def_ModularCurve_JqCoeff
+import Mathlib.Data.Finset.Functor
+
 import Definitions.FLT.Def_ModularCurve_X0ModL
-import Theorems.FLT.Thm_ModularCurve_transcendental_jqModC
-import Theorems.FLT.Thm_ModularCurve_jqModC_mem_intFormRatiosC
 import Theorems.FLT.Thm_ModularCurve_JOneES_exists_transcendental_finiteDimensional_laurentBaseChange
+import Theorems.FLT.Thm_ModularCurve_jqModC_mem_intFormRatiosC
+import Theorems.FLT.Thm_ModularCurve_transcendental_jqModC
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

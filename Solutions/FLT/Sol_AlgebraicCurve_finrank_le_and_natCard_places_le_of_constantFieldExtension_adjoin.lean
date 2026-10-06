@@ -1,10 +1,8 @@
-import Mathlib
-import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
-import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
+import Mathlib.Algebra.Lie.OfAssociative
+import Mathlib.RingTheory.PicardGroup
+
+import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
 import Theorems.FLT.Thm_AlgebraicCurve_Place_exists_comap_algebraMap_eq_of_constantFieldExtension
-import Theorems.FLT.Thm_AlgebraicCurve_linearIndependent_of_constantFieldExtension
-import Theorems.FLT.Thm_AlgebraicCurve_Place_exists_toValuationSubring_eq_comap_ringHom
-import Theorems.FLT.Thm_P2M_Dup_AlgebraicCurve_Place_mem_iff_ord_nonneg
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

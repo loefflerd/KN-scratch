@@ -1,7 +1,8 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_EMD
-import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Data.Rat.Star
+
 import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
+import Definitions.FLT.Def_ModularCurve_EMD
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

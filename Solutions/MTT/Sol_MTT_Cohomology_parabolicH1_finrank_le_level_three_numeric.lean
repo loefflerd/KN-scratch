@@ -1,8 +1,15 @@
-import Mathlib
-import Definitions.MTT.Def_MTT_NormalizedParabolicCocycles
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Analysis.CStarAlgebra.Classes
+import Mathlib.Data.Int.Star
+import Mathlib.LinearAlgebra.FreeModule.PID
+import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.RingTheory.MvPolynomial.IrreducibleQuadratic
+import Mathlib.RingTheory.RootsOfUnity.Complex
+import Mathlib.RingTheory.SimpleRing.Principal
+
 import Definitions.MTT.Def_MTT_LevelOnePeriodRelations
-import Theorems.MTT.Thm_MTT_Cohomology_normalizedParabolic_finrank
 import Theorems.FLT.Thm_CongruenceSubgroup_closure_T_U_neg_one_eq_Gamma0_three
+import Theorems.MTT.Thm_MTT_Cohomology_normalizedParabolic_finrank
 
 noncomputable section
 

@@ -1,4 +1,9 @@
-import Mathlib
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Analysis.CStarAlgebra.Classes
+import Mathlib.Analysis.Complex.Polynomial.Basic
+import Mathlib.NumberTheory.DirichletCharacter.Orthogonality
+import Mathlib.RingTheory.RootsOfUnity.AlgebraicallyClosed
+
 import Definitions.FLT.Def_ModularCurve_IgusaFunctionFieldX1
 import Theorems.FLT.Thm_ModularForm_exists_weightOne_eisenstein_qCoeff_eq_of_isPrimitive_of_odd
 import Definitions.FLT.Def_P2M_Util

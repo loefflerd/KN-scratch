@@ -1,5 +1,8 @@
-import Mathlib
-import Definitions.MTT.Def_MTT_NormalizedParabolicCocycles
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Analysis.CStarAlgebra.Classes
+import Mathlib.Data.Int.Star
+import Mathlib.RingTheory.MvPolynomial.IrreducibleQuadratic
+
 import Theorems.MTT.Thm_MTT_Cohomology_normalizedParabolic_finrank
 
 /-! # A six-coset Schreier computation for Gamma0(4)

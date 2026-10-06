@@ -1,6 +1,3 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_X1
-import Definitions.FLT.Def_CohCarrier_Level
 import Theorems.FLT.Thm_ModularForm_exists_gamma1_weight_four_isIntegralQExp_partialDivisorSum_slash_eq
 import Definitions.FLT.Def_P2M_Util
 

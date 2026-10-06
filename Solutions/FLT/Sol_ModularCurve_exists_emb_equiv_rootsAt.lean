@@ -1,7 +1,9 @@
-import Mathlib
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
+
 import Definitions.FLT.Def_ModularCurve_EMD
 import Definitions.FLT.Def_ModularCurve_TatePoint
-import Definitions.FLT.Def_ModularCurve_QAdicPlace
 import Theorems.FLT.Thm_ModularCurve_adjoin_jBar_jNBar_eq_top
 import Theorems.FLT.Thm_ModularCurve_exists_algHom_of_isRoot
 import Definitions.FLT.Def_P2M_Util

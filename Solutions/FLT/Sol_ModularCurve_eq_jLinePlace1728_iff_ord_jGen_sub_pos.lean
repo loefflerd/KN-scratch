@@ -1,11 +1,6 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_JLinePlaces
-import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
-import Definitions.FLT.Def_ModularCurve_GenusNumerics
-import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaceInfty
 import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaceClassification
+import Definitions.FLT.Def_ModularCurve_JLinePlaces
 import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_ord_X_sub_C
-import Theorems.FLT.Thm_P2M_Dup_AlgebraicCurve_RationalFunctionField_placeOfPoint_ne_placeInfty
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

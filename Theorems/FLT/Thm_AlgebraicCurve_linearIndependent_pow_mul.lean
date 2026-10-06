@@ -1,10 +1,5 @@
-import Mathlib
-import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
-import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
-import Definitions.FLT.Def_AlgebraicCurve_Repartitions
-import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
-import Definitions.FLT.Def_AlgebraicCurve_AdelicIndex
-import Definitions.FLT.Def_AlgebraicCurve_PoleDivisorPackage
+import Mathlib.Algebra.Algebra.Defs
+import Mathlib.LinearAlgebra.LinearIndependent.Defs
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000

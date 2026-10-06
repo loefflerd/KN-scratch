@@ -1,10 +1,6 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_ArithmeticGalois
-import Definitions.FLT.Def_AlgebraicCurve_CanonicalDivisor
-import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
-import Theorems.FLT.Thm_ModularCurve_isCurveOver_modularFunctionFieldBar
-import Theorems.FLT.Thm_ModularCurve_essFiniteType_modularFunctionFieldBar
 import Theorems.FLT.Thm_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver
+import Theorems.FLT.Thm_ModularCurve_essFiniteType_modularFunctionFieldBar
+import Theorems.FLT.Thm_ModularCurve_isCurveOver_modularFunctionFieldBar
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

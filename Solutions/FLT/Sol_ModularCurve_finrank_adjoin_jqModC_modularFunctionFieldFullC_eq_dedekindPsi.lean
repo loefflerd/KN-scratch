@@ -1,9 +1,15 @@
-import Mathlib
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Data.Int.Star
+import Mathlib.FieldTheory.Relrank
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
+
 import Definitions.FLT.Def_ModularCurve_X0ModL
-import Theorems.FLT.Thm_ModularCurve_finrank_adjoin_jqNModC_eq_dedekindPsi_of_socket
-import Theorems.FLT.Thm_ModularCurve_StarBank_starBank
-import Theorems.FLT.Thm_ModularCurve_jqNModC_prime_not_mem_adjoin_of_charZero
 import Theorems.FLT.Thm_ModularCurve_ModularPolynomialData_eval_jqNModC_mul_eq_zero
+import Theorems.FLT.Thm_ModularCurve_StarBank_starBank
+import Theorems.FLT.Thm_ModularCurve_finrank_adjoin_jqNModC_eq_dedekindPsi_of_socket
+import Theorems.FLT.Thm_ModularCurve_jqNModC_prime_not_mem_adjoin_of_charZero
 import Theorems.FLT.Thm_ModularCurve_nonempty_modularPolynomialData
 import Definitions.FLT.Def_P2M_Util
 

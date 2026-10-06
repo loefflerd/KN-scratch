@@ -1,4 +1,5 @@
-import Mathlib
+import Mathlib.Analysis.LocallyConvex.AbsConvexOpen
+
 import Definitions.FLT.Def_CuspForm_HeckeAlgebra
 import Definitions.FLT.Def_HeckeGalois_EichlerShimura
 

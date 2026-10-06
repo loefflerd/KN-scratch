@@ -1,7 +1,4 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_TateFormal
 import Definitions.FLT.Def_ModularCurve_ModularUnit
-import Definitions.FLT.Def_ModularCurve_QExpansionDiff
 import Theorems.FLT.Thm_ModularCurve_eisenstein4_mul_thetaL_delta_sub_eq_eisenstein6_mul_delta
 import Theorems.FLT.Thm_ModularCurve_theta_mul
 import Definitions.FLT.Def_P2M_Util

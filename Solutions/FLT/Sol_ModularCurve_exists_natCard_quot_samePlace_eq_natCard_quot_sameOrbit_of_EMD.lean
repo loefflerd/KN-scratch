@@ -1,6 +1,4 @@
-import Mathlib
 import Definitions.FLT.Def_ModularCurve_EMD
-import Definitions.FLT.Def_ModularCurve_GenusNumerics
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

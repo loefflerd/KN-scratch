@@ -42,8 +42,6 @@ perl -0pi -e 's/^(noncomputable )?section (.*)\n+end \2\n+//mg' -- "${files[@]}"
 perl -0pi -e 's/^(noncomputable )?section\n+end\n+//mg' -- "${files[@]}" || exit
 perl -0pi -e 's/^namespace (.*)\n+end \1\n+//mg' -- "${files[@]}" || exit # dangerous
 
-
-
 # Remove set_option lines which are on by default anyway
 perl -0pi -e 's/^set_option autoImplicit false\n+//mg' -- "${files[@]}" || exit
 

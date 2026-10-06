@@ -1,12 +1,10 @@
-import Mathlib
-import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
-import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
-import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
-import Definitions.FLT.Def_AlgebraicCurve_FrobeniusEndo
+import Mathlib.Data.Finsupp.Pointwise
+
 import Definitions.FLT.Def_AlgebraicCurve_FrobeniusEndoPic0
-import Definitions.FLT.Def_ModularCurve_JqCoeff
-import Definitions.FLT.Def_ModularCurve_FibrePoly
+import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
+import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
 import Definitions.FLT.Def_HeckeGalois_EichlerShimura
+import Definitions.FLT.Def_ModularCurve_KroneckerTransport
 import Theorems.FLT.Thm_ModularCurve_frobenius_identity_geom_unconditional
 
 set_option maxHeartbeats 4000000

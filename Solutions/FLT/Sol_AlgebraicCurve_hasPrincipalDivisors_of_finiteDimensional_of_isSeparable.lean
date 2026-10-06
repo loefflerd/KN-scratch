@@ -1,9 +1,13 @@
-import Mathlib
-import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
-import Theorems.FLT.Thm_AlgebraicCurve_finite_setOf_ord_ne_zero_of_finiteDimensional
-import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_hasPrincipalDivisors
-import Theorems.FLT.Thm_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg_fiberOver
+import Mathlib.Analysis.Normed.Ring.Lemmas
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.Norm.Transitivity
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
+
 import Theorems.FLT.Thm_AlgebraicCurve_Divisor_degree_eq_sum
+import Theorems.FLT.Thm_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg_fiberOver
+import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_hasPrincipalDivisors
+import Theorems.FLT.Thm_AlgebraicCurve_finite_setOf_ord_ne_zero_of_finiteDimensional
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

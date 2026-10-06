@@ -1,7 +1,6 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_MazurStepThreeInputs
-import Definitions.FLT.Def_ModularCurve_GenusNumerics
-import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Data.Int.Star
+
 import Theorems.FLT.Thm_ModularCurve_isCurveOver_modularFunctionFieldBar
 import Theorems.FLT.Thm_ModularCurve_sum_ord_jBar_sub_eq_dedekindPsi
 import Definitions.FLT.Def_P2M_Util

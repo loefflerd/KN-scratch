@@ -1,10 +1,6 @@
-import Mathlib
-import Definitions.FLT.Def_HeckeEis_BinaryFormRep
-import Definitions.FLT.Def_Gamma0CoeffCohomology
-import Definitions.FLT.Def_HeckeEis_EichlerIntegral
-import Theorems.FLT.Thm_HeckeEis_exists_isEichlerIntegral_isParabolicCocycle
-import Theorems.FLT.Thm_HeckeEis_eichlerShimuraMap_eq_coeffH1parMk
 import Theorems.FLT.Thm_HeckeEis_IsEichlerIntegral_smul
+import Theorems.FLT.Thm_HeckeEis_eichlerShimuraMap_eq_coeffH1parMk
+import Theorems.FLT.Thm_HeckeEis_exists_isEichlerIntegral_isParabolicCocycle
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

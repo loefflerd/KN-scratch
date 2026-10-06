@@ -1,8 +1,12 @@
-import Mathlib
-import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
-import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
-import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
-import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.AlgebraicGeometry.EllipticCurve.Affine.Point
+import Mathlib.Analysis.Normed.Ring.Lemmas
+import Mathlib.Data.Int.Star
+import Mathlib.FieldTheory.PurelyInseparable.Exponent
+import Mathlib.RingTheory.PicardGroup
+import Mathlib.RingTheory.Polynomial.DegreeLT
+import Mathlib.RingTheory.TotallySplit
+
 import Theorems.FLT.Thm_AlgebraicCurve_Place_ord_eq_neg_log_of_valuationSubring_eq
 import Theorems.FLT.Thm_AlgebraicCurve_hasPrincipalDivisors_of_finiteDimensional_ratFunc
 import Definitions.FLT.Def_P2M_Util

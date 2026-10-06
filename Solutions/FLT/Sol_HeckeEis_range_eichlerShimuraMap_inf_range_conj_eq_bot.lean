@@ -1,10 +1,11 @@
-import Mathlib
-import Definitions.FLT.Def_HeckeEis_BinaryFormRep
-import Definitions.FLT.Def_Gamma0CoeffCohomology
-import Definitions.FLT.Def_HeckeEis_EichlerIntegral
-import Theorems.FLT.Thm_HeckeEis_exists_isEichlerIntegral_isParabolicCocycle
-import Theorems.FLT.Thm_HeckeEis_IsEichlerIntegral_slash
+import Mathlib.Algebra.Ring.IsFormallyReal
+import Mathlib.Analysis.Complex.Liouville
+import Mathlib.Data.Int.Star
+import Mathlib.NumberTheory.ModularForms.Bounds
+
 import Theorems.FLT.Thm_Complex_integral_modularFundamentalDomain_eq_boundary_of_hasFDerivAt
+import Theorems.FLT.Thm_HeckeEis_IsEichlerIntegral_slash
+import Theorems.FLT.Thm_HeckeEis_exists_isEichlerIntegral_isParabolicCocycle
 import Theorems.FLT.Thm_ModularCurve_gammaFundamentalSet_boundary_sidePairing_of_slash_eq_add
 import Definitions.FLT.Def_P2M_Util
 

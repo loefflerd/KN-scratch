@@ -1,3 +1,4 @@
+import Mathlib.Data.Int.CardIntervalMod
 import Definitions.FLT.Def_ModularCurve_AtkinLehner
 import Definitions.FLT.Def_ModularCurve_CharLFrobeniusGeomLevel
 import Theorems.FLT.Thm_AlgebraicCurve_Place_exists_ord_mul_eq_order_of_hasRamBound

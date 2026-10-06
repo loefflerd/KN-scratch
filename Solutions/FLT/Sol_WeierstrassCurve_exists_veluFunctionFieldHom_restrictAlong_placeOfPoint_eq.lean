@@ -2,6 +2,7 @@ import Mathlib
 import Definitions.FLT.Def_EllipticCurve_FunctionFieldPullback
 import Definitions.FLT.Def_Isogeny_ConditionalCurrency
 import Definitions.FLT.Def_WeierstrassCurve_GenusOnePlaceGateCentred
+import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
 import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
 import Definitions.FLT.Def_AlgebraicCurve_PlaceEvaluation
 import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
@@ -36,10 +37,9 @@ set_option linter.unusedSimpArgs false
 set_option maxHeartbeats 3200000
 set_option synthInstance.maxHeartbeats 1600000
 
-noncomputable section
+open AlgebraicCurve Place
 
-scoped instance instFactNatPrime2_s13s2c : Fact (Nat.Prime 2) := ⟨Nat.prime_two⟩
-scoped instance instFactNatPrime3_s13s2c : Fact (Nat.Prime 3) := ⟨Nat.prime_three⟩
+noncomputable section
 
 namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine isUnit_Δ Affine.negY Affine.Point.toClass Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ Jacobian a₂ a₆ Affine.Point.some Affine.Point.some.injEq Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ map_a₃ Affine.pointMapOfPushforward Affine.IsogenyEndDatum Affine.GenusOnePlaceGate Affine.placeOfPoint Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred Affine.hasPrincipalDivisors_functionField veluXNum veluYNum veluY veluX_singleton veluY_singleton IsOddVeluSet veluX veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ oddOrderSummingSet mem_oddOrderSummingSet velu_map_equation_of_oddOrderSummingSet"
@@ -1651,45 +1651,11 @@ p2m_open "IsDedekindDomain P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_r
 
 namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "Pic0.pushforwardAlongHom algebraAlong isScalarTower_along isIntegral_along FiniteAlong NormFormulaAlong finrankAlong Place.ramificationIndexAlong SeparableAlong Place Place.ext Place.coe_algebraMap Place.ord Place.ord_zero Divisor Divisor.degree HasPrincipalDivisors Pic0 Place.ofHeightOneSpectrum Place.ofHeightOneSpectrum_toValuationSubring HasPrincipalDivisors.exists_divisor Place.toValuationSubring Place.ofHeightOneSpectrum_injective Place.ord_ofHeightOneSpectrum_ne_zero_iff normFormulaAlong"
-p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg~Place.ord_algebraMap"
 
 namespace Place
 p2m_export "AlgebraicCurve.Place" "restrictAlong ramificationIndexAlong ord_restrictAlong ramificationIndex_pos ext coe_algebraMap ResidueField deg adicValuation adicValuation_ne_zero adicValuation_coe_eq_one_iff ord ord_zero ord_mul ord_inv ord_coe_irreducible ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow smulRingEquiv smul_toValuationSubring ord_smul ofHeightOneSpectrum ofHeightOneSpectrum_toValuationSubring ne_top' algebraMap_mem' toValuationSubring isPrincipalIdealRing' mk mem_of_eval_monic_eq_zero mem_maximalIdeal_iff_ord_pos IsRational algebraMap_residueField_injective residueInv_algebraMap evalAt evalAt_of_mem algebraMap_evalAt evalAt_one ord_eq_zero_iff_adicValuation_eq_one ofHeightOneSpectrum_injective ord_ofHeightOneSpectrum_ne_zero_iff"
-p2m_open "AlgebraicCurve.Place~ord_nonneg_of_mem~mem_of_ord_nonneg~mem_iff_ord_nonneg~ord_algebraMap"
-
-section SinglePlace
-
-variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
-
-theorem ord_nonneg_of_mem {f : F} (hf : f ∈ v.toValuationSubring) : 0 ≤ v.ord f := by
-  rcases eq_or_ne f 0 with rfl | hf0
-  · simp
-  obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible v.toValuationSubring
-  obtain ⟨n, u, hu⟩ :=
-    IsDiscreteValuationRing.eq_unit_mul_pow_irreducible
-      (x := (⟨f, hf⟩ : v.toValuationSubring)) (by simpa [Subtype.ext_iff] using hf0) hπ
-  have hcoe : f = ((u : v.toValuationSubring) : F) * ((π : F) ^ (n : ℤ)) := by
-    have h := congrArg (Subtype.val) hu
-    push_cast at h
-    rw [zpow_natCast]
-    exact h
-  rw [hcoe, v.ord_unit_smul_zpow u hπ (n : ℤ)]
-  exact Int.natCast_nonneg n
-
-theorem mem_of_ord_nonneg {f : F} (hf : f ≠ 0) (h : 0 ≤ v.ord f) :
-    f ∈ v.toValuationSubring := by
-  obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible v.toValuationSubring
-  obtain ⟨u, hu⟩ := v.exists_unit_mul_zpow hf hπ
-  rw [hu, show v.ord f = (((v.ord f).toNat : ℕ) : ℤ) from (Int.toNat_of_nonneg h).symm,
-    zpow_natCast]
-  exact mul_mem (u : v.toValuationSubring).2 (pow_mem (π : v.toValuationSubring).2 _)
-
-theorem mem_iff_ord_nonneg {f : F} (hf : f ≠ 0) :
-    f ∈ v.toValuationSubring ↔ 0 ≤ v.ord f :=
-  ⟨AlgebraicCurve.Place.ord_nonneg_of_mem v, AlgebraicCurve.Place.mem_of_ord_nonneg v hf⟩
-
-end SinglePlace
 end Place
+
 end AlgebraicCurve
 end
 p2m_reactivate "P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.WeierstrassCurve P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.AlgebraicCurve P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.WeierstrassCurve.Affine.Point"
@@ -2060,8 +2026,8 @@ private theorem ord_algebraMap (c : K) : v.ord (algebraMap K F c) = 0 := by
   have hmem' : (algebraMap K F c)⁻¹ ∈ v.toValuationSubring := by
     rw [← map_inv₀]
     exact v.algebraMap_mem' c⁻¹
-  have h1 := AlgebraicCurve.Place.ord_nonneg_of_mem v hmem
-  have h2 := AlgebraicCurve.Place.ord_nonneg_of_mem v hmem'
+  have h1 := ord_nonneg_of_mem v hmem
+  have h2 := ord_nonneg_of_mem v hmem'
   rw [v.ord_inv] at h2
   omega
 
@@ -3023,7 +2989,7 @@ theorem ord_placeOfEquation_ne_zero_iff [IsDedekindDomain W.CoordinateRing] {x y
 theorem ord_placeOfEquation_nonneg [IsDedekindDomain W.CoordinateRing] {x y : F}
     (h : W.Equation x y) (r : W.CoordinateRing) :
     0 ≤ (placeOfEquation h).ord (algebraMap W.CoordinateRing W.FunctionField r) :=
-  AlgebraicCurve.Place.ord_nonneg_of_mem (placeOfEquation h) (isFinitePlace_placeOfEquation h r)
+  ord_nonneg_of_mem (placeOfEquation h) (isFinitePlace_placeOfEquation h r)
 
 theorem ord_placeOfEquation_pos_iff [IsDedekindDomain W.CoordinateRing] {x y : F}
     (h : W.Equation x y) {r : W.CoordinateRing} (hr : r ≠ 0) :
@@ -3181,7 +3147,7 @@ private theorem _root_.AlgebraicCurve.Place.ord_sub_evalAt_pos (hrat : v.IsRatio
         IsScalarTower.algebraMap_apply K v.toValuationSubring v.ResidueField,
         IsLocalRing.ResidueField.algebraMap_eq]
     exact (map_eq_zero_iff _ (algebraMap K v.ResidueField).injective).mp hres
-  · have hnonneg := AlgebraicCurve.Place.ord_nonneg_of_mem v hmem
+  · have hnonneg := ord_nonneg_of_mem v hmem
     omega
 
 p2m_export "AlgebraicCurve.Place" "ord_sub_evalAt_pos"
@@ -3729,7 +3695,7 @@ theorem eq_algebraMap_of_forall_ord_nonneg (v₀ : Place K F) (hrat : v₀.IsRat
   have htne : t ≠ 0 := sub_ne_zero.mpr hne
   have hzero : 0 < v₀.ord t := v₀.ord_sub_evalAt_pos hrat hg₀ htne
   have hpole : ∀ v : Place K F, 0 ≤ v.ord t := fun v =>
-    AlgebraicCurve.Place.ord_nonneg_of_mem v (sub_mem (AlgebraicCurve.Place.mem_of_ord_nonneg v hg (hord v)) (v.algebraMap_mem' _))
+    ord_nonneg_of_mem v (sub_mem (AlgebraicCurve.Place.mem_of_ord_nonneg v hg (hord v)) (v.algebraMap_mem' _))
   obtain ⟨D, hD, hdeg0⟩ := HasPrincipalDivisors.exists_divisor (K := K) t htne
   have hDpos : 0 < D v₀ := by rw [hD v₀]; exact hzero
   have hDnonneg : ∀ v, 0 ≤ D v := fun v => by rw [hD v]; exact hpole v
@@ -4599,7 +4565,7 @@ theorem veluDeficitFun_mem_of_not_isFinitePlace (hv : ¬ IsFinitePlace v)
 theorem ord_veluDeficitFun_nonneg_of_not_isFinitePlace (hv : ¬ IsFinitePlace v)
     {S : Finset (F × F)} (hS : ∀ A ∈ S, W.Equation A.1 A.2) :
     0 ≤ v.ord (W.veluDeficitFun S) :=
-  AlgebraicCurve.Place.ord_nonneg_of_mem v (veluDeficitFun_mem_of_not_isFinitePlace hv hS)
+  ord_nonneg_of_mem v (veluDeficitFun_mem_of_not_isFinitePlace hv hS)
 
 end Engine
 end WeierstrassCurve.Affine
@@ -5785,7 +5751,7 @@ theorem IsFinitePlace.ord_nonneg_veluDeficitFun_of_forall_XClass_notMem_centre
     {v : Place F W.FunctionField} (hv : IsFinitePlace v) {S : Finset (F × F)}
     (hS : ∀ A ∈ S, XClass W A.1 ∉ hv.centre) :
     0 ≤ v.ord (W.veluDeficitFun S) :=
-  AlgebraicCurve.Place.ord_nonneg_of_mem v (hv.veluDeficitFun_mem_of_forall_XClass_notMem_centre hS)
+  ord_nonneg_of_mem v (hv.veluDeficitFun_mem_of_forall_XClass_notMem_centre hS)
 
 end WeierstrassCurve.Affine
 p2m_reactivate "P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.WeierstrassCurve P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.AlgebraicCurve P2MW.S_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.WeierstrassCurve.Affine.Point"
@@ -7265,7 +7231,7 @@ theorem addXFun_negY_notMem_of_XClass_mem_centre {a b : F}
       have := (hv.mem_centre_iff_ord_ne_zero (XClass_ne_zero (W' := W) a)).mp hX
       rwa [algebraMap_XClass_eq] at this
     have h2 : 0 ≤ v.ord δX := by
-      rw [hδX, ← algebraMap_XClass_eq]; exact AlgebraicCurve.Place.ord_nonneg_of_mem v (hv (XClass W a))
+      rw [hδX, ← algebraMap_XClass_eq]; exact ord_nonneg_of_mem v (hv (XClass W a))
     omega
   have hδYord : v.ord δY = 0 := by
     have h1 : ¬ v.ord δY ≠ 0 := by

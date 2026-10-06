@@ -1,7 +1,6 @@
-import Mathlib
 import Definitions.FLT.Def_ModularCurve_EMD
-import Theorems.FLT.Thm_WeierstrassCurve_variableChange_smul_eq_self_iff_of_c4_ne_zero_of_c6_ne_zero
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_Point_vcInvFun_neg_heq_neg
+import Theorems.FLT.Thm_WeierstrassCurve_variableChange_smul_eq_self_iff_of_c4_ne_zero_of_c6_ne_zero
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

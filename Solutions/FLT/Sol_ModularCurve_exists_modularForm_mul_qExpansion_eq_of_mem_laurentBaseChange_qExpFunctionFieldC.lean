@@ -1,6 +1,5 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_X1
-import Definitions.FLT.Def_ModularCurve_LaurentCoeff
+import Mathlib.Analysis.CStarAlgebra.Classes
+
 import Theorems.FLT.Thm_ModularCurve_laurentBaseChange_qExpFunctionFieldC_eq
 import Definitions.FLT.Def_P2M_Util
 
