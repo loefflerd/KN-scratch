@@ -12,7 +12,7 @@ namespace WeierstrassCurve
 
 open WeierstrassCurve.Affine
 
-variable {F k : Type} [Field F] [Field k] (f : F →+* k) {W₀ : WeierstrassCurve F}
+variable {F k : Type*} [Field F] [Field k] (f : F →+* k) {W₀ : WeierstrassCurve F}
 
 private theorem some_congr {V : Affine k} {x₁ y₁ x₂ y₂ : k} (hx : x₁ = x₂)
     (hy : y₁ = y₂) (h₁ : V.Nonsingular x₁ y₁) (h₂ : V.Nonsingular x₂ y₂) :

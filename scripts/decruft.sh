@@ -35,10 +35,14 @@ perl -0pi -e 's/^omit .*\n( .*\n)*\n*end/end/mg' -- "${files[@]}" || exit
 perl -0pi -e 's/^set_option .*\n+(end.*\n)/$1/mg' -- "${files[@]}" || exit
 perl -0pi -e 's/^p2m_reactivate.*\n+(end.*\n)/$1/mg' -- "${files[@]}" || exit
 perl -0pi -e 's/^p2m_open.*\n+(end.*\n)/$1/mg' -- "${files[@]}" || exit
+perl -0pi -e 's/^universe .*\n+(end.*\n)/$1/mg' -- "${files[@]}" || exit
 
 # Close up empty sections (named or unnamed)
 perl -0pi -e 's/^(noncomputable )?section (.*)\n+end \2\n+//mg' -- "${files[@]}" || exit
 perl -0pi -e 's/^(noncomputable )?section\n+end\n+//mg' -- "${files[@]}" || exit
+perl -0pi -e 's/^namespace (.*)\n+end \1\n+//mg' -- "${files[@]}" || exit # dangerous
+
+
 
 # Remove set_option lines which are on by default anyway
 perl -0pi -e 's/^set_option autoImplicit false\n+//mg' -- "${files[@]}" || exit

@@ -17,6 +17,8 @@ import Mathlib.RingTheory.Algebraic.Basic
 import Mathlib.RingTheory.PrincipalIdealDomain
 import Definitions.FLT.Def_P2M_Util
 
+open AlgebraicCurve Place
+
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
@@ -36,29 +38,29 @@ section General
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 
-theorem ord_nonneg_of_mem (v : Place K F) {f : F} (hf : f ∈ v.toValuationSubring) :
-    0 ≤ v.ord f := by
-  rcases eq_or_ne f 0 with rfl | hf0
-  · simp
-  obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible v.toValuationSubring
-  obtain ⟨n, u, hu⟩ :=
-    IsDiscreteValuationRing.eq_unit_mul_pow_irreducible
-      (x := (⟨f, hf⟩ : v.toValuationSubring)) (by simpa [Subtype.ext_iff] using hf0) hπ
-  have hcoe : f = ((u : v.toValuationSubring) : F) * ((π : F) ^ (n : ℤ)) := by
-    have h := congrArg (Subtype.val) hu
-    push_cast at h
-    rw [zpow_natCast]
-    exact h
-  rw [hcoe, v.ord_unit_smul_zpow u hπ (n : ℤ)]
-  exact Int.natCast_nonneg n
+--XXtheorem ord_nonneg_of_mem (v : Place K F) {f : F} (hf : f ∈ v.toValuationSubring) :
+--XX    0 ≤ v.ord f := by
+--XX  rcases eq_or_ne f 0 with rfl | hf0
+--XX  · simp
+--XX  obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible v.toValuationSubring
+--XX  obtain ⟨n, u, hu⟩ :=
+--XX    IsDiscreteValuationRing.eq_unit_mul_pow_irreducible
+--XX      (x := (⟨f, hf⟩ : v.toValuationSubring)) (by simpa [Subtype.ext_iff] using hf0) hπ
+--XX  have hcoe : f = ((u : v.toValuationSubring) : F) * ((π : F) ^ (n : ℤ)) := by
+--XX    have h := congrArg (Subtype.val) hu
+--XX    push_cast at h
+--XX    rw [zpow_natCast]
+--XX    exact h
+--XX  rw [hcoe, v.ord_unit_smul_zpow u hπ (n : ℤ)]
+--XX  exact Int.natCast_nonneg n
 
-theorem mem_of_ord_nonneg (w : Place K F) {f : F} (hf : f ≠ 0) (h : 0 ≤ w.ord f) :
-    f ∈ w.toValuationSubring := by
-  obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible w.toValuationSubring
-  obtain ⟨u, hu⟩ := w.exists_unit_mul_zpow hf hπ
-  rw [hu, show w.ord f = (((w.ord f).toNat : ℕ) : ℤ) from (Int.toNat_of_nonneg h).symm,
-    zpow_natCast]
-  exact mul_mem (u : w.toValuationSubring).2 (pow_mem (π : w.toValuationSubring).2 _)
+--XXtheorem mem_of_ord_nonneg (w : Place K F) {f : F} (hf : f ≠ 0) (h : 0 ≤ w.ord f) :
+--XX    f ∈ w.toValuationSubring := by
+--XX  obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible w.toValuationSubring
+--XX  obtain ⟨u, hu⟩ := w.exists_unit_mul_zpow hf hπ
+--XX  rw [hu, show w.ord f = (((w.ord f).toNat : ℕ) : ℤ) from (Int.toNat_of_nonneg h).symm,
+--XX    zpow_natCast]
+--XX  exact mul_mem (u : w.toValuationSubring).2 (pow_mem (π : w.toValuationSubring).2 _)
 
 theorem mem_of_ord_sub_pos (w : Place K F) {f : F} {c : K}
     (h : 0 < w.ord (f - algebraMap K F c)) : f ∈ w.toValuationSubring := by

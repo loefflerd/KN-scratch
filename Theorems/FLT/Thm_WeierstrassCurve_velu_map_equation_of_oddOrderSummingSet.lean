@@ -1,71 +1,39 @@
 module
-
 public import Mathlib.FieldTheory.IsAlgClosed.Basic
 public import Definitions.FLT.Def_WeierstrassCurve_OddOrderSummingSet
 public import Definitions.FLT.Def_WeierstrassCurve_VeluPointMap
 
 import Mathlib.Algebra.Algebra.IsSimpleRing
-import Mathlib.Algebra.GroupWithZero.Submonoid.CancelMulZero
 import Mathlib.Algebra.Order.Ring.Star
 import Mathlib.AlgebraicGeometry.EllipticCurve.DivisionPolynomial.Degree
 import Mathlib.Analysis.Normed.Ring.Lemmas
 import Mathlib.Data.Int.Star
 import Mathlib.FieldTheory.PurelyInseparable.Exponent
-import Mathlib.NumberTheory.ModularForms.Basic
-import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
-import Mathlib.NumberTheory.RatFunc.Ostrowski
 import Mathlib.Order.CompletePartialOrder
-import Mathlib.RingTheory.DedekindDomain.Factorization
-import Mathlib.RingTheory.Henselian
-import Mathlib.RingTheory.LaurentSeries
 import Mathlib.RingTheory.LocalProperties.Reduced
 import Mathlib.RingTheory.Norm.Transitivity
 import Mathlib.RingTheory.PicardGroup
-import Mathlib.RingTheory.RamificationInertia.Basic
-import Mathlib.RingTheory.RegularLocalRing.Defs
-import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.RingTheory.TotallySplit
-import Mathlib.RingTheory.Valuation.Discrete.IsDiscreteValuationRing
-import Mathlib.RingTheory.Valuation.LocalSubring
-import Mathlib.Tactic.NormNum.Prime
-import Definitions.FLT.Def_P2M_Util
+
+import Definitions.FLT.Def_AlgebraicCurve_PlaceEvaluation
+import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
+import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaceClassification
+import Definitions.FLT.Def_WeierstrassCurve_FunctionFieldQuadratic
+import Definitions.FLT.Def_WeierstrassCurve_RatPointHom
 
 section privateSection
 
+open Polynomial IsDedekindDomain WithZero IsLocalRing
+
+open scoped Polynomial.Bivariate
+
 set_option maxHeartbeats 6400000
-set_option synthInstance.maxHeartbeats 400000
+
 set_option backward.isDefEq.respectTransparency.types false
 
-namespace P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet
-
 section
-
-open Matrix CongruenceSubgroup Subgroup ModularForm UpperHalfPlane
-open scoped MatrixGroups ModularForm Manifold Pointwise
-
-namespace FLT
-namespace AnalyticCore
-
-namespace Gamma0Three
-
-scoped instance fact_prime_three_twoGenSweep : Fact (Nat.Prime 3) := ⟨by norm_num⟩
-
-end Gamma0Three
-
-end FLT.AnalyticCore
-end
-
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore"
-
-section
-
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.Polynomial"
-
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore"
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq isIntegral_iff Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ Δ' map_a₃ veluXNum veluYNum veluY veluY_empty veluX_singleton veluY_singleton IsOddVeluSet veluX veluX_empty veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ veluQuotient_empty oddOrderSummingSet mem_oddOrderSummingSet"
-p2m_open "WeierstrassCurve"
 
 section PowHelpers
 
@@ -77,455 +45,31 @@ private lemma some_congr {R : Type*} [CommRing R] {V' : Affine R} {x₁ x₂ y�
   subst hx; subst hy; rfl
 
 end PowHelpers
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore"
 
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore"
-
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore"
-
-section RationalPoints
-
-variable {F : Type*} [Field F] {k : Type*} [Field k] (f : F →+* k) {W₀ : WeierstrassCurve F}
-
-def ratPointMap : W₀.toAffine.Point → (W₀.map f).toAffine.Point
-  | .zero => .zero
-  | .some x y h => .some (f x) (f y) ((W₀.toAffine.map_nonsingular f.injective x y).mpr h)
-
-@[scoped simp]
-lemma ratPointMap_zero : ratPointMap f (0 : W₀.toAffine.Point) = 0 :=
-  rfl
-
-lemma ratPointMap_some {x y : F} (h : W₀.toAffine.Nonsingular x y) :
-    ratPointMap f (.some x y h)
-      = .some (f x) (f y) ((W₀.toAffine.map_nonsingular f.injective x y).mpr h) :=
-  rfl
-
-lemma ratPointMap_injective : Function.Injective (ratPointMap f (W₀ := W₀)) := by
-  rintro (_ | ⟨x₁, y₁, h₁⟩) (_ | ⟨x₂, y₂, h₂⟩) h
-  · rfl
-  · exact absurd h.symm (Affine.Point.some_ne_zero _)
-  · exact absurd h (Affine.Point.some_ne_zero _)
-  · rw [ratPointMap_some, ratPointMap_some, Affine.Point.some.injEq] at h
-    exact some_congr (f.injective h.1) (f.injective h.2) _ _
-
-theorem ratPointMap_add [DecidableEq F] [DecidableEq k] (P Q : W₀.toAffine.Point) :
-    ratPointMap f (P + Q) = ratPointMap f P + ratPointMap f Q := by
-  rcases P with _ | ⟨x₁, y₁, h₁⟩ <;> rcases Q with _ | ⟨x₂, y₂, h₂⟩
-  any_goals rfl
-  by_cases hxy : x₁ = x₂ ∧ y₁ = W₀.toAffine.negY x₂ y₂
-  · rw [Affine.Point.add_of_Y_eq hxy.1 hxy.2, ratPointMap_zero, ratPointMap_some,
-      ratPointMap_some,
-      Affine.Point.add_of_Y_eq (congrArg f hxy.1) (by rw [hxy.2, Affine.map_negY])]
-  · have hxy' : ¬(f x₁ = f x₂ ∧ f y₁ = (W₀.map f).toAffine.negY (f x₂) (f y₂)) := by
-      rintro ⟨hx, hy⟩
-      rw [Affine.map_negY] at hy
-      exact hxy ⟨f.injective hx, f.injective hy⟩
-    rw [Affine.Point.add_some hxy, ratPointMap_some, ratPointMap_some, ratPointMap_some,
-      Affine.Point.add_some hxy']
-    exact some_congr (by rw [Affine.map_slope, Affine.map_addX])
-      (by rw [Affine.map_slope, Affine.map_addY]) _ _
-
-@[simps]
-def ratPointHom [DecidableEq F] [DecidableEq k] :
-    W₀.toAffine.Point →+ (W₀.map f).toAffine.Point where
-  toFun := ratPointMap f
-  map_zero' := rfl
-  map_add' := ratPointMap_add f
-
-end RationalPoints
 end WeierstrassCurve
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve"
-
 section
-
-noncomputable section
-
-open IsDedekindDomain WithZero IsLocalRing
-
-namespace AlgebraicCurve
-
-variable (K F : Type*) [Field K] [Field F] [Algebra K F]
-
-structure Place where
-  toValuationSubring : ValuationSubring F
-  algebraMap_mem' : ∀ a : K, algebraMap K F a ∈ toValuationSubring
-  ne_top' : toValuationSubring ≠ ⊤
-  isPrincipalIdealRing' : IsPrincipalIdealRing toValuationSubring
-
-private theorem _root_.ValuationSubring.not_isField_of_ne_top {A : ValuationSubring F} (hA : A ≠ ⊤) :
-    ¬IsField A := by
-  intro hf
-  apply hA
-  refine SetLike.ext fun x => ⟨fun _ => ValuationSubring.mem_top x, fun _ => ?_⟩
-  by_cases hx : x ∈ A
-  · exact hx
-  · exfalso
-    have hx0 : x ≠ 0 := fun h => hx (h ▸ A.zero_mem)
-    have hxi : x⁻¹ ∈ A := (A.mem_or_inv_mem x).resolve_left hx
-    have hxi0 : (⟨x⁻¹, hxi⟩ : A) ≠ 0 := by
-      simp only [ne_eq, Subtype.ext_iff]
-      exact inv_ne_zero hx0
-    obtain ⟨b, hb⟩ := hf.mul_inv_cancel hxi0
-    have hb' : x⁻¹ * (b : F) = 1 := by
-      have h := congrArg (Subtype.val) hb
-      simpa using h
-    have hbx : (b : F) = x := by
-      field_simp at hb'
-      exact hb'
-    exact hx (hbx ▸ b.2)
-
-p2m_alias "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ValuationSubring.not_isField_of_ne_top" "ValuationSubring.not_isField_of_ne_top"
-namespace Place
-
-variable {K F}
-
-theorem toValuationSubring_injective :
-    Function.Injective (toValuationSubring (K := K) (F := F)) := by
-  rintro ⟨a, _, _, _⟩ ⟨b, _, _, _⟩ (rfl : a = b)
-  rfl
-
-@[scoped ext]
-theorem ext {v w : Place K F} (h : v.toValuationSubring = w.toValuationSubring) : v = w :=
-  toValuationSubring_injective h
-
-variable (v : Place K F)
-
-scoped instance : IsPrincipalIdealRing v.toValuationSubring := v.isPrincipalIdealRing'
-
-scoped instance : IsDiscreteValuationRing v.toValuationSubring where
-  not_a_field' := by
-    rw [ne_eq, ← IsLocalRing.isField_iff_maximalIdeal_eq]
-    exact ValuationSubring.not_isField_of_ne_top F v.ne_top'
-
-scoped instance : Algebra K v.toValuationSubring :=
-  ((algebraMap K F).codRestrict v.toValuationSubring.toSubring v.algebraMap_mem').toAlgebra
-
-@[scoped simp]
-theorem coe_algebraMap (a : K) :
-    (algebraMap K v.toValuationSubring a : F) = algebraMap K F a := rfl
-
-scoped instance : IsScalarTower K v.toValuationSubring F :=
-  IsScalarTower.of_algebraMap_eq fun a => (v.coe_algebraMap a).symm
-
-abbrev ResidueField : Type _ := IsLocalRing.ResidueField v.toValuationSubring
-
-def deg : ℕ := Module.finrank K v.ResidueField
-
-def heightOneSpectrum : HeightOneSpectrum v.toValuationSubring :=
-  IsDiscreteValuationRing.maximalIdeal _
-
-@[scoped simp]
-theorem heightOneSpectrum_asIdeal :
-    v.heightOneSpectrum.asIdeal = IsLocalRing.maximalIdeal v.toValuationSubring := rfl
-
-def adicValuation : Valuation F ℤᵐ⁰ := v.heightOneSpectrum.valuation F
-
-theorem adicValuation_ne_zero {f : F} (hf : f ≠ 0) : v.adicValuation f ≠ 0 :=
-  (Valuation.ne_zero_iff _).mpr hf
-
-theorem adicValuation_coe (a : v.toValuationSubring) :
-    v.adicValuation (a : F) = v.heightOneSpectrum.intValuation a := by
-  simpa [adicValuation] using v.heightOneSpectrum.valuation_of_algebraMap (K := F) a
-
-theorem adicValuation_coe_eq_one_iff (a : v.toValuationSubring) :
-    v.adicValuation (a : F) = 1 ↔ IsUnit a := by
-  rw [v.adicValuation_coe, HeightOneSpectrum.intValuation_eq_one_iff, heightOneSpectrum_asIdeal,
-    IsLocalRing.mem_maximalIdeal, mem_nonunits_iff, not_not]
-
-theorem adicValuation_coe_irreducible {π : v.toValuationSubring} (hπ : Irreducible π) :
-    v.adicValuation (π : F) = exp (-1 : ℤ) := by
-  rw [v.adicValuation_coe]
-  exact HeightOneSpectrum.intValuation_singleton _ hπ.ne_zero
-    (by rw [heightOneSpectrum_asIdeal, hπ.maximalIdeal_eq])
-
-def ord (f : F) : ℤ := -(WithZero.log (v.adicValuation f))
-
-@[scoped simp]
-theorem ord_zero : v.ord (0 : F) = 0 := by simp [ord]
-
-@[scoped simp]
-theorem ord_one : v.ord (1 : F) = 0 := by simp [ord]
-
-theorem ord_mul {f g : F} (hf : f ≠ 0) (hg : g ≠ 0) :
-    v.ord (f * g) = v.ord f + v.ord g := by
-  simp only [ord, map_mul]
-  rw [WithZero.log_mul (v.adicValuation_ne_zero hf) (v.adicValuation_ne_zero hg)]
-  ring
-
-theorem ord_inv (f : F) : v.ord f⁻¹ = -v.ord f := by
-  rcases eq_or_ne f 0 with rfl | hf
-  · simp
-  · simp only [ord, map_inv₀, WithZero.log_inv, neg_neg]
-
-theorem ord_coe_unit (u : v.toValuationSubringˣ) :
-    v.ord ((u : v.toValuationSubring) : F) = 0 := by
-  simp [ord, (v.adicValuation_coe_eq_one_iff _).mpr u.isUnit]
-
-theorem ord_coe_irreducible {π : v.toValuationSubring} (hπ : Irreducible π) :
-    v.ord (π : F) = 1 := by
-  simp [ord, v.adicValuation_coe_irreducible hπ]
-
-theorem ord_zpow (f : F) (n : ℤ) : v.ord (f ^ n) = n * v.ord f := by
-  simp only [ord, map_zpow₀, WithZero.log_zpow, smul_eq_mul]
-  ring
-
-theorem ord_unit_smul_zpow (u : v.toValuationSubringˣ) {π : v.toValuationSubring}
-    (hπ : Irreducible π) (n : ℤ) :
-    v.ord (((u : v.toValuationSubring) : F) * ((π : F) ^ n)) = n := by
-  have hπF : (π : F) ≠ 0 := by
-    simpa [ne_eq, ZeroMemClass.coe_eq_zero] using hπ.ne_zero
-  have hu : ((u : v.toValuationSubring) : F) ≠ 0 := by
-    simp [ne_eq, ZeroMemClass.coe_eq_zero]
-  rw [v.ord_mul hu (zpow_ne_zero n hπF), v.ord_coe_unit u, zero_add,
-    v.ord_zpow _ _, v.ord_coe_irreducible hπ, mul_one]
-
-theorem exists_unit_mul_zpow {f : F} (hf : f ≠ 0) {π : v.toValuationSubring}
-    (hπ : Irreducible π) :
-    ∃ u : v.toValuationSubringˣ,
-      f = ((u : v.toValuationSubring) : F) * ((π : F) ^ (v.ord f)) := by
-  obtain ⟨n, u, hu⟩ :=
-    IsDiscreteValuationRing.exists_units_eq_smul_zpow_of_irreducible (K := F) hπ hf
-  rw [Units.smul_def, Algebra.smul_def] at hu
-  have hcoe : algebraMap v.toValuationSubring F (u : v.toValuationSubring)
-      = ((u : v.toValuationSubring) : F) := rfl
-  have hcoe' : algebraMap v.toValuationSubring F π = (π : F) := rfl
-  rw [hcoe, hcoe'] at hu
-  have hn : v.ord f = n := by rw [hu]; exact v.ord_unit_smul_zpow u hπ n
-  exact ⟨u, by rw [hn, hu]⟩
-
-end Place
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place"
-
-abbrev Divisor : Type _ := Place K F →₀ ℤ
-
-namespace Divisor
-
-variable {K F}
-
-def degree : Divisor K F →+ ℤ :=
-  Finsupp.liftAddHom fun v => AddMonoidHom.mulRight (v.deg : ℤ)
-
-@[scoped simp]
-theorem degree_single (v : Place K F) (n : ℤ) :
-    degree (Finsupp.single v n) = n * v.deg := by
-  simp [degree]
-
-end Divisor
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor"
-
-class HasPrincipalDivisors : Prop where
-  exists_divisor : ∀ f : F, f ≠ 0 → ∃ D : Divisor K F,
-    (∀ v : Place K F, D v = v.ord f) ∧ Divisor.degree D = 0
-
-namespace Pic0
-
-end Pic0
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor"
-
-namespace Place
-
-open scoped Pointwise
-
-variable {K F}
-variable (σ : F ≃ₐ[K] F)
-
-def smulRingEquiv (A : ValuationSubring F) : A ≃+* (σ • A : ValuationSubring F) where
-  toFun x := ⟨σ x, by
-    simpa [AlgEquiv.smul_def] using
-      ValuationSubring.smul_mem_pointwise_smul σ (x : F) A x.2⟩
-  invFun y := ⟨σ.symm y, by
-    have := (ValuationSubring.mem_pointwise_smul_iff_inv_smul_mem (g := σ)
-      (S := A) (x := (y : F))).mp y.2
-    simpa [AlgEquiv.smul_def, AlgEquiv.aut_inv] using this⟩
-  left_inv x := by ext; simp
-  right_inv y := by ext; simp
-  map_mul' x y := by ext; simp
-  map_add' x y := by ext; simp
-
-@[scoped simp]
-theorem coe_smulRingEquiv_apply (A : ValuationSubring F) (x : A) :
-    ((smulRingEquiv σ A x : (σ • A : ValuationSubring F)) : F) = σ x := rfl
-
-private theorem _root_.ValuationSubring.pointwise_smul_top :
-    σ • (⊤ : ValuationSubring F) = ⊤ := by
-  ext x
-  simp only [ValuationSubring.mem_pointwise_smul_iff_inv_smul_mem]
-  exact ⟨fun _ => ValuationSubring.mem_top x, fun _ => ValuationSubring.mem_top _⟩
-
-p2m_alias "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ValuationSubring.pointwise_smul_top" "ValuationSubring.pointwise_smul_top"
-scoped instance : SMul (F ≃ₐ[K] F) (Place K F) where
-  smul σ v :=
-    { toValuationSubring := σ • v.toValuationSubring
-      algebraMap_mem' := fun a => by
-        have h := ValuationSubring.smul_mem_pointwise_smul σ (algebraMap K F a)
-          v.toValuationSubring (v.algebraMap_mem' a)
-        rwa [AlgEquiv.smul_def, σ.commutes] at h
-      ne_top' := fun h => v.ne_top' <| by
-        have := congrArg (σ⁻¹ • ·) h
-        simpa [ValuationSubring.pointwise_smul_top] using this
-      isPrincipalIdealRing' :=
-        IsPrincipalIdealRing.of_surjective
-          (smulRingEquiv σ v.toValuationSubring : _ ≃+* _)
-          (smulRingEquiv σ v.toValuationSubring).surjective }
-
-variable (v : Place K F)
-
-@[scoped simp]
-theorem smul_toValuationSubring : (σ • v).toValuationSubring = σ • v.toValuationSubring := rfl
-
-scoped instance : MulAction (F ≃ₐ[K] F) (Place K F) where
-  one_smul v := by
-    ext1
-    rw [smul_toValuationSubring, one_smul]
-  mul_smul σ τ v := by
-    ext1
-    simp only [smul_toValuationSubring]
-    rw [mul_smul]
-
-theorem ord_smul (f : F) : (σ • v).ord (σ f) = v.ord f := by
-  rcases eq_or_ne f 0 with rfl | hf
-  · simp
-  obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible v.toValuationSubring
-  obtain ⟨u, hu⟩ := v.exists_unit_mul_zpow hf hπ
-  set n := v.ord f with hn
-  set e := smulRingEquiv σ v.toValuationSubring with he
-  have hπ' : Irreducible (e π) := (MulEquiv.irreducible_iff e).mpr hπ
-  have hu' : IsUnit (e (u : v.toValuationSubring)) := u.isUnit.map e
-  have hcoeu : ((hu'.unit : (σ • v).toValuationSubring) : F)
-      = σ ((u : v.toValuationSubring) : F) := by
-    rw [IsUnit.unit_spec]
-    rfl
-  have hcoeπ : ((e π : (σ • v).toValuationSubring) : F) = σ (π : F) := rfl
-  have key : σ f = ((hu'.unit : (σ • v).toValuationSubring) : F)
-      * (((e π : (σ • v).toValuationSubring) : F) ^ n) := by
-    rw [hcoeu, hcoeπ, hu, map_mul, map_zpow₀]
-  rw [key, (σ • v).ord_unit_smul_zpow hu'.unit hπ' n]
-
-def smulResidueAlgEquiv : v.ResidueField ≃ₐ[K] (σ • v).ResidueField :=
-  AlgEquiv.ofRingEquiv (f := IsLocalRing.ResidueField.mapEquiv
-      (smulRingEquiv σ v.toValuationSubring)) <| fun a => by
-    have h3 : (smulRingEquiv σ v.toValuationSubring) (algebraMap K v.toValuationSubring a)
-        = algebraMap K (σ • v).toValuationSubring a := by
-      ext
-      rw [coe_smulRingEquiv_apply, coe_algebraMap, σ.commutes]
-      rfl
-    show IsLocalRing.ResidueField.mapEquiv _ (IsLocalRing.residue _ _) = IsLocalRing.residue _ _
-    rw [IsLocalRing.ResidueField.mapEquiv_apply, IsLocalRing.ResidueField.map_residue]
-    exact congrArg _ h3
-
-@[scoped simp]
-theorem deg_smul : (σ • v).deg = v.deg :=
-  ((smulResidueAlgEquiv σ v).toLinearEquiv.finrank_eq).symm
-
-end Place
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor"
-
-namespace Divisor
-
-open scoped Pointwise
-
-variable {K F}
-
-scoped instance : DistribMulAction (F ≃ₐ[K] F) (Divisor K F) := Finsupp.comapDistribMulAction
-
-theorem smul_def (σ : F ≃ₐ[K] F) (D : Divisor K F) :
-    σ • D = Finsupp.mapDomain (σ • ·) D := rfl
-
-@[scoped simp]
-theorem smul_single (σ : F ≃ₐ[K] F) (v : Place K F) (n : ℤ) :
-    σ • Finsupp.single v n = Finsupp.single (σ • v) n := by
-  rw [smul_def, Finsupp.mapDomain_single]
-
-theorem smul_apply_smul (σ : F ≃ₐ[K] F) (D : Divisor K F) (v : Place K F) :
-    (σ • D) (σ • v) = D v := by
-  rw [smul_def]
-  exact Finsupp.mapDomain_apply_of_injective (MulAction.injective σ) D v
-
-theorem smul_apply (σ : F ≃ₐ[K] F) (D : Divisor K F) (w : Place K F) :
-    (σ • D) w = D (σ⁻¹ • w) := by
-  have : (σ • D) (σ • (σ⁻¹ • w)) = D (σ⁻¹ • w) := smul_apply_smul σ D (σ⁻¹ • w)
-  rwa [smul_inv_smul] at this
-
-@[scoped simp]
-theorem degree_smul (σ : F ≃ₐ[K] F) (D : Divisor K F) : degree (σ • D) = degree D := by
-  induction D using Finsupp.induction with
-  | zero => simp
-  | single_add v n D _ _ ih =>
-      rw [smul_add, map_add, map_add, ih, smul_single, degree_single, degree_single,
-        Place.deg_smul]
-
-end Divisor
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor"
-
-namespace Pic0
-
-end Pic0
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor"
-
-namespace Place
-
-variable {K F}
-variable {R : Type*} [CommRing R] [IsDedekindDomain R] [Algebra R F] [IsFractionRing R F]
-
-open IsDedekindDomain.HeightOneSpectrum in
-
-theorem isPrincipalIdealRing_valuationSubring (w : HeightOneSpectrum R) :
-    IsPrincipalIdealRing ((w.valuation F).valuationSubring) := by
-  rw [show (w.valuation F).valuationSubring = valuationSubringAtPrime F w from
-    (valuationSubringAtPrime_eq_valuationSubring (K := F) w).symm]
-  infer_instance
-
-open IsDedekindDomain.HeightOneSpectrum in
-
-def ofHeightOneSpectrum [Algebra K R] [IsScalarTower K R F] (w : HeightOneSpectrum R) :
-    Place K F where
-  toValuationSubring := (w.valuation F).valuationSubring
-  algebraMap_mem' := fun a => by
-    rw [Valuation.mem_valuationSubring_iff, IsScalarTower.algebraMap_apply K R F]
-    exact w.valuation_le_one (algebraMap K R a)
-  ne_top' := by
-    simp only [ne_eq, Valuation.valuationSubring_eq_top_iff, not_not]
-    infer_instance
-  isPrincipalIdealRing' := isPrincipalIdealRing_valuationSubring w
-
-@[scoped simp]
-theorem ofHeightOneSpectrum_toValuationSubring [Algebra K R] [IsScalarTower K R F]
-    (w : HeightOneSpectrum R) :
-    (ofHeightOneSpectrum (K := K) w).toValuationSubring = (w.valuation F).valuationSubring :=
-  rfl
-
-end Place
-end AlgebraicCurve
-end
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve"
 
 section
 
 section
 
-p2m_open "Ideal~map_mul"
+open Ideal hiding map_mul
 
-p2m_open "Module Polynomial P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.Polynomial"
+open Module
 
-open scoped nonZeroDivisors Polynomial.Bivariate
+open scoped nonZeroDivisors
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq isIntegral_iff Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ Δ' map_a₃ veluXNum veluYNum veluY veluY_empty veluX_singleton veluY_singleton IsOddVeluSet veluX veluX_empty veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ veluQuotient_empty oddOrderSummingSet mem_oddOrderSummingSet"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "map_slope Equation negY equation_iff' slope_of_X_ne equation_neg Point.add_of_Y_eq map_a₃ equation_iff_nonsingular_of_Δ_ne_zero slope CoordinateRing map equation_add Point.some Point.some.injEq Point.X_eq_iff Nonsingular Point.some.inj map_a₆ Point.add_self_of_Y_eq negAddY map_addY negY_negY FunctionField map_addX nonsingular_add map_a₂ Point CoordinateRing.mk addX map_a₁ Point.add_some nonsingular_neg map_a₄ monic_polynomial Point.some_ne_zero map_negY CoordinateRing.basis addY Y_eq_of_X_eq Point.add_of_X_ne equation_iff map_nonsingular polynomial Point.neg_some Point.coordsOrZero Point.coordsOrZero_some"
-p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
+open WeierstrassCurve.Affine WeierstrassCurve
 
 universe u
 
 variable {F : Type u} [Field F] {W : Affine F}
 
 namespace CoordinateRing
-p2m_export "WeierstrassCurve.Affine.CoordinateRing" "smul_basis_eq_zero XYIdeal XYIdeal'_eq quotientXYIdealEquiv XClass_ne_zero smul YClass XYIdeal' mk map degree_norm_smul_basis exists_smul_basis_eq XClass smul_basis_mul_Y YClass_ne_zero"
-p2m_open "WeierstrassCurve.Affine.CoordinateRing"
-
-scoped instance : Algebra.FiniteType F W.CoordinateRing :=
-  Algebra.FiniteType.trans (S := Polynomial F) inferInstance inferInstance
+open WeierstrassCurve.Affine.CoordinateRing
 
 theorem exists_eq_XYIdeal_of_isMaximal [IsAlgClosed F] (𝔪 : Ideal W.CoordinateRing)
     (h𝔪 : 𝔪.IsMaximal) : ∃ x y : F, W.Equation x y ∧ XYIdeal W x (C y) = 𝔪 := by
@@ -590,74 +134,19 @@ theorem exists_eq_XYIdeal_of_isMaximal [IsAlgClosed F] (𝔪 : Ideal W.Coordinat
   exact hXY_max.eq_of_le h𝔪.ne_top hXY_le
 
 end CoordinateRing
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing"
-
-namespace Point
-p2m_export "WeierstrassCurve.Affine.Point" "add add_of_Y_eq map_map some some.injEq neg_zero X_eq_iff some.inj add_self_of_Y_eq map_zero add_some map some_ne_zero add_of_X_ne zero neg_some mk neg coordsOrZero coordsOrZero_some"
-end Point
-end WeierstrassCurve.Affine
+end Affine
+end WeierstrassCurve
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine"
-
 section
 
-noncomputable section
-
-p2m_open "PowerSeries HahnSeries Polynomial P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.Polynomial"
-
-namespace ModularCurve
-
-namespace PhiGen
-
-variable {K : Type*} [Field K] [Algebra ℚ K]
-variable (ℓ : ℕ) [hℓ : Fact (Nat.Prime ℓ)]
-
-scoped instance instNeZeroPhiGenDescentEll : NeZero ℓ := ⟨hℓ.out.ne_zero⟩
-
-end PhiGen
-end ModularCurve
-end
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve"
-
 section
-
-p2m_open "Set Function Complex Function.Complex ModularForm CongruenceSubgroup"
-
-p2m_open "UpperHalfPlane~I"
-
-open scoped Real ModularForm MatrixGroups
-
-local notation "ℍₒ" => upperHalfPlaneSet
-
-namespace ModularCurve
-
-namespace Gamma0Fourteen
-
-open Matrix Subgroup
-open scoped Pointwise
-
-scoped instance fact_prime_two_etaSweep : Fact (Nat.Prime 2) := ⟨by norm_num⟩
-
-end Gamma0Fourteen
-end ModularCurve
-end
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen"
-
-section
-
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.Polynomial"
 
 universe u
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq isIntegral_iff Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ Δ' map_a₃ veluXNum veluYNum veluY veluY_empty veluX_singleton veluY_singleton IsOddVeluSet veluX veluX_empty veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ veluQuotient_empty oddOrderSummingSet mem_oddOrderSummingSet"
-p2m_open "WeierstrassCurve"
-
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "map_slope Equation negY equation_iff' slope_of_X_ne equation_neg Point.add_of_Y_eq map_a₃ equation_iff_nonsingular_of_Δ_ne_zero slope CoordinateRing map equation_add Point.some Point.some.injEq Point.X_eq_iff Nonsingular Point.some.inj map_a₆ Point.add_self_of_Y_eq negAddY map_addY negY_negY FunctionField map_addX nonsingular_add map_a₂ Point CoordinateRing.mk addX map_a₁ Point.add_some nonsingular_neg map_a₄ monic_polynomial Point.some_ne_zero map_negY CoordinateRing.basis addY Y_eq_of_X_eq Point.add_of_X_ne equation_iff map_nonsingular polynomial Point.neg_some Point.coordsOrZero Point.coordsOrZero_some"
 namespace Point
-p2m_export "WeierstrassCurve.Affine.Point" "add add_of_Y_eq map_map some some.injEq neg_zero X_eq_iff some.inj add_self_of_Y_eq map_zero add_some map some_ne_zero add_of_X_ne zero neg_some mk neg coordsOrZero coordsOrZero_some"
-p2m_open "WeierstrassCurve.Affine.Point WeierstrassCurve.Affine"
+open WeierstrassCurve.Affine.Point WeierstrassCurve.Affine
 
 variable {R : Type u} [CommRing R] {W : Affine R}
 
@@ -665,24 +154,17 @@ private def _root_.WeierstrassCurve.Affine.Point.xOrZero : W.Point → R
   | .zero => 0
   | .some x _ _ => x
 
-p2m_export "WeierstrassCurve.Affine.Point" "xOrZero"
 @[scoped simp] lemma xOrZero_some {x y : R} (h : W.Nonsingular x y) :
     (Point.some x y h).xOrZero = x := rfl
 
-end Affine.Point
+end Point
+end Affine
 
 end WeierstrassCurve
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point"
-
 section
 
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.Polynomial"
-
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq isIntegral_iff Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ Δ' map_a₃ veluXNum veluYNum veluY veluY_empty veluX_singleton veluY_singleton IsOddVeluSet veluX veluX_empty veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ veluQuotient_empty oddOrderSummingSet mem_oddOrderSummingSet"
-p2m_open "WeierstrassCurve"
-
 section BaseChange
 
 variable {R : Type*} {A : Type*} [CommRing R] [CommRing A] (W : WeierstrassCurve R) (f : R →+* A)
@@ -736,478 +218,33 @@ private lemma _root_.WeierstrassCurve.map_veluQuotient (S : Finset (R × R)) (hf
   · simp only [veluQuotient_a₆, map_a₆, map_b₂, map_veluTSum _ _ S hf, map_veluWSum _ _ S hf]
     map_simp
 
-p2m_export "WeierstrassCurve" "map_veluQuotient"
 end BaseChange
 end WeierstrassCurve
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point"
+section
 
 section
 
 noncomputable section
 
-open IsDedekindDomain WithZero IsLocalRing
-
 namespace AlgebraicCurve
-
-namespace Place
-
-section SinglePlace
-
-variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
-
-theorem ord_nonneg_of_mem {f : F} (hf : f ∈ v.toValuationSubring) : 0 ≤ v.ord f := by
-  rcases eq_or_ne f 0 with rfl | hf0
-  · simp
-  obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible v.toValuationSubring
-  obtain ⟨n, u, hu⟩ :=
-    IsDiscreteValuationRing.eq_unit_mul_pow_irreducible
-      (x := (⟨f, hf⟩ : v.toValuationSubring)) (by simpa [Subtype.ext_iff] using hf0) hπ
-  have hcoe : f = ((u : v.toValuationSubring) : F) * ((π : F) ^ (n : ℤ)) := by
-    have h := congrArg (Subtype.val) hu
-    push_cast at h
-    rw [zpow_natCast]
-    exact h
-  rw [hcoe, v.ord_unit_smul_zpow u hπ (n : ℤ)]
-  exact Int.natCast_nonneg n
-
-theorem mem_of_ord_nonneg {f : F} (hf : f ≠ 0) (h : 0 ≤ v.ord f) :
-    f ∈ v.toValuationSubring := by
-  obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible v.toValuationSubring
-  obtain ⟨u, hu⟩ := v.exists_unit_mul_zpow hf hπ
-  rw [hu, show v.ord f = (((v.ord f).toNat : ℕ) : ℤ) from (Int.toNat_of_nonneg h).symm,
-    zpow_natCast]
-  exact mul_mem (u : v.toValuationSubring).2 (pow_mem (π : v.toValuationSubring).2 _)
-
-theorem mem_iff_ord_nonneg {f : F} (hf : f ≠ 0) :
-    f ∈ v.toValuationSubring ↔ 0 ≤ v.ord f :=
-  ⟨v.ord_nonneg_of_mem, v.mem_of_ord_nonneg hf⟩
-
-theorem exists_ord_pos : ∃ f : F, f ≠ 0 ∧ 0 < v.ord f := by
-  obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible v.toValuationSubring
-  refine ⟨(π : F), ?_, ?_⟩
-  · simpa [ne_eq, ZeroMemClass.coe_eq_zero] using hπ.ne_zero
-  · rw [v.ord_coe_irreducible hπ]
-    exact one_pos
-
-end SinglePlace
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point"
-
-section Restrict
-
-variable {K F F' : Type*} [Field K] [Field F] [Field F']
-  [Algebra K F'] [Algebra F F']
-
-private theorem algebraMap_ne_zero {f : F} (hf : f ≠ 0) : algebraMap F F' f ≠ 0 := by
-  simpa using hf
-
-variable (w : Place K F')
-
-theorem comap_algebraMap_ne_top [Algebra.IsIntegral F F'] :
-    w.toValuationSubring.comap (algebraMap F F') ≠ ⊤ := by
-  intro htop
-  apply w.ne_top'
-  have hF : ∀ f : F, algebraMap F F' f ∈ w.toValuationSubring := fun f =>
-    ValuationSubring.mem_comap.mp (htop ▸ ValuationSubring.mem_top f)
-  refine SetLike.ext fun x => ⟨fun _ => ValuationSubring.mem_top x, fun _ => ?_⟩
-  let : Algebra F w.toValuationSubring :=
-    ((algebraMap F F').codRestrict w.toValuationSubring.toSubring hF).toAlgebra
-  let : IsScalarTower F w.toValuationSubring F' :=
-    IsScalarTower.of_algebraMap_eq fun f => rfl
-  have hx : _root_.IsIntegral w.toValuationSubring x :=
-    (Algebra.IsIntegral.isIntegral (R := F) x).tower_top
-  obtain ⟨y, hy⟩ := IsIntegrallyClosed.isIntegral_iff.mp hx
-  exact hy ▸ y.2
-
-variable {w} in
-
-theorem mem_comap_iff_ord_nonneg {f : F} (hf : f ≠ 0) :
-    f ∈ w.toValuationSubring.comap (algebraMap F F') ↔
-      0 ≤ w.ord (algebraMap F F' f) := by
-  rw [ValuationSubring.mem_comap]
-  exact w.mem_iff_ord_nonneg (algebraMap_ne_zero hf)
-
-variable {w} in
-
-theorem isUnit_mk_comap_iff {f : F} (hf : f ≠ 0)
-    (hmem : f ∈ w.toValuationSubring.comap (algebraMap F F')) :
-    IsUnit (⟨f, hmem⟩ : w.toValuationSubring.comap (algebraMap F F')) ↔
-      w.ord (algebraMap F F' f) = 0 := by
-  constructor
-  · rintro h
-    obtain ⟨b, hb⟩ := isUnit_iff_exists_inv.mp h
-    have hb' : f * (b : F) = 1 := by
-      simpa [Subtype.ext_iff] using hb
-    have hbne : (b : F) ≠ 0 := by
-      intro h0
-      rw [h0, mul_zero] at hb'
-      exact zero_ne_one hb'
-    have hsum : w.ord (algebraMap F F' f) + w.ord (algebraMap F F' (b : F)) = 0 := by
-      rw [← w.ord_mul (algebraMap_ne_zero hf) (algebraMap_ne_zero hbne), ← map_mul, hb',
-        map_one, w.ord_one]
-    have h1 : 0 ≤ w.ord (algebraMap F F' f) := (mem_comap_iff_ord_nonneg hf).mp hmem
-    have h2 : 0 ≤ w.ord (algebraMap F F' (b : F)) := (mem_comap_iff_ord_nonneg hbne).mp b.2
-    omega
-  · intro h0
-    have hinv : f⁻¹ ∈ w.toValuationSubring.comap (algebraMap F F') :=
-      (mem_comap_iff_ord_nonneg (inv_ne_zero hf)).mpr (by rw [map_inv₀, w.ord_inv]; omega)
-    exact ⟨⟨⟨f, hmem⟩, ⟨f⁻¹, hinv⟩, Subtype.ext (mul_inv_cancel₀ hf),
-      Subtype.ext (inv_mul_cancel₀ hf)⟩, rfl⟩
-
-theorem exists_ord_algebraMap_pos [Algebra.IsIntegral F F'] :
-    ∃ f : F, f ≠ 0 ∧ 0 < w.ord (algebraMap F F' f) := by
-  have h := w.comap_algebraMap_ne_top (F := F)
-  rw [ne_eq, SetLike.ext_iff, not_forall] at h
-  obtain ⟨g, hg⟩ := h
-  simp only [ValuationSubring.mem_top, iff_true] at hg
-  have hg0 : g ≠ 0 := by
-    rintro rfl
-    exact hg (zero_mem _)
-  refine ⟨g⁻¹, inv_ne_zero hg0, ?_⟩
-  rw [map_inv₀, w.ord_inv]
-  have := (mem_comap_iff_ord_nonneg hg0).not.mp hg
-  omega
-
-def ramificationIndex (F : Type*) [Field F] [Algebra F F'] : ℕ :=
-  sInf {n : ℕ | 0 < n ∧ ∃ f : F, f ≠ 0 ∧ w.ord (algebraMap F F' f) = n}
-
-theorem ramificationIndex_le_ord {f : F} (hf : f ≠ 0)
-    (hpos : 0 < w.ord (algebraMap F F' f)) :
-    (ramificationIndex (F := F) w : ℤ) ≤ w.ord (algebraMap F F' f) := by
-  have h := Nat.sInf_le
-    (s := {n : ℕ | 0 < n ∧ ∃ f : F, f ≠ 0 ∧ w.ord (algebraMap F F' f) = n})
-    (m := (w.ord (algebraMap F F' f)).toNat) ⟨by omega, f, hf, by omega⟩
-  rw [ramificationIndex]
-  omega
-
-variable [Algebra.IsIntegral F F']
-
-private theorem ramificationIndex_set_nonempty :
-    {n : ℕ | 0 < n ∧ ∃ f : F, f ≠ 0 ∧ w.ord (algebraMap F F' f) = n}.Nonempty := by
-  obtain ⟨f, hf0, hf⟩ := w.exists_ord_algebraMap_pos (F := F)
-  exact ⟨(w.ord (algebraMap F F' f)).toNat, by omega, f, hf0, by omega⟩
-
-theorem ramificationIndex_pos : 0 < ramificationIndex (F := F) w :=
-  (Nat.sInf_mem (w.ramificationIndex_set_nonempty (F := F))).1
-
-theorem exists_ord_eq_ramificationIndex :
-    ∃ f : F, f ≠ 0 ∧ w.ord (algebraMap F F' f) = ramificationIndex (F := F) w :=
-  (Nat.sInf_mem (w.ramificationIndex_set_nonempty (F := F))).2
-
-theorem ramificationIndex_dvd_ord {f : F} (hf : f ≠ 0) :
-    (ramificationIndex (F := F) w : ℤ) ∣ w.ord (algebraMap F F' f) := by
-  obtain ⟨g, hg0, hge⟩ := w.exists_ord_eq_ramificationIndex (F := F)
-  set e : ℤ := (ramificationIndex (F := F) w : ℤ) with he
-  have hepos : 0 < e := by
-    have := w.ramificationIndex_pos (F := F)
-    omega
-  set m : ℤ := w.ord (algebraMap F F' f) with hm
-  set q : ℤ := m / e with hq
-  have hgq : algebraMap F F' (g ^ (-q)) = (algebraMap F F' g) ^ (-q) := map_zpow₀ _ _ _
-  have hr : w.ord (algebraMap F F' (f * g ^ (-q))) = m - e * q := by
-    rw [map_mul, w.ord_mul (algebraMap_ne_zero hf)
-      (by rw [hgq]; exact zpow_ne_zero _ (algebraMap_ne_zero hg0)), hgq, w.ord_zpow, hge,
-      ← hm]
-    ring
-  have hmod := Int.emod_nonneg m (by omega : e ≠ 0)
-  have hmod' := Int.emod_lt_of_pos m hepos
-  have hbridge : m % e = m - e * q := by
-    rw [hq]
-    exact Int.emod_def m e
-  rcases eq_or_lt_of_le (show (0 : ℤ) ≤ m - e * q by omega) with heq | hlt
-  · exact ⟨q, by omega⟩
-  · exfalso
-    have hfg : f * g ^ (-q) ≠ 0 := mul_ne_zero hf (zpow_ne_zero _ hg0)
-    have hle := w.ramificationIndex_le_ord (F := F) hfg (by omega)
-    rw [hr, ← he] at hle
-    omega
-
-theorem irreducible_mk_comap {g : F} (hg0 : g ≠ 0)
-    (hmem : g ∈ w.toValuationSubring.comap (algebraMap F F'))
-    (hge : w.ord (algebraMap F F' g) = ramificationIndex (F := F) w) :
-    Irreducible (⟨g, hmem⟩ : w.toValuationSubring.comap (algebraMap F F')) := by
-  have hepos : 0 < ramificationIndex (F := F) w := w.ramificationIndex_pos (F := F)
-  constructor
-  · rw [isUnit_mk_comap_iff hg0 hmem, hge]
-    omega
-  · rintro ⟨a, ha⟩ ⟨b, hb⟩ hab
-    have hab' : g = a * b := by simpa [Subtype.ext_iff] using hab
-    have ha0 : a ≠ 0 := by
-      rintro rfl
-      exact hg0 (by simpa using hab')
-    have hb0 : b ≠ 0 := by
-      rintro rfl
-      exact hg0 (by simpa using hab')
-    have hsum : w.ord (algebraMap F F' a) + w.ord (algebraMap F F' b)
-        = ramificationIndex (F := F) w := by
-      rw [← w.ord_mul (algebraMap_ne_zero ha0) (algebraMap_ne_zero hb0), ← map_mul, ← hab',
-        hge]
-    have ha' : 0 ≤ w.ord (algebraMap F F' a) := (mem_comap_iff_ord_nonneg ha0).mp ha
-    have hb' : 0 ≤ w.ord (algebraMap F F' b) := (mem_comap_iff_ord_nonneg hb0).mp hb
-    rcases eq_or_lt_of_le ha' with ha0' | hapos
-    · exact Or.inl ((isUnit_mk_comap_iff ha0 ha).mpr ha0'.symm)
-    rcases eq_or_lt_of_le hb' with hb0' | hbpos
-    · exact Or.inr ((isUnit_mk_comap_iff hb0 hb).mpr hb0'.symm)
-    exfalso
-    have h1 := w.ramificationIndex_le_ord (F := F) ha0 hapos
-    have h2 := w.ramificationIndex_le_ord (F := F) hb0 hbpos
-    omega
-
-theorem isPrincipalIdealRing_comap :
-    IsPrincipalIdealRing (w.toValuationSubring.comap (algebraMap F F')) := by
-  obtain ⟨g, hg0, hge⟩ := w.exists_ord_eq_ramificationIndex (F := F)
-  have hepos : 0 < ramificationIndex (F := F) w := w.ramificationIndex_pos (F := F)
-  have hgmem : g ∈ w.toValuationSubring.comap (algebraMap F F') :=
-    (mem_comap_iff_ord_nonneg hg0).mpr (by omega)
-  refine (IsDiscreteValuationRing.ofHasUnitMulPowIrreducibleFactorization
-    ⟨⟨g, hgmem⟩, irreducible_mk_comap w hg0 hgmem hge, ?_⟩).toIsPrincipalIdealRing
-  rintro ⟨f, hmem⟩ hx
-  have hf : f ≠ 0 := by simpa [Subtype.ext_iff] using hx
-  obtain ⟨c, hc⟩ := w.ramificationIndex_dvd_ord (F := F) hf
-  have hnonneg : 0 ≤ w.ord (algebraMap F F' f) := (mem_comap_iff_ord_nonneg hf).mp hmem
-  have hcnonneg : 0 ≤ c := by
-    by_contra hneg
-    have hcle : c ≤ -1 := by omega
-    have : (ramificationIndex (F := F) w : ℤ) * c ≤ (ramificationIndex (F := F) w : ℤ) * -1 :=
-      mul_le_mul_of_nonneg_left hcle (by omega)
-    omega
-  set n : ℕ := c.toNat with hn
-  have hcn : (n : ℤ) = c := Int.toNat_of_nonneg hcnonneg
-  refine ⟨n, ?_⟩
-  have hgn : g ^ n ≠ 0 := pow_ne_zero _ hg0
-  have hdiv0 : f / g ^ n ≠ 0 := div_ne_zero hf hgn
-  have hu0 : w.ord (algebraMap F F' (f / g ^ n)) = 0 := by
-    have hkey : algebraMap F F' (f / g ^ n)
-        = algebraMap F F' f * (algebraMap F F' g) ^ (-(n : ℤ)) := by
-      rw [div_eq_mul_inv, map_mul, map_inv₀, map_pow, ← zpow_natCast (algebraMap F F' g) n,
-        ← zpow_neg]
-    rw [hkey, w.ord_mul (algebraMap_ne_zero hf) (zpow_ne_zero _ (algebraMap_ne_zero hg0)),
-      w.ord_zpow, hge, hc, ← hcn]
-    ring
-  have humem : f / g ^ n ∈ w.toValuationSubring.comap (algebraMap F F') :=
-    (mem_comap_iff_ord_nonneg hdiv0).mpr (le_of_eq hu0.symm)
-  have hu : IsUnit (⟨f / g ^ n, humem⟩ : w.toValuationSubring.comap (algebraMap F F')) :=
-    (isUnit_mk_comap_iff hdiv0 humem).mpr hu0
-  refine ⟨hu.unit, ?_⟩
-  refine Subtype.ext ?_
-  have hcoe : ((hu.unit : w.toValuationSubring.comap (algebraMap F F')) : F) = f / g ^ n := by
-    rw [IsUnit.unit_spec]
-  push_cast
-  rw [hcoe, mul_comm, div_mul_cancel₀]
-  exact hgn
-
-section RestrictDef
-
-variable [Algebra K F] [IsScalarTower K F F']
-
-variable (F) in
-
-def restrict : Place K F where
-  toValuationSubring := w.toValuationSubring.comap (algebraMap F F')
-  algebraMap_mem' a := by
-    rw [ValuationSubring.mem_comap, ← IsScalarTower.algebraMap_apply]
-    exact w.algebraMap_mem' a
-  ne_top' := w.comap_algebraMap_ne_top
-  isPrincipalIdealRing' := w.isPrincipalIdealRing_comap
-
-@[scoped simp]
-theorem restrict_toValuationSubring :
-    (w.restrict F).toValuationSubring = w.toValuationSubring.comap (algebraMap F F') := rfl
-
-theorem ord_restrict (f : F) :
-    w.ord (algebraMap F F' f) = ramificationIndex (F := F) w * (w.restrict F).ord f := by
-  rcases eq_or_ne f 0 with rfl | hf
-  · simp
-  obtain ⟨g, hg0, hge⟩ := w.exists_ord_eq_ramificationIndex (F := F)
-  have hepos : 0 < ramificationIndex (F := F) w := w.ramificationIndex_pos (F := F)
-  have hgmem : g ∈ w.toValuationSubring.comap (algebraMap F F') :=
-    (mem_comap_iff_ord_nonneg hg0).mpr (by omega)
-  obtain ⟨u, hu⟩ := (w.restrict F).exists_unit_mul_zpow hf
-    (π := ⟨g, hgmem⟩) (irreducible_mk_comap w hg0 hgmem hge)
-  set n : ℤ := (w.restrict F).ord f with hn
-  have hune : ((u : (w.restrict F).toValuationSubring) : F) ≠ 0 := by
-    intro h0
-    have := u.mul_inv
-    rw [Subtype.ext_iff] at this
-    push_cast at this
-    rw [h0, zero_mul] at this
-    exact zero_ne_one this
-  have huord : w.ord (algebraMap F F' ((u : (w.restrict F).toValuationSubring) : F)) = 0 :=
-    (isUnit_mk_comap_iff hune (u : (w.restrict F).toValuationSubring).2).mp u.isUnit
-  have hgz : (algebraMap F F' g) ^ n ≠ 0 := zpow_ne_zero _ (algebraMap_ne_zero hg0)
-  calc w.ord (algebraMap F F' f)
-      = w.ord (algebraMap F F' (((u : (w.restrict F).toValuationSubring) : F) * g ^ n)) := by
-        rw [← hu]
-    _ = w.ord (algebraMap F F' ((u : (w.restrict F).toValuationSubring) : F))
-          + w.ord ((algebraMap F F' g) ^ n) := by
-        rw [map_mul, map_zpow₀]
-        exact w.ord_mul (algebraMap_ne_zero hune) hgz
-    _ = ramificationIndex (F := F) w * n := by
-        rw [huord, w.ord_zpow, hge, zero_add, mul_comm]
-
-end RestrictDef
-end Restrict
-end Place
-end AlgebraicCurve
-end
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point"
-
-section
-
-noncomputable section
-
-open IsDedekindDomain WithZero IsLocalRing
-p2m_open_scoped "Polynomial P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.Polynomial"
-
-namespace AlgebraicCurve
-
-namespace Place
-
-variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
-
-theorem adicValuation_valuationSubring :
-    v.adicValuation.valuationSubring = v.toValuationSubring := by
-  ext x
-  rw [Valuation.mem_valuationSubring_iff]
-  constructor
-  · intro hx
-    obtain ⟨a, rfl⟩ := IsDiscreteValuationRing.exists_lift_of_le_one hx
-    exact a.2
-  · intro hx
-    exact v.heightOneSpectrum.valuation_le_one (⟨x, hx⟩ : v.toValuationSubring)
-
-theorem mem_iff_adicValuation_le_one {f : F} :
-    f ∈ v.toValuationSubring ↔ v.adicValuation f ≤ 1 := by
-  rw [← v.adicValuation_valuationSubring]
-  exact Valuation.mem_valuationSubring_iff _ _
-
-scoped instance : v.adicValuation.IsRankOneDiscrete :=
-  IsDiscreteValuationRing.isRankOneDiscrete v.toValuationSubring F
-
-scoped instance : v.adicValuation.IsTrivialOn K :=
-  Valuation.IsTrivialOn.of_le_one v.adicValuation fun a =>
-    v.mem_iff_adicValuation_le_one.mp (v.algebraMap_mem' a)
-
-theorem isEquiv_adicValuation_of_valuationSubring_eq {Γ : Type*}
-    [LinearOrderedCommGroupWithZero Γ] {w : Valuation F Γ}
-    (h : w.valuationSubring = v.toValuationSubring) : w.IsEquiv v.adicValuation :=
-  (Valuation.isEquiv_iff_valuationSubring _ _).mpr
-    (h.trans v.adicValuation_valuationSubring.symm)
-
-theorem mem_maximalIdeal_iff_adicValuation_lt_one (a : v.toValuationSubring) :
-    a ∈ IsLocalRing.maximalIdeal v.toValuationSubring ↔ v.adicValuation (a : F) < 1 := by
-  rw [IsLocalRing.mem_maximalIdeal, mem_nonunits_iff, ← v.adicValuation_coe_eq_one_iff,
-    lt_iff_le_and_ne]
-  have hle : v.adicValuation (a : F) ≤ 1 := v.mem_iff_adicValuation_le_one.mp a.2
-  tauto
-
-theorem ord_eq_zero_iff_adicValuation_eq_one {f : F} (hf : f ≠ 0) :
-    v.ord f = 0 ↔ v.adicValuation f = 1 := by
-  simp only [ord, neg_eq_zero]
-  constructor
-  · intro h
-    have h2 := exp_log (v.adicValuation_ne_zero hf)
-    rw [h, exp_zero] at h2
-    exact h2.symm
-  · intro h
-    rw [h, log_one]
-
-section OfHeightOneSpectrum
-
-variable {R : Type*} [CommRing R] [IsDedekindDomain R] [Algebra R F] [IsFractionRing R F]
-  [Algebra K R] [IsScalarTower K R F]
-
-theorem isEquiv_adicValuation_ofHeightOneSpectrum (w : HeightOneSpectrum R) :
-    (w.valuation F).IsEquiv (ofHeightOneSpectrum (K := K) w).adicValuation :=
-  (ofHeightOneSpectrum (K := K) w).isEquiv_adicValuation_of_valuationSubring_eq rfl
-
-theorem ord_ofHeightOneSpectrum_ne_zero_iff (w : HeightOneSpectrum R) {q : R} (hq : q ≠ 0) :
-    (ofHeightOneSpectrum (K := K) (F := F) w).ord (algebraMap R F q) ≠ 0 ↔ q ∈ w.asIdeal := by
-  have hq' : algebraMap R F q ≠ 0 :=
-    (map_ne_zero_iff _ (IsFractionRing.injective R F)).mpr hq
-  rw [ne_eq, (ofHeightOneSpectrum (K := K) w).ord_eq_zero_iff_adicValuation_eq_one hq',
-    ← (isEquiv_adicValuation_ofHeightOneSpectrum (K := K) (F := F) w).eq_one_iff_eq_one,
-    HeightOneSpectrum.valuation_eq_one_iff_notMem, not_not]
-
-end OfHeightOneSpectrum
-end Place
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point"
 
 namespace RationalFunctionField
 
 variable (K : Type*) [Field K]
 
-def heightOneSpectrumOfIrreducible {p : K[X]} (hp : Irreducible p) :
-    HeightOneSpectrum K[X] where
-  asIdeal := Ideal.span {p}
-  isPrime := (PrincipalIdealRing.isMaximal_of_irreducible hp).isPrime
-  ne_bot := by simpa [Ideal.span_singleton_eq_bot] using hp.ne_zero
-
-@[scoped simp]
-theorem heightOneSpectrumOfIrreducible_asIdeal {p : K[X]} (hp : Irreducible p) :
-    (heightOneSpectrumOfIrreducible K hp).asIdeal = Ideal.span {p} := rfl
-
-def finitePlace {p : K[X]} (hp : Irreducible p) : Place K (RatFunc K) :=
-  Place.ofHeightOneSpectrum (heightOneSpectrumOfIrreducible K hp)
-
-theorem finitePlace_def {p : K[X]} (hp : Irreducible p) :
-    finitePlace K hp = Place.ofHeightOneSpectrum (heightOneSpectrumOfIrreducible K hp) := rfl
-
 section PlaceInfty
 
 variable [DecidableEq (RatFunc K)]
-
-scoped instance : Nontrivial (MonoidWithZeroHom.valueGroup (.ofClass (RatFunc.inftyValuation K))) := by
-  rw [Subgroup.nontrivial_iff_exists_ne_one]
-  refine ⟨Units.mk0 (RatFunc.inftyValuation K RatFunc.X)
-    (by rw [RatFunc.inftyValuation.X]; exact exp_ne_zero), ?_, ?_⟩
-  · exact MonoidWithZeroHom.mem_valueGroup _ ⟨RatFunc.X, rfl⟩
-  · rw [ne_eq, Units.ext_iff, Units.val_mk0, Units.val_one, RatFunc.inftyValuation.X]
-    simp
-
-def placeInfty : Place K (RatFunc K) where
-  toValuationSubring := (RatFunc.inftyValuation K).valuationSubring
-  algebraMap_mem' a := by
-    rw [Valuation.mem_valuationSubring_iff]
-    exact Valuation.IsTrivialOn.valuation_algebraMap_le_one (v := RatFunc.inftyValuation K) a
-  ne_top' := by
-    simp only [ne_eq, Valuation.valuationSubring_eq_top_iff, not_not]
-    infer_instance
-  isPrincipalIdealRing' :=
-    (Valuation.valuationSubring_isDiscreteValuationRing
-      (RatFunc.inftyValuation K)).toIsPrincipalIdealRing
-
-@[scoped simp]
-theorem placeInfty_toValuationSubring :
-    (placeInfty K).toValuationSubring = (RatFunc.inftyValuation K).valuationSubring := rfl
 
 theorem inftyValuation_isEquiv_adicValuation :
     (RatFunc.inftyValuation K).IsEquiv (placeInfty K).adicValuation :=
   (placeInfty K).isEquiv_adicValuation_of_valuationSubring_eq rfl
 
-theorem placeInfty_ne_ofHeightOneSpectrum (w : HeightOneSpectrum K[X]) :
-    placeInfty K ≠ Place.ofHeightOneSpectrum w := by
-  intro h
-  refine RatFunc.adicValuation_not_isEquiv_infty_valuation w
-    ((Valuation.isEquiv_iff_valuationSubring _ _).mpr ?_)
-  have h2 := congrArg Place.toValuationSubring h
-  rw [placeInfty_toValuationSubring, Place.ofHeightOneSpectrum_toValuationSubring] at h2
-  exact h2.symm
-
 end PlaceInfty
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point"
+open scoped Place
 
 variable {K}
-
-theorem eq_ofHeightOneSpectrum_or_eq_placeInfty [DecidableEq (RatFunc K)]
-    (v : Place K (RatFunc K)) :
-    (∃ w : HeightOneSpectrum K[X], v = Place.ofHeightOneSpectrum w) ∨ v = placeInfty K := by
-  rcases (RatFunc.valuation_isEquiv_infty_or_adic (v := v.adicValuation)).or with h | h
-  · exact Or.inr (Place.ext (v.adicValuation_valuationSubring.symm.trans
-      ((Valuation.isEquiv_iff_valuationSubring _ _).mp h)))
-  · obtain ⟨w, hw, -⟩ := h
-    exact Or.inl ⟨w, Place.ext (v.adicValuation_valuationSubring.symm.trans
-      ((Valuation.isEquiv_iff_valuationSubring _ _).mp hw))⟩
 
 theorem subsingleton_setOf_forall_ne_ofHeightOneSpectrum :
     {v : Place K (RatFunc K) |
@@ -1256,115 +293,6 @@ theorem finite_setOf_ord_ne_zero {f : RatFunc K} (hf : f ≠ 0) :
       ((Place.isEquiv_adicValuation_ofHeightOneSpectrum (K := K) (F := RatFunc K)
         w).eq_one_iff_eq_one.mp hone)
   · exact Or.inr fun w h => hcase ⟨w, h⟩
-
-section ResidueDegree
-
-variable (K)
-
-theorem algebraMap_mem_ofHeightOneSpectrum (w : HeightOneSpectrum K[X]) (q : K[X]) :
-    algebraMap K[X] (RatFunc K) q ∈
-      (Place.ofHeightOneSpectrum (K := K) (F := RatFunc K) w).toValuationSubring :=
-  (Place.mem_iff_adicValuation_le_one _).mpr
-    ((Place.isEquiv_adicValuation_ofHeightOneSpectrum (K := K)
-      (F := RatFunc K) w).le_one_iff_le_one.mp (w.valuation_le_one q))
-
-def residueOfHeightOneSpectrum (w : HeightOneSpectrum K[X]) :
-    K[X] →+* (Place.ofHeightOneSpectrum (K := K) (F := RatFunc K) w).ResidueField :=
-  (IsLocalRing.residue _).comp
-    ((algebraMap K[X] (RatFunc K)).codRestrict
-      (Place.ofHeightOneSpectrum (K := K) (F := RatFunc K) w).toValuationSubring.toSubring
-      (algebraMap_mem_ofHeightOneSpectrum K w))
-
-theorem residueOfHeightOneSpectrum_apply (w : HeightOneSpectrum K[X]) (q : K[X]) :
-    residueOfHeightOneSpectrum K w q = IsLocalRing.residue _
-      ⟨algebraMap K[X] (RatFunc K) q, algebraMap_mem_ofHeightOneSpectrum K w q⟩ := rfl
-
-theorem ker_residueOfHeightOneSpectrum (w : HeightOneSpectrum K[X]) :
-    RingHom.ker (residueOfHeightOneSpectrum K w) = w.asIdeal := by
-  ext q
-  rw [RingHom.mem_ker, residueOfHeightOneSpectrum_apply, IsLocalRing.residue_eq_zero_iff,
-    Place.mem_maximalIdeal_iff_adicValuation_lt_one,
-    ← (Place.isEquiv_adicValuation_ofHeightOneSpectrum (K := K)
-      (F := RatFunc K) w).lt_one_iff_lt_one]
-  exact HeightOneSpectrum.valuation_lt_one_iff_mem w q
-
-theorem surjective_residueOfHeightOneSpectrum (w : HeightOneSpectrum K[X]) :
-    Function.Surjective (residueOfHeightOneSpectrum K w) := by
-  intro y
-  obtain ⟨⟨x, hx⟩, rfl⟩ := IsLocalRing.residue_surjective y
-  have hxval : w.valuation (RatFunc K) x ≤ 1 :=
-    (Place.isEquiv_adicValuation_ofHeightOneSpectrum (K := K)
-      (F := RatFunc K) w).le_one_iff_le_one.mpr ((Place.mem_iff_adicValuation_le_one _).mp hx)
-  have hden_ne : algebraMap K[X] (RatFunc K) x.denom ≠ 0 :=
-    (map_ne_zero_iff _ (IsFractionRing.injective K[X] (RatFunc K))).mpr x.denom_ne_zero
-  have hmul : x * algebraMap K[X] (RatFunc K) x.denom = algebraMap K[X] (RatFunc K) x.num :=
-    ((div_eq_iff hden_ne).mp x.num_div_denom).symm
-  have hden : x.denom ∉ w.asIdeal := by
-    intro hd
-    have hnum : x.num ∉ w.asIdeal := by
-      intro hn
-      refine w.isPrime.ne_top ((Ideal.eq_top_iff_one _).mpr ?_)
-      obtain ⟨a, b, hab⟩ := RatFunc.isCoprime_num_denom x
-      exact hab ▸ Ideal.add_mem _ (Ideal.mul_mem_left _ _ hn) (Ideal.mul_mem_left _ _ hd)
-    have h1 : w.valuation (RatFunc K) (algebraMap K[X] (RatFunc K) x.num) = 1 :=
-      (HeightOneSpectrum.valuation_eq_one_iff_notMem w).mpr hnum
-    refine absurd h1 (ne_of_lt ?_)
-    calc w.valuation (RatFunc K) (algebraMap K[X] (RatFunc K) x.num)
-        = w.valuation (RatFunc K) x
-            * w.valuation (RatFunc K) (algebraMap K[X] (RatFunc K) x.denom) := by
-          rw [← map_mul, hmul]
-      _ ≤ w.valuation (RatFunc K) (algebraMap K[X] (RatFunc K) x.denom) :=
-          mul_le_of_le_one_left' hxval
-      _ < 1 := (HeightOneSpectrum.valuation_lt_one_iff_mem w x.denom).mpr hd
-  have hmax : w.asIdeal.IsMaximal := IsPrime.to_maximal_ideal w.ne_bot
-  obtain ⟨t, ht⟩ : ∃ t : K[X], x.denom * t - 1 ∈ w.asIdeal := by
-    obtain ⟨b, c, hc, hbc⟩ := hmax.exists_inv hden
-    refine ⟨b, ?_⟩
-    rw [show x.denom * b - 1 = -c by linear_combination hbc]
-    exact neg_mem hc
-  refine ⟨x.num * t, ?_⟩
-  rw [residueOfHeightOneSpectrum_apply, ← sub_eq_zero, ← map_sub,
-    IsLocalRing.residue_eq_zero_iff, Place.mem_maximalIdeal_iff_adicValuation_lt_one]
-  show (Place.ofHeightOneSpectrum (K := K) (F := RatFunc K) w).adicValuation
-    (algebraMap K[X] (RatFunc K) (x.num * t) - x) < 1
-  rw [← (Place.isEquiv_adicValuation_ofHeightOneSpectrum (K := K)
-      (F := RatFunc K) w).lt_one_iff_lt_one]
-  have key : algebraMap K[X] (RatFunc K) (x.num * t) - x
-      = x * algebraMap K[X] (RatFunc K) (x.denom * t - 1) := by
-    rw [map_sub, map_mul, map_mul, map_one, mul_sub, mul_one, ← mul_assoc, hmul]
-  rw [key, map_mul]
-  calc w.valuation (RatFunc K) x
-        * w.valuation (RatFunc K) (algebraMap K[X] (RatFunc K) (x.denom * t - 1))
-      ≤ w.valuation (RatFunc K) (algebraMap K[X] (RatFunc K) (x.denom * t - 1)) :=
-        mul_le_of_le_one_left' hxval
-    _ < 1 := (HeightOneSpectrum.valuation_lt_one_iff_mem w _).mpr ht
-
-def residueFieldEquivOfHeightOneSpectrum (w : HeightOneSpectrum K[X]) :
-    (K[X] ⧸ w.asIdeal) ≃ₐ[K]
-      (Place.ofHeightOneSpectrum (K := K) (F := RatFunc K) w).ResidueField := by
-  refine AlgEquiv.ofRingEquiv (f := (Ideal.quotEquivOfEq
-    (ker_residueOfHeightOneSpectrum K w).symm).trans
-    (RingHom.quotientKerEquivOfSurjective (surjective_residueOfHeightOneSpectrum K w))) ?_
-  intro a
-  rw [show (algebraMap K (K[X] ⧸ w.asIdeal)) a
-      = Ideal.Quotient.mk w.asIdeal (algebraMap K K[X] a) from rfl]
-  rw [RingEquiv.trans_apply, Ideal.quotEquivOfEq_mk,
-    RingHom.quotientKerEquivOfSurjective_apply_mk, residueOfHeightOneSpectrum_apply]
-  exact congrArg (IsLocalRing.residue _)
-    (Subtype.ext (IsScalarTower.algebraMap_apply K K[X] (RatFunc K) a).symm)
-
-theorem deg_ofHeightOneSpectrum {w : HeightOneSpectrum K[X]} {p : K[X]}
-    (hw : w.asIdeal = Ideal.span {p}) :
-    (Place.ofHeightOneSpectrum (K := K) (F := RatFunc K) w).deg = p.natDegree := by
-  rw [Place.deg, ← (residueFieldEquivOfHeightOneSpectrum K w).toLinearEquiv.finrank_eq, hw]
-  exact finrank_quotient_span_eq_natDegree
-
-theorem deg_finitePlace {p : K[X]} (hp : Irreducible p) :
-    (finitePlace K hp).deg = p.natDegree :=
-  deg_ofHeightOneSpectrum K (heightOneSpectrumOfIrreducible_asIdeal K hp)
-
-end ResidueDegree
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point"
 
 section DegInfty
 
@@ -1450,20 +378,15 @@ end DegInfty
 end RationalFunctionField
 end AlgebraicCurve
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 section
 
 section
 
-p2m_open "FractionalIdeal P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FractionalIdeal Polynomial P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.Polynomial"
+open FractionalIdeal
 
-open scoped nonZeroDivisors Polynomial.Bivariate
+open scoped nonZeroDivisors
 
 namespace FractionalIdeal
-p2m_export "FractionalIdeal" "finite_factors mul_inv_cancel_iff_isUnit zero_mem ext mapEquiv map_eq_zero_iff mul coeIdeal_inj map spanSingleton_mul_spanSingleton spanSingleton_one mapEquiv_apply exists_eq_spanSingleton_mul coeIdeal_mul mk0 mem_map mem_coe spanSingleton le_one_iff_exists_coeIdeal div_one num coeIdeal_top"
-p2m_open "FractionalIdeal"
-
 variable {R : Type*} (K : Type*) [CommRing R] [IsDomain R] [Field K] [Algebra R K]
   [IsFractionRing R K]
 
@@ -1519,8 +442,6 @@ theorem isUnit_of_forall_isMaximal [IsNoetherianRing R]
     simp at hI
 
 end FractionalIdeal
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 theorem isDedekindDomain_of_forall_isMaximal_isUnit {R : Type*} (K : Type*) [CommRing R]
     [IsDomain R] [Field K] [Algebra R K] [IsFractionRing R K] [IsNoetherianRing R]
     (hmax : ∀ 𝔪 : Ideal R, 𝔪.IsMaximal → 𝔪 ≠ ⊥ → IsUnit (𝔪 : FractionalIdeal R⁰ K)) :
@@ -1529,18 +450,15 @@ theorem isDedekindDomain_of_forall_isMaximal_isUnit {R : Type*} (K : Type*) [Com
     (mul_inv_cancel_iff_isUnit K).mpr (isUnit_of_forall_isMaximal K hmax I hI)
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq isIntegral_iff Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ Δ' map_a₃ veluXNum veluYNum veluY veluY_empty veluX_singleton veluY_singleton IsOddVeluSet veluX veluX_empty veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ veluQuotient_empty oddOrderSummingSet mem_oddOrderSummingSet"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "map_slope Equation negY equation_iff' slope_of_X_ne equation_neg Point.add_of_Y_eq map_a₃ equation_iff_nonsingular_of_Δ_ne_zero slope CoordinateRing map equation_add Point.some Point.some.injEq Point.X_eq_iff Nonsingular Point.some.inj map_a₆ Point.add_self_of_Y_eq negAddY map_addY negY_negY FunctionField map_addX nonsingular_add map_a₂ Point CoordinateRing.mk addX map_a₁ Point.add_some nonsingular_neg map_a₄ monic_polynomial Point.some_ne_zero map_negY CoordinateRing.basis addY Y_eq_of_X_eq Point.add_of_X_ne equation_iff map_nonsingular polynomial Point.neg_some Point.coordsOrZero Point.coordsOrZero_some"
-p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
+open WeierstrassCurve.Affine WeierstrassCurve
 
 universe u
 
 variable {F : Type u} [Field F] {W : Affine F}
 
 namespace CoordinateRing
-p2m_export "WeierstrassCurve.Affine.CoordinateRing" "smul_basis_eq_zero XYIdeal XYIdeal'_eq quotientXYIdealEquiv XClass_ne_zero smul YClass XYIdeal' mk map degree_norm_smul_basis exists_smul_basis_eq XClass smul_basis_mul_Y YClass_ne_zero"
-p2m_open "WeierstrassCurve.Affine.CoordinateRing"
+open WeierstrassCurve.Affine.CoordinateRing
 
 theorem isUnit_coeIdeal_of_isMaximal [IsAlgClosed F] (hΔ : W.Δ ≠ 0)
     {𝔪 : Ideal W.CoordinateRing} (h𝔪 : 𝔪.IsMaximal) :
@@ -1555,22 +473,12 @@ theorem isDedekindDomain_of_Δ_ne_zero [IsAlgClosed F] (hΔ : W.Δ ≠ 0) :
     fun _𝔪 h𝔪 _ => isUnit_coeIdeal_of_isMaximal hΔ h𝔪
 
 end CoordinateRing
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
-namespace Point
-p2m_export "WeierstrassCurve.Affine.Point" "add add_of_Y_eq map_map some some.injEq neg_zero X_eq_iff some.inj add_self_of_Y_eq map_zero add_some map some_ne_zero add_of_X_ne zero neg_some mk neg coordsOrZero coordsOrZero_some"
-end Point
-end WeierstrassCurve.Affine
+end Affine
+end WeierstrassCurve
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 section
 
 noncomputable section
-
-p2m_open "IsDedekindDomain Polynomial P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.Polynomial"
-
-open scoped Polynomial.Bivariate
 
 namespace AlgebraicCurve
 namespace Place
@@ -1587,13 +495,6 @@ theorem deg_eq_one_of_surjective (v : Place K F)
 
 variable {R : Type*} [CommRing R] [IsDedekindDomain R] [Algebra R F] [IsFractionRing R F]
 variable [Algebra K R] [IsScalarTower K R F]
-
-theorem ofHeightOneSpectrum_injective :
-    Function.Injective (ofHeightOneSpectrum (K := K) (R := R) (F := F)) := by
-  intro w₁ w₂ h
-  refine HeightOneSpectrum.eq_of_valuation_isEquiv_valuation (K := F) ?_
-  rw [Valuation.isEquiv_iff_valuationSubring]
-  exact congrArg toValuationSubring h
 
 theorem deg_ofHeightOneSpectrum_eq_one (w : HeightOneSpectrum R)
     (hw : ∀ r : R, ∃ c : K, r - algebraMap K R c ∈ w.asIdeal) :
@@ -1664,21 +565,16 @@ theorem deg_ofHeightOneSpectrum_eq_one (w : HeightOneSpectrum R)
           rw [key]
     _ < 1 := (w.valuation_lt_one_iff_mem (K := F) _).mpr hmem
 
-end AlgebraicCurve.Place
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
+end Place
+end AlgebraicCurve
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq isIntegral_iff Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ Δ' map_a₃ veluXNum veluYNum veluY veluY_empty veluX_singleton veluY_singleton IsOddVeluSet veluX veluX_empty veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ veluQuotient_empty oddOrderSummingSet mem_oddOrderSummingSet"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "map_slope Equation negY equation_iff' slope_of_X_ne equation_neg Point.add_of_Y_eq map_a₃ equation_iff_nonsingular_of_Δ_ne_zero slope CoordinateRing map equation_add Point.some Point.some.injEq Point.X_eq_iff Nonsingular Point.some.inj map_a₆ Point.add_self_of_Y_eq negAddY map_addY negY_negY FunctionField map_addX nonsingular_add map_a₂ Point CoordinateRing.mk addX map_a₁ Point.add_some nonsingular_neg map_a₄ monic_polynomial Point.some_ne_zero map_negY CoordinateRing.basis addY Y_eq_of_X_eq Point.add_of_X_ne equation_iff map_nonsingular polynomial Point.neg_some Point.coordsOrZero Point.coordsOrZero_some"
-p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
+open WeierstrassCurve.Affine WeierstrassCurve
 
 variable {F : Type*} [Field F] {W : Affine F}
 
 namespace CoordinateRing
-p2m_export "WeierstrassCurve.Affine.CoordinateRing" "smul_basis_eq_zero XYIdeal XYIdeal'_eq quotientXYIdealEquiv XClass_ne_zero smul YClass XYIdeal' mk map degree_norm_smul_basis exists_smul_basis_eq XClass smul_basis_mul_Y YClass_ne_zero"
-p2m_open "WeierstrassCurve.Affine.CoordinateRing"
+open WeierstrassCurve.Affine.CoordinateRing
 
 theorem algebraMap_eq_mk_C_C (a : F) :
     algebraMap F W.CoordinateRing a = CoordinateRing.mk W (C (C a)) := by
@@ -1718,9 +614,7 @@ theorem exists_sub_algebraMap_mem {x y : F} (h : W.Equation x y) (r : W.Coordina
     Algebra.algebraMap_self_apply]
 
 end CoordinateRing
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
-p2m_open "WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing"
+open WeierstrassCurve.Affine.CoordinateRing
 
 def IsFinitePlace (v : AlgebraicCurve.Place F W.FunctionField) : Prop :=
   ∀ r : W.CoordinateRing, algebraMap W.CoordinateRing W.FunctionField r ∈ v.toValuationSubring
@@ -1830,35 +724,25 @@ theorem isFinitePlace_iff_exists_placeOfEquation [IsAlgClosed F]
   · rintro ⟨x, y, h, rfl⟩
     exact isFinitePlace_placeOfEquation h
 
-end WeierstrassCurve.Affine
+end Affine
+end WeierstrassCurve
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 section
 
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.Polynomial WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point"
+open WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq isIntegral_iff Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ Δ' map_a₃ veluXNum veluYNum veluY veluY_empty veluX_singleton veluY_singleton IsOddVeluSet veluX veluX_empty veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ veluQuotient_empty oddOrderSummingSet mem_oddOrderSummingSet"
-p2m_open "WeierstrassCurve"
-
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "map_slope Equation negY equation_iff' slope_of_X_ne equation_neg Point.add_of_Y_eq map_a₃ equation_iff_nonsingular_of_Δ_ne_zero slope CoordinateRing map equation_add Point.some Point.some.injEq Point.X_eq_iff Nonsingular Point.some.inj map_a₆ Point.add_self_of_Y_eq negAddY map_addY negY_negY FunctionField map_addX nonsingular_add map_a₂ Point CoordinateRing.mk addX map_a₁ Point.add_some nonsingular_neg map_a₄ monic_polynomial Point.some_ne_zero map_negY CoordinateRing.basis addY Y_eq_of_X_eq Point.add_of_X_ne equation_iff map_nonsingular polynomial Point.neg_some Point.coordsOrZero Point.coordsOrZero_some"
 namespace Point
-p2m_export "WeierstrassCurve.Affine.Point" "add add_of_Y_eq map_map some some.injEq neg_zero X_eq_iff some.inj add_self_of_Y_eq map_zero add_some map some_ne_zero add_of_X_ne zero neg_some mk neg coordsOrZero coordsOrZero_some"
-p2m_open "WeierstrassCurve.Affine.Point WeierstrassCurve.Affine"
+open WeierstrassCurve.Affine.Point WeierstrassCurve.Affine
 
 variable {R : Type*} [CommRing R] {W : Affine R}
 
 lemma coordsOrZero_fst (P : W.Point) : P.coordsOrZero.1 = P.xOrZero := by
   cases P <;> rfl
 
-end Affine.Point
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
+end Point
+end Affine
 section OrderArithmetic
 
 variable {G : Type*} [AddCommGroup G]
@@ -1872,8 +756,6 @@ lemma sub_nsmul_eq_neg_of_nsmul_eq_zero {Q : G} {p : ℕ} (hp : p • Q = 0) {k 
   rw [eq_neg_iff_add_eq_zero, ← add_nsmul, Nat.sub_add_cancel hk, hp]
 
 end OrderArithmetic
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 section IsOddVeluSet
 
 variable {F : Type*} [Field F] [DecidableEq F] {W : WeierstrassCurve F}
@@ -1904,109 +786,13 @@ lemma veluGy_ne_zero_of_two_nsmul_ne_zero {x y : F} (h : W.toAffine.Nonsingular 
   rw [hkey, h0, add_zero]
 
 end IsOddVeluSet
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
-section GaloisStability
-
-local notation "Qbar" => AlgebraicClosure ℚ
-
-end GaloisStability
 end WeierstrassCurve
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
+section
 
 section
 
 noncomputable section
-
-open IsDedekindDomain WithZero IsLocalRing
-
-namespace AlgebraicCurve
-
-variable {K F F' : Type*} [Field K] [Field F] [Field F']
-  [Algebra K F] [Algebra K F'] [Algebra F F'] [IsScalarTower K F F']
-  [Algebra.IsIntegral F F']
-
-namespace Place
-
-variable (w : Place K F')
-
-variable (F) in
-
-def restrictInclusion : (w.restrict F).toValuationSubring →+* w.toValuationSubring where
-  toFun a := ⟨algebraMap F F' (a : F), ValuationSubring.mem_comap.mp a.2⟩
-  map_one' := Subtype.ext (map_one (algebraMap F F'))
-  map_mul' a b := Subtype.ext (map_mul (algebraMap F F') (a : F) (b : F))
-  map_zero' := Subtype.ext (_root_.map_zero (algebraMap F F'))
-  map_add' a b := Subtype.ext (map_add (algebraMap F F') (a : F) (b : F))
-
-@[scoped simp]
-theorem coe_restrictInclusion (a : (w.restrict F).toValuationSubring) :
-    ((restrictInclusion F w a : w.toValuationSubring) : F') = algebraMap F F' (a : F) := rfl
-
-scoped instance : IsLocalHom (restrictInclusion F w) where
-  map_nonunit a ha := by
-    have hord : w.ord (algebraMap F F' (a : F)) = 0 := by
-      have h := w.ord_coe_unit ha.unit
-      rwa [IsUnit.unit_spec, coe_restrictInclusion] at h
-    have ha0 : (a : F) ≠ 0 := by
-      rintro h0
-      obtain ⟨b, hb⟩ := isUnit_iff_exists_inv.mp ha
-      have hb' : algebraMap F F' (a : F) * (b : F') = 1 := congrArg Subtype.val hb
-      rw [h0, _root_.map_zero, zero_mul] at hb'
-      exact zero_ne_one hb'
-    exact (isUnit_mk_comap_iff ha0 a.2).mpr hord
-
-variable (F) in
-
-def restrictResidueMap : (w.restrict F).ResidueField →+* w.ResidueField :=
-  IsLocalRing.ResidueField.map (restrictInclusion F w)
-
-@[scoped simp]
-theorem restrictResidueMap_residue (a : (w.restrict F).toValuationSubring) :
-    restrictResidueMap F w (IsLocalRing.residue _ a) =
-      IsLocalRing.residue _ (restrictInclusion F w a) :=
-  IsLocalRing.ResidueField.map_residue _ _
-
-scoped instance instAlgebraResidueFieldRestrictPushforward :
-    Algebra (w.restrict F).ResidueField w.ResidueField :=
-  (restrictResidueMap F w).toAlgebra
-
-scoped instance instIsScalarTowerResidueFieldRestrictPushforward :
-    IsScalarTower K (w.restrict F).ResidueField w.ResidueField := by
-  refine IsScalarTower.of_algebraMap_eq fun a => ?_
-  show IsLocalRing.residue _ (algebraMap K w.toValuationSubring a) =
-    restrictResidueMap F w
-      (IsLocalRing.residue _ (algebraMap K (w.restrict F).toValuationSubring a))
-  rw [restrictResidueMap_residue]
-  refine congrArg _ (Subtype.ext ?_)
-  show algebraMap K F' a = algebraMap F F' (algebraMap K F a)
-  rw [← IsScalarTower.algebraMap_apply]
-
-variable (F) in
-
-def inertiaDeg : ℕ := Module.finrank (w.restrict F).ResidueField w.ResidueField
-
-theorem deg_restrict_mul_inertiaDeg : (w.restrict F).deg * w.inertiaDeg F = w.deg :=
-  Module.finrank_mul_finrank K (w.restrict F).ResidueField w.ResidueField
-
-end Place
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
-namespace Divisor
-
-end Divisor
-end AlgebraicCurve
-end
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
-section
-
-noncomputable section
-
-open IsLocalRing
 
 namespace AlgebraicCurve
 
@@ -2031,51 +817,12 @@ theorem residue_ne_zero_of_ord_eq_zero {f : F} (hf : f ≠ 0) (h : v.ord f = 0) 
       ≠ 0 :=
   (residue_ne_zero_iff_isUnit _).mpr (v.isUnit_mk_of_ord_eq_zero hf h)
 
-def IsRational : Prop := Function.Surjective (algebraMap K v.ResidueField)
-
-theorem algebraMap_residueField_injective :
-    Function.Injective (algebraMap K v.ResidueField) :=
-  (algebraMap K v.ResidueField).injective
-
-def residueInv : v.ResidueField → K :=
-  Function.invFun (algebraMap K v.ResidueField)
-
-theorem algebraMap_residueInv (hv : v.IsRational) (x : v.ResidueField) :
-    algebraMap K v.ResidueField (v.residueInv x) = x :=
-  Function.invFun_eq (hv x)
-
-theorem residueInv_algebraMap (a : K) : v.residueInv (algebraMap K v.ResidueField a) = a :=
-  Function.leftInverse_invFun v.algebraMap_residueField_injective a
-
-open Classical in
-
-def evalAt (f : F) : K :=
-  if hf : f ∈ v.toValuationSubring then
-    v.residueInv (residue v.toValuationSubring ⟨f, hf⟩)
-  else 0
-
-theorem evalAt_of_mem {f : F} (hf : f ∈ v.toValuationSubring) :
-    v.evalAt f = v.residueInv (residue v.toValuationSubring ⟨f, hf⟩) :=
-  dite_eq_left hf
-
-theorem algebraMap_evalAt (hv : v.IsRational) {f : F} (hf : f ∈ v.toValuationSubring) :
-    algebraMap K v.ResidueField (v.evalAt f)
-      = residue v.toValuationSubring (⟨f, hf⟩ : v.toValuationSubring) := by
-  rw [v.evalAt_of_mem hf]
-  exact v.algebraMap_residueInv hv _
-
 theorem evalAt_ne_zero (hv : v.IsRational) {f : F} (hf : f ≠ 0) (h : v.ord f = 0) :
     v.evalAt f ≠ 0 := by
   intro h0
   have hres := v.algebraMap_evalAt hv (v.mem_of_ord_nonneg hf h.ge)
   rw [h0, _root_.map_zero] at hres
   exact v.residue_ne_zero_of_ord_eq_zero hf h hres.symm
-
-@[scoped simp]
-theorem evalAt_one : v.evalAt (1 : F) = 1 := by
-  rw [v.evalAt_of_mem (one_mem _)]
-  have h1 : (⟨(1 : F), one_mem _⟩ : v.toValuationSubring) = 1 := rfl
-  rw [h1, map_one, ← map_one (algebraMap K v.ResidueField), v.residueInv_algebraMap]
 
 theorem evalAt_algebraMap (a : K) : v.evalAt (algebraMap K F a) = a := by
   rw [v.evalAt_of_mem (v.algebraMap_mem' a)]
@@ -2094,34 +841,13 @@ theorem evalAt_mul (hv : v.IsRational) {f g : F} (hf : f ∈ v.toValuationSubrin
   rfl
 
 end Place
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
-namespace Divisor
-
-end Divisor
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
-namespace WeilDatum
-
-end WeilDatum
 end AlgebraicCurve
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 section
 
 noncomputable section
 
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.Polynomial IsDedekindDomain WithZero IsLocalRing"
-
 namespace AlgebraicCurve
-
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
-namespace Place
-
-end Place
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
 
 namespace RationalFunctionField
 
@@ -2203,68 +929,15 @@ theorem ord_placeInfty_algebraMap {q : K[X]} (hq : q ≠ 0) :
 
 end PlaceInfty
 end RationalFunctionField
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
-namespace Place
-
-end Place
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
-namespace Pic0
-
-end Pic0
 end AlgebraicCurve
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
-namespace ModularCurve
-
-end ModularCurve
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 section
 
 noncomputable section
 
-p2m_open "IsDedekindDomain Polynomial P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.Polynomial"
-
 namespace AlgebraicCurve
 
 namespace Place
-
-section IntegrallyClosed
-
-variable {K F : Type*} [Field K] [Field F] [Algebra K F] (w : Place K F)
-
-theorem ord_neg (f : F) : w.ord (-f) = w.ord f := by
-  simp only [ord, Valuation.map_neg]
-
-theorem mem_of_eval_monic_eq_zero {P : Polynomial F} (hP : P.Monic)
-    (hcoeff : ∀ i, P.coeff i ∈ w.toValuationSubring) {x : F} (hx : P.eval x = 0) :
-    x ∈ w.toValuationSubring := by
-  have hlift : P ∈ lifts (algebraMap w.toValuationSubring F) := by
-    rw [lifts_iff_coeff_lifts]
-    exact fun n => ⟨⟨P.coeff n, hcoeff n⟩, rfl⟩
-  obtain ⟨Q, hQmap, -, hQmonic⟩ := lifts_and_degree_eq_and_monic hlift hP
-  have hint : _root_.IsIntegral w.toValuationSubring x := by
-    refine ⟨Q, hQmonic, ?_⟩
-    rw [show eval₂ (algebraMap w.toValuationSubring F) x Q = (Q.map _).eval x from
-      (eval_map _ x).symm, hQmap, hx]
-  obtain ⟨y, hy⟩ := IsIntegrallyClosed.isIntegral_iff.mp hint
-  exact hy ▸ y.2
-
-theorem mem_maximalIdeal_iff_ord_pos {x : F} (hx : x ≠ 0)
-    (hmem : x ∈ w.toValuationSubring) :
-    (⟨x, hmem⟩ : w.toValuationSubring) ∈ IsLocalRing.maximalIdeal w.toValuationSubring ↔
-      0 < w.ord x := by
-  have hnonneg : 0 ≤ w.ord x := w.ord_nonneg_of_mem hmem
-  have hcoe : ((⟨x, hmem⟩ : w.toValuationSubring) : F) = x := rfl
-  rw [IsLocalRing.mem_maximalIdeal, mem_nonunits_iff, ← w.adicValuation_coe_eq_one_iff,
-    hcoe, ← w.ord_eq_zero_iff_adicValuation_eq_one hx]
-  omega
-
-end IntegrallyClosed
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
 
 section SupportTransfer
 
@@ -2325,43 +998,13 @@ theorem exists_coeff_ord_ne_zero {f : F'} (hf : f ≠ 0) (hford : w.ord f ≠ 0)
   omega
 
 end SupportTransfer
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 section Chart
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 variable {R : Type*} [CommRing R] [IsDedekindDomain R] [Algebra R F] [IsFractionRing R F]
 variable (w : Place K F)
 
-private def chartHom (hw : ∀ r : R, algebraMap R F r ∈ w.toValuationSubring) :
-    R →+* w.toValuationSubring :=
-  (algebraMap R F).codRestrict w.toValuationSubring.toSubring hw
-
-variable (R) in
-
-def center (hw : ∀ r : R, algebraMap R F r ∈ w.toValuationSubring) : Ideal R :=
-  (IsLocalRing.maximalIdeal w.toValuationSubring).comap (chartHom w hw)
-
-scoped instance (hw : ∀ r : R, algebraMap R F r ∈ w.toValuationSubring) :
-    (center R w hw).IsPrime :=
-  Ideal.comap_isPrime _ _
-
 omit [IsDedekindDomain R] [IsFractionRing R F] in
-theorem mem_center_iff (hw : ∀ r : R, algebraMap R F r ∈ w.toValuationSubring) {r : R} :
-    r ∈ center R w hw ↔
-      (⟨algebraMap R F r, hw r⟩ : w.toValuationSubring) ∈
-        IsLocalRing.maximalIdeal w.toValuationSubring :=
-  Iff.rfl
-
-theorem mem_center_iff_ord_pos (hw : ∀ r : R, algebraMap R F r ∈ w.toValuationSubring)
-    {r : R} (hr : r ≠ 0) :
-    r ∈ center R w hw ↔ 0 < w.ord (algebraMap R F r) := by
-  have hr' : algebraMap R F r ≠ 0 := by
-    simpa using (IsFractionRing.injective R F).ne_iff.mpr hr
-  rw [mem_center_iff, w.mem_maximalIdeal_iff_ord_pos hr']
-
-omit [IsDedekindDomain R] [IsFractionRing R F] in
-
 private theorem inv_algebraMap_mem (hw : ∀ r : R, algebraMap R F r ∈ w.toValuationSubring)
     {s : R} (hs : IsUnit (chartHom w hw s)) :
     (algebraMap R F s)⁻¹ ∈ w.toValuationSubring := by
@@ -2375,124 +1018,8 @@ private theorem inv_algebraMap_mem (hw : ∀ r : R, algebraMap R F r ∈ w.toVal
   rw [← eq_inv_of_mul_eq_one_left h1]
   exact SetLike.coe_mem _
 
-theorem center_ne_bot (hw : ∀ r : R, algebraMap R F r ∈ w.toValuationSubring) :
-    center R w hw ≠ ⊥ := by
-  intro hbot
-  apply w.ne_top'
-  have hunit : ∀ r : R, r ≠ 0 → IsUnit (chartHom w hw r) := by
-    intro r hr
-    by_contra hu
-    have : r ∈ center R w hw :=
-      (mem_center_iff w hw).mpr ((IsLocalRing.mem_maximalIdeal _).mpr hu)
-    rw [hbot] at this
-    exact hr (by simpa using this)
-  refine SetLike.ext fun x => ⟨fun _ => ValuationSubring.mem_top x, fun _ => ?_⟩
-  obtain ⟨a, b, hb, hx⟩ := IsFractionRing.div_surjective (A := R) x
-  rw [← hx, div_eq_mul_inv]
-  exact mul_mem (hw a) (inv_algebraMap_mem w hw (hunit b (nonZeroDivisors.ne_zero hb)))
-
-variable (R) in
-
-def centerHeightOneSpectrum (hw : ∀ r : R, algebraMap R F r ∈ w.toValuationSubring) :
-    HeightOneSpectrum R :=
-  ⟨center R w hw, inferInstance, center_ne_bot w hw⟩
-
-@[scoped simp]
-theorem centerHeightOneSpectrum_asIdeal
-    (hw : ∀ r : R, algebraMap R F r ∈ w.toValuationSubring) :
-    (centerHeightOneSpectrum R w hw).asIdeal = center R w hw := rfl
-
-theorem valuationSubringAtPrime_centerHeightOneSpectrum_le
-    (hw : ∀ r : R, algebraMap R F r ∈ w.toValuationSubring) :
-    HeightOneSpectrum.valuationSubringAtPrime F (centerHeightOneSpectrum R w hw) ≤
-      w.toValuationSubring := by
-  rintro x ⟨a, s, hs, rfl⟩
-  refine mul_mem (hw a) (inv_algebraMap_mem w hw ?_)
-  rw [← IsLocalRing.notMem_maximalIdeal]
-  exact fun hmem => hs ((mem_center_iff w hw).mpr hmem)
-
-theorem toValuationSubring_eq_of_forall_mem
-    (hw : ∀ r : R, algebraMap R F r ∈ w.toValuationSubring) :
-    w.toValuationSubring =
-      HeightOneSpectrum.valuationSubringAtPrime F (centerHeightOneSpectrum R w hw) :=
-  (ValuationSubring.eq_of_le_of_ne_top _
-    (valuationSubringAtPrime_centerHeightOneSpectrum_le w hw) w.ne_top').symm
-
-theorem finite_setOf_forall_mem_and_ord_pos {r₀ : R} (hr₀ : r₀ ≠ 0) :
-    {w : Place K F | (∀ r : R, algebraMap R F r ∈ w.toValuationSubring) ∧
-      0 < w.ord (algebraMap R F r₀)}.Finite := by
-  have hfin : {p : HeightOneSpectrum R | p.asIdeal ∣ Ideal.span {r₀}}.Finite :=
-    Ideal.finite_factors (by simpa [Ideal.span_singleton_eq_bot] using hr₀)
-  rw [← Set.finite_coe_iff]
-  have := hfin.to_subtype
-  refine Finite.of_injective
-    (fun w => (⟨centerHeightOneSpectrum R w.1 w.2.1, ?_⟩ :
-      {p : HeightOneSpectrum R | p.asIdeal ∣ Ideal.span {r₀}})) ?_
-  · rw [Set.mem_ofPred_eq, centerHeightOneSpectrum_asIdeal, Ideal.dvd_span_singleton]
-    exact (mem_center_iff_ord_pos w.1 w.2.1 hr₀).mpr w.2.2
-  · intro w w' h
-    have hcenter : centerHeightOneSpectrum R w.1 w.2.1
-        = centerHeightOneSpectrum R w'.1 w'.2.1 := congrArg Subtype.val h
-    refine Subtype.ext (Place.ext ?_)
-    rw [toValuationSubring_eq_of_forall_mem w.1 w.2.1,
-      toValuationSubring_eq_of_forall_mem w'.1 w'.2.1, hcenter]
-
 end Chart
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
-section FiberFiniteness
-
-variable {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F']
-  [Algebra F F'] [IsScalarTower K F F'] [FiniteDimensional F F'] [Algebra.IsSeparable F F']
-
-theorem finite_setOf_restrict_eq (v : Place K F) :
-    {w : Place K F' | w.restrict F = v}.Finite := by
-  classical
-  let : Algebra v.toValuationSubring F' :=
-    ((algebraMap F F').comp (algebraMap v.toValuationSubring F)).toAlgebra
-  have : IsScalarTower v.toValuationSubring F F' :=
-    IsScalarTower.of_algebraMap_eq fun _ => rfl
-  have : IsDedekindDomain (integralClosure v.toValuationSubring F') :=
-    integralClosure.isDedekindDomain v.toValuationSubring F F'
-  have : IsFractionRing (integralClosure v.toValuationSubring F') F' :=
-    integralClosure.isFractionRing_of_finite_extension (A := v.toValuationSubring) F F'
-  obtain ⟨π, hπ0, hπpos⟩ := v.exists_ord_pos
-  have hπmem : π ∈ v.toValuationSubring := v.mem_of_ord_nonneg hπ0 hπpos.le
-  set C := integralClosure v.toValuationSubring F' with hC
-  set π' : C := algebraMap v.toValuationSubring C ⟨π, hπmem⟩ with hπ'
-  have hπ'F : algebraMap C F' π' = algebraMap F F' π := by
-    rw [hπ', ← IsScalarTower.algebraMap_apply, IsScalarTower.algebraMap_apply
-      v.toValuationSubring F F']
-    rfl
-  have hπ'0 : π' ≠ 0 := by
-    intro h
-    apply hπ0
-    have : algebraMap C F' π' = 0 := by rw [h, _root_.map_zero]
-    rw [hπ'F] at this
-    simpa using this
-  refine Set.Finite.subset (finite_setOf_forall_mem_and_ord_pos (R := C) hπ'0) ?_
-  rintro w (hw : w.restrict F = v)
-  have hOv : ∀ g : F, g ∈ v.toValuationSubring → algebraMap F F' g ∈ w.toValuationSubring := by
-    intro g hg
-    rw [← hw] at hg
-    exact hg
-  refine ⟨?_, ?_⟩
-  · intro c
-    obtain ⟨Q, hQmonic, hQeval⟩ := c.2
-    have : algebraMap C F' c = (c : F') := rfl
-    rw [this]
-    refine w.mem_of_eval_monic_eq_zero (P := Q.map (algebraMap v.toValuationSubring F'))
-      (hQmonic.map _) (fun i => ?_) (by rw [Polynomial.eval_map]; exact hQeval)
-    rw [Polynomial.coeff_map, IsScalarTower.algebraMap_apply v.toValuationSubring F F']
-    exact hOv _ (Q.coeff i).2
-  · rw [hπ'F, w.ord_restrict π, hw]
-    have hepos : 0 < w.ramificationIndex F := w.ramificationIndex_pos
-    positivity
-
-end FiberFiniteness
 end Place
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 section Assembly
 
 variable {K : Type*} [Field K] {F' : Type*} [Field F'] [Algebra K F']
@@ -2520,49 +1047,11 @@ theorem finite_setOf_ord_ne_zero_of_finiteDimensional {f : F'} (hf : f ≠ 0) :
 end Assembly
 end AlgebraicCurve
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
+section
 
 section
 
-noncomputable section
-
-p2m_open "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve IsDedekindDomain FractionalIdeal P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FractionalIdeal WithZero Polynomial P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.Polynomial"
-
-open scoped nonZeroDivisors Polynomial.Bivariate
-
-namespace FractionalIdeal
-p2m_export "FractionalIdeal" "finite_factors mul_inv_cancel_iff_isUnit zero_mem ext mapEquiv map_eq_zero_iff mul coeIdeal_inj map spanSingleton_mul_spanSingleton spanSingleton_one mapEquiv_apply exists_eq_spanSingleton_mul coeIdeal_mul mk0 mem_map mem_coe spanSingleton le_one_iff_exists_coeIdeal div_one num coeIdeal_top"
-end FractionalIdeal
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
-namespace AlgebraicCurve
-namespace Place
-
-end AlgebraicCurve.Place
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq isIntegral_iff Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ Δ' map_a₃ veluXNum veluYNum veluY veluY_empty veluX_singleton veluY_singleton IsOddVeluSet veluX veluX_empty veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ veluQuotient_empty oddOrderSummingSet mem_oddOrderSummingSet"
-namespace Affine
-p2m_export "WeierstrassCurve.Affine" "map_slope Equation negY equation_iff' slope_of_X_ne equation_neg Point.add_of_Y_eq map_a₃ equation_iff_nonsingular_of_Δ_ne_zero slope CoordinateRing map equation_add Point.some Point.some.injEq Point.X_eq_iff Nonsingular Point.some.inj map_a₆ Point.add_self_of_Y_eq negAddY map_addY negY_negY FunctionField map_addX nonsingular_add map_a₂ Point CoordinateRing.mk addX map_a₁ Point.add_some nonsingular_neg map_a₄ monic_polynomial Point.some_ne_zero map_negY CoordinateRing.basis addY Y_eq_of_X_eq Point.add_of_X_ne equation_iff map_nonsingular polynomial Point.neg_some Point.coordsOrZero Point.coordsOrZero_some"
-p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
-
-universe u
-
-end WeierstrassCurve.Affine
-end
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
-section
-
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.Polynomial"
-
-namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq isIntegral_iff Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ Δ' map_a₃ veluXNum veluYNum veluY veluY_empty veluX_singleton veluY_singleton IsOddVeluSet veluX veluX_empty veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ veluQuotient_empty oddOrderSummingSet mem_oddOrderSummingSet"
-p2m_open "WeierstrassCurve"
-
 section Field
 
 variable {F : Type*} [Field F] (W : WeierstrassCurve F)
@@ -2582,7 +1071,6 @@ private lemma _root_.WeierstrassCurve.veluY_summand_negY (x y : F) (Q : F × F) 
     field_simp
     ring
 
-p2m_export "WeierstrassCurve" "veluY_summand_negY"
 private lemma _root_.WeierstrassCurve.veluY_negY (S : Finset (F × F)) (x y : F) :
     W.veluY S x (W.toAffine.negY x y)
       = (W.veluQuotient S).toAffine.negY (W.veluX S x) (W.veluY S x y) := by
@@ -2592,22 +1080,16 @@ private lemma _root_.WeierstrassCurve.veluY_negY (S : Finset (F × F)) (x y : F)
   simp only [Affine.negY, veluQuotient_a₁, veluQuotient_a₃]
   ring
 
-p2m_export "WeierstrassCurve" "veluY_negY"
 end Field
 end WeierstrassCurve
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 section
 
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.Polynomial WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point"
+open WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
 
 noncomputable section
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq isIntegral_iff Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ Δ' map_a₃ veluXNum veluYNum veluY veluY_empty veluX_singleton veluY_singleton IsOddVeluSet veluX veluX_empty veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ veluQuotient_empty oddOrderSummingSet mem_oddOrderSummingSet"
-p2m_open "WeierstrassCurve"
-
 section Corrections
 
 variable {F : Type*} [Field F] (W : WeierstrassCurve F)
@@ -2615,27 +1097,21 @@ variable {F : Type*} [Field F] (W : WeierstrassCurve F)
 private def _root_.WeierstrassCurve.veluXCorr (x₀ y₀ r : F) : F :=
   W.veluT x₀ y₀ / (r - x₀) + W.veluU x₀ y₀ / (r - x₀) ^ 2
 
-p2m_export "WeierstrassCurve" "veluXCorr"
 private def _root_.WeierstrassCurve.veluYCorr (x₀ y₀ r s : F) : F :=
   -(W.veluU x₀ y₀ * (2 * s + W.a₁ * r + W.a₃) / (r - x₀) ^ 3
     + W.veluT x₀ y₀ * (W.a₁ * (r - x₀) + s - y₀) / (r - x₀) ^ 2
     + (W.a₁ * W.veluU x₀ y₀ - W.veluGx x₀ y₀ * W.veluGy x₀ y₀) / (r - x₀) ^ 2)
 
-p2m_export "WeierstrassCurve" "veluYCorr"
 private theorem _root_.WeierstrassCurve.veluX_sub_self_eq_sum_veluXCorr (S : Finset (F × F)) (r : F) :
     W.veluX S r - r = ∑ Q ∈ S, W.veluXCorr Q.1 Q.2 r := by
   simp only [veluX, veluXCorr, add_sub_cancel_left]
 
-p2m_export "WeierstrassCurve" "veluX_sub_self_eq_sum_veluXCorr"
 private theorem _root_.WeierstrassCurve.veluY_sub_self_eq_sum_veluYCorr (S : Finset (F × F)) (r s : F) :
     W.veluY S r s - s = ∑ Q ∈ S, W.veluYCorr Q.1 Q.2 r s := by
   unfold veluY veluYCorr
   rw [sub_sub_cancel_left, ← Finset.sum_neg_distrib]
 
-p2m_export "WeierstrassCurve" "veluY_sub_self_eq_sum_veluYCorr"
 end Corrections
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 section AlphaLaurent
 
 variable {F : Type*} [Field F] (W : WeierstrassCurve F)
@@ -2648,7 +1124,6 @@ private theorem _root_.WeierstrassCurve.veluXCorr_mul_r (x₀ y₀ : F) {r : F} 
   field_simp
   ring
 
-p2m_export "WeierstrassCurve" "veluXCorr_mul_r"
 private theorem _root_.WeierstrassCurve.veluX_sub_self_mul_r (S : Finset (F × F)) {r : F} (hr : ∀ A ∈ S, r ≠ A.1) :
     (W.veluX S r - r) * r
       = W.veluTSum S
@@ -2657,49 +1132,39 @@ private theorem _root_.WeierstrassCurve.veluX_sub_self_mul_r (S : Finset (F × F
   exact Finset.sum_congr rfl fun Q hQ => by
     rw [W.veluXCorr_mul_r Q.1 Q.2 (hr Q hQ)]; ring
 
-p2m_export "WeierstrassCurve" "veluX_sub_self_mul_r"
 end AlphaLaurent
 end WeierstrassCurve
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 section
 
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.Polynomial WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point"
+open WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
 
-p2m_open_scoped "WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine"
+open scoped WeierstrassCurve.Affine
 
 noncomputable section
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq isIntegral_iff Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ Δ' map_a₃ veluXNum veluYNum veluY veluY_empty veluX_singleton veluY_singleton IsOddVeluSet veluX veluX_empty veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ veluQuotient_empty oddOrderSummingSet mem_oddOrderSummingSet"
-p2m_open "WeierstrassCurve"
-
 section Deficit
 
 variable {F : Type*} [Field F] (W : WeierstrassCurve F)
 
-def _root_.WeierstrassCurve.veluDeficit (S : Finset (F × F)) (r s : F) : F :=
+def veluDeficit (S : Finset (F × F)) (r s : F) : F :=
   (W.veluY S r s) ^ 2 + W.a₁ * (W.veluX S r) * (W.veluY S r s) + W.a₃ * (W.veluY S r s)
     - ((W.veluX S r) ^ 3 + W.a₂ * (W.veluX S r) ^ 2
         + (W.veluQuotient S).a₄ * (W.veluX S r) + (W.veluQuotient S).a₆)
 
-p2m_export "WeierstrassCurve" "veluDeficit"
-private theorem _root_.WeierstrassCurve.veluQuotient_equation_iff_veluDeficit_eq_zero (S : Finset (F × F)) (r s : F) :
+private theorem veluQuotient_equation_iff_veluDeficit_eq_zero (S : Finset (F × F)) (r s : F) :
     (W.veluQuotient S).toAffine.Equation (W.veluX S r) (W.veluY S r s)
       ↔ W.veluDeficit S r s = 0 := by
   rw [Affine.equation_iff, veluDeficit, veluQuotient_a₁, veluQuotient_a₂, veluQuotient_a₃,
     sub_eq_zero]
 
-p2m_export "WeierstrassCurve" "veluQuotient_equation_iff_veluDeficit_eq_zero"
 end Deficit
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 section Expansion
 
 variable {F : Type*} [Field F] (W : WeierstrassCurve F)
 
-private theorem _root_.WeierstrassCurve.veluDeficit_eq_of_equation {S : Finset (F × F)} {r s : F}
+private theorem veluDeficit_eq_of_equation {S : Finset (F × F)} {r s : F}
     (hP : W.toAffine.Equation r s) :
     W.veluDeficit S r s
       = -(W.veluY S r s - s) * W.veluGy r s - (W.veluX S r - r) * W.veluGx r s
@@ -2710,18 +1175,12 @@ private theorem _root_.WeierstrassCurve.veluDeficit_eq_of_equation {S : Finset (
   simp only [veluDeficit, veluGx, veluGy, veluQuotient_a₄, veluQuotient_a₆]
   linear_combination hP
 
-p2m_export "WeierstrassCurve" "veluDeficit_eq_of_equation"
-private theorem _root_.WeierstrassCurve.veluDeficit_congr {S : Finset (F × F)} {r s r' s' : F}
+private theorem veluDeficit_congr {S : Finset (F × F)} {r s r' s' : F}
     (hX : W.veluX S r = W.veluX S r') (hY : W.veluY S r s = W.veluY S r' s') :
     W.veluDeficit S r s = W.veluDeficit S r' s' := by
   unfold veluDeficit; rw [hX, hY]
 
-p2m_export "WeierstrassCurve" "veluDeficit_congr"
 end Expansion
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 section ConstancyCarrier
 
 variable (F : Type*) [Field F] [DecidableEq F]
@@ -2737,18 +1196,13 @@ def VeluDeficitConstancyAt (p : ℕ) : Prop :=
 end ConstancyCarrier
 end WeierstrassCurve
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 section
 
-p2m_open "WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point"
+open WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
 
 noncomputable section
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq isIntegral_iff Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ Δ' map_a₃ veluXNum veluYNum veluY veluY_empty veluX_singleton veluY_singleton IsOddVeluSet veluX veluX_empty veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ veluQuotient_empty oddOrderSummingSet mem_oddOrderSummingSet"
-p2m_open "WeierstrassCurve"
-
 section Carrier
 
 variable {F : Type*} [Field F] [DecidableEq F]
@@ -2764,21 +1218,14 @@ end Carrier
 end WeierstrassCurve
 end
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 section
 
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.Polynomial"
-
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq isIntegral_iff Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ Δ' map_a₃ veluXNum veluYNum veluY veluY_empty veluX_singleton veluY_singleton IsOddVeluSet veluX veluX_empty veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ veluQuotient_empty oddOrderSummingSet mem_oddOrderSummingSet"
-p2m_open "WeierstrassCurve"
-
 section CommRing
 
 variable {R : Type*} [CommRing R] (W : WeierstrassCurve R)
 
-private theorem _root_.WeierstrassCurve.velu_orbitSumX_singleton_cleared {x₀ y₀ x y : R}
+private theorem velu_orbitSumX_singleton_cleared {x₀ y₀ x y : R}
     (hP : W.toAffine.Equation x y) (hQ : W.toAffine.Equation x₀ y₀) :
     W.veluXNum x₀ y₀ x
       = (x - 2 * x₀) * (x - x₀) ^ 2
@@ -2790,7 +1237,6 @@ private theorem _root_.WeierstrassCurve.velu_orbitSumX_singleton_cleared {x₀ y
   simp only [veluXNum, veluT, veluU, veluGx, veluGy]
   linear_combination (-2 : R) * hP + 2 * hQ
 
-p2m_export "WeierstrassCurve" "velu_orbitSumX_singleton_cleared"
 private theorem _root_.WeierstrassCurve.velu_orbitSumY_singleton_cleared {x₀ y₀ x y : R}
     (hP : W.toAffine.Equation x y) (hQ : W.toAffine.Equation x₀ y₀) :
     W.veluYNum x₀ y₀ x y
@@ -2815,10 +1261,7 @@ private theorem _root_.WeierstrassCurve.velu_orbitSumY_singleton_cleared {x₀ y
   linear_combination (2 * W.a₁ * x - W.a₁ * x₀ + W.a₃ + 2 * y) * hP
     + (-2 * W.a₁ * x + W.a₁ * x₀ - W.a₃ - 2 * y) * hQ
 
-p2m_export "WeierstrassCurve" "velu_orbitSumY_singleton_cleared"
 end CommRing
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 section Field
 
 variable {F : Type*} [Field F] (W : WeierstrassCurve F)
@@ -2836,7 +1279,6 @@ private theorem _root_.WeierstrassCurve.veluX_singleton_eq_orbitSum [DecidableEq
   field_simp
   linear_combination key
 
-p2m_export "WeierstrassCurve" "veluX_singleton_eq_orbitSum"
 private theorem _root_.WeierstrassCurve.veluY_singleton_eq_orbitSum [DecidableEq F] {x₀ y₀ x y : F}
     (hP : W.toAffine.Equation x y) (hQ : W.toAffine.Equation x₀ y₀) (hx : x ≠ x₀) :
     W.veluY {(x₀, y₀)} x y
@@ -2850,16 +1292,10 @@ private theorem _root_.WeierstrassCurve.veluY_singleton_eq_orbitSum [DecidableEq
   field_simp
   linear_combination key
 
-p2m_export "WeierstrassCurve" "veluY_singleton_eq_orbitSum"
 end Field
 end WeierstrassCurve
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
-
 noncomputable section
-
-open IsLocalRing
 
 namespace AlgebraicCurve
 
@@ -2893,21 +1329,10 @@ theorem ord_sub_evalAt_pos (hrat : v.IsRational) {f : F} (hf : f ∈ v.toValuati
 
 end Place
 end AlgebraicCurve
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
-namespace ModularCurve
-
-end ModularCurve
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 section
 
 noncomputable section
-
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.Polynomial IsDedekindDomain WithZero IsLocalRing"
-
-p2m_open_scoped "Polynomial P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.Polynomial"
 
 namespace AlgebraicCurve
 
@@ -2933,26 +1358,11 @@ theorem isRational_of_deg_eq_one (h : v.deg = 1) : v.IsRational := by
   exact Algebra.mem_bot.mp hx
 
 end Place
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
-namespace Divisor
-
-end Divisor
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
-namespace RationalFunctionField
-
-end RationalFunctionField
 end AlgebraicCurve
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 section
 
 noncomputable section
-
-open IsDedekindDomain WithZero IsLocalRing
-p2m_open_scoped "Polynomial P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.Polynomial"
 
 namespace AlgebraicCurve
 
@@ -3010,8 +1420,6 @@ theorem ord_eq_neg_log_of_valuationSubring_eq (w : Valuation F ℤᵐ⁰)
   ring
 
 end Place
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 namespace RationalFunctionField
 
 variable {K : Type*} [Field K]
@@ -3045,8 +1453,6 @@ theorem ord_ofHeightOneSpectrum_eq_zero_of_notMem (w : HeightOneSpectrum K[X]) {
   by_contra h
   exact hmem
     ((Place.ord_ofHeightOneSpectrum_ne_zero_iff (K := K) (F := RatFunc K) w hq).mp h)
-
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
 
 section IrreducibleDivisor
 
@@ -3089,8 +1495,6 @@ theorem degree_single_add_single {p : K[X]} (hp : Irreducible p) :
   ring
 
 end IrreducibleDivisor
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 theorem degree_eq_zero_of_forall_eq_ord_algebraMap (q : K[X]) :
     ∀ D : Divisor K (RatFunc K),
       (∀ v : Place K (RatFunc K), D v = v.ord (algebraMap K[X] (RatFunc K) q)) →
@@ -3174,15 +1578,9 @@ scoped instance instHasPrincipalDivisors : HasPrincipalDivisors K (RatFunc K) wh
 end RationalFunctionField
 end AlgebraicCurve
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 section
 
 noncomputable section
-
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.Polynomial IsDedekindDomain"
-
-open scoped Polynomial.Bivariate
 
 namespace AlgebraicCurve
 namespace Place
@@ -3301,68 +1699,15 @@ theorem le_ord_ringHom_of_natDegree_le {φ : K[X] →+* F} (hφinj : Function.In
   have h1 : (p.natDegree : ℤ) ≤ (d : ℤ) := by exact_mod_cast hd
   nlinarith
 
-end AlgebraicCurve.Place
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
+end Place
+end AlgebraicCurve
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq isIntegral_iff Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ Δ' map_a₃ veluXNum veluYNum veluY veluY_empty veluX_singleton veluY_singleton IsOddVeluSet veluX veluX_empty veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ veluQuotient_empty oddOrderSummingSet mem_oddOrderSummingSet"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "map_slope Equation negY equation_iff' slope_of_X_ne equation_neg Point.add_of_Y_eq map_a₃ equation_iff_nonsingular_of_Δ_ne_zero slope CoordinateRing map equation_add Point.some Point.some.injEq Point.X_eq_iff Nonsingular Point.some.inj map_a₆ Point.add_self_of_Y_eq negAddY map_addY negY_negY FunctionField map_addX nonsingular_add map_a₂ Point CoordinateRing.mk addX map_a₁ Point.add_some nonsingular_neg map_a₄ monic_polynomial Point.some_ne_zero map_negY CoordinateRing.basis addY Y_eq_of_X_eq Point.add_of_X_ne equation_iff map_nonsingular polynomial Point.neg_some Point.coordsOrZero Point.coordsOrZero_some"
-p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
+open WeierstrassCurve.Affine WeierstrassCurve
 
-p2m_open "WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve"
+open WeierstrassCurve.Affine.CoordinateRing AlgebraicCurve
 
 variable {F : Type*} [Field F] {W : Affine F}
-
-def polyToFunctionField (W : Affine F) : F[X] →+* W.FunctionField :=
-  (algebraMap W.CoordinateRing W.FunctionField).comp (algebraMap F[X] W.CoordinateRing)
-
-theorem polyToFunctionField_apply (p : F[X]) :
-    polyToFunctionField W p
-      = algebraMap W.CoordinateRing W.FunctionField (algebraMap F[X] W.CoordinateRing p) := rfl
-
-theorem algebraMap_smul_one (p : F[X]) :
-    algebraMap W.CoordinateRing W.FunctionField (p • (1 : W.CoordinateRing))
-      = polyToFunctionField W p := by
-  rw [polyToFunctionField_apply, smul, mul_one]
-  rfl
-
-theorem polyToFunctionField_injective : Function.Injective (polyToFunctionField W) := by
-  intro p q h
-  rw [polyToFunctionField_apply, polyToFunctionField_apply] at h
-  have h2 := IsFractionRing.injective W.CoordinateRing W.FunctionField h
-  have h0 : (p - q) • (1 : W.CoordinateRing) + (0 : F[X]) • CoordinateRing.mk W Y = 0 := by
-    rw [zero_smul, add_zero, sub_smul, ← Algebra.algebraMap_eq_smul_one,
-      ← Algebra.algebraMap_eq_smul_one, h2, sub_self]
-  exact sub_eq_zero.mp (smul_basis_eq_zero h0).1
-
-theorem polyToFunctionField_C (c : F) :
-    polyToFunctionField W (C c) = algebraMap F W.FunctionField c := by
-  rw [polyToFunctionField_apply,
-    show algebraMap F[X] W.CoordinateRing (C c) = algebraMap F W.CoordinateRing c from
-      (IsScalarTower.algebraMap_apply F F[X] W.CoordinateRing c).symm]
-  exact (IsScalarTower.algebraMap_apply F W.CoordinateRing W.FunctionField c).symm
-
-theorem polyToFunctionField_ne_zero {p : F[X]} (hp : p ≠ 0) :
-    polyToFunctionField W p ≠ 0 := by
-  intro h
-  exact hp (polyToFunctionField_injective (by simpa using h))
-
-theorem algebraMap_smul_basis (p q : F[X]) :
-    algebraMap W.CoordinateRing W.FunctionField
-        (p • (1 : W.CoordinateRing) + q • CoordinateRing.mk W Y)
-      = polyToFunctionField W p + polyToFunctionField W q
-          * algebraMap W.CoordinateRing W.FunctionField (CoordinateRing.mk W Y) := by
-  rw [map_add, algebraMap_smul_one, smul, map_mul, polyToFunctionField_apply]
-  rfl
-
-theorem Y_image_ne_zero :
-    algebraMap W.CoordinateRing W.FunctionField (CoordinateRing.mk W Y) ≠ 0 := by
-  have h1 : (CoordinateRing.mk W Y) ≠ 0 := by
-    have h2 := YClass_ne_zero (W' := W) 0
-    simpa [YClass] using h2
-  exact (map_ne_zero_iff _ (IsFractionRing.injective W.CoordinateRing W.FunctionField)).mpr h1
 
 theorem natDegree_norm_smul_basis_left {p : F[X]} (hp : p ≠ 0) :
     ((Algebra.norm F[X] (p • (1 : W.CoordinateRing)
@@ -3636,15 +1981,12 @@ theorem ord_Y_eq_neg_three_of_not_isFinitePlace (hv : ¬ IsFinitePlace v) :
   rw [ord_X_eq_neg_two_of_not_isFinitePlace v hv] at h1
   omega
 
-end WeierstrassCurve.Affine
+end Affine
+end WeierstrassCurve
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 section
 
 noncomputable section
-
-open IsDedekindDomain WithZero IsLocalRing
 
 namespace AlgebraicCurve
 
@@ -3720,16 +2062,9 @@ theorem eq_ord_of_addHom_of_nonneg_iff (φ : F → ℤ)
   exact this.symm
 
 end Uniqueness
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 variable {K F F' : Type*} [Field K] [Field F] [Field F']
   [Algebra K F] [Algebra K F'] [Algebra F F'] [IsScalarTower K F F']
   [FiniteDimensional F F'] [Algebra.IsSeparable F F']
-
-variable (F') in
-
-@[reducible] def valuationSubringAlgebra (v : Place K F) : Algebra v.toValuationSubring F' :=
-  ((algebraMap F F').comp (algebraMap v.toValuationSubring F)).toAlgebra
 
 attribute [local instance 0] valuationSubringAlgebra
 
@@ -3740,134 +2075,7 @@ variable (v : Place K F)
 scoped instance (priority := 100) : IsScalarTower v.toValuationSubring F F' :=
   IsScalarTower.of_algebraMap_eq fun _ => rfl
 
-variable (F') in
-
-abbrev integralClosureAt : Type _ := integralClosure v.toValuationSubring F'
-
-scoped instance : IsDedekindDomain (integralClosureAt F' v) :=
-  integralClosure.isDedekindDomain v.toValuationSubring F F'
-
-scoped instance : IsFractionRing (integralClosureAt F' v) F' :=
-  integralClosure.isFractionRing_of_finite_extension (A := v.toValuationSubring) F F'
-
-scoped instance : Module.Finite v.toValuationSubring (integralClosureAt F' v) :=
-  IsIntegralClosure.finite v.toValuationSubring F F' _
-
-omit [Algebra K F'] [IsScalarTower K F F'] [FiniteDimensional F F']
-  [Algebra.IsSeparable F F'] in
-
-theorem algebraMap_integralClosureAt_injective :
-    Function.Injective
-      (algebraMap v.toValuationSubring (integralClosureAt F' v)) := by
-  intro a b hab
-  have h1 : algebraMap (integralClosureAt F' v) F'
-      (algebraMap v.toValuationSubring (integralClosureAt F' v) a)
-        = algebraMap (integralClosureAt F' v) F'
-      (algebraMap v.toValuationSubring (integralClosureAt F' v) b) := by rw [hab]
-  rw [← IsScalarTower.algebraMap_apply, ← IsScalarTower.algebraMap_apply] at h1
-  exact ((algebraMap F F').injective.comp
-    (IsFractionRing.injective v.toValuationSubring F)) h1
-
-scoped instance : Module.IsTorsionFree v.toValuationSubring (integralClosureAt F' v) := by
-  rw [Module.isTorsionFree_iff_smul_eq_zero]
-  intro r c hrc
-  rw [Algebra.smul_def] at hrc
-  rcases mul_eq_zero.mp hrc with h | h
-  · exact Or.inl (algebraMap_integralClosureAt_injective v (by rw [h, _root_.map_zero]))
-  · exact Or.inr h
-
-theorem maximalIdeal_ne_bot :
-    IsLocalRing.maximalIdeal v.toValuationSubring ≠ ⊥ := by
-  intro h
-  exact ValuationSubring.not_isField_of_ne_top F v.ne_top'
-    (IsLocalRing.isField_iff_maximalIdeal_eq.mpr h)
-
 end Setup
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
-section Center
-
-variable {v : Place K F} {w : Place K F'}
-
-omit [FiniteDimensional F F'] in
-
-theorem forall_mem_of_restrict_eq (hw : w.restrict F = v) (c : integralClosureAt F' v) :
-    algebraMap (integralClosureAt F' v) F' c ∈ w.toValuationSubring := by
-  obtain ⟨Q, hQmonic, hQeval⟩ := c.2
-  have hOv : ∀ g : F, g ∈ v.toValuationSubring →
-      algebraMap F F' g ∈ w.toValuationSubring := by
-    intro g hg
-    rw [← hw] at hg
-    exact hg
-  refine w.mem_of_eval_monic_eq_zero (P := Q.map (algebraMap v.toValuationSubring F'))
-    (hQmonic.map _) (fun i => ?_) (by rw [Polynomial.eval_map]; exact hQeval)
-  rw [Polynomial.coeff_map,
-    IsScalarTower.algebraMap_apply v.toValuationSubring F F']
-  exact hOv _ (Q.coeff i).2
-
-variable (F' v) in
-
-def fiberCenter (hw : w.restrict F = v) : HeightOneSpectrum (integralClosureAt F' v) :=
-  centerHeightOneSpectrum (integralClosureAt F' v) w (forall_mem_of_restrict_eq hw)
-
-theorem mem_fiberCenter_iff_ord_pos (hw : w.restrict F = v) {c : integralClosureAt F' v}
-    (hc : c ≠ 0) :
-    c ∈ (fiberCenter F' v hw).asIdeal ↔
-      0 < w.ord (algebraMap (integralClosureAt F' v) F' c) :=
-  mem_center_iff_ord_pos w (forall_mem_of_restrict_eq hw) hc
-
-theorem toValuationSubring_eq_of_restrict_eq (hw : w.restrict F = v) :
-    w.toValuationSubring =
-      HeightOneSpectrum.valuationSubringAtPrime F' (fiberCenter F' v hw) :=
-  toValuationSubring_eq_of_forall_mem w (forall_mem_of_restrict_eq hw)
-
-theorem mem_maximalIdeal_iff_ord_pos' {r : v.toValuationSubring} (hr : r ≠ 0) :
-    r ∈ IsLocalRing.maximalIdeal v.toValuationSubring ↔
-      0 < v.ord (algebraMap v.toValuationSubring F r) := by
-  have hrF : (algebraMap v.toValuationSubring F r : F) ≠ 0 := by
-    simpa using (IsFractionRing.injective v.toValuationSubring F).ne_iff.mpr hr
-  have := v.mem_maximalIdeal_iff_ord_pos hrF (Subtype.coe_prop r)
-  simpa using this
-
-omit [Algebra K F'] [IsScalarTower K F F'] [FiniteDimensional F F']
-  [Algebra.IsSeparable F F'] in
-
-theorem algebraMap_integralClosureAt_ne_zero {r : v.toValuationSubring} (hr : r ≠ 0) :
-    algebraMap v.toValuationSubring (integralClosureAt F' v) r ≠ 0 := fun h =>
-  hr (algebraMap_integralClosureAt_injective v (by rw [h, _root_.map_zero]))
-
-omit [FiniteDimensional F F'] in
-
-theorem ord_algebraMap_integralClosureAt (hw : w.restrict F = v) (r : v.toValuationSubring) :
-    w.ord (algebraMap (integralClosureAt F' v) F'
-        (algebraMap v.toValuationSubring (integralClosureAt F' v) r))
-      = w.ramificationIndex F * v.ord (algebraMap v.toValuationSubring F r) := by
-  rw [← IsScalarTower.algebraMap_apply,
-    IsScalarTower.algebraMap_apply v.toValuationSubring F F', w.ord_restrict, hw]
-
-theorem fiberCenter_liesOver (hw : w.restrict F = v) :
-    (fiberCenter F' v hw).asIdeal.LiesOver
-      (IsLocalRing.maximalIdeal v.toValuationSubring) := by
-  refine ⟨?_⟩
-  rw [Ideal.under_def]
-  ext r
-  rcases eq_or_ne r 0 with rfl | hr
-  · simp
-  rw [Ideal.mem_comap,
-    mem_fiberCenter_iff_ord_pos hw (algebraMap_integralClosureAt_ne_zero hr),
-    ord_algebraMap_integralClosureAt hw, mem_maximalIdeal_iff_ord_pos' hr]
-  have hepos : 0 < ramificationIndex (F := F) w := w.ramificationIndex_pos
-  constructor
-  · intro h
-    positivity
-  · intro h
-    rcases mul_pos_iff.mp h with ⟨_, h2⟩ | ⟨h1, _⟩
-    · exact h2
-    · omega
-
-end Center
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 section ValuationDictionary
 
 variable {v : Place K F} {w : Place K F'}
@@ -3961,8 +2169,6 @@ theorem ramificationIndex_eq_ramificationIdx_fiberCenter (hw : w.restrict F = v)
     omega
 
 end ValuationDictionary
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 section ResidueDictionary
 
 variable {v : Place K F} {w : Place K F'}
@@ -4095,111 +2301,29 @@ theorem inertiaDeg_eq_inertiaDeg_fiberCenter (hw : w.restrict F = v) :
   rfl
 
 end ResidueDictionary
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
-section Bijection
-
-variable {v : Place K F}
-
-def placeOfPrime (P : HeightOneSpectrum (integralClosureAt F' v)) : Place K F' where
-  toValuationSubring := HeightOneSpectrum.valuationSubringAtPrime F' P
-  algebraMap_mem' := fun a => by
-    rw [HeightOneSpectrum.valuationSubringAtPrime_eq_valuationSubring,
-      Valuation.mem_valuationSubring_iff]
-    have h1 : algebraMap K F' a = algebraMap (integralClosureAt F' v) F'
-        (algebraMap v.toValuationSubring (integralClosureAt F' v)
-          (algebraMap K v.toValuationSubring a)) := by
-      rw [← IsScalarTower.algebraMap_apply,
-        IsScalarTower.algebraMap_apply v.toValuationSubring F F',
-        ← IsScalarTower.algebraMap_apply K v.toValuationSubring F,
-        ← IsScalarTower.algebraMap_apply K F F']
-    rw [h1]
-    exact P.valuation_le_one _
-  ne_top' := by
-    rw [HeightOneSpectrum.valuationSubringAtPrime_eq_valuationSubring]
-    simp only [ne_eq, Valuation.valuationSubring_eq_top_iff, not_not]
-    infer_instance
-  isPrincipalIdealRing' := by
-    rw [HeightOneSpectrum.valuationSubringAtPrime_eq_valuationSubring]
-    exact isPrincipalIdealRing_valuationSubring P
-
-@[scoped simp]
-theorem placeOfPrime_toValuationSubring (P : HeightOneSpectrum (integralClosureAt F' v)) :
-    (placeOfPrime P).toValuationSubring = HeightOneSpectrum.valuationSubringAtPrime F' P :=
-  rfl
-
-theorem restrict_placeOfPrime (P : HeightOneSpectrum (integralClosureAt F' v)) :
-    (placeOfPrime P).restrict F = v := by
-  have hle : v.toValuationSubring ≤ ((placeOfPrime P).restrict F).toValuationSubring := by
-    intro g hg
-    rw [restrict_toValuationSubring, ValuationSubring.mem_comap,
-      placeOfPrime_toValuationSubring,
-      HeightOneSpectrum.valuationSubringAtPrime_eq_valuationSubring,
-      Valuation.mem_valuationSubring_iff]
-    have h1 : algebraMap F F' g = algebraMap (integralClosureAt F' v) F'
-        (algebraMap v.toValuationSubring (integralClosureAt F' v) ⟨g, hg⟩) := by
-      rw [← IsScalarTower.algebraMap_apply,
-        IsScalarTower.algebraMap_apply v.toValuationSubring F F']
-      rfl
-    rw [h1]
-    exact P.valuation_le_one _
-  exact (Place.ext (ValuationSubring.eq_of_le_of_ne_top _ hle
-    ((placeOfPrime P).restrict F).ne_top')).symm
-
-theorem fiberCenter_placeOfPrime (P : HeightOneSpectrum (integralClosureAt F' v)) :
-    fiberCenter F' v (restrict_placeOfPrime P) = P := by
-  have h1 : HeightOneSpectrum.valuationSubringAtPrime F'
-      (fiberCenter F' v (restrict_placeOfPrime P))
-        = HeightOneSpectrum.valuationSubringAtPrime F' P := by
-    rw [← toValuationSubring_eq_of_restrict_eq (restrict_placeOfPrime P),
-      placeOfPrime_toValuationSubring]
-  refine HeightOneSpectrum.eq_of_valuation_isEquiv_valuation (K := F') ?_
-  rw [Valuation.isEquiv_iff_valuationSubring,
-    ← HeightOneSpectrum.valuationSubringAtPrime_eq_valuationSubring,
-    ← HeightOneSpectrum.valuationSubringAtPrime_eq_valuationSubring, h1]
-
-theorem eq_of_fiberCenter_eq {w w' : Place K F'} (hw : w.restrict F = v)
-    (hw' : w'.restrict F = v)
-    (h : fiberCenter F' v hw = fiberCenter F' v hw') : w = w' := by
-  refine Place.ext ?_
-  rw [toValuationSubring_eq_of_restrict_eq hw, toValuationSubring_eq_of_restrict_eq hw', h]
-
-end Bijection
 end Place
 end AlgebraicCurve
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 section
 
 noncomputable section
-
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.Polynomial IsDedekindDomain"
-
-open scoped Polynomial.Bivariate
 
 namespace AlgebraicCurve
 
 variable {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F']
 
-namespace Place
-p2m_export "AlgebraicCurve.Place" "ord_prod"
-end Place
 theorem Place.ord_div (v : Place K F) {f g : F} (hf : f ≠ 0) (hg : g ≠ 0) :
     v.ord (f / g) = v.ord f - v.ord g := by
   rw [div_eq_mul_inv, v.ord_mul hf (inv_ne_zero hg), v.ord_inv]
   ring
 
 end AlgebraicCurve
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq isIntegral_iff Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ Δ' map_a₃ veluXNum veluYNum veluY veluY_empty veluX_singleton veluY_singleton IsOddVeluSet veluX veluX_empty veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ veluQuotient_empty oddOrderSummingSet mem_oddOrderSummingSet"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "map_slope Equation negY equation_iff' slope_of_X_ne equation_neg Point.add_of_Y_eq map_a₃ equation_iff_nonsingular_of_Δ_ne_zero slope CoordinateRing map equation_add Point.some Point.some.injEq Point.X_eq_iff Nonsingular Point.some.inj map_a₆ Point.add_self_of_Y_eq negAddY map_addY negY_negY FunctionField map_addX nonsingular_add map_a₂ Point CoordinateRing.mk addX map_a₁ Point.add_some nonsingular_neg map_a₄ monic_polynomial Point.some_ne_zero map_negY CoordinateRing.basis addY Y_eq_of_X_eq Point.add_of_X_ne equation_iff map_nonsingular polynomial Point.neg_some Point.coordsOrZero Point.coordsOrZero_some"
-p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
-p2m_open "WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve"
+open WeierstrassCurve.Affine.CoordinateRing AlgebraicCurve
+
+open AlgebraicCurve
 
 variable {F : Type*} [Field F] {W : Affine F}
 
@@ -4270,17 +2394,13 @@ theorem centre_placeOfEquation [IsDedekindDomain W.CoordinateRing] {x y : F}
   rw [(isFinitePlace_placeOfEquation h).mem_centre_iff_ord_ne_zero hr,
     ord_placeOfEquation_ne_zero_iff h hr]
 
-end WeierstrassCurve.Affine
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
+end Affine
+end WeierstrassCurve
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq isIntegral_iff Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ Δ' map_a₃ veluXNum veluYNum veluY veluY_empty veluX_singleton veluY_singleton IsOddVeluSet veluX veluX_empty veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ veluQuotient_empty oddOrderSummingSet mem_oddOrderSummingSet"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "map_slope Equation negY equation_iff' slope_of_X_ne equation_neg Point.add_of_Y_eq map_a₃ equation_iff_nonsingular_of_Δ_ne_zero slope CoordinateRing map equation_add Point.some Point.some.injEq Point.X_eq_iff Nonsingular Point.some.inj map_a₆ Point.add_self_of_Y_eq negAddY map_addY negY_negY FunctionField map_addX nonsingular_add map_a₂ Point CoordinateRing.mk addX map_a₁ Point.add_some nonsingular_neg map_a₄ monic_polynomial Point.some_ne_zero map_negY CoordinateRing.basis addY Y_eq_of_X_eq Point.add_of_X_ne equation_iff map_nonsingular polynomial Point.neg_some Point.coordsOrZero Point.coordsOrZero_some"
-p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
+open WeierstrassCurve.Affine WeierstrassCurve
 
-p2m_open "WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve"
+open WeierstrassCurve.Affine.CoordinateRing AlgebraicCurve
 
 variable {F : Type*} [Field F] (W : Affine F)
 
@@ -4289,48 +2409,18 @@ variable {W}
 def yGen (W : Affine F) : W.FunctionField :=
   algebraMap W.CoordinateRing W.FunctionField (CoordinateRing.mk W Y)
 
-end WeierstrassCurve.Affine
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
-namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq isIntegral_iff Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ Δ' map_a₃ veluXNum veluYNum veluY veluY_empty veluX_singleton veluY_singleton IsOddVeluSet veluX veluX_empty veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ veluQuotient_empty oddOrderSummingSet mem_oddOrderSummingSet"
-namespace Affine
-p2m_export "WeierstrassCurve.Affine" "map_slope Equation negY equation_iff' slope_of_X_ne equation_neg Point.add_of_Y_eq map_a₃ equation_iff_nonsingular_of_Δ_ne_zero slope CoordinateRing map equation_add Point.some Point.some.injEq Point.X_eq_iff Nonsingular Point.some.inj map_a₆ Point.add_self_of_Y_eq negAddY map_addY negY_negY FunctionField map_addX nonsingular_add map_a₂ Point CoordinateRing.mk addX map_a₁ Point.add_some nonsingular_neg map_a₄ monic_polynomial Point.some_ne_zero map_negY CoordinateRing.basis addY Y_eq_of_X_eq Point.add_of_X_ne equation_iff map_nonsingular polynomial Point.neg_some Point.coordsOrZero Point.coordsOrZero_some"
-p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
-
-p2m_open "WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve"
-
-universe u
-
-variable {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
-variable {W : Affine F} [W.IsElliptic]
-variable {x₀ y₀ : F} (hQ : W.toAffine.Equation x₀ y₀) (hΨ : (W.Ψ₃).eval x₀ = 0)
-  (hΔ' : (W.veluQuotient {(x₀, y₀)}).Δ ≠ 0)
-
-set_option quotPrecheck false in
-
-local notation "W'" => (W.veluQuotient {(x₀, y₀)}).toAffine
-
-namespace VeluPicSeam
-
-end VeluPicSeam
-end WeierstrassCurve.Affine
+end Affine
+end WeierstrassCurve
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 section
 
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.Polynomial WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point"
+open WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
 
-p2m_open_scoped "WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine"
+open scoped WeierstrassCurve.Affine
 
 noncomputable section
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq isIntegral_iff Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ Δ' map_a₃ veluXNum veluYNum veluY veluY_empty veluX_singleton veluY_singleton IsOddVeluSet veluX veluX_empty veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ veluQuotient_empty oddOrderSummingSet mem_oddOrderSummingSet"
-p2m_open "WeierstrassCurve"
-
 section PsiEval
 
 variable {R : Type*} [CommRing R] (W : WeierstrassCurve R)
@@ -4339,10 +2429,7 @@ private lemma _root_.WeierstrassCurve.eval_Ψ₃_eq_b' (x : R) :
     (W.Ψ₃).eval x = 3 * x ^ 4 + W.b₂ * x ^ 3 + 3 * W.b₄ * x ^ 2 + 3 * W.b₆ * x + W.b₈ := by
   simp only [Ψ₃, eval_add, eval_mul, eval_pow, eval_C, eval_X, eval_ofNat]
 
-p2m_export "WeierstrassCurve" "eval_Ψ₃_eq_b'"
 end PsiEval
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 section LinearTerm
 
 variable {F : Type*} [Field F] (W : WeierstrassCurve F)
@@ -4352,10 +2439,7 @@ private def _root_.WeierstrassCurve.veluDeficitLinearTerm (x₀ y₀ r s : F) : 
     - (W.veluX {(x₀, y₀)} r - r) * W.veluGx r s
     + 5 * W.veluT x₀ y₀ * r + W.b₂ * W.veluT x₀ y₀ + 7 * W.veluW x₀ y₀
 
-p2m_export "WeierstrassCurve" "veluDeficitLinearTerm"
 end LinearTerm
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 section ClearedIdentity
 
 variable {R : Type*} [CommRing R] (W : WeierstrassCurve R)
@@ -4380,10 +2464,7 @@ private theorem _root_.WeierstrassCurve.veluDeficitLinearTerm_mul_cube_eq {x₀ 
         + 16*W.a₁*x₀*y₀ - 24*W.a₂*r^2 + 56*W.a₂*r*x₀ - 32*W.a₂*x₀^2 + 4*W.a₃^2 + 16*W.a₃*y₀
         + 4*W.a₄*r - 4*W.a₄*x₀ - 72*r^2*x₀ + 156*r*x₀^2 - 84*x₀^3 + 16*y₀^2) * hQ
 
-p2m_export "WeierstrassCurve" "veluDeficitLinearTerm_mul_cube_eq"
 end ClearedIdentity
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 section FieldLaurent
 
 variable {F : Type*} [Field F] (W : WeierstrassCurve F)
@@ -4401,7 +2482,6 @@ private lemma _root_.WeierstrassCurve.veluDeficitLinearTerm_mul_cube {x₀ y₀ 
   field_simp
   ring
 
-p2m_export "WeierstrassCurve" "veluDeficitLinearTerm_mul_cube"
 private theorem _root_.WeierstrassCurve.veluDeficitLinearTerm_eq {x₀ y₀ r s : F}
     (hP : W.toAffine.Equation r s) (hQ : W.toAffine.Equation x₀ y₀) (hr : r ≠ x₀) :
     W.veluDeficitLinearTerm x₀ y₀ r s
@@ -4424,10 +2504,7 @@ private theorem _root_.WeierstrassCurve.veluDeficitLinearTerm_eq {x₀ y₀ r s 
       ← mul_assoc, div_mul_cancel₀ _ hd]
   exact mul_right_cancel₀ hd3 (by rw [hLHS, key, ← hRHS])
 
-p2m_export "WeierstrassCurve" "veluDeficitLinearTerm_eq"
 end FieldLaurent
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 section SumDecomposition
 
 variable {F : Type*} [Field F] (W : WeierstrassCurve F)
@@ -4442,10 +2519,7 @@ private theorem _root_.WeierstrassCurve.veluDeficit_linearPart_eq_sum (S : Finse
     ← Finset.sum_add_distrib, ← Finset.sum_add_distrib, ← Finset.sum_add_distrib]
   exact Finset.sum_congr rfl fun Q _ => by ring
 
-p2m_export "WeierstrassCurve" "veluDeficit_linearPart_eq_sum"
 end SumDecomposition
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 section FullExpansion
 
 variable {F : Type*} [Field F] (W : WeierstrassCurve F)
@@ -4455,7 +2529,6 @@ private def _root_.WeierstrassCurve.veluDeficitBracket (S : Finset (F × F)) (r 
       - (3 * r + W.a₂) * (W.veluX S r - r) ^ 2 - (W.veluX S r - r) ^ 3)
     + 5 * W.veluTSum S * (W.veluX S r - r)
 
-p2m_export "WeierstrassCurve" "veluDeficitBracket"
 private theorem _root_.WeierstrassCurve.veluDeficit_eq_laurentSum_add_bracket {S : Finset (F × F)} {r s : F}
     (hP : W.toAffine.Equation r s) (hSeq : ∀ A ∈ S, W.toAffine.Equation A.1 A.2)
     (hr : ∀ A ∈ S, r ≠ A.1) :
@@ -4474,24 +2547,18 @@ private theorem _root_.WeierstrassCurve.veluDeficit_eq_laurentSum_add_bracket {S
     veluDeficitBracket]
   ring
 
-p2m_export "WeierstrassCurve" "veluDeficit_eq_laurentSum_add_bracket"
 end FullExpansion
 end WeierstrassCurve
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 section
 
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.Polynomial WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point"
+open WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
 
-p2m_open_scoped "WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine"
+open scoped WeierstrassCurve.Affine
 
 noncomputable section
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq isIntegral_iff Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ Δ' map_a₃ veluXNum veluYNum veluY veluY_empty veluX_singleton veluY_singleton IsOddVeluSet veluX veluX_empty veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ veluQuotient_empty oddOrderSummingSet mem_oddOrderSummingSet"
-p2m_open "WeierstrassCurve"
-
 section PsiCofactor
 
 variable {R : Type*} [CommRing R] (W : WeierstrassCurve R)
@@ -4503,13 +2570,11 @@ private def _root_.WeierstrassCurve.veluDeficitPsiCofactor (x₀ x : R) : R :=
     - 24*W.a₆*x*x₀ + 12*W.a₆*x₀^2 - 6*x^5 + 30*x^4*x₀ - 48*x^3*x₀^2 + 36*x^2*x₀^3 - 18*x*x₀^4
     + 6*x₀^5
 
-p2m_export "WeierstrassCurve" "veluDeficitPsiCofactor"
 private lemma _root_.WeierstrassCurve.eval_Ψ₃_eq' (x : R) :
     (W.Ψ₃).eval x = 3 * x ^ 4 + W.b₂ * x ^ 3 + 3 * W.b₄ * x ^ 2 + 3 * W.b₆ * x + W.b₈ := by
   rw [Ψ₃]
   simp only [eval_C, eval_X, eval_add, eval_mul, eval_pow, eval_ofNat]
 
-p2m_export "WeierstrassCurve" "eval_Ψ₃_eq'"
 private theorem _root_.WeierstrassCurve.velu_singleton_deficit_cleared_eq_psi {x₀ y₀ x y : R}
     (hP : W.toAffine.Equation x y) (hQ : W.toAffine.Equation x₀ y₀) :
     W.veluYNum x₀ y₀ x y ^ 2 + W.a₁ * W.veluXNum x₀ y₀ x * W.veluYNum x₀ y₀ x y * (x - x₀)
@@ -4526,10 +2591,7 @@ private theorem _root_.WeierstrassCurve.velu_singleton_deficit_cleared_eq_psi {x
     (W.a₁^4*x^2*x₀^2 + 2*W.a₁^4*x*x₀^3 + W.a₁^4*x₀^4 + 2*W.a₁^3*W.a₃*x^2*x₀ + 8*W.a₁^3*W.a₃*x*x₀^2 + 6*W.a₁^3*W.a₃*x₀^3 + 16*W.a₁^3*x*x₀^2*y₀ + 16*W.a₁^3*x₀^3*y₀ + 8*W.a₁^2*W.a₂*x^2*x₀^2 - 8*W.a₁^2*W.a₂*x₀^4 + W.a₁^2*W.a₃^2*x^2 + 10*W.a₁^2*W.a₃^2*x*x₀ + 13*W.a₁^2*W.a₃^2*x₀^2 + 32*W.a₁^2*W.a₃*x*x₀*y₀ + 64*W.a₁^2*W.a₃*x₀^2*y₀ + 4*W.a₁^2*W.a₄*x^2*x₀ - 4*W.a₁^2*W.a₄*x₀^3 - 2*W.a₁^2*x^4*x₀ + 4*W.a₁^2*x^3*x₀^2 + 12*W.a₁^2*x^2*x₀^3 - 4*W.a₁^2*x*x₀^4 + 16*W.a₁^2*x*x₀*y₀^2 - 10*W.a₁^2*x₀^5 + 80*W.a₁^2*x₀^2*y₀^2 + 8*W.a₁*W.a₂*W.a₃*x^2*x₀ + 16*W.a₁*W.a₂*W.a₃*x*x₀^2 - 24*W.a₁*W.a₂*W.a₃*x₀^3 + 64*W.a₁*W.a₂*x*x₀^2*y₀ - 64*W.a₁*W.a₂*x₀^3*y₀ + 4*W.a₁*W.a₃^3*x + 12*W.a₁*W.a₃^3*x₀ + 16*W.a₁*W.a₃^2*x*y₀ + 80*W.a₁*W.a₃^2*x₀*y₀ + 4*W.a₁*W.a₃*W.a₄*x^2 + 8*W.a₁*W.a₃*W.a₄*x*x₀ - 12*W.a₁*W.a₃*W.a₄*x₀^2 - 2*W.a₁*W.a₃*x^4 + 24*W.a₁*W.a₃*x^2*x₀^2 + 8*W.a₁*W.a₃*x*x₀^3 + 16*W.a₁*W.a₃*x*y₀^2 - 30*W.a₁*W.a₃*x₀^4 + 176*W.a₁*W.a₃*x₀*y₀^2 + 32*W.a₁*W.a₄*x*x₀*y₀ - 32*W.a₁*W.a₄*x₀^2*y₀ - 16*W.a₁*x^3*x₀*y₀ + 48*W.a₁*x^2*x₀^2*y₀ + 48*W.a₁*x*x₀^3*y₀ - 80*W.a₁*x₀^4*y₀ + 128*W.a₁*x₀*y₀^3 + 16*W.a₂^2*x^2*x₀^2 - 32*W.a₂^2*x*x₀^3 + 16*W.a₂^2*x₀^4 + 16*W.a₂*W.a₃^2*x*x₀ - 16*W.a₂*W.a₃^2*x₀^2 + 64*W.a₂*W.a₃*x*x₀*y₀ - 64*W.a₂*W.a₃*x₀^2*y₀ + 16*W.a₂*W.a₄*x^2*x₀ - 32*W.a₂*W.a₄*x*x₀^2 + 16*W.a₂*W.a₄*x₀^3 - 8*W.a₂*x^4*x₀ + 32*W.a₂*x^3*x₀^2 - 64*W.a₂*x*x₀^4 + 64*W.a₂*x*x₀*y₀^2 + 40*W.a₂*x₀^5 - 64*W.a₂*x₀^2*y₀^2 + 4*W.a₃^4 + 32*W.a₃^3*y₀ + 8*W.a₃^2*W.a₄*x - 8*W.a₃^2*W.a₄*x₀ - 4*W.a₃^2*x^3 + 12*W.a₃^2*x^2*x₀ + 12*W.a₃^2*x*x₀^2 - 20*W.a₃^2*x₀^3 + 96*W.a₃^2*y₀^2 + 32*W.a₃*W.a₄*x*y₀ - 32*W.a₃*W.a₄*x₀*y₀ - 16*W.a₃*x^3*y₀ + 48*W.a₃*x^2*x₀*y₀ + 48*W.a₃*x*x₀^2*y₀ - 80*W.a₃*x₀^3*y₀ + 128*W.a₃*y₀^3 + 4*W.a₄^2*x^2 - 8*W.a₄^2*x*x₀ + 4*W.a₄^2*x₀^2 - 4*W.a₄*x^4 + 16*W.a₄*x^3*x₀ - 32*W.a₄*x*x₀^3 + 32*W.a₄*x*y₀^2 + 20*W.a₄*x₀^4 - 32*W.a₄*x₀*y₀^2 + x^6 - 6*x^5*x₀ + 3*x^4*x₀^2 + 28*x^3*x₀^3 - 16*x^3*y₀^2 - 21*x^2*x₀^4 + 48*x^2*x₀*y₀^2 - 30*x*x₀^5 + 48*x*x₀^2*y₀^2 + 25*x₀^6 - 80*x₀^3*y₀^2 + 64*y₀^4) * hP
     + (2*W.a₁^4*x^3*x₀ - 4*W.a₁^4*x^2*x₀^2 - 2*W.a₁^4*x*x₀^3 + 2*W.a₁^3*W.a₃*x^3 - 2*W.a₁^3*W.a₃*x^2*x₀ - 14*W.a₁^3*W.a₃*x*x₀^2 - 2*W.a₁^3*W.a₃*x₀^3 + 12*W.a₁^3*x^2*x₀*y₀ - 40*W.a₁^3*x*x₀^2*y₀ - 4*W.a₁^3*x₀^3*y₀ + 16*W.a₁^2*W.a₂*x^3*x₀ - 44*W.a₁^2*W.a₂*x^2*x₀^2 + 24*W.a₁^2*W.a₂*x*x₀^3 + 4*W.a₁^2*W.a₂*x₀^4 + 2*W.a₁^2*W.a₃^2*x^2 - 16*W.a₁^2*W.a₃^2*x*x₀ - 10*W.a₁^2*W.a₃^2*x₀^2 + 12*W.a₁^2*W.a₃*x^2*y₀ - 56*W.a₁^2*W.a₃*x*x₀*y₀ - 52*W.a₁^2*W.a₃*x₀^2*y₀ + 4*W.a₁^2*W.a₄*x^3 - 16*W.a₁^2*W.a₄*x^2*x₀ + 12*W.a₁^2*W.a₄*x*x₀^2 + 12*W.a₁^2*W.a₆*x^2 - 24*W.a₁^2*W.a₆*x*x₀ + 12*W.a₁^2*W.a₆*x₀^2 - 6*W.a₁^2*x^5 + 32*W.a₁^2*x^4*x₀ - 28*W.a₁^2*x^3*x₀^2 - 12*W.a₁^2*x^2*x₀^3 + 12*W.a₁^2*x^2*y₀^2 - 14*W.a₁^2*x*x₀^4 - 40*W.a₁^2*x*x₀*y₀^2 + 28*W.a₁^2*x₀^5 - 68*W.a₁^2*x₀^2*y₀^2 + 8*W.a₁*W.a₂*W.a₃*x^3 - 8*W.a₁*W.a₂*W.a₃*x^2*x₀ - 40*W.a₁*W.a₂*W.a₃*x*x₀^2 + 40*W.a₁*W.a₂*W.a₃*x₀^3 + 48*W.a₁*W.a₂*x^2*x₀*y₀ - 160*W.a₁*W.a₂*x*x₀^2*y₀ + 112*W.a₁*W.a₂*x₀^3*y₀ - 4*W.a₁*W.a₃^3*x - 12*W.a₁*W.a₃^3*x₀ - 16*W.a₁*W.a₃^2*x*y₀ - 80*W.a₁*W.a₃^2*x₀*y₀ - 16*W.a₁*W.a₃*W.a₄*x^2 + 16*W.a₁*W.a₃*W.a₄*x*x₀ + 2*W.a₁*W.a₃*x^4 + 24*W.a₁*W.a₃*x^3*x₀ + 12*W.a₁*W.a₃*x^2*x₀^2 - 152*W.a₁*W.a₃*x*x₀^3 - 16*W.a₁*W.a₃*x*y₀^2 + 114*W.a₁*W.a₃*x₀^4 - 176*W.a₁*W.a₃*x₀*y₀^2 - 32*W.a₁*W.a₄*x*x₀*y₀ + 32*W.a₁*W.a₄*x₀^2*y₀ + 16*W.a₁*x^3*x₀*y₀ + 96*W.a₁*x^2*x₀^2*y₀ - 336*W.a₁*x*x₀^3*y₀ + 224*W.a₁*x₀^4*y₀ - 128*W.a₁*x₀*y₀^3 + 32*W.a₂^2*x^3*x₀ - 112*W.a₂^2*x^2*x₀^2 + 128*W.a₂^2*x*x₀^3 - 48*W.a₂^2*x₀^4 + 24*W.a₂*W.a₃^2*x^2 - 64*W.a₂*W.a₃^2*x*x₀ + 40*W.a₂*W.a₃^2*x₀^2 + 48*W.a₂*W.a₃*x^2*y₀ - 160*W.a₂*W.a₃*x*x₀*y₀ + 112*W.a₂*W.a₃*x₀^2*y₀ + 16*W.a₂*W.a₄*x^3 - 64*W.a₂*W.a₄*x^2*x₀ + 80*W.a₂*W.a₄*x*x₀^2 - 32*W.a₂*W.a₄*x₀^3 + 48*W.a₂*W.a₆*x^2 - 96*W.a₂*W.a₆*x*x₀ + 48*W.a₂*W.a₆*x₀^2 - 24*W.a₂*x^5 + 128*W.a₂*x^4*x₀ - 128*W.a₂*x^3*x₀^2 - 144*W.a₂*x^2*x₀^3 + 48*W.a₂*x^2*y₀^2 + 280*W.a₂*x*x₀^4 - 160*W.a₂*x*x₀*y₀^2 - 112*W.a₂*x₀^5 + 112*W.a₂*x₀^2*y₀^2 - 4*W.a₃^4 - 32*W.a₃^3*y₀ - 8*W.a₃^2*W.a₄*x + 8*W.a₃^2*W.a₄*x₀ + 4*W.a₃^2*x^3 + 60*W.a₃^2*x^2*x₀ - 156*W.a₃^2*x*x₀^2 + 92*W.a₃^2*x₀^3 - 96*W.a₃^2*y₀^2 - 32*W.a₃*W.a₄*x*y₀ + 32*W.a₃*W.a₄*x₀*y₀ + 16*W.a₃*x^3*y₀ + 96*W.a₃*x^2*x₀*y₀ - 336*W.a₃*x*x₀^2*y₀ + 224*W.a₃*x₀^3*y₀ - 128*W.a₃*y₀^3 - 16*W.a₄^2*x^2 + 32*W.a₄^2*x*x₀ - 16*W.a₄^2*x₀^2 + 4*W.a₄*x^4 + 32*W.a₄*x^3*x₀ - 72*W.a₄*x^2*x₀^2 + 32*W.a₄*x*x₀^3 - 32*W.a₄*x*y₀^2 + 4*W.a₄*x₀^4 + 32*W.a₄*x₀*y₀^2 + 144*W.a₆*x^2*x₀ - 288*W.a₆*x*x₀^2 + 144*W.a₆*x₀^3 - 72*x^5*x₀ + 372*x^4*x₀^2 - 624*x^3*x₀^3 + 16*x^3*y₀^2 + 360*x^2*x₀^4 + 96*x^2*x₀*y₀^2 + 24*x*x₀^5 - 336*x*x₀^2*y₀^2 - 60*x₀^6 + 224*x₀^3*y₀^2 - 64*y₀^4) * hQ
 
-p2m_export "WeierstrassCurve" "velu_singleton_deficit_cleared_eq_psi"
 end PsiCofactor
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 section PsiField
 
 variable {F : Type*} [Field F] (W : WeierstrassCurve F)
@@ -4544,10 +2606,7 @@ private theorem _root_.WeierstrassCurve.veluDeficit_singleton_mul_pow_eq_psi {x�
     veluTSum, veluWSum, Finset.sum_singleton, Finset.sum_singleton]
   field_simp
 
-p2m_export "WeierstrassCurve" "veluDeficit_singleton_mul_pow_eq_psi"
 end PsiField
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 section LinQuad
 
 variable {F : Type*} [Field F] (W : WeierstrassCurve F)
@@ -4556,20 +2615,17 @@ private def _root_.WeierstrassCurve.veluDeficitLin (S : Finset (F × F)) (r s : 
   -(W.veluY S r s - s) * W.veluGy r s - (W.veluX S r - r) * W.veluGx r s
     + 5 * W.veluTSum S * r + W.b₂ * W.veluTSum S + 7 * W.veluWSum S
 
-p2m_export "WeierstrassCurve" "veluDeficitLin"
 private def _root_.WeierstrassCurve.veluDeficitQuad (S : Finset (F × F)) (r s : F) : F :=
   (W.veluY S r s - s) ^ 2 + W.a₁ * (W.veluX S r - r) * (W.veluY S r s - s)
     - (3 * r + W.a₂) * (W.veluX S r - r) ^ 2 - (W.veluX S r - r) ^ 3
     + 5 * W.veluTSum S * (W.veluX S r - r)
 
-p2m_export "WeierstrassCurve" "veluDeficitQuad"
 private theorem _root_.WeierstrassCurve.veluDeficit_eq_lin_add_quad_of_equation {S : Finset (F × F)} {r s : F}
     (hP : W.toAffine.Equation r s) :
     W.veluDeficit S r s = W.veluDeficitLin S r s + W.veluDeficitQuad S r s := by
   rw [W.veluDeficit_eq_of_equation hP, veluDeficitLin, veluDeficitQuad]
   ring
 
-p2m_export "WeierstrassCurve" "veluDeficit_eq_lin_add_quad_of_equation"
 @[scoped simp] lemma veluDeficitLin_empty (r s : F) : W.veluDeficitLin ∅ r s = 0 := by
   simp [veluDeficitLin]
 
@@ -4584,10 +2640,7 @@ private theorem _root_.WeierstrassCurve.veluDeficitLin_eq_sum_singleton (S : Fin
       Finset.sum_singleton]
     ring
 
-p2m_export "WeierstrassCurve" "veluDeficitLin_eq_sum_singleton"
 end LinQuad
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 section SumDecomp
 
 variable {F : Type*} [Field F] (W : WeierstrassCurve F)
@@ -4595,7 +2648,6 @@ variable {F : Type*} [Field F] (W : WeierstrassCurve F)
 private def _root_.WeierstrassCurve.veluDeficitCrossQuad (S : Finset (F × F)) (r s : F) : F :=
   W.veluDeficitQuad S r s - ∑ A ∈ S, W.veluDeficitQuad {A} r s
 
-p2m_export "WeierstrassCurve" "veluDeficitCrossQuad"
 private theorem _root_.WeierstrassCurve.veluDeficit_eq_sum_singleton_add_crossQuad {S : Finset (F × F)} {r s : F}
     (hP : W.toAffine.Equation r s) :
     W.veluDeficit S r s
@@ -4608,24 +2660,18 @@ private theorem _root_.WeierstrassCurve.veluDeficit_eq_sum_singleton_add_crossQu
     Finset.sum_add_distrib]
   ring
 
-p2m_export "WeierstrassCurve" "veluDeficit_eq_sum_singleton_add_crossQuad"
 end SumDecomp
 end WeierstrassCurve
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 section
 
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.Polynomial WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point"
+open WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
 
-p2m_open_scoped "WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine"
+open scoped WeierstrassCurve.Affine
 
 noncomputable section
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq isIntegral_iff Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ Δ' map_a₃ veluXNum veluYNum veluY veluY_empty veluX_singleton veluY_singleton IsOddVeluSet veluX veluX_empty veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ veluQuotient_empty oddOrderSummingSet mem_oddOrderSummingSet"
-p2m_open "WeierstrassCurve"
-
 section GeneralOrbitSum
 
 variable {F : Type*} [Field F] [DecidableEq F] (W : WeierstrassCurve F)
@@ -4650,25 +2696,19 @@ private theorem _root_.WeierstrassCurve.veluY_eq_orbitSum_fieldRed {S : Finset (
   rw [show ({(A.1, A.2)} : Finset (F × F)) = {A} from by simp] at key
   linear_combination key
 
-p2m_export "WeierstrassCurve" "veluY_eq_orbitSum_fieldRed"
 end GeneralOrbitSum
 end WeierstrassCurve
 end
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 section
 
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.Polynomial WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point"
+open WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
 
-p2m_open_scoped "WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine"
+open scoped WeierstrassCurve.Affine
 
 noncomputable section
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq isIntegral_iff Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ Δ' map_a₃ veluXNum veluYNum veluY veluY_empty veluX_singleton veluY_singleton IsOddVeluSet veluX veluX_empty veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ veluQuotient_empty oddOrderSummingSet mem_oddOrderSummingSet"
-p2m_open "WeierstrassCurve"
-
 section GeneralOrbitSum
 
 variable {F : Type*} [Field F] [DecidableEq F] (W : WeierstrassCurve F)
@@ -4692,10 +2732,7 @@ private theorem _root_.WeierstrassCurve.veluX_eq_orbitSum {S : Finset (F × F)} 
   rw [show ({(A.1, A.2)} : Finset (F × F)) = {A} from by simp] at key
   linear_combination key
 
-p2m_export "WeierstrassCurve" "veluX_eq_orbitSum"
 end GeneralOrbitSum
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 section FullPeriod
 
 variable {F : Type*} [Field F] [DecidableEq F] {W : WeierstrassCurve F}
@@ -4752,8 +2789,6 @@ end FullPeriod
 end WeierstrassCurve
 end
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 section
 
 noncomputable section
@@ -4772,8 +2807,6 @@ def RamificationInertiaIdentity : Prop :=
       = (Module.finrank F F' : ℤ) * (v.deg : ℤ)
 
 end Identity
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 namespace Divisor
 
 section Pullback
@@ -4828,14 +2861,12 @@ theorem degree_eq_finrank_mul_of_forall_eq_ord_algebraMap
     _ = (Module.finrank F F' : ℤ) * (D v * (v.deg : ℤ)) := by ring
 
 end Pullback
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 section Galois
 
 variable {K F F' : Type*} [Field K] [Field F] [Field F']
   [Algebra K F] [Algebra K F'] [Algebra F F'] [IsScalarTower K F F']
 
-theorem _root_.P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place.ord_prod {ι : Type*} (v : Place K F') (s : Finset ι)
+theorem _root_.AlgebraicCurve.Place.ord_prod {ι : Type*} (v : Place K F') (s : Finset ι)
     (g : ι → F') (hg : ∀ i ∈ s, g i ≠ 0) :
     v.ord (∏ i ∈ s, g i) = ∑ i ∈ s, v.ord (g i) := by
   classical
@@ -4893,8 +2924,6 @@ theorem degree_eq_zero_of_isGalois [IsGalois F F'] [HasPrincipalDivisors K F]
 
 end Galois
 end Divisor
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 namespace RationalFunctionField
 
 variable {K : Type*} [Field K] {F' : Type*} [Field F'] [Algebra K F']
@@ -4921,114 +2950,23 @@ theorem hasPrincipalDivisors_of_isGalois [IsGalois (RatFunc K) F']
 end RationalFunctionField
 end AlgebraicCurve
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
-
 section
 
 noncomputable section
 
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.Polynomial"
-
-open scoped Polynomial.Bivariate
-
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq isIntegral_iff Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ Δ' map_a₃ veluXNum veluYNum veluY veluY_empty veluX_singleton veluY_singleton IsOddVeluSet veluX veluX_empty veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ veluQuotient_empty oddOrderSummingSet mem_oddOrderSummingSet"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "map_slope Equation negY equation_iff' slope_of_X_ne equation_neg Point.add_of_Y_eq map_a₃ equation_iff_nonsingular_of_Δ_ne_zero slope CoordinateRing map equation_add Point.some Point.some.injEq Point.X_eq_iff Nonsingular Point.some.inj map_a₆ Point.add_self_of_Y_eq negAddY map_addY negY_negY FunctionField map_addX nonsingular_add map_a₂ Point CoordinateRing.mk addX map_a₁ Point.add_some nonsingular_neg map_a₄ monic_polynomial Point.some_ne_zero map_negY CoordinateRing.basis addY Y_eq_of_X_eq Point.add_of_X_ne equation_iff map_nonsingular polynomial Point.neg_some Point.coordsOrZero Point.coordsOrZero_some"
-p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
+open WeierstrassCurve.Affine WeierstrassCurve
 
-p2m_open "WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve"
+open WeierstrassCurve.Affine.CoordinateRing AlgebraicCurve
 
 variable {F : Type*} [Field F] {W : Affine F}
-
-theorem algebraMap_polynomial_eq_polyToFunctionField :
-    algebraMap F[X] W.FunctionField = polyToFunctionField W :=
-  IsScalarTower.algebraMap_eq F[X] W.CoordinateRing W.FunctionField
-
-theorem algebraMap_polynomial_injective :
-    Function.Injective (algebraMap F[X] W.FunctionField) := by
-  rw [algebraMap_polynomial_eq_polyToFunctionField]
-  exact polyToFunctionField_injective
-
-variable (W) in
-
-def ratFuncToFunctionField : RatFunc F →+* W.FunctionField :=
-  IsFractionRing.lift algebraMap_polynomial_injective
-
-@[scoped simp]
-theorem ratFuncToFunctionField_algebraMap (p : F[X]) :
-    ratFuncToFunctionField W (algebraMap F[X] (RatFunc F) p)
-      = algebraMap F[X] W.FunctionField p :=
-  IsFractionRing.lift_algebraMap algebraMap_polynomial_injective p
-
-scoped instance : Algebra (RatFunc F) W.FunctionField :=
-  (ratFuncToFunctionField W).toAlgebra
-
-scoped instance : IsScalarTower F[X] (RatFunc F) W.FunctionField :=
-  IsScalarTower.of_algebraMap_eq fun p => (ratFuncToFunctionField_algebraMap p).symm
-
-scoped instance : IsScalarTower F (RatFunc F) W.FunctionField := by
-  refine IsScalarTower.of_algebraMap_eq fun c => ?_
-  rw [IsScalarTower.algebraMap_apply F F[X] (RatFunc F) c,
-    ← IsScalarTower.algebraMap_apply F[X] (RatFunc F) W.FunctionField,
-    Polynomial.algebraMap_eq, algebraMap_polynomial_eq_polyToFunctionField]
-  exact (polyToFunctionField_C c).symm
-
-variable (W) in
-
-def yCoord : W.FunctionField :=
-  algebraMap W.CoordinateRing W.FunctionField (CoordinateRing.mk W Y)
-
-variable (W) in
-
-def weierstrassQuadratic : Polynomial (RatFunc F) :=
-  X ^ 2 + (C (algebraMap F[X] (RatFunc F) (C W.a₁ * X + C W.a₃)) * X
-    - C (algebraMap F[X] (RatFunc F) (X ^ 3 + C W.a₂ * X ^ 2 + C W.a₄ * X + C W.a₆)))
-
-theorem weierstrassQuadratic_sub_degree_lt :
-    (C (algebraMap F[X] (RatFunc F) (C W.a₁ * X + C W.a₃)) * X
-      - C (algebraMap F[X] (RatFunc F)
-        (X ^ 3 + C W.a₂ * X ^ 2 + C W.a₄ * X + C W.a₆))).degree < ((2 : ℕ) : WithBot ℕ) := by
-  rw [sub_eq_add_neg, ← Polynomial.C_neg]
-  exact lt_of_le_of_lt Polynomial.degree_linear_le (by exact_mod_cast Nat.one_lt_two)
-
-theorem weierstrassQuadratic_monic : (weierstrassQuadratic W).Monic :=
-  monic_X_pow_add weierstrassQuadratic_sub_degree_lt
 
 theorem weierstrassQuadratic_natDegree_le : (weierstrassQuadratic W).natDegree ≤ 2 := by
   rw [Polynomial.natDegree_le_iff_degree_le]
   refine le_trans (Polynomial.degree_add_le _ _) (max_le ?_ ?_)
   · exact (Polynomial.degree_X_pow 2).le
   · exact le_of_lt weierstrassQuadratic_sub_degree_lt
-
-theorem yCoord_relation :
-    yCoord W * yCoord W
-      = polyToFunctionField W (X ^ 3 + C W.a₂ * X ^ 2 + C W.a₄ * X + C W.a₆)
-        - polyToFunctionField W (C W.a₁ * X + C W.a₃) * yCoord W := by
-  have h1 := smul_basis_mul_Y (W' := W) 0 1
-  rw [zero_smul, zero_add, one_smul, one_mul, one_mul, zero_sub] at h1
-  have h2 := congrArg (algebraMap W.CoordinateRing W.FunctionField) h1
-  rw [map_mul, algebraMap_smul_basis, _root_.map_neg, neg_mul, ← sub_eq_add_neg] at h2
-  exact h2
-
-theorem aeval_yCoord_weierstrassQuadratic :
-    Polynomial.aeval (yCoord W) (weierstrassQuadratic W) = 0 := by
-  have hc : ∀ p : F[X],
-      algebraMap (RatFunc F) W.FunctionField (algebraMap F[X] (RatFunc F) p)
-        = polyToFunctionField W p := fun p => by
-    rw [← IsScalarTower.algebraMap_apply F[X] (RatFunc F) W.FunctionField,
-      algebraMap_polynomial_eq_polyToFunctionField]
-  simp only [weierstrassQuadratic, map_add, map_sub, map_mul, map_pow, Polynomial.aeval_X,
-    Polynomial.aeval_C, hc]
-  rw [sq]
-  have hrel := yCoord_relation (W := W)
-  simp only [map_add, map_mul, map_pow] at hrel ⊢
-  linear_combination hrel
-
-theorem isIntegral_yCoord : _root_.IsIntegral (RatFunc F) (yCoord W) :=
-  ⟨weierstrassQuadratic W, weierstrassQuadratic_monic, by
-    rw [← Polynomial.aeval_def]; exact aeval_yCoord_weierstrassQuadratic⟩
 
 theorem adjoin_yCoord_eq_top :
     IntermediateField.adjoin (RatFunc F) {yCoord W} = ⊤ := by
@@ -5094,25 +3032,18 @@ theorem isSplittingField_weierstrassQuadratic :
     rw [Set.singleton_subset_iff, Polynomial.mem_rootSet]
     exact ⟨weierstrassQuadratic_monic.ne_zero, aeval_yCoord_weierstrassQuadratic⟩
 
-end WeierstrassCurve.Affine
+end Affine
+end WeierstrassCurve
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 section
 
 noncomputable section
 
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.Polynomial IsDedekindDomain"
-
-open scoped Polynomial.Bivariate
-
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq isIntegral_iff Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ Δ' map_a₃ veluXNum veluYNum veluY veluY_empty veluX_singleton veluY_singleton IsOddVeluSet veluX veluX_empty veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ veluQuotient_empty oddOrderSummingSet mem_oddOrderSummingSet"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "map_slope Equation negY equation_iff' slope_of_X_ne equation_neg Point.add_of_Y_eq map_a₃ equation_iff_nonsingular_of_Δ_ne_zero slope CoordinateRing map equation_add Point.some Point.some.injEq Point.X_eq_iff Nonsingular Point.some.inj map_a₆ Point.add_self_of_Y_eq negAddY map_addY negY_negY FunctionField map_addX nonsingular_add map_a₂ Point CoordinateRing.mk addX map_a₁ Point.add_some nonsingular_neg map_a₄ monic_polynomial Point.some_ne_zero map_negY CoordinateRing.basis addY Y_eq_of_X_eq Point.add_of_X_ne equation_iff map_nonsingular polynomial Point.neg_some Point.coordsOrZero Point.coordsOrZero_some"
-p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
+open WeierstrassCurve.Affine WeierstrassCurve
 
-p2m_open "WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve"
+open WeierstrassCurve.Affine.CoordinateRing AlgebraicCurve
 
 universe u
 
@@ -5157,22 +3088,18 @@ theorem equation_map_polyToFunctionField_yGen :
   linear_combination h2
 
 end GenericPoint
-end WeierstrassCurve.Affine
+end Affine
+end WeierstrassCurve
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 section
 
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.Polynomial WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point"
+open WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
 
-p2m_open_scoped "WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine"
+open scoped WeierstrassCurve.Affine
 
 noncomputable section
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq isIntegral_iff Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ Δ' map_a₃ veluXNum veluYNum veluY veluY_empty veluX_singleton veluY_singleton IsOddVeluSet veluX veluX_empty veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ veluQuotient_empty oddOrderSummingSet mem_oddOrderSummingSet"
-p2m_open "WeierstrassCurve"
-
 section BaseChange
 
 variable {F F' : Type*} [Field F] [Field F'] (W : WeierstrassCurve F) (f : F →+* F')
@@ -5182,14 +3109,12 @@ private lemma _root_.WeierstrassCurve.map_veluX' (S : Finset (F × F)) (hf : Fun
   simp only [veluX, Finset.sum_map, Function.Embedding.coeFn_mk, Prod.map_fst, Prod.map_snd,
     map_veluT, map_veluU, map_add, map_sum, map_div₀, map_sub, map_pow]
 
-p2m_export "WeierstrassCurve" "map_veluX'"
 private lemma _root_.WeierstrassCurve.map_veluY' (S : Finset (F × F)) (hf : Function.Injective f) (x y : F) :
     (W.map f).veluY (S.map ⟨Prod.map f f, hf.prodMap hf⟩) (f x) (f y) = f (W.veluY S x y) := by
   simp only [veluY, Finset.sum_map, Function.Embedding.coeFn_mk, Prod.map_fst, Prod.map_snd,
     map_veluT, map_veluU, map_veluGx, map_veluGy, map_a₁, map_a₃,
     map_add, map_sub, map_mul, map_div₀, map_pow, map_sum, map_ofNat]
 
-p2m_export "WeierstrassCurve" "map_veluY'"
 private theorem _root_.WeierstrassCurve.map_veluDeficit (S : Finset (F × F)) (hf : Function.Injective f) (r s : F) :
     (W.map f).veluDeficit (S.map ⟨Prod.map f f, hf.prodMap hf⟩) (f r) (f s)
       = f (W.veluDeficit S r s) := by
@@ -5197,22 +3122,9 @@ private theorem _root_.WeierstrassCurve.map_veluDeficit (S : Finset (F × F)) (h
     W.map_veluQuotient f S hf, map_a₁, map_a₂, map_a₃, map_a₄, map_a₆,
     map_add, map_sub, map_mul, map_pow]
 
-p2m_export "WeierstrassCurve" "map_veluDeficit"
 end BaseChange
 end WeierstrassCurve
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
-namespace AlgebraicCurve
-namespace Place
-
-end AlgebraicCurve.Place
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq isIntegral_iff Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ Δ' map_a₃ veluXNum veluYNum veluY veluY_empty veluX_singleton veluY_singleton IsOddVeluSet veluX veluX_empty veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ veluQuotient_empty oddOrderSummingSet mem_oddOrderSummingSet"
-p2m_open "WeierstrassCurve"
-
 section FunctionFieldLift
 
 variable {F : Type*} [Field F] (W : Affine F)
@@ -5221,33 +3133,27 @@ private def _root_.WeierstrassCurve.liftSummingSet (S : Finset (F × F)) : Finse
   S.map ⟨Prod.map (algebraMap F W.FunctionField) (algebraMap F W.FunctionField),
     (algebraMap F W.FunctionField).injective.prodMap (algebraMap F W.FunctionField).injective⟩
 
-p2m_export "WeierstrassCurve" "liftSummingSet"
 private def _root_.WeierstrassCurve.veluDeficitFun (S : Finset (F × F)) : W.FunctionField :=
   (W.map (algebraMap F W.FunctionField)).veluDeficit (W.liftSummingSet S)
     (polyToFunctionField W X) (yGen W)
 
-p2m_export "WeierstrassCurve" "veluDeficitFun"
 end FunctionFieldLift
 end WeierstrassCurve
 end
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 section
 
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.Polynomial WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point"
+open WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
 
-p2m_open_scoped "WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine Polynomial.Bivariate Pointwise"
+open scoped WeierstrassCurve.Affine Pointwise
 
 noncomputable section
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq isIntegral_iff Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ Δ' map_a₃ veluXNum veluYNum veluY veluY_empty veluX_singleton veluY_singleton IsOddVeluSet veluX veluX_empty veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ veluQuotient_empty oddOrderSummingSet mem_oddOrderSummingSet"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "map_slope Equation negY equation_iff' slope_of_X_ne equation_neg Point.add_of_Y_eq map_a₃ equation_iff_nonsingular_of_Δ_ne_zero slope CoordinateRing map equation_add Point.some Point.some.injEq Point.X_eq_iff Nonsingular Point.some.inj map_a₆ Point.add_self_of_Y_eq negAddY map_addY negY_negY FunctionField map_addX nonsingular_add map_a₂ Point CoordinateRing.mk addX map_a₁ Point.add_some nonsingular_neg map_a₄ monic_polynomial Point.some_ne_zero map_negY CoordinateRing.basis addY Y_eq_of_X_eq Point.add_of_X_ne equation_iff map_nonsingular polynomial Point.neg_some Point.coordsOrZero Point.coordsOrZero_some"
-p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
+open WeierstrassCurve.Affine WeierstrassCurve
 
-p2m_open "WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve"
+open WeierstrassCurve.Affine.CoordinateRing AlgebraicCurve
 
 universe u
 
@@ -5268,8 +3174,6 @@ theorem YClass_C_mem_XYIdeal_iff_eq {x' y' : F} (h' : W.Equation x' y') (c : F) 
   simp [evalEval, sub_eq_zero]
 
 end MemEval
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 section PerCurveEngine
 
 variable [IsAlgClosed F] [IsDedekindDomain W.CoordinateRing]
@@ -5293,19 +3197,14 @@ theorem exists_YClass_negY_notMem_centre {v : Place F W.FunctionField} (hv : IsF
   · rw [hy, negY_negY] at heq; exact h2tor heq
 
 end PerCurveEngine
-end WeierstrassCurve.Affine
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
+end Affine
+end WeierstrassCurve
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq isIntegral_iff Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ Δ' map_a₃ veluXNum veluYNum veluY veluY_empty veluX_singleton veluY_singleton IsOddVeluSet veluX veluX_empty veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ veluQuotient_empty oddOrderSummingSet mem_oddOrderSummingSet"
-p2m_open "WeierstrassCurve"
-
 section YNotCentreDischarge
 
 variable (F : Type*) [Field F] [DecidableEq F] [IsAlgClosed F]
 
-p2m_open "AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine"
+open AlgebraicCurve WeierstrassCurve.Affine.CoordinateRing WeierstrassCurve.Affine
 
 theorem negY_ne_self_of_veluGy_ne_zero {R : Type*} [CommRing R] {W : WeierstrassCurve R}
     {a b : R} (hgy : W.veluGy a b ≠ 0) : W.toAffine.negY a b ≠ b := by
@@ -5322,20 +3221,15 @@ end
 
 end
 
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 section
 
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.Polynomial WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point"
+open WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
 
-p2m_open_scoped "WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine"
+open scoped WeierstrassCurve.Affine
 
 noncomputable section
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq isIntegral_iff Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ Δ' map_a₃ veluXNum veluYNum veluY veluY_empty veluX_singleton veluY_singleton IsOddVeluSet veluX veluX_empty veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ veluQuotient_empty oddOrderSummingSet mem_oddOrderSummingSet"
-p2m_open "WeierstrassCurve"
-
 section ReducedCofactor
 
 variable {R : Type*} [CommRing R] (W : WeierstrassCurve R)
@@ -5344,18 +3238,15 @@ private def _root_.WeierstrassCurve.veluDeficitPsiCofactorReduced (x₀ x : R) :
   -6 * x ^ 3 + 18 * x₀ * x ^ 2 + (2 * W.b₂ * x₀ + 2 * W.b₄ - 6 * x₀ ^ 2) * x
     + (6 * x₀ ^ 3 + W.b₂ * x₀ ^ 2 + 4 * W.b₄ * x₀ + 3 * W.b₆)
 
-p2m_export "WeierstrassCurve" "veluDeficitPsiCofactorReduced"
 private theorem _root_.WeierstrassCurve.veluDeficitPsiCofactor_eq_sq_mul_reduced (x₀ x : R) :
     W.veluDeficitPsiCofactor x₀ x = (x - x₀) ^ 2 * W.veluDeficitPsiCofactorReduced x₀ x := by
   simp only [veluDeficitPsiCofactor, veluDeficitPsiCofactorReduced, b₂, b₄, b₆]
   ring
 
-p2m_export "WeierstrassCurve" "veluDeficitPsiCofactor_eq_sq_mul_reduced"
 private def _root_.WeierstrassCurve.veluDeficitPsiCofactorReducedPoly (x₀ : R) : R[X] :=
   C (-6) * X ^ 3 + C (18 * x₀) * X ^ 2 + C (2 * W.b₂ * x₀ + 2 * W.b₄ - 6 * x₀ ^ 2) * X
     + C (6 * x₀ ^ 3 + W.b₂ * x₀ ^ 2 + 4 * W.b₄ * x₀ + 3 * W.b₆)
 
-p2m_export "WeierstrassCurve" "veluDeficitPsiCofactorReducedPoly"
 @[scoped simp] lemma eval_veluDeficitPsiCofactorReducedPoly (x₀ x : R) :
     (W.veluDeficitPsiCofactorReducedPoly x₀).eval x = W.veluDeficitPsiCofactorReduced x₀ x := by
   simp [veluDeficitPsiCofactorReducedPoly, veluDeficitPsiCofactorReduced]
@@ -5365,10 +3256,7 @@ private lemma _root_.WeierstrassCurve.veluDeficitPsiCofactorReducedPoly_natDegre
   unfold veluDeficitPsiCofactorReducedPoly
   compute_degree
 
-p2m_export "WeierstrassCurve" "veluDeficitPsiCofactorReducedPoly_natDegree_le"
 end ReducedCofactor
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 section ReducedField
 
 variable {F : Type*} [Field F] (W : WeierstrassCurve F)
@@ -5384,10 +3272,7 @@ private theorem _root_.WeierstrassCurve.veluDeficit_singleton_mul_pow_four_eq {x
   rw [h64, ← mul_assoc] at key
   exact mul_right_cancel₀ hd (by linear_combination key)
 
-p2m_export "WeierstrassCurve" "veluDeficit_singleton_mul_pow_four_eq"
 end ReducedField
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 section RRCarrier
 
 variable (F : Type*) [Field F] [DecidableEq F]
@@ -5401,8 +3286,6 @@ def VeluDeficitIsConstantAt (p : ℕ) : Prop :=
           W.veluDeficit (W.oddOrderSummingSet (Point.some x₀ y₀ h₀) ((p - 1) / 2)) r s = c
 
 end RRCarrier
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 section ConstantZero
 
 variable {F : Type*} [Field F]
@@ -5429,9 +3312,6 @@ theorem veluDeficitConstancyAt_of_isConstant_of_constantZero {p : ℕ}
 end ConstantZero
 end WeierstrassCurve
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
-
 noncomputable section
 
 namespace AlgebraicCurve
@@ -5468,20 +3348,10 @@ theorem eq_algebraMap_of_forall_ord_nonneg (v₀ : Place K F) (hrat : v₀.IsRat
 
 end Place
 end AlgebraicCurve
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
-namespace ModularCurve
-
-end ModularCurve
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
-
 section
 
 noncomputable section
-
-open IsDedekindDomain WithZero IsLocalRing
 
 namespace AlgebraicCurve
 
@@ -5587,8 +3457,6 @@ theorem sum_ramificationIndex_mul_deg_of_forall_mem_iff
     _ = (Module.finrank F F' : ℤ) * (v.deg : ℤ) := by rw [hsum]; ring
 
 end Place
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 theorem ramificationInertiaIdentity_of_finiteDimensional
     (K F F' : Type*) [Field K] [Field F] [Field F']
     [Algebra K F] [Algebra K F'] [Algebra F F'] [IsScalarTower K F F']
@@ -5610,23 +3478,19 @@ scoped instance (priority := 50) instHasPrincipalDivisorsOfIsGalois [IsGalois (R
 end RationalFunctionField
 end AlgebraicCurve
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 section
 
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.Polynomial WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point"
+open WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
 
-p2m_open_scoped "WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine Polynomial.Bivariate"
+open scoped WeierstrassCurve.Affine
 
 noncomputable section
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq isIntegral_iff Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ Δ' map_a₃ veluXNum veluYNum veluY veluY_empty veluX_singleton veluY_singleton IsOddVeluSet veluX veluX_empty veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ veluQuotient_empty oddOrderSummingSet mem_oddOrderSummingSet"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "map_slope Equation negY equation_iff' slope_of_X_ne equation_neg Point.add_of_Y_eq map_a₃ equation_iff_nonsingular_of_Δ_ne_zero slope CoordinateRing map equation_add Point.some Point.some.injEq Point.X_eq_iff Nonsingular Point.some.inj map_a₆ Point.add_self_of_Y_eq negAddY map_addY negY_negY FunctionField map_addX nonsingular_add map_a₂ Point CoordinateRing.mk addX map_a₁ Point.add_some nonsingular_neg map_a₄ monic_polynomial Point.some_ne_zero map_negY CoordinateRing.basis addY Y_eq_of_X_eq Point.add_of_X_ne equation_iff map_nonsingular polynomial Point.neg_some Point.coordsOrZero Point.coordsOrZero_some"
-p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
+open WeierstrassCurve.Affine WeierstrassCurve
 
-p2m_open "WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve"
+open WeierstrassCurve.Affine.CoordinateRing AlgebraicCurve
 
 universe u
 
@@ -5642,12 +3506,10 @@ private def _root_.WeierstrassCurve.Affine.addXFun : W.FunctionField :=
   (W.map ι).addX (polyToFunctionField W X) (ι a)
     ((W.map ι).slope (polyToFunctionField W X) (ι a) (yGen W) (ι b))
 
-p2m_export "WeierstrassCurve.Affine" "addXFun"
 private def _root_.WeierstrassCurve.Affine.addYFun : W.FunctionField :=
   (W.map ι).addY (polyToFunctionField W X) (ι a) (yGen W)
     ((W.map ι).slope (polyToFunctionField W X) (ι a) (yGen W) (ι b))
 
-p2m_export "WeierstrassCurve.Affine" "addYFun"
 variable {a b} in
 
 theorem equation_map_addFun (hA : W.Equation a b) :
@@ -5670,8 +3532,6 @@ theorem eval₂_polynomial_addFun (hA : W.Equation a b) :
   linear_combination heq
 
 end TranslationCoords
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 section GenericPointGroup
 
 variable {W : Affine F}
@@ -5766,8 +3626,6 @@ theorem addFun_neg_cancel_Y (hΔ : W.Δ ≠ 0) {a b : F} (hA : W.Equation a b) :
   (addFun_neg_cancel hΔ hA).2
 
 end GenericPointGroup
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 section CoordHom
 
 variable {W : Affine F} {a b : F} (hA : W.Equation a b)
@@ -5805,8 +3663,6 @@ theorem translationCoordHom_comp_algebraMap :
   exact eval₂_X _ _
 
 end CoordHom
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 section AdjoinSurjective
 
 variable {W : Affine F} (hΔ : W.Δ ≠ 0) {a b : F} (hA : W.Equation a b)
@@ -5905,8 +3761,6 @@ theorem adjoin_addFun_eq_top :
   exact div_mem (hcr r) (hcr s)
 
 end AdjoinSurjective
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 section TranslationHom
 
 variable {W : Affine F} {a b : F} (hA : W.Equation a b)
@@ -5968,28 +3822,25 @@ def translationAlgEquiv : W.FunctionField ≃ₐ[F] W.FunctionField :=
     ⟨(translationHom hA htr).injective, translationHom_surjective hA htr hΔ⟩
 
 end TranslationHom
-end WeierstrassCurve.Affine
+end Affine
+end WeierstrassCurve
 end
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore.Gamma0Three P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.FLT.AnalyticCore P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.Divisor P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.PhiGen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.ModularCurve.Gamma0Fourteen P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve.RationalFunctionField"
-
 section
 
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.Polynomial WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point"
+open WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
 
-p2m_open_scoped "WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine"
+open scoped WeierstrassCurve.Affine
 
 noncomputable section
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq isIntegral_iff Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ Δ' map_a₃ veluXNum veluYNum veluY veluY_empty veluX_singleton veluY_singleton IsOddVeluSet veluX veluX_empty veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ veluQuotient_empty oddOrderSummingSet mem_oddOrderSummingSet"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "map_slope Equation negY equation_iff' slope_of_X_ne equation_neg Point.add_of_Y_eq map_a₃ equation_iff_nonsingular_of_Δ_ne_zero slope CoordinateRing map equation_add Point.some Point.some.injEq Point.X_eq_iff Nonsingular Point.some.inj map_a₆ Point.add_self_of_Y_eq negAddY map_addY negY_negY FunctionField map_addX nonsingular_add map_a₂ Point CoordinateRing.mk addX map_a₁ Point.add_some nonsingular_neg map_a₄ monic_polynomial Point.some_ne_zero map_negY CoordinateRing.basis addY Y_eq_of_X_eq Point.add_of_X_ne equation_iff map_nonsingular polynomial Point.neg_some Point.coordsOrZero Point.coordsOrZero_some"
-p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
+open WeierstrassCurve.Affine WeierstrassCurve
 
 variable {F : Type*} [Field F] {W : Affine F}
 
-p2m_open "AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve"
+open AlgebraicCurve
 
 section OrdPins
 
@@ -6246,7 +4097,8 @@ theorem ord_veluDeficitFun_nonneg_of_not_isFinitePlace (hv : ¬ IsFinitePlace v)
 
 end Engine
 
-end WeierstrassCurve.Affine
+end Affine
+end WeierstrassCurve
 
 end
 
@@ -6254,16 +4106,13 @@ end
 
 section
 
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.Polynomial WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point"
+open WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
 
-p2m_open_scoped "WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine"
+open scoped WeierstrassCurve.Affine
 
 noncomputable section
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq isIntegral_iff Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ Δ' map_a₃ veluXNum veluYNum veluY veluY_empty veluX_singleton veluY_singleton IsOddVeluSet veluX veluX_empty veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ veluQuotient_empty oddOrderSummingSet mem_oddOrderSummingSet"
-p2m_open "WeierstrassCurve"
-
 section ClearedPoly
 
 variable {F : Type*} [Field F] [DecidableEq F] (W : WeierstrassCurve F)
@@ -6293,7 +4142,6 @@ private def _root_.WeierstrassCurve.veluDeficitSingletonSumClearedPoly (S : Fins
   ∑ A ∈ S, C ((W.Ψ₃).eval A.1) * W.veluDeficitPsiCofactorReducedPoly A.1
     * (∏ B ∈ S.erase A, (X - C B.1)) ^ 4
 
-p2m_export "WeierstrassCurve" "veluDeficitSingletonSumClearedPoly"
 private theorem _root_.WeierstrassCurve.veluDeficit_sum_singleton_mul_prodPow_eq {S : Finset (F × F)} {r s : F}
     (hP : W.toAffine.Equation r s) (hSeq : ∀ A ∈ S, W.toAffine.Equation A.1 A.2)
     (hav : ∀ A ∈ S, r ≠ A.1) :
@@ -6311,7 +4159,6 @@ private theorem _root_.WeierstrassCurve.veluDeficit_sum_singleton_mul_prodPow_eq
     eval_veluDeficitPsiCofactorReducedPoly]
   ring
 
-p2m_export "WeierstrassCurve" "veluDeficit_sum_singleton_mul_prodPow_eq"
 private theorem _root_.WeierstrassCurve.veluDeficitSingletonSumClearedPoly_natDegree_lt {S : Finset (F × F)}
     (hS : S.Nonempty) :
     (W.veluDeficitSingletonSumClearedPoly S).natDegree < 4 * S.card := by
@@ -6332,7 +4179,6 @@ private theorem _root_.WeierstrassCurve.veluDeficitSingletonSumClearedPoly_natDe
         simp only [natDegree_X_sub_C, Finset.sum_const, smul_eq_mul, mul_one, hcard, le_refl]
     _ ≤ 4 * S.card - 1 := by omega
 
-p2m_export "WeierstrassCurve" "veluDeficitSingletonSumClearedPoly_natDegree_lt"
 private theorem _root_.WeierstrassCurve.veluDeficit_mul_prodPow_eq_clearedPoly_add_crossQuad {S : Finset (F × F)} {r s : F}
     (hP : W.toAffine.Equation r s) (hSeq : ∀ A ∈ S, W.toAffine.Equation A.1 A.2)
     (hav : ∀ A ∈ S, r ≠ A.1) :
@@ -6342,7 +4188,6 @@ private theorem _root_.WeierstrassCurve.veluDeficit_mul_prodPow_eq_clearedPoly_a
   rw [W.veluDeficit_eq_sum_singleton_add_crossQuad hP, add_mul,
     W.veluDeficit_sum_singleton_mul_prodPow_eq hP hSeq hav]
 
-p2m_export "WeierstrassCurve" "veluDeficit_mul_prodPow_eq_clearedPoly_add_crossQuad"
 end ClearedPoly
 
 section ArchetypeGeneralD
@@ -6389,7 +4234,6 @@ private theorem _root_.WeierstrassCurve.veluDeficit_isConstant_constant_eq_zero_
   rw [hP0, coeff_zero] at hcoeff
   exact hcoeff.symm
 
-p2m_export "WeierstrassCurve" "veluDeficit_isConstant_constant_eq_zero_of_crossQuadProdDegLt"
 end ArchetypeGeneralD
 
 section CrossQuadCarrier
@@ -6411,12 +4255,7 @@ def VeluDeficitCrossQuadProdDegLtAt (p : ℕ) : Prop :=
 
 variable {F}
 
-namespace Affine
-p2m_export "WeierstrassCurve.Affine" "map_slope Equation negY equation_iff' slope_of_X_ne equation_neg Point.add_of_Y_eq map_a₃ equation_iff_nonsingular_of_Δ_ne_zero slope CoordinateRing map equation_add Point.some Point.some.injEq Point.X_eq_iff Nonsingular Point.some.inj map_a₆ Point.add_self_of_Y_eq negAddY map_addY negY_negY FunctionField map_addX nonsingular_add map_a₂ Point CoordinateRing.mk addX map_a₁ Point.add_some nonsingular_neg map_a₄ monic_polynomial Point.some_ne_zero map_negY CoordinateRing.basis addY Y_eq_of_X_eq Point.add_of_X_ne equation_iff map_nonsingular polynomial Point.neg_some Point.coordsOrZero Point.coordsOrZero_some"
-end Affine
-p2m_open_scoped "WeierstrassCurve.Affine" in
 omit [DecidableEq F] in
-
 theorem Affine.exists_equation_of_isAlgClosed [IsAlgClosed F] (W : WeierstrassCurve F)
     (r : F) : ∃ s, W.toAffine.Equation r s := by
   set q : F[X] := X ^ 2 + C (W.a₁ * r + W.a₃) * X
@@ -6436,9 +4275,9 @@ end
 
 section
 
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.Polynomial WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point"
+open WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
 
-p2m_open_scoped "WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine"
+open scoped WeierstrassCurve.Affine
 
 noncomputable section
 
@@ -6455,15 +4294,14 @@ theorem exists_eq_algebraMap_of_forall_ord_nonneg₀ (v₀ : Place K F) (hdeg : 
   · exact eq_algebraMap_of_forall_ord_nonneg v₀ (v₀.isRational_of_deg_eq_one hdeg)
       (hdeg ▸ one_ne_zero) hg hord
 
-end AlgebraicCurve.Place
+end Place
+end AlgebraicCurve
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq isIntegral_iff Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ Δ' map_a₃ veluXNum veluYNum veluY veluY_empty veluX_singleton veluY_singleton IsOddVeluSet veluX veluX_empty veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ veluQuotient_empty oddOrderSummingSet mem_oddOrderSummingSet"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "map_slope Equation negY equation_iff' slope_of_X_ne equation_neg Point.add_of_Y_eq map_a₃ equation_iff_nonsingular_of_Δ_ne_zero slope CoordinateRing map equation_add Point.some Point.some.injEq Point.X_eq_iff Nonsingular Point.some.inj map_a₆ Point.add_self_of_Y_eq negAddY map_addY negY_negY FunctionField map_addX nonsingular_add map_a₂ Point CoordinateRing.mk addX map_a₁ Point.add_some nonsingular_neg map_a₄ monic_polynomial Point.some_ne_zero map_negY CoordinateRing.basis addY Y_eq_of_X_eq Point.add_of_X_ne equation_iff map_nonsingular polynomial Point.neg_some Point.coordsOrZero Point.coordsOrZero_some"
-p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
+open WeierstrassCurve.Affine WeierstrassCurve
 
-p2m_open "AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve"
+open AlgebraicCurve
 
 variable {F : Type*} [Field F] {W : Affine F}
 
@@ -6475,17 +4313,15 @@ theorem functionField_liouville_of_equation [HasPrincipalDivisors F W.FunctionFi
   AlgebraicCurve.Place.exists_eq_algebraMap_of_forall_ord_nonneg₀
     (placeOfEquation h₀) (deg_placeOfEquation h₀) hord
 
-end WeierstrassCurve.Affine
+end Affine
+end WeierstrassCurve
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq isIntegral_iff Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ Δ' map_a₃ veluXNum veluYNum veluY veluY_empty veluX_singleton veluY_singleton IsOddVeluSet veluX veluX_empty veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ veluQuotient_empty oddOrderSummingSet mem_oddOrderSummingSet"
-p2m_open "WeierstrassCurve"
-
 section LiouvilleCarriers
 
 variable (F : Type*) [Field F] [DecidableEq F]
 
-p2m_open "AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve"
+open AlgebraicCurve
 
 def VeluDeficitFunOrdNonnegAt (p : ℕ) : Prop :=
   ∀ (W : WeierstrassCurve F), W.Δ ≠ 0 →
@@ -6512,7 +4348,7 @@ section LiouvilleBridge
 
 variable {F : Type*} [Field F] [DecidableEq F]
 
-p2m_open "AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve"
+open AlgebraicCurve
 
 theorem veluDeficitIsConstantAt_of_ordNonneg_of_specializesConst' {p : ℕ}
     (hPD : ∀ (W : WeierstrassCurve F), W.Δ ≠ 0 →
@@ -6539,12 +4375,9 @@ section
 
 noncomputable section
 
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.Polynomial AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve"
+open AlgebraicCurve
 
 namespace Polynomial
-p2m_export "Polynomial" "C coeff_X eval₂_sub natDegree_mul_le X X_mul_divX_add coeff_natDegree eval_mul support coeff_X_one coeff_map coe_evalRingHom natDegree_divByMonic derivative_C degree_one natDegree_zero coeff_add aeval_def eval₂_eq_sum_range leadingCoeff derivative_add eval₂_at_apply coeff algebraMap_eq eq_zero_of_infinite_isRoot eraseLead_natDegree_lt_or_eraseLead_eq_zero eval_prod natDegree_add_le separable_def' divX eval₂ aeval eval₂_add eraseLead_add_C_mul_X_pow coeff_C_zero monomial eval_finsetSum natDegree_cubic eval₂_pow evalEval_C ext_iff natDegree_prod_of_monic mul_divByMonic_eq_iff_isRoot degree mapEquiv aeval_C monic_X_pow_add degree_linear_le toSubring map_map coeff_sub degree_sum_le coeff_X_zero X_sub_C_ne_zero degree_add_le derivative_X_pow Splits map lifts_and_degree_eq_and_monic degree_C evalRingHom eval₂_X mem_rootSet degree_X_sub_C eval_zero derivative_X Monic comp eval_neg eval₂_mul coeff_C eval_pow natDegree_X_pow natDegree_pow algHom_ext sum derivative_mul Separable degree_neg coeff_zero leadingCoeff_C natDegree eval_X eval₂_map eval_C flt X_ne_zero degree_prod mapEquiv_apply natDegree_pow_le C_1 natDegree_lt_natDegree natDegree_sub_le eval_sub leadingCoeff_mul degree_le_natDegree natDegree_eq_of_degree_eq_some derivative_sub pow mem_support_iff monic_X_sub_C C_mul_X_pow_eq_monomial derivative eval_one degree_sub_lt aeval_X Splits.of_natDegree_le_one mem_span_C_X_sub_C_X_sub_C_iff_eval_eval_eq_zero erase lifts_iff_coeff_lifts natDegree_le_iff_degree_le algebraMap_apply splits_X_sub_C_mul_iff C_neg coeff_divX coeff_C_mul natDegree_C eval_add coeff_eq_zero_of_natDegree_lt evalEval monic_prod_of_monic natDegree_C_mul eval_map degree_X_pow natDegree_X_sub_C eraseLead ext IsSplittingField eval_ofNat degree_eq_natDegree C_ne_zero coeff_X_pow IsRoot eval₂_C natDegree_map_le isUnit_iff ring ringHom_ext lifts natDegree_add_eq_left_of_natDegree_lt degree_add_eq_right_of_degree_lt degree_mul ringHom_ext' leadingCoeff_ne_zero eval natDegree_C_mul_le degree_zero"
-p2m_open "Polynomial"
-
 variable {K : Type*} [Field K]
 
 theorem separable_X_sq_add_C_mul_X_sub_C {b c : K} (h : b ^ 2 + 4 * c ≠ 0) :
@@ -6567,10 +4400,8 @@ theorem separable_X_sq_add_C_mul_X_sub_C {b c : K} (h : b ^ 2 + 4 * c ≠ 0) :
 end Polynomial
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq isIntegral_iff Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ Δ' map_a₃ veluXNum veluYNum veluY veluY_empty veluX_singleton veluY_singleton IsOddVeluSet veluX veluX_empty veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ veluQuotient_empty oddOrderSummingSet mem_oddOrderSummingSet"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "map_slope Equation negY equation_iff' slope_of_X_ne equation_neg Point.add_of_Y_eq map_a₃ equation_iff_nonsingular_of_Δ_ne_zero slope CoordinateRing map equation_add Point.some Point.some.injEq Point.X_eq_iff Nonsingular Point.some.inj map_a₆ Point.add_self_of_Y_eq negAddY map_addY negY_negY FunctionField map_addX nonsingular_add map_a₂ Point CoordinateRing.mk addX map_a₁ Point.add_some nonsingular_neg map_a₄ monic_polynomial Point.some_ne_zero map_negY CoordinateRing.basis addY Y_eq_of_X_eq Point.add_of_X_ne equation_iff map_nonsingular polynomial Point.neg_some Point.coordsOrZero Point.coordsOrZero_some"
-p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
+open WeierstrassCurve.Affine WeierstrassCurve
 
 variable {F : Type*} [Field F] (W : WeierstrassCurve.Affine F)
 
@@ -6655,24 +4486,16 @@ theorem wqDiscPoly_ne_zero (h : (2 : F) ≠ 0 ∨ W.a₁ ≠ 0 ∨ W.a₃ ≠ 0)
     rw [hcon, natDegree_zero] at hdeg
     omega
 
-end WeierstrassCurve.Affine
-
-namespace ModularCurve
-namespace ElevenA1
-
-p2m_open "WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine IsLocalRing"
-
-local notation "Qbar" => AlgebraicClosure ℚ
-
-end ModularCurve.ElevenA1
+end Affine
+end WeierstrassCurve
 
 end
 
 section
 
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.Polynomial WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point"
+open WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
 
-p2m_open_scoped "WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine Polynomial.Bivariate Pointwise"
+open scoped WeierstrassCurve.Affine Pointwise
 
 noncomputable section
 
@@ -6686,15 +4509,14 @@ theorem mem_smul_iff_symm_mem (σ : F ≃ₐ[K] F) (v : Place K F) (f : F) :
   rw [smul_toValuationSubring, ValuationSubring.mem_pointwise_smul_iff_inv_smul_mem,
     AlgEquiv.smul_def, AlgEquiv.aut_inv]
 
-end AlgebraicCurve.Place
+end Place
+end AlgebraicCurve
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq isIntegral_iff Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ Δ' map_a₃ veluXNum veluYNum veluY veluY_empty veluX_singleton veluY_singleton IsOddVeluSet veluX veluX_empty veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ veluQuotient_empty oddOrderSummingSet mem_oddOrderSummingSet"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "map_slope Equation negY equation_iff' slope_of_X_ne equation_neg Point.add_of_Y_eq map_a₃ equation_iff_nonsingular_of_Δ_ne_zero slope CoordinateRing map equation_add Point.some Point.some.injEq Point.X_eq_iff Nonsingular Point.some.inj map_a₆ Point.add_self_of_Y_eq negAddY map_addY negY_negY FunctionField map_addX nonsingular_add map_a₂ Point CoordinateRing.mk addX map_a₁ Point.add_some nonsingular_neg map_a₄ monic_polynomial Point.some_ne_zero map_negY CoordinateRing.basis addY Y_eq_of_X_eq Point.add_of_X_ne equation_iff map_nonsingular polynomial Point.neg_some Point.coordsOrZero Point.coordsOrZero_some"
-p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
+open WeierstrassCurve.Affine WeierstrassCurve
 
-p2m_open "WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve"
+open WeierstrassCurve.Affine.CoordinateRing AlgebraicCurve
 
 universe u
 
@@ -6747,10 +4569,7 @@ theorem addXFun_ne_algebraMap : W.addXFun a b ≠ ι a := by
 
 end NonDegeneracy
 
-end WeierstrassCurve.Affine
-
-namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq isIntegral_iff Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ Δ' map_a₃ veluXNum veluYNum veluY veluY_empty veluX_singleton veluY_singleton IsOddVeluSet veluX veluX_empty veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ veluQuotient_empty oddOrderSummingSet mem_oddOrderSummingSet"
+end Affine
 end WeierstrassCurve
 
 end
@@ -6759,16 +4578,13 @@ end
 
 section
 
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.Polynomial WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point"
+open WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
 
-p2m_open_scoped "WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine"
+open scoped WeierstrassCurve.Affine
 
 noncomputable section
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq isIntegral_iff Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ Δ' map_a₃ veluXNum veluYNum veluY veluY_empty veluX_singleton veluY_singleton IsOddVeluSet veluX veluX_empty veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ veluQuotient_empty oddOrderSummingSet mem_oddOrderSummingSet"
-p2m_open "WeierstrassCurve"
-
 section Parity
 
 variable {F : Type*} [Field F] (W : WeierstrassCurve F)
@@ -6780,13 +4596,11 @@ private theorem _root_.WeierstrassCurve.veluDeficit_negY (S : Finset (F × F)) (
   simp only [Affine.negY, veluQuotient_a₁, veluQuotient_a₃]
   ring
 
-p2m_export "WeierstrassCurve" "veluDeficit_negY"
 private theorem _root_.WeierstrassCurve.veluDeficit_sum_singleton_negY (S : Finset (F × F)) (r s : F) :
     (∑ A ∈ S, W.veluDeficit {A} r (W.toAffine.negY r s))
       = ∑ A ∈ S, W.veluDeficit {A} r s :=
   Finset.sum_congr rfl fun A _ => W.veluDeficit_negY {A} r s
 
-p2m_export "WeierstrassCurve" "veluDeficit_sum_singleton_negY"
 private theorem _root_.WeierstrassCurve.veluDeficitCrossQuad_negY_of_equation {S : Finset (F × F)} {r s : F}
     (hP : W.toAffine.Equation r s) :
     W.veluDeficitCrossQuad S r (W.toAffine.negY r s) = W.veluDeficitCrossQuad S r s := by
@@ -6796,7 +4610,6 @@ private theorem _root_.WeierstrassCurve.veluDeficitCrossQuad_negY_of_equation {S
     W.veluDeficit_eq_sum_singleton_add_crossQuad hP] at key
   exact (add_left_cancel key).symm
 
-p2m_export "WeierstrassCurve" "veluDeficitCrossQuad_negY_of_equation"
 end Parity
 
 section AlphaPoly
@@ -6808,17 +4621,14 @@ omit [DecidableEq F] in
 private def _root_.WeierstrassCurve.veluXCorrNumPoly (A : F × F) : F[X] :=
   C (W.veluT A.1 A.2) * (X - C A.1) + C (W.veluU A.1 A.2)
 
-p2m_export "WeierstrassCurve" "veluXCorrNumPoly"
 omit [DecidableEq F] in
 private lemma _root_.WeierstrassCurve.veluXCorrNumPoly_natDegree_le (A : F × F) :
     (W.veluXCorrNumPoly A).natDegree ≤ 1 := by
   unfold veluXCorrNumPoly; compute_degree
 
-p2m_export "WeierstrassCurve" "veluXCorrNumPoly_natDegree_le"
 private def _root_.WeierstrassCurve.veluXCorrPadPoly (S : Finset (F × F)) (A : F × F) : F[X] :=
   W.veluXCorrNumPoly A * (∏ B ∈ S.erase A, (X - C B.1)) ^ 2
 
-p2m_export "WeierstrassCurve" "veluXCorrPadPoly"
 private theorem _root_.WeierstrassCurve.eval_veluXCorrPadPoly {S : Finset (F × F)} {A : F × F} (hA : A ∈ S) {r : F}
     (hav : ∀ B ∈ S, r ≠ B.1) :
     (W.veluX {A} r - r) * (∏ B ∈ S, (r - B.1)) ^ 2
@@ -6833,24 +4643,20 @@ private theorem _root_.WeierstrassCurve.eval_veluXCorrPadPoly {S : Finset (F × 
   field_simp
   ring
 
-p2m_export "WeierstrassCurve" "eval_veluXCorrPadPoly"
 private def _root_.WeierstrassCurve.veluXCorrSumPadPoly (S : Finset (F × F)) : F[X] := ∑ A ∈ S, W.veluXCorrPadPoly S A
 
-p2m_export "WeierstrassCurve" "veluXCorrSumPadPoly"
 omit [DecidableEq F] in
 
 private lemma _root_.WeierstrassCurve.veluX_sub_self_eq_sum_singleton (S : Finset (F × F)) (r : F) :
     W.veluX S r - r = ∑ A ∈ S, (W.veluX {A} r - r) := by
   simp only [veluX, Finset.sum_singleton, add_sub_cancel_left]
 
-p2m_export "WeierstrassCurve" "veluX_sub_self_eq_sum_singleton"
 private theorem _root_.WeierstrassCurve.eval_veluXCorrSumPadPoly {S : Finset (F × F)} {r : F} (hav : ∀ B ∈ S, r ≠ B.1) :
     (W.veluX S r - r) * (∏ B ∈ S, (r - B.1)) ^ 2
       = (W.veluXCorrSumPadPoly S).eval r := by
   rw [veluXCorrSumPadPoly, eval_finsetSum, W.veluX_sub_self_eq_sum_singleton, Finset.sum_mul]
   exact Finset.sum_congr rfl fun A hA => W.eval_veluXCorrPadPoly hA hav
 
-p2m_export "WeierstrassCurve" "eval_veluXCorrSumPadPoly"
 private theorem _root_.WeierstrassCurve.veluXCorrPadPoly_natDegree_le {S : Finset (F × F)} {A : F × F} (hA : A ∈ S) :
     (W.veluXCorrPadPoly S A).natDegree ≤ 2 * S.card - 1 := by
   have hScard : 1 ≤ S.card := Finset.one_le_card.mpr ⟨A, hA⟩
@@ -6862,13 +4668,11 @@ private theorem _root_.WeierstrassCurve.veluXCorrPadPoly_natDegree_le {S : Finse
         simp [Finset.card_erase_of_mem hA]
     _ ≤ 2 * S.card - 1 := by omega
 
-p2m_export "WeierstrassCurve" "veluXCorrPadPoly_natDegree_le"
 private theorem _root_.WeierstrassCurve.veluXCorrSumPadPoly_natDegree_le (S : Finset (F × F)) :
     (W.veluXCorrSumPadPoly S).natDegree ≤ 2 * S.card - 1 := by
   refine natDegree_le_iff_degree_le.mpr ((degree_sum_le _ _).trans (Finset.sup_le fun A hA => ?_))
   exact degree_le_natDegree.trans (Nat.cast_le.mpr (W.veluXCorrPadPoly_natDegree_le hA))
 
-p2m_export "WeierstrassCurve" "veluXCorrSumPadPoly_natDegree_le"
 end AlphaPoly
 
 section AlphaSqCross
@@ -6880,11 +4684,9 @@ private def _root_.WeierstrassCurve.veluDeficitCrossQuadAlphaSq (S : Finset (F �
     - ∑ A ∈ S, (-(3 * r + W.a₂) * (W.veluX {A} r - r) ^ 2
         + 5 * W.veluTSum {A} * (W.veluX {A} r - r))
 
-p2m_export "WeierstrassCurve" "veluDeficitCrossQuadAlphaSq"
 private def _root_.WeierstrassCurve.veluDeficitCrossQuadCubeBeta (S : Finset (F × F)) (r s : F) : F :=
   W.veluDeficitCrossQuad S r s - W.veluDeficitCrossQuadAlphaSq S r
 
-p2m_export "WeierstrassCurve" "veluDeficitCrossQuadCubeBeta"
 omit [DecidableEq F] in
 
 private lemma _root_.WeierstrassCurve.veluDeficitCrossQuad_eq_alphaSq_add_cubeBeta (S : Finset (F × F)) (r s : F) :
@@ -6892,7 +4694,6 @@ private lemma _root_.WeierstrassCurve.veluDeficitCrossQuad_eq_alphaSq_add_cubeBe
       = W.veluDeficitCrossQuadAlphaSq S r + W.veluDeficitCrossQuadCubeBeta S r s := by
   unfold veluDeficitCrossQuadCubeBeta; ring
 
-p2m_export "WeierstrassCurve" "veluDeficitCrossQuad_eq_alphaSq_add_cubeBeta"
 private def _root_.WeierstrassCurve.veluDeficitCrossQuadAlphaSqClearedPoly (S : Finset (F × F)) : F[X] :=
   -(C 3 * X + C W.a₂)
       * ((W.veluXCorrSumPadPoly S) ^ 2 - ∑ A ∈ S, (W.veluXCorrPadPoly S A) ^ 2)
@@ -6900,7 +4701,6 @@ private def _root_.WeierstrassCurve.veluDeficitCrossQuadAlphaSqClearedPoly (S : 
         - ∑ A ∈ S, C (W.veluT A.1 A.2) * W.veluXCorrPadPoly S A)
       * (veluKernelDenom S) ^ 2
 
-p2m_export "WeierstrassCurve" "veluDeficitCrossQuadAlphaSqClearedPoly"
 private theorem _root_.WeierstrassCurve.veluDeficitCrossQuadAlphaSq_mul_prodPow_eq {S : Finset (F × F)} {r : F}
     (hav : ∀ B ∈ S, r ≠ B.1) :
     W.veluDeficitCrossQuadAlphaSq S r * (∏ B ∈ S, (r - B.1)) ^ 4
@@ -6931,7 +4731,6 @@ private theorem _root_.WeierstrassCurve.veluDeficitCrossQuadAlphaSq_mul_prodPow_
     ← Finset.mul_sum, ← Finset.mul_sum]
   ring
 
-p2m_export "WeierstrassCurve" "veluDeficitCrossQuadAlphaSq_mul_prodPow_eq"
 private theorem _root_.WeierstrassCurve.veluDeficitCrossQuadAlphaSqClearedPoly_natDegree_lt {S : Finset (F × F)}
     (hS : S.Nonempty) :
     (W.veluDeficitCrossQuadAlphaSqClearedPoly S).natDegree < 4 * S.card := by
@@ -6971,7 +4770,6 @@ private theorem _root_.WeierstrassCurve.veluDeficitCrossQuadAlphaSqClearedPoly_n
           ((natDegree_C_mul_le _ _).trans (W.veluXCorrPadPoly_natDegree_le hA)))
     omega
 
-p2m_export "WeierstrassCurve" "veluDeficitCrossQuadAlphaSqClearedPoly_natDegree_lt"
 end AlphaSqCross
 
 section Reduction
@@ -6999,21 +4797,19 @@ end
 
 section
 
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.Polynomial WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point"
+open WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
 
-p2m_open_scoped "WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine"
+open scoped WeierstrassCurve.Affine
 
 noncomputable section
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq isIntegral_iff Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ Δ' map_a₃ veluXNum veluYNum veluY veluY_empty veluX_singleton veluY_singleton IsOddVeluSet veluX veluX_empty veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ veluQuotient_empty oddOrderSummingSet mem_oddOrderSummingSet"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "map_slope Equation negY equation_iff' slope_of_X_ne equation_neg Point.add_of_Y_eq map_a₃ equation_iff_nonsingular_of_Δ_ne_zero slope CoordinateRing map equation_add Point.some Point.some.injEq Point.X_eq_iff Nonsingular Point.some.inj map_a₆ Point.add_self_of_Y_eq negAddY map_addY negY_negY FunctionField map_addX nonsingular_add map_a₂ Point CoordinateRing.mk addX map_a₁ Point.add_some nonsingular_neg map_a₄ monic_polynomial Point.some_ne_zero map_negY CoordinateRing.basis addY Y_eq_of_X_eq Point.add_of_X_ne equation_iff map_nonsingular polynomial Point.neg_some Point.coordsOrZero Point.coordsOrZero_some"
-p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
+open WeierstrassCurve.Affine WeierstrassCurve
 
 variable {F : Type*} [Field F] {W : Affine F}
 
-p2m_open "AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve"
+open AlgebraicCurve
 
 theorem forall_place_ord_nonneg_iff_finite_and_not_finite (g : W.FunctionField) :
     (∀ v : Place F W.FunctionField, 0 ≤ v.ord g)
@@ -7026,17 +4822,15 @@ theorem forall_place_ord_nonneg_iff_finite_and_not_finite (g : W.FunctionField) 
     · exact hfin v hv
     · exact hinf v hv
 
-end WeierstrassCurve.Affine
+end Affine
+end WeierstrassCurve
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq isIntegral_iff Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ Δ' map_a₃ veluXNum veluYNum veluY veluY_empty veluX_singleton veluY_singleton IsOddVeluSet veluX veluX_empty veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ veluQuotient_empty oddOrderSummingSet mem_oddOrderSummingSet"
-p2m_open "WeierstrassCurve"
-
 section BinaryCarriers
 
 variable (F : Type*) [Field F] [DecidableEq F]
 
-p2m_open "AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve"
+open AlgebraicCurve
 
 def VeluDeficitFunOrdNonnegAtInftyAt (p : ℕ) : Prop :=
   ∀ (W : WeierstrassCurve F), W.Δ ≠ 0 →
@@ -7060,7 +4854,7 @@ section BinaryRecombination
 
 variable (F : Type*) [Field F] [DecidableEq F]
 
-p2m_open "AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve"
+open AlgebraicCurve
 
 theorem veluDeficitFunOrdNonnegAt_iff_atFinite_and_atInfty {p : ℕ} :
     VeluDeficitFunOrdNonnegAt F p
@@ -7084,7 +4878,7 @@ section KernelCarriers
 
 variable (F : Type*) [Field F] [DecidableEq F]
 
-p2m_open "AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing"
+open AlgebraicCurve WeierstrassCurve.Affine.CoordinateRing
 
 def VeluDeficitFunOrdNonnegAtKernelAt (p : ℕ) : Prop :=
   ∀ (W : WeierstrassCurve F), W.Δ ≠ 0 →
@@ -7122,7 +4916,7 @@ section TrichotomyRecombination
 
 variable (F : Type*) [Field F] [DecidableEq F]
 
-p2m_open "AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve"
+open AlgebraicCurve
 
 theorem veluDeficitFunOrdNonnegAt_of_atInfty_of_atKernel_of_offKernel {p : ℕ}
     (hinf : VeluDeficitFunOrdNonnegAtInftyAt F p)
@@ -7142,16 +4936,14 @@ end
 
 section
 
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.Polynomial WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point"
+open WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
 
-p2m_open_scoped "WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine"
+open scoped WeierstrassCurve.Affine
 
 noncomputable section
 
 namespace AlgebraicCurve
 namespace Place
-
-open IsLocalRing
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
 
@@ -7178,17 +4970,15 @@ theorem evalAt_sub (hv : v.IsRational) {f g : F} (hf : f ∈ v.toValuationSubrin
     v.evalAt (f - g) = v.evalAt f - v.evalAt g := by
   rw [sub_eq_add_neg, v.evalAt_add hv hf (neg_mem hg), v.evalAt_neg hv hg, sub_eq_add_neg]
 
-end AlgebraicCurve.Place
+end Place
+end AlgebraicCurve
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq isIntegral_iff Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ Δ' map_a₃ veluXNum veluYNum veluY veluY_empty veluX_singleton veluY_singleton IsOddVeluSet veluX veluX_empty veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ veluQuotient_empty oddOrderSummingSet mem_oddOrderSummingSet"
-p2m_open "WeierstrassCurve"
-
 section ResidueCarrier
 
 variable (F : Type*) [Field F] [DecidableEq F]
 
-p2m_open "AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve"
+open AlgebraicCurve
 
 def VeluDeficitFunEvalAtPlaceAt
     (hDD : ∀ (W : WeierstrassCurve F), W.Δ ≠ 0 → IsDedekindDomain W.toAffine.CoordinateRing)
@@ -7210,7 +5000,7 @@ section ResidueBridge
 
 variable {F : Type*} [Field F] [DecidableEq F]
 
-p2m_open "AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve"
+open AlgebraicCurve
 
 theorem veluDeficitFunSpecializesConstAt_of_evalAtPlace {p : ℕ}
     (hDD : ∀ (W : WeierstrassCurve F), W.Δ ≠ 0 → IsDedekindDomain W.toAffine.CoordinateRing)
@@ -7226,7 +5016,7 @@ section Wire
 
 variable {F : Type*} [Field F] [DecidableEq F]
 
-p2m_open "AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve"
+open AlgebraicCurve
 
 theorem veluDeficitIsConstantAt_of_ordNonneg_of_evalAtPlace {p : ℕ}
     (hPD : ∀ (W : WeierstrassCurve F), W.Δ ≠ 0 →
@@ -7247,12 +5037,9 @@ end
 
 section
 
-p2m_open "AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point"
+open AlgebraicCurve WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq isIntegral_iff Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ Δ' map_a₃ veluXNum veluYNum veluY veluY_empty veluX_singleton veluY_singleton IsOddVeluSet veluX veluX_empty veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ veluQuotient_empty oddOrderSummingSet mem_oddOrderSummingSet"
-p2m_open "WeierstrassCurve"
-
 section HPD
 
 variable {F : Type*} [Field F]
@@ -7269,9 +5056,7 @@ section Constancy
 
 variable {F : Type*} [Field F] [DecidableEq F] [IsAlgClosed F]
 
-open _root_.Polynomial _root_.P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.Polynomial in
 omit [DecidableEq F] in
-
 theorem kw_infinite_of_isAlgClosed : Infinite F := by
   rw [← not_finite_iff_infinite]
   intro hfin
@@ -7303,14 +5088,11 @@ end
 
 section
 
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.Polynomial WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point"
+open WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
 
 noncomputable section
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq isIntegral_iff Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ Δ' map_a₃ veluXNum veluYNum veluY veluY_empty veluX_singleton veluY_singleton IsOddVeluSet veluX veluX_empty veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ veluQuotient_empty oddOrderSummingSet mem_oddOrderSummingSet"
-p2m_open "WeierstrassCurve"
-
 section Helper
 
 private lemma cube_sum_sub_sum_cube_eq {R : Type*} [CommRing R] {α : Type*} [DecidableEq α]
@@ -7342,18 +5124,15 @@ variable {F : Type*} [Field F] (W : WeierstrassCurve F)
 private def _root_.WeierstrassCurve.veluDeficitCrossQuadAlphaCube (S : Finset (F × F)) (r : F) : F :=
   (W.veluX S r - r) ^ 3 - ∑ A ∈ S, (W.veluX {A} r - r) ^ 3
 
-p2m_export "WeierstrassCurve" "veluDeficitCrossQuadAlphaCube"
 private def _root_.WeierstrassCurve.veluDeficitCrossQuadBetaOnly [DecidableEq F] (S : Finset (F × F)) (r s : F) : F :=
   W.veluDeficitCrossQuadCubeBeta S r s + W.veluDeficitCrossQuadAlphaCube S r
 
-p2m_export "WeierstrassCurve" "veluDeficitCrossQuadBetaOnly"
 private lemma _root_.WeierstrassCurve.veluDeficitCrossQuadCubeBeta_eq_betaOnly_sub_alphaCube [DecidableEq F]
     (S : Finset (F × F)) (r s : F) :
     W.veluDeficitCrossQuadCubeBeta S r s
       = W.veluDeficitCrossQuadBetaOnly S r s - W.veluDeficitCrossQuadAlphaCube S r := by
   unfold veluDeficitCrossQuadBetaOnly; ring
 
-p2m_export "WeierstrassCurve" "veluDeficitCrossQuadCubeBeta_eq_betaOnly_sub_alphaCube"
 private theorem _root_.WeierstrassCurve.veluDeficitCrossQuadBetaOnly_eq [DecidableEq F] (S : Finset (F × F)) (r s : F) :
     W.veluDeficitCrossQuadBetaOnly S r s
       = ((W.veluY S r s - s) ^ 2 + W.a₁ * (W.veluX S r - r) * (W.veluY S r s - s))
@@ -7374,7 +5153,6 @@ private theorem _root_.WeierstrassCurve.veluDeficitCrossQuadBetaOnly_eq [Decidab
     exact Finset.sum_congr rfl fun A _ => by ring
   linear_combination -hsum
 
-p2m_export "WeierstrassCurve" "veluDeficitCrossQuadBetaOnly_eq"
 end Decomp
 
 section PairPad
@@ -7385,7 +5163,6 @@ private def _root_.WeierstrassCurve.veluXCorrPairPadQuot (S : Finset (F × F)) (
   W.veluXCorrNumPoly A * W.veluXCorrNumPoly B
     * (∏ E ∈ (S.erase A).erase B, (X - C E.1)) ^ 2
 
-p2m_export "WeierstrassCurve" "veluXCorrPairPadQuot"
 private theorem _root_.WeierstrassCurve.veluXCorrPadPoly_mul_eq_kernelDenom_sq_mul {S : Finset (F × F)} {A B : F × F}
     (hA : A ∈ S) (hB : B ∈ S) (hAB : A ≠ B) :
     W.veluXCorrPadPoly S A * W.veluXCorrPadPoly S B
@@ -7400,7 +5177,6 @@ private theorem _root_.WeierstrassCurve.veluXCorrPadPoly_mul_eq_kernelDenom_sq_m
       ← Finset.mul_prod_erase (S.erase A) _ hBA]
   ring
 
-p2m_export "WeierstrassCurve" "veluXCorrPadPoly_mul_eq_kernelDenom_sq_mul"
 private theorem _root_.WeierstrassCurve.veluXCorrPairPadQuot_natDegree_le {S : Finset (F × F)} {A B : F × F}
     (hA : A ∈ S) (hB : B ∈ S) (hAB : A ≠ B) :
     (W.veluXCorrPairPadQuot S A B).natDegree ≤ 2 * S.card - 2 := by
@@ -7420,7 +5196,6 @@ private theorem _root_.WeierstrassCurve.veluXCorrPairPadQuot_natDegree_le {S : F
         have : 2 ≤ S.card := Finset.one_lt_card.mpr ⟨A, hA, B, hB, hAB⟩
         omega
 
-p2m_export "WeierstrassCurve" "veluXCorrPairPadQuot_natDegree_le"
 end PairPad
 
 section AlphaCubeCross
@@ -7431,7 +5206,6 @@ private def _root_.WeierstrassCurve.veluDeficitCrossQuadAlphaCubeClearedPoly (S 
   ∑ A ∈ S, ∑ B ∈ S.erase A,
     (W.veluXCorrSumPadPoly S + W.veluXCorrPadPoly S A) * W.veluXCorrPairPadQuot S A B
 
-p2m_export "WeierstrassCurve" "veluDeficitCrossQuadAlphaCubeClearedPoly"
 private theorem _root_.WeierstrassCurve.veluXCorrSumPadPoly_cube_sub_sum_cube_eq (S : Finset (F × F)) :
     (W.veluXCorrSumPadPoly S) ^ 3 - ∑ A ∈ S, (W.veluXCorrPadPoly S A) ^ 3
       = (veluKernelDenom S) ^ 2 * W.veluDeficitCrossQuadAlphaCubeClearedPoly S := by
@@ -7448,7 +5222,6 @@ private theorem _root_.WeierstrassCurve.veluXCorrSumPadPoly_cube_sub_sum_cube_eq
   rw [hRHS, veluXCorrSumPadPoly]
   exact cube_sum_sub_sum_cube_eq S _
 
-p2m_export "WeierstrassCurve" "veluXCorrSumPadPoly_cube_sub_sum_cube_eq"
 private theorem _root_.WeierstrassCurve.veluDeficitCrossQuadAlphaCube_mul_prodPow_eq {S : Finset (F × F)} {r : F}
     (hav : ∀ B ∈ S, r ≠ B.1) :
     W.veluDeficitCrossQuadAlphaCube S r * (∏ B ∈ S, (r - B.1)) ^ 4
@@ -7476,7 +5249,6 @@ private theorem _root_.WeierstrassCurve.veluDeficitCrossQuadAlphaCube_mul_prodPo
     rw [← hmul]; ring
   exact mul_left_cancel₀ (pow_ne_zero 2 hD) h64
 
-p2m_export "WeierstrassCurve" "veluDeficitCrossQuadAlphaCube_mul_prodPow_eq"
 private theorem _root_.WeierstrassCurve.veluDeficitCrossQuadAlphaCubeClearedPoly_natDegree_lt {S : Finset (F × F)}
     (hS : S.Nonempty) :
     (W.veluDeficitCrossQuadAlphaCubeClearedPoly S).natDegree < 4 * S.card := by
@@ -7496,7 +5268,6 @@ private theorem _root_.WeierstrassCurve.veluDeficitCrossQuadAlphaCubeClearedPoly
       ≤ (2 * S.card - 1) + (2 * S.card - 2) := natDegree_mul_le.trans (add_le_add h1 h2)
     _ ≤ 4 * S.card - 1 := by omega
 
-p2m_export "WeierstrassCurve" "veluDeficitCrossQuadAlphaCubeClearedPoly_natDegree_lt"
 end AlphaCubeCross
 
 section Reduction
@@ -7524,9 +5295,9 @@ end
 
 section
 
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.Polynomial WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point"
+open WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
 
-p2m_open_scoped "WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine Pointwise"
+open scoped WeierstrassCurve.Affine Pointwise
 
 noncomputable section
 
@@ -7544,17 +5315,15 @@ theorem ord_nonneg_of_ord_smul_nonneg (σ : F ≃ₐ[K] F) (v : Place K F) {g : 
     (hg : σ g = g) (h : 0 ≤ (σ • v).ord g) : 0 ≤ v.ord g :=
   (ord_smul_of_fixed σ v hg) ▸ h
 
-end AlgebraicCurve.Place
+end Place
+end AlgebraicCurve
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq isIntegral_iff Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ Δ' map_a₃ veluXNum veluYNum veluY veluY_empty veluX_singleton veluY_singleton IsOddVeluSet veluX veluX_empty veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ veluQuotient_empty oddOrderSummingSet mem_oddOrderSummingSet"
-p2m_open "WeierstrassCurve"
-
 section KernelTranslationCarrier
 
 variable (F : Type*) [Field F] [DecidableEq F]
 
-p2m_open "AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing"
+open AlgebraicCurve WeierstrassCurve.Affine.CoordinateRing
 
 def VeluDeficitFunKernelTranslationAt (p : ℕ) : Prop :=
   ∀ (W : WeierstrassCurve F), W.Δ ≠ 0 →
@@ -7576,7 +5345,7 @@ section KernelReduction
 
 variable (F : Type*) [Field F] [DecidableEq F]
 
-p2m_open "AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve"
+open AlgebraicCurve
 
 theorem veluDeficitFunOrdNonnegAtKernelAt_of_kernelTranslation_of_atInfty {p : ℕ}
     (htr : VeluDeficitFunKernelTranslationAt F p)
@@ -7593,7 +5362,7 @@ section Wire
 
 variable {F : Type*} [Field F] [DecidableEq F]
 
-p2m_open "AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve"
+open AlgebraicCurve
 
 theorem veluDeficitFunOrdNonnegAt_of_kernelTranslation_of_atInfty_of_offKernel {p : ℕ}
     (htr : VeluDeficitFunKernelTranslationAt F p)
@@ -7613,21 +5382,19 @@ end
 
 section
 
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.Polynomial WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point"
+open WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
 
-p2m_open_scoped "WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine"
+open scoped WeierstrassCurve.Affine
 
 noncomputable section
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq isIntegral_iff Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ Δ' map_a₃ veluXNum veluYNum veluY veluY_empty veluX_singleton veluY_singleton IsOddVeluSet veluX veluX_empty veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ veluQuotient_empty oddOrderSummingSet mem_oddOrderSummingSet"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "map_slope Equation negY equation_iff' slope_of_X_ne equation_neg Point.add_of_Y_eq map_a₃ equation_iff_nonsingular_of_Δ_ne_zero slope CoordinateRing map equation_add Point.some Point.some.injEq Point.X_eq_iff Nonsingular Point.some.inj map_a₆ Point.add_self_of_Y_eq negAddY map_addY negY_negY FunctionField map_addX nonsingular_add map_a₂ Point CoordinateRing.mk addX map_a₁ Point.add_some nonsingular_neg map_a₄ monic_polynomial Point.some_ne_zero map_negY CoordinateRing.basis addY Y_eq_of_X_eq Point.add_of_X_ne equation_iff map_nonsingular polynomial Point.neg_some Point.coordsOrZero Point.coordsOrZero_some"
-p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
+open WeierstrassCurve.Affine WeierstrassCurve
 
 variable {F : Type*} [Field F] {W : Affine F}
 
-p2m_open "AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing"
+open AlgebraicCurve WeierstrassCurve.Affine.CoordinateRing
 
 theorem algebraMap_polynomial_X_sub_C (c : F) :
     algebraMap F[X] W.CoordinateRing (X - C c) = XClass W c := by
@@ -7733,15 +5500,13 @@ theorem IsFinitePlace.ord_nonneg_veluDeficitFun_of_forall_XClass_notMem_centre
     0 ≤ v.ord (W.veluDeficitFun S) :=
   v.ord_nonneg_of_mem (hv.veluDeficitFun_mem_of_forall_XClass_notMem_centre hS)
 
-end WeierstrassCurve.Affine
+end Affine
+end WeierstrassCurve
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq isIntegral_iff Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ Δ' map_a₃ veluXNum veluYNum veluY veluY_empty veluX_singleton veluY_singleton IsOddVeluSet veluX veluX_empty veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ veluQuotient_empty oddOrderSummingSet mem_oddOrderSummingSet"
-p2m_open "WeierstrassCurve"
-
 variable (F : Type*) [Field F] [DecidableEq F]
 
-p2m_open "AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve"
+open AlgebraicCurve
 
 theorem veluDeficitFunOrdNonnegOffKernelAt (p : ℕ) : VeluDeficitFunOrdNonnegOffKernelAt F p :=
   fun _ _ _ _ _ _ _ hv hoff =>
@@ -7755,16 +5520,14 @@ end
 
 section
 
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.Polynomial WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point"
+open WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
 
-p2m_open_scoped "WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine"
+open scoped WeierstrassCurve.Affine
 
 noncomputable section
 
 namespace AlgebraicCurve
 namespace Place
-
-open IsLocalRing
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
 
@@ -7801,17 +5564,16 @@ theorem evalAt_div' (hv : v.IsRational) {f g : F} (hf : f ∈ v.toValuationSubri
     (by rw [v.ord_inv, hg]; exact le_of_eq (_root_.neg_zero).symm)
   rw [div_eq_mul_inv, v.evalAt_mul hv hf hginv, v.evalAt_inv hv hg0 hg, div_eq_mul_inv]
 
-end AlgebraicCurve.Place
+end Place
+end AlgebraicCurve
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq isIntegral_iff Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ Δ' map_a₃ veluXNum veluYNum veluY veluY_empty veluX_singleton veluY_singleton IsOddVeluSet veluX veluX_empty veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ veluQuotient_empty oddOrderSummingSet mem_oddOrderSummingSet"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "map_slope Equation negY equation_iff' slope_of_X_ne equation_neg Point.add_of_Y_eq map_a₃ equation_iff_nonsingular_of_Δ_ne_zero slope CoordinateRing map equation_add Point.some Point.some.injEq Point.X_eq_iff Nonsingular Point.some.inj map_a₆ Point.add_self_of_Y_eq negAddY map_addY negY_negY FunctionField map_addX nonsingular_add map_a₂ Point CoordinateRing.mk addX map_a₁ Point.add_some nonsingular_neg map_a₄ monic_polynomial Point.some_ne_zero map_negY CoordinateRing.basis addY Y_eq_of_X_eq Point.add_of_X_ne equation_iff map_nonsingular polynomial Point.neg_some Point.coordsOrZero Point.coordsOrZero_some"
-p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
+open WeierstrassCurve.Affine WeierstrassCurve
 
 variable {F : Type*} [Field F] {W : Affine F}
 
-p2m_open "AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing"
+open AlgebraicCurve WeierstrassCurve.Affine.CoordinateRing
 
 section Atomic
 
@@ -8206,15 +5968,13 @@ theorem evalAt_veluDeficitFun_placeOfEquation (hS : ∀ A ∈ S, r ≠ A.1) :
 
 end Discharge
 
-end WeierstrassCurve.Affine
+end Affine
+end WeierstrassCurve
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq isIntegral_iff Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ Δ' map_a₃ veluXNum veluYNum veluY veluY_empty veluX_singleton veluY_singleton IsOddVeluSet veluX veluX_empty veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ veluQuotient_empty oddOrderSummingSet mem_oddOrderSummingSet"
-p2m_open "WeierstrassCurve"
-
 variable {F : Type*} [Field F] [DecidableEq F]
 
-p2m_open "AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve"
+open AlgebraicCurve
 
 theorem veluDeficitFunEvalAtPlaceAt
     (hDD : ∀ (W : WeierstrassCurve F), W.Δ ≠ 0 → IsDedekindDomain W.toAffine.CoordinateRing)
@@ -8239,14 +5999,11 @@ end
 
 section
 
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.Polynomial WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point"
+open WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
 
 noncomputable section
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq isIntegral_iff Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ Δ' map_a₃ veluXNum veluYNum veluY veluY_empty veluX_singleton veluY_singleton IsOddVeluSet veluX veluX_empty veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ veluQuotient_empty oddOrderSummingSet mem_oddOrderSummingSet"
-p2m_open "WeierstrassCurve"
-
 section Psi2Sq
 
 variable {F : Type*} [Field F] (W : WeierstrassCurve F)
@@ -8272,7 +6029,6 @@ private theorem _root_.WeierstrassCurve.Ψ₂Sq_ne_zero_of_Δ_ne_zero (hΔ : W.�
   rw [WeierstrassCurve.Δ, hb₂, hb₆]
   linear_combination -(2 * W.b₄ ^ 3) * h4
 
-p2m_export "WeierstrassCurve" "Ψ₂Sq_ne_zero_of_Δ_ne_zero"
 end Psi2Sq
 
 section Parity
@@ -8286,7 +6042,6 @@ private theorem _root_.WeierstrassCurve.veluDeficitCrossQuadBetaOnly_negY_of_equ
   unfold veluDeficitCrossQuadBetaOnly veluDeficitCrossQuadCubeBeta
   rw [W.veluDeficitCrossQuad_negY_of_equation hP]
 
-p2m_export "WeierstrassCurve" "veluDeficitCrossQuadBetaOnly_negY_of_equation"
 end Parity
 
 section BetaSCoeffPoly
@@ -8298,17 +6053,14 @@ omit [DecidableEq F] in
 private def _root_.WeierstrassCurve.veluYCorrSCoeffNumPoly (A : F × F) : F[X] :=
   -(C (2 * W.veluU A.1 A.2) + C (W.veluT A.1 A.2) * (X - C A.1))
 
-p2m_export "WeierstrassCurve" "veluYCorrSCoeffNumPoly"
 omit [DecidableEq F] in
 private lemma _root_.WeierstrassCurve.veluYCorrSCoeffNumPoly_natDegree_le (A : F × F) :
     (W.veluYCorrSCoeffNumPoly A).natDegree ≤ 1 := by
   unfold veluYCorrSCoeffNumPoly; compute_degree
 
-p2m_export "WeierstrassCurve" "veluYCorrSCoeffNumPoly_natDegree_le"
 private def _root_.WeierstrassCurve.veluYCorrSCoeffPadPoly (S : Finset (F × F)) (A : F × F) : F[X] :=
   W.veluYCorrSCoeffNumPoly A * (∏ B ∈ S.erase A, (X - C B.1)) ^ 3
 
-p2m_export "WeierstrassCurve" "veluYCorrSCoeffPadPoly"
 private theorem _root_.WeierstrassCurve.eval_veluYCorrSCoeffPadPoly {S : Finset (F × F)} {A : F × F} (hA : A ∈ S) {r : F}
     (hav : ∀ B ∈ S, r ≠ B.1) :
     -(2 * W.veluU A.1 A.2 / (r - A.1) ^ 3 + W.veluT A.1 A.2 / (r - A.1) ^ 2)
@@ -8322,10 +6074,8 @@ private theorem _root_.WeierstrassCurve.eval_veluYCorrSCoeffPadPoly {S : Finset 
   simp only [eval_mul, eval_neg, eval_add, eval_C, eval_sub, eval_X, eval_pow, eval_prod]
   field_simp
 
-p2m_export "WeierstrassCurve" "eval_veluYCorrSCoeffPadPoly"
 private def _root_.WeierstrassCurve.veluYCorrSCoeffSumPadPoly (S : Finset (F × F)) : F[X] := ∑ A ∈ S, W.veluYCorrSCoeffPadPoly S A
 
-p2m_export "WeierstrassCurve" "veluYCorrSCoeffSumPadPoly"
 omit [DecidableEq F] in
 
 private lemma _root_.WeierstrassCurve.veluY_sub_self_sLinear (S : Finset (F × F)) (r s : F) :
@@ -8336,7 +6086,6 @@ private lemma _root_.WeierstrassCurve.veluY_sub_self_sLinear (S : Finset (F × F
     Finset.sum_mul, ← Finset.sum_sub_distrib]
   exact Finset.sum_congr rfl fun A _ => by ring
 
-p2m_export "WeierstrassCurve" "veluY_sub_self_sLinear"
 omit [DecidableEq F] in
 
 private theorem _root_.WeierstrassCurve.veluY_singleton_sub_sLinear (A : F × F) (r s : F) :
@@ -8345,7 +6094,6 @@ private theorem _root_.WeierstrassCurve.veluY_singleton_sub_sLinear (A : F × F)
   have key := W.veluY_sub_self_sLinear {A} r s
   simpa using key
 
-p2m_export "WeierstrassCurve" "veluY_singleton_sub_sLinear"
 private theorem _root_.WeierstrassCurve.veluY_sub_self_sCoeff_mul_prodPow_eq {S : Finset (F × F)} {r : F}
     (hav : ∀ B ∈ S, r ≠ B.1) :
     (∑ A ∈ S, -(2 * W.veluU A.1 A.2 / (r - A.1) ^ 3
@@ -8354,7 +6102,6 @@ private theorem _root_.WeierstrassCurve.veluY_sub_self_sCoeff_mul_prodPow_eq {S 
   rw [veluYCorrSCoeffSumPadPoly, eval_finsetSum, Finset.sum_mul]
   exact Finset.sum_congr rfl fun A hA => W.eval_veluYCorrSCoeffPadPoly hA hav
 
-p2m_export "WeierstrassCurve" "veluY_sub_self_sCoeff_mul_prodPow_eq"
 end BetaSCoeffPoly
 
 section Reduction
@@ -8382,19 +6129,17 @@ end
 
 section
 
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.Polynomial WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point"
+open WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
 
-p2m_open_scoped "WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine Polynomial.Bivariate Pointwise"
+open scoped WeierstrassCurve.Affine Pointwise
 
 noncomputable section
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq isIntegral_iff Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ Δ' map_a₃ veluXNum veluYNum veluY veluY_empty veluX_singleton veluY_singleton IsOddVeluSet veluX veluX_empty veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ veluQuotient_empty oddOrderSummingSet mem_oddOrderSummingSet"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "map_slope Equation negY equation_iff' slope_of_X_ne equation_neg Point.add_of_Y_eq map_a₃ equation_iff_nonsingular_of_Δ_ne_zero slope CoordinateRing map equation_add Point.some Point.some.injEq Point.X_eq_iff Nonsingular Point.some.inj map_a₆ Point.add_self_of_Y_eq negAddY map_addY negY_negY FunctionField map_addX nonsingular_add map_a₂ Point CoordinateRing.mk addX map_a₁ Point.add_some nonsingular_neg map_a₄ monic_polynomial Point.some_ne_zero map_negY CoordinateRing.basis addY Y_eq_of_X_eq Point.add_of_X_ne equation_iff map_nonsingular polynomial Point.neg_some Point.coordsOrZero Point.coordsOrZero_some"
-p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
+open WeierstrassCurve.Affine WeierstrassCurve
 
-p2m_open "WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve"
+open WeierstrassCurve.Affine.CoordinateRing AlgebraicCurve
 
 universe u
 
@@ -8467,17 +6212,15 @@ def translationAlgEquivOf : W.FunctionField ≃ₐ[F] W.FunctionField :=
 
 end UnconditionalAut
 
-end WeierstrassCurve.Affine
+end Affine
+end WeierstrassCurve
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq isIntegral_iff Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ Δ' map_a₃ veluXNum veluYNum veluY veluY_empty veluX_singleton veluY_singleton IsOddVeluSet veluX veluX_empty veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ veluQuotient_empty oddOrderSummingSet mem_oddOrderSummingSet"
-p2m_open "WeierstrassCurve"
-
 section SubCarriers
 
 variable (F : Type*) [Field F] [DecidableEq F]
 
-p2m_open "AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing"
+open AlgebraicCurve WeierstrassCurve.Affine.CoordinateRing
 
 def VeluDeficitFunKernelTranslationFixesAt (p : ℕ) : Prop :=
   ∀ (W : WeierstrassCurve F) (hΔ : W.Δ ≠ 0)
@@ -8508,7 +6251,7 @@ section Recombination
 
 variable (F : Type*) [Field F] [DecidableEq F]
 
-p2m_open "AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve"
+open AlgebraicCurve
 
 theorem veluDeficitFunKernelTranslationAt_of_fixes_of_toInfty {p : ℕ}
     (hfix : VeluDeficitFunKernelTranslationFixesAt F p)
@@ -8528,14 +6271,11 @@ end
 
 section
 
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.Polynomial WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point"
+open WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
 
 noncomputable section
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq isIntegral_iff Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ Δ' map_a₃ veluXNum veluYNum veluY veluY_empty veluX_singleton veluY_singleton IsOddVeluSet veluX veluX_empty veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ veluQuotient_empty oddOrderSummingSet mem_oddOrderSummingSet"
-p2m_open "WeierstrassCurve"
-
 section Helper
 
 variable {F : Type*} [Field F] (W : WeierstrassCurve F)
@@ -8544,7 +6284,6 @@ private lemma _root_.WeierstrassCurve.veluY_sub_self_eq_sum_singleton (S : Finse
     W.veluY S r s - s = ∑ A ∈ S, (W.veluY {A} r s - s) := by
   simp only [veluY, Finset.sum_singleton, sub_sub_cancel_left, ← Finset.sum_neg_distrib]
 
-p2m_export "WeierstrassCurve" "veluY_sub_self_eq_sum_singleton"
 end Helper
 
 section BetaConstPoly
@@ -8558,17 +6297,14 @@ private def _root_.WeierstrassCurve.veluYCorrConstNumPoly (A : F × F) : F[X] :=
     - (C (W.veluT A.1 A.2) * (C W.a₁ * (X - C A.1) - C A.2)
         + C (W.a₁ * W.veluU A.1 A.2 - W.veluGx A.1 A.2 * W.veluGy A.1 A.2)) * (X - C A.1)
 
-p2m_export "WeierstrassCurve" "veluYCorrConstNumPoly"
 omit [DecidableEq F] in
 private lemma _root_.WeierstrassCurve.veluYCorrConstNumPoly_natDegree_le (A : F × F) :
     (W.veluYCorrConstNumPoly A).natDegree ≤ 2 := by
   unfold veluYCorrConstNumPoly; compute_degree
 
-p2m_export "WeierstrassCurve" "veluYCorrConstNumPoly_natDegree_le"
 private def _root_.WeierstrassCurve.veluYCorrConstPadPoly (S : Finset (F × F)) (A : F × F) : F[X] :=
   W.veluYCorrConstNumPoly A * (∏ B ∈ S.erase A, (X - C B.1)) ^ 3
 
-p2m_export "WeierstrassCurve" "veluYCorrConstPadPoly"
 private theorem _root_.WeierstrassCurve.eval_veluYCorrConstPadPoly {S : Finset (F × F)} {A : F × F} (hA : A ∈ S) {r : F}
     (hav : ∀ B ∈ S, r ≠ B.1) :
     (W.veluY {A} r 0 - 0) * (∏ B ∈ S, (r - B.1)) ^ 3
@@ -8583,17 +6319,14 @@ private theorem _root_.WeierstrassCurve.eval_veluYCorrConstPadPoly {S : Finset (
   field_simp
   ring
 
-p2m_export "WeierstrassCurve" "eval_veluYCorrConstPadPoly"
 private def _root_.WeierstrassCurve.veluYCorrConstSumPadPoly (S : Finset (F × F)) : F[X] := ∑ A ∈ S, W.veluYCorrConstPadPoly S A
 
-p2m_export "WeierstrassCurve" "veluYCorrConstSumPadPoly"
 private theorem _root_.WeierstrassCurve.eval_veluYCorrConstSumPadPoly {S : Finset (F × F)} {r : F} (hav : ∀ B ∈ S, r ≠ B.1) :
     (W.veluY S r 0 - 0) * (∏ B ∈ S, (r - B.1)) ^ 3
       = (W.veluYCorrConstSumPadPoly S).eval r := by
   rw [veluYCorrConstSumPadPoly, eval_finsetSum, W.veluY_sub_self_eq_sum_singleton, Finset.sum_mul]
   exact Finset.sum_congr rfl fun A hA => W.eval_veluYCorrConstPadPoly hA hav
 
-p2m_export "WeierstrassCurve" "eval_veluYCorrConstSumPadPoly"
 end BetaConstPoly
 
 section BetaSDecomp
@@ -8613,7 +6346,6 @@ private theorem _root_.WeierstrassCurve.veluY_sub_self_mul_prodCube_sDecomp {S :
     linear_combination hlin
   rw [key, add_mul, hconst, mul_right_comm, hcoeff]
 
-p2m_export "WeierstrassCurve" "veluY_sub_self_mul_prodCube_sDecomp"
 private theorem _root_.WeierstrassCurve.veluY_singleton_sub_self_mul_prodCube_sDecomp {S : Finset (F × F)} {A : F × F}
     (hA : A ∈ S) {r : F} (s : F) (hav : ∀ B ∈ S, r ≠ B.1) :
     (W.veluY {A} r s - s) * (∏ B ∈ S, (r - B.1)) ^ 3
@@ -8627,7 +6359,6 @@ private theorem _root_.WeierstrassCurve.veluY_singleton_sub_self_mul_prodCube_sD
     linear_combination hlin
   rw [key, add_mul, hconst, mul_right_comm, hcoeff]
 
-p2m_export "WeierstrassCurve" "veluY_singleton_sub_self_mul_prodCube_sDecomp"
 end BetaSDecomp
 
 section TwoCrossTypes
@@ -8637,12 +6368,10 @@ variable {F : Type*} [Field F] (W : WeierstrassCurve F)
 private def _root_.WeierstrassCurve.veluDeficitCrossQuadBetaSq (S : Finset (F × F)) (r s : F) : F :=
   (W.veluY S r s - s) ^ 2 - ∑ A ∈ S, (W.veluY {A} r s - s) ^ 2
 
-p2m_export "WeierstrassCurve" "veluDeficitCrossQuadBetaSq"
 private def _root_.WeierstrassCurve.veluDeficitCrossQuadAlphaBeta (S : Finset (F × F)) (r s : F) : F :=
   (W.veluX S r - r) * (W.veluY S r s - s)
     - ∑ A ∈ S, (W.veluX {A} r - r) * (W.veluY {A} r s - s)
 
-p2m_export "WeierstrassCurve" "veluDeficitCrossQuadAlphaBeta"
 private theorem _root_.WeierstrassCurve.veluDeficitCrossQuadBetaOnly_eq_betaSq_add_alphaBeta [DecidableEq F]
     (S : Finset (F × F)) (r s : F) :
     W.veluDeficitCrossQuadBetaOnly S r s
@@ -8656,7 +6385,6 @@ private theorem _root_.WeierstrassCurve.veluDeficitCrossQuadBetaOnly_eq_betaSq_a
   rw [Finset.sum_congr rfl hper, Finset.sum_add_distrib, ← Finset.mul_sum]
   ring
 
-p2m_export "WeierstrassCurve" "veluDeficitCrossQuadBetaOnly_eq_betaSq_add_alphaBeta"
 end TwoCrossTypes
 
 section Reduction
@@ -8714,16 +6442,13 @@ end
 
 section
 
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.Polynomial WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point"
+open WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
 
-p2m_open_scoped "WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine Polynomial.Bivariate"
+open scoped WeierstrassCurve.Affine
 
 noncomputable section
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq isIntegral_iff Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ Δ' map_a₃ veluXNum veluYNum veluY veluY_empty veluX_singleton veluY_singleton IsOddVeluSet veluX veluX_empty veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ veluQuotient_empty oddOrderSummingSet mem_oddOrderSummingSet"
-p2m_open "WeierstrassCurve"
-
 universe u
 
 variable {F : Type u} [Field F]
@@ -8753,7 +6478,6 @@ private theorem _root_.WeierstrassCurve.map_map_algHom_toRingHom_eq_self (W : We
     (W.map (algebraMap F K)).map τ.toRingHom = W.map (algebraMap F K) := by
   rw [WeierstrassCurve.map_map, algHom_toRingHom_comp_algebraMap]
 
-p2m_export "WeierstrassCurve" "map_map_algHom_toRingHom_eq_self"
 variable (W : Affine F)
 
 private theorem _root_.WeierstrassCurve.liftSummingSet_map_algHom (τ : W.FunctionField →ₐ[F] W.FunctionField)
@@ -8771,7 +6495,6 @@ private theorem _root_.WeierstrassCurve.liftSummingSet_map_algHom (τ : W.Functi
       show τ.toRingHom (algebraMap F W.FunctionField d) = algebraMap F W.FunctionField d from
         τ.commutes d]
 
-p2m_export "WeierstrassCurve" "liftSummingSet_map_algHom"
 end AlgHomFixes
 
 section AlgHomNaturality
@@ -8789,7 +6512,6 @@ private theorem _root_.WeierstrassCurve.algHom_veluDeficit_liftSummingSet (τ : 
   rw [W.map_map_algHom_toRingHom_eq_self τ, W.liftSummingSet_map_algHom τ hτinj S] at hkey
   exact hkey.symm
 
-p2m_export "WeierstrassCurve" "algHom_veluDeficit_liftSummingSet"
 private theorem _root_.WeierstrassCurve.algHom_veluDeficitFun (τ : W.FunctionField →ₐ[F] W.FunctionField)
     (S : Finset (F × F)) :
     τ (W.veluDeficitFun S)
@@ -8797,7 +6519,6 @@ private theorem _root_.WeierstrassCurve.algHom_veluDeficitFun (τ : W.FunctionFi
           (τ (polyToFunctionField W X)) (τ (yGen W)) :=
   W.algHom_veluDeficit_liftSummingSet τ S (polyToFunctionField W X) (yGen W)
 
-p2m_export "WeierstrassCurve" "algHom_veluDeficitFun"
 end AlgHomNaturality
 
 section TranslationAction
@@ -8866,19 +6587,17 @@ end
 
 section
 
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.Polynomial WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point"
+open WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
 
-p2m_open_scoped "WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine Polynomial.Bivariate Pointwise"
+open scoped WeierstrassCurve.Affine Pointwise
 
 noncomputable section
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq isIntegral_iff Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ Δ' map_a₃ veluXNum veluYNum veluY veluY_empty veluX_singleton veluY_singleton IsOddVeluSet veluX veluX_empty veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ veluQuotient_empty oddOrderSummingSet mem_oddOrderSummingSet"
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "map_slope Equation negY equation_iff' slope_of_X_ne equation_neg Point.add_of_Y_eq map_a₃ equation_iff_nonsingular_of_Δ_ne_zero slope CoordinateRing map equation_add Point.some Point.some.injEq Point.X_eq_iff Nonsingular Point.some.inj map_a₆ Point.add_self_of_Y_eq negAddY map_addY negY_negY FunctionField map_addX nonsingular_add map_a₂ Point CoordinateRing.mk addX map_a₁ Point.add_some nonsingular_neg map_a₄ monic_polynomial Point.some_ne_zero map_negY CoordinateRing.basis addY Y_eq_of_X_eq Point.add_of_X_ne equation_iff map_nonsingular polynomial Point.neg_some Point.coordsOrZero Point.coordsOrZero_some"
-p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
+open WeierstrassCurve.Affine WeierstrassCurve
 
-p2m_open "WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve"
+open WeierstrassCurve.Affine.CoordinateRing AlgebraicCurve
 
 universe u
 
@@ -9009,17 +6728,15 @@ theorem not_isFinitePlace_translationAlgEquivOf_smul_of_centre
 
 end CombinedDischarge
 
-end WeierstrassCurve.Affine
+end Affine
+end WeierstrassCurve
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq isIntegral_iff Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ Δ' map_a₃ veluXNum veluYNum veluY veluY_empty veluX_singleton veluY_singleton IsOddVeluSet veluX veluX_empty veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ veluQuotient_empty oddOrderSummingSet mem_oddOrderSummingSet"
-p2m_open "WeierstrassCurve"
-
 section YNotCentreCarrier
 
 variable (F : Type*) [Field F] [DecidableEq F]
 
-p2m_open "AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.CoordinateRing"
+open AlgebraicCurve WeierstrassCurve.Affine.CoordinateRing
 
 def VeluDeficitFunKernelTranslationYNotCentreAt (p : ℕ) : Prop :=
   ∀ (W : WeierstrassCurve F) (_ : W.Δ ≠ 0)
@@ -9039,7 +6756,7 @@ section ToInftyFromYNotCentre
 
 variable (F : Type*) [Field F] [DecidableEq F]
 
-p2m_open "AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve"
+open AlgebraicCurve
 
 theorem veluDeficitFunKernelTranslationToInftyAt_of_yNotCentre {p : ℕ}
     (hY : VeluDeficitFunKernelTranslationYNotCentreAt F p) :
@@ -9059,14 +6776,11 @@ end
 
 section
 
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.Polynomial WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point"
+open WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
 
 noncomputable section
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq isIntegral_iff Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ Δ' map_a₃ veluXNum veluYNum veluY veluY_empty veluX_singleton veluY_singleton IsOddVeluSet veluX veluX_empty veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ veluQuotient_empty oddOrderSummingSet mem_oddOrderSummingSet"
-p2m_open "WeierstrassCurve"
-
 section Helper
 
 private lemma prod_sum_sub_sum_diag_eq {R : Type*} [CommRing R] {α : Type*} [DecidableEq α]
@@ -9089,12 +6803,10 @@ private def _root_.WeierstrassCurve.veluXYCorrConstPairPadQuot (S : Finset (F ×
   W.veluXCorrNumPoly A * W.veluYCorrConstNumPoly B * (X - C A.1) ^ 2 * (X - C B.1)
     * (∏ E ∈ (S.erase A).erase B, (X - C E.1)) ^ 4
 
-p2m_export "WeierstrassCurve" "veluXYCorrConstPairPadQuot"
 private def _root_.WeierstrassCurve.veluXYCorrSCoeffPairPadQuot (S : Finset (F × F)) (A B : F × F) : F[X] :=
   W.veluXCorrNumPoly A * W.veluYCorrSCoeffNumPoly B * (X - C A.1) ^ 2 * (X - C B.1)
     * (∏ E ∈ (S.erase A).erase B, (X - C E.1)) ^ 4
 
-p2m_export "WeierstrassCurve" "veluXYCorrSCoeffPairPadQuot"
 private theorem _root_.WeierstrassCurve.veluXCorrPadPoly_mul_veluYCorrConstPadPoly_eq_kernelDenom_mul {S : Finset (F × F)}
     {A B : F × F} (hA : A ∈ S) (hB : B ∈ S) (hAB : A ≠ B) :
     W.veluXCorrPadPoly S A * W.veluYCorrConstPadPoly S B
@@ -9109,7 +6821,6 @@ private theorem _root_.WeierstrassCurve.veluXCorrPadPoly_mul_veluYCorrConstPadPo
       ← Finset.mul_prod_erase (S.erase A) _ hBA]
   ring
 
-p2m_export "WeierstrassCurve" "veluXCorrPadPoly_mul_veluYCorrConstPadPoly_eq_kernelDenom_mul"
 private theorem _root_.WeierstrassCurve.veluXCorrPadPoly_mul_veluYCorrSCoeffPadPoly_eq_kernelDenom_mul {S : Finset (F × F)}
     {A B : F × F} (hA : A ∈ S) (hB : B ∈ S) (hAB : A ≠ B) :
     W.veluXCorrPadPoly S A * W.veluYCorrSCoeffPadPoly S B
@@ -9124,7 +6835,6 @@ private theorem _root_.WeierstrassCurve.veluXCorrPadPoly_mul_veluYCorrSCoeffPadP
       ← Finset.mul_prod_erase (S.erase A) _ hBA]
   ring
 
-p2m_export "WeierstrassCurve" "veluXCorrPadPoly_mul_veluYCorrSCoeffPadPoly_eq_kernelDenom_mul"
 end MixedPairPad
 
 section AlphaBetaCleared
@@ -9134,11 +6844,9 @@ variable {F : Type*} [Field F] [DecidableEq F] (W : WeierstrassCurve F)
 private def _root_.WeierstrassCurve.veluDeficitCrossQuadAlphaBetaConstClearedPoly (S : Finset (F × F)) : F[X] :=
   ∑ A ∈ S, ∑ B ∈ S.erase A, W.veluXYCorrConstPairPadQuot S A B
 
-p2m_export "WeierstrassCurve" "veluDeficitCrossQuadAlphaBetaConstClearedPoly"
 private def _root_.WeierstrassCurve.veluDeficitCrossQuadAlphaBetaSCoeffClearedPoly (S : Finset (F × F)) : F[X] :=
   ∑ A ∈ S, ∑ B ∈ S.erase A, W.veluXYCorrSCoeffPairPadQuot S A B
 
-p2m_export "WeierstrassCurve" "veluDeficitCrossQuadAlphaBetaSCoeffClearedPoly"
 private theorem _root_.WeierstrassCurve.veluXCorrSumPadPoly_mul_veluYCorrConstSumPadPoly_sub_sum_eq (S : Finset (F × F)) :
     W.veluXCorrSumPadPoly S * W.veluYCorrConstSumPadPoly S
         - ∑ A ∈ S, W.veluXCorrPadPoly S A * W.veluYCorrConstPadPoly S A
@@ -9152,7 +6860,6 @@ private theorem _root_.WeierstrassCurve.veluXCorrSumPadPoly_mul_veluYCorrConstSu
   obtain ⟨hBA, hBS⟩ := Finset.mem_erase.mp hB
   exact W.veluXCorrPadPoly_mul_veluYCorrConstPadPoly_eq_kernelDenom_mul hA hBS hBA.symm
 
-p2m_export "WeierstrassCurve" "veluXCorrSumPadPoly_mul_veluYCorrConstSumPadPoly_sub_sum_eq"
 private theorem _root_.WeierstrassCurve.veluXCorrSumPadPoly_mul_veluYCorrSCoeffSumPadPoly_sub_sum_eq (S : Finset (F × F)) :
     W.veluXCorrSumPadPoly S * W.veluYCorrSCoeffSumPadPoly S
         - ∑ A ∈ S, W.veluXCorrPadPoly S A * W.veluYCorrSCoeffPadPoly S A
@@ -9166,7 +6873,6 @@ private theorem _root_.WeierstrassCurve.veluXCorrSumPadPoly_mul_veluYCorrSCoeffS
   obtain ⟨hBA, hBS⟩ := Finset.mem_erase.mp hB
   exact W.veluXCorrPadPoly_mul_veluYCorrSCoeffPadPoly_eq_kernelDenom_mul hA hBS hBA.symm
 
-p2m_export "WeierstrassCurve" "veluXCorrSumPadPoly_mul_veluYCorrSCoeffSumPadPoly_sub_sum_eq"
 private theorem _root_.WeierstrassCurve.veluDeficitCrossQuadAlphaBeta_mul_prodPow_sDecomp {S : Finset (F × F)} {r : F} (s : F)
     (hav : ∀ B ∈ S, r ≠ B.1) :
     W.veluDeficitCrossQuadAlphaBeta S r s * (∏ B ∈ S, (r - B.1)) ^ 4
@@ -9220,7 +6926,6 @@ private theorem _root_.WeierstrassCurve.veluDeficitCrossQuadAlphaBeta_mul_prodPo
   simp only [eval_sub, eval_mul, eval_finsetSum, eval_veluKernelDenom, ← hD_def] at hM hN
   rw [hM, hN]; ring
 
-p2m_export "WeierstrassCurve" "veluDeficitCrossQuadAlphaBeta_mul_prodPow_sDecomp"
 end AlphaBetaCleared
 
 section DegBound
@@ -9248,7 +6953,6 @@ private theorem _root_.WeierstrassCurve.veluXYCorrConstPairPadQuot_natDegree_le 
           omega
     _ ≤ 4 * S.card - 2 := by omega
 
-p2m_export "WeierstrassCurve" "veluXYCorrConstPairPadQuot_natDegree_le"
 private theorem _root_.WeierstrassCurve.veluDeficitCrossQuadAlphaBetaConstClearedPoly_natDegree_lt {S : Finset (F × F)}
     (hS : S.Nonempty) :
     (W.veluDeficitCrossQuadAlphaBetaConstClearedPoly S).natDegree < 4 * S.card := by
@@ -9261,7 +6965,6 @@ private theorem _root_.WeierstrassCurve.veluDeficitCrossQuadAlphaBetaConstCleare
   refine degree_le_natDegree.trans (Nat.cast_le.mpr ?_)
   exact (W.veluXYCorrConstPairPadQuot_natDegree_le hA hBS hBA.symm).trans (by omega)
 
-p2m_export "WeierstrassCurve" "veluDeficitCrossQuadAlphaBetaConstClearedPoly_natDegree_lt"
 end DegBound
 
 end WeierstrassCurve
@@ -9270,14 +6973,11 @@ end
 
 section
 
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.Polynomial WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point"
+open WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
 
 noncomputable section
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq isIntegral_iff Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ Δ' map_a₃ veluXNum veluYNum veluY veluY_empty veluX_singleton veluY_singleton IsOddVeluSet veluX veluX_empty veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ veluQuotient_empty oddOrderSummingSet mem_oddOrderSummingSet"
-p2m_open "WeierstrassCurve"
-
 section Helper
 
 private lemma sq_sum_sub_sum_sq_eq {R : Type*} [CommRing R] {α : Type*} [DecidableEq α]
@@ -9310,17 +7010,14 @@ private def _root_.WeierstrassCurve.veluYYCorrConstPairPadQuot (S : Finset (F ×
   W.veluYCorrConstNumPoly A * W.veluYCorrConstNumPoly B * (X - C A.1) * (X - C B.1)
     * (∏ E ∈ (S.erase A).erase B, (X - C E.1)) ^ 4
 
-p2m_export "WeierstrassCurve" "veluYYCorrConstPairPadQuot"
 private def _root_.WeierstrassCurve.veluYYCorrCrossPairPadQuot (S : Finset (F × F)) (A B : F × F) : F[X] :=
   W.veluYCorrConstNumPoly A * W.veluYCorrSCoeffNumPoly B * (X - C A.1) * (X - C B.1)
     * (∏ E ∈ (S.erase A).erase B, (X - C E.1)) ^ 4
 
-p2m_export "WeierstrassCurve" "veluYYCorrCrossPairPadQuot"
 private def _root_.WeierstrassCurve.veluYYCorrSCoeffPairPadQuot (S : Finset (F × F)) (A B : F × F) : F[X] :=
   W.veluYCorrSCoeffNumPoly A * W.veluYCorrSCoeffNumPoly B * (X - C A.1) * (X - C B.1)
     * (∏ E ∈ (S.erase A).erase B, (X - C E.1)) ^ 4
 
-p2m_export "WeierstrassCurve" "veluYYCorrSCoeffPairPadQuot"
 private theorem _root_.WeierstrassCurve.veluYCorrConstPadPoly_mul_eq_kernelDenom_sq_mul {S : Finset (F × F)}
     {A B : F × F} (hA : A ∈ S) (hB : B ∈ S) (hAB : A ≠ B) :
     W.veluYCorrConstPadPoly S A * W.veluYCorrConstPadPoly S B
@@ -9335,7 +7032,6 @@ private theorem _root_.WeierstrassCurve.veluYCorrConstPadPoly_mul_eq_kernelDenom
       ← Finset.mul_prod_erase (S.erase A) _ hBA]
   ring
 
-p2m_export "WeierstrassCurve" "veluYCorrConstPadPoly_mul_eq_kernelDenom_sq_mul"
 private theorem _root_.WeierstrassCurve.veluYCorrConstPadPoly_mul_veluYCorrSCoeffPadPoly_eq_kernelDenom_sq_mul
     {S : Finset (F × F)} {A B : F × F} (hA : A ∈ S) (hB : B ∈ S) (hAB : A ≠ B) :
     W.veluYCorrConstPadPoly S A * W.veluYCorrSCoeffPadPoly S B
@@ -9350,7 +7046,6 @@ private theorem _root_.WeierstrassCurve.veluYCorrConstPadPoly_mul_veluYCorrSCoef
       ← Finset.mul_prod_erase (S.erase A) _ hBA]
   ring
 
-p2m_export "WeierstrassCurve" "veluYCorrConstPadPoly_mul_veluYCorrSCoeffPadPoly_eq_kernelDenom_sq_mul"
 private theorem _root_.WeierstrassCurve.veluYCorrSCoeffPadPoly_mul_eq_kernelDenom_sq_mul {S : Finset (F × F)}
     {A B : F × F} (hA : A ∈ S) (hB : B ∈ S) (hAB : A ≠ B) :
     W.veluYCorrSCoeffPadPoly S A * W.veluYCorrSCoeffPadPoly S B
@@ -9365,7 +7060,6 @@ private theorem _root_.WeierstrassCurve.veluYCorrSCoeffPadPoly_mul_eq_kernelDeno
       ← Finset.mul_prod_erase (S.erase A) _ hBA]
   ring
 
-p2m_export "WeierstrassCurve" "veluYCorrSCoeffPadPoly_mul_eq_kernelDenom_sq_mul"
 end BetaSqPairPad
 
 section BetaSqCleared
@@ -9375,15 +7069,12 @@ variable {F : Type*} [Field F] [DecidableEq F] (W : WeierstrassCurve F)
 private def _root_.WeierstrassCurve.veluDeficitCrossQuadBetaSqConstClearedPoly (S : Finset (F × F)) : F[X] :=
   ∑ A ∈ S, ∑ B ∈ S.erase A, W.veluYYCorrConstPairPadQuot S A B
 
-p2m_export "WeierstrassCurve" "veluDeficitCrossQuadBetaSqConstClearedPoly"
 private def _root_.WeierstrassCurve.veluDeficitCrossQuadBetaSqCrossClearedPoly (S : Finset (F × F)) : F[X] :=
   ∑ A ∈ S, ∑ B ∈ S.erase A, W.veluYYCorrCrossPairPadQuot S A B
 
-p2m_export "WeierstrassCurve" "veluDeficitCrossQuadBetaSqCrossClearedPoly"
 private def _root_.WeierstrassCurve.veluDeficitCrossQuadBetaSqSqClearedPoly (S : Finset (F × F)) : F[X] :=
   ∑ A ∈ S, ∑ B ∈ S.erase A, W.veluYYCorrSCoeffPairPadQuot S A B
 
-p2m_export "WeierstrassCurve" "veluDeficitCrossQuadBetaSqSqClearedPoly"
 private theorem _root_.WeierstrassCurve.veluYCorrConstSumPadPoly_sq_sub_sum_sq_eq (S : Finset (F × F)) :
     (W.veluYCorrConstSumPadPoly S) ^ 2 - ∑ A ∈ S, (W.veluYCorrConstPadPoly S A) ^ 2
       = (veluKernelDenom S) ^ 2 * W.veluDeficitCrossQuadBetaSqConstClearedPoly S := by
@@ -9395,7 +7086,6 @@ private theorem _root_.WeierstrassCurve.veluYCorrConstSumPadPoly_sq_sub_sum_sq_e
   obtain ⟨hBA, hBS⟩ := Finset.mem_erase.mp hB
   exact W.veluYCorrConstPadPoly_mul_eq_kernelDenom_sq_mul hA hBS hBA.symm
 
-p2m_export "WeierstrassCurve" "veluYCorrConstSumPadPoly_sq_sub_sum_sq_eq"
 private theorem _root_.WeierstrassCurve.veluYCorrConstSumPadPoly_mul_SCoeffSumPadPoly_sub_sum_eq (S : Finset (F × F)) :
     W.veluYCorrConstSumPadPoly S * W.veluYCorrSCoeffSumPadPoly S
         - ∑ A ∈ S, W.veluYCorrConstPadPoly S A * W.veluYCorrSCoeffPadPoly S A
@@ -9408,7 +7098,6 @@ private theorem _root_.WeierstrassCurve.veluYCorrConstSumPadPoly_mul_SCoeffSumPa
   obtain ⟨hBA, hBS⟩ := Finset.mem_erase.mp hB
   exact W.veluYCorrConstPadPoly_mul_veluYCorrSCoeffPadPoly_eq_kernelDenom_sq_mul hA hBS hBA.symm
 
-p2m_export "WeierstrassCurve" "veluYCorrConstSumPadPoly_mul_SCoeffSumPadPoly_sub_sum_eq"
 private theorem _root_.WeierstrassCurve.veluYCorrSCoeffSumPadPoly_sq_sub_sum_sq_eq (S : Finset (F × F)) :
     (W.veluYCorrSCoeffSumPadPoly S) ^ 2 - ∑ A ∈ S, (W.veluYCorrSCoeffPadPoly S A) ^ 2
       = (veluKernelDenom S) ^ 2 * W.veluDeficitCrossQuadBetaSqSqClearedPoly S := by
@@ -9420,7 +7109,6 @@ private theorem _root_.WeierstrassCurve.veluYCorrSCoeffSumPadPoly_sq_sub_sum_sq_
   obtain ⟨hBA, hBS⟩ := Finset.mem_erase.mp hB
   exact W.veluYCorrSCoeffPadPoly_mul_eq_kernelDenom_sq_mul hA hBS hBA.symm
 
-p2m_export "WeierstrassCurve" "veluYCorrSCoeffSumPadPoly_sq_sub_sum_sq_eq"
 private theorem _root_.WeierstrassCurve.veluDeficitCrossQuadBetaSq_mul_prodPow_sQuadDecomp {S : Finset (F × F)} {r : F} (s : F)
     (hav : ∀ B ∈ S, r ≠ B.1) :
     W.veluDeficitCrossQuadBetaSq S r s * (∏ B ∈ S, (r - B.1)) ^ 4
@@ -9474,7 +7162,6 @@ private theorem _root_.WeierstrassCurve.veluDeficitCrossQuadBetaSq_mul_prodPow_s
     ← hD_def] at hM00 hM01 hM11
   rw [hM00, hM01, hM11]; ring
 
-p2m_export "WeierstrassCurve" "veluDeficitCrossQuadBetaSq_mul_prodPow_sQuadDecomp"
 end BetaSqCleared
 
 section S2Reduction
@@ -9485,12 +7172,10 @@ omit [DecidableEq F] in
 
 private def _root_.WeierstrassCurve.veluWeierstrassCubicPoly : F[X] := X ^ 3 + C W.a₂ * X ^ 2 + C W.a₄ * X + C W.a₆
 
-p2m_export "WeierstrassCurve" "veluWeierstrassCubicPoly"
 omit [DecidableEq F] in
 private lemma _root_.WeierstrassCurve.veluWeierstrassCubicPoly_natDegree_le : W.veluWeierstrassCubicPoly.natDegree ≤ 3 := by
   unfold veluWeierstrassCubicPoly; compute_degree
 
-p2m_export "WeierstrassCurve" "veluWeierstrassCubicPoly_natDegree_le"
 omit [DecidableEq F] in
 
 private theorem _root_.WeierstrassCurve.sq_eq_veluWeierstrassCubicPoly_sub_of_equation {r s : F} (hrs : W.toAffine.Equation r s) :
@@ -9499,17 +7184,14 @@ private theorem _root_.WeierstrassCurve.sq_eq_veluWeierstrassCubicPoly_sub_of_eq
   simp only [veluWeierstrassCubicPoly, eval_add, eval_mul, eval_pow, eval_X, eval_C]
   linear_combination heq
 
-p2m_export "WeierstrassCurve" "sq_eq_veluWeierstrassCubicPoly_sub_of_equation"
 private def _root_.WeierstrassCurve.veluDeficitCrossQuadBetaSqConstS2ClearedPoly (S : Finset (F × F)) : F[X] :=
   W.veluDeficitCrossQuadBetaSqConstClearedPoly S
     + W.veluWeierstrassCubicPoly * W.veluDeficitCrossQuadBetaSqSqClearedPoly S
 
-p2m_export "WeierstrassCurve" "veluDeficitCrossQuadBetaSqConstS2ClearedPoly"
 private def _root_.WeierstrassCurve.veluDeficitCrossQuadBetaSqSCoeffS2ClearedPoly (S : Finset (F × F)) : F[X] :=
   2 * W.veluDeficitCrossQuadBetaSqCrossClearedPoly S
     - (C W.a₁ * X + C W.a₃) * W.veluDeficitCrossQuadBetaSqSqClearedPoly S
 
-p2m_export "WeierstrassCurve" "veluDeficitCrossQuadBetaSqSCoeffS2ClearedPoly"
 private theorem _root_.WeierstrassCurve.veluDeficitCrossQuadBetaSq_mul_prodPow_sDecomp {S : Finset (F × F)} {r s : F}
     (hrs : W.toAffine.Equation r s) (hav : ∀ B ∈ S, r ≠ B.1) :
     W.veluDeficitCrossQuadBetaSq S r s * (∏ B ∈ S, (r - B.1)) ^ 4
@@ -9521,7 +7203,6 @@ private theorem _root_.WeierstrassCurve.veluDeficitCrossQuadBetaSq_mul_prodPow_s
   simp only [eval_add, eval_mul, eval_sub, eval_ofNat, eval_C, eval_X]
   ring
 
-p2m_export "WeierstrassCurve" "veluDeficitCrossQuadBetaSq_mul_prodPow_sDecomp"
 end S2Reduction
 
 section DegBound
@@ -9548,7 +7229,6 @@ private theorem _root_.WeierstrassCurve.veluYYCorrConstPairPadQuot_natDegree_le 
           omega
     _ ≤ 4 * S.card - 2 := by omega
 
-p2m_export "WeierstrassCurve" "veluYYCorrConstPairPadQuot_natDegree_le"
 private theorem _root_.WeierstrassCurve.veluYYCorrSCoeffPairPadQuot_natDegree_le {S : Finset (F × F)} {A B : F × F}
     (hA : A ∈ S) (hB : B ∈ S) (hAB : A ≠ B) :
     (W.veluYYCorrSCoeffPairPadQuot S A B).natDegree ≤ 4 * S.card - 4 := by
@@ -9569,7 +7249,6 @@ private theorem _root_.WeierstrassCurve.veluYYCorrSCoeffPairPadQuot_natDegree_le
           omega
     _ ≤ 4 * S.card - 4 := by omega
 
-p2m_export "WeierstrassCurve" "veluYYCorrSCoeffPairPadQuot_natDegree_le"
 private theorem _root_.WeierstrassCurve.veluDeficitCrossQuadBetaSqConstClearedPoly_natDegree_le (S : Finset (F × F)) :
     (W.veluDeficitCrossQuadBetaSqConstClearedPoly S).natDegree ≤ 4 * S.card - 2 := by
   refine natDegree_le_iff_degree_le.mpr ((degree_sum_le _ _).trans (Finset.sup_le fun A hA => ?_))
@@ -9578,7 +7257,6 @@ private theorem _root_.WeierstrassCurve.veluDeficitCrossQuadBetaSqConstClearedPo
   exact degree_le_natDegree.trans
     (Nat.cast_le.mpr (W.veluYYCorrConstPairPadQuot_natDegree_le hA hBS hBA.symm))
 
-p2m_export "WeierstrassCurve" "veluDeficitCrossQuadBetaSqConstClearedPoly_natDegree_le"
 private theorem _root_.WeierstrassCurve.veluDeficitCrossQuadBetaSqSqClearedPoly_natDegree_le (S : Finset (F × F)) :
     (W.veluDeficitCrossQuadBetaSqSqClearedPoly S).natDegree ≤ 4 * S.card - 4 := by
   refine natDegree_le_iff_degree_le.mpr ((degree_sum_le _ _).trans (Finset.sup_le fun A hA => ?_))
@@ -9587,7 +7265,6 @@ private theorem _root_.WeierstrassCurve.veluDeficitCrossQuadBetaSqSqClearedPoly_
   exact degree_le_natDegree.trans
     (Nat.cast_le.mpr (W.veluYYCorrSCoeffPairPadQuot_natDegree_le hA hBS hBA.symm))
 
-p2m_export "WeierstrassCurve" "veluDeficitCrossQuadBetaSqSqClearedPoly_natDegree_le"
 private theorem _root_.WeierstrassCurve.veluDeficitCrossQuadBetaSqConstS2ClearedPoly_natDegree_lt {S : Finset (F × F)}
     (hS : S.Nonempty) :
     (W.veluDeficitCrossQuadBetaSqConstS2ClearedPoly S).natDegree < 4 * S.card := by
@@ -9600,7 +7277,6 @@ private theorem _root_.WeierstrassCurve.veluDeficitCrossQuadBetaSqConstS2Cleared
     have h₂ := W.veluDeficitCrossQuadBetaSqSqClearedPoly_natDegree_le S
     omega
 
-p2m_export "WeierstrassCurve" "veluDeficitCrossQuadBetaSqConstS2ClearedPoly_natDegree_lt"
 end DegBound
 
 end WeierstrassCurve
@@ -9609,16 +7285,13 @@ end
 
 section
 
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.Polynomial WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point"
+open WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
 
-p2m_open_scoped "WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine Polynomial.Bivariate"
+open scoped WeierstrassCurve.Affine
 
 noncomputable section
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq isIntegral_iff Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ Δ' map_a₃ veluXNum veluYNum veluY veluY_empty veluX_singleton veluY_singleton IsOddVeluSet veluX veluX_empty veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ veluQuotient_empty oddOrderSummingSet mem_oddOrderSummingSet"
-p2m_open "WeierstrassCurve"
-
 universe u
 
 variable {F : Type u} [Field F]
@@ -9657,7 +7330,6 @@ private theorem _root_.WeierstrassCurve.liftSummingSet_oddOrderSummingSet (Q : W
     exact ⟨(k • Q).coordsOrZero, ⟨k, hk, rfl⟩, by
       rw [← hkA, ← map_nsmul, ratPointHom_apply, coordsOrZero_ratPointMap]; rfl⟩
 
-p2m_export "WeierstrassCurve" "liftSummingSet_oddOrderSummingSet"
 end SummingSetCompat
 
 section GenericNotInRange
@@ -9693,13 +7365,10 @@ end
 
 noncomputable section
 
-p2m_open "WeierstrassCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.WeierstrassCurve.Affine.Point"
-p2m_open "AlgebraicCurve P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.AlgebraicCurve Polynomial P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.Polynomial"
+open WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
+open AlgebraicCurve
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "map_b₄ Affine.map_slope Affine Affine.negY Affine.slope_of_X_ne Affine.equation_neg a₃ Affine.Point.add_of_Y_eq map_map coeff_Ψ₂Sq a₁ map Affine.equation_iff_nonsingular_of_Δ_ne_zero map_b₂ Ψ₃ b₂ Affine.slope Affine.CoordinateRing mk Affine.equation_add Ψ₂Sq a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq isIntegral_iff Affine.Point.some.inj Affine.negAddY Affine.map_addY Affine.negY_negY Affine.map_addX Affine.nonsingular_add IsIntegral toAffine Affine.Point Affine.addX Affine.Point.add_some Affine.nonsingular_neg map_Δ map_a₆ b₆ b₈ map_a₁ map_Ψ₃ map_a₄ Affine.Point.some_ne_zero Δ Affine.map_negY Affine.addY Affine.Y_eq_of_X_eq Affine.Point.add_of_X_ne Affine.equation_iff Affine.polynomial Affine.Point.neg_some map_a₂ j b₄ Δ' map_a₃ veluXNum veluYNum veluY veluY_empty veluX_singleton veluY_singleton IsOddVeluSet veluX veluX_empty veluGx veluGy veluT veluU veluW veluT_eq veluU_eq_Ψ₂Sq_eval veluTSum veluWSum veluQuotient veluQuotient_a₁ veluQuotient_a₂ veluQuotient_a₃ veluQuotient_a₄ veluQuotient_a₆ veluQuotient_empty oddOrderSummingSet mem_oddOrderSummingSet"
-p2m_open "WeierstrassCurve"
-
 lemma kw_vdcoog_some_congr {R : Type*} [CommRing R] {V : Affine R} {x₁ x₂ y₁ y₂ : R}
     (hx : x₁ = x₂) (hy : y₁ = y₂) (h₁ : V.Nonsingular x₁ y₁) (h₂ : V.Nonsingular x₂ y₂) :
     (Affine.Point.some x₁ y₁ h₁ : V.Point) = Affine.Point.some x₂ y₂ h₂ := by
@@ -10387,17 +8056,10 @@ end
 end
 end
 end
-end S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet
-end P2MW
-export P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet (solution)
 
 end privateSection
 
 public section publicSection
-
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 open WeierstrassCurve
 theorem WeierstrassCurve.velu_map_equation_of_oddOrderSummingSet
@@ -10406,6 +8068,7 @@ theorem WeierstrassCurve.velu_map_equation_of_oddOrderSummingSet
     (hQ : addOrderOf Q = 2 * n + 1) {x y : L} (hxy : W.toAffine.Equation x y)
     (hx : ∀ A ∈ W.oddOrderSummingSet Q n, x ≠ A.1) :
     (W.veluQuotient (W.oddOrderSummingSet Q n)).toAffine.Equation
-      (W.veluX (W.oddOrderSummingSet Q n) x) (W.veluY (W.oddOrderSummingSet Q n) x y) := _root_.P2MW.S_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.solution h2 W n Q hQ hxy hx
+      (W.veluX (W.oddOrderSummingSet Q n) x) (W.veluY (W.oddOrderSummingSet Q n) x y) :=
+  solution h2 W n Q hQ hxy hx
 
 end publicSection

@@ -2137,13 +2137,6 @@ p2m_open "WeierstrassCurve.Affine.CoordinateRing~evalAt~isIntegral P2MW.S_Weiers
 
 variable {F : Type*} [Field F] {W : Affine F}
 
-def polyToFunctionField (W : Affine F) : F[X] →+* W.FunctionField :=
-  (algebraMap W.CoordinateRing W.FunctionField).comp (algebraMap F[X] W.CoordinateRing)
-
-theorem polyToFunctionField_apply (p : F[X]) :
-    polyToFunctionField W p
-      = algebraMap W.CoordinateRing W.FunctionField (algebraMap F[X] W.CoordinateRing p) := rfl
-
 theorem algebraMap_smul_one (p : F[X]) :
     algebraMap W.CoordinateRing W.FunctionField (p • (1 : W.CoordinateRing))
       = polyToFunctionField W p := by
@@ -2158,26 +2151,6 @@ theorem polyToFunctionField_injective : Function.Injective (polyToFunctionField 
     rw [zero_smul, add_zero, sub_smul, ← Algebra.algebraMap_eq_smul_one,
       ← Algebra.algebraMap_eq_smul_one, h2, sub_self]
   exact sub_eq_zero.mp (smul_basis_eq_zero h0).1
-
-theorem polyToFunctionField_C (c : F) :
-    polyToFunctionField W (C c) = algebraMap F W.FunctionField c := by
-  rw [polyToFunctionField_apply,
-    show algebraMap F[X] W.CoordinateRing (C c) = algebraMap F W.CoordinateRing c from
-      (IsScalarTower.algebraMap_apply F F[X] W.CoordinateRing c).symm]
-  exact (IsScalarTower.algebraMap_apply F W.CoordinateRing W.FunctionField c).symm
-
-theorem polyToFunctionField_ne_zero {p : F[X]} (hp : p ≠ 0) :
-    polyToFunctionField W p ≠ 0 := by
-  intro h
-  exact hp (polyToFunctionField_injective (by simpa using h))
-
-theorem algebraMap_smul_basis (p q : F[X]) :
-    algebraMap W.CoordinateRing W.FunctionField
-        (p • (1 : W.CoordinateRing) + q • CoordinateRing.mk W Y)
-      = polyToFunctionField W p + polyToFunctionField W q
-          * algebraMap W.CoordinateRing W.FunctionField (CoordinateRing.mk W Y) := by
-  rw [map_add, algebraMap_smul_one, smul, map_mul, polyToFunctionField_apply]
-  rfl
 
 theorem Y_image_ne_zero :
     algebraMap W.CoordinateRing W.FunctionField (CoordinateRing.mk W Y) ≠ 0 := by

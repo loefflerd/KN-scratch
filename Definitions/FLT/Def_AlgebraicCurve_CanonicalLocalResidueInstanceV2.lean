@@ -147,33 +147,6 @@ theorem coe_uniformizerSubring : (v.uniformizerSubring : F) = v.uniformizer := r
 theorem irreducible_uniformizerSubring : Irreducible v.uniformizerSubring :=
   (IsDiscreteValuationRing.exists_irreducible v.toValuationSubring).choose_spec
 
-private theorem ord_nonneg_of_mem {f : F} (hf : f ∈ v.toValuationSubring) : 0 ≤ v.ord f := by
-  rcases eq_or_ne f 0 with rfl | hf0
-  · simp
-  obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible v.toValuationSubring
-  obtain ⟨n, u, hu⟩ :=
-    IsDiscreteValuationRing.eq_unit_mul_pow_irreducible
-      (x := (⟨f, hf⟩ : v.toValuationSubring)) (by simpa [Subtype.ext_iff] using hf0) hπ
-  have hcoe : f = ((u : v.toValuationSubring) : F) * ((π : F) ^ (n : ℤ)) := by
-    have h := congrArg (Subtype.val) hu
-    push_cast at h
-    rw [zpow_natCast]
-    exact h
-  rw [hcoe, v.ord_unit_smul_zpow u hπ (n : ℤ)]
-  exact Int.natCast_nonneg n
-
-private theorem mem_of_ord_nonneg {f : F} (hf : f ≠ 0) (h : 0 ≤ v.ord f) :
-    f ∈ v.toValuationSubring := by
-  obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible v.toValuationSubring
-  obtain ⟨u, hu⟩ := v.exists_unit_mul_zpow hf hπ
-  rw [hu, show v.ord f = (((v.ord f).toNat : ℕ) : ℤ) from (Int.toNat_of_nonneg h).symm,
-    zpow_natCast]
-  exact mul_mem (u : v.toValuationSubring).2 (pow_mem (π : v.toValuationSubring).2 _)
-
-private theorem mem_iff_ord_nonneg {f : F} (hf : f ≠ 0) :
-    f ∈ v.toValuationSubring ↔ 0 ≤ v.ord f :=
-  ⟨v.ord_nonneg_of_mem, v.mem_of_ord_nonneg hf⟩
-
 theorem uniformizerSubring_mem_maximalIdeal :
     v.uniformizerSubring ∈ IsLocalRing.maximalIdeal v.toValuationSubring :=
   (IsLocalRing.mem_maximalIdeal _).mpr v.irreducible_uniformizerSubring.not_isUnit

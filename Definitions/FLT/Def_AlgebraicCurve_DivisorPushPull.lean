@@ -25,7 +25,7 @@ section SinglePlace
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
 
-private theorem ord_nonneg_of_mem {f : F} (hf : f ∈ v.toValuationSubring) : 0 ≤ v.ord f := by
+theorem ord_nonneg_of_mem {f : F} (hf : f ∈ v.toValuationSubring) : 0 ≤ v.ord f := by
   rcases eq_or_ne f 0 with rfl | hf0
   · simp
   obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible v.toValuationSubring
@@ -40,7 +40,7 @@ private theorem ord_nonneg_of_mem {f : F} (hf : f ∈ v.toValuationSubring) : 0 
   rw [hcoe, v.ord_unit_smul_zpow u hπ (n : ℤ)]
   exact Int.natCast_nonneg n
 
-private theorem mem_of_ord_nonneg {f : F} (hf : f ≠ 0) (h : 0 ≤ v.ord f) :
+theorem mem_of_ord_nonneg {f : F} (hf : f ≠ 0) (h : 0 ≤ v.ord f) :
     f ∈ v.toValuationSubring := by
   obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible v.toValuationSubring
   obtain ⟨u, hu⟩ := v.exists_unit_mul_zpow hf hπ
@@ -48,11 +48,11 @@ private theorem mem_of_ord_nonneg {f : F} (hf : f ≠ 0) (h : 0 ≤ v.ord f) :
     zpow_natCast]
   exact mul_mem (u : v.toValuationSubring).2 (pow_mem (π : v.toValuationSubring).2 _)
 
-private theorem mem_iff_ord_nonneg {f : F} (hf : f ≠ 0) :
+theorem mem_iff_ord_nonneg {f : F} (hf : f ≠ 0) :
     f ∈ v.toValuationSubring ↔ 0 ≤ v.ord f :=
   ⟨v.ord_nonneg_of_mem, v.mem_of_ord_nonneg hf⟩
 
-private theorem exists_ord_pos : ∃ f : F, f ≠ 0 ∧ 0 < v.ord f := by
+theorem exists_ord_pos : ∃ f : F, f ≠ 0 ∧ 0 < v.ord f := by
   obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible v.toValuationSubring
   refine ⟨(π : F), ?_, ?_⟩
   · simpa [ne_eq, ZeroMemClass.coe_eq_zero] using hπ.ne_zero
@@ -66,12 +66,12 @@ section Restrict
 variable {K F F' : Type*} [Field K] [Field F] [Field F']
   [Algebra K F'] [Algebra F F']
 
-private theorem algebraMap_ne_zero {f : F} (hf : f ≠ 0) : algebraMap F F' f ≠ 0 := by
+theorem algebraMap_ne_zero {f : F} (hf : f ≠ 0) : algebraMap F F' f ≠ 0 := by
   simpa using hf
 
 variable (w : Place K F')
 
-private theorem comap_algebraMap_ne_top [Algebra.IsIntegral F F'] :
+theorem comap_algebraMap_ne_top [Algebra.IsIntegral F F'] :
     w.toValuationSubring.comap (algebraMap F F') ≠ ⊤ := by
   intro htop
   apply w.ne_top'
@@ -89,7 +89,7 @@ private theorem comap_algebraMap_ne_top [Algebra.IsIntegral F F'] :
 
 variable {w} in
 
-private theorem mem_comap_iff_ord_nonneg {f : F} (hf : f ≠ 0) :
+theorem mem_comap_iff_ord_nonneg {f : F} (hf : f ≠ 0) :
     f ∈ w.toValuationSubring.comap (algebraMap F F') ↔
       0 ≤ w.ord (algebraMap F F' f) := by
   rw [ValuationSubring.mem_comap]
@@ -97,7 +97,7 @@ private theorem mem_comap_iff_ord_nonneg {f : F} (hf : f ≠ 0) :
 
 variable {w} in
 
-private theorem isUnit_mk_comap_iff {f : F} (hf : f ≠ 0)
+theorem isUnit_mk_comap_iff {f : F} (hf : f ≠ 0)
     (hmem : f ∈ w.toValuationSubring.comap (algebraMap F F')) :
     IsUnit (⟨f, hmem⟩ : w.toValuationSubring.comap (algebraMap F F')) ↔
       w.ord (algebraMap F F' f) = 0 := by
@@ -122,7 +122,7 @@ private theorem isUnit_mk_comap_iff {f : F} (hf : f ≠ 0)
     exact ⟨⟨⟨f, hmem⟩, ⟨f⁻¹, hinv⟩, Subtype.ext (mul_inv_cancel₀ hf),
       Subtype.ext (inv_mul_cancel₀ hf)⟩, rfl⟩
 
-private theorem exists_ord_algebraMap_pos [Algebra.IsIntegral F F'] :
+theorem exists_ord_algebraMap_pos [Algebra.IsIntegral F F'] :
     ∃ f : F, f ≠ 0 ∧ 0 < w.ord (algebraMap F F' f) := by
   have h := w.comap_algebraMap_ne_top (F := F)
   rw [ne_eq, SetLike.ext_iff, not_forall] at h
@@ -150,7 +150,7 @@ theorem ramificationIndex_le_ord {f : F} (hf : f ≠ 0)
 
 variable [Algebra.IsIntegral F F']
 
-private theorem ramificationIndex_set_nonempty :
+theorem ramificationIndex_set_nonempty :
     {n : ℕ | 0 < n ∧ ∃ f : F, f ≠ 0 ∧ w.ord (algebraMap F F' f) = n}.Nonempty := by
   obtain ⟨f, hf0, hf⟩ := w.exists_ord_algebraMap_pos (F := F)
   exact ⟨(w.ord (algebraMap F F' f)).toNat, by omega, f, hf0, by omega⟩
@@ -221,7 +221,7 @@ theorem irreducible_mk_comap {g : F} (hg0 : g ≠ 0)
     have h2 := w.ramificationIndex_le_ord (F := F) hb0 hbpos
     omega
 
-private theorem isPrincipalIdealRing_comap :
+theorem isPrincipalIdealRing_comap :
     IsPrincipalIdealRing (w.toValuationSubring.comap (algebraMap F F')) := by
   obtain ⟨g, hg0, hge⟩ := w.exists_ord_eq_ramificationIndex (F := F)
   have hepos : 0 < ramificationIndex (F := F) w := w.ramificationIndex_pos (F := F)

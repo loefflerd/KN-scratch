@@ -35,30 +35,30 @@ namespace Place
 p2m_export "AlgebraicCurve.Place" "ext coe_algebraMap ResidueField deg adicValuation adicValuation_coe_eq_one_iff ord ord_zero ord_mul ord_inv ord_coe_unit ord_coe_irreducible ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ofHeightOneSpectrum mk.injEq algebraMap_mem' toValuationSubring mk ramificationIndex ramificationIndex_pos restrict mem_restrict_iff ord_restrict deg_restrict_mul_inertiaDeg fiber mem_fiber adicValuation_eq_exp_neg_ord sum_ramificationIndex_mul_inertiaDeg exists_restrict_eq"
 p2m_open "AlgebraicCurve.Place~ord_nonneg_of_mem~mem_of_ord_nonneg~mem_iff_ord_nonneg~restrict_placeOfPrime~placeOfPrime~comap_algebraMap_ne_top"
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
-theorem ord_nonneg_of_mem {f : F} (hf : f ∈ v.toValuationSubring) : 0 ≤ v.ord f := by
-  rcases eq_or_ne f 0 with rfl | hf0
-  · simp
-  obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible v.toValuationSubring
-  obtain ⟨n, u, hu⟩ :=
-    IsDiscreteValuationRing.eq_unit_mul_pow_irreducible
-      (x := (⟨f, hf⟩ : v.toValuationSubring)) (by simpa [Subtype.ext_iff] using hf0) hπ
-  have hcoe : f = ((u : v.toValuationSubring) : F) * ((π : F) ^ (n : ℤ)) := by
-    have h := congrArg (Subtype.val) hu
-    push_cast at h
-    rw [zpow_natCast]
-    exact h
-  rw [hcoe, v.ord_unit_smul_zpow u hπ (n : ℤ)]
-  exact Int.natCast_nonneg n
-theorem mem_of_ord_nonneg {f : F} (hf : f ≠ 0) (h : 0 ≤ v.ord f) :
-    f ∈ v.toValuationSubring := by
-  obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible v.toValuationSubring
-  obtain ⟨u, hu⟩ := v.exists_unit_mul_zpow hf hπ
-  rw [hu, show v.ord f = (((v.ord f).toNat : ℕ) : ℤ) from (Int.toNat_of_nonneg h).symm,
-    zpow_natCast]
-  exact mul_mem (u : v.toValuationSubring).2 (pow_mem (π : v.toValuationSubring).2 _)
-theorem mem_iff_ord_nonneg {f : F} (hf : f ≠ 0) :
-    f ∈ v.toValuationSubring ↔ 0 ≤ v.ord f :=
-  ⟨AlgebraicCurve.Place.ord_nonneg_of_mem v, AlgebraicCurve.Place.mem_of_ord_nonneg v hf⟩
+--XXtheorem ord_nonneg_of_mem {f : F} (hf : f ∈ v.toValuationSubring) : 0 ≤ v.ord f := by
+--XX  rcases eq_or_ne f 0 with rfl | hf0
+--XX  · simp
+--XX  obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible v.toValuationSubring
+--XX  obtain ⟨n, u, hu⟩ :=
+--XX    IsDiscreteValuationRing.eq_unit_mul_pow_irreducible
+--XX      (x := (⟨f, hf⟩ : v.toValuationSubring)) (by simpa [Subtype.ext_iff] using hf0) hπ
+--XX  have hcoe : f = ((u : v.toValuationSubring) : F) * ((π : F) ^ (n : ℤ)) := by
+--XX    have h := congrArg (Subtype.val) hu
+--XX    push_cast at h
+--XX    rw [zpow_natCast]
+--XX    exact h
+--XX  rw [hcoe, v.ord_unit_smul_zpow u hπ (n : ℤ)]
+--XX  exact Int.natCast_nonneg n
+--XXtheorem mem_of_ord_nonneg {f : F} (hf : f ≠ 0) (h : 0 ≤ v.ord f) :
+--XX    f ∈ v.toValuationSubring := by
+--XX  obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible v.toValuationSubring
+--XX  obtain ⟨u, hu⟩ := v.exists_unit_mul_zpow hf hπ
+--XX  rw [hu, show v.ord f = (((v.ord f).toNat : ℕ) : ℤ) from (Int.toNat_of_nonneg h).symm,
+--XX    zpow_natCast]
+--XX  exact mul_mem (u : v.toValuationSubring).2 (pow_mem (π : v.toValuationSubring).2 _)
+--XXtheorem mem_iff_ord_nonneg {f : F} (hf : f ≠ 0) :
+--XX    f ∈ v.toValuationSubring ↔ 0 ≤ v.ord f :=
+--XX  ⟨AlgebraicCurve.Place.ord_nonneg_of_mem v, AlgebraicCurve.Place.mem_of_ord_nonneg v hf⟩
 end Place
 end AlgebraicCurve
 
