@@ -1,11 +1,14 @@
-import Mathlib.Data.Finsupp.Pointwise
+module
 
-import Definitions.FLT.Def_AlgebraicCurve_FrobeniusEndoPic0
-import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
-import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
-import Definitions.FLT.Def_HeckeGalois_EichlerShimura
-import Definitions.FLT.Def_ModularCurve_KroneckerTransport
-import Theorems.FLT.Thm_ModularCurve_frobenius_identity_geom_unconditional
+public import Mathlib.Data.Finsupp.Pointwise
+public import Definitions.FLT.Def_AlgebraicCurve_FrobeniusEndoPic0
+public import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
+public import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
+public import Definitions.FLT.Def_HeckeGalois_EichlerShimura
+public import Definitions.FLT.Def_ModularCurve_KroneckerTransport
+public import Theorems.FLT.Thm_ModularCurve_frobenius_identity_geom_unconditional
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -1581,3 +1584,12 @@ theorem specialFibreHeckeModuleMatch_iff
 
 end FamilyProps
 end ModularCurve
+end
+end
+end
+end
+end
+end
+end
+
+end publicSection

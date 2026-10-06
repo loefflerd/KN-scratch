@@ -1,5 +1,72 @@
-import Definitions.FLT.Def_ModularCurve_EMD
-import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
+module
+
+public import Definitions.FLT.Def_ModularCurve_EMD
+public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
+
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Data.Rat.Star
+import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
+import Definitions.FLT.Def_P2M_Util
+
+section privateSection
+
+set_option maxHeartbeats 4000000
+set_option synthInstance.maxHeartbeats 400000
+set_option backward.isDefEq.respectTransparency.types false
+
+namespace P2MW.S_ModularCurve_place_eq_of_induces
+
+open ModularCurve AlgebraicCurve
+
+namespace S12Q
+
+variable (N : ℕ) [NeZero N]
+
+omit [NeZero N] in
+theorem mem_iff_ord_nonneg (w : Place (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N))
+    {x : ↥(modularFunctionFieldBar N)} (hx : x ≠ 0) :
+    x ∈ w.toValuationSubring ↔ 0 ≤ w.ord x := by
+  rw [Place.mem_iff_adicValuation_le_one, Place.ord, neg_nonneg,
+    WithZero.log_le_iff_le_exp (w.adicValuation_ne_zero hx), WithZero.exp_zero]
+
+theorem induces_unique
+    {ψ : ↥(modularFunctionFieldBar N) →ₐ[AlgebraicClosure ℚ] HahnSeries ℚ (AlgebraicClosure ℚ)}
+    {w w' : Place (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N)}
+    (hw : Induces ψ w) (hw' : Induces ψ w') : w = w' := by
+  obtain ⟨g, hg, h⟩ := hw
+  obtain ⟨g', hg', h'⟩ := hw'
+  have key : ∀ x, 0 ≤ w.ord x ↔ 0 ≤ w'.ord x := by
+    intro x
+    have hx := h x
+    rw [← h' x] at hx
+    constructor
+    · intro h0
+      have : 0 ≤ (w'.ord x : ℚ) * g' := by rw [← hx]; positivity
+      exact_mod_cast nonneg_of_mul_nonneg_left this hg'
+    · intro h0
+      have : 0 ≤ (w.ord x : ℚ) * g := by rw [hx]; positivity
+      exact_mod_cast nonneg_of_mul_nonneg_left this hg
+  apply Place.ext
+  ext x
+  rcases eq_or_ne x 0 with rfl | hx
+  · simp [zero_mem]
+  · rw [mem_iff_ord_nonneg N w hx, mem_iff_ord_nonneg N w' hx, key]
+
+end S12Q
+
+theorem solution {N : ℕ} [NeZero N]
+    {ψ : ↥(modularFunctionFieldBar N) →ₐ[AlgebraicClosure ℚ] HahnSeries ℚ (AlgebraicClosure ℚ)}
+    {w w' : Place (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N)}
+    (h : Induces ψ w) (h' : Induces ψ w') : w = w' := by
+  exact S12Q.induces_unique N h h'
+
+end S_ModularCurve_place_eq_of_induces
+end P2MW
+export P2MW.S_ModularCurve_place_eq_of_induces (solution)
+
+end privateSection
+
+public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -9,4 +76,6 @@ open AlgebraicCurve ModularCurve IsDedekindDomain WithZero
 theorem ModularCurve.place_eq_of_induces {N : ℕ} [NeZero N]
     {ψ : ↥(modularFunctionFieldBar N) →ₐ[AlgebraicClosure ℚ] HahnSeries ℚ (AlgebraicClosure ℚ)}
     {w w' : Place (AlgebraicClosure ℚ) ↥(modularFunctionFieldBar N)}
-    (h : Induces ψ w) (h' : Induces ψ w') : w = w' := by sorry
+    (h : Induces ψ w) (h' : Induces ψ w') : w = w' := _root_.P2MW.S_ModularCurve_place_eq_of_induces.solution h h'
+
+end publicSection

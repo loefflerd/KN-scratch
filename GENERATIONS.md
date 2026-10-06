@@ -8,7 +8,7 @@ Generation 1 means that a node has no imports from this extracted local filetree
 
 The parser reads textual `import` and `public import` commands, resolves module names from file paths, and ignores comments after an import. This intentionally does not reproduce Lean’s elaboration or transitive module-loading behavior.
 
-Classified files: **1859 / 1859** in **1307** dependency nodes, including **552** theorem/solution pairs. Cycles found: **0**. Files with unresolved non-baseline imports: **0**.
+Classified files: **1761 / 1761** in **1307** dependency nodes, including **454** theorem/solution pairs. Cycles found: **0**. Files with unresolved non-baseline imports: **0**.
 
 ## Summary
 
@@ -16,17 +16,17 @@ Classified files: **1859 / 1859** in **1307** dependency nodes, including **552*
 |---:|---:|---:|---:|---:|
 | 1 | 50 | 42 | 6 | 2 |
 | 2 | 243 | 233 | 6 | 4 |
-| 3 | 177 | 152 | 16 | 9 |
-| 4 | 151 | 126 | 17 | 8 |
+| 3 | 175 | 150 | 16 | 9 |
+| 4 | 148 | 123 | 17 | 8 |
 | 5 | 109 | 84 | 21 | 4 |
-| 6 | 131 | 100 | 18 | 13 |
-| 7 | 130 | 114 | 12 | 4 |
-| 8 | 90 | 80 | 6 | 4 |
-| 9 | 101 | 85 | 4 | 12 |
-| 10 | 94 | 65 | 6 | 23 |
-| 11 | 59 | 44 | 6 | 9 |
+| 6 | 70 | 54 | 9 | 7 |
+| 7 | 129 | 113 | 12 | 4 |
+| 8 | 89 | 79 | 6 | 4 |
+| 9 | 91 | 79 | 4 | 8 |
+| 10 | 78 | 58 | 6 | 14 |
+| 11 | 57 | 42 | 6 | 9 |
 | 12 | 61 | 50 | 6 | 5 |
-| 13 | 65 | 61 | 0 | 4 |
+| 13 | 63 | 61 | 0 | 2 |
 | 14 | 46 | 46 | 0 | 0 |
 | 15 | 25 | 25 | 0 | 0 |
 | 16 | 12 | 12 | 0 | 0 |
@@ -402,8 +402,6 @@ Classified files: **1859 / 1859** in **1307** dependency nodes, including **552*
 - `Definitions/MTT/Def_MTT_Cohomology_Boundary.lean`
 - `Definitions/MTT/Def_MTT_Cohomology_Integration.lean`
 - `Definitions/MTT/Def_MTT_ParabolicCohomology.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_Place_ord_sum_algebraMap_mul_le_ord_of_linearIndependent_of_constantFieldExtension.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_isIntegral_adjoin_of_forall_ord_nonneg.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_Divisor_evalFun_add.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_Divisor_evalFun_ne_zero.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_Divisor_evalFun_zsmul.lean`
@@ -576,9 +574,6 @@ Classified files: **1859 / 1859** in **1307** dependency nodes, including **552*
 - `Definitions/MTT/Def_MTT_LevelOnePeriodRelations.lean`
 - `Definitions/MTT/Def_MTT_NormalizedParabolicCocycles.lean`
 - `Definitions/MTT/Def_MTT_PeriodPairing.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_Divisor_degree_le_finrank_adjoin_of_eq_max_neg_ord.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_Place_ord_eq_zero_of_not_mem_of_eval_monic_eq_zero_of_coeff_eq_aeval_inv_div.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_finrank_le_and_natCard_places_le_of_constantFieldExtension_adjoin.lean`
 - `Solutions/FLT/Sol_AlgebraicCurve_mem_riemannRochSpace_of_sum_basis_smul_algebraMap_mem_mapDomain.lean`
 - `Theorems/FLT/Thm_AddCommGroup_natCard_isAddCyclic_addSubgroup_map_eq_of_sq_add_self_add_id_eq_zero_eq_nuThree.lean`
 - `Theorems/FLT/Thm_AddCommGroup_natCard_isAddCyclic_addSubgroup_map_eq_of_sq_eq_neg_one_eq_nuTwo.lean`
@@ -827,67 +822,6 @@ Classified files: **1859 / 1859** in **1307** dependency nodes, including **552*
 - `Definitions/FLT/Def_ModularCurve_PeriodLattice.lean`
 - `Definitions/FLT/Def_WeierstrassCurve_TorsionIntegral.lean`
 - `Definitions/KN/Def_KN_SeededHorizontalCharacterRealizationV2B.lean`
-- `Solutions/FLT/Sol_AddCommGroup_natCard_isAddCyclic_addSubgroup_eq_dedekindPsi_of_addEquiv_torsionBy.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_Place_D_ne_zero_of_ord_eq_one.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_Place_diffCoeff_smul_D_eq_of_ord_eq_one.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_Place_diffCoeff_smul_D_of_ord_eq_one.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_Place_mem_range_algebraMap_of_forall_ord_eq_zero_of_isAlgClosed.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_Place_ordDiff_smul.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_Place_ramificationIndex_eq_of_restrict_eq.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_RationalFunctionField_deg_ne_zero.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_RationalFunctionField_deg_placeInfty.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_RationalFunctionField_ord_ofHeightOneSpectrum_of_span.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_RationalFunctionField_ord_placeInfty.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_exists_riemannGenusReachedAt_nsmul_single_of_stichtenothGenusExists.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_genus_eq_genusFF.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_tateAgreement.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_tateChainRule.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_tateCommFinite.lean`
-- `Solutions/FLT/Sol_AlgebraicCurve_tateTraceCompat_of_isSeparable.lean`
-- `Solutions/FLT/Sol_CuspForm_finiteDimensional_Gamma0.lean`
-- `Solutions/FLT/Sol_HeckeEis_coeffH1par_map_int_rat_injective.lean`
-- `Solutions/FLT/Sol_HeckeEis_exists_isEichlerIntegral_isParabolicCocycle.lean`
-- `Solutions/FLT/Sol_ModularCurve_JOneES_exists_transcendental_finiteDimensional_laurentBaseChange.lean`
-- `Solutions/FLT/Sol_ModularCurve_Period_exists_basis_parabolicHoms_castAddHom_comp.lean`
-- `Solutions/FLT/Sol_ModularCurve_PhiGen_PhiGenDescends_hasSum_cosetPoly_coeff.lean`
-- `Solutions/FLT/Sol_ModularCurve_exists_complexPlaceDictionaryOf.lean`
-- `Solutions/FLT/Sol_ModularCurve_exists_intSeriesC_mul_ne_of_gamma0Units_not_mem.lean`
-- `Solutions/FLT/Sol_ModularCurve_exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange_qExpFunctionFieldC.lean`
-- `Solutions/FLT/Sol_ModularCurve_finrank_parabolicHoms_le_two_mul_genusFormula.lean`
-- `Solutions/FLT/Sol_ModularCurve_frickeInvolutionBar_coeffEmb_qExpand.lean`
-- `Solutions/FLT/Sol_ModularCurve_jqModC_eq_qExpansion_E4_cube_div_discriminant.lean`
-- `Solutions/FLT/Sol_ModularCurve_mem_adjoin_jq_of_hasSum_of_slash_invariant.lean`
-- `Solutions/FLT/Sol_ModularCurve_modularFunctionFieldFullC_le_qExpFunctionFieldC_gamma0.lean`
-- `Solutions/FLT/Sol_ModularCurve_natCard_orbitRelQuotient_zpowers_T_gamma0_eq_cuspCount.lean`
-- `Solutions/FLT/Sol_ModularCurve_ord_cuspInftyBar_coeffEmb_jq.lean`
-- `Solutions/FLT/Sol_ModularCurve_ord_cuspInftyBar_coeffEmb_qExpand.lean`
-- `Solutions/FLT/Sol_ModularForm_exists_weightOne_eisenstein_qCoeff_eq_of_isPrimitive_of_odd.lean`
-- `Solutions/FLT/Sol_P2M_Dup_AlgebraicCurve_RationalFunctionField_eq_placeOfPoint_or_eq_placeInfty.lean`
-- `Solutions/FLT/Sol_WLight_exists_levelFraction_of_stable_family.lean`
-- `Solutions/FLT/Sol_WLight_exists_monicRel_j_K_of_mdifferentiable_frickeQuotient.lean`
-- `Solutions/FLT/Sol_WLight_frickeFunction_intBaseChange.lean`
-- `Solutions/FLT/Sol_WLight_levelN_structure_package.lean`
-- `Solutions/FLT/Sol_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_abelTheorem.lean`
-- `Solutions/FLT/Sol_WeierstrassCurve_exists_velu2FunctionFieldHom_restrictAlong_placeOfPoint_veluPointMap2.lean`
-- `Solutions/FLT/Sol_WeierstrassCurve_isElliptic_veluQuotient2_of_isElliptic.lean`
-- `Solutions/FLT/Sol_WeierstrassCurve_natCard_isAddCyclic_addSubgroup_card_eq_fixed_vcInvFun_eq_nuThree.lean`
-- `Solutions/FLT/Sol_WeierstrassCurve_natCard_isAddCyclic_addSubgroup_card_eq_fixed_vcInvFun_eq_nuTwo.lean`
-- `Solutions/FLT/Sol_WeierstrassCurve_veluQuotient_oddOrderSummingSet_discriminant_ne_zero.lean`
-- `Solutions/KN/Sol_HorizontalPadicL_SeedCyclotomicGaloisCharacterDataV2_exists_fullOrder_value_v2.lean`
-- `Solutions/KN/Sol_HorizontalPadicL_algebraicSymbol_eq_signedModularSymbol_v3.lean`
-- `Solutions/KN/Sol_HorizontalPadicL_eigenform_period_lattice_uniformly_integral_v2.lean`
-- `Solutions/KN/Sol_HorizontalPadicL_horizontalFiniteGroup_isPGroup_v2.lean`
-- `Solutions/KN/Sol_HorizontalPadicL_seedCyclotomicGaloisCharacters_exist_v4.lean`
-- `Solutions/KN/Sol_PadicComplexInt_natCast_prime_mem_maximalIdeal_v2.lean`
-- `Solutions/MTT/Sol_MTT_Cohomology_boundary_packet_zero.lean`
-- `Solutions/MTT/Sol_MTT_Cohomology_centralCoinduced_fixed_dimensions_large_level.lean`
-- `Solutions/MTT/Sol_MTT_Cohomology_integral_class_character_law.lean`
-- `Solutions/MTT/Sol_MTT_Cohomology_integration_linear_map_exists.lean`
-- `Solutions/MTT/Sol_MTT_Cohomology_mixed_period_test_functions_cusp_decay_of_pos_level.lean`
-- `Solutions/MTT/Sol_MTT_Cohomology_mixed_period_test_functions_tile_integrable_of_pos_level.lean`
-- `Solutions/MTT/Sol_MTT_Cohomology_parabolicH1_finrank_add_one_le_level_four.lean`
-- `Solutions/MTT/Sol_MTT_Cohomology_parabolicH1_finrank_le_level_three_numeric.lean`
-- `Solutions/MTT/Sol_MTT_Cohomology_periodPairing_eq_transversal_integral_of_weight_ge_two.lean`
 - `Theorems/FLT/Thm_AddCommGroup_natCard_isAddCyclic_addSubgroup_eq_dedekindPsi_of_addEquiv_torsionBy.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_Place_D_ne_zero_of_ord_eq_one.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_Place_diffCoeff_smul_D_eq_of_ord_eq_one.lean`
@@ -1012,7 +946,6 @@ Classified files: **1859 / 1859** in **1307** dependency nodes, including **552*
 - `Solutions/FLT/Sol_P2M_Dup_AlgebraicCurve_Place_mem_iff_ord_nonneg.lean`
 - `Solutions/FLT/Sol_P2M_Dup_AlgebraicCurve_Place_mem_of_ord_nonneg.lean`
 - `Solutions/FLT/Sol_P2M_Dup_AlgebraicCurve_Place_ord_nonneg_of_mem.lean`
-- `Solutions/FLT/Sol_WeierstrassCurve_hasRamBound_one_of_nsmul_eq_zero_of_isUnit_discriminant_powerSeries.lean`
 - `Solutions/FLT/Sol_WeierstrassCurve_natCard_addSubgroup_isAddCyclic_card_eq_dedekindPsi_of_isAlgClosed.lean`
 - `Solutions/KN/Sol_HorizontalPadicL_horizontalGroupAlgebra_isUnit_of_augmentation_norm_one_v2.lean`
 - `Solutions/MTT/Sol_MTT_Cohomology_centralCoinduced_parabolicH1_dimension_upper_bound.lean`
@@ -1122,7 +1055,6 @@ Classified files: **1859 / 1859** in **1307** dependency nodes, including **552*
 - `Solutions/FLT/Sol_ModularCurve_isIntegral_adjoin_jq_modularUnitSeries_inv.lean`
 - `Solutions/FLT/Sol_ModularCurve_modularPolynomialFamily.lean`
 - `Solutions/FLT/Sol_ModularCurve_modularUnitSeries_mem_modularFunctionField.lean`
-- `Solutions/FLT/Sol_ModularCurve_natCard_normalized_algHom_hahnSeries_jBar_sub_eq_toNat_ord.lean`
 - `Solutions/FLT/Sol_ModularCurve_ord_cuspZeroBar_coeffEmb_jq.lean`
 - `Solutions/FLT/Sol_ModularCurve_ord_sub_algebraMap_le_one_laurentBaseChange_qExpFunctionFieldC_of_ne_zero_of_ne_1728.lean`
 - `Solutions/FLT/Sol_ModularCurve_periodMapOf_mem_parabolicHoms.lean`
@@ -1202,15 +1134,12 @@ Classified files: **1859 / 1859** in **1307** dependency nodes, including **552*
 - `Solutions/FLT/Sol_ModularCurve_LevelN_exists_algHom_laurentBaseChange_apply_eq_qExpand.lean`
 - `Solutions/FLT/Sol_ModularCurve_ModularPolynomialData_eval_jLattice_eq_zero_of_isAddCyclic.lean`
 - `Solutions/FLT/Sol_ModularCurve_cuspZeroBar_ne_cuspInftyBar.lean`
-- `Solutions/FLT/Sol_ModularCurve_emd_of_beta_docks.lean`
 - `Solutions/FLT/Sol_ModularCurve_eq_zero_of_forall_re_periodOf_eq_zero.lean`
 - `Solutions/FLT/Sol_ModularCurve_exists_isFrickeAut.lean`
 - `Solutions/FLT/Sol_ModularCurve_exists_isIntegralQExp_smul_of_ratCast_qExpansion.lean`
 - `Solutions/FLT/Sol_ModularCurve_exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange.lean`
 - `Solutions/FLT/Sol_ModularCurve_exists_monic_evalAtJ_jqN_eq_zero.lean`
-- `Solutions/FLT/Sol_ModularCurve_exists_natCard_quot_samePlace_eq_natCard_quot_sameOrbit_of_EMD.lean`
 - `Solutions/FLT/Sol_ModularCurve_exists_ringHom_place_order_eq_mul_ord_of_qExpansion_slash.lean`
-- `Solutions/FLT/Sol_ModularCurve_finite_cycSub.lean`
 - `Solutions/FLT/Sol_ModularCurve_finrank_adjoin_jqN_eq_of_prime.lean`
 - `Solutions/FLT/Sol_ModularCurve_isCusp_cuspInftyBar.lean`
 - `Solutions/FLT/Sol_ModularCurve_isCusp_cuspZeroBar.lean`
@@ -1218,17 +1147,10 @@ Classified files: **1859 / 1859** in **1307** dependency nodes, including **552*
 - `Solutions/FLT/Sol_ModularCurve_jqNModC_prime_not_mem_adjoin_of_charZero.lean`
 - `Solutions/FLT/Sol_ModularCurve_jqNModC_prime_not_mem_adjoin_of_forall_aeval_ne.lean`
 - `Solutions/FLT/Sol_ModularCurve_modularUnitSeries_mem_modularFunctionFieldFull.lean`
-- `Solutions/FLT/Sol_ModularCurve_natCard_quot_sameOrbit_cycSub_eq_natCard_moduliPoint_j_eq.lean`
 - `Solutions/FLT/Sol_ModularCurve_neg_width_le_ord_of_order_eq_mul_ord_of_qExpansion_slash.lean`
 - `Solutions/FLT/Sol_ModularCurve_nonempty_modularPolynomialData_of_squarefree.lean`
 - `Solutions/FLT/Sol_ModularCurve_periodMapOf_apply_eq_periodOf.lean`
-- `Solutions/FLT/Sol_ModularCurve_place_eq_of_induces.lean`
-- `Solutions/FLT/Sol_ModularCurve_sameOrbit_iff_eq_of_c4_ne_zero_of_c6_ne_zero.lean`
-- `Solutions/KN/Sol_HorizontalPadicL_CharacterCountingTransfer_logLowerBound_v2.lean`
 - `Solutions/KN/Sol_HorizontalPadicL_not_minimalModularLevel_dvd_iff_localEulerFactorDegreeTwo.lean`
-- `Solutions/KN/Sol_HorizontalPadicL_primitiveCharacters_boundedConductor_finite_v2.lean`
-- `Solutions/KN/Sol_HorizontalPadicL_primitiveProductArithmetic_v2.lean`
-- `Solutions/KN/Sol_HorizontalPadicL_supportedPrimePowerCharacters_logLowerBound_v2.lean`
 - `Solutions/MTT/Sol_MTT_Cohomology_cuspForm_finrank_lower_bound_level_four_odd.lean`
 - `Solutions/MTT/Sol_MTT_Cohomology_period_cocycle_injective.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_Place_card_fiberOver_mul_ramificationIndex_mul_inertiaDeg.lean`
@@ -1302,13 +1224,6 @@ Classified files: **1859 / 1859** in **1307** dependency nodes, including **552*
 - `Solutions/FLT/Sol_AlgebraicCurve_hasPrincipalDivisors_of_finiteDimensional_of_isSeparable.lean`
 - `Solutions/FLT/Sol_AlgebraicCurve_instIsCurveOverRatFunc.lean`
 - `Solutions/FLT/Sol_AlgebraicCurve_linearIndependent_pow_of_transcendental.lean`
-- `Solutions/FLT/Sol_ModularCurve_B3_exists_variableChange_specialFibre_goodModel.lean`
-- `Solutions/FLT/Sol_ModularCurve_B3_goodModel_1728_spec.lean`
-- `Solutions/FLT/Sol_ModularCurve_B3_goodModel_generic_spec.lean`
-- `Solutions/FLT/Sol_ModularCurve_B3_goodModel_zero_spec.lean`
-- `Solutions/FLT/Sol_ModularCurve_B3_isElliptic_specialFibre.lean`
-- `Solutions/FLT/Sol_ModularCurve_B3_isElliptic_specialFibre_goodModel.lean`
-- `Solutions/FLT/Sol_ModularCurve_B3_nearCurve_eq_ofJNe0Or1728.lean`
 - `Solutions/FLT/Sol_ModularCurve_ModularPolynomialData_eq_of_prime.lean`
 - `Solutions/FLT/Sol_ModularCurve_StarBank_starBank.lean`
 - `Solutions/FLT/Sol_ModularCurve_exists_isFrickeAutFull.lean`
@@ -1317,17 +1232,8 @@ Classified files: **1859 / 1859** in **1307** dependency nodes, including **552*
 - `Solutions/FLT/Sol_ModularCurve_finrank_parabolicHoms_le_two_mul_finrank_cuspForm_of_le_of_normal.lean`
 - `Solutions/FLT/Sol_ModularCurve_ord_eq_zero_of_not_mem_of_realizeOf_tendsto.lean`
 - `Solutions/FLT/Sol_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField.lean`
-- `Solutions/KN/Sol_HorizontalPadicL_HorizontalMeasure_truncatedFiniteLevel_norm_le_of_primitive_twists_vanish_v2.lean`
-- `Solutions/KN/Sol_HorizontalPadicL_SeededHorizontalCharacterRealizationV3_realizes_supported_pPower_character_v2.lean`
-- `Solutions/KN/Sol_HorizontalPadicL_SeededHorizontalPrimeSystemV3_orderExponent_le_exponent_v2.lean`
 - `Solutions/KN/Sol_HorizontalPadicL_ellipticCurve_minimalModularLevel_iff_localEulerFactorDegree_lt_two.lean`
-- `Solutions/KN/Sol_HorizontalPadicL_finiteCorrection_realization_countingTransfer_inverseSeed_v2.lean`
-- `Solutions/KN/Sol_HorizontalPadicL_positiveDensityOrderlySet_to_primeSystem_inverseSeed_v2.lean`
 - `Solutions/KN/Sol_HorizontalPadicL_seededEulerFactors_areUnits_v4.lean`
-- `Solutions/KN/Sol_HorizontalPadicL_seededFrobeniusClass_isOrderly_inverseSeed_v2.lean`
-- `Solutions/KN/Sol_HorizontalPadicL_seededHorizontalPadicLFunction_assemble_v4.lean`
-- `Solutions/KN/Sol_HorizontalPadicL_seededNormalizedThetaMeasure_trivial_interpolation_inverseSeed_v2.lean`
-- `Solutions/KN/Sol_HorizontalPadicL_unitNormRelationThetaSystem_to_normalizedMeasure_inverseSeed_v2.lean`
 - `Solutions/MTT/Sol_MTT_Cohomology_eichler_shimura_direct.lean`
 - `Solutions/MTT/Sol_MTT_Cohomology_parabolicH1_finrank_le_levels_three_four_odd.lean`
 - `Solutions/MTT/Sol_MTT_period_vanishing.lean`
@@ -1390,8 +1296,6 @@ Classified files: **1859 / 1859** in **1307** dependency nodes, including **552*
 - `Solutions/FLT/Sol_AlgebraicCurve_hasPrincipalDivisors_of_transcendental_of_isSeparable.lean`
 - `Solutions/FLT/Sol_AlgebraicCurve_nonempty_place_of_transcendental_of_finiteDimensional.lean`
 - `Solutions/FLT/Sol_AlgebraicCurve_stichtenothGenusExists_of_isCurveOver.lean`
-- `Solutions/FLT/Sol_ModularCurve_HahnSpecialise_specialiseCycSub_injective.lean`
-- `Solutions/FLT/Sol_ModularCurve_HahnSpecialise_specialise_bijOn_torsion.lean`
 - `Solutions/FLT/Sol_ModularCurve_PhiGen_splits_of_prime.lean`
 - `Solutions/FLT/Sol_ModularCurve_exists_apply_eq_of_forall_ord_eq_zero_tendsto_realizeOf.lean`
 - `Solutions/FLT/Sol_ModularCurve_exists_monoidHom_gamma0_algEquiv_qExpFunctionFieldC_gammaH_of_charZero.lean`
@@ -1537,8 +1441,6 @@ Classified files: **1859 / 1859** in **1307** dependency nodes, including **552*
 - `Solutions/FLT/Sol_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.lean`
 - `Solutions/FLT/Sol_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_baseChange_algHom.lean`
 - `Solutions/FLT/Sol_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq.lean`
-- `Solutions/KN/Sol_HorizontalPadicL_fullSupport_atLevel_apply_eq_realized_v2.lean`
-- `Solutions/KN/Sol_HorizontalPadicL_realizedHorizontalCharacter_even_of_odd_prime_v2.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_constantsAreBase_of_isAlgClosed.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_genusFF_le_of_constantFieldExtension_of_isAlgClosed.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_isCurveOver_iff_exists_transcendental_finiteDimensional.lean`

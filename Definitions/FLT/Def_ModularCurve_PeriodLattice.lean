@@ -1,7 +1,10 @@
-import Mathlib.Analysis.LocallyConvex.AbsConvexOpen
+module
 
-import Definitions.FLT.Def_CuspForm_HeckeAlgebra
-import Definitions.FLT.Def_HeckeGalois_EichlerShimura
+public import Mathlib.Analysis.LocallyConvex.AbsConvexOpen
+public import Definitions.FLT.Def_CuspForm_HeckeAlgebra
+public import Definitions.FLT.Def_HeckeGalois_EichlerShimura
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -299,3 +302,5 @@ end Hecke
 end ModularCurve
 
 end
+
+end publicSection
