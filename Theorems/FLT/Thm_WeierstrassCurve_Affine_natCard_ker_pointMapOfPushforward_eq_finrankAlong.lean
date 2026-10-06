@@ -1,4 +1,3 @@
-import Mathlib
 import Definitions.FLT.Def_Isogeny_ConditionalCurrency
 
 set_option maxHeartbeats 4000000

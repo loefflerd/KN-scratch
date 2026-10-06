@@ -1,10 +1,5 @@
-import Mathlib
-import Theorems.FLT.Thm_ModularCurve_JOneES_exists_transcendental_finiteDimensional_laurentBaseChange
 import Theorems.FLT.Thm_AlgebraicCurve_isCurveOver_of_transcendental_of_perfectField
-import Definitions.FLT.Def_ModularCurve_X1
-import Definitions.FLT.Def_ModularCurve_JqCoeff
-import Definitions.FLT.Def_AlgebraicCurve_Repartitions
-import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
+import Theorems.FLT.Thm_ModularCurve_JOneES_exists_transcendental_finiteDimensional_laurentBaseChange
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

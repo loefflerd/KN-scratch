@@ -1,7 +1,3 @@
-import Mathlib
-import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
-import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
-import Definitions.FLT.Def_AlgebraicCurve_Repartitions
 import Definitions.FLT.Def_AlgebraicCurve_AdelicIndex
 import Theorems.FLT.Thm_AlgebraicCurve_Place_ord_sum_algebraMap_mul_le_ord_of_linearIndependent_of_constantFieldExtension
 import Definitions.FLT.Def_P2M_Util

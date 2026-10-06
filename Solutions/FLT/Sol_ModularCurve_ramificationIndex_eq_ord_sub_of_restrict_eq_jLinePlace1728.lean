@@ -1,7 +1,4 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_JLinePlaces
 import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
-import Definitions.FLT.Def_ModularCurve_GenusNumerics
 import Theorems.FLT.Thm_ModularCurve_ord_jLinePlace1728_jGen_sub
 import Definitions.FLT.Def_P2M_Util
 

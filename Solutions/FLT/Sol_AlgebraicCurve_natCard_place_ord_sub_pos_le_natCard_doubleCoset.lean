@@ -1,6 +1,8 @@
-import Mathlib
-import Definitions.FLT.Def_AlgebraicCurve_Correspondence
-import Definitions.FLT.Def_AlgebraicCurve_BaseChangeGalois
+import Mathlib.GroupTheory.DoubleCoset
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
+
 import Theorems.FLT.Thm_AlgebraicCurve_Place_ord_restrictAlong_eq_natCard_algHom_of_isGalois
 import Definitions.FLT.Def_P2M_Util
 

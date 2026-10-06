@@ -1,4 +1,6 @@
-import Mathlib
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.RegularLocalRing.Defs
+
 import Definitions.FLT.Def_Isogeny_ConditionalCurrency
 import Definitions.FLT.Def_WeierstrassCurve_GenusOnePlaceGateCentred
 import Theorems.FLT.Thm_AlgebraicCurve_normFormulaAlong

@@ -1,21 +1,10 @@
-import Mathlib
-import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
-import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
-import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
-import Definitions.FLT.Def_ModularCurve_CanonicalDivisor
-import Definitions.FLT.Def_ModularCurve_CanonicalDivisorUniformizer
-import Definitions.FLT.Def_AlgebraicCurve_Repartitions
-import Definitions.FLT.Def_AlgebraicCurve_AdelicIndex
-import Definitions.FLT.Def_AlgebraicCurve_CanonicalDivisor
-import Definitions.FLT.Def_AlgebraicCurve_LocalResidue
-import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
-import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
-import Definitions.FLT.Def_DedekindDomain_AdicValuation_InlineSpecific
-import Definitions.FLT.Def_AlgebraicCurve_PlaceCompletion
-import Definitions.FLT.Def_AlgebraicCurve_TateResidueCurrency
-import Definitions.FLT.Def_AlgebraicCurve_CanonicalLocalResidueInstanceV2
-import Theorems.FLT.Thm_AlgebraicCurve_residueTraceCompletionCommute
+import Mathlib.Algebra.Module.StablyFree.Basic
+import Mathlib.Analysis.Normed.Unbundled.SpectralNorm
+import Mathlib.RingTheory.Etale.Weakly
+import Mathlib.RingTheory.TotallySplit
+
 import Theorems.FLT.Thm_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed
+import Theorems.FLT.Thm_AlgebraicCurve_residueTraceCompletionCommute
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000
@@ -1420,7 +1409,6 @@ def principalDivisorOf {f : F'} (hf : f ≠ 0) : Divisor K F' :=
   ⟨(finite_setOf_ord_ne_zero_of_finiteDimensional hf).toFinset, fun w => w.ord f, fun w => by
     simp [Set.Finite.mem_toFinset]⟩
 
-omit [Algebra.IsSeparable (RatFunc K) F'] in
 theorem degree_eq_zero_of_forall_eq_ord_of_isGalois [IsGalois (RatFunc K) F']
     (H : RamificationInertiaIdentity K (RatFunc K) F')
     {f : F'} {D : Divisor K F'} (hD : ∀ w : Place K F', D w = w.ord f) :

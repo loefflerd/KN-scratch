@@ -1,7 +1,5 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_LevelNFunctionField
-import Definitions.FLT.Def_ModularCurve_X1
-import Definitions.FLT.Def_ModularCurve_JqCoeff
+import Mathlib.Analysis.Complex.Polynomial.Basic
+
 import Theorems.FLT.Thm_ModularCurve_exists_ringHom_laurentBaseChange_qExpFunctionFieldC_levelN_qExpansion
 import Definitions.FLT.Def_P2M_Util
 

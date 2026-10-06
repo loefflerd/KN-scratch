@@ -1,7 +1,3 @@
-import Mathlib
-import Definitions.FLT.Def_HeckeEis_BinaryFormRep
-import Definitions.FLT.Def_Gamma0CoeffCohomology
-import Definitions.FLT.Def_HeckeEis_EichlerIntegral
 import Theorems.FLT.Thm_HeckeEis_eichlerShimuraMap_add
 import Theorems.FLT.Thm_HeckeEis_eichlerShimuraMap_smul
 import Definitions.FLT.Def_P2M_Util

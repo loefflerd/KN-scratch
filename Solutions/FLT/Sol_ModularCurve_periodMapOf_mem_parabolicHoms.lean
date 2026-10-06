@@ -1,4 +1,3 @@
-import Mathlib
 import Definitions.FLT.Def_ModularCurve_PeriodOf
 import Theorems.FLT.Thm_ModularGroup_exists_eq_conj_T_zpow_of_trace_sq_eq_four
 import Definitions.FLT.Def_P2M_Util

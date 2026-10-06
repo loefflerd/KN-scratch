@@ -1,7 +1,6 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_X1
-import Definitions.FLT.Def_ModularCurve_JqCoeff
-import Definitions.FLT.Def_ModularCurve_X0ModL
+import Mathlib.FieldTheory.Relrank
+import Mathlib.RingTheory.Flat.TorsionFree
+
 import Theorems.FLT.Thm_ModularCurve_finrank_adjoin_jqModC_modularFunctionFieldFullC_eq_dedekindPsi
 import Theorems.FLT.Thm_ModularCurve_modularFunctionFieldFullC_le_qExpFunctionFieldC_gamma0
 import Definitions.FLT.Def_P2M_Util

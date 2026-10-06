@@ -1,7 +1,3 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_TateFormal
-import Definitions.FLT.Def_ModularCurve_QExpansionDiff
-import Definitions.FLT.Def_ModularCurve_ModularUnit
 import Theorems.FLT.Thm_ModularCurve_thetaL_jq_mul_deltaSeries
 import Definitions.FLT.Def_P2M_Util
 

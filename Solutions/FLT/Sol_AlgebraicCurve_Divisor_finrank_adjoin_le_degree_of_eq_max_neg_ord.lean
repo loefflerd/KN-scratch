@@ -1,14 +1,11 @@
-import Mathlib
-import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
-import Definitions.FLT.Def_AlgebraicCurve_Repartitions
-import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
-import Definitions.FLT.Def_AlgebraicCurve_AdelicIndex
+import Mathlib.Algebra.Polynomial.Basis
+import Mathlib.RingTheory.PicardGroup
+
+import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
 import Theorems.FLT.Thm_AlgebraicCurve_Place_mem_toValuationSubring_of_isIntegral_adjoin
-import Theorems.FLT.Thm_P2M_Dup_AlgebraicCurve_Place_ord_nonneg_of_mem
-import Theorems.FLT.Thm_P2M_Dup_AlgebraicCurve_Place_mem_of_ord_nonneg
-import Theorems.FLT.Thm_AlgebraicCurve_linearIndependent_pow_mul
 import Theorems.FLT.Thm_AlgebraicCurve_ell_le_degree_add_ellZero
 import Theorems.FLT.Thm_AlgebraicCurve_finiteDimensional_lSpace
+import Theorems.FLT.Thm_AlgebraicCurve_linearIndependent_pow_mul
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

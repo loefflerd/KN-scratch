@@ -1,8 +1,5 @@
-import Mathlib
-import Definitions.FLT.Def_AlgebraicCurve_AdelicIndex
-import Definitions.FLT.Def_AlgebraicCurve_PlaceEvaluation
-import Theorems.FLT.Thm_AlgebraicCurve_constantsAreBase_of_exists_isRational
 import Theorems.FLT.Thm_AlgebraicCurve_Place_isRational_iff_deg_eq_one
+import Theorems.FLT.Thm_AlgebraicCurve_constantsAreBase_of_exists_isRational
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

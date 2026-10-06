@@ -1,4 +1,5 @@
-import Mathlib
+import Mathlib.Analysis.Complex.HasPrimitives
+
 import Definitions.FLT.Def_ModularCurve_PeriodOf
 import Theorems.FLT.Thm_Subgroup_IsArithmetic_exists_nat_mem_strictPeriods_conj
 import Definitions.FLT.Def_P2M_Util

@@ -1,7 +1,5 @@
-import Mathlib
-import Definitions.FLT.Def_Isogeny_ConditionalCurrency
+import Definitions.FLT.Def_AlgebraicCurve_Correspondence
 import Definitions.FLT.Def_WeierstrassCurve_GenusOnePlaceGateCentred
-import Definitions.FLT.Def_AlgebraicCurve_PlaceEvaluation
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
