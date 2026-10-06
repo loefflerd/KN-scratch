@@ -31,5 +31,4 @@ noncomputable def genusFormula (N : ℕ) : ℚ :=
 
 end ModularCurve
 
-
 end publicSection

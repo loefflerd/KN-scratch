@@ -120,7 +120,6 @@ end PeriodPair
 
 end
 
-
 section
 
 p2m_open "Complex P2MW.S_PeriodPair_isUniformization_toPoint.Complex Filter P2MW.S_PeriodPair_isUniformization_toPoint.Filter Set P2MW.S_PeriodPair_isUniformization_toPoint.Set"
@@ -288,8 +287,6 @@ p2m_export "PeriodPair" "kw_deriv2_derivWeierstrassP"
 end PeriodPair
 
 end
-
-
 
 noncomputable section
 
@@ -631,8 +628,6 @@ end PeriodPair
 
 end
 
-
-
 noncomputable section
 
 p2m_open_scoped "PeriodPair P2MW.S_PeriodPair_isUniformization_toPoint.PeriodPair Topology P2MW.S_PeriodPair_isUniformization_toPoint.Topology"
@@ -766,8 +761,6 @@ p2m_export "PeriodPair" "kw_addCoreE_add_R_order_ge_four"
 end PeriodPair
 
 end
-
-
 
 noncomputable section
 
@@ -1356,8 +1349,6 @@ end PeriodPair
 
 end
 
-
-
 noncomputable section
 
 namespace PeriodPair
@@ -1374,7 +1365,6 @@ p2m_export "PeriodPair" "kw_isUniformization"
 end PeriodPair
 
 end
-
 
 theorem solution (L : PeriodPair) (h : L.DiscriminantNeZero) : L.IsUniformization h :=
   L.kw_isUniformization

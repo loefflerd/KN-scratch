@@ -229,7 +229,6 @@ end Citation
 
 end ModularCurve
 
-
 end
 
 end publicSection

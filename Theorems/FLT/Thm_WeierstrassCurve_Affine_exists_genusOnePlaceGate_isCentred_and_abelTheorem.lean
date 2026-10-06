@@ -101,7 +101,6 @@ end WeierstrassCurve.Affine
 
 p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
 
-
 noncomputable section
 
 open IsDedekindDomain WithZero IsLocalRing
@@ -760,7 +759,6 @@ end WeierstrassCurve.Affine
 end
 
 section
-
 
 noncomputable section
 
@@ -1461,7 +1459,6 @@ end
 
 section
 
-
 noncomputable section
 
 p2m_open "AlgebraicCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.AlgebraicCurve IsDedekindDomain FractionalIdeal P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.FractionalIdeal WithZero Polynomial"
@@ -1709,7 +1706,6 @@ end
 
 section
 
-
 noncomputable section
 
 open Polynomial
@@ -1718,12 +1714,6 @@ open scoped Polynomial.Bivariate
 
 namespace WeierstrassCurve
 namespace Affine
-p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
-
-p2m_open "WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing AlgebraicCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.AlgebraicCurve"
-
-variable {F : Type*} [Field F] {W : Affine F}
-
 end WeierstrassCurve.Affine
 end
 

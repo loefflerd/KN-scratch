@@ -119,5 +119,4 @@ end ParabolicFiniteness
 
 end ModularCurve.Period
 
-
 end publicSection

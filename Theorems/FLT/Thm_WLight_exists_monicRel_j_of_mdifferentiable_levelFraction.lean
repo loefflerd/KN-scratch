@@ -21,10 +21,6 @@ namespace WLight
 p2m_export "WLight" "levelOne_hauptmodul_package frickeFunction_modularity_package"
 p2m_open "WLight"
 
-section ValuationEngine
-
-end ValuationEngine
-
 section HBridge
 
 theorem mdifferentiable_eq_zero_or_eq_zero_of_mul_eq_zero {f g : ℍ → ℂ}

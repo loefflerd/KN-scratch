@@ -38,7 +38,6 @@ theorem mem_periodRelations_iff {n : ℕ} (P : gammaOneRep 1 n) :
 
 end MTT.Cohomology
 
-
 end
 
 end publicSection

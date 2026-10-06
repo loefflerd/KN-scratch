@@ -154,5 +154,4 @@ end AlgebraicCurve
 
 end
 
-
 end publicSection

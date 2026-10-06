@@ -138,8 +138,6 @@ end WeierstrassCurve
 
 namespace ModularCurve
 
-open WeierstrassCurve WeierstrassCurve.Affine
-
 end ModularCurve
 
 end
@@ -201,10 +199,6 @@ end
 
 namespace WeierstrassCurve
 namespace Affine
-open WeierstrassCurve.Affine WeierstrassCurve
-
-variable {K : Type*} [Field K]
-
 end Affine
 end WeierstrassCurve
 

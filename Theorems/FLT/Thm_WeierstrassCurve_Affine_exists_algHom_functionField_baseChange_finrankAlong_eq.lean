@@ -127,13 +127,6 @@ namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "algebraAlong FiniteAlong finrankAlong Place"
 namespace Place
 p2m_export "AlgebraicCurve.Place" "ext deg ofHeightOneSpectrum toValuationSubring mk"
-p2m_open "AlgebraicCurve.Place AlgebraicCurve"
-
-variable {K F : Type*} [Field K] [Field F] [Algebra K F]
-
-variable {R : Type*} [CommRing R] [IsDedekindDomain R] [Algebra R F] [IsFractionRing R F]
-variable [Algebra K R] [IsScalarTower K R F]
-
 end AlgebraicCurve.Place
 
 namespace WeierstrassCurve
@@ -473,7 +466,6 @@ end WeierstrassCurve.Affine
 
 end
 
-
 section
 
 p2m_open "Polynomial P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.Polynomial WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.WeierstrassCurve.Affine WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.WeierstrassCurve.Affine.Point"
@@ -528,7 +520,6 @@ end WeierstrassCurve.Affine
 end
 
 end
-
 
 section
 

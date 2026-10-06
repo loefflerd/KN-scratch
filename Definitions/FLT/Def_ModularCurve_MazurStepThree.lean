@@ -28,5 +28,4 @@ def MazurStepThree (p : ℕ) : Prop :=
         ∀ A : ValuationSubring (AlgebraicClosure ℚ), A.LiesOverPrime ℓ →
           ¬ W.InZeroComponentAt A Q
 
-
 end publicSection

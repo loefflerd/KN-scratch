@@ -106,13 +106,6 @@ end PhiGenDescends
 p2m_export "ModularCurve.PhiGen" "PhiGenDescends.exists_intPoly"
 end Exits
 
-section Splitting
-
-variable {K : Type*} [Field K] [Algebra ℚ K] {ℓ : ℕ} [hℓ : Fact (Nat.Prime ℓ)]
-variable (ζ : Kˣ) {c : ℕ → LaurentSeries ℚ}
-
-end Splitting
-
 section StrongExistence
 
 private theorem coeff_sum_C_mul_X_pow (Q : ℕ → Polynomial ℤ) (n m : ℕ) (hm : m < n) :

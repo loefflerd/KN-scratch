@@ -147,5 +147,4 @@ theorem fullKernelQuotient_two {F : Type*} [Field F] [DecidableEq F] (W : Weiers
 
 end WeierstrassCurve
 
-
 end publicSection

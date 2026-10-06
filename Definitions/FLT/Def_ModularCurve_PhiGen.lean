@@ -313,7 +313,6 @@ end PhiGen
 
 end ModularCurve
 
-
 end
 
 end publicSection

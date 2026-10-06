@@ -62,5 +62,4 @@ def ratPointHom [DecidableEq F] [DecidableEq k] :
 
 end WeierstrassCurve
 
-
 end publicSection

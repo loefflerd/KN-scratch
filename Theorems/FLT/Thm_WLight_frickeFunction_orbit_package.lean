@@ -359,15 +359,6 @@ end KPoleClosure
 
 end R4bFloor
 
-section B6_fixedFrac
-
-variable {A : Type*} [CommRing A] {G : Type*} [Group G] [Fintype G] [MulSemiringAction G A]
-
-variable [IsDomain A] {K : Type*} [Field K] [Algebra A K] [IsFractionRing A K]
-  [MulSemiringAction G K]
-
-end B6_fixedFrac
-
 section B6Engine
 
 p2m_open "UpperHalfPlane ModularForm SlashInvariantForm ModularFormClass CuspForm ModularForm.CuspForm Polynomial Real.Polynomial"
@@ -400,13 +391,6 @@ theorem orbitCoeff_slash_invariant
     _ = ∏ i, (X - C (h i τ)) := Equiv.prod_comp σ (fun i' => X - C (h i' τ))
 
 end B6Engine
-
-section B6Instance
-
-p2m_open "UpperHalfPlane ModularForm CuspForm ModularForm.CuspForm Polynomial Real.Polynomial"
-open scoped MatrixGroups Manifold
-
-end B6Instance
 
 section B6Ring
 

@@ -458,8 +458,6 @@ end
 
 end
 
-
-
 section
 
 set_option linter.unusedSectionVars false
@@ -514,7 +512,6 @@ end ModularCurve
 
 end
 
-
 section
 
 
@@ -531,7 +528,6 @@ p2m_export "WeierstrassCurve.Affine" "Point.add Equation CoordinateRing.basis_on
 end WeierstrassCurve.Affine
 
 end
-
 
 section
 

@@ -15,5 +15,4 @@ def CuspForm.HasIntegralStructure (N : ℕ) (k : ℤ) : Prop :=
   Submodule.span ℂ ((CuspForm.intLattice N k : Submodule ℤ (CuspForm (CongruenceSubgroup.Gamma0 N) k)) :
     Set (CuspForm (CongruenceSubgroup.Gamma0 N) k)) = ⊤
 
-
 end publicSection

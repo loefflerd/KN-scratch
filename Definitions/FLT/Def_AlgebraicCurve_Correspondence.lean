@@ -351,7 +351,6 @@ end SemilinearAut
 
 end AlgebraicCurve
 
-
 end
 
 end publicSection

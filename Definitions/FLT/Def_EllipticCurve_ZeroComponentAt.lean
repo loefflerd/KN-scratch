@@ -27,5 +27,4 @@ def InZeroComponentAt (W : WeierstrassCurve ℤ) (A : ValuationSubring (Algebrai
 
 end WeierstrassCurve
 
-
 end publicSection

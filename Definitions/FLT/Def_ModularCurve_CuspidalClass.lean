@@ -60,5 +60,4 @@ end ModularCurve
 
 end
 
-
 end publicSection

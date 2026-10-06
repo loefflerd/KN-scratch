@@ -142,7 +142,6 @@ theorem coboundaries_le_parabolicCocycles (N n : ℕ) :
 
 end MTT.Cohomology
 
-
 end
 
 end publicSection

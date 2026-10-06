@@ -79,7 +79,6 @@ end IsCurveOver
 
 end AlgebraicCurve
 
-
 end
 
 end publicSection

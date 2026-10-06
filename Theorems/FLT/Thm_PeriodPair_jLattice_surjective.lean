@@ -212,14 +212,6 @@ end ModularCurve
 end
 section
 
-open Complex Filter Set
-
-open scoped PeriodPair
-
-end
-
-section
-
 open scoped UpperHalfPlane Real
 open Complex UpperHalfPlane EisensteinSeries ModularForm
 
