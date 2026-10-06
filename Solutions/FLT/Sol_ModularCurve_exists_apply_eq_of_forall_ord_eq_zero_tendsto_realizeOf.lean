@@ -1,12 +1,5 @@
-import Mathlib
-import Theorems.FLT.Thm_ModularCurve_ord_eq_zero_of_not_mem_of_realizeOf_tendsto
 import Theorems.FLT.Thm_AlgebraicCurve_Place_exists_forall_ord_eq_finset
-import Definitions.FLT.Def_ModularCurve_X1
-import Definitions.FLT.Def_ModularCurve_JqCoeff
-import Definitions.FLT.Def_ModularCurve_LaurentCoeff
-import Definitions.FLT.Def_ModularCurve_QExpansionDiff
-import Definitions.FLT.Def_AlgebraicCurve_Repartitions
-import Definitions.FLT.Def_ModularCurve_ComplexPlaceDictionaryOf
+import Theorems.FLT.Thm_ModularCurve_ord_eq_zero_of_not_mem_of_realizeOf_tendsto
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

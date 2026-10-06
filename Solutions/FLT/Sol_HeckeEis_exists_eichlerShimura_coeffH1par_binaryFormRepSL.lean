@@ -1,10 +1,4 @@
-import Mathlib
 import Theorems.FLT.Thm_HeckeEis_exists_eichlerShimura_coeffH1par_binaryFormRepSL_forall_prime
-import Definitions.FLT.Def_Gamma0HeckeOperatorHom
-import Definitions.FLT.Def_Gamma0CoeffCohomology
-import Definitions.FLT.Def_HeckeEis_BinaryFormRep
-import Definitions.FLT.Def_ModularForm_HeckeOperatorForms
-import Definitions.FLT.Def_CuspForm_HeckeAlgebra
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

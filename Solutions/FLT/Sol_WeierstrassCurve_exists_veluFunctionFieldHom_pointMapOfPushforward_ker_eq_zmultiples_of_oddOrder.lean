@@ -1,4 +1,3 @@
-import Mathlib
 import Theorems.FLT.Thm_WeierstrassCurve_exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq
 import Definitions.FLT.Def_P2M_Util
 
