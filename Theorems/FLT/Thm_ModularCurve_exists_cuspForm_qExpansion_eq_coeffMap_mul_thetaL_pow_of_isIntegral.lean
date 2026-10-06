@@ -1,7 +1,6 @@
-import Mathlib
+import Mathlib.NumberTheory.ModularForms.QExpansion
+
 import Definitions.FLT.Def_ModularCurve_MazurStepThreeInputs
-import Definitions.FLT.Def_ModularCurve_X0
-import Definitions.FLT.Def_ModularCurve_LaurentCoeff
 import Definitions.FLT.Def_ModularCurve_QExpansionDiff
 
 set_option maxHeartbeats 4000000

@@ -1,6 +1,5 @@
-import Mathlib
-import Definitions.FLT.Def_Gamma0CoeffCohomology
-import Definitions.FLT.Def_HeckeEis_BinaryFormRep
+import Mathlib.NumberTheory.ModularForms.Basic
+
 import Definitions.FLT.Def_HeckeEis_EichlerIntegral
 
 set_option maxHeartbeats 4000000

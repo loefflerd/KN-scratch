@@ -1,10 +1,10 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_MazurStepThreeInputs
-import Definitions.FLT.Def_ModularCurve_GenusNumerics
-import Definitions.FLT.Def_ModularCurve_EMD
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
+
 import Theorems.FLT.Thm_ModularCurve_exists_elliptic_cycSub_orbitMap
-import Theorems.FLT.Thm_ModularCurve_sameOrbit_iff_eq_of_c4_ne_zero_of_c6_ne_zero
 import Theorems.FLT.Thm_ModularCurve_finite_cycSub
+import Theorems.FLT.Thm_ModularCurve_sameOrbit_iff_eq_of_c4_ne_zero_of_c6_ne_zero
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

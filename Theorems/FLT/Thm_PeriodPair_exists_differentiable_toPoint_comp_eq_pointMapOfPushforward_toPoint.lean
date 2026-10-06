@@ -1,6 +1,5 @@
-import Mathlib
-import Definitions.FLT.Def_PeriodPair_Uniformization
 import Definitions.FLT.Def_Isogeny_ConditionalCurrency
+import Definitions.FLT.Def_PeriodPair_Uniformization
 import Definitions.FLT.Def_WeierstrassCurve_GenusOnePlaceGateCentred
 
 set_option maxHeartbeats 4000000

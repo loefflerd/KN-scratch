@@ -1,4 +1,3 @@
-import Mathlib
 import Definitions.FLT.Def_Isogeny_ConditionalCurrency
 import Definitions.FLT.Def_WeierstrassCurve_GenusOnePlaceGateCentred
 

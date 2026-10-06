@@ -1,3 +1,5 @@
+import Mathlib.Algebra.Field.ZMod
+
 import Definitions.FLT.Def_ModularCurve_CycSubRootBridgeN
 import Definitions.FLT.Def_WeierstrassCurve_VeluPointMap2
 import Theorems.FLT.Thm_WeierstrassCurve_exists_addMonoidHom_coe_eq_veluPointMap2

@@ -1,8 +1,4 @@
-import Mathlib
 import Definitions.FLT.Def_ModularCurve_MazurStepThreeInputs
-import Definitions.FLT.Def_ModularCurve_X0
-import Definitions.FLT.Def_ModularCurve_LaurentCoeff
-import Definitions.FLT.Def_ModularCurve_QExpansionDiff
 import Theorems.FLT.Thm_ModularCurve_exists_cuspForm_qExpansion_eq_mul_thetaL_pow_of_isIntegral
 import Definitions.FLT.Def_P2M_Util
 

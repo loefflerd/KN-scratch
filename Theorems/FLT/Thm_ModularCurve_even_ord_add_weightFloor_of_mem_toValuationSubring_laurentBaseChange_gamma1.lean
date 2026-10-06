@@ -1,9 +1,6 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_X1
 import Definitions.FLT.Def_ModularCurve_JqCoeff
-import Definitions.FLT.Def_ModularCurve_LaurentCoeff
 import Definitions.FLT.Def_ModularCurve_QExpansionDiff
-import Definitions.FLT.Def_AlgebraicCurve_Repartitions
+import Definitions.FLT.Def_ModularCurve_X1
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000

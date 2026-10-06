@@ -1,10 +1,10 @@
-import Mathlib
-import Definitions.FLT.Def_Isogeny_ConditionalCurrency
-import Definitions.FLT.Def_WeierstrassCurve_GenusOnePlaceGateCentred
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.RegularLocalRing.Defs
+
+import Theorems.FLT.Thm_AlgebraicCurve_normFormulaAlong
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_IsogenyEndDatum_exists_restrictAlong_placeOfPoint_eq_add
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_IsogenyEndDatum_pointEnd_apply_eq_sub
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField
-import Theorems.FLT.Thm_AlgebraicCurve_normFormulaAlong
 import Definitions.FLT.Def_P2M_Util
 
 set_option maxHeartbeats 4000000

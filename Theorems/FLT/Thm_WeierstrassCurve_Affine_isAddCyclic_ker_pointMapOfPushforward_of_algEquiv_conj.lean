@@ -1,4 +1,5 @@
-import Mathlib
+import Mathlib.Basic.Complex.Basic
+
 import Definitions.FLT.Def_Isogeny_ConditionalCurrency
 import Definitions.FLT.Def_WeierstrassCurve_GenusOnePlaceGateCentred
 

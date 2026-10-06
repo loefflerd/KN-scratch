@@ -1,8 +1,9 @@
-import Mathlib
-import Definitions.FLT.Def_AlgebraicCurve_Repartitions
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Data.Int.Star
+import Mathlib.RingTheory.Flat.TorsionFree
+
 import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
-import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
-import Definitions.FLT.Def_AlgebraicCurve_AdelicIndex
+import Definitions.FLT.Def_AlgebraicCurve_Repartitions
 import Theorems.FLT.Thm_AlgebraicCurve_degree_poleDivisor_eq_finrank_adjoin_of_isAlgClosed_of_transcendental
 import Theorems.FLT.Thm_AlgebraicCurve_isCurveOver_of_transcendental_of_perfectField
 import Definitions.FLT.Def_P2M_Util

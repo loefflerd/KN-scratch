@@ -1,7 +1,6 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_X1
-import Definitions.FLT.Def_ModularCurve_JqCoeff
-import Definitions.FLT.Def_AlgebraicCurve_Repartitions
+import Mathlib.FieldTheory.Relrank
+import Mathlib.RingTheory.Flat.TorsionFree
+
 import Definitions.FLT.Def_ModularCurve_X0ModL
 import Theorems.FLT.Thm_ModularCurve_finiteDimensional_and_finrank_adjoin_jqModC_qExpFunctionFieldC_le_index
 import Theorems.FLT.Thm_ModularCurve_transcendental_jqModC

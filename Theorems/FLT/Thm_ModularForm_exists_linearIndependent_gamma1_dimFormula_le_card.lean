@@ -1,11 +1,11 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_X1
+import Mathlib.GroupTheory.DoubleCoset
+import Mathlib.NumberTheory.ModularForms.Basic
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
-open CongruenceSubgroup ModularCurve
+open CongruenceSubgroup
 open scoped MatrixGroups ModularForm
 theorem ModularForm.exists_linearIndependent_gamma1_dimFormula_le_card
     (M : ℕ) [NeZero M] (hM : 5 ≤ M) (k : ℕ) (hk : 3 ≤ k) :

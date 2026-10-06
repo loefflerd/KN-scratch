@@ -1,11 +1,3 @@
-import Mathlib
-import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
-import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
-import Definitions.FLT.Def_ModularCurve_CanonicalDivisor
-import Definitions.FLT.Def_AlgebraicCurve_Repartitions
-import Definitions.FLT.Def_AlgebraicCurve_AdelicIndex
-import Definitions.FLT.Def_AlgebraicCurve_CanonicalDivisor
-import Definitions.FLT.Def_AlgebraicCurve_RiemannRochRows
 import Definitions.FLT.Def_AlgebraicCurve_CanonicalLocalResidueInstanceV2
 import Theorems.FLT.Thm_AlgebraicCurve_functionFieldRiemannRoch_of_isAlgClosed
 import Definitions.FLT.Def_P2M_Util

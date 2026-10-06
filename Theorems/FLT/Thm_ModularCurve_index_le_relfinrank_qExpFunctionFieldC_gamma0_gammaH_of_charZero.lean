@@ -1,6 +1,7 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_X1
+import Mathlib.FieldTheory.Relrank
+
 import Definitions.FLT.Def_CohCarrier_Level
+import Definitions.FLT.Def_ModularCurve_X1
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000

@@ -1,9 +1,6 @@
-import Mathlib
-import Definitions.FLT.Def_Gamma0HeckeOperatorHom
 import Definitions.FLT.Def_Gamma0CoeffCohomology
 import Definitions.FLT.Def_HeckeEis_BinaryFormRep
 import Definitions.FLT.Def_ModularForm_HeckeOperatorForms
-import Definitions.FLT.Def_CuspForm_HeckeAlgebra
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000

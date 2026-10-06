@@ -1,6 +1,6 @@
-import Mathlib
+import Mathlib.NumberTheory.ModularForms.QExpansion
+
 import Definitions.FLT.Def_ModularCurve_HeckeDifferential
-import Definitions.FLT.Def_FLTPrelim_Modularity
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000

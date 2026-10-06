@@ -1,8 +1,7 @@
-import Mathlib
 import Definitions.FLT.Def_Isogeny_ConditionalCurrency
 import Definitions.FLT.Def_WeierstrassCurve_GenusOnePlaceGateCentred
-import Definitions.FLT.Def_WeierstrassCurve_VeluPointMap
 import Definitions.FLT.Def_WeierstrassCurve_OddOrderSummingSet
+import Definitions.FLT.Def_WeierstrassCurve_VeluPointMap
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000

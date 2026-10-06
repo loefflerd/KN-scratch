@@ -1,5 +1,3 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_PeriodOf
 import Theorems.FLT.Thm_ModularCurve_exists_hasEquivariantPrimitiveOf
 import Theorems.FLT.Thm_ModularCurve_periodOf_apply_eq_sub_of_hasEquivariantPrimitiveOf
 import Definitions.FLT.Def_P2M_Util

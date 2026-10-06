@@ -1,7 +1,5 @@
-import Mathlib
-import Definitions.FLT.Def_ModularCurve_X0
 import Definitions.FLT.Def_Isogeny_ConditionalCurrency
-import Definitions.FLT.Def_WeierstrassCurve_GenusOnePlaceGateCentred
+import Definitions.FLT.Def_ModularCurve_X0
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000

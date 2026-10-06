@@ -1,14 +1,7 @@
-import Mathlib
-import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
-import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
+import Mathlib.FieldTheory.RatFunc.Basic
+
 import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
-import Definitions.FLT.Def_ModularCurve_CanonicalDivisor
-import Definitions.FLT.Def_ModularCurve_CanonicalDivisorUniformizer
-import Definitions.FLT.Def_AlgebraicCurve_Repartitions
-import Definitions.FLT.Def_AlgebraicCurve_AdelicIndex
-import Definitions.FLT.Def_AlgebraicCurve_CanonicalDivisor
 import Definitions.FLT.Def_AlgebraicCurve_LocalResidue
-import Definitions.FLT.Def_AlgebraicCurve_RiemannRochRows
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000

@@ -1,9 +1,3 @@
-import Mathlib
-import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
-import Definitions.FLT.Def_AlgebraicCurve_Repartitions
-import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
-import Definitions.FLT.Def_AlgebraicCurve_AdelicIndex
-
 import Theorems.FLT.Thm_AlgebraicCurve_Divisor_degree_eq_finrank_adjoin_of_eq_max_neg_ord
 import Definitions.FLT.Def_P2M_Util
 
