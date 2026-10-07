@@ -1,9 +1,13 @@
-import Definitions.FLT.Def_ModularCurve_QAdicPlace
-import Definitions.FLT.Def_ModularCurve_ArithmeticGalois
-import Definitions.FLT.Def_ModularCurve_QExpansionDiff
-import Theorems.FLT.Thm_ModularCurve_theta_coeff
-import Theorems.FLT.Thm_ModularCurve_coeffMap_injective
-import Mathlib.NumberTheory.ModularForms.QExpansion
+module
+
+public import Definitions.FLT.Def_ModularCurve_QAdicPlace
+public import Definitions.FLT.Def_ModularCurve_ArithmeticGalois
+public import Definitions.FLT.Def_ModularCurve_QExpansionDiff
+public import Theorems.FLT.Thm_ModularCurve_theta_coeff
+public import Theorems.FLT.Thm_ModularCurve_coeffMap_injective
+public import Mathlib.NumberTheory.ModularForms.QExpansion
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -94,3 +98,5 @@ theorem omegaOf_eq_zero_of_not_exists (f : ℍ → ℂ)
 end ModularCurve
 
 end
+
+end publicSection
