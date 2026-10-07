@@ -5,9 +5,11 @@ public import Mathlib.NumberTheory.ModularForms.Basic
 public import Definitions.FLT.Def_EisensteinSeries_EisensteinG
 
 import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Analysis.Complex.LocallyUniformLimit
 import Mathlib.Data.Int.Star
 import Mathlib.NumberTheory.ModularForms.EisensteinSeries.IsBoundedAtImInfty
 import Mathlib.NumberTheory.ModularForms.EisensteinSeries.MDifferentiable
+import Mathlib.NumberTheory.ModularForms.Identities
 import Definitions.FLT.Def_P2M_Util
 
 section privateSection

@@ -4,6 +4,7 @@ public import Mathlib.Analysis.CStarAlgebra.Classes
 public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic
 
 import Mathlib.Analysis.SpecialFunctions.Gaussian.PoissonSummation
+import Mathlib.Analysis.PSeries
 import Mathlib.LinearAlgebra.Complex.FiniteDimensional
 import Mathlib.Topology.Separation.CompletelyRegular
 import Definitions.FLT.Def_P2M_Util

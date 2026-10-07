@@ -2,8 +2,10 @@ module
 
 public import Definitions.MTT.Def_MTT_Arithmetic
 public import Mathlib.NumberTheory.ModularForms.QExpansion
+public import Mathlib.RingTheory.MvPowerSeries.Order
 
 import Mathlib.GroupTheory.Schreier
+import Mathlib.NumberTheory.ModularForms.NormTrace
 import Mathlib.LinearAlgebra.Matrix.FixedDetMatrices
 import Mathlib.NumberTheory.LegendreSymbol.ZModChar
 import Mathlib.RingTheory.PowerSeries.Order

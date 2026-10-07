@@ -2,6 +2,7 @@ module
 
 public import Mathlib.NumberTheory.ModularForms.QExpansion
 public import Mathlib.LinearAlgebra.Dimension.Finite
+public import Mathlib.RingTheory.PowerSeries.Order
 
 import Mathlib.RingTheory.PowerSeries.NoZeroDivisors
 
@@ -163,6 +164,7 @@ theorem CuspForm.finrank_lower_bound_of_weighted_forms
     (hA : (qExpansion h A).order = 0) (hB : (qExpansion h B).order = 1) (hD : D ≠ 0)
     [FiniteDimensional ℂ (CuspForm Γ (k : ℤ))] :
     (k - r) / d + 1 ≤ Module.finrank ℂ (CuspForm Γ (k : ℤ)) :=
-  solution hd hr A B D h hh hΓ hA hB hD
+  solution hd hr A B D h hh hΓ
+    (PowerSeries.order_eq_order.symm.trans hA) (PowerSeries.order_eq_order.symm.trans hB) hD
 
 end publicSection

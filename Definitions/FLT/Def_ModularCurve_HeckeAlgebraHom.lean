@@ -21,9 +21,8 @@ namespace ModularCurve.Period
 section FGInfrastructure
 
 instance instGroupFG_SL2Z : Group.FG SL(2, ℤ) :=
-  ⟨⟨{ModularGroup.S, ModularGroup.T}, by
-    simp only [Finset.coe_insert, Finset.coe_singleton]
-    exact SpecialLinearGroup.SL2Z_generators⟩⟩
+  Group.fg_iff.mpr ⟨{ModularGroup.S, ModularGroup.T},
+    SpecialLinearGroup.SL2Z_generators, (Set.finite_singleton _).insert _⟩
 
 instance instGroupFG_Gamma0 (N : ℕ) [NeZero N] : Group.FG (Gamma0 N) := inferInstance
 

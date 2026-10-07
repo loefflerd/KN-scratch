@@ -32,7 +32,7 @@ variable {P : Ideal R} [P.IsPrime]
 
 theorem finrank_quotient_pow_succ (hP : P ≠ ⊥) (c : ℕ) [Module.Finite K (R ⧸ P ^ (c + 1))] :
     finrank K (R ⧸ P ^ (c + 1)) = finrank K (R ⧸ P ^ c) + finrank K (R ⧸ P) := by
-  obtain ⟨a, ha, ha'⟩ := SetLike.exists_of_lt (Ideal.pow_succ_lt_pow hP c)
+  obtain ⟨a, ha, ha'⟩ := IsConcreteLE.exists_of_lt (Ideal.pow_succ_lt_pow hP c)
   let π : (R ⧸ P ^ (c + 1)) →ₐ[K] R ⧸ P ^ c :=
     Ideal.Quotient.factorₐ K (Ideal.pow_le_pow_right c.le_succ)
   have hπ : Function.Surjective π := fun x => by

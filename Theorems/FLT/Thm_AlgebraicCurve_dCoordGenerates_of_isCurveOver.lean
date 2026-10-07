@@ -4,6 +4,8 @@ public import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
 public import Definitions.FLT.Def_ModularCurve_CanonicalDivisor
 
 import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.Adjoin.Polynomial.Transcendental
+import Mathlib.RingTheory.LocalRing.Module
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Mathlib.RingTheory.Unramified.Field
 import Mathlib.RingTheory.Valuation.LocalSubring

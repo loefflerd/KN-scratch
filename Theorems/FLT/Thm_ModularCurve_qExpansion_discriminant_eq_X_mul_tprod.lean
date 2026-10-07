@@ -4,6 +4,7 @@ public import Mathlib.NumberTheory.ModularForms.Discriminant
 public import Mathlib.RingTheory.PowerSeries.PiTopology
 
 import Mathlib.Analysis.Complex.TaylorSeries
+import Mathlib.Analysis.Calculus.Deriv.Polynomial
 import Mathlib.Analysis.Complex.LocallyUniformLimit
 import Definitions.FLT.Def_P2M_Util
 

@@ -4040,8 +4040,8 @@ theorem gf24a9r_exists_ord_pos_ord_neg {w₁ w₂ : Place K F} (h : w₁ ≠ w�
     h (Cotpk43T3.cotpk43_t3_place_eq_of_toValuationSubring_le w₁ w₂ hle)
   have h21 : ¬(w₂.toValuationSubring ≤ w₁.toValuationSubring) := fun hle =>
     h.symm (Cotpk43T3.cotpk43_t3_place_eq_of_toValuationSubring_le w₂ w₁ hle)
-  obtain ⟨x, hx1, hx2⟩ := SetLike.not_le_iff_exists.mp h12
-  obtain ⟨y, hy2, hy1⟩ := SetLike.not_le_iff_exists.mp h21
+  obtain ⟨x, hx1, hx2⟩ := IsConcreteLE.not_le_iff_exists.mp h12
+  obtain ⟨y, hy2, hy1⟩ := IsConcreteLE.not_le_iff_exists.mp h21
   have hx0 : x ≠ 0 := by rintro rfl; exact hx2 (zero_mem _)
   have hy0 : y ≠ 0 := by rintro rfl; exact hy1 (zero_mem _)
   have hx1o : 0 ≤ w₁.ord x := w₁.ord_nonneg_of_mem hx1

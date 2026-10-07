@@ -87,7 +87,9 @@ open scoped MatrixGroups
 theorem Gamma_le_Gamma0 (N : ℕ) : Gamma N ≤ Gamma0 N := fun _ hA => Gamma0_mem.mpr (Gamma_mem.mp hA).2.2.1
 scoped instance instGroupFG_Gamma0 (N : ℕ) [NeZero N] : Group.FG (Gamma0 N) := by
   have : (Gamma0 N).FiniteIndex := Subgroup.finiteIndex_of_le (Gamma_le_Gamma0 N)
-  have : Group.FG SL(2, ℤ) := ⟨⟨{ModularGroup.S, ModularGroup.T}, by simpa using SpecialLinearGroup.SL2Z_generators⟩⟩
+  have : Group.FG SL(2, ℤ) := Group.fg_iff.mpr
+    ⟨{ModularGroup.S, ModularGroup.T}, SpecialLinearGroup.SL2Z_generators,
+      (Set.finite_singleton _).insert _⟩
   exact Subgroup.fg_of_index_ne_zero _
 end HeckeEis.ZQAux
 p2m_reactivate "P2MW.S_HeckeEis_exists_basis_coeffH1par_int_complex.HeckeEis P2MW.S_HeckeEis_exists_basis_coeffH1par_int_complex.HeckeEis.ZQAux"
@@ -149,7 +151,7 @@ theorem moduleFinite_coeffParabolicCocycles :
     Module.Finite ℤ ↥(coeffParabolicCocycles ((binaryFormRepSL ℤ n).comp (Gamma0 N).subtype)) := by
   classical
   have := moduleFinite_binaryForm n
-  obtain ⟨S, hS⟩ := Group.fg_def.mp (HeckeEis.ZQAux.instGroupFG_Gamma0 N)
+  obtain ⟨_, S, _, hS⟩ := Group.fg_iff'.mp (HeckeEis.ZQAux.instGroupFG_Gamma0 N)
   let ev : ↥(coeffParabolicCocycles ((binaryFormRepSL ℤ n).comp (Gamma0 N).subtype)) →ₗ[ℤ] (↥S → ↥(BinaryForm ℤ n)) :=
     { toFun := fun z g => z.1 g
       map_add' := fun _ _ => rfl

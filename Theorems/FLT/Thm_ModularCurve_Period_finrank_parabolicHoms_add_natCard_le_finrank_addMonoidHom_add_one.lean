@@ -105,11 +105,11 @@ theorem finrank_ker_sumL_add_one [Fintype (Cu Γ)] :
 
 theorem moduleFinite_hom : Module.Finite K (Additive Γ →+ K) := by
   classical
-  have : Group.FG SL(2, ℤ) := ⟨⟨{ModularGroup.S, ModularGroup.T}, by
-    rw [Finset.coe_insert, Finset.coe_singleton]
-    exact SpecialLinearGroup.SL2Z_generators⟩⟩
+  have : Group.FG SL(2, ℤ) := Group.fg_iff.mpr
+    ⟨{ModularGroup.S, ModularGroup.T}, SpecialLinearGroup.SL2Z_generators,
+      (Set.finite_singleton _).insert _⟩
   have hΓ : Group.FG Γ := Subgroup.fg_of_index_ne_zero _
-  obtain ⟨s, hs⟩ := hΓ.out
+  obtain ⟨_, s, _, hs⟩ := Group.fg_iff'.mp hΓ
   let e : (Additive Γ →+ K) →ₗ[K] (s → K) :=
     { toFun := fun φ i => φ (Additive.ofMul (i : Γ))
       map_add' := fun _ _ => rfl

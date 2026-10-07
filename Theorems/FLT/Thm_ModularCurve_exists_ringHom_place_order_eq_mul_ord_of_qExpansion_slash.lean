@@ -5,6 +5,7 @@ public import Definitions.FLT.Def_ModularCurve_JqCoeff
 public import Definitions.FLT.Def_ModularCurve_X1
 
 import Mathlib.Data.Int.Star
+import Mathlib.NumberTheory.ModularForms.NormTrace
 import Theorems.FLT.Thm_ModularCurve_exists_modularForm_mul_qExpansion_eq_coeffEmb_qExpand_jq
 import Theorems.FLT.Thm_ModularCurve_exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange_qExpFunctionFieldC
 import Theorems.FLT.Thm_ModularCurve_jqModC_mem_intFormRatiosC

@@ -2,6 +2,9 @@ module
 
 public import Mathlib.NumberTheory.Padics.Measure.Basic
 public import Mathlib.Analysis.Normed.Field.Lemmas
+public import Mathlib.Topology.Algebra.Indicator
+
+import Mathlib.Topology.Separation.DisjointCover
 
 section privateSection
 

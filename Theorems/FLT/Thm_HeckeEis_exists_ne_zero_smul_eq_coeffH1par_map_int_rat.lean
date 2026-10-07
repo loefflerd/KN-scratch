@@ -438,7 +438,9 @@ theorem conj_T_zpow_mem_Gamma0 (N : ℕ) (δ : SL(2, ℤ)) : δ * ModularGroup.T
 
 scoped instance instGroupFG_Gamma0 (N : ℕ) [NeZero N] : Group.FG (Gamma0 N) := by
   have : (Gamma0 N).FiniteIndex := Subgroup.finiteIndex_of_le (Gamma_le_Gamma0 N)
-  have : Group.FG SL(2, ℤ) := ⟨⟨{ModularGroup.S, ModularGroup.T}, by simpa using SpecialLinearGroup.SL2Z_generators⟩⟩
+  have : Group.FG SL(2, ℤ) := Group.fg_iff.mpr
+    ⟨{ModularGroup.S, ModularGroup.T}, SpecialLinearGroup.SL2Z_generators,
+      (Set.finite_singleton _).insert _⟩
   exact Subgroup.fg_of_index_ne_zero _
 
 theorem conj_T_zpow_eq (δ : SL(2, ℤ)) (h : ℤ) : δ * ModularGroup.T ^ h * δ⁻¹ = MulAut.conj δ (ModularGroup.T ^ h) := by
@@ -688,7 +690,7 @@ theorem main
       refine LinearMap.ext fun P => ?_
       rw [Module.End.one_apply]
       exact (binaryFormRepSL_neg_one_apply ℤ n P).trans (hgen ℤ P)
-    obtain ⟨S, hS⟩ := Group.fg_def.mp (instGroupFG_Gamma0 N)
+    obtain ⟨_, S, _, hS⟩ := Group.fg_iff'.mp (instGroupFG_Gamma0 N)
     choose w hw using fun q : SL(2, ℤ) ⧸ Gamma0 N => z.2.2 (cuspGen N q) (trace_cuspGen_sq N q)
     obtain ⟨D₁, hD₁, hint₁⟩ := exists_isInt_zsmul_family S (fun g => ((z.1 g : ↥(BinaryForm ℚ n)) : MvPolynomial (Fin 2) ℚ))
     obtain ⟨D₂, hD₂, hint₂⟩ := exists_isInt_zsmul_family (Finset.univ : Finset (SL(2, ℤ) ⧸ Gamma0 N))

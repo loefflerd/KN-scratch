@@ -2,6 +2,7 @@ module
 
 public import Definitions.MTT.Def_MTT_ParabolicCohomology
 public import Mathlib.NumberTheory.ModularForms.QExpansion
+public import Mathlib.RingTheory.MvPowerSeries.Order
 
 import Theorems.MTT.Thm_MTT_Cohomology_exists_weighted_modular_seeds_level_four
 import Theorems.MTT.Thm_MTT_Cohomology_exists_nonzero_cuspForm_weight_five_level_four
@@ -27,6 +28,7 @@ theorem MTT.Cohomology.exists_weighted_cusp_seeds_level_four :
     ∃ A : ModularForm (MTT.GammaOne 4) 1,
       ∃ B : ModularForm (MTT.GammaOne 4) 2,
         ∃ D : CuspForm (MTT.GammaOne 4) 5,
-          (qExpansion 1 A).order = 0 ∧ (qExpansion 1 B).order = 1 ∧ D ≠ 0 := _root_.solution
+          MvPowerSeries.order (qExpansion 1 A) = 0 ∧
+            MvPowerSeries.order (qExpansion 1 B) = 1 ∧ D ≠ 0 := _root_.solution
 
 end publicSection

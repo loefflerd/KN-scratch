@@ -135,7 +135,7 @@ theorem exists_separating [PerfectField K] {x : F} (hx : Transcendental K x)
         rw [← Subfield.relfinrank_top_right, Subfield.relfinrank_eq_one_iff]
         exact hle
       exact hp.out.one_lt.ne (h1.symm.trans hdeg)
-    obtain ⟨t, -, ht⟩ := SetLike.not_le_iff_exists.mp hnle
+    obtain ⟨t, -, ht⟩ := IsConcreteLE.not_le_iff_exists.mp hnle
     have httr : Transcendental K t := transcendental_of_not_mem_fieldRange_frobenius p ht
     have htfd : FiniteDimensional K⟮t⟯ F :=
       finiteDimensional_adjoin_of_transcendental hx hfd httr

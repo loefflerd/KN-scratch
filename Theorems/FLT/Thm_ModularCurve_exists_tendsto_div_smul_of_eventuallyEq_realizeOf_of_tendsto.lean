@@ -3,6 +3,7 @@ module
 public import Definitions.FLT.Def_ModularCurve_ComplexPlaceDictionaryOf
 
 import Theorems.FLT.Thm_ModularCurve_realizeOf_eq_div
+import Mathlib.NumberTheory.ModularForms.NormTrace
 import Definitions.FLT.Def_P2M_Util
 
 section privateSection

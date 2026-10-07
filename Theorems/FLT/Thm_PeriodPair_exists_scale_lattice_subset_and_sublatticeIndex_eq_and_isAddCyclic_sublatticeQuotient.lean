@@ -1543,7 +1543,7 @@ local notation "πN" => (Int.castAddHom (ZMod N))
 noncomputable def kw_surgehgf4_kqe_toZModSq :
     M.lattice.toAddSubgroup →+ ZMod N × ZMod N :=
   (AddMonoidHom.prodMap πN πN).comp
-    (AddMonoidHomClass.toAddMonoidHom M.latticeEquivProd.toAddEquiv)
+    (AddMonoidHom.ofClass M.latticeEquivProd.toAddEquiv)
 
 theorem kw_surgehgf4_kqe_toZModSq_apply (l : M.lattice.toAddSubgroup) :
     kw_surgehgf4_kqe_toZModSq M (N := N) l

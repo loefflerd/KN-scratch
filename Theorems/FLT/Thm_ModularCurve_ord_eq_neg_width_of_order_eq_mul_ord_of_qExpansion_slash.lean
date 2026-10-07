@@ -7,6 +7,7 @@ import Mathlib.Algebra.Order.Ring.Star
 import Mathlib.Analysis.Complex.Polynomial.Basic
 import Mathlib.Data.Int.Star
 import Mathlib.NumberTheory.Modular
+import Mathlib.NumberTheory.ModularForms.NormTrace
 import Definitions.FLT.Def_AlgebraicCurve_Repartitions
 import Theorems.FLT.Thm_AlgebraicCurve_exists_finset_sum_ord_sub_algebraMap_eq_finrank_of_isAlgClosed
 import Theorems.FLT.Thm_CongruenceSubgroup_conj_T_zpow_mem_Gamma1_of_mem_sup_zpowers_neg_one

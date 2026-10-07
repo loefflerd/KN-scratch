@@ -2,6 +2,8 @@ module
 
 public import Definitions.MTT.Def_MTT_PeriodPairing
 
+import Mathlib.NumberTheory.ModularForms.NormTrace
+
 section privateSection
 
 noncomputable section

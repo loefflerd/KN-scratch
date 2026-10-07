@@ -60,7 +60,7 @@ theorem exists_mem_notMem_of_ne {v w : Place K F} (hvw : v ≠ w) :
     ∃ x : F, x ≠ 0 ∧ x ∈ v.toValuationSubring ∧ x ∉ w.toValuationSubring := by
   have hle : ¬(v.toValuationSubring ≤ w.toValuationSubring) := fun hle =>
     hvw (Place.ext (ValuationSubring.eq_of_le_of_ne_top _ hle w.ne_top'))
-  obtain ⟨x, hxv, hxw⟩ := SetLike.not_le_iff_exists.mp hle
+  obtain ⟨x, hxv, hxw⟩ := IsConcreteLE.not_le_iff_exists.mp hle
   exact ⟨x, fun h0 => hxw (h0 ▸ w.toValuationSubring.zero_mem), hxv, hxw⟩
 
 theorem exists_ord_pos_ord_neg_of_ne {v w : Place K F} (hvw : v ≠ w) :

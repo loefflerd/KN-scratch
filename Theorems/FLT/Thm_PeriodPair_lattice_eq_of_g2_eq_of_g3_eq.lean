@@ -3,6 +3,8 @@ module
 public import Mathlib.Analysis.SpecialFunctions.Elliptic.Weierstrass
 
 import Mathlib.Analysis.CStarAlgebra.Classes
+import Mathlib.Analysis.Calculus.Deriv.Pow
+import Mathlib.Analysis.Normed.Module.Connected
 import Mathlib.RingTheory.SimpleRing.Principal
 import Definitions.FLT.Def_P2M_Util
 

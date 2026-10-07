@@ -747,7 +747,7 @@ theorem isNontrivial_ordValuationK : (ordValuationK N K).IsNontrivial := by
   · exact (one_lt_ordValuationK_jK N K).ne'
 
 theorem nontrivial_valueGroup :
-    Nontrivial (MonoidWithZeroHom.valueGroup (MonoidWithZeroHom.ofClass <| ordValuationK N K)) := by
+    Nontrivial (ordValuationK N K).toMonoidWithZeroHom.valueGroup := by
   rw [Subgroup.nontrivial_iff_exists_ne_one]
   have hne : ordValuationK N K (algebraMap (ring N) K (jGen N)) ≠ 0 := by
     rw [ordValuationK_jK]; exact WithZero.exp_ne_zero

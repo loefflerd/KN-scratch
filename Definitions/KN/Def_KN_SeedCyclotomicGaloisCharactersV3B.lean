@@ -1,5 +1,6 @@
 module
 
+public import Mathlib.RingTheory.RootsOfUnity.PrimitiveRoots
 public import Definitions.KN.Def_KN_SeededPrimeGaloisDataV2
 
 @[expose] public section publicSection

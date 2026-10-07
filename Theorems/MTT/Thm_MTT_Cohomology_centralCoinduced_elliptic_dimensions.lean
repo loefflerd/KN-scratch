@@ -5,6 +5,7 @@ public import Mathlib.GroupTheory.DoubleCoset
 public import Mathlib.LinearAlgebra.FiniteDimensional.Defs
 
 import Mathlib.LinearAlgebra.FreeModule.PID
+import Mathlib.LinearAlgebra.Trace
 
 section privateSection
 

@@ -215,7 +215,10 @@ theorem generic_equation :
 theorem generic_nonsingular [W.IsElliptic] :
     (W⁄(W⁄K).FunctionField).Nonsingular (genericX W K) (genericY W K) := by
   have : (W⁄(W⁄K).FunctionField).IsElliptic := by
-    dsimp only [Affine.baseChange, WeierstrassCurve.baseChange]; infer_instance
+    constructor
+    simp only [Affine.baseChange, WeierstrassCurve.baseChange, WeierstrassCurve.map_Δ]
+    apply RingHom.isUnit_map
+    exact W.isUnit_Δ
   exact (equation_iff_nonsingular (W := W⁄(W⁄K).FunctionField)).mp (generic_equation W K)
 
 noncomputable def genericPoint [W.IsElliptic] : (W⁄(W⁄K).FunctionField).Point :=
@@ -237,7 +240,7 @@ noncomputable def pointHom (Q : (W⁄(W⁄K).FunctionField).Point) (hQ : Q ≠ 0
   { AdjoinRoot.lift (aeval (R := K) Q.xc).toRingHom Q.yc (eval₂_polynomial_of_point Q hQ) with
     commutes' := fun c => by
       simp only [RingHom.toMonoidHom_eq_coe, OneHom.toFun_eq_coe, MonoidHom.toOneHom_coe,
-        MonoidHom.coe_coe]
+        MonoidHom.coe_ofClass]
       rw [IsScalarTower.algebraMap_apply K (Polynomial K) (W⁄K).CoordinateRing,
         AdjoinRoot.algebraMap_eq, AdjoinRoot.lift_of, AlgHom.toRingHom_eq_coe, RingHom.coe_coe,
         Polynomial.algebraMap_apply, aeval_C, Algebra.algebraMap_self, RingHom.id_apply] }
@@ -262,7 +265,7 @@ theorem CoordinateRing.algHom_ext' {A : Type*} [Semiring A] [Algebra K A]
     {f g : (W⁄K).CoordinateRing →ₐ[K] A}
     (hX : f (CoordinateRing.mk (W⁄K) (C X)) = g (CoordinateRing.mk (W⁄K) (C X)))
     (hY : f (CoordinateRing.mk (W⁄K) Y) = g (CoordinateRing.mk (W⁄K) Y)) : f = g := by
-  apply AlgHom.coe_ringHom_injective
+  apply AlgHom.toRingHom_injective
   apply Ideal.Quotient.ringHom_ext
   apply Polynomial.ringHom_ext
   · intro q
@@ -376,7 +379,7 @@ theorem FunctionField.algHom_ext {φ ψ : (W⁄K).FunctionField →ₐ[K] (W⁄K
         (algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField) =
       (ψ : (W⁄K).FunctionField →+* (W⁄K).FunctionField).comp
         (algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField)) : φ = ψ :=
-  AlgHom.coe_ringHom_injective
+  AlgHom.toRingHom_injective
     (IsLocalization.ringHom_ext (nonZeroDivisors (W⁄K).CoordinateRing) h)
 
 theorem exists_eq_baseChange_of_isIntegral_xc [DecidableEq K] [IsAlgClosed K] [W.IsElliptic]
@@ -816,7 +819,7 @@ theorem CoordinateRing.evalAt_XYIdeal {a b : K} (h : (W⁄K).Equation a b) :
   intro g hg
   rw [← RingHom.mem_ker]
   revert hg g
-  rw [← SetLike.le_def, CoordinateRing.XYIdeal, Ideal.span_le]
+  rw [← IsConcreteLE.le_iff, CoordinateRing.XYIdeal, Ideal.span_le]
   rintro g (rfl | rfl)
   · rw [SetLike.mem_coe, RingHom.mem_ker, CoordinateRing.XClass, CoordinateRing.evalAt_mk,
       evalEval_C, eval_sub, eval_X, eval_C, sub_self]

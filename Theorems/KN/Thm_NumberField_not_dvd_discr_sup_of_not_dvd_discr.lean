@@ -5,6 +5,8 @@ public import Mathlib.NumberTheory.NumberField.Discriminant.Defs
 
 import Mathlib.NumberTheory.NumberField.Discriminant.Different
 import Mathlib.FieldTheory.IntermediateField.Adjoin.Basic
+import Mathlib.RingTheory.DedekindDomain.Instances
+import Mathlib.RingTheory.Finiteness.Quotient
 
 noncomputable section privateSection
 

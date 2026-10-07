@@ -17,6 +17,7 @@ import Mathlib.Analysis.Complex.RealDeriv
 import Mathlib.Analysis.SpecialFunctions.Sqrt
 import Mathlib.MeasureTheory.Integral.IntervalIntegral.IntegrationByParts
 import Mathlib.GroupTheory.Complement
+import Mathlib.RingTheory.Complex
 
 /-!
 # Stokes' theorem on `Γ\ℍ` for an invariant `(0,1)`-form vanishing at the cusps

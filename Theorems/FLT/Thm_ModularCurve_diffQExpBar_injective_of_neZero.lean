@@ -43,8 +43,9 @@ private theorem exists_smul_D_jBar_aux (N : ℕ) [NeZero N]
       (modularFunctionFieldBar N) :=
     isSeparable_adjoin_coeffEmb_jq_full (AlgebraicClosure ℚ) N
   have hmem : ω ∈ Submodule.span (modularFunctionFieldBar N)
-      ({D (AlgebraicClosure ℚ) (modularFunctionFieldBar N)
-        ⟨coeffEmb (AlgebraicClosure ℚ) jq, coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (jq_mem_full N)⟩} :
+      ({(D (AlgebraicClosure ℚ) (modularFunctionFieldBar N)
+        ⟨coeffEmb (AlgebraicClosure ℚ) jq,
+          coeffEmb_mem_laurentBaseChange (AlgebraicClosure ℚ) (jq_mem_full N)⟩)} :
         Set (KaehlerDifferential (AlgebraicClosure ℚ) (modularFunctionFieldBar N))) := by
     rw [span_D_eq_top_of_transcendental (AlgebraicClosure ℚ) _ (transcendental_coeffEmb_jq (AlgebraicClosure ℚ) N)]
     exact Submodule.mem_top

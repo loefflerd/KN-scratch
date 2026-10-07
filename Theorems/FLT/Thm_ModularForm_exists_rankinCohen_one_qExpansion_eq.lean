@@ -2,6 +2,7 @@ module
 
 public import Mathlib.NumberTheory.ModularForms.Derivative
 
+import Mathlib.Analysis.Complex.Liouville
 import Theorems.FLT.Thm_ModularCurve_coe_qExpansion_normalizedDerivOfComplex
 import Definitions.FLT.Def_P2M_Util
 

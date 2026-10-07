@@ -885,7 +885,7 @@ def kw_coordinateRingMapAlongGeneral :
   __ := CoordinateRing.map (W⁄F).toAffine (algebraMap F F')
   commutes' r := by
     simp only [RingHom.toMonoidHom_eq_coe, OneHom.toFun_eq_coe, MonoidHom.toOneHom_coe,
-      MonoidHom.coe_coe]
+      MonoidHom.coe_ofClass]
     show CoordinateRing.map (W⁄F).toAffine (algebraMap F F') (algebraMap F CR r) = algebraMap F _ r
     rw [IsScalarTower.algebraMap_apply F F[X] CR,
       show (algebraMap F F[X] r) = Polynomial.C r from rfl,

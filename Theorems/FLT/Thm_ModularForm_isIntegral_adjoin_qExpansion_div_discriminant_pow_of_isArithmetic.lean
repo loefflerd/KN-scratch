@@ -291,10 +291,10 @@ theorem solution {𝒢 : Subgroup (GL (Fin 2) ℝ)} [𝒢.IsArithmetic] [𝒢.Ha
   set g' : ModularForm (𝒢 ⊓ 𝒮ℒ) (12 * (m : ℤ)) := restrict inf_le_left g with hg'def
   set D' : ModularForm (𝒢 ⊓ 𝒮ℒ) (12 * (m : ℤ)) := restrict inf_le_right Dsl with hD'def
   have hg'q : qExpansion 1 (g' : ℍ → ℂ) = qExpansion 1 (g : ℍ → ℂ) := by
-    rw [hg'def, coe_restrict]
+    rw [hg'def, PenA.ALG.coe_restrict]
   have hD'q : qExpansion 1 (D' : ℍ → ℂ)
       = (qExpansion 1 (ModularForm.discriminant : ℍ → ℂ)) ^ m := by
-    rw [hD'def, coe_restrict]
+    rw [hD'def, PenA.ALG.coe_restrict]
     exact hDSLq
   have hΔ0 : qExpansion 1 (ModularForm.discriminant : ℍ → ℂ) ≠ 0 := fun h0 => by
     simpa [h0] using ModularForm.discriminant_qExpansion_coeff_one
@@ -391,7 +391,7 @@ theorem solution {𝒢 : Subgroup (GL (Fin 2) ℝ)} [𝒢.IsArithmetic] [𝒢.Ha
     intro q τ
     induction q using Quotient.inductionOn with
     | h r =>
-      rw [quotientFunc_mk, hD'def, coe_restrict, slash_action_eqn Dsl _ (inv_mem r.2)]
+      rw [quotientFunc_mk, hD'def, PenA.ALG.coe_restrict, slash_action_eqn Dsl _ (inv_mem r.2)]
   have hnormD : ModularForm.norm 𝒮ℒ D' = ModularForm.mcast (by ring)
       (Dsl.pow (Nat.card (𝒮ℒ ⧸ (𝒢 ⊓ 𝒮ℒ).subgroupOf 𝒮ℒ))) := by
     ext τ

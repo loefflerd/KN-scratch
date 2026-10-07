@@ -11,6 +11,7 @@ import Mathlib.Topology.Algebra.Group.Units
 import Mathlib.Topology.ContinuousMap.Compact
 import Mathlib.Topology.Instances.ZMod
 import Mathlib.Topology.MetricSpace.Ultra.TotallySeparated
+import Mathlib.Topology.Separation.DisjointCover
 
 import Theorems.MTT.Thm_PadicMeasure_compatible_disk_values_vanish_of_decay
 import Theorems.MTT.Thm_ProfiniteMeasure_ext_of_clopen_masses
@@ -259,7 +260,7 @@ private lemma coordinate_disk_bound {p : ℕ} [Fact p.Prime]
     ‖algebraMap ℚ_[p] ℂ_[p] (x.val : ℚ_[p]) - (a : ℂ_[p])‖ ≤ ‖(p : ℂ_[p])^n‖ := by
   rw [← map_intCast (algebraMap ℚ_[p] ℂ_[p]) a,← map_sub,norm_algebraMap',norm_padic_complex_pow]
   change ‖((x.val - (a : ℤ_[p]) : ℤ_[p]) : ℚ_[p])‖ ≤ _
-  rw [PadicInt.padic_norm_e_of_padicInt,PadicInt.norm_le_pow_iff_mem_span_pow,
+  rw [PadicInt.norm_coe,PadicInt.norm_le_pow_iff_mem_span_pow,
     ← PadicInt.ker_toZModPow,RingHom.mem_ker,map_sub,map_intCast,hx,sub_self]
 
 private lemma centeredDisk_norm {p : ℕ} [Fact p.Prime] (j n : ℕ) (a : ℤ) :

@@ -2,10 +2,12 @@ module
 
 public import Definitions.MTT.Def_MTT_ParabolicCohomology
 public import Mathlib.NumberTheory.ModularForms.QExpansion
+public import Mathlib.RingTheory.MvPowerSeries.Order
 
 import Mathlib.Data.Int.Star
 import Mathlib.NumberTheory.ModularForms.Discriminant
 import Mathlib.RingTheory.PowerSeries.Expand
+import Mathlib.RingTheory.PowerSeries.Order
 import Definitions.MTT.Def_MTT_Arithmetic
 import Theorems.FLT.Thm_CongruenceSubgroup_closure_T_U_neg_one_eq_Gamma0_three
 import Theorems.FLT.Thm_CuspForm_exists_gamma0_apply_eq_eta_mul_pow_twentyfour
@@ -577,6 +579,7 @@ theorem MTT.Cohomology.exists_weighted_cusp_seeds_level_three :
     ∃ A : ModularForm (MTT.GammaOne 3) 1,
       ∃ B : ModularForm (MTT.GammaOne 3) 3,
         ∃ D : CuspForm (MTT.GammaOne 3) 6,
-          (qExpansion 1 A).order = 0 ∧ (qExpansion 1 B).order = 1 ∧ D ≠ 0 := _root_.solution
+          MvPowerSeries.order (qExpansion 1 A) = 0 ∧
+            MvPowerSeries.order (qExpansion 1 B) = 1 ∧ D ≠ 0 := _root_.solution
 
 end publicSection

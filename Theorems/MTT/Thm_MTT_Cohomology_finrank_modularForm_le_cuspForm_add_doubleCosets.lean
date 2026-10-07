@@ -5,6 +5,7 @@ public import Mathlib.GroupTheory.DoubleCoset
 public import Mathlib.LinearAlgebra.FiniteDimensional.Defs
 
 import Theorems.FLT.Thm_ModularForm_finiteDimensional_of_isArithmetic
+import Mathlib.NumberTheory.ModularForms.NormTrace
 
 section privateSection
 

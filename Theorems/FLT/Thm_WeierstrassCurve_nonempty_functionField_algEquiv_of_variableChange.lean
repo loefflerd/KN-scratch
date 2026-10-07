@@ -306,13 +306,13 @@ theorem mrtw60a_xFwd_eq_vcX :
     mrtw60a_xFwd C V
       = vcX (C.map (algebraMap F V.FunctionField)) (polyToFunctionField V X) := by
   rw [mrtw60a_xFwd_shape, vcX]
-  simp only [VariableChange.map, Units.coe_map, MonoidHom.coe_coe, map_pow]
+  simp only [VariableChange.map, Units.coe_map, MonoidHom.coe_ofClass, map_pow]
 
 theorem mrtw60a_yFwd_eq_vcY :
     mrtw60a_yFwd C V
       = vcY (C.map (algebraMap F V.FunctionField)) (polyToFunctionField V X) (yGen V) := by
   rw [mrtw60a_yFwd_shape, vcY]
-  simp only [VariableChange.map, Units.coe_map, MonoidHom.coe_coe, map_pow, map_mul]
+  simp only [VariableChange.map, Units.coe_map, MonoidHom.coe_ofClass, map_pow, map_mul]
 
 end Values
 

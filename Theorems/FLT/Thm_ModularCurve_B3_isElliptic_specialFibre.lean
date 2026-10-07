@@ -1172,11 +1172,11 @@ def cycOfCongr {A B : Type*} [AddCommGroup A] [AddCommGroup B] (e : A ≃+ B) (N
     CycOf A N ≃ CycOf B N where
   toFun G := ⟨G.1.map (e : A →+ B), by
     obtain ⟨g, hg, hG⟩ := G.2
-    exact ⟨(e : A →+ B) g, by rw [AddMonoidHom.coe_coe, AddEquiv.addOrderOf_eq, hg],
+    exact ⟨(e : A →+ B) g, by rw [AddMonoidHom.coe_ofClass, AddEquiv.addOrderOf_eq, hg],
       by rw [hG, AddMonoidHom.map_zmultiples]⟩⟩
   invFun G := ⟨G.1.map (e.symm : B →+ A), by
     obtain ⟨g, hg, hG⟩ := G.2
-    exact ⟨(e.symm : B →+ A) g, by rw [AddMonoidHom.coe_coe, AddEquiv.addOrderOf_eq, hg],
+    exact ⟨(e.symm : B →+ A) g, by rw [AddMonoidHom.coe_ofClass, AddEquiv.addOrderOf_eq, hg],
       by rw [hG, AddMonoidHom.map_zmultiples]⟩⟩
   left_inv G := Subtype.ext ((AddSubgroup.map_symm_eq_iff_map_eq (K := G.1)).mpr rfl)
   right_inv G := Subtype.ext ((AddSubgroup.map_symm_eq_iff_map_eq (K := G.1) (e := e.symm)).mpr rfl)
@@ -1364,7 +1364,7 @@ theorem bridge3Specialise_zmultiples (p : ℕ) [Fact p.Prime] [NeZero p] (j₀ :
   have hmem : scaleAddEquiv j₀ g ∈ Submodule.torsionBy ℤ (goodModel j₀).toAffine.Point (p : ℤ) :=
     mem_torsionBy_of_addOrderOf_eq ((AddEquiv.addOrderOf_eq _ g).trans hg)
   rw [bridge3Specialise_apply_coe]
-  simp only [AddMonoidHom.map_zmultiples, AddMonoidHom.coe_coe, comap_subtype_zmultiples _ hmem,
+  simp only [AddMonoidHom.map_zmultiples, AddMonoidHom.coe_ofClass, comap_subtype_zmultiples _ hmem,
     LinearMap.toAddMonoidHom_coe, Submodule.subtype_apply]
 
 variable {K : Type*} [Field K]

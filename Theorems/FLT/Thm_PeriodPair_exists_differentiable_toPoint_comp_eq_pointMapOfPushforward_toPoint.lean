@@ -5,6 +5,9 @@ public import Definitions.FLT.Def_PeriodPair_Uniformization
 public import Definitions.FLT.Def_WeierstrassCurve_GenusOnePlaceGateCentred
 
 import Mathlib.Analysis.Complex.Polynomial.Basic
+import Mathlib.Analysis.Convex.Contractible
+import Mathlib.Analysis.Normed.Module.Connected
+import Mathlib.AlgebraicTopology.FundamentalGroupoid.SimplyConnected
 import Mathlib.Order.CompletePartialOrder
 import Mathlib.Topology.Homotopy.Lifting
 import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR

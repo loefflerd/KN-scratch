@@ -981,7 +981,7 @@ theorem bridge3Specialise_zmultiples (p : ℕ) [Fact p.Prime] [NeZero p] (j₀ :
   have hmem : scaleAddEquiv j₀ g ∈ Submodule.torsionBy ℤ (goodModel j₀).toAffine.Point (p : ℤ) :=
     mem_torsionBy_of_addOrderOf_eq ((AddEquiv.addOrderOf_eq _ g).trans hg)
   rw [bridge3Specialise_apply_coe]
-  simp only [AddMonoidHom.map_zmultiples, AddMonoidHom.coe_coe, comap_subtype_zmultiples _ hmem,
+  simp only [AddMonoidHom.map_zmultiples, AddMonoidHom.coe_ofClass, comap_subtype_zmultiples _ hmem,
     LinearMap.toAddMonoidHom_coe, Submodule.subtype_apply]
 
 variable {K : Type*} [Field K]
@@ -1920,7 +1920,7 @@ theorem cycScale_zmultiples (N : ℕ) (j₀ : Qbar) (g : (nearCurve j₀).toAffi
     (cycScale N j₀ ⟨AddSubgroup.zmultiples g, g, hg, rfl⟩).1 =
       AddSubgroup.zmultiples (scaleAddEquiv j₀ g) := by
   show (AddSubgroup.zmultiples g).map _ = _
-  rw [AddMonoidHom.map_zmultiples, AddMonoidHom.coe_coe]
+  rw [AddMonoidHom.map_zmultiples, AddMonoidHom.coe_ofClass]
 
 theorem bridge3SpecialiseN_apply_coe (N : ℕ) [NeZero N] (j₀ : Qbar)
     (G : CycSubH (nearCurve j₀) N) :
@@ -1949,7 +1949,7 @@ theorem bridge3SpecialiseN_zmultiples (N : ℕ) [NeZero N] (j₀ : Qbar)
           (redPoint (goodModel j₀) (goodModel_spec j₀).1 (goodModel_spec j₀).2
             (scaleAddEquiv j₀ g))) := by
   rw [bridge3SpecialiseN_apply_coe, cycScale_zmultiples N j₀ g hg, AddMonoidHom.map_zmultiples,
-    AddMonoidHom.map_zmultiples, AddMonoidHom.coe_coe, specialise_eq_redPoint]
+    AddMonoidHom.map_zmultiples, AddMonoidHom.coe_ofClass, specialise_eq_redPoint]
 
 theorem torsion_coords_integralN (W : WeierstrassCurve H) [W.IsElliptic]
     (hW : IntegralCoeffs W) (hΔ : W.Δ.orderTop = 0) {x y : H}

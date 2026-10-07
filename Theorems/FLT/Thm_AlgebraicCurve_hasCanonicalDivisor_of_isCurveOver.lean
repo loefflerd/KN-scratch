@@ -4,6 +4,7 @@ public import Definitions.FLT.Def_AlgebraicCurve_CanonicalDivisor
 public import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
 
 import Mathlib.RingTheory.DedekindDomain.Different
+import Mathlib.RingTheory.Adjoin.Polynomial.Transcendental
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.RegularLocalRing.Defs
 import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
@@ -1460,8 +1461,8 @@ p2m_export "AlgebraicCurve" "Place.ordDifferential_D_eq_zero_of_span_eq_top_s12"
 
 theorem mem_span_D_adjoin_s12 (t : F) (ω : Ω[↥(Algebra.adjoin K ({t} : Set F))⁄K]) :
     ω ∈ Submodule.span ↥(Algebra.adjoin K ({t} : Set F))
-      ({KaehlerDifferential.D K ↥(Algebra.adjoin K ({t} : Set F))
-        ⟨t, Algebra.self_mem_adjoin_singleton K t⟩} : Set Ω[↥(Algebra.adjoin K ({t} : Set F))⁄K]) := by
+      ({(KaehlerDifferential.D K ↥(Algebra.adjoin K ({t} : Set F))
+        ⟨t, Algebra.self_mem_adjoin_singleton K t⟩)} : Set Ω[↥(Algebra.adjoin K ({t} : Set F))⁄K]) := by
   have htop : ω ∈ Submodule.span ↥(Algebra.adjoin K ({t} : Set F))
       (Set.range (KaehlerDifferential.D K ↥(Algebra.adjoin K ({t} : Set F)))) := by
     rw [KaehlerDifferential.span_range_derivation]; exact Submodule.mem_top
@@ -1487,8 +1488,8 @@ private theorem _root_.AlgebraicCurve.Place.span_D_eq_top_of_isUnramifiedAt_s12 
     (hunr : letI : Algebra ↥(Algebra.adjoin K ({t} : Set F)) T := (Subalgebra.inclusion hRT).toRingHom.toAlgebra
       Algebra.IsUnramifiedAt ↥(Algebra.adjoin K ({t} : Set F)) (v.centerIdeal T hT)) :
     Submodule.span v.toValuationSubring
-      ({KaehlerDifferential.D K v.toValuationSubring
-        ⟨t, hT (hRT (Algebra.self_mem_adjoin_singleton K t))⟩} : Set Ω[v.toValuationSubring⁄K]) = ⊤ := by
+      ({(KaehlerDifferential.D K v.toValuationSubring
+        ⟨t, hT (hRT (Algebra.self_mem_adjoin_singleton K t))⟩)} : Set Ω[v.toValuationSubring⁄K]) = ⊤ := by
   let iRT : Algebra ↥(Algebra.adjoin K ({t} : Set F)) T := (Subalgebra.inclusion hRT).toRingHom.toAlgebra
   let iTO : Algebra T v.toValuationSubring := v.modelAlgebra T hT
   let iRO : Algebra ↥(Algebra.adjoin K ({t} : Set F)) v.toValuationSubring :=
@@ -1516,8 +1517,8 @@ private theorem _root_.AlgebraicCurve.Place.span_D_eq_top_of_isUnramifiedAt_s12 
   have hle : LinearMap.range
       (KaehlerDifferential.mapBaseChange K ↥(Algebra.adjoin K ({t} : Set F)) v.toValuationSubring)
       ≤ Submodule.span v.toValuationSubring
-        ({KaehlerDifferential.D K v.toValuationSubring
-          ⟨t, hT (hRT (Algebra.self_mem_adjoin_singleton K t))⟩} : Set Ω[v.toValuationSubring⁄K]) := by
+        ({(KaehlerDifferential.D K v.toValuationSubring
+          ⟨t, hT (hRT (Algebra.self_mem_adjoin_singleton K t))⟩)} : Set Ω[v.toValuationSubring⁄K]) := by
     rintro _ ⟨x, rfl⟩
     induction x with
     | add x y hx hy => rw [map_add]; exact add_mem hx hy

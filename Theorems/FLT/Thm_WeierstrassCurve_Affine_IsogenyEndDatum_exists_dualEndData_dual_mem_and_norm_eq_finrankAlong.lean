@@ -6803,7 +6803,7 @@ theorem kw_hk5f_addSumCoordSeamDataNCAt_proved
         es1a11_coordSeamDataAt φ₁ v Q₁ → es1a11_coordSeamDataAt φ₂ v Q₂ →
         es1a6_addSumSeamDataAt φ₁ φ₂ v (Q₁ + Q₂) := by
   intro φ₁ φ₂ hcol hnc v Q₁ Q₂ h1 h2
-  have E := @WeierstrassCurve.Affine.FunctionField.addX_addY_specialize_at_place F _ _ _ _ W _
+  have E := @WeierstrassCurve.Affine.FunctionField.addX_addY_specialize_at_place F _ _ _ W _
     instDecEqFunctionFieldEs1a6Add φ₁ φ₂
     (fun hc => hcol hc) hnc v Q₁ Q₂
     (fun h0 => by subst h0; exact h1) (fun a b h hs => by subst hs; exact h1)

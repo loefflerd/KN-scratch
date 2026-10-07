@@ -4,6 +4,7 @@ public import Definitions.FLT.Def_ModularForm_HeckeOperator
 public import Mathlib.NumberTheory.ModularForms.Basic
 public import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
 
+import Mathlib.NumberTheory.ModularForms.NormTrace
 import Definitions.FLT.Def_P2M_Util
 
 section privateSection

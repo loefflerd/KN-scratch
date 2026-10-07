@@ -4,6 +4,7 @@ public import Definitions.FLT.Def_ModularForm_EisensteinChiNegThree
 
 import Mathlib.Algebra.Ring.IsFormallyReal
 import Mathlib.Analysis.Complex.LocallyUniformLimit
+import Mathlib.Analysis.PSeries
 import Mathlib.Data.Int.Star
 import Mathlib.FieldTheory.Finite.Basic
 import Mathlib.GroupTheory.Schreier

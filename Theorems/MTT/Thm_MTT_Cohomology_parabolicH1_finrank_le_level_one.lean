@@ -5,6 +5,8 @@ public import Mathlib.LinearAlgebra.FiniteDimensional.Defs
 
 import Mathlib.Algebra.MvPolynomial.CommRing
 import Mathlib.Algebra.MvPolynomial.Funext
+import Mathlib.LinearAlgebra.Matrix.FixedDetMatrices
+import Mathlib.LinearAlgebra.Trace
 import Mathlib.NumberTheory.ModularForms.LevelOne.DimensionFormula
 import Mathlib.RingTheory.RootsOfUnity.Complex
 import Definitions.MTT.Def_MTT_LevelOnePeriodRelations

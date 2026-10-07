@@ -464,7 +464,7 @@ theorem solution (n : ℕ) (Γ : Subgroup SL(2, ℤ)) [Group.FG Γ]
         Ψ (HeckeEis.coeffH1parMk _ z) = HeckeEis.coeffH1parMk _ w)
     (X : HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp Γ.subtype)) :
     X ∈ Submodule.span ℂ (Set.range Ψ) := by
-  obtain ⟨S, hS⟩ := Group.fg_def.mp (inferInstance : Group.FG Γ)
+  obtain ⟨_, S, _, hS⟩ := Group.fg_iff'.mp (inferInstance : Group.FG Γ)
   exact HeckeEis.QCAux.mem_span_range n Ψ hΨ S hS X
 
 end S_HeckeEis_mem_span_range_coeffH1par_map_rat_complex

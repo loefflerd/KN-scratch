@@ -13,6 +13,7 @@ import Mathlib.RingTheory.Unramified.Field
 import Mathlib.Analysis.Meromorphic.NormalForm
 import Mathlib.RingTheory.Discriminant
 import Mathlib.RingTheory.Adjoin.PowerBasis
+import Mathlib.RingTheory.Adjoin.Polynomial.Transcendental
 import Mathlib.FieldTheory.PrimitiveElement
 import Mathlib.RingTheory.RootsOfUnity.Complex
 import Mathlib.Analysis.Complex.Polynomial.Basic

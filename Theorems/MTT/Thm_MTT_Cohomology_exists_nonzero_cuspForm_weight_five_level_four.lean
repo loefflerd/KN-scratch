@@ -4,6 +4,7 @@ public import Definitions.MTT.Def_MTT_Arithmetic
 
 import Mathlib.Analysis.RCLike.Sqrt
 import Mathlib.GroupTheory.Schreier
+import Mathlib.LinearAlgebra.Matrix.FixedDetMatrices
 import Mathlib.NumberTheory.ModularForms.Discriminant
 
 import Theorems.FLT.Thm_CuspForm_exists_gamma0_four_apply_eq_eta_pow_mul

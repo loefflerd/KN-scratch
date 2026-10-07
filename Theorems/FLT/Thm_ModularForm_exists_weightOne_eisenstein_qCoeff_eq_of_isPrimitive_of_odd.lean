@@ -4,6 +4,7 @@ public import Mathlib.NumberTheory.DirichletCharacter.Basic
 public import Definitions.FLT.Def_FLTPrelim_Modularity
 
 import Mathlib.Analysis.Fourier.ZMod
+import Mathlib.Analysis.Complex.LocallyUniformLimit
 import Mathlib.Analysis.SpecialFunctions.Trigonometric.Cotangent
 import Mathlib.NumberTheory.DirichletCharacter.Bounds
 import Mathlib.RingTheory.SimpleRing.Principal

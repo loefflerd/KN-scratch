@@ -3,6 +3,7 @@ module
 public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 public import Definitions.FLT.Def_ModularCurve_LaurentCoeff
 
+import Mathlib.RingTheory.PowerSeries.Trunc
 import Definitions.FLT.Def_P2M_Util
 
 section privateSection

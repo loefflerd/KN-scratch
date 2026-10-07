@@ -4,6 +4,7 @@ public import Mathlib.Analysis.Complex.UpperHalfPlane.FunctionsBoundedAtInfty
 public import Definitions.FLT.Def_EisensteinSeries_WeierstrassZeta
 
 import Mathlib.Analysis.SpecialFunctions.Trigonometric.Cotangent
+import Mathlib.Analysis.Complex.UpperHalfPlane.Exp
 import Mathlib.NumberTheory.TsumDivisorsAntidiagonal
 import Mathlib.Topology.UniformSpace.Uniformizable
 

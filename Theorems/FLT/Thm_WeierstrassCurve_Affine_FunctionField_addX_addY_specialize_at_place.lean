@@ -177,7 +177,7 @@ universe u
 
 section CoordSeamEs1a11
 
-variable {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
+variable {F : Type u} [Field F] [DecidableEq F]
 variable {W : WeierstrassCurve.Affine F} [W.IsElliptic]
 
 def es1a11_coordSeamDataAt (φ : W.FunctionField →ₐ[F] W.FunctionField)
@@ -288,7 +288,7 @@ section SeamEngines
 
 variable {F : Type u} [Field F]
 
-variable [DecidableEq F] [IsAlgClosed F] [CharZero F]
+variable [DecidableEq F]
 variable {W : WeierstrassCurve.Affine F} [W.IsElliptic]
 
 variable (φ₁ φ₂ : W.FunctionField →ₐ[F] W.FunctionField)
@@ -315,7 +315,7 @@ namespace Es1a1
 
 universe u
 
-variable {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
+variable {F : Type u} [Field F] [DecidableEq F]
 variable (W : Affine F) [W.IsElliptic]
 
 abbrev kw_hk5f_addSumCoordSeamDataNCAt : Prop :=
@@ -987,7 +987,8 @@ theorem es1a10_ncPole_phi_equation (φ : W.FunctionField →ₐ[F] W.FunctionFie
   simpa only [WeierstrassCurve.map_a₁, WeierstrassCurve.map_a₂, WeierstrassCurve.map_a₃, WeierstrassCurve.map_a₄,
     WeierstrassCurve.map_a₆] using h
 
-variable [IsAlgClosed F] [CharZero F]
+variable [IsAlgClosed F]
+
 theorem es1a10_ncPole_addSumY_ne_const
     (hcol : ¬ es1a6_addCollapse W φ₁ φ₂)
     (hnc : ∀ c : F, es1a6_addSumX W φ₁ φ₂ ≠ algebraMap F W.FunctionField c) :
@@ -1238,7 +1239,7 @@ theorem es1a10_ncPole_mixedTwo_seamData (v : AlgebraicCurve.Place F W.FunctionFi
     es1a10_ncPole_ord_pos_of_reducesTo_of_ne v hYred
       (es1a10_ncPole_addSumY_ne_const φ₁ φ₂ hcol hnc d)⟩
 
-omit [IsAlgClosed F] [CharZero F] in
+omit [IsAlgClosed F] in
 theorem es1a10_ncPole_bothPole_notMem (v : AlgebraicCurve.Place F W.FunctionField)
     (hΔ : W.Δ ≠ 0)
     (hcol : ¬ es1a6_addCollapse W φ₁ φ₂)
@@ -2532,7 +2533,7 @@ namespace Es1a1
 
 universe u
 
-variable {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
+variable {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F]
 variable (W : Affine F) [W.IsElliptic]
 
 theorem kw_hk5f_addSumCoordSeamDataNCAt_proved : kw_hk5f_addSumCoordSeamDataNCAt W := by
@@ -2577,7 +2578,7 @@ end
 open ModularCurve.Es1a1 in
 universe u in
 theorem solution
-    {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
+    {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F]
     (W : WeierstrassCurve.Affine F) [W.IsElliptic] [inst : DecidableEq W.FunctionField]
     (φ₁ φ₂ : W.FunctionField →ₐ[F] W.FunctionField)
     (hcol : ¬ (φ₁ (polyToFunctionField W Polynomial.X) = φ₂ (polyToFunctionField W Polynomial.X) ∧
@@ -2644,7 +2645,7 @@ open WeierstrassCurve Affine AlgebraicCurve
 
 universe u
 theorem WeierstrassCurve.Affine.FunctionField.addX_addY_specialize_at_place
-    {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
+    {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F]
     (W : WeierstrassCurve.Affine F) [W.IsElliptic] [DecidableEq W.FunctionField]
     (φ₁ φ₂ : W.FunctionField →ₐ[F] W.FunctionField)
     (hcol : ¬ (φ₁ (polyToFunctionField W Polynomial.X) = φ₂ (polyToFunctionField W Polynomial.X) ∧

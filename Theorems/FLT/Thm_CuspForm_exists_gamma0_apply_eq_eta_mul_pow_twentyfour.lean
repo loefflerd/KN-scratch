@@ -5,6 +5,7 @@ public import Mathlib.NumberTheory.ModularForms.DedekindEta
 import Mathlib.AlgebraicTopology.FundamentalGroupoid.SimplyConnected
 import Mathlib.Data.Int.Star
 import Mathlib.GroupTheory.Schreier
+import Mathlib.LinearAlgebra.Matrix.FixedDetMatrices
 import Mathlib.NumberTheory.ModularForms.Discriminant
 import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.Tactic.NormNum.Prime
