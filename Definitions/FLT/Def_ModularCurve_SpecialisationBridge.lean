@@ -1,16 +1,20 @@
-import Definitions.FLT.Def_ModularCurve_SpecialisationVocab
-import Definitions.FLT.Def_ModularCurve_TatePoint
-import Definitions.FLT.Def_HahnSeries_Monodromy
-import Definitions.FLT.Def_WeierstrassCurve_VariableChangePointEquiv
-import Theorems.FLT.Thm_WeierstrassCurve_Affine_Point_vcInvFun_add
-import Theorems.FLT.Thm_ModularCurve_B3_goodModel_zero_spec
-import Theorems.FLT.Thm_ModularCurve_B3_goodModel_1728_spec
-import Theorems.FLT.Thm_ModularCurve_B3_goodModel_generic_spec
-import Theorems.FLT.Thm_ModularCurve_B3_nearCurve_eq_ofJNe0Or1728
-import Theorems.FLT.Thm_ModularCurve_B3_exists_variableChange_specialFibre_goodModel
-import Theorems.FLT.Thm_ModularCurve_B3_isElliptic_specialFibre_goodModel
-import Theorems.FLT.Thm_ModularCurve_B3_isElliptic_specialFibre
-import Theorems.FLT.Thm_ModularCurve_B3_exists_torsionBy_reduction_addEquiv
+module
+
+public import Definitions.FLT.Def_ModularCurve_SpecialisationVocab
+public import Definitions.FLT.Def_ModularCurve_TatePoint
+public import Definitions.FLT.Def_HahnSeries_Monodromy
+public import Definitions.FLT.Def_WeierstrassCurve_VariableChangePointEquiv
+public import Theorems.FLT.Thm_WeierstrassCurve_Affine_Point_vcInvFun_add
+public import Theorems.FLT.Thm_ModularCurve_B3_goodModel_zero_spec
+public import Theorems.FLT.Thm_ModularCurve_B3_goodModel_1728_spec
+public import Theorems.FLT.Thm_ModularCurve_B3_goodModel_generic_spec
+public import Theorems.FLT.Thm_ModularCurve_B3_nearCurve_eq_ofJNe0Or1728
+public import Theorems.FLT.Thm_ModularCurve_B3_exists_variableChange_specialFibre_goodModel
+public import Theorems.FLT.Thm_ModularCurve_B3_isElliptic_specialFibre_goodModel
+public import Theorems.FLT.Thm_ModularCurve_B3_isElliptic_specialFibre
+public import Theorems.FLT.Thm_ModularCurve_B3_exists_torsionBy_reduction_addEquiv
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -276,7 +280,8 @@ theorem nearTransport_some (j₀ : Qbar) (m : HahnSeries.monodromy Qbar) (x y : 
       .some ((m : H ≃ₐ[Qbar] H) x) ((m : H ≃ₐ[Qbar] H) y)
         (WeierstrassCurve.Affine.Point.nonsingular_of_fixed _ _
           (nearCurve_map_of_mem_monodromy j₀ m.2) h) :=
-  rfl
+  WeierstrassCurve.Affine.Point.fixedTransport_some
+    (m : H ≃ₐ[Qbar] H) (nearCurve j₀) (nearCurve_map_of_mem_monodromy j₀ m.2) x y h
 
 def b3Act (j₀ : Qbar) (m : HahnSeries.monodromy Qbar) :
     AddSubgroup (nearCurve j₀).toAffine.Point → AddSubgroup (nearCurve j₀).toAffine.Point :=
@@ -290,3 +295,5 @@ theorem b3Act_zmultiples (j₀ : Qbar) (m : HahnSeries.monodromy Qbar)
 end ModularCurve.B3
 
 end
+
+end publicSection
