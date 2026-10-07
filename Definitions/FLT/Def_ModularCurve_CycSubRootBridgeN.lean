@@ -1,5 +1,9 @@
-import Definitions.FLT.Def_ModularCurve_CycSubRootBridge
-import Definitions.FLT.Def_WeierstrassCurve_FullKernelQuotient
+module
+
+public import Definitions.FLT.Def_ModularCurve_CycSubRootBridge
+public import Definitions.FLT.Def_WeierstrassCurve_FullKernelQuotient
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -169,3 +173,4 @@ example (N : ℕ) [NeZero N] (h : ModularCurve.TatePoint.FullKernelDiscAt N)
     (h2 : (2 : L) ≠ 0) (W : WeierstrassCurve L) [W.IsElliptic] (Q : W.toAffine.Point) (hQ : addOrderOf Q = N) :
     (W.fullKernelQuotient Q N).Δ ≠ 0 := h h2 W Q hQ
 
+end publicSection

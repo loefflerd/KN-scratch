@@ -1,8 +1,12 @@
-import Definitions.FLT.Def_TaylorWiles_Primes
-import Definitions.KN.Def_MTT_EigenformCoefficientResidueField
-import Theorems.KN.Thm_MTT_Eigenform_coeff_mem_ringOfIntegers
-import Theorems.KN.Thm_MTT_Eigenform_nebentype_mem_ringOfIntegers
-import Mathlib.NumberTheory.NumberField.Ideal.Basic
+module
+
+public import Definitions.FLT.Def_TaylorWiles_Primes
+public import Definitions.KN.Def_MTT_EigenformCoefficientResidueField
+public import Theorems.KN.Thm_MTT_Eigenform_coeff_mem_ringOfIntegers
+public import Theorems.KN.Thm_MTT_Eigenform_nebentype_mem_ringOfIntegers
+public import Mathlib.NumberTheory.NumberField.Ideal.Basic
+
+@[expose] public section publicSection
 
 noncomputable section
 
@@ -89,3 +93,6 @@ structure EigenformResidualGaloisRepresentationData
             (l : 𝓞 f.coefficientField) ^ (k - 1))
 
 end HorizontalPadicL
+end
+
+end publicSection

@@ -1,6 +1,10 @@
-import Definitions.KN.Def_MTT_EigenformCoefficientCompletion
-import Theorems.KN.Thm_AdicCompletion_exists_domain_dvr_complete
-import Mathlib.RingTheory.Valuation.Discrete.IsDiscreteValuationRing
+module
+
+public import Definitions.KN.Def_MTT_EigenformCoefficientCompletion
+public import Theorems.KN.Thm_AdicCompletion_exists_domain_dvr_complete
+public import Mathlib.RingTheory.Valuation.Discrete.IsDiscreteValuationRing
+
+@[expose] public section publicSection
 
 /-!
 The canonical coefficient local field and its valuation. The coefficient
@@ -73,3 +77,6 @@ noncomputable def coefficientLocalFieldValued
     (f.coefficientLocalField ιp))
 
 end MTT.Eigenform
+end
+
+end publicSection

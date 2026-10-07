@@ -8,7 +8,7 @@ Generation 1 means that a node has no imports from this extracted local filetree
 
 The parser reads textual `import` and `public import` commands, resolves module names from file paths, and ignores comments after an import. This intentionally does not reproduce Lean’s elaboration or transitive module-loading behavior.
 
-Classified files: **1402 / 1402** in **1307** dependency nodes, including **95** theorem/solution pairs. Cycles found: **0**. Files with unresolved non-baseline imports: **0**.
+Classified files: **1307 / 1307** in **1307** dependency nodes, including **0** theorem/solution pairs. Cycles found: **0**. Files with unresolved non-baseline imports: **0**.
 
 ## Summary
 
@@ -35,42 +35,42 @@ Classified files: **1402 / 1402** in **1307** dependency nodes, including **95**
 | 19 | 21 | 21 | 0 | 0 |
 | 20 | 16 | 15 | 1 | 0 |
 | 21 | 7 | 7 | 0 | 0 |
-| 22 | 18 | 18 | 0 | 0 |
-| 23 | 13 | 13 | 0 | 0 |
-| 24 | 22 | 22 | 0 | 0 |
-| 25 | 22 | 22 | 0 | 0 |
-| 26 | 14 | 14 | 0 | 0 |
-| 27 | 10 | 10 | 0 | 0 |
-| 28 | 6 | 6 | 0 | 0 |
-| 29 | 6 | 6 | 0 | 0 |
-| 30 | 8 | 8 | 0 | 0 |
-| 31 | 6 | 4 | 2 | 0 |
-| 32 | 2 | 2 | 0 | 0 |
-| 33 | 2 | 2 | 0 | 0 |
-| 34 | 2 | 2 | 0 | 0 |
-| 35 | 2 | 2 | 0 | 0 |
-| 36 | 4 | 0 | 4 | 0 |
-| 37 | 2 | 0 | 2 | 0 |
-| 38 | 2 | 0 | 2 | 0 |
-| 39 | 2 | 0 | 2 | 0 |
-| 40 | 2 | 0 | 2 | 0 |
-| 41 | 2 | 0 | 2 | 0 |
-| 42 | 2 | 0 | 2 | 0 |
-| 43 | 2 | 0 | 2 | 0 |
-| 44 | 2 | 0 | 2 | 0 |
-| 45 | 6 | 0 | 2 | 4 |
-| 46 | 6 | 0 | 2 | 4 |
-| 47 | 4 | 0 | 0 | 4 |
-| 48 | 6 | 0 | 0 | 6 |
+| 22 | 9 | 9 | 0 | 0 |
+| 23 | 7 | 7 | 0 | 0 |
+| 24 | 12 | 12 | 0 | 0 |
+| 25 | 11 | 11 | 0 | 0 |
+| 26 | 7 | 7 | 0 | 0 |
+| 27 | 5 | 5 | 0 | 0 |
+| 28 | 3 | 3 | 0 | 0 |
+| 29 | 3 | 3 | 0 | 0 |
+| 30 | 4 | 4 | 0 | 0 |
+| 31 | 3 | 2 | 1 | 0 |
+| 32 | 1 | 1 | 0 | 0 |
+| 33 | 1 | 1 | 0 | 0 |
+| 34 | 1 | 1 | 0 | 0 |
+| 35 | 1 | 1 | 0 | 0 |
+| 36 | 2 | 0 | 2 | 0 |
+| 37 | 1 | 0 | 1 | 0 |
+| 38 | 1 | 0 | 1 | 0 |
+| 39 | 1 | 0 | 1 | 0 |
+| 40 | 1 | 0 | 1 | 0 |
+| 41 | 1 | 0 | 1 | 0 |
+| 42 | 1 | 0 | 1 | 0 |
+| 43 | 1 | 0 | 1 | 0 |
+| 44 | 1 | 0 | 1 | 0 |
+| 45 | 3 | 0 | 1 | 2 |
+| 46 | 3 | 0 | 1 | 2 |
+| 47 | 2 | 0 | 0 | 2 |
+| 48 | 3 | 0 | 0 | 3 |
 | 49 | 1 | 0 | 0 | 1 |
 | 50 | 2 | 0 | 0 | 2 |
-| 51 | 5 | 0 | 0 | 5 |
-| 52 | 3 | 0 | 0 | 3 |
-| 53 | 2 | 0 | 0 | 2 |
-| 54 | 2 | 0 | 0 | 2 |
-| 55 | 4 | 0 | 0 | 4 |
-| 56 | 2 | 0 | 0 | 2 |
-| 57 | 2 | 0 | 0 | 2 |
+| 51 | 3 | 0 | 0 | 3 |
+| 52 | 2 | 0 | 0 | 2 |
+| 53 | 1 | 0 | 0 | 1 |
+| 54 | 1 | 0 | 0 | 1 |
+| 55 | 2 | 0 | 0 | 2 |
+| 56 | 1 | 0 | 0 | 1 |
+| 57 | 1 | 0 | 0 | 1 |
 
 ## Generation 1
 
@@ -1341,15 +1341,6 @@ Classified files: **1402 / 1402** in **1307** dependency nodes, including **95**
 
 ## Generation 22
 
-- `Solutions/FLT/Sol_ModularCurve_card_eq_natCard_moduliPoint_j_eq_of_EMD.lean`
-- `Solutions/FLT/Sol_ModularCurve_degree_canonicalDivisorOf_modularFunctionFieldBar.lean`
-- `Solutions/FLT/Sol_ModularCurve_finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_gamma1_eq_index.lean`
-- `Solutions/FLT/Sol_ModularCurve_genus_eq_genusFF_modularFunctionFieldBar.lean`
-- `Solutions/FLT/Sol_ModularCurve_hasCanonicalDivisor_modularFunctionFieldBar.lean`
-- `Solutions/FLT/Sol_ModularCurve_samePlace_iff_exists_monodromy.lean`
-- `Solutions/FLT/Sol_ModularCurve_sum_neg_ord_jBar_eq_dedekindPsi.lean`
-- `Solutions/FLT/Sol_ModularForm_exists_rankinCohen_one_qExpansion_eq.lean`
-- `Solutions/FLT/Sol_WeierstrassCurve_zmultiples_eq_of_veluQuotient_j_eq_of_transcendental.lean`
 - `Theorems/FLT/Thm_ModularCurve_card_eq_natCard_moduliPoint_j_eq_of_EMD.lean`
 - `Theorems/FLT/Thm_ModularCurve_degree_canonicalDivisorOf_modularFunctionFieldBar.lean`
 - `Theorems/FLT/Thm_ModularCurve_finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_gamma1_eq_index.lean`
@@ -1363,12 +1354,6 @@ Classified files: **1402 / 1402** in **1307** dependency nodes, including **95**
 ## Generation 23
 
 - `Definitions/FLT/Def_ModularCurve_CycSubRootBridge.lean`
-- `Solutions/FLT/Sol_ModularCurve_LevelN_Descent_fixer_le.lean`
-- `Solutions/FLT/Sol_ModularCurve_ModularPolynomialData_mem_of_isRoot_map_j_of_transcendental_of_odd.lean`
-- `Solutions/FLT/Sol_ModularCurve_functionFieldRiemannRoch_modularFunctionFieldBar.lean`
-- `Solutions/FLT/Sol_ModularCurve_natCard_place_ord_neg_laurentBaseChange_gamma1_eq_natCard_doubleCoset.lean`
-- `Solutions/FLT/Sol_ModularForm_qExpansion_E4_mul_theta_discriminant_sub.lean`
-- `Solutions/FLT/Sol_omegaRow_T2.lean`
 - `Theorems/FLT/Thm_ModularCurve_LevelN_Descent_fixer_le.lean`
 - `Theorems/FLT/Thm_ModularCurve_ModularPolynomialData_mem_of_isRoot_map_j_of_transcendental_of_odd.lean`
 - `Theorems/FLT/Thm_ModularCurve_functionFieldRiemannRoch_modularFunctionFieldBar.lean`
@@ -1380,16 +1365,6 @@ Classified files: **1402 / 1402** in **1307** dependency nodes, including **95**
 
 - `Definitions/FLT/Def_ModularCurve_CycSubRootBridgeN.lean`
 - `Definitions/FLT/Def_ModularCurve_CycSubRootBridgeOdd.lean`
-- `Solutions/FLT/Sol_ModularCurve_ModularPolynomialData_hasRamBound_three_of_isRoot_at_zero_of_odd.lean`
-- `Solutions/FLT/Sol_ModularCurve_ModularPolynomialData_hasRamBound_two_of_isRoot_at_1728_of_odd.lean`
-- `Solutions/FLT/Sol_ModularCurve_ModularPolynomialData_mem_of_isRoot_map_j_of_transcendental.lean`
-- `Solutions/FLT/Sol_ModularCurve_degree_add_one_sub_genusFF_le_finrank_riemannRochSpace.lean`
-- `Solutions/FLT/Sol_ModularCurve_eisenstein4_mul_thetaL_delta_sub_eq_eisenstein6_mul_delta.lean`
-- `Solutions/FLT/Sol_ModularCurve_exists_cuspForm_qExpansion_eq_mul_thetaL_of_isIntegral.lean`
-- `Solutions/FLT/Sol_ModularCurve_exists_cuspForm_qExpansion_eq_mul_thetaL_pow_of_isIntegral.lean`
-- `Solutions/FLT/Sol_ModularCurve_exists_modularForm_gamma1_qExpansion_eq_mul_thetaL_pow_of_isIntegral.lean`
-- `Solutions/FLT/Sol_ModularCurve_ord_eq_neg_width_of_order_eq_mul_ord_of_qExpansion_slash.lean`
-- `Solutions/FLT/Sol_ModularCurve_ord_eq_three_of_ord_pos_and_ord_sub_eq_two_laurentBaseChange_gamma1_algebraicClosure.lean`
 - `Theorems/FLT/Thm_ModularCurve_ModularPolynomialData_hasRamBound_three_of_isRoot_at_zero_of_odd.lean`
 - `Theorems/FLT/Thm_ModularCurve_ModularPolynomialData_hasRamBound_two_of_isRoot_at_1728_of_odd.lean`
 - `Theorems/FLT/Thm_ModularCurve_ModularPolynomialData_mem_of_isRoot_map_j_of_transcendental.lean`
@@ -1403,17 +1378,6 @@ Classified files: **1402 / 1402** in **1307** dependency nodes, including **95**
 
 ## Generation 25
 
-- `Solutions/FLT/Sol_ModularCurve_TatePoint_b3Act_dictN_of_monodromy.lean`
-- `Solutions/FLT/Sol_ModularCurve_TatePoint_fullKernelDiscAt_of_odd.lean`
-- `Solutions/FLT/Sol_ModularCurve_TatePoint_fullKernelIsRootAt_of_odd.lean`
-- `Solutions/FLT/Sol_ModularCurve_exists_cuspForm_qExpansion_eq_coeffMap_mul_thetaL_pow_of_isIntegral.lean`
-- `Solutions/FLT/Sol_ModularCurve_exists_elliptic_cycSub_orbitMap_of_props.lean`
-- `Solutions/FLT/Sol_ModularCurve_exists_tendsto_realizeOf_mul_exp_of_not_mem_toValuationSubring.lean`
-- `Solutions/FLT/Sol_ModularCurve_ord_eq_three_of_ord_pos_and_ord_sub_eq_two_laurentBaseChange_gamma1.lean`
-- `Solutions/FLT/Sol_ModularCurve_ord_jBar_dvd_three_of_pos_of_forall_isRoot_hasRamBound.lean`
-- `Solutions/FLT/Sol_ModularCurve_ord_jBar_sub_1728_dvd_two.lean`
-- `Solutions/FLT/Sol_ModularCurve_thetaL_jq_mul_deltaSeries.lean`
-- `Solutions/FLT/Sol_WeierstrassCurve_fullKernelQuotient_eq_veluQuotient_of_odd.lean`
 - `Theorems/FLT/Thm_ModularCurve_TatePoint_b3Act_dictN_of_monodromy.lean`
 - `Theorems/FLT/Thm_ModularCurve_TatePoint_fullKernelDiscAt_of_odd.lean`
 - `Theorems/FLT/Thm_ModularCurve_TatePoint_fullKernelIsRootAt_of_odd.lean`
@@ -1428,13 +1392,6 @@ Classified files: **1402 / 1402** in **1307** dependency nodes, including **95**
 
 ## Generation 26
 
-- `Solutions/FLT/Sol_ModularCurve_ComplexPlaceDictionaryOf_ramification_eq_one_gamma1.lean`
-- `Solutions/FLT/Sol_ModularCurve_TatePoint_fullKernelDiscAt.lean`
-- `Solutions/FLT/Sol_ModularCurve_even_ord_add_ord_of_not_mem_toValuationSubring_laurentBaseChange_gamma1.lean`
-- `Solutions/FLT/Sol_ModularCurve_ord_jBar_dvd_three.lean`
-- `Solutions/FLT/Sol_ModularCurve_thetaL_jq_mul_eisenstein4_eq_neg_jq_mul_eisenstein6.lean`
-- `Solutions/FLT/Sol_ModularCurve_twelve_mul_genusFF_laurentBaseChange_gamma1_add_six_mul_natCard_doubleCoset_eq_index_add_twelve.lean`
-- `Solutions/FLT/Sol_WeierstrassCurve_exists_functionFieldHom_fullKernelQuotient_pointMapOfPushforward_ker_eq_zmultiples.lean`
 - `Theorems/FLT/Thm_ModularCurve_ComplexPlaceDictionaryOf_ramification_eq_one_gamma1.lean`
 - `Theorems/FLT/Thm_ModularCurve_TatePoint_fullKernelDiscAt.lean`
 - `Theorems/FLT/Thm_ModularCurve_even_ord_add_ord_of_not_mem_toValuationSubring_laurentBaseChange_gamma1.lean`
@@ -1445,11 +1402,6 @@ Classified files: **1402 / 1402** in **1307** dependency nodes, including **95**
 
 ## Generation 27
 
-- `Solutions/FLT/Sol_ModularCurve_TatePoint_fullKernelInjAt.lean`
-- `Solutions/FLT/Sol_ModularCurve_TatePoint_fullKernelIsRootAt.lean`
-- `Solutions/FLT/Sol_ModularCurve_even_ord_add_weightFloor_of_mem_toValuationSubring_laurentBaseChange_gamma1.lean`
-- `Solutions/FLT/Sol_ModularCurve_twelve_mul_genusFF_laurentBaseChange_gamma1_add_six_mul_natCard_doubleCoset_eq_index_add_twelve_of_isAlgClosed.lean`
-- `Solutions/FLT/Sol_ModularForm_exists_gamma1_weightOne_ne_zero_and_mul_thetaL_eq_qExpansion_sq.lean`
 - `Theorems/FLT/Thm_ModularCurve_TatePoint_fullKernelInjAt.lean`
 - `Theorems/FLT/Thm_ModularCurve_TatePoint_fullKernelIsRootAt.lean`
 - `Theorems/FLT/Thm_ModularCurve_even_ord_add_weightFloor_of_mem_toValuationSubring_laurentBaseChange_gamma1.lean`
@@ -1458,28 +1410,18 @@ Classified files: **1402 / 1402** in **1307** dependency nodes, including **95**
 
 ## Generation 28
 
-- `Solutions/FLT/Sol_ModularCurve_exists_divisor_two_mul_eq_ord_add_weightFloor_one_laurentBaseChange_gamma1.lean`
-- `Solutions/FLT/Sol_ModularCurve_exists_elliptic_cycSub_orbitMap.lean`
-- `Solutions/FLT/Sol_ModularForm_exists_linearIndependent_gamma1_dimFormula_le_card_of_even.lean`
 - `Theorems/FLT/Thm_ModularCurve_exists_divisor_two_mul_eq_ord_add_weightFloor_one_laurentBaseChange_gamma1.lean`
 - `Theorems/FLT/Thm_ModularCurve_exists_elliptic_cycSub_orbitMap.lean`
 - `Theorems/FLT/Thm_ModularForm_exists_linearIndependent_gamma1_dimFormula_le_card_of_even.lean`
 
 ## Generation 29
 
-- `Solutions/FLT/Sol_ModularCurve_emd_holds.lean`
-- `Solutions/FLT/Sol_ModularCurve_ord_jBar_sub_eq_one_of_ne_zero_of_ne.lean`
-- `Solutions/FLT/Sol_ModularForm_exists_linearIndependent_gamma1_dimFormula_le_card_of_odd.lean`
 - `Theorems/FLT/Thm_ModularCurve_emd_holds.lean`
 - `Theorems/FLT/Thm_ModularCurve_ord_jBar_sub_eq_one_of_ne_zero_of_ne.lean`
 - `Theorems/FLT/Thm_ModularForm_exists_linearIndependent_gamma1_dimFormula_le_card_of_odd.lean`
 
 ## Generation 30
 
-- `Solutions/FLT/Sol_ModularCurve_exists_divisor_degree_weight_and_isIntegral_of_mem_riemannRochSpace.lean`
-- `Solutions/FLT/Sol_ModularCurve_genus_modularFunctionFieldBar_eq_genusFormula.lean`
-- `Solutions/FLT/Sol_ModularCurve_isIntegral_and_isIntegral_of_smul_D_mem_regularDifferentialsBar.lean`
-- `Solutions/FLT/Sol_ModularForm_exists_linearIndependent_gamma1_dimFormula_le_card.lean`
 - `Theorems/FLT/Thm_ModularCurve_exists_divisor_degree_weight_and_isIntegral_of_mem_riemannRochSpace.lean`
 - `Theorems/FLT/Thm_ModularCurve_genus_modularFunctionFieldBar_eq_genusFormula.lean`
 - `Theorems/FLT/Thm_ModularCurve_isIntegral_and_isIntegral_of_smul_D_mem_regularDifferentialsBar.lean`
@@ -1487,110 +1429,82 @@ Classified files: **1402 / 1402** in **1307** dependency nodes, including **95**
 
 ## Generation 31
 
-- `Solutions/FLT/Sol_CuspForm_dimFormula_le_finrank_gamma0.lean`
-- `Solutions/FLT/Sol_ModularCurve_exists_cuspForm_coeffMap_diffQExpBar_eq_qExpansion_of_mem_regularDifferentialsBar.lean`
-- `Solutions/MTT/Sol_MTT_Cohomology_gammaOne_cuspForm_dimension_lower_bound.lean`
 - `Theorems/FLT/Thm_CuspForm_dimFormula_le_finrank_gamma0.lean`
 - `Theorems/FLT/Thm_ModularCurve_exists_cuspForm_coeffMap_diffQExpBar_eq_qExpansion_of_mem_regularDifferentialsBar.lean`
 - `Theorems/MTT/Thm_MTT_Cohomology_gammaOne_cuspForm_dimension_lower_bound.lean`
 
 ## Generation 32
 
-- `Solutions/FLT/Sol_CuspForm_genusFormula_le_finrank_gamma0_weight_two.lean`
 - `Theorems/FLT/Thm_CuspForm_genusFormula_le_finrank_gamma0_weight_two.lean`
 
 ## Generation 33
 
-- `Solutions/FLT/Sol_HeckeEis_isCompl_range_eichlerShimuraMap_range_conj.lean`
 - `Theorems/FLT/Thm_HeckeEis_isCompl_range_eichlerShimuraMap_range_conj.lean`
 
 ## Generation 34
 
-- `Solutions/FLT/Sol_HeckeEis_exists_eichlerShimura_coeffH1par_binaryFormRepSL_forall_prime.lean`
 - `Theorems/FLT/Thm_HeckeEis_exists_eichlerShimura_coeffH1par_binaryFormRepSL_forall_prime.lean`
 
 ## Generation 35
 
-- `Solutions/FLT/Sol_HeckeEis_exists_eichlerShimura_coeffH1par_binaryFormRepSL.lean`
 - `Theorems/FLT/Thm_HeckeEis_exists_eichlerShimura_coeffH1par_binaryFormRepSL.lean`
 
 ## Generation 36
 
-- `Solutions/MTT/Sol_MTT_Cohomology_parabolicH1_finrank_le_level_two.lean`
-- `Solutions/MTT/Sol_MTT_Cohomology_parabolicH1_finrank_le_levels_three_four_even.lean`
 - `Theorems/MTT/Thm_MTT_Cohomology_parabolicH1_finrank_le_level_two.lean`
 - `Theorems/MTT/Thm_MTT_Cohomology_parabolicH1_finrank_le_levels_three_four_even.lean`
 
 ## Generation 37
 
-- `Solutions/MTT/Sol_MTT_Cohomology_parabolicH1_finrank_le_levels_three_four.lean`
 - `Theorems/MTT/Thm_MTT_Cohomology_parabolicH1_finrank_le_levels_three_four.lean`
 
 ## Generation 38
 
-- `Solutions/MTT/Sol_MTT_Cohomology_parabolicH1_finrank_le_levels_two_three_four.lean`
 - `Theorems/MTT/Thm_MTT_Cohomology_parabolicH1_finrank_le_levels_two_three_four.lean`
 
 ## Generation 39
 
-- `Solutions/MTT/Sol_MTT_Cohomology_parabolicH1_finrank_le_higher_level_weight.lean`
 - `Theorems/MTT/Thm_MTT_Cohomology_parabolicH1_finrank_le_higher_level_weight.lean`
 
 ## Generation 40
 
-- `Solutions/MTT/Sol_MTT_Cohomology_parabolicH1_finrank_le.lean`
 - `Theorems/MTT/Thm_MTT_Cohomology_parabolicH1_finrank_le.lean`
 
 ## Generation 41
 
-- `Solutions/MTT/Sol_MTT_Cohomology_parabolic_period_cocycle_surjective.lean`
 - `Theorems/MTT/Thm_MTT_Cohomology_parabolic_period_cocycle_surjective.lean`
 
 ## Generation 42
 
-- `Solutions/MTT/Sol_MTT_Cohomology_eichler_shimura_span.lean`
 - `Theorems/MTT/Thm_MTT_Cohomology_eichler_shimura_span.lean`
 
 ## Generation 43
 
-- `Solutions/MTT/Sol_MTT_Cohomology_packet_span.lean`
 - `Theorems/MTT/Thm_MTT_Cohomology_packet_span.lean`
 
 ## Generation 44
 
-- `Solutions/MTT/Sol_MTT_Cohomology_signed_packet_multiplicity_one.lean`
 - `Theorems/MTT/Thm_MTT_Cohomology_signed_packet_multiplicity_one.lean`
 
 ## Generation 45
 
-- `Solutions/KN/Sol_MTT_Cohomology_eigenform_hecke_stable_period_lattice.lean`
-- `Solutions/KN/Sol_MTT_Cohomology_eigenform_uniform_hecke_stable_period_lattice.lean`
-- `Solutions/MTT/Sol_MTT_periods_exist.lean`
 - `Theorems/KN/Thm_MTT_Cohomology_eigenform_hecke_stable_period_lattice.lean`
 - `Theorems/KN/Thm_MTT_Cohomology_eigenform_uniform_hecke_stable_period_lattice.lean`
 - `Theorems/MTT/Thm_MTT_periods_exist.lean`
 
 ## Generation 46
 
-- `Solutions/KN/Sol_MTT_Eigenform_coefficientField_finiteDimensional.lean`
-- `Solutions/KN/Sol_MTT_Eigenform_heckeEigenvalue_isIntegral.lean`
-- `Solutions/MTT/Sol_MTT_goal.lean`
 - `Theorems/KN/Thm_MTT_Eigenform_coefficientField_finiteDimensional.lean`
 - `Theorems/KN/Thm_MTT_Eigenform_heckeEigenvalue_isIntegral.lean`
 - `Theorems/MTT/Thm_MTT_goal.lean`
 
 ## Generation 47
 
-- `Solutions/KN/Sol_MTT_Eigenform_coeff_isIntegral.lean`
-- `Solutions/KN/Sol_MTT_numberField_coefficientField.lean`
 - `Theorems/KN/Thm_MTT_Eigenform_coeff_isIntegral.lean`
 - `Theorems/KN/Thm_MTT_numberField_coefficientField.lean`
 
 ## Generation 48
 
-- `Solutions/KN/Sol_HorizontalPadicL_seededEigenform_padicPlace_exists_v2.lean`
-- `Solutions/KN/Sol_MTT_Eigenform_coeff_mem_ringOfIntegers.lean`
-- `Solutions/KN/Sol_MTT_Eigenform_coefficientPrime_isMaximal.lean`
 - `Theorems/KN/Thm_HorizontalPadicL_seededEigenform_padicPlace_exists_v2.lean`
 - `Theorems/KN/Thm_MTT_Eigenform_coeff_mem_ringOfIntegers.lean`
 - `Theorems/KN/Thm_MTT_Eigenform_coefficientPrime_isMaximal.lean`
@@ -1607,40 +1521,31 @@ Classified files: **1402 / 1402** in **1307** dependency nodes, including **95**
 ## Generation 51
 
 - `Definitions/KN/Def_MTT_EigenformCoefficientLocalField.lean`
-- `Solutions/KN/Sol_HorizontalPadicL_coprimeRamification_productFrobeniusClass_exists_v2.lean`
-- `Solutions/KN/Sol_HorizontalPadicL_residualKernel_discr_prime_dvd_level_mul_p.lean`
 - `Theorems/KN/Thm_HorizontalPadicL_coprimeRamification_productFrobeniusClass_exists_v2.lean`
 - `Theorems/KN/Thm_HorizontalPadicL_residualKernel_discr_prime_dvd_level_mul_p.lean`
 
 ## Generation 52
 
-- `Solutions/KN/Sol_HorizontalPadicL_coprimeDiscriminant_simultaneousSeededFrobeniusClass_exists_v2.lean`
 - `Theorems/KN/Thm_HorizontalPadicL_coprimeDiscriminant_simultaneousSeededFrobeniusClass_exists_v2.lean`
 - `Theorems/KN/Thm_MTT_Eigenform_exists_continuous_localField_representation.lean`
 
 ## Generation 53
 
-- `Solutions/KN/Sol_MTT_Eigenform_exists_adic_matrix_representation.lean`
 - `Theorems/KN/Thm_MTT_Eigenform_exists_adic_matrix_representation.lean`
 
 ## Generation 54
 
-- `Solutions/KN/Sol_HorizontalPadicL_eigenform_residualGaloisRepresentation_exists_v2.lean`
 - `Theorems/KN/Thm_HorizontalPadicL_eigenform_residualGaloisRepresentation_exists_v2.lean`
 
 ## Generation 55
 
-- `Solutions/KN/Sol_HorizontalPadicL_disjointRamification_seededFrobeniusClass_exists_v4.lean`
-- `Solutions/KN/Sol_HorizontalPadicL_newEigenform_residualRepresentation_exists_v2.lean`
 - `Theorems/KN/Thm_HorizontalPadicL_disjointRamification_seededFrobeniusClass_exists_v4.lean`
 - `Theorems/KN/Thm_HorizontalPadicL_newEigenform_residualRepresentation_exists_v2.lean`
 
 ## Generation 56
 
-- `Solutions/KN/Sol_HorizontalPadicL_corollary_5_17_v2.lean`
 - `Theorems/KN/Thm_HorizontalPadicL_corollary_5_17_v2.lean`
 
 ## Generation 57
 
-- `Solutions/KN/Sol_HorizontalPadicL_elliptic_curve_nonvanishing.lean`
 - `Theorems/KN/Thm_HorizontalPadicL_elliptic_curve_nonvanishing.lean`

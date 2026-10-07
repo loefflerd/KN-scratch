@@ -1,4 +1,8 @@
-import Definitions.FLT.Def_ModularCurve_CycSubRootBridge
+module
+
+public import Definitions.FLT.Def_ModularCurve_CycSubRootBridge
+
+@[expose] public section publicSection
 
 set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
@@ -95,3 +99,4 @@ end ModularCurve.TatePoint
 
 end
 
+end publicSection

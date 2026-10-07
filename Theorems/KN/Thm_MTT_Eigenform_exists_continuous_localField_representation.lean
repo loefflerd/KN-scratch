@@ -1,7 +1,11 @@
-import Definitions.KN.Def_KN_EigenformResidualGaloisRepresentationV2
-import Definitions.KN.Def_MTT_EigenformCoefficientLocalField
-import Definitions.FLT.Def_GaloisRep_Residual
-import Mathlib.FieldTheory.KrullTopology
+module
+
+public import Definitions.KN.Def_KN_EigenformResidualGaloisRepresentationV2
+public import Definitions.KN.Def_MTT_EigenformCoefficientLocalField
+public import Definitions.FLT.Def_GaloisRep_Residual
+public import Mathlib.FieldTheory.KrullTopology
+
+public section publicSection
 
 noncomputable section
 
@@ -36,3 +40,6 @@ theorem MTT.Eigenform.exists_continuous_localField_representation
                   (f.integralNebentype (l : ZMod N) *
                     (l : 𝓞 f.coefficientField) ^ (k - 1)))) := by
   sorry
+end
+
+end publicSection

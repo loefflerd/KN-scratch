@@ -1,5 +1,9 @@
-import Definitions.KN.Def_MTT_EigenformCoefficientResidueField
-import Mathlib.RingTheory.AdicCompletion.Algebra
+module
+
+public import Definitions.KN.Def_MTT_EigenformCoefficientResidueField
+public import Mathlib.RingTheory.AdicCompletion.Algebra
+
+@[expose] public section publicSection
 
 noncomputable section
 
@@ -35,3 +39,6 @@ theorem coefficientReduction_surjective
   AdicCompletion.evalOneₐ_surjective (f.coefficientPrime ιp)
 
 end MTT.Eigenform
+end
+
+end publicSection

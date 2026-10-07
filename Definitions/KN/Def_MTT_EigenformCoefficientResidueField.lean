@@ -1,9 +1,13 @@
-import Definitions.KN.Def_MTT_EigenformCoefficientPrime
-import Theorems.KN.Thm_MTT_Eigenform_coefficientPrime_isMaximal
-import Theorems.KN.Thm_MTT_Eigenform_coefficientPrime_ne_bot
-import Theorems.KN.Thm_MTT_numberField_coefficientField
-import Mathlib.RingTheory.Ideal.Quotient.HasFiniteQuotients.Basic
-import Mathlib.RingTheory.Ideal.Quotient.HasFiniteQuotients.Norm
+module
+
+public import Definitions.KN.Def_MTT_EigenformCoefficientPrime
+public import Theorems.KN.Thm_MTT_Eigenform_coefficientPrime_isMaximal
+public import Theorems.KN.Thm_MTT_Eigenform_coefficientPrime_ne_bot
+public import Theorems.KN.Thm_MTT_numberField_coefficientField
+public import Mathlib.RingTheory.Ideal.Quotient.HasFiniteQuotients.Basic
+public import Mathlib.RingTheory.Ideal.Quotient.HasFiniteQuotients.Norm
+
+@[expose] public section publicSection
 
 noncomputable section
 
@@ -44,3 +48,6 @@ noncomputable abbrev coefficientResidueFieldFintype
   exact Fintype.ofFinite _
 
 end MTT.Eigenform
+end
+
+end publicSection
