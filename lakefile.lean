@@ -2,6 +2,7 @@ import Lake
 open Lake DSL
 
 package «KNIndependent» where
+  allowNonModules := true
   leanOptions := #[
     ⟨`autoImplicit, false⟩ ]
 
