@@ -4,7 +4,8 @@
 Definitions are individual dependency nodes.  A theorem and its matching
 solution are treated as one dependency node, using the union of their imports.
 Generation 1 contains nodes importing only external baseline modules
-(``Mathlib`` and ``Lean``).  A node is in generation n + 1 when n is the
+(``Mathlib``, ``Lean``, and the separately vendored ``TauCeti`` library).
+A node is in generation n + 1 when n is the
 largest generation among its local dependencies.  Both files in a
 theorem/solution pair therefore always receive the same generation.
 
@@ -26,7 +27,7 @@ from pathlib import Path
 
 SOURCE_DIRECTORIES = ("Definitions", "Theorems", "Solutions")
 PROJECTS = ("FLT", "MTT", "KN")
-EXTERNAL_ROOTS = {"Mathlib", "Lean"}
+EXTERNAL_ROOTS = {"Mathlib", "Lean", "TauCeti"}
 IMPORT_RE = re.compile(
     r"^\s*(?:(?:public|private)\s+)?import\s+"
     r"(?P<module>[A-Za-z_][\w']*(?:\.[A-Za-z_][\w']*)*)\b",
@@ -228,7 +229,8 @@ def render(
         "",
         "Generation 1 means that a node has no imports from this extracted "
         "local filetree: its imports are only external baseline modules "
-        "(`Mathlib...` or Lean’s core `Lean` module), or it has no imports. "
+        "(`Mathlib...`, Lean’s core `Lean` module, or the separately vendored "
+        "`TauCeti...` library), or it has no imports. "
         "For generation *n* > 1, all local dependency nodes have generation "
         "at most *n − 1*, and at least one has generation *n − 1*. "
         "Equivalently, the generation is one plus the maximum generation of "

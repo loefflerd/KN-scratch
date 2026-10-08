@@ -10,6 +10,10 @@ require mathlib from git
   "https://github.com/leanprover-community/mathlib4.git" @
   "f6090c7095e1e56b3464c1daba5f24631f1290d2"
 
+require TauCeti from git
+  "https://github.com/TauCetiProject/TauCeti.git" @
+  "6a02913b2e33f539f63b73b7cdae4a3f18197478"
+
 @[default_target]
 lean_lib «Definitions» where
   globs := #[.submodules `Definitions]
@@ -21,8 +25,3 @@ lean_lib «Theorems» where
 @[default_target]
 lean_lib «Solutions» where
   globs := #[.submodules `Solutions]
-
-@[default_target]
-lean_lib «TauCeti» where
-  globs := #[.submodules `TauCeti]
-  leanOptions := #[⟨`autoImplicit, true⟩]
