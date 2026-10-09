@@ -94,10 +94,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
 namespace P2MW.S_ModularForm_weierstrassP_torsion_qExpansion_package
 
 noncomputable section
@@ -576,6 +572,7 @@ lemma summable_comp_fst_fin {β : Type*} {g : β → ℝ} (hg0 : ∀ b, 0 ≤ g 
         gcongr
         exact hg.sum_le_tsum _ fun b _ ↦ hg0 b
 
+set_option maxHeartbeats 400000 in -- this is needed (DL)
 theorem hasSum_wpMon {N a₁ a₂ : ℕ} (ha₁ : a₁ < N) {τ : ℂ} (hτ : 0 < τ.im) :
     HasSum (fun i : WpIdx ↦ wpMonCoeff N a₁ a₂ i * qN N τ ^ wpMonExp N a₁ i)
       (wpNormSeries N a₁ a₂ τ) := by
@@ -638,6 +635,7 @@ theorem hasSum_wpMon {N a₁ a₂ : ℕ} (ha₁ : a₁ < N) {τ : ℂ} (hτ : 0 
     simp only [Function.comp_apply, hG, wpMonCoeff, wpMonExp, wpTail, Matrix.cons_val_zero,
       Matrix.cons_val_one, Matrix.cons_val, hqdef]
     ring
+   -- giving `f` here speeds elaboration enormously (60435)
   have hall := h1.sum (h2.sum h3)
   have heq : (1 / 12 + if a₁ = 0 then zetaN N ^ a₂ / (1 - zetaN N ^ a₂) ^ 2 else 0) +
       ((if a₁ = 0 then 0 else r / (1 - r) ^ 2) + ∑' p : ℕ+ × ℕ+, wpTail N a₁ a₂ p τ) =
@@ -1310,7 +1308,7 @@ theorem solution (N : ℕ) (hN : N ≠ 0) (L : ℍ → PeriodPair)
     ∧ (∀ n, ∃ q : ℚ, (qExpansion 1 (⇑ModularForm.E₆ : ℍ → ℂ)).coeff n = (q : ℂ))
     ∧ (∀ n, ∃ q : ℚ,
         (qExpansion 1 (ModularForm.discriminant : ℍ → ℂ)).coeff n = (q : ℂ)) := by
-  intro ζ k ζk W
+  extract_lets ζ k ζk W
   obtain rfl := L_eq_periodPairOfTau L hL
   have hW : W = wpNorm N := by
     funext a₁ a₂ τ; rfl
@@ -1323,7 +1321,7 @@ theorem solution (N : ℕ) (hN : N ≠ 0) (L : ℍ → PeriodPair)
   · intro a₁ a₂ b₁ b₂ ha₁ ha₂ ha0 hb₁ hb₂ hb0 heq
     exact wpNorm_eq_imp ha₁ ha₂ ha0 hb₁ hb₂ hb0 (hW ▸ heq)
   · have hζk : ζk = zetaK N := rfl
-    refine ⟨fun a₁ a₂ ↦ if ha₁ : a₁ < N then PowerSeries.mk (wpQCoeffK ha₁ a₂) else 0, ?_, ?_⟩
+    refine ⟨fun a₁ a₂ ↦ if ha₁ : a₁ < N then PowerSeries.mk (hk ▸ wpQCoeffK ha₁ a₂) else 0, ?_, ?_⟩
     · intro a₁ a₂ ha₁ ha₂ h0
       simp only
       rw [dite_eq_left ha₁, hW]

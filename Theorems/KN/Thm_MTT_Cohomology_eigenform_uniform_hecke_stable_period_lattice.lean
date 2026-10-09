@@ -55,7 +55,6 @@ at `_root_.solution`.
 
 section privateSection
 
-set_option maxHeartbeats 4000000
 noncomputable section
 open scoped BigOperators TensorProduct
 open MTT.Cohomology

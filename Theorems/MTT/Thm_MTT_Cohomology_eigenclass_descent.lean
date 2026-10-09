@@ -111,7 +111,6 @@ $\omega^{-1}\phi = \Phi_t$, which extends $\Psi_t$.
 
 section privateSection
 
-set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
 noncomputable section
 open scoped BigOperators TensorProduct

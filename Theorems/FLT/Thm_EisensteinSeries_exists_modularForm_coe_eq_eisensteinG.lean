@@ -67,7 +67,6 @@ Chris Birkbeck; Authors: Chris Birkbeck). See ATTRIBUTION.md and NOTICE in the s
 
 section privateSection
 
-set_option maxHeartbeats 4000000
 set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 

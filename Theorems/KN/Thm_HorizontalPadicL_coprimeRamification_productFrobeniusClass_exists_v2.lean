@@ -57,7 +57,6 @@ full-order seed-character value. This supplies the required `SeededOrderlyFroben
 
 section privateSection
 
-set_option maxHeartbeats 4000000
 noncomputable section
 
 open NumberField Ideal FrobeniusDensity
@@ -337,6 +336,7 @@ theorem ringOfIntegers_isInvariant_galois
     (FaithfulSMul.algebraMap_injective (𝓞 L) L).eq_iff] at hq
   exact ⟨z, hq⟩
 
+set_option maxHeartbeats 400000 in -- this is needed (DL)
 /-- The residual, cyclotomic-congruence, and seed-character Frobenius
 conditions can be imposed in one Chebotarev class because the two relevant
 number fields have coprime ramification. -/
