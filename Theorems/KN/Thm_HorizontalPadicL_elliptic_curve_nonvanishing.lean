@@ -2,10 +2,12 @@ module
 
 public import Definitions.KN.Def_KN_HorizontalPadicL
 
+import Definitions.KN.Def_KN_EllipticCurveAttachedEigenform
+import Theorems.KN.Thm_HorizontalPadicL_attachedEigenform_isNew
+import Theorems.KN.Thm_HorizontalPadicL_attachedEigenform_nonvanishingCount_eq
 import Theorems.KN.Thm_HorizontalPadicL_corollary_5_17_v2
-import Theorems.KN.Thm_HorizontalPadicL_ellipticCurve_eigenform_specialization_v2
 
-section privateSection
+noncomputable section privateSection
 
 open HorizontalPadicL
 
@@ -14,11 +16,12 @@ theorem solution
     (hmod : IsModular E) (hcase1 : d % 4 = 2 ∧ 6 ≤ d) :
     ∃ α : ℝ, 0 < α ∧
       HasLogPowerLowerBound (nonvanishingCount ι E hmod d) α := by
-  obtain ⟨f, hnew, hcount⟩ := ellipticCurve_eigenform_specialization_v2 ι E hmod
+  let f := attachedEigenform ι E hmod
+  have hnew : IsNewEigenform f := attachedEigenform_isNew ι E hmod
   obtain ⟨α, hα, hbound⟩ := corollary_5_17_v2
     (modularConductor_pos E hmod) (by norm_num) (by norm_num) ι f hnew d hcase1
   refine ⟨α, hα, ?_⟩
-  rw [← funext (hcount d)]
+  rw [← funext (attachedEigenform_nonvanishingCount_eq ι E hmod d)]
   exact hbound
 
 end privateSection
