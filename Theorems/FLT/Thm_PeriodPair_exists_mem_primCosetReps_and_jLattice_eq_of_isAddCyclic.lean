@@ -808,9 +808,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 open UpperHalfPlane
 theorem PeriodPair.exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic

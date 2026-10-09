@@ -123,9 +123,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 theorem AlgebraicCurve.weilDualityAdelic_of_isAlgClosed
     {K F : Type*} [Field K] [IsAlgClosed K] [DecidableEq (RatFunc K)]
     [Field F] [Algebra K F]

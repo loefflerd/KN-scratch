@@ -70,9 +70,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 theorem ModularCurve.coeffEmb_injective (L : Type*) [Field L] [Algebra ℚ L] : Function.Injective (ModularCurve.coeffEmb L) := _root_.P2MW.S_ModularCurve_coeffEmb_injective.solution L
 
 end publicSection

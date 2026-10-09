@@ -157,9 +157,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 theorem CongruenceSubgroup.Gamma0_le_closure_T_union_setOf_dvd (M : ℕ) {q : ℕ} (hq : q ≠ 0) :
     CongruenceSubgroup.Gamma0 M ≤ Subgroup.closure

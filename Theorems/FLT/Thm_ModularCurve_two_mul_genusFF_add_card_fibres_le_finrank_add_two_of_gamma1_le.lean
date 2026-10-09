@@ -862,9 +862,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 theorem ModularCurve.two_mul_genusFF_add_card_fibres_le_finrank_add_two_of_gamma1_le
     (M : ℕ) [NeZero M] (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ))
     (hΓ : CongruenceSubgroup.Gamma1 M ≤ Γ)

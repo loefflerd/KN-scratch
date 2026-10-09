@@ -319,9 +319,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 theorem ModularCurve.isIntegral_and_isIntegral_of_mem_riemannRochSpace_weightFloor
     (K : Type*) [Field K] (F : IntermediateField K (LaurentSeries K))

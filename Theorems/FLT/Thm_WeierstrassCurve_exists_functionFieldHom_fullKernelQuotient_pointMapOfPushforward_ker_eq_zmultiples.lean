@@ -968,9 +968,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 theorem WeierstrassCurve.exists_functionFieldHom_fullKernelQuotient_pointMapOfPushforward_ker_eq_zmultiples {F : Type*} [Field F] [DecidableEq F] [CharZero F] [IsAlgClosed F]
     {W : WeierstrassCurve F} [W.toAffine.IsElliptic]
     {Q : W.toAffine.Point} {N : ℕ} [NeZero N] (hord : addOrderOf Q = N)

@@ -799,9 +799,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 open ModularCurve
 theorem ModularCurve.modularFunctionField_eq_full (N : ℕ) [NeZero N] : modularFunctionField N = modularFunctionFieldFull N := _root_.P2MW.S_ModularCurve_modularFunctionField_eq_full.solution N

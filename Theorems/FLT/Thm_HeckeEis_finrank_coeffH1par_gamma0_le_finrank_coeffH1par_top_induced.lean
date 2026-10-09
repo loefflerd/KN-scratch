@@ -543,9 +543,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 open scoped MatrixGroups
 theorem HeckeEis.finrank_coeffH1par_gamma0_le_finrank_coeffH1par_top_induced (N : ℕ) [NeZero N] (n : ℕ)

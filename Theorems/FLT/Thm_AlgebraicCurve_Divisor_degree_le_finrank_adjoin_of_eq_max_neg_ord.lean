@@ -583,9 +583,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 open AlgebraicCurve
 theorem AlgebraicCurve.Divisor.degree_le_finrank_adjoin_of_eq_max_neg_ord

@@ -641,9 +641,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 open scoped MatrixGroups ModularForm in
 theorem ModularCurve.exists_ratCast_qExpansion_slash_of_mem_Gamma0 (M : ℕ) [NeZero M] {k : ℤ}

@@ -85,9 +85,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 open UpperHalfPlane
 theorem ModularCurve.ModularPolynomialData.eval_jLattice_eq_zero_of_isAddCyclic

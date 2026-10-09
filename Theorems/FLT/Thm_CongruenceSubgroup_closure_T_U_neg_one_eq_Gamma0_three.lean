@@ -308,9 +308,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 open scoped MatrixGroups in
 theorem CongruenceSubgroup.closure_T_U_neg_one_eq_Gamma0_three (U : SL(2, ℤ))

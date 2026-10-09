@@ -513,9 +513,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 open ModularCurve
 theorem ModularCurve.dedekindPsi_mul_of_coprime (M N : ℕ) (h : Nat.Coprime M N) : dedekindPsi (M * N) = dedekindPsi M * dedekindPsi N := _root_.P2MW.S_ModularCurve_dedekindPsi_mul_of_coprime.solution M N h

@@ -120,9 +120,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 open IntermediateField AlgebraicCurve
 theorem ModularCurve.restrict_eq_jLinePlaceInfty_iff (N : ℕ) [NeZero N] :

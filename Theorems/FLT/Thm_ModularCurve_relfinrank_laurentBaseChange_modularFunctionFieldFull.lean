@@ -408,9 +408,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 open ModularCurve
 theorem ModularCurve.relfinrank_laurentBaseChange_modularFunctionFieldFull (L : Type*) [Field L] [Algebra ℚ L] (N : ℕ) [NeZero N] : IntermediateField.relfinrank (IntermediateField.adjoin L ({coeffEmb L jq} : Set (LaurentSeries L))) (laurentBaseChange L (modularFunctionFieldFull N)) = IntermediateField.relfinrank (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) (modularFunctionFieldFull N) := _root_.P2MW.S_ModularCurve_relfinrank_laurentBaseChange_modularFunctionFieldFull.solution L N

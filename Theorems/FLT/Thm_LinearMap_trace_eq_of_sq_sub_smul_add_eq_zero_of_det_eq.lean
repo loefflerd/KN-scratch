@@ -101,9 +101,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 theorem LinearMap.trace_eq_of_sq_sub_smul_add_eq_zero_of_det_eq
     {R : Type*} {M : Type*} [CommRing R] [IsDomain R] [AddCommGroup M] [Module R M]

@@ -685,9 +685,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 open ModularCurve AlgebraicCurve
 theorem ModularCurve.exists_divisor_degree_weight_and_isIntegral_of_mem_riemannRochSpace (N : ℕ) [NeZero N] (m : ℕ) (hm : 1 ≤ m) :

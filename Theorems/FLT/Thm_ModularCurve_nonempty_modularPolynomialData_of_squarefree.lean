@@ -560,9 +560,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 open ModularCurve
 theorem ModularCurve.nonempty_modularPolynomialData_of_squarefree (N : ℕ) [NeZero N] (hsf : Squarefree N) (hN : 1 < N) : Nonempty (ModularPolynomialData N) := _root_.P2MW.S_ModularCurve_nonempty_modularPolynomialData_of_squarefree.solution N hsf hN

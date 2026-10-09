@@ -244,9 +244,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 open scoped Classical
 theorem ModularCurve.TatePoint.b3Act_dictN_of_monodromy (N : ℕ) [NeZero N] (j₀ : Qbar)

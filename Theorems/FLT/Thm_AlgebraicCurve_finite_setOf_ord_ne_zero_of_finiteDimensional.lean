@@ -177,9 +177,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 open AlgebraicCurve
 theorem AlgebraicCurve.finite_setOf_ord_ne_zero_of_finiteDimensional {K F' : Type*} [Field K] [Field F'] [Algebra K F']

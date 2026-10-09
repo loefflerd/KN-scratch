@@ -109,9 +109,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 open AlgebraicCurve ModularCurve
 theorem ModularCurve.degree_add_one_sub_genusFF_le_finrank_riemannRochSpace (N : ℕ) [NeZero N]

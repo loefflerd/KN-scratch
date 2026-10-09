@@ -800,9 +800,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 open ModularCurve
 theorem ModularCurve.relfinrank_full_eq_dedekindPsi (N : ℕ) [NeZero N] : IntermediateField.relfinrank (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) (modularFunctionFieldFull N) = dedekindPsi N := _root_.P2MW.S_ModularCurve_relfinrank_full_eq_dedekindPsi.solution N

@@ -2197,9 +2197,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 theorem AlgebraicCurve.tateChainRule
     {K F : Type*} [Field K] [Field F] [Algebra K F]
     {E : Type*} [Field E] [Algebra K E] [Algebra E F] [IsScalarTower K E F]

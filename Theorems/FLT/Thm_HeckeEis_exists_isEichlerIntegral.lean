@@ -166,9 +166,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 open scoped Manifold MatrixGroups
 theorem HeckeEis.exists_isEichlerIntegral (n : ℕ) {f : UpperHalfPlane → ℂ}

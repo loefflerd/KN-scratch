@@ -409,9 +409,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 open scoped IntermediateField
 theorem AlgebraicCurve.finrank_le_and_natCard_places_le_of_constantFieldExtension_adjoin

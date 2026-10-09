@@ -467,9 +467,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 theorem WeierstrassCurve.Affine.hasPrincipalDivisors_of_isAlgClosed {F : Type*} [Field F] [IsAlgClosed F] (W : WeierstrassCurve.Affine F) [W.IsElliptic] : AlgebraicCurve.HasPrincipalDivisors F W.FunctionField := _root_.P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_of_isAlgClosed.solution W
 
 end publicSection

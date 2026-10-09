@@ -76,9 +76,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 open AlgebraicCurve
 theorem P2M.Dup.AlgebraicCurve.Place.deg_eq_one_of_isAlgClosed_of_finite

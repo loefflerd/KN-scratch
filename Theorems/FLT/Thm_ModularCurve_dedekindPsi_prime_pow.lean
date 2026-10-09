@@ -97,9 +97,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 open ModularCurve
 theorem ModularCurve.dedekindPsi_prime_pow (p k : ℕ) (hp : p.Prime) (hk : k ≠ 0) : dedekindPsi (p ^ k) = p ^ k + p ^ (k - 1) := _root_.P2MW.S_ModularCurve_dedekindPsi_prime_pow.solution p k hp hk

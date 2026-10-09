@@ -216,9 +216,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 open scoped Classical
 theorem WeierstrassCurve.fullKernelQuotient_eq_veluQuotient_of_odd {F : Type*} [Field F] [DecidableEq F] (W : WeierstrassCurve F)

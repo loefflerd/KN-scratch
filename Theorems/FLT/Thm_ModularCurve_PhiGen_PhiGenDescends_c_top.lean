@@ -385,9 +385,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 open ModularCurve ModularCurve.PhiGen
 theorem ModularCurve.PhiGen.PhiGenDescends.c_top {K : Type*} [Field K] [Algebra ℚ K] {ℓ : ℕ} [hℓ : Fact (Nat.Prime ℓ)] {ζ : Kˣ} {c : ℕ → LaurentSeries ℚ} (hc : PhiGenDescends ℓ ζ c) : c (ℓ + 1) = 1 := _root_.P2MW.S_ModularCurve_PhiGen_PhiGenDescends_c_top.solution hc

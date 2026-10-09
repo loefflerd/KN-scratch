@@ -174,9 +174,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 theorem ModularCurve.natCard_orbitRelQuotient_zpowers_T_gamma0_eq_cuspCount (N : ℕ) [NeZero N] :
     Nat.card (MulAction.orbitRel.Quotient (Subgroup.zpowers ModularGroup.T)

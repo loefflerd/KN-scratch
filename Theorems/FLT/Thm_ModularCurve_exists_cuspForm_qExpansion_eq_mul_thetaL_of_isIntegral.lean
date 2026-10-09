@@ -228,9 +228,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 open ModularCurve
 theorem ModularCurve.exists_cuspForm_qExpansion_eq_mul_thetaL_of_isIntegral (N : ℕ) [NeZero N]

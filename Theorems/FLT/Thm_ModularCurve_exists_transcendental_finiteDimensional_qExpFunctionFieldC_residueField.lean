@@ -1063,9 +1063,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 set_option synthInstance.maxHeartbeats 400000 in
 theorem ModularCurve.exists_transcendental_finiteDimensional_qExpFunctionFieldC_residueField

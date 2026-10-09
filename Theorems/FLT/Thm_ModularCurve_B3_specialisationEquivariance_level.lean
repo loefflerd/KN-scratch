@@ -2437,9 +2437,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 open ModularCurve ModularCurve.TatePoint ModularCurve.B3
 theorem ModularCurve.B3.specialisationEquivariance_level (N : ℕ) [NeZero N] (j₀ : Qbar) :

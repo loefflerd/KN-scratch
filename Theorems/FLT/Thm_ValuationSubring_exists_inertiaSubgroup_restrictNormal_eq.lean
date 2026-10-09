@@ -160,9 +160,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 theorem ValuationSubring.exists_inertiaSubgroup_restrictNormal_eq
     (L : IntermediateField ℚ (AlgebraicClosure ℚ)) [FiniteDimensional ℚ L] [Normal ℚ L]
     (A : ValuationSubring (AlgebraicClosure ℚ)) (σ : A.inertiaSubgroup ℚ) :

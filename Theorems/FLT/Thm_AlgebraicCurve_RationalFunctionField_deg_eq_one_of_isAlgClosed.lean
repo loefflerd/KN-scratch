@@ -1285,9 +1285,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 open AlgebraicCurve AlgebraicCurve.RationalFunctionField
 theorem AlgebraicCurve.RationalFunctionField.deg_eq_one_of_isAlgClosed (K : Type*) [Field K] [IsAlgClosed K] (v : Place K (RatFunc K)) : v.deg = 1 := _root_.P2MW.S_AlgebraicCurve_RationalFunctionField_deg_eq_one_of_isAlgClosed.solution K v

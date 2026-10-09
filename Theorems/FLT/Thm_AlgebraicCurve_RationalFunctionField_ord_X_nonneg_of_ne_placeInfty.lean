@@ -2414,9 +2414,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 namespace AlgebraicCurve
 theorem RationalFunctionField.ord_X_nonneg_of_ne_placeInfty (K : Type*) [Field K] [DecidableEq (RatFunc K)]

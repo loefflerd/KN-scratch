@@ -88,9 +88,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 theorem ModularCurve.LevelN.isDomain_ring (M : ℕ) [NeZero M] : IsDomain (ModularCurve.LevelN.ring M) := _root_.P2MW.S_ModularCurve_LevelN_isDomain_ring.solution M
 

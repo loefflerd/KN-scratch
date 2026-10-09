@@ -403,9 +403,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 theorem AlgebraicCurve.Place.exists_ord_mul_eq_order_of_hasRamBound
     {K L F : Type*} [Field K] [Field L] [Algebra K L] [Field F] [Algebra K F]
     (φ : F →ₐ[K] HahnSeries ℚ L) {d : ℕ} (hd : 0 < d)

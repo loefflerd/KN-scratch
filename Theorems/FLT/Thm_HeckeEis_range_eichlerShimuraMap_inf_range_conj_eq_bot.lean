@@ -1389,9 +1389,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 open scoped MatrixGroups
 theorem HeckeEis.range_eichlerShimuraMap_inf_range_conj_eq_bot (N : ℕ) [NeZero N] (n : ℕ)

@@ -623,9 +623,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 open ModularCurve
 theorem ModularCurve.laurentBaseChange_adjoin_pair (L : Type*) [Field L] [Algebra ℚ L] (M : ℕ) [NeZero M] (hgenQ : FunctionFieldGeneration M) : laurentBaseChange L (modularFunctionFieldFull M) = IntermediateField.adjoin L {jqModC L, jqNModC L M} := _root_.P2MW.S_ModularCurve_laurentBaseChange_adjoin_pair.solution L M hgenQ

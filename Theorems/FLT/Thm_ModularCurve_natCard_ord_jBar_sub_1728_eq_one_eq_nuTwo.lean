@@ -2287,9 +2287,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 open IntermediateField AlgebraicCurve AlgebraicCurve.RationalFunctionField ModularCurve IsDedekindDomain WithZero IsLocalRing
 theorem ModularCurve.natCard_ord_jBar_sub_1728_eq_one_eq_nuTwo (N : ℕ) [NeZero N]

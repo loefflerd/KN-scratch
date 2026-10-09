@@ -379,9 +379,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 open scoped MatrixGroups
 theorem HeckeEis.exists_basis_coeffH1par_int_complex (n N : ℕ) [NeZero N]

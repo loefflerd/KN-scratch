@@ -121,9 +121,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 open scoped MatrixGroups
 theorem HeckeEis.exists_eichlerShimura_coeffH1par_binaryFormRepSL (N : ℕ) [NeZero N] (n : ℕ) :

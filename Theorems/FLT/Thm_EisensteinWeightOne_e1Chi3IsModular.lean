@@ -3731,9 +3731,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 open EisensteinWeightOne
 theorem EisensteinWeightOne.e1Chi3IsModular : EisensteinWeightOne.E1Chi3IsModular := _root_.P2MW.S_EisensteinWeightOne_e1Chi3IsModular.solution

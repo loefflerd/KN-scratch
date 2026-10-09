@@ -508,9 +508,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 theorem ModularCurve.ComplexPlaceDictionaryOf.ramification_eq_one_gamma1
     (M : ℕ) [NeZero M] (hM : 4 ≤ M)

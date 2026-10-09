@@ -607,9 +607,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 open AlgebraicCurve ModularCurve Polynomial
 theorem ModularCurve.natCard_normalized_algHom_hahnSeries_jBar_sub_eq_toNat_ord (N : ℕ) [NeZero N]

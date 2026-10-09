@@ -528,9 +528,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 open scoped MatrixGroups
 theorem HeckeEis.mem_span_range_coeffH1par_map_rat_complex (n : ℕ) (Γ : Subgroup SL(2, ℤ)) [Group.FG Γ]

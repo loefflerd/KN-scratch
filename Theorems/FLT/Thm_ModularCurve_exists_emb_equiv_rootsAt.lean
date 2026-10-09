@@ -213,9 +213,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 theorem ModularCurve.exists_emb_equiv_rootsAt (N : ℕ) [NeZero N] (data : ModularCurve.ModularPolynomialData N)
     (j₀ : AlgebraicClosure ℚ) :
     ∃ e : ModularCurve.Emb N j₀ ≃ ModularCurve.TatePoint.RootsAt data (ModularCurve.TatePoint.jNear j₀),

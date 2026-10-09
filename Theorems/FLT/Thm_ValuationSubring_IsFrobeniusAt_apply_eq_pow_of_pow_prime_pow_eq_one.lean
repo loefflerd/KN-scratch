@@ -163,9 +163,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 theorem ValuationSubring.IsFrobeniusAt.apply_eq_pow_of_pow_prime_pow_eq_one
     {p q : ℕ} (hp : p.Prime) (hq : q.Prime) (hqp : q ≠ p)

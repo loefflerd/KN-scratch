@@ -149,9 +149,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 theorem ModularCurve.jqModC_mem_intFormRatiosC (K : Type*) [Field K]
     (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ)) :
     ModularCurve.jqModC K ∈ ModularCurve.intFormRatiosC K Γ := _root_.P2MW.S_ModularCurve_jqModC_mem_intFormRatiosC.solution K Γ

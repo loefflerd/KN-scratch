@@ -362,9 +362,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 open ModularCurve ModularCurve.PhiGen
 theorem ModularCurve.PhiGen.aeval_jq_intCoeffs_descent (P : Polynomial ℚ) (hP : IntCoeffs (Polynomial.aeval jq P)) (k : ℕ) : ∃ z : ℤ, P.coeff k = (z : ℚ) := _root_.P2MW.S_ModularCurve_PhiGen_aeval_jq_intCoeffs_descent.solution P hP k

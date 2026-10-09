@@ -223,9 +223,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 open scoped MatrixGroups
 theorem ModularCurve.twelve_mul_add_mul_index_le_finrank_cuspForm_Gamma (N : ℕ) (hN : 2 ≤ N) :

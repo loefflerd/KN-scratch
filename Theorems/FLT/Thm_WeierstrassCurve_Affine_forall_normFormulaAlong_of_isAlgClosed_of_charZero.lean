@@ -92,9 +92,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 open WeierstrassCurve WeierstrassCurve.Affine AlgebraicCurve
 theorem WeierstrassCurve.Affine.forall_normFormulaAlong_of_isAlgClosed_of_charZero

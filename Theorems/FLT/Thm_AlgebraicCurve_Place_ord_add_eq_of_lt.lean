@@ -90,9 +90,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 theorem AlgebraicCurve.Place.ord_add_eq_of_lt {K F : Type*} [Field K] [Field F] [Algebra K F] (v : AlgebraicCurve.Place K F) {f g : F} (hf : f ≠ 0) (hg : g ≠ 0) (h : v.ord f < v.ord g) :
     v.ord (f + g) = v.ord f := _root_.P2MW.S_AlgebraicCurve_Place_ord_add_eq_of_lt.solution v hf hg h
 

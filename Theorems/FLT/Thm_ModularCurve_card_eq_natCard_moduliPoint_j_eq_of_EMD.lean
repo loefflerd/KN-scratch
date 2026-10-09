@@ -94,9 +94,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 theorem ModularCurve.card_eq_natCard_moduliPoint_j_eq_of_EMD (N : ℕ) [NeZero N]
     (j₀ : AlgebraicClosure ℚ) (hEMD : ModularCurve.EMD N j₀)
     (S : Finset (AlgebraicCurve.Place (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar N)))

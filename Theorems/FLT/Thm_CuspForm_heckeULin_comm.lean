@@ -74,9 +74,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 theorem CuspForm.heckeULin_comm {N : ℕ} [NeZero N] (k : ℤ) {p q : ℕ} (hpN : p ∣ N) (hqN : q ∣ N) :
     Commute (CuspForm.heckeULin k hpN) (CuspForm.heckeULin k hqN) := _root_.P2MW.S_CuspForm_heckeULin_comm.solution k hpN hqN
 

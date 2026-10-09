@@ -380,9 +380,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 theorem HahnSeries.hasRamBound_natDegree_factorial_of_isRoot
     {K : Type*} [Field K] [IsAlgClosed K] [CharZero K]
     {p : Polynomial (HahnSeries ℚ K)} (hp : p ≠ 0)

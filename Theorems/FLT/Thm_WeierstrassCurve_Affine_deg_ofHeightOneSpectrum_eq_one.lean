@@ -203,9 +203,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 theorem WeierstrassCurve.Affine.deg_ofHeightOneSpectrum_eq_one {F : Type*} [Field F] [IsAlgClosed F] (W : WeierstrassCurve.Affine F) [IsDedekindDomain W.CoordinateRing] (w : IsDedekindDomain.HeightOneSpectrum W.CoordinateRing) : (AlgebraicCurve.Place.ofHeightOneSpectrum (K := F) (F := W.FunctionField) w).deg = 1 := _root_.P2MW.S_WeierstrassCurve_Affine_deg_ofHeightOneSpectrum_eq_one.solution W w
 
 end publicSection

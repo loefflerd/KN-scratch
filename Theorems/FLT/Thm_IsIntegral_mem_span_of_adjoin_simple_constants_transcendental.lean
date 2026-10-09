@@ -649,9 +649,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 theorem IsIntegral.mem_span_of_adjoin_simple_constants_transcendental {K : Type*}
     [Field K] [Algebra ℂ K]

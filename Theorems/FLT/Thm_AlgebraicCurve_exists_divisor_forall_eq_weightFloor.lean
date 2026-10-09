@@ -110,9 +110,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 theorem AlgebraicCurve.exists_divisor_forall_eq_weightFloor
     (K : Type*) [Field K] {F : Type*} [Field F] [Algebra K F] [AlgebraicCurve.IsCurveOver K F]

@@ -284,9 +284,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 open ModularCurve WeierstrassCurve WeierstrassCurve.Affine
 theorem ModularCurve.natCard_moduliPoint_j_eq_eq_natCard_quot_addOrderOf_eq

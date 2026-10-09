@@ -309,9 +309,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 open ModularCurve
 theorem ModularCurve.exists_algHom_of_isRoot (L : Type*) [Field L] [Algebra ℚ L] (N : ℕ) [NeZero N]

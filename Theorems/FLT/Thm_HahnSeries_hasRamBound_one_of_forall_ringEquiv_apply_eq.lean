@@ -373,9 +373,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 theorem HahnSeries.hasRamBound_one_of_forall_ringEquiv_apply_eq
     {K : Type*} [Field K] [IsAlgClosed K] [CharZero K] {x : HahnSeries ℚ K}
     (hx : ∀ σ : HahnSeries ℚ K ≃+* HahnSeries ℚ K,

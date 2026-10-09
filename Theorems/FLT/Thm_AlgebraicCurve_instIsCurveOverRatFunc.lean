@@ -227,9 +227,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 theorem AlgebraicCurve.instIsCurveOverRatFunc (K : Type*) [Field K] :
     AlgebraicCurve.IsCurveOver K (RatFunc K) := _root_.P2MW.S_AlgebraicCurve_instIsCurveOverRatFunc.solution K
 

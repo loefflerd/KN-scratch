@@ -837,9 +837,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 open WeierstrassCurve
 theorem WeierstrassCurve.veluX_oddOrderSummingSet_injOn_psi2Sq_roots

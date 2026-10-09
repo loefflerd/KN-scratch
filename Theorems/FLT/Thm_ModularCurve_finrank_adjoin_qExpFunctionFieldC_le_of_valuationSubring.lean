@@ -600,9 +600,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 theorem ModularCurve.finrank_adjoin_qExpFunctionFieldC_le_of_valuationSubring
     {L : Type*} [Field L] [Algebra ℚ L] (A : ValuationSubring L)
     {k : Type*} [Field k] (π : A →+* k)

@@ -2431,9 +2431,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 open WeierstrassCurve WeierstrassCurve.Affine AlgebraicCurve
 theorem PeriodPair.exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint

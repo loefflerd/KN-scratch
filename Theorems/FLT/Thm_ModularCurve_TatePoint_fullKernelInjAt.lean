@@ -149,9 +149,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 open scoped Classical
 theorem ModularCurve.TatePoint.fullKernelInjAt (N : ℕ) [NeZero N] : FullKernelInjAt N := _root_.P2MW.S_ModularCurve_TatePoint_fullKernelInjAt.solution N

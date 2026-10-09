@@ -233,9 +233,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 open scoped MatrixGroups
 theorem ModularCurve.Period.existsUnique_isParabolicHom_sup_zpowers_neg_one_apply_eq

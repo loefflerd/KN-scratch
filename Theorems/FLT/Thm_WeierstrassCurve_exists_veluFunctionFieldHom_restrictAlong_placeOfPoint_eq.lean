@@ -8918,9 +8918,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 theorem WeierstrassCurve.exists_veluFunctionFieldHom_restrictAlong_placeOfPoint_eq
     {F : Type*} [Field F] [DecidableEq F] [CharZero F] [IsAlgClosed F]
     {W : WeierstrassCurve F} [W.IsElliptic]

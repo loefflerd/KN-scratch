@@ -116,9 +116,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 theorem WeierstrassCurve.fiberAdd_veluGx_cleared_four {R : Type*} [CommRing R] (W : WeierstrassCurve R) (x y x₀ y₀ : R)
     (hP : W.toAffine.Equation x y) (hQ : W.toAffine.Equation x₀ y₀)
     (hgy : W.veluGy x₀ y₀ = 0) :

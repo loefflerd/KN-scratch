@@ -1174,9 +1174,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 open scoped MatrixGroups
 theorem ModularCurve.natCard_doubleCoset_le_card_fibres_of_finrank_eq_index

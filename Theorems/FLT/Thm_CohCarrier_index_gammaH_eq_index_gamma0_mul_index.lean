@@ -100,9 +100,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 open scoped MatrixGroups in
 theorem CohCarrier.index_gammaH_eq_index_gamma0_mul_index (M : ℕ) [NeZero M]

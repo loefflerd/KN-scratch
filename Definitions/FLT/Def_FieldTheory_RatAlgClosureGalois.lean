@@ -53,9 +53,6 @@ $\overline{\mathbb{Q}}$, and it is imported rather than re-declared by them.
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 instance AlgebraicClosure.Rat.isGalois :
     @IsGalois ℚ _ (AlgebraicClosure ℚ) _ DivisionRing.toRatAlgebra :=

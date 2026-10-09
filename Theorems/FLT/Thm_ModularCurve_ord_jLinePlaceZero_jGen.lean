@@ -126,9 +126,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 open IntermediateField AlgebraicCurve
 theorem ModularCurve.ord_jLinePlaceZero_jGen : ModularCurve.jLinePlaceZero.ord ModularCurve.jGen = 1 := _root_.P2MW.S_ModularCurve_ord_jLinePlaceZero_jGen.solution

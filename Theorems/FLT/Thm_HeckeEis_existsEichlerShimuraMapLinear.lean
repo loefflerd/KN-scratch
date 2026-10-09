@@ -103,9 +103,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 open scoped MatrixGroups ModularForm
 theorem HeckeEis.existsEichlerShimuraMapLinear (n N : ℕ) [NeZero N] :

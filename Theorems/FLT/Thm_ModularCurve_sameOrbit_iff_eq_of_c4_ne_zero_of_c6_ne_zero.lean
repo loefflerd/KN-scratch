@@ -123,9 +123,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 open ModularCurve WeierstrassCurve
 theorem ModularCurve.sameOrbit_iff_eq_of_c4_ne_zero_of_c6_ne_zero (E₀ : WeierstrassCurve (AlgebraicClosure ℚ))

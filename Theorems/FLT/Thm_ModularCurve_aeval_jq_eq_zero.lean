@@ -90,9 +90,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 open ModularCurve IntermediateField
 theorem ModularCurve.aeval_jq_eq_zero {p : Polynomial ℚ} (hp : Polynomial.aeval jq p = 0) : p = 0 := _root_.P2MW.S_ModularCurve_aeval_jq_eq_zero.solution hp

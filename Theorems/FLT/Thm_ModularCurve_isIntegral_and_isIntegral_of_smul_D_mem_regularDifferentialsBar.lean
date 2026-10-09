@@ -412,9 +412,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 open ModularCurve
 theorem ModularCurve.isIntegral_and_isIntegral_of_smul_D_mem_regularDifferentialsBar (N : ℕ) [NeZero N]

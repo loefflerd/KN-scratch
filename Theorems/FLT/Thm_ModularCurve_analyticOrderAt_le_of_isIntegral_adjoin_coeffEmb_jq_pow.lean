@@ -459,9 +459,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 
 open ModularCurve
 theorem ModularCurve.analyticOrderAt_le_of_isIntegral_adjoin_coeffEmb_jq_pow (N : ℕ) {k : ℤ} (m : ℕ)

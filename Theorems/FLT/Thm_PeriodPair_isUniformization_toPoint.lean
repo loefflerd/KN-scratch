@@ -1436,9 +1436,6 @@ end privateSection
 
 public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
 theorem PeriodPair.isUniformization_toPoint (L : PeriodPair) (h : L.DiscriminantNeZero) :
     L.IsUniformization h := _root_.P2MW.S_PeriodPair_isUniformization_toPoint.solution L h
 
