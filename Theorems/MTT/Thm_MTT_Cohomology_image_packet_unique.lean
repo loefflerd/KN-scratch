@@ -1,3 +1,14 @@
+/-
+Based on Prove2Me node MTT.Cohomology.image_packet_unique
+(45a3d1fa-a4ff-4041-8d81-1301a7b99c56) by cbirkbeck (2026-09-06).
+
+Proof based on Prove2Me submission 2b23c98d-9338-43e4-addb-449103450701
+by cbirkbeck (2026-09-06); locally adapted.
+
+Licensed under Apache License 2.0
+(https://www.apache.org/licenses/LICENSE-2.0).
+-/
+
 module
 
 public import Definitions.MTT.Def_MTT_Cohomology_Boundary
@@ -7,6 +18,97 @@ import Theorems.MTT.Thm_MTT_exists_cuspForm_heckePrime_pos
 import Theorems.MTT.Thm_MTT_hasSum_heckePrime
 import Theorems.MTT.Thm_MTT_coeff_eq_of_hecke_recurrence
 import Theorems.MTT.Thm_MTT_period_vanishing
+
+/-!
+# Multiplicity one for the full prime eigenpacket: a class with the packet of $f$ comes from $\mathbf C\,f$
+
+Theorem statement: `MTT.Cohomology.image_packet_unique` (`45a3d1fa-a4ff-4041-8d81-1301a7b99c56`), by
+cbirkbeck, 2026-09-06.
+
+Proof: submission `2b23c98d-9338-43e4-addb-449103450701`, by cbirkbeck, 2026-09-06 (ACCEPTED);
+locally adapted.
+
+Let $f$ be a normalised cuspidal eigenform of weight $k\ge2$ on $\Gamma_1(N)$ with nebentypus
+$\varepsilon$ and eigenvalues $a_\ell$ at every prime ($U_\ell$ at $\ell\mid N$). Let $g\in
+S_k(\Gamma_1(N))$ be a cusp form whose modular symbol $I(g)$ satisfies the nebentype law for
+$\varepsilon$ and the eigen-equations
+
+$$
+T_\ell\,I(g)=a_\ell\,I(g)\qquad\text{for every prime }\ell .
+$$
+
+Then $g=c\,f$ for some $c\in\mathbf C$.
+
+This is multiplicity one for the **full** packet, oldforms and $p$-stabilisations included, and it
+does not need the Atkin–Lehner–Li structure theory. Transferring the equations to $g$ (the
+integration map is injective and Hecke-equivariant), the Hecke equations on Fourier coefficients
+read $b_{\ell m}=a_\ell b_m-\varepsilon(\ell)\ell^{k-1}b_{m/\ell}$ for $\ell\nmid N$ and $b_{\ell
+m}=a_\ell b_m$ for $\ell\mid N$, which determine every coefficient from $b_1$ by strong induction;
+since $f$ satisfies the same recurrences with first coefficient $1$, $g=b_1f$.
+
+**Formalization Note** The hypotheses are placed on the class $I(g)$, as produced by the
+Eichler–Shimura decomposition; the transfer to $g$ uses `IntegralClass`, `HeckeEquivariant`, and the
+vanishing theorem `MTT.period_vanishing`.
+
+## Explanation of the source proof
+
+We reduce multiplicity one for the image of the integration map to four lemmas, which are
+assumptions of this submission, together with the sibling problem `MTT.period_vanishing`.
+
+**Setting.** $I:S_k(\Gamma_1(N))\to H_c$ is linear, has the integral-class property and is
+Hecke-equivariant in the mission's sense; $f$ is the normalised eigenform with nebentypus
+$\varepsilon$ and eigenvalues $a_\ell=\iota(\text{coeff}_\ell)$; $g\in S_k(\Gamma_1(N))$ is a cusp
+form whose class $I(g)$ satisfies the nebentype law for $\iota\circ\varepsilon$ and the Hecke
+equations $T_\ell\,I(g)=a_\ell\,I(g)$ at every prime $\ell$. We must show $g=c\,f$ for some
+$c\in\mathbf C$.
+
+**Step 0: $q$-expansions.** The cusp $\infty$ of $\Gamma_1(N)$ has width one
+(`CongruenceSubgroup.strictPeriods_Gamma1`), so every cusp form $h$ on $\Gamma_1(N)$ satisfies
+$h(\tau)=\sum_{n\ge0}a_n(h)\,q_\tau^{\,n}$ at every $\tau$ (`ModularForm.hasSum_qExpansion`), its
+constant term vanishes (`CuspFormClass.qExpansion_coeff_zero`), and any coefficient sequence
+representing $h$ this way is its $q$-expansion (`ModularFormClass.qExpansion_coeff_unique`). For $f$
+the coefficients are $\iota(\text{coeff}_n)$ by the structure field `coeff_eq`.
+
+**Step 1: injectivity of $I$.** If $I(h)=0$ then the integral-class property gives
+$\binom{k-2}{j}\cdot(\text{modular integral of }h\text{ against }X^j\text{ at }r)=0$ for all $j\le
+k-2$ and $r\in\mathbf Q$; the binomial coefficient is non-zero, so all modular integrals of $h$
+vanish and `MTT.period_vanishing` gives $h=0$. Hence $I$ is injective
+(`injective_of_integralClass`).
+
+**Step 2: the law descends to $g$.** By the child lemma `MTT.Cohomology.character_law_of_class`, the
+nebentype law on the class $I(g)$ implies $g(\gamma z)=\iota(\varepsilon(d))(cz+d)^kg(z)$ for
+$\gamma\in\Gamma_0(N)$: $g$ has nebentypus $\iota\circ\varepsilon$, which we view as the Dirichlet
+character $e=\varepsilon^{\iota}$ (`MulChar.ringHomComp`).
+
+**Step 3: Hecke eigen-equations for $g$.** Fix a prime $\ell$. By the child lemma
+`MTT.exists_cuspForm_heckePrime`, $T_\ell g$ (the mission's pointwise operator with the scalar
+$e(\ell)$) is a cusp form $g_\ell$ on $\Gamma_1(N)$. Hecke-equivariance of $I$ gives
+$I(g_\ell)=T_\ell\,I(g)$ on the level of cochains, and the hypothesis on $I(g)$ turns this into
+$I(g_\ell)=a_\ell\,I(g)=I(a_\ell g)$. Injectivity yields $g_\ell=a_\ell\,g$, i.e. $T_\ell
+g=a_\ell\,g$ pointwise.
+
+**Step 4: the coefficient recurrences.** By the child lemma `MTT.hasSum_heckePrime`, $T_\ell g$ has
+the convergent expansion $\sum_n\big(a_{\ell n}(g)+e(\ell)\ell^{k-1}[\ell\mid
+n]a_{n/\ell}(g)\big)q^n$ at every point; by Step 3 the same function $a_\ell g$ also has the
+expansion $\sum_na_\ell a_n(g)q^n$. Uniqueness of $q$-expansions (applied to the cusp form $a_\ell
+g$) gives, for every prime $\ell$ and $m\ge0$,
+$$a_{\ell m}(g)+e(\ell)\,\ell^{k-1}[\ell\mid m]\,a_{m/\ell}(g)=a_\ell\,a_m(g).$$
+Exactly the same argument with the structure field `eigen` in place of Step 3 gives the same
+recurrences for the coefficients $\iota(\text{coeff}_m)$ of $f$.
+
+**Step 5: conclusion.** Both coefficient sequences satisfy the prime Hecke recurrences with the same
+data, and $f$ is normalised, so the child lemma `MTT.coeff_eq_of_hecke_recurrence` gives
+$a_m(g)=a_1(g)\,\iota(\text{coeff}_m)$ for all $m\ge1$; for $m=0$ both sides vanish (constant terms
+of cusp forms). Therefore $g$ and $a_1(g)\,f$ have the same $q$-expansion at every $\tau$, and
+uniqueness of limits (`HasSum.unique`) gives $g=a_1(g)\,f$ pointwise, hence as cusp forms
+(`CuspForm.ext`). Thus $c=a_1(g)$.
+
+This is the Fourier-coefficient proof of multiplicity one for the full prime eigenpacket
+(Diamond–Shurman §5.8; Williams, Theorem 9.10), run inside $H_c$ through the injective,
+Hecke-equivariant integration map. No non-vanishing of $L$-values is used.
+
+<!-- Generated by add_prove2me_provenance.py -->
+-/
 
 section privateSection
 

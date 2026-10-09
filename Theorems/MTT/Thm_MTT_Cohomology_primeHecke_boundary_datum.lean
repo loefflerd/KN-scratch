@@ -1,9 +1,114 @@
+/-
+Based on Prove2Me node MTT.Cohomology.primeHecke_boundary_datum
+(ac8b4ea0-a8cc-4508-87b5-6b7512bc1066) by cbirkbeck (2026-09-07).
+
+Proof based on Prove2Me submission 7a9462c2-0870-4941-90d2-426bbf1a4402
+by cbirkbeck (2026-09-07); locally adapted.
+
+Licensed under Apache License 2.0
+(https://www.apache.org/licenses/LICENSE-2.0).
+-/
+
 module
 
 public import Definitions.MTT.Def_MTT_Cohomology_Boundary
 
 import Definitions.MTT.Def_MTT_Cohomology_Integration
 import Mathlib.Algebra.Field.ZMod
+
+/-!
+# Prime Hecke operators preserve boundary (Eisenstein) classes with a nebentype law
+
+Theorem statement: `MTT.Cohomology.primeHecke_boundary_datum`
+(`ac8b4ea0-a8cc-4508-87b5-6b7512bc1066`), by cbirkbeck, 2026-09-07.
+
+Proof: submission `7a9462c2-0870-4941-90d2-426bbf1a4402`, by cbirkbeck, 2026-09-07 (ACCEPTED);
+locally adapted.
+
+Let $N\ge1$, $k\ge2$, $n=k-2$, and let $\varepsilon$ be a Dirichlet character modulo $N$ with values
+in $\mathbf C$. Let $\Phi:\mathbf P^1(\mathbf Q)\to\operatorname{Sym}^n\mathbf C^2$ be a boundary
+datum ($\Gamma_1(N)$-equivariant) whose boundary cochain $\partial\Phi(x,y)=\Phi(y)-\Phi(x)$
+satisfies the nebentype law $\partial\Phi(\gamma x,\gamma
+y)=\varepsilon(d)\,\gamma\cdot\partial\Phi(x,y)$ for $\gamma\in\Gamma_0(N)$. Let $\ell$ be a prime
+and let
+$$T_\ell\phi=\sum_{b=0}^{\ell-1}\phi\Big|\begin{pmatrix}1&b\\0&\ell\end{pmatrix}+\varepsilon(\ell)\,\phi\Big|\begin{pmatrix}\ell&0\\0&1\end{pmatrix}$$
+be the mission's prime Hecke operator on cochains.
+
+**Claim.** $T_\ell\,\partial\Phi$ is again the boundary cochain of a boundary datum: there is a
+$\Gamma_1(N)$-equivariant $\Psi$ with $T_\ell\,\partial\Phi=\partial\Psi$.
+
+*Why this holds.* For $\ell\nmid N$ choose $\sigma_\ell\in\Gamma_0(N)$ with
+$\sigma_\ell\equiv\operatorname{diag}(\ell^{-1},\ell)\pmod N$; then
+$\{\beta_b=\begin{pmatrix}1&b\\0&\ell\end{pmatrix}\}_{b}\cup\{\sigma_\ell\alpha\}$,
+$\alpha=\operatorname{diag}(\ell,1)$, is a set of representatives of
+$\Gamma_1(N)\backslash\Gamma_1(N)\operatorname{diag}(1,\ell)\Gamma_1(N)$ (Diamond–Shurman,
+Proposition 5.2.1), and the standard operator
+$\Psi=\sum_b\operatorname{adj}(\beta_b)\cdot\Phi(\beta_b\,\cdot)+\operatorname{adj}(\sigma_\ell\alpha)\cdot\Phi(\sigma_\ell\alpha\,\cdot)$
+on $\operatorname{Hom}_{\Gamma_1(N)}(\operatorname{Div},\operatorname{Sym}^n)$ is well defined and
+$\Gamma_1(N)$-equivariant because right multiplication by $\gamma\in\Gamma_1(N)$ permutes the
+cosets. Since $\partial\Phi$ has the nebentype law and the lower-right entry of $\sigma_\ell$ is
+$\ell$, one has $\partial\Phi|\sigma_\ell\alpha=\varepsilon(\ell)\,\partial\Phi|\alpha$, so
+$T_\ell\partial\Phi=\partial\Psi$. For $\ell\mid N$ one has $\varepsilon(\ell)=0$, $T_\ell=U_\ell$
+is the sum over the $\beta_b$ alone, and the same coset argument applies. (This is the
+boundary/Eisenstein analogue of `exists_cuspForm_heckePrime_pos`, which proves the corresponding
+statement for cusp forms by exactly this coset permutation.)
+
+## Explanation of the source proof
+
+We prove that the prime Hecke operator $T_\ell$ of the mission preserves boundary classes with a
+nebentype law: for a $\Gamma_1(N)$-equivariant $\Phi$ whose coboundary $\partial\Phi$ satisfies
+$\partial\Phi(\gamma x,\gamma y)=\varepsilon(d)\,\gamma\cdot\partial\Phi(x,y)$ on $\Gamma_0(N)$, we
+exhibit a $\Gamma_1(N)$-equivariant $\Psi$ with $T_\ell\partial\Phi=\partial\Psi$.
+
+**Algebra of the operator.** The mission's operator on cochains is
+$T_\ell\phi=\sum_{b<\ell}\phi|\beta_b+\varepsilon(\ell)\,\phi|\alpha$ with
+$\beta_b=\begin{pmatrix}1&b\\0&\ell\end{pmatrix}$, $\alpha=\operatorname{diag}(\ell,1)$ and
+$(\phi|M)(x,y)=\operatorname{adj}(M)\cdot\phi(Mx,My)$. Since each slash is linear,
+$T_\ell\partial\Phi=\partial(T^{\mathrm{pl}}\Phi)$ with
+$(T^{\mathrm{pl}}\Phi)(x)=\sum_b\operatorname{adj}(\beta_b)\cdot\Phi(\beta_bx)+\varepsilon(\ell)\operatorname{adj}(\alpha)\cdot\Phi(\alpha
+x)$ (`primeHecke_boundaryCochain`). The platform's `fractional` action of an integer matrix is the
+action of $GL_2(\mathbf Q)$ on $\mathbf P^1(\mathbf Q)$ (`fractional_eq_smul`), hence multiplicative
+(`fractional_mul`) and equal to `cuspAct` on $SL_2(\mathbf Z)$.
+
+**Coset permutation.** For $\gamma\in\Gamma_0(N)$ and each representative $M_x$, $x\in\mathbf
+P^1(\mathbf F_\ell)$, we have $M_x\gamma=\gamma'M_{\sigma x}$ with $\gamma'\in\Gamma_0(N)$ explicit,
+$\sigma$ the Möbius permutation induced by $\gamma$, and we record the residues of $\gamma'$ modulo
+$N$: $\ell^{[\sigma x=\infty]}\gamma'_{11}\equiv\ell^{[x=\infty]}a$ and
+$\ell^{[x=\infty]}\gamma'_{22}\equiv\ell^{[\sigma x=\infty]}d$ (`key_factor`; the one degenerate
+case, $x=\infty$, $\ell\mid c$, $\ell\mid N$, is excluded and handled separately since then
+$\varepsilon(\ell)=0$). From $M_x\gamma=\gamma'M_{\sigma x}$ and $\det M_x=\det M_{\sigma x}=\ell$
+one gets $\operatorname{adj}(M_x)\gamma'=\gamma\operatorname{adj}(M_{\sigma x})$
+(`adj_mul_of_factor`).
+
+**The case $\ell\nmid N$.** Choose
+$\sigma_\ell=\begin{pmatrix}u&m\\N&\ell\end{pmatrix}\in\Gamma_0(N)$ with $u\ell\equiv1\pmod N$
+(`sigmaL`) and use the standard representatives $\beta_b$ and $\sigma_\ell\alpha$ (`Mstd`). For
+$\delta\in\Gamma_1(N)$ the factorisation becomes $M_x\delta=\gamma''M_{\sigma x}$ with
+$\gamma''\in\Gamma_1(N)$: in the four cases $\gamma''$ is $\gamma'$, $\gamma'\sigma_\ell^{-1}$,
+$\sigma_\ell\gamma'$ or $\sigma_\ell\gamma'\sigma_\ell^{-1}$, and the residue relations above show
+these lie in $\Gamma_1(N)$ (`key_std`). Hence $\Psi(x)=\sum_x\operatorname{adj}(M_x)\cdot\Phi(M_xx)$
+over the standard representatives (`heckeStd`) is $\Gamma_1(N)$-equivariant using only the
+equivariance of $\Phi$ (`heckeStd_equivariant`: reindex the sum along the bijection $\sigma$).
+Finally $\Psi-T^{\mathrm{pl}}\Phi$ is constant: the nebentype law of $\partial\Phi$ at $\sigma_\ell$
+(whose lower-right entry is $\ell$) says $\Phi(\sigma_\ell
+z)-\varepsilon(\ell)\sigma_\ell\cdot\Phi(z)$ is independent of $z$ (`defect_const`), and
+$\operatorname{adj}(\sigma_\ell\alpha)\cdot\Phi(\sigma_\ell\alpha
+x)=\varepsilon(\ell)\operatorname{adj}(\alpha)\cdot\Phi(\alpha x)+K$ (`heckeStd_sub_heckeDatum`);
+constants vanish under $\partial$, so
+$\partial\Psi=\partial(T^{\mathrm{pl}}\Phi)=T_\ell\partial\Phi$.
+
+**The case $\ell\mid N$.** Then $\varepsilon(\ell)=0$ and $T^{\mathrm{pl}}\Phi$ is the $U_\ell$-sum
+over the $\beta_b$ alone; for $\delta\in\Gamma_1(N)$ only the finite cosets occur
+($a+bc\not\equiv0\pmod\ell$ since $a\equiv1$, $c\equiv0$), the factors $\gamma'$ lie in
+$\Gamma_1(N)$ by the residues, and $T^{\mathrm{pl}}\Phi$ itself is equivariant
+(`heckeDatum_equivariant_of_dvd`). In both cases $\Psi$ takes values in $\operatorname{Sym}^{k-2}$
+because the coefficient action preserves homogeneity.
+
+This is the boundary analogue of `exists_cuspForm_heckePrime_pos` (Diamond–Shurman, Proposition
+5.2.1 for the coset representatives).
+
+<!-- Generated by add_prove2me_provenance.py -->
+-/
 
 section privateSection
 

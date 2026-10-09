@@ -1,8 +1,139 @@
+/-
+Based on Prove2Me node MTT.exists_cuspForm_heckePrime_pos
+(8a4189d2-af0f-405c-9f5b-17aecd821b31) by cbirkbeck (2026-09-06).
+
+Proof based on Prove2Me submission c3ce5271-6bf7-4a73-abb5-b720d2e36335
+by cbirkbeck (2026-09-06); locally adapted.
+
+Licensed under Apache License 2.0
+(https://www.apache.org/licenses/LICENSE-2.0).
+-/
+
 module
 
 public import Definitions.MTT.Def_MTT_Arithmetic
 
 import Mathlib.Algebra.Field.ZMod
+
+/-!
+# $T_\ell$ (and $U_\ell$ for $\ell\mid N$) preserves the cusp forms of nebentypus $\varepsilon$ on $\Gamma_1(N)$
+
+Theorem statement: `MTT.exists_cuspForm_heckePrime_pos` (`8a4189d2-af0f-405c-9f5b-17aecd821b31`), by
+cbirkbeck, 2026-09-06.
+
+Proof: submission `c3ce5271-6bf7-4a73-abb5-b720d2e36335`, by cbirkbeck, 2026-09-06 (ACCEPTED);
+locally adapted.
+
+Let $N\ge1$, $k\ge1$, let $\varepsilon$ be a Dirichlet character modulo $N$ with values in $\mathbf
+C$, and let $g\in S_k(\Gamma_1(N))$ have nebentypus $\varepsilon$:
+$$g(\gamma z)=\varepsilon(d)\,(cz+d)^k\,g(z)\qquad\text{for all }\gamma=\begin{pmatrix}a&b\\
+c&d\end{pmatrix}\in\Gamma_0(N),\ z\in\mathfrak H .$$
+For a prime $\ell$ define, as in the mission,
+$$(T_\ell
+g)(z)=\frac1\ell\sum_{b=0}^{\ell-1}g\Big(\frac{z+b}{\ell}\Big)+\varepsilon(\ell)\,\ell^{k-1}\,g(\ell
+z).$$
+When $\ell\nmid N$ this is the classical Hecke operator $T_\ell$ on $S_k(N,\varepsilon)$; when
+$\ell\mid N$ one has $\varepsilon(\ell)=0$ and it is the operator $U_\ell$.
+
+**Claim.** $T_\ell g$ is again a cusp form of weight $k$ on $\Gamma_1(N)$ with nebentypus
+$\varepsilon$. Formally: there is $g'\in S_k(\Gamma_1(N))$ with $g'(z)=(T_\ell g)(z)$ for every $z$,
+and $g'(\gamma z)=\varepsilon(d)(cz+d)^kg'(z)$ for all $\gamma\in\Gamma_0(N)$.
+
+*Why this holds.* For $\ell\nmid N$ the double coset
+$\Gamma_1(N)\begin{pmatrix}1&0\\0&\ell\end{pmatrix}\Gamma_1(N)$ is the disjoint union of the cosets
+$\Gamma_1(N)\begin{pmatrix}1&b\\0&\ell\end{pmatrix}$, $0\le b<\ell$, and
+$\Gamma_1(N)\,\sigma_\ell\begin{pmatrix}\ell&0\\0&1\end{pmatrix}$ with $\sigma_\ell\in SL_2(\mathbf
+Z)$, $\sigma_\ell\equiv\operatorname{diag}(\ell^{-1},\ell)\pmod N$ (Diamond–Shurman, Proposition
+5.2.1); for $\ell\mid N$ the last coset is absent. On forms of nebentypus $\varepsilon$ the diamond
+operator $\langle\ell\rangle$ acts as $\varepsilon(\ell)$, which turns the coset sum into the
+displayed formula (Diamond–Shurman, Proposition 5.3.1 and (5.3)). Directly: right multiplication by
+$\gamma\in\Gamma_0(N)$ permutes the $\ell+1$ matrices $\begin{pmatrix}1&b\\0&\ell\end{pmatrix}$,
+$\begin{pmatrix}\ell&0\\0&1\end{pmatrix}$ up to left factors in $\Gamma_0(N)$ whose lower-right
+entries are congruent to $d$, $\ell d$ or $\ell^{-1}d$ modulo $N$, and the resulting factors
+$\varepsilon(\ell)^{\pm1}$ are absorbed exactly by the coefficient $\varepsilon(\ell)$ in the
+definition. Each summand is holomorphic, and vanishes at every cusp since it is a slash of $g$ by an
+element of $GL_2^+(\mathbf Q)$, so $T_\ell g$ is a cusp form.
+
+*Remark.* The hypothesis $k\ge1$ is needed only because the mission's `heckePrime` writes the
+normalisation $\ell^{k-1}$ with truncated natural-number subtraction, which for $k=0$ no longer
+matches the weight-$k$ slash operator; all weights used in the mission satisfy $k\ge2$. This
+corrects the earlier node `MTT.exists_cuspForm_heckePrime`, stated without this hypothesis.
+
+## Explanation of the source proof
+
+We show that for a cusp form $g\in S_k(\Gamma_1(N))$ of nebentypus $\varepsilon$ and a prime $\ell$,
+the function
+$$(T_\ell
+g)(z)=\frac1\ell\sum_{b=0}^{\ell-1}g\Big(\frac{z+b}{\ell}\Big)+\varepsilon(\ell)\,\ell^{k-1}\,g(\ell
+z)$$
+is again a cusp form on $\Gamma_1(N)$ with nebentypus $\varepsilon$. This is Diamond–Shurman,
+Propositions 5.2.1–5.2.2 and 5.3.1, proved here by an explicit coset-permutation computation rather
+than through the abstract theory of double cosets; the Lean development is a port of the
+corresponding AINTLIB material to the mission's pointwise operator.
+
+**1. The operator as a sum of slashes.** Write $\beta_b=\begin{pmatrix}1&b\\0&\ell\end{pmatrix}$ for
+$b\in\mathbf F_\ell$ (lifted to $\{0,\dots,\ell-1\}$) and
+$\alpha=\begin{pmatrix}\ell&0\\0&1\end{pmatrix}$, and index these $\ell+1$ matrices $M_x$ by
+$x\in\mathbf P^1(\mathbf F_\ell)=\mathbf F_\ell\cup\{\infty\}$ (`Mx`), with coefficients $c_x=1$ for
+$x\in\mathbf F_\ell$ and $c_\infty=\varepsilon(\ell)$ (`cx`). Integer matrices of non-zero
+determinant are viewed in $GL_2(\mathbf Q)\subset GL_2(\mathbf R)$ (`toGL`), and the weight-$k$
+slash of Mathlib gives, for $\det A>0$, $(f|_kA)(\tau)=f(A\tau)\,(\det A)^{k-1}(c\tau+d)^{-k}$
+(`slash_toGL_apply`). Since $\det\beta_b=\det\alpha=\ell$ one finds
+$(g|_k\beta_b)(\tau)=\ell^{-1}g(\tfrac{\tau+b}{\ell})$ and
+$(g|_k\alpha)(\tau)=\ell^{k-1}g(\ell\tau)$, so that
+$$T_\ell g=\sum_{x\in\mathbf P^1(\mathbf F_\ell)}c_x\,\big(g|_kM_x\big)\qquad(\text{`T`,
+`T_apply`}).$$
+The hypothesis $k\ge1$ enters only here: the mission's `heckePrime` writes $\ell^{k-1}$ with
+truncated subtraction.
+
+**2. The nebentypus law in slash form.** For $\gamma\in\Gamma_0(N)$ the hypothesis $g(\gamma
+z)=\varepsilon(d)(cz+d)^kg(z)$ is equivalent to $g|_k\gamma=\varepsilon(d)\,g$ (`slash_of_law`,
+`law_of_slash`), using $\det\gamma=1$ and $cz+d\neq0$.
+
+**3. The coset permutation.** Fix $\gamma=\begin{pmatrix}a&b\\c&d\end{pmatrix}\in\Gamma_0(N)$. Right
+multiplication by $\gamma$ permutes the $\ell+1$ cosets $\Gamma_0(N)M_x$; concretely, $\gamma$
+induces the Möbius map $\sigma$ of $\mathbf P^1(\mathbf F_\ell)$ given by
+$t\mapsto\frac{b+td}{a+tc}$ and $\infty\mapsto d/c$ (with the usual conventions when a denominator
+vanishes; `mob`, `σγ`), which is injective because $ad-bc=1$ (`mob_injective`) and hence bijective
+on the finite set $\mathbf P^1(\mathbf F_\ell)$. The key identity (`key`) is, for every $x$,
+$$c_x\,\big(g|_k(M_x\gamma)\big)=\varepsilon(d)\,c_{\sigma(x)}\,\big(g|_kM_{\sigma(x)}\big).$$
+It is proved by exhibiting in each of the four cases an explicit $\gamma_x\in\Gamma_0(N)$ with
+$M_x\gamma=\gamma_xM_{\sigma(x)}$ and checking the lower-right entries:
+
+- $x=t\in\mathbf F_\ell$ with $u:=a+tc\not\equiv0\pmod\ell$: $\sigma(x)=t'=(b+td)/u$, and
+  $\gamma_x=\begin{pmatrix}u&q\\ \ell c&d-ct'\end{pmatrix}$ where $\ell q=(b+td)-ut'$; its
+  lower-right entry is $\equiv d\pmod N$ because $N\mid c$.
+- $x=t$ with $\ell\mid a+tc$: $\sigma(x)=\infty$ and $\gamma_x=\begin{pmatrix}(a+tc)/\ell&b+td\\
+  c&\ell d\end{pmatrix}$, whose lower-right entry $\ell d$ gives $\varepsilon(\ell
+  d)=\varepsilon(\ell)\varepsilon(d)=\varepsilon(d)\,c_\infty$.
+- $x=\infty$ with $\ell\nmid c$: $\sigma(\infty)=t'=d/c$ and $\gamma_x=\begin{pmatrix}\ell a&b-at'\\
+  c&d'\end{pmatrix}$ with $\ell d'=d-ct'$; then $\varepsilon(\ell)\varepsilon(d')=\varepsilon(\ell
+  d')=\varepsilon(d-ct')=\varepsilon(d)$, again since $N\mid c$.
+- $x=\infty$ with $\ell\mid c$: $\sigma(\infty)=\infty$. If $\ell\nmid N$ then $N\mid c/\ell$ by
+  coprimality and $\gamma_x=\begin{pmatrix}a&\ell b\\ c/\ell&d\end{pmatrix}\in\Gamma_0(N)$; if
+  $\ell\mid N$ then $\varepsilon(\ell)=0$ (a Dirichlet character vanishes on non-units), so both
+  sides of the key identity vanish and no factorisation is needed.
+
+In every case
+$g|_k(M_x\gamma)=(g|_k\gamma_x)|_kM_{\sigma(x)}=\varepsilon(\gamma_x)_{22}\,g|_kM_{\sigma(x)}$ by
+step 2 (`slash_factor`). Summing the key identity over $x$ and reindexing along the bijection
+$\sigma$ gives
+$$(T_\ell g)|_k\gamma=\varepsilon(d)\,T_\ell g\qquad(\text{`T_slash`}),$$
+which is the nebentypus law for $T_\ell g$; for $\gamma\in\Gamma_1(N)$ we have $d\equiv1$ and
+$\varepsilon(d)=1$, so $T_\ell g$ is $\Gamma_1(N)$-invariant.
+
+**4. Holomorphy and the cusps.** Each $g|_kM_x$ is holomorphic (`MDifferentiable.slash`), so $T_\ell
+g$ is. For the cusp condition, let $\mathfrak c$ be a cusp of $\Gamma_1(N)$ and $h\in GL_2(\mathbf
+R)$ with $h\infty=\mathfrak c$; then $(T_\ell g)|_kh=\sum_xc_x\,g|_k(M_xh)$ and
+$(M_xh)\infty=M_x\mathfrak c$. Since $\Gamma_1(N)$ is arithmetic and conjugation by a rational
+matrix preserves arithmetic subgroups, $M_x\mathfrak c$ is again a cusp of $\Gamma_1(N)$
+(`isCusp_toGL_smul`: `IsCusp.smul`, `Subgroup.IsArithmetic.conj` and `isCusp_iff_isCusp_SL2Z`), so
+each term tends to $0$ at $i\infty$ because $g$ is a cusp form, and so does the finite sum
+(`isZeroAtImInfty_sum`). This assembles the cusp form `heckeCuspForm`, and the theorem follows from
+steps 1–3.
+
+<!-- Generated by add_prove2me_provenance.py -->
+-/
 
 noncomputable section privateSection
 

@@ -1,3 +1,14 @@
+/-
+Based on Prove2Me node HorizontalPadicL.eigenform_residualGaloisRepresentation_exists_v2
+(813fe5d1-f931-4a2c-afc7-ad2fac39d094) by davidloeffler (2026-09-20).
+
+Proof based on Prove2Me submission 76b25940-22dd-4d01-a25a-8a961f4b72d2
+by riccardo.brasca (2026-09-23); locally adapted.
+
+Licensed under Apache License 2.0
+(https://www.apache.org/licenses/LICENSE-2.0).
+-/
+
 module
 
 public import Definitions.KN.Def_KN_EigenformResidualGaloisRepresentationV2
@@ -14,6 +25,123 @@ import Mathlib.Topology.Algebra.OpenSubgroup
 import Theorems.FLT.Thm_NumberField_exists_isFrobenius_lift_arithFrobAt
 import Theorems.FLT.Thm_NumberField_exists_valuationSubring_eq_localization
 import Theorems.FLT.Thm_ValuationSubring_isFrobeniusAt_of_forall_smul_sub_pow_mem
+
+/-!
+# The residual Galois representation of a normalized eigenform
+
+Theorem statement: `HorizontalPadicL.eigenform_residualGaloisRepresentation_exists_v2`
+(`813fe5d1-f931-4a2c-afc7-ad2fac39d094`), by davidloeffler, 2026-09-20.
+
+Proof: submission `76b25940-22dd-4d01-a25a-8a961f4b72d2`, by riccardo.brasca, 2026-09-23
+(SKETCH_ACCEPTED); locally adapted.
+
+**This is a formalization of a standard textbook result, so should be low-priority**
+
+Let $N>0$, let $k\geq2$, let $p$ be prime, and let $f$ be a normalized
+algebraic cuspidal Hecke eigenform of level $N$, weight $k$, and nebentype
+$\varepsilon_f$. For every embedding
+$\iota_p:\overline{\mathbf Q}\hookrightarrow\mathbf C_p$, there exists a
+finite Galois extension $L/\mathbf Q$ and a faithful residual representation
+$$
+\bar\rho_{f,\iota_p}:\operatorname{Gal}(L/\mathbf Q)
+\longrightarrow M_2(k_{f,\iota_p})
+$$
+over the canonical finite coefficient residue field. It is unramified outside
+$Np$, and for every prime $\ell\nmid Np$ its arithmetic Frobenius satisfies
+$$
+\operatorname{tr}\bar\rho_{f,\iota_p}(\operatorname{Frob}_\ell)
+=\overline{a_\ell(f)},\qquad
+\det\bar\rho_{f,\iota_p}(\operatorname{Frob}_\ell)
+=\overline{\varepsilon_f(\ell)\ell^{k-1}}.
+$$
+
+The representation is written on the finite Galois group of its kernel field,
+which is equivalent to the usual finite-image representation of the absolute
+Galois group.
+
+## Explanation of the source proof
+
+For a normalized algebraic cuspidal eigenform of level $N>0$ and weight $k\ge2$, fix the embedding
+into $\mathbb C_p$, and write
+
+$$K=K_f,\qquad P=\mathfrak p_{f,\iota_p},\qquad
+\kappa=\mathcal O_K/P.$$
+
+This submission reduces the exact residual-representation statement to **one open child**,
+`MTT.Eigenform.exists_adic_matrix_representation`: Deligne's representation on a stable integral
+lattice over the canonical completion. That characteristic-zero existence theorem is assumed by this
+sketch, not proved here. The reduction to $\kappa$, the faithful finite Galois kernel field,
+unramifiedness, and both required arithmetic Frobenius formulas are proved in the submission using
+existing proved platform lemmas.
+
+The child is the integral form of Deligne–Serre, *Formes modulaires de poids 1*, Theorem 6.1, p.520,
+together with the stable-lattice construction in §6.12, p.523. Despite the paper's title, Theorem
+6.1 explicitly covers weight at least two and arbitrary nebentype; it does not require newness. It
+may be applied over the exact coefficient field $K$. The child supplies a representation
+
+$$\rho:G_{\mathbb Q}\longrightarrow
+\mathrm{GL}_2\!\left(\widehat{\mathcal O}_{K,P}\right),\qquad
+\widehat{\mathcal O}_{K,P}=\varprojlim_n\mathcal O_K/P^n,$$
+
+with finite-level factorization modulo every ideal power, trivial inertia outside $Np$, and the
+characteristic-zero arithmetic Frobenius trace and determinant. These are genuinely integral data;
+neither a residual representation nor its kernel field is assumed.
+
+**Reduction over the prescribed residue field.** The canonical map
+
+$$r:\widehat{\mathcal O}_{K,P}\longrightarrow\mathcal O_K/P$$
+
+is `AdicCompletion.evalOneₐ`. Its composite with the inclusion of $\mathcal O_K$ is exactly the
+target's ideal quotient map. Apply $r$ entrywise to $\rho$. The resulting representation is over the
+specific type `EigenformResidueField f ιp`, with no enlargement or replacement of that field.
+Finite-level factorization follows from the child's congruence statement at exponent one. Ring
+homomorphisms commute with trace and determinant, so reduction gives
+
+$$\operatorname{tr}\bar\rho(\operatorname{Frob}_\ell)
+=\overline{a_\ell(f)},\qquad
+\det\bar\rho(\operatorname{Frob}_\ell)
+=\overline{\varepsilon_f(\ell)\ell^{k-1}}.$$
+
+It also preserves the identity on inertia.
+
+**The faithful kernel field.** A representation factoring through a finite level has open kernel:
+its kernel contains the open fixing subgroup of a finite intermediate extension. Since the absolute
+Galois group is profinite, this kernel is also closed. Its fixed field
+
+$$L=\overline{\mathbb Q}^{\ker\bar\rho}$$
+
+is finite over $\mathbb Q$ and Galois, because the kernel is normal. Infinite Galois correspondence
+identifies its Galois group with the quotient by the kernel. The induced homomorphism into matrices
+is injective. The proof works for an arbitrary monoid target by first passing to the group of units,
+so the target's matrix-monoid formulation introduces no invertibility assumption.
+
+**Unramifiedness at finite primes.** Fix a prime $\ell\nmid Np$ and an ideal $Q\subset\mathcal O_L$
+above $\ell$. Every element of its inertia subgroup lifts to an absolute automorphism acting
+trivially on the residue field of an integral-closure prime. Existing proved lifting lemmas realize
+this automorphism in the inertia subgroup of a valuation above $\ell$. The absolute representation
+kills it. Compatibility with restriction and faithfulness of the descended representation force the
+original finite inertia element to be the identity. Thus the actual ideal inertia group required by
+the target is trivial.
+
+**The chosen arithmetic Frobenius.** Existing proved lemmas lift the target's particular
+`arithFrobAt` at $Q$ to an absolute automorphism and a valuation for which the residue action is
+$x\mapsto x^\ell$. The absolute Frobenius formulas therefore apply to this lift. The descended
+representation agrees with the absolute one after restriction, yielding the target's trace and
+determinant equations for every prime $Q$ above $\ell$.
+
+The top-level `theorem solution` has exactly the original binders and conclusion. All its code is
+free of proof placeholders. Its sole open theorem dependency is the integral Deligne existence
+child; all other imported theorem nodes are already Proved. Completion, coefficient prime, and
+coefficient residue field are concrete constructions, and the finite kernel field is built by Galois
+correspondence.
+
+Sources: [Deligne–Serre (1974), §6](https://publications.ias.edu/sites/default/files/Number24.pdf),
+Theorem 6.1 and §6.12; their arithmetic Frobenius convention is specified on p.513. The integral
+representation and reduction used by the mission appear in [Kriz–Nordentoft, §4, equation
+(4.2)](https://arxiv.org/html/2310.20678v3#S4).
+
+<!-- Generated by add_prove2me_provenance.py -->
+-/
 
 section privateSection
 

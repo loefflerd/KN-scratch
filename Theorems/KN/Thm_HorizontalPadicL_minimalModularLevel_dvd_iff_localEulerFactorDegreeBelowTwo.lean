@@ -1,3 +1,14 @@
+/-
+Based on Prove2Me node HorizontalPadicL.minimalModularLevel_dvd_iff_localEulerFactorDegreeBelowTwo
+(d272ba0e-3251-48b4-a5bb-dd950bb7cf25) by cm_beta (2026-09-21).
+
+Proof based on Prove2Me submission 44d0dea0-61eb-4cf6-afc2-9f484fcf5b93
+by riccardo.brasca (2026-09-23); locally adapted.
+
+Licensed under Apache License 2.0
+(https://www.apache.org/licenses/LICENSE-2.0).
+-/
+
 module
 
 public import Definitions.KN.Def_HorizontalPadicL_LocalEulerFactorDegree
@@ -13,6 +24,113 @@ import Theorems.FLT.Thm_ModularFormClass_qCoeff_comp_heckeDiagMatrix_smul
 import Theorems.FLT.Thm_CuspForm_eq_zero_of_prime_not_dvd_of_qCoeff_eq_zero
 import Theorems.MTT.Thm_MTT_hasSum_heckePrime
 import Theorems.MTT.Thm_MTT_exists_cuspForm_heckePrime_pos
+
+/-!
+# Ramified primes: $p\mid N_E \iff \deg$ local Euler factor $<2$
+
+Theorem statement: `HorizontalPadicL.minimalModularLevel_dvd_iff_localEulerFactorDegreeBelowTwo`
+(`d272ba0e-3251-48b4-a5bb-dd950bb7cf25`), by cm_beta, 2026-09-21.
+
+Proof: submission `44d0dea0-61eb-4cf6-afc2-9f484fcf5b93`, by riccardo.brasca, 2026-09-23 (ACCEPTED);
+locally adapted.
+
+Let $E/\mathbb{Q}$ be a modular elliptic curve with modular conductor $N_E$, and let $p$ be a prime.
+Then $p$ divides the conductor exactly when the local Euler polynomial of $E$ at $p$ has degree
+strictly below two:
+
+$$p\mid N_E \iff \deg L_p(E,\cdot) < 2.$$
+
+This is the ramified direction of the characterisation of the prime support of the minimal modular
+level. Degree below two at $p$ is precisely the signature of bad reduction: the local factor loses a
+root, being linear in the multiplicative case and constant in the additive case, whereas good
+reduction produces the full quadratic factor.
+
+It is stated separately from the unramified direction because the two describe complementary sets of
+primes and are used at different points: arguments about the level need the ramified
+characterisation, while arguments about Euler products away from the level need the unramified one.
+
+## Explanation of the source proof
+
+Let $E/\mathbb Q$ be an elliptic curve whose arithmetic $L$-series is the Fourier series of a
+weight-two cusp form, and let $N$ be the least positive level of such a form. For every prime $p$,
+the proof establishes
+
+$$p\mid N\quad\Longleftrightarrow\quad
+a_{p^{r+2}}=a_p a_{p^{r+1}}\ \text{for every }r\geq0,$$
+
+where $a_n=E.LFunction(n)$. This is the stated equivalence for `modularConductor`; no identification
+with an independently defined arithmetic conductor is assumed.
+
+The argument compares the arithmetic recurrence with the Hecke coefficient formula. A mismatch would
+construct the shifted series $f(pz)$ at the original level. Atkin–Lehner's prime-support descent
+then produces the same original series at the strictly smaller level $N/p$, contradicting
+minimality.
+
+First, the arithmetic coefficients are multiplicative and satisfy $a_1=1$. For the prime ideal of
+$\mathcal O_{\mathbb Q}$ corresponding to $p$, its completed valuation ring has residue field of
+cardinality $p$. Extracting a prime-power coefficient from the Euler product therefore gives the
+corresponding coefficient of the reciprocal local polynomial. The local-polynomial definition has
+the form
+
+$$1-A_pX+b_pX^2,\qquad b_p\in\{0,p\}.$$
+
+Coefficient comparison in its reciprocal identifies $A_p=a_p$ and proves
+
+$$a_{p^{r+2}}=a_pa_{p^{r+1}}-b_pa_{p^r}.$$
+
+Multiplicativity extends this to every index:
+
+$$a_{pn}=a_pa_n-b_p\mathbf1_{p\mid n}a_{n/p}.$$
+
+All the Euler-product and local-coefficient steps are proved in this submission, including the
+rational residue-field comparison. The two possible recurrences cannot both hold, since their
+difference at $r=0$ is $pa_1=p\ne0$.
+
+Choose the coefficient-matching cusp form $f$ at the least level $N$. The existing proved
+prime-Hecke results produce a cusp form $H$ at the same level with coefficients
+
+$$a_n(H)=a_{pn}+d_p\mathbf1_{p\mid n}a_{n/p},\qquad
+d_p=\begin{cases}0&p\mid N,\\p&p\nmid N.\end{cases}$$
+
+The construction restricts $f$ to $\Gamma_1(N)$ with principal character, applies the proved
+Hecke-preservation theorem, and restores $\Gamma_0(N)$ invariance. Its coefficient formula follows
+from the proved convergent-series formula and uniqueness of Fourier coefficients.
+
+Suppose $c=d_p-b_p$ is nonzero. Then the cusp form
+
+$$g=c^{-1}(H-a_pf)$$
+
+has coefficients
+
+$$a_n(g)=\mathbf1_{p\mid n}a_{n/p},\qquad a_p(g)=1.$$
+
+The already-proved vanishing theorem for forms supported on multiples of a prime implies $p\mid N$.
+The inverse-diagonal slash construction gives a cusp form at level $N/p$. After correcting its
+scalar normalization, its coefficients are
+
+$$a_{pn}(g)=a_n.$$
+
+The submission proves this descent using the existing group-generation lemma and rescaling
+coefficient formula. Hence $E$ has a coefficient-matching cusp form at level $N/p<N$, contradicting
+the definition of $N$ by `Nat.find`. Thus $b_p=d_p$. Since $b_p$ is either zero or $p$, the linear
+recurrence holds exactly when $p\mid N$.
+
+The descent follows Atkin–Lehner, *Hecke operators on $\Gamma_0(m)$*, Math. Ann. **185** (1970),
+Lemma 16, p.142, [DOI](https://doi.org/10.1007/BF01359701). The Hecke formulas are those of
+Diamond–Shurman, *A First Course in Modular Forms*, §5.3, Proposition 5.3.1, as formalized by the
+imported proved MTT lemmas.
+
+Formal-code attribution: the inverse-slash descent construction is adapted from the Apache-2.0
+[Fermat's Last Theorem project
+solution](https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536de0d8e75b9a3e9ef/P2M/Sol/S_CuspForm_eq_zero_of_prime_not_dvd_of_qCoeff_eq_zero.lean),
+copyright 2026 Anthropic, PBC. The rational completion residue-field comparison is adapted from
+Riccardo Brasca's Apache-2.0 [Norwich
+project](https://github.com/riccardobrasca/Norwich/blob/master/Norwich/Preliminaries/LFunctionGoodReduction.lean),
+copyright 2026 Riccardo Brasca. The proof retains these notices. All imported theorem nodes were
+already marked Proved; no new open child lemma is assumed.
+
+<!-- Generated by add_prove2me_provenance.py -->
+-/
 
 section privateSection
 

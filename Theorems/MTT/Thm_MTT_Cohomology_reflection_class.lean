@@ -1,7 +1,155 @@
+/-
+Based on Prove2Me node MTT.Cohomology.reflection_class
+(c85142f2-67d2-4548-b57b-a469f28c8e7b) by allychan327 (2026-09-06).
+
+Proof based on Prove2Me submission b65c560e-ff07-4802-bc88-856b821148e6
+by allychan327 (2026-09-06); locally adapted.
+
+Licensed under Apache License 2.0
+(https://www.apache.org/licenses/LICENSE-2.0).
+-/
+
 module
 
 public import Definitions.MTT.Def_MTT_Cohomology
 public import Mathlib.RingTheory.Flat.Basic
+
+/-!
+# The reflection is a Hecke-equivariant involution on modular symbols
+
+Theorem statement: `MTT.Cohomology.reflection_class` (`c85142f2-67d2-4548-b57b-a469f28c8e7b`), by
+allychan327, 2026-09-06.
+
+Proof: submission `b65c560e-ff07-4802-bc88-856b821148e6`, by allychan327, 2026-09-06 (ACCEPTED);
+locally adapted.
+
+Write $J=\begin{pmatrix}-1&0\\0&1\end{pmatrix}$ and let
+$$(\mathcal R\varphi)(x,y) = J\cdot\varphi(Jx,\,Jy)$$
+be the reflection operator on cocycles of weight $n$ with coefficients in a commutative ring $R$; on
+cusps $J$ acts by $r\mapsto -r$ and fixes $\infty$, and on binary forms by $X\mapsto -X$, $Y\mapsto
+Y$.
+This is the involution whose $\pm 1$-eigenspaces cut out the signed modular symbols. The theorem
+asserts three things about $\mathcal R$ on
+$H^1_c(\Gamma_1(N),\operatorname{Sym}^n R^2)$.
+
+**(i) $\mathcal R$ preserves the space.** If $\varphi$ is a $\Gamma_1(N)$-equivariant cocycle with
+values in $\operatorname{Sym}^n$, so is $\mathcal R\varphi$. Equivariance uses that
+$J\Gamma_1(N)J^{-1}=\Gamma_1(N)$, since conjugation by $J$ sends
+$\begin{pmatrix}a&b\\c&d\end{pmatrix}$ to $\begin{pmatrix}a&-b\\-c&d\end{pmatrix}$.
+
+**(ii) $\mathcal R$ commutes with the prime Hecke operators.** For every $\ell$ and every scalar
+$e\in R$,
+$$\mathcal R\bigl(T_\ell^{(e)}\varphi\bigr)=T_\ell^{(e)}\bigl(\mathcal R\varphi\bigr),
+\qquad T_\ell^{(e)}=\sum_{b=0}^{\ell-1}\Bigl|\begin{pmatrix}1&b\\0&\ell\end{pmatrix}
++ e\Bigl|\begin{pmatrix}\ell&0\\0&1\end{pmatrix}.$$
+The identity comes from
+$J\begin{pmatrix}1&b\\0&\ell\end{pmatrix}J=\begin{pmatrix}1&-b\\0&\ell\end{pmatrix}$
+together with
+$\begin{pmatrix}1&-b\\0&\ell\end{pmatrix}=\begin{pmatrix}1&-1\\0&1\end{pmatrix}\begin{pmatrix}1&\ell-b\\0&\ell\end{pmatrix}$:
+the coset representatives are permuted by $b\mapsto \ell-b \pmod \ell$, and the leftover unipotent
+matrix lies in $\Gamma_1(N)$, so it acts trivially on $\varphi$. The second term is fixed because
+$J$ commutes with $\operatorname{diag}(\ell,1)$.
+
+**(iii) $\mathcal R$ preserves the nebentype law.** If $\varphi$ satisfies
+$\varphi(\gamma x,\gamma y)=e(d)\,\gamma\cdot\varphi(x,y)$ for all $\gamma\in\Gamma_0(N)$, then so
+does $\mathcal R\varphi$, with the same character $e$; conjugation by $J$ preserves $\Gamma_0(N)$
+and
+leaves the lower-right entry $d$ unchanged.
+
+Together these say that $\mathcal R$ is an involution of the Hecke module of modular symbols, so the
+signed projections $\tfrac12(1\pm\mathcal R)$ are Hecke-equivariant idempotents. This is the
+algebraic
+input behind every "plus/minus modular symbol" construction.
+
+## Explanation of the source proof
+
+## The reflection is a Hecke-equivariant involution
+
+Throughout, $J=\begin{pmatrix}-1&0\\0&1\end{pmatrix}$, classes are $\Gamma_1(N)$-equivariant
+cocycles
+$\varphi$ on pairs of cusps with values in binary forms of degree $n$ over a commutative ring $R$,
+and
+$$(\mathcal R\varphi)(x,y)=J\cdot\varphi(Jx,Jy),\qquad
+(\varphi|_A)(x,y)=\operatorname{adj}(A)\cdot\varphi(Ax,Ay).$$
+Matrices act on cusps by Möbius transformations and on forms by
+$(\operatorname{act}A\,P)(X,Y)=P((X,Y)A)$.
+
+### 0. Two composition rules for the cusp action
+
+`fractional` is defined by explicit formulas with case splits on vanishing denominators, so
+composition is not free. Two special cases suffice for everything below, and both avoid any
+determinant hypothesis:
+
+* **Left factor with bottom row $(0,1)$.** For $U=\begin{pmatrix}a&b\\0&1\end{pmatrix}$ and any
+  integral $g$, $\ U\cdot(g\cdot x)=(Ug)\cdot x$. The point is that $U$ never sends a finite cusp to
+  $\infty$, so the case split on the outer denominator is trivial and the inner one matches on the
+  nose; the finite case is a one-line clearing of denominators. Both $J$ and the unipotent matrices
+  $\begin{pmatrix}1&t\\0&1\end{pmatrix}$ are of this shape.
+* **Right factor $J$.** For any integral $g$, $\ g\cdot(J\cdot x)=(gJ)\cdot x$. Here $gJ$ negates
+  the
+  first column of $g$, so the two case splits are literally the same condition, and the two values
+  agree after cancelling a sign.
+
+Restricted to $SL_2(\mathbf Z)$, `fractional` agrees with the projective-line action used to define
+`cuspAct`; this is checked directly against the two `OnePoint` formulas.
+
+Finally, $\operatorname{act}$ is a monoid homomorphism, $\operatorname{act}(AB)=\operatorname{act}A
+\circ\operatorname{act}B$, which follows from composing the substitutions $X_i\mapsto\sum_a
+A_{ai}X_a$.
+
+### 1. $\mathcal R$ preserves the space of classes
+
+Homogeneity is preserved because $\operatorname{act}A$ substitutes linear forms, so it multiplies
+degrees by $1$. The cocycle relation is preserved because $\operatorname{act}J$ is additive.
+
+For equivariance, set $\gamma'=J\gamma J$. Then $\gamma'\in SL_2(\mathbf Z)$ (two factors of
+$\det J=-1$), and its entries are $\begin{pmatrix}a&-b\\-c&d\end{pmatrix}$, so
+$\gamma'\in\Gamma_1(N)$
+whenever $\gamma$ is. The two composition rules give
+$$J\cdot(\gamma\cdot x)=(J\gamma)\cdot x=(\gamma'J)\cdot x=\gamma'\cdot(J\cdot x),$$
+using $J^2=1$. Applying the equivariance of $\varphi$ for $\gamma'$ and then
+$J\cdot\operatorname{adj}$-free bookkeeping,
+$$\operatorname{act}J\circ\operatorname{act}\gamma'=\operatorname{act}(J\gamma')
+=\operatorname{act}(\gamma J)=\operatorname{act}\gamma\circ\operatorname{act}J,$$
+which is exactly equivariance of $\mathcal R\varphi$.
+
+### 2. $\mathcal R$ commutes with the prime Hecke operators
+
+The general step is a single lemma. Suppose $A,A'$ are integral matrices and $t\in\mathbf Z$ satisfy
+$$A J = \begin{pmatrix}1&t\\0&1\end{pmatrix}(JA'),\qquad
+J\,\operatorname{adj}(A)\begin{pmatrix}1&t\\0&1\end{pmatrix}=\operatorname{adj}(A')\,J .$$
+Then $\mathcal R(\varphi|_A)=(\mathcal R\varphi)|_{A'}$. Indeed the first identity moves the cusp
+arguments across, at the cost of a unipotent matrix which lies in $\Gamma_1(N)$ for every $t$ and is
+therefore absorbed by the equivariance of $\varphi$; the second identity then matches the two
+coefficient actions.
+
+For
+$T_\ell^{(e)}=\sum_{b=0}^{\ell-1}\big|_{\left(\begin{smallmatrix}1&b\\0&\ell\end{smallmatrix}\right)}
++\,e\big|_{\left(\begin{smallmatrix}\ell&0\\0&1\end{smallmatrix}\right)}$ the hypotheses hold with
+
+* $A=A'=\begin{pmatrix}1&0\\0&\ell\end{pmatrix}$, $t=0$;
+* $A=\begin{pmatrix}1&b\\0&\ell\end{pmatrix}$, $A'=\begin{pmatrix}1&\ell-b\\0&\ell\end{pmatrix}$,
+  $t=1$, for $1\le b\le \ell-1$;
+* $A=A'=\begin{pmatrix}\ell&0\\0&1\end{pmatrix}$, $t=0$.
+
+So $\mathcal R$ permutes the coset terms by the involution $b\mapsto \ell-b \pmod \ell$ of
+$\{0,\dots,\ell-1\}$, and summing over that involution — as an explicit permutation of `Fin l`, so
+the degenerate values $\ell=0,1$ need no special treatment — gives
+$\mathcal R(T_\ell^{(e)}\varphi)=T_\ell^{(e)}(\mathcal R\varphi)$.
+
+### 3. $\mathcal R$ preserves the nebentype law
+
+Same conjugation as in §1, now with $\gamma\in\Gamma_0(N)$: $\gamma'=J\gamma J$ again lies in
+$\Gamma_0(N)$ since its lower-left entry is $-c$, and — this is the point — its lower-right entry is
+the *same* $d$. So the character value $e(d)$ is unchanged, and it commutes past
+$\operatorname{act}J$ because the coefficient action is $R$-linear. $\square$
+
+Together the three statements say that $\mathcal R$ is an involution of the Hecke module of modular
+symbols over any coefficient ring, so $\tfrac12(1\pm\mathcal R)$ are Hecke-equivariant idempotents
+whenever $2$ is invertible — the algebraic input behind every plus/minus modular symbol.
+
+<!-- Generated by add_prove2me_provenance.py -->
+-/
 
 section privateSection
 

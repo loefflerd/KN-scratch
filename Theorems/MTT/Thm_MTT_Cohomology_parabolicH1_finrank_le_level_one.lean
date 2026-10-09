@@ -1,3 +1,14 @@
+/-
+Based on Prove2Me node MTT.Cohomology.parabolicH1_finrank_le_level_one
+(b63334dc-358d-41a2-8950-bab0b08b907f) by cbirkbeck (2026-09-07).
+
+Proof based on Prove2Me submission 3e0d6191-dded-4d74-93f6-f0268922f779
+by cbirkbeck (2026-09-07); locally adapted.
+
+Licensed under Apache License 2.0
+(https://www.apache.org/licenses/LICENSE-2.0).
+-/
+
 module
 
 public import Definitions.MTT.Def_MTT_ParabolicCohomology
@@ -10,6 +21,84 @@ import Mathlib.LinearAlgebra.Trace
 import Mathlib.NumberTheory.ModularForms.LevelOne.DimensionFormula
 import Mathlib.RingTheory.RootsOfUnity.Complex
 import Definitions.MTT.Def_MTT_LevelOnePeriodRelations
+
+/-!
+# The parabolic cohomology dimension bound for all level-one weights
+
+Theorem statement: `MTT.Cohomology.parabolicH1_finrank_le_level_one`
+(`b63334dc-358d-41a2-8950-bab0b08b907f`), by cbirkbeck, 2026-09-07.
+
+Proof: submission `3e0d6191-dded-4d74-93f6-f0268922f779`, by cbirkbeck, 2026-09-07 (ACCEPTED);
+locally adapted.
+
+For every integer weight k >= 2, the complex dimension of the parabolic first cohomology of SL_2(Z)
+with coefficients in Sym^(k-2)(C^2), using the MTT left coefficient action, is at most twice the
+complex dimension of the level-one cusp forms of weight k. This is the complete N=1 case of the MTT
+mission's open theorem MTT.Cohomology.parabolicH1_finrank_le. The proof includes weight two and odd
+weights; it does not assume period-map injectivity or Eichler-Shimura surjectivity.
+
+## Explanation of the source proof
+
+This proves the full level-one specialization of the open MTT parabolic-cohomology dimension bound,
+for every natural weight k >= 2. It is a direct Lean proof, not a sketch and not a proof of the
+arbitrary-level statement.
+
+Write V_n = Sym^n(C^2), R = ST, and W_n = ker(1+rho(S)) intersect ker(1+rho(R)+rho(R)^2), for the
+exact MTT left coefficient action. For n=2m>0 the proof proceeds as follows.
+
+1. Normalize a parabolic cocycle to vanish at T by subtracting a principal cocycle. Evaluation at S
+   is injective on normalized cocycles, because S and T generate SL_2(Z), and lands in W_n. The
+   nonzero principal cocycle of X^n lies in the kernel of the map to parabolic cohomology.
+   Rank-nullity therefore gives dim H^1_par + 1 <= dim W_n.
+
+2. The T-invariant homogeneous polynomials are precisely the multiples of X^n. Dehomogenization
+   gives a periodic one-variable polynomial, hence a constant by infinitely many equal evaluations;
+   homogeneity then gives the polynomial identity. Thus rank(T-1)=n. The image of T-1 vanishes at
+   (0,1), whereas (S-1)X^n evaluates to 1 there, so the images of T-1 and S-1 span V_n. The identity
+   (T-1)P=(ST-1)P-(S-1)TP implies that the images of S-1 and R-1 also span V_n. The corresponding
+   norm kernels consequently sum to V_n. The subspace dimension formula and averaging give
+dim W_n + dim V_n^S + dim V_n^R = n+1.
+
+3. In the monomial basis of V_(2m), S reverses the basis and its only diagonal contribution is
+   (-1)^m. The trace of the projection (1+S)/2 gives
+dim V_(2m)^S = m + (1 if m is even, otherwise 0).
+
+4. For two distinct roots a,b of x^2-x+1, the forms X-aY and X-bY are an invertible linear change of
+   coordinates and are R-eigenvectors. Their degree-n monomials give an eigenbasis. A finite
+   geometric-sum identity yields trace(R on V_(2m))=1,0,-1 as m modulo 3 is 0,1,2. The trace of R^2
+   is the same in even degree. The projection (1+R+R^2)/3 therefore gives
+dim V_(2m)^R = 2*floor(m/3)+1.
+The existence and distinctness of a,b are derived from a primitive complex cube root, not assumed.
+
+5. The resulting formula for dim W_(2m) is compared with mathlib's proved level-one modular-form
+   dimension formula and its rank identity rank M_k=1+rank S_k for even k>=3. This gives dim
+   W_(2m)=2*dim S_(2m+2)+1. Combining with step 1 proves the desired bound in positive even degree.
+
+6. Degree zero is handled directly: a parabolic cocycle in the trivial representation vanishes on T,
+   and the finite order of S forces it to vanish on S, hence everywhere. In odd degree, the central
+   element -I acts by -1; the cocycle identity shows every cocycle is principal. Both cases have
+   zero-dimensional parabolic cohomology.
+
+The source is Zagier's discussion of period-polynomial relations and dimensions: Don Zagier,
+"Periods of modular forms, traces of Hecke operators, and multiple zeta values", RIMS Kokyuroku 843
+(1993), pp. 162-164, https://people.mpim-bonn.mpg.de/zagier/files/kokyuroku/843/fulltext.pdf. The
+source uses a right action; the submission proves all signs and the R=ST convention for the MTT left
+action. The direct coinvariant argument in step 2 replaces the source's invariant-pairing route. Its
+translation-invariant polynomial argument is adapted with attribution from accepted MTT
+boundary-Hecke proof 2c3fe658-d2de-4575-89b3-ebdfcfd22e7e. The earlier normalization and
+dimension-identity steps were independently accepted as d7035dbf-765b-4f4c-9ea9-cccd2f0de372 and
+c4ad7446-3649-4597-8501-07ab515e1e21. The new contribution completes the two fixed-space counts and
+their cusp-form dimension comparison.
+
+The standalone file inlines its algebraic helpers because the verification interface accepts a
+single solution file; the working development is split into focused modules. It imports only frozen
+MTT definitions and mathlib, with no mission theorem imports, no unproved assumptions, and no custom
+axioms. The exact solution passes a local axiom guard with only propext, Classical.choice, and
+Quot.sound. No heartbeat, recursion-depth, or other resource limits are raised. All work was done in
+the isolated checkout; the other contributor's injectivity/Stokes branch was not changed.
+
+<!-- Generated by add_prove2me_provenance.py -->
+-/
 
 section privateSection
 

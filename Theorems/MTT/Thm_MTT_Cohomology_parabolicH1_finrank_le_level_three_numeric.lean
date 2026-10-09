@@ -1,3 +1,14 @@
+/-
+Based on Prove2Me node MTT.Cohomology.parabolicH1_finrank_le_level_three_numeric
+(050efd7e-43de-4610-a47d-62f217227151) by cbirkbeck (2026-09-08).
+
+Proof based on Prove2Me submission 5681162e-df75-4426-b41f-70b64cfff065
+by cbirkbeck (2026-09-08); locally adapted.
+
+Licensed under Apache License 2.0
+(https://www.apache.org/licenses/LICENSE-2.0).
+-/
+
 module
 
 public import Definitions.MTT.Def_MTT_ParabolicCohomology
@@ -15,6 +26,111 @@ import Mathlib.RingTheory.SimpleRing.Principal
 import Definitions.MTT.Def_MTT_LevelOnePeriodRelations
 import Theorems.FLT.Thm_CongruenceSubgroup_closure_T_U_neg_one_eq_Gamma0_three
 import Theorems.MTT.Thm_MTT_Cohomology_normalizedParabolic_finrank
+
+/-!
+# The odd-degree numeric parabolic cohomology bound at level three
+
+Theorem statement: `MTT.Cohomology.parabolicH1_finrank_le_level_three_numeric`
+(`050efd7e-43de-4610-a47d-62f217227151`), by cbirkbeck, 2026-09-08.
+
+Proof: submission `5681162e-df75-4426-b41f-70b64cfff065`, by cbirkbeck, 2026-09-08 (ACCEPTED);
+locally adapted.
+
+Let $n>0$ be odd. For the MTT binary-form action, the parabolic cohomology of $\Gamma_1(3)$
+satisfies
+
+$$\dim_{\mathbf C}H^1_{\mathrm{par}}(\Gamma_1(3),\operatorname{Sym}^n\mathbf C^2)\le
+2\left(\left\lfloor\frac{n+2}{3}\right\rfloor-1\right).$$
+
+This is the cohomological estimate for the remaining level-three odd-weight MTT comparison. It
+retains the contribution of the order-three elliptic generator; no torsion-free small-level
+assumption is made.
+
+## Explanation of the source proof
+
+# The elliptic correction at level three
+
+Let (n>0) be odd, and write (V_n=\operatorname{Sym}^n\mathbf C^2)
+with the MTT left binary-form action. We prove
+
+$$\dim H^1_{\mathrm{par}}(\Gamma_1(3),V_n)
+\le 2\left(\left\lfloor\frac{n+2}{3}\right\rfloor-1\right).$$
+
+## Generators and the two dimension losses
+
+Put
+
+$$T=\begin{pmatrix}1&1\\0&1\end{pmatrix},\qquad
+U=\begin{pmatrix}1&0\\-3&1\end{pmatrix},\qquad
+E=TU=\begin{pmatrix}-2&1\\-3&1\end{pmatrix}.$$
+
+The already-Proved level-three generator theorem gives
+\(\Gamma_0(3)=\langle T,U,-I\rangle\). Since (T,U\in\Gamma_1(3))
+and \(-I\notin\Gamma_1(3)\), removing the disjoint central sign gives
+\(\Gamma_1(3)=\langle T,U\rangle\). Also (E^3=1).
+
+For a normalized parabolic cocycle (c), so (c(T)=0), evaluation at (E)
+is injective: (c(E)=\rho(T)c(U)), and values on (T,U) determine a cocycle.
+Write (r=\rho(E)) and (A=1+r+r^2). The relation (E^3=1) implies
+
+$$c(E)\in\ker A.$$
+
+This injection is not surjective. Parabolicity at the rational cusp fixed by
+(U) implies (c(U)\in\operatorname{im}(\rho(U)-1)). Thus every (c(E))
+vanishes when evaluated at ((X,Y)=(1,-1)). In contrast,
+
+$$Q=(r-1)Y^n\in\ker A,\qquad Q(1,-1)=-(-1)^n\ne0.$$
+
+Hence the normalized cocycle space has dimension at least one less than
+\(\ker A\). The previously proved normalization-kernel theorem accounts
+for a further one-dimensional difference between normalized cocycles and
+parabolic cohomology. Since \(\operatorname{im}A=\ker(r-1)\), rank-nullity
+gives
+
+$$\dim H^1_{\mathrm{par}}+\dim\ker(r-1)+1\le n.$$
+
+## Computing the elliptic fixed space
+
+The matrix (E) is conjugate to \(-ST\) by (ST^{-1}). In odd degree the
+central sign acts by (-1), so the traces of (r,r^2) reduce to the traces
+of (ST,(ST)^2) with their correct signs. Choose the distinct roots (a,b)
+of (x^2-x+1). The products
+
+$$(X-aY)^j(X-bY)^{n-j},\qquad 0\le j\le n,$$
+
+form an eigenbasis for the (ST)-action, with eigenvalues
+(a^j b^{n-j}). The geometric-sum identity and (a^3=b^3=-1) evaluate
+these traces explicitly. If (n=2m+1), both traces of (r) and (r^2)
+are (-1,1,0) according as (m\bmod3) is (0,1,2).
+
+Averaging over the cyclic group of order three is a projection onto its
+fixed space. Taking its trace therefore proves
+
+$$\dim\ker(r-1)=2\left\lfloor\frac{m+2}{3}\right\rfloor.$$
+
+Substituting this value into the preceding cohomology inequality and
+separating the three residue classes yields the claimed bound. In particular,
+the degree-one and degree-three parabolic cohomology spaces vanish.
+
+## Dependencies and verification
+
+The platform inputs are the proved
+[level-three generator theorem](p2m:theorem/ee2e87fa-6ddf-5fb1-b8a6-43ad24a595b2)
+and [normalization-kernel theorem](p2m:theorem/3352ccf6-5b8e-4aca-90ec-e016d14106d8).
+The remaining algebra, basis construction, trace calculation and dimension
+arguments are supplied explicitly. The fixed-space computation has only the
+standard Lean axioms. The final local and standalone axiom checks additionally
+contain the expected `sorryAx` from exact mirrors of these already-Proved
+inputs, not from an open dependency or an admitted step in this proof.
+
+The submitted file uses default heartbeat and recursion limits and contains
+no `sorry`, custom axiom or `native_decide`. Legacy options in the frozen
+level-three input are not copied into this submission. No AINTLIB source was
+needed for this algebraic step. The independent cusp-form lower bound is not
+assumed here; it is a separate remaining input to the MTT comparison.
+
+<!-- Generated by add_prove2me_provenance.py -->
+-/
 
 section privateSection
 

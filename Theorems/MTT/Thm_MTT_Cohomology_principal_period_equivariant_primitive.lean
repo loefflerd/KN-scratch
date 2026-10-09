@@ -1,9 +1,134 @@
+/-
+Based on Prove2Me node MTT.Cohomology.principal_period_equivariant_primitive
+(51de8e1b-f1d7-4aa0-8950-e5ab91f7d45b) by davidloeffler (2026-09-07).
+
+Proof based on Prove2Me submission 0e6bb8da-f243-43a3-be8c-a3cb5f9fc207
+by davidloeffler (2026-09-07); locally adapted.
+
+Licensed under Apache License 2.0
+(https://www.apache.org/licenses/LICENSE-2.0).
+-/
+
 module
 
 public import Definitions.MTT.Def_MTT_PeriodPairing
 
 import Mathlib.Analysis.Complex.HasPrimitives
 import Mathlib.NumberTheory.ModularForms.LFunction
+
+/-!
+# A principal mixed period cocycle admits an equivariant primitive
+
+Theorem statement: `MTT.Cohomology.principal_period_equivariant_primitive`
+(`51de8e1b-f1d7-4aa0-8950-e5ab91f7d45b`), by davidloeffler, 2026-09-07.
+
+Proof: submission `0e6bb8da-f243-43a3-be8c-a3cb5f9fc207`, by davidloeffler, 2026-09-07 (ACCEPTED);
+locally adapted.
+
+Let $N>0$, $k\ge2$, $n=k-2$, and let $g,h,v\in S_k(\Gamma_1(N))$ satisfy $\overline{v(z)}=h(-\bar
+z)$. Write $F_f$ for the mission's cusp primitive, normalized by $-2\pi
+i\int_r^{i\infty}f(z)(zX+Y)^n\,dz$, and $\rho=\operatorname{diag}(-1,1)$. Suppose
+$P\in\operatorname{Sym}^n\mathbb C^2$ satisfies
+$$F_g(\gamma\infty)+\rho\cdot F_h(\rho\gamma\infty)=\gamma\cdot P-P\quad(\gamma\in\Gamma_1(N)).$$
+Then there exists a homogeneous-polynomial-valued primitive $U$ on the upper half-plane such that
+$$U(\gamma z)=\gamma\cdot U(z),\qquad dU=g(z)(zX+Y)^n\,dz-\overline{v(z)}(\bar zX+Y)^n\,d\bar z.$$
+Moreover, in every cusp chart and every fixed bounded horizontal strip, each coefficient of
+$\delta^{-1}\cdot U(\delta z)$ has at most polynomial growth as $\operatorname{Im}z\to\infty$, for
+every $\delta\in\mathrm{SL}_2(\mathbb Z)$. The primitive need not tend to zero.
+
+**Formalization Note** The derivative is expressed coefficientwise as a real Fréchet derivative on
+the open upper half-plane. The primitive is represented by an arbitrary extension to $\mathbb C$; no
+conditions are imposed outside the upper half-plane. Its derivative is unnormalized; the fixed
+factor $2\pi i$ in the cusp primitive is removed in passing to $U$.
+
+## Explanation of the source proof
+
+Let $N>0$, $k\ge2$, $n=k-2$, and let $g,h,v\in S_k(\Gamma_1(N))$ satisfy
+
+$$\overline{v(z)}=h(-\bar z).$$
+
+Suppose the normalized mixed cusp cocycle is principal:
+
+$$P_g(\gamma\infty)+\rho\cdot P_h(\rho\gamma\infty)=\gamma\cdot P-P,
+\qquad P\in\operatorname{Sym}^n\mathbb C^2,\quad \rho=\operatorname{diag}(-1,1).$$
+
+We construct an equivariant primitive
+
+$$U(z)=G_g(z)-\overline{G_v(z)}+\frac{P}{2\pi i},$$
+
+where the bar on a polynomial means coefficientwise conjugation and $G_f$ is the holomorphic
+polynomial-valued primitive normalized to vanish at infinity. It satisfies
+
+$$dU=g(z)(zX+Y)^n\,dz-\overline{v(z)}(\bar zX+Y)^n\,d\bar z.$$
+
+In fact, each coefficient of $\delta^{-1}\cdot U(\delta z)$ is uniformly bounded on every strip
+$|\Re z|\le W$, $\Im z\ge1$, for every $\delta\in\mathrm{SL}_2(\mathbb Z)$. Thus the exponent in the
+requested polynomial-growth bound can be taken to be zero.
+
+**Existing primitive construction.** The proof reuses, with attribution, Chris Birkbeck's
+(`cbirkbeck`) accepted Prove2Me submission `919ac521-842b-4cd0-a813-afe3d8eacaf5` proving
+`MTT.Cohomology.cuspPrimitive_slash_relation`. Its `MTT.Eichler` infrastructure proves existence of
+normalized holomorphic primitives, their transport under integral Möbius transformations,
+exponential decay for the coefficients of slashed cusp forms, and the identity
+
+$$P_f(\delta\infty)=2\pi i\,K_f(\delta),$$
+
+where $K_f(\delta)$ is the constant in the transport formula. The reused infrastructure is included
+in the submitted source; it introduces no unproved hypotheses or open theorem imports.
+
+**Reflection and normalization.** Directly from the vertical-integral definition and the hypothesis
+on $v$,
+
+$$\overline{P_v(x)}=\rho\cdot P_h(\rho x).$$
+
+At a rational cusp $r$, this follows coefficientwise from
+
+$$\overline{\int_0^\infty v(r+it)(r+it)^j\,dt}
+=(-1)^j\int_0^\infty h(-r+it)(-r+it)^j\,dt.$$
+
+Conjugation commutes with the Bochner integral and the coefficient action of every integral matrix.
+Applying the transport formula to $\gamma\in\Gamma_1(N)$ gives
+
+$$G_f(\gamma z)=\gamma\cdot G_f(z)+(2\pi i)^{-1}P_f(\gamma\infty).$$
+
+The scalar $(2\pi i)^{-1}$ changes sign under conjugation. Consequently, the transformation defect
+of $G_g-\overline{G_v}$ is
+
+$$(2\pi i)^{-1}\big(P_g(\gamma\infty)+\overline{P_v(\gamma\infty)}\big)
+=(2\pi i)^{-1}(\gamma\cdot P-P).$$
+
+Adding $P/(2\pi i)$ cancels this defect and proves equivariance. This also fixes the sign of the
+constant correction.
+
+**Derivative and homogeneity.** The normalized coefficient primitives have complex derivatives equal
+to the corresponding coefficients of $f(z)(zX+Y)^n$. Restricting these derivatives to real scalars,
+and composing the second with complex conjugation, gives the stated real Fréchet derivative of $U$.
+Homogeneity follows from the finite sum of degree-$n$ monomials, preservation of homogeneity by
+coefficient conjugation, and the hypothesis on $P$.
+
+**Uniform bounds in cusp charts.** First consider a holomorphic scalar function $F$ with exponential
+decay on every fixed vertical strip, and its normalized primitive $G_F$. On the imaginary axis,
+$G_F(iy)\to0$. For large $y$, the horizontal fundamental theorem of calculus gives
+
+$$G_F(x+iy)-G_F(iy)=\int_0^x F(t+iy)\,dt.$$
+
+Uniform exponential decay bounds this difference uniformly for $|x|\le W$. The remaining
+finite-height rectangle is compact, and continuity bounds the primitive there. Hence $G_F$ is
+uniformly bounded on the entire strip above height one.
+
+Apply this to each coefficient integrand of $f|_k\delta$. The transport identity implies
+
+$$\delta^{-1}\cdot G_f(\delta z)=G_{f|_k\delta}(z)+\delta^{-1}\cdot K_f(\delta).$$
+
+Finite sums of bounded coefficient primitives and the fixed polynomial on the right remain bounded.
+Apply this to $g$ and $v$; coefficient conjugation preserves absolute values and commutes with the
+integral coefficient action. Adding the fixed correction $P/(2\pi i)$ gives the claimed bound for
+$U$.
+
+This proves the target directly, with no further open analytic obligations.
+
+<!-- Generated by add_prove2me_provenance.py -->
+-/
 
 section privateSection
 

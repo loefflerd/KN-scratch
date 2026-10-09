@@ -1,3 +1,14 @@
+/-
+Based on Prove2Me node MTT.distribution_relation
+(e07f94dc-21ef-44fc-b6df-d72bd0f0dc6b) by davidloeffler (2026-09-05).
+
+Proof based on Prove2Me submission fb1d1260-8329-4338-b082-f7177d36d846
+by allychan327 (2026-09-06); locally adapted.
+
+Licensed under Apache License 2.0
+(https://www.apache.org/licenses/LICENSE-2.0).
+-/
+
 module
 
 public import Definitions.MTT.Def_MTT_Measures
@@ -5,6 +16,132 @@ public import Definitions.MTT.Def_MTT_Measures
 import Mathlib.NumberTheory.ModularForms.LFunction
 import Mathlib.NumberTheory.ModularForms.Identities
 import Mathlib.Tactic.FinCases
+
+/-!
+# Compatibility of polynomial disk moments under refinement
+
+Theorem statement: `MTT.distribution_relation` (`e07f94dc-21ef-44fc-b6df-d72bd0f0dc6b`), by
+davidloeffler, 2026-09-05.
+
+Proof: submission `fb1d1260-8329-4338-b082-f7177d36d846`, by allychan327, 2026-09-06 (ACCEPTED);
+locally adapted.
+
+For an ordinary root and any period system, each signed degree-j disk moment at positive depth n
+equals the sum of its p refinements at depth n+1. This holds for every integer center, both signs,
+and all 0 ≤ j ≤ k−2. The disk moments are defined by (10.2), with the correction term at depth n−1.
+
+## Explanation of the source proof
+
+## Statement
+
+Fix a prime $p$, a level $N\ge1$, a weight $k\ge2$, embeddings $\iota:\overline{\mathbf Q}\to\mathbf
+C$ and $\iota_p:\overline{\mathbf Q}\to\mathbf C_p$, a normalized algebraic cuspidal Hecke eigenform
+$f$, a signed period system $P$, and an ordinary root $\alpha$ of the Hecke polynomial at $p$.
+Writing $M_{s,j}(n,a)$ for the disk moment of MTT (10.2), we prove that for every sign $s$, every
+degree $0\le j\le k-2$, every depth $n\ge1$ and every centre $a\in\mathbf Z$,
+
+$$\sum_{b=0}^{p-1} M_{s,j}\bigl(n+1,\;a+bp^{n}\bigr)\;=\;M_{s,j}(n,a).$$
+
+The $p$ residue disks of depth $n+1$ inside the disk $a+p^{n}\mathbf Z_p$ carry moments summing to
+the moment of the disk itself: the prescribed data is a distribution, not merely a function on
+disks.
+
+## Proof idea
+
+Two independent facts combine. The first is analytic: the modular symbols attached to $f$ satisfy
+the Hecke relation at $p$, obtained by integrating the eigenform equation $T_pf=a_pf$ along vertical
+lines. The second is algebraic: the $\alpha$-stabilization built into (10.2),
+
+$$M_{s,j}(n,a)=\alpha^{-n}\Lambda_j\bigl(a,p^{n}\bigr)-\frac{\varepsilon(p)p^{k-2}}{\alpha^{n+1}}\,\Lambda_j\bigl(a,p^{n-1}\bigr),$$
+
+is designed exactly so that the two-term Hecke recursion telescopes; the telescoping closes because
+$\alpha$ satisfies $\alpha^{2}-a_p\alpha+\varepsilon(p)p^{k-1}=0$. Neither fact alone suffices: the
+unstabilized symbols do **not** form a distribution, and the stabilization is not additive for a
+root of the wrong quadratic.
+
+Throughout, $\Lambda_j(c,m)$ denotes the algebraic signed modular symbol `algebraicSymbol`, and
+$V_j(r)=\int_0^{\infty}f(r+iy)\,y^{j}\,dy$ the vertical moment.
+
+## Step 1: the algebraic symbol is a vertical moment
+
+The symbol $\Lambda_j(c,m)$ is defined as $\sum_{t\le j}\binom jt m^{t}c^{j-t}\,P_{s,t}(-c/m)$, i.e.
+the substitution $X\mapsto mX+c$ applied to the normalized signed values. Expanding each signed
+integral by the binomial theorem, $\lambda(f,X^{t};r)=2\pi\sum_{l\le t}\binom tl
+r^{t-l}i^{l}V_l(r)$, and then collapsing the resulting double sum, gives
+
+$$\omega_s\cdot\iota\Lambda_j(c,m)\;=\;\pi\,(im)^{j}\Bigl(V_j(-c/m)+\operatorname{sign}(s)(-1)^{j}V_j(c/m)\Bigr).$$
+
+The collapse is binomial inversion: after exchanging the order of summation, the inner sum is
+$\binom ju(c+(-c))^{\,j-u}=\binom ju0^{\,j-u}$, so only the top term $u=j$ survives, and the whole
+substitution $X\mapsto mX+c$ contributes just the factor $m^{j}$. This is `centered_collapse`
+together with `symbol_closed`. Every quantity of degree below $j$ has disappeared, and the symbol
+depends on $(c,m)$ only through the single rational number $c/m$.
+
+Two consequences are immediate. First, the bracket — call it $W(c/m)$ — is invariant under integer
+translation of its argument, because $V_j$ is, the eigenform being $1$-periodic. Hence
+$\Lambda_j(a+bp^{n},p^{n})=\Lambda_j(a,p^{n})$, so the sum over $b$ of the *correction* terms of
+(10.2) is simply $p\,\Lambda_j(a,p^{n})$. Second, the Hecke relation need only be proved for $V_j$.
+
+## Step 2: the Hecke relation for vertical moments
+
+Let $z=r+iu$ with $u>0$. The eigenform equation reads
+
+$$\frac1p\sum_{b=0}^{p-1}f\Bigl(\frac{z+b}{p}\Bigr)+\varepsilon(p)p^{k-1}f(pz)=a_p\,f(z).$$
+
+Multiply by $u^{j}$ and integrate over $u\in(0,\infty)$. The substitutions $y=u/p$ on the left and
+$w=pu$ on the right are exact changes of variables on $(0,\infty)$, each contributing an explicit
+power of $p$, and the finite sum passes through the integral because each summand is integrable.
+Every integrability statement needed reduces to one fact: for a cusp form on $\Gamma_1(N)$ and a
+rational $r$, the translate $z\mapsto f(r+z)$ has a convergent Mellin transform, which is the strong
+functional-equation pair attached to the translated form. The result is
+
+$$p^{\,j+1}\sum_{b=0}^{p-1}V_j\Bigl(\frac{r+b}{p}\Bigr)=p\,a_p\,V_j(r)-\varepsilon(p)\,p^{\,k-j-1}\,V_j(pr),$$
+
+which is `hecke_vm`. Applying it at $r$ and at $-r$ and adding — the reflected sum $\sum_b
+V_j\bigl(-(r+b)/p\bigr)$ equals $\sum_b V_j\bigl((-r+b)/p\bigr)$ after the involution $b\mapsto
+(p-b)\bmod p$ and one period shift — gives the same identity for the symmetrized $W$.
+
+Combining with Step 1 and cancelling the nonzero period $\omega_s$, and then the injectivity of
+$\iota$ on $\overline{\mathbf Q}$, yields a purely algebraic statement in $\overline{\mathbf Q}$:
+
+$$\sum_{b=0}^{p-1}\Lambda_j\bigl(a+bp^{n},p^{n+1}\bigr)=a_p\,\Lambda_j\bigl(a,p^{n}\bigr)-\varepsilon(p)p^{\,k-2}\,\Lambda_j\bigl(a,p^{n-1}\bigr).$$
+
+All the powers of $\pi$ and $i$ cancel; what remains is bookkeeping of powers of $p$, and the
+exponents match precisely because $n\ge1$ and $j\le k-2$.
+
+## Step 3: the stabilization telescopes
+
+Write $X=\iota_p\Lambda_j(a,p^{n})$ and $Y=\iota_p\Lambda_j(a,p^{n-1})$. Applying $\iota_p$ to Step
+2 and to the translation invariance of Step 1, the left-hand side of the theorem becomes
+
+$$\alpha^{-(n+1)}\bigl(a_pX-p^{k-2}\varepsilon(p)Y\bigr)-\frac{\varepsilon(p)p^{k-2}}{\alpha^{n+2}}\,pX,$$
+
+while the right-hand side is $\alpha^{-n}X-\alpha^{-(n+1)}\varepsilon(p)p^{k-2}Y$. The coefficients
+of $Y$ agree on the nose. The coefficients of $X$ agree if and only if
+
+$$\alpha\,a_p-\varepsilon(p)p^{\,k-1}=\alpha^{2},$$
+
+which is exactly the equation `IsOrdinaryRoot` records for $\alpha$. So the identity is equivalent
+to the Hecke polynomial equation, and the proof ends by clearing denominators — legitimate since
+$\|\alpha\|_p=1$ forces $\alpha\ne0$ — and substituting it.
+
+## Remarks
+
+The argument uses ordinarity only through $\alpha\ne0$ and the quadratic equation; the relation
+holds verbatim for the non-ordinary root, which is why the distribution exists in general and only
+its *boundedness* distinguishes the slope-zero case. Conversely the relation genuinely fails for the
+naive unstabilized symbols $\Lambda_j(a,p^{n})$: their refinement sum picks up the Hecke eigenvalue
+$a_p$ rather than $1$, and the correction term
+$-\varepsilon(p)p^{k-2}\alpha^{-(n+1)}\Lambda_j(a,p^{n-1})$ in (10.2) is precisely the term that
+repairs this.
+
+Together with the disk-mass bound this is what allows the distribution to be extended to a bounded
+$\mathbf C_p$-valued measure on $\mathbf Z_p^{\times}$: additivity over refinements is what makes
+the assignment well defined on locally constant functions, and boundedness is what makes it
+continuous.
+
+<!-- Generated by add_prove2me_provenance.py -->
+-/
 
 section privateSection
 

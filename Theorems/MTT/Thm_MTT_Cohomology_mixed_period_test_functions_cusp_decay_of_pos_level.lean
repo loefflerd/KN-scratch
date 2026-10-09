@@ -1,3 +1,14 @@
+/-
+Based on Prove2Me node MTT.Cohomology.mixed_period_test_functions_cusp_decay_of_pos_level
+(d4862a5c-8592-4e25-87e7-040dcbca2986) by davidloeffler (2026-09-08).
+
+Proof based on Prove2Me submission 5cd564e1-c616-4b9c-afe5-bcb5fd3f841f
+by cbirkbeck (2026-09-08); locally adapted.
+
+Licensed under Apache License 2.0
+(https://www.apache.org/licenses/LICENSE-2.0).
+-/
+
 module
 
 public import Definitions.MTT.Def_MTT_PeriodPairing
@@ -14,6 +25,126 @@ import Definitions.MTT.Def_MTT_ParabolicCohomology
 import Mathlib.Analysis.SpecialFunctions.Pow.Asymptotics
 import Mathlib.Algebra.Field.Periodic
 import Theorems.MTT.Thm_MTT_Cohomology_mixed_period_test_functions_local_equivariant
+
+/-!
+# Cusp decay of mixed-period test functions at positive level
+
+Theorem statement: `MTT.Cohomology.mixed_period_test_functions_cusp_decay_of_pos_level`
+(`d4862a5c-8592-4e25-87e7-040dcbca2986`), by davidloeffler, 2026-09-08.
+
+Proof: submission `5cd564e1-c616-4b9c-afe5-bcb5fd3f841f`, by cbirkbeck, 2026-09-08 (ACCEPTED);
+locally adapted.
+
+Let $N>0$ and $k\ge2$. Let $g,v,q\in S_k(\Gamma_1(N))$ and let $U$ be a mixed-period primitive for
+$(g,v)$, with the coefficient growth specified by `IsMixedPeriodPrimitive`. Put $n=k-2$ and define
+on the upper half-plane
+$$A_1(z)=B_n\big(U(z),\overline{q(z)}(\bar zX+Y)^n\big),\qquad
+A_2(z)=\overline{B_n\big(q(z)(zX+Y)^n,U(z)\big)}.$$
+For every $\sigma=\begin{pmatrix}a&b\\c&d\end{pmatrix}\in\mathrm{SL}_2(\mathbb Z)$, both normalized
+cusp-chart functions vanish at infinity:
+$$\frac{A_i(\sigma z)}{\overline{cz+d}^{\,2}}\longrightarrow0\quad\text{as
+}\operatorname{Im}z\to\infty,\qquad i=1,2.$$
+The convergence is uniform in the real part, as expressed by Mathlib's `IsZeroAtImInfty`. This is
+the cusp-boundary input for the mixed-period Stokes argument. Positive level is explicit; the
+theorem makes no claim for $\Gamma_1(0)$.
+
+**Formalization Note** Outside the upper half-plane, the scalar test functions use Mathlib's
+standard extension of functions on the upper half-plane. This declaration replaces
+`MTT.Cohomology.mixed_period_test_functions_cusp_decay`, whose statement omitted $0<N$.
+
+## Explanation of the source proof
+
+# Uniform decay of the mixed-period test functions
+
+Let $N>0$, $k\ge2$, and let $U$ be the mixed-period primitive in the
+statement. For both canonical test functions, and every
+$\sigma\in\mathrm{SL}_2(\mathbb Z)$, the normalized pullback satisfies
+
+$$
+A_i(\sigma z)\,\overline{j_\sigma(z)}^{-2}\longrightarrow0
+\qquad (\operatorname{Im}z\longrightarrow\infty),\qquad i=1,2,
+$$
+
+uniformly in the real part. Here $j_\sigma(z)=cz+d$. The argument first
+establishes decay on every bounded vertical strip, using exponential cusp-form
+decay against polynomial coefficient growth. Positive cusp width then gives
+the required uniformity over the entire upper half-plane.
+
+Put $n=k-2$. Fix a strip $|\operatorname{Re}z|\le W$, above height one.
+The hypothesis on $U$ bounds every coefficient of
+
+$$
+\sigma^{-1}\cdot U(\sigma z)
+$$
+
+by a constant times a nonnegative integral power of $1+\operatorname{Im}z$.
+This polynomial belongs to the fixed finite-dimensional space of homogeneous
+binary forms of degree $n$. Expanding it in its $n+1$ monomials shows that
+every coefficient remains polynomially bounded after any fixed linear map.
+Applying the action of $\sigma$ therefore gives the same kind of bound for
+every coefficient of $U(\sigma z)$.
+
+The Möbius factors are polynomially bounded on this strip as well. In fact,
+
+$$
+|j_\sigma(z)|\ge1\qquad\text{when }\operatorname{Im}z\ge1.
+$$
+
+If $c\ne0$, the imaginary part of the denominator has absolute value
+$|c|\operatorname{Im}z\ge1$, since $c$ is an integer. If $c=0$, the determinant
+condition gives $d=\pm1$. Thus the inverse denominator is bounded, the
+numerator and denominator have linear growth, and $\sigma z$ has polynomial
+growth. The binomial coefficient formula for $(wX+Y)^n$ now implies
+polynomial bounds for the two finite contractions after removing their
+cusp-form factors. Products, finite sums, and conjugation preserve these bounds.
+
+The translated cusp form is a cusp form on an arithmetic conjugate of
+$\Gamma_1(N)$. Mathlib's exponential-decay theorem supplies $C,c>0$ such that
+
+$$
+|(q|_k\sigma)(z)|\le C e^{-c\operatorname{Im}z}
+$$
+
+at sufficiently large height, uniformly in the real part. Since
+
+$$
+q(\sigma z)=(q|_k\sigma)(z)\,j_\sigma(z)^k,
+$$
+
+each normalized test function is bounded on the chosen strip by
+$C'(1+\operatorname{Im}z)^m e^{-c\operatorname{Im}z}$, which tends to zero.
+The shifted-power limit argument is adapted from the verified AINTLIB
+`UpperCuspBoundary` port, source commit
+`eb9621e7bcb0ce220ad53983ec45d987cb5b9002`, under Apache 2.0.
+
+Finally, the already proved local-calculus theorem gives
+
+$$
+A_i(\gamma z)=\overline{j_\gamma(z)}^{\,2}A_i(z)
+\qquad(\gamma\in\Gamma_1(N)).
+$$
+
+Consequently $\overline{A_i}$ is a slash-invariant function of weight two.
+After translation by $\sigma$, its level remains arithmetic and has a positive
+strict cusp width $h$. The normalized pullback of $A_i$ is therefore
+$h$-periodic in the real part. At each height, every real coordinate can be
+replaced by one in $[0,h)$ without changing the function value. Applying
+the bounded-strip estimate with $W=h$ proves full uniform cusp decay.
+
+The only imported platform theorem is the Proved local-calculus/equivariance
+theorem `8fc536be-fe46-412d-a002-781234edc48e`, accepted proof
+`a5d6da3d-ef79-499d-b416-e41513c9de90`. No Open theorem is assumed. The finite
+coefficient and scalar-contraction computations retain attribution to accepted
+proof `777707bf-f8aa-4fd9-8d82-71afe645b027`. All growth, arithmetic-periodicity,
+and limit arguments are included in the submitted file, with default resource
+limits and no placeholders or new axioms.
+
+The mixed-period pairing context is the
+[Columbia seminar notes, §1.2, Theorem 1, pp.
+8–10](https://www.math.columbia.edu/~dmarcil/Seminars/2021_Spring/Notes/Week4-5.pdf).
+
+<!-- Generated by add_prove2me_provenance.py -->
+-/
 
 /-
 Copyright (c) 2026 Chris Birkbeck. All rights reserved.

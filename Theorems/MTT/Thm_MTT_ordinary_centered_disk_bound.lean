@@ -1,8 +1,177 @@
+/-
+Based on Prove2Me node MTT.ordinary_centered_disk_bound
+(d678f59b-8280-4868-b9ab-84d81752bb5b) by davidloeffler (2026-09-06).
+
+Proof based on Prove2Me submission cbc0ed70-d656-4035-966d-af98d8975557
+by allychan327 (2026-09-06); locally adapted.
+
+Licensed under Apache License 2.0
+(https://www.apache.org/licenses/LICENSE-2.0).
+-/
+
 module
 
 public import Definitions.MTT.Def_MTT_Measures
 
 import Mathlib.Analysis.Normed.Field.Instances
+
+/-!
+# Ordinary centred disk-moment bound in every critical degree
+
+Theorem statement: `MTT.ordinary_centered_disk_bound` (`d678f59b-8280-4868-b9ab-84d81752bb5b`), by
+davidloeffler, 2026-09-06.
+
+Proof: submission `cbc0ed70-d656-4035-966d-af98d8975557`, by allychan327, 2026-09-06 (ACCEPTED);
+locally adapted.
+
+Fix a prime $p$, a positive level $N$, and a weight $k\ge2$. Let $f$ be a normalized algebraic
+cuspidal Hecke eigenform, with fixed embeddings into $\mathbf C$ and $\mathbf C_p$, a signed period
+system $P$ with finitely generated integral lattice, and an ordinary root $\alpha$ of its Hecke
+polynomial.
+
+Write $M_{s,t}(n,a)$ for the signed degree-$t$ disk moment defined by MTT (10.2), and define its
+centred degree-$j$ moment by
+$$M^{\mathrm{cent}}_{s,j}(n,a)=\sum_{t=0}^j\binom jt(-a)^{j-t}M_{s,t}(n,a).$$
+There exists a real constant $C\ge0$, independent of the sign $s$, depth $n\ge1$, integer centre
+$a$, and degree $0\le j\le k-2$, such that
+$$\left|M^{\mathrm{cent}}_{s,j}(n,a)\right|_p\le C p^{-nj}.$$
+
+This is the slope-zero centred-moment estimate in MTT I.§11. Its degree-zero case bounds disk
+masses, while the positive-degree decay controls polynomial approximation on shrinking disks. It is
+the bound needed to recover all critical polynomial moments when extending the distribution to a
+bounded measure.
+
+**Formalization Note** The left side is expressed directly as a binomial sum of the existing disk
+moments, without assuming a measure already exists. The right side uses the norm of $p^{nj}$ in
+$\mathbf C_p$.
+
+## Explanation of the source proof
+
+## Statement
+
+Fix a prime $p$, a level $N\ge 1$, a weight $k\ge 2$, embeddings $\iota:\overline{\mathbf
+Q}\to\mathbf C$ and $\iota_p:\overline{\mathbf Q}\to\mathbf C_p$, a normalized algebraic cuspidal
+Hecke eigenform $f$, a signed period system $P$ for $f$, and an ordinary root $\alpha$ of the Hecke
+polynomial of $f$ at $p$. Writing $M_{s,t}(n,a)$ for the disk moment of MTT (10.2), we prove
+
+$$\exists\,C\ge 0\ \ \forall s\in\{\pm\},\ \forall n\ge 1,\ \forall a\in\mathbf Z,\ \forall\, 0\le
+j\le k-2:\qquad
+\Bigl\|\sum_{t=0}^{j}\binom jt(-a)^{j-t}M_{s,t}(n,a)\Bigr\|_p\ \le\ C\,\bigl\|p^{nj}\bigr\|_p .$$
+
+The argument uses exactly two of the available hypotheses: the normalization $\|\alpha\|_p=1$
+contained in `IsOrdinaryRoot`, and the finite generation of the $\mathbf Z$-lattice of normalized
+signed modular-symbol values recorded in the `Periods` structure. The Hecke eigenvalue relation, the
+character law, and the complex comparison isomorphism are not needed.
+
+## Proof idea
+
+The disk moments are built from the algebraic modular symbols
+
+$$A_t(a,m)\;=\;\sum_{u=0}^{t}\binom tu m^{u}a^{t-u}\,P_{s,u}(-a/m),$$
+
+which is the substitution $X\mapsto mX+a$ applied to the sequence $(P_{s,u})_u$ of normalized signed
+values. Recentring at $a$ inverts that substitution exactly. Binomial inversion is not an estimate
+but an identity: every term of degree $<j$ cancels, and only the top term survives, with the factor
+$m^{j}$ in front. Since $m=p^{n}$ (respectively $p^{n-1}$ for the correction term of (10.2)), that
+factor *is* the asserted decay $p^{-nj}$, and the single surviving coefficient is $p$-adically
+bounded because it lies in a finitely generated $\mathbf Z$-module.
+
+So the estimate is really a cancellation followed by an integrality statement, and both of the two
+hypotheses used enter only to keep the prefactors of size $\le 1$.
+
+## Step 1: binomial inversion
+
+Let $R$ be a commutative ring, $V:\mathbf N\to R$ a sequence, and $m,a\in R$. Then for every $j$,
+
+$$\sum_{t=0}^{j}\binom jt(-a)^{j-t}\sum_{u=0}^{t}\binom tu m^{u}a^{t-u}V_u\;=\;m^{j}V_j .$$
+
+Exchanging the two summations puts the left side in the form $\sum_{u=0}^{j}m^{u}V_u\,S_{j,u}$ with
+
+$$S_{j,u}=\sum_{t=u}^{j}\binom jt\binom tu(-a)^{j-t}a^{t-u}.$$
+
+The subset-of-a-subset identity $\binom jt\binom tu=\binom ju\binom{j-u}{t-u}$ and the substitution
+$t=u+v$ turn this into
+
+$$S_{j,u}=\binom ju\sum_{v=0}^{j-u}\binom{j-u}{v}a^{v}(-a)^{(j-u)-v}=\binom
+ju\bigl(a+(-a)\bigr)^{j-u}=\binom ju\,0^{\,j-u},$$
+
+by the binomial theorem. For $u\le j$ the factor $0^{\,j-u}$ vanishes unless $u=j$, so only the term
+$u=j$ survives and it equals $m^{j}V_j$. This is `centered_collapse` in the submission, and it is
+where the whole cancellation happens.
+
+## Step 2: the lattice bound
+
+Let $S\subseteq\overline{\mathbf Q}$ be a set whose $\mathbf Z$-span is finitely generated, say by a
+finite set $T$. Put
+
+$$B=\sum_{t\in T}\|\iota_p(t)\|_p .$$
+
+Then $\|\iota_p(x)\|_p\le B$ for every $x\in S$. Indeed, $\iota_p$ is a ring homomorphism, hence
+$\mathbf Z$-linear, and the claim propagates along the generation of $\mathbf Z\text{-span}(T)$: it
+holds on generators because each summand of $B$ is nonnegative; it is preserved under addition
+because $\mathbf C_p$ is ultrametric, $\|x+y\|_p\le\max(\|x\|_p,\|y\|_p)$; and it is preserved under
+multiplication by $c\in\mathbf Z$ because $\|c\|_p\le 1$ in $\mathbf C_p$. The ultrametric
+inequality is essential here — the triangle inequality alone gives nothing, since the integer
+coefficients are unbounded.
+
+Applying this to the set $\{P_{s,j}(r): s,\ r\in\mathbf Q,\ 0\le j\le k-2\}$, whose $\mathbf Z$-span
+is finitely generated by hypothesis, produces a constant $B\ge 0$ with
+
+$$\|\iota_p(P_{s,j}(r))\|_p\le B\qquad\text{for all }s,\ r,\text{ and }0\le j\le k-2 .$$
+
+The same $B$ serves both signs, all centres, all depths, and all admissible degrees; this uniformity
+is what makes the final constant independent of $(s,n,a,j)$.
+
+## Step 3: collapsing the centred moment
+
+By definition,
+
+$$M_{s,t}(n,a)=\alpha^{-n}\,\iota_p
+A_t\bigl(a,p^{n}\bigr)-\frac{\iota_p(\varepsilon(p))\,p^{k-2}}{\alpha^{n+1}}\;\iota_p
+A_t\bigl(a,p^{n-1}\bigr).$$
+
+Both occurrences of $A_t$ are $R$-linear images of the same shape treated in Step 1, with $R=\mathbf
+C_p$, $V_u=\iota_p\bigl(P_{s,u}(-a/m)\bigr)$, and $m$ equal to $p^{n}$ or $p^{n-1}$. Splitting the
+centred sum along the difference and applying Step 1 to each half gives the closed form
+
+$$\sum_{t=0}^{j}\binom jt(-a)^{j-t}M_{s,t}(n,a)
+=\frac{p^{nj}}{\alpha^{n}}\,\iota_p\Bigl(P_{s,j}\bigl(-a/p^{n}\bigr)\Bigr)
+-\frac{\iota_p(\varepsilon(p))\,p^{k-2}}{\alpha^{n+1}}\,p^{(n-1)j}\,\iota_p\Bigl(P_{s,j}\bigl(-a/p^{n-1}\bigr)\Bigr).$$
+
+Every modular symbol of degree $<j$ has disappeared; two algebraic values remain.
+
+## Step 4: the estimate
+
+Write $q=\|p\|_p\le 1$ and $E=\|\iota_p(\varepsilon(p))\|_p$. Since $\|\alpha\|_p=1$, we have
+$\|\alpha^{-n}\|_p=\|\alpha^{-(n+1)}\|_p=1$, so the two terms of Step 3 are bounded by
+
+$$q^{nj}\,B\qquad\text{and}\qquad E\,q^{\,(k-2)+(n-1)j}\,B$$
+
+respectively, using Step 2 for the two algebraic values. For $n\ge 1$ and $0\le j\le k-2$ one has
+$nj=(n-1)j+j\le (k-2)+(n-1)j$, and $q\le 1$ makes $t\mapsto q^{t}$ nonincreasing, so the second
+bound is at most $E\,B\,q^{nj}$. The triangle inequality then gives
+
+$$\Bigl\|\sum_{t=0}^{j}\binom jt(-a)^{j-t}M_{s,t}(n,a)\Bigr\|_p\le
+(B+EB)\,q^{nj}=(B+EB)\,\bigl\|p^{nj}\bigr\|_p .$$
+
+Thus $C=B+EB$ works, and it depends only on $f,\iota_p,P,\alpha,p,k$ — not on the sign, the depth,
+the centre, or the degree. This is the constant produced by the submission.
+
+## Remarks
+
+The degree-zero case $j=0$ of the conclusion is the boundedness of the disk masses,
+$\|M_{s,0}(n,a)\|_p\le C$, which is the slope-zero statement that a bounded measure exists at all;
+the positive-degree cases give the decay $O(p^{-nj})$ on shrinking disks that controls polynomial
+approximation. Together they are precisely the input needed to extend the distribution to a bounded
+$\mathbf C_p$-valued measure on $\mathbf Z_p^{\times}$.
+
+The hypothesis $\|\alpha\|_p=1$ cannot be dropped: for a root of positive slope $v(\alpha)=h>0$ the
+factor $\alpha^{-n}$ contributes $p^{nh}$ and the bound degrades to $O(p^{-n(j-h)})$, which is the
+reason the general (non-ordinary) case of MTT I.§11 produces an unbounded, merely $h$-admissible
+distribution rather than a measure.
+
+<!-- Generated by add_prove2me_provenance.py -->
+-/
 
 section privateSection
 

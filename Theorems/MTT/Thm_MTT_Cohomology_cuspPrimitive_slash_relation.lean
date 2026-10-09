@@ -1,3 +1,14 @@
+/-
+Based on Prove2Me node MTT.Cohomology.cuspPrimitive_slash_relation
+(35b51ddd-a1fd-4031-8d47-dde64226ea84) by cbirkbeck (2026-09-06).
+
+Proof based on Prove2Me submission 919ac521-842b-4cd0-a813-afe3d8eacaf5
+by cbirkbeck (2026-09-07); locally adapted.
+
+Licensed under Apache License 2.0
+(https://www.apache.org/licenses/LICENSE-2.0).
+-/
+
 module
 
 public import Definitions.MTT.Def_MTT_Cohomology_Integration
@@ -12,6 +23,100 @@ import Mathlib.MeasureTheory.Integral.IntegralEqImproper
 import Mathlib.Analysis.SpecialFunctions.ImproperIntegrals
 import Mathlib.MeasureTheory.Integral.ExpDecay
 import Mathlib.NumberTheory.ModularForms.LFunction
+
+/-!
+# $\Gamma_0(N)$-equivariance of the cusp primitive: $P_g(\gamma x)=\gamma\cdot P_{g|\gamma}(x)+P_g(\gamma\infty)$
+
+Theorem statement: `MTT.Cohomology.cuspPrimitive_slash_relation`
+(`35b51ddd-a1fd-4031-8d47-dde64226ea84`), by cbirkbeck, 2026-09-06.
+
+Proof: submission `919ac521-842b-4cd0-a813-afe3d8eacaf5`, by cbirkbeck, 2026-09-07 (ACCEPTED);
+locally adapted.
+
+Let $N\ge1$, $k\ge2$, $n=k-2$, and for a cusp form $g\in S_k(\Gamma_1(N))$ let $P_g:\mathbf
+P^1(\mathbf Q)\to\operatorname{Sym}^n\mathbf C^2$ be the cusp primitive of the mission:
+$P_g(\infty)=0$ and, for $r\in\mathbf Q$,
+$$P_g(r)=\sum_{j=0}^{n}\binom nj\Big(2\pi\int_0^\infty g(r+it)\,(r+it)^j\,dt\Big)X^jY^{n-j}
+\;=\;2\pi\int_0^\infty g(r+it)\,\big((r+it)X+Y\big)^n\,dt .$$
+Let $\gamma=\begin{pmatrix}a&b\\ c&d\end{pmatrix}\in\Gamma_0(N)$ and let $g'\in S_k(\Gamma_1(N))$ be
+the slash $g|_k\gamma$, i.e. $g(\gamma z)=(cz+d)^kg'(z)$. Then for every cusp $x\in\mathbf
+P^1(\mathbf Q)$
+$$P_g(\gamma x)=\gamma\cdot P_{g'}(x)+P_g(\gamma\infty),$$
+where $\gamma\cdot$ is the coefficient action $Q(X,Y)\mapsto
+Q\big((X,Y)\gamma\big)=Q(aX+cY,\,bX+dY)$ on $\operatorname{Sym}^n$.
+
+*Why this holds.* Writing $\xi_g(x,y)=2\pi\int_x^y g(w)(wX+Y)^n\,dw$ for the modular symbol (the
+integral along a geodesic between cusps converges by the exponential decay of cusp forms at every
+cusp, and $P_g(x)=\xi_g(\infty,x)$ by the cocycle relation), the substitution $w=\gamma z$ gives
+$dw=(cz+d)^{-2}dz$, $g(\gamma z)=(cz+d)^kg'(z)$ and $\gamma
+zX+Y=(cz+d)^{-1}\big(z(aX+cY)+(bX+dY)\big)$, so that $\xi_g(\gamma x,\gamma
+y)=\gamma\cdot\xi_{g'}(x,y)$ since $k-2-n=0$. Taking $x=\infty$ and using $\xi_g(\gamma\infty,\gamma
+y)=\xi_g(\infty,\gamma y)-\xi_g(\infty,\gamma\infty)$ gives the claim. For $\gamma\in\Gamma_1(N)$
+one has $g'=g$ and the statement specialises to the first clause of
+`cuspPrimitive_analytic_relations`; the general $\Gamma_0(N)$ form is what is needed to descend the
+nebentype law from modular symbols to forms (`character_law_of_class`).
+
+## Explanation of the source proof
+
+Proof of `cuspPrimitive_slash_relation` by an Eichler-integral argument, with all limits taken along
+vertical lines (no contour deformation).
+
+**Setup.** Let $n=k-2$ and, for $h\colon\mathfrak H\to\mathbf C$, put $F_j^h(w)=h(w)w^j$ and
+$F^h(w)=h(w)(wX+Y)^n=\sum_j\binom nj F^h_j(w)X^jY^{n-j}$. Part 1 of the file proves, for a
+holomorphic $F$ on the open upper half-plane $U\subset\mathbf C$, that $F$ has a primitive on $U$
+(the wedge integral from $i$; the derivative is computed from Mathlib's
+`IsConservativeOn.hasDerivAt_wedgeIntegral` on a disc together with Cauchy's theorem for the
+rectangle joining the two wedges), that two primitives differ by a constant (convexity of $U$), and
+the fundamental theorem of calculus along vertical and horizontal segments.
+
+**Normalized primitives (Part 2).** If moreover $\|F(x+iy)\|\le C_K e^{-cy}$ for $|x|\le K$ and
+$y\ge T_0$ (`Decays`), then $F$ is integrable on every vertical ray, the primitive $G$ has a limit
+as $y\to\infty$ along each vertical line, and this limit is independent of $x$ (the horizontal
+integral $\int_0^x F(s+iy)\,ds$ tends to $0$). Subtracting it gives the normalized primitive $G_F$
+with $G_F(x+iy)\to0$ for every $x$. If in addition $t\mapsto F(x+it)$ is integrable on $(0,\infty)$,
+then $G_F(x+is_m)\to -i\int_0^\infty F(x+it)\,dt$ along $s_m=1/(m+1)$ (monotone convergence of the
+sets $(s_m,\infty)$).
+
+**Cusp forms (Part 3).** For $h$ holomorphic with $h=O(e^{-c\,\mathrm{Im}\,\tau})$ at $i\infty$,
+every $F^h_j$ satisfies `Decays` (using $y^j\le j!\,(2/c)^j e^{cy/2}$). For a cusp form $f$ on
+$\Gamma_1(N)$ and any $\sigma\in SL_2(\mathbf Z)$, $f|_k\sigma$ is the cusp form
+`CuspForm.translate` on the (arithmetic) conjugate group, so `CuspFormClass.exp_decay_atImInfty'`
+gives this decay. Integrability of $t\mapsto f(r+it)(r+it)^j$ on $(0,\infty)$ at a rational cusp is
+the Mellin-convergence statement for the translate by $\begin{pmatrix}1&r\\0&1\end{pmatrix}$ (as in
+the proof of `birch_mellin_formula`). We write $G^h_j$ for the normalized primitive of $F^h_j$ and
+$G^h=\sum_j\binom nj G^h_jX^jY^{n-j}$.
+
+**Transport (Part 4).** For $\sigma\in SL_2(\mathbf Z)$ write $\sigma z=(az+b)/(cz+d)$ and let
+$h'=h|_k\sigma$, so $h(\sigma z)=(cz+d)^k h'(z)$. Since
+$\sigma\cdot(zX+Y)=(az+b)X+(cz+d)Y=(cz+d)\big((\sigma z)X+Y\big)$, one gets the identity $F^h(\sigma
+z)=(cz+d)^2\,\sigma\cdot F^{h'}(z)$, and since $(\sigma z)'=(cz+d)^{-2}$, every coefficient of
+$z\mapsto G^h(\sigma z)-\sigma\cdot G^{h'}(z)$ has zero derivative on $U$. Hence
+$$G^h(\sigma z)=\sigma\cdot G^{h'}(z)+K_h(\sigma)\qquad(z\in U)$$
+for a constant $K_h(\sigma)\in\mathrm{Sym}^n$ (`transport`, `Kconst`).
+
+**The value at a cusp (Part 5).** Let $f$ be a cusp form and $\sigma\in SL_2(\mathbf Z)$. If $c=0$
+then $\sigma\infty=\infty$, $P_f(\infty)=0$, and letting $z=iT$, $T\to\infty$, in the transport
+identity gives $K_f(\sigma)=0$ (both $G^f(\sigma(iT))$, which lies on a vertical line, and
+$G^{f|\sigma}(iT)$ tend to $0$). If $c\ne0$, put $q=a/c$, $p=-d/c$, $s_m=1/(m+1)$, $T_m=1/(c^2s_m)$;
+then $\sigma(p+iT_m)=q+is_m$ (`mob_vertical`), so the transport identity at $z_m=p+iT_m$ reads
+$G^f(q+is_m)=\sigma\cdot G^{f|\sigma}(p+iT_m)+K_f(\sigma)$; as $m\to\infty$ the left side tends
+coefficientwise to $-i\int_0^\infty F^f_j(q+it)\,dt$ and the first term on the right to $0$.
+Comparing with the definition of the cusp primitive, $P_f(\sigma\infty)=2\pi i\,K_f(\sigma)$ in both
+cases (`cuspPrimitive_eq_Kconst`).
+
+**Cocycle and conclusion.** Applying the transport identity for $\gamma\sigma$, for $\gamma$ at the
+point $\sigma z$, and for $\sigma$ with the form $g'=g|_k\gamma$ (so that
+$g|_k(\gamma\sigma)=g'|_k\sigma$), and comparing, gives $K_g(\gamma\sigma)=\gamma\cdot
+K_{g'}(\sigma)+K_g(\gamma)$ (`Kconst_cocycle`). For $x=\infty$ the statement is trivial. For
+$x=r\in\mathbf Q$ choose $\sigma_r\in SL_2(\mathbf Z)$ with $\sigma_r\infty=r$ (complete the
+primitive vector $(\mathrm{num}\,r,\mathrm{den}\,r)$ to a matrix); then $\gamma
+r=(\gamma\sigma_r)\infty$ and
+$$P_g(\gamma r)=2\pi i\,K_g(\gamma\sigma_r)=\gamma\cdot\big(2\pi i\,K_{g'}(\sigma_r)\big)+2\pi
+i\,K_g(\gamma)=\gamma\cdot P_{g'}(r)+P_g(\gamma\infty).$$
+Here the hypothesis on $g'$ identifies $g'$ with $g|_k\gamma$ as functions (`slash_mapGL_apply`).
+
+<!-- Generated by add_prove2me_provenance.py -->
+-/
 
 section privateSection
 

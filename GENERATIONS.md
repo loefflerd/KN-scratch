@@ -8,26 +8,26 @@ Generation 1 means that a node has no imports from this extracted local filetree
 
 The parser reads textual `import` and `public import` commands, resolves module names from file paths, and ignores comments after an import. This intentionally does not reproduce Lean’s elaboration or transitive module-loading behavior.
 
-Classified files: **1416 / 1416** in **1400** dependency nodes, including **16** theorem/solution pairs. Cycles found: **0**. Files with unresolved non-baseline imports: **0**.
+Classified files: **1401 / 1401** in **1401** dependency nodes, including **0** theorem/solution pairs. Cycles found: **0**. Files with unresolved non-baseline imports: **0**.
 
 ## Summary
 
 | Generation | Total files | FLT | MTT | KN |
 |---:|---:|---:|---:|---:|
 | 1 | 53 | 44 | 6 | 3 |
-| 2 | 271 | 261 | 6 | 4 |
-| 3 | 187 | 162 | 16 | 9 |
-| 4 | 160 | 135 | 17 | 8 |
-| 5 | 119 | 94 | 21 | 4 |
-| 6 | 77 | 61 | 9 | 7 |
+| 2 | 266 | 256 | 6 | 4 |
+| 3 | 184 | 159 | 16 | 9 |
+| 4 | 158 | 133 | 17 | 8 |
+| 5 | 118 | 93 | 21 | 4 |
+| 6 | 76 | 60 | 9 | 7 |
 | 7 | 73 | 64 | 6 | 3 |
-| 8 | 57 | 51 | 3 | 3 |
+| 8 | 56 | 50 | 3 | 3 |
 | 9 | 57 | 48 | 2 | 7 |
 | 10 | 51 | 35 | 3 | 13 |
 | 11 | 33 | 24 | 3 | 6 |
-| 12 | 33 | 26 | 3 | 4 |
-| 13 | 38 | 32 | 0 | 6 |
-| 14 | 23 | 23 | 0 | 0 |
+| 12 | 32 | 26 | 3 | 3 |
+| 13 | 36 | 32 | 0 | 4 |
+| 14 | 24 | 23 | 0 | 1 |
 | 15 | 13 | 13 | 0 | 0 |
 | 16 | 6 | 6 | 0 | 0 |
 | 17 | 8 | 8 | 0 | 0 |
@@ -68,9 +68,9 @@ Classified files: **1416 / 1416** in **1400** dependency nodes, including **16**
 | 52 | 2 | 0 | 0 | 2 |
 | 53 | 2 | 0 | 0 | 2 |
 | 54 | 2 | 0 | 0 | 2 |
-| 55 | 2 | 0 | 0 | 2 |
+| 55 | 3 | 0 | 0 | 3 |
 | 56 | 1 | 0 | 0 | 1 |
-| 57 | 2 | 0 | 0 | 2 |
+| 57 | 1 | 0 | 0 | 1 |
 
 ## Generation 1
 
@@ -171,11 +171,6 @@ Classified files: **1416 / 1416** in **1400** dependency nodes, including **16**
 - `Definitions/KN/Def_MTT_EigenformCoefficientField.lean`
 - `Definitions/MTT/Def_MTT_Cohomology.lean`
 - `Definitions/MTT/Def_MTT_Measures.lean`
-- `Solutions/FLT/Sol_ValuationSubring_exists_inertiaSubgroup_restrictNormal_eq.lean`
-- `Solutions/FLT/Sol_WeierstrassCurve_exists_valuation_eq_exp_of_not_le_one.lean`
-- `Solutions/FLT/Sol_WeierstrassCurve_hasGoodReduction_baseChange_of_valuation_lt_one.lean`
-- `Solutions/FLT/Sol_WeierstrassCurve_reducePoint_some.lean`
-- `Solutions/FLT/Sol_WeierstrassCurve_valuation_le_one_of_equation.lean`
 - `Theorems/FLT/Thm_AddCommGroup_nonempty_zmod_prod_addEquiv_torsionBy_of_card_torsionBy_eq_sq.lean`
 - `Theorems/FLT/Thm_Algebra_IsSeparable_of_finrank_fieldRange_frobenius_eq.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_Divisor_degree_eq_sum.lean`
@@ -433,9 +428,6 @@ Classified files: **1416 / 1416** in **1400** dependency nodes, including **16**
 - `Definitions/MTT/Def_MTT_Cohomology_Boundary.lean`
 - `Definitions/MTT/Def_MTT_Cohomology_Integration.lean`
 - `Definitions/MTT/Def_MTT_ParabolicCohomology.lean`
-- `Solutions/FLT/Sol_ValuationSubring_isDiscreteValuationRing_comap_of_liesOverPrime.lean`
-- `Solutions/FLT/Sol_WeierstrassCurve_reducePoint_some_add_some_of_not_le_one.lean`
-- `Solutions/FLT/Sol_WeierstrassCurve_reducePoint_some_eq_zero_iff.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_Divisor_evalFun_add.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_Divisor_evalFun_ne_zero.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_Divisor_evalFun_zsmul.lean`
@@ -618,8 +610,6 @@ Classified files: **1416 / 1416** in **1400** dependency nodes, including **16**
 - `Definitions/MTT/Def_MTT_LevelOnePeriodRelations.lean`
 - `Definitions/MTT/Def_MTT_NormalizedParabolicCocycles.lean`
 - `Definitions/MTT/Def_MTT_PeriodPairing.lean`
-- `Solutions/FLT/Sol_WeierstrassCurve_eq_zero_of_smul_eq_zero_of_reducePoint_eq_zero.lean`
-- `Solutions/FLT/Sol_WeierstrassCurve_reducePoint_some_add_some_of_le_one.lean`
 - `Theorems/FLT/Thm_AddCommGroup_natCard_isAddCyclic_addSubgroup_map_eq_of_sq_add_self_add_id_eq_zero_eq_nuThree.lean`
 - `Theorems/FLT/Thm_AddCommGroup_natCard_isAddCyclic_addSubgroup_map_eq_of_sq_eq_neg_one_eq_nuTwo.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_Divisor_degree_eq_sum_support.lean`
@@ -773,7 +763,6 @@ Classified files: **1416 / 1416** in **1400** dependency nodes, including **16**
 - `Definitions/FLT/Def_WeierstrassCurve_ReductionMap.lean`
 - `Definitions/KN/Def_KN_SeedCyclotomicGaloisCharactersV3B.lean`
 - `Definitions/KN/Def_KN_SeededThetaConstructionV2B.lean`
-- `Solutions/FLT/Sol_WeierstrassCurve_reducePoint_add.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_Divisor_pushforwardAlong_pushforwardAlong.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_Pic0_addOrderOf_mk_dvd_of_isPrincipal.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_Place_D_ne_zero_of_ord_ne_zero.lean`
@@ -888,7 +877,6 @@ Classified files: **1416 / 1416** in **1400** dependency nodes, including **16**
 - `Definitions/FLT/Def_ValuationSubring_ReduceAt.lean`
 - `Definitions/FLT/Def_WeierstrassCurve_TorsionIntegral.lean`
 - `Definitions/KN/Def_KN_SeededHorizontalCharacterRealizationV2B.lean`
-- `Solutions/FLT/Sol_WeierstrassCurve_galoisRepUnramifiedAt_of_hasGoodReduction.lean`
 - `Theorems/FLT/Thm_AddCommGroup_natCard_isAddCyclic_addSubgroup_eq_dedekindPsi_of_addEquiv_torsionBy.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_Place_D_ne_zero_of_ord_eq_one.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_Place_diffCoeff_smul_D_eq_of_ord_eq_one.lean`
@@ -1040,7 +1028,6 @@ Classified files: **1416 / 1416** in **1400** dependency nodes, including **16**
 - `Definitions/FLT/Def_ModularCurve_XH.lean`
 - `Definitions/KN/Def_KN_PrimePowerPropagationV2.lean`
 - `Definitions/KN/Def_KN_SeededFiniteThetaCriticalZeroSetV2.lean`
-- `Solutions/FLT/Sol_WeierstrassCurve_tateModuleRep_isUnramifiedAt_of_isGoodPrimeFor.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_Divisor_pushforwardNormFormula.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_Place_evalAt_inv.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_Place_evalAt_ne_zero.lean`
@@ -1274,7 +1261,6 @@ Classified files: **1416 / 1416** in **1400** dependency nodes, including **16**
 - `Theorems/FLT/Thm_WeierstrassCurve_Affine_natCard_ker_pointMapOfPushforward_eq_finrankAlong.lean`
 - `Theorems/FLT/Thm_WeierstrassCurve_tateModuleRep_det_frobenius.lean`
 - `Theorems/KN/Thm_HorizontalPadicL_SeededHorizontalPadicLFunctionV4_primePower_propagation_v2.lean`
-- `Theorems/KN/Thm_HorizontalPadicL_ellipticCurve_eigenform_specialization_v2.lean`
 - `Theorems/MTT/Thm_MTT_Cohomology_eichler_shimura_hecke_compatible_char.lean`
 - `Theorems/MTT/Thm_MTT_Cohomology_image_packet_unique.lean`
 - `Theorems/MTT/Thm_MTT_Cohomology_integration_map.lean`
@@ -1282,8 +1268,6 @@ Classified files: **1416 / 1416** in **1400** dependency nodes, including **16**
 ## Generation 13
 
 - `Definitions/FLT/Def_ModularCurve_SpecialisationBridge.lean`
-- `Solutions/KN/Sol_HorizontalPadicL_attachedEigenform_isNew.lean`
-- `Solutions/KN/Sol_HorizontalPadicL_attachedEigenform_nonvanishingCount_eq.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_constantsAreBase_of_isAlgClosed.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_genusFF_le_of_constantFieldExtension_of_isAlgClosed.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_isCurveOver_iff_exists_transcendental_finiteDimensional.lean`
@@ -1345,6 +1329,7 @@ Classified files: **1416 / 1416** in **1400** dependency nodes, including **16**
 - `Theorems/FLT/Thm_WeierstrassCurve_Affine_ker_pointMapOfPushforward_eq_of_j_eq_of_forall_pointEnd_eq_zsmul.lean`
 - `Theorems/FLT/Thm_WeierstrassCurve_exists_veluFunctionFieldHom_pointMapOfPushforward_ker_eq_zmultiples.lean`
 - `Theorems/FLT/Thm_WeierstrassCurve_exists_veluFunctionFieldHom_pointMapOfPushforward_ker_eq_zmultiples_of_oddOrder.lean`
+- `Theorems/KN/Thm_HorizontalPadicL_tateModuleRep_good_primes.lean`
 
 ## Generation 15
 
@@ -1642,12 +1627,13 @@ Classified files: **1416 / 1416** in **1400** dependency nodes, including **16**
 
 ## Generation 54
 
+- `Theorems/KN/Thm_HorizontalPadicL_attachedEigenform_hasContinuousLocalFieldRepresentations.lean`
 - `Theorems/KN/Thm_HorizontalPadicL_eigenform_residualGaloisRepresentation_exists_v2.lean`
-- `Theorems/KN/Thm_HorizontalPadicL_elliptic_curve_nonvanishing_conditional.lean`
 
 ## Generation 55
 
 - `Theorems/KN/Thm_HorizontalPadicL_disjointRamification_seededFrobeniusClass_exists_v4.lean`
+- `Theorems/KN/Thm_HorizontalPadicL_elliptic_curve_nonvanishing_conditional.lean`
 - `Theorems/KN/Thm_HorizontalPadicL_newEigenform_residualRepresentation_exists_v2.lean`
 
 ## Generation 56
@@ -1656,5 +1642,4 @@ Classified files: **1416 / 1416** in **1400** dependency nodes, including **16**
 
 ## Generation 57
 
-- `Solutions/KN/Sol_HorizontalPadicL_elliptic_curve_nonvanishing.lean`
 - `Theorems/KN/Thm_HorizontalPadicL_elliptic_curve_nonvanishing.lean`

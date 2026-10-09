@@ -1,3 +1,14 @@
+/-
+Based on Prove2Me node MTT.sum_integral_wirtinger_smul_fd_eq_zero
+(96750ee1-2300-4829-8e76-ea8e27a3f75d) by cbirkbeck (2026-09-07).
+
+Proof based on Prove2Me submission c3f82223-419c-44c5-b1b8-928090a12e77
+by cbirkbeck (2026-09-08); locally adapted.
+
+Licensed under Apache License 2.0
+(https://www.apache.org/licenses/LICENSE-2.0).
+-/
+
 module
 
 public import Mathlib.Analysis.Calculus.ContDiff.Defs
@@ -18,6 +29,183 @@ import Mathlib.Analysis.SpecialFunctions.Sqrt
 import Mathlib.MeasureTheory.Integral.IntervalIntegral.IntegrationByParts
 import Mathlib.GroupTheory.Complement
 import Mathlib.RingTheory.Complex
+
+/-!
+# Stokes' theorem on $\Gamma\backslash\mathfrak H$ for a $\Gamma$-invariant $(0,1)$-form vanishing at the cusps
+
+Theorem statement: `MTT.sum_integral_wirtinger_smul_fd_eq_zero`
+(`96750ee1-2300-4829-8e76-ea8e27a3f75d`), by cbirkbeck, 2026-09-07.
+
+Proof: submission `c3f82223-419c-44c5-b1b8-928090a12e77`, by cbirkbeck, 2026-09-08 (ACCEPTED);
+locally adapted.
+
+Let $\Gamma \le \mathrm{SL}_2(\mathbb Z)$ be a subgroup and let $R \subset \mathrm{SL}_2(\mathbb Z)$
+be a finite set of representatives of the right cosets $\Gamma\backslash\mathrm{SL}_2(\mathbb Z)$,
+i.e. every element of $\mathrm{SL}_2(\mathbb Z)$ is uniquely of the form $\gamma g$ with $\gamma \in
+\Gamma$ and $g \in R$. With $\mathcal D = \{z : |\operatorname{Re} z| \le \tfrac12,\ |z| \ge 1\}$
+the standard fundamental domain of $\mathrm{SL}_2(\mathbb Z)$, the union $X = \bigcup_{g \in R}
+g\mathcal D$ is a fundamental domain for $\Gamma$ (each tile is counted twice when $-1 \notin
+\Gamma$).
+
+Let $A : \mathfrak H \to \mathbb C$ be continuously differentiable in the real sense, and assume:
+
+1. the $(0,1)$-form $A\,d\bar z$ is $\Gamma$-invariant, i.e. $A(\gamma z) =
+   \overline{(cz+d)}^{\,2}\,A(z)$ for every $\gamma = \begin{pmatrix} a & b \\ c & d \end{pmatrix}
+   \in \Gamma$ and $z \in \mathfrak H$;
+2. for every $\sigma = \begin{pmatrix} a & b \\ c & d \end{pmatrix} \in \mathrm{SL}_2(\mathbb Z)$
+   the pulled-back coefficient $A(\sigma z)\,\overline{(cz+d)}^{-2}$ tends to $0$ as
+   $\operatorname{Im} z \to \infty$, uniformly in $\operatorname{Re} z$;
+3. the Wirtinger derivative $\partial_z A = \tfrac12(\partial_x A - i\,\partial_y A)$ is Lebesgue
+   integrable on each tile $g\mathcal D$, $g \in R$.
+
+Then
+
+$$\sum_{g \in R} \int_{g\mathcal D} \partial_z A \, dx\,dy = 0 .$$
+
+Since $d(A\,d\bar z) = \partial_z A\, dz \wedge d\bar z$, this is Stokes' theorem on the
+compactified quotient $\Gamma\backslash\mathfrak H$: the boundary of $X$ consists of pairs of edges
+identified by elements of $\Gamma$, whose contributions cancel by invariance, and the contributions
+of the horizontal caps at the cusps vanish by the decay hypothesis. The proof pulls every tile back
+to the standard tile, applies Green's theorem there, and cancels the side and arc terms by the
+permutation of $R$ induced by right multiplication with $T$ and $S$, so that no classification of
+interior and exterior edges of $X$ is needed.
+
+This is the analytic core of the Petersson-pairing (Green's identity) proof of the injectivity half
+of the Eichler--Shimura isomorphism (Shimura, §8.2; Columbia notes, proof of Theorem 1): for $A =
+\langle \Phi,\ \overline{f}\,(\bar z X + Y)^{k-2}\rangle$ with $\Phi$ a $\Gamma$-invariant (mixed)
+Eichler integral and $f$ a cusp form, $\partial_z A$ is a constant multiple of the Petersson
+integrand $\overline{f}\,g\,y^{k-2}$, and the vanishing of $\sum_g \int_{g\mathcal D}\partial_z A$
+for all $f$ forces $g = 0$.
+
+**Formalization note.** $\mathcal D$ is Mathlib's `ModularGroup.fd`; the tile $g\mathcal D$ is the
+image of `𝒟` under the Möbius action of $g$ on $\mathfrak H$, viewed in $\mathbb C$; integrals are
+Lebesgue integrals on $\mathbb C$; `Subgroup.IsComplement` encodes the right-coset representatives;
+`denom γ τ = cτ + d`; the Wirtinger derivative is written through the real Fréchet derivative
+`fderiv ℝ A z`; the decay in (2) is `IsZeroAtImInfty` of the pulled-back coefficient.
+
+## Explanation of the source proof
+
+We prove Stokes' theorem on $\Gamma\backslash\mathfrak H$ for an invariant $(0,1)$-form. Let
+$\Gamma\le \mathrm{SL}_2(\mathbb Z)$, let $R$ be a finite set of representatives of the right cosets
+$\Gamma g$ (the hypothesis `hR : IsComplement Γ R` says that every element of $\mathrm{SL}_2(\mathbb
+Z)$ is uniquely $\gamma r$ with $\gamma\in\Gamma$, $r\in R$), and let $A:\mathbb C\to\mathbb C$ be
+real-$C^1$ on $\mathfrak H$ with
+
+$$A(\gamma z)=\overline{(cz+d)}^{\,2}\,A(z)\qquad(\gamma=\begin{pmatrix}a&b\\
+c&d\end{pmatrix}\in\Gamma),$$
+
+so that the form $\omega = A\,d\bar z$ is $\Gamma$-invariant, and such that every pull-back
+$g^*\omega$, $g\in\mathrm{SL}_2(\mathbb Z)$, tends to $0$ at $i\infty$. Writing $\partial_z
+A=\tfrac12(\partial_xA-i\partial_yA)$ for the Wirtinger derivative, so that
+$d\omega=\partial_zA\,dz\wedge d\bar z$, the claim is
+
+$$\sum_{g\in R}\int_{g\mathcal D}\partial_z A\,dx\,dy=0,$$
+
+where $\mathcal D$ is the standard fundamental domain. This is the boundary cancellation
+$\int_{\partial X}\omega=0$ for the fundamental domain $X=\bigcup_{g\in R} g\mathcal D$ of $\Gamma$
+(Shimura, *Introduction to the Arithmetic Theory of Automorphic Functions*, §8.2), organised so that
+only the standard tile $\mathcal D$ and the two generators $S,T$ ever appear.
+
+**1. Pulling every tile back to the standard tile.** For $g\in\mathrm{SL}_2(\mathbb Z)$ write
+$\operatorname{mob}_g(z)=\frac{az+b}{cz+d}$, $\operatorname{den}_g(z)=cz+d$, and define the
+pulled-back coefficient
+
+$$(\operatorname{pull}_g A)(z)=A(\operatorname{mob}_g
+z)\,\overline{\operatorname{den}_g(z)}^{\,-2},$$
+
+so that $g^*(A\,d\bar z)=(\operatorname{pull}_gA)\,d\bar z$ because
+$\operatorname{mob}_g'(z)=\operatorname{den}_g(z)^{-2}$ (`hasDerivAt_mob`). The cocycle identity
+$\operatorname{den}_{gh}=(\operatorname{den}_g\circ\operatorname{mob}_h)\cdot\operatorname{den}_h$
+gives $\operatorname{pull}_{gh}A=\operatorname{pull}_h(\operatorname{pull}_gA)$ (`pull_mul`), and
+the invariance hypothesis says exactly $\operatorname{pull}_\gamma A=A$ on $\mathfrak H$ for
+$\gamma\in\Gamma$ (`pull_eq_self_of_mem`).
+
+Since $\operatorname{mob}_g$ is holomorphic, the chain rule for the Wirtinger derivative reads
+$\partial_z(A\circ\operatorname{mob}_g)=(\partial_zA\circ\operatorname{mob}_g)\cdot\operatorname{mob}_g'$
+(`wirtinger_comp_hasDerivAt`, obtained from the real chain rule by decomposing a real-linear map $L$
+on $\mathbb C$ as $L(w)=\operatorname{Re}w\,L(1)+\operatorname{Im}w\,L(i)$), and $\partial_z$ of the
+antiholomorphic factor $\overline{\operatorname{den}_g}^{\,-2}$ vanishes (`wirtinger_conj_comp`).
+Hence
+
+$$\partial_z(\operatorname{pull}_gA)=|\operatorname{mob}_g'|^{2}\;(\partial_zA)\circ
+\operatorname{mob}_g \qquad(\text{`wirtinger\_pull`}).$$
+
+Because the real Jacobian of a holomorphic map is $|\operatorname{mob}_g'|^2$ (`det_smul_one`, via
+$\det_{\mathbb R}(w\cdot)=N_{\mathbb C/\mathbb R}(w)=|w|^2$), the change of variables formula on the
+compact truncated tile $\mathcal D_H=\{0\le y\le H,\ |x|\le\tfrac12,\ |z|\ge1\}$ gives
+
+$$\int_{\operatorname{mob}_g(\mathcal D_H)}\partial_zA=\int_{\mathcal
+D_H}\partial_z(\operatorname{pull}_gA)\qquad(\text{`integral\_mob\_tile`}).$$
+
+**2. Green's theorem on the truncated tile.** For $B$ real-$C^1$ on $\mathfrak H$ we show
+(`tile_stokes`)
+
+$$\int_{\mathcal D_H}\partial_zB=\tfrac12\bigl(\operatorname{side}^+_H
+B-\operatorname{side}^-_HB\bigr)+\tfrac i2\operatorname{arc}B-\tfrac i2\operatorname{cap}_HB,$$
+
+where, with $\varphi(x)=\sqrt{1-x^2}$,
+
+$$\operatorname{side}^{\pm}_HB=\int_{\sqrt3/2}^{H}B(\pm\tfrac12+iy)\,dy,\quad
+\operatorname{arc}B=\int_{-1/2}^{1/2}B\bigl(x+i\varphi(x)\bigr)\Bigl(1+i\frac{x}{\varphi(x)}\Bigr)dx,\quad
+\operatorname{cap}_HB=\int_{-1/2}^{1/2}B(x+iH)\,dx .$$
+
+(The arc term is $\int B\,d\bar z$ along the unit arc, since $d\bar z=(1-i\varphi'(x))dx$ and
+$\varphi'=-x/\varphi$.) The proof is elementary calculus. The basic tool is a fibrewise fundamental
+theorem of calculus (`integral_closedRegion`): if $\Omega=\{(x,y): x\in s,\ \varphi(x)\le
+y\le\psi(x)\}$ and $\partial_yG=g$ on the fibres, then by Fubini $\int_\Omega
+g=\int_s\bigl(G(x,\psi(x))-G(x,\varphi(x))\bigr)dx$; transporting it to $\mathbb C$ by the
+measure-preserving identification $\mathbb C\simeq\mathbb R^2$, and to horizontal fibres by the swap
+$(x,y)\mapsto(y,x)$, gives `integral_vRegion` and `integral_hRegion`. We apply these not to
+$\mathcal D_H$ directly but to the rectangle $\mathcal R_H=\{|x|\le\tfrac12,\ \sqrt3/2\le y\le H\}$
+and the lens $\mathcal L=\{y\ge\sqrt3/2,\ |z|\le1\}$: one has $\mathcal D_H\cup\mathcal L=\mathcal
+R_H$ with $\mathcal D_H\cap\mathcal L$ contained in the unit circle, a null set (`tile_union_lens`,
+`tile_inter_lens_subset`, `integral_tile_eq_sub`), and both $\mathcal R_H$ and $\mathcal L$ are
+regions between graphs in both directions (`rect_eq_vRegion`, `rect_eq_hRegion`, `lens_eq_vRegion`,
+`lens_eq_hRegion`). The four resulting boundary integrals (`integral_rect_partialX`,
+`integral_rect_partialY`, `integral_lens_partialX`, `integral_lens_partialY`) combine into the
+formula above; the only non-trivial step is to convert the arc contribution of $\partial_xB$, which
+comes out parametrised by $y$, into the $x$-parametrisation by the substitution $y=\varphi(x)$ on
+each half of the arc (`integral_arc_y_eq`).
+
+**3. The edge pairings.** The side terms are exchanged by $T$: since
+$\operatorname{pull}_TB(z)=B(z+1)$, one has
+$\operatorname{side}^+_HB=\operatorname{side}^-_H(\operatorname{pull}_TB)$
+(`sideR_eq_sideL_pull_T`). The arc is reversed by $S$: on $|z|=1$ we have $-1/z=-\bar z$ and $\bar
+z^{-2}=z^2$, so $\operatorname{pull}_SB(x+i\varphi(x))=B(-x+i\varphi(x))\,(x+i\varphi(x))^2$
+(`pull_S_arc`); substituting $x\mapsto-x$ and using the identity
+$(-x+i\varphi)^2\bigl(1-i\tfrac{x}{\varphi}\bigr)=-\bigl(1+i\tfrac{x}{\varphi}\bigr)$, valid when
+$x^2+\varphi^2=1$ (`arc_identity`), we get
+$\operatorname{arc}(\operatorname{pull}_SB)=-\operatorname{arc}B$ (`arc_pull_S`).
+
+**4. Summing over the coset representatives.** For $h\in\mathrm{SL}_2(\mathbb Z)$ and $g\in R$ write
+$gh=\gamma_g\,\sigma_h(g)$ with $\gamma_g\in\Gamma$ and $\sigma_h(g)\in R$; then $\sigma_h$ is a
+permutation of $R$ (its inverse is $\sigma_{h^{-1}}$), so for any function $F$ on
+$\mathrm{SL}_2(\mathbb Z)$ that is left $\Gamma$-invariant, $\sum_{g\in R}F(gh)=\sum_{g\in R}F(g)$
+(`sum_comp_mul_right`). We apply this to $F(g)=\operatorname{side}^-_H(\operatorname{pull}_gA)$ and
+$F(g)=\operatorname{arc}(\operatorname{pull}_gA)$, which are left $\Gamma$-invariant by the cocycle
+identity and $\operatorname{pull}_\gamma A=A$ (`pull_mul_eq_of_mem`). With $h=T$ this yields
+$\sum_g\operatorname{side}^+_H(\operatorname{pull}_gA)=\sum_g\operatorname{side}^-_H(\operatorname{pull}_{gT}A)=\sum_g\operatorname{side}^-_H(\operatorname{pull}_gA)$
+(`sum_sideR_eq_sum_sideL`), and with $h=S$ it yields
+$\sum_g\operatorname{arc}(\operatorname{pull}_gA)=-\sum_g\operatorname{arc}(\operatorname{pull}_gA)$,
+hence this sum is $0$ (`sum_arc_eq_zero`). Therefore, for every $H\ge1$,
+
+$$\sum_{g\in R}\int_{\operatorname{mob}_g(\mathcal D_H)}\partial_zA=-\frac i2\sum_{g\in
+R}\operatorname{cap}_H(\operatorname{pull}_gA)\qquad(\text{`sum\_integral\_mob\_tile\_eq`}).$$
+
+**5. Letting $H\to\infty$.** By the decay hypothesis, $\operatorname{pull}_gA\to0$ uniformly on
+$\{\operatorname{Im}z\ge H\}$ as $H\to\infty$, so
+$|\operatorname{cap}_H(\operatorname{pull}_gA)|\le\sup_{\operatorname{Im}
+z=H}|\operatorname{pull}_gA|\to0$ (`tendsto_cap`). On the other hand the sets
+$\operatorname{mob}_g(\mathcal D_H)$ increase to $g\mathcal D$, so by monotone convergence and the
+integrability hypothesis, $\int_{\operatorname{mob}_g(\mathcal D_H)}\partial_zA\to\int_{g\mathcal
+D}\partial_zA$ (`tendsto_integral_mob_tile`). Uniqueness of limits gives $\sum_{g\in
+R}\int_{g\mathcal D}\partial_zA=0$, which is `solution`.
+
+The proof uses only standard axioms (`propext`, `Classical.choice`, `Quot.sound`) and no other
+platform theorems.
+
+<!-- Generated by add_prove2me_provenance.py -->
+-/
 
 /-!
 # Stokes' theorem on `Γ\ℍ` for an invariant `(0,1)`-form vanishing at the cusps

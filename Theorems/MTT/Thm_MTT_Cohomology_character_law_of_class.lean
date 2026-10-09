@@ -1,3 +1,14 @@
+/-
+Based on Prove2Me node MTT.Cohomology.character_law_of_class
+(fef71a5c-0ea1-4b6a-9153-871fcdf8079d) by cbirkbeck (2026-09-06).
+
+Proof based on Prove2Me submission 8a2b39af-927a-412f-a2d8-2d81baedab35
+by cbirkbeck (2026-09-06); locally adapted.
+
+Licensed under Apache License 2.0
+(https://www.apache.org/licenses/LICENSE-2.0).
+-/
+
 module
 
 public import Definitions.MTT.Def_MTT_Cohomology
@@ -8,6 +19,83 @@ import Theorems.MTT.Thm_MTT_period_vanishing
 import Theorems.MTT.Thm_MTT_Cohomology_evaluation_faithful
 import Definitions.MTT.Def_MTT_Cohomology_Integration
 import Mathlib.RingTheory.Flat.Basic
+
+/-!
+# The nebentype law on the modular symbol $I(g)$ descends to the cusp form $g$
+
+Theorem statement: `MTT.Cohomology.character_law_of_class` (`fef71a5c-0ea1-4b6a-9153-871fcdf8079d`),
+by cbirkbeck, 2026-09-06.
+
+Proof: submission `8a2b39af-927a-412f-a2d8-2d81baedab35`, by cbirkbeck, 2026-09-06 (ACCEPTED);
+locally adapted.
+
+Let $N\ge1$, $k\ge2$, $n=k-2$, and let
+$$I:S_k(\Gamma_1(N))\longrightarrow
+H_c=\operatorname{Hom}_{\Gamma_1(N)}\big(\operatorname{Div}^0(\mathbf P^1(\mathbf
+Q)),\operatorname{Sym}^n\mathbf C^2\big)$$
+be any linear map with the integral-class property of the mission: for every cusp form $h$, every
+$0\le j\le n$ and every $r\in\mathbf Q$, the coefficient of $X^jY^{n-j}$ in $I(h)(\infty,r)$ equals
+$\binom nj$ times the modular integral $2\pi\int_0^\infty h(r+it)\,(r+it)^j\,dt$. Let $e:\mathbf
+Z/N\mathbf Z\to\mathbf C$ be any function (in applications a Dirichlet character), and let $g\in
+S_k(\Gamma_1(N))$ be a cusp form whose class satisfies the nebentype law
+$$I(g)(\gamma x,\gamma y)=e(d)\,\gamma\cdot I(g)(x,y)\qquad\text{for all
+}\gamma=\begin{pmatrix}a&b\\ c&d\end{pmatrix}\in\Gamma_0(N),\ x,y\in\mathbf P^1(\mathbf Q),$$
+where $\gamma\cdot$ is the coefficient action on $\operatorname{Sym}^n$.
+
+**Claim.** Then $g$ has nebentypus $e$:
+$$g(\gamma z)=e(d)\,(cz+d)^k\,g(z)\qquad\text{for all }\gamma\in\Gamma_0(N),\ z\in\mathfrak H.$$
+
+*Why this holds.* A modular symbol $\phi\in H_c$ is determined by its values $\phi(\infty,r)$,
+$r\in\mathbf Q$, because $\phi(x,y)=\phi(\infty,y)-\phi(\infty,x)$ by the cocycle relation; hence
+$I(g)$ is the classical modular symbol $\xi_g(x,y)=2\pi\int_x^y g(z)\,(zX+Y)^n\,dz$ of $g$ (Shimura,
+§8.2; MTT, Chapter I §3). The change of variables $z\mapsto\gamma z$ in the integral gives the
+$\Gamma_0(N)$-equivariance
+$$\xi_{g|_k\gamma}(x,y)=\gamma^{-1}\cdot\xi_g(\gamma x,\gamma y),$$
+where $g|_k\gamma\in S_k(\Gamma_1(N))$ because $\Gamma_1(N)$ is normal in $\Gamma_0(N)$. Combined
+with the assumed law this gives $I(g|_k\gamma)=e(d)\,I(g)=I(e(d)\,g)$. Finally $I$ is injective—a
+cusp form all of whose modular integrals $\int_0^\infty g(r+it)(r+it)^j\,dt$ vanish is zero (the
+sibling problem `MTT.period_vanishing`)—so $g|_k\gamma=e(d)\,g$, which is the claim.
+
+## Explanation of the source proof
+
+We reduce the descent of the nebentype law from the modular symbol $I(g)$ to the form $g$ to two
+lemmas, which are assumptions of this submission, plus the sibling problems `period_vanishing` and
+(proved) `evaluation_faithful`:
+
+- `MTT.exists_cuspForm_slash_gamma0`: for $\gamma=\begin{pmatrix}a&b\\
+  c&d\end{pmatrix}\in\Gamma_0(N)$ the slash $g'=g|_k\gamma$ is a cusp form on $\Gamma_1(N)$, with
+  $g(\gamma z)=(cz+d)^kg'(z)$.
+- `MTT.Cohomology.cuspPrimitive_slash_relation`: the cusp primitive $P_g(x)=\int_\infty^x
+  g(w)(wX+Y)^n\,dw$ (normalised as in the mission) satisfies $P_g(\gamma x)=\gamma\cdot
+  P_{g'}(x)+P_g(\gamma\infty)$, the change of variables $w=\gamma z$ in the period integral.
+
+**Step 1: the class is the primitive.** By the cocycle relation
+$\phi(\infty,\infty)+\phi(\infty,\infty)=\phi(\infty,\infty)$ every class satisfies
+$\phi(\infty,\infty)=0$, and the integral-class property says that the coefficient of $X^jY^{n-j}$
+in $(Ig)(\infty,r)$ is $\binom nj$ times the modular integral, which is exactly the corresponding
+coefficient of the period polynomial $P_g(r)$ (`coeff_cuspPeriodPolynomial`). Both are homogeneous
+of degree $n$, and a homogeneous polynomial of degree $n$ in two variables is determined by these
+coefficients (`Sym_ext`), so $(Ig)(\infty,s)=P_g(s)$ for every cusp $s$ (`hval`). The cocycle
+relation then gives $(Ig)(x,y)=P_g(y)-P_g(x)$ for all cusps (`hcoc`).
+
+**Step 2: the period polynomial of $g|\gamma$.** Evaluating the assumed law at $(\infty,r)$ and
+using Step 1,
+$$P_g(\gamma r)-P_g(\gamma\infty)=e(d)\,\gamma\cdot P_g(r),$$
+while the slash relation gives $P_g(\gamma r)-P_g(\gamma\infty)=\gamma\cdot P_{g'}(r)$. Hence
+$\gamma\cdot P_{g'}(r)=\gamma\cdot\big(e(d)P_g(r)\big)$. The coefficient action is a group action,
+$A\cdot(B\cdot Q)=(AB)\cdot Q$ (`act_act`, by checking on the variables), so
+$\operatorname{adj}(\gamma)\cdot$ inverts $\gamma\cdot$ when $\det\gamma=1$
+(`act_injective_of_det_one`), and therefore $P_{g'}(r)=e(d)\,P_g(r)$ for every $r\in\mathbf Q$
+(`hpoly`).
+
+**Step 3: descent.** Comparing coefficients, the evaluations of $I(g')$ and of $e(d)\,I(g)$ agree
+for all $j\le n$ and $r$, so $I(g')=e(d)\,I(g)=I(e(d)g)$ by `evaluation_faithful`. Any integration
+map is injective because a cusp form with vanishing modular integrals is zero (`period_vanishing`,
+via `injective_of_integralClass`), whence $g'=e(d)\,g$. Substituting into $g(\gamma
+z)=(cz+d)^kg'(z)$ gives $g(\gamma z)=e(d)(cz+d)^kg(z)$, the nebentype law for $g$.
+
+<!-- Generated by add_prove2me_provenance.py -->
+-/
 
 section privateSection
 

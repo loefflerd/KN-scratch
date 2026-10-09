@@ -1,3 +1,14 @@
+/-
+Based on Prove2Me node PadicMeasure.colmez_r0_moment_extension
+(3e5c9415-b672-4f83-9402-7226012e7f04) by davidloeffler (2026-09-06).
+
+Proof based on Prove2Me submission 4e68b6dd-61eb-45b0-95a9-d99948a665d0
+by Wenqian (2026-09-06); locally adapted.
+
+Licensed under Apache License 2.0
+(https://www.apache.org/licenses/LICENSE-2.0).
+-/
+
 module
 
 public import Mathlib.NumberTheory.Padics.Complex
@@ -15,6 +26,83 @@ import Mathlib.Topology.Separation.DisjointCover
 
 import Theorems.MTT.Thm_PadicMeasure_compatible_disk_values_vanish_of_decay
 import Theorems.MTT.Thm_ProfiniteMeasure_ext_of_clopen_masses
+
+/-!
+# Colmez order-zero extension of compatible polynomial disk moments
+
+Theorem statement: `PadicMeasure.colmez_r0_moment_extension`
+(`3e5c9415-b672-4f83-9402-7226012e7f04`), by davidloeffler, 2026-09-06.
+
+Proof: submission `4e68b6dd-61eb-45b0-95a9-d99948a665d0`, by Wenqian, 2026-09-06 (ACCEPTED); locally
+adapted.
+
+Let $p$ be a prime, $d\ge0$ an integer, and let $M_j(n,a)\in\mathbf C_p$ be prescribed moments for
+$0\le j\le d$, positive depths $n$, and integer centres $a$ prime to $p$.
+
+Assume the degree-zero masses depend only on the residue class of $a$ modulo $p^n$. Assume each
+degree is compatible with subdivision:
+$$M_j(n,a)=\sum_{b=0}^{p-1}M_j(n+1,a+bp^n).$$
+Finally, assume that one constant $C\ge0$ satisfies
+$$\left|\sum_{t=0}^{j}\binom jt(-a)^{j-t}M_t(n,a)\right|_p\le C p^{-nj}$$
+for all such centres, depths, and degrees.
+
+Then there exists exactly one bounded $\mathbf C_p$-valued measure $\mu$ on $\mathbf Z_p^\times$
+such that
+$$\int_{a+p^n\mathbf Z_p}x^j\,d\mu(x)=M_j(n,a)\qquad(0\le j\le d).$$
+
+This is the order-zero polynomial-moment extension criterion associated with Colmez's extension
+theorem, restricted to the compact open unit group. It gives the higher moments as well as the
+masses.
+
+**Formalization Note** Measures are continuous $\mathbf C_p$-linear functionals on continuous
+functions. The conclusion explicitly supplies continuous disk test functions with the specified
+pointwise values. Only degree-zero representative independence is assumed: after extending the
+masses, refinement and centred decay force agreement with every higher prescribed moment, by the
+Riemann-sum argument in Colmez's proof. The parameters of $M$ are degree, depth, and integer centre,
+in that order.
+
+## Explanation of the source proof
+
+Complete Lean proof of the stated order-zero Colmez moment-extension criterion, with exactly the
+target's hypotheses and conclusion. The submitted `theorem solution` does not import the target
+theorem. It uses two already proved platform lemmas: extensionality of profinite measures from
+clopen masses and vanishing of compatible disk values under uniform decay.
+
+1. Reduction modulo p^n is continuous: its fibers are open by the kernel description and the p-adic
+   norm bound. A compactness argument on U × U-complement shows that every clopen subset of the unit
+   group is determined by a single positive residue depth. This also proves uniqueness from
+   unit-disk masses.
+
+2. For degree-zero masses m(n,a), define finite continuous linear functionals by summing m(n,a)
+   times evaluation at the integer unit a over 0 ≤ a < p^n, with zero summands for nonunits. The
+   ultrametric inequality bounds each functional by C times the supremum norm, independently of p^n.
+   Reindexing a residue at depth n+1 as a+b*p^n and using additivity shows that these functionals
+   stabilize on functions constant on depth-n disks. They therefore stabilize on every clopen
+   indicator.
+
+3. The continuous functions on which these functionals eventually stabilize form a dense linear
+   subspace: finite clopen-indicator combinations approximate every continuous function on the
+   compact totally disconnected unit group. Take the eventual value there and extend the bounded
+   linear map by completeness of Cp. Representative invariance identifies its value on every
+   degree-zero disk test function with the required M(0,n,a).
+
+4. The disk monomial functions satisfy the same refinement identity. Their binomial centered
+   combinations are the disk indicators times (x-a)^j, with supremum norm at most norm(p^(n*j)).
+   Induct on j. The difference between a prescribed moment and the constructed measure's moment is
+   additive under refinement. Lower-degree agreement turns it into the difference of centered
+   moments, whose norm is bounded by max(C,operatorNorm(mu))*norm(p^(n*j)). For positive j this
+   bound tends to zero. The proved ultrametric decay lemma forces the difference to vanish on every
+   unit disk.
+
+5. Supply the continuous disk-monomial functions explicitly for all degrees j ≤ d. Any other
+   realizing measure agrees on degree-zero disk masses, so the uniqueness argument applies.
+
+This formalizes the existing r=0 extension argument; it is not a claim of a new mathematical
+theorem. In particular, it does not assume representative independence of higher moments, local
+compactness of Cp, or positivity of the measure.
+
+<!-- Generated by add_prove2me_provenance.py -->
+-/
 
 noncomputable section privateSection
 

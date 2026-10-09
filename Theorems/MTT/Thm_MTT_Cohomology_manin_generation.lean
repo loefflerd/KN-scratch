@@ -1,7 +1,112 @@
+/-
+Based on Prove2Me node MTT.Cohomology.manin_generation
+(f50f29b0-b8d5-4756-85c1-837165aeecdd) by allychan327 (2026-09-06).
+
+Proof based on Prove2Me submission 64b4e938-c84d-4864-832b-4817742440ec
+by allychan327 (2026-09-06); locally adapted.
+
+Licensed under Apache License 2.0
+(https://www.apache.org/licenses/LICENSE-2.0).
+-/
+
 module
 
 public import Definitions.MTT.Def_MTT_Cohomology
 public import Mathlib.RingTheory.Flat.Basic
+
+/-!
+# Unimodular paths generate: vanishing criterion for modular symbols
+
+Theorem statement: `MTT.Cohomology.manin_generation` (`f50f29b0-b8d5-4756-85c1-837165aeecdd`), by
+allychan327, 2026-09-06.
+
+Proof: submission `64b4e938-c84d-4864-832b-4817742440ec`, by allychan327, 2026-09-06 (ACCEPTED);
+locally adapted.
+
+Let $N, n \ge 0$ and let $R$ be any commutative ring. A compactly supported cohomology class
+$\varphi \in H^1_c(\Gamma_1(N), \operatorname{Sym}^n R^2)$, realized concretely as a
+$\Gamma_1(N)$-equivariant
+cocycle $(x,y) \mapsto \varphi(x,y)$ on pairs of cusps, is determined by its values on the
+**unimodular paths**.
+
+Precisely: if $\varphi(g\cdot 0,\ g\cdot\infty) = 0$ for every $g \in SL_2(\mathbf{Z})$, then
+$\varphi = 0$.
+
+Dually this is the assertion that the degree-zero divisor group
+$\operatorname{Div}^0(\mathbf{P}^1(\mathbf{Q}))$
+is generated, as an abelian group, by the unimodular divisors $\{g\cdot\infty\} - \{g\cdot 0\}$ with
+$g \in SL_2(\mathbf{Z})$.
+This is the *generation* half of Manin's theorem on modular symbols, and it is proved by the
+continued-fraction
+algorithm: given a fraction $p/q$ in lowest terms with $q > 0$, Bézout's identity supplies integers
+$p', q'$ with
+$$p q' - p' q = 1, \qquad 0 \le q' < q,$$
+so that $\begin{pmatrix} p & p' \\ q & q'\end{pmatrix} \in SL_2(\mathbf{Z})$ carries the path
+$\{0,\infty\}$ to
+$\{p'/q',\ p/q\}$. The cocycle relation $\varphi(x,y) + \varphi(y,z) = \varphi(x,z)$ then replaces
+the path
+$(\infty, p/q)$ by $(\infty, p'/q')$, whose denominator is strictly smaller, and the induction
+terminates.
+
+The hypothesis is imposed for all of $SL_2(\mathbf{Z})$, not merely for a set of coset
+representatives; the
+reduction to finitely many cosets is a separate step supplied by $\Gamma_1(N)$-equivariance. The
+statement holds
+over an arbitrary coefficient ring $R$ because the argument uses only the cocycle relation and never
+the
+coefficients; this generality is exactly what is needed for base-change arguments.
+
+## Explanation of the source proof
+
+## Manin's continued-fraction trick
+
+Write $\varphi$ for the given class, viewed as a $\Gamma_1(N)$-equivariant cocycle on pairs of
+cusps with values in $\operatorname{Sym}^n R^2$, and assume $\varphi(g\cdot 0, g\cdot\infty)=0$
+for every $g\in SL_2(\mathbf Z)$. Only two of the three defining properties are used: the cocycle
+relation
+$$\varphi(x,y)+\varphi(y,z)=\varphi(x,z),$$
+and nothing at all about the coefficient ring $R$.
+
+**Step 1: normal forms for the two cusps moved by a matrix.**
+For $g=\begin{pmatrix}a&b\\c&d\end{pmatrix}\in SL_2(\mathbf Z)$ acting on $\mathbf P^1(\mathbf Q)$,
+$$g\cdot\infty=\begin{cases}\infty,&c=0\\ a/c,&c\neq0\end{cases}
+\qquad
+g\cdot 0=\begin{cases}\infty,&d=0\\ b/d,&d\neq0.\end{cases}$$
+These are read off from the projective-line action; the action is a genuine group action, so
+$(gh)\cdot x=g\cdot(h\cdot x)$.
+
+**Step 2: the descent.**
+Let $p/q$ be a fraction with $q>0$ and $\gcd(p,q)=1$. Bézout gives $u,v$ with $up+vq=1$. Put
+$$q'=u\bmod q,\qquad p'=-\bigl(v+p\lfloor u/q\rfloor\bigr),$$
+so that $pq'-p'q=1$ and $0\le q'<q$. Hence
+$g=\begin{pmatrix}p&p'\\q&q'\end{pmatrix}\in SL_2(\mathbf Z)$, and by Step 1
+$$g\cdot\infty=p/q,\qquad g\cdot 0=\begin{cases}\infty,&q'=0\\ p'/q',&q'\neq0.\end{cases}$$
+The hypothesis says $\varphi(g\cdot 0,\ p/q)=0$. If $q'=0$ this is literally
+$\varphi(\infty,p/q)=0$ and we are done. Otherwise $\varphi(p'/q',\ p/q)=0$, and the cocycle
+relation
+$$\varphi(\infty,p'/q')+\varphi(p'/q',p/q)=\varphi(\infty,p/q)$$
+reduces the claim for $p/q$ to the claim for $p'/q'$, whose denominator $q'$ is *strictly smaller*.
+Strong induction on the bound for the denominator therefore gives $\varphi(\infty,p/q)=0$ for every
+reduced $p/q$ with $q>0$. Note that the induction is carried out on the pair of integers $(p,q)$
+rather than on the reduced form of a rational number; the coprimality of $(p',q')$ is immediate
+from $pq'-p'q=1$.
+
+**Step 3: from $(\infty,r)$ to arbitrary pairs.**
+Every rational $r$ is $r.\mathrm{num}/r.\mathrm{den}$ in lowest terms with positive denominator, so
+$\varphi(\infty,x)=0$ for all $x\in\mathbf P^1(\mathbf Q)$ — the case $x=\infty$ being
+$\varphi(x,x)=0$, itself a consequence of the cocycle relation. Two further consequences of that
+relation, $\varphi(x,x)=0$ and $\varphi(y,x)=-\varphi(x,y)$, then give for arbitrary $x,y$
+$$\varphi(x,y)=\varphi(x,\infty)+\varphi(\infty,y)=-\varphi(\infty,x)+\varphi(\infty,y)=0 .$$
+Hence $\varphi=0$. $\square$
+
+Dually the statement says that $\operatorname{Div}^0(\mathbf P^1(\mathbf Q))$ is generated as an
+abelian group by the unimodular divisors $\{g\cdot\infty\}-\{g\cdot 0\}$; this is the generation
+half of Manin's theorem. It holds over any coefficient ring because no coefficient is ever
+divided, and it is the form needed for base-change arguments, where the coefficients are an
+arbitrary flat $\mathbf Z$-algebra.
+
+<!-- Generated by add_prove2me_provenance.py -->
+-/
 
 section privateSection
 

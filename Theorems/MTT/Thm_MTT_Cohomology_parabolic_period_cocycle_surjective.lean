@@ -1,3 +1,14 @@
+/-
+Based on Prove2Me node MTT.Cohomology.parabolic_period_cocycle_surjective
+(4ee25e36-bb36-4415-a38b-3e99005cb1da) by cbirkbeck (2026-09-07).
+
+Proof based on Prove2Me submission 29fcf932-b652-4c39-be8e-013660f0d184
+by cbirkbeck (2026-09-07); locally adapted.
+
+Licensed under Apache License 2.0
+(https://www.apache.org/licenses/LICENSE-2.0).
+-/
+
 module
 
 public import Definitions.MTT.Def_MTT_Cohomology_Integration
@@ -10,6 +21,130 @@ import Definitions.MTT.Def_MTT_Cohomology
 import Theorems.MTT.Thm_MTT_Cohomology_reflection_class
 import Theorems.MTT.Thm_MTT_Cohomology_period_cocycle_injective
 import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
+
+/-!
+# Parabolic Eichler–Shimura surjectivity in explicit period-cocycle form
+
+Theorem statement: `MTT.Cohomology.parabolic_period_cocycle_surjective`
+(`4ee25e36-bb36-4415-a38b-3e99005cb1da`), by cbirkbeck, 2026-09-07.
+
+Proof: submission `29fcf932-b652-4c39-be8e-013660f0d184`, by cbirkbeck, 2026-09-07 (ACCEPTED);
+locally adapted.
+
+Let $N\ge1$, $k\ge2$, $n=k-2$, $\Gamma=\Gamma_1(N)$, and $V_n$ be the homogeneous degree-$n$
+polynomials in $\mathbf C[X,Y]$. Use the left action
+$$\begin{pmatrix}a&b\\c&d\end{pmatrix}\cdot Q(X,Y)=Q(aX+cY,bX+dY).$$
+Let $c:\Gamma\to V_n$ be a group cocycle, so
+$$c(\gamma\delta)=c(\gamma)+\gamma\cdot c(\delta).$$
+Assume it is parabolic: whenever $\gamma$ fixes a cusp $x\in\mathbf P^1(\mathbf Q)$, there is $Q\in
+V_n$ with $c(\gamma)=\gamma\cdot Q-Q$.
+
+For a cusp form $f$, let $P_f(\infty)=0$ and
+$$P_f(r)=2\pi\int_0^\infty f(r+it)((r+it)X+Y)^n\,dt\quad(r\in\mathbf Q).$$
+Write $\rho=\operatorname{diag}(-1,1)$, acting by $r\mapsto-r$ on finite cusps and fixing infinity.
+Then there exist $g,h\in S_k(\Gamma)$ and $P\in V_n$ such that, for all $\gamma\in\Gamma$,
+$$c(\gamma)=P_g(\gamma\infty)+\rho\cdot P_h(\rho\gamma\infty)+\gamma\cdot P-P.$$
+Thus every parabolic group-cohomology class is represented by holomorphic and reflected cusp-form
+periods. The principal correction $P$ makes the statement an equality of cocycles, not merely of
+cohomology classes.
+
+## Explanation of the source proof
+
+# Surjectivity from injectivity and the parabolic dimension bound
+
+This is a proof-sketch with two explicit open mathematical prerequisites:
+`MTT.Cohomology.period_cocycle_injective` and
+`MTT.Cohomology.parabolicH1_finrank_le`. The quotient construction, period-map
+construction, and all steps reducing the stated surjectivity to those inputs
+are proved in Lean. The separate finite-dimensionality theorem has a direct
+accepted proof, submission `68146ab0-259d-482c-8a19-302f07939975`.
+
+## The parabolic cohomology space
+
+Put $V=\operatorname{Sym}^{k-2}(\mathbf C^2)$ with the MTT left substitution
+action, and $\Gamma=\Gamma_1(N)$. In `Def_MTT_ParabolicCohomology`, ordinary
+one-cocycles use mathlib's `Rep` and `groupCohomology.cocycles₁`. Impose the
+parabolic condition that for each cusp $x$ and each $\gamma$ fixing $x$,
+$c(\gamma)$ lies in the image of $\rho(\gamma)-1$. Quotient this subspace by
+the principal cocycles $dP(\gamma)=\rho(\gamma)P-P$. The constructor API proves
+that every principal cocycle is parabolic, so this is the usual quotient,
+not a weakened substitute. Write it as $H^1_{\mathrm{par}}(\Gamma,V)$.
+
+Its finite-dimensionality is independent of Eichler–Shimura: $\mathrm{SL}_2(\mathbf Z)$
+is finitely generated, Schreier's theorem applies to its finite-index subgroup
+$\Gamma$, and a cocycle is determined by its values on finitely many generators.
+Thus the cocycle space embeds in a finite product of $V$. Subspaces and quotients
+preserve finite-dimensionality.
+
+## Constructing the period map
+
+The already-proved normalized integration-map theorem supplies a linear map
+$I:S_k(\Gamma)\to H_c$ satisfying `IntegralClass`. Coefficient extensionality and
+the modular-symbol relation identify $I(f)(x,y)$ with
+$P_f(y)-P_f(x)$, where $P_f$ is the exact MTT cusp primitive, including its
+binomial coefficients and integral normalization. The already-proved reflection
+theorem defines a linear endomorphism of $H_c$.
+
+For any modular symbol $\varphi$, the function
+$\gamma\mapsto\varphi(\infty,\gamma\infty)$ is a one-cocycle. At a cusp fixed
+by $\gamma$, the witness for its being principal is $\varphi(x,\infty)$.
+Consequently the sum of the integration symbol and the reflected integration
+symbol defines a linear map
+
+$$E:S_k(\Gamma)\oplus S_k(\Gamma)\longrightarrow H^1_{\mathrm{par}}(\Gamma,V).$$
+
+The lemma `eichlerShimuraCocycle_apply` verifies that its representative is
+exactly the two primitive terms in the target statement. In particular,
+reflection fixes infinity; there is no extra endpoint constant or sign.
+
+## Injectivity and dimensions
+
+If $E(g,h)=0$, its representative is principal. The open theorem
+`period_cocycle_injective` therefore gives $g=h=0$. This proves injectivity
+of $E$ conditionally on that explicit input.
+
+The other open input is the independent inequality
+
+$$\dim_{\mathbf C}H^1_{\mathrm{par}}(\Gamma,V)
+\le 2\dim_{\mathbf C}S_k(\Gamma).$$
+
+It contains no reference to $E$ or its surjectivity. Since the target is
+finite-dimensional, injectivity first proves that the domain, and hence each
+cusp-form summand, is finite-dimensional. Injectivity gives the opposite
+dimension inequality; the dimension of the product is the sum of the two
+dimensions. Thus the dimensions are equal, and the standard linear-algebra
+criterion gives surjectivity of $E$.
+
+## Recovering the exact cocycle identity
+
+Lift the given $c$ to the parabolic cocycle submodule and choose $(g,h)$ whose
+class under $E$ is its quotient class. Equality in the quotient says that
+$c-E(g,h)$ lies in the principal-cocycle submodule. Its witness is a homogeneous
+polynomial $P$, and rearranging gives
+$c(\gamma)=E(g,h)(\gamma)+\rho(\gamma)P-P$, exactly as required. All witnesses
+are retained, including the membership of $P$ in the symmetric-power space.
+
+## Sources, scope, and verification
+
+The argument follows the injectivity-plus-dimensions proof of Theorem 1,
+§1.2, pp. 8–10 of the [Columbia Spring 2021 Eichler–Shimura
+notes](https://www.math.columbia.edu/~dmarcil/Seminars/2021_Spring/Notes/Week4-5.pdf).
+The dimension equality used on p. 9 is isolated here as an OPEN upper-bound
+obligation; this submission does not claim to prove that dimension formula.
+The parabolic cocycle definitions correspond to §1.1 of those notes.
+Weight two, small positive levels, and odd weights remain in the statements.
+No torsion-free or even-weight assumption is added.
+
+The exact standalone solution compiles against the pinned Lean 4.33.1/mathlib
+environment. It imports no target or ancestor theorem, introduces no `sorry`
+or custom axiom in its proof body, and adds no heartbeat or recursion override.
+The only unresolved mathematical inputs are the two named platform children.
+The dependency graph was checked for cycles before submission. The analytic
+injectivity branch remains with the other active worker; this contribution
+isolates the independent dimension branch and proves its algebraic reduction.
+
+<!-- Generated by add_prove2me_provenance.py -->
+-/
 
 section privateSection
 

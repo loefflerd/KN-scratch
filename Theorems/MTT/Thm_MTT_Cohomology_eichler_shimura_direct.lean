@@ -1,9 +1,106 @@
+/-
+Based on Prove2Me node MTT.Cohomology.eichler_shimura_direct
+(98189fbe-6dc1-4abe-aff4-a1ec348bb514) by cbirkbeck (2026-09-07).
+
+Proof based on Prove2Me submission 85e05f31-f511-4d11-9d09-c01914a25f79
+by cbirkbeck (2026-09-07); locally adapted.
+
+Licensed under Apache License 2.0
+(https://www.apache.org/licenses/LICENSE-2.0).
+-/
+
 module
 
 public import Definitions.MTT.Def_MTT_Cohomology_Boundary
 
 import Definitions.MTT.Def_MTT_Cohomology_Integration
 import Theorems.MTT.Thm_MTT_Cohomology_period_cocycle_injective
+
+/-!
+# Directness of the Eichler–Shimura decomposition of $H^1_c$: holomorphic, antiholomorphic and boundary classes are independent
+
+Theorem statement: `MTT.Cohomology.eichler_shimura_direct` (`98189fbe-6dc1-4abe-aff4-a1ec348bb514`),
+by cbirkbeck, 2026-09-07.
+
+Proof: submission `85e05f31-f511-4d11-9d09-c01914a25f79`, by cbirkbeck, 2026-09-07 (ACCEPTED);
+locally adapted.
+
+Let $N\ge1$, $k\ge2$, $n=k-2$, and let $I:S_k(\Gamma_1(N))\to H_c$ be an integration map (a linear
+map with the integral-class property, so that $I(g)$ is the modular symbol of $g$). Let $\mathcal R$
+be the reflection induced by $\operatorname{diag}(-1,1)$ and let $\partial\Phi(x,y)=\Phi(y)-\Phi(x)$
+be the boundary cochain of a $\Gamma_1(N)$-equivariant $\operatorname{Sym}^n$-valued function $\Phi$
+on cusps.
+
+**Claim (directness of the Eichler–Shimura decomposition).** If
+$$I(g)+\mathcal R\big(I(h)\big)+\partial\Phi=0$$
+for cusp forms $g,h$ and a boundary datum $\Phi$, then $g=0$, $h=0$ and $\partial\Phi=0$.
+
+Together with `eichler_shimura_span` this says that
+$H_c=\operatorname{Hom}_{\Gamma_1(N)}(\operatorname{Div}^0,\operatorname{Sym}^n)$ is the direct sum
+of the holomorphic image, the antiholomorphic (reflected) image and the boundary (Eisenstein)
+classes — the Eichler–Shimura isomorphism $H^1_c(\Gamma_1(N),\operatorname{Sym}^n)\cong
+S_k\oplus\overline{S_k}\oplus\operatorname{Eis}$ (Ash–Stevens, Proposition 4.2; Williams, Theorem
+11.5). The cuspidal part is detected by the Petersson pairing (the classes $I(g)$ and $\mathcal R
+I(h)$ pair non-degenerately with $\overline{S_k}$ and $S_k$ respectively and are orthogonal to the
+boundary classes), which is why the three pieces are independent.
+
+## Explanation of the source proof
+
+# Reduction to ordinary period-cocycle injectivity
+
+This is a conditional proof-sketch, not a completed analytic proof. Its sole
+theorem dependency is the open `MTT.Cohomology.period_cocycle_injective`.
+It imports no directness theorem, spanning theorem, or descendant of either.
+
+Write `P_f` for the mission's normalized homogeneous cusp primitive and
+`ρ = diag(-1,1)`. The new child is the classical injectivity assertion that
+
+\[
+P_g(\gamma\infty)+\rho\cdot P_h(\rho\gamma\infty)
+   =\gamma\cdot P-P\qquad(\gamma\in\Gamma_1(N))
+\]
+
+for one homogeneous polynomial `P` implies `g=h=0`. Unlike the parent, it
+involves neither an arbitrary integration map nor an equivariant function on
+all cusps. It is the analytic ordinary/parabolic-cohomology input, not a
+claim that the remaining analysis has been formalized.
+
+The submitted Lean file proves all of the following steps.
+
+1. An integral class is exactly the explicit integration cochain
+   `I(f)(x,y)=P_f(y)-P_f(x)`. The prescribed normalized coefficients determine
+   its value at `(∞,r)`: homogeneous binary polynomials are determined by
+   their degree-`k-2` monomials. The cocycle relation determines every other
+   pair. This algebraic argument is extracted from our accepted proof
+   `409661e4-aebb-482e-a7ec-21de19561db6`.
+2. Evaluate the assumed zero sum at `(∞,γ∞)`. Reflection fixes infinity and
+   acts on the coefficients by `ρ`, while equivariance of the boundary datum
+   gives `Φ(γ∞)=γ·Φ(∞)`. Consequently the displayed identity holds with
+   `P=-Φ(∞)`. Homogeneity of this `P` follows from the boundary-datum property.
+3. The child gives `g=h=0`. Linearity of the integration map and vanishing of
+   the reflection of the zero cochain then give `boundaryCochain Φ=0`.
+
+The analytic source is Ash–Stevens, *Modular forms in characteristic ℓ and
+special values of their L-functions*, Theorem 2.3, p. 853
+([paper](https://math.bu.edu/people/ghs/papers/Mod_fms_char_ell.pdf)).
+The cocycle construction and injectivity argument are written explicitly in
+the Columbia Spring 2021 seminar notes, §1.2, Theorem 1, pp. 8–10
+([notes](https://www.math.columbia.edu/~dmarcil/Seminars/2021_Spring/Notes/Week4-5.pdf)).
+Changing a primitive's basepoint adds a principal cocycle. The homogeneous
+left action here corresponds to the source's standard symmetric-power
+representation. Reflection realizes the antiholomorphic summand, after
+reparametrizing by `h^c(z)=conj(h(-conj(z)))`; signs and the common nonzero
+normalization factor do not change the injectivity assertion.
+
+The file compiles under Lean 4.33.1 and mathlib
+`0df444a360eaa60ab8c11dca51a86af692955474`, without increased heartbeat limits.
+It contains no `sorry`, `admit`, new axiom, or local `Solutions.*` import.
+The only local placeholder in its dependency closure is the explicitly tracked
+open child. The independent algebraic helper uses only Lean's usual
+`propext`, `Classical.choice`, and `Quot.sound` axioms.
+
+<!-- Generated by add_prove2me_provenance.py -->
+-/
 
 section privateSection
 

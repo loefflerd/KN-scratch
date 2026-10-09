@@ -1,3 +1,14 @@
+/-
+Based on Prove2Me node MTT.Cohomology.eichler_shimura_span
+(31b3d2c3-b234-45b8-b480-9ff79096ee2b) by cbirkbeck (2026-09-06).
+
+Proof based on Prove2Me submission 4cbcd0f1-213e-46a6-a004-2fba9e9768e3
+by cbirkbeck (2026-09-07); locally adapted.
+
+Licensed under Apache License 2.0
+(https://www.apache.org/licenses/LICENSE-2.0).
+-/
+
 module
 
 public import Definitions.MTT.Def_MTT_Cohomology_Boundary
@@ -6,6 +17,109 @@ import Definitions.MTT.Def_MTT_Cohomology_Integration
 import Definitions.MTT.Def_MTT_Cohomology
 import Theorems.MTT.Thm_MTT_Cohomology_reflection_class
 import Theorems.MTT.Thm_MTT_Cohomology_parabolic_period_cocycle_surjective
+
+/-!
+# Eichler–Shimura for modular symbols: holomorphic, reflected, and boundary classes span $H^1_c$
+
+Theorem statement: `MTT.Cohomology.eichler_shimura_span` (`31b3d2c3-b234-45b8-b480-9ff79096ee2b`),
+by cbirkbeck, 2026-09-06.
+
+Proof: submission `4cbcd0f1-213e-46a6-a004-2fba9e9768e3`, by cbirkbeck, 2026-09-07 (ACCEPTED);
+locally adapted.
+
+Let $N>0$, $k\ge2$, $n=k-2$, and let
+$H_c=\operatorname{Hom}_{\Gamma_1(N)}(\operatorname{Div}^0(\mathbf P^1(\mathbf
+Q)),\operatorname{Sym}^n\mathbf C^2)$ be the space of $\operatorname{Sym}^n$-valued modular symbols.
+Let $I:S_k(\Gamma_1(N))\to H_c$ be the cusp-to-cusp integration map, characterised by its
+coefficient evaluations, and let $\mathcal R$ be the reflection induced by
+$\operatorname{diag}(-1,1)$. Then every modular symbol decomposes as
+
+$$
+\phi \;=\; I(g)\;+\;\mathcal R\big(I(h)\big)\;+\;\partial\Phi ,
+$$
+
+with $g,h$ cusp forms of weight $k$ on $\Gamma_1(N)$ and $\Phi$ a $\Gamma_1(N)$-equivariant
+$\operatorname{Sym}^n$-valued function on cusps (a boundary datum),
+$\partial\Phi(x,y)=\Phi(y)-\Phi(x)$.
+
+This is the spanning half of the Eichler–Shimura isomorphism in its modular-symbol form,
+$\operatorname{Symb}_\Gamma(V_n)\simeq S_k\oplus\overline{S_k}\oplus\mathcal E_k$: the
+antiholomorphic classes are realised as reflections of holomorphic classes (for
+$f^c(z)=\overline{f(-\bar z)}$ one has $\mathcal R\,I(f)=-A(f^c)$ with $A$ the antiholomorphic
+integration map), and the Eisenstein summand is the space of boundary symbols. Cohomologically,
+$0\to\mathrm{BSymb}\to H_c\to H^1_{\mathrm{par}}(\Gamma_1(N),V_n)\to0$ is exact and the parabolic
+Eichler–Shimura isomorphism lifts to $H_c$ through the cusp-to-cusp integrals.
+
+**Formalization Note** The map $I$ is any linear map satisfying `IntegralClass`; it is unique by
+`MTT.Cohomology.integral_class_unique`. Directness of the decomposition and its compatibility with
+the Hecke and nebentype operators are separate targets.
+
+## Explanation of the source proof
+
+# Spanning via parabolic group cohomology and the boundary kernel
+
+This proof-sketch leaves one analytic input open:
+`MTT.Cohomology.parabolic_period_cocycle_surjective`. The only other theorem
+import, `reflection_class`, is already proved on the platform. No directness
+or spanning theorem is imported, and there is no circular dependency.
+
+Let `b=∞` and let `φ` be the given modular symbol. Define
+
+\[
+c_\phi(\gamma)=\phi(b,\gamma b).
+\]
+
+The submitted file verifies its group-cocycle law using the pairwise cocycle
+law and equivariance of `φ`. It also verifies the parabolic condition: if
+`γx=x`, then
+
+\[
+c_\phi(\gamma)=\gamma\cdot\phi(x,b)-\phi(x,b).
+\]
+
+In particular this is a principal cocycle on every cusp stabilizer, with a
+homogeneous witness. Neither of these group-cohomology conditions is assumed
+of `φ`; both are proved in Lean over an arbitrary commutative coefficient ring
+and with an arbitrary base cusp.
+
+The new child supplies cusp forms `g,h` and one homogeneous polynomial `P`
+such that the difference between `c_φ` and their holomorphic/reflected period
+cocycles is `γ·P-P`. The normalized coefficient property of `I` determines
+its values exactly as `I(f)(x,y)=P_f(y)-P_f(x)`. This identification is proved
+in the file, including the binomial factors. Reflection preserves the modular
+symbol space by the already-proved `reflection_class`.
+
+Set `ψ=φ-I(g)-R(I(h))`. The remaining algebra is the boundary-kernel
+calculation, proved in both directions in the submitted file:
+
+\[
+\psi(b,\gamma b)=\gamma\cdot P-P
+\quad\Longrightarrow\quad
+\Phi(x)=\psi(b,x)+P,\qquad \partial\Phi=\psi.
+\]
+
+Indeed, the cocycle equation gives
+`ψ(b,γx)=γ·P-P+γ·ψ(b,x)`, hence `Φ(γx)=γ·Φ(x)`.
+Homogeneity is preserved under addition, and subtracting the values at two
+cusps gives `Φ(y)-Φ(x)=ψ(x,y)`. Thus the constructed `Φ` satisfies every
+clause of `IsBoundaryDatum` and yields the required spanning decomposition.
+
+This follows the boundary exact sequence in Ash–Stevens, Proposition 4.2,
+p. 862 ([paper](https://math.bu.edu/people/ghs/papers/Mod_fms_char_ell.pdf)).
+The remaining child is the surjectivity part of the parabolic Eichler–Shimura
+isomorphism; see the Columbia Spring 2021 notes, §1.2, Theorem 1, pp. 8–10
+([notes](https://www.math.columbia.edu/~dmarcil/Seminars/2021_Spring/Notes/Week4-5.pdf)).
+It uses the mission's left coefficient action, cusp basepoint, normalization,
+and reflection parametrization of the antiholomorphic summand.
+
+Local compilation succeeds under Lean 4.33.1 and the target mathlib revision,
+without increased resource limits. The submission itself contains no `sorry`,
+`admit`, custom axiom, or `Solutions.*` import. The coefficient, cocycle,
+stabilizer and boundary-kernel proofs have the usual three-axiom closures.
+The substantive analytic surjectivity assertion remains explicitly open.
+
+<!-- Generated by add_prove2me_provenance.py -->
+-/
 
 section privateSection
 

@@ -1,3 +1,11 @@
+/-
+Based on Prove2Me node ModularCurve_SpecialisationBridge
+(52ff15a8-6143-55a5-8df2-6a5dc3d7422f) by Claude (2026-09-05).
+
+Licensed under Apache License 2.0
+(https://www.apache.org/licenses/LICENSE-2.0).
+-/
+
 module
 
 public import Definitions.FLT.Def_ModularCurve_SpecialisationVocab
@@ -13,6 +21,69 @@ public import Theorems.FLT.Thm_ModularCurve_B3_exists_variableChange_specialFibr
 public import Theorems.FLT.Thm_ModularCurve_B3_isElliptic_specialFibre_goodModel
 public import Theorems.FLT.Thm_ModularCurve_B3_isElliptic_specialFibre
 public import Theorems.FLT.Thm_ModularCurve_B3_exists_torsionBy_reduction_addEquiv
+
+/-!
+# Reduction of points and specialisation of cyclic p-subgroups
+
+Definition: `ModularCurve_SpecialisationBridge` (`52ff15a8-6143-55a5-8df2-6a5dc3d7422f`), by Claude,
+2026-09-05.
+
+Throughout, $\bar{\mathbb Q}$ is an algebraic closure of $\mathbb Q$ and $H = \mathrm{HahnSeries}\
+\mathbb Q\ \bar{\mathbb Q}$ is the field of Hahn series with rational exponents; a Weierstrass curve
+$W$ over $H$ has `IntegralCoeffs` when each $a_i$ has non-negative `orderTop`, and `specialFibre W`
+is the Weierstrass curve over $\bar{\mathbb Q}$ whose coefficients are the degree-$0$ coefficients
+of the $a_i$. The first group of declarations is the coefficientwise reduction: if $x,y$ have
+non-negative order and $(x,y)$ satisfies (resp. is a nonsingular point of) the affine equation of
+$W$, then $(x_0,y_0)$ satisfies (resp. is nonsingular on) `specialFibre W`, the nonsingularity
+statement using that the special fibre is elliptic when $\Delta_W$ has order exactly $0$. The
+function `redPoint` sends the point at infinity to $0$, a point with both coordinates of
+non-negative order to its reduction, and every other affine point to $0$; it is defined as a
+function on points, no additivity being asserted.
+
+The second group manipulates the type `CycOf A N` of subgroups of an additive group $A$ of the form
+$\mathbb Z g$ with $g$ of additive order exactly $N$; the project's types `CycSubH E N` and `CycSub
+E₀ N` of cyclic $N$-subgroups of points are recorded as this type. Bijections of this type are
+produced from an additive equivalence (`cycOfCongr`, by pushing subgroups forward), and from the
+inclusion of the $N$-torsion submodule (`cycOfTorsionBy`, by pulling back along $\mathrm{torsionBy}\
+\mathbb Z\ A\ N \hookrightarrow A$), with small helpers on torsion membership and on comap of
+$\mathbb Z g$. Additive equivalences of point groups are supplied by `vcAddEquiv` (the inverse of
+the point bijection attached to a variable change, additive by `vcInvFun_add`) and by
+`pointAddEquivOfEq` (transport along an equality of curves).
+
+At a $j$-value $j_0 \in \bar{\mathbb Q}$, `nearCurve j₀` is the curve of invariant $j_0 + q$ and
+`goodModel j₀` is its twist by the variable change `scaleVC j₀` (a rescaling by a fractional power
+of $q$ when $j_0 = 0$ or $1728$, the identity otherwise); `goodModel_spec` records that this model
+has integral coefficients and discriminant of order $0$. `fibreVC` is a chosen variable change
+carrying `specialFibre (goodModel j₀)` to `ofJ j₀`, and `fibreAddEquiv` the resulting additive
+equivalence of point groups; `scaleAddEquiv` is the point equivalence between `nearCurve j₀` and
+`goodModel j₀`, and `cycScale` its effect on cyclic $p$-subgroups. `redTorsionEquiv` is a chosen
+additive equivalence between the $p$-torsion of $W$ and that of `specialFibre W`, characterised by
+`redTorsionEquiv_spec`: it acts on an affine $p$-torsion point $(x,y)$ by $(x_0,y_0)$. Composing
+gives `cycRed`, a bijection from cyclic $p$-subgroups of $W$ to those of `specialFibre W`, and
+`bridge3Specialise`, a bijection from cyclic $p$-subgroups of `nearCurve j₀` to those of `ofJ j₀`,
+for $p$ prime.
+
+The last group is the monodromy action. A ring endomorphism of $H$ fixing the constants $C(q)$ and
+the element $q = \mathrm{single}\ 1\ 1$ fixes $j_0 + q$ and hence `nearCurve j₀`; in particular
+every element of the monodromy subgroup of $\mathrm{Aut}_{\bar{\mathbb Q}}(H)$ (the group of twists
+$\mathrm{single}\ a\ r \mapsto \mathrm{single}\ a\ (\chi(a)r)$ with $\chi(1) = 1$) does.
+`nearTransport j₀ m` is the induced additive automorphism of the points of `nearCurve j₀`, acting
+coordinatewise, `b3Act j₀ m` is the induced map on subgroups of the point group, and it carries
+$\mathbb Z g$ to $\mathbb Z\,(\text{transport of } g)$.
+
+**Relation to Mathlib.** Mathlib provides `WeierstrassCurve`, its `VariableChange` action and affine
+point groups, but not the induced bijection of point groups under a variable change, nor the
+reduction of an integral Hahn-series model to its special fibre; both are project notions, as is the
+type of cyclic subgroups of a given order used here.
+
+**Where it is used.** These definitions form the specialisation half of the dictionary between roots
+of the modular polynomial and cyclic $p$-subgroups: they transfer the subgroup-counting statements
+proved for the near model over the Hahn-series field $H$, where the $j$-invariant is transcendental,
+to an arbitrary elliptic curve of given $j$-invariant over $\bar{\mathbb Q}$, and record the
+monodromy action under which that transfer is equivariant.
+
+<!-- Generated by add_prove2me_provenance.py -->
+-/
 
 @[expose] public section publicSection
 

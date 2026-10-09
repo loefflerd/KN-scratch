@@ -1,7 +1,79 @@
+/-
+Based on Prove2Me node ModularCurve_MazurStepThreeInputs
+(e3e6892f-f171-5eae-9a79-bf709f2cab60) by Claude (2026-09-05).
+
+Licensed under Apache License 2.0
+(https://www.apache.org/licenses/LICENSE-2.0).
+-/
+
 module
 
 public import Definitions.FLT.Def_ModularCurve_Eisenstein
 public import Definitions.FLT.Def_ModularCurve_MazurStepThree
+
+/-!
+# Named inputs for Mazur's step three over X0​(p)
+
+Definition: `ModularCurve_MazurStepThreeInputs` (`e3e6892f-f171-5eae-9a79-bf709f2cab60`), by Claude,
+2026-09-05.
+
+Fix a prime-to-be $p$ with `NeZero p`, and let `JZero p` be the degree-zero divisor class group
+$\mathrm{Pic}^0$ of the geometric modular function field `modularFunctionFieldBar p` over
+$\overline{\mathbb Q}$. Throughout, the Hecke-module structure is an explicit binder `inst : Module
+HeckeAlg (JZero p)` rather than an instance, `HeckeAlg` being the polynomial ring $\mathbb Z[T_\ell
+: \ell \text{ prime}]$. First come the carriers: `eisensteinKernelSubmodule p inst` is
+$\gamma\cdot\top$, where $\gamma$ is the ideal `eisensteinKernel` attached to `eisensteinIdeal p`
+(the kernel of $T_\ell \mapsto 1$ for $\ell \mid p$, $T_\ell \mapsto 1+\ell$ otherwise);
+`EisensteinQuotient p inst` is the quotient of `JZero p` by it, `eisensteinQuotientMk` the quotient
+map, and `eisensteinQuotientRational` the image of the set of $x$ with $\sigma\cdot x - x \in
+\gamma\cdot\top$ for all $\sigma \in \mathrm{Gal}(\overline{\mathbb Q}/\mathbb Q)$, i.e. the
+"rational part" of the quotient. The theorem `eisensteinQuotientInvariantsFiniteAt_iff` records, by
+`Iff.rfl`, that the project's predicate `EisensteinQuotientInvariantsFiniteAt` is exactly finiteness
+of this set. `CuspidalClassSurvives` says the class of $(\bar 0)-(\bar\infty)$ does not lie in
+$\gamma\cdot\top$. Next, `jBar p` and `jpBar p` are the coefficientwise images in
+`modularFunctionFieldBar p` of the $q$-expansions $j(q)$ and $j(q^p)$, and `placeDiff p x y` is the
+divisor $(x)-(y)$.
+
+`MazurQuotientSpecialization p inst` asserts: for every prime $\ell \neq p$ and every valuation
+subring $A$ of $\overline{\mathbb Q}$ with $\ell$ a nonunit of $A$, there are an abelian group $T$
+and an additive map $s$ from the Eisenstein quotient such that (i) $s$ is injective on the
+prime-to-$\ell$ torsion of `eisensteinQuotientRational`, (ii) if $\ell \neq 2$, also on its
+$\ell$-power torsion, and (iii) $s$ annihilates the class of $(x)-(\bar\infty)$, resp. $(x)-(\bar
+0)$, for every place $x$ fixed by the arithmetic Galois action with $\mathrm{ord}_x(\,\bar j - j_1)
+> 0$, $\mathrm{ord}_x(\,\bar j_p - j_2) > 0$ and $v_A(j_1) > 1$, under $v_A(j_2) = v_A(j_1)^p$,
+resp. $v_A(j_2)^p = v_A(j_1)$ (the relevant divisors being assumed of degree zero).
+
+Finally, `jInt W` is $c_4^3/\Delta$ computed with Lean's total division (so $0$ when $\Delta = 0$;
+every use assumes $\Delta \neq 0$), and `JQuot` is the type of functions assigning to each integral
+Weierstrass curve $W$ and each $\overline{\mathbb Q}$-point of $W_{\mathbb Q}$ an element of
+$\overline{\mathbb Q}$ — an abstract stand-in for the $j$-invariant of the quotient, with no
+identification built in. For such a `jQuot`, `ModuliPointExists` says that for $p$ prime, $W$ with
+$\Delta \neq 0$ and $q \nmid c_4$ for every prime $q \mid \Delta$, and every Galois-fixed point $Q$
+of exact order $p$, there is a degree-one place of `modularFunctionFieldBar p`, fixed by the
+arithmetic Galois action, at which both $\bar j - \mathrm{jInt}\,W$ and $\bar j_p -
+\mathrm{jQuot}\,W\,Q$ have positive order. `TateCuspCriterion` says that in the same situation, at a
+prime $\ell \neq p$ with $\ell \mid \Delta$, $\ell \nmid c_4$ and $A$ over $\ell$, one has
+$v_A(\mathrm{jInt}\,W) > 1$, and that $Q$ lies in the zero component at $A$ (in the sense of the
+project's `InZeroComponentAt`: $Q = 0$, or $Q = (x,y)$ with $x \notin A$, or $x,y \in A$ with
+nonsingular reduction) implies $v_A(\mathrm{jQuot}\,W\,Q) = v_A(\mathrm{jInt}\,W)^p$, while failure
+of that condition implies $v_A(\mathrm{jQuot}\,W\,Q)^p = v_A(\mathrm{jInt}\,W)$; these are two
+one-directional implications, not stated as equivalences.
+
+**Relation to Mathlib.** Weierstrass curves, their invariants $c_4,\Delta$, affine points and
+`ValuationSubring` are Mathlib's; the curve-theoretic framework used here (places, divisors,
+$\mathrm{Pic}^0$, the modular function field as a subfield of Laurent series, the Hecke algebra and
+the Eisenstein ideal) is the project's own, as are `InZeroComponentAt` and `LiesOverPrime`.
+
+**Where it is used.** These predicates isolate, as propositions carrying no proof, the inputs from
+Mazur's study of the Eisenstein ideal and from Tate uniformisation that are consumed by the
+reduction proving [`MazurStepThree p`](../def/ModularCurve_MazurStepThree.html#L8): the finiteness
+of the rational part of the Eisenstein quotient, survival of the cuspidal class (which fails for $p
+\le 7$ and $p = 13$), the specialisation map with its injectivity and cusp-killing clauses,
+existence of the moduli point attached to a pair $(W, \langle Q\rangle)$, and the Tate-curve
+computation of the quotient $j$-invariant's valuation.
+
+<!-- Generated by add_prove2me_provenance.py -->
+-/
 
 @[expose] public section publicSection
 

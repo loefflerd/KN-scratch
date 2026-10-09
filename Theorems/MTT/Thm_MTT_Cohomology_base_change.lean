@@ -1,3 +1,14 @@
+/-
+Based on Prove2Me node MTT.Cohomology.base_change
+(55e287ab-365f-40fb-a1e3-d7a58f9f4d43) by davidloeffler (2026-09-06).
+
+Proof based on Prove2Me submission 4c16e7fa-0b5a-4e2e-adf3-ffd753485b18
+by allychan327 (2026-09-06); locally adapted.
+
+Licensed under Apache License 2.0
+(https://www.apache.org/licenses/LICENSE-2.0).
+-/
+
 module
 
 public import Definitions.MTT.Def_MTT_Cohomology
@@ -5,6 +16,111 @@ public import Mathlib.RingTheory.Flat.Basic
 
 import Theorems.MTT.Thm_MTT_Cohomology_integral_classes_span
 import Theorems.MTT.Thm_MTT_Cohomology_manin_generation
+
+/-!
+# Flat base change for compactly supported group cohomology
+
+Theorem statement: `MTT.Cohomology.base_change` (`55e287ab-365f-40fb-a1e3-d7a58f9f4d43`), by
+davidloeffler, 2026-09-06.
+
+Proof: submission `4c16e7fa-0b5a-4e2e-adf3-ffd753485b18`, by allychan327, 2026-09-06 (ACCEPTED);
+locally adapted.
+
+For positive level, coefficientwise extension gives the canonical R-linear isomorphism R ⊗_Z
+Hc¹(Γ₁(N), Symⁿ Z²) ≃ Hc¹(Γ₁(N), Symⁿ R²) for every commutative ring flat over Z. This includes
+Qbar, C and Cp. Compatibility is specified on pure tensors, not merely existence of an unrelated
+isomorphism.
+
+## Explanation of the source proof
+
+## Flat base change, reduced to Manin's presentation
+
+Write $M_R := H^1_c(\Gamma_1(N),\operatorname{Sym}^n R^2)$ for the modular-symbol model used here:
+$\Gamma_1(N)$-equivariant cocycles on pairs of cusps with values in the binary forms of degree $n$.
+Coefficientwise extension along $\mathbf Z\to R$ gives a $\mathbf Z$-linear map
+$\mathrm{ext}\colon M_{\mathbf Z}\to M_R$, and its $R$-linear extension
+$$\beta\colon R\otimes_{\mathbf Z} M_{\mathbf Z}\longrightarrow M_R,\qquad
+\beta(r\otimes\varphi)=r\cdot\mathrm{ext}(\varphi),$$
+is the map whose bijectivity is asserted. This submission proves that $\beta$ is well defined,
+proves that it is **injective**, and reduces **surjectivity** to the imported open lemma
+`integral_classes_span`.
+
+### 1. $\beta$ is well defined
+
+The three defining conditions survive coefficient extension. Homogeneity does because
+$\operatorname{coeff}_d(\mathrm{map}\,f\,P)=f(\operatorname{coeff}_d P)$, so a coefficient that is
+nonzero after extension was already nonzero. The cocycle relation does because
+$\mathrm{map}\,f$ is additive. Equivariance does because the coefficient action
+$$(\mathrm{act}\,A\,P)(X,Y)=P\bigl((X,Y)A\bigr)$$
+is substitution of $\mathbf Z$-linear forms: with $A$ an *integral* matrix,
+$\mathrm{act}\,A\circ \mathrm{map}\,f=\mathrm{map}\,f\circ \mathrm{act}\,A$ for every ring
+homomorphism $f$ (`act_map`, proved by $\mathrm{bind}_1$-naturality). This is the only place where
+integrality of the group elements is used, and it is what makes the whole diagram defined over
+$\mathbf Z$.
+
+### 2. Manin coordinates
+
+Let $\mathcal C = \Gamma_1(N)\backslash SL_2(\mathbf Z)$, a **finite** set for $N>0$, and fix a
+representative $g_q$ of each coset. Define
+$$\Theta_R\colon M_R\longrightarrow \bigoplus_{(q,j)\in \mathcal C\times\{0,\dots,n\}} R,
+\qquad \Theta_R(\varphi)_{q,j}=\operatorname{coeff}_{X^jY^{n-j}}\varphi(g_q\cdot 0,\
+g_q\cdot\infty).$$
+
+$\Theta_R$ is **injective for every** $R$. Indeed, if $\Theta_R(\varphi)=0$ then, since a form
+homogeneous of degree $n$ in two variables is determined by its $n+1$ coefficients on the line
+$d_0+d_1=n$, we get $\varphi(g_q\cdot 0,g_q\cdot\infty)=0$ for each representative; equivariance
+$\varphi(\gamma x,\gamma y)=\mathrm{act}\,\gamma\,\varphi(x,y)$ propagates this to *every*
+$g\in SL_2(\mathbf Z)$, and the imported lemma `manin_generation` — the statement that unimodular
+paths generate $\operatorname{Div}^0(\mathbf P^1(\mathbf Q))$, proved by the continued-fraction
+algorithm — gives $\varphi=0$.
+
+### 3. Injectivity of $\beta$
+
+The point of $\Theta$ is that it is defined over $\mathbf Z$ and lands in a **finite free** module,
+so it converts flatness into the statement we need. The square
+$$\begin{array}{ccc}
+R\otimes_{\mathbf Z} M_{\mathbf Z} & \xrightarrow{\ \beta\ } & M_R\\
+\downarrow{\scriptstyle \mathrm{id}\otimes\Theta_{\mathbf Z}} & & \downarrow{\scriptstyle
+\Theta_R}\\
+R\otimes_{\mathbf Z}\bigl(\mathcal I\to \mathbf Z\bigr) & \xrightarrow{\ \sim\ } & \bigl(\mathcal
+I\to R\bigr)
+\end{array}$$
+commutes, where $\mathcal I=\mathcal C\times\{0,\dots,n\}$ and the bottom isomorphism is the
+canonical one for a *finite* index set. Commutativity is checked on pure tensors, where both routes
+send $r\otimes\varphi$ to the family $r\cdot\overline{\Theta_{\mathbf Z}(\varphi)_{q,j}}$ — the
+$\mathbf Z$-action $m\cdot r$ on the left, multiplication by the image of $m$ in $R$ on the right —
+and then extended by additivity through `TensorProduct.induction_on`.
+
+Now $\Theta_{\mathbf Z}$ is injective by §2 with $R=\mathbf Z$; flatness of $R$ over $\mathbf Z$
+makes $\mathrm{id}_R\otimes\Theta_{\mathbf Z}$ injective; the bottom map is an isomorphism because
+$\mathcal I$ is finite. Hence $\Theta_R\circ\beta$ is injective, and therefore so is $\beta$.
+Note that this half needs only the *generation* half of Manin's theorem.
+
+### 4. Surjectivity: the reduction
+
+Surjectivity is the assertion that every $R$-valued class is an $R$-linear combination of
+coefficientwise extensions of integral classes; that is exactly the imported open lemma
+`integral_classes_span`. Given $\Phi\in M_R$ and a representation
+$\Phi=\sum_{i} c_i\,\mathrm{ext}(\varphi_i)$, the element $\sum_i c_i\otimes\varphi_i$ maps to
+$\Phi$ under $\beta$.
+
+This is where the genuinely deeper input sits, and it is why the decomposition is drawn here.
+Injectivity needs only that the unimodular paths *generate*; surjectivity needs Manin's full
+**presentation** — that the two-term and three-term relations generate all relations among the
+Manin symbols — so that $M_{(-)}$ is the kernel of a fixed integer matrix on a finite free
+coefficient module and flatness lets the kernel commute with $-\otimes_{\mathbf Z}R$. Splitting the
+theorem along this line isolates the presentation as a single reusable obligation instead of
+burying it inside a base-change proof.
+
+### 5. Conclusion
+
+$\beta$ is bijective, so `LinearEquiv.ofBijective` produces the required $R$-linear isomorphism
+$e$, and the compatibility demanded on pure tensors holds on the nose:
+$e(1\otimes\varphi)=1\cdot \mathrm{ext}(\varphi)=\mathrm{ext}(\varphi)$, whose value at $(x,y)$ is
+by construction $\mathrm{map}\,(\mathbf Z\to R)\,\varphi(x,y)$. $\square$
+
+<!-- Generated by add_prove2me_provenance.py -->
+-/
 
 section privateSection
 

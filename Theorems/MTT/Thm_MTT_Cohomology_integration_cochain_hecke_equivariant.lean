@@ -1,3 +1,14 @@
+/-
+Based on Prove2Me node MTT.Cohomology.integration_cochain_hecke_equivariant
+(60992b0d-f0d1-40f8-8df3-157cbfcc3d7a) by davidloeffler (2026-09-06).
+
+Proof based on Prove2Me submission 1bacf9ce-46d7-4a42-95d4-6967c690e87a
+by cbirkbeck (2026-09-06); locally adapted.
+
+Licensed under Apache License 2.0
+(https://www.apache.org/licenses/LICENSE-2.0).
+-/
+
 module
 
 public import Definitions.MTT.Def_MTT_Cohomology_Integration
@@ -5,6 +16,83 @@ public import Mathlib.RingTheory.Flat.Basic
 
 import Mathlib.NumberTheory.ModularForms.LFunction
 import Mathlib.NumberTheory.ModularForms.Identities
+
+/-!
+# Hecke equivariance of cusp-to-cusp integration
+
+Theorem statement: `MTT.Cohomology.integration_cochain_hecke_equivariant`
+(`60992b0d-f0d1-40f8-8df3-157cbfcc3d7a`), by davidloeffler, 2026-09-06.
+
+Proof: submission `1bacf9ce-46d7-4a42-95d4-6967c690e87a`, by cbirkbeck, 2026-09-06 (ACCEPTED);
+locally adapted.
+
+Let $N>0$ and $k\ge 2$. The cusp-to-cusp integration map
+
+$$
+I:S_k(\Gamma_1(N))\longrightarrow H_c(N,k-2;\mathbf C)
+$$
+
+intertwines the analytic and modular-symbol prime Hecke operators. Explicitly, for every Dirichlet
+character $e$ modulo $N$, every prime $\ell$ (including primes dividing $N$), and every cusp form
+$f$, integrating the analytic transform $T_{\ell,e}f$ gives the modular-symbol transform
+$T_{\ell,e}I(f)$, with the normalizations fixed in the cohomology definitions.
+
+## Explanation of the source proof
+
+We prove that the integration cochain is Hecke-equivariant in the mission's sense: if $g=T_\ell f$
+pointwise, where
+$$(T_\ell f)(z)=\frac1\ell\sum_{b=0}^{\ell-1}f\Big(\frac{z+b}{\ell}\Big)+e\,\ell^{k-1}f(\ell
+z)\qquad(e=\varepsilon(\ell)),$$
+then $\Phi_g=T_\ell\Phi_f$ on cochains, where $T_\ell\phi=\sum_b\phi|\beta_b+e\,\phi|\alpha$ with
+$\beta_b=\begin{pmatrix}1&b\\0&\ell\end{pmatrix}$, $\alpha=\begin{pmatrix}\ell&0\\0&1\end{pmatrix}$
+and $(\phi|M)(x,y)=\operatorname{adj}(M)\cdot\phi(Mx,My)$. Recall $\Phi_f(x,y)=P_f(y)-P_f(x)$ with
+$P_f(\infty)=0$ and, for $r\in\mathbf Q$,
+$$P_f(r)=\sum_{j=0}^{n}\binom nj\Lambda_{f,r}(z^j)\,X^jY^{n-j},\qquad
+\Lambda_{f,r}(Q)=2\pi\int_0^\infty f(r+it)\,Q(r+it)\,dt,\quad n=k-2 .$$
+Since $\operatorname{adj}(M)\cdot$ is linear and the matrices $\beta_b,\alpha$ fix $\infty$, it
+suffices to prove the primitive-level identity $P_g(r)=\sum_b\operatorname{adj}(\beta_b)\cdot
+P_f(\tfrac{r+b}{\ell})+e\,\operatorname{adj}(\alpha)\cdot P_f(\ell r)$ for $r\in\mathbf Q$
+(`cuspPeriodPolynomial_heckePrime`), the case of $\infty$ being trivial
+(`integrationCochain_heckePrime`).
+
+**Analysis.** For a cusp form $f$ on $\Gamma_1(N)$ and every $r\in\mathbf Q$ the functions $t\mapsto
+f(r+it)t^j$ are integrable on $(0,\infty)$ (`rational_translate_integrable`, taken from the accepted
+proof of `MTT.birch_mellin_formula`: it comes from Mathlib's strong functional-equation pair of the
+translated cusp form). Hence $\Lambda_{f,r}$ is a well-defined linear functional on $\mathbf C[z]$
+(`Lam`). The substitution $t=\ell s$ gives, for every polynomial $Q$,
+$$\Lambda_{f((\cdot+b)/\ell),\,r}(Q)=\ell\,\Lambda_{f,\frac{r+b}{\ell}}\big(Q(\ell z-b)\big),\qquad
+\Lambda_{f(\ell\,\cdot),\,r}(Q)=\ell^{-1}\Lambda_{f,\ell r}\big(Q(z/\ell)\big)$$
+(`modularIntegral_upTranslate`, `modularIntegral_scaleTranslate`, via `integral_comp_mul_left_Ioi`),
+and integrability transfers along the same substitution (`GoodAt.upTranslate`,
+`GoodAt.scaleTranslate`). Splitting the integrand of $\Lambda_{g,r}$ according to the definition of
+$T_\ell f$ and using linearity of the integral (which is where integrability is needed) yields the
+identity of linear functionals
+$$\Lambda_{g,r}=\sum_{b}\Lambda_{f,\frac{r+b}{\ell}}\circ c_{\ell
+z-b}+e\,\ell^{k-2}\,\Lambda_{f,\ell r}\circ c_{z/\ell},\qquad c_q(Q)=Q\circ q$$
+(`modularIntegral_heckePrime`, `Lam_heckePrime`).
+
+**Algebra.** Write $\widehat\Lambda$ for the coefficientwise application of a functional $\Lambda$
+to a polynomial in $X,Y$ with coefficients in $\mathbf C[z]$ (`hat`); then
+$P_f(r)=\widehat{\Lambda_{f,r}}\big((zX+Y)^n\big)$ (`hat_kernel`, `cuspPeriodPolynomial_eq_hat`).
+Two formal properties drive the computation: $\widehat{\Lambda\circ
+c_q}(R)=\widehat\Lambda(R|_{z\mapsto q})$ (`hat_comp`), and $\widehat\Lambda$ commutes with the
+coefficient action $\gamma\cdot$, applied over $\mathbf C[z]$ on one side and over $\mathbf C$ on
+the other (`hat_act'`, proved by induction on the polynomial since the substitution has integer
+coefficients). Now $\operatorname{adj}(\beta_b)=\begin{pmatrix}\ell&-b\\0&1\end{pmatrix}$ sends
+$(X,Y)\mapsto(\ell X,\,Y-bX)$, so $\operatorname{adj}(\beta_b)\cdot(zX+Y)^n=((\ell
+z-b)X+Y)^n=(zX+Y)^n|_{z\mapsto\ell z-b}$ (`act'_kernel_β`), while
+$\operatorname{adj}(\alpha)=\operatorname{diag}(1,\ell)$ gives $(zX+\ell
+Y)^n=\ell^n\,(zX+Y)^n|_{z\mapsto z/\ell}$ (`act'_kernel_α`). Applying $\widehat{\ }$ to the identity
+of functionals above therefore gives
+$$P_g(r)=\sum_b\operatorname{adj}(\beta_b)\cdot
+P_f\big(\tfrac{r+b}{\ell}\big)+e\,\ell^{k-2}\ell^{-n}\operatorname{adj}(\alpha)\cdot P_f(\ell r),$$
+and $\ell^{k-2}\ell^{-n}=1$. This is the classical statement that the modular-symbol map intertwines
+$T_\ell$ on cusp forms with the Hecke operator on $\operatorname{Sym}^{k-2}$-valued modular symbols
+(Merel, *Universal Fourier expansions of modular forms*, §1; Stevens, *Arithmetic on modular
+curves*, Ch. 2), specialised to the mission's normalisations.
+
+<!-- Generated by add_prove2me_provenance.py -->
+-/
 
 section privateSection
 

@@ -1,3 +1,14 @@
+/-
+Based on Prove2Me node MTT.Cohomology.eigenclass_descent
+(6a58ed1c-e5cb-41f8-b00c-78f187d4cf0b) by davidloeffler (2026-09-06).
+
+Proof based on Prove2Me submission 0a41a358-c633-4ca1-9c9c-cd108c830b65
+by allychan327 (2026-09-06); locally adapted.
+
+Licensed under Apache License 2.0
+(https://www.apache.org/licenses/LICENSE-2.0).
+-/
+
 module
 
 public import Definitions.MTT.Def_MTT_Cohomology
@@ -10,6 +21,93 @@ import Mathlib.RingTheory.Finiteness.ModuleFinitePresentation
 import Mathlib.RingTheory.Flat.TorsionFree
 import Mathlib.RingTheory.SimpleRing.Principal
 import Mathlib.RingTheory.TotallySplit
+
+/-!
+# Descent of a signed eigenline to algebraic coefficients
+
+Theorem statement: `MTT.Cohomology.eigenclass_descent` (`6a58ed1c-e5cb-41f8-b00c-78f187d4cf0b`), by
+davidloeffler, 2026-09-06.
+
+Proof: submission `0a41a358-c633-4ca1-9c9c-cd108c830b65`, by allychan327, 2026-09-06 (ACCEPTED);
+locally adapted.
+
+Given integral finite generation, the two canonical base-change isomorphisms, and dimension at most
+one for a signed algebraic Hecke eigenpacket, every complex class in that packet is a nonzero
+complex scalar times a coefficientwise algebraic class. The zero class is allowed and may use scalar
+1. This is finite-dimensional linear algebra applied to the explicitly defined algebraic Hecke,
+nebentype and sign equations; it assumes no period theorem.
+
+## Explanation of the source proof
+
+## Setup
+
+Write $M_R = \mathrm{Hc}(N,n,R)$ and let $K = \iota(\overline{\mathbf Q}) \subset \mathbf C$.
+Let $V_{\mathbf C} \subset M_{\mathbf C}$ be the set of classes satisfying the eigenpacket
+equations `Packet` for the character $\iota\circ\varepsilon$, the eigenvalues
+$\iota\circ a$ and the sign $s$. The hypothesis `hdim` says $\dim_{\mathbf C} V_{\mathbf C}\le 1$.
+
+Given $0 \ne \phi \in V_{\mathbf C}$, it therefore suffices to produce **one nonzero
+element of $V_{\mathbf C}$ that is defined over $\overline{\mathbf Q}$**: if $x = \psi^{\iota}$
+is such an element, then $\phi = c\,x$ with $c \ne 0$, and $\omega = c$ works. The zero class
+is handled separately with $\omega = 1$, $\psi = 0$.
+
+## The three inputs, and what each is used for
+
+**Base change over $\mathbf C$** writes $\phi$ over the integral lattice. Every element of
+$\mathbf C \otimes_{\mathbf Z} M_{\mathbf Z}$ is a *finite* sum of pure tensors, so
+$$\phi = \sum_{i \in T} c_i\, G_i, \qquad c_i \in \mathbf C,\ \ G_i = e_{\mathbf C}(1\otimes g_i),$$
+and the pure-tensor clause says each $G_i$ extends the integral class $g_i$ coefficientwise.
+
+**Base change over $\overline{\mathbf Q}$** supplies $\hat G_i = e_{\overline{\mathbf Q}}(1\otimes
+g_i)$.
+Since $\iota \circ (\mathbf Z \to \overline{\mathbf Q}) = (\mathbf Z \to \mathbf C)$ — there is only
+one ring map out of $\mathbf Z$ — we get $\mathrm{Extends}\ \iota\ \hat G_i\ G_i$. So the
+spanning family $\{G_i\}$ of $\phi$ consists of *algebraic* classes: this is the predicate
+`Alg` in the Lean file, "$v$ is the coefficientwise $\iota$-image of a
+$\overline{\mathbf Q}$-valued datum".
+
+$\mathrm{hZ}$ is not needed: finiteness of $T$ already comes from the tensor product.
+
+## Descent
+
+Regard $\mathbf C$ as a $\overline{\mathbf Q}$-vector space through $\iota$, choose a basis
+$(b_t)$, and let $\pi_t : \mathbf C \to \overline{\mathbf Q}$ be the coordinate functionals;
+they are additive and satisfy $\pi_t(\iota(q)z) = q\,\pi_t(z)$. Put
+$$\Phi_t = \sum_{i\in T} \iota(\pi_t(c_i))\, G_i \in M_{\mathbf C},
+\qquad \Psi_t = \sum_{i\in T} \pi_t(c_i)\, \hat G_i \in M_{\overline{\mathbf Q}} .$$
+By construction $\mathrm{Extends}\ \iota\ \Psi_t\ \Phi_t$, so each $\Phi_t$ is algebraic.
+
+*Each $\Phi_t$ still lies in $V_{\mathbf C}$.* Every `Packet` equation has the shape
+$D(\phi) = 0$ for a $\mathbf C$-linear operator $D$ built from `act` by integral matrices,
+`fractional`/`cuspAct` reparametrisations of the cusps, and multiplication by
+$\iota(\varepsilon(l))$, $\iota(a_l)$, $\mathrm{sign}(s)$. Two facts drive the argument:
+
+1. $D$ is $\mathbf C$-linear in the class (`primeHecke_lin`, `reflection_lin`,
+   `precomp_lin`, `actAt_lin`, `smul_lin`), so $\sum_i c_i\, w_i = 0$ where
+   $w_i := D(G_i)$;
+2. each $w_i$ is again algebraic. This is the lemma `act_map`: `act A` is the substitution
+   $P(X,Y) \mapsto P((X,Y)A)$ with $A$ integral, hence commutes with any coefficient ring
+   map, and $\iota(q)\cdot \mathrm{map}\,\iota\,P = \mathrm{map}\,\iota\,(q\cdot P)$.
+
+So in each monomial coefficient the relation reads $\sum_i c_i\,\iota(q_i) = 0$ with
+$q_i \in \overline{\mathbf Q}$. Applying $\pi_t$ gives $\sum_i q_i\,\pi_t(c_i) = 0$, and
+applying $\iota$ again gives $\sum_i \iota(\pi_t(c_i))\,\iota(q_i) = 0$, i.e.
+$\sum_i \iota(\pi_t(c_i))\, w_i = 0$, which is exactly $D(\Phi_t) = 0$. This is the lemma
+`descent`, applied once for each of the three clauses of `Packet`.
+
+*Some $\Phi_t$ is nonzero.* Expanding $c_i = \sum_t \iota(\pi_t(c_i))\, b_t$ over a finite
+common index set and exchanging the two sums gives $\phi = \sum_t b_t\, \Phi_t$; so
+$\phi \ne 0$ forces $\Phi_{t} \ne 0$ for some $t$.
+
+## Conclusion
+
+$\Phi_t$ and $\phi$ are two nonzero members of $V_{\mathbf C}$, so `hdim` gives
+$u\,\Phi_t + v\,\phi = 0$ with $u,v$ not both zero; neither can vanish (else the other
+class would), so $\phi = \omega\,\Phi_t$ with $\omega = -u/v \ne 0$ and
+$\omega^{-1}\phi = \Phi_t$, which extends $\Psi_t$.
+
+<!-- Generated by add_prove2me_provenance.py -->
+-/
 
 section privateSection
 
