@@ -75,8 +75,6 @@ is by an arbitrary scalar and the identity `a·m/C = m • (a/C)` holds in any f
 
 section privateSection
 
-set_option maxHeartbeats 1000000
-set_option synthInstance.maxHeartbeats 400000
 noncomputable section
 open scoped BigOperators TensorProduct
 open MTT.Cohomology
@@ -99,6 +97,11 @@ theorem evaluation_extends {R : Type*} [CommRing R]
   exact MvPolynomial.coeff_map _ _ _
 
 end P2MLat
+
+local instance LinearEquiv.instAddMonoidHomClass {R M N : Type*} [Semiring R]
+    [AddCommMonoid M] [Module R M] [AddCommMonoid N] [Module R N] :
+    AddMonoidHomClass (M ≃ₗ[R] N) M N :=
+  (SemilinearMapClass.distribMulActionSemiHomClass _).toAddMonoidHomClass
 
 set_option linter.unusedVariables false in
 open P2MLat in

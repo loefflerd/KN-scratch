@@ -145,7 +145,6 @@ continuous.
 
 section privateSection
 
-set_option maxRecDepth 4000
 noncomputable section
 open scoped BigOperators ModularForm
 open MeasureTheory Complex UpperHalfPlane MTT ModularForm ConjAct Pointwise

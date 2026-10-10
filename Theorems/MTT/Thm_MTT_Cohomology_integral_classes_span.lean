@@ -129,7 +129,6 @@ open is therefore exactly Manin's continued-fraction theorem, and nothing about 
 
 section privateSection
 
-set_option maxHeartbeats 1000000
 noncomputable section
 open scoped BigOperators TensorProduct
 open MTT.Cohomology

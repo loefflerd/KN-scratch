@@ -125,7 +125,6 @@ Isolating it is the point of the split.
 
 section privateSection
 
-set_option maxHeartbeats 800000
 noncomputable section
 open scoped BigOperators TensorProduct
 open MTT.Cohomology

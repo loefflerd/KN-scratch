@@ -225,8 +225,7 @@ theorem cyclotomic_galEquivZMod_of_isArithFrobAt
 commute.  This lets us remove conjugacy after restricting a Chebotarev
 class to the seed cyclotomic factor. -/
 theorem algAut_commute_of_cyclotomic_equiv
-    (n : ℕ) [NeZero n]
-    (K L : Type*) [Field K] [Field L]
+    (n : ℕ) (K L : Type*) [Field K] [Field L]
     [Algebra ℚ K] [Algebra ℚ L]
     [IsCyclotomicExtension {n} ℚ K]
     (e : K ≃ₐ[ℚ] L) (σ τ : L ≃ₐ[ℚ] L) :

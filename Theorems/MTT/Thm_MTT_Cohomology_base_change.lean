@@ -124,8 +124,6 @@ by construction $\mathrm{map}\,(\mathbf Z\to R)\,\varphi(x,y)$. $\square$
 
 section privateSection
 
-set_option maxHeartbeats 1000000
-set_option synthInstance.maxHeartbeats 400000
 noncomputable section
 open scoped BigOperators TensorProduct
 open MTT.Cohomology

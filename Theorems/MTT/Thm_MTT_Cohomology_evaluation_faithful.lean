@@ -99,7 +99,6 @@ invertible in $\mathbf C$.
 
 section privateSection
 
-set_option maxHeartbeats 800000
 noncomputable section
 open scoped BigOperators
 open MTT.Cohomology

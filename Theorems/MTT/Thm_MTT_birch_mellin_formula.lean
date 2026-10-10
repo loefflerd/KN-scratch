@@ -86,7 +86,6 @@ exact target, although the integral calculation itself holds for every nonnegati
 
 section privateSection
 
-set_option maxRecDepth 2000
 noncomputable section
 open scoped BigOperators ModularForm
 open MeasureTheory MatrixGroups Complex UpperHalfPlane

@@ -610,10 +610,9 @@ lemma changeLevel_natCast {n m : ℕ} [NeZero m] (χ : DirichletCharacter MTT.Qb
   have := DirichletCharacter.changeLevel_eq_cast_of_dvd χ hnm (ZMod.unitOfCoprime z hz)
   simpa only [ZMod.coe_unitOfCoprime, ZMod.cast_natCast hnm] using this
 
-variable {p m : ℕ} [Fact p.Prime] {ℓ : ℕ → ℕ} (hprime : ∀ n, (ℓ n).Prime)
+variable {p m : ℕ} {ℓ : ℕ → ℕ} (hprime : ∀ n, (ℓ n).Prime)
   (hinj : Function.Injective ℓ) (hcong : ∀ n, Nat.ModEq (p ^ m) (ℓ n) 1)
 
-set_option linter.unusedSectionVars false in
 include hprime hcong in
 lemma exists_local_char (i : ℕ) :
     ∃ χ : DirichletCharacter MTT.Qbar (ℓ i), orderOf χ = p ^ m := by
@@ -624,10 +623,10 @@ lemma exists_local_char (i : ℕ) :
 def localChar (i : ℕ) : DirichletCharacter MTT.Qbar (ℓ i) :=
   Classical.choose (exists_local_char hprime hcong i)
 
+include hprime hcong in
 lemma orderOf_localChar (i : ℕ) : orderOf (localChar hprime hcong i) = p ^ m :=
   Classical.choose_spec (exists_local_char hprime hcong i)
 
-omit [Fact p.Prime] in
 lemma dvd_prodIdx {S : Finset ℕ} {i : ℕ} (hi : i ∈ S) : ℓ i ∣ prodIdx ℓ S :=
   Finset.dvd_prod_of_mem ℓ hi
 
@@ -636,6 +635,7 @@ def prodChar (S : Finset ℕ) : DirichletCharacter MTT.Qbar (prodIdx ℓ S) :=
   ∏ i ∈ S.attach, DirichletCharacter.changeLevel (dvd_prodIdx i.2)
     (localChar hprime hcong i.1)
 
+include hprime hcong in
 lemma prodChar_natCast (S : Finset ℕ) (z : ℕ) (hz : Nat.Coprime z (prodIdx ℓ S)) :
     prodChar hprime hcong S (z : ZMod (prodIdx ℓ S)) =
       ∏ i ∈ S.attach, localChar hprime hcong i.1 (z : ZMod (ℓ i.1)) := by
@@ -690,7 +690,7 @@ lemma exists_natCast_ne_one {q : ℕ} [NeZero q] {χ : DirichletCharacter MTT.Qb
   exact h x hx
 
 include hinj in
-lemma orderOf_prodChar {S : Finset ℕ} (hS : S.Nonempty) :
+lemma orderOf_prodChar [Fact p.Prime] {S : Finset ℕ} (hS : S.Nonempty) :
     orderOf (prodChar hprime hcong S) = p ^ m := by
   obtain ⟨i₀, hi₀⟩ := hS
   refine Nat.dvd_antisymm (orderOf_dvd_of_pow_eq_one (prodChar_pow_eq_one hprime hcong S)) ?_
@@ -725,7 +725,7 @@ lemma prodIdx_dvd_of_forall (S : Finset ℕ) (c : ℕ) (h : ∀ i ∈ S, ℓ i �
       (Nat.coprime_primes (hprime a) (hprime j)).mpr fun hij => ha (hinj hij ▸ hj)
 
 include hinj in
-lemma prodChar_isPrimitive (hm : 0 < m) (S : Finset ℕ) :
+lemma prodChar_isPrimitive [Fact p.Prime] (hm : 0 < m) (S : Finset ℕ) :
     (prodChar hprime hcong S).IsPrimitive := by
   have hNZ : NeZero (prodIdx ℓ S) := ⟨(prodIdx_pos hprime S).ne'⟩
   set d := (prodChar hprime hcong S).conductor with hddef
@@ -814,7 +814,9 @@ include hprime hinj hcong
 def charOf (S : Finset ℕ) : DirichletCharacterWithLevel :=
   ⟨⟨prodIdx ℓ S, prodIdx_pos hprime S⟩, prodChar hprime hcong S⟩
 
-lemma charOf_injective {S T : Finset ℕ} (h : charOf hprime hcong S = charOf hprime hcong T) :
+omit [Fact p.Prime] in
+lemma charOf_injective {S T : Finset ℕ}
+    (h : charOf hprime hcong S = charOf hprime hcong T) :
     S = T :=
   prodIdx_injective hprime hinj (congrArg (fun χ : DirichletCharacterWithLevel => χ.1.1) h)
 
@@ -827,7 +829,7 @@ lemma charOf_conductor (hm : 0 < m) (S : Finset ℕ) :
     (charOf hprime hcong S).2.conductor = prodIdx ℓ S :=
   prodChar_isPrimitive hprime hinj hcong hm S
 
-set_option linter.unusedSectionVars false in
+omit [Fact p.Prime] hcong hprime in
 lemma card_idx_le_add_one (y : ℝ) (hy : 0 ≤ y) : ((idx ℓ hinj A y).card : ℝ) ≤ y + 1 := by
   have h : (idx ℓ hinj A y).card ≤ (Finset.range (⌊y⌋₊ + 1)).card := by
     refine Finset.card_le_card_of_injOn ℓ (fun i hi => ?_) hinj.injOn
@@ -968,7 +970,7 @@ lemma exists_hasLogPowerLowerBound (hm : 0 < m) :
       rw [mul_div_assoc, mul_div_assoc]
       exact mul_le_mul_of_nonneg_left
         (div_le_div_of_nonneg_left (by positivity) hlogXP hlogle) hc₁pos.le
-    have h2 := card_idx_le_add_one (p := p) (m := m) hprime hinj hcong (A := A) Z hZ0.le
+    have h2 := card_idx_le_add_one hinj (A := A) Z hZ0.le
     have h3 : ((idx ℓ hinj A (Z ^ 3 / P)).card : ℝ) - (idx ℓ hinj A Z).card ≤
         ((idx ℓ hinj A (Z ^ 3 / P) \ idx ℓ hinj A Z).card : ℝ) := by
       have : (idx ℓ hinj A (Z ^ 3 / P)).card ≤

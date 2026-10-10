@@ -153,8 +153,6 @@ whenever $2$ is invertible — the algebraic input behind every plus/minus modul
 
 section privateSection
 
-set_option maxHeartbeats 1000000
-set_option synthInstance.maxHeartbeats 400000
 noncomputable section
 open scoped BigOperators
 open MTT.Cohomology

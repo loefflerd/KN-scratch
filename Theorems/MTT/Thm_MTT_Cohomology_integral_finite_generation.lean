@@ -98,7 +98,6 @@ relative group-cohomology model encodes.
 
 section privateSection
 
-set_option maxHeartbeats 1000000
 noncomputable section
 open scoped BigOperators TensorProduct
 open MTT.Cohomology

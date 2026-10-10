@@ -1275,7 +1275,6 @@ lemma mixed_Gvec_deriv {N k : ℕ} (hN : 0 < N)
 
 end MTT.Eichler
 
-set_option maxHeartbeats 800000
 section
 open scoped BigOperators MatrixGroups ModularForm ComplexConjugate
 open MeasureTheory Complex Set Filter Topology intervalIntegral
@@ -1448,7 +1447,6 @@ lemma reflected_cusp_primitive {N k : ℕ}
 
 end MTT.Eichler
 
-set_option maxHeartbeats 800000
 section
 open scoped BigOperators MatrixGroups ModularForm ComplexConjugate
 open MeasureTheory Complex Set Filter Topology intervalIntegral

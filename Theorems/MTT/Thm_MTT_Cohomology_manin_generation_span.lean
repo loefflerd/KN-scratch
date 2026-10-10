@@ -114,7 +114,6 @@ case $c=0$, needed for the base of the induction, handled separately (`cuspAct_i
 
 section privateSection
 
-set_option maxHeartbeats 1000000
 noncomputable section
 open scoped BigOperators TensorProduct
 open MTT.Cohomology

@@ -110,7 +110,6 @@ arbitrary flat $\mathbf Z$-algebra.
 
 section privateSection
 
-set_option maxHeartbeats 1000000
 noncomputable section
 open scoped BigOperators
 open MTT.Cohomology
