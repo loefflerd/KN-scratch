@@ -70,8 +70,6 @@ Buzzard, Salvatore Mercuri). See ATTRIBUTION.md and NOTICE in the source reposit
 
 @[expose] public section publicSection
 
-set_option backward.isDefEq.respectTransparency.types false
-
 namespace IsDedekindDomain.HeightOneSpectrum
 
 private instance {R : Type*} [CommRing R] [IsDedekindDomain R] (K : Type*) [Field K] [Countable K]
@@ -143,20 +141,25 @@ open scoped WithZero
 lemma exists_ofAdd_natCast_of_le_one {x : ℤᵐ⁰} (hx : x ≠ 0) (hx' : x ≤ 1) :
     ∃ (k : ℕ), (Multiplicative.ofAdd (-(k : ℤ))) = x := by
   lift x to Multiplicative ℤ using hx
+  induction x with | ofAdd x =>
   norm_cast at hx'
+  rw [← ofAdd_zero, Multiplicative.ofAdd_le] at hx'
   obtain ⟨k, hk⟩ := Int.eq_ofNat_of_zero_le (Int.neg_nonneg_of_nonpos hx')
   use k
   rw [← hk, Int.neg_neg]
-  rfl
 
 lemma exists_ofAdd_natCast_lt {x : ℤᵐ⁰} (hx : x ≠ 0) :
     ∃ (k : ℕ), (Multiplicative.ofAdd (-(k : ℤ))) < x := by
   obtain ⟨y, hnz, hyx⟩ := WithZero.exists_ne_zero_and_lt hx
+  lift x to Multiplicative ℤ using hx
   lift y to Multiplicative ℤ using hnz
+  induction x with | ofAdd x =>
+  induction y with | ofAdd y =>
   use y.natAbs
   apply lt_of_le_of_lt _ hyx
   norm_cast
-  exact inv_mabs_le y
+  rw [Multiplicative.ofAdd_le]
+  exact neg_abs_le y
 
 end Multiplicative
 
@@ -352,9 +355,7 @@ noncomputable def ResidueFieldToCompletionResidueField :
     A ⧸ v.asIdeal →+* ResidueField (v.adicCompletionIntegers K) :=
   Ideal.quotientMap _ (algebraMap _ _) <| le_of_eq Ideal.LiesOver.over
 
-set_option backward.isDefEq.respectTransparency false in
 open IsLocalRing in
-
 noncomputable def ResidueFieldEquivCompletionResidueField :
     A ⧸ v.asIdeal ≃+* ResidueField (v.adicCompletionIntegers K) := by
   apply RingEquiv.ofBijective (ResidueFieldToCompletionResidueField K v)
@@ -368,23 +369,23 @@ noncomputable def ResidueFieldEquivCompletionResidueField :
     refine ⟨a, ha⟩
   change ∃ a, Ideal.Quotient.mk (maximalIdeal (v.adicCompletionIntegers K)) _ = _
   simp_rw [Ideal.Quotient.mk_eq_mk_iff_sub_mem, mem_maximalIdeal, mem_nonunits_iff]
-  conv =>
-    pattern ¬(IsUnit _)
-    rw [Valuation.Integer.not_isUnit_iff_valuation_lt_one]
+  have hunit (y : v.adicCompletionIntegers K) : ¬IsUnit y ↔ Valued.v y.val < 1 :=
+    Valuation.Integer.not_isUnit_iff_valuation_lt_one
+  simp_rw [hunit]
   exact exists_adicValued_sub_lt_of_adicCompletionInteger K v x 1
 
-attribute [local instance 9999] Algebra.toModule in
 theorem inertiaDeg_asIdeal_completionIdeal :
     Ideal.inertiaDeg (v.completionIdeal K) A = 1 := by
   rw [v.asIdeal.inertiaDeg_eq_of_isMaximal]
+  let e : (A ⧸ v.asIdeal) ≃+* ((adicCompletionIntegers K v) ⧸ completionIdeal K v) :=
+    ResidueFieldEquivCompletionResidueField K v
   have f : (A ⧸ v.asIdeal) ≃ₗ[A ⧸ v.asIdeal]
-      ((adicCompletionIntegers K v) ⧸ completionIdeal K v) := {
-    __ := ResidueFieldEquivCompletionResidueField K v
+      ((adicCompletionIntegers K v) ⧸ completionIdeal K v) := { e with
     map_smul' := by
       intro x y
+      simp only [RingHom.id_apply]
       rw [Algebra.smul_def, Algebra.smul_def]
-      exact map_mul (ResidueFieldEquivCompletionResidueField K v) x y
-  }
+      exact e.map_mul x y }
   rw [← LinearEquiv.finrank_eq f]
   exact Module.finrank_self _
 
@@ -470,13 +471,13 @@ theorem uniformizer_ne_zero {v : HeightOneSpectrum A}
   contrapose! hπ
   simp [hπ]
 
-set_option backward.isDefEq.respectTransparency false in
 variable {K} in
 open scoped Multiplicative in
 theorem uniformizer_not_isUnit {π : v.adicCompletionIntegers K}
     (hπ : Valued.v π.1 = Multiplicative.ofAdd (-1 : ℤ)) :
     ¬IsUnit (π : v.adicCompletionIntegers K) := by
-  rw [ValuationSubring.isUnit_iff_valued_eq_one, ← WithZero.coe_one, ← ofAdd_zero, hπ]
+  rw [show IsUnit π ↔ Valued.v π.val = 1 from
+    ValuationSubring.isUnit_iff_valued_eq_one π, ← WithZero.coe_one, ← ofAdd_zero, hπ]
   apply ne_of_lt
   rw [WithZero.coe_lt_coe, Multiplicative.ofAdd_lt]
   omega
@@ -493,9 +494,13 @@ theorem eq_pow_uniformizer_mul_unit {x : v.adicCompletionIntegers K} (hx : x ≠
     rw [Valued.v.map_mul, map_zpow₀, hπ, ofAdd_neg, WithZero.coe_inv,
       inv_zpow', neg_neg, ← WithZero.coe_zpow, ← Int.ofAdd_mul, one_mul, ofAdd_neg, ofAdd_toAdd,
       WithZero.coe_inv, WithZero.coe_unzero, inv_mul_cancel₀ hx']
-  let a : v.adicCompletionIntegers K := ⟨π ^ (-m) * x.val, le_of_eq hpow⟩
-  refine ⟨m.toNat, (ValuationSubring.isUnit_of_valued_eq_one a hpow).unit, Subtype.ext ?_⟩
-  simp only [zpow_neg, IsUnit.unit_spec, MulMemClass.coe_mul, SubmonoidClass.coe_pow, a,
+  have hmem : π ^ (-m) * x.val ∈ v.adicCompletionIntegers K := le_of_eq hpow
+  let a : v.adicCompletionIntegers K := ⟨π ^ (-m) * x.val, hmem⟩
+  have ha : IsUnit a := ValuationSubring.isUnit_of_valued_eq_one a hpow
+  refine ⟨m.toNat, ha.unit, Subtype.ext ?_⟩
+  simp only [MulMemClass.coe_mul, SubmonoidClass.coe_pow]
+  rw [ha.unit_spec]
+  simp only [a, zpow_neg,
     ← zpow_natCast, m.toNat_of_nonneg hm₀, ← mul_assoc]
   rw [mul_inv_cancel₀ (zpow_ne_zero _ <| (by simp [uniformizer_ne_zero hπ])), one_mul]
 

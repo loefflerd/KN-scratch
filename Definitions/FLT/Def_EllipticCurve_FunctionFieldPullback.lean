@@ -72,9 +72,7 @@ valuation comparison between a point $P$ and its multiple $n\cdot P$.
 
 @[expose] public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
+attribute [local implicit_reducible] WeierstrassCurve.baseChange
 
 open Polynomial
 open scoped Polynomial.Bivariate
@@ -285,6 +283,10 @@ theorem generic_nonsingular [W.IsElliptic] :
 noncomputable def genericPoint [W.IsElliptic] : (W⁄(W⁄K).FunctionField).Point :=
   .some _ _ (generic_nonsingular W K)
 
+lemma genericPoint_ne_zero [W.IsElliptic] :
+    genericPoint W K ≠ 0 :=
+  Point.some_ne_zero _
+
 end Generic
 
 section PointHom
@@ -342,7 +344,7 @@ theorem CoordinateRing.algHom_ext' {A : Type*} [Semiring A] [Algebra K A]
   · exact hY
 
 theorem pointHom_genericPoint [W.IsElliptic] :
-    pointHom (genericPoint W K) (Point.some_ne_zero _) =
+    pointHom (genericPoint W K) (genericPoint_ne_zero W K) =
       IsScalarTower.toAlgHom K (W⁄K).CoordinateRing (W⁄K).FunctionField := by
   apply CoordinateRing.algHom_ext'
   · rw [pointHom_mk_C_X, IsScalarTower.coe_toAlgHom', genericPoint, Point.xc_some]; rfl

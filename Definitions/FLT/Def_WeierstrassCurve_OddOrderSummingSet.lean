@@ -53,10 +53,6 @@ module is imported very widely in the tree.
 
 @[expose] public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
 namespace WeierstrassCurve
 
 namespace Affine.Point

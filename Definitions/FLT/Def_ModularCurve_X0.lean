@@ -65,10 +65,6 @@ only the level-one cases constructed here.
 
 @[expose] public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
 noncomputable section DL_unincorporated
 
 open scoped PowerSeries.WithPiTopology

@@ -59,10 +59,6 @@ descent-type arguments on $J_0(N)(K)$ in the modular-curve part of the developme
 
 @[expose] public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
 noncomputable section
 
 open AlgebraicCurve Polynomial

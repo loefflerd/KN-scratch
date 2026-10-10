@@ -66,8 +66,6 @@ the treatment of modular curves in the modularity part of the argument.
 
 @[expose] public section publicSection
 
-set_option backward.isDefEq.respectTransparency.types false
-
 noncomputable section
 
 namespace AlgebraicCurve
@@ -1153,8 +1151,7 @@ theorem residueFieldAdjoinRootEquiv_root {ᾱ : v.ResidueField} (hint : IsIntegr
     (htop : K⟮ᾱ⟯ = ⊤) :
     residueFieldAdjoinRootEquiv v hint htop (AdjoinRoot.root (minpoly K ᾱ)) = ᾱ := by
   have hgen := adjoinRootEquivAdjoin_apply_root K hint
-  simp only [residueFieldAdjoinRootEquiv, AlgEquiv.trans_apply, hgen,
-    IntermediateField.topEquiv_apply]
+  simp only [residueFieldAdjoinRootEquiv, AlgEquiv.trans_apply, hgen]
   exact AdjoinSimple.coe_gen K ᾱ
 
 end GenericIso
@@ -1167,28 +1164,31 @@ noncomputable def sectionOfPrimitiveRoot {ᾱ : v.ResidueField} (hint : IsIntegr
     (htop : K⟮ᾱ⟯ = ⊤) (αhat : lg37_completion v)
     (hroot : (aeval αhat) (minpoly K ᾱ) = 0)
     (hres : lg37_residueHat v αhat = ᾱ) :
-    Lg37CompletionSection v where
-  lift :=
-    (AdjoinRoot.liftAlgHom (minpoly K ᾱ) (Algebra.ofId K (lg37_completion v)) αhat
-      (by rw [aeval_def] at hroot; exact hroot)).comp
-      (residueFieldAdjoinRootEquiv v hint htop).symm.toAlgHom
-  residueHat_lift a := by
-    have hres' : lg37_residueHat v αhat
-        = residueFieldAdjoinRootEquiv v hint htop (AdjoinRoot.root (minpoly K ᾱ)) :=
-      hres.trans (residueFieldAdjoinRootEquiv_root v hint htop).symm
-    have hkey : (mp72a102_t2_residueHatAlgHom v).comp
-          (AdjoinRoot.liftAlgHom (minpoly K ᾱ) (Algebra.ofId K (lg37_completion v)) αhat
-            (by rw [aeval_def] at hroot; exact hroot))
-        = (residueFieldAdjoinRootEquiv v hint htop).toAlgHom := by
-      refine AdjoinRoot.algHom_ext ?_
-      rw [AlgHom.comp_apply, AdjoinRoot.liftAlgHom_root]
-      exact hres'
-    have h1 := DFunLike.congr_fun hkey ((residueFieldAdjoinRootEquiv v hint htop).symm a)
-    rw [AlgHom.comp_apply] at h1
-    have h2 : (residueFieldAdjoinRootEquiv v hint htop).toAlgHom
-        ((residueFieldAdjoinRootEquiv v hint htop).symm a) = a :=
-      (residueFieldAdjoinRootEquiv v hint htop).apply_symm_apply a
-    exact h1.trans h2
+    Lg37CompletionSection v := by
+  have hroot' : (minpoly K ᾱ).eval₂ (Algebra.ofId K (lg37_completion v)) αhat = 0 := by
+    change (aeval αhat) (minpoly K ᾱ) = 0
+    exact hroot
+  refine
+    { lift := (AdjoinRoot.liftAlgHom (minpoly K ᾱ)
+        (Algebra.ofId K (lg37_completion v)) αhat hroot').comp
+          (residueFieldAdjoinRootEquiv v hint htop).symm.toAlgHom
+      residueHat_lift := ?_ }
+  intro a
+  have hres' : lg37_residueHat v αhat
+      = residueFieldAdjoinRootEquiv v hint htop (AdjoinRoot.root (minpoly K ᾱ)) :=
+    hres.trans (residueFieldAdjoinRootEquiv_root v hint htop).symm
+  have hkey : (mp72a102_t2_residueHatAlgHom v).comp
+        (AdjoinRoot.liftAlgHom (minpoly K ᾱ) (Algebra.ofId K (lg37_completion v)) αhat hroot')
+      = (residueFieldAdjoinRootEquiv v hint htop).toAlgHom := by
+    refine AdjoinRoot.algHom_ext ?_
+    rw [AlgHom.comp_apply, AdjoinRoot.liftAlgHom_root]
+    exact hres'
+  have h1 := DFunLike.congr_fun hkey ((residueFieldAdjoinRootEquiv v hint htop).symm a)
+  rw [AlgHom.comp_apply] at h1
+  have h2 : (residueFieldAdjoinRootEquiv v hint htop).toAlgHom
+      ((residueFieldAdjoinRootEquiv v hint htop).symm a) = a :=
+    (residueFieldAdjoinRootEquiv v hint htop).apply_symm_apply a
+  exact h1.trans h2
 
 end GenericSection
 

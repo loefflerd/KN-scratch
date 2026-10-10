@@ -32,7 +32,6 @@ that arithmetic compatibility can be stated and proved for that same form.
 
 @[expose] public section publicSection
 
-set_option autoImplicit false
 noncomputable section
 
 open scoped ModularForm

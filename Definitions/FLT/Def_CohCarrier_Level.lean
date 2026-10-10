@@ -61,10 +61,6 @@ defined without reference to any pairing.
 
 @[expose] public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
 open Matrix CongruenceSubgroup Matrix.SpecialLinearGroup
 
 open scoped MatrixGroups
@@ -238,6 +234,11 @@ def conjUpperMat (A : SL(2, ℤ)) (h : (ℓ : ℤ) ∣ A 0 1) : SL(2, ℤ) :=
     rw [hbc]
     exact hdet⟩
 
+@[simp]
+theorem coe_conjUpperMat (A : SL(2, ℤ)) (h : (ℓ : ℤ) ∣ A 0 1) :
+    (conjUpperMat ℓ A h : Matrix (Fin 2) (Fin 2) ℤ) =
+      !![A 0 0, A 0 1 / ℓ; A 1 0 * ℓ, A 1 1] := rfl
+
 theorem conjUpperMat_mul (A B : SL(2, ℤ)) (hA : (ℓ : ℤ) ∣ A 0 1) (hB : (ℓ : ℤ) ∣ B 0 1)
     (hAB : (ℓ : ℤ) ∣ (A * B) 0 1) :
     conjUpperMat ℓ (A * B) hAB = conjUpperMat ℓ A hA * conjUpperMat ℓ B hB := by
@@ -253,10 +254,8 @@ theorem conjUpperMat_mul (A B : SL(2, ℤ)) (hA : (ℓ : ℤ) ∣ A 0 1) (hB : (
   apply Matrix.SpecialLinearGroup.ext
   intro i j
   fin_cases i <;> fin_cases j <;>
-    simp [conjUpperMat, Matrix.mul_apply, Fin.sum_univ_two, hmul, h2]
-  · exact h1.symm
-  · ring
-  · exact h3.symm
+    simp [Matrix.mul_apply, hmul, h1, h2, h3]
+  ring
 
 @[simp] theorem conjUpperMat_apply_11 (A : SL(2, ℤ)) (h : (ℓ : ℤ) ∣ A 0 1) :
     (conjUpperMat ℓ A h) 1 1 = A 1 1 := by
@@ -367,6 +366,11 @@ def conjLowerMat (A : SL(2, ℤ)) (h : (d : ℤ) ∣ A 1 0) : SL(2, ℤ) :=
     rw [hbc]
     exact hdet⟩
 
+@[simp]
+theorem coe_conjLowerMat (A : SL(2, ℤ)) (h : (d : ℤ) ∣ A 1 0) :
+    (conjLowerMat d A h : Matrix (Fin 2) (Fin 2) ℤ) =
+      !![A 0 0, A 0 1 * d; A 1 0 / d, A 1 1] := rfl
+
 theorem conjLowerMat_mul (A B : SL(2, ℤ)) (hA : (d : ℤ) ∣ A 1 0) (hB : (d : ℤ) ∣ B 1 0)
     (hAB : (d : ℤ) ∣ (A * B) 1 0) :
     conjLowerMat d (A * B) hAB = conjLowerMat d A hA * conjLowerMat d B hB := by
@@ -382,8 +386,8 @@ theorem conjLowerMat_mul (A B : SL(2, ℤ)) (hA : (d : ℤ) ∣ A 1 0) (hB : (d 
   apply Matrix.SpecialLinearGroup.ext
   intro i j
   fin_cases i <;> fin_cases j <;>
-    simp [conjLowerMat, Matrix.mul_apply, Fin.sum_univ_two, hmul, h2]
-  all_goals first | exact h1.symm | exact h3.symm | ring
+  simp [coe_conjLowerMat, Matrix.mul_apply, hmul, h1, h2, h3]
+  ring
 
 structure LevelLE : Prop where
   dvd : M ∣ M'

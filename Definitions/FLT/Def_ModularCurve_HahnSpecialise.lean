@@ -67,10 +67,6 @@ structures.
 
 @[expose] public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
 noncomputable section
 
 open IsLocalRing ValuationSubring
@@ -338,8 +334,6 @@ theorem specialise_some_of_nonneg (hΔ : (specialFibre E).Δ ≠ 0) {x y : H}
   show specialFibrePointMap E hE (reducePoint (map_residue_Δ_ne_zero_of_specialFibre E hE hΔ)
     (.some x y h')) = _
   rw [WeierstrassCurve.reducePoint_some_of_mem _ h' hx]
-  show Affine.Point.map _ (Affine.Point.some _ _ _) = _
-  rw [Affine.Point.map_some]
   rfl
 
 theorem specialise_some_of_neg (hΔ : (specialFibre E).Δ ≠ 0) {x y : H}

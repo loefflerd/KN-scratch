@@ -59,10 +59,6 @@ quotient with the Vélu quotient over a half-system of the kernel.
 
 @[expose] public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
 noncomputable section
 
 open ModularCurve WeierstrassCurve Polynomial

@@ -87,10 +87,6 @@ monodromy action under which that transfer is equivariant.
 
 @[expose] public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
 open scoped Classical
 
 noncomputable section

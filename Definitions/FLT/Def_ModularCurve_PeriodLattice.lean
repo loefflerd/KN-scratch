@@ -65,10 +65,6 @@ formulated and used in the level-lowering step for the Frey curve.
 
 @[expose] public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
 noncomputable section
 
 open UpperHalfPlane
@@ -350,7 +346,6 @@ variable (N)
 def periodLatticeModule : Module HeckeAlg (periodLattice N) :=
   Module.compHom (periodLattice N) (periodLatticeHeckeEnd N)
 
-set_option synthInstance.maxHeartbeats 200000 in
 theorem periodLatticeModule_smul_def (t : HeckeAlg) (x : periodLattice N) :
     (letI : Module HeckeAlg (periodLattice N) := periodLatticeModule N; t • x) =
       periodLatticeHeckeEnd N t x :=

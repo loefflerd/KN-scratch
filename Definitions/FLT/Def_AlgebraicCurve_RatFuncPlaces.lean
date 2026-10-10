@@ -65,10 +65,6 @@ module.
 
 @[expose] public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
 noncomputable section
 
 open Polynomial IsDedekindDomain WithZero IsLocalRing
@@ -410,20 +406,20 @@ theorem ord_congrRingEquiv (v : Place K F) (f : F) :
   exact (congrRingEquiv e he v).ord_unit_smul_zpow hu'.unit hπ' (v.ord f)
 
 def congrResidueAlgEquiv (v : Place K F) :
-    v.ResidueField ≃ₐ[K] (congrRingEquiv e he v).ResidueField :=
-  AlgEquiv.ofRingEquiv
-    (f := IsLocalRing.ResidueField.mapEquiv (comapSymmRingEquiv e v.toValuationSubring))
-    (fun a => by
-      have h3 : (comapSymmRingEquiv e v.toValuationSubring)
-            (algebraMap K v.toValuationSubring a)
-          = algebraMap K (congrRingEquiv e he v).toValuationSubring a := by
-        ext
-        rw [coe_comapSymmRingEquiv_apply, coe_algebraMap, coe_algebraMap]
-        exact he a
-      show IsLocalRing.ResidueField.mapEquiv _ (IsLocalRing.residue _ _)
-        = IsLocalRing.residue _ _
-      rw [IsLocalRing.ResidueField.mapEquiv_apply, IsLocalRing.ResidueField.map_residue]
-      exact congrArg _ h3)
+    v.ResidueField ≃ₐ[K] (congrRingEquiv e he v).ResidueField := by
+  let f : v.toValuationSubring ≃+* (congrRingEquiv e he v).toValuationSubring :=
+    comapSymmRingEquiv e v.toValuationSubring
+  refine AlgEquiv.ofRingEquiv (f := IsLocalRing.ResidueField.mapEquiv f) ?_
+  intro a
+  have h3 : f (algebraMap K v.toValuationSubring a)
+      = algebraMap K (congrRingEquiv e he v).toValuationSubring a := by
+    ext
+    change e (algebraMap K F a) = algebraMap K F' a
+    exact he a
+  show IsLocalRing.ResidueField.mapEquiv _ (IsLocalRing.residue _ _)
+    = IsLocalRing.residue _ _
+  rw [IsLocalRing.ResidueField.mapEquiv_apply, IsLocalRing.ResidueField.map_residue]
+  exact congrArg _ h3
 
 theorem deg_congrRingEquiv (v : Place K F) : (congrRingEquiv e he v).deg = v.deg :=
   ((congrResidueAlgEquiv e he v).toLinearEquiv.finrank_eq).symm

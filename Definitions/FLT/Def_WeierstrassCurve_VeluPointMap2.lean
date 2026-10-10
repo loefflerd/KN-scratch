@@ -56,10 +56,6 @@ of order two in explicit coordinates, together with the induced map on affine po
 
 @[expose] public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
 namespace WeierstrassCurve
 
 section CommRing
@@ -147,12 +143,10 @@ variable (hchar : (2 : F) ≠ 0) {x₀ y₀ : F} (hQ : W.toAffine.Equation x₀ 
   (hgy : W.veluGy x₀ y₀ = 0) (hΔ : (W.veluQuotient2 x₀ y₀).Δ ≠ 0)
 
 open scoped Classical in
-set_option linter.unusedVariables false in
-
 noncomputable def veluPointMap2 :
     W.toAffine.Point → (W.veluQuotient2 x₀ y₀).toAffine.Point
   | .zero => .zero
-  | .some x y h =>
+  | .some x _ h =>
     if hx : x = x₀ then .zero
     else .some _ _ (velu2_map_nonsingular hchar h.1 hQ hgy hx hΔ)
 

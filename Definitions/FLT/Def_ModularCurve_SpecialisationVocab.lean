@@ -61,10 +61,6 @@ are transported to an elliptic curve over $\bar{\mathbb{Q}}$, as required by the
 
 @[expose] public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
 open scoped Classical
 
 noncomputable section

@@ -82,10 +82,6 @@ coefficients from $\mathbb{Z}_p$ to a general complete local coefficient ring.
 
 @[expose] public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
 open IsLocalRing
 
 def TateModule (p : ℕ) (M : Type) [AddCommGroup M] : AddSubgroup (ℕ → M) where

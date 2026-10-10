@@ -56,10 +56,6 @@ ideal and the Jacobian $J_0(N)$ that enter the Frey curve–Ribet–Wiles argume
 
 @[expose] public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
 noncomputable section
 
 open IntermediateField HahnSeries AlgebraicCurve

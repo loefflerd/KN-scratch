@@ -62,13 +62,6 @@ curves and their modular equations used in the modularity route to Fermat's Last
 
 @[expose] public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
-set_option maxHeartbeats 800000
-set_option synthInstance.maxHeartbeats 400000
-
 noncomputable section
 
 open ModularCurve WeierstrassCurve Polynomial

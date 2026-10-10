@@ -69,8 +69,6 @@ attached to Hecke eigensystems occurring in $J_0(M)$ are obtained.
 
 @[expose] public section publicSection
 
-set_option autoImplicit false
-
 noncomputable section
 
 open scoped TensorProduct

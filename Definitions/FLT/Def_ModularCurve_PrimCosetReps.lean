@@ -51,10 +51,6 @@ underlies the modular-curve material used in the Frey–Serre–Ribet–Wiles–
 
 @[expose] public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
 namespace ModularCurve
 
 def primCosetReps (N : ℕ) : Finset (ℕ × ℕ × ℕ) :=

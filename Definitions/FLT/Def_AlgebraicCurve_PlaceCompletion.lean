@@ -71,22 +71,12 @@ treatment of divisors and residues on curves, which feeds the modular-curve part
 
 @[expose] public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
-set_option synthInstance.maxHeartbeats 400000
-set_option maxHeartbeats 1600000
-
 instance {K L : Type*} [Field K] [Semiring L] (O : ValuationSubring K) [Algebra K L] :
     Algebra O L where
   smul r x := r.1 • x
   algebraMap := (algebraMap K L).comp (algebraMap O K)
   commutes' _ _ := by simp [Algebra.commutes]
   smul_def' _ _ := by simp [← Algebra.smul_def]; rfl
-
-set_option synthInstance.maxHeartbeats 800000
-set_option maxHeartbeats 1600000
 
 noncomputable section
 
@@ -134,8 +124,6 @@ theorem kw_ffgc_valued_withValMapAlgebraMap
         = Valued.v x ^ W.ramificationIndex F := by
   rw [WithVal.map_apply, WithVal.valued_toVal]
   exact kw_ffgc_adicValuation_algebraMap F W x.ofVal
-
-set_option backward.isDefEq.respectTransparency false in
 
 theorem kw_ffgc_uniformContinuous_withValMapAlgebraMap :
     UniformContinuous (WithVal.map ((W.restrict F).heightOneSpectrum.valuation F)
@@ -234,9 +222,6 @@ end CompletionComap
 
 end AlgebraicCurve.Place
 
-set_option synthInstance.maxHeartbeats 800000
-set_option maxHeartbeats 1600000
-
 section
 
 open IsDedekindDomain IsDedekindDomain.HeightOneSpectrum IsLocalRing WithZero MonoidWithZeroHom
@@ -270,9 +255,6 @@ theorem kw_ffgc_adicCompletionComapIntegers_coe
 end IntegerComap
 
 end AlgebraicCurve.Place
-
-set_option synthInstance.maxHeartbeats 800000
-set_option maxHeartbeats 1600000
 
 section
 
@@ -377,9 +359,6 @@ end ClosedAdjoin
 
 end AlgebraicCurve.Place
 
-set_option synthInstance.maxHeartbeats 800000
-set_option maxHeartbeats 1600000
-
 section
 
 open IsDedekindDomain IsDedekindDomain.HeightOneSpectrum IsLocalRing WithZero
@@ -466,10 +445,6 @@ end CompletionTrace
 
 end AlgebraicCurve.Place
 
-set_option maxHeartbeats 1600000
-set_option synthInstance.maxHeartbeats 800000
-set_option linter.unusedSectionVars false
-
 open AlgebraicCurve AlgebraicCurve.Place IsDedekindDomain
 
 section
@@ -550,10 +525,6 @@ theorem kwHgfV352_exists_sub_mem_adicCompletionIntegers (v : Place K E)
 end LocalResidueCompletion
 
 end AlgebraicCurve
-
-set_option maxHeartbeats 1600000
-set_option synthInstance.maxHeartbeats 800000
-set_option linter.unusedSectionVars false
 
 open AlgebraicCurve AlgebraicCurve.Place LinearMap Submodule
 open IsDedekindDomain IsDedekindDomain.HeightOneSpectrum IsLocalRing

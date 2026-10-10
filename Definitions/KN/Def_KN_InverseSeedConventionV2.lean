@@ -282,7 +282,6 @@ def HasSeededHorizontalPadicLConstructionV4
       ν.InterpolatesSeededCriticalValuesV4 ∧
       ν.measure.eval (trivialHorizontalCharacterV2 p ν.primes.exponent) ≠ 0
 
-set_option linter.unusedVariables false in
 /-- Finite-level theta data using the faithful horizontal-character
 realization. -/
 structure SeededFiniteThetaDataV3
@@ -295,7 +294,7 @@ structure SeededFiniteThetaDataV3
   coefficient_integral : ∀ x : coefficientRing, (x : ℂ_[p]) ∈ 𝓞_ℂ_[p]
   characters : SeededHorizontalCharacterRealizationV3 L
   theta : ∀ A : Finset ℕ, HorizontalGroupAlgebra coefficientRing p L.exponent A
-  eulerFactor : ∀ (A : Finset ℕ) (n : ℕ),
+  eulerFactor : ∀ (A : Finset ℕ) (_ : ℕ),
     HorizontalGroupAlgebra coefficientRing p L.exponent A
   eulerFactor_augmentation_norm : ∀ (A : Finset ℕ) (n : ℕ),
     ‖((horizontalAugmentation (eulerFactor A n) : coefficientRing) : ℂ_[p])‖ =

@@ -124,7 +124,6 @@ def horizontalAugmentation {R : Type*} [CommRing R] {p : ℕ}
     {m : ℕ → ℕ} {A : Finset ℕ} (θ : HorizontalGroupAlgebra R p m A) : R :=
   MonoidAlgebra.lift R R (HorizontalFiniteGroup p m A) 1 θ
 
-set_option linter.unusedVariables false in
 /-- Unnormalised finite-level theta elements and their Euler transition factors.
 The actual norm relation and invertibility of the factors are separate properties. -/
 structure SeededFiniteThetaData
@@ -137,7 +136,7 @@ structure SeededFiniteThetaData
   coefficient_integral : ∀ x : coefficientRing, (x : ℂ_[p]) ∈ 𝓞_ℂ_[p]
   characters : SeededHorizontalCharacterRealization L
   theta : ∀ A : Finset ℕ, HorizontalGroupAlgebra coefficientRing p L.exponent A
-  eulerFactor : ∀ (A : Finset ℕ) (n : ℕ),
+  eulerFactor : ∀ (A : Finset ℕ) (_ : ℕ),
     HorizontalGroupAlgebra coefficientRing p L.exponent A
   eulerFactor_augmentation_norm : ∀ (A : Finset ℕ) (n : ℕ),
     ‖((horizontalAugmentation (eulerFactor A n) : coefficientRing) : ℂ_[p])‖ =

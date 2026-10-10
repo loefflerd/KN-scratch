@@ -71,10 +71,6 @@ an abstract presentation $\widehat{A} \simeq B$ of the completion.
 
 @[expose] public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
 open IsLocalRing
 
 namespace AdicCompletion

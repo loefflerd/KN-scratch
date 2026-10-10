@@ -70,10 +70,6 @@ torsion of $J_0(N)$ entering the modular-curve side of the argument.
 
 @[expose] public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
 noncomputable section
 
 open AlgebraicCurve

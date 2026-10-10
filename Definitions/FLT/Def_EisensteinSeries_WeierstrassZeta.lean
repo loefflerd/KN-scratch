@@ -55,10 +55,6 @@ transformation behaviour under $SL_2(\mathbb{Z})$.
 
 @[expose] public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
 namespace EisensteinSeries
 
 noncomputable def weierstrassZeta (τ : UpperHalfPlane) (z : ℂ) : ℂ :=

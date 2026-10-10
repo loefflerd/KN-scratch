@@ -28,7 +28,6 @@ noncomputable section
 
 namespace HorizontalPadicL
 
-set_option linter.unusedVariables false in
 /-- Finite-level theta data using the faithful horizontal-character
 realization. -/
 structure SeededFiniteThetaDataV2
@@ -41,7 +40,7 @@ structure SeededFiniteThetaDataV2
   coefficient_integral : ∀ x : coefficientRing, (x : ℂ_[p]) ∈ 𝓞_ℂ_[p]
   characters : SeededHorizontalCharacterRealizationV2 L
   theta : ∀ A : Finset ℕ, HorizontalGroupAlgebra coefficientRing p L.exponent A
-  eulerFactor : ∀ (A : Finset ℕ) (n : ℕ),
+  eulerFactor : ∀ (A : Finset ℕ) (_ : ℕ),
     HorizontalGroupAlgebra coefficientRing p L.exponent A
   eulerFactor_augmentation_norm : ∀ (A : Finset ℕ) (n : ℕ),
     ‖((horizontalAugmentation (eulerFactor A n) : coefficientRing) : ℂ_[p])‖ =

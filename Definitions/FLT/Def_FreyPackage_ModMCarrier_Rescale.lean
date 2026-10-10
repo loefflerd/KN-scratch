@@ -59,10 +59,6 @@ the Hecke algebra is Ihara's lemma.
 
 @[expose] public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
 noncomputable section
 open Matrix UpperHalfPlane CongruenceSubgroup ModularForm OnePoint
 open scoped MatrixGroups ModularForm Manifold
@@ -94,9 +90,8 @@ lemma exists_cocycle_rescale (hdRM : d * R ∣ M) {γ : SL(2, ℤ)} (hγ : γ �
   rw [Nat.cast_mul] at hc'
   have hdetδ : Matrix.det !![a, (d : ℤ) * b; (R : ℤ) * c', e] = 1 := by
     rw [Matrix.det_fin_two_of]; linear_combination hdet + b * hc'
-  refine ⟨⟨_, hdetδ⟩, ?_, ?_⟩
-  · rw [Gamma0_mem]
-    show (((R : ℤ) * c' : ℤ) : ZMod R) = 0
+  refine ⟨⟨_, hdetδ⟩, Gamma0_mem.mpr ?_, ?_⟩
+  · show ((R * c' : ℤ) : ZMod R) = 0
     push_cast; rw [ZMod.natCast_self, zero_mul]
   · show diagMatInt d * (γ : Matrix (Fin 2) (Fin 2) ℤ)
       = !![a, (d : ℤ) * b; (R : ℤ) * c', e] * diagMatInt d

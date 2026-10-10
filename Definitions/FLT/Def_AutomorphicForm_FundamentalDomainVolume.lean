@@ -57,10 +57,6 @@ associated spectral decomposition available.
 
 @[expose] public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
 open MeasureTheory Set ModularGroup UpperHalfPlane
 open scoped MatrixGroups Modular Pointwise NNReal ENNReal
 

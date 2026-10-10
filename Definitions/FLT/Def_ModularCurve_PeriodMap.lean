@@ -56,10 +56,6 @@ the first cohomology of the compactified modular curve with trivial coefficients
 
 @[expose] public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
 namespace ModularCurve.Period
 
 open UpperHalfPlane

@@ -64,10 +64,6 @@ curves or schemes appearing at this level.
 
 @[expose] public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
 namespace AddMonoidHom
 
 variable {A B C : Type*} [AddCommGroup A] [AddCommGroup B] [AddCommGroup C]

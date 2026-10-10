@@ -64,10 +64,6 @@ the Frey curve in the analysis of the attached mod-$p$ Galois representation.
 
 @[expose] public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
 open IsLocalRing
 
 namespace ValuationSubring
@@ -324,8 +320,6 @@ section IntegralCase
 
 variable [DecidableEq L] [DecidableEq (ResidueField A)]
 variable {W} (hΔ : (W.map (residue A)).Δ ≠ 0)
-
-set_option maxHeartbeats 1600000 in
 
 theorem reducePoint_add_of_mem {x₁ y₁ x₂ y₂ : L}
     (h₁ : (W.map A.subtype).toAffine.Nonsingular x₁ y₁)

@@ -59,10 +59,6 @@ required to factor as $(X^{\ell} - Y)(X - Y^{\ell})$.
 
 @[expose] public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
 noncomputable section
 
 open PowerSeries HahnSeries IntermediateField

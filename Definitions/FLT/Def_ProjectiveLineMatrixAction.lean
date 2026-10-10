@@ -62,10 +62,6 @@ module in which level-$N$ data is handled at level one, together with the combin
 
 @[expose] public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
 namespace ModularCurve.ProjectiveLine
 
 variable {R : Type*} [CommRing R]

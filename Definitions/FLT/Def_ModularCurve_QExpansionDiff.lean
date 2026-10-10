@@ -61,10 +61,6 @@ push-forward of differentials along a covering of curves, expressed through the 
 
 @[expose] public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
 noncomputable section DL_foulmouthedly
 
 open HahnSeries

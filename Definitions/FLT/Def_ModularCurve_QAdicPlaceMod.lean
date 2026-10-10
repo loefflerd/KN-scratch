@@ -65,15 +65,9 @@ as input.
 
 @[expose] public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
 noncomputable section
 
 open HahnSeries AlgebraicCurve
-
-set_option synthInstance.maxHeartbeats 400000
 
 namespace ModularCurve
 

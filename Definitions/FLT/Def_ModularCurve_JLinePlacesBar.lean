@@ -61,17 +61,11 @@ $\mathrm{Pic}^0$ and its torsion with its Galois action.
 
 @[expose] public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
 noncomputable section
 
 open IntermediateField AlgebraicCurve AlgebraicCurve.RationalFunctionField
 
 namespace ModularCurve
-
-set_option synthInstance.maxHeartbeats 400000
 
 variable (N : ℕ) [NeZero N]
 

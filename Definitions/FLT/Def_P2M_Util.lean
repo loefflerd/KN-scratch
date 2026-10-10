@@ -27,10 +27,6 @@ closing tactic; it adds no declarations or axioms.
 
 @[expose] public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
 open Lean Elab Tactic Meta in
 /-- `p2m_exact_reverting e` reverts all non-implementation-detail local declarations,
 preserving their order, then checks `e` against the resulting generalized goal and closes it.

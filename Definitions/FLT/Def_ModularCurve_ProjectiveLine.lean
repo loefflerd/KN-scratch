@@ -52,10 +52,6 @@ $\Gamma_0(N)$ the preimage of `borel (ZMod N)` under reduction.
 
 @[expose] public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
 namespace ModularCurve
 
 open Matrix

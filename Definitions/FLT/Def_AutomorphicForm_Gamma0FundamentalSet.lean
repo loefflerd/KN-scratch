@@ -56,10 +56,6 @@ $\Gamma_0(N)\backslash\mathbb H$ used in the modularity input to Fermat's Last T
 
 @[expose] public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
 open Matrix Matrix.SpecialLinearGroup UpperHalfPlane ModularGroup CongruenceSubgroup
 open MeasureTheory
 open scoped Modular MatrixGroups Pointwise

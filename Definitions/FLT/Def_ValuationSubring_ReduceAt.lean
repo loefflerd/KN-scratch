@@ -63,12 +63,6 @@ entering the study of the mod-$p$ representation attached to a Frey package.
 
 @[expose] public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
-set_option autoImplicit false
-
 open IsLocalRing Polynomial
 
 namespace ValuationSubring

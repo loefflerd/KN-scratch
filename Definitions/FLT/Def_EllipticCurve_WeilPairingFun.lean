@@ -53,10 +53,6 @@ an elliptic curve as the cyclotomic character.
 
 @[expose] public section publicSection
 
-set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
-set_option backward.isDefEq.respectTransparency.types false
-
 namespace WeierstrassCurve.Affine
 
 section WeilPairingDefs
