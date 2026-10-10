@@ -798,8 +798,6 @@ end MTT.Eigenform
 
 end BundleResidualMatrixReduction
 
--- From Solutions/ResidualFiniteDescent.lean
-set_option backward.isDefEq.respectTransparency.types false
 noncomputable section BundleResidualFiniteDescent
 
 namespace HorizontalPadicL
@@ -1456,7 +1454,6 @@ relations submission `f1d595ec`, and frknbls's evaluation submission `69fe8a06`.
 The zero-set descent and final assembly also use davidloeffler's platform proofs.
 -/
 
-set_option maxHeartbeats 800000
 noncomputable section BundleSeededThetaAnyParity
 open scoped BigOperators
 

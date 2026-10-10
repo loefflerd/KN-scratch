@@ -48,7 +48,6 @@ The exact upload file passes Lean-LSP; the entry point is _root_.solution.
 
 section privateSection
 
-set_option maxRecDepth 4000
 noncomputable section
 open scoped BigOperators ModularForm
 open MeasureTheory Complex UpperHalfPlane MTT ModularForm ConjAct Pointwise

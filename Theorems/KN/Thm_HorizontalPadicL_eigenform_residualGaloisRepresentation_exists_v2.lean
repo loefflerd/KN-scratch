@@ -203,8 +203,6 @@ end MTT.Eigenform
 
 end BundleResidualMatrixReduction
 
--- From Solutions/ResidualFiniteDescent.lean
-set_option backward.isDefEq.respectTransparency.types false
 noncomputable section BundleResidualFiniteDescent
 
 namespace HorizontalPadicL

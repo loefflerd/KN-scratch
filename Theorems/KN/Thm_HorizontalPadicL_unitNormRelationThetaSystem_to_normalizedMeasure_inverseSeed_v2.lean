@@ -38,7 +38,6 @@ seed hypotheses themselves retain the character eta. It supersedes
 
 section privateSection
 
-set_option maxHeartbeats 800000
 noncomputable section
 open scoped BigOperators
 

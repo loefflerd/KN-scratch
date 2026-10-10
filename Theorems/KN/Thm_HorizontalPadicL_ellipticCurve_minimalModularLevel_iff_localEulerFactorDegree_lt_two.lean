@@ -79,10 +79,6 @@ same curve, modularity witness and prime.
 
 section privateSection
 
-set_option maxRecDepth 100000
-set_option maxHeartbeats 400000
-set_option linter.all false
-
 open HorizontalPadicL
 
 theorem _root_.solution
