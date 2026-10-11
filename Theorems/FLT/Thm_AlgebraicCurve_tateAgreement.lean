@@ -420,8 +420,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_Algebrai
 section
 
 set_option linter.unusedSectionVars false
---XXset_option maxRecDepth 8000
-
 noncomputable section
 
 p2m_open "IsDedekindDomain P2MW.S_AlgebraicCurve_tateAgreement.IsDedekindDomain WithZero P2MW.S_AlgebraicCurve_tateAgreement.WithZero Module P2MW.S_AlgebraicCurve_tateAgreement.Module IsLocalRing P2MW.S_AlgebraicCurve_tateAgreement.IsLocalRing Module.IsLocalRing"
@@ -439,8 +437,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_Algebrai
 section
 
 set_option linter.unusedSectionVars false
---XXset_option maxRecDepth 8000
-
 noncomputable section
 
 p2m_open "IsDedekindDomain P2MW.S_AlgebraicCurve_tateAgreement.IsDedekindDomain IsLocalRing P2MW.S_AlgebraicCurve_tateAgreement.IsLocalRing Polynomial P2MW.S_AlgebraicCurve_tateAgreement.Polynomial"

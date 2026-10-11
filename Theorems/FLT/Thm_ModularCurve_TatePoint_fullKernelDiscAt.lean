@@ -66,8 +66,6 @@ set_option backward.isDefEq.respectTransparency.types false
 namespace P2MW.S_ModularCurve_TatePoint_fullKernelDiscAt
 
 set_option Elab.async false
---XXset_option maxRecDepth 8192
-
 namespace KernelTower
 
 theorem mem_zmultiples_iff_of_two_nsmul_eq_zero {A : Type*} [AddCommGroup A] {T : A}
