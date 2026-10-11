@@ -76,7 +76,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WeierstrassCurve_Affine_eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward
@@ -87,7 +86,6 @@ p2m_attr_erase "simp" "WeierstrassCurve.Univ.pointedCurve_a₃ EllSequence.redIn
 
 set_option linter.unusedVariables false
 set_option linter.unusedSectionVars false
-set_option synthInstance.maxHeartbeats 1600000
 set_option maxHeartbeats 16000000
 
 noncomputable section

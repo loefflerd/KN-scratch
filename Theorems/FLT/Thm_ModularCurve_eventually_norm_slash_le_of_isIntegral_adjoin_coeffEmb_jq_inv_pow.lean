@@ -67,7 +67,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_eventually_norm_slash_le_of_isIntegral_adjoin_coeffEmb_jq_inv_pow

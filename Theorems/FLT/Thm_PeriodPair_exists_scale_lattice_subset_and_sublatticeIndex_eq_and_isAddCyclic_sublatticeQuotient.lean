@@ -79,7 +79,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_and_isAddCyclic_sublatticeQuotient
@@ -827,7 +826,6 @@ def KwD5BetweenCurvesHoloLift : Prop :=
 end ModularCurve
 p2m_reactivate "P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_and_isAddCyclic_sublatticeQuotient.WeierstrassCurve.Affine.CoordinateRing P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_and_isAddCyclic_sublatticeQuotient.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_and_isAddCyclic_sublatticeQuotient.WeierstrassCurve P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_and_isAddCyclic_sublatticeQuotient.WeierstrassCurve.Affine P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_and_isAddCyclic_sublatticeQuotient.PeriodPair"
 
-set_option synthInstance.maxHeartbeats 800000
 set_option maxHeartbeats 6400000
 
 namespace AlgebraicCurve
@@ -1052,7 +1050,6 @@ p2m_reactivate "P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeInde
 section
 
 set_option maxHeartbeats 6400000
-set_option synthInstance.maxHeartbeats 3200000
 set_option linter.unusedSectionVars false
 
 section
@@ -1087,7 +1084,6 @@ p2m_reactivate "P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeInde
 section
 
 set_option maxHeartbeats 3200000
-set_option synthInstance.maxHeartbeats 1600000
 
 section
 
@@ -1154,7 +1150,6 @@ p2m_reactivate "P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeInde
 section
 
 set_option maxHeartbeats 6400000
-set_option synthInstance.maxHeartbeats 1600000
 
 section
 
@@ -1212,7 +1207,6 @@ p2m_reactivate "P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeInde
 section
 
 set_option maxHeartbeats 6400000
-set_option synthInstance.maxHeartbeats 8000000
 set_option linter.unusedSectionVars false
 
 section
@@ -1477,7 +1471,6 @@ p2m_reactivate "P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeInde
 section
 
 set_option maxHeartbeats 6400000
-set_option synthInstance.maxHeartbeats 1600000
 
 section
 

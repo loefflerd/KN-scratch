@@ -70,14 +70,12 @@ ATTRIBUTION.md and NOTICE in the source repository.
 
 section privateSection
 
-set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq
 
 set_option linter.unusedSectionVars false
 set_option linter.unusedVariables false
-set_option synthInstance.maxHeartbeats 800000
 set_option maxHeartbeats 6400000
 
 noncomputable section
@@ -187,7 +185,6 @@ end WeierstrassCurve.Affine.Point
 section
 
 set_option maxHeartbeats 6400000
-set_option synthInstance.maxHeartbeats 1600000
 set_option linter.unusedSectionVars false
 
 section
@@ -227,7 +224,6 @@ end
 section
 
 set_option maxHeartbeats 6400000
-set_option synthInstance.maxHeartbeats 1600000
 set_option linter.unusedSectionVars false
 
 section
@@ -305,7 +301,6 @@ end
 section
 
 set_option maxHeartbeats 25600000
-set_option synthInstance.maxHeartbeats 1600000
 set_option linter.unusedSectionVars false
 
 section
@@ -734,7 +729,6 @@ p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_e
 section
 
 set_option maxHeartbeats 6400000
-set_option synthInstance.maxHeartbeats 1600000
 set_option linter.unusedSectionVars false
 set_option linter.unusedSimpArgs false
 
@@ -1585,7 +1579,6 @@ section
 
 set_option linter.unusedSectionVars false
 set_option linter.unusedSimpArgs false
-set_option synthInstance.maxHeartbeats 1600000
 set_option maxHeartbeats 6400000
 
 section
@@ -1697,7 +1690,6 @@ section
 
 set_option linter.unusedSectionVars false
 set_option linter.unusedSimpArgs false
-set_option synthInstance.maxHeartbeats 1600000
 set_option maxHeartbeats 6400000
 
 section
@@ -1834,7 +1826,6 @@ section
 
 set_option linter.unusedSectionVars false
 set_option linter.unusedSimpArgs false
-set_option synthInstance.maxHeartbeats 1600000
 set_option maxHeartbeats 6400000
 
 section
@@ -1883,7 +1874,6 @@ section
 
 set_option linter.unusedSectionVars false
 set_option linter.unusedSimpArgs false
-set_option synthInstance.maxHeartbeats 1600000
 set_option maxHeartbeats 6400000
 
 section
@@ -1962,7 +1952,6 @@ section
 
 set_option linter.unusedSectionVars false
 set_option linter.unusedSimpArgs false
-set_option synthInstance.maxHeartbeats 1600000
 set_option maxHeartbeats 6400000
 
 section
@@ -2131,7 +2120,6 @@ section
 
 set_option linter.unusedSectionVars false
 set_option linter.unusedSimpArgs false
-set_option synthInstance.maxHeartbeats 3200000
 set_option maxHeartbeats 12800000
 
 section
@@ -2164,6 +2152,7 @@ theorem kw_iPFE_functionField_ringHom_ext {F : Type*} [Field F] {W : Affine F}
   have heq : f' = g' := kw_functionField_algHom_ext hX hy
   exact congrArg AlgHom.toRingHom heq
 
+set_option synthInstance.maxHeartbeats 80000 in -- this is needed (DL)
 theorem kw_iPFE_finrankEq : KwIotaPinnedFinrankEq E₀ D hcoeffs := by
   set ι₀ := kw_iP_ι₀ E₀ D hcoeffs
   have hfin := kw_iPFA_finiteAlong E₀ D hcoeffs
@@ -2275,7 +2264,6 @@ section
 
 set_option linter.unusedSectionVars false
 set_option linter.unusedSimpArgs false
-set_option synthInstance.maxHeartbeats 1600000
 set_option maxHeartbeats 6400000
 
 section

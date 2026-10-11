@@ -64,7 +64,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_exists_cuspForm_coeffMap_diffQExpBar_eq_qExpansion_of_mem_regularDifferentialsBar
@@ -78,7 +77,6 @@ p2m_attr_erase "simp" "ModularCurve.B3.scaleAddEquiv_apply ModularCurve.B3.cycOf
 
 open ModularCurve AlgebraicCurve HahnSeries KaehlerDifferential
 
-set_option synthInstance.maxHeartbeats 1600000
 
 noncomputable section
 

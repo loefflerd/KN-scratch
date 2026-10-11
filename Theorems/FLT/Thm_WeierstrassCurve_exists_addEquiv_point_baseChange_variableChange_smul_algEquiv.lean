@@ -58,7 +58,6 @@ section privateSection
 namespace P2MW.S_WeierstrassCurve_exists_addEquiv_point_baseChange_variableChange_smul_algEquiv
 
 set_option autoImplicit false
-set_option synthInstance.maxHeartbeats 1600000
 set_option maxHeartbeats 3200000
 
 open WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point

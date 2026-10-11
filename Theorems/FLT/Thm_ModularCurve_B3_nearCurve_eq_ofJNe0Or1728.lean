@@ -58,13 +58,11 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_B3_nearCurve_eq_ofJNe0Or1728
 
 set_option maxHeartbeats 6400000
-set_option synthInstance.maxHeartbeats 1600000
 
 open scoped Classical
 open ModularCurve.TatePoint ModularCurve.B3 WeierstrassCurve

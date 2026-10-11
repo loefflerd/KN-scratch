@@ -89,12 +89,10 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WLight_levelN_structure_package
 
-set_option synthInstance.maxHeartbeats 1600000
 noncomputable section
 open Complex Real
 namespace WLight
@@ -920,7 +918,9 @@ scoped instance (N : ℕ) [NeZero N] : IsPrincipalIdealRing ↥(polyJ N) :=
   IsPrincipalIdealRing.of_surjective (polyJEquiv N).toRingEquiv.toRingHom
     (polyJEquiv N).surjective
 
-scoped instance (N : ℕ) [NeZero N] : IsDedekindDomain ↥(polyJ N) := inferInstance
+-- explicit proof to avoid heartbeat bump (DL)
+scoped instance (N : ℕ) [NeZero N] : IsDedekindDomain ↥(polyJ N) :=
+  IsPrincipalIdealRing.isDedekindDomain ↥(polyJ N)
 
 scoped instance (N : ℕ) [NeZero N] : CharZero (levelField N) :=
   charZero_of_injective_algebraMap (FaithfulSMul.algebraMap_injective ℂ (levelField N))
@@ -931,12 +931,10 @@ scoped instance (N : ℕ) [NeZero N] : CharZero ↥(ratJ N) :=
 lemma index_pmGamma_pos (N : ℕ) [NeZero N] : 0 < (pmGamma N).index := Nat.pos_of_ne_zero
   Subgroup.FiniteIndex.index_ne_zero
 
-set_option synthInstance.maxHeartbeats 800000 in
 scoped instance (N : ℕ) [NeZero N] : FiniteDimensional ↥(ratJ N) (levelField N) :=
   haveI : Module.Free ↥(ratJ N) (levelField N) := Module.Free.of_divisionRing _ _
   Module.finite_of_finrank_pos (by rw [finrank_adjoin_j_levelField]; exact index_pmGamma_pos N)
 
-set_option synthInstance.maxHeartbeats 800000 in
 scoped instance (N : ℕ) [NeZero N] : Algebra.IsSeparable ↥(ratJ N) (levelField N) :=
   haveI : Algebra.IsIntegral ↥(ratJ N) (levelField N) := Algebra.IsIntegral.of_finite _ _
   Algebra.IsSeparable.of_integral ↥(ratJ N) (levelField N)

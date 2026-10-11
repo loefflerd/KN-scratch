@@ -67,7 +67,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_finiteDimensional_and_finrank_adjoin_jqModC_qExpFunctionFieldC_le_index
@@ -77,7 +76,6 @@ p2m_attr_erase "simp" "ModularCurve.coe_frobeniusPullbackGeomLevelDegZero Modula
 p2m_attr_erase "simp" "ModularForm.val_heckeDiagMatrix ModularForm.heckeU_zero ModularForm.heckeU_zero_left ModularForm.heckeT_zero ModularForm.val_heckeMatrix ModularForm.heckeMatrix_zero ModularForm.heckeT_zero_left ModularForm.heckeDiagMatrix_zero ModularForm.val_upperTriangularGL ModularCurve.eisensteinNumerator_nineteen ModularCurve.eisensteinNumerator_seventeen ModularCurve.eisensteinNumerator_eleven ModularCurve.eisensteinNumerator_five ModularCurve.eisensteinNumerator_seven ModularCurve.eisensteinNumerator_twentythree ModularCurve.eisensteinNumerator_thirteen ModularCurve.constantCoeff_dedekindEtaUnitQ"
 
 set_option linter.unusedSectionVars false
-set_option synthInstance.maxHeartbeats 1600000
 set_option maxHeartbeats 6400000
 
 noncomputable section
@@ -167,7 +165,7 @@ local notation "Fκ" => qExpFunctionFieldC κ Γ
 local notation "Fk" => qExpFunctionFieldC k Γ
 
 include φ in
-
+set_option synthInstance.maxHeartbeats 80000 in -- this is needed (DL)
 theorem transfer (x : Fκ) (hx : (x : LaurentSeries κ) = jqModC κ)
     (x' : Fk) (hx' : (x' : LaurentSeries k) = jqModC k)
     (hfd : FiniteDimensional (adjoin κ ({x} : Set Fκ)) Fκ) :

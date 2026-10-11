@@ -69,14 +69,12 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_ord_sub_algebraMap_le_one_laurentBaseChange_qExpFunctionFieldC_of_ne_zero_of_ne_1728
 p2m_attr_erase "simp" "PeriodPair.weierstrassCurve_a₆ PeriodPair.weierstrassCurve_a₃ PeriodPair.weierstrassCurve_a₁ PeriodPair.ofTau_ω₂ PeriodPair.scale_ω₂ PeriodPair.ofTau_ω₁ PeriodPair.toPoint_zero PeriodPair.toPoint_of_mem PeriodPair.weierstrassCurve_a₂ PeriodPair.ofTau_lattice PeriodPair.scale_ω₁ PeriodPair.weierstrassCurve_a₄"
 
 set_option linter.unusedSectionVars false
-set_option synthInstance.maxHeartbeats 1600000
 set_option maxHeartbeats 3200000
 
 noncomputable section
@@ -934,6 +932,7 @@ scoped instance instIsScalarTowerABCF : IsScalarTower (A y) (B y) (CF Γ) :=
 
 theorem algebraMap_B_apply (b : B y) : algebraMap (B y) (CF Γ) b = (b : CF Γ) := rfl
 
+set_option synthInstance.maxHeartbeats 40000 in -- this is needed (DL)
 include hT hy hΓ in
 theorem isDedekindDomain_B : IsDedekindDomain (B y) := by
   have := isPrincipalIdealRing_A y hy

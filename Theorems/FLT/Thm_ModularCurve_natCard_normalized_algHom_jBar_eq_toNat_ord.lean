@@ -72,7 +72,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_natCard_normalized_algHom_jBar_eq_toNat_ord
@@ -115,7 +114,7 @@ namespace ModularCurve
 p2m_export "ModularCurve" "dedekindPsi jBar modularFunctionFieldBar sum_ord_jBar_sub_eq_dedekindPsi exists_finset_ord_jBar_sub_pos deg_eq_one_modularFunctionFieldBar dedekindPsi_pos natCard_normalized_algHom_hahnSeries_jBar_sub_eq_toNat_ord relfinrank_laurentBaseChange_modularFunctionFieldFull relfinrank_full_eq_dedekindPsi"
 end ModularCurve
 p2m_open_scoped "ModularCurve" in
-
+set_option synthInstance.maxHeartbeats 80000 in -- this is needed (DL)
 private theorem ModularCurve.natCard_normalized_algHom_jBar_eq_toNat_ord (N : ℕ) [NeZero N]
     (j₀ : AlgebraicClosure ℚ) :
     ∀ w : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N),

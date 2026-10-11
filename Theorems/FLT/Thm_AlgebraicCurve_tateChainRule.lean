@@ -71,13 +71,11 @@ Salvatore Mercuri, Kevin Buzzard). See ATTRIBUTION.md and NOTICE in the source r
 
 section privateSection
 
-set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
 p2m_attr_erase "ext" "IsDedekindDomain.HeightOneSpectrum.adicCompletion.ext"
 namespace P2MW.S_AlgebraicCurve_tateChainRule
 
-set_option synthInstance.maxHeartbeats 6400000
 set_option maxHeartbeats 12800000
 
 namespace AlgebraicCurve
@@ -329,7 +327,6 @@ end
 
 section
 
-set_option synthInstance.maxHeartbeats 3200000
 set_option maxHeartbeats 6400000
 
 noncomputable section
@@ -386,7 +383,6 @@ section
 
 set_option linter.unusedSectionVars false
 
-set_option synthInstance.maxHeartbeats 3200000
 set_option maxHeartbeats 6400000
 
 noncomputable section
@@ -424,7 +420,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve"
 section
 
 set_option maxHeartbeats 6400000
-set_option synthInstance.maxHeartbeats 3200000
 set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve.Place LinearMap P2MW.S_AlgebraicCurve_tateChainRule.LinearMap Submodule P2MW.S_AlgebraicCurve_tateChainRule.Submodule"
@@ -481,7 +476,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve"
 section
 
 set_option maxHeartbeats 6400000
-set_option synthInstance.maxHeartbeats 3200000
 set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve.Place LinearMap P2MW.S_AlgebraicCurve_tateChainRule.LinearMap Submodule P2MW.S_AlgebraicCurve_tateChainRule.Submodule"
@@ -564,7 +558,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve"
 section
 
 set_option maxHeartbeats 3200000
-set_option synthInstance.maxHeartbeats 1600000
 
 p2m_open_scoped "WithZero P2MW.S_AlgebraicCurve_tateChainRule.WithZero Multiplicative P2MW.S_AlgebraicCurve_tateChainRule.Multiplicative Topology P2MW.S_AlgebraicCurve_tateChainRule.Topology"
 p2m_open "Filter P2MW.S_AlgebraicCurve_tateChainRule.Filter"
@@ -605,7 +598,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve"
 section
 
 set_option maxHeartbeats 6400000
-set_option synthInstance.maxHeartbeats 3200000
 set_option linter.unusedSectionVars false
 
 noncomputable section
@@ -714,7 +706,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_Algebr
 section
 
 set_option maxHeartbeats 6400000
-set_option synthInstance.maxHeartbeats 3200000
 set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve.Place LinearMap P2MW.S_AlgebraicCurve_tateChainRule.LinearMap Submodule P2MW.S_AlgebraicCurve_tateChainRule.Submodule"
@@ -834,7 +825,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_Algebr
 section
 
 set_option maxHeartbeats 6400000
-set_option synthInstance.maxHeartbeats 3200000
 set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve.Place LinearMap P2MW.S_AlgebraicCurve_tateChainRule.LinearMap Submodule P2MW.S_AlgebraicCurve_tateChainRule.Submodule"
@@ -881,7 +871,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_Algebr
 section
 
 set_option maxHeartbeats 6400000
-set_option synthInstance.maxHeartbeats 3200000
 set_option linter.unusedSectionVars false
 set_option linter.unusedSimpArgs false
 
@@ -961,7 +950,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_Algebr
 section
 
 set_option maxHeartbeats 6400000
-set_option synthInstance.maxHeartbeats 3200000
 set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve.Place LinearMap P2MW.S_AlgebraicCurve_tateChainRule.LinearMap Submodule P2MW.S_AlgebraicCurve_tateChainRule.Submodule"
@@ -1096,7 +1084,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_Algebr
 section
 
 set_option maxHeartbeats 6400000
-set_option synthInstance.maxHeartbeats 3200000
 set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve.Place LinearMap P2MW.S_AlgebraicCurve_tateChainRule.LinearMap Submodule P2MW.S_AlgebraicCurve_tateChainRule.Submodule"
@@ -1167,7 +1154,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_Algebr
 section
 
 set_option maxHeartbeats 12800000
-set_option synthInstance.maxHeartbeats 6400000
 set_option linter.unusedSectionVars false
 set_option linter.unusedSimpArgs false
 set_option linter.unusedVariables false
@@ -1204,7 +1190,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_Algebr
 section
 
 set_option maxHeartbeats 12800000
-set_option synthInstance.maxHeartbeats 6400000
 set_option linter.unusedSectionVars false
 set_option linter.unusedSimpArgs false
 
@@ -1286,7 +1271,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_Algebr
 section
 
 set_option maxHeartbeats 12800000
-set_option synthInstance.maxHeartbeats 6400000
 set_option linter.unusedSectionVars false
 set_option linter.unusedSimpArgs false
 set_option linter.unusedVariables false
@@ -1387,7 +1371,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_Algebr
 section
 
 set_option maxHeartbeats 12800000
-set_option synthInstance.maxHeartbeats 6400000
 set_option linter.unusedSectionVars false
 set_option linter.unusedSimpArgs false
 set_option linter.unusedVariables false
@@ -1525,7 +1508,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_Algebr
 section
 
 set_option maxHeartbeats 12800000
-set_option synthInstance.maxHeartbeats 6400000
 set_option linter.unusedSectionVars false
 set_option linter.unusedSimpArgs false
 set_option linter.unusedVariables false
@@ -1912,7 +1894,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_Algebr
 section
 
 set_option maxHeartbeats 12800000
-set_option synthInstance.maxHeartbeats 6400000
 set_option linter.unusedSectionVars false
 set_option linter.unusedSimpArgs false
 set_option linter.unusedVariables false

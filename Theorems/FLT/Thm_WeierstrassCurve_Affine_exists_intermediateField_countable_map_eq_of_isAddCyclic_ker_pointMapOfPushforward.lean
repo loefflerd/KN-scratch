@@ -84,7 +84,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward
@@ -97,7 +96,6 @@ set_option linter.unusedVariables false
 set_option linter.unusedSectionVars false
 set_option linter.unusedSimpArgs false
 set_option maxHeartbeats 3200000
-set_option synthInstance.maxHeartbeats 1600000
 
 noncomputable section
 
@@ -690,7 +688,6 @@ end WeierstrassCurve.Affine
 p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine"
 p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine"
 
-set_option synthInstance.maxHeartbeats 800000
 set_option maxHeartbeats 6400000
 
 namespace AlgebraicCurve
@@ -756,7 +753,6 @@ universe uK
 section
 
 set_option maxHeartbeats 6400000
-set_option synthInstance.maxHeartbeats 1600000
 set_option linter.unusedSectionVars false
 
 section
@@ -863,7 +859,6 @@ p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countabl
 section
 
 set_option maxHeartbeats 6400000
-set_option synthInstance.maxHeartbeats 3200000
 set_option linter.unusedSectionVars false
 
 section
@@ -912,7 +907,6 @@ p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countabl
 section
 
 set_option maxHeartbeats 6400000
-set_option synthInstance.maxHeartbeats 1600000
 set_option linter.unusedSectionVars false
 
 section
@@ -1105,7 +1099,6 @@ p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countabl
 section
 
 set_option maxHeartbeats 25600000
-set_option synthInstance.maxHeartbeats 1600000
 set_option linter.unusedSectionVars false
 
 section
@@ -1224,7 +1217,6 @@ p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countabl
 section
 
 set_option maxHeartbeats 6400000
-set_option synthInstance.maxHeartbeats 1600000
 set_option linter.unusedSectionVars false
 set_option linter.unusedSimpArgs false
 
@@ -1706,7 +1698,6 @@ section
 
 set_option linter.unusedSectionVars false
 set_option linter.unusedSimpArgs false
-set_option synthInstance.maxHeartbeats 1600000
 set_option maxHeartbeats 6400000
 
 section
@@ -1787,7 +1778,6 @@ section
 
 set_option linter.unusedSectionVars false
 set_option linter.unusedSimpArgs false
-set_option synthInstance.maxHeartbeats 1600000
 set_option maxHeartbeats 6400000
 
 section
@@ -1904,7 +1894,6 @@ section
 
 set_option linter.unusedSectionVars false
 set_option linter.unusedSimpArgs false
-set_option synthInstance.maxHeartbeats 3200000
 set_option maxHeartbeats 12800000
 
 section
@@ -2008,7 +1997,6 @@ p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countabl
 section
 
 set_option maxHeartbeats 6400000
-set_option synthInstance.maxHeartbeats 3200000
 set_option linter.unusedSectionVars false
 
 section
@@ -2118,7 +2106,6 @@ p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countabl
 section
 
 set_option maxHeartbeats 6400000
-set_option synthInstance.maxHeartbeats 3200000
 set_option linter.unusedSectionVars false
 set_option linter.unusedSimpArgs false
 
@@ -2624,7 +2611,6 @@ p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countabl
 section
 
 set_option maxHeartbeats 6400000
-set_option synthInstance.maxHeartbeats 3200000
 set_option linter.unusedSectionVars false
 set_option linter.unusedSimpArgs false
 
@@ -3022,7 +3008,6 @@ p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countabl
 section
 
 set_option maxHeartbeats 6400000
-set_option synthInstance.maxHeartbeats 3200000
 
 section
 
@@ -3076,7 +3061,6 @@ p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countabl
 section
 
 set_option maxHeartbeats 6400000
-set_option synthInstance.maxHeartbeats 3200000
 set_option linter.unusedSectionVars false
 set_option linter.unusedSimpArgs false
 

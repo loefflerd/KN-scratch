@@ -58,7 +58,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_AlgebraicCurve_instIsCurveOverRatFunc
@@ -179,7 +178,6 @@ noncomputable section
 
 p2m_open "IntermediateField AlgebraicCurve P2MW.S_AlgebraicCurve_instIsCurveOverRatFunc.AlgebraicCurve Polynomial TensorProduct Module"
 
-set_option synthInstance.maxHeartbeats 1600000
 set_option maxHeartbeats 3200000
 
 namespace AlgebraicCurve

@@ -74,7 +74,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring
@@ -426,7 +425,6 @@ end WeierstrassCurve.Affine
 p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.WeierstrassCurve.Affine"
 p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_eq_of_mem_isogenyEndSubring.WeierstrassCurve.Affine"
 
-set_option synthInstance.maxHeartbeats 800000
 set_option maxHeartbeats 6400000
 
 namespace AddMonoid
@@ -778,7 +776,6 @@ p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_pointEnd_e
 
 section
 
-set_option synthInstance.maxHeartbeats 1600000
 
 section
 
@@ -1905,7 +1902,6 @@ section
 
 set_option linter.unusedSectionVars false
 set_option maxHeartbeats 3200000
-set_option synthInstance.maxHeartbeats 1600000
 
 section
 

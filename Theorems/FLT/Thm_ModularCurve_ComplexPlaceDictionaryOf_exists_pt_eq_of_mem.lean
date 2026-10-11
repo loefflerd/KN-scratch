@@ -70,7 +70,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_ComplexPlaceDictionaryOf_exists_pt_eq_of_mem
@@ -136,8 +135,10 @@ scoped instance instSMulBCF : SMul (B Γ x) (CF Γ) := Algebra.toSMul
 scoped instance instIsScalarTowerABCF : IsScalarTower (A Γ x) (B Γ x) (CF Γ) :=
   IsScalarTower.subalgebra' (A Γ x) (CF Γ) (CF Γ) (B Γ x)
 
-scoped instance instIsDedekindDomainB [Γ.FiniteIndex] [hT : Fact (ModularGroup.T ∈ Γ)] [hx : Fact ((x : LaurentSeries ℂ) = jqModC ℂ)] : IsDedekindDomain (B Γ x) := by
-  unfold B; exact integralClosure.isDedekindDomain (A Γ x) (Kj Γ x) (CF Γ)
+set_option synthInstance.maxHeartbeats 80000 in -- this is needed (DL)
+scoped instance instIsDedekindDomainB [Γ.FiniteIndex] [hT : Fact (ModularGroup.T ∈ Γ)]
+    [hx : Fact ((x : LaurentSeries ℂ) = jqModC ℂ)] : IsDedekindDomain (B Γ x) :=
+  integralClosure.isDedekindDomain (A Γ x) (Kj Γ x) (CF Γ)
 
 scoped instance instIsFractionRingB [Γ.FiniteIndex] [hT : Fact (ModularGroup.T ∈ Γ)] [hx : Fact ((x : LaurentSeries ℂ) = jqModC ℂ)] : IsFractionRing (B Γ x) (CF Γ) := by
   unfold B; exact integralClosure.isFractionRing_of_finite_extension (Kj Γ x) (CF Γ)

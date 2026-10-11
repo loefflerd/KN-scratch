@@ -84,12 +84,10 @@ in the source repository.
 
 section privateSection
 
-set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_AlgebraicCurve_residueTheoremK_of_isAlgClosed
 
-set_option synthInstance.maxHeartbeats 6400000
 set_option maxHeartbeats 12800000
 
 section
@@ -1609,7 +1607,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_of_isAlgClosed.AlgebraicCu
 
 section
 
-set_option synthInstance.maxHeartbeats 3200000
 set_option maxHeartbeats 6400000
 
 noncomputable section
@@ -1627,7 +1624,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_of_isAlgClosed.AlgebraicCu
 
 section
 
-set_option synthInstance.maxHeartbeats 3200000
 set_option maxHeartbeats 6400000
 
 noncomputable section
@@ -1730,7 +1726,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_of_isAlgClosed.AlgebraicCu
 
 section
 
-set_option synthInstance.maxHeartbeats 3200000
 set_option maxHeartbeats 6400000
 
 noncomputable section
@@ -1887,7 +1882,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_of_isAlgClosed.AlgebraicCu
 
 section
 
-set_option synthInstance.maxHeartbeats 3200000
 set_option maxHeartbeats 6400000
 
 noncomputable section
@@ -2290,7 +2284,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_of_isAlgClosed.AlgebraicCu
 
 section
 
-set_option synthInstance.maxHeartbeats 1600000
 set_option maxHeartbeats 3200000
 
 noncomputable section
@@ -2326,7 +2319,6 @@ noncomputable section
 
 p2m_open "IntermediateField P2MW.S_AlgebraicCurve_residueTheoremK_of_isAlgClosed.IntermediateField AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_of_isAlgClosed.AlgebraicCurve Polynomial P2MW.S_AlgebraicCurve_residueTheoremK_of_isAlgClosed.Polynomial TensorProduct P2MW.S_AlgebraicCurve_residueTheoremK_of_isAlgClosed.TensorProduct Module P2MW.S_AlgebraicCurve_residueTheoremK_of_isAlgClosed.Module"
 
-set_option synthInstance.maxHeartbeats 1600000
 set_option maxHeartbeats 3200000
 
 namespace AlgebraicCurve
@@ -3158,7 +3150,6 @@ section
 
 set_option linter.unusedSectionVars false
 
-set_option synthInstance.maxHeartbeats 3200000
 set_option maxHeartbeats 6400000
 
 noncomputable section
@@ -3548,7 +3539,6 @@ section
 
 set_option linter.unusedSectionVars false
 
-set_option synthInstance.maxHeartbeats 3200000
 set_option maxHeartbeats 6400000
 
 noncomputable section
@@ -3999,7 +3989,6 @@ local notation "Qbar" => AlgebraicClosure ℚ
 
 set_option linter.unusedSectionVars false
 
-set_option synthInstance.maxHeartbeats 1600000
 set_option maxHeartbeats 3200000
 
 section DVRSandwich
@@ -4052,7 +4041,6 @@ section
 
 set_option linter.unusedSectionVars false
 
-set_option synthInstance.maxHeartbeats 1600000
 set_option maxHeartbeats 3200000
 
 noncomputable section
@@ -4751,7 +4739,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_of_isAlgClosed.AlgebraicCu
 section
 
 set_option maxHeartbeats 6400000
-set_option synthInstance.maxHeartbeats 3200000
 set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_of_isAlgClosed.ModularCurve.GF24a9RRDx AlgebraicCurve.Place P2MW.S_AlgebraicCurve_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place IsDedekindDomain P2MW.S_AlgebraicCurve_residueTheoremK_of_isAlgClosed.IsDedekindDomain"
@@ -4905,7 +4892,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_of_isAlgClosed.AlgebraicCu
 section
 
 set_option maxHeartbeats 6400000
-set_option synthInstance.maxHeartbeats 3200000
 set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_of_isAlgClosed.AlgebraicCurve AlgebraicCurve.Place P2MW.S_AlgebraicCurve_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place FunctionField P2MW.S_AlgebraicCurve_residueTheoremK_of_isAlgClosed.FunctionField KaehlerDifferential P2MW.S_AlgebraicCurve_residueTheoremK_of_isAlgClosed.KaehlerDifferential"
@@ -5025,7 +5011,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_of_isAlgClosed.AlgebraicCu
 section
 
 set_option maxHeartbeats 6400000
-set_option synthInstance.maxHeartbeats 3200000
 set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_of_isAlgClosed.AlgebraicCurve AlgebraicCurve.Place P2MW.S_AlgebraicCurve_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place IsDedekindDomain P2MW.S_AlgebraicCurve_residueTheoremK_of_isAlgClosed.IsDedekindDomain TensorProduct P2MW.S_AlgebraicCurve_residueTheoremK_of_isAlgClosed.TensorProduct"
@@ -5297,8 +5282,7 @@ theorem kwF4R1V384a_trace_algebraMap_eq_completionTraceAt
   subst hv
   rfl
 
-set_option maxHeartbeats 6400000 in
-
+set_option synthInstance.maxHeartbeats 80000 in -- this is needed (DL)
 theorem kwF4R1V384a_completionTraceSum_of_semilocalBij
     (hbij : KwF4R1V384aCompletionSemilocalBij K F E) :
     AlgebraicCurve.KwHgfV352CompletionTraceSum K F E := by
@@ -5332,7 +5316,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_of_isAlgClosed.AlgebraicCu
 section
 
 set_option maxHeartbeats 6400000
-set_option synthInstance.maxHeartbeats 3200000
 set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_residueTheoremK_of_isAlgClosed.AlgebraicCurve AlgebraicCurve.Place P2MW.S_AlgebraicCurve_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place IsDedekindDomain P2MW.S_AlgebraicCurve_residueTheoremK_of_isAlgClosed.IsDedekindDomain TensorProduct P2MW.S_AlgebraicCurve_residueTheoremK_of_isAlgClosed.TensorProduct IsLocalRing P2MW.S_AlgebraicCurve_residueTheoremK_of_isAlgClosed.IsLocalRing"
@@ -5634,6 +5617,7 @@ theorem kwF4R1V386a_inertiaDeg_completion_eq
   exact congrArg (IsLocalRing.residue w'.adicCompletionIntegers)
     (kwF4R1V386a_integersToCompletion_commute (K := K) (E := E) w' a)
 
+set_option synthInstance.maxHeartbeats 80000 in -- this is needed (DL)
 theorem kwF4R1V386a_finrankCompletionEF [Algebra.IsSeparable E F] :
     KwF4R1V384aFinrankCompletionEF K F E := by
   intro _ _ _ v wfib
@@ -5744,7 +5728,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_of_isAlgClosed.AlgebraicCu
 section
 
 set_option maxHeartbeats 12800000
-set_option synthInstance.maxHeartbeats 6400000
 set_option linter.unusedSectionVars false
 set_option linter.unusedVariables false
 
@@ -5871,7 +5854,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_residueTheoremK_of_isAlgClosed.AlgebraicCu
 section
 
 set_option maxHeartbeats 12800000
-set_option synthInstance.maxHeartbeats 6400000
 set_option linter.unusedSectionVars false
 set_option linter.unusedVariables false
 

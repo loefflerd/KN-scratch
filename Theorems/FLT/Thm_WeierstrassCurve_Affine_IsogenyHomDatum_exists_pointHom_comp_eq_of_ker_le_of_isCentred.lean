@@ -76,7 +76,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WeierstrassCurve_Affine_IsogenyHomDatum_exists_pointHom_comp_eq_of_ker_le_of_isCentred
@@ -88,7 +87,6 @@ p2m_attr_erase "simp" "WeierstrassCurve.Univ.Affine.smulX_one WeierstrassCurve.C
 set_option linter.unusedVariables false
 set_option linter.unusedSectionVars false
 set_option maxHeartbeats 6400000
-set_option synthInstance.maxHeartbeats 1600000
 
 noncomputable section
 

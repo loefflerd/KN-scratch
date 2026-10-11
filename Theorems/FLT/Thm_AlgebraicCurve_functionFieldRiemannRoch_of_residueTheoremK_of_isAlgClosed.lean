@@ -69,12 +69,10 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed
 
-set_option synthInstance.maxHeartbeats 6400000
 set_option maxHeartbeats 12800000
 
 namespace AlgebraicCurve
@@ -529,7 +527,6 @@ section
 
 set_option linter.unusedSectionVars false
 set_option maxHeartbeats 1600000
-set_option synthInstance.maxHeartbeats 1600000
 
 noncomputable section
 
@@ -3915,7 +3912,6 @@ end
 p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheoremK_of_isAlgClosed.AlgebraicCurve.Place"
 
 section
-set_option synthInstance.maxHeartbeats 1600000
 set_option maxHeartbeats 3200000
 set_option linter.unusedSectionVars false
 noncomputable section
@@ -3942,7 +3938,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_functionFieldRiemannRoch_of_residueTheorem
 
 section
 
-set_option synthInstance.maxHeartbeats 1600000
 set_option maxHeartbeats 3200000
 
 set_option linter.unusedSectionVars false

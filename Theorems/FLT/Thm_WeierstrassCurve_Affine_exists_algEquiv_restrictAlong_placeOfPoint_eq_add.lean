@@ -74,7 +74,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WeierstrassCurve_Affine_exists_algEquiv_restrictAlong_placeOfPoint_eq_add
@@ -425,7 +424,6 @@ end WeierstrassCurve.Affine
 p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_algEquiv_restrictAlong_placeOfPoint_eq_add.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_algEquiv_restrictAlong_placeOfPoint_eq_add.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_algEquiv_restrictAlong_placeOfPoint_eq_add.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_algEquiv_restrictAlong_placeOfPoint_eq_add.WeierstrassCurve.Affine"
 p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_algEquiv_restrictAlong_placeOfPoint_eq_add.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_algEquiv_restrictAlong_placeOfPoint_eq_add.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_algEquiv_restrictAlong_placeOfPoint_eq_add.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_algEquiv_restrictAlong_placeOfPoint_eq_add.WeierstrassCurve.Affine"
 
-set_option synthInstance.maxHeartbeats 800000
 set_option maxHeartbeats 6400000
 
 namespace AdjoinRoot
@@ -751,7 +749,6 @@ section
 
 section
 
-set_option synthInstance.maxHeartbeats 1600000
 
 p2m_open "IsDedekindDomain P2MW.S_WeierstrassCurve_Affine_exists_algEquiv_restrictAlong_placeOfPoint_eq_add.IsDedekindDomain Polynomial P2MW.S_WeierstrassCurve_Affine_exists_algEquiv_restrictAlong_placeOfPoint_eq_add.Polynomial"
 
@@ -858,14 +855,12 @@ p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.m
 
 section Bijection
 
-set_option synthInstance.maxHeartbeats 1600000
 
 end Bijection
 p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_algEquiv_restrictAlong_placeOfPoint_eq_add.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_algEquiv_restrictAlong_placeOfPoint_eq_add.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_algEquiv_restrictAlong_placeOfPoint_eq_add.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_algEquiv_restrictAlong_placeOfPoint_eq_add.WeierstrassCurve.Affine"
 
 section Producer
 
-set_option synthInstance.maxHeartbeats 1600000
 
 end Producer
 end ModularCurve
@@ -2081,7 +2076,6 @@ section
 
 section
 
-set_option synthInstance.maxHeartbeats 3200000
 set_option maxHeartbeats 6400000
 
 p2m_open "Polynomial P2MW.S_WeierstrassCurve_Affine_exists_algEquiv_restrictAlong_placeOfPoint_eq_add.Polynomial AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg~Place.ord_algebraMap~Place.ord_eq_neg_log_of_valuationSubring_eq P2MW.S_WeierstrassCurve_Affine_exists_algEquiv_restrictAlong_placeOfPoint_eq_add.AlgebraicCurve IsDedekindDomain P2MW.S_WeierstrassCurve_Affine_exists_algEquiv_restrictAlong_placeOfPoint_eq_add.IsDedekindDomain"
@@ -2719,7 +2713,6 @@ section
 
 set_option linter.unusedSectionVars false
 set_option maxHeartbeats 3200000
-set_option synthInstance.maxHeartbeats 1600000
 
 section
 

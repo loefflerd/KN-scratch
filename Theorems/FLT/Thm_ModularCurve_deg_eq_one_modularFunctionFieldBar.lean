@@ -65,7 +65,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_deg_eq_one_modularFunctionFieldBar
@@ -157,6 +156,7 @@ theorem deg_eq_one_of_isAlgebraic_adjoin {K F : Type*} [Field K] [Field F] [Alge
       (surjective_algebraMap_residueField t w)
   exact w.deg_eq_one_of_isAlgClosed_of_finite
 
+set_option synthInstance.maxHeartbeats 80000 in -- this is needed (DL)
 theorem finiteDimensional_adjoin_jBar (M : ℕ) [NeZero M] :
     FiniteDimensional
       (IntermediateField.adjoin (AlgebraicClosure ℚ)
@@ -200,6 +200,7 @@ p2m_export "ModularCurve" "modularFunctionFieldBar jq dedekindPsi coeffEmb laure
 end ModularCurve
 p2m_open_scoped "ModularCurve" in
 
+set_option synthInstance.maxHeartbeats 80000 in -- this is needed (DL)
 private theorem ModularCurve.deg_eq_one_modularFunctionFieldBar (M : ℕ) [NeZero M]
     (w : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar M)) : w.deg = 1 := by
   have := B2Deg.finiteDimensional_adjoin_jBar M

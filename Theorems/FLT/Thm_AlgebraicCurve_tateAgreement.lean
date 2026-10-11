@@ -65,12 +65,10 @@ in the source repository.
 
 section privateSection
 
-set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_AlgebraicCurve_tateAgreement
 
-set_option synthInstance.maxHeartbeats 6400000
 set_option maxHeartbeats 12800000
 
 section
@@ -392,7 +390,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion"
 
 section
 
-set_option synthInstance.maxHeartbeats 3200000
 set_option maxHeartbeats 6400000
 
 noncomputable section
@@ -496,7 +493,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_Algebrai
 section
 
 set_option maxHeartbeats 6400000
-set_option synthInstance.maxHeartbeats 3200000
 set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.GF24a9RRDx AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place IsDedekindDomain P2MW.S_AlgebraicCurve_tateAgreement.IsDedekindDomain"
@@ -569,7 +565,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_Algebrai
 section
 
 set_option maxHeartbeats 6400000
-set_option synthInstance.maxHeartbeats 3200000
 set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place LinearMap P2MW.S_AlgebraicCurve_tateAgreement.LinearMap Submodule P2MW.S_AlgebraicCurve_tateAgreement.Submodule"
@@ -627,7 +622,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_Algebrai
 section
 
 set_option maxHeartbeats 6400000
-set_option synthInstance.maxHeartbeats 3200000
 set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place LinearMap P2MW.S_AlgebraicCurve_tateAgreement.LinearMap Submodule P2MW.S_AlgebraicCurve_tateAgreement.Submodule"
@@ -711,7 +705,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_Algebrai
 section
 
 set_option maxHeartbeats 3200000
-set_option synthInstance.maxHeartbeats 1600000
 
 p2m_open_scoped "WithZero P2MW.S_AlgebraicCurve_tateAgreement.WithZero Multiplicative P2MW.S_AlgebraicCurve_tateAgreement.Multiplicative Topology P2MW.S_AlgebraicCurve_tateAgreement.Topology"
 p2m_open "Filter P2MW.S_AlgebraicCurve_tateAgreement.Filter"
@@ -753,7 +746,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_Algebrai
 section
 
 set_option maxHeartbeats 6400000
-set_option synthInstance.maxHeartbeats 3200000
 set_option linter.unusedSectionVars false
 
 noncomputable section
@@ -967,7 +959,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_Algebrai
 section
 
 set_option maxHeartbeats 6400000
-set_option synthInstance.maxHeartbeats 3200000
 set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place LinearMap P2MW.S_AlgebraicCurve_tateAgreement.LinearMap Submodule P2MW.S_AlgebraicCurve_tateAgreement.Submodule"
@@ -1088,7 +1079,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_Algebrai
 section
 
 set_option maxHeartbeats 6400000
-set_option synthInstance.maxHeartbeats 3200000
 set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place LinearMap P2MW.S_AlgebraicCurve_tateAgreement.LinearMap Submodule P2MW.S_AlgebraicCurve_tateAgreement.Submodule"
@@ -1138,7 +1128,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_Algebrai
 section
 
 set_option maxHeartbeats 6400000
-set_option synthInstance.maxHeartbeats 3200000
 set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place LinearMap P2MW.S_AlgebraicCurve_tateAgreement.LinearMap Submodule P2MW.S_AlgebraicCurve_tateAgreement.Submodule"
@@ -1186,7 +1175,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_Algebrai
 section
 
 set_option maxHeartbeats 6400000
-set_option synthInstance.maxHeartbeats 3200000
 set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place LinearMap P2MW.S_AlgebraicCurve_tateAgreement.LinearMap Submodule P2MW.S_AlgebraicCurve_tateAgreement.Submodule"
@@ -1317,7 +1305,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_Algebrai
 section
 
 set_option maxHeartbeats 6400000
-set_option synthInstance.maxHeartbeats 3200000
 set_option linter.unusedSectionVars false
 set_option linter.unusedSimpArgs false
 
@@ -1398,7 +1385,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_Algebrai
 section
 
 set_option maxHeartbeats 6400000
-set_option synthInstance.maxHeartbeats 3200000
 set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place LinearMap P2MW.S_AlgebraicCurve_tateAgreement.LinearMap Submodule P2MW.S_AlgebraicCurve_tateAgreement.Submodule"
@@ -1534,7 +1520,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_Algebrai
 section
 
 set_option maxHeartbeats 6400000
-set_option synthInstance.maxHeartbeats 3200000
 set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place LinearMap P2MW.S_AlgebraicCurve_tateAgreement.LinearMap Submodule P2MW.S_AlgebraicCurve_tateAgreement.Submodule"
@@ -1606,7 +1591,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_Algebrai
 section
 
 set_option maxHeartbeats 12800000
-set_option synthInstance.maxHeartbeats 6400000
 set_option linter.unusedSectionVars false
 set_option linter.unusedSimpArgs false
 set_option linter.unusedVariables false
@@ -1674,7 +1658,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_Algebrai
 section
 
 set_option maxHeartbeats 12800000
-set_option synthInstance.maxHeartbeats 6400000
 set_option linter.unusedSectionVars false
 set_option linter.unusedSimpArgs false
 
@@ -1757,7 +1740,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_Algebrai
 section
 
 set_option maxHeartbeats 12800000
-set_option synthInstance.maxHeartbeats 6400000
 set_option linter.unusedSectionVars false
 set_option linter.unusedSimpArgs false
 set_option linter.unusedVariables false
@@ -1896,7 +1878,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_Algebrai
 section
 
 set_option maxHeartbeats 12800000
-set_option synthInstance.maxHeartbeats 6400000
 set_option linter.unusedSectionVars false
 set_option linter.unusedSimpArgs false
 set_option linter.unusedVariables false
@@ -2169,7 +2150,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_Algebrai
 section
 
 set_option maxHeartbeats 12800000
-set_option synthInstance.maxHeartbeats 6400000
 set_option linter.unusedSectionVars false
 set_option linter.unusedSimpArgs false
 set_option linter.unusedVariables false
@@ -2245,7 +2225,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_Algebrai
 section
 
 set_option maxHeartbeats 12800000
-set_option synthInstance.maxHeartbeats 6400000
 set_option linter.unusedSectionVars false
 set_option linter.unusedSimpArgs false
 set_option linter.unusedVariables false
@@ -2392,7 +2371,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_Algebrai
 section
 
 set_option maxHeartbeats 6400000
-set_option synthInstance.maxHeartbeats 3200000
 set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place FunctionField P2MW.S_AlgebraicCurve_tateAgreement.FunctionField KaehlerDifferential P2MW.S_AlgebraicCurve_tateAgreement.KaehlerDifferential"
@@ -2443,7 +2421,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_Algebrai
 section
 
 set_option maxHeartbeats 12800000
-set_option synthInstance.maxHeartbeats 6400000
 set_option linter.unusedSectionVars false
 set_option linter.unusedVariables false
 
@@ -2874,7 +2851,6 @@ p2m_open "ModularCurve"
 
 set_option linter.unusedSectionVars false
 set_option maxHeartbeats 3200000
-set_option synthInstance.maxHeartbeats 1600000
 section Generic
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F]
@@ -2971,7 +2947,6 @@ p2m_open "ModularCurve"
 
 set_option linter.unusedSectionVars false
 set_option maxHeartbeats 3200000
-set_option synthInstance.maxHeartbeats 1600000
 section Generic
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F]
@@ -3099,7 +3074,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_Algebrai
 section
 
 set_option maxHeartbeats 12800000
-set_option synthInstance.maxHeartbeats 6400000
 set_option linter.unusedSectionVars false
 set_option linter.unusedVariables false
 
@@ -3387,7 +3361,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_Algebrai
 section
 
 set_option maxHeartbeats 12800000
-set_option synthInstance.maxHeartbeats 6400000
 set_option linter.unusedSectionVars false
 set_option linter.unusedVariables false
 

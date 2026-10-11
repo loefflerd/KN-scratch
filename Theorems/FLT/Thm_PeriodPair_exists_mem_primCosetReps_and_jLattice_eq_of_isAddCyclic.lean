@@ -60,12 +60,10 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic
 
-set_option synthInstance.maxHeartbeats 800000
 set_option maxHeartbeats 6400000
 
 namespace AlgebraicCurve
@@ -568,7 +566,6 @@ p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_is
 section
 
 set_option maxHeartbeats 6400000
-set_option synthInstance.maxHeartbeats 1600000
 
 noncomputable section
 
@@ -665,7 +662,6 @@ p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_is
 section
 
 set_option maxHeartbeats 6400000
-set_option synthInstance.maxHeartbeats 1600000
 
 noncomputable section
 

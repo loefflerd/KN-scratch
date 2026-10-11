@@ -48,6 +48,10 @@ namespace PalomarChallenge
 /-- A weight-two cusp form on `Γ₀(N)`, with positivity providing the required instance. -/
 abbrev WeightTwoCuspForm (N : ℕ) := CuspForm (CongruenceSubgroup.Gamma0 N) 2
 
+/-- Condition that a given elliptic curve and modular form have exactly matching L-series.
+Takes a specific choice of Weierstrass model over `ℚ` as input, but is independent of the
+choice of model, because the definition of the elliptic curve L-series uses a local minimal
+model at each place. -/
 abbrev IsModularWith (E : WeierstrassCurve ℚ) (N : ℕ+) (f : WeightTwoCuspForm N) : Prop :=
   ∀ n : ℕ, E.LFunction n = (qExpansion 1 f).coeff n
 

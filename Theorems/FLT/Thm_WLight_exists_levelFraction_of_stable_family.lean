@@ -85,12 +85,10 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WLight_exists_levelFraction_of_stable_family
 
-set_option synthInstance.maxHeartbeats 1600000
 noncomputable section
 open Complex Real
 namespace WLight
@@ -918,7 +916,8 @@ scoped instance (N : ℕ) [NeZero N] : IsPrincipalIdealRing ↥(polyJ N) :=
   IsPrincipalIdealRing.of_surjective (polyJEquiv N).toRingEquiv.toRingHom
     (polyJEquiv N).surjective
 
-scoped instance (N : ℕ) [NeZero N] : IsDedekindDomain ↥(polyJ N) := inferInstance
+scoped instance (N : ℕ) [NeZero N] : IsDedekindDomain ↥(polyJ N) :=
+  IsPrincipalIdealRing.isDedekindDomain _
 
 scoped instance (N : ℕ) [NeZero N] : CharZero (levelField N) :=
   charZero_of_injective_algebraMap (FaithfulSMul.algebraMap_injective ℂ (levelField N))

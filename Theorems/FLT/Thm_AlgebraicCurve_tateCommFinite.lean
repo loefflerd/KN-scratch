@@ -63,13 +63,11 @@ Salvatore Mercuri, Kevin Buzzard). See ATTRIBUTION.md and NOTICE in the source r
 
 section privateSection
 
-set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
 p2m_attr_erase "ext" "IsDedekindDomain.HeightOneSpectrum.adicCompletion.ext"
 namespace P2MW.S_AlgebraicCurve_tateCommFinite
 
-set_option synthInstance.maxHeartbeats 6400000
 set_option maxHeartbeats 12800000
 
 namespace AlgebraicCurve
@@ -276,7 +274,6 @@ end
 
 section
 
-set_option synthInstance.maxHeartbeats 3200000
 set_option maxHeartbeats 6400000
 
 noncomputable section
@@ -296,7 +293,6 @@ end
 section
 
 set_option maxHeartbeats 6400000
-set_option synthInstance.maxHeartbeats 3200000
 set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateCommFinite.AlgebraicCurve AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateCommFinite.AlgebraicCurve.Place LinearMap P2MW.S_AlgebraicCurve_tateCommFinite.LinearMap Submodule P2MW.S_AlgebraicCurve_tateCommFinite.Submodule"
@@ -351,7 +347,6 @@ end
 section
 
 set_option maxHeartbeats 6400000
-set_option synthInstance.maxHeartbeats 3200000
 set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateCommFinite.AlgebraicCurve AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateCommFinite.AlgebraicCurve.Place LinearMap P2MW.S_AlgebraicCurve_tateCommFinite.LinearMap Submodule P2MW.S_AlgebraicCurve_tateCommFinite.Submodule"
@@ -551,7 +546,6 @@ end
 section
 
 set_option maxHeartbeats 3200000
-set_option synthInstance.maxHeartbeats 1600000
 
 p2m_open_scoped "WithZero P2MW.S_AlgebraicCurve_tateCommFinite.WithZero Multiplicative P2MW.S_AlgebraicCurve_tateCommFinite.Multiplicative Topology P2MW.S_AlgebraicCurve_tateCommFinite.Topology"
 p2m_open "Filter P2MW.S_AlgebraicCurve_tateCommFinite.Filter"
@@ -594,7 +588,6 @@ end
 section
 
 set_option maxHeartbeats 6400000
-set_option synthInstance.maxHeartbeats 3200000
 set_option linter.unusedSectionVars false
 
 noncomputable section
@@ -704,7 +697,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateCommFinite.ModularCurve P2MW.S_Algebra
 section
 
 set_option maxHeartbeats 6400000
-set_option synthInstance.maxHeartbeats 3200000
 set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateCommFinite.AlgebraicCurve AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateCommFinite.AlgebraicCurve.Place LinearMap P2MW.S_AlgebraicCurve_tateCommFinite.LinearMap Submodule P2MW.S_AlgebraicCurve_tateCommFinite.Submodule"
@@ -829,7 +821,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateCommFinite.ModularCurve P2MW.S_Algebra
 section
 
 set_option maxHeartbeats 6400000
-set_option synthInstance.maxHeartbeats 3200000
 set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateCommFinite.AlgebraicCurve AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateCommFinite.AlgebraicCurve.Place LinearMap P2MW.S_AlgebraicCurve_tateCommFinite.LinearMap Submodule P2MW.S_AlgebraicCurve_tateCommFinite.Submodule"
@@ -970,7 +961,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateCommFinite.ModularCurve P2MW.S_Algebra
 section
 
 set_option maxHeartbeats 6400000
-set_option synthInstance.maxHeartbeats 3200000
 set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateCommFinite.AlgebraicCurve AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateCommFinite.AlgebraicCurve.Place LinearMap P2MW.S_AlgebraicCurve_tateCommFinite.LinearMap Submodule P2MW.S_AlgebraicCurve_tateCommFinite.Submodule"

@@ -65,13 +65,11 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_LevelN_exists_algHom_laurentSeries_qExpansion
 p2m_attr_erase "simp" "ModularCurve.coeffEmb_coeff ModularCurve.coeffMap_coeff ModularCurve.coeffMap_id ModularCurve.coeffMap_single"
 
-set_option synthInstance.maxHeartbeats 1600000
 set_option linter.unusedSectionVars false
 set_option linter.unusedVariables false
 

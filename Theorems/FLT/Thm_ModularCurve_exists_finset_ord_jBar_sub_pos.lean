@@ -75,7 +75,6 @@ section privateSection
 open AlgebraicCurve Place
 
 set_option maxHeartbeats 4000000
-set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_exists_finset_ord_jBar_sub_pos
@@ -361,6 +360,7 @@ theorem finrank_adjoin_jBar_eq_dedekindPsi (N : ℕ) [NeZero N] :
   rw [← h2]
   exact h1
 
+set_option synthInstance.maxHeartbeats 40000 in -- this is needed (DL)
 scoped instance finiteDimensional_adjoin_jBar (N : ℕ) [NeZero N] :
     FiniteDimensional
       (IntermediateField.adjoin (AlgebraicClosure ℚ)

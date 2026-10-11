@@ -68,7 +68,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_CuspForm_dimFormula_le_finrank_gamma0
@@ -83,7 +82,6 @@ p2m_attr_erase "simp" "ModularCurve.HahnSpecialise.resH_apply ModularCurve.HahnS
 
 open ModularCurve AlgebraicCurve
 
-set_option synthInstance.maxHeartbeats 1600000
 
 theorem linearIndependent_ringHom_comp_of_linearIndependent' {K L : Type*} [Field K] [Field L]
     (ι : K →+* L) {n : ℕ} {X : Type*} {v : Fin n → X → K} (hv : LinearIndependent K v) :
@@ -123,7 +121,8 @@ theorem thetaL_coeffEmb_jq_pow_ne_zero (m : ℕ) :
     map_one, HahnSeries.coeff_zero] at h2
   norm_num at h2
 
-set_option maxHeartbeats 6400000 in
+set_option maxHeartbeats 200000 in -- this is needed (DL)
+set_option synthInstance.maxHeartbeats 80000 in -- this is needed (DL)
 theorem solution (N : ℕ) [NeZero N] (k : ℕ) (hk : 4 ≤ k) (hke : Even k) :
     (((k : ℚ) - 1) * (ModularCurve.genusFormula N - 1) + ((k / 4 : ℕ) : ℚ) * (ModularCurve.nuTwo N : ℚ)
         + ((k / 3 : ℕ) : ℚ) * (ModularCurve.nuThree N : ℚ) + ((k : ℚ) / 2 - 1) * (ModularCurve.cuspCount N : ℚ))

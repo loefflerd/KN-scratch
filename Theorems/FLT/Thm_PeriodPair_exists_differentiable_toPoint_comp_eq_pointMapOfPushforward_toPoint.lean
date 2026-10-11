@@ -89,7 +89,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint
@@ -989,7 +988,6 @@ def KwD5BetweenCurvesHoloLift : Prop :=
 end ModularCurve
 p2m_reactivate "P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.WeierstrassCurve.Affine.CoordinateRing P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.WeierstrassCurve P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.WeierstrassCurve.Affine P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.PeriodPair"
 
-set_option synthInstance.maxHeartbeats 800000
 set_option maxHeartbeats 6400000
 
 namespace AlgebraicCurve
@@ -1572,7 +1570,6 @@ section
 
 set_option linter.unusedSectionVars false
 set_option maxHeartbeats 1600000
-set_option synthInstance.maxHeartbeats 1600000
 
 section
 
@@ -1633,7 +1630,6 @@ p2m_reactivate "P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMap
 section
 
 set_option maxHeartbeats 6400000
-set_option synthInstance.maxHeartbeats 3200000
 set_option linter.unusedSectionVars false
 
 section
@@ -1812,7 +1808,6 @@ p2m_reactivate "P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMap
 section
 
 set_option maxHeartbeats 6400000
-set_option synthInstance.maxHeartbeats 3200000
 set_option linter.unusedSectionVars false
 
 section
@@ -2071,7 +2066,6 @@ section
 
 set_option linter.unusedSectionVars false
 set_option maxHeartbeats 6400000
-set_option synthInstance.maxHeartbeats 3200000
 
 p2m_open "WeierstrassCurve P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.WeierstrassCurve.Affine P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.ModularCurve AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.AlgebraicCurve PeriodPair P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.PeriodPair Filter P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Filter Polynomial P2MW.S_PeriodPair_exists_differentiable_toPoint_comp_eq_pointMapOfPushforward_toPoint.Polynomial"
 

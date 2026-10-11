@@ -68,7 +68,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_CuspForm_genusFormula_le_finrank_gamma0_weight_two
@@ -84,7 +83,6 @@ p2m_attr_erase "simp" "WeierstrassCurve.veluPointMap2_zero AlgebraicCurve.mulAde
 
 open ModularCurve AlgebraicCurve
 
-set_option synthInstance.maxHeartbeats 1600000
 
 theorem linearIndependent_ringHom_comp_of_linearIndependent {K L : Type*} [Field K] [Field L]
     (ι : K →+* L) {n : ℕ} {X : Type*} {v : Fin n → X → K} (hv : LinearIndependent K v) :

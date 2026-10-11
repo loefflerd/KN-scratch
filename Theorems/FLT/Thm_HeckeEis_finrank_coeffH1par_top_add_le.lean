@@ -62,13 +62,11 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_HeckeEis_finrank_coeffH1par_top_add_le
 
 set_option maxHeartbeats 800000
-set_option synthInstance.maxHeartbeats 80000
 
 noncomputable section
 

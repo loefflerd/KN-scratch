@@ -85,7 +85,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_natCard_ord_jBar_eq_one_eq_nuThree
@@ -187,6 +186,7 @@ private theorem DOM_forall_mem_of_mem (t : F) (w : Place K F) (ht : t ∈ w.toVa
 
 end Generic
 
+set_option synthInstance.maxHeartbeats 80000 in -- this is needed (DL)
 private scoped instance DOM_finiteDimensional_adjoin_jBar (N : ℕ) [NeZero N] :
     FiniteDimensional
       (IntermediateField.adjoin (AlgebraicClosure ℚ)
@@ -779,6 +779,7 @@ set_option backward.isDefEq.respectTransparency false in
 private theorem DOM_isIntegral_qbar (c : AlgebraicClosure ℚ) : IsIntegral ℚ c :=
   isAlgebraic_iff_isIntegral.mp (Algebra.IsAlgebraic.isAlgebraic (R := ℚ) c)
 
+set_option synthInstance.maxHeartbeats 80000 in -- this is needed (DL)
 private theorem DOM_residueBij (v : Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N)) :
     Function.Bijective (algebraMap (AlgebraicClosure ℚ) v.ResidueField) := by
   have hfin : Module.Finite (AlgebraicClosure ℚ) v.ResidueField :=
@@ -945,6 +946,7 @@ private theorem DOM_main_pos [FiniteDimensional ℚ w.ResidueField] :
 
 end PerV
 
+set_option synthInstance.maxHeartbeats 80000 in -- this is needed (DL)
 private theorem DOM_main (w : Place ℚ (modularFunctionField N))
     (hw : 0 ≤ w.ord (⟨jq, jq_mem N⟩ : modularFunctionField N)) :
     ∃ S : Finset (Place (AlgebraicClosure ℚ) (modularFunctionFieldBar N)),

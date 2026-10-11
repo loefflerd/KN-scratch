@@ -86,7 +86,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_dualEndData_dual_mem_and_norm_eq_finrankAlong
@@ -439,7 +438,6 @@ end WeierstrassCurve.Affine
 p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_dualEndData_dual_mem_and_norm_eq_finrankAlong.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_dualEndData_dual_mem_and_norm_eq_finrankAlong.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_dualEndData_dual_mem_and_norm_eq_finrankAlong.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_dualEndData_dual_mem_and_norm_eq_finrankAlong.WeierstrassCurve.Affine"
 p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_dualEndData_dual_mem_and_norm_eq_finrankAlong.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_dualEndData_dual_mem_and_norm_eq_finrankAlong.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_dualEndData_dual_mem_and_norm_eq_finrankAlong.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_dualEndData_dual_mem_and_norm_eq_finrankAlong.WeierstrassCurve.Affine"
 
-set_option synthInstance.maxHeartbeats 800000
 set_option maxHeartbeats 6400000
 
 namespace AddMonoid
@@ -634,7 +632,6 @@ p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_dualEndDat
 section
 
 set_option maxHeartbeats 25600000
-set_option synthInstance.maxHeartbeats 1600000
 set_option linter.unusedSectionVars false
 
 section
@@ -700,7 +697,6 @@ section
 
 set_option linter.unusedSectionVars false
 set_option maxHeartbeats 1600000
-set_option synthInstance.maxHeartbeats 1600000
 
 p2m_open "WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_dualEndData_dual_mem_and_norm_eq_finrankAlong.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_dualEndData_dual_mem_and_norm_eq_finrankAlong.WeierstrassCurve.Affine Polynomial P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_dualEndData_dual_mem_and_norm_eq_finrankAlong.Polynomial"
 
@@ -741,7 +737,6 @@ section
 
 set_option linter.unusedSectionVars false
 set_option maxHeartbeats 1600000
-set_option synthInstance.maxHeartbeats 1600000
 
 p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg~Place.ord_algebraMap~Place.ord_eq_neg_log_of_valuationSubring_eq P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_dualEndData_dual_mem_and_norm_eq_finrankAlong.AlgebraicCurve WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_dualEndData_dual_mem_and_norm_eq_finrankAlong.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_dualEndData_dual_mem_and_norm_eq_finrankAlong.WeierstrassCurve.Affine"
 
@@ -1279,7 +1274,6 @@ section
 
 set_option linter.unusedSectionVars false
 set_option maxHeartbeats 1600000
-set_option synthInstance.maxHeartbeats 1600000
 
 section
 
@@ -1316,7 +1310,6 @@ section
 
 set_option linter.unusedSectionVars false
 set_option maxHeartbeats 1600000
-set_option synthInstance.maxHeartbeats 1600000
 
 section
 
@@ -1622,7 +1615,6 @@ section
 
 set_option linter.unusedSectionVars false
 set_option maxHeartbeats 1600000
-set_option synthInstance.maxHeartbeats 1600000
 
 p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg~Place.ord_algebraMap~Place.ord_eq_neg_log_of_valuationSubring_eq P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_dualEndData_dual_mem_and_norm_eq_finrankAlong.AlgebraicCurve WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_dualEndData_dual_mem_and_norm_eq_finrankAlong.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_dualEndData_dual_mem_and_norm_eq_finrankAlong.WeierstrassCurve.Affine"
 
@@ -3703,7 +3695,6 @@ p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_exists_dualEndDat
 
 section
 
-set_option synthInstance.maxHeartbeats 1600000
 set_option maxHeartbeats 3200000
 
 section
@@ -4069,7 +4060,6 @@ section
 
 set_option linter.unusedSectionVars false
 set_option maxHeartbeats 3200000
-set_option synthInstance.maxHeartbeats 1600000
 
 section
 
@@ -4317,7 +4307,6 @@ section
 
 set_option linter.unusedSectionVars false
 set_option maxHeartbeats 3200000
-set_option synthInstance.maxHeartbeats 1600000
 
 section
 
@@ -4533,7 +4522,6 @@ section
 
 set_option linter.unusedSectionVars false
 set_option maxHeartbeats 3200000
-set_option synthInstance.maxHeartbeats 1600000
 
 section
 
@@ -4804,7 +4792,6 @@ section
 
 set_option linter.unusedSectionVars false
 set_option maxHeartbeats 3200000
-set_option synthInstance.maxHeartbeats 1600000
 
 section
 
@@ -4886,7 +4873,6 @@ section
 
 set_option linter.unusedSectionVars false
 set_option maxHeartbeats 3200000
-set_option synthInstance.maxHeartbeats 1600000
 
 section
 
@@ -5081,7 +5067,6 @@ section
 
 set_option linter.unusedSectionVars false
 set_option maxHeartbeats 1600000
-set_option synthInstance.maxHeartbeats 1600000
 
 section
 
@@ -5124,7 +5109,6 @@ section
 
 set_option linter.unusedSectionVars false
 set_option maxHeartbeats 1600000
-set_option synthInstance.maxHeartbeats 1600000
 
 section
 
@@ -5541,7 +5525,6 @@ section
 
 set_option linter.unusedSectionVars false
 set_option maxHeartbeats 3200000
-set_option synthInstance.maxHeartbeats 3200000
 
 section
 
@@ -5662,7 +5645,6 @@ section
 
 set_option linter.unusedSectionVars false
 set_option maxHeartbeats 3200000
-set_option synthInstance.maxHeartbeats 1600000
 
 section
 
@@ -5993,7 +5975,6 @@ section
 
 set_option linter.unusedSectionVars false
 set_option maxHeartbeats 4800000
-set_option synthInstance.maxHeartbeats 4800000
 
 section
 
@@ -6251,7 +6232,6 @@ section
 
 set_option linter.unusedSectionVars false
 set_option maxHeartbeats 1600000
-set_option synthInstance.maxHeartbeats 1600000
 
 section
 
@@ -6998,7 +6978,6 @@ section
 
 set_option linter.unusedSectionVars false
 set_option maxHeartbeats 3200000
-set_option synthInstance.maxHeartbeats 3200000
 
 section
 
@@ -7188,7 +7167,6 @@ section
 
 set_option linter.unusedSectionVars false
 set_option maxHeartbeats 3200000
-set_option synthInstance.maxHeartbeats 3200000
 
 section
 
@@ -7736,7 +7714,6 @@ section
 
 set_option linter.unusedSectionVars false
 set_option maxHeartbeats 3200000
-set_option synthInstance.maxHeartbeats 3200000
 
 section
 
@@ -8103,7 +8080,6 @@ section
 
 set_option linter.unusedSectionVars false
 set_option maxHeartbeats 3200000
-set_option synthInstance.maxHeartbeats 3200000
 
 section
 

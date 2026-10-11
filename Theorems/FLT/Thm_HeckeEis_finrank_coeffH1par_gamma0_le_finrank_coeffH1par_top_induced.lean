@@ -64,13 +64,11 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_HeckeEis_finrank_coeffH1par_gamma0_le_finrank_coeffH1par_top_induced
 
 set_option maxHeartbeats 800000
-set_option synthInstance.maxHeartbeats 80000
 
 namespace HeckeEis
 p2m_export "HeckeEis" "coeffCocycles coeffCoboundaries mem_coeffCoboundaries_iff coeffParabolicCocycles coeffH1par coeffH1parMk coeffH1parMk_surjective coeffH1parMk_eq_zero_iff BinaryForm binaryFormRepSL"

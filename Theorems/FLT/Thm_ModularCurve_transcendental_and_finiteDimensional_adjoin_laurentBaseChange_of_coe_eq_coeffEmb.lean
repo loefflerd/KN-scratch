@@ -60,12 +60,10 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_transcendental_and_finiteDimensional_adjoin_laurentBaseChange_of_coe_eq_coeffEmb
 
-set_option synthInstance.maxHeartbeats 1600000
 set_option maxHeartbeats 3200000
 
 noncomputable section
@@ -144,6 +142,7 @@ private theorem emb_mem_adjoin {j f : ↥F₀} (hf : f ∈ IntermediateField.adj
   rw [map_div₀, Polynomial.map_aeval_eq_aeval_map (emb_comp_algebraMap L F₀),
     Polynomial.map_aeval_eq_aeval_map (emb_comp_algebraMap L F₀)]
 
+set_option synthInstance.maxHeartbeats 80000 in -- this is needed (DL)
 private theorem finiteDimensional_adjoin_emb [Algebra.IsAlgebraic ℚ L] (j : ↥F₀)
     [FiniteDimensional ↥(IntermediateField.adjoin ℚ ({j} : Set ↥F₀)) ↥F₀] :
     FiniteDimensional ↥(IntermediateField.adjoin L ({emb L F₀ j} : Set ↥(laurentBaseChange L F₀)))

@@ -73,7 +73,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_minpoly_jqNModC_map_eq_prod_slots
@@ -887,7 +886,7 @@ private theorem map_qExpand_minpoly_eq {M' : ℕ} [NeZero M'] (k : ℕ) [NeZero 
   rw [Polynomial.map_sub, Polynomial.map_X, Polynomial.map_C]
 
 set_option maxHeartbeats 6400000 in
-
+set_option synthInstance.maxHeartbeats 80000 in -- this is needed (DL)
 private theorem rval_aux : ∀ (M : ℕ) [NeZero M] {K : Type*} [Field K]
     (ζ : Kˣ), IsPrimitiveRoot ((ζ : Kˣ) : K) M →
     (∀ d : ℕ, d ∣ M → ∀ [NeZero d],
@@ -1547,7 +1546,6 @@ open IntermediateField
 variable {K : Type*} [Field K]
 
 set_option maxHeartbeats 6400000 in
-
 private theorem jqNModC_prime_not_mem_adjoin (M : ℕ) [NeZero M] (p : ℕ)
     [hp : Fact (Nat.Prime p)] (hpM : ¬ p ∣ M) (ζ : Kˣ)
     (hζ : IsPrimitiveRoot ((ζ : Kˣ) : K) (M * p))

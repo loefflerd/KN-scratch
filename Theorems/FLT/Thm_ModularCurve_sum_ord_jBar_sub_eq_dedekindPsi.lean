@@ -71,7 +71,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
 open AlgebraicCurve Place
@@ -359,6 +358,7 @@ theorem finrank_adjoin_jBar_eq_dedekindPsi (N : ℕ) [NeZero N] :
   rw [← h2]
   exact h1
 
+set_option synthInstance.maxHeartbeats 80000 in -- this is needed (DL)
 scoped instance finiteDimensional_adjoin_jBar (N : ℕ) [NeZero N] :
     FiniteDimensional
       (IntermediateField.adjoin (AlgebraicClosure ℚ)

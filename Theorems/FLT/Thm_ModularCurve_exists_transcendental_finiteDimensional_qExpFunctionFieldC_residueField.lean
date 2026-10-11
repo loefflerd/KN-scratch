@@ -69,13 +69,11 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_exists_transcendental_finiteDimensional_qExpFunctionFieldC_residueField
 
 set_option linter.unusedSectionVars false
-set_option synthInstance.maxHeartbeats 1600000
 
 noncomputable section
 
@@ -876,6 +874,7 @@ theorem card_le_finrank_of_linearIndependent
   rw [hti₀] at this
   exact one_ne_zero this
 
+set_option synthInstance.maxHeartbeats 80000 in -- this is needed (DL)
 theorem finiteDimensional_and_finrank_le
     [Module.Finite (IntermediateField.adjoin L {(jF Γ : FF)}) FF] :
     FiniteDimensional (IntermediateField.adjoin kk {(jbar Γ kk : Fb)}) Fb ∧

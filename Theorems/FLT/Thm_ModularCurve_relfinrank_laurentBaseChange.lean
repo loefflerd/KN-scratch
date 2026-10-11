@@ -68,7 +68,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_relfinrank_laurentBaseChange
@@ -133,6 +132,7 @@ theorem ψ_compat (ht : t ∈ F₀) :
   apply Subtype.ext
   rfl
 
+set_option synthInstance.maxHeartbeats 80000 in -- this is needed (DL)
 theorem isAlgebraic_coeffEmb (ht : t ∈ F₀) [FiniteDimensional (K₀ t) (E₀ F₀ t ht)] (f : LaurentSeries ℚ) (hf : f ∈ F₀) :
     IsAlgebraic (K L t) (coeffEmb L f) := by
   have h1 : IsIntegral (K₀ t) (⟨f, (mem_extendScalars _).mpr hf⟩ : E₀ F₀ t ht) := Algebra.IsIntegral.isIntegral _
@@ -333,6 +333,7 @@ theorem linearIndependent_ψ (ht : t ∈ F₀) (htr : Transcendental ℚ t) {ι 
     rw [hP i (Finset.mem_univ i), hP0, map_zero]
   exact Subtype.ext ((mul_eq_zero.mp h3).resolve_left hd)
 
+set_option synthInstance.maxHeartbeats 80000 in -- this is needed (DL)
 theorem relfinrank_eq (ht : t ∈ F₀) (htr : Transcendental ℚ t) :
     relfinrank (K L t) (laurentBaseChange L F₀) = relfinrank (K₀ t) F₀ := by
   classical

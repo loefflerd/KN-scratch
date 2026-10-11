@@ -71,7 +71,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option synthInstance.maxHeartbeats 400000
 set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_finrank_adjoin_jqN_eq_of_squarefree
@@ -727,8 +726,10 @@ p2m_reactivate "P2MW.S_ModularCurve_finrank_adjoin_jqN_eq_of_squarefree.ModularC
 namespace ModularCurve
 p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_injective qExpand_one_apply qExpand_qExpand jq coeff_jq_neg_one coeff_jq_of_lt jqN jqN_one dedekindPsi evalAtJ_X ModularPolynomialData jGen modularFunctionFieldFull jqd_mem_full coeffEmb coeffEmb_coeff qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand EvalSymm coeffMap_qExpand PhiGen.splits_prime_at_slot full_eq_adjoin_primes relfinrank_full_of_squarefree finrank_adjoin_jqN_eq_of_prime dedekindPsi_prime exists_phiIrreducible_evalSymm dedekindPsi_of_squarefree"
 end ModularCurve
+
 p2m_open_scoped "ModularCurve" in
 open ModularCurve.W1 in
+set_option synthInstance.maxHeartbeats 40000 in -- this is needed (DL)
 private theorem ModularCurve.finrank_adjoin_jqN_eq_of_squarefree (N : ℕ) [NeZero N] (hN : Squarefree N) : Module.finrank (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) (IntermediateField.adjoin (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) ({jqN N} : Set (LaurentSeries ℚ))) = dedekindPsi N := by
   classical
   set Sg : Set (LaurentSeries ℚ) := insert jq {x : LaurentSeries ℚ | ∃ p ∈ N.primeFactors, ∃ _ : NeZero p, x = jqN p}
