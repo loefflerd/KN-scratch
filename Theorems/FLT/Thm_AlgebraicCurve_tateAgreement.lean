@@ -420,7 +420,7 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_Algebrai
 section
 
 set_option linter.unusedSectionVars false
-set_option maxRecDepth 8000
+--XXset_option maxRecDepth 8000
 
 noncomputable section
 
@@ -439,7 +439,7 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_Algebrai
 section
 
 set_option linter.unusedSectionVars false
-set_option maxRecDepth 8000
+--XXset_option maxRecDepth 8000
 
 noncomputable section
 

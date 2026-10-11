@@ -402,7 +402,7 @@ end WeierstrassCurve
 end Piece_KwVeluOrderTwoSecantXContent
 
 section Piece_KwVeluOrderTwoTangentYContent
-set_option maxRecDepth 8000
+--XXset_option maxRecDepth 8000
 
 p2m_open "Polynomial WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_exists_addMonoidHom_coe_eq_veluPointMap2.WeierstrassCurve.Affine"
 
@@ -721,7 +721,7 @@ end WeierstrassCurve
 end Piece_KwVeluOrderTwoSecantConjunctOne
 
 section Piece_KwVeluOrderTwoSecantAlign
-set_option maxRecDepth 100000
+--XXset_option maxRecDepth 100000
 
 p2m_open "Polynomial WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_exists_addMonoidHom_coe_eq_veluPointMap2.WeierstrassCurve.Affine"
 
@@ -831,7 +831,7 @@ end WeierstrassCurve
 end Piece_KwVeluOrderTwoSecantAlign
 
 section Piece_KwVeluOrderTwoTangentXAlign
-set_option maxRecDepth 8000
+--XXset_option maxRecDepth 8000
 
 p2m_open "Polynomial WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_exists_addMonoidHom_coe_eq_veluPointMap2.WeierstrassCurve.Affine"
 
@@ -923,7 +923,7 @@ end WeierstrassCurve
 end Piece_KwVeluOrderTwoTangentXAlign
 
 section Piece_KwVeluOrderTwoTangentYAlign
-set_option maxRecDepth 100000
+--XXset_option maxRecDepth 100000
 
 p2m_open "Polynomial WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_exists_addMonoidHom_coe_eq_veluPointMap2.WeierstrassCurve.Affine"
 

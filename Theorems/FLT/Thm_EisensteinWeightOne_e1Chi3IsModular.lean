@@ -3084,7 +3084,6 @@ theorem reprCountEqCoeffE1Chi3_of_splitPrimePowCount (hsplit : SplitPrimePowCoun
   reprCountEqCoeffE1Chi3_of_residuals orbitCountMultiplicative_holds hsplit
 
 set_option maxRecDepth 16384 in
-
 theorem reprCount_twentyone : reprCount 21 = 12 := by decide
 
 theorem orbitCount_at_three_seven :

@@ -84,7 +84,7 @@ set_option backward.isDefEq.respectTransparency.types false
 namespace P2MW.S_WeierstrassCurve_exists_functionFieldHom_fullKernelQuotient_pointMapOfPushforward_ker_eq_zmultiples
 
 set_option Elab.async false
-set_option maxRecDepth 8192
+--XXset_option maxRecDepth 8192
 
 namespace KernelTower
 

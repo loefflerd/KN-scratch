@@ -66,7 +66,7 @@ set_option backward.isDefEq.respectTransparency.types false
 namespace P2MW.S_ModularCurve_TatePoint_fullKernelDiscAt
 
 set_option Elab.async false
-set_option maxRecDepth 8192
+--XXset_option maxRecDepth 8192
 
 namespace KernelTower
 
