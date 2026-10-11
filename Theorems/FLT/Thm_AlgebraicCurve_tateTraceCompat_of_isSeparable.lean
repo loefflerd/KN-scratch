@@ -80,7 +80,6 @@ set_option backward.isDefEq.respectTransparency.types false
 p2m_attr_erase "ext" "IsDedekindDomain.HeightOneSpectrum.adicCompletion.ext"
 namespace P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable
 
-set_option maxHeartbeats 12800000
 
 namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver HasCanonicalLocalResidueKStar Place.mem_restrict_iff Place.mem_fiber Place.restrict_mem_fiber kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff kwHgfV352_completionTraceAt"
@@ -208,7 +207,6 @@ end
 
 section
 
-set_option maxHeartbeats 6400000
 set_option linter.unusedSectionVars false
 
 p2m_open "LinearMap P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.LinearMap Submodule P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.Submodule"
@@ -395,7 +393,6 @@ end
 
 section
 
-set_option maxHeartbeats 6400000
 
 noncomputable section
 
@@ -413,7 +410,6 @@ end
 
 section
 
-set_option maxHeartbeats 6400000
 
 noncomputable section
 
@@ -431,7 +427,6 @@ end
 
 section
 
-set_option maxHeartbeats 6400000
 
 noncomputable section
 
@@ -594,7 +589,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCu
 
 section
 
-set_option maxHeartbeats 6400000
 
 noncomputable section
 
@@ -697,7 +691,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCu
 
 section
 
-set_option maxHeartbeats 6400000
 set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.ModularCurve.GF24a9RRDx AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place IsDedekindDomain P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.IsDedekindDomain"
@@ -713,7 +706,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCu
 
 section
 
-set_option maxHeartbeats 6400000
 set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place LinearMap P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.LinearMap Submodule P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.Submodule"
@@ -769,7 +761,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCu
 
 section
 
-set_option maxHeartbeats 6400000
 set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place LinearMap P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.LinearMap Submodule P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.Submodule"
@@ -851,7 +842,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCu
 
 section
 
-set_option maxHeartbeats 3200000
 
 p2m_open_scoped "WithZero P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.WithZero Multiplicative P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.Multiplicative Topology P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.Topology"
 p2m_open "Filter P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.Filter"
@@ -891,7 +881,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCu
 
 section
 
-set_option maxHeartbeats 6400000
 set_option linter.unusedSectionVars false
 
 noncomputable section
@@ -999,7 +988,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCu
 
 section
 
-set_option maxHeartbeats 6400000
 set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place LinearMap P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.LinearMap Submodule P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.Submodule"
@@ -1118,7 +1106,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCu
 
 section
 
-set_option maxHeartbeats 6400000
 set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place LinearMap P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.LinearMap Submodule P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.Submodule"
@@ -1166,7 +1153,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCu
 
 section
 
-set_option maxHeartbeats 6400000
 set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place LinearMap P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.LinearMap Submodule P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.Submodule"
@@ -1212,7 +1198,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCu
 
 section
 
-set_option maxHeartbeats 6400000
 set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place LinearMap P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.LinearMap Submodule P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.Submodule"
@@ -1341,7 +1326,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCu
 
 section
 
-set_option maxHeartbeats 6400000
 set_option linter.unusedSectionVars false
 set_option linter.unusedSimpArgs false
 
@@ -1420,7 +1404,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCu
 
 section
 
-set_option maxHeartbeats 6400000
 set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place LinearMap P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.LinearMap Submodule P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.Submodule"
@@ -1467,7 +1450,6 @@ theorem range_mulLeft_eq_restrictScalars_span (a : u.adicCompletionIntegers) :
     Ideal.mem_span_singleton]
   exact ⟨fun ⟨x, hx⟩ => ⟨x, hx.symm⟩, fun ⟨x, hx⟩ => ⟨x, hx.symm⟩⟩
 
-set_option maxHeartbeats 25600000 in
 
 theorem finiteDimensional_restrictScalarsQuot_pow [u.FiniteResidue]
     (hCot : KwF4gRRTateDVRCotangentKFinite K L)
@@ -1554,7 +1536,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCu
 
 section
 
-set_option maxHeartbeats 6400000
 set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place LinearMap P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.LinearMap Submodule P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.Submodule"
@@ -1624,7 +1605,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCu
 
 section
 
-set_option maxHeartbeats 12800000
 set_option linter.unusedSectionVars false
 set_option linter.unusedSimpArgs false
 set_option linter.unusedVariables false
@@ -1690,7 +1670,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCu
 
 section
 
-set_option maxHeartbeats 12800000
 set_option linter.unusedSectionVars false
 set_option linter.unusedSimpArgs false
 
@@ -1771,7 +1750,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCu
 
 section
 
-set_option maxHeartbeats 12800000
 set_option linter.unusedSectionVars false
 set_option linter.unusedSimpArgs false
 set_option linter.unusedVariables false
@@ -1908,7 +1886,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCu
 
 section
 
-set_option maxHeartbeats 12800000
 set_option linter.unusedSectionVars false
 set_option linter.unusedSimpArgs false
 set_option linter.unusedVariables false
@@ -2179,7 +2156,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCu
 
 section
 
-set_option maxHeartbeats 12800000
 set_option linter.unusedSectionVars false
 set_option linter.unusedSimpArgs false
 set_option linter.unusedVariables false
@@ -2316,7 +2292,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCu
 
 section
 
-set_option maxHeartbeats 12800000
 set_option linter.unusedSectionVars false
 set_option linter.unusedSimpArgs false
 set_option linter.unusedVariables false
@@ -2564,7 +2539,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCu
 
 section
 
-set_option maxHeartbeats 25600000
 set_option linter.unusedSectionVars false
 set_option linter.unusedSimpArgs false
 set_option linter.unusedVariables false
@@ -2761,7 +2735,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCu
 
 section
 
-set_option maxHeartbeats 51200000
 set_option linter.unusedSectionVars false
 set_option linter.unusedSimpArgs false
 set_option linter.unusedVariables false
@@ -3086,7 +3059,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCu
 
 section
 
-set_option maxHeartbeats 25600000
 set_option linter.unusedSectionVars false
 set_option linter.unusedSimpArgs false
 set_option linter.unusedVariables false
@@ -3182,7 +3154,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCu
 
 section
 
-set_option maxHeartbeats 6400000
 set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place IsDedekindDomain P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.IsDedekindDomain TensorProduct P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.TensorProduct"
@@ -3306,7 +3277,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCu
 
 section
 
-set_option maxHeartbeats 6400000
 set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place IsDedekindDomain P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.IsDedekindDomain TensorProduct P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.TensorProduct IsLocalRing P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.IsLocalRing"
@@ -3343,7 +3313,6 @@ theorem kwF4R1V386a_isSeparable_algebraMap_fiberCompletion
     Polynomial.Separable.map (Algebra.IsSeparable.isSeparable E g)
   exact hmapsep.of_dvd (minpoly.dvd v.adicCompletion _ hroot)
 
-set_option maxHeartbeats 16000000 in
 set_option synthInstance.maxHeartbeats 8000000 in
 
 theorem kwF4R1V386a_isSeparable_fiberCompletion
@@ -3388,7 +3357,6 @@ p2m_reactivate "P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCu
 
 section
 
-set_option maxHeartbeats 25600000
 set_option linter.unusedSectionVars false
 set_option linter.unusedSimpArgs false
 set_option linter.unusedVariables false

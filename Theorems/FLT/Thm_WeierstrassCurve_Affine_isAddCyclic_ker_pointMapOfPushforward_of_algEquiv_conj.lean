@@ -94,7 +94,6 @@ p2m_attr_erase "simp" "EllSequence.redInvarDenom_one WeierstrassCurve.Coeff.A₄
 set_option linter.unusedVariables false
 set_option linter.unusedSectionVars false
 set_option linter.unusedSimpArgs false
-set_option maxHeartbeats 3200000
 
 noncomputable section
 
@@ -1348,7 +1347,6 @@ p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushfor
 
 section
 
-set_option maxHeartbeats 6400000
 
 section
 
@@ -1414,7 +1412,6 @@ p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.m
 
 section
 
-set_option maxHeartbeats 6400000
 set_option linter.unusedSectionVars false
 
 namespace ModularCurve
@@ -1599,7 +1596,6 @@ theorem kw_surgehgf4_pck_pmop_conjSeam_factor
           (pointMapOfPushforward (eE.symm.toAlgHom.comp ι) _ _ _ P) := h1
     _ = _ := congrArg _ h2
 
-set_option maxHeartbeats 102400000 in
 
 theorem kw_surgehgf4_pck_proved_core
     (hι'' : (kw_fdn2_qephod_hend21_conjSeam eE eE' ι).toRingHom.IsIntegral)
@@ -1647,7 +1643,6 @@ theorem kw_surgehgf4_pck_proved_core
 end ConjSeamFactor
 p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.PeriodPair P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.AlgebraicCurve.Place P2MW.S_WeierstrassCurve_Affine_isAddCyclic_ker_pointMapOfPushforward_of_algEquiv_conj.AlgebraicCurve"
 
-set_option maxHeartbeats 25600000 in
 
 theorem kw_surgehgf4_pck_proved : KwD5BetweenCurvesPMOPConjKerEquiv :=
   fun _ _ _ _ _ _ _ _ _ _ ι hι hfin _ _ _ _ _ _ _ _ _ _ eE eE' hι'' hfin'' =>
