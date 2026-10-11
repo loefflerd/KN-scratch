@@ -11,6 +11,7 @@ Licensed under Apache License 2.0
 
 module
 
+public import Definitions.KN.Def_MTT_EigenformContinuousLocalFieldRepresentations
 public import Definitions.KN.Def_KN_SeededPrimeGaloisDataV2
 
 import Theorems.KN.Thm_HorizontalPadicL_eigenform_residualGaloisRepresentation_exists_v2
@@ -55,6 +56,7 @@ theorem _root_.solution
     {N k p : ℕ} [Fact p.Prime]
     (hN : 0 < N) (hk : 2 ≤ k)
     (ι : MTT.Qbar →+* ℂ) (f : MTT.Eigenform N k ι)
+    [f.HasContinuousLocalFieldRepresentations]
     (_hnew : IsNewEigenform f) (η : DirichletCharacterWithLevel)
     (V : SeededEigenformPadicPlaceData (p := p) f η) :
     Nonempty (ResidualEigenformRepresentationData f η V) := by
@@ -137,6 +139,7 @@ theorem newEigenform_residualRepresentation_exists_v2
     {N k p : ℕ} [Fact p.Prime]
     (hN : 0 < N) (hk : 2 ≤ k)
     (ι : MTT.Qbar →+* ℂ) (f : MTT.Eigenform N k ι)
+    [f.HasContinuousLocalFieldRepresentations]
     (hnew : IsNewEigenform f) (η : DirichletCharacterWithLevel)
     (V : SeededEigenformPadicPlaceData (p := p) f η) :
     Nonempty (ResidualEigenformRepresentationData f η V) := _root_.solution hN hk ι f hnew η V

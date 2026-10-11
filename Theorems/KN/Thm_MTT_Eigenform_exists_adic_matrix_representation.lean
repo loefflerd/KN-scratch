@@ -11,6 +11,7 @@ Licensed under Apache License 2.0
 
 module
 
+public import Definitions.KN.Def_MTT_EigenformContinuousLocalFieldRepresentations
 public import Definitions.KN.Def_KN_EigenformResidualGaloisRepresentationV2
 public import Definitions.KN.Def_MTT_EigenformCoefficientCompletion
 public import Definitions.FLT.Def_GaloisRep_Residual
@@ -652,6 +653,7 @@ open NumberField
 theorem solution
     {N k p : ℕ} [Fact p.Prime] (hN : 0 < N) (hk : 2 ≤ k)
     (ι : MTT.Qbar →+* ℂ) (f : MTT.Eigenform N k ι)
+    [f.HasContinuousLocalFieldRepresentations]
     (ιp : MTT.Qbar →+* ℂ_[p]) :
     ∃ ρ : (MTT.Qbar ≃ₐ[ℚ] MTT.Qbar) →*
         Matrix (Fin 2) (Fin 2) (f.coefficientCompletion ιp),
@@ -736,6 +738,7 @@ open NumberField
 theorem MTT.Eigenform.exists_adic_matrix_representation
     {N k p : ℕ} [Fact p.Prime] (hN : 0 < N) (hk : 2 ≤ k)
     (ι : MTT.Qbar →+* ℂ) (f : MTT.Eigenform N k ι)
+    [f.HasContinuousLocalFieldRepresentations]
     (ιp : MTT.Qbar →+* ℂ_[p]) :
     ∃ ρ : (MTT.Qbar ≃ₐ[ℚ] MTT.Qbar) →*
         Matrix (Fin 2) (Fin 2) (f.coefficientCompletion ιp),

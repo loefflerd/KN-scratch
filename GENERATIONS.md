@@ -16,8 +16,8 @@ Classified files: **1401 / 1401** in **1401** dependency nodes, including **0** 
 |---:|---:|---:|---:|---:|
 | 1 | 53 | 44 | 6 | 3 |
 | 2 | 266 | 256 | 6 | 4 |
-| 3 | 184 | 159 | 16 | 9 |
-| 4 | 158 | 133 | 17 | 8 |
+| 3 | 183 | 159 | 16 | 8 |
+| 4 | 159 | 133 | 17 | 9 |
 | 5 | 118 | 93 | 21 | 4 |
 | 6 | 76 | 60 | 9 | 7 |
 | 7 | 73 | 64 | 6 | 3 |
@@ -67,10 +67,12 @@ Classified files: **1401 / 1401** in **1401** dependency nodes, including **0** 
 | 51 | 3 | 0 | 0 | 3 |
 | 52 | 2 | 0 | 0 | 2 |
 | 53 | 2 | 0 | 0 | 2 |
-| 54 | 2 | 0 | 0 | 2 |
-| 55 | 3 | 0 | 0 | 3 |
-| 56 | 1 | 0 | 0 | 1 |
+| 54 | 1 | 0 | 0 | 1 |
+| 55 | 1 | 0 | 0 | 1 |
+| 56 | 2 | 0 | 0 | 2 |
 | 57 | 1 | 0 | 0 | 1 |
+| 58 | 1 | 0 | 0 | 1 |
+| 59 | 1 | 0 | 0 | 1 |
 
 ## Generation 1
 
@@ -566,7 +568,6 @@ Classified files: **1401 / 1401** in **1401** dependency nodes, including **0** 
 - `Theorems/FLT/Thm_ZMod_natCard_isAddCyclic_addSubgroup_prod_map_eq_nuTwo.lean`
 - `Theorems/KN/Thm_AdicCompletion_exists_domain_dvr_complete.lean`
 - `Theorems/KN/Thm_FrobeniusDensity_chebotarev_natural_density.lean`
-- `Theorems/KN/Thm_HorizontalPadicL_friedberg_hoffstein_quadratic_twist_nonzero_anyParity_v2.lean`
 - `Theorems/KN/Thm_MTT_Eigenform_hecke_recurrence.lean`
 - `Theorems/KN/Thm_MTT_Eigenform_nebentype_mem_ringOfIntegers.lean`
 - `Theorems/KN/Thm_MTT_algebraicSymbol_horizontal_distribution.lean`
@@ -604,6 +605,7 @@ Classified files: **1401 / 1401** in **1401** dependency nodes, including **0** 
 - `Definitions/FLT/Def_ModularCurve_TatePoint.lean`
 - `Definitions/FLT/Def_ModularCurve_X0ModL.lean`
 - `Definitions/FLT/Def_ModularCurve_X1.lean`
+- `Definitions/KN/Def_KN_QuadraticTwistSeed.lean`
 - `Definitions/KN/Def_KN_SeededHorizontalPadicLFunctionV2B.lean`
 - `Definitions/KN/Def_KN_SeededPrimeGaloisDataV2.lean`
 - `Definitions/MTT/Def_MTT_FullParabolicCohomology.lean`
@@ -1617,29 +1619,35 @@ Classified files: **1401 / 1401** in **1401** dependency nodes, including **0** 
 
 ## Generation 52
 
+- `Definitions/KN/Def_MTT_EigenformContinuousLocalFieldRepresentations.lean`
 - `Theorems/KN/Thm_HorizontalPadicL_coprimeDiscriminant_simultaneousSeededFrobeniusClass_exists_v2.lean`
-- `Theorems/KN/Thm_MTT_Eigenform_exists_continuous_localField_representation.lean`
 
 ## Generation 53
 
-- `Theorems/KN/Thm_HorizontalPadicL_corollary_5_17_conditional.lean`
-- `Theorems/KN/Thm_MTT_Eigenform_exists_adic_matrix_representation.lean`
+- `Theorems/KN/Thm_HorizontalPadicL_attachedEigenform_hasContinuousLocalFieldRepresentations.lean`
+- `Theorems/KN/Thm_MTT_Eigenform_exists_continuous_localField_representation.lean`
 
 ## Generation 54
 
-- `Theorems/KN/Thm_HorizontalPadicL_attachedEigenform_hasContinuousLocalFieldRepresentations.lean`
-- `Theorems/KN/Thm_HorizontalPadicL_eigenform_residualGaloisRepresentation_exists_v2.lean`
+- `Theorems/KN/Thm_MTT_Eigenform_exists_adic_matrix_representation.lean`
 
 ## Generation 55
 
-- `Theorems/KN/Thm_HorizontalPadicL_disjointRamification_seededFrobeniusClass_exists_v4.lean`
-- `Theorems/KN/Thm_HorizontalPadicL_elliptic_curve_nonvanishing_conditional.lean`
-- `Theorems/KN/Thm_HorizontalPadicL_newEigenform_residualRepresentation_exists_v2.lean`
+- `Theorems/KN/Thm_HorizontalPadicL_eigenform_residualGaloisRepresentation_exists_v2.lean`
 
 ## Generation 56
 
-- `Theorems/KN/Thm_HorizontalPadicL_corollary_5_17_v2.lean`
+- `Theorems/KN/Thm_HorizontalPadicL_disjointRamification_seededFrobeniusClass_exists_v4.lean`
+- `Theorems/KN/Thm_HorizontalPadicL_newEigenform_residualRepresentation_exists_v2.lean`
 
 ## Generation 57
 
-- `Theorems/KN/Thm_HorizontalPadicL_elliptic_curve_nonvanishing.lean`
+- `Theorems/KN/Thm_HorizontalPadicL_corollary_5_17_of_quadratic_twist.lean`
+
+## Generation 58
+
+- `Theorems/KN/Thm_HorizontalPadicL_elliptic_curve_nonvanishing_conditional.lean`
+
+## Generation 59
+
+- `Theorems/KN/Thm_HorizontalPadicL_elliptic_curve_infinitely_many_nonvanishing_twists_conditional.lean`

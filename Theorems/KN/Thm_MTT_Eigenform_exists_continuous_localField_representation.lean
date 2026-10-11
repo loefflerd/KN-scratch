@@ -8,6 +8,7 @@ Licensed under Apache License 2.0
 
 module
 
+public import Definitions.KN.Def_MTT_EigenformContinuousLocalFieldRepresentations
 public import Definitions.KN.Def_KN_EigenformResidualGaloisRepresentationV2
 public import Definitions.KN.Def_MTT_EigenformCoefficientLocalField
 public import Definitions.FLT.Def_GaloisRep_Residual
@@ -19,7 +20,8 @@ public import Mathlib.FieldTheory.KrullTopology
 Theorem statement: `MTT.Eigenform.exists_continuous_localField_representation`
 (`aaec6905-7545-458b-a4ab-b79319ac98bd`), by riccardo.brasca, 2026-09-24.
 
-Proof: the local theorem is currently unproved (`sorry`).
+Proof: locally adapted to extract the representation from the explicit
+`HasContinuousLocalFieldRepresentations` hypothesis.
 
 Let $N>0$, let $k\ge2$, let $p$ be prime, and let $f$ be a normalized algebraic cuspidal Hecke
 eigenform of level $N$, weight $k$, and nebentype $\varepsilon_f$. Fix the complex embedding and an
@@ -40,8 +42,10 @@ $$\operatorname{tr}\rho_f(\operatorname{Frob}_\ell)=a_\ell(f),\qquad
 \det\rho_f(\operatorname{Frob}_\ell)=\varepsilon_f(\ell)\ell^{k-1}.$$
 
 Coefficients on the right are mapped through $\mathcal O_{K_f}\to R_f\to F_f$. No newness, parity,
-or trivial-nebentype hypothesis is imposed. This is Deligne's characteristic-zero existence theorem,
-expressed on a concrete model of the coefficient local field. It supplies the field-valued input
+or trivial-nebentype hypothesis is imposed. Locally, representation existence is supplied by the
+explicit `HasContinuousLocalFieldRepresentations` hypothesis, rather than asserted for every
+eigenform. The conclusion is expressed on a concrete model of the coefficient local field.
+It supplies the field-valued input
 from which integral lattices and finite-level congruence representations can be constructed.
 
 **Formalization Note.** The domain has its Krull topology; inertia and arithmetic Frobenius use
@@ -63,6 +67,7 @@ Krull topology and the local field has its canonical discrete valuation topology
 theorem MTT.Eigenform.exists_continuous_localField_representation
     {N k p : ℕ} [Fact p.Prime] (hN : 0 < N) (hk : 2 ≤ k)
     (ι : MTT.Qbar →+* ℂ) (f : MTT.Eigenform N k ι)
+    [f.HasContinuousLocalFieldRepresentations]
     (ιp : MTT.Qbar →+* ℂ_[p]) :
     letI := f.coefficientCompletion_isDomain hN hk ιp
     letI := f.coefficientCompletion_isDiscreteValuationRing hN hk ιp
@@ -85,7 +90,8 @@ theorem MTT.Eigenform.exists_continuous_localField_representation
                 (algebraMap (𝓞 f.coefficientField) (f.coefficientCompletion ιp)
                   (f.integralNebentype (l : ZMod N) *
                     (l : 𝓞 f.coefficientField) ^ (k - 1)))) := by
-  sorry
+  exact MTT.Eigenform.HasContinuousLocalFieldRepresentations.exists_representation
+    (f := f) hN hk ιp
 end
 
 end publicSection

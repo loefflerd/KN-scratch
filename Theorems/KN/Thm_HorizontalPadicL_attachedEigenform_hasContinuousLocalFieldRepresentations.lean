@@ -1,7 +1,7 @@
 module
 
 public import Definitions.KN.Def_KN_EllipticCurveAttachedEigenform
-public import Theorems.KN.Thm_HorizontalPadicL_corollary_5_17_conditional
+public import Definitions.KN.Def_MTT_EigenformContinuousLocalFieldRepresentations
 
 import Definitions.FLT.Def_EllipticCurve_TateModule
 import Theorems.KN.Thm_HorizontalPadicL_tateModuleRep_good_primes

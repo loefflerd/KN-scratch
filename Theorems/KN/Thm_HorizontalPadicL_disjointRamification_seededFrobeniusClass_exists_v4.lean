@@ -11,6 +11,7 @@ Licensed under Apache License 2.0
 
 module
 
+public import Definitions.KN.Def_MTT_EigenformContinuousLocalFieldRepresentations
 public import Definitions.KN.Def_KN_SeedCyclotomicGaloisCharactersV3B
 
 import Theorems.KN.Thm_HorizontalPadicL_eigenform_residualGaloisRepresentation_exists_v2
@@ -54,6 +55,7 @@ theorem _root_.solution
     {N k p : ℕ} [Fact p.Prime]
     (hN : 0 < N) (hk : 2 ≤ k) (_heven : Even k)
     (ι : MTT.Qbar →+* ℂ) (f : MTT.Eigenform N k ι)
+    [f.HasContinuousLocalFieldRepresentations]
     (η : DirichletCharacterWithLevel)
     (m B : ℕ) (hB : 0 < B)
     (hηcoprime : Nat.Coprime (N * p) η.2.conductor)
@@ -82,6 +84,7 @@ theorem disjointRamification_seededFrobeniusClass_exists_v4
     {N k p : ℕ} [Fact p.Prime]
     (hN : 0 < N) (hk : 2 ≤ k) (heven : Even k)
     (ι : MTT.Qbar →+* ℂ) (f : MTT.Eigenform N k ι)
+    [f.HasContinuousLocalFieldRepresentations]
     (η : DirichletCharacterWithLevel)
     (m B : ℕ) (hB : 0 < B)
     (hηcoprime : Nat.Coprime (N * p) η.2.conductor)
