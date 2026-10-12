@@ -276,7 +276,6 @@ private theorem _root_.ModularCurve.slot_place_eq_iff_modEq' (N : ℕ) [NeZero N
     rw [hw', hordeq] at e2
     exact e1.symm.trans e2
 
-p2m_alias "P2MW.S_ModularCurve_slot_place_eq_iff_modEq.ModularCurve.slot_place_eq_iff_modEq" "ModularCurve.slot_place_eq_iff_modEq'"
 end CD
 
 open ModularCurve AlgebraicCurve in

@@ -161,8 +161,6 @@ theorem main_of_two_le (N : ℕ) (hN : 2 ≤ N) :
   exact Nat.le_of_mul_le_mul_left h2 hpos
 
 end ModularCurve.ESPrincipalAssembly
-p2m_reactivate "P2MW.S_ModularCurve_finrank_parabolicHoms_Gamma_le_two_mul_finrank_cuspForm.ModularCurve P2MW.S_ModularCurve_finrank_parabolicHoms_Gamma_le_two_mul_finrank_cuspForm.ModularCurve.ESPrincipalAssembly"
-p2m_reactivate "P2MW.S_ModularCurve_finrank_parabolicHoms_Gamma_le_two_mul_finrank_cuspForm.ModularCurve"
 
 open ModularCurve.ESPrincipalAssembly in
 

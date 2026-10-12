@@ -390,7 +390,6 @@ theorem isGood_0 : IntegralCoeffs (goodModel 0) ∧
 end J0
 
 end S12B3
-p2m_reactivate "P2MW.S_ModularCurve_B3_goodModel_zero_spec.S12B3"
 
 namespace S12B3
 
@@ -447,7 +446,6 @@ theorem orderTop_delta_goodModel_1728 : (goodModel 1728).Δ.orderTop = 0 := by
 
 end S12B3
 end
-p2m_reactivate "P2MW.S_ModularCurve_B3_goodModel_zero_spec.S12B3"
 
 open ModularCurve.B3 ModularCurve.TatePoint WeierstrassCurve
 

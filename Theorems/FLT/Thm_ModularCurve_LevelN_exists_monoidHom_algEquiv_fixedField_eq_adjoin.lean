@@ -493,7 +493,6 @@ end FractionField
 
 end ModularCurve.LevelN.GaloisStructure
 end
-p2m_reactivate "P2MW.S_ModularCurve_LevelN_exists_monoidHom_algEquiv_fixedField_eq_adjoin.ModularCurve P2MW.S_ModularCurve_LevelN_exists_monoidHom_algEquiv_fixedField_eq_adjoin.ModularCurve.LevelN P2MW.S_ModularCurve_LevelN_exists_monoidHom_algEquiv_fixedField_eq_adjoin.ModularCurve.LevelN.GaloisStructure"
 
 theorem solution (N : ℕ) [NeZero N]
     (K : Type*) [Field K] [Algebra ℂ K] [Algebra (ModularCurve.LevelN.ring N) K]

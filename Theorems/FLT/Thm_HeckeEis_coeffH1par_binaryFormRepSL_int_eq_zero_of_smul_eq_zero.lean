@@ -126,7 +126,6 @@ theorem aux_cancel {M : Type*} [AddCommGroup M] (f : M →+ M) (m : ℤ) (hinj :
   exact sub_eq_zero.mp (hinj _ h0)
 
 end TorsionFreeAux
-p2m_reactivate "P2MW.S_HeckeEis_coeffH1par_binaryFormRepSL_int_eq_zero_of_smul_eq_zero.HeckeEis.TorsionFreeAux"
 
 open TorsionFreeAux in
 
@@ -180,7 +179,6 @@ theorem SolMain.A4 (n N : ℕ) [NeZero N] (m : ℤ) (hm : m ≠ 0)
     exact h1
 
 end HeckeEis
-p2m_reactivate "P2MW.S_HeckeEis_coeffH1par_binaryFormRepSL_int_eq_zero_of_smul_eq_zero.HeckeEis.TorsionFreeAux P2MW.S_HeckeEis_coeffH1par_binaryFormRepSL_int_eq_zero_of_smul_eq_zero.HeckeEis"
 
 open scoped MatrixGroups in
 theorem solution (n N : ℕ) [NeZero N] (m : ℤ) (hm : m ≠ 0)

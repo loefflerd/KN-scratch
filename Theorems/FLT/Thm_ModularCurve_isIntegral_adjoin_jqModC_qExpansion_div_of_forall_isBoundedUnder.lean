@@ -566,8 +566,6 @@ theorem isIntegral_of_forall_isBoundedUnder [Γ.FiniteIndex] {k : ℤ}
 end Assembly
 
 end ModularCurve.IntegralGammaAux
-p2m_reactivate "P2MW.S_ModularCurve_isIntegral_adjoin_jqModC_qExpansion_div_of_forall_isBoundedUnder.ModularCurve P2MW.S_ModularCurve_isIntegral_adjoin_jqModC_qExpansion_div_of_forall_isBoundedUnder.ModularCurve.IntegralGammaAux"
-p2m_reactivate "P2MW.S_ModularCurve_isIntegral_adjoin_jqModC_qExpansion_div_of_forall_isBoundedUnder.ModularCurve"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "jqModC jqModC_eq_qExpansion_E4_cube_div_discriminant"

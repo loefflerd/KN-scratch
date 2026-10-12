@@ -365,7 +365,6 @@ theorem sum_ord_mul_deg_eq_zero {f : RatFunc K} (hf : f ≠ 0) :
   exact h2
 
 end RationalFunctionField
-p2m_reactivate "P2MW.S_AlgebraicCurve_RationalFunctionField_ord_placeOfPoint_algebraMap.AlgebraicCurve.RationalFunctionField"
 
 namespace RationalFunctionField
 p2m_export "AlgebraicCurve.RationalFunctionField" "heightOneSpectrumOfIrreducible heightOneSpectrumOfIrreducible_asIdeal exists_irreducible_span finitePlace finitePlace_def algebraMap_mem_ofHeightOneSpectrum deg_finitePlace placeOfPoint placeOfPoint_eq_ofHeightOneSpectrum placeOfPoint_injective deg_placeOfPoint placeInfty placeInfty_toValuationSubring finite_setOf_ord_ne_zero degree_eq_zero_of_forall_eq_ord hasPrincipalDivisors ord_ofHeightOneSpectrum_of_span"
@@ -520,7 +519,6 @@ theorem deg_eq_one_of_isAlgClosed [IsAlgClosed K] (v : Place K (RatFunc K)) : v.
   · exact deg_placeInfty K
 
 end RationalFunctionField
-p2m_reactivate "P2MW.S_AlgebraicCurve_RationalFunctionField_ord_placeOfPoint_algebraMap.AlgebraicCurve.RationalFunctionField"
 
 namespace RationalFunctionField
 p2m_export "AlgebraicCurve.RationalFunctionField" "heightOneSpectrumOfIrreducible heightOneSpectrumOfIrreducible_asIdeal exists_irreducible_span finitePlace finitePlace_def algebraMap_mem_ofHeightOneSpectrum deg_finitePlace placeOfPoint placeOfPoint_eq_ofHeightOneSpectrum placeOfPoint_injective deg_placeOfPoint placeInfty placeInfty_toValuationSubring finite_setOf_ord_ne_zero degree_eq_zero_of_forall_eq_ord hasPrincipalDivisors ord_ofHeightOneSpectrum_of_span"
@@ -626,7 +624,6 @@ theorem evalAt_placeInfty_X_sub_C_div (a a₀ : K) :
     norm_num
 
 end PlaceInfty
-p2m_reactivate "P2MW.S_AlgebraicCurve_RationalFunctionField_ord_placeOfPoint_algebraMap.AlgebraicCurve.RationalFunctionField"
 
 section CrossRatio
 
@@ -707,7 +704,6 @@ theorem evalAt_placeOfPoint_X_sub_C_div (a a₀ : K) {b : K} (hba₀ : b ≠ a�
     evalAt_placeOfPoint_X_sub_C, evalAt_placeOfPoint_X_sub_C, div_eq_mul_inv]
 
 end CrossRatio
-p2m_reactivate "P2MW.S_AlgebraicCurve_RationalFunctionField_ord_placeOfPoint_algebraMap.AlgebraicCurve.RationalFunctionField"
 
 section Reciprocity
 
@@ -1262,7 +1258,6 @@ end Reciprocity
 end RationalFunctionField
 end AlgebraicCurve
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_RationalFunctionField_ord_placeOfPoint_algebraMap.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_RationalFunctionField_ord_placeOfPoint_algebraMap.AlgebraicCurve"
 
 open Polynomial _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_RationalFunctionField_ord_placeOfPoint_algebraMap.AlgebraicCurve _root_.AlgebraicCurve.RationalFunctionField _root_.P2MW.S_AlgebraicCurve_RationalFunctionField_ord_placeOfPoint_algebraMap.AlgebraicCurve.RationalFunctionField in
 theorem solution {K : Type*} [Field K] (a : K) {q : Polynomial K} (hq : q ≠ 0) : (placeOfPoint K a).ord (algebraMap (Polynomial K) (RatFunc K) q) = Polynomial.rootMultiplicity a q :=

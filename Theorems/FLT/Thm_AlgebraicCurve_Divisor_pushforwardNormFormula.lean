@@ -354,7 +354,6 @@ end FiberFiniteness
 
 end Place
 end AlgebraicCurve
-p2m_reactivate "P2MW.S_AlgebraicCurve_Divisor_pushforwardNormFormula.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_Divisor_pushforwardNormFormula.AlgebraicCurve"
 
 section
 
@@ -438,7 +437,6 @@ theorem eq_ord_of_addHom_of_nonneg_iff (φ : F → ℤ)
   exact this.symm
 
 end Uniqueness
-p2m_reactivate "P2MW.S_AlgebraicCurve_Divisor_pushforwardNormFormula.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_Divisor_pushforwardNormFormula.AlgebraicCurve"
 
 variable {K F F' : Type*} [Field K] [Field F] [Field F']
   [Algebra K F] [Algebra K F'] [Algebra F F'] [IsScalarTower K F F']
@@ -501,7 +499,6 @@ theorem maximalIdeal_ne_bot :
     (IsLocalRing.isField_iff_maximalIdeal_eq.mpr h)
 
 end Setup
-p2m_reactivate "P2MW.S_AlgebraicCurve_Divisor_pushforwardNormFormula.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_Divisor_pushforwardNormFormula.AlgebraicCurve"
 
 section Center
 
@@ -584,7 +581,6 @@ theorem fiberCenter_liesOver (hw : w.restrict F = v) :
     · omega
 
 end Center
-p2m_reactivate "P2MW.S_AlgebraicCurve_Divisor_pushforwardNormFormula.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_Divisor_pushforwardNormFormula.AlgebraicCurve"
 
 section ValuationDictionary
 
@@ -679,7 +675,6 @@ theorem ramificationIndex_eq_ramificationIdx_fiberCenter (hw : w.restrict F = v)
     omega
 
 end ValuationDictionary
-p2m_reactivate "P2MW.S_AlgebraicCurve_Divisor_pushforwardNormFormula.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_Divisor_pushforwardNormFormula.AlgebraicCurve"
 
 section ResidueDictionary
 
@@ -841,7 +836,6 @@ theorem inertiaDeg_eq_inertiaDeg_fiberCenter (hw : w.restrict F = v) :
   rfl
 
 end ResidueDictionary
-p2m_reactivate "P2MW.S_AlgebraicCurve_Divisor_pushforwardNormFormula.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_Divisor_pushforwardNormFormula.AlgebraicCurve"
 
 section Bijection
 
@@ -911,7 +905,6 @@ theorem eq_of_fiberCenter_eq {w w' : Place K F'} (hw : w.restrict F = v)
   rw [toValuationSubring_eq_of_restrict_eq hw, toValuationSubring_eq_of_restrict_eq hw', h]
 
 end Bijection
-p2m_reactivate "P2MW.S_AlgebraicCurve_Divisor_pushforwardNormFormula.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_Divisor_pushforwardNormFormula.AlgebraicCurve"
 
 section Assembly
 
@@ -988,7 +981,6 @@ theorem sum_ramificationIndex_mul_inertiaDeg_infra [HasPrincipalDivisors K F'] :
 
 end Assembly
 end Place
-p2m_reactivate "P2MW.S_AlgebraicCurve_Divisor_pushforwardNormFormula.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_Divisor_pushforwardNormFormula.AlgebraicCurve"
 
 scoped instance instSumRamificationInertia {K F F' : Type*} [Field K] [Field F] [Field F']
     [Algebra K F] [Algebra K F'] [Algebra F F'] [IsScalarTower K F F']
@@ -997,7 +989,6 @@ scoped instance instSumRamificationInertia {K F F' : Type*} [Field K] [Field F] 
   ⟨fun v => Place.sum_ramificationIndex_mul_inertiaDeg_infra v⟩
 
 end AlgebraicCurve
-p2m_reactivate "P2MW.S_AlgebraicCurve_Divisor_pushforwardNormFormula.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_Divisor_pushforwardNormFormula.AlgebraicCurve"
 
 section
 
@@ -1033,7 +1024,6 @@ theorem ord_coe_eq_of_span_singleton_eq_pow_maximalIdeal {r : v.toValuationSubri
 
 end DVR
 end Place
-p2m_reactivate "P2MW.S_AlgebraicCurve_Divisor_pushforwardNormFormula.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_Divisor_pushforwardNormFormula.AlgebraicCurve"
 
 attribute [local instance 0] Place.valuationSubringAlgebra
 
@@ -1158,7 +1148,6 @@ theorem relNorm_span_singleton [HasPrincipalDivisors K F'] {c : integralClosureA
                     w.inertiaDeg F * (w.ord (algebraMap (integralClosureAt F' v) F' c)).toNat
 
 end IdealNorm
-p2m_reactivate "P2MW.S_AlgebraicCurve_Divisor_pushforwardNormFormula.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_Divisor_pushforwardNormFormula.AlgebraicCurve"
 
 section ElementNorm
 
@@ -1208,7 +1197,6 @@ theorem ord_norm_eq_sum_fiber [HasPrincipalDivisors K F'] {f : F'} (hf : f ≠ 0
 
 end ElementNorm
 end Place
-p2m_reactivate "P2MW.S_AlgebraicCurve_Divisor_pushforwardNormFormula.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_Divisor_pushforwardNormFormula.AlgebraicCurve"
 
 namespace Divisor
 p2m_export "AlgebraicCurve.Divisor" "pushforward degree_pushforward pushforward_apply PushforwardNormFormula pushforward_eq_of_normFormula isPrincipal_pushforward_of_normFormula degree IsPrincipal principal smul_def"
@@ -1248,7 +1236,6 @@ theorem isPrincipal_pushforward_infra [HasPrincipalDivisors K F'] {D : Divisor K
 
 end Divisor
 end AlgebraicCurve
-p2m_reactivate "P2MW.S_AlgebraicCurve_Divisor_pushforwardNormFormula.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_Divisor_pushforwardNormFormula.AlgebraicCurve"
 
 theorem solution {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F'] [Algebra F F'] [IsScalarTower K F F'] [FiniteDimensional F F'] [Algebra.IsSeparable F F'] [CharZero F] [HasPrincipalDivisors K F'] : Divisor.PushforwardNormFormula K F F' :=
   AlgebraicCurve.Divisor.pushforwardNormFormula_infra

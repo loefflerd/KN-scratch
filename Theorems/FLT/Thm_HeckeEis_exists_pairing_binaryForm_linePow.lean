@@ -211,7 +211,6 @@ theorem eq_zero_of_pairing_eq_zero (P : ↥(BinaryForm ℂ n)) (h : ∀ Q, pairi
 
 end HeckeEis.PairingSol
 end
-p2m_reactivate "P2MW.S_HeckeEis_exists_pairing_binaryForm_linePow.HeckeEis P2MW.S_HeckeEis_exists_pairing_binaryForm_linePow.HeckeEis.PairingSol"
 
 noncomputable section
 
@@ -344,7 +343,6 @@ theorem lineSpan_eq_top : lineSpan n = ⊤ := by
 
 end HeckeEis.PairingSol
 end
-p2m_reactivate "P2MW.S_HeckeEis_exists_pairing_binaryForm_linePow.HeckeEis P2MW.S_HeckeEis_exists_pairing_binaryForm_linePow.HeckeEis.PairingSol"
 
 noncomputable section
 
@@ -377,7 +375,6 @@ theorem pairing_rep (g : SL(2, ℤ)) (P Q : ↥(BinaryForm ℂ n)) :
 
 end HeckeEis.PairingSol
 end
-p2m_reactivate "P2MW.S_HeckeEis_exists_pairing_binaryForm_linePow.HeckeEis P2MW.S_HeckeEis_exists_pairing_binaryForm_linePow.HeckeEis.PairingSol"
 
 open scoped MatrixGroups in
 theorem solution (n : ℕ) :

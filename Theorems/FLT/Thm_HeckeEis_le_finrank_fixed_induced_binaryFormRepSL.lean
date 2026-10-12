@@ -524,8 +524,6 @@ theorem T_conjunct [NeZero N]
 end Assembly
 
 end HeckeEis.UH2
-p2m_reactivate "P2MW.S_HeckeEis_le_finrank_fixed_induced_binaryFormRepSL.HeckeEis P2MW.S_HeckeEis_le_finrank_fixed_induced_binaryFormRepSL.HeckeEis.UH2"
-p2m_reactivate "P2MW.S_HeckeEis_le_finrank_fixed_induced_binaryFormRepSL.HeckeEis"
 
 open scoped MatrixGroups
 

@@ -269,8 +269,6 @@ theorem hasRamBound_two_of_isRoot_at_1728
   exact (hasRamBound_one_hahnExpMul_iff 2 (by norm_num) r).mp ((hmemL _).mp hτrL)
 
 end OrdJBarSub1728.Wire
-p2m_reactivate "P2MW.S_ModularCurve_ord_jBar_sub_1728_dvd_two.OrdJBarSub1728 P2MW.S_ModularCurve_ord_jBar_sub_1728_dvd_two.OrdJBarSub1728.Wire"
-p2m_reactivate "P2MW.S_ModularCurve_ord_jBar_sub_1728_dvd_two.OrdJBarSub1728"
 
 namespace OrdJBarSub1728
 
@@ -459,7 +457,6 @@ theorem ord_jb_sub_1728_dvd_two
 
 end OrdJBarSub1728
 end
-p2m_reactivate "P2MW.S_ModularCurve_ord_jBar_sub_1728_dvd_two.OrdJBarSub1728 P2MW.S_ModularCurve_ord_jBar_sub_1728_dvd_two.OrdJBarSub1728.Wire"
 
 theorem solution (N : ℕ) [NeZero N]
     (v : AlgebraicCurve.Place (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar N))

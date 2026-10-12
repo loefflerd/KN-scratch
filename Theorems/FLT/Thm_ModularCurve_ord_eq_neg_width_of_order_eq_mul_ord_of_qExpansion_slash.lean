@@ -1144,7 +1144,6 @@ theorem ord_PlG_eq_neg_cw (hΓ : CongruenceSubgroup.IsCongruenceSubgroup Γ) (y 
 end finalG
 
 end WidthE100
-p2m_reactivate "P2MW.S_ModularCurve_ord_eq_neg_width_of_order_eq_mul_ord_of_qExpansion_slash.WidthE100"
 
 open WidthE100 in
 theorem solution

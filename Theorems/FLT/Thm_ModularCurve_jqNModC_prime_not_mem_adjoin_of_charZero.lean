@@ -247,8 +247,6 @@ theorem units_pow_eq_one_of_isPrimitiveRoot {N : ℕ} {ζ : Kˣ} (hζ : IsPrimit
   Units.ext (by rw [Units.val_pow_eq_pow_val, hζ.pow_eq_one, Units.val_one])
 
 end ModularCurve.W1
-p2m_reactivate "P2MW.S_ModularCurve_jqNModC_prime_not_mem_adjoin_of_charZero.ModularCurve P2MW.S_ModularCurve_jqNModC_prime_not_mem_adjoin_of_charZero.ModularCurve.W1"
-p2m_reactivate "P2MW.S_ModularCurve_jqNModC_prime_not_mem_adjoin_of_charZero.ModularCurve"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_one_apply qExpand_qExpand jq dedekindPsi ModularPolynomialData coeffMap coeffMap_coeff coeffMap_single algebraMap_laurentSeries_eq_single qTwist qTwist_coeff qTwist_single qTwist_one_apply qTwist_qTwist qTwist_qExpand EvalSymm jqModC jqNModC jqNModC_one jqModC_rat map_jqModC jqModC_eq_map_intCast coeffMap_qExpand coeff_jqModC_neg_one order_jqModC coeff_jqModC_pow_of_lt coeff_jqModC_pow_self transcendental_jqModC exists_phiIrreducible_evalSymm one_le_coeff_jq"
@@ -309,8 +307,6 @@ theorem phiAtSeed_TS_eval_symm {K : Type*} [Field K] (A : ℕ) [NeZero A] (n : �
   rwa [qExpand_jqNModC, qExpand_jqNModC] at h
 
 end ModularCurve.W1
-p2m_reactivate "P2MW.S_ModularCurve_jqNModC_prime_not_mem_adjoin_of_charZero.ModularCurve P2MW.S_ModularCurve_jqNModC_prime_not_mem_adjoin_of_charZero.ModularCurve.W1"
-p2m_reactivate "P2MW.S_ModularCurve_jqNModC_prime_not_mem_adjoin_of_charZero.ModularCurve P2MW.S_ModularCurve_jqNModC_prime_not_mem_adjoin_of_charZero.ModularCurve.W1"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_one_apply qExpand_qExpand jq dedekindPsi ModularPolynomialData coeffMap coeffMap_coeff coeffMap_single algebraMap_laurentSeries_eq_single qTwist qTwist_coeff qTwist_single qTwist_one_apply qTwist_qTwist qTwist_qExpand EvalSymm jqModC jqNModC jqNModC_one jqModC_rat map_jqModC jqModC_eq_map_intCast coeffMap_qExpand coeff_jqModC_neg_one order_jqModC coeff_jqModC_pow_of_lt coeff_jqModC_pow_self transcendental_jqModC exists_phiIrreducible_evalSymm one_le_coeff_jq"
@@ -347,7 +343,6 @@ theorem coeff_aeval_jqModC_neg_natDegree (P : Polynomial K) :
     exact absurd (Finset.self_mem_range_succ P.natDegree) hn
 
 end PoleOrder
-p2m_reactivate "P2MW.S_ModularCurve_jqNModC_prime_not_mem_adjoin_of_charZero.ModularCurve P2MW.S_ModularCurve_jqNModC_prime_not_mem_adjoin_of_charZero.ModularCurve.W1"
 
 section Forcing
 
@@ -389,7 +384,6 @@ theorem monic_of_aeval_eq (h : Polynomial.aeval (jqModC K) P = jqNModC K p) : P.
   exact h1.symm
 
 end Forcing
-p2m_reactivate "P2MW.S_ModularCurve_jqNModC_prime_not_mem_adjoin_of_charZero.ModularCurve P2MW.S_ModularCurve_jqNModC_prime_not_mem_adjoin_of_charZero.ModularCurve.W1"
 
 section Transfer
 
@@ -415,7 +409,6 @@ theorem aeval_qTwist_jqModC_eq_of_aeval_eq (hζ : IsPrimitiveRoot (ζ : K) p)
   exact h2
 
 end Transfer
-p2m_reactivate "P2MW.S_ModularCurve_jqNModC_prime_not_mem_adjoin_of_charZero.ModularCurve P2MW.S_ModularCurve_jqNModC_prime_not_mem_adjoin_of_charZero.ModularCurve.W1"
 
 section Vieta
 
@@ -481,7 +474,6 @@ theorem sum_qTwist_jqModC_eq_of_aeval_eq (hζ : IsPrimitiveRoot (ζ : K) p)
   exact eq_neg_of_add_eq_zero_left hcoeff
 
 end Vieta
-p2m_reactivate "P2MW.S_ModularCurve_jqNModC_prime_not_mem_adjoin_of_charZero.ModularCurve P2MW.S_ModularCurve_jqNModC_prime_not_mem_adjoin_of_charZero.ModularCurve.W1"
 
 section Collapse
 
@@ -512,7 +504,6 @@ theorem aeval_jqModC_ne_jqNModC_of_isPrimitiveRoot (hpK : (p : K) ≠ 0) (hζ : 
   exact mul_ne_zero hpK hw h2.symm
 
 end Collapse
-p2m_reactivate "P2MW.S_ModularCurve_jqNModC_prime_not_mem_adjoin_of_charZero.ModularCurve P2MW.S_ModularCurve_jqNModC_prime_not_mem_adjoin_of_charZero.ModularCurve.W1"
 
 section Ascent
 
@@ -554,7 +545,6 @@ theorem aeval_jqModC_ne_jqNModC (hpK : (p : K) ≠ 0) {m : ℕ} (hm : 0 < m) (hw
   exact aeval_jqModC_ne_jqNModC_of_isPrimitiveRoot hpK' hζ hm hw' (P.map σ) h'
 
 end Ascent
-p2m_reactivate "P2MW.S_ModularCurve_jqNModC_prime_not_mem_adjoin_of_charZero.ModularCurve P2MW.S_ModularCurve_jqNModC_prime_not_mem_adjoin_of_charZero.ModularCurve.W1"
 
 section FieldLevel
 
@@ -599,8 +589,6 @@ theorem jqNModC_not_mem_adjoin_of_forall_aeval_ne
 
 end FieldLevel
 end ModularCurve.W1
-p2m_reactivate "P2MW.S_ModularCurve_jqNModC_prime_not_mem_adjoin_of_charZero.ModularCurve P2MW.S_ModularCurve_jqNModC_prime_not_mem_adjoin_of_charZero.ModularCurve.W1"
-p2m_reactivate "P2MW.S_ModularCurve_jqNModC_prime_not_mem_adjoin_of_charZero.ModularCurve P2MW.S_ModularCurve_jqNModC_prime_not_mem_adjoin_of_charZero.ModularCurve.W1"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_one_apply qExpand_qExpand jq dedekindPsi ModularPolynomialData coeffMap coeffMap_coeff coeffMap_single algebraMap_laurentSeries_eq_single qTwist qTwist_coeff qTwist_single qTwist_one_apply qTwist_qTwist qTwist_qExpand EvalSymm jqModC jqNModC jqNModC_one jqModC_rat map_jqModC jqModC_eq_map_intCast coeffMap_qExpand coeff_jqModC_neg_one order_jqModC coeff_jqModC_pow_of_lt coeff_jqModC_pow_self transcendental_jqModC exists_phiIrreducible_evalSymm one_le_coeff_jq"
@@ -636,7 +624,6 @@ private theorem ModularCurve.jqNModC_prime_not_mem_adjoin_of_charZero {K : Type*
   exact Int.cast_ne_zero.mpr hz
 
 end
-p2m_reactivate "P2MW.S_ModularCurve_jqNModC_prime_not_mem_adjoin_of_charZero.ModularCurve P2MW.S_ModularCurve_jqNModC_prime_not_mem_adjoin_of_charZero.ModularCurve.W1"
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_jqNModC_prime_not_mem_adjoin_of_charZero.ModularCurve in
 

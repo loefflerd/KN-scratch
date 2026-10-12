@@ -2832,7 +2832,6 @@ theorem b3_specialisationEquivariance (p : ℕ) [Fact p.Prime] [NeZero p] (j₀ 
 
 end ModularCurve.B3
 end
-p2m_reactivate "P2MW.S_ModularCurve_B3_isElliptic_specialFibre.ModularCurve P2MW.S_ModularCurve_B3_isElliptic_specialFibre.ModularCurve.B3"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "CycSub SameOrbit"
@@ -2855,8 +2854,6 @@ private theorem specialFibre_Delta (W : WeierstrassCurve H) (hW : IntegralCoeffs
   specialFibre_Δ W hW
 
 end ModularCurve.B3
-p2m_reactivate "P2MW.S_ModularCurve_B3_isElliptic_specialFibre.ModularCurve P2MW.S_ModularCurve_B3_isElliptic_specialFibre.ModularCurve.B3"
-p2m_reactivate "P2MW.S_ModularCurve_B3_isElliptic_specialFibre.ModularCurve P2MW.S_ModularCurve_B3_isElliptic_specialFibre.ModularCurve.B3"
 
 open ModularCurve.TatePoint
 open scoped Classical

@@ -523,8 +523,6 @@ theorem natCard_place_ord_lt_zero_eq (y : FF) (hy : (y : LaurentSeries ℚ̄) = 
 end Main
 
 end ModularCurve.CuspFibreGamma1
-p2m_reactivate "P2MW.S_ModularCurve_natCard_place_ord_neg_laurentBaseChange_gamma1_eq_natCard_doubleCoset.ModularCurve P2MW.S_ModularCurve_natCard_place_ord_neg_laurentBaseChange_gamma1_eq_natCard_doubleCoset.ModularCurve.CuspFibreGamma1"
-p2m_reactivate "P2MW.S_ModularCurve_natCard_place_ord_neg_laurentBaseChange_gamma1_eq_natCard_doubleCoset.ModularCurve"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "qExpFunctionFieldC intFormRatiosC_subset jGen coeffMap coeffMap_single coeffMap_coeffMap coeffMap_congr coeffEmb laurentBaseChange coeffEmb_mem_laurentBaseChange mem_laurentBaseChange_iff coeffMap_mem_laurentBaseChange jqModC LevelN.wp LevelN.fricke LevelN.jAnalytic LevelN.ring LevelN.jGen coeffMap_jqModC LevelN.exists_monoidHom_algEquiv_fixedField_eq_adjoin LevelN.exists_place_ord_neg_forall_smul_eq exists_ringHom_laurentBaseChange_qExpFunctionFieldC_levelN natCard_doubleCoset_le_card_fibres_of_finrank_eq_index finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_gamma1_eq_index transcendental_and_finiteDimensional_adjoin_laurentBaseChange_qExpFunctionFieldC_of_coe_eq_jqModC jqModC_mem_intFormRatiosC exists_place_algebraicClosure_ord_comp_eq_of_laurentBaseChange"
@@ -579,7 +577,6 @@ theorem coe_psi (f : ↥(laurentBaseChange κ F₀)) :
     ((psi τ F₀ f : ↥(laurentBaseChange k F₀)) : LaurentSeries k) = coeffMap τ.toRingHom (f : LaurentSeries κ) := rfl
 
 end CoeffMap
-p2m_reactivate "P2MW.S_ModularCurve_natCard_place_ord_neg_laurentBaseChange_gamma1_eq_natCard_doubleCoset.ModularCurve P2MW.S_ModularCurve_natCard_place_ord_neg_laurentBaseChange_gamma1_eq_natCard_doubleCoset.ModularCurve.CuspFibreGamma1"
 
 theorem jqModC_mem_laurentBaseChange (L : Type*) [Field L] [Algebra ℚ L]
     (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ)) :
@@ -701,7 +698,6 @@ theorem natCard_place_ord_lt_zero_laurentBaseChange_eq
 
 end ModularCurve.CuspTransport
 end
-p2m_reactivate "P2MW.S_ModularCurve_natCard_place_ord_neg_laurentBaseChange_gamma1_eq_natCard_doubleCoset.ModularCurve P2MW.S_ModularCurve_natCard_place_ord_neg_laurentBaseChange_gamma1_eq_natCard_doubleCoset.ModularCurve.CuspFibreGamma1"
 
 p2m_open "ModularCurve P2MW.S_ModularCurve_natCard_place_ord_neg_laurentBaseChange_gamma1_eq_natCard_doubleCoset.ModularCurve CongruenceSubgroup AlgebraicCurve"
 open scoped MatrixGroups

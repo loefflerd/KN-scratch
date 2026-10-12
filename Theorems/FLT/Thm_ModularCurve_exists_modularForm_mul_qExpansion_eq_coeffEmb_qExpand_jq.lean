@@ -136,7 +136,6 @@ theorem qExpansion_coe_ne_zero {d : ℕ} {k : ℤ} (f : ModularForm (CongruenceS
 
 end ModularCurve.JqdRatioOfLevel
 end
-p2m_reactivate "P2MW.S_ModularCurve_exists_modularForm_mul_qExpansion_eq_coeffEmb_qExpand_jq.ModularCurve P2MW.S_ModularCurve_exists_modularForm_mul_qExpansion_eq_coeffEmb_qExpand_jq.ModularCurve.JqdRatioOfLevel"
 
 open UpperHalfPlane in
 open ModularCurve.JqdRatioOfLevel in

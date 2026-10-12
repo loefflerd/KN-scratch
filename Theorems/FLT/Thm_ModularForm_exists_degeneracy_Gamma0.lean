@@ -156,7 +156,6 @@ theorem exists_cuspForm {M N d : ℕ} [NeZero N] (hdiv : d * M ∣ N)
 
 end ModularForm.DegeneracyPort
 end
-p2m_reactivate "P2MW.S_ModularForm_exists_degeneracy_Gamma0.ModularForm P2MW.S_ModularForm_exists_degeneracy_Gamma0.ModularForm.DegeneracyPort"
 
 theorem solution {k : ℤ} {M N d : ℕ} [NeZero N] (hd : d * M ∣ N) (f : ModularForm (CongruenceSubgroup.Gamma0 M) k) : ∃ g : ModularForm (CongruenceSubgroup.Gamma0 N) k, ⇑g = fun τ ↦ f (ModularForm.heckeDiagMatrix d • τ) :=
   ModularForm.DegeneracyPort.exists_modularForm hd f

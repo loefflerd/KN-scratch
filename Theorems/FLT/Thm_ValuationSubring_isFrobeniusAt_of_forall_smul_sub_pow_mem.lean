@@ -184,7 +184,6 @@ private theorem smul_residue {τ : AlgebraicClosure ℚ ≃ₐ[ℚ] AlgebraicClo
 end
 
 end C6PortS10T3b
-p2m_reactivate "P2MW.S_ValuationSubring_isFrobeniusAt_of_forall_smul_sub_pow_mem.C6PortS10T3b"
 
 open C6PortS10T3b in
 theorem solution

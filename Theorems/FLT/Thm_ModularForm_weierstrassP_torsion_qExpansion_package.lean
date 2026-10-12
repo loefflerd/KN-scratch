@@ -1274,7 +1274,6 @@ p2m_export "WLightR2" "ModularFormClass.qExpansion_coeff_width"
 end C6_width
 
 end WLightR2
-p2m_reactivate "P2MW.S_ModularForm_weierstrassP_torsion_qExpansion_package.WLightR2"
 
 p2m_open "UpperHalfPlane~I" in
 open scoped UpperHalfPlane Manifold in

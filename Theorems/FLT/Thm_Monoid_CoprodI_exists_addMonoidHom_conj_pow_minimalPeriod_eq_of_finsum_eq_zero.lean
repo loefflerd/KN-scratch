@@ -579,7 +579,6 @@ theorem engine (H : Subgroup Gp) [H.FiniteIndex] (R : Type*) [AddCommGroup R]
     rw [h2, sub_zero]
 
 end BassSerreCusp
-p2m_reactivate "P2MW.S_Monoid_CoprodI_exists_addMonoidHom_conj_pow_minimalPeriod_eq_of_finsum_eq_zero.BassSerreCusp"
 
 theorem solution
     (t : Monoid.CoprodI (fun i : Fin 2 => Multiplicative (ZMod (i.val + 2))))

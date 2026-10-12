@@ -107,7 +107,6 @@ theorem one_le_trdeg [PerfectField K] [IsCurveOver K F] :
   Cardinal.one_le_iff_pos.mpr trdeg_pos
 
 end IsCurveOver
-p2m_reactivate "P2MW.S_AlgebraicCurve_IsCurveOver_exists_separating_transcendental.AlgebraicCurve.IsCurveOver"
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 
@@ -122,7 +121,6 @@ theorem IsCurveOver.trdeg_eq_one [PerfectField K] [IsCurveOver K F]
   le_antisymm htrdeg IsCurveOver.one_le_trdeg
 
 end AlgebraicCurve
-p2m_reactivate "P2MW.S_AlgebraicCurve_IsCurveOver_exists_separating_transcendental.AlgebraicCurve.IsCurveOver P2MW.S_AlgebraicCurve_IsCurveOver_exists_separating_transcendental.AlgebraicCurve"
 
 section
 
@@ -208,7 +206,6 @@ theorem trdeg_eq_one_of_perfectField [PerfectField K] [Algebra.EssFiniteType K F
 
 end IsCurveOver
 end AlgebraicCurve
-p2m_reactivate "P2MW.S_AlgebraicCurve_IsCurveOver_exists_separating_transcendental.AlgebraicCurve.IsCurveOver P2MW.S_AlgebraicCurve_IsCurveOver_exists_separating_transcendental.AlgebraicCurve"
 
 p2m_open "IntermediateField Algebra TensorProduct.Algebra Algebra.TensorProduct.Algebra"
 
@@ -249,7 +246,6 @@ theorem exists_separating_transcendental_s6 [PerfectField K] [Algebra.EssFiniteT
 
 end IsCurveOver
 end AlgebraicCurve
-p2m_reactivate "P2MW.S_AlgebraicCurve_IsCurveOver_exists_separating_transcendental.AlgebraicCurve.IsCurveOver P2MW.S_AlgebraicCurve_IsCurveOver_exists_separating_transcendental.AlgebraicCurve"
 
 open IntermediateField _root_.Algebra _root_.TensorProduct.Algebra _root_.Algebra.TensorProduct.Algebra in
 theorem _root_.P2MW.S_AlgebraicCurve_IsCurveOver_exists_separating_transcendental.solution {K : Type*} {F : Type*} [Field K] [Field F] [Algebra K F]

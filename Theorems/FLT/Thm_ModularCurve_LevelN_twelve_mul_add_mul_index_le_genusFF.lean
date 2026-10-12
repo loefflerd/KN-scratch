@@ -619,9 +619,6 @@ theorem main (hN : 2 ≤ N) :
 end Main
 
 end ModularCurve.LevelN.GenusBound
-p2m_reactivate "P2MW.S_ModularCurve_LevelN_twelve_mul_add_mul_index_le_genusFF.ModularCurve P2MW.S_ModularCurve_LevelN_twelve_mul_add_mul_index_le_genusFF.ModularCurve.LevelN P2MW.S_ModularCurve_LevelN_twelve_mul_add_mul_index_le_genusFF.ModularCurve.LevelN.GenusBound"
-p2m_reactivate "P2MW.S_ModularCurve_LevelN_twelve_mul_add_mul_index_le_genusFF.ModularCurve P2MW.S_ModularCurve_LevelN_twelve_mul_add_mul_index_le_genusFF.ModularCurve.LevelN"
-p2m_reactivate "P2MW.S_ModularCurve_LevelN_twelve_mul_add_mul_index_le_genusFF.ModularCurve"
 
 open _root_.ModularCurve.LevelN _root_.P2MW.S_ModularCurve_LevelN_twelve_mul_add_mul_index_le_genusFF.ModularCurve.LevelN ModularCurve.LevelN.GenusBound in
 theorem solution (N : ℕ) [NeZero N] (hN : 2 ≤ N)

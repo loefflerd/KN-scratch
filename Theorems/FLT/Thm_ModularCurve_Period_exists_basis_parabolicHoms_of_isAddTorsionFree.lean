@@ -315,7 +315,6 @@ theorem main :
   rw [coe_basisR, coe_basisR, chi_int_cast]
 
 end ParInt
-p2m_reactivate "P2MW.S_ModularCurve_Period_exists_basis_parabolicHoms_of_isAddTorsionFree.ParInt"
 
 open scoped MatrixGroups in
 theorem solution

@@ -919,9 +919,6 @@ theorem smul_cuspPlace_eq
 end Valuation
 
 end ModularCurve.LevelN.CuspPlaces
-p2m_reactivate "P2MW.S_ModularCurve_LevelN_exists_place_ord_neg_forall_smul_eq.ModularCurve P2MW.S_ModularCurve_LevelN_exists_place_ord_neg_forall_smul_eq.ModularCurve.LevelN P2MW.S_ModularCurve_LevelN_exists_place_ord_neg_forall_smul_eq.ModularCurve.LevelN.CuspPlaces"
-p2m_reactivate "P2MW.S_ModularCurve_LevelN_exists_place_ord_neg_forall_smul_eq.ModularCurve P2MW.S_ModularCurve_LevelN_exists_place_ord_neg_forall_smul_eq.ModularCurve.LevelN"
-p2m_reactivate "P2MW.S_ModularCurve_LevelN_exists_place_ord_neg_forall_smul_eq.ModularCurve"
 
 open _root_.ModularCurve.LevelN _root_.P2MW.S_ModularCurve_LevelN_exists_place_ord_neg_forall_smul_eq.ModularCurve.LevelN ModularCurve.LevelN.CuspPlaces in
 theorem solution (N : ℕ) [NeZero N]

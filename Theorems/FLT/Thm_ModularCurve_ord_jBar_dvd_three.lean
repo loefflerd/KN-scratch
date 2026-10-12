@@ -255,7 +255,6 @@ theorem hasRamBound_three_of_isRoot_at_zero
 
 end OrdJBarDvdThree
 end
-p2m_reactivate "P2MW.S_ModularCurve_ord_jBar_dvd_three.OrdJBarDvdThree"
 
 open ModularCurve AlgebraicCurve
 

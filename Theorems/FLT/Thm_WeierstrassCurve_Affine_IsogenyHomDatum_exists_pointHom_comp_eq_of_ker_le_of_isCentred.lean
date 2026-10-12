@@ -388,7 +388,6 @@ theorem psi_range_le : ψ.ι.range ≤ φ.ι.range := by
 end Main
 
 end S13CIII
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_IsogenyHomDatum_exists_pointHom_comp_eq_of_ker_le_of_isCentred.S13CIII"
 
 open S13CIII in
 theorem solution

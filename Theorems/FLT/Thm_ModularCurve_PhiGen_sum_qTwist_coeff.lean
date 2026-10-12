@@ -260,8 +260,6 @@ theorem cycUnit_pow (N : ℕ) [NeZero N] : cycUnit N ^ N = 1 :=
   Units.ext (by rw [Units.val_pow_eq_pow_val, (cycUnit_spec N).pow_eq_one, Units.val_one])
 
 end ModularCurve.W1
-p2m_reactivate "P2MW.S_ModularCurve_PhiGen_sum_qTwist_coeff.ModularCurve P2MW.S_ModularCurve_PhiGen_sum_qTwist_coeff.ModularCurve.W1"
-p2m_reactivate "P2MW.S_ModularCurve_PhiGen_sum_qTwist_coeff.ModularCurve"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_one_apply qExpand_qExpand jq coeff_jq_neg_one coeff_jq_of_lt jqN dedekindPsi evalAtJ evalAtJ_X ModularPolynomialData evalAtJGen algebraMap_comp_evalAtJGen ModularPolynomialData.toAdjoin modularFunctionFieldFull coeffEmb coeffEmb_coeff laurentBaseChange qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand heckeBetaBar coeffMap_qExpand PhiGen.splits_prime_at_slot PhiGen.splits_of_prime minpoly_jqN_eq_toAdjoin exists_phiIrreducible aeval_jqN_toAdjoin"
@@ -289,8 +287,6 @@ theorem qExpand_qTwist_TS (e : ℕ) [NeZero e] (u : Kˣ) (m : ℕ) [NeZero m] (w
   rw [qTwist_TS, qExpand_TS]
 
 end ModularCurve.W1
-p2m_reactivate "P2MW.S_ModularCurve_PhiGen_sum_qTwist_coeff.ModularCurve P2MW.S_ModularCurve_PhiGen_sum_qTwist_coeff.ModularCurve.W1"
-p2m_reactivate "P2MW.S_ModularCurve_PhiGen_sum_qTwist_coeff.ModularCurve P2MW.S_ModularCurve_PhiGen_sum_qTwist_coeff.ModularCurve.W1"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_one_apply qExpand_qExpand jq coeff_jq_neg_one coeff_jq_of_lt jqN dedekindPsi evalAtJ evalAtJ_X ModularPolynomialData evalAtJGen algebraMap_comp_evalAtJGen ModularPolynomialData.toAdjoin modularFunctionFieldFull coeffEmb coeffEmb_coeff laurentBaseChange qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand heckeBetaBar coeffMap_qExpand PhiGen.splits_prime_at_slot PhiGen.splits_of_prime minpoly_jqN_eq_toAdjoin exists_phiIrreducible aeval_jqN_toAdjoin"
@@ -388,8 +384,6 @@ theorem isRoot_prime_at_slot_iff (N : ℕ) [NeZero N] (ζ : Kˣ) (hζ : IsPrimit
     · exact Or.inr ⟨b, Multiset.mem_range.mpr hb, rfl⟩
 
 end ModularCurve.W1
-p2m_reactivate "P2MW.S_ModularCurve_PhiGen_sum_qTwist_coeff.ModularCurve P2MW.S_ModularCurve_PhiGen_sum_qTwist_coeff.ModularCurve.W1"
-p2m_reactivate "P2MW.S_ModularCurve_PhiGen_sum_qTwist_coeff.ModularCurve P2MW.S_ModularCurve_PhiGen_sum_qTwist_coeff.ModularCurve.W1"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_one_apply qExpand_qExpand jq coeff_jq_neg_one coeff_jq_of_lt jqN dedekindPsi evalAtJ evalAtJ_X ModularPolynomialData evalAtJGen algebraMap_comp_evalAtJGen ModularPolynomialData.toAdjoin modularFunctionFieldFull coeffEmb coeffEmb_coeff laurentBaseChange qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand heckeBetaBar coeffMap_qExpand PhiGen.splits_prime_at_slot PhiGen.splits_of_prime minpoly_jqN_eq_toAdjoin exists_phiIrreducible aeval_jqN_toAdjoin"
@@ -441,8 +435,6 @@ theorem phiAtSeed_iota_eval {K : Type*} [Field K] [Algebra ℚ K] (A : ℕ) [NeZ
   phiAtSeed_eval_map data _ _ ((coeffEmb K).comp (qExpand ℚ A)) (phiAtSeed_jqN_eval n data M)
 
 end ModularCurve.W1
-p2m_reactivate "P2MW.S_ModularCurve_PhiGen_sum_qTwist_coeff.ModularCurve P2MW.S_ModularCurve_PhiGen_sum_qTwist_coeff.ModularCurve.W1"
-p2m_reactivate "P2MW.S_ModularCurve_PhiGen_sum_qTwist_coeff.ModularCurve P2MW.S_ModularCurve_PhiGen_sum_qTwist_coeff.ModularCurve.W1"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_one_apply qExpand_qExpand jq coeff_jq_neg_one coeff_jq_of_lt jqN dedekindPsi evalAtJ evalAtJ_X ModularPolynomialData evalAtJGen algebraMap_comp_evalAtJGen ModularPolynomialData.toAdjoin modularFunctionFieldFull coeffEmb coeffEmb_coeff laurentBaseChange qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand heckeBetaBar coeffMap_qExpand PhiGen.splits_prime_at_slot PhiGen.splits_of_prime minpoly_jqN_eq_toAdjoin exists_phiIrreducible aeval_jqN_toAdjoin"
@@ -469,8 +461,6 @@ private theorem sum_pow_of_pow_eq_one {K : Type*} [Field K] {x : K} {ℓ : ℕ} 
     · exact absurd (sub_eq_zero.mp h) h1
 
 end ModularCurve.W1
-p2m_reactivate "P2MW.S_ModularCurve_PhiGen_sum_qTwist_coeff.ModularCurve P2MW.S_ModularCurve_PhiGen_sum_qTwist_coeff.ModularCurve.W1"
-p2m_reactivate "P2MW.S_ModularCurve_PhiGen_sum_qTwist_coeff.ModularCurve P2MW.S_ModularCurve_PhiGen_sum_qTwist_coeff.ModularCurve.W1"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_one_apply qExpand_qExpand jq coeff_jq_neg_one coeff_jq_of_lt jqN dedekindPsi evalAtJ evalAtJ_X ModularPolynomialData evalAtJGen algebraMap_comp_evalAtJGen ModularPolynomialData.toAdjoin modularFunctionFieldFull coeffEmb coeffEmb_coeff laurentBaseChange qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand heckeBetaBar coeffMap_qExpand PhiGen.splits_prime_at_slot PhiGen.splits_of_prime minpoly_jqN_eq_toAdjoin exists_phiIrreducible aeval_jqN_toAdjoin"
@@ -671,7 +661,6 @@ private theorem ModularCurve.trace_jqN_prime {K : Type*} [Field K] [Algebra ℚ 
   rw [htr, hsum]
 
 end
-p2m_reactivate "P2MW.S_ModularCurve_PhiGen_sum_qTwist_coeff.ModularCurve P2MW.S_ModularCurve_PhiGen_sum_qTwist_coeff.ModularCurve.W1"
 
 p2m_open "ModularCurve~coeffEmb_qExpand" in open _root_.P2MW.S_ModularCurve_PhiGen_sum_qTwist_coeff.ModularCurve _root_.ModularCurve.PhiGen _root_.P2MW.S_ModularCurve_PhiGen_sum_qTwist_coeff.ModularCurve.PhiGen in
 

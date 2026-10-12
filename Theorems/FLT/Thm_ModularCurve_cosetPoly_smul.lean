@@ -291,7 +291,6 @@ theorem cosetPoly_smul' (ℓ : ℕ) (hℓ : ℓ.Prime) (F : ℍ → ℂ)
 end CosetPoly
 end ModularCurve
 end
-p2m_reactivate "P2MW.S_ModularCurve_cosetPoly_smul.ModularCurve.CosetPoly P2MW.S_ModularCurve_cosetPoly_smul.ModularCurve"
 
 theorem solution (ℓ : ℕ) (hℓ : ℓ.Prime) (F : UpperHalfPlane → ℂ) (hF : ∀ (γ : Matrix.SpecialLinearGroup (Fin 2) ℤ) (τ : UpperHalfPlane), F (γ • τ) = F τ) (γ : Matrix.SpecialLinearGroup (Fin 2) ℤ) (τ : UpperHalfPlane) : (Polynomial.X - Polynomial.C (F (ModularForm.heckeDiagMatrix ℓ • γ • τ))) * ∏ b : Fin ℓ, (Polynomial.X - Polynomial.C (F (ModularForm.heckeMatrix ℓ (b : ℕ) • γ • τ))) = (Polynomial.X - Polynomial.C (F (ModularForm.heckeDiagMatrix ℓ • τ))) * ∏ b : Fin ℓ, (Polynomial.X - Polynomial.C (F (ModularForm.heckeMatrix ℓ (b : ℕ) • τ))) :=
   ModularCurve.CosetPoly.cosetPoly_smul' ℓ hℓ F hF γ τ

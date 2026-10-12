@@ -218,7 +218,6 @@ end IntCastImage
 end CharL
 end ModularCurve
 end
-p2m_reactivate "P2MW.S_ModularCurve_map_intCast_pow_char_eq_qExpand.ModularCurve.CharL P2MW.S_ModularCurve_map_intCast_pow_char_eq_qExpand.ModularCurve"
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_map_intCast_pow_char_eq_qExpand.ModularCurve in
 theorem solution {K : Type*} [CommRing K] (ℓ : ℕ) [Fact ℓ.Prime] [CharP K ℓ]

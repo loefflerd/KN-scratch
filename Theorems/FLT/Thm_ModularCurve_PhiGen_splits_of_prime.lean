@@ -261,8 +261,6 @@ theorem cycUnit_pow (N : ℕ) [NeZero N] : cycUnit N ^ N = 1 :=
   Units.ext (by rw [Units.val_pow_eq_pow_val, (cycUnit_spec N).pow_eq_one, Units.val_one])
 
 end ModularCurve.W1
-p2m_reactivate "P2MW.S_ModularCurve_PhiGen_splits_of_prime.ModularCurve P2MW.S_ModularCurve_PhiGen_splits_of_prime.ModularCurve.W1"
-p2m_reactivate "P2MW.S_ModularCurve_PhiGen_splits_of_prime.ModularCurve"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_one_apply qExpand_qExpand jq coeff_jq_neg_one coeff_jq_of_lt jqN dedekindPsi evalAtJ evalAtJ_X ModularPolynomialData coeffMap coeffMap_coeff coeffMap_coeffMap coeffMap_congr coeffEmb coeffEmb_coeff qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand coeffMap_qExpand ModularPolynomialData.eq_of_prime"
@@ -314,8 +312,6 @@ theorem phiAtSeed_iota_eval {K : Type*} [Field K] [Algebra ℚ K] (A : ℕ) [NeZ
   phiAtSeed_eval_map data _ _ ((coeffEmb K).comp (qExpand ℚ A)) (phiAtSeed_jqN_eval n data M)
 
 end ModularCurve.W1
-p2m_reactivate "P2MW.S_ModularCurve_PhiGen_splits_of_prime.ModularCurve P2MW.S_ModularCurve_PhiGen_splits_of_prime.ModularCurve.W1"
-p2m_reactivate "P2MW.S_ModularCurve_PhiGen_splits_of_prime.ModularCurve P2MW.S_ModularCurve_PhiGen_splits_of_prime.ModularCurve.W1"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_one_apply qExpand_qExpand jq coeff_jq_neg_one coeff_jq_of_lt jqN dedekindPsi evalAtJ evalAtJ_X ModularPolynomialData coeffMap coeffMap_coeff coeffMap_coeffMap coeffMap_congr coeffEmb coeffEmb_coeff qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand coeffMap_qExpand ModularPolynomialData.eq_of_prime"
@@ -358,7 +354,6 @@ theorem map_coeffMap_phiProd (σ : K₀ →ₐ[ℚ] K) (p : ℕ) [Fact p.Prime] 
   rw [Polynomial.map_sub, Polynomial.map_X, Polynomial.map_C, coeffMap_conj]
 
 end transport
-p2m_reactivate "P2MW.S_ModularCurve_PhiGen_splits_of_prime.ModularCurve P2MW.S_ModularCurve_PhiGen_splits_of_prime.ModularCurve.W1"
 
 theorem splits_of_prime_cyclotomicField (p : ℕ) [hp : Fact p.Prime] (data : ModularPolynomialData p) :
     data.Φ.map (((coeffEmb (CyclotomicField p ℚ)).comp (qExpand ℚ p)).comp evalAtJ) =
@@ -377,8 +372,6 @@ theorem splits_of_prime_cyclotomicField (p : ℕ) [hp : Fact p.Prime] (data : Mo
   exact splits_of_coeff_evalAtJ_eq (cycUnit p) hc data₀ hdata₀
 
 end ModularCurve.W1
-p2m_reactivate "P2MW.S_ModularCurve_PhiGen_splits_of_prime.ModularCurve P2MW.S_ModularCurve_PhiGen_splits_of_prime.ModularCurve.W1"
-p2m_reactivate "P2MW.S_ModularCurve_PhiGen_splits_of_prime.ModularCurve P2MW.S_ModularCurve_PhiGen_splits_of_prime.ModularCurve.W1"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_one_apply qExpand_qExpand jq coeff_jq_neg_one coeff_jq_of_lt jqN dedekindPsi evalAtJ evalAtJ_X ModularPolynomialData coeffMap coeffMap_coeff coeffMap_coeffMap coeffMap_congr coeffEmb coeffEmb_coeff qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand coeffMap_qExpand ModularPolynomialData.eq_of_prime"

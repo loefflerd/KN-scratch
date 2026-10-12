@@ -345,8 +345,6 @@ theorem den_le_natDegree [IsAlgClosed K] [CharZero K]
   exact hle.trans ((Multiset.toFinset_card_le _).trans (Polynomial.card_roots' p))
 
 end HahnSeries.PuiseuxTwist
-p2m_reactivate "P2MW.S_HahnSeries_hasRamBound_natDegree_factorial_of_isRoot.HahnSeries P2MW.S_HahnSeries_hasRamBound_natDegree_factorial_of_isRoot.HahnSeries.PuiseuxTwist"
-p2m_reactivate "P2MW.S_HahnSeries_hasRamBound_natDegree_factorial_of_isRoot.HahnSeries"
 
 open HahnSeries.PuiseuxTwist in
 theorem solution

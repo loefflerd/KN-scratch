@@ -576,7 +576,6 @@ theorem qExpansion_coeffForm_card_ne_zero (hg : g ≠ 0) :
 end Linear
 
 end JOneESNorm
-p2m_reactivate "P2MW.S_ModularCurve_JOneES_exists_transcendental_finiteDimensional_qExpFunctionFieldC.JOneESNorm"
 
 namespace JOneESRat
 
@@ -791,7 +790,6 @@ theorem mem_qExpFunctionFieldC_iff {y : LaurentSeries ℚ} :
   exact ⟨fun h => hle h, fun h => intFormRatiosC_subset ℚ Γ h⟩
 
 end Ratio
-p2m_reactivate "P2MW.S_ModularCurve_JOneES_exists_transcendental_finiteDimensional_qExpFunctionFieldC.JOneESNorm"
 
 section Relation
 
@@ -957,7 +955,6 @@ theorem exists_rat_relation {k : ℤ} (f g : ModularForm (Γ : Subgroup (GL (Fin
   exact ⟨m, d, ⟨ib₁, hib₁⟩, hd⟩
 
 end Relation
-p2m_reactivate "P2MW.S_ModularCurve_JOneES_exists_transcendental_finiteDimensional_qExpFunctionFieldC.JOneESNorm"
 
 theorem exists_transcendental_finiteDimensional (hT : ModularGroup.T ∈ Γ) :
     ∃ x : qExpFunctionFieldC ℚ Γ, Transcendental ℚ x ∧
@@ -1046,7 +1043,6 @@ theorem exists_transcendental_finiteDimensional (hT : ModularGroup.T ∈ Γ) :
     ring
 
 end JOneESRat
-p2m_reactivate "P2MW.S_ModularCurve_JOneES_exists_transcendental_finiteDimensional_qExpFunctionFieldC.JOneESNorm"
 
 open scoped MatrixGroups in
 

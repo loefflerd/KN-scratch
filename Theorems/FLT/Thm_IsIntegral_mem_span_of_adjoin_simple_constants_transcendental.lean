@@ -605,7 +605,6 @@ theorem transcendental_KFldT_of_closure (htS : t ∈ S)
   exact hPe
 
 end WLightR8a
-p2m_reactivate "P2MW.S_IsIntegral_mem_span_of_adjoin_simple_constants_transcendental.WLightR8a"
 
 theorem solution {K : Type*} [Field K] [Algebra ℂ K]
     (F : IntermediateField ℚ ℂ) (t : K) (ht : Transcendental ℂ t)

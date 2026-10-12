@@ -542,7 +542,6 @@ private theorem nonempty_modularPolynomialData_of_squarefree (N : ℕ) [NeZero N
 
 end ModularCurve
 end
-p2m_reactivate "P2MW.S_ModularCurve_nonempty_modularPolynomialData_of_squarefree.ModularCurve"
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_nonempty_modularPolynomialData_of_squarefree.ModularCurve ModularCurve.PhiGen in
 

@@ -1126,7 +1126,6 @@ end Main
 
 end ModularCurve.SpecialFibresLB
 end
-p2m_reactivate "P2MW.S_ModularCurve_natCard_doubleCoset_le_card_fibres_of_finrank_eq_index.ModularCurve P2MW.S_ModularCurve_natCard_doubleCoset_le_card_fibres_of_finrank_eq_index.ModularCurve.SpecialFibresLB"
 
 open AlgebraicCurve _root_.ModularCurve _root_.P2MW.S_ModularCurve_natCard_doubleCoset_le_card_fibres_of_finrank_eq_index.ModularCurve ModularCurve.SpecialFibresLB in
 theorem solution

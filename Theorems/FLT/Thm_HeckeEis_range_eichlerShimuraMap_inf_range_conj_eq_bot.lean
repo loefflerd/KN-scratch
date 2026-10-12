@@ -1361,8 +1361,6 @@ theorem f_eq_zero : f = 0 := by
 end Assembly
 
 end HeckeEis.ESDisjoint
-p2m_reactivate "P2MW.S_HeckeEis_range_eichlerShimuraMap_inf_range_conj_eq_bot.HeckeEis P2MW.S_HeckeEis_range_eichlerShimuraMap_inf_range_conj_eq_bot.HeckeEis.ESDisjoint"
-p2m_reactivate "P2MW.S_HeckeEis_range_eichlerShimuraMap_inf_range_conj_eq_bot.HeckeEis"
 
 theorem solution (N : ℕ) [NeZero N] (n : ℕ)
     (ES : CuspForm (CongruenceSubgroup.Gamma0 N) ((n : ℤ) + 2) →ₗ[ℂ] HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ n).comp (CongruenceSubgroup.Gamma0 N).subtype))

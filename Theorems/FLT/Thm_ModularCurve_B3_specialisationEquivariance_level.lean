@@ -2416,7 +2416,6 @@ theorem specialisationEquivariance_levelN (N : ℕ) [NeZero N] (j₀ : Qbar) :
 
 end ModularCurve.B3
 end
-p2m_reactivate "P2MW.S_ModularCurve_B3_specialisationEquivariance_level.ModularCurve P2MW.S_ModularCurve_B3_specialisationEquivariance_level.ModularCurve.B3"
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_B3_specialisationEquivariance_level.ModularCurve ModularCurve.TatePoint _root_.ModularCurve.B3 _root_.P2MW.S_ModularCurve_B3_specialisationEquivariance_level.ModularCurve.B3 in
 

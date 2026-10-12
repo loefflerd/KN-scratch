@@ -337,7 +337,6 @@ theorem hasDerivAt_eval_iterate_pderiv {n : ℕ} {g : ℍ → ℂ} {G : ℍ → 
 
 end HeckeEis.BolAux
 end
-p2m_reactivate "P2MW.S_HeckeEis_IsEichlerIntegral_hasDerivAt_eval_iterate_pderiv.HeckeEis P2MW.S_HeckeEis_IsEichlerIntegral_hasDerivAt_eval_iterate_pderiv.HeckeEis.BolAux"
 
 open scoped MatrixGroups in
 

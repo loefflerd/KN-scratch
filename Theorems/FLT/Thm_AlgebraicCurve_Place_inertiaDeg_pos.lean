@@ -238,7 +238,6 @@ end ResidueDictionary
 end Place
 end AlgebraicCurve
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_Place_inertiaDeg_pos.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_Place_inertiaDeg_pos.AlgebraicCurve"
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_Place_inertiaDeg_pos.AlgebraicCurve"
 

@@ -186,7 +186,6 @@ end LatticeDependence
 
 end PeriodPair
 end
-p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair"
 
 
 noncomputable section
@@ -218,7 +217,6 @@ theorem kw_ofTau_latticeEquivProd_symm_apply (τ : ℍ) (p : ℤ × ℤ) :
 
 end PeriodPair
 end
-p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair"
 
 
 noncomputable section
@@ -256,7 +254,6 @@ theorem kw_span_neg_fst (a b : ℂ) :
 
 end PeriodPair
 end
-p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair"
 
 section
 
@@ -296,7 +293,6 @@ theorem dvd_of_mem_natGen {K : AddSubgroup ℤ} {y : ℤ} (hy : y ∈ K) :
   exact hy
 
 end NatGen
-p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair"
 
 section LatticeOf
 
@@ -318,7 +314,6 @@ theorem mem_latticeOf_iff {a d : ℕ} {b : ℤ} {z : ℤ × ℤ} :
       simp only [Prod.smul_mk, smul_eq_mul, Prod.mk_add_mk, mul_zero, add_zero]⟩
 
 end LatticeOf
-p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair"
 
 section ProductIndex
 
@@ -345,9 +340,7 @@ theorem index_eq_comap_inr_mul_map_fst (H : AddSubgroup (A × B)) :
   exact h2.symm
 
 end ProductIndex
-p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair"
 
-p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair"
 
 section StructureTheorem
 
@@ -424,7 +417,6 @@ theorem latticeOf_canonical_eq : latticeOf (aOf H) (dOf H) (bOf H) = H := by
 end StructureTheorem
 end QuaternionAlgebra
 end
-p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair"
 
 
 noncomputable section
@@ -474,7 +466,6 @@ theorem kw_exists_scale_ofTau_lattice_eq (L : PeriodPair) :
 
 end ModularCurve
 end
-p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair"
 
 
 noncomputable section
@@ -555,7 +546,6 @@ theorem kw_hnfPoint_scale_lattice (τ : ℍ) (a : ℕ) (b : ℤ) (d : ℕ)
 
 end ModularCurve
 end
-p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.ModularCurve"
 
 section
 
@@ -650,7 +640,6 @@ def KwSublatticeQuotientZZTransport : Prop :=
 end ModularCurve
 end
 end
-p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.ModularCurve"
 
 section
 
@@ -727,7 +716,6 @@ theorem kw_surgehgf4_qtzz_psi_ker
     exact hl'
 
 end Psi
-p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.ModularCurve"
 
 theorem kw_surgehgf4_qtzz_proved : KwSublatticeQuotientZZTransport := by
   intro L L' hsub α τ hlat hcyc
@@ -742,7 +730,6 @@ theorem kw_surgehgf4_qtzz_proved : KwSublatticeQuotientZZTransport := by
 end ModularCurve
 end
 end
-p2m_reactivate "P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.ModularCurve"
 
 open _root_.ModularCurve _root_.P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.ModularCurve _root_.QuaternionAlgebra _root_.P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.QuaternionAlgebra _root_.PeriodPair _root_.P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.PeriodPair UpperHalfPlane in
 theorem solution

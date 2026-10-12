@@ -1249,7 +1249,6 @@ theorem exists_frac {F : ℍ → ℂ} (hF : F ∈ D.S) :
   exact this.symm
 
 end LevelGens
-p2m_reactivate "P2MW.S_WLight_exists_levelFraction_of_stable_family.WLight.LevelGens"
 
 theorem exists_levelRing_frac {N : ℕ} [NeZero N] {S : Set (ℍ → ℂ)}
     (hpb : ∀ G ∈ S, PoleBounded G) (hst : ∀ (γ : SL(2, ℤ)), ∀ G ∈ S, γ • G ∈ S)
@@ -1265,7 +1264,6 @@ theorem exists_levelRing_frac {N : ℕ} [NeZero N] {S : Set (ℍ → ℂ)}
   exact D.exists_frac (Or.inr hF)
 
 end C0_membership
-p2m_reactivate "P2MW.S_WLight_exists_levelFraction_of_stable_family.WLight.LevelGens"
 
 section R5bBridge
 
@@ -1341,7 +1339,6 @@ theorem exists_levelFraction_of_stable_family_core
 
 end R5bBridge
 end WLight
-p2m_reactivate "P2MW.S_WLight_exists_levelFraction_of_stable_family.WLight.LevelGens P2MW.S_WLight_exists_levelFraction_of_stable_family.WLight"
 
 open UpperHalfPlane in
 open scoped Manifold MatrixGroups ModularForm in

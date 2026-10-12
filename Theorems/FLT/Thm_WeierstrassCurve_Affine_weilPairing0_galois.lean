@@ -237,8 +237,6 @@ theorem gal_transEquiv [IsAlgClosed K] [W.IsElliptic] (S : (W⁄K).Point) (f : (
 end GalA
 
 end WeierstrassCurve.Affine
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_weilPairing0_galois.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_weilPairing0_galois.WeierstrassCurve.Affine"
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_weilPairing0_galois.WeierstrassCurve"
 
 namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine map_map map mk map_id Affine.Point baseChange"

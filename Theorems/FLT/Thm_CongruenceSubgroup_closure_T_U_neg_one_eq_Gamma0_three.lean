@@ -211,7 +211,6 @@ theorem closure_schreierGens : Subgroup.closure schreierGens = Gamma0 3 := by
     · exact ⟨l, Or.inr rfl⟩
 
 end Gamma0Three
-p2m_reactivate "P2MW.S_CongruenceSubgroup_closure_T_U_neg_one_eq_Gamma0_three.A2Gamma0Three.Gamma0Three"
 
 def U₃ : SL(2, ℤ) := ⟨!![1, 0; -3, 1], by simp [Matrix.det_fin_two_of]⟩
 
@@ -278,7 +277,6 @@ lemma schreierGens_subset_closure_gens :
       · rw [schreierGen_two_T]; exact hU
 
 end Gamma0Three
-p2m_reactivate "P2MW.S_CongruenceSubgroup_closure_T_U_neg_one_eq_Gamma0_three.A2Gamma0Three.Gamma0Three"
 
 theorem closure_T_U_neg_one_eq : Subgroup.closure gens = Gamma0 3 := by
   refine le_antisymm ((Subgroup.closure_le _).mpr gens_subset_gamma0_three) ?_
@@ -289,7 +287,6 @@ theorem mem_closure_gens {γ : SL(2, ℤ)} (hγ : γ ∈ Gamma0 3) : γ ∈ Subg
   closure_T_U_neg_one_eq ▸ hγ
 
 end A2Gamma0Three
-p2m_reactivate "P2MW.S_CongruenceSubgroup_closure_T_U_neg_one_eq_Gamma0_three.A2Gamma0Three.Gamma0Three P2MW.S_CongruenceSubgroup_closure_T_U_neg_one_eq_Gamma0_three.A2Gamma0Three"
 
 open scoped MatrixGroups in
 theorem solution (U : SL(2, ℤ)) (hU : (U : Matrix (Fin 2) (Fin 2) ℤ) = !![1, 0; -3, 1]) :

@@ -71,7 +71,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_AlgebraicCurve_tateAgreement
 
-
 section
 namespace IsLocalRing
 p2m_export "IsLocalRing" "ResidueField maximalIdeal residue_eq_zero_iff maximalIdeal.isMaximal residue_surjective of_injective residue"
@@ -189,8 +188,6 @@ end
 
 end
 
-
-
 noncomputable section
 
 p2m_open "IsDedekindDomain P2MW.S_AlgebraicCurve_tateAgreement.IsDedekindDomain WithZero P2MW.S_AlgebraicCurve_tateAgreement.WithZero IsLocalRing P2MW.S_AlgebraicCurve_tateAgreement.IsLocalRing"
@@ -233,8 +230,6 @@ end AlgebraicCurve
 
 end
 
-
-
 noncomputable section
 
 p2m_open "IsDedekindDomain P2MW.S_AlgebraicCurve_tateAgreement.IsDedekindDomain WithZero P2MW.S_AlgebraicCurve_tateAgreement.WithZero IsLocalRing P2MW.S_AlgebraicCurve_tateAgreement.IsLocalRing"
@@ -261,7 +256,6 @@ end Place
 end AlgebraicCurve
 
 end
-
 
 section
 
@@ -385,10 +379,8 @@ end Henselian
 
 end MazurTorsion
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion"
 
 section
-
 
 noncomputable section
 
@@ -400,9 +392,9 @@ namespace Place
 p2m_export "AlgebraicCurve.Place" "ext ResidueField FiniteResidue heightOneSpectrum heightOneSpectrum_asIdeal adicValuation adicValuation_ne_zero ord ord_zero ord_mul ord_unit_smul_zpow exists_unit_mul_zpow FiniteResidue.finite algebraMap_mem' toValuationSubring mk DCoordGenerates uniformizer ord_uniformizer uniformizer_ne_zero localResidue localResidue_eq_zero_of_ord_nonneg restrict adicCompletion adicCompletionIntegers uniformizerSubring coe_uniformizerSubring uniformizerSubring_mem_maximalIdeal uniformizer_mem poleSubmodule mem_poleSubmodule mem_poleSubmodule_iff_ord"
 p2m_open "AlgebraicCurve.Place AlgebraicCurve"
 
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion"
-
 section Henselian
+
+open P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (V : Place K F)
 
@@ -415,7 +407,6 @@ end Place
 end AlgebraicCurve
 end
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place"
 
 section
 
@@ -432,7 +423,6 @@ end Lg37
 end ModularCurve
 end
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place"
 
 section
 
@@ -480,7 +470,6 @@ end Calculus
 end Mp72a103T2
 end
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place"
 
 section
 
@@ -551,7 +540,6 @@ end LocalResidueCompletion
 end AlgebraicCurve
 end
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place"
 
 section
 
@@ -607,7 +595,6 @@ end KwF4gRRTate
 end ModularCurve
 end
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place"
 
 section
 
@@ -689,10 +676,8 @@ end KwF4gRRTate
 end ModularCurve
 end
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place"
 
 section
-
 
 p2m_open_scoped "WithZero P2MW.S_AlgebraicCurve_tateAgreement.WithZero Multiplicative P2MW.S_AlgebraicCurve_tateAgreement.Multiplicative Topology P2MW.S_AlgebraicCurve_tateAgreement.Topology"
 p2m_open "Filter P2MW.S_AlgebraicCurve_tateAgreement.Filter"
@@ -729,7 +714,6 @@ end adicCompletion
 end HeightOneSpectrum
 end IsDedekindDomain
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place"
 
 section
 
@@ -941,7 +925,6 @@ end KwF4R1V410a
 end ModularCurve
 end
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a"
 
 section
 
@@ -1060,7 +1043,6 @@ end KwF4gRRTate
 end ModularCurve
 end
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a"
 
 section
 
@@ -1108,7 +1090,6 @@ end KwF4gRRTate
 end ModularCurve
 end
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a"
 
 section
 
@@ -1154,7 +1135,6 @@ end KwF4gRRTate
 end ModularCurve
 end
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a"
 
 section
 
@@ -1206,7 +1186,6 @@ theorem delta_range_subset (h : SameRangeIdemProjectors pA pA')
   rw [h.range_eq]; exact LinearMap.mem_range_self pA' x
 
 end DeltaLemmas
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a"
 
 section Mint
 
@@ -1224,7 +1203,6 @@ def KwF4gRRTateProjectorIndep : Prop :=
       = tateCommTrace pA' (lmulK u fh) (lmulK u gh)
 
 end Mint
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a"
 
 section DiffComputation
 
@@ -1283,7 +1261,6 @@ end KwF4gRRTate
 end ModularCurve
 end
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a"
 
 section
 
@@ -1325,7 +1302,6 @@ theorem finrankTrace_eq_trace_on_superspace
   rw [← hpi, ← hip, LinearMap.trace_comp_comm']
 
 end TraceOnSuperspace
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a"
 
 section Additivity
 
@@ -1362,7 +1338,6 @@ end KwF4gRRTate
 end ModularCurve
 end
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a"
 
 section
 
@@ -1411,7 +1386,6 @@ theorem range_mulLeft_eq_restrictScalars_span (a : u.adicCompletionIntegers) :
   simp only [LinearMap.mem_range, LinearMap.mulLeft_apply, Submodule.restrictScalars_mem,
     Ideal.mem_span_singleton]
   exact ⟨fun ⟨x, hx⟩ => ⟨x, hx.symm⟩, fun ⟨x, hx⟩ => ⟨x, hx.symm⟩⟩
-
 
 theorem finiteDimensional_restrictScalarsQuot_pow [u.FiniteResidue]
     (hCot : KwF4gRRTateDVRCotangentKFinite K L)
@@ -1495,7 +1469,6 @@ end KwF4gRRTate
 end ModularCurve
 end
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a"
 
 section
 
@@ -1565,7 +1538,6 @@ end KwF4gRRTate
 end ModularCurve
 end
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 section
 
@@ -1601,7 +1573,6 @@ theorem deltaQuotFactor_apply (h : SameRangeIdemProjectors pA pA') (x : V) :
     (deltaQuotFactor h (Submodule.Quotient.mk x) : V) = (pA - pA') x := rfl
 
 end DeltaQuotFactor
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 section TermRangeFinite
 
@@ -1614,7 +1585,6 @@ def KwF4gRRTatePoleWindowImageFinite : Prop :=
       (Submodule.map (lmulK u fh) (adicIntegersKSubmod u)))
 
 end TermRangeFinite
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 section DiffTraceZero
 
@@ -1631,7 +1601,6 @@ end KwF4gRRTate
 end ModularCurve
 end
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 section
 
@@ -1659,7 +1628,6 @@ theorem kwF4gRRTate_poleWindowFinite : KwF4gRRTatePoleWindowFinite K L :=
       kwF4gRRTate_DVRCotangentKFinite)
 
 end Composite
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 section Subset
 
@@ -1677,7 +1645,6 @@ theorem lmul_adicIntegers_subset_poleWindow (fh : u.adicCompletion)
   exact mul_mem hfhM (show a ∈ u.adicCompletionIntegers from ha)
 
 end Subset
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 section Discharge
 
@@ -1712,7 +1679,6 @@ end KwF4gRRTate
 end ModularCurve
 end
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 section
 
@@ -1772,7 +1738,6 @@ theorem finiteDimensional_ker_pA'_inf_poleWindow
   exact Subtype.ext hx0
 
 end KerInf
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 section Discharge
 
@@ -1849,7 +1814,6 @@ end KwF4gRRTate
 end ModularCurve
 end
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 section
 
@@ -1906,7 +1870,6 @@ theorem finrankTrace_sub (φ ψ : V →ₗ[K] V)
     finrankTrace_eq_trace_on_superspace (φ - ψ) W' (range_sub_le φ ψ) hφψW]
 
 end Additivity
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 section ConjInvariance
 
@@ -1944,7 +1907,6 @@ theorem finrankTrace_conj (e : M ≃ₗ[K] N) (φ : M →ₗ[K] M)
   exact (finrankTrace_congr hgf.symm).trans (hcyc.trans (finrankTrace_congr hfg))
 
 end ConjInvariance
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 section TermMaps
 
@@ -1997,7 +1959,6 @@ theorem finiteDimensional_range_alphaMap (c : u.adicCompletion) :
     (LinearMap.range (alphaMap u c))).symm.finiteDimensional
 
 end TermMaps
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 section Cyclicity
 
@@ -2055,7 +2016,6 @@ theorem finrankTrace_term_eq (h : SameRangeIdemProjectors (tateProj u) pA')
   exact finrankTrace_congr hSeq
 
 end Cyclicity
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 section Headline
 
@@ -2120,7 +2080,6 @@ end KwF4gRRTate
 end ModularCurve
 end
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 section
 
@@ -2139,12 +2098,6 @@ namespace KwF4gRRTate
 p2m_export "ModularCurve.KwF4gRRTate" "finrankTrace tateComm tateCommRestrict tateCommRestrict_apply tateCommTrace tateComm_eq_of_commute adicIntegersKSubmod tateProj lmulK tateRes KwF4gRRTateCommFinite KwF4gRRTateAgreement"
 p2m_open "ModularCurve.KwF4gRRTate ModularCurve"
 
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
-
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
-
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
-
 section CohenMint
 
 variable (K L : Type*) [Field K] [Field L] [Algebra K L]
@@ -2162,7 +2115,6 @@ def KwF4gRRTateCohenTateAgreement : Prop :=
       = Algebra.trace K u.ResidueField (kwHgfV352_localResidueCompletion u fh)
 
 end CohenMint
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 section Reprice
 
@@ -2194,7 +2146,6 @@ end KwF4gRRTate
 end ModularCurve
 end
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 section
 
@@ -2241,7 +2192,6 @@ theorem sameRangeIdemProjectors_of_kernelData (D : TateCohenKernelData u) :
   range_eq := D.range_pC
 
 end CohenKernelData
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 section TraceComputation
 
@@ -2300,7 +2250,6 @@ theorem tateCommTrace_of_kernelData (D : TateCohenKernelData u) (fh : u.adicComp
     _ = Algebra.trace K u.ResidueField (kwHgfV352_localResidueCompletion u fh) := rfl
 
 end TraceComputation
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 section Mint
 
@@ -2311,7 +2260,6 @@ def KwF4gRRTateCohenKernelDataExists : Prop :=
   ∀ (u : Place K L) [u.FiniteResidue], Nonempty (TateCohenKernelData u)
 
 end Mint
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 section Headline
 
@@ -2339,7 +2287,6 @@ end KwF4gRRTate
 end ModularCurve
 end
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 section
 
@@ -2388,7 +2335,6 @@ end KwF4R1V394a
 end ModularCurve
 end
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 section
 
@@ -2445,7 +2391,6 @@ theorem cohenSectionHat_injective (u : Place K L) (S : Lg37CompletionSection u) 
   (cohenSectionHat u S).toRingHom.injective
 
 end CohenSectionHat
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 section CohenProjC
 
@@ -2496,7 +2441,6 @@ theorem sub_cohenProjC_mem_B (B : Submodule K u.adicCompletion)
   exact hb
 
 end CohenProjC
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 section SingleTerm
 
@@ -2530,7 +2474,6 @@ theorem cohenTateCommRestrict_single_term (fh : u.adicCompletion)
   rw [cohenProjC_of_mem u B hcompl (mul_mem hπ haInt), sub_self, mul_zero, _root_.map_zero, sub_zero]
 
 end SingleTerm
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 section CohenLaurentSpec
 
@@ -2566,7 +2509,6 @@ theorem cohenProjC_uniformizer_mul_of_mem_B {x : u.adicCompletion} (hx : x ∈ D
     cohenProjC_of_mem_B u D.B D.hcompl (D.shift_sub_mem ⟨x, hx⟩), add_zero]
 
 end CohenLaurentSpec
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 section Construct
 
@@ -2616,7 +2558,6 @@ def tateCohenKernelData_of_cohenLaurentSpec (D : KwTateRR3CohenLaurentSpec u) :
     exact D.ε_principalPart_mul_sectionHat fh c
 
 end Construct
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 section Mint
 
@@ -2627,7 +2568,6 @@ def KwTateRR3CohenLaurentSpecExists : Prop :=
   ∀ (u : Place K L) [u.FiniteResidue], Nonempty (KwTateRR3CohenLaurentSpec u)
 
 end Mint
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 section Headline
 
@@ -2644,10 +2584,8 @@ end KwTateRR3
 end ModularCurve
 end
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 section
-
 
 p2m_open "Polynomial P2MW.S_AlgebraicCurve_tateAgreement.Polynomial IsLocalRing P2MW.S_AlgebraicCurve_tateAgreement.IsLocalRing AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve KaehlerDifferential P2MW.S_AlgebraicCurve_tateAgreement.KaehlerDifferential"
 p2m_open "ModularCurve.Lg37 P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.Lg37 ModularCurve.KwNo6Pin P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwNo6Pin ModularCurve.KwNo6Section P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwNo6Section"
@@ -2791,7 +2729,6 @@ end KwNo6HrouteR
 end ModularCurve
 end
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 section
 
@@ -2810,7 +2747,6 @@ p2m_open "ModularCurve.Lg37 P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.Lg3
 p2m_open "ModularCurve.KwNo6Section P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwNo6Section"
 p2m_open "IsLocalRing P2MW.S_AlgebraicCurve_tateAgreement.IsLocalRing Module.IsLocalRing"
 p2m_open_scoped "Polynomial P2MW.S_AlgebraicCurve_tateAgreement.Polynomial AlgebraicGeometry.Polynomial"
-
 
 noncomputable section
 
@@ -2886,7 +2822,6 @@ end KwOdaDHDR
 end ModularCurve
 end
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 section
 
@@ -2905,7 +2840,6 @@ p2m_open "ModularCurve.Lg37 P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.Lg3
 p2m_open "ModularCurve.KwNo6Section P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwNo6Section"
 p2m_open "IsLocalRing P2MW.S_AlgebraicCurve_tateAgreement.IsLocalRing Module.IsLocalRing"
 p2m_open_scoped "Polynomial P2MW.S_AlgebraicCurve_tateAgreement.Polynomial AlgebraicGeometry.Polynomial"
-
 
 noncomputable section
 
@@ -3037,7 +2971,6 @@ end KwOdaDHDR
 end ModularCurve
 end
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 section
 
@@ -3092,7 +3025,6 @@ theorem approximant_evalₐ_sub_lift_eq_zero (u : Place K L) (S : Lg37Completion
     lg37_residueHat_algebraMap, ← ha]
 
 end ApproximantHev
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 section V410aBridge
 
@@ -3150,7 +3082,6 @@ theorem v410a_evalDepth_mul_mem_integers (n : ℕ) (z : lg37_completion u)
     _ = 1 := by rw [_root_.neg_add_cancel, WithZero.exp_zero]
 
 end V410aBridge
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 section EpsSpec
 
@@ -3247,7 +3178,6 @@ theorem localResidueCompletion_mul_cohenSectionHat
     localResidue_eq_resStar u S ((ℓ : L) * f), hV278, hfhLR, mul_comm]
 
 end EpsSpec
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 section ComplMint
 
@@ -3268,7 +3198,6 @@ def KwTateRR3CohenLaurentComplExists : Prop :=
   ∀ (u : Place K L) [u.FiniteResidue], Nonempty (KwTateRR3CohenLaurentCompl u)
 
 end ComplMint
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 section Construct
 
@@ -3300,7 +3229,6 @@ def cohenLaurentSpec_of_compl (C : KwTateRR3CohenLaurentCompl u) :
       sub_zero, localResidueCompletion_mul_cohenSectionHat u C.S fh c]
 
 end Construct
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 section Headline
 
@@ -3323,7 +3251,6 @@ end KwTateRR3
 end ModularCurve
 end
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 section
 
@@ -3363,7 +3290,6 @@ theorem irreducible_uniformizerHat :
   rw [valued_algebraMap_uniformizer u, WithZero.exp_eq_coe_ofAdd]
 
 end UniformizerHat
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 section CohenPhi
 
@@ -3391,7 +3317,6 @@ theorem monomial_mem_cohenB (j : ℕ) (c : u.ResidueField) :
   ⟨Finsupp.single j c, cohenΦ_single u S j c⟩
 
 end CohenPhi
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 section LocResComplMonomial
 
@@ -3418,7 +3343,6 @@ theorem locResCompl_uniformizerHat_inv_pow_succ (S : Lg37CompletionSection u)
     resStar_higherPoleMonomial u S hj]
 
 end LocResComplMonomial
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 section LocResComplPhi
 
@@ -3443,7 +3367,6 @@ theorem locResCompl_cohenΦ (δ : ℕ →₀ u.ResidueField) :
       locResCompl_uniformizerHat_inv u S, one_mul]
 
 end LocResComplPhi
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 section ShiftCore
 
@@ -3474,7 +3397,6 @@ theorem uniformizerHat_mul_cohenΦ_sub_mem (δ : ℕ →₀ u.ResidueField) :
     exact sum_mem fun j hj => hterm j hj fun hj0 => h0 (hj0 ▸ hj)
 
 end ShiftCore
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 section Disjoint
 
@@ -3564,7 +3486,6 @@ theorem disjoint_adicIntegersKSubmod_cohenB :
   rw [cohenΦ_mem_integers_iff_zero u S δ hxO, _root_.map_zero]
 
 end Disjoint
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 section Codisjoint
 
@@ -3655,7 +3576,6 @@ theorem codisjoint_adicIntegersKSubmod_cohenB :
   exact mem_sup_of_uniformizerHat_pow_mul_mem_integers u S M x hM
 
 end Codisjoint
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 section Assembly
 
@@ -3674,7 +3594,6 @@ def cohenLaurentCompl_of_section (u : Place K L) [u.FiniteResidue]
     exact uniformizerHat_mul_cohenΦ_sub_mem u S δ
 
 end Assembly
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 section Headline
 
@@ -3697,7 +3616,6 @@ end KwTateRR3
 end ModularCurve
 end
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateAgreement.MazurTorsion P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve P2MW.S_AlgebraicCurve_tateAgreement.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateAgreement.ModularCurve.KwF4gRRTate"
 
 theorem solution
     {K L : Type*} [Field K] [Field L] [Algebra K L]

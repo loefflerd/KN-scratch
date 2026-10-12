@@ -244,8 +244,6 @@ theorem units_pow_eq_one_of_isPrimitiveRoot {N : ℕ} {ζ : Kˣ} (hζ : IsPrimit
   Units.ext (by rw [Units.val_pow_eq_pow_val, hζ.pow_eq_one, Units.val_one])
 
 end ModularCurve.W1
-p2m_reactivate "P2MW.S_ModularCurve_PhiGen_splits_prime_at_slot_of_isPrimitiveRoot.ModularCurve P2MW.S_ModularCurve_PhiGen_splits_prime_at_slot_of_isPrimitiveRoot.ModularCurve.W1"
-p2m_reactivate "P2MW.S_ModularCurve_PhiGen_splits_prime_at_slot_of_isPrimitiveRoot.ModularCurve"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_one_apply qExpand_congr qExpand_qExpand jq dedekindPsi evalAtJ evalAtJ_X ModularPolynomialData coeffMap coeffMap_coeff coeffEmb qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand EvalSymm jqModC jqNModC jqModC_rat map_jqModC coeffMap_qExpand coeffMap_injective coeff_jqModC_neg_one order_jqModC PhiGen.splits_of_prime"
@@ -306,8 +304,6 @@ theorem phiAtSeed_TS_eval_symm {K : Type*} [Field K] (A : ℕ) [NeZero A] (n : �
   rwa [qExpand_jqNModC, qExpand_jqNModC] at h
 
 end ModularCurve.W1
-p2m_reactivate "P2MW.S_ModularCurve_PhiGen_splits_prime_at_slot_of_isPrimitiveRoot.ModularCurve P2MW.S_ModularCurve_PhiGen_splits_prime_at_slot_of_isPrimitiveRoot.ModularCurve.W1"
-p2m_reactivate "P2MW.S_ModularCurve_PhiGen_splits_prime_at_slot_of_isPrimitiveRoot.ModularCurve P2MW.S_ModularCurve_PhiGen_splits_prime_at_slot_of_isPrimitiveRoot.ModularCurve.W1"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_one_apply qExpand_congr qExpand_qExpand jq dedekindPsi evalAtJ evalAtJ_X ModularPolynomialData coeffMap coeffMap_coeff coeffEmb qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand EvalSymm jqModC jqNModC jqModC_rat map_jqModC coeffMap_qExpand coeffMap_injective coeff_jqModC_neg_one order_jqModC PhiGen.splits_of_prime"
@@ -535,8 +531,6 @@ theorem phiAtSeed_slot_prime_eq (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) p) (d
 
 end ksplitEngine
 end ModularCurve.W1
-p2m_reactivate "P2MW.S_ModularCurve_PhiGen_splits_prime_at_slot_of_isPrimitiveRoot.ModularCurve P2MW.S_ModularCurve_PhiGen_splits_prime_at_slot_of_isPrimitiveRoot.ModularCurve.W1"
-p2m_reactivate "P2MW.S_ModularCurve_PhiGen_splits_prime_at_slot_of_isPrimitiveRoot.ModularCurve P2MW.S_ModularCurve_PhiGen_splits_prime_at_slot_of_isPrimitiveRoot.ModularCurve.W1"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_one_apply qExpand_congr qExpand_qExpand jq dedekindPsi evalAtJ evalAtJ_X ModularPolynomialData coeffMap coeffMap_coeff coeffEmb qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand EvalSymm jqModC jqNModC jqModC_rat map_jqModC coeffMap_qExpand coeffMap_injective coeff_jqModC_neg_one order_jqModC PhiGen.splits_of_prime"
@@ -640,8 +634,6 @@ theorem roots_phiAtSeed_TS (p : ℕ) [hp : Fact (Nat.Prime p)] (ζ : Kˣ) (hζ :
   roots_prime_at_slot p ζ hζ data e u
 
 end ModularCurve.W1
-p2m_reactivate "P2MW.S_ModularCurve_PhiGen_splits_prime_at_slot_of_isPrimitiveRoot.ModularCurve P2MW.S_ModularCurve_PhiGen_splits_prime_at_slot_of_isPrimitiveRoot.ModularCurve.W1"
-p2m_reactivate "P2MW.S_ModularCurve_PhiGen_splits_prime_at_slot_of_isPrimitiveRoot.ModularCurve P2MW.S_ModularCurve_PhiGen_splits_prime_at_slot_of_isPrimitiveRoot.ModularCurve.W1"
 
 p2m_open_scoped "ModularCurve ModularCurve.PhiGen" in
 open ModularCurve.W1 in
@@ -649,7 +641,6 @@ private theorem ModularCurve.PhiGen.roots_nodup_prime_at_slot_of_isPrimitiveRoot
   roots_prime_at_slot_roots_nodup p ζ hζ data e u
 
 end
-p2m_reactivate "P2MW.S_ModularCurve_PhiGen_splits_prime_at_slot_of_isPrimitiveRoot.ModularCurve P2MW.S_ModularCurve_PhiGen_splits_prime_at_slot_of_isPrimitiveRoot.ModularCurve.W1"
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_splits_prime_at_slot_of_isPrimitiveRoot.ModularCurve _root_.ModularCurve.PhiGen _root_.P2MW.S_ModularCurve_PhiGen_splits_prime_at_slot_of_isPrimitiveRoot.ModularCurve.PhiGen in
 

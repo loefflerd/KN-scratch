@@ -216,9 +216,7 @@ private theorem _root_.ModularCurve.slot_ord_of_algHom_laurentBaseChange' (N : �
       rw [neg_mul, ← Nat.cast_mul, hdiv]
     exact mul_right_cancel₀ (ne_of_gt hagpos) ((hγval ▸ hw2).trans key.symm)
 
-p2m_alias "P2MW.S_ModularCurve_slot_ord_of_algHom_laurentBaseChange.ModularCurve.slot_ord_of_algHom_laurentBaseChange" "ModularCurve.slot_ord_of_algHom_laurentBaseChange'"
 end CD
-p2m_reactivate "P2MW.S_ModularCurve_slot_ord_of_algHom_laurentBaseChange.CD"
 
 open ModularCurve AlgebraicCurve in
 

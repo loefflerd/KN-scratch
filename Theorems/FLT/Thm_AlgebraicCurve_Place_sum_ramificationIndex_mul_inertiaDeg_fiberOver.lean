@@ -447,7 +447,6 @@ end Assembly
 end Place
 end AlgebraicCurve
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg_fiberOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg_fiberOver.AlgebraicCurve"
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg_fiberOver.AlgebraicCurve"
 

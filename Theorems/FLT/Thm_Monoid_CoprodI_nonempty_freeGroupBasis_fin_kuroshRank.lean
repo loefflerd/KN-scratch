@@ -213,7 +213,6 @@ end Core
 
 end Kurosh
 end GroupTheory
-p2m_reactivate "P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.GroupTheory.Kurosh P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.GroupTheory"
 
 p2m_open "Subgroup SimpleGraph P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.SimpleGraph"
 
@@ -408,7 +407,6 @@ theorem isTree_of_isAcyclic [Nonempty ι] (h : (graph G).IsAcyclic) : (graph G).
 
 end BassSerre
 end GroupTheory
-p2m_reactivate "P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.GroupTheory.Kurosh P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.GroupTheory P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.GroupTheory.BassSerre"
 
 namespace GroupTheory
 namespace BassSerre
@@ -443,8 +441,6 @@ theorem isAcyclic_two {G : Fin 2 → Type*} [∀ i, Group (G i)] : (graph G).IsA
   isTree_two.isAcyclic
 
 end GroupTheory.BassSerre
-p2m_reactivate "P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.GroupTheory.Kurosh P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.GroupTheory P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.GroupTheory.BassSerre"
-p2m_reactivate "P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.GroupTheory.Kurosh P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.GroupTheory P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.GroupTheory.BassSerre"
 
 p2m_open "Subgroup MulAction SimpleGraph P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.SimpleGraph Monoid"
 
@@ -606,7 +602,6 @@ theorem transl_smul (hD : IsConnectedTransversal T Γ D)
   rw [mul_smul, transl_smul_orbitRepr, ← orbitRepr_smul hD γ v, transl_smul_orbitRepr]
 
 end GraphTransversal
-p2m_reactivate "P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.GroupTheory.Kurosh P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.GroupTheory P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.GroupTheory.BassSerre"
 
 namespace BassSerre
 
@@ -730,7 +725,6 @@ theorem closure_range_edgeGen_of_forall_mem (hD : IsConnectedTransversal (graph 
 
 end BassSerre
 end GroupTheory
-p2m_reactivate "P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.GroupTheory.Kurosh P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.GroupTheory P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.GroupTheory.BassSerre"
 open Subgroup MulAction Monoid
 
 namespace GroupTheory
@@ -759,7 +753,6 @@ theorem card_orbitRelQuotient_eq_index_div (hK : Nat.card K ≠ 0)
     Nat.mul_div_cancel _ (Nat.pos_of_ne_zero hK)]
 
 end FreeOrbitCount
-p2m_reactivate "P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.GroupTheory.Kurosh P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.GroupTheory P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.GroupTheory.BassSerre"
 
 section VertexOrbits
 
@@ -844,7 +837,6 @@ theorem kuroshRank_eq_one_add_index_sub (H : Subgroup (CoprodI G)) [H.FiniteInde
   rw [card_vertexOrbits H hCT, Kurosh.kuroshRank, Nat.sub_sub]
 
 end VertexOrbits
-p2m_reactivate "P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.GroupTheory.Kurosh P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.GroupTheory P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.GroupTheory.BassSerre"
 
 section Residual
 
@@ -867,7 +859,6 @@ theorem kuroshRankFormula_of_freeActionRankFormula (hfree : FreeActionRankFormul
 end Residual
 end FreeActionTree
 end GroupTheory
-p2m_reactivate "P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.GroupTheory.Kurosh P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.GroupTheory P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.GroupTheory.BassSerre"
 p2m_open "Subgroup MulAction SimpleGraph P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.SimpleGraph Monoid"
 
 namespace SimpleGraph
@@ -948,7 +939,6 @@ theorem farSide_subset_farSide {p q x y : V} (hx : x ∈ G.farSide p q)
   exact hv (hp.trans ⟨W.transfer _ hW⟩)
 
 end SimpleGraph
-p2m_reactivate "P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.GroupTheory.Kurosh P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.GroupTheory P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.GroupTheory.BassSerre"
 
 namespace GroupTheory
 
@@ -1257,7 +1247,6 @@ theorem letterImage_smul_mem_farSide (hfree : ∀ (η : H) (v : Vertex G), η �
 
 end BassSerre
 end GroupTheory
-p2m_reactivate "P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.GroupTheory.Kurosh P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.GroupTheory P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.GroupTheory.BassSerre"
 
 namespace GroupTheory
 
@@ -1351,7 +1340,6 @@ noncomputable def freeGroupBasis (hfree : ∀ (η : H) (v : Vertex G), η • v 
 
 end BassSerre
 end GroupTheory
-p2m_reactivate "P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.GroupTheory.Kurosh P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.GroupTheory P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.GroupTheory.BassSerre"
 
 namespace GroupTheory
 
@@ -1529,7 +1517,6 @@ theorem finite_nonTreeRep [H.FiniteIndex]
 
 end BassSerre
 end GroupTheory
-p2m_reactivate "P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.GroupTheory.Kurosh P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.GroupTheory P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.GroupTheory.BassSerre"
 
 namespace GroupTheory
 
@@ -1550,7 +1537,6 @@ theorem freeActionRankFormula (G : Fin 2 → Type*) [∀ i, Group (G i)] :
   exact ⟨(freeGroupBasis hD hfree').reindex (e.trans (finCongr hn))⟩
 
 end FreeActionTree
-p2m_reactivate "P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.GroupTheory.Kurosh P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.GroupTheory P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.GroupTheory.BassSerre"
 
 namespace Kurosh
 
@@ -1561,7 +1547,6 @@ theorem kuroshRankFormula (G : Fin 2 → Type*) [∀ i, Group (G i)] [∀ i, Fin
 
 end Kurosh
 end GroupTheory
-p2m_reactivate "P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.GroupTheory.Kurosh P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.GroupTheory P2MW.S_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.GroupTheory.BassSerre"
 
 theorem solution {G : Fin 2 → Type*} [∀ i, Group (G i)] [∀ i, Finite (G i)]
     (H : Subgroup (Monoid.CoprodI G)) [H.FiniteIndex]

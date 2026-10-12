@@ -167,7 +167,6 @@ theorem qCoeff_comp_smul_of_modularFormClass {FF : Type*} [FunLike FF ℍ ℂ]
 
 end UpperHalfPlane.DegeneracyQExp
 end
-p2m_reactivate "P2MW.S_ModularFormClass_qCoeff_comp_heckeDiagMatrix_smul.UpperHalfPlane P2MW.S_ModularFormClass_qCoeff_comp_heckeDiagMatrix_smul.UpperHalfPlane.DegeneracyQExp"
 
 theorem solution {F : Type*} [FunLike F UpperHalfPlane ℂ] {Γ : Subgroup (Matrix.GeneralLinearGroup (Fin 2) ℝ)} {k : ℤ} [ModularFormClass F Γ k] (f : F) (hΓ : (1 : ℝ) ∈ Γ.strictPeriods) {d : ℕ} (hd : d ≠ 0) (n : ℕ) : ModularFormClass.qCoeff (fun τ ↦ f (ModularForm.heckeDiagMatrix d • τ)) n = if d ∣ n then ModularFormClass.qCoeff f (n / d) else 0 :=
   UpperHalfPlane.DegeneracyQExp.qCoeff_comp_smul_of_modularFormClass f hΓ hd n

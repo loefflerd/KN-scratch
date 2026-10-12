@@ -91,8 +91,6 @@ lemma s18coordsOrZero_fst (P : W.Point) : P.coordsOrZero.1 = P.s18xOrZero := by
   cases P <;> rfl
 
 end Affine.Point
-p2m_reactivate "P2MW.S_WeierstrassCurve_veluX_oddOrderSummingSet_injOn_psi2Sq_roots.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_veluX_oddOrderSummingSet_injOn_psi2Sq_roots.WeierstrassCurve.Affine.Point"
-p2m_reactivate "P2MW.S_WeierstrassCurve_veluX_oddOrderSummingSet_injOn_psi2Sq_roots.WeierstrassCurve.Affine"
 
 section OrderArithmetic
 
@@ -183,7 +181,6 @@ theorem s18_nsmul_injOn_range {Q : G} {p : ℕ} (hord : addOrderOf Q = p) {k k' 
   · exact absurd (Nat.le_of_dvd h0 hdvd) (by omega)
 
 end OrderArithmetic
-p2m_reactivate "P2MW.S_WeierstrassCurve_veluX_oddOrderSummingSet_injOn_psi2Sq_roots.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_veluX_oddOrderSummingSet_injOn_psi2Sq_roots.WeierstrassCurve.Affine.Point"
 
 section SummingSet
 
@@ -278,7 +275,6 @@ theorem s18_xOrZero_ne_of_not_mem_zmultiples {P : W.toAffine.Point}
   · exact hPmem (hPP ▸ AddSubgroup.neg_mem _ hkQ)
 
 end SummingSet
-p2m_reactivate "P2MW.S_WeierstrassCurve_veluX_oddOrderSummingSet_injOn_psi2Sq_roots.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_veluX_oddOrderSummingSet_injOn_psi2Sq_roots.WeierstrassCurve.Affine.Point"
 
 section OrbitSum
 
@@ -348,7 +344,6 @@ private theorem _root_.WeierstrassCurve.s18_veluX_eq_orbitSum {S : Finset (F × 
 
 p2m_export "WeierstrassCurve" "s18_veluX_eq_orbitSum"
 end OrbitSum
-p2m_reactivate "P2MW.S_WeierstrassCurve_veluX_oddOrderSummingSet_injOn_psi2Sq_roots.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_veluX_oddOrderSummingSet_injOn_psi2Sq_roots.WeierstrassCurve.Affine.Point"
 
 section Translation
 
@@ -482,7 +477,6 @@ theorem s18_veluX_xOrZero_add_nsmul (hp3 : 3 ≤ p) (hpodd : Odd p)
     rw [succ_nsmul, ← add_assoc, s18_veluX_xOrZero_add_gen hp3 hpodd hord hPm, ih]
 
 end Translation
-p2m_reactivate "P2MW.S_WeierstrassCurve_veluX_oddOrderSummingSet_injOn_psi2Sq_roots.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_veluX_oddOrderSummingSet_injOn_psi2Sq_roots.WeierstrassCurve.Affine.Point"
 
 section LevelPoly
 
@@ -596,7 +590,6 @@ theorem s18_card_roots_veluX_eq_le (S : Finset (F × F)) (c : F) (T : Finset F)
     _ = 2 * S.card + 1 := hΦdeg
 
 end LevelPoly
-p2m_reactivate "P2MW.S_WeierstrassCurve_veluX_oddOrderSummingSet_injOn_psi2Sq_roots.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_veluX_oddOrderSummingSet_injOn_psi2Sq_roots.WeierstrassCurve.Affine.Point"
 
 section TwoTorsion
 
@@ -807,7 +800,6 @@ theorem s18_veluX_oddOrderSummingSet_injOn_twoTorsion
 end TwoTorsion
 end WeierstrassCurve
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_veluX_oddOrderSummingSet_injOn_psi2Sq_roots.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_veluX_oddOrderSummingSet_injOn_psi2Sq_roots.WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_veluX_oddOrderSummingSet_injOn_psi2Sq_roots.WeierstrassCurve"
 
 theorem solution
     {L : Type*} [Field L] [DecidableEq L] (h2 : (2 : L) ≠ 0)

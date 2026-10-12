@@ -617,7 +617,6 @@ end Count
 
 end P2MWs13.R2b
 end
-p2m_reactivate "P2MW.S_ModularCurve_three_mul_natCard_moduliPoint_j_eq_zero_eq_dedekindPsi_add_two_mul_nuThree.P2MWs13 P2MW.S_ModularCurve_three_mul_natCard_moduliPoint_j_eq_zero_eq_dedekindPsi_add_two_mul_nuThree.P2MWs13.R2b"
 
 open Polynomial in
 open P2MWs13.R2b in

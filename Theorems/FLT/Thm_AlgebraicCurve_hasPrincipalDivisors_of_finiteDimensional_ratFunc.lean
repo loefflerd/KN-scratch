@@ -483,7 +483,6 @@ end SupportTransfer
 end Place
 end AlgebraicCurve
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_hasPrincipalDivisors_of_finiteDimensional_ratFunc.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_hasPrincipalDivisors_of_finiteDimensional_ratFunc.AlgebraicCurve"
 
 noncomputable section
 
@@ -519,7 +518,6 @@ private theorem ord_coe_eq_of_span_singleton_eq_pow_maximalIdeal {r : v.toValuat
 
 end DVR
 end Place
-p2m_reactivate "P2MW.S_AlgebraicCurve_hasPrincipalDivisors_of_finiteDimensional_ratFunc.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_hasPrincipalDivisors_of_finiteDimensional_ratFunc.AlgebraicCurve"
 
 variable {K F F' : Type*} [Field K] [Field F] [Field F']
   [Algebra K F] [Algebra K F'] [Algebra F F'] [IsScalarTower K F F']
@@ -642,7 +640,6 @@ private theorem relNorm_span_singleton {c : integralClosureAt F' v}
                     w.inertiaDeg F * (w.ord (algebraMap (integralClosureAt F' v) F' c)).toNat
 
 end IdealNorm
-p2m_reactivate "P2MW.S_AlgebraicCurve_hasPrincipalDivisors_of_finiteDimensional_ratFunc.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_hasPrincipalDivisors_of_finiteDimensional_ratFunc.AlgebraicCurve"
 
 section ElementNorm
 
@@ -692,7 +689,6 @@ private theorem ord_norm_eq_sum_fiberOver {f : F'} (hf : f â‰  0) :
 
 end ElementNorm
 end Place
-p2m_reactivate "P2MW.S_AlgebraicCurve_hasPrincipalDivisors_of_finiteDimensional_ratFunc.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_hasPrincipalDivisors_of_finiteDimensional_ratFunc.AlgebraicCurve"
 
 namespace Divisor
 p2m_export "AlgebraicCurve.Divisor" "pushforward degree_pushforward pushforward_apply PushforwardNormFormula degree principal"
@@ -717,7 +713,6 @@ private theorem pushforwardNormFormula_of_finiteDimensional :
           rw [ite_eq_left ((Place.mem_fiberOver v).mp hw), hD w, mul_comm]
 
 end Divisor
-p2m_reactivate "P2MW.S_AlgebraicCurve_hasPrincipalDivisors_of_finiteDimensional_ratFunc.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_hasPrincipalDivisors_of_finiteDimensional_ratFunc.AlgebraicCurve"
 
 section T029
 
@@ -745,7 +740,6 @@ private theorem finite_setOf_ord_ne_zero_of_finiteDimensional {f : F'} (hf : f â
 
 end T029
 end AlgebraicCurve
-p2m_reactivate "P2MW.S_AlgebraicCurve_hasPrincipalDivisors_of_finiteDimensional_ratFunc.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_hasPrincipalDivisors_of_finiteDimensional_ratFunc.AlgebraicCurve"
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_hasPrincipalDivisors_of_finiteDimensional_ratFunc.AlgebraicCurve"
 

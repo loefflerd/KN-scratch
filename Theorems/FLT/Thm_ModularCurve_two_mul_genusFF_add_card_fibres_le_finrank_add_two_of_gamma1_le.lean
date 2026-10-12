@@ -822,7 +822,6 @@ end Main
 
 end ModularCurve.RiemannHurwitzCount
 end
-p2m_reactivate "P2MW.S_ModularCurve_two_mul_genusFF_add_card_fibres_le_finrank_add_two_of_gamma1_le.ModularCurve P2MW.S_ModularCurve_two_mul_genusFF_add_card_fibres_le_finrank_add_two_of_gamma1_le.ModularCurve.RiemannHurwitzCount"
 
 open AlgebraicCurve _root_.ModularCurve _root_.P2MW.S_ModularCurve_two_mul_genusFF_add_card_fibres_le_finrank_add_two_of_gamma1_le.ModularCurve in
 theorem solution

@@ -445,7 +445,6 @@ end FractionField
 
 end ModularCurve.LevelN.AnalyticOrderPlace
 end
-p2m_reactivate "P2MW.S_ModularCurve_LevelN_exists_place_analyticOrderAt_eq_mul_ord.ModularCurve P2MW.S_ModularCurve_LevelN_exists_place_analyticOrderAt_eq_mul_ord.ModularCurve.LevelN P2MW.S_ModularCurve_LevelN_exists_place_analyticOrderAt_eq_mul_ord.ModularCurve.LevelN.AnalyticOrderPlace"
 
 theorem solution (N : ℕ) [NeZero N]
     (K : Type*) [Field K] [Algebra ℂ K] [Algebra (ModularCurve.LevelN.ring N) K]

@@ -524,7 +524,6 @@ theorem exists_infinitePlace_deg_eq_one_impl (W : Affine F) :
 
 end D5S
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_infinitePlace_deg_eq_one.D5S"
 
 theorem solution {F : Type*} [Field F] (W : WeierstrassCurve.Affine F) :
     ∃ vInf : AlgebraicCurve.Place F W.FunctionField, vInf.deg = 1 ∧

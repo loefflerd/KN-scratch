@@ -978,7 +978,6 @@ theorem isAlgClosed_hahnSeries_rat [IsAlgClosed K] : IsAlgClosed (HahnSeries ℚ
 
 end DorgePuiseux
 end
-p2m_reactivate "P2MW.S_HahnSeries_isAlgClosed_rat.DorgePuiseux"
 
 theorem solution {K : Type*} [Field K] [IsAlgClosed K] :
     IsAlgClosed (HahnSeries ℚ K) :=

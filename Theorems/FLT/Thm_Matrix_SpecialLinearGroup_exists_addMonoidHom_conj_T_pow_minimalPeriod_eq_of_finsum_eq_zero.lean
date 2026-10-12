@@ -210,7 +210,6 @@ theorem Θ_mk (hneg : (-1 : SL(2, ℤ)) ∈ Γ) (x : SL(2, ℤ) ⧸ Γ) :
 end Main
 
 end BassSerreCuspSL2
-p2m_reactivate "P2MW.S_Matrix_SpecialLinearGroup_exists_addMonoidHom_conj_T_pow_minimalPeriod_eq_of_finsum_eq_zero.BassSerreCuspSL2"
 
 open BassSerreCuspSL2 in
 theorem solution (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ)) [Γ.FiniteIndex]

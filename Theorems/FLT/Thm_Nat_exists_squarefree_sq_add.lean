@@ -341,7 +341,6 @@ end Sieve
 
 end K2Seam3.SqfreeSieve
 end
-p2m_reactivate "P2MW.S_Nat_exists_squarefree_sq_add.K2Seam3 P2MW.S_Nat_exists_squarefree_sq_add.K2Seam3.SqfreeSieve"
 
 theorem solution (D : ℕ) (hD : 1 ≤ D) :
     ∃ c : ℕ, 1 ≤ c ∧ Squarefree (c ^ 2 + D) :=

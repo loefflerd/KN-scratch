@@ -475,8 +475,6 @@ theorem exists_place (τ : ℍ) :
 end OrderFunction
 
 end ModularCurve.ComplexPlaceDictionaryOfExistence
-p2m_reactivate "P2MW.S_ModularCurve_exists_complexPlaceDictionaryOf.ModularCurve P2MW.S_ModularCurve_exists_complexPlaceDictionaryOf.ModularCurve.ComplexPlaceDictionaryOfExistence"
-p2m_reactivate "P2MW.S_ModularCurve_exists_complexPlaceDictionaryOf.ModularCurve"
 
 open scoped MatrixGroups in
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_exists_complexPlaceDictionaryOf.ModularCurve ModularCurve.ComplexPlaceDictionaryOfExistence in

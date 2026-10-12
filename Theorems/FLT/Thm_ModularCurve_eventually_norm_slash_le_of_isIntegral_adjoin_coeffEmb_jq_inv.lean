@@ -342,7 +342,6 @@ theorem order_le_of_identity {p q d : ℂ → ℂ} {n m : ℕ} {C : ℕ → ℂ 
   omega
 
 end ANb
-p2m_reactivate "P2MW.S_ModularCurve_eventually_norm_slash_le_of_isIntegral_adjoin_coeffEmb_jq_inv.ANb"
 
 namespace ANb
 
@@ -535,7 +534,6 @@ theorem coreC (𝔤 𝔥 : 𝒩) (X : LaurentSeries ℂ) (hX : X * ψ 𝔥 = ψ 
   ring
 
 end ANb
-p2m_reactivate "P2MW.S_ModularCurve_eventually_norm_slash_le_of_isIntegral_adjoin_coeffEmb_jq_inv.ANb"
 
 open ANb in
 theorem solution (N : ℕ) {k : ℤ}

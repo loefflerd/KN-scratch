@@ -334,7 +334,6 @@ end Places
 
 end ModularCurve.LevelN.SpecialRamification
 end
-p2m_reactivate "P2MW.S_ModularCurve_LevelN_exists_place_ord_jGen_le_two_three_level.ModularCurve P2MW.S_ModularCurve_LevelN_exists_place_ord_jGen_le_two_three_level.ModularCurve.LevelN P2MW.S_ModularCurve_LevelN_exists_place_ord_jGen_le_two_three_level.ModularCurve.LevelN.SpecialRamification"
 
 theorem solution (N : ℕ) [NeZero N]
     (K : Type*) [Field K] [Algebra ℂ K] [Algebra (ModularCurve.LevelN.ring N) K]

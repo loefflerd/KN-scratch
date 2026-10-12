@@ -259,8 +259,6 @@ theorem cycUnit_pow (N : ℕ) [NeZero N] : cycUnit N ^ N = 1 :=
   Units.ext (by rw [Units.val_pow_eq_pow_val, (cycUnit_spec N).pow_eq_one, Units.val_one])
 
 end ModularCurve.W1
-p2m_reactivate "P2MW.S_ModularCurve_ModularPolynomialData_isUnit_leadingCoeff_diag_of_not_isSquare.ModularCurve P2MW.S_ModularCurve_ModularPolynomialData_isUnit_leadingCoeff_diag_of_not_isSquare.ModularCurve.W1"
-p2m_reactivate "P2MW.S_ModularCurve_ModularPolynomialData_isUnit_leadingCoeff_diag_of_not_isSquare.ModularCurve"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_one_apply qExpand_qExpand jq coeff_jq_pow_self coeff_jq_pow_of_lt coeff_jq_neg_one coeff_jq_of_lt jqN dedekindPsi evalAtJ evalAtJ_X ModularPolynomialData evalAtJGen algebraMap_comp_evalAtJGen ModularPolynomialData.toAdjoin coeffEmb coeffEmb_coeff qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand coeffMap_qExpand PhiGen.splits_prime_at_slot minpoly_jqN_map_eq_prod_slots finrank_adjoin_jqN_eq_dedekindPsi modularFunctionField_eq_full"
@@ -288,8 +286,6 @@ theorem qExpand_qTwist_TS (e : ℕ) [NeZero e] (u : Kˣ) (m : ℕ) [NeZero m] (w
   rw [qTwist_TS, qExpand_TS]
 
 end ModularCurve.W1
-p2m_reactivate "P2MW.S_ModularCurve_ModularPolynomialData_isUnit_leadingCoeff_diag_of_not_isSquare.ModularCurve P2MW.S_ModularCurve_ModularPolynomialData_isUnit_leadingCoeff_diag_of_not_isSquare.ModularCurve.W1"
-p2m_reactivate "P2MW.S_ModularCurve_ModularPolynomialData_isUnit_leadingCoeff_diag_of_not_isSquare.ModularCurve P2MW.S_ModularCurve_ModularPolynomialData_isUnit_leadingCoeff_diag_of_not_isSquare.ModularCurve.W1"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_one_apply qExpand_qExpand jq coeff_jq_pow_self coeff_jq_pow_of_lt coeff_jq_neg_one coeff_jq_of_lt jqN dedekindPsi evalAtJ evalAtJ_X ModularPolynomialData evalAtJGen algebraMap_comp_evalAtJGen ModularPolynomialData.toAdjoin coeffEmb coeffEmb_coeff qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand coeffMap_qExpand PhiGen.splits_prime_at_slot minpoly_jqN_map_eq_prod_slots finrank_adjoin_jqN_eq_dedekindPsi modularFunctionField_eq_full"
@@ -387,8 +383,6 @@ theorem isRoot_prime_at_slot_iff (N : ℕ) [NeZero N] (ζ : Kˣ) (hζ : IsPrimit
     · exact Or.inr ⟨b, Multiset.mem_range.mpr hb, rfl⟩
 
 end ModularCurve.W1
-p2m_reactivate "P2MW.S_ModularCurve_ModularPolynomialData_isUnit_leadingCoeff_diag_of_not_isSquare.ModularCurve P2MW.S_ModularCurve_ModularPolynomialData_isUnit_leadingCoeff_diag_of_not_isSquare.ModularCurve.W1"
-p2m_reactivate "P2MW.S_ModularCurve_ModularPolynomialData_isUnit_leadingCoeff_diag_of_not_isSquare.ModularCurve P2MW.S_ModularCurve_ModularPolynomialData_isUnit_leadingCoeff_diag_of_not_isSquare.ModularCurve.W1"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_one_apply qExpand_qExpand jq coeff_jq_pow_self coeff_jq_pow_of_lt coeff_jq_neg_one coeff_jq_of_lt jqN dedekindPsi evalAtJ evalAtJ_X ModularPolynomialData evalAtJGen algebraMap_comp_evalAtJGen ModularPolynomialData.toAdjoin coeffEmb coeffEmb_coeff qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand coeffMap_qExpand PhiGen.splits_prime_at_slot minpoly_jqN_map_eq_prod_slots finrank_adjoin_jqN_eq_dedekindPsi modularFunctionField_eq_full"
@@ -440,8 +434,6 @@ theorem phiAtSeed_iota_eval {K : Type*} [Field K] [Algebra ℚ K] (A : ℕ) [NeZ
   phiAtSeed_eval_map data _ _ ((coeffEmb K).comp (qExpand ℚ A)) (phiAtSeed_jqN_eval n data M)
 
 end ModularCurve.W1
-p2m_reactivate "P2MW.S_ModularCurve_ModularPolynomialData_isUnit_leadingCoeff_diag_of_not_isSquare.ModularCurve P2MW.S_ModularCurve_ModularPolynomialData_isUnit_leadingCoeff_diag_of_not_isSquare.ModularCurve.W1"
-p2m_reactivate "P2MW.S_ModularCurve_ModularPolynomialData_isUnit_leadingCoeff_diag_of_not_isSquare.ModularCurve P2MW.S_ModularCurve_ModularPolynomialData_isUnit_leadingCoeff_diag_of_not_isSquare.ModularCurve.W1"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_one_apply qExpand_qExpand jq coeff_jq_pow_self coeff_jq_pow_of_lt coeff_jq_neg_one coeff_jq_of_lt jqN dedekindPsi evalAtJ evalAtJ_X ModularPolynomialData evalAtJGen algebraMap_comp_evalAtJGen ModularPolynomialData.toAdjoin coeffEmb coeffEmb_coeff qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand coeffMap_qExpand PhiGen.splits_prime_at_slot minpoly_jqN_map_eq_prod_slots finrank_adjoin_jqN_eq_dedekindPsi modularFunctionField_eq_full"
@@ -557,8 +549,6 @@ private theorem w1_slot_factor (N a b : ℕ) [NeZero N] [NeZero a] (hN : ¬ IsSq
 
 end U2Kit
 end ModularCurve.W1
-p2m_reactivate "P2MW.S_ModularCurve_ModularPolynomialData_isUnit_leadingCoeff_diag_of_not_isSquare.ModularCurve P2MW.S_ModularCurve_ModularPolynomialData_isUnit_leadingCoeff_diag_of_not_isSquare.ModularCurve.W1"
-p2m_reactivate "P2MW.S_ModularCurve_ModularPolynomialData_isUnit_leadingCoeff_diag_of_not_isSquare.ModularCurve P2MW.S_ModularCurve_ModularPolynomialData_isUnit_leadingCoeff_diag_of_not_isSquare.ModularCurve.W1"
 
 open scoped IntermediateField
 
@@ -722,8 +712,6 @@ private theorem w1_diag_lc_pow (N : ℕ) [NeZero N] (hN : ¬ IsSquare N)
   exact_mod_cast hQpow
 
 end ModularCurve.W1
-p2m_reactivate "P2MW.S_ModularCurve_ModularPolynomialData_isUnit_leadingCoeff_diag_of_not_isSquare.ModularCurve P2MW.S_ModularCurve_ModularPolynomialData_isUnit_leadingCoeff_diag_of_not_isSquare.ModularCurve.W1"
-p2m_reactivate "P2MW.S_ModularCurve_ModularPolynomialData_isUnit_leadingCoeff_diag_of_not_isSquare.ModularCurve P2MW.S_ModularCurve_ModularPolynomialData_isUnit_leadingCoeff_diag_of_not_isSquare.ModularCurve.W1"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_one_apply qExpand_qExpand jq coeff_jq_pow_self coeff_jq_pow_of_lt coeff_jq_neg_one coeff_jq_of_lt jqN dedekindPsi evalAtJ evalAtJ_X ModularPolynomialData evalAtJGen algebraMap_comp_evalAtJGen ModularPolynomialData.toAdjoin coeffEmb coeffEmb_coeff qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand coeffMap_qExpand PhiGen.splits_prime_at_slot minpoly_jqN_map_eq_prod_slots finrank_adjoin_jqN_eq_dedekindPsi modularFunctionField_eq_full"
@@ -757,7 +745,6 @@ theorem ModularCurve.ModularPolynomialData.leadingCoeff_diag_sq_eq_one
     with h | h <;> rw [h] <;> norm_num
 
 end
-p2m_reactivate "P2MW.S_ModularCurve_ModularPolynomialData_isUnit_leadingCoeff_diag_of_not_isSquare.ModularCurve P2MW.S_ModularCurve_ModularPolynomialData_isUnit_leadingCoeff_diag_of_not_isSquare.ModularCurve.W1"
 
 p2m_open "ModularCurve~coeffEmb_qExpand" in open _root_.P2MW.S_ModularCurve_ModularPolynomialData_isUnit_leadingCoeff_diag_of_not_isSquare.ModularCurve in
 

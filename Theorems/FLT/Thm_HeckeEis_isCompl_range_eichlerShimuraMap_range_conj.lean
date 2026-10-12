@@ -146,7 +146,6 @@ theorem isCompl_of_forall_eq_zero {S H : Type*} [AddCommGroup S] [Module ℂ S] 
   exact ⟨disjoint_iff.mpr (Subsingleton.elim _ _), codisjoint_iff.mpr (Subsingleton.elim _ _)⟩
 
 end ISCAsm
-p2m_reactivate "P2MW.S_HeckeEis_isCompl_range_eichlerShimuraMap_range_conj.ISCAsm"
 
 theorem ISCAsm.finrank_cuspForm_congr (N : ℕ) {k k' : ℤ} (h : k = k') :
     Module.finrank ℂ (CuspForm (CongruenceSubgroup.Gamma0 N) k) = Module.finrank ℂ (CuspForm (CongruenceSubgroup.Gamma0 N) k') := by

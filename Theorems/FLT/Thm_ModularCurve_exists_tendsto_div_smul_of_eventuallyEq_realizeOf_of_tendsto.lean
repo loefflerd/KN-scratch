@@ -255,7 +255,8 @@ theorem qExpansion_slash_ne_zero
   rfl
 
 end S3CuspLimit
-p2m_reactivate "P2MW.S_ModularCurve_exists_tendsto_div_smul_of_eventuallyEq_realizeOf_of_tendsto.Ws49.LIMTR.S3CuspLimit"
+
+open S3CuspLimit
 
 namespace Glue
 
@@ -300,7 +301,6 @@ theorem tendsto_coe_smul_punctured (τ : ℍ) :
 end Glue
 end Ws49.LIMTR
 end
-p2m_reactivate "P2MW.S_ModularCurve_exists_tendsto_div_smul_of_eventuallyEq_realizeOf_of_tendsto.Ws49.LIMTR.S3CuspLimit P2MW.S_ModularCurve_exists_tendsto_div_smul_of_eventuallyEq_realizeOf_of_tendsto.Ws49 P2MW.S_ModularCurve_exists_tendsto_div_smul_of_eventuallyEq_realizeOf_of_tendsto.Ws49.LIMTR"
 
 open Ws49.LIMTR in
 theorem solution

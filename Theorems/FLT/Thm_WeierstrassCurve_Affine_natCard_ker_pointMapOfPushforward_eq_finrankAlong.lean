@@ -280,8 +280,6 @@ theorem kw_point_infinite : Infinite W.Point := by
 end GeneralW
 
 end WeierstrassCurve.Affine
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_natCard_ker_pointMapOfPushforward_eq_finrankAlong.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_natCard_ker_pointMapOfPushforward_eq_finrankAlong.WeierstrassCurve.Affine"
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_natCard_ker_pointMapOfPushforward_eq_finrankAlong.WeierstrassCurve"
 
 namespace ModularCurve
 
@@ -342,7 +340,6 @@ theorem kw_fdn2_qephod_hend5_natCard_fiber_eq_finrank_of_unramified
     right_inv := fun _ => rfl }
 
 end Generic
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_natCard_ker_pointMapOfPushforward_eq_finrankAlong.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_natCard_ker_pointMapOfPushforward_eq_finrankAlong.WeierstrassCurve.Affine"
 
 def KwD5ExistsUnramifiedBetweenCurves : Prop :=
   ∀ (K : Type u) [Field K] [DecidableEq K] [IsAlgClosed K] [CharZero K]
@@ -538,7 +535,6 @@ def kw_fdn2_qephod_hend7_pmop_fiber_equiv_ker (R : E'.Point) :
     right_inv := fun ⟨Q, _⟩ => Subtype.ext (add_sub_cancel_right Q P₀) }
 
 end GeomMorphBC
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_natCard_ker_pointMapOfPushforward_eq_finrankAlong.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_natCard_ker_pointMapOfPushforward_eq_finrankAlong.WeierstrassCurve.Affine"
 
 theorem kw_fdn2_qephod_hend7_restrictFiberEqKerPMOP_proved :
     KwD5RestrictFiberEqKerPMOP.{u} := by
@@ -555,7 +551,6 @@ theorem kw_fdn2_qephod_hend7_pmopKerCard_proved :
 
 end ModularCurve
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_natCard_ker_pointMapOfPushforward_eq_finrankAlong.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_natCard_ker_pointMapOfPushforward_eq_finrankAlong.WeierstrassCurve.Affine"
 
 p2m_open "AlgebraicCurve~Place.mem_of_ord_nonneg" in open _root_.WeierstrassCurve _root_.P2MW.S_WeierstrassCurve_Affine_natCard_ker_pointMapOfPushforward_eq_finrankAlong.WeierstrassCurve _root_.WeierstrassCurve.Affine _root_.P2MW.S_WeierstrassCurve_Affine_natCard_ker_pointMapOfPushforward_eq_finrankAlong.WeierstrassCurve.Affine _root_.P2MW.S_WeierstrassCurve_Affine_natCard_ker_pointMapOfPushforward_eq_finrankAlong.AlgebraicCurve in
 universe u in

@@ -179,7 +179,6 @@ theorem card_fixed_ST :
   exact Nat.card_congr (Equiv.subtypeEquivRight fun x => by simp)
 
 end W7SF
-p2m_reactivate "P2MW.S_ModularCurve_natCard_fixedPoints_ST_cosets_Gamma0_eq_nuThree.W7SF"
 
 open scoped MatrixGroups in
 theorem solution (N : ℕ) [NeZero N] :

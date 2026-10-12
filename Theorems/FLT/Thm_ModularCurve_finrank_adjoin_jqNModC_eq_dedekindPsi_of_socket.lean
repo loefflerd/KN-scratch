@@ -246,8 +246,6 @@ theorem units_pow_eq_one_of_isPrimitiveRoot {N : ℕ} {ζ : Kˣ} (hζ : IsPrimit
   Units.ext (by rw [Units.val_pow_eq_pow_val, hζ.pow_eq_one, Units.val_one])
 
 end ModularCurve.W1
-p2m_reactivate "P2MW.S_ModularCurve_finrank_adjoin_jqNModC_eq_dedekindPsi_of_socket.ModularCurve P2MW.S_ModularCurve_finrank_adjoin_jqNModC_eq_dedekindPsi_of_socket.ModularCurve.W1"
-p2m_reactivate "P2MW.S_ModularCurve_finrank_adjoin_jqNModC_eq_dedekindPsi_of_socket.ModularCurve"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_one_apply qExpand_qExpand dedekindPsi ModularPolynomialData coeffMap coeffMap_coeff coeffMap_single algebraMap_laurentSeries_eq_single qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand EvalSymm jqModC jqNModC jqNModC_one map_jqModC coeffMap_qExpand coeff_jqModC_neg_one order_jqModC coeff_jqModC_pow_of_lt coeff_jqModC_pow_self coeffMap_injective qExpand_jqModC_eq_pow_unconditional exists_phiIrreducible isIntegral_jqNModC_of_modularPolynomialData jqNModC_prime_not_mem_adjoin_of_forall_aeval_ne jqNModC_prime_not_mem_adjoin_of_charZero package_of_socket"
@@ -308,8 +306,6 @@ theorem phiAtSeed_TS_eval_symm {K : Type*} [Field K] (A : ℕ) [NeZero A] (n : �
   rwa [qExpand_jqNModC, qExpand_jqNModC] at h
 
 end ModularCurve.W1
-p2m_reactivate "P2MW.S_ModularCurve_finrank_adjoin_jqNModC_eq_dedekindPsi_of_socket.ModularCurve P2MW.S_ModularCurve_finrank_adjoin_jqNModC_eq_dedekindPsi_of_socket.ModularCurve.W1"
-p2m_reactivate "P2MW.S_ModularCurve_finrank_adjoin_jqNModC_eq_dedekindPsi_of_socket.ModularCurve P2MW.S_ModularCurve_finrank_adjoin_jqNModC_eq_dedekindPsi_of_socket.ModularCurve.W1"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_one_apply qExpand_qExpand dedekindPsi ModularPolynomialData coeffMap coeffMap_coeff coeffMap_single algebraMap_laurentSeries_eq_single qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand EvalSymm jqModC jqNModC jqNModC_one map_jqModC coeffMap_qExpand coeff_jqModC_neg_one order_jqModC coeff_jqModC_pow_of_lt coeff_jqModC_pow_self coeffMap_injective qExpand_jqModC_eq_pow_unconditional exists_phiIrreducible isIntegral_jqNModC_of_modularPolynomialData jqNModC_prime_not_mem_adjoin_of_forall_aeval_ne jqNModC_prime_not_mem_adjoin_of_charZero package_of_socket"
@@ -349,7 +345,6 @@ theorem coeff_aeval_jqModC_neg_natDegree (P : Polynomial K) :
     exact absurd (Finset.self_mem_range_succ P.natDegree) hn
 
 end PoleOrder
-p2m_reactivate "P2MW.S_ModularCurve_finrank_adjoin_jqNModC_eq_dedekindPsi_of_socket.ModularCurve P2MW.S_ModularCurve_finrank_adjoin_jqNModC_eq_dedekindPsi_of_socket.ModularCurve.W1"
 
 section Transport
 
@@ -485,7 +480,6 @@ theorem finrank_adjoin_jqNModC_eq_of_map (d : ℕ) [NeZero d] (data : ModularPol
   rw [IntermediateField.adjoin.finrank hint, ← hmin, phiAtSeed_natDegree]
 
 end Transport
-p2m_reactivate "P2MW.S_ModularCurve_finrank_adjoin_jqNModC_eq_dedekindPsi_of_socket.ModularCurve P2MW.S_ModularCurve_finrank_adjoin_jqNModC_eq_dedekindPsi_of_socket.ModularCurve.W1"
 
 theorem natCast_ne_zero_of_socket (d : ℕ) [NeZero d]
     (hbase : ∀ (p : ℕ) [Fact (Nat.Prime p)], p ∣ d →
@@ -504,8 +498,6 @@ theorem natCast_ne_zero_of_socket (d : ℕ) [NeZero d]
   exact hbase (ringChar K) hdvd hmem
 
 end ModularCurve.W1
-p2m_reactivate "P2MW.S_ModularCurve_finrank_adjoin_jqNModC_eq_dedekindPsi_of_socket.ModularCurve P2MW.S_ModularCurve_finrank_adjoin_jqNModC_eq_dedekindPsi_of_socket.ModularCurve.W1"
-p2m_reactivate "P2MW.S_ModularCurve_finrank_adjoin_jqNModC_eq_dedekindPsi_of_socket.ModularCurve P2MW.S_ModularCurve_finrank_adjoin_jqNModC_eq_dedekindPsi_of_socket.ModularCurve.W1"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_one_apply qExpand_qExpand dedekindPsi ModularPolynomialData coeffMap coeffMap_coeff coeffMap_single algebraMap_laurentSeries_eq_single qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand EvalSymm jqModC jqNModC jqNModC_one map_jqModC coeffMap_qExpand coeff_jqModC_neg_one order_jqModC coeff_jqModC_pow_of_lt coeff_jqModC_pow_self coeffMap_injective qExpand_jqModC_eq_pow_unconditional exists_phiIrreducible isIntegral_jqNModC_of_modularPolynomialData jqNModC_prime_not_mem_adjoin_of_forall_aeval_ne jqNModC_prime_not_mem_adjoin_of_charZero package_of_socket"
@@ -559,7 +551,6 @@ private theorem ModularCurve.finrank_adjoin_jqNModC_sq_mul_prime_eq_of_socket {K
       exact hbaseℓ
 
 end
-p2m_reactivate "P2MW.S_ModularCurve_finrank_adjoin_jqNModC_eq_dedekindPsi_of_socket.ModularCurve P2MW.S_ModularCurve_finrank_adjoin_jqNModC_eq_dedekindPsi_of_socket.ModularCurve.W1"
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_finrank_adjoin_jqNModC_eq_dedekindPsi_of_socket.ModularCurve ModularCurve.PhiGen in
 

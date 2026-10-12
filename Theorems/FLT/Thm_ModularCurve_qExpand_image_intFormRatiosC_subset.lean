@@ -233,7 +233,6 @@ end Form
 
 end X1QExpandStretch
 end
-p2m_reactivate "P2MW.S_ModularCurve_qExpand_image_intFormRatiosC_subset.X1QExpandStretch"
 
 open scoped MatrixGroups in
 theorem solution (K : Type*) [Field K]

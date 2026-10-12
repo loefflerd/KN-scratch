@@ -144,9 +144,6 @@ theorem Φ_injective : Function.Injective (Φ N K) := by
   simpa only [Φ_apply, coe_toCuspForm] using this
 
 end ModularCurve.LevelN.CuspFormAssembly
-p2m_reactivate "P2MW.S_ModularCurve_LevelN_exists_linearMap_regularDifferentials_cuspForm_injective.ModularCurve P2MW.S_ModularCurve_LevelN_exists_linearMap_regularDifferentials_cuspForm_injective.ModularCurve.LevelN P2MW.S_ModularCurve_LevelN_exists_linearMap_regularDifferentials_cuspForm_injective.ModularCurve.LevelN.CuspFormAssembly"
-p2m_reactivate "P2MW.S_ModularCurve_LevelN_exists_linearMap_regularDifferentials_cuspForm_injective.ModularCurve P2MW.S_ModularCurve_LevelN_exists_linearMap_regularDifferentials_cuspForm_injective.ModularCurve.LevelN"
-p2m_reactivate "P2MW.S_ModularCurve_LevelN_exists_linearMap_regularDifferentials_cuspForm_injective.ModularCurve"
 
 theorem solution (N : ℕ) [NeZero N]
     (K : Type*) [Field K] [Algebra ℂ K] [Algebra (ModularCurve.LevelN.ring N) K]

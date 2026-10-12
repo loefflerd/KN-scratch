@@ -426,7 +426,6 @@ scoped instance finiteDimensional_adjoin_jBar (N : ℕ) [NeZero N] :
   exact Module.finite_of_finrank_pos hpos
 
 end B2Places
-p2m_reactivate "P2MW.S_ModularCurve_nonempty_equiv_place_pos_ord_algHom_integralClosure.B2Places"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "jBar modularFunctionFieldBar dedekindPsi relfinrank_laurentBaseChange_modularFunctionFieldFull relfinrank_full_eq_dedekindPsi dedekindPsi_pos transcendental_coeffEmb_jq"
@@ -481,7 +480,6 @@ private theorem ModularCurve.nonempty_equiv_place_pos_ord_algHom_integralClosure
   ⟨ModularCurve.placesOverEquivAlgHom N j₀ hdeg⟩
 
 end
-p2m_reactivate "P2MW.S_ModularCurve_nonempty_equiv_place_pos_ord_algHom_integralClosure.B2Places"
 
 open AlgebraicCurve _root_.ModularCurve _root_.P2MW.S_ModularCurve_nonempty_equiv_place_pos_ord_algHom_integralClosure.ModularCurve in
 

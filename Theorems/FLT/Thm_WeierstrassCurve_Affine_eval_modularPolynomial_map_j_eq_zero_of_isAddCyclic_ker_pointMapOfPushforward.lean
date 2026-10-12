@@ -172,7 +172,6 @@ theorem discriminantNeZero_scale_iff :
 
 end Homogeneity
 end PeriodPair
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward.PeriodPair"
 
 namespace F4Proof
 open WeierstrassCurve WeierstrassCurve.Affine AlgebraicCurve
@@ -219,7 +218,6 @@ theorem conjSeam_finiteAlong
   exact hcomp
 
 end ConjHelpers
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward.PeriodPair"
 
 section AutoNorm
 variable {K : Type*} [Field K] [CharZero K]
@@ -245,7 +243,6 @@ theorem normFormulaAlong_of_charZero {E E' : WeierstrassCurve.Affine K}
   exact AlgebraicCurve.normFormulaAlong ι hfin (separableAlong_of_charZero ι hfin)
 
 end AutoNorm
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward.PeriodPair"
 
 theorem map_eval_map_Φ {R S : Type*} [CommRing R] [CommRing S] (φ : R →+* S)
     {N : ℕ} [NeZero N] (data : ModularCurve.ModularPolynomialData N) (a b : R) :
@@ -332,7 +329,6 @@ theorem complexCase (E E' : WeierstrassCurve.Affine ℂ) [E.IsElliptic] [E'.IsEl
   exact hroot
 
 end F4Proof
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward.PeriodPair P2MW.S_WeierstrassCurve_Affine_eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward.F4Proof"
 
 namespace F4Proof
 open WeierstrassCurve WeierstrassCurve.Affine AlgebraicCurve
@@ -431,7 +427,6 @@ theorem solution0
 
 end F4Proof
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward.PeriodPair P2MW.S_WeierstrassCurve_Affine_eval_modularPolynomial_map_j_eq_zero_of_isAddCyclic_ker_pointMapOfPushforward.F4Proof"
 
 open WeierstrassCurve WeierstrassCurve.Affine AlgebraicCurve
 

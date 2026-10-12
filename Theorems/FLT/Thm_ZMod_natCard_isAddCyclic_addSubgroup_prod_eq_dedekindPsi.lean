@@ -312,7 +312,6 @@ end Headline
 
 end ModularCurve
 end
-p2m_reactivate "P2MW.S_ZMod_natCard_isAddCyclic_addSubgroup_prod_eq_dedekindPsi.ModularCurve"
 
 theorem solution (n : ℕ) [NeZero n] :
     Nat.card {H : AddSubgroup (ZMod n × ZMod n) // IsAddCyclic H ∧ Nat.card H = n} = ModularCurve.dedekindPsi n :=

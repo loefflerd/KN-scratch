@@ -270,7 +270,6 @@ private theorem _root_.WeierstrassCurve.exists_addEquiv_point_variableChange_dev
             ((↑C.u⁻¹ : K) ^ 3 * (y - C.s * x + (C.s * C.r - C.t))) h' :=
   ⟨pointEquiv₀ W C, fun x y h => ⟨(nonsingular_pt_iff C W x y).mpr h, rfl⟩⟩
 
-p2m_alias "P2MW.S_WeierstrassCurve_exists_addEquiv_point_variableChange.WeierstrassCurve.exists_addEquiv_point_variableChange_dev" "WeierstrassCurve.exists_addEquiv_point_variableChange_dev"
 end SameField
 
 end VariableChange

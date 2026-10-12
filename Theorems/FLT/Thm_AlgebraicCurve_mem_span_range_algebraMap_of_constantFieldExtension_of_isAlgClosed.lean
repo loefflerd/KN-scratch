@@ -896,8 +896,6 @@ theorem mem_span_range_algebraMap_of_constantFieldExtension
 end Main
 
 end AlgebraicCurve.W7XH
-p2m_reactivate "P2MW.S_AlgebraicCurve_mem_span_range_algebraMap_of_constantFieldExtension_of_isAlgClosed.AlgebraicCurve P2MW.S_AlgebraicCurve_mem_span_range_algebraMap_of_constantFieldExtension_of_isAlgClosed.AlgebraicCurve.W7XH"
-p2m_reactivate "P2MW.S_AlgebraicCurve_mem_span_range_algebraMap_of_constantFieldExtension_of_isAlgClosed.AlgebraicCurve"
 
 theorem solution
     (K F K' F' : Type*)

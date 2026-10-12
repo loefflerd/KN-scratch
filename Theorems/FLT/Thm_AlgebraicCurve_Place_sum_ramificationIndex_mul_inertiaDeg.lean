@@ -353,7 +353,6 @@ end FiberFiniteness
 
 end Place
 end AlgebraicCurve
-p2m_reactivate "P2MW.S_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg.AlgebraicCurve"
 
 section
 
@@ -437,7 +436,6 @@ theorem eq_ord_of_addHom_of_nonneg_iff (φ : F → ℤ)
   exact this.symm
 
 end Uniqueness
-p2m_reactivate "P2MW.S_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg.AlgebraicCurve"
 
 variable {K F F' : Type*} [Field K] [Field F] [Field F']
   [Algebra K F] [Algebra K F'] [Algebra F F'] [IsScalarTower K F F']
@@ -500,7 +498,6 @@ theorem maximalIdeal_ne_bot :
     (IsLocalRing.isField_iff_maximalIdeal_eq.mpr h)
 
 end Setup
-p2m_reactivate "P2MW.S_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg.AlgebraicCurve"
 
 section Center
 
@@ -583,7 +580,6 @@ theorem fiberCenter_liesOver (hw : w.restrict F = v) :
     · omega
 
 end Center
-p2m_reactivate "P2MW.S_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg.AlgebraicCurve"
 
 section ValuationDictionary
 
@@ -678,7 +674,6 @@ theorem ramificationIndex_eq_ramificationIdx_fiberCenter (hw : w.restrict F = v)
     omega
 
 end ValuationDictionary
-p2m_reactivate "P2MW.S_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg.AlgebraicCurve"
 
 section ResidueDictionary
 
@@ -840,7 +835,6 @@ theorem inertiaDeg_eq_inertiaDeg_fiberCenter (hw : w.restrict F = v) :
   rfl
 
 end ResidueDictionary
-p2m_reactivate "P2MW.S_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg.AlgebraicCurve"
 
 section Bijection
 
@@ -910,7 +904,6 @@ theorem eq_of_fiberCenter_eq {w w' : Place K F'} (hw : w.restrict F = v)
   rw [toValuationSubring_eq_of_restrict_eq hw, toValuationSubring_eq_of_restrict_eq hw', h]
 
 end Bijection
-p2m_reactivate "P2MW.S_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg.AlgebraicCurve"
 
 section Assembly
 
@@ -987,7 +980,6 @@ theorem sum_ramificationIndex_mul_inertiaDeg_infra [HasPrincipalDivisors K F'] :
 
 end Assembly
 end Place
-p2m_reactivate "P2MW.S_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg.AlgebraicCurve"
 
 scoped instance instSumRamificationInertia {K F F' : Type*} [Field K] [Field F] [Field F']
     [Algebra K F] [Algebra K F'] [Algebra F F'] [IsScalarTower K F F']
@@ -996,7 +988,6 @@ scoped instance instSumRamificationInertia {K F F' : Type*} [Field K] [Field F] 
   ⟨fun v => Place.sum_ramificationIndex_mul_inertiaDeg_infra v⟩
 
 end AlgebraicCurve
-p2m_reactivate "P2MW.S_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg.AlgebraicCurve"
 
 theorem solution {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F'] [Algebra F F'] [IsScalarTower K F F'] [FiniteDimensional F F'] [Algebra.IsSeparable F F'] [HasPrincipalDivisors K F'] (v : Place K F) : ∑ w ∈ v.fiber F', (w.ramificationIndex F : ℤ) * (w.inertiaDeg F : ℤ) = (Module.finrank F F' : ℤ) :=
   AlgebraicCurve.Place.sum_ramificationIndex_mul_inertiaDeg_infra v

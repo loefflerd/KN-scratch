@@ -258,8 +258,6 @@ theorem cycUnit_pow (N : ℕ) [NeZero N] : cycUnit N ^ N = 1 :=
   Units.ext (by rw [Units.val_pow_eq_pow_val, (cycUnit_spec N).pow_eq_one, Units.val_one])
 
 end ModularCurve.W1
-p2m_reactivate "P2MW.S_ModularCurve_finrank_adjoin_jqN_prime_of_not_mem.ModularCurve P2MW.S_ModularCurve_finrank_adjoin_jqN_prime_of_not_mem.ModularCurve.W1"
-p2m_reactivate "P2MW.S_ModularCurve_finrank_adjoin_jqN_prime_of_not_mem.ModularCurve"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_injective qExpand_one_apply qExpand_qExpand jq coeff_jq_neg_one coeff_jq_of_lt jqN dedekindPsi evalAtJ_X ModularPolynomialData coeffEmb coeffEmb_coeff qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand coeffMap_qExpand PhiGen.splits_of_prime exists_phiIrreducible_evalSymm dedekindPsi_prime"
@@ -311,8 +309,6 @@ theorem phiAtSeed_iota_eval {K : Type*} [Field K] [Algebra ℚ K] (A : ℕ) [NeZ
   phiAtSeed_eval_map data _ _ ((coeffEmb K).comp (qExpand ℚ A)) (phiAtSeed_jqN_eval n data M)
 
 end ModularCurve.W1
-p2m_reactivate "P2MW.S_ModularCurve_finrank_adjoin_jqN_prime_of_not_mem.ModularCurve P2MW.S_ModularCurve_finrank_adjoin_jqN_prime_of_not_mem.ModularCurve.W1"
-p2m_reactivate "P2MW.S_ModularCurve_finrank_adjoin_jqN_prime_of_not_mem.ModularCurve P2MW.S_ModularCurve_finrank_adjoin_jqN_prime_of_not_mem.ModularCurve.W1"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_injective qExpand_one_apply qExpand_qExpand jq coeff_jq_neg_one coeff_jq_of_lt jqN dedekindPsi evalAtJ_X ModularPolynomialData coeffEmb coeffEmb_coeff qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand coeffMap_qExpand PhiGen.splits_of_prime exists_phiIrreducible_evalSymm dedekindPsi_prime"
@@ -340,8 +336,6 @@ theorem phiAtSeed_iota_jq_eq_phiProd (p : ℕ) [Fact p.Prime] (ζ : Kˣ) (hζ : 
   simp [evalAtJ_X]
 
 end ModularCurve.W1
-p2m_reactivate "P2MW.S_ModularCurve_finrank_adjoin_jqN_prime_of_not_mem.ModularCurve P2MW.S_ModularCurve_finrank_adjoin_jqN_prime_of_not_mem.ModularCurve.W1"
-p2m_reactivate "P2MW.S_ModularCurve_finrank_adjoin_jqN_prime_of_not_mem.ModularCurve P2MW.S_ModularCurve_finrank_adjoin_jqN_prime_of_not_mem.ModularCurve.W1"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_injective qExpand_one_apply qExpand_qExpand jq coeff_jq_neg_one coeff_jq_of_lt jqN dedekindPsi evalAtJ_X ModularPolynomialData coeffEmb coeffEmb_coeff qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand coeffMap_qExpand PhiGen.splits_of_prime exists_phiIrreducible_evalSymm dedekindPsi_prime"

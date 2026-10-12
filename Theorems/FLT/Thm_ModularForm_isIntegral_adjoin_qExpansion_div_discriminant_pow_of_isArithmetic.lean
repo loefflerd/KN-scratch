@@ -322,8 +322,6 @@ lemma qExpansion_Sform {K : ℕ} [𝒢.IsArithmetic] [𝒢.HasDetOne]
   exact Finset.sum_congr rfl fun r _ => qExpansion_Tform h1' g₁ h₁ r
 
 end PenA.ALG
-p2m_reactivate "P2MW.S_ModularForm_isIntegral_adjoin_qExpansion_div_discriminant_pow_of_isArithmetic.PenA P2MW.S_ModularForm_isIntegral_adjoin_qExpansion_div_discriminant_pow_of_isArithmetic.PenA.ALG"
-p2m_reactivate "P2MW.S_ModularForm_isIntegral_adjoin_qExpansion_div_discriminant_pow_of_isArithmetic.PenA"
 
 open PenA.ALG SlashInvariantForm in
 theorem solution {𝒢 : Subgroup (GL (Fin 2) ℝ)} [𝒢.IsArithmetic] [𝒢.HasDetOne] (h1 : (1 : ℝ) ∈ 𝒢.strictPeriods) (m : ℕ) {k : ℤ} (hk : k = 12 * m) (g : ModularForm 𝒢 k) : IsIntegral (Algebra.adjoin ℂ ({(((qExpansion 1 (ModularForm.E₄ : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) ^ 3 / ((qExpansion 1 (ModularForm.discriminant : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ))} : Set (LaurentSeries ℂ))) (((qExpansion 1 (g : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) / ((qExpansion 1 (ModularForm.discriminant : ℍ → ℂ) : PowerSeries ℂ) : LaurentSeries ℂ) ^ m) := by

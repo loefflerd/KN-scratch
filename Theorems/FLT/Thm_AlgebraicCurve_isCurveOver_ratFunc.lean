@@ -502,7 +502,6 @@ scoped instance instHasPrincipalDivisors : HasPrincipalDivisors K (RatFunc K) wh
 
 end RationalFunctionField
 end AlgebraicCurve
-p2m_reactivate "P2MW.S_AlgebraicCurve_isCurveOver_ratFunc.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_isCurveOver_ratFunc.AlgebraicCurve"
 
 open IsDedekindDomain WithZero IsLocalRing
 open scoped Polynomial
@@ -533,7 +532,6 @@ theorem deg_ne_zero [v.FiniteResidue] : v.deg ≠ 0 :=
 
 end DegPos
 end Place
-p2m_reactivate "P2MW.S_AlgebraicCurve_isCurveOver_ratFunc.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_isCurveOver_ratFunc.AlgebraicCurve"
 
 namespace RationalFunctionField
 p2m_export "AlgebraicCurve.RationalFunctionField" "placeInfty placeInfty_ne_ofHeightOneSpectrum eq_ofHeightOneSpectrum_or_eq_placeInfty heightOneSpectrumOfIrreducible heightOneSpectrumOfIrreducible_asIdeal exists_irreducible_span finitePlace finitePlace_def deg_ofHeightOneSpectrum deg_finitePlace"
@@ -562,7 +560,6 @@ scoped instance instFiniteResidue (v : Place K (RatFunc K)) : v.FiniteResidue :=
 
 end RationalFunctionField
 end AlgebraicCurve
-p2m_reactivate "P2MW.S_AlgebraicCurve_isCurveOver_ratFunc.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_isCurveOver_ratFunc.AlgebraicCurve"
 
 section Kaehler
 
@@ -592,7 +589,6 @@ theorem kaehler_free_rank_one_ratFunc :
 end AlgebraicCurve
 end Kaehler
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_isCurveOver_ratFunc.AlgebraicCurve.RationalFunctionField P2MW.S_AlgebraicCurve_isCurveOver_ratFunc.AlgebraicCurve"
 
 open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_isCurveOver_ratFunc.AlgebraicCurve in
 

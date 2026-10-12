@@ -546,9 +546,6 @@ theorem ord_jSub_pos (τ₀ : ℍ) :
 end Stabiliser
 
 end ModularCurve.LevelN.AnalyticPlaces
-p2m_reactivate "P2MW.S_ModularCurve_LevelN_exists_place_ord_sub_pos_forall_smul_eq.ModularCurve P2MW.S_ModularCurve_LevelN_exists_place_ord_sub_pos_forall_smul_eq.ModularCurve.LevelN P2MW.S_ModularCurve_LevelN_exists_place_ord_sub_pos_forall_smul_eq.ModularCurve.LevelN.AnalyticPlaces"
-p2m_reactivate "P2MW.S_ModularCurve_LevelN_exists_place_ord_sub_pos_forall_smul_eq.ModularCurve P2MW.S_ModularCurve_LevelN_exists_place_ord_sub_pos_forall_smul_eq.ModularCurve.LevelN"
-p2m_reactivate "P2MW.S_ModularCurve_LevelN_exists_place_ord_sub_pos_forall_smul_eq.ModularCurve"
 
 open _root_.ModularCurve.LevelN _root_.P2MW.S_ModularCurve_LevelN_exists_place_ord_sub_pos_forall_smul_eq.ModularCurve.LevelN _root_.P2MW.S_ModularCurve_LevelN_exists_place_ord_sub_pos_forall_smul_eq.ModularCurve.LevelN.AnalyticPlaces in
 theorem solution (N : ℕ) [NeZero N]

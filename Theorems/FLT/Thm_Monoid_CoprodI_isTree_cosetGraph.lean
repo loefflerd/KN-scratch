@@ -229,7 +229,6 @@ theorem isTree_of_isAcyclic [Nonempty ι] (h : (graph G).IsAcyclic) : (graph G).
 
 end BassSerre
 end GroupTheory
-p2m_reactivate "P2MW.S_Monoid_CoprodI_isTree_cosetGraph.GroupTheory.BassSerre P2MW.S_Monoid_CoprodI_isTree_cosetGraph.GroupTheory"
 
 p2m_open "Subgroup SimpleGraph P2MW.S_Monoid_CoprodI_isTree_cosetGraph.SimpleGraph"
 
@@ -256,7 +255,6 @@ theorem isBridge_of_separating {G : SimpleGraph V} (f : V → α) {a b : V}
   exact hconst hvw.1 fun he => hvw.2 (Set.mem_singleton_iff.mpr he)
 
 end SimpleGraph
-p2m_reactivate "P2MW.S_Monoid_CoprodI_isTree_cosetGraph.GroupTheory.BassSerre P2MW.S_Monoid_CoprodI_isTree_cosetGraph.GroupTheory"
 
 namespace GroupTheory
 
@@ -377,7 +375,6 @@ theorem isBridge_mk_mk (htwo : ∀ a b c : ι, a = b ∨ a = c ∨ b = c) {i j :
     · exact sideAux_eq_sideAux (fun H => hhg (inv_mul_eq_one.mp H).symm) v.1 w.1
 
 end DecEq
-p2m_reactivate "P2MW.S_Monoid_CoprodI_isTree_cosetGraph.GroupTheory.BassSerre P2MW.S_Monoid_CoprodI_isTree_cosetGraph.GroupTheory"
 
 theorem isAcyclic (htwo : ∀ a b c : ι, a = b ∨ a = c ∨ b = c) : (graph G).IsAcyclic := by
   classical
@@ -398,7 +395,6 @@ theorem isAcyclic_two {G : Fin 2 → Type*} [∀ i, Group (G i)] : (graph G).IsA
 
 end BassSerre
 end GroupTheory
-p2m_reactivate "P2MW.S_Monoid_CoprodI_isTree_cosetGraph.GroupTheory.BassSerre P2MW.S_Monoid_CoprodI_isTree_cosetGraph.GroupTheory"
 
 namespace GroupTheory
 namespace BassSerre
@@ -426,8 +422,6 @@ theorem fromRel_eq_graph {G : Fin 2 → Type*} [∀ i, Group (G i)] :
     refine ⟨fun h => hij (congrArg Sigma.fst h), Or.inl ⟨hij, g, hx.symm, hy.symm⟩⟩
 
 end GroupTheory.BassSerre
-p2m_reactivate "P2MW.S_Monoid_CoprodI_isTree_cosetGraph.GroupTheory.BassSerre P2MW.S_Monoid_CoprodI_isTree_cosetGraph.GroupTheory"
-p2m_reactivate "P2MW.S_Monoid_CoprodI_isTree_cosetGraph.GroupTheory.BassSerre P2MW.S_Monoid_CoprodI_isTree_cosetGraph.GroupTheory"
 
 theorem solution {G : Fin 2 → Type*} [∀ i, Group (G i)] :
     (SimpleGraph.fromRel fun v w : (i : Fin 2) × (Monoid.CoprodI G ⧸ (Monoid.CoprodI.of (M := G) (i := i)).range) =>

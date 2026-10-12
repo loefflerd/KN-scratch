@@ -125,7 +125,6 @@ theorem indRep_neg_one (hn : Even n) : indRep N n ⟨-1, Subgroup.mem_top _⟩ =
 
 end HeckeEis.UH3Sol
 end
-p2m_reactivate "P2MW.S_HeckeEis_exists_induced_binaryFormRepSL_top.HeckeEis P2MW.S_HeckeEis_exists_induced_binaryFormRepSL_top.HeckeEis.UH3Sol"
 
 noncomputable section
 
@@ -217,7 +216,6 @@ theorem coeff_dehom_of_isHomogeneous {P : MvPolynomial (Fin 2) ℂ} (hP : P.IsHo
 
 end HeckeEis.UH3Sol
 end
-p2m_reactivate "P2MW.S_HeckeEis_exists_induced_binaryFormRepSL_top.HeckeEis P2MW.S_HeckeEis_exists_induced_binaryFormRepSL_top.HeckeEis.UH3Sol"
 
 noncomputable section
 
@@ -318,7 +316,6 @@ theorem eq_zero_of_T_fixed_of_S_T_fixed (hn0 : n ≠ 0) (v : Vn n)
 
 end HeckeEis.UH3Sol
 end
-p2m_reactivate "P2MW.S_HeckeEis_exists_induced_binaryFormRepSL_top.HeckeEis P2MW.S_HeckeEis_exists_induced_binaryFormRepSL_top.HeckeEis.UH3Sol"
 
 noncomputable section
 
@@ -378,7 +375,6 @@ theorem indRep_invariants [NeZero N] (hn0 : n ≠ 0) (f : X0 N → Vn n) (hf : �
 
 end HeckeEis.UH3Sol
 end
-p2m_reactivate "P2MW.S_HeckeEis_exists_induced_binaryFormRepSL_top.HeckeEis P2MW.S_HeckeEis_exists_induced_binaryFormRepSL_top.HeckeEis.UH3Sol"
 
 noncomputable section
 
@@ -532,7 +528,6 @@ theorem sup_range_eq_top (hn0 : n ≠ 0) :
 end Coinv
 end HeckeEis.UH3Sol
 end
-p2m_reactivate "P2MW.S_HeckeEis_exists_induced_binaryFormRepSL_top.HeckeEis P2MW.S_HeckeEis_exists_induced_binaryFormRepSL_top.HeckeEis.UH3Sol"
 
 open scoped MatrixGroups in
 theorem solution (N : ℕ) [NeZero N] (n : ℕ) (hn : Even n) (hn0 : n ≠ 0) :

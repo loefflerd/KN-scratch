@@ -632,7 +632,6 @@ end Width
 
 end ModularCurve.LevelN.QExpEmbedding
 end
-p2m_reactivate "P2MW.S_ModularCurve_LevelN_exists_algHom_laurentSeries_qExpansion.ModularCurve P2MW.S_ModularCurve_LevelN_exists_algHom_laurentSeries_qExpansion.ModularCurve.LevelN P2MW.S_ModularCurve_LevelN_exists_algHom_laurentSeries_qExpansion.ModularCurve.LevelN.QExpEmbedding"
 
 open ModularCurve.LevelN.QExpEmbedding in
 theorem solution (N : ℕ) [NeZero N]

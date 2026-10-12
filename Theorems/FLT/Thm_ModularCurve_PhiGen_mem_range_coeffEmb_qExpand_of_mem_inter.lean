@@ -341,7 +341,6 @@ end Descent
 end PhiGen
 end ModularCurve
 end
-p2m_reactivate "P2MW.S_ModularCurve_PhiGen_mem_range_coeffEmb_qExpand_of_mem_inter.ModularCurve.PhiGen P2MW.S_ModularCurve_PhiGen_mem_range_coeffEmb_qExpand_of_mem_inter.ModularCurve"
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_mem_range_coeffEmb_qExpand_of_mem_inter.ModularCurve _root_.ModularCurve.PhiGen _root_.P2MW.S_ModularCurve_PhiGen_mem_range_coeffEmb_qExpand_of_mem_inter.ModularCurve.PhiGen in
 

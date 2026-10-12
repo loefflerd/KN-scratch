@@ -223,7 +223,6 @@ theorem Ψ_injective : Function.Injective (Ψ (N := N)) := by
 
 end HeckeEis.N0Sol
 end
-p2m_reactivate "P2MW.S_HeckeEis_finrank_coeffH1par_zero_le_two_mul_genusFormula.HeckeEis P2MW.S_HeckeEis_finrank_coeffH1par_zero_le_two_mul_genusFormula.HeckeEis.N0Sol"
 
 theorem solution (N : ℕ) [NeZero N] :
     (Module.finrank ℂ (HeckeEis.coeffH1par ((HeckeEis.binaryFormRepSL ℂ 0).comp (CongruenceSubgroup.Gamma0 N).subtype)) : ℚ)

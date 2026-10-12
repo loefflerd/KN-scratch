@@ -315,7 +315,6 @@ theorem linearIndependent_iota {ι : Type*} [Fintype ι] (v : ι → E₀)
 end Transfer
 
 end QExpDegTransfer
-p2m_reactivate "P2MW.S_ModularCurve_finiteDimensional_and_finrank_adjoin_le_of_eq_coeffMap.QExpDegTransfer"
 
 open QExpDegTransfer in
 set_option synthInstance.maxHeartbeats 80000 in -- this is needed (DL)

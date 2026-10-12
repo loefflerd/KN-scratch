@@ -341,7 +341,6 @@ theorem order_le_of_identity {p q d : ℂ → ℂ} {n m : ℕ} {C : ℕ → ℂ 
   omega
 
 end ANb
-p2m_reactivate "P2MW.S_ModularCurve_eventually_norm_slash_le_mul_of_isIntegral_adjoin_jqModC_inv_sq.ANb"
 
 namespace ANb
 
@@ -626,7 +625,6 @@ theorem coreC2 (𝔤 𝔥 : 𝒩) (X : LaurentSeries ℂ) (hX : X * ψ 𝔥 = ψ
   ring
 
 end ANb
-p2m_reactivate "P2MW.S_ModularCurve_eventually_norm_slash_le_mul_of_isIntegral_adjoin_jqModC_inv_sq.ANb"
 
 open ANb in
 theorem solution (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ)) [Γ.FiniteIndex] (hT : ModularGroup.T ∈ Γ) {k : ℤ} (m : ℕ)

@@ -344,7 +344,6 @@ theorem order_le_of_identity {p q d₁ d : ℂ → ℂ} {n : ℕ} {C : ℕ → �
   omega
 
 end ANb
-p2m_reactivate "P2MW.S_ModularCurve_analyticOrderAt_le_of_isIntegral_adjoin_jqModC_pow.ANb"
 
 namespace ANb
 
@@ -439,7 +438,6 @@ theorem core (w : ℕ) (𝔤 𝔥 : 𝒩) (X : LaurentSeries ℂ) (hX : X * ψ �
     (by rw [Pi.pow_apply, toC𝔡_apply]; exact pow_ne_zero _ (ModularForm.discriminant_ne_zero τ)) hC
 
 end ANb
-p2m_reactivate "P2MW.S_ModularCurve_analyticOrderAt_le_of_isIntegral_adjoin_jqModC_pow.ANb"
 
 theorem solution (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ)) [Γ.FiniteIndex] (hT : ModularGroup.T ∈ Γ) {k : ℤ} (m : ℕ)
     (g h : ModularForm (Γ : Subgroup (GL (Fin 2) ℝ)) k) (X : LaurentSeries ℂ)

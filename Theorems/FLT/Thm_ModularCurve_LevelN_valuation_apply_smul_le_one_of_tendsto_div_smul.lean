@@ -698,7 +698,6 @@ end Assembly
 
 end ModularCurve.LevelN.CuspExpChi
 end
-p2m_reactivate "P2MW.S_ModularCurve_LevelN_valuation_apply_smul_le_one_of_tendsto_div_smul.ModularCurve P2MW.S_ModularCurve_LevelN_valuation_apply_smul_le_one_of_tendsto_div_smul.ModularCurve.LevelN P2MW.S_ModularCurve_LevelN_valuation_apply_smul_le_one_of_tendsto_div_smul.ModularCurve.LevelN.CuspExpChi"
 
 open ModularCurve.LevelN.CuspExpChi UpperHalfPlane Filter in
 open scoped MatrixGroups Topology Manifold in

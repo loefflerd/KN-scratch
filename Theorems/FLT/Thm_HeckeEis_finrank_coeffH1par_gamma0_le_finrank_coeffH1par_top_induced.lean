@@ -237,7 +237,6 @@ end Shapiro
 
 end HeckeEis.UBSol
 end
-p2m_reactivate "P2MW.S_HeckeEis_finrank_coeffH1par_gamma0_le_finrank_coeffH1par_top_induced.HeckeEis P2MW.S_HeckeEis_finrank_coeffH1par_gamma0_le_finrank_coeffH1par_top_induced.HeckeEis.UBSol"
 
 noncomputable section
 
@@ -294,7 +293,6 @@ theorem trace_sq_conj' (a g : SL(2, ℤ)) (hg : ((g : Matrix (Fin 2) (Fin 2) ℤ
   rw [this]; exact hg
 
 end Trace
-p2m_reactivate "P2MW.S_HeckeEis_finrank_coeffH1par_gamma0_le_finrank_coeffH1par_top_induced.HeckeEis P2MW.S_HeckeEis_finrank_coeffH1par_gamma0_le_finrank_coeffH1par_top_induced.HeckeEis.UBSol"
 
 section Power
 
@@ -311,7 +309,6 @@ theorem exists_pow_smul_eq (g : SL(2, ℤ)) : ∃ M : ℕ, 0 < M ∧ ∀ x : X0 
   simpa using this
 
 end Power
-p2m_reactivate "P2MW.S_HeckeEis_finrank_coeffH1par_gamma0_le_finrank_coeffH1par_top_induced.HeckeEis P2MW.S_HeckeEis_finrank_coeffH1par_gamma0_le_finrank_coeffH1par_top_induced.HeckeEis.UBSol"
 
 section PowerSum
 
@@ -331,7 +328,6 @@ theorem cocycle_pow {Z : ↥Gt → X0 N → Vn n} (hZ : Z ∈ coeffCocycles W) (
     exact Finset.sum_congr rfl fun i _ => by rw [pow_succ', Module.End.mul_apply]
 
 end PowerSum
-p2m_reactivate "P2MW.S_HeckeEis_finrank_coeffH1par_gamma0_le_finrank_coeffH1par_top_induced.HeckeEis P2MW.S_HeckeEis_finrank_coeffH1par_gamma0_le_finrank_coeffH1par_top_induced.HeckeEis.UBSol"
 
 section Parabolic
 
@@ -377,7 +373,6 @@ theorem Sh_mem_coeffParabolicCocycles {z : ↥(Γ0 N) → Vn n} (hz : z ∈ coef
 end Parabolic
 end HeckeEis.UBSol
 end
-p2m_reactivate "P2MW.S_HeckeEis_finrank_coeffH1par_gamma0_le_finrank_coeffH1par_top_induced.HeckeEis P2MW.S_HeckeEis_finrank_coeffH1par_gamma0_le_finrank_coeffH1par_top_induced.HeckeEis.UBSol"
 
 noncomputable section
 
@@ -520,7 +515,6 @@ theorem main :
 end Final
 end HeckeEis.UBSol
 end
-p2m_reactivate "P2MW.S_HeckeEis_finrank_coeffH1par_gamma0_le_finrank_coeffH1par_top_induced.HeckeEis P2MW.S_HeckeEis_finrank_coeffH1par_gamma0_le_finrank_coeffH1par_top_induced.HeckeEis.UBSol"
 
 open scoped MatrixGroups in
 theorem solution (N : ℕ) [NeZero N] (n : ℕ)

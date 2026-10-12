@@ -295,9 +295,6 @@ theorem slash_eq_self {F : ℍ → ℂ} (hF : MDifferentiable 𝓘(ℂ) 𝓘(ℂ
   exact sub_eq_zero.mp this
 
 end ModularCurve.LevelN.WeightTwo
-p2m_reactivate "P2MW.S_ModularCurve_LevelN_slash_eq_self_of_mem_Gamma_of_mul_eq.ModularCurve P2MW.S_ModularCurve_LevelN_slash_eq_self_of_mem_Gamma_of_mul_eq.ModularCurve.LevelN P2MW.S_ModularCurve_LevelN_slash_eq_self_of_mem_Gamma_of_mul_eq.ModularCurve.LevelN.WeightTwo"
-p2m_reactivate "P2MW.S_ModularCurve_LevelN_slash_eq_self_of_mem_Gamma_of_mul_eq.ModularCurve P2MW.S_ModularCurve_LevelN_slash_eq_self_of_mem_Gamma_of_mul_eq.ModularCurve.LevelN"
-p2m_reactivate "P2MW.S_ModularCurve_LevelN_slash_eq_self_of_mem_Gamma_of_mul_eq.ModularCurve"
 
 theorem solution (N : ℕ) [NeZero N] (F : UpperHalfPlane → ℂ)
     (hF : MDifferentiable 𝓘(ℂ) 𝓘(ℂ) F)

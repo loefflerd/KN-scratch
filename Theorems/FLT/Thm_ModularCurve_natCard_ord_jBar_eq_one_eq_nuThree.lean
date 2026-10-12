@@ -1473,7 +1473,6 @@ end Squeeze
 
 end CNTUnit
 end
-p2m_reactivate "P2MW.S_ModularCurve_natCard_ord_jBar_eq_one_eq_nuThree.CNTUnit"
 
 p2m_open_scoped "ModularCurve" in
 private theorem ModularCurve.exists_place_bar_ord_eq_of_ord_jq_sub_pos (N : ℕ) [NeZero N]
@@ -1590,7 +1589,6 @@ private theorem JD_efix_core {α : Type*} (S : Finset α) (f : α → ℤ) (k : 
   · rw [← Finset.card_union_of_disjoint hdisj, hunion]
 
 end EFIX
-p2m_reactivate "P2MW.S_ModularCurve_natCard_ord_jBar_eq_one_eq_nuThree.CNTUnit"
 
 p2m_open_scoped "ModularCurve" in
 private theorem ModularCurve.natCard_ord_jBar_sub_1728_eq_one_eq_nuTwo (N : ℕ) [NeZero N]
@@ -1692,7 +1690,6 @@ private theorem JD_ord_nonneg_of_mem (v : Place K F) {f : F} (hf : f ∈ v.toVal
   exact Int.natCast_nonneg n
 
 end JDHelpers
-p2m_reactivate "P2MW.S_ModularCurve_natCard_ord_jBar_eq_one_eq_nuThree.CNTUnit"
 
 section JDOrdHelper
 variable {K F : Type*} [Field K] [Field F] [Algebra K F]
@@ -1718,7 +1715,6 @@ private theorem JD_ord_nonneg_of_ord_sub_ofNat_pos (w : Place K F) (k : ℕ) [k.
   exact JD_ord_nonneg_of_mem w hmem
 
 end JDOrdHelper
-p2m_reactivate "P2MW.S_ModularCurve_natCard_ord_jBar_eq_one_eq_nuThree.CNTUnit"
 
 section JDAux1
 p2m_open "IntermediateField AlgebraicCurve AlgebraicCurve.RationalFunctionField ModularCurve P2MW.S_ModularCurve_natCard_ord_jBar_eq_one_eq_nuThree.ModularCurve"
@@ -1744,7 +1740,6 @@ private theorem JD_deg_restrict_jAdjoin_pos (N : ℕ) [NeZero N] :
   exact JD_one_le_deg_jAdjoin _
 
 end JDAux1
-p2m_reactivate "P2MW.S_ModularCurve_natCard_ord_jBar_eq_one_eq_nuThree.CNTUnit"
 
 section JDHelpersModular
 
@@ -1873,7 +1868,6 @@ private theorem JD_exists_bar_ord_eq_mul_ram_zero
   rw [hcord _ _ (JD_coeffEmb_j N), ← ramificationIndex_eq_ord_of_restrict_eq_jLinePlaceZero N w hw]
 
 end JDHelpersModular
-p2m_reactivate "P2MW.S_ModularCurve_natCard_ord_jBar_eq_one_eq_nuThree.CNTUnit"
 
 p2m_open_scoped "ModularCurve" in
 private theorem ModularCurve.ramificationIndex_eq_one_or_eq_two_of_restrict_eq_jLinePlace1728_of_even_of_bounds (N : ℕ) [NeZero N] (hN : Even N)
@@ -2166,7 +2160,6 @@ private theorem JD_L_H1
   omega
 
 end H1
-p2m_reactivate "P2MW.S_ModularCurve_natCard_ord_jBar_eq_one_eq_nuThree.CNTUnit"
 
 p2m_open_scoped "ModularCurve" in
 private theorem ModularCurve.ramificationIndex_eq_one_of_restrict_ne_jLinePlaces_of_even_of_bounds (N : ℕ) [NeZero N] (hN : Even N)

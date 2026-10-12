@@ -381,8 +381,6 @@ theorem frobCharEqOnPoints_of_charEq_on_torsion_of_trace_zero
   exact charEq_of_compPoly_eq_zero W σ hσ hZ hr h2q hcard hrel P
 
 end FrobeniusEndo.TraceZeroPort
-p2m_reactivate "P2MW.S_FrobeniusEndo_frobCharEqOnPoints_of_charEq_on_torsion_of_trace_zero.FrobeniusEndo P2MW.S_FrobeniusEndo_frobCharEqOnPoints_of_charEq_on_torsion_of_trace_zero.FrobeniusEndo.TraceZeroPort"
-p2m_reactivate "P2MW.S_FrobeniusEndo_frobCharEqOnPoints_of_charEq_on_torsion_of_trace_zero.FrobeniusEndo"
 
 open _root_.FrobeniusEndo _root_.P2MW.S_FrobeniusEndo_frobCharEqOnPoints_of_charEq_on_torsion_of_trace_zero.FrobeniusEndo in
 theorem solution {R : Type*} [CommRing R] {F : Type*} [Field F] [Fintype F] {k : Type*} [Field k]

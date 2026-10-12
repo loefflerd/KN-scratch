@@ -176,8 +176,6 @@ theorem normFormulaAlong_of_elliptic (ι : V.FunctionField →ₐ[F] W.FunctionF
 end AutoNorm
 
 end WeierstrassCurve.Affine
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_aeval_j_diag_eq_zero_of_finrankAlong_eq.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_aeval_j_diag_eq_zero_of_finrankAlong_eq.WeierstrassCurve.Affine"
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_aeval_j_diag_eq_zero_of_finrankAlong_eq.WeierstrassCurve"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "ModularPolynomialData ModularPolynomialData.eval_jLattice_eq_zero_of_isAddCyclic"
@@ -236,7 +234,6 @@ theorem kw_fdn2_qephod_hend21_finrankAlong_conj
 
 end ConjHelpers
 end ModularCurve
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_aeval_j_diag_eq_zero_of_finrankAlong_eq.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_aeval_j_diag_eq_zero_of_finrankAlong_eq.WeierstrassCurve.Affine"
 
 set_option linter.unusedSectionVars false
 set_option linter.unusedVariables false
@@ -304,7 +301,6 @@ private theorem _root_.PeriodPair.apply_eq_apply_of_differentiable_of_forall_per
 
 p2m_export "PeriodPair" "apply_eq_apply_of_differentiable_of_forall_periodic"
 end Liouville
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_aeval_j_diag_eq_zero_of_finrankAlong_eq.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_aeval_j_diag_eq_zero_of_finrankAlong_eq.WeierstrassCurve.Affine"
 
 section ToPointLemmas
 
@@ -334,7 +330,6 @@ theorem toPoint_neg (h : L.DiscriminantNeZero) (z : ℂ) :
     ring
 
 end ToPointLemmas
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_aeval_j_diag_eq_zero_of_finrankAlong_eq.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_aeval_j_diag_eq_zero_of_finrankAlong_eq.WeierstrassCurve.Affine"
 
 section Isogeny
 
@@ -404,7 +399,6 @@ theorem exists_smul_mem_and_apply_eq_of_forall_sub_mem (L' : PeriodPair) {F : �
   simpa using h
 
 end Isogeny
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_aeval_j_diag_eq_zero_of_finrankAlong_eq.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_aeval_j_diag_eq_zero_of_finrankAlong_eq.WeierstrassCurve.Affine"
 
 section Scale
 
@@ -449,7 +443,6 @@ p2m_export "PeriodPair" "scaleLatticeEquiv"
     ((L.scaleLatticeEquiv α l : (L.scale α).lattice) : ℂ) = (α : ℂ) * (l : ℂ) := rfl
 
 end Scale
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_aeval_j_diag_eq_zero_of_finrankAlong_eq.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_aeval_j_diag_eq_zero_of_finrankAlong_eq.WeierstrassCurve.Affine"
 
 section Homogeneity
 
@@ -487,7 +480,6 @@ theorem discriminantNeZero_scale_iff :
   simp only [mul_ne_zero_iff, and_iff_right (inv_ne_zero (pow_ne_zero 12 α.ne_zero))]
 
 end Homogeneity
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_aeval_j_diag_eq_zero_of_finrankAlong_eq.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_aeval_j_diag_eq_zero_of_finrankAlong_eq.WeierstrassCurve.Affine"
 
 section LatticeDependence
 
@@ -512,7 +504,6 @@ theorem jLattice_eq_of_lattice_eq (h : L.lattice = L'.lattice) : L.jLattice = L'
   unfold jLattice; rw [g₂_eq_of_lattice_eq h, g₃_eq_of_lattice_eq h]
 
 end LatticeDependence
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_aeval_j_diag_eq_zero_of_finrankAlong_eq.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_aeval_j_diag_eq_zero_of_finrankAlong_eq.WeierstrassCurve.Affine"
 
 section Gates
 
@@ -525,7 +516,6 @@ theorem gate_scale_mul (α β : ℂˣ) :
   · rintro ⟨l, hl, rfl⟩; exact ⟨(α : ℂ) * l, ⟨l, hl, rfl⟩, mul_assoc _ _ _⟩
 
 end Gates
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_aeval_j_diag_eq_zero_of_finrankAlong_eq.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_aeval_j_diag_eq_zero_of_finrankAlong_eq.WeierstrassCurve.Affine"
 
 private theorem _root_.PeriodPair.kw_countable_lattice : (L.lattice : Set ℂ).Countable := by
   refine (Set.countable_range fun p : ℤ × ℤ => (p.1 : ℂ) * L.ω₁ + (p.2 : ℂ) * L.ω₂).mono ?_
@@ -579,7 +569,6 @@ scoped instance kw_infinite_point : Infinite L.weierstrassCurve.toAffine.Point :
 
 end PeriodPair
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_aeval_j_diag_eq_zero_of_finrankAlong_eq.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_aeval_j_diag_eq_zero_of_finrankAlong_eq.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_IsogenyEndDatum_aeval_j_diag_eq_zero_of_finrankAlong_eq.PeriodPair"
 
 theorem s13_aeval_diag_eq_eval_map {R : Type*} [CommRing R] (Φ : Polynomial (Polynomial ℤ)) (a : R) :
     Polynomial.aeval a (Φ.eval₂ (RingHom.id (Polynomial ℤ)) Polynomial.X)

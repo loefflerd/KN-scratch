@@ -287,7 +287,6 @@ theorem mem_inertiaSubgroup :
 end Galois
 
 end H1bTorsionLaurent
-p2m_reactivate "P2MW.S_WeierstrassCurve_hasRamBound_one_of_nsmul_eq_zero_of_isUnit_discriminant_powerSeries.H1bTorsionLaurent"
 
 open H1bTorsionLaurent in
 theorem solution

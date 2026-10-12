@@ -941,7 +941,6 @@ end PhiGen
 
 end ModularCurve
 end
-p2m_reactivate "P2MW.S_ModularCurve_PhiGen_phiIrreducible_of_splits.ModularCurve"
 
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_phiIrreducible_of_splits.ModularCurve _root_.ModularCurve.PhiGen _root_.P2MW.S_ModularCurve_PhiGen_phiIrreducible_of_splits.ModularCurve.PhiGen in

@@ -141,7 +141,6 @@ private lemma _root_.Valuation.map_aeval_eq_pow_of_one_lt {K L Γ : Type*} [Fiel
   · exact pow_pos (lt_trans zero_lt_one hz) _
   · exact pow_lt_pow_right₀ hz hi'
 
-p2m_alias "P2MW.S_WeierstrassCurve_Affine_FunctionField_eq_valuationSubring_of_X_not_mem.Valuation.map_aeval_eq_pow_of_one_lt" "Valuation.map_aeval_eq_pow_of_one_lt"
 namespace FunctionField
 
 lemma algebraMap_mk_C_C (c : K) :

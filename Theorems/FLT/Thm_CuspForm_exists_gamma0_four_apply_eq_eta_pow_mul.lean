@@ -364,7 +364,6 @@ theorem Gamma0_four_le_H : CongruenceSubgroup.Gamma0 4 ≤ H := by
 
 end EtaGamma0Four
 end gen
-p2m_reactivate "P2MW.S_CuspForm_exists_gamma0_four_apply_eq_eta_pow_mul.EtaGamma0Four"
 
 namespace EtaGamma0Four
 
@@ -452,7 +451,6 @@ lemma F_mdifferentiable (a b c : ℕ) :
   simp [F, Function.comp, UpperHalfPlane.ofComplex_apply_of_im_pos hz']
 
 end EtaGamma0Four
-p2m_reactivate "P2MW.S_CuspForm_exists_gamma0_four_apply_eq_eta_pow_mul.EtaGamma0Four"
 
 namespace EtaGamma0Four
 
@@ -572,7 +570,6 @@ lemma F_isZeroAt (α β γ : ℕ) (hE : 0 < α + β + γ)
   exact isZeroAtImInfty_of_pow (by norm_num) h6
 
 end EtaGamma0Four
-p2m_reactivate "P2MW.S_CuspForm_exists_gamma0_four_apply_eq_eta_pow_mul.EtaGamma0Four"
 
 open scoped MatrixGroups in
 open EtaGamma0Four in

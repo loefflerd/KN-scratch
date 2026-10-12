@@ -723,7 +723,6 @@ theorem engine (N : ℕ) [NeZero N] (K : Type*) [Field K] [CharZero K] :
 end Potential
 
 end W7S
-p2m_reactivate "P2MW.S_ModularCurve_Period_six_mul_finrank_parabolicHoms_add_le_index.W7S"
 
 open scoped MatrixGroups in
 theorem solution (N : ℕ) [NeZero N]

@@ -260,8 +260,6 @@ theorem cycUnit_pow (N : ℕ) [NeZero N] : cycUnit N ^ N = 1 :=
   Units.ext (by rw [Units.val_pow_eq_pow_val, (cycUnit_spec N).pow_eq_one, Units.val_one])
 
 end ModularCurve.W1
-p2m_reactivate "P2MW.S_ModularCurve_laurentBaseChange_adjoin_pair.ModularCurve P2MW.S_ModularCurve_laurentBaseChange_adjoin_pair.ModularCurve.W1"
-p2m_reactivate "P2MW.S_ModularCurve_laurentBaseChange_adjoin_pair.ModularCurve"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_one_apply qExpand_qExpand jq coeff_jq_neg_one coeff_jq_of_lt jqN dedekindPsi evalAtJ_X ModularPolynomialData FunctionFieldGeneration modularFunctionFieldFull jqd_mem_full full_degeneracy_le coeffEmb coeffEmb_coeff laurentBaseChange coeffEmb_mem_laurentBaseChange qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand jqModC jqNModC jqNModC_one towerInclBar coe_towerInclBar towerSubstBar coe_towerSubstBar dvd_of_eq_roof coeffMap_qExpand PhiGen.splits_prime_at_slot laurentBaseChange_modularFunctionField functionFieldGeneration_iff_full_eq laurentBaseChange_mono isIntegral_jqNModC_mul coeffEmb_jqN"
@@ -289,8 +287,6 @@ theorem qExpand_qTwist_TS (e : ℕ) [NeZero e] (u : Kˣ) (m : ℕ) [NeZero m] (w
   rw [qTwist_TS, qExpand_TS]
 
 end ModularCurve.W1
-p2m_reactivate "P2MW.S_ModularCurve_laurentBaseChange_adjoin_pair.ModularCurve P2MW.S_ModularCurve_laurentBaseChange_adjoin_pair.ModularCurve.W1"
-p2m_reactivate "P2MW.S_ModularCurve_laurentBaseChange_adjoin_pair.ModularCurve P2MW.S_ModularCurve_laurentBaseChange_adjoin_pair.ModularCurve.W1"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_one_apply qExpand_qExpand jq coeff_jq_neg_one coeff_jq_of_lt jqN dedekindPsi evalAtJ_X ModularPolynomialData FunctionFieldGeneration modularFunctionFieldFull jqd_mem_full full_degeneracy_le coeffEmb coeffEmb_coeff laurentBaseChange coeffEmb_mem_laurentBaseChange qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand jqModC jqNModC jqNModC_one towerInclBar coe_towerInclBar towerSubstBar coe_towerSubstBar dvd_of_eq_roof coeffMap_qExpand PhiGen.splits_prime_at_slot laurentBaseChange_modularFunctionField functionFieldGeneration_iff_full_eq laurentBaseChange_mono isIntegral_jqNModC_mul coeffEmb_jqN"
@@ -388,8 +384,6 @@ theorem isRoot_prime_at_slot_iff (N : ℕ) [NeZero N] (ζ : Kˣ) (hζ : IsPrimit
     · exact Or.inr ⟨b, Multiset.mem_range.mpr hb, rfl⟩
 
 end ModularCurve.W1
-p2m_reactivate "P2MW.S_ModularCurve_laurentBaseChange_adjoin_pair.ModularCurve P2MW.S_ModularCurve_laurentBaseChange_adjoin_pair.ModularCurve.W1"
-p2m_reactivate "P2MW.S_ModularCurve_laurentBaseChange_adjoin_pair.ModularCurve P2MW.S_ModularCurve_laurentBaseChange_adjoin_pair.ModularCurve.W1"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_one_apply qExpand_qExpand jq coeff_jq_neg_one coeff_jq_of_lt jqN dedekindPsi evalAtJ_X ModularPolynomialData FunctionFieldGeneration modularFunctionFieldFull jqd_mem_full full_degeneracy_le coeffEmb coeffEmb_coeff laurentBaseChange coeffEmb_mem_laurentBaseChange qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand jqModC jqNModC jqNModC_one towerInclBar coe_towerInclBar towerSubstBar coe_towerSubstBar dvd_of_eq_roof coeffMap_qExpand PhiGen.splits_prime_at_slot laurentBaseChange_modularFunctionField functionFieldGeneration_iff_full_eq laurentBaseChange_mono isIntegral_jqNModC_mul coeffEmb_jqN"
@@ -441,8 +435,6 @@ theorem phiAtSeed_iota_eval {K : Type*} [Field K] [Algebra ℚ K] (A : ℕ) [NeZ
   phiAtSeed_eval_map data _ _ ((coeffEmb K).comp (qExpand ℚ A)) (phiAtSeed_jqN_eval n data M)
 
 end ModularCurve.W1
-p2m_reactivate "P2MW.S_ModularCurve_laurentBaseChange_adjoin_pair.ModularCurve P2MW.S_ModularCurve_laurentBaseChange_adjoin_pair.ModularCurve.W1"
-p2m_reactivate "P2MW.S_ModularCurve_laurentBaseChange_adjoin_pair.ModularCurve P2MW.S_ModularCurve_laurentBaseChange_adjoin_pair.ModularCurve.W1"
 
 open ModularCurve.W1
 
@@ -457,8 +449,6 @@ theorem jqNModC_congr {L : Type*} [Field L] [Algebra ℚ L] {n m : ℕ} [NeZero 
   rfl
 
 end ModularCurve.W1
-p2m_reactivate "P2MW.S_ModularCurve_laurentBaseChange_adjoin_pair.ModularCurve P2MW.S_ModularCurve_laurentBaseChange_adjoin_pair.ModularCurve.W1"
-p2m_reactivate "P2MW.S_ModularCurve_laurentBaseChange_adjoin_pair.ModularCurve P2MW.S_ModularCurve_laurentBaseChange_adjoin_pair.ModularCurve.W1"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_one_apply qExpand_qExpand jq coeff_jq_neg_one coeff_jq_of_lt jqN dedekindPsi evalAtJ_X ModularPolynomialData FunctionFieldGeneration modularFunctionFieldFull jqd_mem_full full_degeneracy_le coeffEmb coeffEmb_coeff laurentBaseChange coeffEmb_mem_laurentBaseChange qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand jqModC jqNModC jqNModC_one towerInclBar coe_towerInclBar towerSubstBar coe_towerSubstBar dvd_of_eq_roof coeffMap_qExpand PhiGen.splits_prime_at_slot laurentBaseChange_modularFunctionField functionFieldGeneration_iff_full_eq laurentBaseChange_mono isIntegral_jqNModC_mul coeffEmb_jqN"
@@ -605,7 +595,6 @@ private theorem ModularCurve.heckeRoof_adjoin_range_union_eq_top
   exact haux z hz' hz
 
 end
-p2m_reactivate "P2MW.S_ModularCurve_laurentBaseChange_adjoin_pair.ModularCurve P2MW.S_ModularCurve_laurentBaseChange_adjoin_pair.ModularCurve.W1"
 
 p2m_open "ModularCurve~coeffEmb_qExpand" in open _root_.P2MW.S_ModularCurve_laurentBaseChange_adjoin_pair.ModularCurve in
 

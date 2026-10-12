@@ -449,7 +449,6 @@ end Closed
 
 end D5S
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_of_isAlgClosed.D5S"
 
 theorem solution {F : Type*} [Field F] [IsAlgClosed F] (W : WeierstrassCurve.Affine F)
     [W.IsElliptic] : AlgebraicCurve.HasPrincipalDivisors F W.FunctionField :=

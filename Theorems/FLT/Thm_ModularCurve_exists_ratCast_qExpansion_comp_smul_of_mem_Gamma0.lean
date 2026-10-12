@@ -1301,7 +1301,6 @@ end Main
 
 end X1DiamondRational
 end
-p2m_reactivate "P2MW.S_ModularCurve_exists_ratCast_qExpansion_comp_smul_of_mem_Gamma0.X1DiamondRational"
 
 open scoped MatrixGroups Manifold in
 theorem solution (N : ℕ) [NeZero N] (m : ℕ)

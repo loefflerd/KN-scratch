@@ -419,7 +419,6 @@ theorem coeff_jq_ne_zero (n : ℕ) : jq.coeff (n : ℤ) ≠ 0 :=
   ne_of_gt (lt_of_lt_of_le zero_lt_one (one_le_coeff_jq' n))
 
 end ModularCurve
-p2m_reactivate "P2MW.S_ModularCurve_one_le_coeff_jq.ModularCurve"
 
 theorem solution (n : ℕ) : (1 : ℚ) ≤ ModularCurve.jq.coeff (n : ℤ) :=
   ModularCurve.one_le_coeff_jq' n

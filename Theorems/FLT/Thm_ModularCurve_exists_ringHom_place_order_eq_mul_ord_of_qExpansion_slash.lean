@@ -21,7 +21,6 @@ import Theorems.FLT.Thm_ModularCurve_exists_modularForm_mul_qExpansion_eq_coeffE
 import Theorems.FLT.Thm_ModularCurve_exists_modularForm_mul_qExpansion_eq_of_mem_laurentBaseChange_qExpFunctionFieldC
 import Theorems.FLT.Thm_ModularCurve_jqModC_mem_intFormRatiosC
 import Theorems.FLT.Thm_ModularCurve_realizeOf_eq_div
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Cuspidal place and q_N-expansion at σ∞ on X(Γ)
@@ -82,7 +81,7 @@ namespace P2MW.S_ModularCurve_exists_ringHom_place_order_eq_mul_ord_of_qExpansio
 set_option linter.unusedSectionVars false
 set_option linter.unusedVariables false
 
-p2m_open "UpperHalfPlane ModularForm Filter Function Complex Function.Complex Matrix.SpecialLinearGroup OnePoint"
+open UpperHalfPlane ModularForm Filter Function Complex Matrix.SpecialLinearGroup OnePoint
 open scoped MatrixGroups Topology CongruenceSubgroup Pointwise Manifold
 
 noncomputable section
@@ -417,7 +416,6 @@ private theorem qExpansion_natCast_coeff {F : ℍ → ℂ} (N : ℕ) [NeZero N]
   exact (qExpansion_coeff_unique F hN hA key n).symm
 
 end S3CuspLimit
-p2m_reactivate "P2MW.S_ModularCurve_exists_ringHom_place_order_eq_mul_ord_of_qExpansion_slash.Ws49.CUSPLIM.S3CuspLimit"
 
 namespace S3c
 
@@ -613,7 +611,6 @@ private theorem ord_eq_zero_iff {x : F} (hx : x ≠ 0) :
     · exact h1
 
 end S3c
-p2m_reactivate "P2MW.S_ModularCurve_exists_ringHom_place_order_eq_mul_ord_of_qExpansion_slash.Ws49.CUSPLIM.S3CuspLimit"
 
 namespace S3c
 
@@ -794,7 +791,6 @@ private theorem cuspRatio_smul [Γ.HasDetOne] {k : ℤ} (c : ℂ) {h : ModularFo
     mul_one]
 
 end Generic
-p2m_reactivate "P2MW.S_ModularCurve_exists_ringHom_place_order_eq_mul_ord_of_qExpansion_slash.Ws49.CUSPLIM.S3CuspLimit"
 
 section Orders
 
@@ -891,7 +887,6 @@ private theorem PowerSeries_order_eq_of_div_order_eq_zero {R : Type*} [Field R] 
   omega
 
 end Orders
-p2m_reactivate "P2MW.S_ModularCurve_exists_ringHom_place_order_eq_mul_ord_of_qExpansion_slash.Ws49.CUSPLIM.S3CuspLimit"
 
 section Concrete
 
@@ -1073,7 +1068,8 @@ private theorem order_Φσ_jq (presJ : PresJ) (reindex : Reindex N)
 
 end Concrete
 end S3c
-p2m_reactivate "P2MW.S_ModularCurve_exists_ringHom_place_order_eq_mul_ord_of_qExpansion_slash.Ws49.CUSPLIM.S3CuspLimit P2MW.S_ModularCurve_exists_ringHom_place_order_eq_mul_ord_of_qExpansion_slash.Ws49.CUSPLIM.S3c"
+
+open S3CuspLimit S3c
 
 namespace S3glue
 
@@ -1126,7 +1122,8 @@ theorem jqModC_complex_eq_coeffEmb : ModularCurve.jqModC ℂ = ModularCurve.coef
   rw [HahnSeries.map_coeff, ModularCurve.coeffEmb_coeff]
 
 end S3glue
-p2m_reactivate "P2MW.S_ModularCurve_exists_ringHom_place_order_eq_mul_ord_of_qExpansion_slash.Ws49.CUSPLIM.S3CuspLimit P2MW.S_ModularCurve_exists_ringHom_place_order_eq_mul_ord_of_qExpansion_slash.Ws49.CUSPLIM.S3c"
+
+open S3glue S3CuspLimit
 
 namespace S3readout
 
@@ -1265,10 +1262,9 @@ private theorem qParam_zpow_neg_eq_exp (N : ℕ) (a b : ℤ) (τ : ℍ) :
 
 end S3readout
 end Ws49.CUSPLIM
-p2m_reactivate "P2MW.S_ModularCurve_exists_ringHom_place_order_eq_mul_ord_of_qExpansion_slash.Ws49.CUSPLIM.S3CuspLimit P2MW.S_ModularCurve_exists_ringHom_place_order_eq_mul_ord_of_qExpansion_slash.Ws49.CUSPLIM.S3c P2MW.S_ModularCurve_exists_ringHom_place_order_eq_mul_ord_of_qExpansion_slash.Ws49 P2MW.S_ModularCurve_exists_ringHom_place_order_eq_mul_ord_of_qExpansion_slash.Ws49.CUSPLIM"
-p2m_reactivate "P2MW.S_ModularCurve_exists_ringHom_place_order_eq_mul_ord_of_qExpansion_slash.Ws49.CUSPLIM.S3CuspLimit P2MW.S_ModularCurve_exists_ringHom_place_order_eq_mul_ord_of_qExpansion_slash.Ws49.CUSPLIM.S3c P2MW.S_ModularCurve_exists_ringHom_place_order_eq_mul_ord_of_qExpansion_slash.Ws49"
 
-open ModularCurve Ws49.CUSPLIM in
+open ModularCurve Ws49 CUSPLIM S3CuspLimit S3c
+
 theorem solution
     (Γ : Subgroup SL(2, ℤ)) [Γ.FiniteIndex] (hT : ModularGroup.T ∈ Γ)
     (F₀ : IntermediateField ℚ (LaurentSeries ℚ)) (hF : F₀ = ModularCurve.qExpFunctionFieldC ℚ Γ)

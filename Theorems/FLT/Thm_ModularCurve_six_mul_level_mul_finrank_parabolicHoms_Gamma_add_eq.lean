@@ -601,7 +601,6 @@ theorem main (hN : 2 ≤ N) :
 end Principal
 
 end BettiPrincipal
-p2m_reactivate "P2MW.S_ModularCurve_six_mul_level_mul_finrank_parabolicHoms_Gamma_add_eq.BettiPrincipal"
 
 theorem solution (N : ℕ) (hN : 2 ≤ N) :
     6 * N * Module.finrank ℤ (ModularCurve.Period.parabolicHoms ℤ (CongruenceSubgroup.Gamma N) ℤ) +

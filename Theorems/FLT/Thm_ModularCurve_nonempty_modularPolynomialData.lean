@@ -165,7 +165,6 @@ theorem main : Nonempty (ModularPolynomialData N) := by
 
 end Ws10NP
 end
-p2m_reactivate "P2MW.S_ModularCurve_nonempty_modularPolynomialData.Ws10NP"
 
 theorem solution (N : ℕ) [NeZero N] : Nonempty (ModularCurve.ModularPolynomialData N) :=
   Ws10NP.main N

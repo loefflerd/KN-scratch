@@ -166,7 +166,6 @@ theorem qCoeff_comp_smul_of_modularFormClass {FF : Type*} [FunLike FF ℍ ℂ]
 
 end UpperHalfPlane.DegeneracyQExp
 end
-p2m_reactivate "P2MW.S_UpperHalfPlane_qCoeff_comp_heckeDiagMatrix_smul.UpperHalfPlane P2MW.S_UpperHalfPlane_qCoeff_comp_heckeDiagMatrix_smul.UpperHalfPlane.DegeneracyQExp"
 
 theorem solution {f : UpperHalfPlane → ℂ} (hper : Function.Periodic (f ∘ UpperHalfPlane.ofComplex) 1) (hhol : MDifferentiable (modelWithCornersSelf ℂ ℂ) (modelWithCornersSelf ℂ ℂ) f) (hbdd : UpperHalfPlane.IsBoundedAtImInfty f) {d : ℕ} (hd : d ≠ 0) (n : ℕ) : ModularFormClass.qCoeff (fun τ ↦ f (ModularForm.heckeDiagMatrix d • τ)) n = if d ∣ n then ModularFormClass.qCoeff f (n / d) else 0 :=
   UpperHalfPlane.DegeneracyQExp.qCoeff_comp_smul hper hhol hbdd hd n

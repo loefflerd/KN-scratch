@@ -243,8 +243,6 @@ theorem units_pow_eq_one_of_isPrimitiveRoot {N : ℕ} {ζ : Kˣ} (hζ : IsPrimit
   Units.ext (by rw [Units.val_pow_eq_pow_val, hζ.pow_eq_one, Units.val_one])
 
 end ModularCurve.W1
-p2m_reactivate "P2MW.S_ModularCurve_jqNModC_mem_modularFunctionFieldC_mul_prime.ModularCurve P2MW.S_ModularCurve_jqNModC_mem_modularFunctionFieldC_mul_prime.ModularCurve.W1"
-p2m_reactivate "P2MW.S_ModularCurve_jqNModC_mem_modularFunctionFieldC_mul_prime.ModularCurve"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_injective qExpand_one_apply qExpand_congr qExpand_qExpand dedekindPsi ModularPolynomialData coeffMap coeffMap_coeff qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand EvalSymm jqModC jqNModC map_jqModC modularFunctionFieldC jqModC_mem jqNModC_mem coeffMap_qExpand coeff_jqModC_neg_one order_jqModC PhiGen.splits_prime_at_slot_of_isPrimitiveRoot exists_phiIrreducible_evalSymm minpoly_jqNModC_map_eq_prod_slots"
@@ -309,8 +307,6 @@ theorem phiAtSeed_TS_eval_symm {K : Type*} [Field K] (A : ℕ) [NeZero A] (n : �
   rwa [qExpand_jqNModC, qExpand_jqNModC] at h
 
 end ModularCurve.W1
-p2m_reactivate "P2MW.S_ModularCurve_jqNModC_mem_modularFunctionFieldC_mul_prime.ModularCurve P2MW.S_ModularCurve_jqNModC_mem_modularFunctionFieldC_mul_prime.ModularCurve.W1"
-p2m_reactivate "P2MW.S_ModularCurve_jqNModC_mem_modularFunctionFieldC_mul_prime.ModularCurve P2MW.S_ModularCurve_jqNModC_mem_modularFunctionFieldC_mul_prime.ModularCurve.W1"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_injective qExpand_one_apply qExpand_congr qExpand_qExpand dedekindPsi ModularPolynomialData coeffMap coeffMap_coeff qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand EvalSymm jqModC jqNModC map_jqModC modularFunctionFieldC jqModC_mem jqNModC_mem coeffMap_qExpand coeff_jqModC_neg_one order_jqModC PhiGen.splits_prime_at_slot_of_isPrimitiveRoot exists_phiIrreducible_evalSymm minpoly_jqNModC_map_eq_prod_slots"
@@ -399,8 +395,6 @@ theorem roots_phiAtSeed_TS (p : ℕ) [hp : Fact (Nat.Prime p)] (ζ : Kˣ) (hζ :
   roots_prime_at_slot p ζ hζ data e u
 
 end ModularCurve.W1
-p2m_reactivate "P2MW.S_ModularCurve_jqNModC_mem_modularFunctionFieldC_mul_prime.ModularCurve P2MW.S_ModularCurve_jqNModC_mem_modularFunctionFieldC_mul_prime.ModularCurve.W1"
-p2m_reactivate "P2MW.S_ModularCurve_jqNModC_mem_modularFunctionFieldC_mul_prime.ModularCurve P2MW.S_ModularCurve_jqNModC_mem_modularFunctionFieldC_mul_prime.ModularCurve.W1"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_injective qExpand_one_apply qExpand_congr qExpand_qExpand dedekindPsi ModularPolynomialData coeffMap coeffMap_coeff qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand EvalSymm jqModC jqNModC map_jqModC modularFunctionFieldC jqModC_mem jqNModC_mem coeffMap_qExpand coeff_jqModC_neg_one order_jqModC PhiGen.splits_prime_at_slot_of_isPrimitiveRoot exists_phiIrreducible_evalSymm minpoly_jqNModC_map_eq_prod_slots"
@@ -546,8 +540,6 @@ theorem jqNModC_mem_mffC_mul_prime_of_prod (M : ℕ) [NeZero M] (p : ℕ) [hp : 
   exact f.2
 
 end ModularCurve.W1
-p2m_reactivate "P2MW.S_ModularCurve_jqNModC_mem_modularFunctionFieldC_mul_prime.ModularCurve P2MW.S_ModularCurve_jqNModC_mem_modularFunctionFieldC_mul_prime.ModularCurve.W1"
-p2m_reactivate "P2MW.S_ModularCurve_jqNModC_mem_modularFunctionFieldC_mul_prime.ModularCurve P2MW.S_ModularCurve_jqNModC_mem_modularFunctionFieldC_mul_prime.ModularCurve.W1"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_injective qExpand_one_apply qExpand_congr qExpand_qExpand dedekindPsi ModularPolynomialData coeffMap coeffMap_coeff qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand EvalSymm jqModC jqNModC map_jqModC modularFunctionFieldC jqModC_mem jqNModC_mem coeffMap_qExpand coeff_jqModC_neg_one order_jqModC PhiGen.splits_prime_at_slot_of_isPrimitiveRoot exists_phiIrreducible_evalSymm minpoly_jqNModC_map_eq_prod_slots"
@@ -569,7 +561,6 @@ private theorem ModularCurve.jqNModC_mem_modularFunctionFieldC_mul_prime {K : Ty
       hall)
 
 end
-p2m_reactivate "P2MW.S_ModularCurve_jqNModC_mem_modularFunctionFieldC_mul_prime.ModularCurve P2MW.S_ModularCurve_jqNModC_mem_modularFunctionFieldC_mul_prime.ModularCurve.W1"
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_jqNModC_mem_modularFunctionFieldC_mul_prime.ModularCurve in
 

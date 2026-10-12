@@ -161,8 +161,6 @@ theorem pointMapOfPushforward_comp
 end Functoriality
 
 end WeierstrassCurve.Affine
-p2m_reactivate "P2MW.S_ModularCurve_ModularPolynomialData_mem_of_isRoot_map_j_of_transcendental.WeierstrassCurve P2MW.S_ModularCurve_ModularPolynomialData_mem_of_isRoot_map_j_of_transcendental.WeierstrassCurve.Affine"
-p2m_reactivate "P2MW.S_ModularCurve_ModularPolynomialData_mem_of_isRoot_map_j_of_transcendental.WeierstrassCurve"
 
 namespace A68
 
@@ -536,7 +534,6 @@ theorem main {N : ℕ} [NeZero N] (data : ModularCurve.ModularPolynomialData N)
 end Generic
 end A68
 end
-p2m_reactivate "P2MW.S_ModularCurve_ModularPolynomialData_mem_of_isRoot_map_j_of_transcendental.WeierstrassCurve P2MW.S_ModularCurve_ModularPolynomialData_mem_of_isRoot_map_j_of_transcendental.WeierstrassCurve.Affine"
 
 theorem solution
     {N : ℕ} [NeZero N] (data : ModularCurve.ModularPolynomialData N)

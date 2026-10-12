@@ -395,7 +395,6 @@ theorem slashInvariant_of_etaMultiplierTrivial (h : EtaMultiplierTrivial) {γ : 
     inv_mul_cancel_left₀ (zpow_ne_zero _ (denom_ne_zero _ τ))]
 
 end ModularCurve
-p2m_reactivate "P2MW.S_CuspForm_exists_gamma0_apply_eq_eta_mul_pow_twentyfour.ModularCurve"
 
 namespace ModularCurve
 
@@ -431,7 +430,6 @@ theorem exists_cuspForm_ne_zero_of_trivial (h : EtaMultiplierTrivial)
   exists_cuspForm_ne_zero_of_etaProduct (etaProductIsCuspForm_of_trivial h hcusp)
 
 end ModularCurve
-p2m_reactivate "P2MW.S_CuspForm_exists_gamma0_apply_eq_eta_mul_pow_twentyfour.ModularCurve"
 
 namespace ModularCurve
 
@@ -597,7 +595,6 @@ theorem schreier_induction {p : (g : SL(2, ℤ)) → g ∈ Gamma0 11 → Prop}
 
 end Gamma0Eleven
 end ModularCurve
-p2m_reactivate "P2MW.S_CuspForm_exists_gamma0_apply_eq_eta_mul_pow_twentyfour.ModularCurve P2MW.S_CuspForm_exists_gamma0_apply_eq_eta_mul_pow_twentyfour.ModularCurve.Gamma0Eleven"
 
 namespace ModularCurve
 
@@ -761,7 +758,6 @@ theorem etaMultiplier_eq_one_of_apply_eq (γ : SL(2, ℤ)) (hsym : γ 1 0 = 11 *
   · exact etaMultiplier_eq_one_of_apply_eq_aux γ hsym hA
 
 end Fricke
-p2m_reactivate "P2MW.S_CuspForm_exists_gamma0_apply_eq_eta_mul_pow_twentyfour.ModularCurve P2MW.S_CuspForm_exists_gamma0_apply_eq_eta_mul_pow_twentyfour.ModularCurve.Gamma0Eleven"
 
 section Generators
 
@@ -824,7 +820,6 @@ theorem etaMultiplier_schreierGen (l : Option (ZMod 11)) (s : SL(2, ℤ))
         exact etaMultiplier_one
 
 end Generators
-p2m_reactivate "P2MW.S_CuspForm_exists_gamma0_apply_eq_eta_mul_pow_twentyfour.ModularCurve P2MW.S_CuspForm_exists_gamma0_apply_eq_eta_mul_pow_twentyfour.ModularCurve.Gamma0Eleven"
 
 theorem etaMultiplier_eq_one {γ : SL(2, ℤ)} (hγ : γ ∈ Gamma0 11) : etaMultiplier γ = 1 := by
   refine Gamma0Eleven.schreier_induction (p := fun g _ => etaMultiplier g = 1)
@@ -854,7 +849,6 @@ theorem exists_cuspForm_ne_zero_of_vanishesAtCusps (hcusp : EtaProductVanishesAt
   exists_cuspForm_ne_zero_of_trivial etaMultiplier_trivial hcusp
 
 end ModularCurve
-p2m_reactivate "P2MW.S_CuspForm_exists_gamma0_apply_eq_eta_mul_pow_twentyfour.ModularCurve P2MW.S_CuspForm_exists_gamma0_apply_eq_eta_mul_pow_twentyfour.ModularCurve.Gamma0Eleven"
 
 namespace ModularCurve
 
@@ -927,7 +921,6 @@ theorem exists_cuspForm_ne_zero_S2_Gamma0_eleven :
   exists_cuspForm_ne_zero_of_etaProduct etaProductIsCuspForm
 
 end ModularCurve
-p2m_reactivate "P2MW.S_CuspForm_exists_gamma0_apply_eq_eta_mul_pow_twentyfour.ModularCurve P2MW.S_CuspForm_exists_gamma0_apply_eq_eta_mul_pow_twentyfour.ModularCurve.Gamma0Eleven"
 
 theorem solution (N : ℕ) [NeZero N] :
     ∃ g : CuspForm (CongruenceSubgroup.Gamma0 N) 12,

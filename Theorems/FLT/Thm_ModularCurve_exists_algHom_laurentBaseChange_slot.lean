@@ -213,7 +213,6 @@ private theorem _root_.ModularCurve.exists_algHom_laurentBaseChange_slot' (N : �
   · exact hφalg ⟨coeffEmb K jq, mem_adjoin_simple_self K _⟩
   · exact hφgen
 
-p2m_alias "P2MW.S_ModularCurve_exists_algHom_laurentBaseChange_slot.ModularCurve.exists_algHom_laurentBaseChange_slot" "ModularCurve.exists_algHom_laurentBaseChange_slot'"
 end CD
 
 open ModularCurve AlgebraicCurve in

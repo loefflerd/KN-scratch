@@ -181,8 +181,6 @@ p2m_export "WeierstrassCurve.Affine.Point" "xOrZero"
     (Point.some x y h).xOrZero = x := rfl
 
 end Affine.Point
-p2m_reactivate "P2MW.S_FrobeniusEndo_frobCharEqOnPoints_of_charEq_on_torsion_of_trace_ne_zero.WeierstrassCurve.Affine P2MW.S_FrobeniusEndo_frobCharEqOnPoints_of_charEq_on_torsion_of_trace_ne_zero.WeierstrassCurve.Affine.Point"
-p2m_reactivate "P2MW.S_FrobeniusEndo_frobCharEqOnPoints_of_charEq_on_torsion_of_trace_ne_zero.WeierstrassCurve.Affine"
 
 section AddQuad
 
@@ -201,7 +199,6 @@ lemma addQuad_def (a b c : R) :
         + c ^ 2 * (a - b) ^ 2 := rfl
 
 end AddQuad
-p2m_reactivate "P2MW.S_FrobeniusEndo_frobCharEqOnPoints_of_charEq_on_torsion_of_trace_ne_zero.WeierstrassCurve.Affine P2MW.S_FrobeniusEndo_frobCharEqOnPoints_of_charEq_on_torsion_of_trace_ne_zero.WeierstrassCurve.Affine.Point"
 
 namespace Affine
 p2m_export "WeierstrassCurve.Affine" "Equation negY slope_of_X_ne slope map Point.some Point.X_eq_iff Nonsingular Point.map_injective Point addX Point.some_ne_zero Point.add_of_X_ne equation_iff polynomial Point.neg_some Point.mk"
@@ -295,7 +292,6 @@ lemma mfred {x y : F} (h : W.Nonsingular x y) (m : ℕ)
 
 end slope
 end Affine
-p2m_reactivate "P2MW.S_FrobeniusEndo_frobCharEqOnPoints_of_charEq_on_torsion_of_trace_ne_zero.WeierstrassCurve.Affine P2MW.S_FrobeniusEndo_frobCharEqOnPoints_of_charEq_on_torsion_of_trace_ne_zero.WeierstrassCurve.Affine.Point"
 
 section PolyDef
 
@@ -536,7 +532,6 @@ lemma natDegree_charEqPoly_le :
     _ = 8 * charEqBlockBound a q := by ring
 
 end PolyDef
-p2m_reactivate "P2MW.S_FrobeniusEndo_frobCharEqOnPoints_of_charEq_on_torsion_of_trace_ne_zero.WeierstrassCurve.Affine P2MW.S_FrobeniusEndo_frobCharEqOnPoints_of_charEq_on_torsion_of_trace_ne_zero.WeierstrassCurve.Affine.Point"
 
 section PointHelpers
 
@@ -586,7 +581,6 @@ private lemma lowTorsionFree_of_prime_torsion [DecidableEq k] {V : WeierstrassCu
   exact hP0 (eq_zero_of_nsmul_eq_zero_of_lt_prime hr (by omega) (by omega) hPr' hcontra)
 
 end PointHelpers
-p2m_reactivate "P2MW.S_FrobeniusEndo_frobCharEqOnPoints_of_charEq_on_torsion_of_trace_ne_zero.WeierstrassCurve.Affine P2MW.S_FrobeniusEndo_frobCharEqOnPoints_of_charEq_on_torsion_of_trace_ne_zero.WeierstrassCurve.Affine.Point"
 
 section Forward
 
@@ -708,7 +702,6 @@ theorem charEqPoly_eval_eq_zero_of_charEq_at (hq1 : 1 ≤ q)
       _ = 0 := by rw [hquadzero]; ring
 
 end Forward
-p2m_reactivate "P2MW.S_FrobeniusEndo_frobCharEqOnPoints_of_charEq_on_torsion_of_trace_ne_zero.WeierstrassCurve.Affine P2MW.S_FrobeniusEndo_frobCharEqOnPoints_of_charEq_on_torsion_of_trace_ne_zero.WeierstrassCurve.Affine.Point"
 
 section Counting
 
@@ -859,7 +852,6 @@ theorem charEqPoly_eq_zero_of_forall_torsionBy (hq1 : 1 ≤ q)
   omega
 
 end Counting
-p2m_reactivate "P2MW.S_FrobeniusEndo_frobCharEqOnPoints_of_charEq_on_torsion_of_trace_ne_zero.WeierstrassCurve.Affine P2MW.S_FrobeniusEndo_frobCharEqOnPoints_of_charEq_on_torsion_of_trace_ne_zero.WeierstrassCurve.Affine.Point"
 
 section Endgame
 
@@ -1127,7 +1119,6 @@ private lemma charEq_sub_six {X Y : V.toAffine.Point}
     _ = 0 := by rw [sub_zero]
 
 end SubLemmas
-p2m_reactivate "P2MW.S_FrobeniusEndo_frobCharEqOnPoints_of_charEq_on_torsion_of_trace_ne_zero.WeierstrassCurve.Affine P2MW.S_FrobeniusEndo_frobCharEqOnPoints_of_charEq_on_torsion_of_trace_ne_zero.WeierstrassCurve.Affine.Point"
 
 section Elim
 
@@ -1261,7 +1252,6 @@ private lemma charEq_elim_six (ha : a ≠ 0) (hr : r.Prime)
   exact eq_zero_of_nsmul_eq_zero_of_lt_prime hr hposN hltN hDr' hfinN
 
 end Elim
-p2m_reactivate "P2MW.S_FrobeniusEndo_frobCharEqOnPoints_of_charEq_on_torsion_of_trace_ne_zero.WeierstrassCurve.Affine P2MW.S_FrobeniusEndo_frobCharEqOnPoints_of_charEq_on_torsion_of_trace_ne_zero.WeierstrassCurve.Affine.Point"
 
 include hFr hinj in
 
@@ -1495,7 +1485,6 @@ theorem frobPointCharEq_of_charEq_on_torsionBy (hq1 : 1 ≤ q)
 
 end Endgame
 end WeierstrassCurve
-p2m_reactivate "P2MW.S_FrobeniusEndo_frobCharEqOnPoints_of_charEq_on_torsion_of_trace_ne_zero.WeierstrassCurve.Affine P2MW.S_FrobeniusEndo_frobCharEqOnPoints_of_charEq_on_torsion_of_trace_ne_zero.WeierstrassCurve.Affine.Point P2MW.S_FrobeniusEndo_frobCharEqOnPoints_of_charEq_on_torsion_of_trace_ne_zero.WeierstrassCurve"
 
 p2m_open "WeierstrassCurve P2MW.S_FrobeniusEndo_frobCharEqOnPoints_of_charEq_on_torsion_of_trace_ne_zero.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_FrobeniusEndo_frobCharEqOnPoints_of_charEq_on_torsion_of_trace_ne_zero.WeierstrassCurve.Affine WeierstrassCurve.Affine.Point P2MW.S_FrobeniusEndo_frobCharEqOnPoints_of_charEq_on_torsion_of_trace_ne_zero.WeierstrassCurve.Affine.Point FrobeniusEndo"
 

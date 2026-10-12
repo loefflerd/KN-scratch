@@ -366,7 +366,6 @@ scoped instance finiteDimensional_adjoin_jBar (N : ℕ) [NeZero N] :
     exact ModularCurve.dedekindPsi_pos N (NeZero.ne N))
 
 end B2Peo3
-p2m_reactivate "P2MW.S_ModularCurve_sum_ord_jBar_sub_eq_dedekindPsi.B2Peo3"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "jBar modularFunctionFieldBar dedekindPsi relfinrank_laurentBaseChange_modularFunctionFieldFull relfinrank_full_eq_dedekindPsi dedekindPsi_pos transcendental_coeffEmb_jq"
@@ -395,7 +394,6 @@ private theorem ModularCurve.exists_finset_ord_jBar_sub_pos (N : ℕ) [NeZero N]
     (ModularCurve.transcendental_coeffEmb_jq (AlgebraicClosure ℚ) N) j₀
 
 end
-p2m_reactivate "P2MW.S_ModularCurve_sum_ord_jBar_sub_eq_dedekindPsi.B2Peo3"
 
 open AlgebraicCurve _root_.ModularCurve _root_.P2MW.S_ModularCurve_sum_ord_jBar_sub_eq_dedekindPsi.ModularCurve in
 

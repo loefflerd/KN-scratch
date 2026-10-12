@@ -621,7 +621,6 @@ theorem isRat_slash {M : ℕ} [NeZero M] {k : ℤ} (f : ModularForm Γ₁(M) k) 
   · exact isRat_slash_of_odd hk f hf hγ
 
 end X1DiamondRationalForms
-p2m_reactivate "P2MW.S_ModularCurve_exists_ratCast_qExpansion_slash_of_mem_Gamma0.X1DiamondRationalForms"
 
 theorem solution (M : ℕ) [NeZero M] {k : ℤ}
     (f : ModularForm (CongruenceSubgroup.Gamma1 M : Subgroup (GL (Fin 2) ℝ)) k)

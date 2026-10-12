@@ -278,7 +278,6 @@ end Cocycles
 
 end HeckeEis.CoeffMapAux
 end
-p2m_reactivate "P2MW.S_HeckeEis_exists_coeffH1par_map_ringHom.HeckeEis P2MW.S_HeckeEis_exists_coeffH1par_map_ringHom.HeckeEis.CoeffMapAux"
 
 namespace HeckeEis
 p2m_export "HeckeEis" "BinaryForm binarySubst binarySubst_X binarySubst_C binaryFormRepSL coeffCocycles coeffCoboundaries mem_coeffCoboundaries_iff IsParabolicCocycle coeffParabolicCocycles coeffH1par coeffH1parMk coeffH1parMk_surjective coeffH1parMk_eq_zero_iff"
@@ -295,8 +294,6 @@ theorem pushCoeff_ringHom_eq_map {R R' : Type*} [CommRing R] [CommRing R'] (φ :
   rfl
 
 end HeckeEis.CoeffMapAux
-p2m_reactivate "P2MW.S_HeckeEis_exists_coeffH1par_map_ringHom.HeckeEis P2MW.S_HeckeEis_exists_coeffH1par_map_ringHom.HeckeEis.CoeffMapAux"
-p2m_reactivate "P2MW.S_HeckeEis_exists_coeffH1par_map_ringHom.HeckeEis P2MW.S_HeckeEis_exists_coeffH1par_map_ringHom.HeckeEis.CoeffMapAux"
 
 open scoped MatrixGroups in
 

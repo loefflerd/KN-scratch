@@ -1675,7 +1675,6 @@ scoped instance instSumRamificationInertia_port {K F F' : Type*} [Field K] [Fiel
     [HasPrincipalDivisors K F'] : SumRamificationInertia K F F' :=
   ⟨fun v => Place.sum_ramificationIndex_mul_inertiaDeg v⟩
 end AlgebraicCurve
-p2m_reactivate "P2MW.S_AlgebraicCurve_TranscendenceTower_poleDivisor_apply.AlgebraicCurve"
 
 noncomputable section
 
@@ -1787,7 +1786,6 @@ private theorem _root_.AlgebraicCurve.TranscendenceTower.exists_forall_mem_lSpac
 
 p2m_export "AlgebraicCurve.TranscendenceTower" "exists_forall_mem_lSpace_nsmul_poleDivisor"
 end TranscendenceTower
-p2m_reactivate "P2MW.S_AlgebraicCurve_TranscendenceTower_poleDivisor_apply.AlgebraicCurve"
 
 variable [FiniteDimensional E F] [Algebra.IsSeparable E F]
 
@@ -1911,7 +1909,6 @@ theorem gate_stichtenothGenus_le_of_transcendenceTower [IsCurveOver K F]
 
 end AlgebraicCurve
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_TranscendenceTower_poleDivisor_apply.AlgebraicCurve"
 
 noncomputable section
 
@@ -1955,7 +1952,6 @@ theorem ord_nonneg_of_isIntegral_of_algebraMap_mem {A : Type*} [CommRing A] [Alg
   AlgebraicCurve.Place.ord_nonneg_of_mem w (w.mem_of_isIntegral_of_algebraMap_mem hA hf)
 
 end Place
-p2m_reactivate "P2MW.S_AlgebraicCurve_TranscendenceTower_poleDivisor_apply.AlgebraicCurve"
 
 section Bridge
 
@@ -2005,7 +2001,6 @@ private theorem _root_.AlgebraicCurve.TranscendenceTower.ord_nonneg_of_isIntegra
 end TranscendenceTower
 p2m_export "AlgebraicCurve" "TranscendenceTower.ord_nonneg_of_isIntegral_of_regularOutside"
 end Bridge
-p2m_reactivate "P2MW.S_AlgebraicCurve_TranscendenceTower_poleDivisor_apply.AlgebraicCurve"
 
 section Headline
 
@@ -2114,7 +2109,6 @@ theorem stichtenothGenusExists_of_adjoin_x_isFractionRing [IsCurveOver K F]
     (hasRegularFractionSubring_of_adjoin_x_isFractionRing T hfrac)
 
 end Headline
-p2m_reactivate "P2MW.S_AlgebraicCurve_TranscendenceTower_poleDivisor_apply.AlgebraicCurve"
 
 section Gates
 
@@ -2160,7 +2154,6 @@ theorem gate_adjoin_x_not_regular_at_v (T : TranscendenceTower K E F) :
 end Gates
 end AlgebraicCurve
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_TranscendenceTower_poleDivisor_apply.AlgebraicCurve"
 
 p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg" in open _root_.P2MW.S_AlgebraicCurve_TranscendenceTower_poleDivisor_apply.AlgebraicCurve in
 theorem solution {K : Type*} {E : Type*} {F : Type*} [Field K] [Field E] [Field F] [Algebra K E] [Algebra K F] [Algebra E F] [IsScalarTower K E F] [Algebra.IsSeparable E F] [HasPrincipalDivisors K F] (T : TranscendenceTower K E F) (w : Place K F) :

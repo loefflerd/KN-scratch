@@ -646,7 +646,6 @@ theorem main (τ : ℍ) :
 
 end ModularCurve.JMultiplicity
 end
-p2m_reactivate "P2MW.S_ModularCurve_meromorphicOrderAt_E4_cube_div_discriminant_sub_eq_card_stabilizer_div_two.ModularCurve P2MW.S_ModularCurve_meromorphicOrderAt_E4_cube_div_discriminant_sub_eq_card_stabilizer_div_two.ModularCurve.JMultiplicity"
 
 open UpperHalfPlane
 open scoped MatrixGroups

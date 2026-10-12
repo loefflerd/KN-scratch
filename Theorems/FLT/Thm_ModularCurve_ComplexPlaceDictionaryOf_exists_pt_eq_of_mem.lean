@@ -401,7 +401,6 @@ theorem exists_pt_eq [Γ.FiniteIndex] [hT : Fact (ModularGroup.T ∈ Γ)] [hx : 
 
 end ModularCurve.Ws49.CCPL
 end
-p2m_reactivate "P2MW.S_ModularCurve_ComplexPlaceDictionaryOf_exists_pt_eq_of_mem.ModularCurve P2MW.S_ModularCurve_ComplexPlaceDictionaryOf_exists_pt_eq_of_mem.ModularCurve.Ws49 P2MW.S_ModularCurve_ComplexPlaceDictionaryOf_exists_pt_eq_of_mem.ModularCurve.Ws49.CCPL"
 
 open scoped MatrixGroups in
 theorem solution

@@ -102,7 +102,6 @@ p2m_export "AlgebraicCurve.Place" "kaehlerMap_subring_D_uniformizer"
 end Transport
 
 end Place
-p2m_reactivate "P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve.Place"
 
 variable (K F : Type*) [Field K] [Field F] [Algebra K F]
 
@@ -112,7 +111,6 @@ def ValSubringKaehlerSpanTop : Prop :=
       {KaehlerDifferential.D K v.toValuationSubring (Place.uniformizerSubring' v)} = ⊤
 
 end AlgebraicCurve
-p2m_reactivate "P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve"
 
 open IsDedekindDomain Polynomial
 namespace AlgebraicCurve
@@ -199,7 +197,6 @@ private theorem _root_.AlgebraicCurve.Place.span_D_uniformizer_eq_top_of_subsing
 p2m_export "AlgebraicCurve.Place" "span_D_uniformizer_eq_top_of_subsingleton"
 end CotangentEngine
 end Place
-p2m_reactivate "P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve"
 
 variable (K F : Type*) [Field K] [Field F] [Algebra K F]
 
@@ -216,7 +213,6 @@ theorem valSubringKaehlerSpanTop_of_polynomialFormallyUnramified
   fun v => v.span_D_uniformizer_eq_top_of_subsingleton (hfu v)
 
 end AlgebraicCurve
-p2m_reactivate "P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve"
 
 open IsDedekindDomain Polynomial IsLocalRing
 open scoped TensorProduct
@@ -339,7 +335,6 @@ private theorem _root_.AlgebraicCurve.Place.subsingleton_polynomialKaehler_of_is
 p2m_export "AlgebraicCurve.Place" "subsingleton_polynomialKaehler_of_isSeparable_of_finite"
 end ResidueEngine
 end Place
-p2m_reactivate "P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve"
 
 variable (K F : Type*) [Field K] [Field F] [Algebra K F]
 
@@ -357,7 +352,6 @@ theorem valSubringPolynomialFormallyUnramified_of_kaehlerFinite_of_isSeparable
   exact v.subsingleton_polynomialKaehler_of_isSeparable_of_finite
 
 end AlgebraicCurve
-p2m_reactivate "P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve"
 
 open IsDedekindDomain Polynomial IsLocalRing
 namespace AlgebraicCurve
@@ -387,7 +381,6 @@ private theorem _root_.AlgebraicCurve.Place.essFiniteType_of_exists_finiteType_i
 p2m_export "AlgebraicCurve.Place" "essFiniteType_of_exists_finiteType_isLocalization"
 end EftEngine
 end Place
-p2m_reactivate "P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve"
 
 variable (K F : Type*) [Field K] [Field F] [Algebra K F]
 
@@ -427,7 +420,6 @@ theorem valSubringKaehlerFinite_of_finiteTypeModel
     (valSubringEssFiniteType_of_finiteTypeModel hmodel)
 
 end AlgebraicCurve
-p2m_reactivate "P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve"
 
 open IsDedekindDomain Polynomial IsLocalRing
 namespace ValuationSubring
@@ -459,7 +451,6 @@ theorem eq_of_isDiscreteValuationRing_of_le_s12 {R S : ValuationSubring F}
   rw [← ofPrime_idealOfLE R S h, ofPrime_congr_s12 heq, ofPrime_top]
 
 end ValuationSubring
-p2m_reactivate "P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve"
 
 namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "IsCurveOver Place Place.FiniteResidue HasPrincipalDivisors HasPrincipalDivisors.exists_divisor Place.FiniteResidue.finite HasCanonicalDivisor IsCurveOver.exists_separating_transcendental"
@@ -533,7 +524,6 @@ private theorem _root_.AlgebraicCurve.Place.essFiniteType_of_finiteType_isLocali
 p2m_export "AlgebraicCurve.Place" "essFiniteType_of_finiteType_isLocalization_centerIdeal"
 end CenterIdeal
 end Place
-p2m_reactivate "P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve"
 
 variable (K F : Type*) [Field K] [Field F] [Algebra K F]
 
@@ -559,7 +549,6 @@ theorem valSubringFiniteTypeModel_of_dedekindModel
     (valSubringEssFiniteType_of_dedekindModel hmodel)
 
 end AlgebraicCurve
-p2m_reactivate "P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve"
 
 open IsLocalRing
 
@@ -614,7 +603,6 @@ private theorem _root_.AlgebraicCurve.Place.centerIdeal_ne_bot_of_isFractionRing
 
 p2m_export "AlgebraicCurve.Place" "centerIdeal_ne_bot_of_isFractionRing"
 end CenterNonzero
-p2m_reactivate "P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve"
 
 section LocalizationSubalgebra
 
@@ -726,7 +714,6 @@ private theorem _root_.AlgebraicCurve.Place.isLocalization_centerIdeal_of_isDede
 p2m_export "AlgebraicCurve.Place" "isLocalization_centerIdeal_of_isDedekindDomain"
 end LocalizationSubalgebra
 end Place
-p2m_reactivate "P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve"
 
 variable (K F : Type*) [Field K] [Field F] [Algebra K F]
 
@@ -744,7 +731,6 @@ theorem valSubringDedekindModel_of_dedekindFractionModel
   exact ⟨A, hA, hft, v.isLocalization_centerIdeal_of_isDedekindDomain A hA⟩
 
 end AlgebraicCurve
-p2m_reactivate "P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve"
 
 open IsLocalRing
 
@@ -800,7 +786,6 @@ private theorem _root_.AlgebraicCurve.Place.integralClosure_subset_valuationSubr
 p2m_export "AlgebraicCurve.Place" "integralClosure_subset_valuationSubring"
 end IntegrallyClosed
 end Place
-p2m_reactivate "P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve"
 
 section TwoCharts
 
@@ -832,7 +817,6 @@ theorem valSubringDedekindModel_of_twoAffineCharts
 
 end TwoCharts
 end AlgebraicCurve
-p2m_reactivate "P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve"
 
 namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "IsCurveOver Place Place.FiniteResidue HasPrincipalDivisors HasPrincipalDivisors.exists_divisor Place.FiniteResidue.finite HasCanonicalDivisor IsCurveOver.exists_separating_transcendental"
@@ -869,7 +853,6 @@ theorem gate_adjoin_subset_valuationSubring_of_mem (v : Place K F) {t : F}
 
 end Gates
 end AlgebraicCurve
-p2m_reactivate "P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve"
 
 p2m_open "IsLocalRing IntermediateField P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.IntermediateField IntermediateField.algebraAdjoinAdjoin"
 
@@ -887,37 +870,30 @@ private theorem _root_.Transcendental.isPrincipalIdealRing_adjoin_s12 {t : F} (h
     (Polynomial.algEquivOfTranscendental K t ht).toRingHom
     (Polynomial.algEquivOfTranscendental K t ht).surjective
 
-p2m_alias "P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.Transcendental.isPrincipalIdealRing_adjoin_s12" "Transcendental.isPrincipalIdealRing_adjoin_s12"
 private theorem _root_.Transcendental.isDedekindDomain_adjoin_s12 {t : F} (ht : Transcendental K t) :
     IsDedekindDomain ↥(Algebra.adjoin K ({t} : Set F)) :=
   haveI := ht.isPrincipalIdealRing_adjoin_s12
   inferInstance
 
-p2m_alias "P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.Transcendental.isDedekindDomain_adjoin_s12" "Transcendental.isDedekindDomain_adjoin_s12"
 private theorem _root_.Transcendental.isIntegrallyClosed_adjoin_s12 {t : F} (ht : Transcendental K t) :
     IsIntegrallyClosed ↥(Algebra.adjoin K ({t} : Set F)) :=
   haveI := ht.isDedekindDomain_adjoin_s12
   inferInstance
 
-p2m_alias "P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.Transcendental.isIntegrallyClosed_adjoin_s12" "Transcendental.isIntegrallyClosed_adjoin_s12"
 private theorem _root_.Transcendental.isNoetherianRing_adjoin_s12 {t : F} (ht : Transcendental K t) :
     IsNoetherianRing ↥(Algebra.adjoin K ({t} : Set F)) :=
   haveI := ht.isPrincipalIdealRing_adjoin_s12
   inferInstance
 
-p2m_alias "P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.Transcendental.isNoetherianRing_adjoin_s12" "Transcendental.isNoetherianRing_adjoin_s12"
 private theorem _root_.Algebra.FiniteType.adjoin_singleton_s12 (t : F) :
     Algebra.FiniteType K ↥(Algebra.adjoin K ({t} : Set F)) :=
   Algebra.FiniteType.adjoin_of_finite (Set.finite_singleton t)
 
-p2m_alias "P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.Algebra.FiniteType.adjoin_singleton_s12" "Algebra.FiniteType.adjoin_singleton_s12"
 private theorem _root_.Transcendental.inv_s12 {t : F} (ht : Transcendental K t) :
     Transcendental K t⁻¹ := by
   rw [Transcendental, IsAlgebraic.inv_iff]; exact ht
 
-p2m_alias "P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.Transcendental.inv_s12" "Transcendental.inv_s12"
 end AdjoinRingProperties
-p2m_reactivate "P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve"
 
 section TranscendentalChart
 
@@ -948,7 +924,6 @@ theorem transcendentalChart_subset_or_inv_subset (v : Place K F) (t : F) :
     (transcendentalChart_subset_valuationSubring_of_mem v)
 
 end TranscendentalChart
-p2m_reactivate "P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve"
 
 section IsAffineChartEngine
 
@@ -971,7 +946,6 @@ theorem finiteType_integralClosure_of_moduleFinite (hft : Algebra.FiniteType K B
   Algebra.FiniteType.trans (S := B) hft inferInstance
 
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve"
 
 theorem isDedekindDomain_integralClosure_adjoin {t : F} (ht : Transcendental K t)
     [FiniteDimensional K⟮t⟯ F] [Algebra.IsSeparable K⟮t⟯ F] :
@@ -1015,7 +989,6 @@ theorem isAffineChart_transcendentalChart {t : F} (ht : Transcendental K t)
     (isFractionRing_integralClosure_adjoin t)
 
 end IsAffineChartEngine
-p2m_reactivate "P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve"
 
 section SeparatingTranscendental
 
@@ -1045,7 +1018,6 @@ theorem valSubringDedekindModel_of_hasSeparatingTranscendental
 
 end SeparatingTranscendental
 end AlgebraicCurve
-p2m_reactivate "P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve"
 
 p2m_open "IntermediateField P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.IntermediateField"
 
@@ -1086,7 +1058,6 @@ theorem isSeparable_adjoin_inv_s12 (t : F) [Algebra.IsSeparable K⟮t⟯ F] :
   isSeparable_of_eq_s12 (adjoin_simple_inv_s12 t).symm
 
 end IntermediateField
-p2m_reactivate "P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve"
 
 p2m_open "IntermediateField P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.IntermediateField"
 
@@ -1122,7 +1093,6 @@ theorem Place.dCoordGenerates_of_valSubringKaehlerSpanTop
 
 end AbstractEngine
 end AlgebraicCurve
-p2m_reactivate "P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve"
 
 noncomputable section
 
@@ -1156,7 +1126,6 @@ theorem isSeparable_residueField_forall_of_perfectField
   fun v => v.isSeparable_residueField_of_perfectField_of_finiteResidue
 
 end PerPlaceSupply
-p2m_reactivate "P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve"
 
 section IsSeparableEngines
 
@@ -1178,7 +1147,6 @@ theorem Place.dCoordGenerates_of_valSubringKaehlerFinite_of_isSeparable
     (valSubringKaehlerSpanTop_of_kaehlerFinite_of_isSeparable hfin) v
 
 end IsSeparableEngines
-p2m_reactivate "P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve"
 
 section PerfectFieldEngines
 
@@ -1196,7 +1164,6 @@ theorem Place.dCoordGenerates_of_valSubringKaehlerFinite_of_perfectField
 
 end PerfectFieldEngines
 end AlgebraicCurve
-p2m_reactivate "P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve"
 
 section
 
@@ -1244,7 +1211,6 @@ theorem hasSeparatingTranscendental_of_isCurveOver_of_perfectField
 end S12ChainWires
 end AlgebraicCurve
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve"
 
 section
 
@@ -1393,7 +1359,6 @@ private theorem _root_.AlgebraicCurve.Place.exists_ord_eq_zero_D_eq_smul_D_s12 (
 
 p2m_export "AlgebraicCurve.Place" "exists_ord_eq_zero_D_eq_smul_D_s12"
 end Place
-p2m_reactivate "P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve"
 
 theorem exists_ord_eq_zero_D_eq_smul_D_of_isCurveOver_s12
     [PerfectField K] [Algebra.EssFiniteType K F] [IsCurveOver K F]
@@ -1422,7 +1387,6 @@ theorem exists_mem_D_eq_smul_D_of_isCurveOver_s12
 end S12WellDefined
 end AlgebraicCurve
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve"
 
 section
 
@@ -1712,7 +1676,6 @@ theorem hasCanonicalDivisor_of_isCurveOver_s12
 end S12HCD
 end AlgebraicCurve
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve.Place P2MW.S_AlgebraicCurve_hasCanonicalDivisor_of_isCurveOver.AlgebraicCurve"
 
 theorem solution
     {K F : Type*} [Field K] [Field F] [Algebra K F]

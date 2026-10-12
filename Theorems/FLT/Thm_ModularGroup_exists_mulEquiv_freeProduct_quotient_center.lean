@@ -20,7 +20,6 @@ import Mathlib.NumberTheory.Real.Irrational
 import Mathlib.Order.CompletePartialOrder
 import Mathlib.Tactic.LinearCombination
 import Mathlib.Tactic.LinearCombination.Lemmas
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # PSL₂(ℤ) is the free product C₂ * C₃
@@ -100,7 +99,8 @@ theorem negSqrtTwo_neg : ((negSqrtTwo : ℝ)) < 0 := by
   linarith
 
 end IrrationalPt
-p2m_reactivate "P2MW.S_ModularGroup_exists_mulEquiv_freeProduct_quotient_center.ModularCurve.ModularGroupPingPong.IrrationalPt"
+
+open IrrationalPt
 
 noncomputable def moebius (γ : SL(2, ℤ)) (x : ℝ) : ℝ :=
   ((γ 0 0 : ℝ) * x + (γ 0 1 : ℝ)) / ((γ 1 0 : ℝ) * x + (γ 1 1 : ℝ))
@@ -561,7 +561,6 @@ theorem mulEquiv_of_one :
 
 end ModularGroupPingPong
 end ModularCurve
-p2m_reactivate "P2MW.S_ModularGroup_exists_mulEquiv_freeProduct_quotient_center.ModularCurve.ModularGroupPingPong.IrrationalPt P2MW.S_ModularGroup_exists_mulEquiv_freeProduct_quotient_center.ModularCurve.ModularGroupPingPong P2MW.S_ModularGroup_exists_mulEquiv_freeProduct_quotient_center.ModularCurve"
 
 theorem solution :
     ∃ e : Monoid.CoprodI (fun i : Fin 2 => Multiplicative (ZMod (i.val + 2)))

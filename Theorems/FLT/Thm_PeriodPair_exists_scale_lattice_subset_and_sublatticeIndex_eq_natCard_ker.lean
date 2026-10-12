@@ -258,7 +258,6 @@ end LatticeQuotient
 end ModularCurve
 end
 end
-p2m_reactivate "P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.ModularCurve"
 
 
 noncomputable section
@@ -295,7 +294,6 @@ private theorem _root_.PeriodPair.kw_ker_toPointHom :
 p2m_export "PeriodPair" "kw_ker_toPointHom"
 end PeriodPair
 end
-p2m_reactivate "P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.ModularCurve"
 
 
 noncomputable section
@@ -342,11 +340,8 @@ private theorem _root_.PeriodPair.mem_scale_lattice_iff {z : ℂ} :
 
 p2m_export "PeriodPair" "mem_scale_lattice_iff"
 end Scale
-p2m_reactivate "P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.ModularCurve"
 
-p2m_reactivate "P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.ModularCurve"
 
-p2m_reactivate "P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.ModularCurve"
 
 section Gates
 
@@ -361,7 +356,6 @@ theorem gate_scale_mul (α β : ℂˣ) :
 end Gates
 end PeriodPair
 end
-p2m_reactivate "P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.ModularCurve P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.PeriodPair"
 
 section
 
@@ -426,7 +420,6 @@ theorem kw_card_torsionBy_zlatticeQuotient_finrank_real
 end ModularCurve
 end
 end
-p2m_reactivate "P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.ModularCurve P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.PeriodPair"
 
 
 noncomputable section
@@ -454,7 +447,6 @@ theorem kwSublatticeIndex_scale (L L' : PeriodPair) (α : ℂˣ) :
 
 end ModularCurve
 end
-p2m_reactivate "P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.ModularCurve P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.PeriodPair"
 
 section
 
@@ -470,7 +462,6 @@ universe u
 
 attribute [local instance] Classical.propDecidable
 
-p2m_reactivate "P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.ModularCurve P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.PeriodPair"
 
 section IndexDualMint
 
@@ -487,7 +478,6 @@ end IndexDualMint
 end ModularCurve
 end
 end
-p2m_reactivate "P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.ModularCurve P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.PeriodPair"
 
 section
 
@@ -602,7 +592,6 @@ theorem kw_surgehgf4_hID_card_smul_subset :
   rw [← heq]; exact hmem
 
 end BetweenCurves
-p2m_reactivate "P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.ModularCurve P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.PeriodPair"
 
 noncomputable def kw_surgehgf4_hID_dualUnit {X Y : Type*} [AddGroup X] [AddGroup Y]
     (α : ℂˣ) (ψ : X →+ Y) (hN : 0 < Nat.card ψ.ker) : ℂˣ :=
@@ -788,7 +777,6 @@ end BetweenCurves
 end ModularCurve
 end
 end
-p2m_reactivate "P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.ModularCurve P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.PeriodPair"
 
 theorem solution (L L' : PeriodPair) (hL : L.DiscriminantNeZero) (hL' : L'.DiscriminantNeZero) (α : ℂˣ)
     (ψ : L.weierstrassCurve.toAffine.Point →+ L'.weierstrassCurve.toAffine.Point)

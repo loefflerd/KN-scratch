@@ -47,16 +47,12 @@ sources:
   # description such as article, paper, book, formalization, web post, folklore,
   # conversation, or other. The exact value original-proof is reserved for the
   # result-origin declaration described above.
-  # Original-result example:
-  # - title: "TEMPLATE: describe the result first presented here"
-  #   type: original-proof
-  #   relationship: other
   - title: "Horizontal p-adic L-functions"
     authors:
       - "Daniel Kriz"
       - "Asbjørn Nordentoft"
     id: "arXiv:2310.20678v3"
-    type: "article"
+    type: "preprint (submitted for publication)"
     location: "https://arxiv.org/abs/2310.20678"
     relationship: "formalizes"
     author_endorsement: "endorsed"
@@ -80,21 +76,20 @@ status:
     The theorem to be formalized concerns elliptic curves over the rationals;
     it states that for any such `E`, and an integer `d` satisfying suitable conditions,
     there is a "large" set of Dirichlet characters `χ` of order exactly `d` such that
-    the central L-value `L(E, χ, 1)` is non-zero. We formalize this with two caveats:
-    - Firstly, since one cannot even define the L-value without using modularity
-      of elliptic curves, and this modularity is not formalized yet, we _assume_ as part
-      of the statement the existence of a modular form whose L-series matches that of `E`.
-    - Secondly, since the proof of Kriz-Nordentoft relies on a theorem of Friedberg
-      and Hoffstein supplying lots of non-vanishing _quadratic_ twists, which is also
-      not formalized, we include the existence of a suitable quadratic twist in the
-      statement of the theorem.
+    the central L-value `L(E, χ, 1)` is non-zero. 
+    
+    We formalize this with two caveats:
+    - Firstly, since one cannot even define the L-value without using modularity of elliptic 
+      curves, and this modularity is not formalized yet, we _assume_ as part of the statement
+      the existence of a modular form whose L-series matches that of `E`.
+    - Secondly, since the proof of Kriz-Nordentoft relies on a theorem of Friedberg and Hoffstein 
+      concerning non-vanishing _quadratic_ twists, which is also not formalized, we include the 
+      existence of a suitable quadratic twist in the hypotheses of the theorem.
   # Count the proof development, excluding Challenge.lean's deliberate sorry.
   # Replace each count with an unquoted nonnegative integer, for example 0.
-  sorry_count: "TEMPLATE: unquoted nonnegative integer"
+  sorry_count: 0
   sorry_in_definitions: 0
-  axioms: []
-  # status.main_results is optional. Add it only when a short curated
-  # project-level list is useful; it need not mirror Comparator declarations.
+  axioms: ["propext", "Classical.choice", "Quot.sound"]
 
 automation:
   methods:
@@ -103,19 +98,19 @@ automation:
       framework: "Codex"
       cost:
         wall_time: "Sporadic effort over ~3.5 weeks"
-        spend_usd: "Not tracked"
+        spend_usd: "subscription-based (1x ChatGPT Pro and 1x ChatGPT Plus subscription)"
         hardware: "API-only"
       prompting_notes: "TEMPLATE: representative prompting notes, or n/a"
-  spend_usd: "subscription-based"
+  spend_usd: "subscription-based (1x ChatGPT Pro and 1x ChatGPT Plus subscription)"
   notes: "Initial work on MTT and KN projects carried out by multiple contributors via Prove2Me; exact
     details of automation used not available. Above figures concern my own contributions to these missions
-    and the subsequent cleanup tasks. (Prior formalization of Fermat by Claude AI not included!)"
+    and the subsequent cleanup tasks. (Costs of prior formalization of FLT by Claude AI not included!)"
 
 fidelity:
   divergences: "Two theorems that are known but not formalized have been made into assumptions, see above"
 
 review:
-  status: "TEMPLATE: honest review status, for example self-assessed"
+  status: "Statements carefully reviewed by formalization author (who has an extensive track record
+    of published research in the mathematical field concerned, as well as formalization expertise)"
   reviewers:
-    - "TEMPLATE: reviewer name, or none"
-  notes: "TEMPLATE: describe statement audits and mathematical review performed"
+    - "David Loeffler"

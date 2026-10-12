@@ -540,7 +540,6 @@ theorem qExpansion_coeffForm_card_ne_zero (hg : g ≠ 0) :
 end Linear
 
 end FIdxNorm
-p2m_reactivate "P2MW.S_ModularCurve_finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_le_index.FIdxNorm"
 
 namespace FIdxRat
 
@@ -590,7 +589,6 @@ theorem coe_liftEven (hΓ' : Γ ≤ Γ') (hneg : ∀ γ ∈ Γ', γ ∈ Γ ∨ -
     (liftEven hΓ' hneg hk f : ℍ → ℂ) = f := rfl
 
 end Lift
-p2m_reactivate "P2MW.S_ModularCurve_finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_le_index.FIdxNorm"
 
 omit [Γ.FiniteIndex] in
 theorem isIntegralQExp_E4 : IsIntegralQExp (E₄ : ℍ → ℂ) eisenstein4 := by
@@ -803,7 +801,6 @@ theorem mem_qExpFunctionFieldC_iff {y : LaurentSeries ℚ} :
   exact ⟨fun h => hle h, fun h => intFormRatiosC_subset ℚ Γ h⟩
 
 end Ratio
-p2m_reactivate "P2MW.S_ModularCurve_finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_le_index.FIdxNorm"
 
 section Relation
 
@@ -972,7 +969,6 @@ theorem exists_rat_relation {k : ℤ} (f g : ModularForm (Γ : Subgroup (GL (Fin
   exact ⟨m, d, ⟨ib₁, hib₁⟩, hd⟩
 
 end Relation
-p2m_reactivate "P2MW.S_ModularCurve_finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_le_index.FIdxNorm"
 
 section Bound
 
@@ -1072,7 +1068,6 @@ theorem finrank_adjoin_wq_le :
 
 end Bound
 end FIdxRat
-p2m_reactivate "P2MW.S_ModularCurve_finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_le_index.FIdxNorm P2MW.S_ModularCurve_finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_le_index.FIdxRat"
 
 namespace FIdxBC
 
@@ -1122,7 +1117,6 @@ theorem finrank_le (Γ : Subgroup SL(2, ℤ)) [Γ.FiniteIndex] (hT : ModularGrou
   exact h2.trans_le hQ'
 
 end FIdxBC
-p2m_reactivate "P2MW.S_ModularCurve_finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_le_index.FIdxNorm P2MW.S_ModularCurve_finrank_adjoin_jqModC_laurentBaseChange_qExpFunctionFieldC_le_index.FIdxRat"
 
 theorem solution
     (L : Type*) [Field L] [Algebra ℚ L]

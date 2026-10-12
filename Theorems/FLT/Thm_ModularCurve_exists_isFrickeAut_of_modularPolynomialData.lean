@@ -72,7 +72,6 @@ scoped instance IntermediateField.W2B.instIsScalarTowerRatSubtypeMem {L : Type*}
     (F : IntermediateField ℚ L) : IsScalarTower ℚ F L :=
   IsScalarTower.of_algebraMap_eq' (by apply RingHom.ext_rat)
 
-p2m_reactivate "P2MW.S_ModularCurve_exists_isFrickeAut_of_modularPolynomialData.IntermediateField.W2B"
 namespace ModularCurve
 p2m_export "ModularCurve" "IsFrickeAut qExpand jq jqN ModularPolynomialData modularFunctionField jq_mem jqN_mem jGen evalAtJGen algebraMap_comp_evalAtJGen ModularPolynomialData.toAdjoin evalAtJqN evalAtJqN_X evalAtJqN_def EvalSymm PhiIrreducible"
 p2m_open "ModularCurve"
@@ -129,7 +128,6 @@ theorem exists_isFrickeAut_of_endo (φ : modularFunctionField N →ₐ[ℚ] modu
   exact ⟨AlgEquiv.ofAlgHom φ φ hcomp hcomp, h1, h2⟩
 
 end Fricke
-p2m_reactivate "P2MW.S_ModularCurve_exists_isFrickeAut_of_modularPolynomialData.IntermediateField.W2B"
 
 section Swap
 
@@ -150,7 +148,6 @@ theorem minpoly_jqN_eq (hirr : PhiIrreducible data) :
   (minpoly.eq_of_irreducible_of_monic hirr (aeval_jqN_toAdjoin data) data.toAdjoin_monic).symm
 
 end Swap
-p2m_reactivate "P2MW.S_ModularCurve_exists_isFrickeAut_of_modularPolynomialData.IntermediateField.W2B"
 
 section BaseMap
 
@@ -169,7 +166,6 @@ theorem frickeBaseHom_comp_evalAtJGen :
   rfl
 
 end BaseMap
-p2m_reactivate "P2MW.S_ModularCurve_exists_isFrickeAut_of_modularPolynomialData.IntermediateField.W2B"
 
 section Lift
 
@@ -208,7 +204,8 @@ theorem frickeRelativeHom_algebraMap (hsymm : EvalSymm data.Φ) (hirr : PhiIrred
   exact AdjoinRoot.lift_of _
 
 end Lift
-p2m_reactivate "P2MW.S_ModularCurve_exists_isFrickeAut_of_modularPolynomialData.IntermediateField.W2B"
+
+open W2B
 
 section Absolute
 
@@ -299,7 +296,6 @@ theorem frickeAbsoluteHom_mem (hsymm : EvalSymm data.Φ) (hirr : PhiIrreducible 
     exact jq_mem N
 
 end Absolute
-p2m_reactivate "P2MW.S_ModularCurve_exists_isFrickeAut_of_modularPolynomialData.IntermediateField.W2B"
 
 section Endo
 
@@ -336,7 +332,6 @@ theorem exists_isFrickeAut_of_modularPolynomialData (hsymm : EvalSymm data.Φ)
 end Endo
 end W2B
 end ModularCurve
-p2m_reactivate "P2MW.S_ModularCurve_exists_isFrickeAut_of_modularPolynomialData.IntermediateField.W2B P2MW.S_ModularCurve_exists_isFrickeAut_of_modularPolynomialData.ModularCurve.W2B P2MW.S_ModularCurve_exists_isFrickeAut_of_modularPolynomialData.ModularCurve"
 
 theorem solution {N : ℕ} [NeZero N] (data : ModularPolynomialData N) (hsymm : EvalSymm data.Φ) (hirr : PhiIrreducible data) : ∃ σ : modularFunctionField N ≃ₐ[ℚ] modularFunctionField N, IsFrickeAut N σ :=
   ModularCurve.W2B.exists_isFrickeAut_of_modularPolynomialData data hsymm hirr

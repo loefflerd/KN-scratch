@@ -344,7 +344,6 @@ private theorem aeval_jq_intCoeffs_descent (P : Polynomial ℚ)
 end PhiGen
 end ModularCurve
 end
-p2m_reactivate "P2MW.S_ModularCurve_PhiGen_aeval_jq_intCoeffs_descent.ModularCurve.PhiGen P2MW.S_ModularCurve_PhiGen_aeval_jq_intCoeffs_descent.ModularCurve"
 
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_aeval_jq_intCoeffs_descent.ModularCurve _root_.ModularCurve.PhiGen _root_.P2MW.S_ModularCurve_PhiGen_aeval_jq_intCoeffs_descent.ModularCurve.PhiGen in

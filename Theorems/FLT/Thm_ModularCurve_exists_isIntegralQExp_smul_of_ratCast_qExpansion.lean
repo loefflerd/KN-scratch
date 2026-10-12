@@ -521,7 +521,6 @@ theorem main (M : ℕ) [NeZero M] {k : ℤ} (f : ModularForm Γ₁(M) k) (hf : I
 
 end X1BoundedDenominators
 end
-p2m_reactivate "P2MW.S_ModularCurve_exists_isIntegralQExp_smul_of_ratCast_qExpansion.X1BoundedDenominators"
 
 theorem solution (M : ℕ) [NeZero M] {k : ℤ}
     (f : ModularForm (CongruenceSubgroup.Gamma1 M : Subgroup (GL (Fin 2) ℝ)) k)

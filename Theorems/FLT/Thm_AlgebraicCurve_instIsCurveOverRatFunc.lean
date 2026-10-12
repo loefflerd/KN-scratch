@@ -70,7 +70,6 @@ p2m_open "AlgebraicCurve"
 scoped instance instHasPrincipalDivisorsRatFuncLaneB (K : Type*) [Field K] : HasPrincipalDivisors K (RatFunc K) :=
   RationalFunctionField.hasPrincipalDivisors K
 end AlgebraicCurve
-p2m_reactivate "P2MW.S_AlgebraicCurve_instIsCurveOverRatFunc.AlgebraicCurve"
 
 section
 
@@ -95,7 +94,6 @@ theorem finiteResidue_of_deg_pos (h : 0 < v.deg) : v.FiniteResidue :=
   ⟨Module.finite_of_finrank_pos h⟩
 end DegPos
 end Place
-p2m_reactivate "P2MW.S_AlgebraicCurve_instIsCurveOverRatFunc.AlgebraicCurve"
 namespace RationalFunctionField
 p2m_export "AlgebraicCurve.RationalFunctionField" "exists_irreducible_span deg_ofHeightOneSpectrum placeInfty eq_ofHeightOneSpectrum_or_eq_placeInfty deg_placeInfty hasPrincipalDivisors"
 p2m_open "AlgebraicCurve.RationalFunctionField"
@@ -121,14 +119,12 @@ scoped instance instFiniteResidue (v : Place K (RatFunc K)) : v.FiniteResidue :=
   · exact instFiniteResiduePlaceInfty K
 
 end RationalFunctionField
-p2m_reactivate "P2MW.S_AlgebraicCurve_instIsCurveOverRatFunc.AlgebraicCurve P2MW.S_AlgebraicCurve_instIsCurveOverRatFunc.AlgebraicCurve.RationalFunctionField"
 
 namespace Place
 p2m_export "AlgebraicCurve.Place" "ResidueField deg FiniteResidue ofHeightOneSpectrum FiniteResidue.finite"
 end Place
 end AlgebraicCurve
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_instIsCurveOverRatFunc.AlgebraicCurve P2MW.S_AlgebraicCurve_instIsCurveOverRatFunc.AlgebraicCurve.RationalFunctionField"
 
 section
 
@@ -169,7 +165,6 @@ theorem isCurveOver_of_kaehlerRankOne (hΩ : KaehlerRankOne K (RatFunc K)) :
 end RationalFunctionField
 end AlgebraicCurve
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_instIsCurveOverRatFunc.AlgebraicCurve P2MW.S_AlgebraicCurve_instIsCurveOverRatFunc.AlgebraicCurve.RationalFunctionField"
 
 section
 
@@ -203,7 +198,6 @@ scoped instance instIsCurveOverRatFunc : IsCurveOver K (RatFunc K) :=
 
 end AlgebraicCurve
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_instIsCurveOverRatFunc.AlgebraicCurve P2MW.S_AlgebraicCurve_instIsCurveOverRatFunc.AlgebraicCurve.RationalFunctionField"
 
 theorem solution (K : Type*) [Field K] : AlgebraicCurve.IsCurveOver K (RatFunc K) :=
   AlgebraicCurve.instIsCurveOverRatFunc K

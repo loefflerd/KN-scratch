@@ -602,7 +602,6 @@ private lemma periodPair_ext'' {L₁ L₂ : PeriodPair} (h₁ : L₁.ω₁ = L�
 end R4bBridge
 
 end WLight
-p2m_reactivate "P2MW.S_WLight_frickeFunction_orbit_package.WLight"
 
 p2m_open "UpperHalfPlane~I" in
 open scoped UpperHalfPlane Manifold MatrixGroups ModularForm in

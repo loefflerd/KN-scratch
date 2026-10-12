@@ -210,7 +210,6 @@ theorem unique_ext (φ : Additive (pm Γ) →+ A) (hφ : IsParabolicHom (pm Γ) 
     rw [this, ofMul_one, map_zero, zero_add]
 
 end ParabolicPlusMinus
-p2m_reactivate "P2MW.S_ModularCurve_Period_existsUnique_isParabolicHom_sup_zpowers_neg_one_apply_eq.ParabolicPlusMinus"
 
 theorem solution
     (Γ : Subgroup SL(2, ℤ)) (A : Type*) [AddCommGroup A]

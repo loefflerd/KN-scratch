@@ -148,8 +148,6 @@ scoped instance instGroupFG_Gamma0 (N : ℕ) [NeZero N] : Group.FG (Gamma0 N) :=
       (Set.finite_singleton _).insert _⟩
   exact Subgroup.fg_of_index_ne_zero _
 end HeckeEis.ZQAux
-p2m_reactivate "P2MW.S_HeckeEis_exists_basis_coeffH1par_int_complex.HeckeEis P2MW.S_HeckeEis_exists_basis_coeffH1par_int_complex.HeckeEis.ZQAux"
-p2m_reactivate "P2MW.S_HeckeEis_exists_basis_coeffH1par_int_complex.HeckeEis"
 
 namespace HeckeEis
 p2m_export "HeckeEis" "BinaryForm binaryFormRepSL coeffCocycles coeffParabolicCocycles coeffH1par coeffH1parMk coeffH1parMk_surjective exists_coeffH1par_map_ringHom coeffH1par_map_int_rat_injective exists_ne_zero_smul_eq_coeffH1par_map_int_rat mem_span_range_coeffH1par_map_rat_complex linearIndependent_coeffH1par_map_rat_complex coeffH1par_binaryFormRepSL_int_eq_zero_of_smul_eq_zero"
@@ -164,8 +162,6 @@ theorem exists_common_den (s : Finset ℚ) : ∃ D : ℤ, D ≠ 0 ∧ ∀ x ∈ 
     push_cast
     rw [mul_comm ((x.den : ℚ)) _, mul_assoc, Rat.den_mul_eq_num]
 end HeckeEis.RatAux
-p2m_reactivate "P2MW.S_HeckeEis_exists_basis_coeffH1par_int_complex.HeckeEis P2MW.S_HeckeEis_exists_basis_coeffH1par_int_complex.HeckeEis.ZQAux"
-p2m_reactivate "P2MW.S_HeckeEis_exists_basis_coeffH1par_int_complex.HeckeEis P2MW.S_HeckeEis_exists_basis_coeffH1par_int_complex.HeckeEis.ZQAux"
 
 noncomputable section
 
@@ -266,7 +262,7 @@ theorem comp_eq_of_clauses
 
 end HeckeEis.C2Aux
 end
-p2m_reactivate "P2MW.S_HeckeEis_exists_basis_coeffH1par_int_complex.HeckeEis P2MW.S_HeckeEis_exists_basis_coeffH1par_int_complex.HeckeEis.ZQAux"
+open P2MW.S_HeckeEis_exists_basis_coeffH1par_int_complex.HeckeEis P2MW.S_HeckeEis_exists_basis_coeffH1par_int_complex.HeckeEis.ZQAux
 
 noncomputable section
 
@@ -352,7 +348,6 @@ theorem main (n N : ℕ) [NeZero N]
 
 end HeckeEis.C2Aux
 end
-p2m_reactivate "P2MW.S_HeckeEis_exists_basis_coeffH1par_int_complex.HeckeEis P2MW.S_HeckeEis_exists_basis_coeffH1par_int_complex.HeckeEis.ZQAux"
 
 open scoped MatrixGroups in
 

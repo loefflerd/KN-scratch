@@ -346,7 +346,6 @@ theorem order_le_of_identity {p q d : ℂ → ℂ} {n m : ℕ} {C : ℕ → ℂ 
   omega
 
 end ANb
-p2m_reactivate "P2MW.S_omegaRow_T2.ANb"
 
 namespace ANb
 
@@ -478,7 +477,6 @@ theorem thetaJ_mul_D : θ (𝐉) * ψ 𝔡 = -(ψ 𝔞 ^ 2 * ψ 𝔟) := by
   linear_combination this
 
 end ANb
-p2m_reactivate "P2MW.S_omegaRow_T2.ANb"
 
 open ANb in
 theorem solution :

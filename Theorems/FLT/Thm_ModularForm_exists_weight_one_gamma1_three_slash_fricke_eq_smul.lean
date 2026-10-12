@@ -214,8 +214,6 @@ theorem latticeSum_eq_tsum_repCount {τ : ℂ} (hτ : 0 < τ.im) :
   (hasSum_repCount_qpow hτ).tsum_eq.symm
 
 end A2Theta3.LatticeSum
-p2m_reactivate "P2MW.S_ModularForm_exists_weight_one_gamma1_three_slash_fricke_eq_smul.A2Theta3 P2MW.S_ModularForm_exists_weight_one_gamma1_three_slash_fricke_eq_smul.A2Theta3.LatticeSum"
-p2m_reactivate "P2MW.S_ModularForm_exists_weight_one_gamma1_three_slash_fricke_eq_smul.A2Theta3"
 
 namespace A2Theta3
 
@@ -250,7 +248,6 @@ theorem hexTheta_fricke {σ : ℂ} (hσ : 0 < σ.im) :
 
 end
 end A2Theta3
-p2m_reactivate "P2MW.S_ModularForm_exists_weight_one_gamma1_three_slash_fricke_eq_smul.A2Theta3 P2MW.S_ModularForm_exists_weight_one_gamma1_three_slash_fricke_eq_smul.A2Theta3.LatticeSum"
 
 open Matrix CongruenceSubgroup Subgroup ModularForm UpperHalfPlane
 open scoped MatrixGroups ModularForm Manifold Pointwise
@@ -372,7 +369,6 @@ lemma coe_toRightFun (g : SL(2, ℤ)) :
   exact congrArg Subtype.val (huniq.unique h1 h2)
 
 end Gamma0Three
-p2m_reactivate "P2MW.S_ModularForm_exists_weight_one_gamma1_three_slash_fricke_eq_smul.A2Theta3 P2MW.S_ModularForm_exists_weight_one_gamma1_three_slash_fricke_eq_smul.A2Theta3.LatticeSum P2MW.S_ModularForm_exists_weight_one_gamma1_three_slash_fricke_eq_smul.A2Theta3.Gamma0Three"
 
 def U₃ : SL(2, ℤ) := ⟨!![1, 0; -3, 1], by simp [Matrix.det_fin_two_of]⟩
 
@@ -521,7 +517,6 @@ theorem slash_eq_self_of_mem_Gamma1
   simp
 
 end Sweep
-p2m_reactivate "P2MW.S_ModularForm_exists_weight_one_gamma1_three_slash_fricke_eq_smul.A2Theta3 P2MW.S_ModularForm_exists_weight_one_gamma1_three_slash_fricke_eq_smul.A2Theta3.LatticeSum P2MW.S_ModularForm_exists_weight_one_gamma1_three_slash_fricke_eq_smul.A2Theta3.Gamma0Three"
 section Packaging
 
 def slashInvariantForm_of_T_U (F : ℍ → ℂ)
@@ -538,7 +533,6 @@ def slashInvariantForm_of_T_U (F : ℍ → ℂ)
 
 end Packaging
 end A2Theta3
-p2m_reactivate "P2MW.S_ModularForm_exists_weight_one_gamma1_three_slash_fricke_eq_smul.A2Theta3 P2MW.S_ModularForm_exists_weight_one_gamma1_three_slash_fricke_eq_smul.A2Theta3.LatticeSum P2MW.S_ModularForm_exists_weight_one_gamma1_three_slash_fricke_eq_smul.A2Theta3.Gamma0Three"
 
 open Complex Real Matrix CongruenceSubgroup Subgroup ModularForm UpperHalfPlane
 open A2Theta3.LatticeSum
@@ -796,7 +790,6 @@ theorem hexThetaH_isBoundedAt_cusp (c : OnePoint ℝ)
 
 end
 end A2Theta3
-p2m_reactivate "P2MW.S_ModularForm_exists_weight_one_gamma1_three_slash_fricke_eq_smul.A2Theta3 P2MW.S_ModularForm_exists_weight_one_gamma1_three_slash_fricke_eq_smul.A2Theta3.LatticeSum P2MW.S_ModularForm_exists_weight_one_gamma1_three_slash_fricke_eq_smul.A2Theta3.Gamma0Three"
 
 open Complex Real Filter
 open A2Theta3.LatticeSum
@@ -868,7 +861,6 @@ theorem mdifferentiable_hexThetaH : MDiff hexThetaH := by
 
 end
 end A2Theta3
-p2m_reactivate "P2MW.S_ModularForm_exists_weight_one_gamma1_three_slash_fricke_eq_smul.A2Theta3 P2MW.S_ModularForm_exists_weight_one_gamma1_three_slash_fricke_eq_smul.A2Theta3.LatticeSum P2MW.S_ModularForm_exists_weight_one_gamma1_three_slash_fricke_eq_smul.A2Theta3.Gamma0Three"
 
 open Complex Real Matrix CongruenceSubgroup Subgroup ModularForm UpperHalfPlane
 open A2Theta3.LatticeSum
@@ -929,7 +921,6 @@ theorem thetaForm_slash_fricke (W : GL (Fin 2) ℝ) (hW : (W : Matrix (Fin 2) (F
 
 end
 end A2Theta3
-p2m_reactivate "P2MW.S_ModularForm_exists_weight_one_gamma1_three_slash_fricke_eq_smul.A2Theta3 P2MW.S_ModularForm_exists_weight_one_gamma1_three_slash_fricke_eq_smul.A2Theta3.LatticeSum P2MW.S_ModularForm_exists_weight_one_gamma1_three_slash_fricke_eq_smul.A2Theta3.Gamma0Three"
 
 open scoped MatrixGroups ModularForm in
 theorem solution :

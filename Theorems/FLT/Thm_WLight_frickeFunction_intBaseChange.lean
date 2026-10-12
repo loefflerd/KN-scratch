@@ -1407,7 +1407,8 @@ end Assembly
 
 end R8b
 end WLight
-p2m_reactivate "P2MW.S_WLight_frickeFunction_intBaseChange.WLight.R8b P2MW.S_WLight_frickeFunction_intBaseChange.WLight"
+
+open WLight.R8b
 
 open UpperHalfPlane in
 open scoped Manifold in

@@ -79,7 +79,6 @@ def ofUnit (u : Rˣ) : VariableChange R := ⟨u, 0, 0, 0⟩
 @[scoped simp] lemma ofUnit_t (u : Rˣ) : (ofUnit u).t = 0 := rfl
 
 end VariableChange
-p2m_reactivate "P2MW.S_WeierstrassCurve_mem_stabilizer_variableChange_iff_of_isShortNF_of_a6_eq_zero.WeierstrassCurve.VariableChange"
 
 section ShortNF
 
@@ -141,7 +140,6 @@ theorem mem_stabilizer_isShortNF_a₆_eq_zero_iff (h2 : (2 : F) ≠ 0) (h3 : (3 
 
 end ShortNF
 end WeierstrassCurve
-p2m_reactivate "P2MW.S_WeierstrassCurve_mem_stabilizer_variableChange_iff_of_isShortNF_of_a6_eq_zero.WeierstrassCurve.VariableChange P2MW.S_WeierstrassCurve_mem_stabilizer_variableChange_iff_of_isShortNF_of_a6_eq_zero.WeierstrassCurve"
 
 theorem solution
     {F : Type*} [Field F] (h2 : (2 : F) ≠ 0) (h3 : (3 : F) ≠ 0)

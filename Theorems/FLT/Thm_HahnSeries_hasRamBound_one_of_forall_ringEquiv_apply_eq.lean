@@ -317,8 +317,6 @@ theorem orderTop_twist (χ : Multiplicative ℚ →* Kˣ) (z : HahnSeries ℚ K)
     · exact Set.IsWF.min_le _ _ (by rw [← support_twist χ z]; exact Set.IsWF.min_mem _ _)
 
 end HahnSeries.PuiseuxTwist
-p2m_reactivate "P2MW.S_HahnSeries_hasRamBound_one_of_forall_ringEquiv_apply_eq.HahnSeries P2MW.S_HahnSeries_hasRamBound_one_of_forall_ringEquiv_apply_eq.HahnSeries.PuiseuxTwist"
-p2m_reactivate "P2MW.S_HahnSeries_hasRamBound_one_of_forall_ringEquiv_apply_eq.HahnSeries"
 
 open HahnSeries.PuiseuxTwist in
 theorem solution

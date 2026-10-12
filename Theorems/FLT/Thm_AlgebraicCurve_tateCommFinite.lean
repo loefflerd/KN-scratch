@@ -668,7 +668,6 @@ end Bridge
 end ModularCurve.KwF4R1V410a
 end
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateCommFinite.ModularCurve P2MW.S_AlgebraicCurve_tateCommFinite.ModularCurve.KwF4R1V410a"
 
 section
 
@@ -791,7 +790,6 @@ end PoleWindowShift
 end ModularCurve.KwF4gRRTate
 end
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateCommFinite.ModularCurve P2MW.S_AlgebraicCurve_tateCommFinite.ModularCurve.KwF4R1V410a"
 
 section
 
@@ -929,7 +927,6 @@ end DVRQuotDischarge
 end ModularCurve.KwF4gRRTate
 end
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateCommFinite.ModularCurve P2MW.S_AlgebraicCurve_tateCommFinite.ModularCurve.KwF4R1V410a"
 
 section
 
@@ -1002,7 +999,6 @@ end DVRCotangentDischarge
 end ModularCurve.KwF4gRRTate
 end
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateCommFinite.ModularCurve P2MW.S_AlgebraicCurve_tateCommFinite.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateCommFinite.ModularCurve.KwF4gRRTate"
 
 theorem solution {K L : Type*} [Field K] [Field L] [Algebra K L]
     [∀ u : AlgebraicCurve.Place K L, u.FiniteResidue] :

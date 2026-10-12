@@ -1149,7 +1149,6 @@ scoped instance : IsScalarTower ↥(WLight.ratJ N) (levelField N) D.field :=
 
 end LevelGens
 end C0_membership
-p2m_reactivate "P2MW.S_WLight_levelN_structure_package.WLight.LevelGens"
 
 section Solution
 open scoped UpperHalfPlane Manifold MatrixGroups ModularForm
@@ -1213,7 +1212,6 @@ private theorem r5_fixed_frac_polynomial {N : ℕ} [NeZero N] {a b : ℍ → ℂ
 
 end Solution
 end WLight
-p2m_reactivate "P2MW.S_WLight_levelN_structure_package.WLight.LevelGens P2MW.S_WLight_levelN_structure_package.WLight"
 
 set_option synthInstance.maxHeartbeats 1600000 in
 open scoped UpperHalfPlane Manifold MatrixGroups ModularForm in

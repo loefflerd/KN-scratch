@@ -34,7 +34,6 @@ import Theorems.FLT.Thm_WeierstrassCurve_Affine_CoordinateRing_isDedekindDomain
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_placeOfPoint_some_eq_ofHeightOneSpectrum
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_CoordinateRing_XYIdeal_ne_bot
 import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Cyclic degree-N function-field seams descend to countable subfields
@@ -86,9 +85,13 @@ set_option maxHeartbeats 3200000
 
 section privateSection
 
-set_option backward.isDefEq.respectTransparency.types false
+open WeierstrassCurve Affine CoordinateRing
+  WeierstrassCurve.Affine.CoordinateRing
+  IntermediateField AlgebraicCurve Polynomial IsDedekindDomain
 
-namespace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward
+open scoped Polynomial.Bivariate TensorProduct
+
+set_option backward.isDefEq.respectTransparency.types false
 
 set_option linter.unusedVariables false
 set_option linter.unusedSectionVars false
@@ -97,13 +100,8 @@ set_option linter.unusedSimpArgs false
 noncomputable section
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine isUnit_Δ a₃ map_map a₁ Affine.map_a₃ map Affine.CoordinateRing mk a₄ a₂ a₆ Affine.map_a₆ IsIntegral toAffine Affine.map_a₂ Affine.Point Affine.map_a₁ Affine.map_a₄ map_Δ map_a₆ map_a₁ map_a₄ Δ Affine.equation_iff Affine.polynomial map_a₂ baseChange j map_a₃ Affine.GenusOnePlaceGate Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred Affine.CoordinateRing.isDedekindDomain Affine.hasPrincipalDivisors_functionField Affine.GenusOnePlaceGate.ext_of_isCentred Affine.isAddCyclic_ker_pointMapOfPushforward_of_baseChange_algHom"
-namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Point.add Equation CoordinateRing.basis_one equation_iff' map_a₃ slope CoordinateRing map baseChange Equation.baseChange Nonsingular map_a₆ FunctionField map_a₂ Point CoordinateRing.mk addX map_a₁ CoordinateRing.map map_a₄ CoordinateRing.basis_apply CoordinateRing.map_mk CoordinateRing.exists_smul_basis_eq CoordinateRing.map_smul CoordinateRing.basis_zero equation_iff_nonsingular CoordinateRing.basis addY equation_iff polynomial pointMapOfPushforward IsogenyEndDatum IsogenyEndDatum.pointEnd GenusOnePlaceGate pointEquivPlace placeOfPoint deg_eq_one deg_placeOfPoint pointClass AbelTheorem genusOnePic0Equiv GenusOnePlaceGate.deg_eq_one GenusOnePlaceGate.IsCentred placeOfPoint_some_eq_ofHeightOneSpectrum algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero CoordinateRing.isDedekindDomain CoordinateRing.exists_eq_XYIdeal CoordinateRing.XYIdeal_isMaximal CoordinateRing.XYIdeal_ne_bot hasPrincipalDivisors_functionField natCard_ker_pointMapOfPushforward_eq_finrankAlong polyToFunctionField polyToFunctionField_apply polyToFunctionField_injective polyToFunctionField_C algebraMap_smul_basis algebraMap_polynomial_eq_polyToFunctionField yCoord isIntegral_yCoord exists_genusOnePlaceGate_isCentred_and_abelTheorem GenusOnePlaceGate.ext_of_isCentred isAddCyclic_ker_pointMapOfPushforward_of_baseChange_algHom"
-p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.Polynomial IsDedekindDomain P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.IsDedekindDomain WeierstrassCurve.Affine.CoordinateRing~evalAt P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.AlgebraicCurve"
-p2m_open_scoped "Polynomial.Bivariate P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.Polynomial.Bivariate"
+namespace Affine
 
 variable {F : Type*} [Field F] {W : Affine F}
 
@@ -117,8 +115,6 @@ theorem S13_ofHeightOneSpectrum_injective {R : Type*} [CommRing R] [IsDedekindDo
   exact congrArg AlgebraicCurve.Place.toValuationSubring h
 
 namespace CoordinateRing
-p2m_export "WeierstrassCurve.Affine.CoordinateRing" "basis_one XYIdeal quotientXYIdealEquiv YClass mk map basis_apply map_mk exists_smul_basis_eq basis_zero XClass smul_basis_mul_Y isDedekindDomain exists_eq_XYIdeal XYIdeal_isMaximal XYIdeal_ne_bot"
-p2m_open "WeierstrassCurve.Affine.CoordinateRing~evalAt"
 
 theorem algebraMap_eq_mk_C_C (a : F) :
     algebraMap F W.CoordinateRing a = CoordinateRing.mk W (C (C a)) := by
@@ -184,9 +180,6 @@ theorem exists_sub_algebraMap_mem {x y : F} (h : W.Equation x y) (r : W.Coordina
     Algebra.algebraMap_self_apply]
 
 end CoordinateRing
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing"
-
-p2m_open "WeierstrassCurve.Affine.CoordinateRing~evalAt P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing"
 
 def IsFinitePlace (v : AlgebraicCurve.Place F W.FunctionField) : Prop :=
   ∀ r : W.CoordinateRing, algebraMap W.CoordinateRing W.FunctionField r ∈ v.toValuationSubring
@@ -203,8 +196,6 @@ def IsFinitePlace.ringHom {v : AlgebraicCurve.Place F W.FunctionField} (hv : IsF
 theorem IsFinitePlace.coe_ringHom_apply {v : AlgebraicCurve.Place F W.FunctionField}
     (hv : IsFinitePlace v) (r : W.CoordinateRing) :
     (hv.ringHom r : W.FunctionField) = algebraMap W.CoordinateRing W.FunctionField r := rfl
-
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace"
 
 def IsFinitePlace.centre {v : AlgebraicCurve.Place F W.FunctionField} (hv : IsFinitePlace v) :
     Ideal W.CoordinateRing :=
@@ -327,8 +318,6 @@ def place : AlgebraicCurve.Place F W.FunctionField := placeOfPoint (0 : W.Point)
 private theorem _root_.WeierstrassCurve.Affine.InfinitePlace.deg_eq_one : (place : AlgebraicCurve.Place F W.FunctionField).deg = 1 :=
   deg_placeOfPoint (W := W) 0
 
-p2m_export "WeierstrassCurve.Affine.InfinitePlace" "deg_eq_one"
-
 theorem not_isFinitePlace [IsAlgClosed F] [W.IsElliptic] :
     ¬ IsFinitePlace (place : AlgebraicCurve.Place F W.FunctionField) := fun h =>
   algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero (W := W) (h _)
@@ -344,7 +333,6 @@ theorem eq_of_not_isFinitePlace
       exact absurd (placeOfPoint_some (W := W) h ▸ isFinitePlace_placeOfEquation h.left) hv
 
 end InfinitePlace
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace"
 
 @[scoped simp]
 theorem placeOfPoint_zero : placeOfPoint (.zero : W.Point) = InfinitePlace.place := rfl
@@ -361,17 +349,12 @@ theorem placeOfPoint_surjective' : Function.Surjective (placeOfPoint (W := W)) :
   (pointEquivPlace (W := W)).surjective
 
 end CentredGate
-end WeierstrassCurve.Affine
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine"
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve"
+end Affine
+end WeierstrassCurve
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine isUnit_Δ a₃ map_map a₁ Affine.map_a₃ map Affine.CoordinateRing mk a₄ a₂ a₆ Affine.map_a₆ IsIntegral toAffine Affine.map_a₂ Affine.Point Affine.map_a₁ Affine.map_a₄ map_Δ map_a₆ map_a₁ map_a₄ Δ Affine.equation_iff Affine.polynomial map_a₂ baseChange j map_a₃ Affine.GenusOnePlaceGate Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred Affine.CoordinateRing.isDedekindDomain Affine.hasPrincipalDivisors_functionField Affine.GenusOnePlaceGate.ext_of_isCentred Affine.isAddCyclic_ker_pointMapOfPushforward_of_baseChange_algHom"
-namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Point.add Equation CoordinateRing.basis_one equation_iff' map_a₃ slope CoordinateRing map baseChange Equation.baseChange Nonsingular map_a₆ FunctionField map_a₂ Point CoordinateRing.mk addX map_a₁ CoordinateRing.map map_a₄ CoordinateRing.basis_apply CoordinateRing.map_mk CoordinateRing.exists_smul_basis_eq CoordinateRing.map_smul CoordinateRing.basis_zero equation_iff_nonsingular CoordinateRing.basis addY equation_iff polynomial pointMapOfPushforward IsogenyEndDatum IsogenyEndDatum.pointEnd GenusOnePlaceGate pointEquivPlace placeOfPoint deg_eq_one deg_placeOfPoint pointClass AbelTheorem genusOnePic0Equiv GenusOnePlaceGate.deg_eq_one GenusOnePlaceGate.IsCentred placeOfPoint_some_eq_ofHeightOneSpectrum algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero CoordinateRing.isDedekindDomain CoordinateRing.exists_eq_XYIdeal CoordinateRing.XYIdeal_isMaximal CoordinateRing.XYIdeal_ne_bot hasPrincipalDivisors_functionField natCard_ker_pointMapOfPushforward_eq_finrankAlong polyToFunctionField polyToFunctionField_apply polyToFunctionField_injective polyToFunctionField_C algebraMap_smul_basis algebraMap_polynomial_eq_polyToFunctionField yCoord isIntegral_yCoord exists_genusOnePlaceGate_isCentred_and_abelTheorem GenusOnePlaceGate.ext_of_isCentred isAddCyclic_ker_pointMapOfPushforward_of_baseChange_algHom"
-p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
-p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.AlgebraicCurve"
+namespace Affine
 
 scoped instance instHasPrincipalDivisorsFunctionField_s13 {F : Type*} [Field F] [CharZero F]
     {W : Affine F} : HasPrincipalDivisors F W.FunctionField :=
@@ -395,11 +378,8 @@ theorem normFormulaAlong_of_elliptic (ι : V.FunctionField →ₐ[F] W.FunctionF
   exact AlgebraicCurve.normFormulaAlong ι hfin hsep
 
 end AutoNorm
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine"
 
 namespace IsogenyEndDatum
-p2m_export "WeierstrassCurve.Affine.IsogenyEndDatum" "pointEnd pointEnd_apply pointEnd_eq_of_seam hfin hι mk ι"
-p2m_open "WeierstrassCurve.Affine.IsogenyEndDatum"
 
 variable {F : Type*} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
 variable {W : Affine F} [W.IsElliptic] [GenusOnePlaceGate W] [AbelTheorem W]
@@ -407,11 +387,8 @@ variable {W : Affine F} [W.IsElliptic] [GenusOnePlaceGate W] [AbelTheorem W]
 private theorem _root_.WeierstrassCurve.Affine.IsogenyEndDatum.normFormulaAlong_auto (D : IsogenyEndDatum W) : NormFormulaAlong F D.ι D.hfin :=
   normFormulaAlong_of_elliptic D.ι D.hfin
 
-p2m_export "WeierstrassCurve.Affine.IsogenyEndDatum" "normFormulaAlong_auto"
-
 private def _root_.WeierstrassCurve.Affine.IsogenyEndDatum.pointEnd' (D : IsogenyEndDatum W) : AddMonoid.End W.Point := D.pointEnd D.normFormulaAlong_auto
 
-p2m_export "WeierstrassCurve.Affine.IsogenyEndDatum" "pointEnd'"
 theorem pointEnd_eq_pointEnd' (D : IsogenyEndDatum W) (hN : NormFormulaAlong F D.ι D.hfin) :
     D.pointEnd hN = D.pointEnd' := rfl
 
@@ -426,38 +403,17 @@ theorem pointEnd'_eq_of_seam (D : IsogenyEndDatum W) (g : W.Point → W.Point) (
   pointEnd_eq_of_seam D _ g hg0 hg P
 
 end IsogenyEndDatum
-end WeierstrassCurve.Affine
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine"
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine"
+end Affine
+end WeierstrassCurve
 
-namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine isUnit_Δ a₃ map_map a₁ Affine.map_a₃ map Affine.CoordinateRing mk a₄ a₂ a₆ Affine.map_a₆ IsIntegral toAffine Affine.map_a₂ Affine.Point Affine.map_a₁ Affine.map_a₄ map_Δ map_a₆ map_a₁ map_a₄ Δ Affine.equation_iff Affine.polynomial map_a₂ baseChange j map_a₃ Affine.IsogenyEndDatum Affine.GenusOnePlaceGate Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred Affine.CoordinateRing.isDedekindDomain Affine.hasPrincipalDivisors_functionField Affine.GenusOnePlaceGate.ext_of_isCentred Affine.isAddCyclic_ker_pointMapOfPushforward_of_baseChange_algHom"
-namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Point.add Equation CoordinateRing.basis_one equation_iff' map_a₃ slope CoordinateRing map baseChange Equation.baseChange Nonsingular map_a₆ FunctionField map_a₂ Point CoordinateRing.mk addX map_a₁ CoordinateRing.map map_a₄ CoordinateRing.basis_apply CoordinateRing.map_mk CoordinateRing.exists_smul_basis_eq CoordinateRing.map_smul CoordinateRing.basis_zero equation_iff_nonsingular CoordinateRing.basis addY equation_iff polynomial pointMapOfPushforward IsogenyEndDatum IsogenyEndDatum.pointEnd GenusOnePlaceGate pointEquivPlace placeOfPoint deg_eq_one deg_placeOfPoint pointClass AbelTheorem genusOnePic0Equiv GenusOnePlaceGate.deg_eq_one GenusOnePlaceGate.IsCentred placeOfPoint_some_eq_ofHeightOneSpectrum algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero CoordinateRing.isDedekindDomain CoordinateRing.exists_eq_XYIdeal CoordinateRing.XYIdeal_isMaximal CoordinateRing.XYIdeal_ne_bot hasPrincipalDivisors_functionField natCard_ker_pointMapOfPushforward_eq_finrankAlong polyToFunctionField polyToFunctionField_apply polyToFunctionField_injective polyToFunctionField_C algebraMap_smul_basis algebraMap_polynomial_eq_polyToFunctionField yCoord isIntegral_yCoord exists_genusOnePlaceGate_isCentred_and_abelTheorem GenusOnePlaceGate.ext_of_isCentred isAddCyclic_ker_pointMapOfPushforward_of_baseChange_algHom"
-end WeierstrassCurve.Affine
-p2m_open_scoped "WeierstrassCurve WeierstrassCurve.Affine" in
 scoped instance WeierstrassCurve.Affine.instHasPrincipalDivisorsFunctionField_s13e2
     {F : Type*} [Field F] [CharZero F] (W : WeierstrassCurve.Affine F) :
     AlgebraicCurve.HasPrincipalDivisors F W.FunctionField :=
   WeierstrassCurve.Affine.hasPrincipalDivisors_functionField W
 
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine"
-
 namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Pic0.pushforwardAlongHom algebraAlong isScalarTower_along FiniteAlong NormFormulaAlong finrankAlong SeparableAlong Place Place.ext HasPrincipalDivisors Pic0 Place.ofHeightOneSpectrum Place.ofHeightOneSpectrum_toValuationSubring Place.toValuationSubring Place.ofHeightOneSpectrum_injective normFormulaAlong"
-p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg"
-namespace Place
-p2m_export "AlgebraicCurve.Place" "restrictAlong ext ResidueField deg adicValuation adicValuation_ne_zero ord ord_inv ord_unit_smul_zpow exists_unit_mul_zpow ofHeightOneSpectrum ofHeightOneSpectrum_toValuationSubring ne_top' algebraMap_mem' toValuationSubring mk mem_of_eval_monic_eq_zero IsRational evalAt ofHeightOneSpectrum_injective evalAt_mul evalAt_inv"
-end Place
-end AlgebraicCurve
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine"
 
-namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Pic0.pushforwardAlongHom algebraAlong isScalarTower_along FiniteAlong NormFormulaAlong finrankAlong SeparableAlong Place Place.ext HasPrincipalDivisors Pic0 Place.ofHeightOneSpectrum Place.ofHeightOneSpectrum_toValuationSubring Place.toValuationSubring Place.ofHeightOneSpectrum_injective normFormulaAlong"
-p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg"
 namespace Place
-p2m_export "AlgebraicCurve.Place" "restrictAlong ext ResidueField deg adicValuation adicValuation_ne_zero ord ord_inv ord_unit_smul_zpow exists_unit_mul_zpow ofHeightOneSpectrum ofHeightOneSpectrum_toValuationSubring ne_top' algebraMap_mem' toValuationSubring mk mem_of_eval_monic_eq_zero IsRational evalAt ofHeightOneSpectrum_injective evalAt_mul evalAt_inv"
-p2m_open "AlgebraicCurve.Place~ord_nonneg_of_mem~mem_of_ord_nonneg~mem_iff_ord_nonneg"
 
 section MoreSinglePlace
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
@@ -489,8 +445,6 @@ private theorem _root_.AlgebraicCurve.Place.isRational_of_deg_eq_one (h : v.deg 
     exact Algebra.mem_top
   exact Algebra.mem_bot.mp hx
 
-p2m_export "AlgebraicCurve.Place" "isRational_of_deg_eq_one"
-
 theorem evalAt_div (hv : v.IsRational) {f g : F} (hf : f ∈ v.toValuationSubring)
     (hg : g ≠ 0) (hg0 : v.ord g = 0) :
     v.evalAt (f / g) = v.evalAt f / v.evalAt g := by
@@ -499,7 +453,6 @@ theorem evalAt_div (hv : v.IsRational) {f g : F} (hf : f ∈ v.toValuationSubrin
   rw [div_eq_mul_inv, v.evalAt_mul hv hf hginv, v.evalAt_inv hv hg hg0, div_eq_mul_inv]
 
 end MoreSinglePlace
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine"
 
 theorem mem_restrictAlong_iff {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra K F']
     (φ : F →ₐ[K] F') (hφ : φ.toRingHom.IsIntegral)
@@ -509,15 +462,10 @@ theorem mem_restrictAlong_iff {K F F' : Type*} [Field K] [Field F] [Field F'] [A
 
 end Place
 end AlgebraicCurve
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine"
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine isUnit_Δ a₃ map_map a₁ Affine.map_a₃ map Affine.CoordinateRing mk a₄ a₂ a₆ Affine.map_a₆ IsIntegral toAffine Affine.map_a₂ Affine.Point Affine.map_a₁ Affine.map_a₄ map_Δ map_a₆ map_a₁ map_a₄ Δ Affine.equation_iff Affine.polynomial map_a₂ baseChange j map_a₃ Affine.GenusOnePlaceGate Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred Affine.CoordinateRing.isDedekindDomain Affine.hasPrincipalDivisors_functionField Affine.GenusOnePlaceGate.ext_of_isCentred Affine.isAddCyclic_ker_pointMapOfPushforward_of_baseChange_algHom"
+
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Point.add Equation CoordinateRing.basis_one equation_iff' map_a₃ slope CoordinateRing map baseChange Equation.baseChange Nonsingular map_a₆ FunctionField map_a₂ Point CoordinateRing.mk addX map_a₁ CoordinateRing.map map_a₄ CoordinateRing.basis_apply CoordinateRing.map_mk CoordinateRing.exists_smul_basis_eq CoordinateRing.map_smul CoordinateRing.basis_zero equation_iff_nonsingular CoordinateRing.basis addY equation_iff polynomial pointMapOfPushforward IsogenyEndDatum IsogenyEndDatum.pointEnd GenusOnePlaceGate pointEquivPlace placeOfPoint deg_eq_one deg_placeOfPoint pointClass AbelTheorem genusOnePic0Equiv GenusOnePlaceGate.deg_eq_one GenusOnePlaceGate.IsCentred placeOfPoint_some_eq_ofHeightOneSpectrum algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero CoordinateRing.isDedekindDomain CoordinateRing.exists_eq_XYIdeal CoordinateRing.XYIdeal_isMaximal CoordinateRing.XYIdeal_ne_bot hasPrincipalDivisors_functionField natCard_ker_pointMapOfPushforward_eq_finrankAlong polyToFunctionField polyToFunctionField_apply polyToFunctionField_injective polyToFunctionField_C algebraMap_smul_basis algebraMap_polynomial_eq_polyToFunctionField yCoord isIntegral_yCoord exists_genusOnePlaceGate_isCentred_and_abelTheorem GenusOnePlaceGate.ext_of_isCentred isAddCyclic_ker_pointMapOfPushforward_of_baseChange_algHom"
-p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
-p2m_open "WeierstrassCurve.Affine.CoordinateRing~evalAt P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.AlgebraicCurve Polynomial P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.Polynomial"
-p2m_open_scoped "Polynomial.Bivariate P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.Polynomial.Bivariate"
 
 section FinitePlaceOfMem
 variable {F : Type*} [Field F] {W : Affine F}
@@ -574,7 +522,6 @@ theorem isFinitePlace_of_mem
   exact add_mem (hpoly p) (mul_mem (hpoly q) hy)
 
 end FinitePlaceOfMem
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine"
 
 section RationalPlaceOfEquation
 variable {F : Type*} [Field F] [DecidableEq F] {W : Affine F} [W.IsElliptic]
@@ -586,12 +533,11 @@ theorem isRational_placeOfEquation {r s : F} (hrs : W.Equation r s) : (placeOfEq
   exact GenusOnePlaceGate.deg_eq_one _
 
 end RationalPlaceOfEquation
-end WeierstrassCurve.Affine
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine"
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine"
+end Affine
+end WeierstrassCurve
 
 namespace ModularCurve
-p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg" in open _root_.WeierstrassCurve _root_.P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve _root_.WeierstrassCurve.Affine _root_.P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine _root_.P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.AlgebraicCurve in
+
 theorem kw_fdn2_qephod_hend7_pmopKerCard_proved
     (K : Type*) [Field K] [DecidableEq K] [IsAlgClosed K] [CharZero K]
     (E E' : WeierstrassCurve.Affine K) [E.IsElliptic]
@@ -602,17 +548,16 @@ theorem kw_fdn2_qephod_hend7_pmopKerCard_proved
     Nat.card ((pointMapOfPushforward ι hι hfin
       (normFormulaAlong_of_elliptic ι hfin)).ker) = finrankAlong K ι :=
   natCard_ker_pointMapOfPushforward_eq_finrankAlong E E' ι hι hfin _
-end ModularCurve
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine"
 
-noncomputable scoped instance (priority := 50) s13DecEqAlgebraicClosure {K₀ : Type*} [Field K₀] :
+end ModularCurve
+
+noncomputable local instance (priority := 50) s13DecEqAlgebraicClosure {K₀ : Type*} [Field K₀] :
     DecidableEq (AlgebraicClosure K₀) := Classical.decEq _
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine isUnit_Δ a₃ map_map a₁ Affine.map_a₃ map Affine.CoordinateRing mk a₄ a₂ a₆ Affine.map_a₆ IsIntegral toAffine Affine.map_a₂ Affine.Point Affine.map_a₁ Affine.map_a₄ map_Δ map_a₆ map_a₁ map_a₄ Δ Affine.equation_iff Affine.polynomial map_a₂ baseChange j map_a₃ Affine.GenusOnePlaceGate Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred Affine.CoordinateRing.isDedekindDomain Affine.hasPrincipalDivisors_functionField Affine.GenusOnePlaceGate.ext_of_isCentred Affine.isAddCyclic_ker_pointMapOfPushforward_of_baseChange_algHom"
+
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Point.add Equation CoordinateRing.basis_one equation_iff' map_a₃ slope CoordinateRing map baseChange Equation.baseChange Nonsingular map_a₆ FunctionField map_a₂ Point CoordinateRing.mk addX map_a₁ CoordinateRing.map map_a₄ CoordinateRing.basis_apply CoordinateRing.map_mk CoordinateRing.exists_smul_basis_eq CoordinateRing.map_smul CoordinateRing.basis_zero equation_iff_nonsingular CoordinateRing.basis addY equation_iff polynomial pointMapOfPushforward IsogenyEndDatum IsogenyEndDatum.pointEnd GenusOnePlaceGate pointEquivPlace placeOfPoint deg_eq_one deg_placeOfPoint pointClass AbelTheorem genusOnePic0Equiv GenusOnePlaceGate.deg_eq_one GenusOnePlaceGate.IsCentred placeOfPoint_some_eq_ofHeightOneSpectrum algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero CoordinateRing.isDedekindDomain CoordinateRing.exists_eq_XYIdeal CoordinateRing.XYIdeal_isMaximal CoordinateRing.XYIdeal_ne_bot hasPrincipalDivisors_functionField natCard_ker_pointMapOfPushforward_eq_finrankAlong polyToFunctionField polyToFunctionField_apply polyToFunctionField_injective polyToFunctionField_C algebraMap_smul_basis algebraMap_polynomial_eq_polyToFunctionField yCoord isIntegral_yCoord exists_genusOnePlaceGate_isCentred_and_abelTheorem GenusOnePlaceGate.ext_of_isCentred isAddCyclic_ker_pointMapOfPushforward_of_baseChange_algHom"
-p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
+
 section S13GlobalGate
 variable {F : Type*} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F] (W : Affine F) [W.IsElliptic]
 
@@ -627,17 +572,15 @@ scoped instance (priority := 50) s13GlobalGate_isCentred : GenusOnePlaceGate.IsC
 scoped instance (priority := 50) s13GlobalGate_abelTheorem : AbelTheorem W := (s13_exists_gate W).choose_spec.2
 
 end S13GlobalGate
-end WeierstrassCurve.Affine
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine"
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine"
+end Affine
+end WeierstrassCurve
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine isUnit_Δ a₃ map_map a₁ Affine.map_a₃ map Affine.CoordinateRing mk a₄ a₂ a₆ Affine.map_a₆ IsIntegral toAffine Affine.map_a₂ Affine.Point Affine.map_a₁ Affine.map_a₄ map_Δ map_a₆ map_a₁ map_a₄ Δ Affine.equation_iff Affine.polynomial map_a₂ baseChange j map_a₃ Affine.GenusOnePlaceGate Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred Affine.CoordinateRing.isDedekindDomain Affine.hasPrincipalDivisors_functionField Affine.GenusOnePlaceGate.ext_of_isCentred Affine.isAddCyclic_ker_pointMapOfPushforward_of_baseChange_algHom"
+
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Point.add Equation CoordinateRing.basis_one equation_iff' map_a₃ slope CoordinateRing map baseChange Equation.baseChange Nonsingular map_a₆ FunctionField map_a₂ Point CoordinateRing.mk addX map_a₁ CoordinateRing.map map_a₄ CoordinateRing.basis_apply CoordinateRing.map_mk CoordinateRing.exists_smul_basis_eq CoordinateRing.map_smul CoordinateRing.basis_zero equation_iff_nonsingular CoordinateRing.basis addY equation_iff polynomial pointMapOfPushforward IsogenyEndDatum IsogenyEndDatum.pointEnd GenusOnePlaceGate pointEquivPlace placeOfPoint deg_eq_one deg_placeOfPoint pointClass AbelTheorem genusOnePic0Equiv GenusOnePlaceGate.deg_eq_one GenusOnePlaceGate.IsCentred placeOfPoint_some_eq_ofHeightOneSpectrum algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero CoordinateRing.isDedekindDomain CoordinateRing.exists_eq_XYIdeal CoordinateRing.XYIdeal_isMaximal CoordinateRing.XYIdeal_ne_bot hasPrincipalDivisors_functionField natCard_ker_pointMapOfPushforward_eq_finrankAlong polyToFunctionField polyToFunctionField_apply polyToFunctionField_injective polyToFunctionField_C algebraMap_smul_basis algebraMap_polynomial_eq_polyToFunctionField yCoord isIntegral_yCoord exists_genusOnePlaceGate_isCentred_and_abelTheorem GenusOnePlaceGate.ext_of_isCentred isAddCyclic_ker_pointMapOfPushforward_of_baseChange_algHom"
-p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
+
 section S13FiniteOverRatFunc
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.Polynomial"
+
 variable {F : Type*} [Field F] (W : Affine F)
 
 theorem adjoin_yCoord_eq_top :
@@ -671,75 +614,12 @@ scoped instance s13_finiteDimensional_ratFunc_functionField : FiniteDimensional 
     (F := RatFunc F) (E := W.FunctionField)).toLinearEquiv.finiteDimensional
 
 end S13FiniteOverRatFunc
-end WeierstrassCurve.Affine
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine"
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine"
-
-
-namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Pic0.pushforwardAlongHom algebraAlong isScalarTower_along FiniteAlong NormFormulaAlong finrankAlong SeparableAlong Place Place.ext HasPrincipalDivisors Pic0 Place.ofHeightOneSpectrum Place.ofHeightOneSpectrum_toValuationSubring Place.toValuationSubring Place.ofHeightOneSpectrum_injective normFormulaAlong"
-end AlgebraicCurve
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine"
-namespace Cardinal
-p2m_export "Cardinal" "map mk_fin lift_le_aleph0 lift_eq_one lift_one ord mk_le_one_iff_set_subsingleton sum_add_distrib toNat mk mk_le_aleph0_iff sum mk_le_aleph0 one_lt_two aleph0 map_mk univ lift"
-end Cardinal
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine"
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine"
-namespace IntermediateField
-p2m_export "IntermediateField" "toAlgebra mk val mem_restrictScalars lift AdjoinSimple.gen inclusion ext bot_eq_top_iff_finrank_eq_one adjoin_simple_le_iff algebraMap_apply adjoin.finiteDimensional smul_def lift_cardinalMk_adjoin_le FG adjoin gc instAlgebraSubtypeMem AdjoinSimple.algebraMap_gen comap map_map topEquiv mem_top restrictScalars algebraMap_mem mem_bot mem_adjoin_simple_self finiteDimensional_adjoin adjoin_map subset_adjoin smul_mem isAlgebraic_iff map"
-end IntermediateField
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine"
-namespace IsDedekindDomain
-p2m_export "IsDedekindDomain" "HeightOneSpectrum.valuationSubringAtPrime HeightOneSpectrum.asIdeal HeightOneSpectrum.valuationSubringAtPrime_eq_valuationSubring HeightOneSpectrum.eq_of_valuation_isEquiv_valuation mk HeightOneSpectrum"
-end IsDedekindDomain
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine"
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine"
-namespace Polynomial
-p2m_export "Polynomial" "C eval₂_sub X eval_mul support as_sum_support_C_mul_X_pow aeval_map_algebraMap coeff_add coeff algebraMap_eq unique divX eval₂ aeval eval₂_add monomial basisMonomials eval₂_pow ext_iff degree C_0 factor aeval_C monic_X_pow_add degree_linear_le map_map coeff_sub map_C map eval₂_X comp algebra eval₂_mul exists_eq_pow_rootMultiplicity_mul_and_not_dvd coeff_C eval_pow X_dvd_iff algHom_ext sum coe_mapRingHom eval_X eval_C divX_mul_X_add nontrivial eval_sub adjoin_X aeval_algHom C_mul_X_pow_eq_monomial map_X notMem_support_iff aeval_X map_monomial algebraMap_apply coe_basisMonomials C_neg coeff_C_mul eval_add ext mapRingHom coeff_X_pow eval₂_C funext ring aeval_algHom_apply ringHom_ext transcendental"
-end Polynomial
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine"
-namespace Polynomial
-p2m_export "Polynomial" "C eval₂_sub X eval_mul support as_sum_support_C_mul_X_pow aeval_map_algebraMap coeff_add coeff algebraMap_eq unique divX eval₂ aeval eval₂_add monomial basisMonomials eval₂_pow ext_iff degree C_0 factor aeval_C monic_X_pow_add degree_linear_le map_map coeff_sub map_C map eval₂_X comp algebra eval₂_mul exists_eq_pow_rootMultiplicity_mul_and_not_dvd coeff_C eval_pow X_dvd_iff algHom_ext sum coe_mapRingHom eval_X eval_C divX_mul_X_add nontrivial eval_sub adjoin_X aeval_algHom C_mul_X_pow_eq_monomial map_X notMem_support_iff aeval_X map_monomial algebraMap_apply coe_basisMonomials C_neg coeff_C_mul eval_add ext mapRingHom coeff_X_pow eval₂_C funext ring aeval_algHom_apply ringHom_ext transcendental"
-end Polynomial
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine"
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine"
-namespace TensorProduct
-p2m_export "TensorProduct" "map_tmul congr lift_mk map_map smul_tmul zero_tmul sum_tmul lift mk ext tmul map Algebra.smul_def comm_tmul mk_surjective"
-end TensorProduct
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine"
-namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine isUnit_Δ a₃ map_map a₁ Affine.map_a₃ map Affine.CoordinateRing mk a₄ a₂ a₆ Affine.map_a₆ IsIntegral toAffine Affine.map_a₂ Affine.Point Affine.map_a₁ Affine.map_a₄ map_Δ map_a₆ map_a₁ map_a₄ Δ Affine.equation_iff Affine.polynomial map_a₂ baseChange j map_a₃ Affine.GenusOnePlaceGate Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred Affine.CoordinateRing.isDedekindDomain Affine.hasPrincipalDivisors_functionField Affine.GenusOnePlaceGate.ext_of_isCentred Affine.isAddCyclic_ker_pointMapOfPushforward_of_baseChange_algHom"
+end Affine
 end WeierstrassCurve
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine"
-namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine isUnit_Δ a₃ map_map a₁ Affine.map_a₃ map Affine.CoordinateRing mk a₄ a₂ a₆ Affine.map_a₆ IsIntegral toAffine Affine.map_a₂ Affine.Point Affine.map_a₁ Affine.map_a₄ map_Δ map_a₆ map_a₁ map_a₄ Δ Affine.equation_iff Affine.polynomial map_a₂ baseChange j map_a₃ Affine.GenusOnePlaceGate Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred Affine.CoordinateRing.isDedekindDomain Affine.hasPrincipalDivisors_functionField Affine.GenusOnePlaceGate.ext_of_isCentred Affine.isAddCyclic_ker_pointMapOfPushforward_of_baseChange_algHom"
-namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Point.add Equation CoordinateRing.basis_one equation_iff' map_a₃ slope CoordinateRing map baseChange Equation.baseChange Nonsingular map_a₆ FunctionField map_a₂ Point CoordinateRing.mk addX map_a₁ CoordinateRing.map map_a₄ CoordinateRing.basis_apply CoordinateRing.map_mk CoordinateRing.exists_smul_basis_eq CoordinateRing.map_smul CoordinateRing.basis_zero equation_iff_nonsingular CoordinateRing.basis addY equation_iff polynomial pointMapOfPushforward IsogenyEndDatum IsogenyEndDatum.pointEnd GenusOnePlaceGate pointEquivPlace placeOfPoint deg_eq_one deg_placeOfPoint pointClass AbelTheorem genusOnePic0Equiv GenusOnePlaceGate.deg_eq_one GenusOnePlaceGate.IsCentred placeOfPoint_some_eq_ofHeightOneSpectrum algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero CoordinateRing.isDedekindDomain CoordinateRing.exists_eq_XYIdeal CoordinateRing.XYIdeal_isMaximal CoordinateRing.XYIdeal_ne_bot hasPrincipalDivisors_functionField natCard_ker_pointMapOfPushforward_eq_finrankAlong polyToFunctionField polyToFunctionField_apply polyToFunctionField_injective polyToFunctionField_C algebraMap_smul_basis algebraMap_polynomial_eq_polyToFunctionField yCoord isIntegral_yCoord exists_genusOnePlaceGate_isCentred_and_abelTheorem GenusOnePlaceGate.ext_of_isCentred isAddCyclic_ker_pointMapOfPushforward_of_baseChange_algHom"
-end WeierstrassCurve.Affine
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine"
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine"
-namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine isUnit_Δ a₃ map_map a₁ Affine.map_a₃ map Affine.CoordinateRing mk a₄ a₂ a₆ Affine.map_a₆ IsIntegral toAffine Affine.map_a₂ Affine.Point Affine.map_a₁ Affine.map_a₄ map_Δ map_a₆ map_a₁ map_a₄ Δ Affine.equation_iff Affine.polynomial map_a₂ baseChange j map_a₃ Affine.GenusOnePlaceGate Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred Affine.CoordinateRing.isDedekindDomain Affine.hasPrincipalDivisors_functionField Affine.GenusOnePlaceGate.ext_of_isCentred Affine.isAddCyclic_ker_pointMapOfPushforward_of_baseChange_algHom"
-namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Point.add Equation CoordinateRing.basis_one equation_iff' map_a₃ slope CoordinateRing map baseChange Equation.baseChange Nonsingular map_a₆ FunctionField map_a₂ Point CoordinateRing.mk addX map_a₁ CoordinateRing.map map_a₄ CoordinateRing.basis_apply CoordinateRing.map_mk CoordinateRing.exists_smul_basis_eq CoordinateRing.map_smul CoordinateRing.basis_zero equation_iff_nonsingular CoordinateRing.basis addY equation_iff polynomial pointMapOfPushforward IsogenyEndDatum IsogenyEndDatum.pointEnd GenusOnePlaceGate pointEquivPlace placeOfPoint deg_eq_one deg_placeOfPoint pointClass AbelTheorem genusOnePic0Equiv GenusOnePlaceGate.deg_eq_one GenusOnePlaceGate.IsCentred placeOfPoint_some_eq_ofHeightOneSpectrum algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero CoordinateRing.isDedekindDomain CoordinateRing.exists_eq_XYIdeal CoordinateRing.XYIdeal_isMaximal CoordinateRing.XYIdeal_ne_bot hasPrincipalDivisors_functionField natCard_ker_pointMapOfPushforward_eq_finrankAlong polyToFunctionField polyToFunctionField_apply polyToFunctionField_injective polyToFunctionField_C algebraMap_smul_basis algebraMap_polynomial_eq_polyToFunctionField yCoord isIntegral_yCoord exists_genusOnePlaceGate_isCentred_and_abelTheorem GenusOnePlaceGate.ext_of_isCentred isAddCyclic_ker_pointMapOfPushforward_of_baseChange_algHom"
-namespace Point
-p2m_export "WeierstrassCurve.Affine.Point" "add baseChange map_map some map_zero map zero mk"
-end WeierstrassCurve.Affine.Point
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine"
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine"
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine"
 
 universe uK
 
 section
-
-set_option linter.unusedSectionVars false
-
-section
-
-p2m_open "WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.ModularCurve"
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.Polynomial"
-p2m_open_scoped "TensorProduct P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.TensorProduct Polynomial P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.Polynomial"
 
 namespace ModularCurve
 
@@ -764,28 +644,12 @@ def kw_coordinateRingBasis {R : Type*} [CommRing R] (V : Affine R) :
 end Setup
 end ModularCurve
 end
-end
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine"
-
 
 section
 
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.Polynomial IsDedekindDomain P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.IsDedekindDomain"
-
-p2m_open_scoped "Polynomial.Bivariate P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.Polynomial.Bivariate"
-
-namespace AlgebraicCurve
-p2m_export "AlgebraicCurve" "Pic0.pushforwardAlongHom algebraAlong isScalarTower_along FiniteAlong NormFormulaAlong finrankAlong SeparableAlong Place Place.ext HasPrincipalDivisors Pic0 Place.ofHeightOneSpectrum Place.ofHeightOneSpectrum_toValuationSubring Place.toValuationSubring Place.ofHeightOneSpectrum_injective normFormulaAlong"
-end AlgebraicCurve
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine"
-
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine isUnit_Δ a₃ map_map a₁ Affine.map_a₃ map Affine.CoordinateRing mk a₄ a₂ a₆ Affine.map_a₆ IsIntegral toAffine Affine.map_a₂ Affine.Point Affine.map_a₁ Affine.map_a₄ map_Δ map_a₆ map_a₁ map_a₄ Δ Affine.equation_iff Affine.polynomial map_a₂ baseChange j map_a₃ Affine.GenusOnePlaceGate Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred Affine.CoordinateRing.isDedekindDomain Affine.hasPrincipalDivisors_functionField Affine.GenusOnePlaceGate.ext_of_isCentred Affine.isAddCyclic_ker_pointMapOfPushforward_of_baseChange_algHom"
-namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Point.add Equation CoordinateRing.basis_one equation_iff' map_a₃ slope CoordinateRing map baseChange Equation.baseChange Nonsingular map_a₆ FunctionField map_a₂ Point CoordinateRing.mk addX map_a₁ CoordinateRing.map map_a₄ CoordinateRing.basis_apply CoordinateRing.map_mk CoordinateRing.exists_smul_basis_eq CoordinateRing.map_smul CoordinateRing.basis_zero equation_iff_nonsingular CoordinateRing.basis addY equation_iff polynomial pointMapOfPushforward IsogenyEndDatum IsogenyEndDatum.pointEnd GenusOnePlaceGate pointEquivPlace placeOfPoint deg_eq_one deg_placeOfPoint pointClass AbelTheorem genusOnePic0Equiv GenusOnePlaceGate.deg_eq_one GenusOnePlaceGate.IsCentred placeOfPoint_some_eq_ofHeightOneSpectrum algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero CoordinateRing.isDedekindDomain CoordinateRing.exists_eq_XYIdeal CoordinateRing.XYIdeal_isMaximal CoordinateRing.XYIdeal_ne_bot hasPrincipalDivisors_functionField natCard_ker_pointMapOfPushforward_eq_finrankAlong polyToFunctionField polyToFunctionField_apply polyToFunctionField_injective polyToFunctionField_C algebraMap_smul_basis algebraMap_polynomial_eq_polyToFunctionField yCoord isIntegral_yCoord exists_genusOnePlaceGate_isCentred_and_abelTheorem GenusOnePlaceGate.ext_of_isCentred isAddCyclic_ker_pointMapOfPushforward_of_baseChange_algHom"
-p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
-p2m_open "WeierstrassCurve.Affine.CoordinateRing~evalAt P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.AlgebraicCurve"
+namespace Affine
 
 variable {F : Type*} [Field F] {W : Affine F}
 
@@ -793,17 +657,12 @@ theorem algebraMap_polynomial_eq_mk_C (p : F[X]) :
     algebraMap F[X] W.CoordinateRing p = CoordinateRing.mk W (C p) :=
   rfl
 
-end WeierstrassCurve.Affine
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine"
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine"
+end Affine
+end WeierstrassCurve
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine isUnit_Δ a₃ map_map a₁ Affine.map_a₃ map Affine.CoordinateRing mk a₄ a₂ a₆ Affine.map_a₆ IsIntegral toAffine Affine.map_a₂ Affine.Point Affine.map_a₁ Affine.map_a₄ map_Δ map_a₆ map_a₁ map_a₄ Δ Affine.equation_iff Affine.polynomial map_a₂ baseChange j map_a₃ Affine.GenusOnePlaceGate Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred Affine.CoordinateRing.isDedekindDomain Affine.hasPrincipalDivisors_functionField Affine.GenusOnePlaceGate.ext_of_isCentred Affine.isAddCyclic_ker_pointMapOfPushforward_of_baseChange_algHom"
-namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Point.add Equation CoordinateRing.basis_one equation_iff' map_a₃ slope CoordinateRing map baseChange Equation.baseChange Nonsingular map_a₆ FunctionField map_a₂ Point CoordinateRing.mk addX map_a₁ CoordinateRing.map map_a₄ CoordinateRing.basis_apply CoordinateRing.map_mk CoordinateRing.exists_smul_basis_eq CoordinateRing.map_smul CoordinateRing.basis_zero equation_iff_nonsingular CoordinateRing.basis addY equation_iff polynomial pointMapOfPushforward IsogenyEndDatum IsogenyEndDatum.pointEnd GenusOnePlaceGate pointEquivPlace placeOfPoint deg_eq_one deg_placeOfPoint pointClass AbelTheorem genusOnePic0Equiv GenusOnePlaceGate.deg_eq_one GenusOnePlaceGate.IsCentred placeOfPoint_some_eq_ofHeightOneSpectrum algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero CoordinateRing.isDedekindDomain CoordinateRing.exists_eq_XYIdeal CoordinateRing.XYIdeal_isMaximal CoordinateRing.XYIdeal_ne_bot hasPrincipalDivisors_functionField natCard_ker_pointMapOfPushforward_eq_finrankAlong polyToFunctionField polyToFunctionField_apply polyToFunctionField_injective polyToFunctionField_C algebraMap_smul_basis algebraMap_polynomial_eq_polyToFunctionField yCoord isIntegral_yCoord exists_genusOnePlaceGate_isCentred_and_abelTheorem GenusOnePlaceGate.ext_of_isCentred isAddCyclic_ker_pointMapOfPushforward_of_baseChange_algHom"
-p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
-p2m_open "WeierstrassCurve.Affine.CoordinateRing~evalAt P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.AlgebraicCurve"
+namespace Affine
 
 variable {F : Type*} [Field F] (W : Affine F)
 
@@ -812,33 +671,18 @@ variable {W}
 def yGen (W : Affine F) : W.FunctionField :=
   algebraMap W.CoordinateRing W.FunctionField (CoordinateRing.mk W Y)
 
-end WeierstrassCurve.Affine
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine"
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine"
+end Affine
+end WeierstrassCurve
 
-namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine isUnit_Δ a₃ map_map a₁ Affine.map_a₃ map Affine.CoordinateRing mk a₄ a₂ a₆ Affine.map_a₆ IsIntegral toAffine Affine.map_a₂ Affine.Point Affine.map_a₁ Affine.map_a₄ map_Δ map_a₆ map_a₁ map_a₄ Δ Affine.equation_iff Affine.polynomial map_a₂ baseChange j map_a₃ Affine.GenusOnePlaceGate Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred Affine.CoordinateRing.isDedekindDomain Affine.hasPrincipalDivisors_functionField Affine.GenusOnePlaceGate.ext_of_isCentred Affine.isAddCyclic_ker_pointMapOfPushforward_of_baseChange_algHom"
-namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Point.add Equation CoordinateRing.basis_one equation_iff' map_a₃ slope CoordinateRing map baseChange Equation.baseChange Nonsingular map_a₆ FunctionField map_a₂ Point CoordinateRing.mk addX map_a₁ CoordinateRing.map map_a₄ CoordinateRing.basis_apply CoordinateRing.map_mk CoordinateRing.exists_smul_basis_eq CoordinateRing.map_smul CoordinateRing.basis_zero equation_iff_nonsingular CoordinateRing.basis addY equation_iff polynomial pointMapOfPushforward IsogenyEndDatum IsogenyEndDatum.pointEnd GenusOnePlaceGate pointEquivPlace placeOfPoint deg_eq_one deg_placeOfPoint pointClass AbelTheorem genusOnePic0Equiv GenusOnePlaceGate.deg_eq_one GenusOnePlaceGate.IsCentred placeOfPoint_some_eq_ofHeightOneSpectrum algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero CoordinateRing.isDedekindDomain CoordinateRing.exists_eq_XYIdeal CoordinateRing.XYIdeal_isMaximal CoordinateRing.XYIdeal_ne_bot hasPrincipalDivisors_functionField natCard_ker_pointMapOfPushforward_eq_finrankAlong polyToFunctionField polyToFunctionField_apply polyToFunctionField_injective polyToFunctionField_C algebraMap_smul_basis algebraMap_polynomial_eq_polyToFunctionField yCoord isIntegral_yCoord exists_genusOnePlaceGate_isCentred_and_abelTheorem GenusOnePlaceGate.ext_of_isCentred isAddCyclic_ker_pointMapOfPushforward_of_baseChange_algHom"
-end WeierstrassCurve.Affine
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine"
 
 section
-
-set_option linter.unusedSectionVars false
-
-section
-
-p2m_open "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.ModularCurve WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine Polynomial P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.Polynomial AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.AlgebraicCurve"
 
 namespace ModularCurve
 
 universe u
 
 attribute [local instance] Classical.propDecidable
-
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine"
 
 section FGFieldDescentMint
 
@@ -868,24 +712,12 @@ def KwD5BetweenCurvesFGFieldDescent : Prop :=
 end FGFieldDescentMint
 end ModularCurve
 end
-end
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine"
 
 section
-
-set_option linter.unusedSectionVars false
-
-section
-
-p2m_open "WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.ModularCurve AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.AlgebraicCurve"
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.Polynomial"
-p2m_open_scoped "TensorProduct P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.TensorProduct Polynomial.Bivariate P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.Polynomial.Bivariate"
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine isUnit_Δ a₃ map_map a₁ Affine.map_a₃ map Affine.CoordinateRing mk a₄ a₂ a₆ Affine.map_a₆ IsIntegral toAffine Affine.map_a₂ Affine.Point Affine.map_a₁ Affine.map_a₄ map_Δ map_a₆ map_a₁ map_a₄ Δ Affine.equation_iff Affine.polynomial map_a₂ baseChange j map_a₃ Affine.GenusOnePlaceGate Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred Affine.CoordinateRing.isDedekindDomain Affine.hasPrincipalDivisors_functionField Affine.GenusOnePlaceGate.ext_of_isCentred Affine.isAddCyclic_ker_pointMapOfPushforward_of_baseChange_algHom"
+
 namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Point.add Equation CoordinateRing.basis_one equation_iff' map_a₃ slope CoordinateRing map baseChange Equation.baseChange Nonsingular map_a₆ FunctionField map_a₂ Point CoordinateRing.mk addX map_a₁ CoordinateRing.map map_a₄ CoordinateRing.basis_apply CoordinateRing.map_mk CoordinateRing.exists_smul_basis_eq CoordinateRing.map_smul CoordinateRing.basis_zero equation_iff_nonsingular CoordinateRing.basis addY equation_iff polynomial pointMapOfPushforward IsogenyEndDatum IsogenyEndDatum.pointEnd GenusOnePlaceGate pointEquivPlace placeOfPoint deg_eq_one deg_placeOfPoint pointClass AbelTheorem genusOnePic0Equiv GenusOnePlaceGate.deg_eq_one GenusOnePlaceGate.IsCentred placeOfPoint_some_eq_ofHeightOneSpectrum algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero CoordinateRing.isDedekindDomain CoordinateRing.exists_eq_XYIdeal CoordinateRing.XYIdeal_isMaximal CoordinateRing.XYIdeal_ne_bot hasPrincipalDivisors_functionField natCard_ker_pointMapOfPushforward_eq_finrankAlong polyToFunctionField polyToFunctionField_apply polyToFunctionField_injective polyToFunctionField_C algebraMap_smul_basis algebraMap_polynomial_eq_polyToFunctionField yCoord isIntegral_yCoord exists_genusOnePlaceGate_isCentred_and_abelTheorem GenusOnePlaceGate.ext_of_isCentred isAddCyclic_ker_pointMapOfPushforward_of_baseChange_algHom"
-p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
 universe u
 variable {F : Type u} [Field F] {W : Affine F}
@@ -924,9 +756,8 @@ theorem kw_functionField_algHom_ext {L : Type*} [Field L] [Algebra F L]
   obtain ⟨p, q, hq, rfl⟩ := IsFractionRing.div_surjective (A := W.CoordinateRing) a
   simp only [map_div₀, hCR p, hCR q]
 
-end WeierstrassCurve.Affine
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine"
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine"
+end Affine
+end WeierstrassCurve
 
 namespace ModularCurve
 
@@ -944,23 +775,12 @@ attribute [local instance] Algebra.TensorProduct.rightAlgebra
 end Setup
 end ModularCurve
 end
-end
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine"
-
 
 section
 
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.Polynomial IsDedekindDomain P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.IsDedekindDomain"
-
-p2m_open_scoped "Polynomial.Bivariate P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.Polynomial.Bivariate"
-
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine isUnit_Δ a₃ map_map a₁ Affine.map_a₃ map Affine.CoordinateRing mk a₄ a₂ a₆ Affine.map_a₆ IsIntegral toAffine Affine.map_a₂ Affine.Point Affine.map_a₁ Affine.map_a₄ map_Δ map_a₆ map_a₁ map_a₄ Δ Affine.equation_iff Affine.polynomial map_a₂ baseChange j map_a₃ Affine.GenusOnePlaceGate Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred Affine.CoordinateRing.isDedekindDomain Affine.hasPrincipalDivisors_functionField Affine.GenusOnePlaceGate.ext_of_isCentred Affine.isAddCyclic_ker_pointMapOfPushforward_of_baseChange_algHom"
-namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Point.add Equation CoordinateRing.basis_one equation_iff' map_a₃ slope CoordinateRing map baseChange Equation.baseChange Nonsingular map_a₆ FunctionField map_a₂ Point CoordinateRing.mk addX map_a₁ CoordinateRing.map map_a₄ CoordinateRing.basis_apply CoordinateRing.map_mk CoordinateRing.exists_smul_basis_eq CoordinateRing.map_smul CoordinateRing.basis_zero equation_iff_nonsingular CoordinateRing.basis addY equation_iff polynomial pointMapOfPushforward IsogenyEndDatum IsogenyEndDatum.pointEnd GenusOnePlaceGate pointEquivPlace placeOfPoint deg_eq_one deg_placeOfPoint pointClass AbelTheorem genusOnePic0Equiv GenusOnePlaceGate.deg_eq_one GenusOnePlaceGate.IsCentred placeOfPoint_some_eq_ofHeightOneSpectrum algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero CoordinateRing.isDedekindDomain CoordinateRing.exists_eq_XYIdeal CoordinateRing.XYIdeal_isMaximal CoordinateRing.XYIdeal_ne_bot hasPrincipalDivisors_functionField natCard_ker_pointMapOfPushforward_eq_finrankAlong polyToFunctionField polyToFunctionField_apply polyToFunctionField_injective polyToFunctionField_C algebraMap_smul_basis algebraMap_polynomial_eq_polyToFunctionField yCoord isIntegral_yCoord exists_genusOnePlaceGate_isCentred_and_abelTheorem GenusOnePlaceGate.ext_of_isCentred isAddCyclic_ker_pointMapOfPushforward_of_baseChange_algHom"
-p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
-p2m_open "WeierstrassCurve.Affine.CoordinateRing~evalAt P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.AlgebraicCurve"
+namespace Affine
 
 universe u
 
@@ -999,25 +819,19 @@ theorem equation_map_polyToFunctionField_yGen :
   linear_combination h2
 
 end GenericPoint
-end WeierstrassCurve.Affine
+end Affine
+end WeierstrassCurve
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine"
 
 section
 
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.Polynomial WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine WeierstrassCurve.Affine.Point P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.Point"
-
-p2m_open_scoped "WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine Polynomial.Bivariate P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.Polynomial.Bivariate"
+open WeierstrassCurve.Affine.Point
 
 section
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine isUnit_Δ a₃ map_map a₁ Affine.map_a₃ map Affine.CoordinateRing mk a₄ a₂ a₆ Affine.map_a₆ IsIntegral toAffine Affine.map_a₂ Affine.Point Affine.map_a₁ Affine.map_a₄ map_Δ map_a₆ map_a₁ map_a₄ Δ Affine.equation_iff Affine.polynomial map_a₂ baseChange j map_a₃ Affine.GenusOnePlaceGate Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred Affine.CoordinateRing.isDedekindDomain Affine.hasPrincipalDivisors_functionField Affine.GenusOnePlaceGate.ext_of_isCentred Affine.isAddCyclic_ker_pointMapOfPushforward_of_baseChange_algHom"
-namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Point.add Equation CoordinateRing.basis_one equation_iff' map_a₃ slope CoordinateRing map baseChange Equation.baseChange Nonsingular map_a₆ FunctionField map_a₂ Point CoordinateRing.mk addX map_a₁ CoordinateRing.map map_a₄ CoordinateRing.basis_apply CoordinateRing.map_mk CoordinateRing.exists_smul_basis_eq CoordinateRing.map_smul CoordinateRing.basis_zero equation_iff_nonsingular CoordinateRing.basis addY equation_iff polynomial pointMapOfPushforward IsogenyEndDatum IsogenyEndDatum.pointEnd GenusOnePlaceGate pointEquivPlace placeOfPoint deg_eq_one deg_placeOfPoint pointClass AbelTheorem genusOnePic0Equiv GenusOnePlaceGate.deg_eq_one GenusOnePlaceGate.IsCentred placeOfPoint_some_eq_ofHeightOneSpectrum algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero CoordinateRing.isDedekindDomain CoordinateRing.exists_eq_XYIdeal CoordinateRing.XYIdeal_isMaximal CoordinateRing.XYIdeal_ne_bot hasPrincipalDivisors_functionField natCard_ker_pointMapOfPushforward_eq_finrankAlong polyToFunctionField polyToFunctionField_apply polyToFunctionField_injective polyToFunctionField_C algebraMap_smul_basis algebraMap_polynomial_eq_polyToFunctionField yCoord isIntegral_yCoord exists_genusOnePlaceGate_isCentred_and_abelTheorem GenusOnePlaceGate.ext_of_isCentred isAddCyclic_ker_pointMapOfPushforward_of_baseChange_algHom"
-p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
-p2m_open "WeierstrassCurve.Affine.CoordinateRing~evalAt P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.AlgebraicCurve"
+namespace Affine
 
 universe u
 
@@ -1030,7 +844,6 @@ variable (W : Affine F) (a b : F)
 local notation "ι" => algebraMap F W.FunctionField
 
 end TranslationCoords
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine"
 
 section GenericPointGroup
 
@@ -1039,9 +852,6 @@ variable {W : Affine F}
 local notation "ι" => algebraMap F W.FunctionField
 
 end GenericPointGroup
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine"
-
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine"
 
 section AdjoinSurjective
 
@@ -1057,30 +867,18 @@ theorem transcendental_polyToFunctionField_X :
   exact polyToFunctionField_injective (by simpa using hp)
 
 end AdjoinSurjective
-end WeierstrassCurve.Affine
+end Affine
+end WeierstrassCurve
 end
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine"
 
 section
-
-set_option linter.unusedSectionVars false
-
-section
-
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.Polynomial WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine"
-
-p2m_open_scoped "Polynomial.Bivariate P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.Polynomial.Bivariate"
 
 universe u
 
 namespace WeierstrassCurve
-p2m_export "WeierstrassCurve" "Affine isUnit_Δ a₃ map_map a₁ Affine.map_a₃ map Affine.CoordinateRing mk a₄ a₂ a₆ Affine.map_a₆ IsIntegral toAffine Affine.map_a₂ Affine.Point Affine.map_a₁ Affine.map_a₄ map_Δ map_a₆ map_a₁ map_a₄ Δ Affine.equation_iff Affine.polynomial map_a₂ baseChange j map_a₃ Affine.GenusOnePlaceGate Affine.AbelTheorem Affine.GenusOnePlaceGate.IsCentred Affine.CoordinateRing.isDedekindDomain Affine.hasPrincipalDivisors_functionField Affine.GenusOnePlaceGate.ext_of_isCentred Affine.isAddCyclic_ker_pointMapOfPushforward_of_baseChange_algHom"
-namespace Affine
-p2m_export "WeierstrassCurve.Affine" "Point.add Equation CoordinateRing.basis_one equation_iff' map_a₃ slope CoordinateRing map baseChange Equation.baseChange Nonsingular map_a₆ FunctionField map_a₂ Point CoordinateRing.mk addX map_a₁ CoordinateRing.map map_a₄ CoordinateRing.basis_apply CoordinateRing.map_mk CoordinateRing.exists_smul_basis_eq CoordinateRing.map_smul CoordinateRing.basis_zero equation_iff_nonsingular CoordinateRing.basis addY equation_iff polynomial pointMapOfPushforward IsogenyEndDatum IsogenyEndDatum.pointEnd GenusOnePlaceGate pointEquivPlace placeOfPoint deg_eq_one deg_placeOfPoint pointClass AbelTheorem genusOnePic0Equiv GenusOnePlaceGate.deg_eq_one GenusOnePlaceGate.IsCentred placeOfPoint_some_eq_ofHeightOneSpectrum algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero CoordinateRing.isDedekindDomain CoordinateRing.exists_eq_XYIdeal CoordinateRing.XYIdeal_isMaximal CoordinateRing.XYIdeal_ne_bot hasPrincipalDivisors_functionField natCard_ker_pointMapOfPushforward_eq_finrankAlong polyToFunctionField polyToFunctionField_apply polyToFunctionField_injective polyToFunctionField_C algebraMap_smul_basis algebraMap_polynomial_eq_polyToFunctionField yCoord isIntegral_yCoord exists_genusOnePlaceGate_isCentred_and_abelTheorem GenusOnePlaceGate.ext_of_isCentred isAddCyclic_ker_pointMapOfPushforward_of_baseChange_algHom"
-p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
-p2m_open "WeierstrassCurve.Affine.CoordinateRing~evalAt P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing"
+namespace Affine
 
 variable {F : Type u} [Field F]
 
@@ -1168,21 +966,11 @@ theorem pointPullbackHomTo_yGen {xP yP : L}
   exact eval₂_X _ _
 
 end PointPullbackTo
-end WeierstrassCurve.Affine
+end Affine
+end WeierstrassCurve
 end
-end
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine"
 
 section
-
-set_option linter.unusedSectionVars false
-set_option linter.unusedSimpArgs false
-
-section
-
-p2m_open "WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.ModularCurve AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.AlgebraicCurve"
-p2m_open "Polynomial P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.Polynomial"
-p2m_open_scoped "TensorProduct P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.TensorProduct Polynomial.Bivariate P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.Polynomial.Bivariate Polynomial P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.Polynomial Polynomial.Bivariate.Polynomial"
 
 namespace ModularCurve
 
@@ -1385,7 +1173,6 @@ def kw_functionFieldTensorFracEquivGeneralNoAC :
 
 end FracHom
 end SetupBCG
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine"
 
 section SetupBCGD
 
@@ -1486,19 +1273,10 @@ end FFDomain
 end SetupBCGD
 end ModularCurve
 end
-end
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.ModularCurve"
-
-section
-
-set_option linter.unusedSectionVars false
-set_option linter.unusedSimpArgs false
 
 section
 
 namespace ModularCurve
-
-p2m_open "WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine IntermediateField P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.IntermediateField AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.AlgebraicCurve Polynomial P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.Polynomial"
 
 section Carriers
 
@@ -1624,7 +1402,6 @@ theorem kw_iA_ffDescend_exists (x : (E).toAffine.FunctionField)
   exact (IsLocalization.sec_spec (nonZeroDivisors (E).toAffine.CoordinateRing) x).symm
 
 end Carriers
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.ModularCurve"
 
 section Assembly
 
@@ -1649,19 +1426,10 @@ def kw_iA_CoeffsHyp (D : IsogenyEndDatum (E).toAffine) : Prop :=
 end Assembly
 end ModularCurve
 end
-end
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.ModularCurve"
-
-section
-
-set_option linter.unusedSectionVars false
-set_option linter.unusedSimpArgs false
 
 section
 
 namespace ModularCurve
-
-p2m_open "WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine IntermediateField P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.IntermediateField AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.AlgebraicCurve Polynomial P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.Polynomial"
 
 section CoeffSet
 
@@ -1702,7 +1470,6 @@ theorem kw_iCa_crRepr_coeff_mem (E : WeierstrassCurve K)
   · exact Or.inr (by simpa using Polynomial.notMem_support_iff.mp hj)
 
 end CoeffSet
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.ModularCurve"
 
 section Canonical
 
@@ -1728,19 +1495,10 @@ theorem kw_iCa_crCoeffsIn_of_ffCoeffSet_subset (E' : WeierstrassCurve K)
 end Canonical
 end ModularCurve
 end
-end
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.ModularCurve"
-
-section
-
-set_option linter.unusedSectionVars false
-set_option linter.unusedSimpArgs false
 
 section
 
 namespace ModularCurve
-
-p2m_open "WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine IntermediateField P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.IntermediateField AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.AlgebraicCurve Polynomial P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.Polynomial"
 
 section Exchange
 
@@ -1843,20 +1601,10 @@ theorem kw_iPFA_finiteDimensional_adjoin_transcendental {g : W.FunctionField}
 end Exchange
 end ModularCurve
 end
-end
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.ModularCurve"
-
-section
-
-set_option linter.unusedSectionVars false
-set_option linter.unusedSimpArgs false
 
 section
 
 namespace ModularCurve
-
-p2m_open "WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine IntermediateField P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.IntermediateField AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.AlgebraicCurve Polynomial P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.Polynomial"
-p2m_open_scoped "TensorProduct P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.TensorProduct"
 
 attribute [local instance] Algebra.TensorProduct.rightAlgebra
 
@@ -1884,18 +1632,10 @@ theorem kw_iPFE_functionField_ringHom_ext {F : Type*} [Field F] {W : Affine F}
 end FinrankEq
 end ModularCurve
 end
-end
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.ModularCurve"
-
-section
-
-set_option linter.unusedSectionVars false
 
 section
 
 namespace ModularCurve
-
-p2m_open "WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine IntermediateField P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.IntermediateField AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.AlgebraicCurve Polynomial P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.Polynomial"
 
 section Phi
 
@@ -1946,16 +1686,10 @@ theorem kw_iotaDescentPhi_yGen :
 end Phi
 end ModularCurve
 end
-end
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.ModularCurve"
 
 section
 
-set_option linter.unusedSectionVars false
-
-section
-
-p2m_open "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.ModularCurve WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine Polynomial P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.Polynomial AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.AlgebraicCurve IntermediateField P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.IntermediateField Cardinal P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.Cardinal"
+open Cardinal
 
 namespace ModularCurve
 
@@ -1976,7 +1710,6 @@ theorem kw_fdn2_qephod_hend2fgd1_countable_of_fg {K : Type uK} [Field K] [Algebr
   exact Cardinal.mk_le_aleph0_iff.mp (Cardinal.lift_le_aleph0.mp h2)
 
 end CountableBridge
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.ModularCurve"
 
 section SubfieldDescentMint
 
@@ -1997,7 +1730,6 @@ def KwD5BetweenCurvesSubfieldDescent : Prop :=
           = kw_iotaDescentPhi E E₀ hE₀map (ι' x)
 
 end SubfieldDescentMint
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.ModularCurve"
 
 section KerDescendMint
 
@@ -2031,7 +1763,6 @@ def KwD5BetweenCurvesKerDescendAlgClosed : Prop :=
         (pointMapOfPushforward ι₀ hι₀ hfin₀ (normFormulaAlong_of_elliptic ι₀ hfin₀))) = N
 
 end KerDescendMint
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.ModularCurve"
 
 section Reduce
 
@@ -2054,18 +1785,8 @@ theorem kw_fdn2_qephod_hend2fgd1_bcFGDescent_of_two
 end Reduce
 end ModularCurve
 end
-end
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.ModularCurve"
 
 section
-
-set_option linter.unusedSectionVars false
-set_option linter.unusedSimpArgs false
-
-section
-
-p2m_open "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.ModularCurve WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine Polynomial P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.Polynomial AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.AlgebraicCurve"
-p2m_open_scoped "TensorProduct P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.TensorProduct Polynomial P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.Polynomial Polynomial.Bivariate P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.Polynomial.Bivariate"
 
 namespace ModularCurve
 
@@ -2404,7 +2125,6 @@ theorem kw_surgehgf4_hfgkd_bcIota₁NoAC_compat (a : (E₀'⁄F).toAffine.Functi
     hκE (ι' a)]
 
 end BCNoACEngine
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.ModularCurve"
 
 section KerTransportMint
 
@@ -2444,7 +2164,6 @@ def KwD5BetweenCurvesChiCompChiEqPhi : Prop :=
     = kw_iotaDescentPhi (W.map (algebraMap (↥K₀) K)) W rfl a
 
 end KerTransportMint
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.ModularCurve"
 
 section Reduce
 
@@ -2542,7 +2261,6 @@ theorem kw_surgehgf4_hfgkd_hKD_of_kerTransport
   exact ⟨hE₀AC, hE₀'AC, ι₀, hι₀, hfin₀, hKT_inst.1, hKT_inst.2⟩
 
 end Reduce
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.ModularCurve"
 
 section UpdatedWires
 
@@ -2557,19 +2275,10 @@ theorem kw_surgehgf4_hfgkd_bcFGDescent_of_three
 end UpdatedWires
 end ModularCurve
 end
-end
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.ModularCurve"
-
-section
-
-set_option linter.unusedSectionVars false
-set_option linter.unusedSimpArgs false
 
 section
 
 namespace ModularCurve
-
-p2m_open "WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine IntermediateField P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.IntermediateField AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.AlgebraicCurve Polynomial P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.Polynomial"
 
 section BCCanonical
 
@@ -2658,7 +2367,6 @@ scoped instance kw_surgehgf4_hSD_E₀'_isElliptic :
   rw [h0, _root_.map_zero] at this; exact E'.isUnit_Δ.ne_zero this.symm
 
 end BCCanonical
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.ModularCurve"
 
 section BCPinned
 
@@ -2833,7 +2541,6 @@ def KwD5BCSubfieldDescentPinnedFinrankEq : Prop :=
   finrankAlong K₀ (kw_surgehgf4_hSD_ι' E₀ E₀' ι hcoeffs) = finrankAlong K ι
 
 end BCPinned
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.ModularCurve"
 
 section RouteCBridge
 
@@ -2902,7 +2609,6 @@ theorem kw_surgehgf4_hSD_coeffsHyp_cast
   · exact (kw_iCa_crCoeffsIn_of_ffCoeffSet_subset _ _ hY i j).2
 
 end RouteCBridge
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.ModularCurve"
 
 section Wire
 
@@ -2933,7 +2639,6 @@ def KwD5BCSubfieldDescentCanonicalFinrankEq : Prop :=
       (kw_surgehgf4_hSD_E₀' E E' ι) (kw_surgehgf4_hSD_ιCast E E' ι) hcoeffs
 
 end Wire
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.ModularCurve"
 
 theorem kw_surgehgf4_hSD_of_canonicalFinrankEq
     (hFrEq : ∀ (K : Type uK) [Field K] [DecidableEq K] [IsAlgClosed K] [CharZero K]
@@ -2953,15 +2658,8 @@ theorem kw_surgehgf4_hSD_of_canonicalFinrankEq
 
 end ModularCurve
 end
-end
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.ModularCurve"
 
 section
-
-
-section
-
-p2m_open "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.ModularCurve WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine Polynomial P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.Polynomial AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.AlgebraicCurve"
 
 namespace ModularCurve
 
@@ -3004,18 +2702,8 @@ theorem kw_surgehgf4_hfgkd_chiCompChiEqPhi_proved :
 
 end ModularCurve
 end
-end
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.ModularCurve"
 
 section
-
-set_option linter.unusedSectionVars false
-set_option linter.unusedSimpArgs false
-
-section
-
-p2m_open "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.ModularCurve WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.AlgebraicCurve Polynomial P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.Polynomial"
-p2m_open_scoped "TensorProduct P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.TensorProduct"
 
 namespace ModularCurve
 
@@ -3072,7 +2760,6 @@ theorem kw_surgehgf4_cfe_chi_eq_phi_apply (a : E₀.toAffine.FunctionField) :
   exact DFunLike.congr_fun (kw_surgehgf4_cfe_fχ_eq_phi E₀) a
 
 end Bridge
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.ModularCurve"
 
 section BCPinnedDischarge
 
@@ -3123,7 +2810,6 @@ theorem kw_surgehgf4_cfe_pinnedFinrankEq :
   exact hD2.symm
 
 end BCPinnedDischarge
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.ModularCurve"
 
 section Canonical
 
@@ -3137,7 +2823,6 @@ theorem kw_surgehgf4_cfe_canonicalFinrankEq :
     (kw_surgehgf4_hSD_E₀' E E' ι) (kw_surgehgf4_hSD_ιCast E E' ι) hcoeffs
 
 end Canonical
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.ModularCurve"
 
 section Wires
 
@@ -3155,9 +2840,8 @@ theorem kw_surgehgf4_cfe_bcFGDescent_of_two
 
 end Wires
 end ModularCurve
+
 end
-end
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.ModularCurve"
 
 namespace ModularCurve
 
@@ -3177,9 +2861,8 @@ theorem s13_stub_ktd : KwD5BetweenCurvesKerTransportAlongEmbed.{uK} := by
 theorem s13_bcFGDescent : KwD5BetweenCurvesFGFieldDescent.{uK} :=
   kw_surgehgf4_cfe_bcFGDescent_of_two s13_stub_ktd kw_surgehgf4_hfgkd_chiCompChiEqPhi_proved
 end ModularCurve
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine.IsFinitePlace P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.ModularCurve"
 
-p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg" in open _root_.WeierstrassCurve _root_.P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve _root_.WeierstrassCurve.Affine _root_.P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.WeierstrassCurve.Affine _root_.P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.AlgebraicCurve in
+open _root_.WeierstrassCurve _root_.WeierstrassCurve.Affine in
 theorem solution
     {K : Type uK} [Field K] [DecidableEq K] [IsAlgClosed K] [CharZero K]
     (E E' : WeierstrassCurve.Affine K) [E.IsElliptic] [E'.IsElliptic]
@@ -3230,14 +2913,10 @@ theorem solution
   exact ⟨hcyc₀, hcard₀⟩
 
 end
-end S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward
-end P2MW
-export P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward (solution)
 
 end privateSection
 
 public section publicSection
-
 
 open WeierstrassCurve WeierstrassCurve.Affine AlgebraicCurve
 
@@ -3269,6 +2948,7 @@ theorem WeierstrassCurve.Affine.exists_intermediateField_countable_map_eq_of_isA
         [AbelTheorem (E₀'.baseChange (AlgebraicClosure K₀)).toAffine]
         (hN₀ : NormFormulaAlong (AlgebraicClosure K₀) ι₀ hfin₀),
         IsAddCyclic (pointMapOfPushforward ι₀ hι₀ hfin₀ hN₀).ker ∧
-          Nat.card (pointMapOfPushforward ι₀ hι₀ hfin₀ hN₀).ker = N := _root_.P2MW.S_WeierstrassCurve_Affine_exists_intermediateField_countable_map_eq_of_isAddCyclic_ker_pointMapOfPushforward.solution E E' ι hι hfin hN N hcyc hcard
+          Nat.card (pointMapOfPushforward ι₀ hι₀ hfin₀ hN₀).ker = N :=
+      solution E E' ι hι hfin hN N hcyc hcard
 
 end publicSection

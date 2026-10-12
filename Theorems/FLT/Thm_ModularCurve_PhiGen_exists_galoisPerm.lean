@@ -345,7 +345,6 @@ end Descent
 end PhiGen
 end ModularCurve
 end
-p2m_reactivate "P2MW.S_ModularCurve_PhiGen_exists_galoisPerm.ModularCurve.PhiGen P2MW.S_ModularCurve_PhiGen_exists_galoisPerm.ModularCurve"
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_PhiGen_exists_galoisPerm.ModularCurve _root_.ModularCurve.PhiGen _root_.P2MW.S_ModularCurve_PhiGen_exists_galoisPerm.ModularCurve.PhiGen in
 

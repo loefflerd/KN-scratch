@@ -271,7 +271,6 @@ theorem coeff_pos_oddEisensteinSum {n : ℕ} (hn : 0 < n) :
 
 end WeightOneEisensteinSum
 end ModularCurve
-p2m_reactivate "P2MW.S_ModularCurve_nonempty_integralWeightOneForm.ModularCurve.WeightOneEisensteinSum P2MW.S_ModularCurve_nonempty_integralWeightOneForm.ModularCurve"
 
 namespace ModularForm
 p2m_export "ModularForm" "mk IsGLPos.coe_smul coe_smul qExpansionAddHom ext coe_zero exists_weightOne_eisenstein_qCoeff_eq_of_isPrimitive_of_odd"
@@ -347,7 +346,6 @@ theorem exists_isIntegralQExp_thetaLikeSeries (L : ℕ) [NeZero L] (hL : 2 < L)
     ring
 
 end WeightOneEisensteinSum
-p2m_reactivate "P2MW.S_ModularCurve_nonempty_integralWeightOneForm.ModularCurve.WeightOneEisensteinSum P2MW.S_ModularCurve_nonempty_integralWeightOneForm.ModularCurve"
 
 open WeightOneEisensteinSum
 
@@ -406,7 +404,6 @@ theorem nonempty_integralWeightOneForm_of_dvd (κ : Type) [Field κ] {L M : ℕ}
   rwa [PowerSeries.coeff_map, map_zero, eq_intCast] at this
 
 end ModularCurve
-p2m_reactivate "P2MW.S_ModularCurve_nonempty_integralWeightOneForm.ModularCurve.WeightOneEisensteinSum P2MW.S_ModularCurve_nonempty_integralWeightOneForm.ModularCurve"
 
 theorem solution
     (κ : Type) [Field κ] (M : ℕ) (hM : 3 ≤ M) :

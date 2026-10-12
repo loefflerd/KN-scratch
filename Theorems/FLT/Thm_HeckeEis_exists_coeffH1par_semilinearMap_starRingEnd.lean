@@ -282,7 +282,6 @@ end Cocycles
 
 end HeckeEis.ConjAux
 end
-p2m_reactivate "P2MW.S_HeckeEis_exists_coeffH1par_semilinearMap_starRingEnd.HeckeEis P2MW.S_HeckeEis_exists_coeffH1par_semilinearMap_starRingEnd.HeckeEis.ConjAux"
 
 namespace HeckeEis
 p2m_export "HeckeEis" "BinaryForm binarySubst binarySubst_X binarySubst_C binaryFormRepSL coeffCocycles coeffCoboundaries mem_coeffCoboundaries_iff IsParabolicCocycle coeffParabolicCocycles coeffH1par coeffH1parMk coeffH1parMk_surjective coeffH1parMk_eq_zero_iff"
@@ -299,8 +298,6 @@ theorem pushCoeff_ringHom_eq_map {R R' : Type*} [CommRing R] [CommRing R'] (φ :
   rfl
 
 end HeckeEis.ConjAux
-p2m_reactivate "P2MW.S_HeckeEis_exists_coeffH1par_semilinearMap_starRingEnd.HeckeEis P2MW.S_HeckeEis_exists_coeffH1par_semilinearMap_starRingEnd.HeckeEis.ConjAux"
-p2m_reactivate "P2MW.S_HeckeEis_exists_coeffH1par_semilinearMap_starRingEnd.HeckeEis P2MW.S_HeckeEis_exists_coeffH1par_semilinearMap_starRingEnd.HeckeEis.ConjAux"
 
 noncomputable section
 
@@ -371,7 +368,6 @@ theorem pushCoeff_cj_eq_map (P : MvPolynomial (Fin 2) ℂ) : pushCoeff cj P = Mv
 
 end HeckeEis.ConjAux
 end
-p2m_reactivate "P2MW.S_HeckeEis_exists_coeffH1par_semilinearMap_starRingEnd.HeckeEis P2MW.S_HeckeEis_exists_coeffH1par_semilinearMap_starRingEnd.HeckeEis.ConjAux"
 
 open scoped MatrixGroups in
 theorem solution (n : ℕ) (Γ : Subgroup SL(2, ℤ)) :

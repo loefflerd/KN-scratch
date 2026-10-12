@@ -763,7 +763,6 @@ end Galois
 
 end ModularCurve.LevelN.Wall
 end
-p2m_reactivate "P2MW.S_ModularCurve_LevelN_exists_place_ord_jGen_eq_three_two_and_stabilizer_subset_zpowers.ModularCurve P2MW.S_ModularCurve_LevelN_exists_place_ord_jGen_eq_three_two_and_stabilizer_subset_zpowers.ModularCurve.LevelN P2MW.S_ModularCurve_LevelN_exists_place_ord_jGen_eq_three_two_and_stabilizer_subset_zpowers.ModularCurve.LevelN.Wall"
 
 theorem solution
     (M : ℕ) [NeZero M] (hM : 2 ≤ M)

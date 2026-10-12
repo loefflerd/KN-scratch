@@ -1690,7 +1690,6 @@ scoped instance instSumRamificationInertia_port {K F F' : Type*} [Field K] [Fiel
     [HasPrincipalDivisors K F'] : SumRamificationInertia K F F' :=
   ⟨fun v => Place.sum_ramificationIndex_mul_inertiaDeg v⟩
 end AlgebraicCurve
-p2m_reactivate "P2MW.S_AlgebraicCurve_RationalFunctionField_stichtenothGenusExists_of_ratFunc_tower.AlgebraicCurve"
 
 noncomputable section
 
@@ -1802,7 +1801,6 @@ private theorem _root_.AlgebraicCurve.TranscendenceTower.exists_forall_mem_lSpac
 
 p2m_export "AlgebraicCurve.TranscendenceTower" "exists_forall_mem_lSpace_nsmul_poleDivisor"
 end TranscendenceTower
-p2m_reactivate "P2MW.S_AlgebraicCurve_RationalFunctionField_stichtenothGenusExists_of_ratFunc_tower.AlgebraicCurve"
 
 variable [FiniteDimensional E F] [Algebra.IsSeparable E F]
 
@@ -1926,7 +1924,6 @@ theorem gate_stichtenothGenus_le_of_transcendenceTower [IsCurveOver K F]
 
 end AlgebraicCurve
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_RationalFunctionField_stichtenothGenusExists_of_ratFunc_tower.AlgebraicCurve"
 
 noncomputable section
 
@@ -1970,7 +1967,6 @@ theorem ord_nonneg_of_isIntegral_of_algebraMap_mem {A : Type*} [CommRing A] [Alg
   AlgebraicCurve.Place.ord_nonneg_of_mem w (w.mem_of_isIntegral_of_algebraMap_mem hA hf)
 
 end Place
-p2m_reactivate "P2MW.S_AlgebraicCurve_RationalFunctionField_stichtenothGenusExists_of_ratFunc_tower.AlgebraicCurve"
 
 section Bridge
 
@@ -2020,7 +2016,6 @@ private theorem _root_.AlgebraicCurve.TranscendenceTower.ord_nonneg_of_isIntegra
 end TranscendenceTower
 p2m_export "AlgebraicCurve" "TranscendenceTower.ord_nonneg_of_isIntegral_of_regularOutside"
 end Bridge
-p2m_reactivate "P2MW.S_AlgebraicCurve_RationalFunctionField_stichtenothGenusExists_of_ratFunc_tower.AlgebraicCurve"
 
 section Headline
 
@@ -2129,7 +2124,6 @@ theorem stichtenothGenusExists_of_adjoin_x_isFractionRing [IsCurveOver K F]
     (hasRegularFractionSubring_of_adjoin_x_isFractionRing T hfrac)
 
 end Headline
-p2m_reactivate "P2MW.S_AlgebraicCurve_RationalFunctionField_stichtenothGenusExists_of_ratFunc_tower.AlgebraicCurve"
 
 section Gates
 
@@ -2175,7 +2169,6 @@ theorem gate_adjoin_x_not_regular_at_v (T : TranscendenceTower K E F) :
 end Gates
 end AlgebraicCurve
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_RationalFunctionField_stichtenothGenusExists_of_ratFunc_tower.AlgebraicCurve"
 
 noncomputable section
 
@@ -2219,7 +2212,6 @@ theorem transcendental_of_linearIndependent_pow {x : A}
   · exact p.coeff_eq_zero_of_natDegree_lt (Nat.lt_of_succ_le hj)
 
 end Transcendental
-p2m_reactivate "P2MW.S_AlgebraicCurve_RationalFunctionField_stichtenothGenusExists_of_ratFunc_tower.AlgebraicCurve"
 
 namespace RationalFunctionField
 p2m_export "AlgebraicCurve.RationalFunctionField" "algebraMap_mem_ofHeightOneSpectrum placeInfty ord_placeInfty deg_placeInfty eq_ofHeightOneSpectrum_or_eq_placeInfty"
@@ -2326,7 +2318,6 @@ theorem indexOfSpecialtyFinite_of_ratFunc_tower :
 end RationalFunctionField
 end AlgebraicCurve
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_RationalFunctionField_stichtenothGenusExists_of_ratFunc_tower.AlgebraicCurve P2MW.S_AlgebraicCurve_RationalFunctionField_stichtenothGenusExists_of_ratFunc_tower.AlgebraicCurve.RationalFunctionField"
 
 noncomputable section
 
@@ -2361,7 +2352,6 @@ theorem nonempty_place_of_ratFunc_tower : Nonempty (Place K F) :=
   (exists_restrict_eq K F (placeInfty K)).nonempty
 
 end LyingOver
-p2m_reactivate "P2MW.S_AlgebraicCurve_RationalFunctionField_stichtenothGenusExists_of_ratFunc_tower.AlgebraicCurve P2MW.S_AlgebraicCurve_RationalFunctionField_stichtenothGenusExists_of_ratFunc_tower.AlgebraicCurve.RationalFunctionField"
 
 omit [DecidableEq (RatFunc K)] [Algebra (RatFunc K) F] [IsScalarTower K (RatFunc K) F] in
 
@@ -2391,7 +2381,6 @@ theorem riemannGenusBounded (hC : ConstantsAreBase K F) : RiemannGenusBounded K 
 end RationalFunctionField
 end AlgebraicCurve
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_RationalFunctionField_stichtenothGenusExists_of_ratFunc_tower.AlgebraicCurve P2MW.S_AlgebraicCurve_RationalFunctionField_stichtenothGenusExists_of_ratFunc_tower.AlgebraicCurve.RationalFunctionField"
 
 p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg" in open _root_.P2MW.S_AlgebraicCurve_RationalFunctionField_stichtenothGenusExists_of_ratFunc_tower.AlgebraicCurve Polynomial in
 theorem solution (K : Type*) [Field K] [DecidableEq (RatFunc K)] (F : Type*) [Field F] [Algebra K F] [Algebra (RatFunc K) F] [IsScalarTower K (RatFunc K) F] [FiniteDimensional (RatFunc K) F] [Algebra.IsSeparable (RatFunc K) F] [IsCurveOver K F] [Nonempty (Place K F)] [FiniteDimensional K (LSpace (0 : Divisor K F))] :

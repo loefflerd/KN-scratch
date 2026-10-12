@@ -119,7 +119,6 @@ theorem kaehlerRankOne_of_transcendental {x : F} (htr : Transcendental K x)
 
 end S12Kaehler
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_kaehlerRankOne_of_transcendental.S12Kaehler"
 
 theorem solution
     {K F : Type*} [Field K] [Field F] [Algebra K F]

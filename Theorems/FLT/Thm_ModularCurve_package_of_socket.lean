@@ -248,8 +248,6 @@ theorem units_pow_eq_one_of_isPrimitiveRoot {N : ℕ} {ζ : Kˣ} (hζ : IsPrimit
   Units.ext (by rw [Units.val_pow_eq_pow_val, hζ.pow_eq_one, Units.val_one])
 
 end ModularCurve.W1
-p2m_reactivate "P2MW.S_ModularCurve_package_of_socket.ModularCurve P2MW.S_ModularCurve_package_of_socket.ModularCurve.W1"
-p2m_reactivate "P2MW.S_ModularCurve_package_of_socket.ModularCurve"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_injective qExpand_one_apply qExpand_qExpand dedekindPsi dedekindPsi_one ModularPolynomialData coeffMap coeffMap_coeff qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand EvalSymm jqModC jqNModC jqNModC_one map_jqModC modularFunctionFieldC jqModC_mem jqNModC_mem coeffMap_qExpand coeff_jqModC_neg_one order_jqModC PhiGen.splits_prime_at_slot_of_isPrimitiveRoot exists_phiIrreducible_evalSymm dedekindPsi_prime_pow dedekindPsi_mul_of_coprime relfinrank_fullC_mul_prime_pow jqNModC_prime_not_mem_fullC jqNModC_mem_modularFunctionFieldC_mul_prime"
@@ -314,8 +312,6 @@ theorem phiAtSeed_TS_eval_symm {K : Type*} [Field K] (A : ℕ) [NeZero A] (n : �
   rwa [qExpand_jqNModC, qExpand_jqNModC] at h
 
 end ModularCurve.W1
-p2m_reactivate "P2MW.S_ModularCurve_package_of_socket.ModularCurve P2MW.S_ModularCurve_package_of_socket.ModularCurve.W1"
-p2m_reactivate "P2MW.S_ModularCurve_package_of_socket.ModularCurve P2MW.S_ModularCurve_package_of_socket.ModularCurve.W1"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_injective qExpand_one_apply qExpand_qExpand dedekindPsi dedekindPsi_one ModularPolynomialData coeffMap coeffMap_coeff qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand EvalSymm jqModC jqNModC jqNModC_one map_jqModC modularFunctionFieldC jqModC_mem jqNModC_mem coeffMap_qExpand coeff_jqModC_neg_one order_jqModC PhiGen.splits_prime_at_slot_of_isPrimitiveRoot exists_phiIrreducible_evalSymm dedekindPsi_prime_pow dedekindPsi_mul_of_coprime relfinrank_fullC_mul_prime_pow jqNModC_prime_not_mem_fullC jqNModC_mem_modularFunctionFieldC_mul_prime"
@@ -404,8 +400,6 @@ theorem roots_phiAtSeed_TS (p : ℕ) [hp : Fact (Nat.Prime p)] (ζ : Kˣ) (hζ :
   roots_prime_at_slot p ζ hζ data e u
 
 end ModularCurve.W1
-p2m_reactivate "P2MW.S_ModularCurve_package_of_socket.ModularCurve P2MW.S_ModularCurve_package_of_socket.ModularCurve.W1"
-p2m_reactivate "P2MW.S_ModularCurve_package_of_socket.ModularCurve P2MW.S_ModularCurve_package_of_socket.ModularCurve.W1"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_injective qExpand_one_apply qExpand_qExpand dedekindPsi dedekindPsi_one ModularPolynomialData coeffMap coeffMap_coeff qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand EvalSymm jqModC jqNModC jqNModC_one map_jqModC modularFunctionFieldC jqModC_mem jqNModC_mem coeffMap_qExpand coeff_jqModC_neg_one order_jqModC PhiGen.splits_prime_at_slot_of_isPrimitiveRoot exists_phiIrreducible_evalSymm dedekindPsi_prime_pow dedekindPsi_mul_of_coprime relfinrank_fullC_mul_prime_pow jqNModC_prime_not_mem_fullC jqNModC_mem_modularFunctionFieldC_mul_prime"
@@ -596,7 +590,6 @@ theorem natDegree_minpoly_le_of_phiAtSeed_root_of_root_mem (data : ModularPolyno
   rwa [hQdeg] at h
 
 end packetBounds
-p2m_reactivate "P2MW.S_ModularCurve_package_of_socket.ModularCurve P2MW.S_ModularCurve_package_of_socket.ModularCurve.W1"
 
 theorem jqNModC_mem_of_div_primes {N : ℕ} [NeZero N] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) N)
     {F : IntermediateField K (LaurentSeries K)} {d : ℕ} [NeZero d] (hdN : d ∣ N)
@@ -820,8 +813,6 @@ theorem jqNModC_mem_of_div_prime_of_mul_prime {N : ℕ} [NeZero N] (ζ : Kˣ) (h
   exact f.2
 
 end ModularCurve.W1
-p2m_reactivate "P2MW.S_ModularCurve_package_of_socket.ModularCurve P2MW.S_ModularCurve_package_of_socket.ModularCurve.W1"
-p2m_reactivate "P2MW.S_ModularCurve_package_of_socket.ModularCurve P2MW.S_ModularCurve_package_of_socket.ModularCurve.W1"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_injective qExpand_one_apply qExpand_qExpand dedekindPsi dedekindPsi_one ModularPolynomialData coeffMap coeffMap_coeff qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand EvalSymm jqModC jqNModC jqNModC_one map_jqModC modularFunctionFieldC jqModC_mem jqNModC_mem coeffMap_qExpand coeff_jqModC_neg_one order_jqModC PhiGen.splits_prime_at_slot_of_isPrimitiveRoot exists_phiIrreducible_evalSymm dedekindPsi_prime_pow dedekindPsi_mul_of_coprime relfinrank_fullC_mul_prime_pow jqNModC_prime_not_mem_fullC jqNModC_mem_modularFunctionFieldC_mul_prime"
@@ -1015,8 +1006,6 @@ theorem pkg_of_socket (L : ℕ) [NeZero L] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ
       ring
 
 end ModularCurve.W1
-p2m_reactivate "P2MW.S_ModularCurve_package_of_socket.ModularCurve P2MW.S_ModularCurve_package_of_socket.ModularCurve.W1"
-p2m_reactivate "P2MW.S_ModularCurve_package_of_socket.ModularCurve P2MW.S_ModularCurve_package_of_socket.ModularCurve.W1"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_injective qExpand_one_apply qExpand_qExpand dedekindPsi dedekindPsi_one ModularPolynomialData coeffMap coeffMap_coeff qTwist qTwist_coeff qTwist_one_apply qTwist_qTwist qTwist_qExpand EvalSymm jqModC jqNModC jqNModC_one map_jqModC modularFunctionFieldC jqModC_mem jqNModC_mem coeffMap_qExpand coeff_jqModC_neg_one order_jqModC PhiGen.splits_prime_at_slot_of_isPrimitiveRoot exists_phiIrreducible_evalSymm dedekindPsi_prime_pow dedekindPsi_mul_of_coprime relfinrank_fullC_mul_prime_pow jqNModC_prime_not_mem_fullC jqNModC_mem_modularFunctionFieldC_mul_prime"
@@ -1036,7 +1025,6 @@ private theorem ModularCurve.package_of_socket {K : Type*} [Field K] (M : ℕ) [
     ModularCurve.jqNModC_mem_modularFunctionFieldC_mul_prime M' q ξ hξ hall
 
 end
-p2m_reactivate "P2MW.S_ModularCurve_package_of_socket.ModularCurve P2MW.S_ModularCurve_package_of_socket.ModularCurve.W1"
 
 open _root_.ModularCurve _root_.P2MW.S_ModularCurve_package_of_socket.ModularCurve ModularCurve.PhiGen in
 

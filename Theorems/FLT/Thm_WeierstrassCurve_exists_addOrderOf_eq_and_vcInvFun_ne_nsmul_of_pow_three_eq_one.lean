@@ -214,8 +214,6 @@ theorem Phi_sub_C_mul_X_mul_PsiSq_ne_zero (c : L) (m : ℕ) (hm : 1 ≤ m) (hc :
 end Degree
 
 end P2MWs13.NonScalar
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_addOrderOf_eq_and_vcInvFun_ne_nsmul_of_pow_three_eq_one.P2MWs13 P2MW.S_WeierstrassCurve_exists_addOrderOf_eq_and_vcInvFun_ne_nsmul_of_pow_three_eq_one.P2MWs13.NonScalar"
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_addOrderOf_eq_and_vcInvFun_ne_nsmul_of_pow_three_eq_one.P2MWs13"
 
 open P2MWs13.NonScalar in
 theorem solution

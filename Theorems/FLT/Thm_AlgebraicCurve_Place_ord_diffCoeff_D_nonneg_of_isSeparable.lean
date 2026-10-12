@@ -583,7 +583,6 @@ theorem ord_diffCoeff_D_nonneg_of_isSeparable {K F : Type*} [Field K] [Field F] 
 end FF2R4p
 end AlgebraicCurve
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_Place_ord_diffCoeff_D_nonneg_of_isSeparable.AlgebraicCurve.FF2R4p P2MW.S_AlgebraicCurve_Place_ord_diffCoeff_D_nonneg_of_isSeparable.AlgebraicCurve"
 
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] [PerfectField K] (x : F)
     [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F] (v : AlgebraicCurve.Place K F) {t : F}

@@ -274,7 +274,6 @@ end Cocycles
 
 end HeckeEis.CoeffMapAux
 end
-p2m_reactivate "P2MW.S_HeckeEis_coeffH1par_map_int_rat_injective.HeckeEis P2MW.S_HeckeEis_coeffH1par_map_int_rat_injective.HeckeEis.CoeffMapAux"
 
 namespace HeckeEis
 p2m_export "HeckeEis" "BinaryForm binarySubst binarySubst_X binarySubst_C binaryFormRepSL coeffCocycles coeffCoboundaries mem_coeffCoboundaries_iff IsParabolicCocycle coeffParabolicCocycles coeffH1par coeffH1parMk coeffH1parMk_surjective coeffH1parMk_eq_zero_iff coeffH1par_binaryFormRepSL_int_eq_zero_of_smul_eq_zero"
@@ -291,8 +290,6 @@ theorem pushCoeff_ringHom_eq_map {R R' : Type*} [CommRing R] [CommRing R'] (φ :
   rfl
 
 end HeckeEis.CoeffMapAux
-p2m_reactivate "P2MW.S_HeckeEis_coeffH1par_map_int_rat_injective.HeckeEis P2MW.S_HeckeEis_coeffH1par_map_int_rat_injective.HeckeEis.CoeffMapAux"
-p2m_reactivate "P2MW.S_HeckeEis_coeffH1par_map_int_rat_injective.HeckeEis P2MW.S_HeckeEis_coeffH1par_map_int_rat_injective.HeckeEis.CoeffMapAux"
 
 noncomputable section
 
@@ -407,7 +404,6 @@ theorem pushForm_zsmul {R R' : Type*} [CommRing R] [CommRing R'] (f : R →+ R')
 
 end HeckeEis.RatAux
 end
-p2m_reactivate "P2MW.S_HeckeEis_coeffH1par_map_int_rat_injective.HeckeEis P2MW.S_HeckeEis_coeffH1par_map_int_rat_injective.HeckeEis.CoeffMapAux"
 
 noncomputable section
 
@@ -452,7 +448,6 @@ theorem injective_of_clause (n N : ℕ) [NeZero N]
 
 end HeckeEis.RatAux
 end
-p2m_reactivate "P2MW.S_HeckeEis_coeffH1par_map_int_rat_injective.HeckeEis P2MW.S_HeckeEis_coeffH1par_map_int_rat_injective.HeckeEis.CoeffMapAux"
 
 open scoped MatrixGroups in
 

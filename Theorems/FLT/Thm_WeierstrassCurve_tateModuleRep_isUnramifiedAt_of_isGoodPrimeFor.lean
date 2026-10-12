@@ -181,7 +181,6 @@ theorem galoisRepUnramifiedAt_pow_of_goodReduction (W : WeierstrassCurve ℤ) {q
 
 end WeierstrassCurve.D5Sol
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_tateModuleRep_isUnramifiedAt_of_isGoodPrimeFor.WeierstrassCurve P2MW.S_WeierstrassCurve_tateModuleRep_isUnramifiedAt_of_isGoodPrimeFor.WeierstrassCurve.D5Sol"
 
 theorem solution (W : WeierstrassCurve ℤ) (p : ℕ)
     [Fact p.Prime]

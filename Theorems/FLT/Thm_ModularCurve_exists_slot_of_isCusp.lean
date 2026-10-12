@@ -367,7 +367,6 @@ theorem cd2_control (N : ℕ) [NeZero N] :
 end CD
 end
 end Row2
-p2m_reactivate "P2MW.S_ModularCurve_exists_slot_of_isCusp.Row2.CD P2MW.S_ModularCurve_exists_slot_of_isCusp.Row2"
 
 namespace Row3
 
@@ -413,7 +412,6 @@ theorem qExpand_mem_range_of_dvd (M P : ℕ) [NeZero M] [NeZero P] (h : M ∣ P)
   exact qExpand_congr (Nat.mul_div_cancel' h) f
 
 end Helper
-p2m_reactivate "P2MW.S_ModularCurve_exists_slot_of_isCusp.Row2.CD P2MW.S_ModularCurve_exists_slot_of_isCusp.Row2"
 
 variable (K : Type*) [Field K] [Algebra ℚ K]
 
@@ -521,7 +519,6 @@ private theorem cd3_slotWidth (N : ℕ) [NeZero N] (ζ : Kˣ) (a b : ℕ) (ha : 
 
 end CD
 end Row3
-p2m_reactivate "P2MW.S_ModularCurve_exists_slot_of_isCusp.Row2.CD P2MW.S_ModularCurve_exists_slot_of_isCusp.Row2 P2MW.S_ModularCurve_exists_slot_of_isCusp.Row3.CD P2MW.S_ModularCurve_exists_slot_of_isCusp.Row3"
 
 namespace Row4
 
@@ -734,7 +731,6 @@ private theorem cd4_slotOrbit (N : ℕ) [NeZero N] (ζ : Kˣ) (hζ : IsPrimitive
 
 end CD
 end Row4
-p2m_reactivate "P2MW.S_ModularCurve_exists_slot_of_isCusp.Row2.CD P2MW.S_ModularCurve_exists_slot_of_isCusp.Row2 P2MW.S_ModularCurve_exists_slot_of_isCusp.Row3.CD P2MW.S_ModularCurve_exists_slot_of_isCusp.Row3"
 
 namespace CD
 
@@ -801,7 +797,6 @@ theorem card_slotFinset (K : Type*) [Field K] [Algebra ℚ K] (N : ℕ) [NeZero 
   simp only [natDegree_X_sub_C, Finset.sum_const, smul_eq_mul, mul_one]
 
 end SlotsAux1
-p2m_reactivate "P2MW.S_ModularCurve_exists_slot_of_isCusp.Row2.CD P2MW.S_ModularCurve_exists_slot_of_isCusp.Row2 P2MW.S_ModularCurve_exists_slot_of_isCusp.Row3.CD P2MW.S_ModularCurve_exists_slot_of_isCusp.Row3"
 
 theorem card_slotFibre (N : ℕ) [NeZero N] {α : Type*} [DecidableEq α] (P : (_ : ℕ) × ℕ → α)
     (hP : ∀ s ∈ slotFinset N, ∀ s' ∈ slotFinset N,
@@ -1153,7 +1148,6 @@ theorem main_exhaustion (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) N)
     ⟨‹NeZero a›, ι ⟨a, b⟩ hs, hι₁ ⟨a, b⟩ hs, hι₂ ⟨a, b⟩ hs, hword ⟨a, b⟩ hs⟩⟩
 
 end Tower
-p2m_reactivate "P2MW.S_ModularCurve_exists_slot_of_isCusp.Row2.CD P2MW.S_ModularCurve_exists_slot_of_isCusp.Row2 P2MW.S_ModularCurve_exists_slot_of_isCusp.Row3.CD P2MW.S_ModularCurve_exists_slot_of_isCusp.Row3"
 
 variable (K : Type*) [Field K] [Algebra ℚ K]
 
@@ -1170,9 +1164,7 @@ private theorem _root_.ModularCurve.exists_slot_of_isCusp' (N : ℕ) [NeZero N] 
         ∀ x, w.ord x * ((a * Nat.gcd a (N / a) : ℕ) : ℤ) = (ι x).order :=
   main_exhaustion K N ζ hζ w hc
 
-p2m_alias "P2MW.S_ModularCurve_exists_slot_of_isCusp.ModularCurve.exists_slot_of_isCusp" "ModularCurve.exists_slot_of_isCusp'"
 end CD
-p2m_reactivate "P2MW.S_ModularCurve_exists_slot_of_isCusp.Row2.CD P2MW.S_ModularCurve_exists_slot_of_isCusp.Row2 P2MW.S_ModularCurve_exists_slot_of_isCusp.Row3.CD P2MW.S_ModularCurve_exists_slot_of_isCusp.Row3"
 
 
 open ModularCurve AlgebraicCurve in

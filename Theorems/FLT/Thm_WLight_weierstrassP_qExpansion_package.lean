@@ -839,7 +839,6 @@ end R1Bridge
 
 end WLight
 end
-p2m_reactivate "P2MW.S_WLight_weierstrassP_qExpansion_package.WLight"
 
 open Complex Real in
 open scoped UpperHalfPlane Manifold in

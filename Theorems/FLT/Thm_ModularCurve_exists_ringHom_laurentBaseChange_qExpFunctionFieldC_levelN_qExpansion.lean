@@ -1008,7 +1008,6 @@ end Bridge
 
 end ModularCurve.LevelN.QExpBridge
 end
-p2m_reactivate "P2MW.S_ModularCurve_exists_ringHom_laurentBaseChange_qExpFunctionFieldC_levelN_qExpansion.ModularCurve P2MW.S_ModularCurve_exists_ringHom_laurentBaseChange_qExpFunctionFieldC_levelN_qExpansion.ModularCurve.LevelN P2MW.S_ModularCurve_exists_ringHom_laurentBaseChange_qExpFunctionFieldC_levelN_qExpansion.ModularCurve.LevelN.QExpBridge"
 
 theorem solution
     (M : ℕ) [NeZero M] (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ))

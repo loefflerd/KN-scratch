@@ -365,7 +365,6 @@ theorem heckeT_slash_mapGL (hpN : ¬ p ∣ N) (f : ℍ → ℂ)
 end heckeT
 
 end HeckeSlashInvariance
-p2m_reactivate "P2MW.S_ModularForm_heckeT_slash_eq_self_of_mem_Gamma0.ModularForm.HeckeSlashInvariance"
 
 open HeckeSlashInvariance in
 theorem heckeT_slash_eq_self_of_mem_Gamma0' {N : ℕ} (k : ℤ) {p : ℕ} (hp : p.Prime) (hpN : ¬ p ∣ N)
@@ -394,7 +393,6 @@ theorem heckeU_slash_eq_self_of_mem_Gamma0' {N : ℕ} (k : ℤ) {p : ℕ} (hpN :
   exact heckeU_slash_mapGL k hpN f hf g hg
 
 end ModularForm
-p2m_reactivate "P2MW.S_ModularForm_heckeT_slash_eq_self_of_mem_Gamma0.ModularForm.HeckeSlashInvariance P2MW.S_ModularForm_heckeT_slash_eq_self_of_mem_Gamma0.ModularForm"
 
 theorem solution {N : ℕ} (k : ℤ) {p : ℕ} (hp : p.Prime) (hpN : ¬ p ∣ N) {f : UpperHalfPlane → ℂ} (hf : ∀ γ ∈ (CongruenceSubgroup.Gamma0 N : Subgroup (Matrix.GeneralLinearGroup (Fin 2) ℝ)), SlashAction.map k γ f = f) (γ : Matrix.GeneralLinearGroup (Fin 2) ℝ) (hγ : γ ∈ (CongruenceSubgroup.Gamma0 N : Subgroup (Matrix.GeneralLinearGroup (Fin 2) ℝ))) : SlashAction.map k γ (ModularForm.heckeT k p f) = ModularForm.heckeT k p f :=
   ModularForm.heckeT_slash_eq_self_of_mem_Gamma0' k hp hpN hf γ hγ

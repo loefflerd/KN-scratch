@@ -783,7 +783,6 @@ end Main
 
 end P2MKcA.HilbertB
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_Place_ord_restrictAlong_eq_natCard_algHom_of_isGalois.P2MKcA P2MW.S_AlgebraicCurve_Place_ord_restrictAlong_eq_natCard_algHom_of_isGalois.P2MKcA.HilbertB"
 
 open P2MKcA.HilbertB in
 universe u v in

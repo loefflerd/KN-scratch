@@ -334,7 +334,6 @@ end Cocycles
 
 end HeckeEis.CoeffMapAux
 end
-p2m_reactivate "P2MW.S_HeckeEis_exists_ne_zero_smul_eq_coeffH1par_map_int_rat.HeckeEis P2MW.S_HeckeEis_exists_ne_zero_smul_eq_coeffH1par_map_int_rat.HeckeEis.CoeffMapAux"
 
 namespace HeckeEis
 p2m_export "HeckeEis" "BinaryForm binarySubst binarySubst_X binarySubst_C binaryFormRepSL binaryFormRepSL_apply_coe coeffCocycles coeffCoboundaries mem_coeffCoboundaries_iff IsParabolicCocycle coeffParabolicCocycles coeffH1par coeffH1parMk coeffH1parMk_surjective coeffH1parMk_eq_zero_iff binaryFormRepSL_neg_one_apply"
@@ -351,8 +350,6 @@ theorem pushCoeff_ringHom_eq_map {R R' : Type*} [CommRing R] [CommRing R'] (φ :
   rfl
 
 end HeckeEis.CoeffMapAux
-p2m_reactivate "P2MW.S_HeckeEis_exists_ne_zero_smul_eq_coeffH1par_map_int_rat.HeckeEis P2MW.S_HeckeEis_exists_ne_zero_smul_eq_coeffH1par_map_int_rat.HeckeEis.CoeffMapAux"
-p2m_reactivate "P2MW.S_HeckeEis_exists_ne_zero_smul_eq_coeffH1par_map_int_rat.HeckeEis P2MW.S_HeckeEis_exists_ne_zero_smul_eq_coeffH1par_map_int_rat.HeckeEis.CoeffMapAux"
 
 noncomputable section
 
@@ -467,7 +464,6 @@ theorem pushForm_zsmul {R R' : Type*} [CommRing R] [CommRing R'] (f : R →+ R')
 
 end HeckeEis.RatAux
 end
-p2m_reactivate "P2MW.S_HeckeEis_exists_ne_zero_smul_eq_coeffH1par_map_int_rat.HeckeEis P2MW.S_HeckeEis_exists_ne_zero_smul_eq_coeffH1par_map_int_rat.HeckeEis.CoeffMapAux"
 
 noncomputable section
 
@@ -557,7 +553,6 @@ theorem cuspWidth_dvd (δ : SL(2, ℤ)) {h : ℤ} (hh : δ * ModularGroup.T ^ h 
   omega
 
 end CuspWidth
-p2m_reactivate "P2MW.S_HeckeEis_exists_ne_zero_smul_eq_coeffH1par_map_int_rat.HeckeEis P2MW.S_HeckeEis_exists_ne_zero_smul_eq_coeffH1par_map_int_rat.HeckeEis.CoeffMapAux"
 
 section CuspData
 
@@ -586,7 +581,6 @@ theorem trace_cuspGen_sq (q : SL(2, ℤ) ⧸ Gamma0 N) :
   rw [coe_cuspGen, trace_conj_T_zpow]; norm_num
 
 end CuspData
-p2m_reactivate "P2MW.S_HeckeEis_exists_ne_zero_smul_eq_coeffH1par_map_int_rat.HeckeEis P2MW.S_HeckeEis_exists_ne_zero_smul_eq_coeffH1par_map_int_rat.HeckeEis.CoeffMapAux"
 
 section CocycleAlgebra
 
@@ -623,7 +617,6 @@ theorem apply_conj_mem_range (hy : y ∈ coeffCocycles ρ) {v : G} {w : V} (hv :
   abel
 
 end CocycleAlgebra
-p2m_reactivate "P2MW.S_HeckeEis_exists_ne_zero_smul_eq_coeffH1par_map_int_rat.HeckeEis P2MW.S_HeckeEis_exists_ne_zero_smul_eq_coeffH1par_map_int_rat.HeckeEis.CoeffMapAux"
 
 theorem isParabolicCocycle_of_cuspWitnesses (n N : ℕ) [NeZero N] (hρm1 : binaryFormRepSL ℤ n (-1) = 1)
     {y : Gamma0 N → ↥(BinaryForm ℤ n)} (hycoc : y ∈ coeffCocycles ((binaryFormRepSL ℤ n).comp (Gamma0 N).subtype))
@@ -799,7 +792,6 @@ theorem main
 
 end HeckeEis.ZQAux
 end
-p2m_reactivate "P2MW.S_HeckeEis_exists_ne_zero_smul_eq_coeffH1par_map_int_rat.HeckeEis P2MW.S_HeckeEis_exists_ne_zero_smul_eq_coeffH1par_map_int_rat.HeckeEis.CoeffMapAux P2MW.S_HeckeEis_exists_ne_zero_smul_eq_coeffH1par_map_int_rat.HeckeEis.ZQAux"
 
 open scoped MatrixGroups in
 

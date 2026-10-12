@@ -836,9 +836,6 @@ theorem Ψ_injective : Function.Injective (Ψ N K) := by
 end Identity
 
 end ModularCurve.LevelN.HolDiff
-p2m_reactivate "P2MW.S_ModularCurve_LevelN_exists_linearMap_regularDifferentials_mdifferentiable.ModularCurve P2MW.S_ModularCurve_LevelN_exists_linearMap_regularDifferentials_mdifferentiable.ModularCurve.LevelN P2MW.S_ModularCurve_LevelN_exists_linearMap_regularDifferentials_mdifferentiable.ModularCurve.LevelN.HolDiff"
-p2m_reactivate "P2MW.S_ModularCurve_LevelN_exists_linearMap_regularDifferentials_mdifferentiable.ModularCurve P2MW.S_ModularCurve_LevelN_exists_linearMap_regularDifferentials_mdifferentiable.ModularCurve.LevelN"
-p2m_reactivate "P2MW.S_ModularCurve_LevelN_exists_linearMap_regularDifferentials_mdifferentiable.ModularCurve"
 
 open ModularCurve.LevelN.HolDiff in
 theorem solution (N : ℕ) [NeZero N]

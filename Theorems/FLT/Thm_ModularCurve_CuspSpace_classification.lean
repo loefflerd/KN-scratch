@@ -212,7 +212,6 @@ theorem classification_of_normalFormCriterion (hN : N ≠ 0)
 
 end ModularCurve.CuspSpace
 end
-p2m_reactivate "P2MW.S_ModularCurve_CuspSpace_classification.ModularCurve P2MW.S_ModularCurve_CuspSpace_classification.ModularCurve.CuspSpace"
 
 theorem solution {N : ℕ} (hN : N ≠ 0) :
     ModularCurve.CuspSpace.Classification N :=

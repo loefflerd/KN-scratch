@@ -397,14 +397,12 @@ variable {K F E}
 end CorrectedCarrier
 
 end AlgebraicCurve
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve"
 
 namespace ModularCurve
 p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4gRRTate.KwF4gRRTateChainRule"
 end ModularCurve
 end
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve"
 
 section
 
@@ -459,7 +457,6 @@ end TateProj
 end ModularCurve.KwF4gRRTate
 end
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve"
 
 section
 
@@ -540,7 +537,6 @@ end PoleWindow
 end ModularCurve.KwF4gRRTate
 end
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve"
 
 section
 
@@ -579,7 +575,6 @@ theorem isOpen_setOf_valued_le {γ : ℤᵐ⁰} (hγ : γ ≠ 0) :
 end adicCompletion
 end IsDedekindDomain.HeightOneSpectrum
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve"
 
 section
 
@@ -686,7 +681,6 @@ end Bridge
 end ModularCurve.KwF4R1V410a
 end
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a"
 
 section
 
@@ -804,7 +798,6 @@ end PoleWindowShift
 end ModularCurve.KwF4gRRTate
 end
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a"
 
 section
 
@@ -849,7 +842,6 @@ end FinrankTraceCyclicity
 end ModularCurve.KwF4gRRTate
 end
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a"
 
 section
 
@@ -891,7 +883,6 @@ theorem finrankTrace_eq_trace_on_superspace
   rw [← hpi, ← hip, LinearMap.trace_comp_comm']
 
 end TraceOnSuperspace
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a"
 
 section Additivity
 
@@ -927,7 +918,6 @@ end Additivity
 end ModularCurve.KwF4gRRTate
 end
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a"
 
 section
 
@@ -1059,7 +1049,6 @@ end DVRQuotDischarge
 end ModularCurve.KwF4gRRTate
 end
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a"
 
 section
 
@@ -1128,7 +1117,6 @@ end DVRCotangentDischarge
 end ModularCurve.KwF4gRRTate
 end
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
 
 section
 
@@ -1147,7 +1135,6 @@ namespace KwF4gRRTate
 p2m_export "ModularCurve.KwF4gRRTate" "finrankTrace tateComm tateComm_apply tateCommRestrict tateCommRestrict_apply tateCommTrace adicIntegersKSubmod tateProj lmulK tateRes KwF4gRRTateCommFinite KwF4gRRTateChainRule"
 p2m_open "ModularCurve.KwF4gRRTate ModularCurve"
 
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
 
 section TermRangeFinite
 
@@ -1163,7 +1150,6 @@ end TermRangeFinite
 end ModularCurve.KwF4gRRTate
 end
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
 
 section
 
@@ -1191,7 +1177,6 @@ theorem kwF4gRRTate_poleWindowFinite : KwF4gRRTatePoleWindowFinite K L :=
       kwF4gRRTate_DVRCotangentKFinite)
 
 end Composite
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
 
 section Subset
 
@@ -1209,7 +1194,6 @@ theorem lmul_adicIntegers_subset_poleWindow (fh : u.adicCompletion)
   exact mul_mem hfhM (show a ∈ u.adicCompletionIntegers from ha)
 
 end Subset
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
 
 section Discharge
 
@@ -1243,7 +1227,6 @@ end Discharge
 end ModularCurve.KwF4gRRTate
 end
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
 
 section
 
@@ -1300,9 +1283,7 @@ theorem finrankTrace_sub (φ ψ : V →ₗ[K] V)
     finrankTrace_eq_trace_on_superspace (φ - ψ) W' (range_sub_le φ ψ) hφψW]
 
 end Additivity
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
 
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
 
 section TermMaps
 
@@ -1342,7 +1323,6 @@ end TermMaps
 end ModularCurve.KwF4gRRTate
 end
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
 
 section
 
@@ -1410,7 +1390,6 @@ theorem finrankTrace_add (φ ψ : V →ₗ[K] V)
     _ = finrankTrace φ + finrankTrace ψ := h.symm
 
 end Additivity
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
 
 section TateCommAddFst
 
@@ -1445,7 +1424,6 @@ theorem tateCommTrace_add_fst (pA φ₁ φ₂ ψ : V →ₗ[K] V)
   exact finrankTrace_congr (tateCommRestrict_add_fst pA φ₁ φ₂ ψ)
 
 end TateCommAddFst
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
 
 section TateResAddFst
 
@@ -1478,7 +1456,6 @@ end TateResAddFst
 end ModularCurve.KwF4gRRTate
 end
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
 
 section
 
@@ -1530,7 +1507,6 @@ theorem tateCommTrace_add_snd (pA φ ψ₁ ψ₂ : V →ₗ[K] V)
   exact finrankTrace_congr (tateCommRestrict_add_snd pA φ ψ₁ ψ₂)
 
 end AddSnd
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
 
 section CommutatorVanish
 
@@ -1552,7 +1528,6 @@ theorem finrankTrace_commutator_eq_zero (φ ψ : V →ₗ[K] V)
   rw [← finrankTrace_sub, finrankTrace_comp_comm ψ φ, sub_self]
 
 end CommutatorVanish
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
 
 section LeibnizAbstract
 
@@ -1712,7 +1687,6 @@ theorem tateCommTrace_leibniz_snd (pA f g h : V →ₗ[K] V)
   rw [finrankTrace_congr hLdecomp, finrankTrace_add, finrankTrace_add, hDtrace, add_zero]
 
 end LeibnizAbstract
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
 
 section TateResLeibniz
 
@@ -1786,7 +1760,6 @@ theorem tateRes_leibniz_snd (hfin : KwF4gRRTateCommFinite K L)
   exact hleib
 
 end TateResLeibniz
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
 
 section TateResCongr
 
@@ -1801,7 +1774,6 @@ theorem tateRes_congr_fst {fh₁ fh₂ gh : u.adicCompletion} (heq : fh₁ = fh�
   subst heq; rfl
 
 end TateResCongr
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
 
 section DerivationFactor
 
@@ -1820,7 +1792,6 @@ def KwF4gRRTateDerivationFactorSnd [HasPrincipalDivisors K F] [Nontrivial Ω[F�
           (algebraMap F w.adicCompletion w.uniformizer)
 
 end DerivationFactor
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
 
 section Reprice
 
@@ -1863,7 +1834,6 @@ end Reprice
 end ModularCurve.KwF4gRRTate
 end
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate"
 
 section
 
@@ -1896,11 +1866,9 @@ def DualDom.toLM {w : Place K F} (φ : DualDom w) : w.adicCompletion →ₗ[K] K
 @[scoped ext] theorem DualDom.ext {w : Place K F} {φ ψ : DualDom w}
     (h : ∀ x, φ.toLM x = ψ.toLM x) : φ = ψ := LinearMap.ext h
 
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate.DualDom"
 @[scoped simp] theorem DualDom.toLM_add {w : Place K F} (φ ψ : DualDom w) :
     (φ + ψ).toLM = φ.toLM + ψ.toLM := rfl
 
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate.DualDom"
 scoped instance (w : Place K F) : Module F (DualDom w) where
   smul h φ := φ.toLM ∘ₗ lmulK w (algebraMap F w.adicCompletion h)
   one_smul φ := DualDom.ext fun x => by
@@ -1923,7 +1891,6 @@ scoped instance (w : Place K F) : Module F (DualDom w) where
     (x : w.adicCompletion) :
     (h • φ).toLM x = φ.toLM (algebraMap F w.adicCompletion h * x) := rfl
 
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate.DualDom"
 scoped instance (w : Place K F) : Module K (DualDom w) :=
   inferInstanceAs (Module K (w.adicCompletion →ₗ[K] K))
 
@@ -1939,7 +1906,6 @@ scoped instance (w : Place K F) : IsScalarTower K F (DualDom w) where
       Algebra.algebraMap_eq_smul_one, smul_mul_assoc, one_mul, smul_mul_assoc, φ.toLM.map_smul]
 
 end DualDom
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate.DualDom"
 
 section GenericFactor
 
@@ -1959,7 +1925,6 @@ theorem derivation_apply_eq_diffCoeff_smul (w : Place K F) [w.DCoordGenerates]
           rw [map_smul, hLπ]
 
 end GenericFactor
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate.DualDom"
 
 section TateResDerivation
 
@@ -2102,7 +2067,6 @@ def tateResSndDer (w : Place K F) [w.DCoordGenerates] [w.FiniteResidue]
       = haveI := hfin w f (algebraMap F _ g); tateRes w f (algebraMap F _ g) := rfl
 
 end TateResDerivation
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate.DualDom"
 
 section Headline
 
@@ -2136,7 +2100,6 @@ end Headline
 end ModularCurve.KwF4gRRTate
 end
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_tateChainRule.AlgebraicCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4R1V410a P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate P2MW.S_AlgebraicCurve_tateChainRule.ModularCurve.KwF4gRRTate.DualDom"
 
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] {E : Type*} [Field E] [Algebra K E] [Algebra E F] [IsScalarTower K E F] [Algebra.IsIntegral E F] [AlgebraicCurve.HasCanonicalLocalResidueKStar K F] [AlgebraicCurve.HasCanonicalLocalResidueKStar K E] [∀ w : AlgebraicCurve.Place K F, w.FiniteResidue] (hfinF : ModularCurve.KwF4gRRTate.KwF4gRRTateCommFinite K F) : ModularCurve.KwF4gRRTate.KwF4gRRTateChainRule K F E hfinF :=
   ModularCurve.KwF4gRRTate.kwF4gRRTate_chainRule_of_derivationFactor hfinF

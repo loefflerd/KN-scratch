@@ -847,7 +847,6 @@ end Setup
 end ModularCurve
 end
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.ModularCurve"
 
 section
 
@@ -958,7 +957,6 @@ theorem kw_functionFieldTensorIsDomain_dischargeGeneral :
     (M := Algebra.algebraMapSubmonoid (CR ⊗[F] F') (nonZeroDivisors CR)) _ hle
 
 end FFDomain
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.ModularCurve"
 
 section Seam
 
@@ -1121,7 +1119,6 @@ theorem kw_tensorFracIotaFinrankSeam_dischargeGeneral :
   rw [Module.finrank_eq_card_basis bFr', Fintype.card_fin]
 
 end Seam
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.ModularCurve"
 
 theorem kw_isogenyEndDatumBaseChangeAlong_dischargeGeneral (σ : F →ₐ[R₀] F') (N : ℕ) :
     KwIsogenyEndDatumBaseChangeAlongGeneral W F F' σ N :=
@@ -1132,7 +1129,6 @@ theorem kw_isogenyEndDatumBaseChangeAlong_dischargeGeneral (σ : F →ₐ[R₀] 
     (kw_tensorFracIotaFinrankSeam_dischargeGeneral W F F') σ N
 
 end Setup
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.ModularCurve"
 
 section SatGate
 
@@ -1147,7 +1143,6 @@ end SatGate
 end ModularCurve
 end
 end
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.ModularCurve"
 
 open _root_.WeierstrassCurve _root_.P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.WeierstrassCurve _root_.WeierstrassCurve.Affine _root_.P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.WeierstrassCurve.Affine _root_.AlgebraicCurve _root_.P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.AlgebraicCurve in
 theorem solution

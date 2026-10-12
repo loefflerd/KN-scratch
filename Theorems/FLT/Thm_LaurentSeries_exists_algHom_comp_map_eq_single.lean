@@ -99,7 +99,6 @@ theorem exists_isRoot_and_constantCoeff_eq {K : Type*} [Field K]
   exact H hroot hderiv
 
 end B2Tors
-p2m_reactivate "P2MW.S_LaurentSeries_exists_algHom_comp_map_eq_single.B2Tors"
 
 namespace B2P1
 
@@ -260,7 +259,6 @@ theorem order_reparam (y : LaurentSeries K) : (reparam σ h0 h1 y).order = y.ord
   ring
 
 end Reparam
-p2m_reactivate "P2MW.S_LaurentSeries_exists_algHom_comp_map_eq_single.B2Tors"
 
 private theorem _root_.LaurentSeries.exists_algHom_order_eq_map_eq_single' {K : Type*} [Field K] [IsAlgClosed K] [CharZero K]
     (y : LaurentSeries K) (hy : 0 < y.order) :
@@ -321,7 +319,6 @@ private theorem _root_.LaurentSeries.exists_algHom_order_eq_map_eq_single' {K : 
     rw [hyord, hyσ, PowerSeries.coe_pow, map_pow, reparam_coe_sigma, single_pow]
     simp
 
-p2m_alias "P2MW.S_LaurentSeries_exists_algHom_comp_map_eq_single.LaurentSeries.exists_algHom_order_eq_map_eq_single" "LaurentSeries.exists_algHom_order_eq_map_eq_single"
 
 private theorem _root_.LaurentSeries.exists_algHom_comp_map_eq_single' {K F : Type*} [Field K] [IsAlgClosed K] [CharZero K]
     [Field F] [Algebra K F] (φ : F →ₐ[K] LaurentSeries K) (f : F) (hf : 0 < (φ f).order) :
@@ -330,10 +327,8 @@ private theorem _root_.LaurentSeries.exists_algHom_comp_map_eq_single' {K F : Ty
   obtain ⟨ρ, hρ, hρy⟩ := LaurentSeries.exists_algHom_order_eq_map_eq_single' (φ f) hf
   exact ⟨ρ.comp φ, fun x => hρ (φ x), hρy⟩
 
-p2m_alias "P2MW.S_LaurentSeries_exists_algHom_comp_map_eq_single.LaurentSeries.exists_algHom_comp_map_eq_single" "LaurentSeries.exists_algHom_comp_map_eq_single"
 end B2P1
 end
-p2m_reactivate "P2MW.S_LaurentSeries_exists_algHom_comp_map_eq_single.B2Tors"
 
 open HahnSeries in
 

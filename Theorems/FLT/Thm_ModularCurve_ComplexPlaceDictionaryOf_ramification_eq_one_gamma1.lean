@@ -412,7 +412,6 @@ end Main
 
 end ModularCurve.RamOne
 end
-p2m_reactivate "P2MW.S_ModularCurve_ComplexPlaceDictionaryOf_ramification_eq_one_gamma1.ModularCurve P2MW.S_ModularCurve_ComplexPlaceDictionaryOf_ramification_eq_one_gamma1.ModularCurve.RamOne"
 
 open UpperHalfPlane ModularForm ModularGroup _root_.ModularCurve _root_.P2MW.S_ModularCurve_ComplexPlaceDictionaryOf_ramification_eq_one_gamma1.ModularCurve ModularCurve.RamOne in
 open scoped MatrixGroups Modular in

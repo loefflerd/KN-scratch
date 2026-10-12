@@ -324,7 +324,6 @@ theorem card_ker_eq_max_natDegree {k : Type*} [Field k] [DecidableEq k] [IsAlgCl
     _ = d := htf
 
 end M4cP4T3C
-p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_Point_card_ker_eq_max_natDegree.M4cP4T3C"
 
 theorem solution {k : Type*} [Field k] [DecidableEq k] [IsAlgClosed k] (W : WeierstrassCurve k)
     [W.IsElliptic] (ψ : W.toAffine.Point →+ W.toAffine.Point) {B : Set W.toAffine.Point}

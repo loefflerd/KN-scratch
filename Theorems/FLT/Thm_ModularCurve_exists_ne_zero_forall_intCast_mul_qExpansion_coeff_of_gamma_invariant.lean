@@ -1370,7 +1370,6 @@ end Main
 
 end GammaNBounded
 end
-p2m_reactivate "P2MW.S_ModularCurve_exists_ne_zero_forall_intCast_mul_qExpansion_coeff_of_gamma_invariant.GammaNBounded"
 
 open scoped MatrixGroups Manifold in
 theorem solution

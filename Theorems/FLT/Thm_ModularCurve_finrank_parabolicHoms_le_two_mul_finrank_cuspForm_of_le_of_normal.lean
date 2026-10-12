@@ -451,7 +451,6 @@ end Descent
 
 end ModularCurve.ESDescent
 end
-p2m_reactivate "P2MW.S_ModularCurve_finrank_parabolicHoms_le_two_mul_finrank_cuspForm_of_le_of_normal.ModularCurve P2MW.S_ModularCurve_finrank_parabolicHoms_le_two_mul_finrank_cuspForm_of_le_of_normal.ModularCurve.ESDescent"
 
 theorem solution
     (Γ' Γ : Subgroup SL(2, ℤ)) [Γ'.FiniteIndex] (hle : Γ' ≤ Γ) (hn : (Γ'.subgroupOf Γ).Normal)

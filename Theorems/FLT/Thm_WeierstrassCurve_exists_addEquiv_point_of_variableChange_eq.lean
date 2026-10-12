@@ -318,7 +318,6 @@ lemma pointEquiv_smul (σ : K ≃ₐ[F] K) (P : (E⁄K).Point) :
 end VariableChange
 end PointEquiv
 end WeierstrassCurve
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_addEquiv_point_of_variableChange_eq.WeierstrassCurve.VariableChange P2MW.S_WeierstrassCurve_exists_addEquiv_point_of_variableChange_eq.WeierstrassCurve"
 
 theorem solution {F : Type*} [Field F] (K : Type*) [Field K] [Algebra F K] [DecidableEq K] {E E' : WeierstrassCurve F} (C : VariableChange F) (hC : C • E = E') : ∃ e : (E⁄K).Point ≃+ (E'⁄K).Point, ∀ (σ : K ≃ₐ[F] K) (P : (E⁄K).Point), e (σ • P) = σ • e P := by
   subst hC

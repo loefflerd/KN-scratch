@@ -229,8 +229,6 @@ theorem nonempty_freeGroupBasis [Γ.FiniteIndex] (hneg : (-1 : SL(2, ℤ)) ∈ �
 end Main
 
 end ModularCurve.FreeTransport
-p2m_reactivate "P2MW.S_Matrix_SpecialLinearGroup_nonempty_freeGroupBasis_map_quotient_center_of_forall_trace_ne.ModularCurve P2MW.S_Matrix_SpecialLinearGroup_nonempty_freeGroupBasis_map_quotient_center_of_forall_trace_ne.ModularCurve.FreeTransport"
-p2m_reactivate "P2MW.S_Matrix_SpecialLinearGroup_nonempty_freeGroupBasis_map_quotient_center_of_forall_trace_ne.ModularCurve"
 
 theorem solution (Γ : Subgroup (Matrix.SpecialLinearGroup (Fin 2) ℤ)) [Γ.FiniteIndex]
     (hneg : (-1 : Matrix.SpecialLinearGroup (Fin 2) ℤ) ∈ Γ)

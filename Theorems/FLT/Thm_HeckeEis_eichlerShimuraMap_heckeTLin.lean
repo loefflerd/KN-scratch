@@ -288,7 +288,6 @@ theorem heckeSlashSum_eq_heckeT (k : ℤ) (f : UpperHalfPlane → ℂ) :
 end BoardBridge
 
 end HeckeAnalytic
-p2m_reactivate "P2MW.S_HeckeEis_eichlerShimuraMap_heckeTLin.HeckeEis.HeckeESSol.HeckeAnalytic"
 
 p2m_open "UpperHalfPlane Filter Topology Complex Function ModularForm Matrix CongruenceSubgroup Subgroup HeckeEis P2MW.S_HeckeEis_eichlerShimuraMap_heckeTLin.HeckeEis"
 
@@ -382,7 +381,6 @@ theorem heckeCosetRep_mul_gammaToGL (γ : Gamma0 N) (q : Gamma0 N ⧸ heckeUpper
   group
 
 end CosetRep
-p2m_reactivate "P2MW.S_HeckeEis_eichlerShimuraMap_heckeTLin.HeckeEis.HeckeESSol.HeckeAnalytic"
 
 section QuotSlashSum
 
@@ -392,7 +390,6 @@ noncomputable def heckeQuotSlashSum (k : ℤ) (f : ℍ → ℂ) : ℍ → ℂ :=
   ∑ q : Gamma0 N ⧸ heckeUpper N ℓ, f ∣[k] heckeCosetRep N ℓ q
 
 end QuotSlashSum
-p2m_reactivate "P2MW.S_HeckeEis_eichlerShimuraMap_heckeTLin.HeckeEis.HeckeESSol.HeckeAnalytic"
 
 section Bridge
 
@@ -420,7 +417,6 @@ theorem heckeSlashSum_eq_heckeQuotSlashSum (hmatch : HeckeCosetMatch N ℓ) (k :
     hf (gammaToGL N δ) (Subgroup.mem_map.mpr ⟨(δ : SL(2, ℤ)), δ.2, rfl⟩)]
 
 end Bridge
-p2m_reactivate "P2MW.S_HeckeEis_eichlerShimuraMap_heckeTLin.HeckeEis.HeckeESSol.HeckeAnalytic"
 
 open HeckeAnalytic
 
@@ -546,7 +542,6 @@ theorem repMat_mul_cosetRep (hℓ : ℓ.Prime) (hℓN : ¬ ℓ ∣ N) (i : Optio
       ring
 
 end Representatives
-p2m_reactivate "P2MW.S_HeckeEis_eichlerShimuraMap_heckeTLin.HeckeEis.HeckeESSol.HeckeAnalytic"
 
 section Bijection
 
@@ -666,7 +661,6 @@ theorem heckeCosetEquiv_apply (hℓ : ℓ.Prime) (hℓN : ¬ ℓ ∣ N) (i : Opt
   rfl
 
 end Bijection
-p2m_reactivate "P2MW.S_HeckeEis_eichlerShimuraMap_heckeTLin.HeckeEis.HeckeESSol.HeckeAnalytic"
 
 section CosetMatch
 
@@ -723,7 +717,6 @@ theorem heckeCosetMatch (hℓ : ℓ.Prime) (hℓN : ¬ ℓ ∣ N) : HeckeCosetMa
 end CosetMatch
 end HeckeEis.HeckeESSol
 end
-p2m_reactivate "P2MW.S_HeckeEis_eichlerShimuraMap_heckeTLin.HeckeEis.HeckeESSol.HeckeAnalytic P2MW.S_HeckeEis_eichlerShimuraMap_heckeTLin.HeckeEis P2MW.S_HeckeEis_eichlerShimuraMap_heckeTLin.HeckeEis.HeckeESSol"
 
 noncomputable section
 
@@ -835,7 +828,6 @@ theorem cocycle_heckeEichler {F : ℍ → ↥(BinaryForm ℂ n)}
   rw [IsEquivariantPrimitiveWith.cocycle, heckeEichler_smul hF, add_sub_cancel_right]
 
 end CoeffTelescoping
-p2m_reactivate "P2MW.S_HeckeEis_eichlerShimuraMap_heckeTLin.HeckeEis.HeckeESSol.HeckeAnalytic P2MW.S_HeckeEis_eichlerShimuraMap_heckeTLin.HeckeEis P2MW.S_HeckeEis_eichlerShimuraMap_heckeTLin.HeckeEis.HeckeESSol"
 
 section EichlerSum
 
@@ -904,7 +896,6 @@ theorem isEichlerIntegral_heckeEichler {f : ℍ → ℂ} {F : ℍ → ↥(Binary
 end EichlerSum
 end HeckeEis.HeckeESSol
 end
-p2m_reactivate "P2MW.S_HeckeEis_eichlerShimuraMap_heckeTLin.HeckeEis.HeckeESSol.HeckeAnalytic P2MW.S_HeckeEis_eichlerShimuraMap_heckeTLin.HeckeEis P2MW.S_HeckeEis_eichlerShimuraMap_heckeTLin.HeckeEis.HeckeESSol"
 
 open _root_.HeckeEis _root_.P2MW.S_HeckeEis_eichlerShimuraMap_heckeTLin.HeckeEis HeckeEis.HeckeESSol CongruenceSubgroup in
 theorem solution (N : ℕ) [NeZero N] (n : ℕ) {ℓ : ℕ} (hℓ : ℓ.Prime) (hℓN : ¬ ℓ ∣ N)

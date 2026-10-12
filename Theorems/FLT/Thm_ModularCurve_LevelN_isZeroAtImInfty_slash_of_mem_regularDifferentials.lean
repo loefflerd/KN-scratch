@@ -893,9 +893,6 @@ theorem isZeroAtImInfty_slash {ω : Ω[K⁄ℂ]} (hω : ω ∈ AlgebraicCurve.re
 end Cusp
 
 end ModularCurve.LevelN.CuspVanish
-p2m_reactivate "P2MW.S_ModularCurve_LevelN_isZeroAtImInfty_slash_of_mem_regularDifferentials.ModularCurve P2MW.S_ModularCurve_LevelN_isZeroAtImInfty_slash_of_mem_regularDifferentials.ModularCurve.LevelN P2MW.S_ModularCurve_LevelN_isZeroAtImInfty_slash_of_mem_regularDifferentials.ModularCurve.LevelN.CuspVanish"
-p2m_reactivate "P2MW.S_ModularCurve_LevelN_isZeroAtImInfty_slash_of_mem_regularDifferentials.ModularCurve P2MW.S_ModularCurve_LevelN_isZeroAtImInfty_slash_of_mem_regularDifferentials.ModularCurve.LevelN"
-p2m_reactivate "P2MW.S_ModularCurve_LevelN_isZeroAtImInfty_slash_of_mem_regularDifferentials.ModularCurve"
 
 theorem solution (N : ℕ) [NeZero N]
     (K : Type*) [Field K] [Algebra ℂ K] [Algebra (ModularCurve.LevelN.ring N) K]

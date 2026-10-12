@@ -524,7 +524,6 @@ theorem ord_diffCoeff_D_nonneg {K F : Type*} [Field K] [Field F] [Algebra K F] [
 end FF2R4
 end AlgebraicCurve
 end
-p2m_reactivate "P2MW.S_AlgebraicCurve_Place_ord_diffCoeff_D_nonneg.AlgebraicCurve.FF2R4 P2MW.S_AlgebraicCurve_Place_ord_diffCoeff_D_nonneg.AlgebraicCurve"
 
 theorem solution {K F : Type*} [Field K] [Field F] [Algebra K F] [CharZero K] (x : F)
     [FiniteDimensional (IntermediateField.adjoin K ({x} : Set F)) F] (v : AlgebraicCurve.Place K F) {t : F}
