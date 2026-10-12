@@ -58,7 +58,6 @@ section privateSection
 set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_isIntegral_jqNModC_all
-p2m_attr_erase "simp" "ModularForm.val_heckeDiagMatrix ModularForm.heckeU_zero ModularForm.heckeU_zero_left ModularForm.heckeT_zero ModularForm.val_heckeMatrix ModularForm.heckeMatrix_zero ModularForm.heckeT_zero_left ModularForm.heckeDiagMatrix_zero ModularForm.val_upperTriangularGL"
 
 open ModularCurve
 

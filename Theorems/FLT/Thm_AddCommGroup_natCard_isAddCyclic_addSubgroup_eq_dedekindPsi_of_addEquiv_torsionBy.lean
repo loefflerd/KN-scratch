@@ -15,7 +15,6 @@ public import Mathlib.AlgebraicGeometry.EllipticCurve.Affine.Point
 public import Definitions.FLT.Def_ModularCurve_X0
 
 import Theorems.FLT.Thm_ZMod_natCard_isAddCyclic_addSubgroup_prod_eq_dedekindPsi
-import Definitions.FLT.Def_P2M_Util
 
 /-!
 # Groups with n-torsion (ℤ/n)² have ψ(n) cyclic subgroups of order n
@@ -55,13 +54,6 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
-set_option backward.isDefEq.respectTransparency.types false
-
-namespace P2MW.S_AddCommGroup_natCard_isAddCyclic_addSubgroup_eq_dedekindPsi_of_addEquiv_torsionBy
-p2m_attr_erase "instance" "ModularCurve.instFiniteProjectiveLine ModularCurve.unimodularRowSetoid ModularCurve.PhiGen.instNeZeroPhiGenCosetA"
-p2m_attr_erase "simp" "ModularCurve.ProjectiveLine.map_mk ModularCurve.evalAtJqN_X ModularCurve.qTwistFun_coeff ModularCurve.swapBivar_C_X ModularCurve.PhiGen.cosetA_succ ModularCurve.qTwist_coeff ModularCurve.PhiGen.cosetB_zero ModularCurve.PhiGen.cosetA_zero ModularCurve.qTwist_single ModularCurve.swapBivar_X ModularCurve.aeval_toRingHom_X ModularCurve.PhiGen.cosetB_succ ModularCurve.coeffEmb_coeff ModularCurve.coeffMap_coeff ModularCurve.coeffMap_id ModularCurve.coeffMap_single"
-
-namespace P2MWs13
 namespace Transport
 
 open AddSubgroup
@@ -109,9 +101,9 @@ theorem le_of_card_eq_of_nsmul_mem {H T : AddSubgroup E} (hcard : Nat.card H = N
   rw [← hcard]
   exact AddSubgroup.addOrderOf_dvd_natCard H hx
 
-end P2MWs13.Transport
+end Transport
 
-open P2MWs13.Transport in
+open Transport in
 theorem solution
     (n : ℕ) [NeZero n] {A : Type*} [AddCommGroup A]
     (e : ZMod n × ZMod n ≃+ Submodule.torsionBy ℤ A n) :
@@ -135,19 +127,15 @@ theorem solution
   · rintro ⟨h1, h2, -⟩
     exact ⟨h1, h2⟩
 
-end S_AddCommGroup_natCard_isAddCyclic_addSubgroup_eq_dedekindPsi_of_addEquiv_torsionBy
-end P2MW
-export P2MW.S_AddCommGroup_natCard_isAddCyclic_addSubgroup_eq_dedekindPsi_of_addEquiv_torsionBy (solution)
-
 end privateSection
 
 public section publicSection
-
 
 open WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
 theorem AddCommGroup.natCard_isAddCyclic_addSubgroup_eq_dedekindPsi_of_addEquiv_torsionBy
     (n : ℕ) [NeZero n] {A : Type*} [AddCommGroup A]
     (e : ZMod n × ZMod n ≃+ Submodule.torsionBy ℤ A n) :
-    Nat.card {H : AddSubgroup A // IsAddCyclic H ∧ Nat.card H = n} = ModularCurve.dedekindPsi n := _root_.P2MW.S_AddCommGroup_natCard_isAddCyclic_addSubgroup_eq_dedekindPsi_of_addEquiv_torsionBy.solution n e
+    Nat.card {H : AddSubgroup A // IsAddCyclic H ∧ Nat.card H = n} = ModularCurve.dedekindPsi n :=
+  solution n e
 
 end publicSection

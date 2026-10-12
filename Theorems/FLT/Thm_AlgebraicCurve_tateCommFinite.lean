@@ -66,9 +66,7 @@ section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
 
-p2m_attr_erase "ext" "IsDedekindDomain.HeightOneSpectrum.adicCompletion.ext"
 namespace P2MW.S_AlgebraicCurve_tateCommFinite
-
 
 namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "Place Divisor Pic0 HasCanonicalLocalResidueKStar kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff"
@@ -480,7 +478,7 @@ theorem kwF4gRRTate_commFinite_of_clearPole_of_poleWindowFinite
     KwF4gRRTateCommFinite K L := by
   intro u fh gh
   have hcomm : lmulK u fh ∘ₗ lmulK u gh = lmulK u gh ∘ₗ lmulK u fh := by
-    ext x
+    ext x : 1
     show fh * (gh * x) = gh * (fh * x)
     ring
   have hRf := finiteDimensional_principalPart_range u hCP hPW fh

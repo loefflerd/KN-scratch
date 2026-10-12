@@ -63,7 +63,6 @@ section privateSection
 set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_exists_gamma0_qExpansion_div_eq_jqNModC
-p2m_attr_erase "simp" "ModularCurve.coeffEmb_coeff ModularCurve.coeffMap_coeff ModularCurve.coeffMap_id ModularCurve.coeffMap_single"
 
 open UpperHalfPlane
 open scoped MatrixGroups

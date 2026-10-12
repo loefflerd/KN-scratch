@@ -59,8 +59,6 @@ section privateSection
 set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_modularFunctionFieldFullC_le_qExpFunctionFieldC_gamma0
-p2m_attr_erase "instance" "WeierstrassCurve.Affine.Point.instFinite"
-p2m_attr_erase "simp" "ModularForm.val_heckeDiagMatrix ModularForm.heckeU_zero ModularForm.heckeU_zero_left ModularForm.heckeT_zero ModularForm.val_heckeMatrix ModularForm.heckeMatrix_zero ModularForm.heckeT_zero_left ModularForm.heckeDiagMatrix_zero ModularForm.val_upperTriangularGL"
 
 theorem solution
     (K : Type*) [Field K] (M : ℕ) [NeZero M] :

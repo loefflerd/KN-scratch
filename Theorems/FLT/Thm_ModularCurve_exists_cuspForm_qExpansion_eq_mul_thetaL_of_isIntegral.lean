@@ -67,7 +67,6 @@ section privateSection
 set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_exists_cuspForm_qExpansion_eq_mul_thetaL_of_isIntegral
-p2m_attr_erase "simp" "ModularCurve.jqNModC_one"
 
 open ModularCurve UpperHalfPlane HahnSeries
 open scoped MatrixGroups ModularForm

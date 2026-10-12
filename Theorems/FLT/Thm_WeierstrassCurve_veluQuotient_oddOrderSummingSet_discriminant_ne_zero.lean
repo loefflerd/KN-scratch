@@ -64,7 +64,6 @@ section privateSection
 set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WeierstrassCurve_veluQuotient_oddOrderSummingSet_discriminant_ne_zero
-p2m_attr_erase "simp" "WeierstrassCurve.veluY_empty"
 
 p2m_open "WeierstrassCurve P2MW.S_WeierstrassCurve_veluQuotient_oddOrderSummingSet_discriminant_ne_zero.WeierstrassCurve"
 
