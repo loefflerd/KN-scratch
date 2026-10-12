@@ -92,12 +92,10 @@ instance instIsAlgClosedResidueField [IsAlgClosed L] :
     have hf1 : f = 1 := (hf_monic.natDegree_eq_zero).mp hf_deg
     exact hf_irr.not_isUnit (by rw [hf1]; exact isUnit_one)
   obtain ⟨α, hα⟩ := IsAlgClosed.exists_root _ hgL_deg
-
   have hα_int : IsIntegral A α := by
     refine ⟨g, hg_monic, ?_⟩
     rwa [IsRoot.def, eval_map] at hα
   obtain ⟨a, ha⟩ := IsIntegrallyClosed.isIntegral_iff.mp hα_int
-
   refine ⟨residue A a, ?_⟩
   have hga : g.eval a = 0 := by
     have : algebraMap A L (g.eval a) = 0 := by
@@ -118,15 +116,13 @@ theorem pow_residueChar_bijective [IsAlgClosed L] {q : ℕ} (hq : q.Prime)
   have : CharP (ResidueField A) q := charP_residueField_of_liesOverPrime_def hq hA
   have : Fact q.Prime := ⟨hq⟩
   constructor
-  ·
-    intro x y hxy
+  · intro x y hxy
     have hxy' : x ^ q = y ^ q := hxy
     have hsub : (x - y) ^ q = 0 := by
       rw [sub_pow_char, hxy', sub_self]
     have := pow_eq_zero_iff hq.ne_zero |>.mp hsub
     exact sub_eq_zero.mp this
-  ·
-    intro x
+  · intro x
     obtain ⟨y, hy⟩ := IsAlgClosed.exists_pow_nat_eq x hq.pos
     exact ⟨y, hy⟩
 
@@ -145,11 +141,9 @@ theorem intCast_isUnit_of_not_dvd (hℓ : ℓ.Prime) (hA : A.LiesOverPrime ℓ) 
   have hnmem : ((n : ℤ) : A) ∈ maximalIdeal A := by
     rw [IsLocalRing.mem_maximalIdeal]
     exact hunit
-
   have hℓmem : ((ℓ : ℕ) : A) ∈ maximalIdeal A := natCast_mem_maximalIdeal_of_liesOverPrime hA
 
   obtain ⟨u, v, huv⟩ := (Nat.prime_iff_prime_int.mp hℓ).coprime_iff_not_dvd.mpr hn
-
   have h1 : (1 : A) ∈ maximalIdeal A := by
     have h := congrArg (fun z : ℤ => ((z : ℤ) : A)) huv
     simp only [Int.cast_add, Int.cast_mul, Int.cast_one, Int.cast_natCast] at h
@@ -183,7 +177,6 @@ theorem isAlgebraic_residue [CharZero L] [Algebra ℚ L]
     [Algebra.IsAlgebraic ℚ L] (hℓ : ℓ.Prime)
     [Algebra (ZMod ℓ) (ResidueField A)] (a : A) :
     IsAlgebraic (ZMod ℓ) (residue A a) := by
-
   obtain ⟨p, hp0, hpa⟩ := Algebra.IsAlgebraic.isAlgebraic (R := ℚ) (a : L)
 
   set P₀ : ℤ[X] := IsLocalization.integerNormalization (nonZeroDivisors ℤ) p with hP₀def
@@ -191,12 +184,10 @@ theorem isAlgebraic_residue [CharZero L] [Algebra ℚ L]
     IsLocalization.integerNormalization_aeval_eq_zero (nonZeroDivisors ℤ) p hpa
   have hP₀0 : P₀ ≠ 0 := fun h =>
     hp0 ((IsLocalization.integerNormalization_eq_zero_iff le_rfl p).mp h)
-
   set P : ℤ[X] := P₀.primPart with hPdef
   have hPa : aeval (a : L) P = 0 := aeval_primPart_eq_zero hP₀0 hP₀a
   have hPprim : P.IsPrimitive := P₀.isPrimitive_primPart
   have hP0 : P ≠ 0 := P₀.primPart_ne_zero
-
   have hcoeff : ∃ i, ¬(ℓ : ℤ) ∣ P.coeff i := by
     by_contra h
     simp only [not_exists, not_not] at h
@@ -210,22 +201,18 @@ theorem isAlgebraic_residue [CharZero L] [Algebra ℚ L]
       rw [← Polynomial.aeval_algebraMap_apply]
       exact hPa
     exact (map_eq_zero_iff _ Subtype.coe_injective).mp hmap
-
   have hPres : aeval (residue A a) P = 0 := by
     have hcomm : aeval (residue A a) P = (residue A) (aeval a P) :=
       Polynomial.aeval_algHom_apply (RingHom.toIntAlgHom (residue A)) a P
     rw [hcomm, hPaA, map_zero]
-
   refine ⟨P.map (algebraMap ℤ (ZMod ℓ)), ?_, ?_⟩
-  ·
-    obtain ⟨i, hi⟩ := hcoeff
+  · obtain ⟨i, hi⟩ := hcoeff
     intro h0
     apply hi
     have hzero : (P.map (algebraMap ℤ (ZMod ℓ))).coeff i = 0 := by rw [h0]; simp
     rw [coeff_map] at hzero
     exact (ZMod.intCast_zmod_eq_zero_iff_dvd _ _).mp hzero
-  ·
-    rw [aeval_def, eval₂_map,
+  · rw [aeval_def, eval₂_map,
       show (algebraMap (ZMod ℓ) (ResidueField A)).comp (algebraMap ℤ (ZMod ℓ))
           = algebraMap ℤ (ResidueField A) from RingHom.ext_int _ _,
       ← aeval_def]

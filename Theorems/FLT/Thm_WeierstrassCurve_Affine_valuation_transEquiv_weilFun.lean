@@ -200,8 +200,7 @@ end WeierstrassCurve.Affine.DivTau
 open WeierstrassCurve.Affine.DivTau in
 theorem solution {F : Type*} {K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] [IsAlgClosed K] (W : WeierstrassCurve F) [W.IsElliptic] [IsDedekindDomain (W⁄K).CoordinateRing] {n : ℕ} (hn : (n : K) ≠ 0) (S : (W⁄K).Point) {T : (W⁄K).Point} (hT : (n : ℤ) • T = 0) (P : (W⁄K).Point) (hP : P ≠ 0) : (placeOf W K P hP).valuation (W⁄K).FunctionField (transEquiv W K S (weilFun W K n T)) = (if (n : ℤ) • (P + S) = T then exp (-1 : ℤ) else 1) / (if (n : ℤ) • (P + S) = 0 then exp (-1 : ℤ) else 1) := by
   by_cases hPS : P + S = 0
-  ·
-    have hS : S ≠ 0 := by rintro rfl; exact hP (by simpa using hPS)
+  · have hS : S ≠ 0 := by rintro rfl; exact hP (by simpa using hPS)
     have hPe : P = -S := eq_neg_of_add_eq_zero_left hPS
     subst hPe
     rw [hPS, smul_zero, weilFun, map_div₀, map_div₀,

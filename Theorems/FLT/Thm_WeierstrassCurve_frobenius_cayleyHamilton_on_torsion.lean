@@ -82,8 +82,6 @@ p2m_attr_erase "instance" "WeierstrassCurve.instIsEllipticBaseChange Weierstrass
 p2m_attr_erase "simp" "compl₂EDSAux_neg_two compl₂EDSAux_zero WeierstrassCurve.ωe_zero WeierstrassCurve.Univ.pointedCurve_a₁ WeierstrassCurve.Univ.polyToField_polynomial WeierstrassCurve.Coeff.A₁.sizeOf_spec compl₂EDS_zero compl₂EDS_one WeierstrassCurve.Univ.Affine.smulY_zero Param.C.sizeOf_spec EllSequence.redInvarDenom_zero compl₂EDSAux_two compl₂EDSAux_neg_one compl₂EDSAux_one WeierstrassCurve.Coeff.A₆.sizeOf_spec WeierstrassCurve.ψc_neg WeierstrassCurve.Univ.Affine.smulY_one WeierstrassCurve.Univ.Affine.smulX_one WeierstrassCurve.Coeff.A₂.sizeOf_spec WeierstrassCurve.Univ.pointedCurve_a₄ compl₂EDS_neg WeierstrassCurve.Univ.pointedCurve_a₃ EllSequence.redInvarDenom_two WeierstrassCurve.Univ.pointedCurve_a₆ Param.D.sizeOf_spec WeierstrassCurve.ωe_one WeierstrassCurve.Univ.Affine.smulX_zero WeierstrassCurve.Coeff.A₃.sizeOf_spec EllSequence.redInvarDenom_one WeierstrassCurve.Coeff.A₄.sizeOf_spec WeierstrassCurve.Univ.pointedCurve_a₂ Param.B.sizeOf_spec compl₂EDS_two WeierstrassCurve.Universal.halveX_zero WeierstrassCurve.Universal.specialize_X_one WeierstrassCurve.Universal.coeff_halve WeierstrassCurve.Universal.specialize_X_two WeierstrassCurve.Universal.halveCoeff_zero WeierstrassCurve.Universal.specialize_X_four WeierstrassCurve.Universal.coeff_halveX"
 p2m_attr_erase "simp" "WeierstrassCurve.Universal.specialize_X_three WeierstrassCurve.Universal.specialize_X_zero"
 
-set_option autoImplicit false
-
 open WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point ValuationSubring
 open IsLocalRing
 
@@ -222,7 +220,6 @@ theorem solution
   have hΔres : ((W.map (Int.castRingHom A)).map (residue A)).Δ ≠ 0 := by
     rw [map_Δ, map_Δ]
     exact residue_intCast_ne_zero hℓ hA hgood
-
   have e₁ : ((W.map (Int.castRingHom ℚ))⁄(AlgebraicClosure ℚ) : Affine (AlgebraicClosure ℚ))
       = (W.map (Int.castRingHom A)).map A.subtype := by
     show W.map ((algebraMap ℚ (AlgebraicClosure ℚ)).comp (Int.castRingHom ℚ))
@@ -234,7 +231,6 @@ theorem solution
     show W.map ((residue A).comp (Int.castRingHom A))
         = W.map (algebraMap ℤ (ResidueField A))
     congr 1
-
   have : ((W⁄(ResidueField A)) : WeierstrassCurve (ResidueField A)).IsElliptic := by
     refine ⟨isUnit_iff_ne_zero.mpr ?_⟩
     have h := hΔres
@@ -250,7 +246,6 @@ theorem solution
         = W.map ((residue A).comp (Int.castRingHom A))
     congr 1
     exact Subsingleton.elim _ _
-
   obtain ⟨σ', hσ'x⟩ := exists_frobAlgEquiv (L := AlgebraicClosure ℚ) hℓ hA
 
   have ch := FrobeniusEndo.frobCharEqOnPoints_of_frobenius (F := ZMod ℓ)
@@ -258,19 +253,16 @@ theorem solution
     (fun z => by rw [ZMod.card]; exact hσ'x z)
     (by rw [ZMod.card]; exact hℓ)
   rw [ZMod.card] at ch
-
   let red : ((W.map (Int.castRingHom ℚ))⁄(AlgebraicClosure ℚ)).Point →+
       ((W⁄(ResidueField A)) : WeierstrassCurve (ResidueField A)).toAffine.Point :=
     ((cgAddEquiv e₂).toAddMonoidHom.comp (reduceHom hΔres)).comp
       (cgAddEquiv e₁).toAddMonoidHom
-
   have hE' : ∀ Q' : ((W.map (Int.castRingHom A)).map (residue A)).toAffine.Point,
       cgPoint e₂ (frobPt ℓ hfrob Q') = σ' • (cgPoint e₂ Q') := by
     intro Q'
     rcases Q' with _ | ⟨u, v, w⟩
     · rfl
     · exact some_congr'' (hσ'x u).symm (hσ'x v).symm _ _
-
   have hE : ∀ Q : ((W.map (Int.castRingHom ℚ))⁄(AlgebraicClosure ℚ)).Point,
       red (σ • Q) = σ' • (red Q) := by
     intro Q

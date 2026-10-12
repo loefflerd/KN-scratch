@@ -72,7 +72,10 @@ p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
 
 variable {K : Type*} [Field K] (W : WeierstrassCurve K)
 
-namespace CoordinateRing p2m_export "WeierstrassCurve.Affine.CoordinateRing" "mk map" end CoordinateRing
+namespace CoordinateRing
+p2m_export "WeierstrassCurve.Affine.CoordinateRing" "mk map"
+end CoordinateRing
+
 p2m_open_scoped "WeierstrassCurve.Affine.CoordinateRing" in
 
 theorem CoordinateRing.adjoin_mk_X_mk_Y :
@@ -83,7 +86,6 @@ theorem CoordinateRing.adjoin_mk_X_mk_Y :
   intro r
   induction r using AdjoinRoot.induction_on with
   | ih p =>
-
     have hC : ∀ c : K[X], CoordinateRing.mk W.toAffine (C c) ∈ Algebra.adjoin K {x, y} := by
       intro c
       have : CoordinateRing.mk W.toAffine (C c) = aeval x c := by
@@ -114,7 +116,6 @@ theorem solution {K : Type*} [Field K] (W : WeierstrassCurve K) : IntermediateFi
   set S : IntermediateField K W.toAffine.FunctionField := IntermediateField.adjoin K
     {algebraMap W.toAffine.CoordinateRing W.toAffine.FunctionField x,
       algebraMap W.toAffine.CoordinateRing W.toAffine.FunctionField y} with hS
-
   have hR : ∀ r : W.toAffine.CoordinateRing,
       algebraMap W.toAffine.CoordinateRing W.toAffine.FunctionField r ∈ S := by
     intro r

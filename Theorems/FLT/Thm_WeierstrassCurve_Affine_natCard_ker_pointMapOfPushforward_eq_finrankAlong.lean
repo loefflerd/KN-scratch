@@ -88,17 +88,6 @@ namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "Pic0.pushforwardAlongDegZero Pic0.coe_pushforwardAlongDegZero Pic0.pushforwardAlongHom Pic0.pushforwardAlongHom_mk algebraAlong isScalarTower_along isIntegral_along FiniteAlong NormFormulaAlong finrankAlong SeparableAlong Place.deg_restrict_mul_inertiaDeg Place.mem_fiber Place HasPrincipalDivisors Pic0 Pic0.mk HasPrincipalDivisors.exists_divisor Place.valuationSubringAlgebra Place.sum_ramificationIndex_mul_inertiaDeg"
 namespace Place
 p2m_export "AlgebraicCurve.Place" "restrictAlong ramificationIndex restrict inertiaDeg deg_restrict_mul_inertiaDeg fiber mem_fiber ext deg ord exists_unit_mul_zpow toValuationSubring mk center valuationSubringAlgebra integralClosureAt algebraMap_integralClosureAt_injective fiberCenter mem_fiberCenter_iff_ord_pos fiberCenter_liesOver sum_ramificationIndex_mul_inertiaDeg ramificationIndex_eq_ramificationIdx_fiberCenter"
-p2m_open "AlgebraicCurve.Place~mem_of_ord_nonneg AlgebraicCurve~Place.mem_of_ord_nonneg"
-
-open IsDedekindDomain WithZero IsLocalRing
-
-section SinglePlace
-
-variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
-
-
-end SinglePlace
-
 end AlgebraicCurve.Place
 
 namespace AlgebraicCurve

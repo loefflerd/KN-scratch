@@ -171,7 +171,6 @@ theorem dichotomy_of_compPoly_eq_zero (hσ : ∀ x : k, σ x = x ^ Fintype.card 
     rw [eq_div_iff hΨ]
     simpa only [compPoly, eval_sub, eval_mul, eval_pow, eval_X, sub_eq_zero] using hroot
   rw [e₂, e]
-
   have key := some_eq_or_eq_neg_of_x_eq (V := (W⁄k)) (hx ▸ h₂) h'
   rcases key with h1 | h1
   · right
@@ -210,15 +209,12 @@ theorem compPoly_eq_zero (hσ : ∀ x : k, σ x = x ^ Fintype.card F) {r : ℕ} 
   have : Finite Tor := Nat.finite_of_card_ne_zero (by rw [hcard]; exact hr0)
   let : Fintype Tor := Fintype.ofFinite Tor
   have hcardF : Fintype.card Tor = r ^ 2 := by rw [← Nat.card_eq_fintype_card, hcard]
-
   have hmemT : ∀ T : Tor, (r : ℤ) • (T : (W⁄k).Point) = 0 := fun T =>
     (Submodule.mem_torsionBy_iff _ _).mp T.2
-
   let s : Finset Tor := Finset.univ.erase 0
   have hs : s.card = r ^ 2 - 1 := by
     rw [Finset.card_erase_of_mem (Finset.mem_univ _), Finset.card_univ, hcardF]
   let f : Tor → k := fun T => xOf (T : (W⁄k).Point)
-
   have hne : ∀ T ∈ s, (T : (W⁄k).Point) ≠ 0 := by
     intro T hT h0
     exact (Finset.mem_erase.mp hT).1 (Subtype.ext h0)
@@ -242,7 +238,6 @@ theorem compPoly_eq_zero (hσ : ∀ x : k, σ x = x ^ Fintype.card F) {r : ℕ} 
     exact hroot T hT
   have hcard_image : (s.image f).card ≤ Z.natDegree :=
     (Finset.card_le_card himage).trans ((Multiset.toFinset_card_le _).trans (Polynomial.card_roots' Z))
-
   have hfib : ∀ a ∈ s.image f, (s.filter (fun T => f T = a)).card ≤ 2 := by
     intro a ha
     obtain ⟨T₀, hT₀, rfl⟩ := Finset.mem_image.mp ha
@@ -288,7 +283,6 @@ theorem charEq_of_compPoly_eq_zero (hσ : ∀ x : k, σ x = x ^ Fintype.card F)
     (Submodule.mem_torsionBy_iff _ _).mp T.2
   have hmem_sub : ∀ T T' : Tor, (r : ℤ) • ((T : (W⁄k).Point) - T') = 0 := fun T T' => by
     rw [smul_sub, hmemT, hmemT, sub_zero]
-
   let B₁ : Tor → Prop := fun T => P + T = 0
   let B₂ : Tor → Prop := fun T => (q : ℤ) • (P + (T : (W⁄k).Point)) = 0
   let B₃ : Tor → Prop := fun T => σ • (σ • (P + (T : (W⁄k).Point))) = (q : ℤ) • (P + (T : (W⁄k).Point))
@@ -304,7 +298,6 @@ theorem charEq_of_compPoly_eq_zero (hσ : ∀ x : k, σ x = x ^ Fintype.card F)
     · rw [← e, smul_add, smul_add, smul_add] at h4
       apply hP
       have hT := hrel _ (hmemT T)
-
       have key : σ • (σ • P) + (q : ℤ) • P =
           (σ • (σ • P) + σ • (σ • (T : (W⁄k).Point))) + ((q : ℤ) • P + (q : ℤ) • (T : (W⁄k).Point))
             - (σ • (σ • (T : (W⁄k).Point)) + (q : ℤ) • (T : (W⁄k).Point)) := by abel

@@ -162,13 +162,11 @@ theorem slope_spec [DecidableEq K] [DecidableEq (ResidueField R)]
   have hE2k : (reduction R W).toAffine.Equation (residue R r2x) (residue R r2y) :=
     (equation_lift R W h₂.1 h2x h2y).map (residue R)
   by_cases hxK : x₁ = x₂
-  ·
-    have hyne : y₁ ≠ W.toAffine.negY x₂ y₂ := fun hy => hxy ⟨hxK, hy⟩
+  · have hyne : y₁ ≠ W.toAffine.negY x₂ y₂ := fun hy => hxy ⟨hxK, hy⟩
     have hy12 : y₁ = y₂ := Affine.Y_eq_of_Y_ne h₁.1 h₂.1 hxK hyne
     have hr12x : r1x = r2x := IsFractionRing.injective R K (by rw [h1x, h2x, hxK])
     have hr12y : r1y = r2y := IsFractionRing.injective R K (by rw [h1y, h2y, hy12])
     rw [Affine.slope_of_Y_ne hxK hyne]
-
     have hdK : y₁ - W.toAffine.negY x₁ y₁
         = algebraMap R K (r1y - (integralModel R W).toAffine.negY r1x r1y) := by
       simp only [Affine.negY, map_sub, map_neg, map_mul, h1x, h1y,
@@ -206,7 +204,6 @@ theorem slope_spec [DecidableEq K] [DecidableEq (ResidueField R)]
           / (y₁ - W.toAffine.negY x₁ y₁)) ≤ 1 := by
       rw [map_div₀, hvd_one, div_one]; exact hvn_le
     refine ⟨hvℓ, ?_⟩
-
     obtain ⟨rl, hrl⟩ := exists_algebraMap_eq_of_valuation_le_one R hvℓ
     have hld : rl * (r1y - (integralModel R W).toAffine.negY r1x r1y)
         = 3 * r1x ^ 2 + 2 * (integralModel R W).a₂ * r1x
@@ -228,11 +225,9 @@ theorem slope_spec [DecidableEq K] [DecidableEq (ResidueField R)]
       Affine.slope_of_Y_ne (congrArg _ hr12x) (fun h => hcol ⟨congrArg _ hr12x, h⟩),
       eq_div_iff hdne]
     exact hlres.trans hnbar
-  ·
-    rw [Affine.slope_of_X_ne hxK]
+  · rw [Affine.slope_of_X_ne hxK]
     by_cases hxbar : residue R r1x = residue R r2x
-    ·
-      have hybarne : residue R r1y
+    · have hybarne : residue R r1y
           ≠ (reduction R W).toAffine.negY (residue R r2x) (residue R r2y) :=
         fun h => hcol ⟨hxbar, h⟩
       have hy12bar : residue R r1y = residue R r2y :=
@@ -322,8 +317,7 @@ theorem slope_spec [DecidableEq K] [DecidableEq (ResidueField R)]
         rw [h1]; exact hd₂ne
       rw [← hrl, reduceCoord_algebraMap, Affine.slope_of_Y_ne hxbar hybarne,
         eq_div_iff htdne, h1, h2, ← hd₂bar, ← hNbar, ← map_mul, hld]
-    ·
-      have hdxK : x₁ - x₂ = algebraMap R K (r1x - r2x) := by
+    · have hdxK : x₁ - x₂ = algebraMap R K (r1x - r2x) := by
         simp only [map_sub, h1x, h2x]
       have hdxne : residue R r1x - residue R r2x ≠ 0 := sub_ne_zero.mpr hxbar
       have hvdx_le : valuation K (maximalIdeal R) (x₁ - x₂) ≤ 1 := by
@@ -374,8 +368,7 @@ theorem slope_pole [DecidableEq K]
   have hns1k : (reduction R W).toAffine.Nonsingular (residue R r1x) (residue R r1y) :=
     reduced_nonsingular R W (equation_lift R W h₁.1 h1x h1y)
   by_cases hxK : x₁ = x₂
-  ·
-    have hyne : y₁ ≠ W.toAffine.negY x₂ y₂ := fun hy => hxy ⟨hxK, hy⟩
+  · have hyne : y₁ ≠ W.toAffine.negY x₂ y₂ := fun hy => hxy ⟨hxK, hy⟩
     have hy12 : y₁ = y₂ := Affine.Y_eq_of_Y_ne h₁.1 h₂.1 hxK hyne
     have hr12x : r1x = r2x := IsFractionRing.injective R K (by rw [h1x, h2x, hxK])
     have hr12y : r1y = r2y := IsFractionRing.injective R K (by rw [h1y, h2y, hy12])
@@ -401,7 +394,6 @@ theorem slope_pole [DecidableEq K]
       sub_ne_zero.mpr (fun hcon => hyne (hcon.trans (by rw [hxK, hy12])))
     have hvd0 : valuation K (maximalIdeal R) (y₁ - W.toAffine.negY x₁ y₁) ≠ 0 :=
       (Valuation.ne_zero_iff _).mpr hd0
-
     have hnK : 3 * x₁ ^ 2 + 2 * W.toAffine.a₂ * x₁ + W.toAffine.a₄ - W.toAffine.a₁ * y₁
         = algebraMap R K (3 * r1x ^ 2 + 2 * (integralModel R W).a₂ * r1x
             + (integralModel R W).a₄ - (integralModel R W).a₁ * r1y) := by
@@ -452,8 +444,7 @@ theorem slope_pole [DecidableEq K]
         _ < 1 := hvd_lt
     rw [hvn_one] at hlt
     exact lt_irrefl _ hlt
-  ·
-    rw [Affine.slope_of_X_ne hxK]
+  · rw [Affine.slope_of_X_ne hxK]
     have hdxK : x₁ - x₂ = algebraMap R K (r1x - r2x) := by
       simp only [map_sub, h1x, h2x]
     have hvdx_le : valuation K (maximalIdeal R) (x₁ - x₂) ≤ 1 := by
@@ -466,8 +457,7 @@ theorem slope_pole [DecidableEq K]
     have hvdx0 : valuation K (maximalIdeal R) (x₁ - x₂) ≠ 0 :=
       (Valuation.ne_zero_iff _).mpr hdx0
     by_cases hybar : residue R r1y = residue R r2y
-    ·
-      simp only [Affine.negY] at hcoly
+    · simp only [Affine.negY] at hcoly
       have hd₂K : y₁ + y₂ + W.toAffine.a₁ * x₁ + W.toAffine.a₃
           = algebraMap R K (r1y + r2y + (integralModel R W).a₁ * r1x
               + (integralModel R W).a₃) := by
@@ -566,8 +556,7 @@ theorem slope_pole [DecidableEq K]
           _ < 1 := hvd₂_lt
       rw [hvN_one] at hlt
       exact lt_irrefl _ hlt
-    ·
-      have hdyK : y₁ - y₂ = algebraMap R K (r1y - r2y) := by
+    · have hdyK : y₁ - y₂ = algebraMap R K (r1y - r2y) := by
         simp only [map_sub, h1y, h2y]
       have hvdy_le : valuation K (maximalIdeal R) (y₁ - y₂) ≤ 1 := by
         rw [hdyK]; exact valuation_le_one _ _
@@ -619,8 +608,7 @@ theorem reducePoint_add_int_int [DecidableEq K] [DecidableEq (ResidueField R)]
   have hc2x : reduceCoord R x₂ = residue R r2x := by rw [← h2x, reduceCoord_algebraMap]
   have hc2y : reduceCoord R y₂ = residue R r2y := by rw [← h2y, reduceCoord_algebraMap]
   by_cases hxy : x₁ = x₂ ∧ y₁ = W.toAffine.negY x₂ y₂
-  ·
-    rw [Affine.Point.add_of_Y_eq hxy.1 hxy.2, hrP, hrQ]
+  · rw [Affine.Point.add_of_Y_eq hxy.1 hxy.2, hrP, hrQ]
     have hx' : reduceCoord R x₁ = reduceCoord R x₂ := by rw [hxy.1]
     have hnegK : W.toAffine.negY x₂ y₂
         = algebraMap R K ((integralModel R W).toAffine.negY r2x r2y) := by
@@ -638,8 +626,7 @@ theorem reducePoint_add_int_int [DecidableEq K] [DecidableEq (ResidueField R)]
   · rw [Affine.Point.add_some hxy]
     by_cases hcol : reduceCoord R x₁ = reduceCoord R x₂ ∧
         reduceCoord R y₁ = (reduction R W).toAffine.negY (reduceCoord R x₂) (reduceCoord R y₂)
-    ·
-      have hℓ := slope_pole R W h₁ h₂ hx₁ hy₁ hx₂ hy₂ hxy hcol.1 hcol.2
+    · have hℓ := slope_pole R W h₁ h₂ hx₁ hy₁ hx₂ hy₂ hxy hcol.1 hcol.2
       have hℓ0 : valuation K (maximalIdeal R) (W.toAffine.slope x₁ x₂ y₁ y₂) ≠ 0 :=
         (zero_lt_one.trans hℓ).ne'
       have hℓ2 : valuation K (maximalIdeal R) (W.toAffine.slope x₁ x₂ y₁ y₂)
@@ -692,8 +679,7 @@ theorem reducePoint_add_int_int [DecidableEq K] [DecidableEq (ResidueField R)]
         exact hone
       rw [hrP, hrQ, Affine.Point.add_of_Y_eq hcol.1 hcol.2]
       exact (reducePoint_some_eq_zero_iff R W _).mpr haddX
-    ·
-      obtain ⟨hvℓ, hℓbar⟩ := slope_spec R W h₁ h₂ hx₁ hy₁ hx₂ hy₂ hxy hcol
+    · obtain ⟨hvℓ, hℓbar⟩ := slope_spec R W h₁ h₂ hx₁ hy₁ hx₂ hy₂ hxy hcol
       obtain ⟨r1x, h1x⟩ := exists_algebraMap_eq_of_valuation_le_one R hx₁
       obtain ⟨r1y, h1y⟩ := exists_algebraMap_eq_of_valuation_le_one R hy₁
       obtain ⟨rl, hrl⟩ := exists_algebraMap_eq_of_valuation_le_one R hvℓ

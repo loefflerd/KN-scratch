@@ -72,8 +72,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ValuationSubring_isDiscreteValuationRing_comap_of_liesOverPrime
 
-set_option autoImplicit false
-
 open IsDiscreteValuationRing IsLocalRing IsDedekindDomain.HeightOneSpectrum
 open scoped NumberField Pointwise
 
@@ -89,17 +87,14 @@ theorem comap_isDiscreteValuationRing (L : IntermediateField ℚ Qb)
     IsDiscreteValuationRing (A.comap (algebraMap L Qb)) := by
   have hA' : A.valuation (q : Qb) < 1 := hA
   set S : ValuationSubring L := A.comap (algebraMap L Qb) with hSdef
-
   have : CharZero ↥L := charZero_of_injective_algebraMap (algebraMap ℚ ↥L).injective
   have : NumberField ↥L := ⟨⟩
-
   have hOS : ∀ x : 𝓞 ↥L, algebraMap (𝓞 ↥L) ↥L x ∈ S := by
     intro x
     have h0 : IsIntegral ℤ (algebraMap (𝓞 ↥L) ↥L x) := x.isIntegral_coe
     have hint : IsIntegral ↥S (algebraMap (𝓞 ↥L) ↥L x) := h0.tower_top
     obtain ⟨y, hy⟩ := IsIntegrallyClosed.isIntegral_iff.mp hint
     rw [← hy]; exact y.2
-
   let f : 𝓞 ↥L →+* ↥S :=
     { toFun := fun x => ⟨algebraMap (𝓞 ↥L) ↥L x, hOS x⟩
       map_one' := Subtype.ext (map_one _)
@@ -108,10 +103,8 @@ theorem comap_isDiscreteValuationRing (L : IntermediateField ℚ Qb)
       map_add' := fun a b => Subtype.ext (map_add _ a b) }
   have hf_inj : Function.Injective f := fun a b hab =>
     IsFractionRing.injective (𝓞 ↥L) ↥L (congrArg (fun s : ↥S => (s : ↥L)) hab)
-
   set p : Ideal (𝓞 ↥L) := Ideal.comap f (IsLocalRing.maximalIdeal ↥S) with hpdef
   have : p.IsPrime := Ideal.IsPrime.comap f
-
   have hqS : ¬ IsUnit ((q : ℕ) : ↥S) := by
     intro h
     obtain ⟨w, hw⟩ := h.exists_left_inv
@@ -134,7 +127,6 @@ theorem comap_isDiscreteValuationRing (L : IntermediateField ℚ Qb)
         _ ≤ 1 * A.valuation ((q : ℕ) : Qb) := mul_le_mul_left hv1 _
         _ = A.valuation ((q : ℕ) : Qb) := one_mul _
     exact absurd hA' (not_lt.mpr h2)
-
   have hp_mem : ((q : ℕ) : 𝓞 ↥L) ∈ p := by
     rw [hpdef, Ideal.mem_comap, map_natCast f, IsLocalRing.mem_maximalIdeal, mem_nonunits_iff]
     exact hqS
@@ -154,16 +146,13 @@ theorem comap_isDiscreteValuationRing (L : IntermediateField ℚ Qb)
     IsFractionRing.isFractionRing_of_isDomain_of_isLocalization p.primeCompl _ _
   have hdvr_loc : IsDiscreteValuationRing (Localization.AtPrime p) :=
     IsLocalization.AtPrime.isDiscreteValuationRing_of_dedekind_domain (𝓞 ↥L) hp_ne _
-
   let : Algebra (𝓞 ↥L) ↥S := f.toAlgebra
   have : IsLocalization.AtPrime ↥S p := by
     refine ⟨fun t => ?_, fun z => ?_, fun {x y} hxy => ?_⟩
-    ·
-      rw [RingHom.algebraMap_toAlgebra]
+    · rw [RingHom.algebraMap_toAlgebra]
       by_contra h
       exact t.2 (Ideal.mem_comap.mpr ((IsLocalRing.mem_maximalIdeal _).mpr h))
-    ·
-      rw [RingHom.algebraMap_toAlgebra]
+    · rw [RingHom.algebraMap_toAlgebra]
       rcases eq_or_ne z 0 with rfl | hz0
       · exact ⟨⟨0, 1⟩, by simp⟩
       have hz : (z : ↥L) ≠ 0 := fun h => hz0 (Subtype.ext h)
@@ -205,7 +194,6 @@ theorem comap_isDiscreteValuationRing (L : IntermediateField ℚ Qb)
         have hL := congrArg (algebraMap (Localization.AtPrime p) ↥L) hspec
         rw [map_mul, hw, ← IsScalarTower.algebraMap_apply, ← IsScalarTower.algebraMap_apply]
           at hL
-
         have hL2 : algebraMap (𝓞 ↥L) ↥L ↑t' = (z : ↥L) * algebraMap (𝓞 ↥L) ↥L a' := by
           have h3 := congrArg ((z : ↥L) * ·) hL
           simpa [← mul_assoc, mul_inv_cancel₀ hz] using h3
@@ -214,8 +202,7 @@ theorem comap_isDiscreteValuationRing (L : IntermediateField ℚ Qb)
           rw [hfS]
           exact Ideal.mul_mem_left _ _ (Ideal.mem_comap.mp ha')
         exact t'.2 (Ideal.mem_comap.mpr ht'm)
-    ·
-      rw [RingHom.algebraMap_toAlgebra] at hxy
+    · rw [RingHom.algebraMap_toAlgebra] at hxy
       exact ⟨1, by rw [hf_inj hxy]⟩
   exact IsLocalization.AtPrime.isDiscreteValuationRing_of_dedekind_domain (𝓞 ↥L) hp_ne ↥S
 

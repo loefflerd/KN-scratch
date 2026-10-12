@@ -64,8 +64,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ValuationSubring_exists_inertiaSubgroup_restrictNormal_eq
 
-set_option autoImplicit false
-
 open IsLocalRing
 open scoped Pointwise
 
@@ -84,7 +82,6 @@ theorem inertia_restrictNormal (L : IntermediateField ℚ Qb) [FiniteDimensional
   set τ₀ : L ≃ₐ[ℚ] L := AlgEquiv.restrictNormalHom L σ₀ with hτ₀
 
   have hσA : σ₀ • A = A := hσdec
-
   have hcomm : ∀ x : L, algebraMap L Qb (τ₀ x) = σ₀ (algebraMap L Qb x) := fun x =>
     AlgEquiv.restrictNormal_commutes σ₀ L x
   have hcomm_inv : ∀ x : L, algebraMap L Qb (τ₀⁻¹ x) = σ₀⁻¹ (algebraMap L Qb x) := by
@@ -93,7 +90,6 @@ theorem inertia_restrictNormal (L : IntermediateField ℚ Qb) [FiniteDimensional
       rw [hτ₀, ← map_inv]
     rw [this]
     exact AlgEquiv.restrictNormal_commutes σ₀⁻¹ L x
-
   have hτdec : τ₀ ∈ S.decompositionSubgroup ℚ := by
     rw [MulAction.mem_stabilizer_iff]
     ext x
@@ -105,7 +101,6 @@ theorem inertia_restrictNormal (L : IntermediateField ℚ Qb) [FiniteDimensional
   set ι : S →+* A :=
     RingHom.codRestrict ((algebraMap L Qb).comp S.subtype) A.toSubring
       (fun x => ValuationSubring.mem_comap.mp x.2) with hι
-
   have hσres : ∀ b : A, IsLocalRing.residue A ((⟨σ₀, hσdec⟩ : A.decompositionSubgroup ℚ) • b)
       = IsLocalRing.residue A b := by
     intro b
@@ -114,7 +109,6 @@ theorem inertia_restrictNormal (L : IntermediateField ℚ Qb) [FiniteDimensional
     have h2 := RingEquiv.ext_iff.mp h1 (IsLocalRing.residue A b)
     rw [IsLocalRing.ResidueField.residue_smul]
     exact h2
-
   have hτin : (⟨τ₀, hτdec⟩ : S.decompositionSubgroup ℚ) ∈ S.inertiaSubgroup ℚ := by
     rw [ValuationSubring.inertiaSubgroup, MonoidHom.mem_ker]
     apply RingEquiv.ext
@@ -123,7 +117,6 @@ theorem inertia_restrictNormal (L : IntermediateField ℚ Qb) [FiniteDimensional
     show (⟨τ₀, hτdec⟩ : S.decompositionSubgroup ℚ) • IsLocalRing.residue S y
       = IsLocalRing.residue S y
     rw [← IsLocalRing.ResidueField.residue_smul]
-
     have key : (⟨τ₀, hτdec⟩ : S.decompositionSubgroup ℚ) • y - y ∈ IsLocalRing.maximalIdeal S := by
       have himg : ι ((⟨τ₀, hτdec⟩ : S.decompositionSubgroup ℚ) • y - y)
           ∈ IsLocalRing.maximalIdeal A := by

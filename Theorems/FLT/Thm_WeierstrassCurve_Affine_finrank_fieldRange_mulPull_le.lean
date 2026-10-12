@@ -86,7 +86,6 @@ theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K]
   have hn0 : n ≠ 0 := by
     rintro rfl
     exact hgood.1 (zero_zsmul _)
-
   let f : K →ₐ[F] L := IsScalarTower.toAlgHom F K L
   have hf : (f : K →+* L) = algebraMap K L := rfl
   have hΦ : (W⁄L).Φ n = ((W⁄K).Φ n).map (algebraMap K L) := by
@@ -95,21 +94,18 @@ theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K]
     rw [← hf]; exact W.baseChange_ΨSq f n
   have hΨ₂Sq : (W⁄L).Ψ₂Sq = (W⁄K).Ψ₂Sq.map (algebraMap K L) := by
     rw [← hf]; exact W.baseChange_Ψ₂Sq f
-
   have hγn : n • genericPoint W K ≠ 0 := hgood.1
   have hψ : ((W⁄L).ψ n).evalEval gX gY ≠ 0 := fun h0 =>
     hγn ((WeierstrassCurve.Affine.Point.smul_some_eq_zero_iff (W⁄L) (generic_nonsingular W K) n).mpr h0)
   have hΨX : ((W⁄L).ΨSq n).eval gX ≠ 0 := by
     rw [← WeierstrassCurve.Affine.evalEval_psi_sq (W⁄L) (generic_equation W K) n]
     exact pow_ne_zero _ hψ
-
   obtain ⟨y', h', hmul⟩ :=
     WeierstrassCurve.Affine.Point.zsmul_some_eq_some_div (W⁄L) (generic_nonsingular W K) hψ
   have hxn : mulPull W K n gX = ((W⁄L).Φ n).eval gX / ((W⁄L).ΨSq n).eval gX := by
     rw [hXdef, mulPull_genericX' W K hgood]
     show (n • Point.some _ _ (generic_nonsingular W K)).xc = _
     rw [hmul, Point.xc_some]
-
   set A : L := (W⁄L).a₁ * gX + (W⁄L).a₃ with hA
   set B : L := -(gX ^ 3 + (W⁄L).a₂ * gX ^ 2 + (W⁄L).a₄ * gX + (W⁄L).a₆) with hB
   have hcoef : ∀ a : F, (algebraMap F L a) ∈ K⟮gX⟯ := fun a => by
@@ -132,7 +128,6 @@ theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K]
     have h := (equation_iff _ _).mp (generic_equation W K)
     rw [hA, hB]
     linear_combination h
-
   have hιX : (negEquiv W K : L →ₐ[K] L) gX = gX := negEquiv_genericX W K
   have hιY' : (negEquiv W K : L →ₐ[K] L) gY = -gY - A := by
     show negEquiv W K (genericY W K) = _
@@ -145,7 +140,6 @@ theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K]
     intro heq
     change negEquiv W K (mulPull W K n (genericY W K)) = mulPull W K n (genericY W K) at heq
     rw [negEquiv_mulPull_genericY' W K hgood, mulPull_genericY' W K hgood] at heq
-
     have hP := Point.eq_some_xc_yc hγn
     have h2 : (2 : ℕ) • (n • genericPoint W K) = 0 := by
       rw [two_nsmul, add_eq_zero_iff_eq_neg]
@@ -164,8 +158,7 @@ theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K]
     (negEquiv W K : L →ₐ[K] L) hιX hιY hιμ ((W⁄K).Φ n) ((W⁄K).ΨSq n)
     (d := n.natAbs ^ 2) (pow_pos (Int.natAbs_pos.mpr hn0) 2) ?_ ?_
   · exact key
-  ·
-    rw [← eval_map_algebraMap, ← eval_map_algebraMap, ← hΦ, ← hΨSq, hxn, div_mul_cancel₀ _ hΨX]
+  · rw [← eval_map_algebraMap, ← eval_map_algebraMap, ← hΦ, ← hΨSq, hxn, div_mul_cancel₀ _ hΨX]
   · intro M c
     rw [← WeierstrassCurve.map_Φ, ← WeierstrassCurve.map_ΨSq]
     exact WeierstrassCurve.natDegree_Phi_sub_C_mul_PsiSq _ n c

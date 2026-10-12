@@ -154,20 +154,6 @@ end WeierstrassCurve.Affine
 
 p2m_reactivate "P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine"
 
-noncomputable section
-
-open IsDedekindDomain WithZero IsLocalRing
-open scoped Polynomial
-
-namespace AlgebraicCurve
-p2m_open "AlgebraicCurve"
-
-namespace Place
-end Place
-
-end AlgebraicCurve
-end
-
 section
 
 open Module Polynomial
@@ -1709,17 +1695,6 @@ end WeierstrassCurve.Affine
 end
 
 section
-
-noncomputable section
-
-open Polynomial
-
-open scoped Polynomial.Bivariate
-
-namespace WeierstrassCurve
-namespace Affine
-end WeierstrassCurve.Affine
-end
 
 universe u in
 open _root_.WeierstrassCurve _root_.WeierstrassCurve.Affine

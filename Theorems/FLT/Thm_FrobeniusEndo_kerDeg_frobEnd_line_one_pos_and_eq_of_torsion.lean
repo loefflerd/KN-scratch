@@ -87,7 +87,6 @@ theorem wronskian_ne_zero_of_natDegree_eq_succ {u v : k[X]} (hv : v ≠ 0)
     intro h0
     rw [h0, natDegree_zero] at hdeg
     omega
-
   have h1 : (derivative u * v).coeff (e + e) = u.coeff (e + 1) * (e + 1) * v.coeff e := by
     have hdu : (derivative u).natDegree ≤ e := by
       have := natDegree_derivative_le u
@@ -96,8 +95,7 @@ theorem wronskian_ne_zero_of_natDegree_eq_succ {u v : k[X]} (hv : v ≠ 0)
 
   have h2 : (u * derivative v).coeff (e + e) = u.coeff (e + 1) * (v.coeff e * e) := by
     rcases Nat.eq_zero_or_pos e with he0 | hepos
-    ·
-      have h00 : v.natDegree = 0 := by rw [← he]; exact he0
+    · have h00 : v.natDegree = 0 := by rw [← he]; exact he0
       have hv' : derivative v = 0 := by
         rw [eq_C_of_natDegree_eq_zero h00, derivative_C]
       rw [hv', mul_zero, coeff_zero, he0, Nat.cast_zero, mul_zero, mul_zero]
@@ -195,14 +193,12 @@ theorem solver (d : ℤ → ℤ) (q a : ℤ) (good : ℤ → Prop) (h0 : d 0 = q
       · simp [h1]
     rcases Nat.lt_or_ge n 4 with hn4 | hn4
     · interval_cases n
-      ·
-        have h := R1 1 hg1
+      · have h := R1 1 hg1
         have e0 := ih 0 (by norm_num)
         have e1 := ih 1 (by norm_num)
         norm_num at h e0 e1 ⊢
         linear_combination h + 2 * e1 - e0
-      ·
-        rcases hgood 2 with hg | hg
+      · rcases hgood 2 with hg | hg
         · have h := R1 2 hg
           have e1 := ih 1 (by norm_num)
           have e2 := ih 2 (by norm_num)
@@ -214,8 +210,7 @@ theorem solver (d : ℤ → ℤ) (q a : ℤ) (good : ℤ → Prop) (h0 : d 0 = q
           norm_num at h e1 ⊢
           rw [hm1] at h
           linear_combination h + 2 * e1
-    ·
-      have key : ∀ j : ℕ, j < n → d (j : ℤ) = (j : ℤ) ^ 2 - a * j + q := fun j hj => ih j hj
+    · have key : ∀ j : ℕ, j < n → d (j : ℤ) = (j : ℤ) ^ 2 - a * j + q := fun j hj => ih j hj
       rcases hgood ((n : ℤ) - 1) with hg | hg
       · have h := R1 ((n : ℤ) - 1) hg
         have e1 := key (n - 1) (by omega)
@@ -305,7 +300,6 @@ lemma collision_ne_zero {q : ℕ} (hq : q.Prime) (n : ℤ) (hcop : IsCoprime (W.
   have hdeg := congrArg Polynomial.natDegree h0
   rw [WeierstrassCurve.natDegree_Φ, natDegree_mul (pow_ne_zero _ X_ne_zero) hunit.ne_zero,
     natDegree_pow, natDegree_X, mul_one, hΨdeg, add_zero] at hdeg
-
   have hsq : n.natAbs * n.natAbs = q := by rw [← sq]; exact hdeg
   rcases hq.eq_one_or_self_of_dvd n.natAbs ⟨n.natAbs, hsq.symm⟩ with h | h
   · rw [h, mul_one] at hsq
@@ -425,8 +419,7 @@ theorem exists_isMember (hσ : ∀ x : k, σ x = x ^ Fintype.card F) (hF : (Fint
     (hcop : ∀ n : ℤ, IsCoprime ((W⁄k).Φ n) ((W⁄k).ΨSq n)) (n : ℤ) :
     ∃ u v : k[X], IsMember W σ n u v := by
   by_cases hn : n = 0
-  ·
-    subst hn
+  · subst hn
     refine ⟨X ^ Fintype.card F, 1, isCoprime_one_right, one_ne_zero, fun h => (h (by simp)).elim,
       fun _ => ⟨natDegree_X_pow _, natDegree_one⟩, ?_⟩
     · intro x y h _
@@ -435,8 +428,7 @@ theorem exists_isMember (hσ : ∀ x : k, σ x = x ^ Fintype.card F) (hF : (Fint
         rw [linePencil_frobEnd_apply, zero_zsmul, zero_sub]
       rw [hsm, Affine.Point.neg_some] at hA
       exact ⟨_, _, _, hA, by rw [eval_one, mul_one, eval_pow, eval_X, hx₁]⟩
-  ·
-    have hq2 : 2 ≤ Fintype.card F := hF.two_le
+  · have hq2 : 2 ≤ Fintype.card F := hF.two_le
     have hΨn : (W⁄k).ΨSq n ≠ 0 := ΨSq_ne_zero_of_isCoprime (W⁄k) hn (hcop n)
     have hCn : (W⁄k).Φ n - X ^ Fintype.card F * (W⁄k).ΨSq n ≠ 0 :=
       collision_ne_zero (W⁄k) hF n (hcop n)
@@ -449,8 +441,7 @@ theorem exists_isMember (hσ : ∀ x : k, σ x = x ^ Fintype.card F) (hF : (Fint
       FrobeniusEndo.exists_x_linePencil_frobEnd_mul_collision_sq W σ hσ n hfin
     obtain ⟨u, v, hcopuv, hv0, hid, hdeg⟩ := exists_reduced_pair U (pow_ne_zero 2 hCn)
     refine ⟨u, v, hcopuv, hv0, fun hnk => ?_, fun h0 => absurd h0 hn, ?_⟩
-    ·
-      have hUd := hUdeg hnk
+    · have hUd := hUdeg hnk
       have hn1 : 1 ≤ n.natAbs ^ 2 := Nat.one_le_pow _ _ (Int.natAbs_pos.mpr hn)
       have hU0 : U ≠ 0 := fun h0 => by
         rw [h0, natDegree_zero] at hUd
@@ -505,7 +496,6 @@ theorem step (hF : (Fintype.card F).Prime)
       simp only [hS, Set.mem_union, Set.mem_ofPred_eq, not_or] at hxS
       obtain ⟨⟨⟨hxn, hxp⟩, hxm⟩, hΨjx⟩ := hxS
       obtain ⟨y, h⟩ := exists_nonsingular (W := W⁄k) x
-
       obtain ⟨xa, ya, ha, hAeq, hAid⟩ := (hmem n).ident h hxn
 
       have hjP : j • (Point.some x y h : (W⁄k).Point) ≠ 0 := fun h0 => hΨjx (htor j h h0)
@@ -586,7 +576,6 @@ theorem main (hσ : ∀ x : k, σ x = x ^ Fintype.card F) (hF : (Fintype.card F)
   have h0 : d 0 = Fintype.card F := by
     simp only [hd]
     exact_mod_cast ((hmem 0).deg0 rfl).1
-
   have hE1 : kerDeg (frobEnd W σ) 1 1 = (u 1).natDegree := by
     rw [kerDeg_def]
     exact card_ker_eq W σ hF hcop (by simp) (hmem 1)

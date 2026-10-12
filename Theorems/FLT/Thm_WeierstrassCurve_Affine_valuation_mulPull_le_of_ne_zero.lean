@@ -143,7 +143,6 @@ theorem solution {F : Type*} {K : Type*} [Field F] [Field K] [Algebra F K] [Deci
   have hnK : ((n : ℤ) : K) ≠ 0 := by rwa [Int.cast_natCast]
   have hgood := zsmul_genericPoint_good (K := K) W hnK
   obtain ⟨ω, hω⟩ := WeierstrassCurve.Affine.Point.exists_zsmul_some_eq_some_baseChange W (n : ℤ)
-
   have hγns := generic_nonsingular W K
   have hψγ : ((W.baseChange (W⁄K).FunctionField).ψ n).evalEval (genericX W K) (genericY W K) ≠ 0 :=
     fun h0 => hgood.1 ((WeierstrassCurve.Affine.Point.smul_some_eq_zero_iff

@@ -83,19 +83,12 @@ private theorem _root_.PeriodPair.kw_isUniformization (L : PeriodPair) : L.IsUni
 p2m_export "PeriodPair" "kw_isUniformization"
 end PeriodPair
 
-namespace AlgebraicCurve
-end AlgebraicCurve
 namespace Complex
 p2m_export "Complex" "re lift finrank_real_complex arg exists exp mk ext I"
 end Complex
 namespace Filter
 p2m_export "Filter" "ker mk cocountable mem_ker mem_map unique map"
 end Filter
-namespace LinearAlgebra
-namespace Projectivization
-end LinearAlgebra.Projectivization
-namespace ModularCurve
-end ModularCurve
 namespace Module
 p2m_export "Module" "Injective equiv Finite.equiv finrank Free mk Dual Free.of_equiv End restrictScalars"
 end Module
@@ -144,14 +137,6 @@ noncomputable section
 p2m_open "WeierstrassCurve P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.WeierstrassCurve P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.AlgebraicCurve P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.ModularCurve"
 
 namespace ModularCurve
-
-section IntersectionEngine
-
-namespace MilneI72IntersectionData
-
-end MilneI72IntersectionData
-
-end IntersectionEngine
 
 section LatticeQuotient
 
@@ -309,11 +294,6 @@ private theorem _root_.PeriodPair.kw_ker_toPointHom :
 
 p2m_export "PeriodPair" "kw_ker_toPointHom"
 end PeriodPair
-p2m_reactivate "P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.ModularCurve"
-
-namespace ModularCurve
-
-end ModularCurve
 end
 p2m_reactivate "P2MW.S_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.ModularCurve"
 

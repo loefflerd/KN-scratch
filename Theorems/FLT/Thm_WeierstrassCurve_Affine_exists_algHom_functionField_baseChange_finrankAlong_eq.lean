@@ -86,20 +86,15 @@ end WeierstrassCurve.Affine.IsogenyEndDatum
 namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "algebraAlong FiniteAlong finrankAlong Place"
 end AlgebraicCurve
-namespace CoordinateRing
-end CoordinateRing
 namespace IsDedekindDomain
 p2m_export "IsDedekindDomain" "HeightOneSpectrum.eq_of_valuation_isEquiv_valuation mk HeightOneSpectrum"
 end IsDedekindDomain
-namespace ModularCurve
-end ModularCurve
 namespace Polynomial
 p2m_export "Polynomial" "C eval₂_sub X coeff algebraMap_eq divX eval₂ aeval eval₂_add monomial basisMonomials eval₂_pow degree C_0 factor aeval_C map_map map_C map eval₂_X comp algebra eval₂_mul exists_eq_pow_rootMultiplicity_mul_and_not_dvd X_dvd_iff algHom_ext sum divX_mul_X_add flt aeval_algHom aeval_X map_monomial algebraMap_apply coe_basisMonomials ext eval₂_C funext ring ringHom_ext transcendental"
 end Polynomial
 namespace Polynomial
 p2m_export "Polynomial" "C eval₂_sub X coeff algebraMap_eq divX eval₂ aeval eval₂_add monomial basisMonomials eval₂_pow degree C_0 factor aeval_C map_map map_C map eval₂_X comp algebra eval₂_mul exists_eq_pow_rootMultiplicity_mul_and_not_dvd X_dvd_iff algHom_ext sum divX_mul_X_add flt aeval_algHom aeval_X map_monomial algebraMap_apply coe_basisMonomials ext eval₂_C funext ring ringHom_ext transcendental"
-namespace Bivariate
-end Polynomial.Bivariate
+end Polynomial
 namespace TensorProduct
 p2m_export "TensorProduct" "map_tmul congr lift_mk map_map smul_tmul zero_tmul sum_tmul lift mk ext tmul map Algebra.smul_def comm_tmul mk_surjective"
 end TensorProduct
@@ -243,17 +238,6 @@ namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine map_map map mk Jacobian IsIntegral toAffine Affine.Point map_a₆ map_a₁ map_a₄ Δ Affine.polynomial map_a₂ baseChange j map_a₃ Affine.IsogenyEndDatum"
 namespace Affine
 p2m_export "WeierstrassCurve.Affine" "Point.add Equation equation_iff' map_a₃ slope CoordinateRing map baseChange Equation.baseChange map_a₆ FunctionField map_a₂ Point CoordinateRing.mk addX map_a₁ CoordinateRing.map map_a₄ CoordinateRing.basis_apply CoordinateRing.map_smul CoordinateRing.basis addY equation_iff polynomial IsogenyEndDatum polyToFunctionField polyToFunctionField_apply polyToFunctionField_injective polyToFunctionField_C algebraMap_smul_basis"
-p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
-
-p2m_open "WeierstrassCurve.Affine.CoordinateRing P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.WeierstrassCurve.Affine.CoordinateRing AlgebraicCurve P2MW.S_WeierstrassCurve_Affine_exists_algHom_functionField_baseChange_finrankAlong_eq.AlgebraicCurve"
-
-variable {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
-variable {W : Affine F} [W.IsElliptic]
-
-namespace VeluPicSeam
-
-end VeluPicSeam
-
 end WeierstrassCurve.Affine
 
 end
@@ -438,10 +422,6 @@ theorem pointPullbackHomTo_yGen {xP yP : L}
 end PointPullbackTo
 
 end WeierstrassCurve.Affine
-
-namespace ModularCurve
-
-end ModularCurve
 
 end
 

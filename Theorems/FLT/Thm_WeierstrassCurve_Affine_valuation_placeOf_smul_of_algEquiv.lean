@@ -206,7 +206,6 @@ end WeierstrassCurve.Affine
 open _root_.WeierstrassCurve.Affine _root_.P2MW.S_WeierstrassCurve_Affine_valuation_placeOf_smul_of_algEquiv.WeierstrassCurve.Affine in
 theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K] (W : WeierstrassCurve F) (σ : K ≃ₐ[F] K) (Φ : (W⁄K).FunctionField →+* (W⁄K).FunctionField) (hΦ : ∀ p : K[X][Y], Φ (algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField (CoordinateRing.mk (W⁄K) p)) = algebraMap (W⁄K).CoordinateRing (W⁄K).FunctionField (CoordinateRing.mk (W⁄K) (p.map (mapRingHom (σ : K →+* K))))) [IsDedekindDomain (W⁄K).CoordinateRing] {P : (W⁄K).Point} (hP : P ≠ 0) (hσP : σ • P ≠ 0) (f : (W⁄K).FunctionField) : (placeOf W K (σ • P) hσP).valuation (W⁄K).FunctionField (Φ f) = (placeOf W K P hP).valuation (W⁄K).FunctionField f := by
   obtain ⟨φ, hφ⟩ := galRing_exists W σ
-
   have hΦφ : ∀ a : (W⁄K).CoordinateRing, Φ (algebraMap _ (W⁄K).FunctionField a) =
       algebraMap _ (W⁄K).FunctionField (φ a) := by
     intro a

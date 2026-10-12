@@ -179,8 +179,7 @@ end ModularCurve.W1
 
 namespace ModularCurve
 p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qExpand_single qExpand_one_apply qExpand_congr qExpand_qExpand etaProd constantCoeff_etaProd ofPowerSeries_coeff_of_neg map_intCast_pow_char_eq_qExpand"
-namespace StarBank
-end ModularCurve.StarBank
+end ModularCurve
 p2m_open_scoped "ModularCurve" in
 
 theorem ModularCurve.StarBank.etaProd_pow_ne (K : Type*) [CommRing K] {ℓ : ℕ} [Fact ℓ.Prime]

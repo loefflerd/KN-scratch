@@ -111,12 +111,10 @@ p2m_export "LinearMap" "mulLeft_apply coe_smul mem_range range sub_apply coe_mk 
 end LinearMap
 namespace ModularCurve
 p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4gRRTate.KwF4gRRTateChainRule"
-namespace KwF4R1V410a
-end ModularCurve.KwF4R1V410a
+end ModularCurve
 namespace ModularCurve
 p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4gRRTate.KwF4gRRTateChainRule"
-namespace KwF4R1V473a
-end ModularCurve.KwF4R1V473a
+end ModularCurve
 namespace ModularCurve
 p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4gRRTate.KwF4gRRTateChainRule"
 namespace KwF4gRRTate
@@ -124,8 +122,7 @@ p2m_export "ModularCurve.KwF4gRRTate" "finrankTrace tateComm tateComm_apply tate
 end ModularCurve.KwF4gRRTate
 namespace ModularCurve
 p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4gRRTate.KwF4gRRTateChainRule"
-namespace Lg37
-end ModularCurve.Lg37
+end ModularCurve
 namespace Module
 p2m_export "Module" "Injective equiv Finite.equiv mk restrictScalars Finite.of_submodule_quotient"
 end Module
@@ -271,10 +268,6 @@ p2m_export "AlgebraicCurve.Place" "comap_algebraMap_ne_top"
 
 
 p2m_export "AlgebraicCurve.Place" "exists_ord_algebraMap_pos"
-variable [Algebra.IsIntegral F F']
-
-
-
 end Restrict
 
 end Place

@@ -152,7 +152,7 @@ end FLT
 
 end
 
-noncomputable section
+section
 
 open KaehlerDifferential
 
@@ -169,7 +169,7 @@ end AlgebraicCurve
 
 end
 
-noncomputable section
+section
 
 open Polynomial IsDedekindDomain
 

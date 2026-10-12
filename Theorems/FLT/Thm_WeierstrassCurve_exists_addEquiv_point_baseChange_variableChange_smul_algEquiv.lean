@@ -58,8 +58,6 @@ section privateSection
 
 namespace P2MW.S_WeierstrassCurve_exists_addEquiv_point_baseChange_variableChange_smul_algEquiv
 
-set_option autoImplicit false
-
 open WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point
 
 theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K]

@@ -193,8 +193,7 @@ end ModularCurve.W1
 
 namespace ModularCurve
 p2m_export "ModularCurve" "jqModC etaProd"
-namespace StarBank
-end ModularCurve.StarBank
+end ModularCurve
 p2m_open_scoped "ModularCurve" in
 
 private theorem ModularCurve.StarBank.onePoint {K : Type*} [Field K] {M : ℕ}

@@ -71,12 +71,10 @@ theorem eq_of_valuationSubring_eq_aux (v w : Valuation L ℤᵐ⁰)
     (hv : Function.Surjective v) (hw : Function.Surjective w)
     (h : v.valuationSubring = w.valuationSubring) : v = w := by
   have heq : v.IsEquiv w := (Valuation.isEquiv_iff_valuationSubring _ _).mpr h
-
   obtain ⟨π, hπ⟩ := hv (WithZero.exp (-1))
   obtain ⟨ρ, hρ⟩ := hw (WithZero.exp (-1))
   have hπ0 : π ≠ 0 := fun h0 => by rw [h0, map_zero] at hπ; exact WithZero.exp_ne_zero hπ.symm
   have hρ0 : ρ ≠ 0 := fun h0 => by rw [h0, map_zero] at hρ; exact WithZero.exp_ne_zero hρ.symm
-
   have hwπ : w π = WithZero.exp (-1) := by
     have hwπ1 : w π < 1 := heq.lt_one_iff_lt_one.mp (by rw [hπ]; decide)
     have hwπ0 : w π ≠ 0 := (w.ne_zero_iff).mpr hπ0
@@ -86,7 +84,6 @@ theorem eq_of_valuationSubring_eq_aux (v w : Valuation L ℤᵐ⁰)
       have : WithZero.log (w π) < 0 := by
         rw [← WithZero.exp_lt_exp, WithZero.exp_log hwπ0]; exact hwπ1
       omega
-
     have hvle : v π ≤ v ρ := heq.le_iff_le.mpr hle
     have hvρ1 : v ρ < 1 := heq.lt_one_iff_lt_one.mpr (by rw [hρ]; decide)
     have hvρ0 : v ρ ≠ 0 := (v.ne_zero_iff).mpr hρ0

@@ -154,8 +154,6 @@ end PortCard
 
 end PortCardMulX
 
-set_option autoImplicit false
-
 open Polynomial
 
 universe u
@@ -296,8 +294,6 @@ lemma mfred {x y : F} (h : W.Nonsingular x y) (m : ℕ)
   exact hx
 
 end slope
-p2m_reactivate "P2MW.S_FrobeniusEndo_frobCharEqOnPoints_of_charEq_on_torsion_of_trace_ne_zero.WeierstrassCurve.Affine P2MW.S_FrobeniusEndo_frobCharEqOnPoints_of_charEq_on_torsion_of_trace_ne_zero.WeierstrassCurve.Affine.Point"
-
 end Affine
 p2m_reactivate "P2MW.S_FrobeniusEndo_frobCharEqOnPoints_of_charEq_on_torsion_of_trace_ne_zero.WeierstrassCurve.Affine P2MW.S_FrobeniusEndo_frobCharEqOnPoints_of_charEq_on_torsion_of_trace_ne_zero.WeierstrassCurve.Affine.Point"
 
@@ -614,14 +610,12 @@ theorem charEqPoly_eval_eq_zero_of_charEq_at (hq1 : 1 ≤ q)
   obtain ⟨x, y, h, rfl⟩ := exists_some_of_ne_zero_charEq hP0
   rw [Affine.Point.xOrZero_some]
   have ha1 : 1 ≤ a.natAbs := Int.natAbs_pos.mpr ha
-
   have hfree := lowTorsionFree_of_prime_torsion (Affine.Point.some_ne_zero h) hr hPr
 
   have hT0 : q • (Affine.Point.some x y h : V.toAffine.Point) ≠ 0 :=
     hfree q hq1 (by omega)
 
   have hMT := Affine.mfred h q hT0
-
   obtain ⟨hns', hFP⟩ := hFr h
 
   have hS0 : a.natAbs • (Affine.Point.some (x ^ q) (y ^ q) hns' : V.toAffine.Point) ≠ 0 := by
@@ -629,7 +623,6 @@ theorem charEqPoly_eval_eq_zero_of_charEq_at (hq1 : 1 ≤ q)
     apply hfree a.natAbs ha1 (by omega)
     apply hinj
     rw [map_nsmul, hFP, hcontra, map_zero]
-
   have hMS := Affine.mfred hns' a.natAbs hS0
   obtain ⟨xT, yT, hTns, hTpt⟩ := exists_some_of_ne_zero_charEq hT0
   obtain ⟨xS, yS, hSns, hSpt⟩ := exists_some_of_ne_zero_charEq hS0
@@ -639,24 +632,19 @@ theorem charEqPoly_eval_eq_zero_of_charEq_at (hq1 : 1 ≤ q)
   have hSclear : (V.Φ ((a.natAbs : ℕ) : ℤ)).eval (x ^ q) =
       xS * (V.ΨSq ((a.natAbs : ℕ) : ℤ)).eval (x ^ q) := by
     rw [← hMS.2, hSpt, Affine.Point.xOrZero_some]
-
   have hSnum : (charEqSNum V a q).eval x = xS * (charEqSDen V a q).eval x := by
     simp only [charEqSNum, charEqSDen, eval_comp, eval_pow, eval_X]
     exact hSclear
   have hTnum : (charEqTNum V q).eval x = xT * (charEqTDen V q).eval x := by
     simp only [charEqTNum, charEqTDen]
     exact hTclear
-
   by_cases hxx : xS = xT
-  ·
-    have hd : (charEqDelta V a q).eval x = 0 := by
+  · have hd : (charEqDelta V a q).eval x = 0 := by
       rw [charEqDelta_eval V a q hSnum hTnum, hxx]
       ring
     unfold charEqPoly
     rw [eval_mul, hd, zero_mul]
-  ·
-
-    have hkill' : Fr (Fr (Affine.Point.some x y h)) =
+  · have hkill' : Fr (Fr (Affine.Point.some x y h)) =
         a • Fr (Affine.Point.some x y h) - (q : ℤ) • (Affine.Point.some x y h : V.toAffine.Point) := by
       have h0 := hkill
       rw [sub_add_eq_add_sub, sub_eq_zero] at h0
@@ -685,8 +673,7 @@ theorem charEqPoly_eval_eq_zero_of_charEq_at (hq1 : 1 ≤ q)
         Affine.addQuad_eval hSns.left hTns.left hxx (x ^ q ^ 2)
       rw [← haddq]
       rcases Int.natAbs_eq a with hsign | hsign
-      ·
-        have hrhs : a • Fr (Affine.Point.some x y h)
+      · have hrhs : a • Fr (Affine.Point.some x y h)
             - (q : ℤ) • (Affine.Point.some x y h : V.toAffine.Point) =
             (Affine.Point.some xS yS hSns : V.toAffine.Point) + (- Affine.Point.some xT yT hTns) := by
           rw [hsign, natCast_zsmul, natCast_zsmul, hFP, hSpt, hTpt, sub_eq_add_neg]
@@ -697,8 +684,7 @@ theorem charEqPoly_eval_eq_zero_of_charEq_at (hq1 : 1 ≤ q)
         rw [show (V.toAffine.addX xS xT (V.toAffine.slope xS xT yS (V.toAffine.negY xT yT))
             - x ^ q ^ 2) = 0 from by rw [hx2]; ring]
         ring
-      ·
-        have hrhs : a • Fr (Affine.Point.some x y h)
+      · have hrhs : a • Fr (Affine.Point.some x y h)
             - (q : ℤ) • (Affine.Point.some x y h : V.toAffine.Point) =
             - ((Affine.Point.some xS yS hSns : V.toAffine.Point) + Affine.Point.some xT yT hTns) := by
           rw [hsign, neg_zsmul, natCast_zsmul, natCast_zsmul, hFP, hSpt, hTpt]
@@ -743,7 +729,6 @@ theorem charEqPoly_eq_zero_of_forall_torsionBy (hq1 : 1 ≤ q)
       Fr (Fr P) - a • Fr P + (q : ℤ) • P = 0) :
     charEqPoly V a q = 0 := by
   classical
-
   have hq_lt : q < r := by
     have hb : q ≤ charEqPrimeBound a q := by
       show q ≤ 2 * charEqDegBound a q + a.natAbs + q + 2
@@ -754,7 +739,6 @@ theorem charEqPoly_eq_zero_of_forall_torsionBy (hq1 : 1 ≤ q)
       show a.natAbs ≤ 2 * charEqDegBound a q + a.natAbs + q + 2
       omega
     omega
-
   have hfin : Finite (Submodule.torsionBy ℤ V.toAffine.Point r) := by
     apply Nat.finite_of_card_ne_zero
     rw [hcard]
@@ -763,7 +747,6 @@ theorem charEqPoly_eq_zero_of_forall_torsionBy (hq1 : 1 ≤ q)
   have hcardT : Fintype.card (Submodule.torsionBy ℤ V.toAffine.Point r) = r ^ 2 := by
     rw [← Nat.card_eq_fintype_card]
     exact hcard
-
   have hs₀card : (Finset.univ.erase
       (0 : Submodule.torsionBy ℤ V.toAffine.Point r)).card + 1 = r ^ 2 := by
     rw [Finset.card_erase_add_one (Finset.mem_univ 0), Finset.card_univ, hcardT]
@@ -782,8 +765,7 @@ theorem charEqPoly_eq_zero_of_forall_torsionBy (hq1 : 1 ≤ q)
       exact (Finset.mem_erase.mp hP₀mem).1 (ZeroMemClass.coe_eq_zero.mp hc)
     obtain ⟨xP, yP, hPns, hPeq⟩ := exists_some_of_ne_zero_charEq hP₀ne
     refine le_trans (Finset.card_le_card (t := {P₀, -P₀}) ?_) ?_
-    ·
-      intro Q hQ
+    · intro Q hQ
       have hQmem := (Finset.mem_filter.mp hQ).1
       have hQx : ((Q : V.toAffine.Point)).xOrZero = z :=
         (Finset.mem_filter.mp hQ).2
@@ -804,14 +786,12 @@ theorem charEqPoly_eq_zero_of_forall_torsionBy (hq1 : 1 ≤ q)
         exact Finset.mem_insert.mpr (Or.inl hQP)
       · have hQP : Q = -P₀ := Subtype.ext (by rw [hQeq, heq, ← hPeq]; simp)
         exact Finset.mem_insert.mpr (Or.inr (Finset.mem_singleton.mpr hQP))
-    ·
-      have h1 := Finset.card_insert_le P₀
+    · have h1 := Finset.card_insert_le P₀
         ({-P₀} : Finset (Submodule.torsionBy ℤ V.toAffine.Point r))
       have h2 : ({-P₀} : Finset
           (Submodule.torsionBy ℤ V.toAffine.Point r)).card = 1 :=
         Finset.card_singleton _
       omega
-
   have hroot : ∀ z ∈ (Finset.univ.erase
       (0 : Submodule.torsionBy ℤ V.toAffine.Point r)).image
       (fun P : Submodule.torsionBy ℤ V.toAffine.Point r =>
@@ -826,7 +806,6 @@ theorem charEqPoly_eq_zero_of_forall_torsionBy (hq1 : 1 ≤ q)
       (Submodule.mem_torsionBy_iff _ _).mp P.2
     exact charEqPoly_eval_eq_zero_of_charEq_at Fr hFr hinj hq1 ha hr hq_lt ha_lt hPne hPtor
       (hkill _ hPtor)
-
   by_contra hne
   have hsle : ((Finset.univ.erase
       (0 : Submodule.torsionBy ℤ V.toAffine.Point r)).image
@@ -909,26 +888,21 @@ theorem charEq_cases_of_charEqPoly_eq_zero (hq1 : 1 ≤ q) {a : ℤ} (ha : a ≠
     ∨ (a • Fr Q + (q : ℤ) • Q = 0) := by
   classical
   have ha1 : 1 ≤ a.natAbs := Int.natAbs_pos.mpr ha
-
   have hQ0 : Q ≠ 0 := by
     intro h0
     exact hQ 1 le_rfl (by omega) (by rw [h0, smul_zero])
   obtain ⟨x, y, h, rfl⟩ := exists_some_of_ne_zero_charEq hQ0
-
   have hT0 : q • (Affine.Point.some x y h : V.toAffine.Point) ≠ 0 :=
     hQ q hq1 (Nat.le_add_right _ _)
-
   have hMT := Affine.mfred h q hT0
 
   obtain ⟨hns', hFP⟩ := hFr h
-
   have hS0 : a.natAbs • (Affine.Point.some (x ^ q) (y ^ q) hns' : V.toAffine.Point) ≠ 0 := by
     intro hcontra
     have hcontra' : Fr (a.natAbs • (Affine.Point.some x y h : V.toAffine.Point)) = 0 := by
       rw [map_nsmul, hFP]
       exact hcontra
     exact hQ a.natAbs ha1 (Nat.le_add_left _ _) (frob_eq_zero_of Fr hinj hcontra')
-
   have hMS := Affine.mfred hns' a.natAbs hS0
   obtain ⟨xT, yT, hTns, hTpt⟩ := exists_some_of_ne_zero_charEq hT0
   obtain ⟨xS, yS, hSns, hSpt⟩ := exists_some_of_ne_zero_charEq hS0
@@ -944,14 +918,12 @@ theorem charEq_cases_of_charEqPoly_eq_zero (hq1 : 1 ≤ q) {a : ℤ} (ha : a ≠
   have hTnum : (charEqTNum V q).eval x = xT * (charEqTDen V q).eval x := by
     simp only [charEqTNum, charEqTDen]
     exact hTclear
-
   have hDS : (charEqSDen V a q).eval x ≠ 0 := by
     simp only [charEqSDen, eval_comp, eval_pow, eval_X]
     exact hMS.1
   have hDT : (charEqTDen V q).eval x ≠ 0 := by
     simp only [charEqTDen]
     exact hMT.1
-
   have hzero : (charEqDelta V a q).eval x * (charEqQuad V a q).eval x = 0 := by
     have h0 : (charEqDelta V a q * charEqQuad V a q) = 0 := hpoly
     calc (charEqDelta V a q).eval x * (charEqQuad V a q).eval x
@@ -973,10 +945,8 @@ theorem charEq_cases_of_charEqPoly_eq_zero (hq1 : 1 ≤ q) {a : ℤ} (ha : a ≠
         · exact absurd (sq_eq_zero_iff.mp hbad) hDT
       · exact Or.inr h2b
   by_cases hxx : xS = xT
-  ·
-    rcases (Affine.Point.X_eq_iff (h₁ := hSns) (h₂ := hTns)).mp hxx with hpe | hpe
-    ·
-      have hrel : a.natAbs • Fr (Affine.Point.some x y h)
+  · rcases (Affine.Point.X_eq_iff (h₁ := hSns) (h₂ := hTns)).mp hxx with hpe | hpe
+    · have hrel : a.natAbs • Fr (Affine.Point.some x y h)
           = q • (Affine.Point.some x y h : V.toAffine.Point) := by
         rw [hFP, hSpt, hpe]
         exact hTpt.symm
@@ -987,8 +957,7 @@ theorem charEq_cases_of_charEqPoly_eq_zero (hq1 : 1 ≤ q) {a : ℤ} (ha : a ≠
       · refine Or.inr (Or.inr (Or.inr (Or.inr (Or.inr ?_))))
         rw [hsign, neg_zsmul, natCast_zsmul, natCast_zsmul, hrel]
         abel
-    ·
-      have hrel : a.natAbs • Fr (Affine.Point.some x y h)
+    · have hrel : a.natAbs • Fr (Affine.Point.some x y h)
           = -(q • (Affine.Point.some x y h : V.toAffine.Point)) := by
         rw [hFP, hSpt, hpe, hTpt]
       rcases Int.natAbs_eq a with hsign | hsign
@@ -998,8 +967,7 @@ theorem charEq_cases_of_charEqPoly_eq_zero (hq1 : 1 ≤ q) {a : ℤ} (ha : a ≠
       · refine Or.inr (Or.inr (Or.inr (Or.inr (Or.inl ?_))))
         rw [hsign, neg_zsmul, natCast_zsmul, natCast_zsmul, hrel]
         abel
-  ·
-    have hquad : V.addQuad xS xT (x ^ q ^ 2) = 0 := hkey.resolve_left hxx
+  · have hquad : V.addQuad xS xT (x ^ q ^ 2) = 0 := hkey.resolve_left hxx
 
     have hfact : (V.toAffine.addX xS xT (V.toAffine.slope xS xT yS yT) - x ^ q ^ 2)
         * (V.toAffine.addX xS xT (V.toAffine.slope xS xT yS (V.toAffine.negY xT yT))
@@ -1031,16 +999,14 @@ theorem charEq_cases_of_charEqPoly_eq_zero (hq1 : 1 ≤ q) {a : ℤ} (ha : a ≠
       rw [hFP, hFP₂]
       exact some_congr_charEq (by rw [← pow_mul, ← pow_two]) (by rw [← pow_mul, ← pow_two]) _ _
     rcases hroots with hroot | hroot
-    ·
-      have hXeq : (Affine.Point.some (x ^ q ^ 2) (y ^ q ^ 2) hns'' : V.toAffine.Point)
+    · have hXeq : (Affine.Point.some (x ^ q ^ 2) (y ^ q ^ 2) hns'' : V.toAffine.Point)
             = Affine.Point.some xS yS hSns + Affine.Point.some xT yT hTns
           ∨ (Affine.Point.some (x ^ q ^ 2) (y ^ q ^ 2) hns'' : V.toAffine.Point)
             = -(Affine.Point.some xS yS hSns + Affine.Point.some xT yT hTns) := by
         rw [Affine.Point.add_of_X_ne hxx]
         exact (Affine.Point.X_eq_iff (h₁ := hns'')).mp hroot.symm
       rcases hXeq with hpe | hpe
-      ·
-        have hrel : Fr (Fr (Affine.Point.some x y h))
+      · have hrel : Fr (Fr (Affine.Point.some x y h))
             = a.natAbs • Fr (Affine.Point.some x y h)
               + q • (Affine.Point.some x y h : V.toAffine.Point) := by
           rw [hF2, hFP, hSpt, hTpt]
@@ -1052,8 +1018,7 @@ theorem charEq_cases_of_charEqPoly_eq_zero (hq1 : 1 ≤ q) {a : ℤ} (ha : a ≠
         · refine Or.inr (Or.inl ?_)
           rw [hsign, neg_zsmul, natCast_zsmul, natCast_zsmul, hrel]
           abel
-      ·
-        have hrel : Fr (Fr (Affine.Point.some x y h))
+      · have hrel : Fr (Fr (Affine.Point.some x y h))
             = -(a.natAbs • Fr (Affine.Point.some x y h)
               + q • (Affine.Point.some x y h : V.toAffine.Point)) := by
           rw [hF2, hFP, hSpt, hTpt]
@@ -1065,16 +1030,14 @@ theorem charEq_cases_of_charEqPoly_eq_zero (hq1 : 1 ≤ q) {a : ℤ} (ha : a ≠
         · refine Or.inl ?_
           rw [hsign, neg_zsmul, natCast_zsmul, natCast_zsmul, hrel]
           abel
-    ·
-      have hXeq : (Affine.Point.some (x ^ q ^ 2) (y ^ q ^ 2) hns'' : V.toAffine.Point)
+    · have hXeq : (Affine.Point.some (x ^ q ^ 2) (y ^ q ^ 2) hns'' : V.toAffine.Point)
             = Affine.Point.some xS yS hSns + -(Affine.Point.some xT yT hTns)
           ∨ (Affine.Point.some (x ^ q ^ 2) (y ^ q ^ 2) hns'' : V.toAffine.Point)
             = -(Affine.Point.some xS yS hSns + -(Affine.Point.some xT yT hTns)) := by
         rw [Affine.Point.neg_some, Affine.Point.add_of_X_ne hxx]
         exact (Affine.Point.X_eq_iff (h₁ := hns'')).mp hroot.symm
       rcases hXeq with hpe | hpe
-      ·
-        have hrel : Fr (Fr (Affine.Point.some x y h))
+      · have hrel : Fr (Fr (Affine.Point.some x y h))
             = a.natAbs • Fr (Affine.Point.some x y h)
               + -(q • (Affine.Point.some x y h : V.toAffine.Point)) := by
           rw [hF2, hFP, hSpt, hTpt]
@@ -1086,8 +1049,7 @@ theorem charEq_cases_of_charEqPoly_eq_zero (hq1 : 1 ≤ q) {a : ℤ} (ha : a ≠
         · refine Or.inr (Or.inr (Or.inr (Or.inl ?_)))
           rw [hsign, neg_zsmul, natCast_zsmul, natCast_zsmul, hrel]
           abel
-      ·
-        have hrel : Fr (Fr (Affine.Point.some x y h))
+      · have hrel : Fr (Fr (Affine.Point.some x y h))
             = -(a.natAbs • Fr (Affine.Point.some x y h)
               + -(q • (Affine.Point.some x y h : V.toAffine.Point))) := by
           rw [hF2, hFP, hSpt, hTpt]
@@ -1257,19 +1219,16 @@ private lemma charEq_elim_six (ha : a ≠ 0) (hr : r.Prime)
     (h₁ : Fr (Fr D) - a • Fr D + (q : ℤ) • D = 0)
     (h₆ : a • Fr D + (q : ℤ) • D = 0) :
     D = 0 := by
-
   have hF2 : Fr (Fr D) - (a + a) • Fr D = 0 := by
     calc Fr (Fr D) - (a + a) • Fr D
         = (Fr (Fr D) - a • Fr D + (q : ℤ) • D) - (a • Fr D + (q : ℤ) • D) := by
           rw [add_zsmul]; abel
       _ = 0 - 0 := by rw [h₁, h₆]
       _ = 0 := by rw [sub_zero]
-
   have hFD : Fr D = (a + a) • D := by
     apply hinj
     rw [map_zsmul]
     exact sub_eq_zero.mp hF2
-
   have h6' : a • ((a + a) • D) + (q : ℤ) • D = 0 := by
     rw [← hFD]
     exact h₆
@@ -1278,7 +1237,6 @@ private lemma charEq_elim_six (ha : a ≠ 0) (hr : r.Prime)
         = (a * (a + a)) • D + (q : ℤ) • D := by rw [add_zsmul]
       _ = a • ((a + a) • D) + (q : ℤ) • D := by rw [smul_smul]
       _ = 0 := h6'
-
   have hsq : 0 < a * a := mul_self_pos.mpr ha
   have hexpand : a * (a + a) = a * a + a * a := by ring
   have hposZ : (0 : ℤ) < a * (a + a) + (q : ℤ) := by
@@ -1315,10 +1273,8 @@ theorem frobPointCharEq_of_charEq_on_torsionBy (hq1 : 1 ≤ q)
       Fr (Fr P) - a • Fr P + (q : ℤ) • P = 0) (P : V.toAffine.Point) :
     Fr (Fr P) - a • Fr P + (q : ℤ) • P = 0 := by
   classical
-
   have hpoly : charEqPoly V a q = 0 :=
     charEqPoly_eq_zero_of_forall_torsionBy Fr hFr hinj hq1 ha hr hrB hcard hkill
-
   have ha1 : 1 ≤ a.natAbs := Int.natAbs_pos.mpr ha
   have hPBmul : charEqPrimeBound a q
       = 16 * (a.natAbs * a.natAbs * q + q * q) + a.natAbs + q + 2 := by
@@ -1353,7 +1309,6 @@ theorem frobPointCharEq_of_charEq_on_torsionBy (hq1 : 1 ≤ q)
     rw [hPBmul] at h
     have h1 : 1 ≤ q * q := le_trans hq1 hf2
     linarith [hf0]
-
   have hfin : Finite (Submodule.torsionBy ℤ V.toAffine.Point r) := by
     apply Nat.finite_of_card_ne_zero
     rw [hcard]
@@ -1362,7 +1317,6 @@ theorem frobPointCharEq_of_charEq_on_torsionBy (hq1 : 1 ≤ q)
   have hcardT : Fintype.card (Submodule.torsionBy ℤ V.toAffine.Point r) = r ^ 2 := by
     rw [← Nat.card_eq_fintype_card]
     exact hcard
-
   set Sdeg : Finset (Submodule.torsionBy ℤ V.toAffine.Point r) :=
     Finset.univ.filter (fun T => ∃ j : ℕ, 1 ≤ j ∧ j ≤ q + a.natAbs ∧
       j • (P + (T : V.toAffine.Point)) = 0) with hSdeg_def
@@ -1441,7 +1395,6 @@ theorem frobPointCharEq_of_charEq_on_torsionBy (hq1 : 1 ≤ q)
       _ = q + a.natAbs := by
           rw [Finset.sum_const, smul_eq_mul, mul_one, Nat.card_Icc]
           omega
-
   have hS2_card : S2.card ≤ 1 := by
     rw [hS2_def, Finset.card_le_one]
     intro T₁ hT₁ T₂ hT₂
@@ -1486,7 +1439,6 @@ theorem frobPointCharEq_of_charEq_on_torsionBy (hq1 : 1 ≤ q)
     have hd1 := hkill _ (htorsub T₁ T₂)
     exact Subtype.ext (sub_eq_zero.mp
       (charEq_elim_six Fr hinj ha hr h6_lt (htorsub T₁ T₂) hd1 hd))
-
   have hbad_card : (Sdeg ∪ S2 ∪ S3 ∪ S4 ∪ S5 ∪ S6).card ≤ q + a.natAbs + 5 := by
     have h6 := Finset.card_union_le (Sdeg ∪ S2 ∪ S3 ∪ S4 ∪ S5) S6
     have h5 := Finset.card_union_le (Sdeg ∪ S2 ∪ S3 ∪ S4) S5
@@ -1520,8 +1472,7 @@ theorem frobPointCharEq_of_charEq_on_torsionBy (hq1 : 1 ≤ q)
 
   rcases charEq_cases_of_charEqPoly_eq_zero Fr hFr hinj hq1 ha hpoly hgood
     with h1 | h2 | h3 | h4 | h5 | h6
-  ·
-    have hTr : (r : ℤ) • (T : V.toAffine.Point) = 0 :=
+  · have hTr : (r : ℤ) • (T : V.toAffine.Point) = 0 :=
       (Submodule.mem_torsionBy_iff _ _).mp T.2
     have hT1 := hkill _ hTr
     have hP1 := charEq_sub_one Fr h1 hT1
@@ -1543,8 +1494,6 @@ theorem frobPointCharEq_of_charEq_on_torsionBy (hq1 : 1 ≤ q)
       exact Finset.mem_filter.mpr ⟨Finset.mem_univ _, h6⟩) hT6
 
 end Endgame
-p2m_reactivate "P2MW.S_FrobeniusEndo_frobCharEqOnPoints_of_charEq_on_torsion_of_trace_ne_zero.WeierstrassCurve.Affine P2MW.S_FrobeniusEndo_frobCharEqOnPoints_of_charEq_on_torsion_of_trace_ne_zero.WeierstrassCurve.Affine.Point"
-
 end WeierstrassCurve
 p2m_reactivate "P2MW.S_FrobeniusEndo_frobCharEqOnPoints_of_charEq_on_torsion_of_trace_ne_zero.WeierstrassCurve.Affine P2MW.S_FrobeniusEndo_frobCharEqOnPoints_of_charEq_on_torsion_of_trace_ne_zero.WeierstrassCurve.Affine.Point P2MW.S_FrobeniusEndo_frobCharEqOnPoints_of_charEq_on_torsion_of_trace_ne_zero.WeierstrassCurve"
 

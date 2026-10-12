@@ -97,8 +97,7 @@ p2m_export "LinearMap" "mulLeft_apply mem_range range sub_apply ker_eq_bot id ra
 end LinearMap
 namespace ModularCurve
 p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite"
-namespace KwF4R1V410a
-end ModularCurve.KwF4R1V410a
+end ModularCurve
 namespace ModularCurve
 p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite"
 namespace KwF4gRRTate
@@ -106,8 +105,7 @@ p2m_export "ModularCurve.KwF4gRRTate" "tateCommRestrict_apply tateComm_eq_of_com
 end ModularCurve.KwF4gRRTate
 namespace ModularCurve
 p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite"
-namespace Lg37
-end ModularCurve.Lg37
+end ModularCurve
 namespace MonoidWithZeroHom
 p2m_export "MonoidWithZeroHom" "id_apply id ext mk coe_one comp_apply comp"
 end MonoidWithZeroHom
@@ -117,13 +115,9 @@ end Multiplicative
 namespace NumberField
 p2m_export "NumberField" "mk"
 end NumberField
-namespace Pointwise
-end Pointwise
 namespace Submodule
 p2m_export "Submodule" "quotEquivOfEq inclusion mem_sup_right smul_mem' mk mem_bot coe_mem Quotient.mk span restrictScalars projectionOnto_apply_left restrictScalars_top mem_closure_iff comapSubtypeEquivOfLe Quotient.restrictScalarsEquiv mem_comap Quotient.equiv mem_span_singleton mkQ map_smul' zero quotientQuotientEquivQuotient Quotient.mk_surjective restrictScalars_mono map mem_inf inclusion_apply Quotient.mk_eq_zero exists_isCompl projectionOnto finiteDimensional_of_le smul_def mk_eq_zero restrictScalarsEquiv mkQ_apply ext subtype_apply ker_mkQ comap finiteDimensional_sup mem_sup_left restrictScalars_mem"
 end Submodule
-namespace Topology
-end Topology
 namespace WithZero
 p2m_export "WithZero" "coe_one map coe_mul exp_eq_coe_ofAdd exp_ne_zero exp exp_zero exp_le_exp"
 end WithZero
@@ -214,16 +208,6 @@ p2m_open "AlgebraicCurve"
 
 namespace Place
 p2m_export "AlgebraicCurve.Place" "ext ResidueField FiniteResidue heightOneSpectrum heightOneSpectrum_asIdeal ord ord_unit_smul_zpow exists_unit_mul_zpow FiniteResidue.finite algebraMap_mem' toValuationSubring mk restrict adicCompletion adicCompletionIntegers"
-p2m_open "AlgebraicCurve.Place"
-
-section SinglePlace
-
-variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
-
-
-
-end SinglePlace
-
 end Place
 
 end AlgebraicCurve

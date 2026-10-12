@@ -152,7 +152,6 @@ theorem intValuation_of_span_eq_prod (s : Finset (W⁄K).Point) {r : (W⁄K).Coo
       Finset.prod_eq_zero_iff] at hr
     obtain ⟨P, hP, h0⟩ := hr
     exact hI0 P hP h0
-
   have hle : ∀ P ∈ s, placeIdeal W K P ≤ v.asIdeal → P = P₁ := by
     intro P _ hPle
     by_cases hP0 : P = 0
@@ -225,8 +224,7 @@ theorem fibIdeal_isPrincipal {n : ℕ} (hn : (n : K) ≠ 0) {T : (W⁄K).Point}
     have key' := key
     rw [hcoe, FractionalIdeal.coe_coeIdeal] at key'
     exact (IsLocalization.coeSubmodule_isPrincipal _ le_rfl).mp key'
-  ·
-    have hpt : ∀ i : {P : (W⁄K).Point // P ≠ 0},
+  · have hpt : ∀ i : {P : (W⁄K).Point // P ≠ 0},
         Point.some i.1.xc i.1.yc (Point.nonsingular_xc_yc i.2) = i.1 := fun i => (Point.eq_some_xc_yc i.2).symm
     simp_rw [one_smul, hpt]
     have hsub : ∑ x ∈ s', (x : (W⁄K).Point) = ∑ P ∈ s.filter (· ≠ 0), P :=

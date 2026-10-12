@@ -101,8 +101,7 @@ theorem WeilPairing.exists_pairing_torsionBy_of_laws {F K : Type*} [Field F] [Fi
     exact halt _ (hmem P)
   · intro σ P Q
     exact hgal σ _ _ (hmem P) (hmem Q)
-  ·
-    intro P hP
+  · intro P hP
     have hskew : ∀ S T : (W⁄K).Point, (n : ℤ) • S = 0 → (n : ℤ) • T = 0 →
         e₀ T S = (e₀ S T)⁻¹ := by
       intro S T hS hT
@@ -127,7 +126,6 @@ theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [IsAlgClosed K]
     (fun S T T' hS hT hT' => WeierstrassCurve.Affine.weilPairing0_add_right W hnK S T T' hS hT hT')
     (fun T hT => WeierstrassCurve.Affine.weilPairing0_self W hnK T hT)
     (fun σ S T hS hT => WeierstrassCurve.Affine.weilPairing0_galois W hnK σ S T hS hT) ?_
-
   intro T hT h1
   apply WeierstrassCurve.Affine.eq_zero_of_forall_transEquiv_eq W hnK
     (fun P hP hnP h k hh => WeierstrassCurve.Affine.valuation_mulPull_le_of_ne_zero W hnK P hP hnP h k hh)

@@ -63,8 +63,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WeierstrassCurve_hasGoodReduction_baseChange_of_valuation_lt_one
 
-set_option autoImplicit false
-
 open WeierstrassCurve IsDiscreteValuationRing IsLocalRing IsDedekindDomain.HeightOneSpectrum
 open scoped Pointwise
 
@@ -80,14 +78,12 @@ theorem hasGoodReduction_comap (R : Type*) [CommRing R] [IsDomain R]
     (q : ℕ) (hq : q.Prime) (hgen : Irreducible (q : R))
     (hS : S.valuation (q : L) < 1) :
     (W.baseChange L).HasGoodReduction S := by
-
   have hq_nonunit : ¬ IsUnit ((q : ℤ) : S) := by
     intro h
     have h1 := (S.valuation_eq_one_iff ((q : ℤ) : S)).mp h
     have h2 : (((q : ℤ) : S) : L) = (q : L) := by push_cast; ring
     rw [h2] at h1
     exact hS.ne h1
-
   have key : ∀ x : ℤ, ¬(q : ℤ) ∣ x → IsUnit ((x : ℤ) : S) := by
     intro x hx
     have hqp : Prime (q : ℤ) := Nat.prime_iff_prime_int.mp hq
@@ -98,7 +94,6 @@ theorem hasGoodReduction_comap (R : Type*) [CommRing R] [IsDomain R]
     rcases IsLocalRing.isUnit_or_isUnit_of_isUnit_add h1 with h | h
     · exact absurd (by simpa using isUnit_of_mul_isUnit_right h) hq_nonunit
     · simpa using isUnit_of_mul_isUnit_right h
-
   have keyR : ∀ x : ℤ, ¬(q : ℤ) ∣ x → IsUnit ((x : ℤ) : R) := by
     intro x hx
     have hqp : Prime (q : ℤ) := Nat.prime_iff_prime_int.mp hq
@@ -109,7 +104,6 @@ theorem hasGoodReduction_comap (R : Type*) [CommRing R] [IsDomain R]
     rcases IsLocalRing.isUnit_or_isUnit_of_isUnit_add h1 with h | h
     · exact absurd (by simpa using isUnit_of_mul_isUnit_right h) hgen.not_isUnit
     · simpa using isUnit_of_mul_isUnit_right h
-
   have hmem : ∀ r : R, algebraMap ℚ L (algebraMap R ℚ r) ∈ S := by
     intro r
     set x : ℚ := algebraMap R ℚ r with hxdef
@@ -129,7 +123,6 @@ theorem hasGoodReduction_comap (R : Type*) [CommRing R] [IsDomain R]
         rw [← Int.cast_mul, ← he]
       rw [h1] at hden_unit
       simpa using isUnit_of_mul_isUnit_left hden_unit
-
     have hnum : S.valuation ((x.num : ℤ) : L) ≤ 1 :=
       (S.valuation_le_one_iff _).mpr (intCast_mem S x.num)
     have hdenS : S.valuation ((x.den : ℤ) : L) = 1 := by
@@ -158,7 +151,6 @@ theorem hasGoodReduction_comap (R : Type*) [CommRing R] [IsDomain R]
       map_map (integralModel R W) φ (algebraMap S L)
     rw [h1, h2]
     congr 1
-
   have hval_unit : ∀ s : S, IsUnit s →
       (IsDiscreteValuationRing.maximalIdeal S).valuation L (algebraMap S L s) = 1 := by
     intro s hs
@@ -187,7 +179,6 @@ theorem hasGoodReduction_comap (R : Type*) [CommRing R] [IsDomain R]
       rfl
     rw [h1]
     exact hval_unit _ (hΔR.map φ)
-
   have hMin : WeierstrassCurve.IsMinimal S (W.baseChange L) := by
     refine ⟨⟨by simpa using hInt, ?_⟩⟩
     intro C hC _

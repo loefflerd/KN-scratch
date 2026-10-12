@@ -139,10 +139,6 @@ end AlgebraicCurve
 namespace Cardinal
 p2m_export "Cardinal" "map mk_fin lift_le_aleph0 lift_eq_one lift_one mk_le_one_iff_set_subsingleton sum_add_distrib mk mk_le_aleph0_iff sum mk_le_aleph0 aleph0 map_mk univ lift"
 end Cardinal
-namespace CoordinateRing
-end CoordinateRing
-namespace FreyPackage
-end FreyPackage
 namespace HahnSeries
 p2m_export "HahnSeries" "support single order instAlgebra coeff algebraMap_apply C map mk map_C"
 end HahnSeries
@@ -152,8 +148,6 @@ end IntermediateField
 namespace IsDedekindDomain
 p2m_export "IsDedekindDomain" "mk"
 end IsDedekindDomain
-namespace ModularCurve
-end ModularCurve
 namespace PeriodPair
 p2m_export "PeriodPair" "mk basis_one basis_zero G"
 end PeriodPair
@@ -162,8 +156,7 @@ p2m_export "Polynomial" "C eval₂_sub X support as_sum_support_C_mul_X_pow aeva
 end Polynomial
 namespace Polynomial
 p2m_export "Polynomial" "C eval₂_sub X support as_sum_support_C_mul_X_pow aeval_map_algebraMap coeff algebraMap_eq divX eval₂ aeval eval₂_add monomial basisMonomials eval₂_pow degree C_0 factor aeval_C map_id map_map map_C map eval₂_X comp algebra eval₂_mul exists_eq_pow_rootMultiplicity_mul_and_not_dvd X_dvd_iff algHom_ext sum coe_mapRingHom divX_mul_X_add flt adjoin_X aeval_algHom map_X notMem_support_iff aeval_X map_monomial coeffs algebraMap_apply coe_basisMonomials inhabited ext mapRingHom content eval₂_C funext ring aeval_algHom_apply ringHom_ext lifts transcendental restriction eval"
-namespace Bivariate
-end Polynomial.Bivariate
+end Polynomial
 namespace TensorProduct
 p2m_export "TensorProduct" "map_tmul congr lift_mk map_map smul_tmul zero_tmul sum_tmul lift mk ext tmul map_id map Algebra.smul_def comm_tmul mk_surjective"
 end TensorProduct
@@ -514,21 +507,6 @@ namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine isUnit_Δ a₃ map_map a₁ WeierstrassCurve.map_a₃ map Ψ₃ mk Affine.equation_add a₄ Jacobian a₂ a₆ WeierstrassCurve.map_a₆ reduction map_id IsIntegral toAffine WeierstrassCurve.map_a₂ Affine.Point WeierstrassCurve.map_a₁ WeierstrassCurve.map_a₄ map_Δ map_a₆ map_a₁ map_a₄ Δ Affine.equation_iff Affine.polynomial map_a₂ baseChange j map_a₃ Affine.finiteDimensional_ratFunc_functionField"
 namespace Affine
 p2m_export "WeierstrassCurve.Affine" "Point.add Equation CoordinateRing.basis_one equation_iff' map_a₃ slope CoordinateRing.instIsDomain CoordinateRing map baseChange equation_add Equation.baseChange Point.some Point.some.injEq Point.some.inj map_a₆ FunctionField map_a₂ Point CoordinateRing.mk addX map_a₁ CoordinateRing.map map_a₄ CoordinateRing.basis_apply CoordinateRing.map_mk CoordinateRing.map_smul CoordinateRing.basis_zero CoordinateRing.basis addY equation_iff polynomial polyToFunctionField polyToFunctionField_apply polyToFunctionField_injective polyToFunctionField_C algebraMap_smul_basis finiteDimensional_ratFunc_functionField"
-p2m_open "WeierstrassCurve.Affine WeierstrassCurve"
-
-universe u
-
-variable {F : Type u} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
-variable (W : Affine F) [W.IsElliptic]
-
-namespace TreeIsogenyEndDatum
-
-end TreeIsogenyEndDatum
-
-namespace TreeIsogenyEndDatum
-
-end TreeIsogenyEndDatum
-
 end WeierstrassCurve.Affine
 
 namespace WeierstrassCurve
@@ -593,11 +571,6 @@ p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_e
 namespace AlgHom
 p2m_export "AlgHom" "codRestrict ext toLinearMap_apply commutes toLinearMap restrictScalars id_apply liftEquiv liftEquiv_tmul toFun_eq_coe rangeRestrict comp Finite.of_surjective mk toRingHom End toRingHom_eq_coe Finite.id fieldRange card coe_id Finite commutes' bijective comap_ker comp_apply Finite.comp"
 end AlgHom
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField"
-
-namespace ModularCurve
-
-end ModularCurve
 end
 p2m_reactivate "P2MW.S_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.IntermediateField"
 

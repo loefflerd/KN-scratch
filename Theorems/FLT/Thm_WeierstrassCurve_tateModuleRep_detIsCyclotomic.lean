@@ -332,7 +332,6 @@ theorem solution (W : WeierstrassCurve ℚ) (p : ℕ) [Fact p.Prime] (hΔ : W.Δ
       (natCast_pow_smul_basisLevel hcard k 0)
       (exists_natCast_smul_basisLevel hcard k)
       (dvd_of_rel_basisLevel hcard k)
-
   have hdet2 : e (σ • basisLevel hcard k 0) (σ • basisLevel hcard k 1)
       = e (basisLevel hcard k 0) (basisLevel hcard k 1) ^ cZ.det :=
     ep2 e hl hr halt cZ
@@ -344,7 +343,6 @@ theorem solution (W : WeierstrassCurve ℚ) (p : ℕ) [Fact p.Prime] (hΔ : W.Δ
     units_eq_pow_of_apply_eq_pow σ _ (hgal σ _ _) ha hprim.pow_eq_one
   have hdvd : ((p ^ k : ℕ) : ℤ) ∣ cZ.det - (a : ℤ) :=
     dvd_sub_of_pow_eq_zpow hprim (hξ.symm.trans hdet2)
-
   have hA := det_fin_two_sub_appr_mem_span mZp k
   have hdetseam : LinearMap.det ((W.tateModuleRep p hcard).ρ σ) = mZp.det := by
     rw [hmZp, LinearMap.det_toMatrix]

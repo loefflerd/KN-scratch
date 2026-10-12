@@ -112,7 +112,6 @@ theorem det_eq_zero_of_dvd_kerDeg [Finite (Submodule.torsionBy ℤ (W⁄K).Point
   have hdvd' : p ∣ Fintype.card ((linePencil (frobEnd W σ) m n).ker) := by
     rwa [kerDeg_def, Nat.card_eq_fintype_card] at hdvd
   obtain ⟨y, hyord⟩ := exists_prime_addOrderOf_dvd_card p hdvd'
-
   have hyp : p • (y : (W⁄K).Point) = 0 := by
     have h1 : p • y = 0 := by
       rw [← hyord]
@@ -123,7 +122,6 @@ theorem det_eq_zero_of_dvd_kerDeg [Finite (Submodule.torsionBy ℤ (W⁄K).Point
     have hy0' : y = 0 := Subtype.ext h0
     rw [hy0', addOrderOf_zero] at hyord
     exact (Fact.out : p.Prime).ne_one hyord.symm
-
   rw [LinearMap.det_eq_zero_iff_ker_ne_bot, Submodule.ne_bot_iff]
   refine ⟨⟨(y : (W⁄K).Point), ?_⟩, ?_, ?_⟩
   · rw [Submodule.mem_torsionBy_iff, Nat.cast_smul_eq_nsmul]

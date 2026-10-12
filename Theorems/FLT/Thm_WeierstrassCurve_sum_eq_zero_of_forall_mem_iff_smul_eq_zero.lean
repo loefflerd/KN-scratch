@@ -83,7 +83,6 @@ theorem sum_eq_zero_of_two_torsion_card_four {M : Type*} [AddCommGroup M] [Decid
   have hAB : A + B ∈ T := (hT _).mpr (by rw [smul_add, h2A, h2B, add_zero])
   have hAB0 : A + B ≠ 0 := fun h => hBA <| by
     rw [two_nsmul] at h2A
-
     calc B = -A := eq_neg_of_add_eq_zero_right h
       _ = A := neg_eq_of_add_eq_zero_left h2A
   have hABA : A + B ≠ A := fun h => hB0 (add_eq_left.mp h)
@@ -129,8 +128,7 @@ theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [IsAlgClosed K]
         exact hP.2
   rw [hrest, add_zero]
   rcases Nat.even_or_odd n with ⟨k, rfl⟩ | ⟨k, rfl⟩
-  ·
-    have h2K : (2 : K) ≠ 0 := by
+  · have h2K : (2 : K) ≠ 0 := by
       intro h
       apply hnK
       push_cast
@@ -149,8 +147,7 @@ theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [IsAlgClosed K]
       push_cast
       rw [ofNat_zsmul]
     exact sum_eq_zero_of_two_torsion_card_four T hT hcard
-  ·
-    refine Finset.sum_eq_zero fun P hP => ?_
+  · refine Finset.sum_eq_zero fun P hP => ?_
     rw [Finset.mem_filter] at hP
     obtain ⟨hPs, h2P⟩ := hP
     have hnP := (hs P).mp hPs

@@ -66,12 +66,6 @@ set_option backward.isDefEq.respectTransparency.types false
 namespace P2MW.S_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic
 
 
-namespace AlgebraicCurve
-end AlgebraicCurve
-namespace BrandtModuleData
-end BrandtModuleData
-namespace MatrixGroups
-end MatrixGroups
 namespace ModularCurve
 p2m_export "ModularCurve" "primCosetReps mem_primCosetReps jq jqN ModularPolynomialData ModularPolynomialData.eval_eq_zero"
 end ModularCurve
@@ -270,7 +264,7 @@ namespace QuaternionAlgebra
 p2m_export "QuaternionAlgebra" "re smul_mk mk_sub_mk mk.injEq mk_add_mk im mk"
 p2m_open "QuaternionAlgebra"
 
-open AddSubgroup AddMonoidHom BrandtModuleData
+open AddSubgroup AddMonoidHom
 
 section NatGen
 

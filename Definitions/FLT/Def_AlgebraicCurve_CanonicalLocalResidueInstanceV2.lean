@@ -88,18 +88,6 @@ end
 
 noncomputable section
 
-open Polynomial IntermediateField
-
-namespace ModularCurve.Ldgr37Ch
-
-universe u v
-
-end ModularCurve.Ldgr37Ch
-
-end
-
-noncomputable section
-
 open IsDedekindDomain WithZero IsLocalRing
 open scoped Polynomial
 
@@ -460,10 +448,6 @@ theorem laurentTailCoeff_coe_mul_uniformizer_pow_inv {n : ℕ} (c : v.toValuatio
 
 end Place
 
-namespace Place
-
-end Place
-
 end AlgebraicCurve
 
 end
@@ -730,54 +714,11 @@ end
 
 noncomputable section
 
-open IsDedekindDomain WithZero IsLocalRing Polynomial
-
-namespace ModularCurve.Ldgr35Cl
-
-end ModularCurve.Ldgr35Cl
-
-end
-
-noncomputable section
-
-open IsDedekindDomain WithZero Module IsLocalRing
-
-namespace ModularCurve.Ldgr35Cs
-
-end ModularCurve.Ldgr35Cs
-
-end
-
-noncomputable section
-
-open IsDedekindDomain WithZero IsLocalRing Polynomial
-
-namespace ModularCurve.Ldgr36Si
-
-end ModularCurve.Ldgr36Si
-
-end
-
-noncomputable section
-
-open IsDedekindDomain WithZero Module IsLocalRing
-
-namespace ModularCurve.Ldgr36Rc
-
-end ModularCurve.Ldgr36Rc
-
-end
-
-noncomputable section
-
 open IsDedekindDomain WithZero Module IsLocalRing
 
 namespace ModularCurve.Lg37
 
 open AlgebraicCurve
-open ModularCurve.Ldgr36Si
-open ModularCurve.Ldgr36Rc
-open ModularCurve.Ldgr35Cs
 
 section CompletionCarrier
 
@@ -812,7 +753,7 @@ open IsDedekindDomain WithZero Module IsLocalRing Polynomial
 namespace Mp72a102T1
 
 open AlgebraicCurve
-open ModularCurve.Lg37 ModularCurve.Ldgr37Ch
+open ModularCurve.Lg37
 
 open scoped Polynomial
 
@@ -1105,7 +1046,7 @@ open IsDedekindDomain WithZero Module IsLocalRing Polynomial
 namespace Mp72a102T2
 
 open AlgebraicCurve
-open ModularCurve.Lg37 ModularCurve.Ldgr35Cs
+open ModularCurve.Lg37
 
 open scoped Polynomial
 

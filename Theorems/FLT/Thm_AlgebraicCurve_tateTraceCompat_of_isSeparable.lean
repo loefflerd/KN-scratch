@@ -86,16 +86,12 @@ p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver
 end AlgebraicCurve
 namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver HasCanonicalLocalResidueKStar Place.mem_restrict_iff Place.mem_fiber Place.restrict_mem_fiber kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff kwHgfV352_completionTraceAt"
-namespace KwBwnmchRFTDCDischarge
-end AlgebraicCurve.KwBwnmchRFTDCDischarge
+end AlgebraicCurve
 namespace AlgebraicCurve
 p2m_export "AlgebraicCurve" "Place Divisor HasPrincipalDivisors Pic0 IsCurveOver HasCanonicalLocalResidueKStar Place.mem_restrict_iff Place.mem_fiber Place.restrict_mem_fiber kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff kwHgfV352_completionTraceAt"
 namespace Place
 p2m_export "AlgebraicCurve.Place" "ext ResidueField FiniteResidue heightOneSpectrum heightOneSpectrum_asIdeal ord ord_one ord_mul ord_inv ord_coe_irreducible ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ne_top' FiniteResidue.finite algebraMap_mem' toValuationSubring mk uniformizer ramificationIndex ramificationIndex_pos exists_ord_eq_ramificationIndex ramificationIndex_dvd_ord irreducible_mk_comap restrict mem_restrict_iff fiber mem_fiber restrict_mem_fiber adicCompletion adicCompletionIntegers kw_ffgc_adicCompletionComap kw_ffgc_valued_adicCompletionComap kw_ffgc_adicCompletionComapIntegers kw_ffgc_algebraAdicCompletionComap kw_ffgc_algebraMap_adicCompletionComap_eq kw_ffgc_rankOne_adicCompletion kw_ffgc_absoluteValue kw_ffgc_adicCompletionComap_algebraMap_algebraMap kw_ffgc_completionLinearCombination kw_ffgc_denseRange_completionLinearCombination kw_ffgc_completionTraceF'"
 end AlgebraicCurve.Place
-namespace FLT
-namespace Gapsw7X3xCrossPlaceTraceDecomposition
-end FLT.Gapsw7X3xCrossPlaceTraceDecomposition
 namespace Filter
 p2m_export "Filter" "mem_bot ker mk pi mem_comap map_top mem_ker mem_top comap unique map_mono map"
 end Filter
@@ -118,16 +114,13 @@ p2m_export "LinearMap" "mulLeft_apply single_apply toMatrix mem_range range sub_
 end LinearMap
 namespace ModularCurve
 p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4gRRTate.KwF4gRRTateTraceCompat"
-namespace KwF4R1V384a
-end ModularCurve.KwF4R1V384a
+end ModularCurve
 namespace ModularCurve
 p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4gRRTate.KwF4gRRTateTraceCompat"
-namespace KwF4R1V386a
-end ModularCurve.KwF4R1V386a
+end ModularCurve
 namespace ModularCurve
 p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4gRRTate.KwF4gRRTateTraceCompat"
-namespace KwF4R1V410a
-end ModularCurve.KwF4R1V410a
+end ModularCurve
 namespace ModularCurve
 p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4gRRTate.KwF4gRRTateTraceCompat"
 namespace KwF4gRRTate
@@ -135,12 +128,10 @@ p2m_export "ModularCurve.KwF4gRRTate" "finrankTrace tateComm tateComm_apply tate
 end ModularCurve.KwF4gRRTate
 namespace ModularCurve
 p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4gRRTate.KwF4gRRTateTraceCompat"
-namespace GF24a9RRDx
-end ModularCurve.GF24a9RRDx
+end ModularCurve
 namespace ModularCurve
 p2m_export "ModularCurve" "KwF4gRRTate.KwF4gRRTateCommFinite KwF4gRRTate.KwF4gRRTateTraceCompat"
-namespace Lg37
-end ModularCurve.Lg37
+end ModularCurve
 namespace Module
 p2m_export "Module" "Basis.repr_reindex_apply Injective Free.chooseBasis Free.ChooseBasisIndex isTorsionFree_iff_algebraMap_injective Basis.localizationLocalization_apply equiv Finite.equiv finrank Free mk IsTorsionFree free_of_finite_type_torsion_free' restrictScalars Basis.equivFun_apply IsNoetherian.finite Finite.of_submodule_quotient finBasis Basis.localizationLocalization_repr_algebraMap finrank_eq_card_chooseBasisIndex Basis.reindex_apply Basis"
 end Module
@@ -156,8 +147,6 @@ end NNReal
 namespace NumberField
 p2m_export "NumberField" "mk"
 end NumberField
-namespace Pointwise
-end Pointwise
 namespace Polynomial
 p2m_export "Polynomial" "X coe_one aeval_map_algebraMap aeval_def algebraMap_eq unique aeval ext_iff toSubring coe_pow isLocalization map lifts_and_degree_eq_and_monic comp_assoc Monic comp coe_mul coe_sub Separable lifts_iff_coeff_lifts algebraMap_apply ext funext ring aeval_algHom_apply lifts Separable.map"
 end Polynomial
@@ -167,8 +156,6 @@ end Submodule
 namespace TensorProduct
 p2m_export "TensorProduct" "congr lift mk ext tmul map Algebra.smul_def mk_surjective"
 end TensorProduct
-namespace Topology
-end Topology
 namespace Valuation
 p2m_export "Valuation" "norm_add_le map_add' valuationSubring ext mem_valuationSubring_iff map_sub map Integers.isIntegrallyClosed Integers IsRankOneDiscrete congr RankOne.hom restrict_le_iff coe_coe restrict norm_def comap restrict_eq_zero_iff mk map_sub_swap norm_nonneg RankOne isOpen_closedBall"
 end Valuation
@@ -310,10 +297,6 @@ p2m_export "AlgebraicCurve.Place" "comap_algebraMap_ne_top"
 
 
 p2m_export "AlgebraicCurve.Place" "exists_ord_algebraMap_pos"
-variable [Algebra.IsIntegral F F']
-
-
-
 end Restrict
 
 end Place
@@ -3157,7 +3140,6 @@ section
 set_option linter.unusedSectionVars false
 
 p2m_open "AlgebraicCurve P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve AlgebraicCurve.Place P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.AlgebraicCurve.Place IsDedekindDomain P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.IsDedekindDomain TensorProduct P2MW.S_AlgebraicCurve_tateTraceCompat_of_isSeparable.TensorProduct"
-open AlgebraicCurve.KwBwnmchRFTDCDischarge
 
 noncomputable section
 

@@ -73,8 +73,6 @@ namespace P2MW.S_WeierstrassCurve_galoisRepUnramifiedAt_of_hasGoodReduction
 p2m_attr_erase "instance" "WeierstrassCurve.instIsEllipticBaseChange WeierstrassCurve.Univ.Affine.instAddGroupPointFieldBaseChangeMvPolynomialCoeffIntCurve WeierstrassCurve.Univ.instIsEllipticFieldPointedCurve WeierstrassCurve.Univ.instCommRingPoly"
 p2m_attr_erase "simp" "compl₂EDSAux_neg_two compl₂EDSAux_zero WeierstrassCurve.ωe_zero WeierstrassCurve.Univ.pointedCurve_a₁ WeierstrassCurve.Univ.polyToField_polynomial WeierstrassCurve.Coeff.A₁.sizeOf_spec compl₂EDS_zero compl₂EDS_one WeierstrassCurve.Univ.Affine.smulY_zero Param.C.sizeOf_spec EllSequence.redInvarDenom_zero compl₂EDSAux_two compl₂EDSAux_neg_one compl₂EDSAux_one WeierstrassCurve.Coeff.A₆.sizeOf_spec WeierstrassCurve.ψc_neg WeierstrassCurve.Univ.Affine.smulY_one WeierstrassCurve.Univ.Affine.smulX_one WeierstrassCurve.Coeff.A₂.sizeOf_spec WeierstrassCurve.Univ.pointedCurve_a₄ compl₂EDS_neg WeierstrassCurve.Univ.pointedCurve_a₃ EllSequence.redInvarDenom_two WeierstrassCurve.Univ.pointedCurve_a₆ Param.D.sizeOf_spec WeierstrassCurve.ωe_one WeierstrassCurve.Univ.Affine.smulX_zero WeierstrassCurve.Coeff.A₃.sizeOf_spec EllSequence.redInvarDenom_one WeierstrassCurve.Coeff.A₄.sizeOf_spec WeierstrassCurve.Univ.pointedCurve_a₂ Param.B.sizeOf_spec compl₂EDS_two"
 
-set_option autoImplicit false
-
 noncomputable section
 
 open WeierstrassCurve IsDiscreteValuationRing IsLocalRing IsDedekindDomain.HeightOneSpectrum
@@ -182,10 +180,8 @@ theorem galoisRepUnramifiedAt_of_hasGoodReduction'
     refine lt_of_le_of_ne (S.valuation_le_one ⟨((q : ℕ) : L), hqmem⟩) ?_
     intro h1
     exact hq_nonunit ((S.valuation_eq_one_iff _).mpr h1)
-
   have hGood : (E.baseChange L).HasGoodReduction S :=
     WeierstrassCurve.hasGoodReduction_baseChange_of_valuation_lt_one R E L S hq hqR hSval
-
   obtain ⟨τ, hτ⟩ := ValuationSubring.exists_inertiaSubgroup_restrictNormal_eq L A ⟨σ, hσI⟩
   have hτ' : ((τ : S.decompositionSubgroup ℚ) : L ≃ₐ[ℚ] L) = AlgEquiv.restrictNormalHom L σ₁ := hτ
   have hcomm : ∀ z : L, algebraMap L Qb
@@ -197,7 +193,6 @@ theorem galoisRepUnramifiedAt_of_hasGoodReduction'
   obtain ⟨h', hmap⟩ := point_descend_of_mem E L x y hx hy h
   set PL : (E.baseChange L).toAffine.Point :=
     WeierstrassCurve.Affine.Point.some ⟨x, hx⟩ ⟨y, hy⟩ h' with hPLdef
-
   have hnP : (n : ℤ) • (WeierstrassCurve.Affine.Point.some x y h : (E⁄Qb).Point) = 0 := by
     simpa using hPn
   have hnPL : (n : ℤ) • PL = 0 := by
@@ -206,7 +201,6 @@ theorem galoisRepUnramifiedAt_of_hasGoodReduction'
     exact hnP
   have hnPL' : n • PL = 0 := by
     have := hnPL; rwa [natCast_zsmul] at this
-
   set τL : L ≃ₐ[ℚ] L := ((τ : S.decompositionSubgroup ℚ) : L ≃ₐ[ℚ] L) with hτLdef
 
   have hstab : ∀ z : L, z ∈ S → τL z ∈ S := fun z hz =>
@@ -238,7 +232,6 @@ theorem galoisRepUnramifiedAt_of_hasGoodReduction'
     intro z
     rw [hv_mem, hv_mem]
     exact ⟨hstab' z, hstab z⟩
-
   set σR : S ≃+* S :=
     MulSemiringAction.toRingAut (S.decompositionSubgroup ℚ) S
       (τ : S.decompositionSubgroup ℚ) with hσRdef
@@ -313,7 +306,6 @@ theorem galoisRepUnramifiedAt_of_hasGoodReduction'
       have h3 : (algebraMap ℤ S (n : ℤ)) = ((n : ℕ) : S) := by push_cast; rfl
       rw [h3] at h2
       exact isUnit_of_mul_isUnit_right h2
-
   have hD : WeierstrassCurve.Affine.Point.map τL.toAlgHom PL = PL := by
     have hnPLτ : n • WeierstrassCurve.Affine.Point.map τL.toAlgHom PL = 0 :=
       calc n • WeierstrassCurve.Affine.Point.map τL.toAlgHom PL

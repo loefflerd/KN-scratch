@@ -134,7 +134,6 @@ theorem card_ker_eq_max_natDegree {k : Type*} [Field k] [DecidableEq k] [IsAlgCl
         x' * h.eval x = g.eval x) :
     Nat.card ψ.ker = max g.natDegree h.natDegree := by
   have hΨ₂ : W.Ψ₂Sq ≠ 0 := Ψ₂Sq_ne_zero
-
   have hx' : ∀ {x y : k} (hP : W.toAffine.Nonsingular x y), Point.some x y hP ∉ B →
       ψ (Point.some x y hP) ≠ 0 → xc (ψ (Point.some x y hP)) * h.eval x = g.eval x := by
     intro x y hP hPB hne
@@ -143,7 +142,6 @@ theorem card_ker_eq_max_natDegree {k : Type*} [Field k] [DecidableEq k] [IsAlgCl
     · rw [xc_some]
       exact hx hP hP' hPB hq
   set d : ℕ := max g.natDegree h.natDegree with hd
-
   have hh : h ≠ 0 := fun h0 => hsep (by rw [h0, derivative_zero, mul_zero, mul_zero, sub_zero])
   have hd1 : 1 ≤ d := by
     by_contra hlt
@@ -154,14 +152,12 @@ theorem card_ker_eq_max_natDegree {k : Type*} [Field k] [DecidableEq k] [IsAlgCl
     apply hsep
     rw [Polynomial.eq_C_of_natDegree_eq_zero hg0, Polynomial.eq_C_of_natDegree_eq_zero hh0,
       derivative_C, derivative_C, zero_mul, mul_zero, sub_zero]
-
   have hnocommon : ∀ t : k, g.eval t = 0 → h.eval t = 0 → False := by
     intro t hg0 hh0
     obtain ⟨u, v, huv⟩ := hgh
     have h1 := congrArg (Polynomial.eval t) huv
     simp only [eval_add, eval_mul, eval_one, hg0, hh0, mul_zero, add_zero] at h1
     exact zero_ne_one h1
-
   have hdeg_of_coeff : ∀ a : k, g.coeff d - a * h.coeff d ≠ 0 → (g - C a * h).natDegree = d := by
     intro a hca
     refine le_antisymm ((natDegree_sub_le _ _).trans ?_) (le_natDegree_of_ne_zero ?_)
@@ -219,7 +215,6 @@ theorem card_ker_eq_max_natDegree {k : Type*} [Field k] [DecidableEq k] [IsAlgCl
       ⟨t, hWr, (div_eq_iff hht).mpr ht⟩))
   have hΨ₂a : W.Ψ₂Sq.eval a ≠ 0 := fun h0 =>
     ha₃ (Finset.mem_coe.mpr (Multiset.mem_toFinset.mpr ((mem_roots hΨ₂).mpr h0)))
-
   have hB_image : ∀ P ∈ B, xc (ψ P) ≠ a := fun P hP hPa => ha₄ ⟨P, hP, hPa⟩
   have hB_xmap : ∀ P ∈ B, g.eval (xc P) / h.eval (xc P) ≠ a := fun P hP hPa =>
     ha₅ ⟨P, hP, hPa⟩
@@ -227,7 +222,6 @@ theorem card_ker_eq_max_natDegree {k : Type*} [Field k] [DecidableEq k] [IsAlgCl
   have htf : (g - C a * h).roots.toFinset.card = d := by
     rw [Multiset.toFinset_card_of_nodup hanodup,
       splits_iff_card_roots.mp (IsAlgClosed.splits (g - C a * h)), hadeg]
-
   obtain ⟨b, hb⟩ := exists_equation (W := W) a
   have hbns : W.toAffine.Nonsingular a b := (equation_iff_nonsingular (W := W)).mp hb
   have hbne : b ≠ W.toAffine.negY a b := fun hbeq => hΨ₂a (by
@@ -262,7 +256,6 @@ theorem card_ker_eq_max_natDegree {k : Type*} [Field k] [DecidableEq k] [IsAlgCl
       have hxa : xc (ψ (Point.some xP yP hP)) = a := by
         rw [hPQ, hQ₀, xc_some]
       rw [xc_some, eval_sub, eval_mul, eval_C, ← hxa, hxeq, sub_self]
-
   have hbij : Function.Bijective (fun P : {P : W.toAffine.Point // ψ P = Q₀} =>
       (⟨xc P.1, hmem P.1 P.2⟩ : {x : k // (g - C a * h).eval x = 0})) := by
     constructor
@@ -297,7 +290,6 @@ theorem card_ker_eq_max_natDegree {k : Type*} [Field k] [DecidableEq k] [IsAlgCl
       have hhx₀ : h.eval x₀ ≠ 0 := fun hh0 => hnocommon x₀ (by rw [hgx₀, hh0, mul_zero]) hh0
       obtain ⟨y₀, hy₀⟩ := exists_equation (W := W) x₀
       have hns₀ : W.toAffine.Nonsingular x₀ y₀ := (equation_iff_nonsingular (W := W)).mp hy₀
-
       have hKB : (Point.some x₀ y₀ hns₀ : W.toAffine.Point) ∉ B := by
         intro hKmem
         refine hB_xmap _ hKmem ?_
@@ -314,7 +306,6 @@ theorem card_ker_eq_max_natDegree {k : Type*} [Field k] [DecidableEq k] [IsAlgCl
         · refine Subtype.ext ?_
           show xc (-(Point.some x₀ y₀ hns₀)) = x₀
           rw [Point.neg_some, xc_some]
-
   have hroot_ex : ∃ x : k, (g - C a * h).eval x = 0 := by
     have hpos : 0 < (g - C a * h).roots.toFinset.card := by rw [htf]; omega
     obtain ⟨x₀, hx₀⟩ := Finset.card_pos.mp hpos

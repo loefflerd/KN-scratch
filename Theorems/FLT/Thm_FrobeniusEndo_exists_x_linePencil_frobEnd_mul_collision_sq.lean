@@ -415,7 +415,6 @@ theorem ν_omega_psi_le (m : ℤ) (hm : m ≠ 0)
           (t3.trans (by omega)))) (t4.trans (by omega)))
     refine (ν_mk_C_le W h).trans ?_
     omega
-
   by_cases hZ0 : Z = 0
   · rw [hZ0, ν_zero]
     exact Nat.zero_le _
@@ -436,7 +435,6 @@ theorem ν_Gpoly (q : ℕ) (hq : 2 ≤ q) (m : ℤ) (hm : (m : K) ≠ 0)
     rintro rfl
     exact hm (by simp)
   have hN2 : 1 ≤ N2 := Nat.one_le_pow _ _ (Int.natAbs_pos.mpr hm0)
-
   have hΦ : (W.Φ m).natDegree = N2 := W.natDegree_Φ m
   have hΦ_le : (W.Φ m).natDegree ≤ N2 := hΦ.le
   have hΨ : (W.ΨSq m).natDegree = N2 - 1 := W.natDegree_ΨSq hm
@@ -494,7 +492,6 @@ theorem ν_Gpoly (q : ℕ) (hq : 2 ≤ q) (m : ℤ) (hm : (m : K) ≠ 0)
   set NN := 4 * N2 + 4 * q - 2 with hNN
   have hνB₀ : ν W (CoordinateRing.mk W (C B₀)) = NN := by
     rw [ν_mk_C, hB₀deg]; omega
-
   have hnegq := ν_mk_negPolynomial_pow_le W q
   have t6 : ν W (CoordinateRing.mk W (C (C W.a₁ * (W.Φ m * W.ΨSq m)) * W.toAffine.negPolynomial ^ q))
       < NN := by
@@ -525,7 +522,6 @@ theorem ν_Gpoly (q : ℕ) (hq : 2 ≤ q) (m : ℤ) (hm : (m : K) ≠ 0)
     have := (ν_mul_le W _ _).trans (add_le_add ((ν_mul_le W _ _).trans
       (add_le_add (ν_two W).le hZ)) hnegq)
     omega
-
   unfold Gpoly
   rw [_root_.map_sub, _root_.map_sub, _root_.map_sub, _root_.map_sub, _root_.map_sub]
   exact ν_sub_eq_of_lt W (ν_sub_eq_of_lt W (ν_sub_eq_of_lt W (ν_sub_eq_of_lt W
@@ -744,12 +740,10 @@ lemma key_step (W : WeierstrassCurve R) [(W⁄k).IsElliptic] (σ : k ≃ₐ[F] k
       linePencil (frobEnd W σ) m 1 (Point.some x y h) = Point.some x' y' h' →
       x' * ((W⁄k).Φ m - Polynomial.X ^ Fintype.card F * (W⁄k).ΨSq m).eval x ^ 2
         = (Gpoly (W⁄k) (Fintype.card F) m).evalEval x y := by
-
   have e₁ := WeierstrassCurve.Affine.Point.zsmul_x_mul_psi_sq (W⁄k) m h h₁ hmP
   have e₂ := WeierstrassCurve.Affine.Point.zsmul_y_mul_psi_cube (W⁄k) m h h₁ hmP
   rw [evalEval_φ (W⁄k) h.1] at e₁
   have e₃ := evalEval_ψ_sq (W⁄k) h.1 m
-
   have hCval : ((W⁄k).Φ m - Polynomial.X ^ Fintype.card F * (W⁄k).ΨSq m).eval x
       = (x₁ - x ^ Fintype.card F) * ((W⁄k).ψ m).evalEval x y ^ 2 := by
     rw [eval_sub, eval_mul, eval_pow, eval_X, ← e₃]
@@ -758,7 +752,6 @@ lemma key_step (W : WeierstrassCurve R) [(W⁄k).IsElliptic] (σ : k ≃ₐ[F] k
     intro hx
     apply hC
     rw [hCval, hx, sub_self, zero_mul]
-
   obtain ⟨hq', hσP⟩ := smul_some_eq W σ hσ h
   have hnegσP : -(σ • (Point.some x y h : (W⁄k).Point))
       = Point.some (x ^ Fintype.card F) ((W⁄k).negY (x ^ Fintype.card F) (y ^ Fintype.card F))
@@ -774,10 +767,8 @@ lemma key_step (W : WeierstrassCurve R) [(W⁄k).IsElliptic] (σ : k ≃ₐ[F] k
   intro x' y' h' hrepr
   rw [hA, Point.some.injEq] at hrepr
   obtain ⟨hx', -⟩ := hrepr
-
   have hchord := addX_slope_mul_sub_sq (W⁄k) h₁.1 (((Affine.nonsingular_neg ..).mpr hq')).1 hx₁
   rw [hx'] at hchord
-
   have hbook := starRHS_mul_psi_pow_four (W⁄k) (Fintype.card F) m e₁ e₂ e₃
   rw [hCval]
   calc x' * ((x₁ - x ^ Fintype.card F) * ((W⁄k).ψ m).evalEval x y ^ 2) ^ 2
@@ -803,13 +794,11 @@ theorem exists_x_linePencil_frobEnd_mul_collision_sq [IsAlgClosed k] (W : Weiers
           linePencil (frobEnd W σ) m 1 (Point.some x y h) = Point.some x' y' h' →
           x' * ((W⁄k).Φ m - Polynomial.X ^ Fintype.card F * (W⁄k).ΨSq m).eval x ^ 2 = U.eval x := by
   refine ⟨redX (W⁄k) (Gpoly (W⁄k) (Fintype.card F) m), ?_, ?_⟩
-  ·
-    intro hmk
+  · intro hmk
     have hm0 : m ≠ 0 := by
       rintro rfl
       exact hmk (by simp)
     have hq2 : 2 ≤ Fintype.card F := Fintype.one_lt_card
-
     have hEZ : CoordinateRing.mk (W⁄k) (EZpoly (W⁄k) m) = 0 := by
       refine mk_eq_zero_of_evalEval_eq_zero (W⁄k) hfin _ (fun {x y} hxy hxT => ?_)
       have hns : (W⁄k).Nonsingular x y := (Affine.equation_iff_nonsingular (W := W⁄k)).mp hxy
@@ -823,8 +812,7 @@ theorem exists_x_linePencil_frobEnd_mul_collision_sq [IsAlgClosed k] (W : Weiers
       omega
     rw [hn] at hGν
     exact natDegree_of_ν_even (W⁄k) hGν
-  ·
-    intro x y h x₁ y₁ h₁ hmP hΨ hC hΨ₂
+  · intro x y h x₁ y₁ h₁ hmP hΨ hC hΨ₂
     obtain ⟨hA, hval⟩ := key_step W σ hσ m h h₁ hmP hC
     refine ⟨hA, fun {x' y'} h' hrepr => ?_⟩
     have e1 := hval h' hrepr

@@ -181,7 +181,6 @@ theorem valuation_transEquiv_le_self' {S : (W⁄K).Point} (hS : S ≠ 0) (h2S : 
   have hc := valuation_algebraMap_le_one W K S hS
   rcases S with _ | ⟨xS, yS, hSns⟩
   · exact absurd rfl hS
-
   have hy : yS ≠ (W⁄K).negY xS yS := fun h => h2S (Point.add_self_of_Y_eq h)
   have hγx : genericX W K ≠ algebraMap K (W⁄K).FunctionField xS := genericX_ne_algebraMap W K xS
   have hγx' : genericX W K ≠ Algebra.ofId K (W⁄K).FunctionField xS := hγx
@@ -199,7 +198,6 @@ theorem valuation_transEquiv_le_self' {S : (W⁄K).Point} (hS : S ≠ 0) (h2S : 
   have hX := cong_genericX W K (.some xS yS hSns) hS
   have hY := cong_genericY W K (.some xS yS hSns) hS
   simp only [Point.xc_some, Point.yc_some] at hX hY
-
   obtain ⟨e1, e2, e3, e4, e6⟩ := baseChange_a_eq W K
   have hD : v.Cong ((W⁄(W⁄K).FunctionField).negY (genericX W K) (genericY W K) - algebraMap K _ yS)
       (algebraMap K _ ((W⁄K).negY xS yS - yS)) := by
@@ -223,7 +221,6 @@ theorem valuation_transEquiv_le_self' {S : (W⁄K).Point} (hS : S ≠ 0) (h2S : 
     have key := congrArg (eval xS) (divByMonic_add_X_sub_C_mul_derivative_divByMonic_eq_derivative (wAtY W K yS) xS)
     rw [eval_add, eval_mul, eval_sub, eval_X, eval_C, sub_self, zero_mul, add_zero] at key
     rw [key, eval_derivative_wAtY]
-
   have hΛ : (W⁄(W⁄K).FunctionField).slope (genericX W K) (algebraMap K _ xS) (genericY W K) (algebraMap K _ yS) =
       q.eval₂ (algebraMap K (W⁄K).FunctionField) (genericX W K) /
         ((W⁄(W⁄K).FunctionField).negY (genericX W K) (genericY W K) - algebraMap K _ yS) := by
@@ -242,7 +239,6 @@ theorem valuation_transEquiv_le_self' {S : (W⁄K).Point} (hS : S ≠ 0) (h2S : 
     exact hq'.1.div hD hq'.2 (valuation_algebraMap_eq_one W K _ hS hD0)
   obtain ⟨hcx, hcy⟩ := cong_addX_addY (P := .some xS yS hSns) hS (x₂' := xS) hX
     (Valuation.Cong.refl (algebraMap K (W⁄K).FunctionField xS)) hY hslope
-
   rw [transEquiv_apply, transPull]
   refine valuation_pointPull_le W K _ _ _ hS h2S ?_ ?_ h k hh
   · rw [hQx, Point.add_self_of_Y_ne hy, Point.xc_some]

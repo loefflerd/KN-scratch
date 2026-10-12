@@ -112,7 +112,6 @@ theorem exists_eq_span_of_eq_pullback (μ : K →+* K)
     rw [map_zero, Valuation.map_zero] at this
     exact WithZero.zero_ne_coe this
   have hμh0 : μ h ≠ 0 := (map_ne_zero μ).mpr hh0
-
   have h1 : ∀ w : HeightOneSpectrum R, w.valuation K h ≤ 1 := by
     intro w
     by_contra hlt
@@ -127,7 +126,6 @@ theorem exists_eq_span_of_eq_pullback (μ : K →+* K)
       rw [← exp_zero, exp_lt_exp]; norm_num)
     have hpos : 0 < v.valuation K (μ h) := zero_lt_iff.mpr ((Valuation.ne_zero_iff _).mpr hμh0)
     exact absurd ((inv_lt_one₀ hpos).mp hlt') (not_lt.mpr (hg_le v w hv))
-
   obtain ⟨r, hr⟩ := mem_integers_of_valuation_le_one K h h1
   subst hr
   have hr0 : r ≠ 0 := fun h0 => hh0 (by rw [h0, map_zero])
@@ -141,7 +139,6 @@ theorem exists_eq_span_of_eq_pullback (μ : K →+* K)
     have := hμ v w hv _ 1 hlt
     rw [hg₁ v w hv hw, Nat.cast_one, ← exp_zero, exp_le_exp] at this
     norm_num at this
-
   have h4a : r ∈ t₀.asIdeal := by
     by_contra hnot
     have hunit : IsUnit r := isUnit_of_forall_not_mem
@@ -158,7 +155,6 @@ theorem exists_eq_span_of_eq_pullback (μ : K →+* K)
       gcongr
     rw [hprod, mul_one, ← exp_zero, exp_le_exp] at key
     norm_num at key
-
   have h4b : r ∉ t₀.asIdeal ^ 2 := by
     intro hmem
     have hle : t₀.valuation K (algebraMap R K r) ≤ exp (-((2 : ℕ) : ℤ)) := by
@@ -167,7 +163,6 @@ theorem exists_eq_span_of_eq_pullback (μ : K →+* K)
     have := hμ v₀ t₀ hv₀ _ 2 hle
     rw [hg₀ v₀ hv₀, exp_le_exp] at this
     norm_num at this
-
   refine ⟨r, ?_⟩
   have hdvd : t₀.asIdeal ∣ Ideal.span {r} :=
     (Ideal.dvd_span_singleton).mpr h4a

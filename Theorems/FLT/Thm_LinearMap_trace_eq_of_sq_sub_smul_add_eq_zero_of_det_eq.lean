@@ -72,7 +72,6 @@ theorem solution {R : Type*} {M : Type*} [CommRing R] [IsDomain R] [AddCommGroup
   have hM : Nontrivial M := by
     have h2 : 0 < Module.finrank R M := by rw [h]; decide
     exact (Module.finrank_pos_iff_of_free R M).mp h2
-
   have hCH : f * f - (LinearMap.trace R M f) • f + d • (1 : M →ₗ[R] M) = 0 := by
     have h1 := LinearMap.aeval_self_charpoly f
     rw [LinearMap.charpoly_of_finrank_eq_two h f, hdet] at h1

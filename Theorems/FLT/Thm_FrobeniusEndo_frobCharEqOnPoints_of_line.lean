@@ -78,7 +78,6 @@ theorem solution {R : Type*} [CommRing R] {F : Type*} [Field F] [Fintype F] {k :
     FrobCharEqOnPoints W σ a (Fintype.card F) := by
   set q : ℕ := Fintype.card F with hq
   have hq1 : 1 ≤ q := Fintype.card_pos_iff.mpr ⟨1⟩
-
   have hinv : ∀ r : ℕ, r.Prime → q < r → (r : k) ≠ 0 := by
     intro r hr hqr h0
     have h0F : (r : F) = 0 := by

@@ -109,7 +109,6 @@ theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K]
     exact ⟨Units.mk0 c hc0, by rw [Units.val_mk0, ← hc, div_mul_cancel₀ _ hg0]⟩
   apply WeilGal.exists_eq_algebraMap W
   intro Q hQ
-
   set P := σ⁻¹ • Q with hPdef
   have hP : P ≠ 0 := WeilGal.smul_point_ne_zero W σ⁻¹ hQ
   have hQP : σ • P = Q := smul_inv_smul σ Q

@@ -79,7 +79,6 @@ theorem linearMap_mul_sub_trace_smul_add_det_smul_of_basis_fin_two
     (b : Module.Basis (Fin 2) R M) (φ : M →ₗ[R] M) :
     φ * φ - (LinearMap.trace R M φ) • φ + (LinearMap.det φ) • (1 : M →ₗ[R] M) = 0 := by
   classical
-
   have hmat : ∀ A : Matrix (Fin 2) (Fin 2) R,
       A * A - A.trace • A + A.det • (1 : Matrix (Fin 2) (Fin 2) R) = 0 := by
     intro A
@@ -88,7 +87,6 @@ theorem linearMap_mul_sub_trace_smul_add_det_smul_of_basis_fin_two
       simp [Matrix.mul_apply, Fin.sum_univ_two, Matrix.trace_fin_two, Matrix.det_fin_two,
         Matrix.add_apply, Matrix.sub_apply, Matrix.smul_apply, smul_eq_mul] <;>
       ring
-
   apply (LinearMap.toMatrix b b).injective
   have htr : LinearMap.trace R M φ = (LinearMap.toMatrix b b φ).trace :=
     LinearMap.trace_eq_matrix_trace R b φ
@@ -151,10 +149,8 @@ theorem charEq_on_torsionBy_of_isotropic
   have hEnd := linearMap_mul_sub_trace_smul_add_det_smul_of_basis_fin_two (basisOfNatCard hfull)
     (galoisRepModuleEnd S W p σ)
   rw [htr, hdet] at hEnd
-
   rw [show ((q : ZMod p)) = (((q : ℤ) : ZMod p)) by push_cast; ring] at hEnd
   rw [Int.cast_smul_eq_zsmul, Int.cast_smul_eq_zsmul] at hEnd
-
   have hmem : P ∈ Submodule.torsionBy ℤ (W⁄K).Point p := (Submodule.mem_torsionBy_iff _ _).mpr hP
   have hx := LinearMap.ext_iff.mp hEnd ⟨P, hmem⟩
   simp only [LinearMap.add_apply, LinearMap.sub_apply, LinearMap.smul_apply,

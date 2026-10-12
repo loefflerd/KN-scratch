@@ -79,8 +79,6 @@ p2m_export "AlgebraicCurve" "Place Place.coe_algebraMap Place.ord_zero Divisor D
 p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.mem_iff_ord_nonneg"
 namespace Place
 p2m_export "AlgebraicCurve.Place" "ext coe_algebraMap ResidueField deg adicValuation adicValuation_coe_eq_one_iff ord ord_zero ord_mul ord_inv ord_coe_unit ord_coe_irreducible ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ofHeightOneSpectrum mk.injEq algebraMap_mem' toValuationSubring mk ramificationIndex ramificationIndex_pos restrict mem_restrict_iff ord_restrict deg_restrict_mul_inertiaDeg fiber mem_fiber adicValuation_eq_exp_neg_ord sum_ramificationIndex_mul_inertiaDeg exists_restrict_eq"
-p2m_open "AlgebraicCurve.Place~ord_nonneg_of_mem~mem_of_ord_nonneg~mem_iff_ord_nonneg~restrict_placeOfPrime~placeOfPrime~comap_algebraMap_ne_top"
-variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
 end Place
 end AlgebraicCurve
 

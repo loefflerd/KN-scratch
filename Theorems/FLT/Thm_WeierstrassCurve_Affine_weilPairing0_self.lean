@@ -121,19 +121,16 @@ theorem transEquiv_weilFun_self {n : ℕ} (hn : (n : K) ≠ 0) {T : (W⁄K).Poin
     exact_mod_cast this
   obtain ⟨T', hT'⟩ := WeierstrassCurve.Affine.Point.exists_zsmul_eq_of_isAlgClosed (W⁄K) hn0 T
   set g := weilFun W K n T with hg
-
   set a : ℕ → (W⁄K).FunctionField := fun i => transEquiv W K ((i : ℤ) • T') g with ha
   have hstep : ∀ i, transEquiv W K T' (a i) = a (i + 1) := by
     intro i
     simp only [ha]
     rw [transEquiv_transEquiv, Nat.cast_succ, add_smul, one_smul, add_comm]
   set G := ∏ i ∈ Finset.range n, a i with hG
-
   have hGval : ∀ (P : (W⁄K).Point) (hP : P ≠ 0),
       (placeOf W K P hP).valuation (W⁄K).FunctionField G = 1 := by
     intro P hP
     rw [hG, map_prod]
-
     set d : ℤ → ℤᵐ⁰ := fun j => if (n : ℤ) • P + j • T = 0 then exp (-1 : ℤ) else 1 with hd
     have hper : ∀ j, d (j + n) = d j := by
       intro j
@@ -172,12 +169,10 @@ theorem transEquiv_weilFun_self {n : ℕ} (hn : (n : K) ≠ 0) {T : (W⁄K).Poin
         congr 1
         ring
   obtain ⟨c, hc0, hGc⟩ := exists_eq_algebraMap W hGval
-
   have hfix : transEquiv W K T' G = G := by rw [hGc, AlgEquiv.commutes]
   have hshift : transEquiv W K T' G = ∏ i ∈ Finset.range n, a (i + 1) := by
     rw [hG, map_prod]
     exact Finset.prod_congr rfl fun i _ => hstep i
-
   have ha0 : ∀ i, a i ≠ 0 := fun i => by
     simp only [ha]
     exact (map_ne_zero_iff _ (transEquiv W K _).injective).mpr (WeierstrassCurve.Affine.weilFun_ne_zero W hn hT)

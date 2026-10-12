@@ -196,7 +196,6 @@ theorem valuation_XClass_lt_valuation_YClass {x_S y_S : K} (hxy : (W⁄K).Nonsin
   have hu_mem : u₀ ∈ 𝔪 := h𝔪 ▸ Ideal.subset_span (Set.mem_insert _ _)
   have hneg_mem : CoordinateRing.YClass (W⁄K) (C ((W⁄K).negY x_S y_S)) ∈ 𝔪 :=
     h𝔪 ▸ Ideal.subset_span (Set.mem_insert_of_mem _ (Set.mem_singleton _))
-
   have hconst : ∀ c : K, CoordinateRing.mk (W⁄K) (C (C c)) ∈ 𝔪 → c = 0 := by
     intro c hc
     by_contra h0
@@ -208,8 +207,7 @@ theorem valuation_XClass_lt_valuation_YClass {x_S y_S : K} (hxy : (W⁄K).Nonsin
     ((map_ne_zero_iff ι (IsFractionRing.injective (W⁄K).CoordinateRing (W⁄K).FunctionField)).mpr
       (CoordinateRing.YClass_ne_zero (W' := W⁄K) _))
   by_cases ht : t₀ ∈ 𝔪
-  ·
-    have he : (W⁄K).negY x_S y_S - y_S = 0 := by
+  · have he : (W⁄K).negY x_S y_S - y_S = 0 := by
       apply hconst
       have key : t₀ - CoordinateRing.YClass (W⁄K) (C ((W⁄K).negY x_S y_S)) =
           CoordinateRing.mk (W⁄K) (C (C ((W⁄K).negY x_S y_S - y_S))) := by
@@ -226,7 +224,6 @@ theorem valuation_XClass_lt_valuation_YClass {x_S y_S : K} (hxy : (W⁄K).Nonsin
       intro h0
       apply h
       linear_combination -h0
-
     have hγ : CoordinateRing.mk (W⁄K) (Y ^ 2 + C (C (W⁄K).a₁ * X + C (W⁄K).a₃) * Y -
         C (X ^ 3 + C (W⁄K).a₂ * X ^ 2 + C (W⁄K).a₄ * X + C (W⁄K).a₆)) = 0 := AdjoinRoot.mk_self
     simp only [map_sub, map_add, map_mul, map_pow] at hγ
@@ -266,8 +263,7 @@ theorem valuation_XClass_lt_valuation_YClass {x_S y_S : K} (hxy : (W⁄K).Nonsin
     rw [hq, mul_one] at hmul
     rw [← hmul]
     exact mul_lt_of_lt_one_right (zero_lt_iff.mpr ht0) hs
-  ·
-    have ht1 : v (ι t₀) = 1 := by rw [hι, HeightOneSpectrum.valuation_eq_one_iff_notMem]; exact ht
+  · have ht1 : v (ι t₀) = 1 := by rw [hι, HeightOneSpectrum.valuation_eq_one_iff_notMem]; exact ht
     rw [ht1]
     exact hu_lt
 
@@ -348,7 +344,6 @@ theorem valuation_placeOf_neg_transEquiv_algebraMap_aux (S : (W⁄K).Point) (hS 
   set τ : (W⁄K).FunctionField →+* (W⁄K).FunctionField :=
     (transEquiv W K (Point.some x_S y_S hxy)).toAlgHom.toRingHom with hτ
   have hτapp : ∀ h, v.comap τ h = v (transEquiv W K (Point.some x_S y_S hxy) h) := fun _ => rfl
-
   have hO : (v.comap τ).valuationSubring = vinf.valuationSubring := by
     refine WeierstrassCurve.Affine.FunctionField.eq_valuationSubring_of_X_not_mem (W.baseChange K) _
       (fun c => ?_) ?_ vinf hvinf
@@ -378,7 +373,6 @@ theorem valuation_placeOf_neg_transEquiv_algebraMap_aux (S : (W⁄K).Point) (hS 
       norm_num
       exact WithZero.exp_log hγ
   have heqv := Valuation.eq_of_valuationSubring_eq_aux' _ _ hsτ hsinf hO
-
   have key := DFunLike.congr_fun heqv (ι a)
   rw [hτapp] at key
   rw [key, hι, hvinf a ha]

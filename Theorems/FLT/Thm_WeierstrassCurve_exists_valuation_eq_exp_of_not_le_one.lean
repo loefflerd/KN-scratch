@@ -58,8 +58,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WeierstrassCurve_exists_valuation_eq_exp_of_not_le_one
 
-set_option autoImplicit false
-
 open WeierstrassCurve IsDiscreteValuationRing IsLocalRing IsDedekindDomain.HeightOneSpectrum
 
 namespace PoleDichotomy
@@ -81,7 +79,6 @@ theorem valuation_dichotomy (R : Type*) [CommRing R] [IsDomain R] [IsDiscreteVal
   have ha3 : v W.toAffine.a₃ ≤ 1 := key _ ⟨_, integralModel_a₃_eq R W⟩
   have ha4 : v W.toAffine.a₄ ≤ 1 := key _ ⟨_, integralModel_a₄_eq R W⟩
   have ha6 : v W.toAffine.a₆ ≤ 1 := key _ ⟨_, integralModel_a₆_eq R W⟩
-
   have hpow : ∀ (n : ℕ) (c : ℤ), WithZero.exp c ^ n = WithZero.exp ((n : ℤ) * c) := by
     intro n c
     rw [← WithZero.exp_nsmul, nsmul_eq_mul]
@@ -93,7 +90,6 @@ theorem valuation_dichotomy (R : Type*) [CommRing R] [IsDomain R] [IsDiscreteVal
     have h1 : WithZero.exp (0 : ℤ) < WithZero.exp a := by
       rw [WithZero.exp_zero, ← hax]; exact hvx1
     exact WithZero.exp_lt_exp.mp h1
-
   have hx3 : v (x ^ 3) = WithZero.exp (3 * a) := by
     rw [map_pow, hax, hpow]; norm_num
   have hA2 : v (W.toAffine.a₂ * x ^ 2) ≤ WithZero.exp (2 * a) := by
@@ -123,7 +119,6 @@ theorem valuation_dichotomy (R : Type*) [CommRing R] [IsDomain R] [IsDiscreteVal
   rw [Affine.equation_iff] at h
   have hLHS : v (y ^ 2 + W.toAffine.a₁ * x * y + W.toAffine.a₃ * y) = WithZero.exp (3 * a) := by
     rw [h]; exact hRHS
-
   have hy0 : y ≠ 0 := by
     rintro rfl
     rw [zero_pow two_ne_zero, mul_zero, mul_zero, add_zero, add_zero, map_zero] at hLHS
@@ -142,10 +137,8 @@ theorem valuation_dichotomy (R : Type*) [CommRing R] [IsDomain R] [IsDiscreteVal
     calc v (W.toAffine.a₃ * y) = v W.toAffine.a₃ * WithZero.exp b := by rw [map_mul, hby]
       _ ≤ 1 * WithZero.exp b := mul_le_mul' ha3 le_rfl
       _ = WithZero.exp b := one_mul _
-
   rcases lt_trichotomy (2 * b) (3 * a) with hlt | heq2 | hgt
-  ·
-    exfalso
+  · exfalso
     have ht1 : v (y ^ 2) < WithZero.exp (3 * a) := by
       rw [hy2]; exact WithZero.exp_lt_exp.mpr hlt
     have ht2 : v (W.toAffine.a₁ * x * y) < WithZero.exp (3 * a) :=
@@ -153,12 +146,10 @@ theorem valuation_dichotomy (R : Type*) [CommRing R] [IsDomain R] [IsDiscreteVal
     have ht3 : v (W.toAffine.a₃ * y) < WithZero.exp (3 * a) :=
       lt_of_le_of_lt hA3 (WithZero.exp_lt_exp.mpr (by omega))
     exact (v.map_add_lt (v.map_add_lt ht1 ht2) ht3).ne hLHS
-  ·
-    refine ⟨(b - a).toNat, by omega, ?_, ?_⟩
+  · refine ⟨(b - a).toNat, by omega, ?_, ?_⟩
     · rw [hax]; congr 1; omega
     · rw [hby]; congr 1; omega
-  ·
-    exfalso
+  · exfalso
     have ht2 : v (W.toAffine.a₁ * x * y) < v (y ^ 2) := by
       rw [hy2]; exact lt_of_le_of_lt hA1 (WithZero.exp_lt_exp.mpr (by omega))
     have ht3 : v (W.toAffine.a₃ * y) < v (y ^ 2) := by

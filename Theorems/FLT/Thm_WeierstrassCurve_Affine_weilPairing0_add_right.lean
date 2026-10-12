@@ -126,7 +126,6 @@ theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K]
   set gT := weilFun W K n T
   set gT2 := weilFun W K n T'
   set gsum := weilFun W K n (T + T')
-
   set h := gT * transEquiv W K (-T₁') gT2 with hh
   have hh0 : h ≠ 0 := mul_ne_zero (WeierstrassCurve.Affine.weilFun_ne_zero W hn hT)
     ((map_ne_zero_iff _ (transEquiv W K _).injective).mpr (WeierstrassCurve.Affine.weilFun_ne_zero W hn hT'))

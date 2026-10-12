@@ -96,7 +96,6 @@ theorem finrank_fieldRange_le (X Y : L) (hgen : adjoin K {X, Y} = ⊤) (A B : L)
   set M : IntermediateField K L := μ.fieldRange with hM
   have hxM : μ X ∈ M := ⟨X, rfl⟩
   have hyM : μ Y ∈ M := ⟨Y, rfl⟩
-
   set P : M[X] := Φ.map (algebraMap K M) - C (⟨μ X, hxM⟩ : M) * Ψ.map (algebraMap K M) with hP
   have hPdeg : P.natDegree = d := hdeg M _
   have hP0 : P ≠ 0 := fun h => by rw [h, natDegree_zero] at hPdeg; omega
@@ -125,7 +124,6 @@ theorem finrank_fieldRange_le (X Y : L) (hgen : adjoin K {X, Y} = ⊤) (A B : L)
     · rw [Set.mem_singleton_iff] at h; rw [h]; exact hY
   have hXY : ∀ N : IntermediateField K L, X ∈ N → Y ∈ N → N = ⊤ := fun N hX hY =>
     eq_top_of_forall_mem hgen N (hpair hX hY)
-
   set N : IntermediateField K L := (M⟮X⟯).restrictScalars K with hN
   have hmemN : ∀ z, z ∈ N ↔ z ∈ M⟮X⟯ := fun z => IntermediateField.mem_restrictScalars K
   have hXN : X ∈ N := (hmemN X).mpr (mem_adjoin_simple_self M X)
@@ -162,7 +160,6 @@ theorem finrank_fieldRange_le (X Y : L) (hgen : adjoin K {X, Y} = ⊤) (A B : L)
       apply Polynomial.eq_of_monic_of_dvd_of_natDegree_le (minpoly.monic hYint) hqm
         (minpoly.dvd N Y hqY)
       rw [hqdeg]; exact hmin2
-
     have hιroot : ι Y ∈ (minpoly N Y).aroots L := by
       rw [mem_aroots', hmin]
       exact ⟨Polynomial.map_ne_zero hq0, by rw [haeval, hιY]⟩
@@ -190,7 +187,6 @@ theorem finrank_fieldRange_le (X Y : L) (hgen : adjoin K {X, Y} = ⊤) (A B : L)
     apply hιμ
     rw [← hθι, AlgHom.restrictScalars_apply]
     exact hθfix _ ((hmemN _).mpr (hMN _ hyM))
-
   have htop' : M⟮X⟯ = ⊤ :=
     eq_top_of_forall_mem hgen (M⟮X⟯) (hpair (mem_adjoin_simple_self M X) ((hmemN Y).mp hYN))
   let e' : M⟮X⟯ ≃ₐ[M] L := (IntermediateField.equivOfEq htop').trans IntermediateField.topEquiv

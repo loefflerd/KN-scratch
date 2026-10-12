@@ -76,7 +76,6 @@ theorem pow_card_eq_self_iff (x : k) : x ^ Fintype.card F = x ↔ x ∈ Set.rang
     have hq1 : 1 < q := Fintype.one_lt_card
     set f : k[X] := X ^ q - X with hf
     have hf0 : f ≠ 0 := FiniteField.X_pow_card_sub_X_ne_zero k hq1
-
     set T : Finset k := Finset.univ.image (algebraMap F k) with hT
     have hTcard : T.card = q := by
       rw [hT, Finset.card_image_of_injective _ (algebraMap F k).injective, Finset.card_univ]

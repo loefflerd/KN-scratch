@@ -136,16 +136,13 @@ theorem X_ne_and_eq_addX_of_add_sub {xa ya xb yb xp yp xm ym : F}
   have hsub' : Point.some xa ya ha + Point.some xb (W.negY xb yb) ((nonsingular_neg xb yb).mpr hb)
       = Point.some xm ym hm := by
     rw [← hsub, sub_eq_add_neg, neg_some]
-
   have hne : xa ≠ xb := by
     intro hx
     rcases Y_eq_of_X_eq ha.left hb.left hx with hy | hy
-    ·
-      have hy' : ya = W.negY xb (W.negY xb yb) := by rw [negY_negY]; exact hy
+    · have hy' : ya = W.negY xb (W.negY xb yb) := by rw [negY_negY]; exact hy
       rw [add_of_Y_eq hx hy'] at hsub'
       exact some_ne_zero hm hsub'.symm
-    ·
-      rw [add_of_Y_eq hx hy] at hadd
+    · rw [add_of_Y_eq hx hy] at hadd
       exact some_ne_zero hp hadd.symm
   refine ⟨hne, ?_, ?_⟩
   · rw [add_of_X_ne hne] at hadd
@@ -248,21 +245,16 @@ lemma exists_common_cofactor [IsAlgClosed K] [DecidableEq K]
         Polynomial.rootMultiplicity_mul hvv] at h
     by_cases hvpRoot : vP.IsRoot r
     · by_cases hvmRoot : vM.IsRoot r
-      ·
-
-        have hupr : rootMultiplicity r uP = 0 :=
+      · have hupr : rootMultiplicity r uP = 0 :=
           Polynomial.rootMultiplicity_eq_zero (not_isRoot_left_of_isCoprime hcopP hvpRoot)
         have humr : rootMultiplicity r uM = 0 :=
           Polynomial.rootMultiplicity_eq_zero (not_isRoot_left_of_isCoprime hcopM hvmRoot)
         omega
-      ·
-        have hupr : rootMultiplicity r uP = 0 :=
+      · have hupr : rootMultiplicity r uP = 0 :=
           Polynomial.rootMultiplicity_eq_zero (not_isRoot_left_of_isCoprime hcopP hvpRoot)
         have hvmr : rootMultiplicity r vM = 0 := Polynomial.rootMultiplicity_eq_zero hvmRoot
         by_cases humRoot : uM.IsRoot r
-        ·
-
-          have hsum_eval : (uP * vM + uM * vP).eval r ≠ 0 := by
+        · have hsum_eval : (uP * vM + uM * vP).eval r ≠ 0 := by
             have hvp0 : vP.eval r = 0 := hvpRoot
             have hup0 : uP.eval r ≠ 0 :=
               fun h => (not_isRoot_left_of_isCoprime hcopP hvpRoot) h
@@ -286,17 +278,14 @@ lemma exists_common_cofactor [IsAlgClosed K] [DecidableEq K]
           have hsum_rm : rootMultiplicity r (uP * vM + uM * vP) = 0 :=
             Polynomial.rootMultiplicity_eq_zero (fun h => hsum_eval h)
           omega
-        ·
-          have humr : rootMultiplicity r uM = 0 := Polynomial.rootMultiplicity_eq_zero humRoot
+        · have humr : rootMultiplicity r uM = 0 := Polynomial.rootMultiplicity_eq_zero humRoot
           omega
-    ·
-      have hvpr : rootMultiplicity r vP = 0 := Polynomial.rootMultiplicity_eq_zero hvpRoot
+    · have hvpr : rootMultiplicity r vP = 0 := Polynomial.rootMultiplicity_eq_zero hvpRoot
       by_cases hvmRoot : vM.IsRoot r
       · have humr : rootMultiplicity r uM = 0 :=
           Polynomial.rootMultiplicity_eq_zero (not_isRoot_left_of_isCoprime hcopM hvmRoot)
         by_cases hupRoot : uP.IsRoot r
-        ·
-          have hsum_eval : (uP * vM + uM * vP).eval r ≠ 0 := by
+        · have hsum_eval : (uP * vM + uM * vP).eval r ≠ 0 := by
             have hvm0 : vM.eval r = 0 := hvmRoot
             have hum0 : uM.eval r ≠ 0 :=
               fun h => (not_isRoot_left_of_isCoprime hcopM hvmRoot) h
@@ -336,13 +325,11 @@ lemma exists_common_cofactor [IsAlgClosed K] [DecidableEq K]
     rw [h0, mul_zero] at hh
     exact hCm2 hh
   refine ⟨h, hhne, hh, ?_, ?_⟩
-  ·
-    apply mul_left_cancel₀ hvv
+  · apply mul_left_cancel₀ hvv
     calc vP * vM * A = uP * uM * Cm ^ 2 := hP.symm
       _ = uP * uM * (vP * vM * h) := by rw [hh]
       _ = vP * vM * (uP * uM * h) := by ring
-  ·
-    apply mul_left_cancel₀ hvv
+  · apply mul_left_cancel₀ hvv
     calc vP * vM * B = (uP * vM + uM * vP) * Cm ^ 2 := hS.symm
       _ = (uP * vM + uM * vP) * (vP * vM * h) := by rw [hh]
       _ = vP * vM * ((uP * vM + uM * vP) * h) := by ring
@@ -365,7 +352,6 @@ lemma natDegree_symProd {u v s t : k[X]} (hu : u ≠ 0) (hs : s ≠ 0)
     (hvu : v.natDegree ≤ u.natDegree) (hts : t.natDegree < s.natDegree) :
     (symProd W u v s t).natDegree = 2 * (u.natDegree + s.natDegree) := by
   unfold symProd
-
   have h1 : (u ^ 2 * s ^ 2).natDegree = 2 * (u.natDegree + s.natDegree) := by
     rw [natDegree_mul (pow_ne_zero 2 hu) (pow_ne_zero 2 hs), natDegree_pow, natDegree_pow]
     ring
@@ -421,7 +407,6 @@ theorem eval_prod_and_sum [DecidableEq k] {u v s t u₁ v₁ u₂ v₂ : k[X]}
       ((u₁ * v₂ + u₂ * v₁) * (u * t - s * v) ^ 2).eval x
         = (v₁ * v₂ * symSum W u v s t).eval x := by
   obtain ⟨hne, hxp', hxm'⟩ := X_ne_and_eq_addX_of_add_sub hadd hsub
-
   have hQp : xp * xm * (xa - xb) ^ 2
       = (xa * xb) ^ 2 - W.b₄ * (xa * xb) - W.b₆ * (xa + xb) - W.b₈ := by
     rw [hxp', hxm']
@@ -448,8 +433,7 @@ theorem false_of_common_root [W.IsElliptic] {u v s t : k[X]} (huv : IsCoprime u 
   simp only [symProd, eval_mul, eval_sub, eval_add, eval_pow, eval_C] at hAr
   simp only [symSum, eval_mul, eval_add, eval_pow, eval_C] at hBr
   by_cases htr : t.eval r = 0
-  ·
-    have hsr : s.eval r ≠ 0 := eval_ne_zero_of_isCoprime hst htr
+  · have hsr : s.eval r ≠ 0 := eval_ne_zero_of_isCoprime hst htr
     have hvr : v.eval r = 0 := by
       rw [htr, mul_zero] at hCr
       rcases mul_eq_zero.mp hCr.symm with h' | h'
@@ -460,13 +444,10 @@ theorem false_of_common_root [W.IsElliptic] {u v s t : k[X]} (huv : IsCoprime u 
     have h0 : (u.eval r) ^ 2 * (s.eval r) ^ 2 = 0 := by linear_combination hAr
     exact mul_ne_zero (pow_ne_zero 2 hur) (pow_ne_zero 2 hsr) h0
   · by_cases hvr : v.eval r = 0
-    ·
-
-      have hur : u.eval r ≠ 0 := eval_ne_zero_of_isCoprime huv hvr
+    · have hur : u.eval r ≠ 0 := eval_ne_zero_of_isCoprime huv hvr
       rw [hvr, mul_zero] at hCr
       exact mul_ne_zero hur htr hCr
-    ·
-      obtain ⟨ξ, hU⟩ : ∃ ξ : k, u.eval r = ξ * v.eval r :=
+    · obtain ⟨ξ, hU⟩ : ∃ ξ : k, u.eval r = ξ * v.eval r :=
         ⟨u.eval r / v.eval r, (div_mul_cancel₀ _ hvr).symm⟩
       have hSx : s.eval r = ξ * t.eval r := by
         apply mul_right_cancel₀ hvr
@@ -535,10 +516,8 @@ theorem solution {k : Type*} [Field k] [DecidableEq k] [IsAlgClosed k] (W : Weie
     intro h0
     rw [h0, zero_pow two_ne_zero, mul_zero] at hP
     exact mul_ne_zero hvv hAne hP.symm
-
   obtain ⟨g, hgne, hCC, hAA, hBB⟩ :=
     exists_common_cofactor huv₁ huv₂ hu₁ hu₂ hv₁ hv₂ hCm hP hSum
-
   have hgdeg : g.natDegree = 0 := by
     by_contra hne
     obtain ⟨r, hr⟩ := IsAlgClosed.exists_root g
@@ -551,14 +530,11 @@ theorem solution {k : Type*} [Field k] [DecidableEq k] [IsAlgClosed k] (W : Weie
     have hAr : (symProd W u v s t).eval r = 0 := by rw [hAA, eval_mul, hr0, mul_zero]
     have hBr : (symSum W u v s t).eval r = 0 := by rw [hBB, eval_mul, hr0, mul_zero]
     exact false_of_common_root W huv hst hCr hAr hBr
-
   refine ⟨hu₁, hu₂, ?_, ?_⟩
-  ·
-    have e := congrArg Polynomial.natDegree hAA
+  · have e := congrArg Polynomial.natDegree hAA
     rw [hAdeg, natDegree_mul (mul_ne_zero hu₁ hu₂) hgne, natDegree_mul hu₁ hu₂, hgdeg] at e
     omega
-  ·
-    have e := congrArg Polynomial.natDegree hCC
+  · have e := congrArg Polynomial.natDegree hCC
     rw [natDegree_pow, natDegree_mul hvv hgne, natDegree_mul hv₁ hv₂, hgdeg] at e
     omega
 

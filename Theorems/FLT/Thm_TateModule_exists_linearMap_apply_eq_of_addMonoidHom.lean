@@ -57,8 +57,6 @@ section privateSection
 
 namespace P2MW.S_TateModule_exists_linearMap_apply_eq_of_addMonoidHom
 
-set_option autoImplicit false
-
 theorem solution
     (p : ℕ) [Fact p.Prime] {M M' : Type} [AddCommGroup M] [AddCommGroup M'] (f : M →+ M') :
     ∃ e : TateModule p M →ₗ[ℤ_[p]] TateModule p M',
@@ -88,8 +86,6 @@ end P2MW
 end privateSection
 
 public section publicSection
-
-set_option autoImplicit false
 
 theorem TateModule.exists_linearMap_apply_eq_of_addMonoidHom
     (p : ℕ) [Fact p.Prime] {M M' : Type} [AddCommGroup M] [AddCommGroup M'] (f : M →+ M') :

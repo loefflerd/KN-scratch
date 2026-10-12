@@ -350,7 +350,7 @@ of the coefficient module. This is the finite-generation input for the MTT
 parabolic-cohomology dimension argument; it assumes no Eichler–Shimura theorem.
 -/
 
-noncomputable section
+section
 
 universe u
 

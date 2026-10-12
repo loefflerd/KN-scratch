@@ -72,8 +72,7 @@ open IntermediateField AlgebraicCurve
 
 namespace ModularCurve
 p2m_export "ModularCurve" "jAdjoinAlgebra jLinePlaceInfty jq modularFunctionField jq_mem jGen eq_jLinePlaceInfty_iff_ord_jGen_neg"
-namespace RestrictAux
-end ModularCurve.RestrictAux
+end ModularCurve
 p2m_open_scoped "ModularCurve" in
 
 theorem ModularCurve.RestrictAux.ord_algebraMap_pos_iff (N : ℕ) [NeZero N] :

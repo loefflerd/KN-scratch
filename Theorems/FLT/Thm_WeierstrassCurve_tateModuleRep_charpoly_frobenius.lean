@@ -122,7 +122,6 @@ theorem solution
   have hrank : Module.finrank ℤ_[p] (TateModule p (MPoint W)) = 2 := TateModule.finrank_eq_two hcard
   set f : Module.End ℤ_[p] (TateModule p (MPoint W)) :=
     ((W.map (Int.castRingHom ℚ)).tateModuleRep p hcard).ρ σ
-
   have hΔℤ : W.Δ ≠ 0 := fun h => hgood (h ▸ dvd_zero _)
   have hΔℚ : (W.map (Int.castRingHom ℚ)).Δ ≠ 0 := by
     rw [WeierstrassCurve.map_Δ, eq_intCast]
@@ -149,7 +148,6 @@ theorem solution
       Pi.zero_apply, intCast_padicInt_smul_apply, intCast_padicInt_smul_apply]
 
     exact tateModule_frobenius_endoIdentity W p ℓ hℓ hgood hℓp A hA σ hσ x k
-
   exact (LinearMap.charpoly_eq_iff_of_finrank_eq_two hrank f
       ((W.apOfModel ℓ : ℤ) : ℤ_[p]) ((ℓ : ℕ) : ℤ_[p])).mpr
     ⟨LinearMap.trace_eq_of_sq_sub_smul_add_eq_zero_of_det_eq hrank f _ _ hendo hdet hd, hdet⟩

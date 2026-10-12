@@ -65,8 +65,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WeierstrassCurve_reducePoint_some_add_some_of_not_le_one
 
-set_option autoImplicit false
-
 open WeierstrassCurve IsDiscreteValuationRing IsDedekindDomain.HeightOneSpectrum
 p2m_open "IsLocalRing~maximalIdeal"
 open scoped WeierstrassCurve.Affine
@@ -189,14 +187,12 @@ theorem reducePoint_add_int_pole [DecidableEq K] [DecidableEq (ResidueField R)]
   have hxne : x₁ ≠ x₂ := fun h => hx₂ (h ▸ hx₁)
   have hxy : ¬(x₁ = x₂ ∧ y₁ = W.toAffine.negY x₂ y₂) := fun hc => hxne hc.1
   rw [Affine.Point.add_some hxy]
-
   have h1lt2s : (1 : WithZero (Multiplicative ℤ)) < WithZero.exp (2 * (s : ℤ)) := by
     rw [← WithZero.exp_zero]; exact WithZero.exp_lt_exp.mpr (by omega)
   have h1lt3s : (1 : WithZero (Multiplicative ℤ)) < WithZero.exp (3 * (s : ℤ)) := by
     rw [← WithZero.exp_zero]; exact WithZero.exp_lt_exp.mpr (by omega)
   have hnegs1 : WithZero.exp (-(s : ℤ)) < 1 := by
     rw [← WithZero.exp_zero]; exact WithZero.exp_lt_exp.mpr (by omega)
-
   have hvdx : valuation K (maximalIdeal R) (x₁ - x₂) = WithZero.exp (2 * (s : ℤ)) := by
     rw [sub_eq_add_neg, Valuation.map_add_eq_of_lt_right _
       (by rw [Valuation.map_neg, hvx₂]; exact lt_of_le_of_lt hx₁ h1lt2s),
@@ -217,10 +213,8 @@ theorem reducePoint_add_int_pole [DecidableEq K] [DecidableEq (ResidueField R)]
     congr 1
     push_cast
     ring
-
   have hℓx : W.toAffine.slope x₁ x₂ y₁ y₂ * (x₁ - x₂) = y₁ - y₂ := by
     rw [Affine.slope_of_X_ne hxne, div_mul_cancel₀ _ (sub_ne_zero.mpr hxne)]
-
   have e₁ := h₁.1
   have e₂ := h₂.1
   rw [Affine.equation_iff] at e₁ e₂
@@ -286,7 +280,6 @@ theorem reducePoint_add_int_pole [DecidableEq K] [DecidableEq (ResidueField R)]
             * valuation K (maximalIdeal R) y₂
           ≤ 1 * WithZero.exp (3 * (s : ℤ)) := mul_le_mul' hvd (le_of_eq hvy₂)
         _ = WithZero.exp (3 * (s : ℤ)) := one_mul _
-
   have hv31 : valuation K (maximalIdeal R)
       (W.toAffine.addX x₁ x₂ (W.toAffine.slope x₁ x₂ y₁ y₂) - x₁)
       ≤ WithZero.exp (-(s : ℤ)) := by
@@ -303,7 +296,6 @@ theorem reducePoint_add_int_pole [DecidableEq K] [DecidableEq (ResidueField R)]
       (W.toAffine.addX x₁ x₂ (W.toAffine.slope x₁ x₂ y₁ y₂)) ≤ 1 := by
     rw [← sub_add_cancel (W.toAffine.addX x₁ x₂ (W.toAffine.slope x₁ x₂ y₁ y₂)) x₁]
     exact Valuation.map_add_le _ (le_trans hv31 (le_of_lt hnegs1)) hx₁
-
   have hM₂ : (x₁ - x₂) ^ 3
         * (W.toAffine.slope x₁ x₂ y₁ y₂
             * (W.toAffine.addX x₁ x₂ (W.toAffine.slope x₁ x₂ y₁ y₂) - x₁)
@@ -350,16 +342,14 @@ theorem reducePoint_add_int_pole [DecidableEq K] [DecidableEq (ResidueField R)]
       ring
     refine Valuation.map_add_le _ (Valuation.map_add_le _ (Valuation.map_add_le _
       (Valuation.map_add_le _ ?_ ?_) ?_) ?_) ?_
-    ·
-      rw [map_mul]
+    · rw [map_mul]
       calc valuation K (maximalIdeal R)
             (-x₁ ^ 3 + W.toAffine.a₄ * x₁ + 2 * W.toAffine.a₆ + -(W.toAffine.a₃ * y₁))
             * valuation K (maximalIdeal R) (y₁ - y₂)
           ≤ 1 * WithZero.exp (3 * (s : ℤ)) := mul_le_mul' hvA (le_of_eq hvdy)
         _ = WithZero.exp (3 * (s : ℤ)) := one_mul _
         _ ≤ WithZero.exp (5 * (s : ℤ)) := WithZero.exp_le_exp.mpr (by omega)
-    ·
-      rw [map_mul, map_mul]
+    · rw [map_mul, map_mul]
       calc valuation K (maximalIdeal R)
             (3 * x₁ ^ 2 + 2 * W.toAffine.a₂ * x₁ + W.toAffine.a₄ - W.toAffine.a₁ * y₁)
             * (valuation K (maximalIdeal R) x₂ * valuation K (maximalIdeal R) (y₁ - y₂))
@@ -369,16 +359,14 @@ theorem reducePoint_add_int_pole [DecidableEq K] [DecidableEq (ResidueField R)]
             rw [one_mul, ← WithZero.exp_add]
             congr 1
             ring
-    ·
-      rw [Valuation.map_neg, map_mul, map_mul]
+    · rw [Valuation.map_neg, map_mul, map_mul]
       calc valuation K (maximalIdeal R) (2 * y₁ + W.toAffine.a₁ * x₁ + W.toAffine.a₃)
             * (valuation K (maximalIdeal R) y₁ * valuation K (maximalIdeal R) y₂)
           ≤ 1 * (1 * WithZero.exp (3 * (s : ℤ))) :=
             mul_le_mul' hvd (mul_le_mul' hy₁ (le_of_eq hvy₂))
         _ = WithZero.exp (3 * (s : ℤ)) := by rw [one_mul, one_mul]
         _ ≤ WithZero.exp (5 * (s : ℤ)) := WithZero.exp_le_exp.mpr (by omega)
-    ·
-      rw [map_mul]
+    · rw [map_mul]
       have hinner : valuation K (maximalIdeal R)
           (W.toAffine.a₂ * x₂ ^ 2 + W.toAffine.a₄ * x₂ + W.toAffine.a₆
             + -(W.toAffine.a₁ * (x₂ * y₂)) + -(W.toAffine.a₃ * y₂))
@@ -424,8 +412,7 @@ theorem reducePoint_add_int_pole [DecidableEq K] [DecidableEq (ResidueField R)]
                 + -(W.toAffine.a₁ * (x₂ * y₂)) + -(W.toAffine.a₃ * y₂))
           ≤ 1 * WithZero.exp (5 * (s : ℤ)) := mul_le_mul' hvd hinner
         _ = WithZero.exp (5 * (s : ℤ)) := one_mul _
-    ·
-      rw [map_mul]
+    · rw [map_mul]
       have hinner : valuation K (maximalIdeal R)
           (x₁ ^ 3 + -(3 * (x₁ ^ 2 * x₂)) + 3 * (x₁ * x₂ ^ 2))
           ≤ WithZero.exp (4 * (s : ℤ)) := by
@@ -504,7 +491,6 @@ theorem reducePoint_add_int_pole [DecidableEq K] [DecidableEq (ResidueField R)]
       (W.toAffine.addY x₁ x₂ y₁ (W.toAffine.slope x₁ x₂ y₁ y₂)) ≤ 1 := by
     rw [← sub_add_cancel (W.toAffine.addY x₁ x₂ y₁ (W.toAffine.slope x₁ x₂ y₁ y₂)) y₁]
     exact Valuation.map_add_le _ (le_trans hvy₃1 (le_of_lt hnegs1)) hy₁
-
   obtain ⟨h₃', hrS⟩ := reducePoint_some R W (Affine.nonsingular_add h₁ h₂ hxy) hvx₃ hvy₃
   obtain ⟨h₁', hrP⟩ := reducePoint_some R W h₁ hx₁ hy₁
   rw [hrS, hrP]

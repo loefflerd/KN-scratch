@@ -65,8 +65,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WeierstrassCurve_reducePoint_add
 
-set_option autoImplicit false
-
 open WeierstrassCurve IsDiscreteValuationRing IsLocalRing IsDedekindDomain.HeightOneSpectrum
 
 theorem solution
@@ -89,21 +87,18 @@ theorem solution
       by_cases hx₁ : valuation K (IsDiscreteValuationRing.maximalIdeal R) x₁ ≤ 1
       · by_cases hx₂ : valuation K (IsDiscreteValuationRing.maximalIdeal R) x₂ ≤ 1
         · exact WeierstrassCurve.reducePoint_some_add_some_of_le_one R W h₁ h₂ hx₁ hx₂
-        ·
-          rw [WeierstrassCurve.reducePoint_some_add_some_of_not_le_one R W h₁ h₂ hx₁ hx₂,
+        · rw [WeierstrassCurve.reducePoint_some_add_some_of_not_le_one R W h₁ h₂ hx₁ hx₂,
             (WeierstrassCurve.reducePoint_some_eq_zero_iff R W h₂).mpr hx₂,
             show (Affine.Point.zero : (reduction R W).toAffine.Point) = 0 from rfl,
             add_zero]
       · by_cases hx₂ : valuation K (IsDiscreteValuationRing.maximalIdeal R) x₂ ≤ 1
-        ·
-          rw [show Affine.Point.some x₁ y₁ h₁ + Affine.Point.some x₂ y₂ h₂
+        · rw [show Affine.Point.some x₁ y₁ h₁ + Affine.Point.some x₂ y₂ h₂
               = Affine.Point.some x₂ y₂ h₂ + Affine.Point.some x₁ y₁ h₁ from add_comm _ _,
             WeierstrassCurve.reducePoint_some_add_some_of_not_le_one R W h₂ h₁ hx₂ hx₁,
             (WeierstrassCurve.reducePoint_some_eq_zero_iff R W h₁).mpr hx₁,
             show (Affine.Point.zero : (reduction R W).toAffine.Point) = 0 from rfl,
             zero_add]
-        ·
-          rw [(WeierstrassCurve.reducePoint_some_eq_zero_iff R W h₁).mpr hx₁,
+        · rw [(WeierstrassCurve.reducePoint_some_eq_zero_iff R W h₁).mpr hx₁,
             (WeierstrassCurve.reducePoint_some_eq_zero_iff R W h₂).mpr hx₂,
             show (Affine.Point.zero + Affine.Point.zero
               : (reduction R W).toAffine.Point) = Affine.Point.zero from rfl]

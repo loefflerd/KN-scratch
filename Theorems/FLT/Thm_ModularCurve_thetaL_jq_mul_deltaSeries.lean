@@ -69,8 +69,7 @@ p2m_open "ModularCurve P2MW.S_ModularCurve_thetaL_jq_mul_deltaSeries.ModularCurv
 
 namespace ModularCurve
 p2m_export "ModularCurve" "eisenstein6 laurentOfInt laurentOfInt_apply eisenstein4 dedekindEtaUnit dedekindEtaUnitInv dedekindEtaUnit_mul_inv jNum jNumQ jq dedekindEtaUnitQ deltaSeries deltaSeries_ne_zero thetaL thetaL_apply eisenstein4_mul_thetaL_delta_sub_eq_eisenstein6_mul_delta theta_mul"
-namespace RC18C3
-end ModularCurve.RC18C3
+end ModularCurve
 p2m_open_scoped "ModularCurve" in
 
 theorem ModularCurve.RC18C3.jq_mul_deltaSeries :

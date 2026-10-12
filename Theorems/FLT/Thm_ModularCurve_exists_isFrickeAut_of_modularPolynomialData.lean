@@ -65,8 +65,7 @@ noncomputable section
 
 namespace IntermediateField
 p2m_export "IntermediateField" "lift AdjoinSimple.gen ext adjoin_simple_adjoin_simple adjoinRootEquivAdjoin_symm_apply_gen adjoinRootEquivAdjoin restrictScalars adjoin_induction algebraMap_mem map"
-namespace W2B
-end IntermediateField.W2B
+end IntermediateField
 p2m_open_scoped "IntermediateField" in
 
 scoped instance IntermediateField.W2B.instIsScalarTowerRatSubtypeMem {L : Type*} [Field L] [Algebra ℚ L]

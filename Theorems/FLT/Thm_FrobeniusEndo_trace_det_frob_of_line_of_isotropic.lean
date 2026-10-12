@@ -157,10 +157,8 @@ lemma exists_pos_natCast_lift (hpK : (p : K) ≠ 0) (c : ZMod p) :
   have hvcast : ((c.val : ℕ) : ZMod p) = c := by
     rw [ZMod.natCast_val, ZMod.cast_id]
   by_cases hc0 : c = 0
-  ·
-    exact ⟨p, hp1, by omega, hpK, by rw [ZMod.natCast_self, hc0]⟩
-  ·
-    have hv1 : 1 ≤ c.val := by
+  · exact ⟨p, hp1, by omega, hpK, by rw [ZMod.natCast_self, hc0]⟩
+  · have hv1 : 1 ≤ c.val := by
       rcases Nat.eq_zero_or_pos c.val with h | h
       · exact absurd (by rw [← hvcast, h, Nat.cast_zero]) hc0
       · exact h
@@ -188,12 +186,10 @@ theorem quadratic_eq_zero_of_det_smul_one_sub_eq_zero (hpK : (p : K) ≠ 0) {a :
   have hdet' : LinearMap.det (frobPencilEnd W σ p (m : ℤ) 1) = 0 := by
     rw [frobPencilEnd_natCast_one, hmc]
     exact hdet
-
   have hdvd : p ∣ kerDeg (frobEnd W σ) (m : ℤ) 1 := dvd_kerDeg_of_det_frobPencilEnd_eq_zero W σ p hdet'
   have hdvdZ : (p : ℤ) ∣ ((m : ℤ) ^ 2 - a * (m : ℤ) + (q : ℤ)) := by
     rw [← hline m hm1 hmle hmk]
     exact_mod_cast hdvd
-
   have hzero : (((m : ℤ) ^ 2 - a * (m : ℤ) + (q : ℤ) : ℤ) : ZMod p) = 0 :=
     (ZMod.intCast_zmod_eq_zero_iff_dvd _ p).mpr hdvdZ
   push_cast at hzero
@@ -222,7 +218,6 @@ theorem det_smul_one_sub_eq_zero_of_quadratic_eq_zero
       rw [hline m hm1 hmle hmk]
       exact hdvdZ
     exact_mod_cast this
-
   have hdet' : LinearMap.det (frobPencilEnd W σ p (m : ℤ) 1) = 0 :=
     (det_frobPencilEnd_eq_zero_iff_dvd_kerDeg W σ p
       (by rw [hfull]; exact pow_ne_zero 2 (Fact.out : p.Prime).ne_zero) (hpos m hm1 hmle hmk)).mpr hdvd
@@ -275,8 +270,7 @@ theorem trace_det_of_line_of_isotropic
 
   have htr : t = (a : ZMod p) := by
     by_cases hlm : lam = mu
-    ·
-      have ha2 : (a : ZMod p) = 2 * lam := by
+    · have ha2 : (a : ZMod p) = 2 * lam := by
         have h := hlm
         rw [hmu] at h
         linear_combination -h
@@ -297,14 +291,12 @@ theorem trace_det_of_line_of_isotropic
         exact sub_eq_zero.mp h0
       have htval : t = nu + lam := by rw [hnu]; ring
       rw [htval, hnulam, ha2]; ring
-    ·
-      have hfac : (lam - mu) * (lam + mu - t) = 0 := by
+    · have hfac : (lam - mu) * (lam + mu - t) = 0 := by
         linear_combination el - emu
       rcases mul_eq_zero.mp hfac with h | h
       · exact absurd (sub_eq_zero.mp h) hlm
       · have hsum : lam + mu = t := sub_eq_zero.mp h
         rw [← hsum, hmu]; ring
-
   have hdet : d = (q : ZMod p) := by
     linear_combination el - hlam + lam * htr
   exact ⟨htr, hdet⟩

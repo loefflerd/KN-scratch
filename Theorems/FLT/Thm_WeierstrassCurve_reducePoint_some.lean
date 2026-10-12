@@ -61,8 +61,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WeierstrassCurve_reducePoint_some
 
-set_option autoImplicit false
-
 open WeierstrassCurve IsDiscreteValuationRing IsLocalRing IsDedekindDomain.HeightOneSpectrum
 
 namespace ReduceSome
@@ -75,14 +73,12 @@ theorem reducePoint_some' (R : Type*) [CommRing R] [IsDomain R] [IsDiscreteValua
   obtain ⟨ry, hry⟩ := exists_lift_of_le_one hy
   have hex : ∃ r : R, algebraMap R K r = x := ⟨rx, hrx⟩
   have hey : ∃ r : R, algebraMap R K r = y := ⟨ry, hry⟩
-
   have hcx : reduceCoord R x = residue R rx := by
     rw [reduceCoord, dite_eq_left hex]
     exact congrArg _ (IsFractionRing.injective R K (hex.choose_spec.trans hrx.symm))
   have hcy : reduceCoord R y = residue R ry := by
     rw [reduceCoord, dite_eq_left hey]
     exact congrArg _ (IsFractionRing.injective R K (hey.choose_spec.trans hry.symm))
-
   have heqK : ((integralModel R W).map (algebraMap R K)).toAffine.Equation
       (algebraMap R K rx) (algebraMap R K ry) := by
     have hbc : (integralModel R W).map (algebraMap R K) = W := baseChange_integralModel_eq R W

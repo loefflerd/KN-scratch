@@ -185,16 +185,6 @@ p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.m
 
 namespace Place
 p2m_export "AlgebraicCurve.Place" "ext coe_algebraMap ResidueField deg adicValuation adicValuation_ne_zero ord ord_zero ord_mul ord_inv ord_zpow ord_unit_smul_zpow exists_unit_mul_zpow ofHeightOneSpectrum ofHeightOneSpectrum_toValuationSubring ne_top' algebraMap_mem' toValuationSubring mk ramificationIndex ramificationIndex_pos ramificationIndex_dvd_ord restrict ord_restrict ord_algebraMap_ne_zero_of_restrict_eq restrict_fiber_finite fiber ord_neg mem_of_eval_monic_eq_zero mem_maximalIdeal_iff_ord_pos ofHeightOneSpectrum_injective ord_ofHeightOneSpectrum_ne_zero_iff ord_eq_neg_log_of_valuationSubring_eq"
-p2m_open "AlgebraicCurve.Place~ord_nonneg_of_mem~mem_of_ord_nonneg~mem_iff_ord_nonneg~ord_algebraMap~comap_algebraMap_ne_top"
-
-section SinglePlace
-
-variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
-
-
-
-
-end SinglePlace
 end Place
 end AlgebraicCurve
 end

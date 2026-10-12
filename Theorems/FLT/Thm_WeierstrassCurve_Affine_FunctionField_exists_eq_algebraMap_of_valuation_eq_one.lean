@@ -111,7 +111,6 @@ theorem XClass_not_isUnit {F : Type*} [Field F] {W : WeierstrassCurve F} (x : F)
     ¬IsUnit (CoordinateRing.XClass W.toAffine x) := by
   rw [isUnit_iff_eq_algebraMap']
   rintro ⟨c, -, hc⟩
-
   have h1 : (X - C x - C c) • (1 : W.toAffine.CoordinateRing) + (0 : F[X]) • CoordinateRing.mk W.toAffine Y = 0 := by
     rw [zero_smul, add_zero, sub_smul, CoordinateRing.smul, mul_one, CoordinateRing.smul, mul_one,
       sub_eq_zero]
@@ -132,7 +131,6 @@ theorem solution {F : Type*} [Field F] {W : WeierstrassCurve F} [IsDedekindDomai
     CoordinateRing.XClass_ne_zero (W' := W.toAffine) 0 (by rwa [h, Ideal.mem_bot] at hXM)
   let v₀ : IsDedekindDomain.HeightOneSpectrum W.toAffine.CoordinateRing := ⟨M, hMmax.isPrime, hM0⟩
   have hf0 : f ≠ 0 := fun h => by simpa [h] using hf v₀
-
   obtain ⟨g, hg⟩ := IsDedekindDomain.HeightOneSpectrum.mem_integers_of_valuation_le_one
     W.toAffine.FunctionField f (fun v => (hf v).le)
   obtain ⟨g', hg'⟩ := IsDedekindDomain.HeightOneSpectrum.mem_integers_of_valuation_le_one

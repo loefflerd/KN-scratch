@@ -104,9 +104,6 @@ theorem solution {a c a' c' : ℤ} (h : IsCoprime a c)
     · rfl
     · exact ratPoint_neg_neg a' c'
 
-namespace CuspSpace
-
-end CuspSpace
 end S_ModularCurve_ratPoint_eq_ratPoint_iff_of_isCoprime
 end P2MW
 export P2MW.S_ModularCurve_ratPoint_eq_ratPoint_iff_of_isCoprime (solution)

@@ -174,8 +174,7 @@ end ModularCurve.W1
 
 namespace ModularCurve
 p2m_export "ModularCurve" "qTwist qTwist_single qExpand qExpand_C qExpand_injective qExpand_qExpand etaProd jNum constantCoeff_jNum ofPowerSeries_coeff_of_neg jqModC jqNModC"
-namespace StarBank
-end ModularCurve.StarBank
+end ModularCurve
 p2m_open_scoped "ModularCurve" in
 open ModularCurve.W1 in
 

@@ -96,7 +96,6 @@ theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K]
   have hEK : (W⁄K).IsElliptic := by
     dsimp only [Affine.baseChange, WeierstrassCurve.baseChange]; infer_instance
   have hgood : MulGood W K (n : ℤ) := WeierstrassCurve.Affine.zsmul_genericPoint_good W K hnK'
-
   obtain ⟨hfd, hdeg⟩ := WeierstrassCurve.Affine.finrank_fieldRange_mulPull_le (K := K) W hgood
   rw [Int.natAbs_natCast] at hdeg
   have := hfd
@@ -127,7 +126,6 @@ theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K]
       exact ⟨Multiplicative.toAdd S, (hmemEn S).mp hS, rfl⟩
     · rintro ⟨S, hS, rfl⟩
       exact ⟨Multiplicative.ofAdd S, (hmemEn _).mpr hS, rfl⟩
-
   have hcardEn : Nat.card En = n ^ 2 := by
     rw [← WeierstrassCurve.card_torsion_of_isAlgClosed W hnK]
     exact Nat.card_congr (Equiv.subtypeEquiv Multiplicative.toAdd fun S =>
@@ -183,22 +181,18 @@ theorem solution {F K : Type*} [Field F] [Field K] [Algebra F K] [DecidableEq K]
   have key := IsDedekindDomain.HeightOneSpectrum.exists_eq_span_singleton_of_map_eq (R := (W⁄K).CoordinateRing) (K := (W⁄K).FunctionField)
     (mulPull W K (n : ℤ) : (W⁄K).FunctionField →+* (W⁄K).FunctionField) N hN ?_ g (placeOf W K T hT0) ?_ ?_ ⟨h, hh⟩
   rotate_left
-  ·
-    intro v w hvw x k hx
+  · intro v w hvw x k hx
     obtain ⟨hv, rfl⟩ := hNsome v w hvw
     rw [← hptv v]
     exact hpull (pt v) (hpt0 v) hv x k hx
-  ·
-    intro v hv
+  · intro v hv
     obtain ⟨hv', hw⟩ := hNsome v _ hv
     have hPT : (n : ℤ) • pt v = T := placeOf_injective W K _ _ hw
     rw [← hptv v, hg (pt v) (hpt0 v) hv', ite_eq_left hPT]
-  ·
-    intro v w hvw hw
+  · intro v w hvw hw
     obtain ⟨hv', rfl⟩ := hNsome v w hvw
     have hPT : (n : ℤ) • pt v ≠ T := fun h' => hw (WeilND.placeOf_congr W K _ _ h')
     rw [← hptv v, hg (pt v) (hpt0 v) hv', ite_eq_right hPT]
-
   obtain ⟨r, hr⟩ := key
   have hr0 : r ≠ 0 := by
     intro h0

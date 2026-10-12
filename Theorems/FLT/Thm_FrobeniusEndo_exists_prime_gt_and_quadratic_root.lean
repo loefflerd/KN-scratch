@@ -61,15 +61,12 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_FrobeniusEndo_exists_prime_gt_and_quadratic_root
 
-set_option autoImplicit false
-
 namespace FrobeniusEndo
 
 theorem exists_prime_gt_and_quadratic_root (a q : ℤ) (hq : 1 ≤ q) (N : ℕ) :
     ∃ r : ℕ, N < r ∧ r.Prime ∧
       ∃ c : ZMod r, c ^ 2 - (a : ZMod r) * c + (q : ZMod r) = 0 := by
   classical
-
   set P : ℕ := (N + 3).factorial with hPdef
   have hP6 : 6 ≤ P := by
     have h3 : 3 ≤ N + 3 := by omega
@@ -78,7 +75,6 @@ theorem exists_prime_gt_and_quadratic_root (a q : ℤ) (hq : 1 ≤ q) (N : ℕ) 
     simpa [Nat.factorial] using h6
   have hP1 : 1 ≤ P := by omega
   have hPz : (1 : ℤ) ≤ (P : ℤ) := by exact_mod_cast hP1
-
   set t : ℤ := |a| + 2 with htdef
   have ht2 : 2 ≤ t := by
     have := abs_nonneg a
@@ -88,12 +84,10 @@ theorem exists_prime_gt_and_quadratic_root (a q : ℤ) (hq : 1 ≤ q) (N : ℕ) 
     omega
 
   set h : ℤ := q * (P : ℤ) ^ 2 * t ^ 2 - a * (P : ℤ) * t + 1 with hhdef
-
   have hmodP : h - (P : ℤ) * (q * (P : ℤ) * t ^ 2 - a * t) = 1 := by
     rw [hhdef]; ring
   have hPt : (0 : ℤ) < (P : ℤ) * t :=
     mul_pos (by linarith : (0 : ℤ) < (P : ℤ)) (by linarith : (0 : ℤ) < t)
-
   have hne1 : h ≠ 1 := by
     intro h1
     have hzero : (P : ℤ) * t * (q * (P : ℤ) * t - a) = 0 := by
@@ -104,10 +98,8 @@ theorem exists_prime_gt_and_quadratic_root (a q : ℤ) (hq : 1 ≤ q) (N : ℕ) 
       rcases mul_eq_zero.mp hzero with h' | h'
       · exact absurd h' (ne_of_gt hPt)
       · exact h'
-
     nlinarith [mul_nonneg (by linarith : (0 : ℤ) ≤ q - 1) (le_of_lt hPt),
       mul_nonneg (by linarith : (0 : ℤ) ≤ (P : ℤ) - 1) (by linarith : (0 : ℤ) ≤ t)]
-
   have hnem1 : h ≠ -1 := by
     intro h1
     have hdvd2 : (P : ℤ) ∣ 2 :=
@@ -122,8 +114,7 @@ theorem exists_prime_gt_and_quadratic_root (a q : ℤ) (hq : 1 ≤ q) (N : ℕ) 
   have hrdvdh : (r : ℤ) ∣ h :=
     (Int.natCast_dvd_natCast.mpr hrdvd).trans (Int.natAbs_dvd.mpr dvd_rfl)
   refine ⟨r, ?_, hrprime, ?_⟩
-  ·
-    by_contra hle
+  · by_contra hle
     have hle' : r ≤ N := not_lt.mp hle
     have hrP : (r : ℤ) ∣ (P : ℤ) := by
       exact_mod_cast Nat.dvd_factorial hrprime.pos (by omega)
@@ -132,8 +123,7 @@ theorem exists_prime_gt_and_quadratic_root (a q : ℤ) (hq : 1 ≤ q) (N : ℕ) 
       rwa [hmodP] at this
     have : r ∣ 1 := by exact_mod_cast hr1
     exact hrprime.one_lt.ne' (Nat.dvd_one.mp this)
-  ·
-    set n₀ : ℤ := q * (P : ℤ) * t with hn₀
+  · set n₀ : ℤ := q * (P : ℤ) * t with hn₀
     have hval : n₀ ^ 2 - a * n₀ + q = q * h := by
       rw [hn₀, hhdef]; ring
     have hdvdval : (r : ℤ) ∣ n₀ ^ 2 - a * n₀ + q := by

@@ -131,14 +131,12 @@ theorem valuation_transEquiv_le' {P S : (W⁄K).Point} (hP : P ≠ 0) (hS : S �
     (placeOf W K P hP).valuation (W⁄K).FunctionField (transEquiv W K S h) ≤ exp (-(k : ℤ)) := by
   set v := (placeOf W K P hP).valuation (W⁄K).FunctionField with hv
   have hc := valuation_algebraMap_le_one W K P hP
-
   rcases P with _ | ⟨a, b, hab⟩
   · exact absurd rfl hP
   rcases S with _ | ⟨xS, yS, hSns⟩
   · exact absurd rfl hS
   simp only [Point.xc_some] at hx
   have hγx : genericX W K ≠ algebraMap K (W⁄K).FunctionField xS := genericX_ne_algebraMap W K xS
-
   have hγx' : genericX W K ≠ Algebra.ofId K (W⁄K).FunctionField xS := hγx
   have hQx : (genericPoint W K + Point.baseChange K (W⁄K).FunctionField (.some xS yS hSns)).xc =
       (W⁄(W⁄K).FunctionField).addX (genericX W K) (algebraMap K (W⁄K).FunctionField xS)

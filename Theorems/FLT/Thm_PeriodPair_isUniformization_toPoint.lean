@@ -83,17 +83,12 @@ end Complex
 namespace Filter
 p2m_export "Filter" "NeBot Tendsto inter_mem IsBounded sets tendsto_atTop_mono atTop Tendsto.congr' tendsto_inv₀_cobounded eventually_of_mem tendsto_atTop_add_const_right codiscrete map"
 end Filter
-namespace LinearAlgebra
-namespace Projectivization
-end LinearAlgebra.Projectivization
 namespace PeriodPair
 p2m_export "PeriodPair" "analyticAt_weierstrassPExcept ω₁_div_two_notMem_lattice isClosed_lattice derivWeierstrassP_neg derivWeierstrassPExcept_sub weierstrassP_neg lattice weierstrassPExcept analyticOnNhd_weierstrassPExcept isClosed_of_subset_lattice weierstrassP_add_coe order_weierstrassP lattice_eq_span_range_basis isOpen_compl_lattice_diff ω₁ weierstrassPExcept_zero analyticOnNhd_derivWeierstrassP analyticAt_derivWeierstrassPExcept deriv_weierstrassPExcept_same g₃ weierstrassPExcept_add deriv_weierstrassP derivWeierstrassPExcept_zero_zero derivWeierstrassP_sq ω₂ derivWeierstrassP_add_coe mem_lattice derivWeierstrassPExcept compl_lattice_diff_singleton_mem_nhds G g₂ analyticOnNhd_weierstrassP weierstrassCurve weierstrassCurve_a₁ weierstrassCurve_a₂ weierstrassCurve_a₃ weierstrassCurve_Δ weierstrassCurve_c₄ equation_weierstrassP DiscriminantNeZero toPoint toPoint_of_mem toPoint_zero toPoint_of_notMem IsUniformization jLattice JSurjective ofTau scale sublatticeIndex discriminant_ne_zero"
 end PeriodPair
 namespace Set
 p2m_export "Set" "mem_diff preimage countable_coe_iff mem_compl_iff image ext preimage_compl compl_union mem_singleton_iff nonempty_compl compl_setOf diff_subset mem_inter inter_subset_left EqOn countable_range mem_inter_iff mem_ofPred_eq mem_preimage range"
 end Set
-namespace Topology
-end Topology
 namespace WeierstrassCurve
 p2m_export "WeierstrassCurve" "Affine Affine.negY Affine.slope_of_X_ne a₃ a₁ map a₄ a₂ a₆ Affine.Point.some Affine.Point.some.injEq Affine.negAddY reduction toAffine Affine.Point Affine.addX Affine.Point.some_ne_zero Δ c₄ Affine.addY Affine.Point.add_of_X_ne Affine.equation_iff Affine.Point.neg_some j"
 end WeierstrassCurve

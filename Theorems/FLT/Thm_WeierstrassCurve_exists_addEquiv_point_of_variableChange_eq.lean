@@ -55,8 +55,6 @@ section privateSection
 
 namespace P2MW.S_WeierstrassCurve_exists_addEquiv_point_of_variableChange_eq
 
-set_option autoImplicit false
-
 p2m_open "WeierstrassCurve P2MW.S_WeierstrassCurve_exists_addEquiv_point_of_variableChange_eq.WeierstrassCurve WeierstrassCurve.Affine WeierstrassCurve.Affine.Point"
 
 namespace WeierstrassCurve
@@ -318,11 +316,7 @@ lemma pointEquiv_smul (σ : K ≃ₐ[F] K) (P : (E⁄K).Point) :
       map_pow, AlgHom.commutes]
 
 end VariableChange
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_addEquiv_point_of_variableChange_eq.WeierstrassCurve.VariableChange"
-
 end PointEquiv
-p2m_reactivate "P2MW.S_WeierstrassCurve_exists_addEquiv_point_of_variableChange_eq.WeierstrassCurve.VariableChange"
-
 end WeierstrassCurve
 p2m_reactivate "P2MW.S_WeierstrassCurve_exists_addEquiv_point_of_variableChange_eq.WeierstrassCurve.VariableChange P2MW.S_WeierstrassCurve_exists_addEquiv_point_of_variableChange_eq.WeierstrassCurve"
 

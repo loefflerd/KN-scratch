@@ -67,7 +67,6 @@ private theorem apply_eq_pow_of_pow_eq_one_of_not_dvd
   have hn0 : n ≠ 0 := by
     rintro rfl
     exact hn (dvd_zero q)
-
   have hζA : ζ ∈ A := by
     rcases A.mem_or_inv_mem ζ with h | h
     · exact h
@@ -78,7 +77,6 @@ private theorem apply_eq_pow_of_pow_eq_one_of_not_dvd
         exact inv_eq_of_mul_eq_one_right h1
       rw [← h2]
       exact pow_mem h (n - 1)
-
   have hu : σ ζ ∈ A :=
     ((⟨σ, hσ.mem_decompositionSubgroup⟩ : A.decompositionSubgroup ℚ) • (⟨ζ, hζA⟩ : A)).2
   have hw : ζ ^ q ∈ A := pow_mem hζA q
@@ -99,7 +97,6 @@ private theorem apply_eq_pow_of_pow_eq_one_of_not_dvd
     rw [← map_pow] at h1
     rw [show (⟨ζ, hζA⟩ : A) ^ q = ⟨ζ ^ q, hw⟩ from Subtype.ext (by push_cast; rfl)] at h1
     exact h1
-
   by_contra hne
   have hab : (⟨σ ζ, hu⟩ : A) - ⟨ζ ^ q, hw⟩ ≠ 0 := by
     intro h
@@ -132,7 +129,6 @@ private theorem apply_eq_pow_of_pow_eq_one_of_not_dvd
       rw [← map_pow, hbp, map_one]
     rw [h0, zero_pow hn0] at h1
     exact zero_ne_one h1
-
   have hn' : (n : IsLocalRing.ResidueField A) = 0 := (mul_eq_zero.mp hsum).resolve_right htne
   have hchar : CharP (IsLocalRing.ResidueField A) q := by
     rw [CharP.charP_iff_prime_eq_zero hq]

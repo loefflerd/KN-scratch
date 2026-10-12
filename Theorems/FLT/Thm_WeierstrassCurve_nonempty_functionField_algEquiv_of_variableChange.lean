@@ -183,10 +183,6 @@ end PointPullbackTo
 end Affine
 end WeierstrassCurve
 
-namespace ModularCurve
-
-end ModularCurve
-
 end
 
 noncomputable section
@@ -243,11 +239,6 @@ end Affine
 end WeierstrassCurve
 
 end
-
-namespace WeierstrassCurve
-namespace Affine
-end Affine
-end WeierstrassCurve
 
 section
 

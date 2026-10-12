@@ -62,8 +62,6 @@ section privateSection
 
 namespace P2MW.S_TateModule_exists_linearEquiv_rationalTateModule_comp_rationalGaloisRep_eq_of_addEquiv
 
-set_option autoImplicit false
-
 open scoped TensorProduct
 
 theorem solution
@@ -101,7 +99,6 @@ theorem solution
     rw [hP', LinearMap.baseChange_tmul]
   · show ((P x : TateModule p J') : ℕ → J') n = Ψ ((x : ℕ → J) n)
     exact hP x n
-
   have hnat : P ∘ₗ TateModule.rep p J G g = TateModule.rep p J' G' g' ∘ₗ P := by
     apply LinearMap.ext; intro x; apply Subtype.ext; funext n
     rw [LinearMap.comp_apply, LinearMap.comp_apply, hP, TateModule.rep_apply, TateModule.rep_apply, hP]
@@ -115,8 +112,6 @@ end P2MW
 end privateSection
 
 public section publicSection
-
-set_option autoImplicit false
 
 open AlgebraicCurve
 

@@ -59,8 +59,6 @@ set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_WeierstrassCurve_valuation_le_one_of_equation
 
-set_option autoImplicit false
-
 open WeierstrassCurve IsDiscreteValuationRing IsLocalRing IsDedekindDomain.HeightOneSpectrum
 
 namespace YIntegral

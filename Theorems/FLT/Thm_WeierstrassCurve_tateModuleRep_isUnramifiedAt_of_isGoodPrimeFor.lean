@@ -182,9 +182,6 @@ theorem galoisRepUnramifiedAt_pow_of_goodReduction (W : WeierstrassCurve ℤ) {q
     (fun h => hqp ((Nat.prime_dvd_prime_iff_eq hq hp).mp (hq.dvd_of_dvd_pow h))) hgood
 
 end WeierstrassCurve.D5Sol
-p2m_reactivate "P2MW.S_WeierstrassCurve_tateModuleRep_isUnramifiedAt_of_isGoodPrimeFor.WeierstrassCurve P2MW.S_WeierstrassCurve_tateModuleRep_isUnramifiedAt_of_isGoodPrimeFor.WeierstrassCurve.D5Sol"
-p2m_reactivate "P2MW.S_WeierstrassCurve_tateModuleRep_isUnramifiedAt_of_isGoodPrimeFor.WeierstrassCurve"
-
 end
 p2m_reactivate "P2MW.S_WeierstrassCurve_tateModuleRep_isUnramifiedAt_of_isGoodPrimeFor.WeierstrassCurve P2MW.S_WeierstrassCurve_tateModuleRep_isUnramifiedAt_of_isGoodPrimeFor.WeierstrassCurve.D5Sol"
 

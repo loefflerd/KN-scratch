@@ -168,7 +168,9 @@ lemma twoω_eq_two_mul_ωe (n : ℤ) : W.twoω n = 2 * W.ωe n := by
   rw [two_mul_ωe, ψc_eq_ψDbl, twoω]
   ring
 
-namespace Universal p2m_export "WeierstrassCurve.Universal" "curve map_specialize" end Universal
+namespace Universal
+p2m_export "WeierstrassCurve.Universal" "curve map_specialize"
+end Universal
 p2m_open_scoped "WeierstrassCurve.Universal" in
 
 lemma Universal.twoω_curve_eq (n : ℤ) : Universal.curve.twoω n = 2 * Universal.curve.ωe n :=

@@ -572,8 +572,7 @@ p2m_reactivate "P2MW.S_ModularCurve_isIntegral_adjoin_jqModC_qExpansion_div_of_f
 
 namespace ModularCurve
 p2m_export "ModularCurve" "jqModC jqModC_eq_qExpansion_E4_cube_div_discriminant"
-namespace IntegralGammaAux
-end ModularCurve.IntegralGammaAux
+end ModularCurve
 p2m_open_scoped "ModularCurve" in
 theorem ModularCurve.IntegralGammaAux.Gamma_le_Gamma1 (M : ℕ) :
     CongruenceSubgroup.Gamma M ≤ CongruenceSubgroup.Gamma1 M := by

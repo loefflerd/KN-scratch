@@ -204,9 +204,6 @@ scoped instance instIsCurveOverRatFunc : IsCurveOver K (RatFunc K) :=
   RationalFunctionField.isCurveOver_of_kaehlerRankOne K (kaehlerRankOne_ratFunc K)
 
 end AlgebraicCurve
-p2m_reactivate "P2MW.S_AlgebraicCurve_instIsCurveOverRatFunc.AlgebraicCurve P2MW.S_AlgebraicCurve_instIsCurveOverRatFunc.AlgebraicCurve.RationalFunctionField"
-namespace ModularCurve
-end ModularCurve
 end
 p2m_reactivate "P2MW.S_AlgebraicCurve_instIsCurveOverRatFunc.AlgebraicCurve P2MW.S_AlgebraicCurve_instIsCurveOverRatFunc.AlgebraicCurve.RationalFunctionField"
 
