@@ -8,19 +8,19 @@ Generation 1 means that a node has no imports from this extracted local filetree
 
 The parser reads textual `import` and `public import` commands, resolves module names from file paths, and ignores comments after an import. This intentionally does not reproduce Lean’s elaboration or transitive module-loading behavior.
 
-Classified files: **1401 / 1401** in **1401** dependency nodes, including **0** theorem/solution pairs. Cycles found: **0**. Files with unresolved non-baseline imports: **0**.
+Classified files: **1396 / 1396** in **1396** dependency nodes, including **0** theorem/solution pairs. Cycles found: **0**. Files with unresolved non-baseline imports: **0**.
 
 ## Summary
 
 | Generation | Total files | FLT | MTT | KN |
 |---:|---:|---:|---:|---:|
-| 1 | 53 | 44 | 6 | 3 |
-| 2 | 266 | 256 | 6 | 4 |
-| 3 | 183 | 159 | 16 | 8 |
-| 4 | 159 | 133 | 17 | 9 |
+| 1 | 54 | 45 | 6 | 3 |
+| 2 | 263 | 253 | 6 | 4 |
+| 3 | 182 | 158 | 16 | 8 |
+| 4 | 158 | 132 | 17 | 9 |
 | 5 | 118 | 93 | 21 | 4 |
 | 6 | 76 | 60 | 9 | 7 |
-| 7 | 73 | 64 | 6 | 3 |
+| 7 | 72 | 63 | 6 | 3 |
 | 8 | 56 | 50 | 3 | 3 |
 | 9 | 57 | 48 | 2 | 7 |
 | 10 | 51 | 35 | 3 | 13 |
@@ -118,6 +118,7 @@ Classified files: **1401 / 1401** in **1401** dependency nodes, including **0** 
 - `Definitions/MTT/Def_MTT_Arithmetic.lean`
 - `Theorems/FLT/Thm_AlgebraicCurve_isIntegral_adjoin_of_isScalarTower.lean`
 - `Theorems/FLT/Thm_ModularForm_exists_coe_eq_of_levelOne.lean`
+- `Theorems/FLT/Thm_ModularGroup_exists_mulEquiv_freeProduct_quotient_center.lean`
 - `Theorems/FLT/Thm_MonoidAlgebra_isLocalRing_of_isPGroup.lean`
 - `Theorems/FLT/Thm_MvPolynomial_IsHomogeneous_iterate_pderiv_eq_zero_of_lt.lean`
 - `Theorems/FLT/Thm_WeierstrassCurve_variableChange_mk_smul_eq_self_of_pow_three_eq_one.lean`
@@ -311,7 +312,6 @@ Classified files: **1401 / 1401** in **1401** dependency nodes, including **0** 
 - `Theorems/FLT/Thm_ModularForm_periodic_heckeT_comp_ofComplex.lean`
 - `Theorems/FLT/Thm_ModularForm_periodic_heckeU_comp_ofComplex.lean`
 - `Theorems/FLT/Thm_ModularGroup_exists_eq_conj_T_zpow_of_trace_sq_eq_four.lean`
-- `Theorems/FLT/Thm_ModularGroup_exists_mulEquiv_freeProduct_quotient_center.lean`
 - `Theorems/FLT/Thm_Monoid_CoprodI_exists_addMonoidHom_conj_pow_minimalPeriod_eq_of_finsum_eq_zero.lean`
 - `Theorems/FLT/Thm_Monoid_CoprodI_isTree_cosetGraph.lean`
 - `Theorems/FLT/Thm_MulAction_card_mul_natCard_orbitRel_quotient_eq_of_natCard_eq_prime.lean`
@@ -319,8 +319,6 @@ Classified files: **1401 / 1401** in **1401** dependency nodes, including **0** 
 - `Theorems/FLT/Thm_NumberField_exists_isFrobenius_lift_arithFrobAt.lean`
 - `Theorems/FLT/Thm_NumberField_exists_lift_mem_inertia_integralClosure.lean`
 - `Theorems/FLT/Thm_NumberField_exists_valuationSubring_eq_localization.lean`
-- `Theorems/FLT/Thm_P2M_Dup_WeierstrassCurve_Affine_CoordinateRing_XYIdeal_isMaximal.lean`
-- `Theorems/FLT/Thm_P2M_Dup_WeierstrassCurve_Affine_CoordinateRing_exists_eq_XYIdeal.lean`
 - `Theorems/FLT/Thm_PeriodPair_discriminant_ne_zero.lean`
 - `Theorems/FLT/Thm_PeriodPair_jLattice_ofTau.lean`
 - `Theorems/FLT/Thm_PeriodPair_jLattice_surjective.lean`
@@ -534,7 +532,6 @@ Classified files: **1401 / 1401** in **1401** dependency nodes, including **0** 
 - `Theorems/FLT/Thm_ModularForm_weierstrassP_torsion_qExpansion_package.lean`
 - `Theorems/FLT/Thm_Monoid_CoprodI_nonempty_freeGroupBasis_fin_kuroshRank.lean`
 - `Theorems/FLT/Thm_P2M_Dup_AlgebraicCurve_Place_adicValuation_valuationSubring.lean`
-- `Theorems/FLT/Thm_P2M_Dup_AlgebraicCurve_Place_deg_eq_one_of_isAlgClosed_of_finite.lean`
 - `Theorems/FLT/Thm_P2M_Dup_AlgebraicCurve_Place_isEquiv_adicValuation_ofHeightOneSpectrum.lean`
 - `Theorems/FLT/Thm_P2M_Dup_AlgebraicCurve_Place_isEquiv_adicValuation_of_valuationSubring_eq.lean`
 - `Theorems/FLT/Thm_P2M_Dup_AlgebraicCurve_Place_mem_iff_adicValuation_le_one.lean`
@@ -702,7 +699,6 @@ Classified files: **1401 / 1401** in **1401** dependency nodes, including **0** 
 - `Theorems/FLT/Thm_ModularForm_qExpansion_heckeDiagMatrix_smul_eq_qExpand_of_levelOne.lean`
 - `Theorems/FLT/Thm_P2M_Dup_AlgebraicCurve_Place_ord_neg.lean`
 - `Theorems/FLT/Thm_P2M_Dup_AlgebraicCurve_RationalFunctionField_deg_ofHeightOneSpectrum.lean`
-- `Theorems/FLT/Thm_P2M_Dup_AlgebraicCurve_RationalFunctionField_placeOfPoint_ne_placeInfty.lean`
 - `Theorems/FLT/Thm_PeriodPair_exists_mem_primCosetReps_and_jLattice_eq_of_isAddCyclic.lean`
 - `Theorems/FLT/Thm_PeriodPair_exists_scale_lattice_subset_and_sublatticeIndex_eq_natCard_ker.lean`
 - `Theorems/FLT/Thm_ValuationSubring_IsFrobeniusAt_apply_eq_pow_of_pow_prime_pow_eq_one.lean`
@@ -1007,7 +1003,6 @@ Classified files: **1401 / 1401** in **1401** dependency nodes, including **0** 
 - `Theorems/FLT/Thm_ModularCurve_ord_cuspZeroBar_coeffEmb_qExpand.lean`
 - `Theorems/FLT/Thm_ModularCurve_six_mul_level_mul_finrank_parabolicHoms_Gamma_add_eq.lean`
 - `Theorems/FLT/Thm_P2M_Dup_AlgebraicCurve_Place_exists_ord_pos.lean`
-- `Theorems/FLT/Thm_P2M_Dup_AlgebraicCurve_Place_mem_comap_iff_ord_nonneg.lean`
 - `Theorems/FLT/Thm_P2M_Dup_AlgebraicCurve_Place_mem_iff_ord_nonneg.lean`
 - `Theorems/FLT/Thm_P2M_Dup_AlgebraicCurve_Place_mem_of_ord_nonneg.lean`
 - `Theorems/FLT/Thm_P2M_Dup_AlgebraicCurve_Place_ord_nonneg_of_mem.lean`

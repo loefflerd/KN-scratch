@@ -7,7 +7,7 @@ package «KNIndependent» where
     ⟨`autoImplicit, false⟩ ]
 
 require mathlib from git
-  "https://github.com/leanprover-community/mathlib4.git" @
+  "https://github.com/leanprover-community/mathlib4" @
   "f6090c7095e1e56b3464c1daba5f24631f1290d2"
 
 require TauCeti from git
@@ -25,3 +25,11 @@ lean_lib «Theorems» where
 @[default_target]
 lean_lib «Solutions» where
   globs := #[.submodules `Solutions]
+
+@[default_target]
+lean_lib «Challenge» where
+  roots := #[`Challenge]
+
+@[default_target]
+lean_lib «Solution» where
+  roots := #[`Solution]
