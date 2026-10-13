@@ -1,12 +1,7 @@
 module
 
 public import Mathlib.AlgebraicGeometry.EllipticCurve.LFunction
-public import Mathlib.Analysis.SpecialFunctions.Log.Basic
-public import Mathlib.Analysis.SpecialFunctions.Pow.Real
-public import Mathlib.Data.Set.Card
-public import Mathlib.MeasureTheory.Integral.Bochner.Set
 public import Mathlib.NumberTheory.DirichletCharacter.Basic
-public import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
 public import Mathlib.NumberTheory.ModularForms.QExpansion
 
 import Theorems.KN.Thm_HorizontalPadicL_elliptic_curve_nonvanishing_conditional

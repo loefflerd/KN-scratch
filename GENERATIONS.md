@@ -8,7 +8,7 @@ Generation 1 means that a node has no imports from this extracted local filetree
 
 The parser reads textual `import` and `public import` commands, resolves module names from file paths, and ignores comments after an import. This intentionally does not reproduce Lean’s elaboration or transitive module-loading behavior.
 
-Classified files: **1396 / 1396** in **1396** dependency nodes, including **0** theorem/solution pairs. Cycles found: **0**. Files with unresolved non-baseline imports: **0**.
+Classified files: **1398 / 1398** in **1398** dependency nodes, including **0** theorem/solution pairs. Cycles found: **0**. Files with unresolved non-baseline imports: **0**.
 
 ## Summary
 
@@ -16,9 +16,9 @@ Classified files: **1396 / 1396** in **1396** dependency nodes, including **0** 
 |---:|---:|---:|---:|---:|
 | 1 | 54 | 45 | 6 | 3 |
 | 2 | 263 | 253 | 6 | 4 |
-| 3 | 182 | 158 | 16 | 8 |
+| 3 | 183 | 159 | 16 | 8 |
 | 4 | 158 | 132 | 17 | 9 |
-| 5 | 118 | 93 | 21 | 4 |
+| 5 | 119 | 94 | 21 | 4 |
 | 6 | 76 | 60 | 9 | 7 |
 | 7 | 72 | 63 | 6 | 3 |
 | 8 | 56 | 50 | 3 | 3 |
@@ -389,7 +389,7 @@ Classified files: **1396 / 1396** in **1396** dependency nodes, including **0** 
 - `Theorems/FLT/Thm_WeierstrassCurve_variableChange_mk_smul_eq_self_of_sq_eq_neg_one.lean`
 - `Theorems/FLT/Thm_WeierstrassCurve_velu2_secant_negAddY_cleared_identity.lean`
 - `Theorems/FLT/Thm_WeierstrassCurve_velu2_tangent_addX_cleared_identity.lean`
-- `Theorems/FLT/Thm_WeierstrassCurve_velu2_tangent_negAddY_cleared_identity.lean`
+- `Theorems/FLT/Thm_WeierstrassCurve_velu2_tangent_negAddY_cleared_identity_factored.lean`
 - `Theorems/KN/Thm_MonoidAlgebra_isUnit_iff_augmentation_of_isPGroup_v2.lean`
 - `Theorems/KN/Thm_NumberField_not_dvd_discr_sup_of_not_dvd_discr.lean`
 - `Theorems/MTT/Thm_MTT_exists_cuspForm_heckePrime_pos.lean`
@@ -558,6 +558,7 @@ Classified files: **1396 / 1396** in **1396** dependency nodes, including **0** 
 - `Theorems/FLT/Thm_WeierstrassCurve_isCoprime_Phi_PsiSq.lean`
 - `Theorems/FLT/Thm_WeierstrassCurve_reducePoint_some_add_some_of_not_le_one.lean`
 - `Theorems/FLT/Thm_WeierstrassCurve_reducePoint_some_eq_zero_iff.lean`
+- `Theorems/FLT/Thm_WeierstrassCurve_velu2_tangent_negAddY_cleared_identity.lean`
 - `Theorems/FLT/Thm_WeierstrassCurve_veluQuotient2_Delta_eq.lean`
 - `Theorems/FLT/Thm_WeierstrassCurve_veluQuotient_j_mem_of_mem.lean`
 - `Theorems/FLT/Thm_WeierstrassCurve_veluX_oddOrderSummingSet_injOn_psi2Sq_roots.lean`
@@ -714,13 +715,13 @@ Classified files: **1396 / 1396** in **1396** dependency nodes, including **0** 
 - `Theorems/FLT/Thm_WeierstrassCurve_Affine_zsmul_genericPoint_good.lean`
 - `Theorems/FLT/Thm_WeierstrassCurve_card_torsion_of_isAlgClosed_light.lean`
 - `Theorems/FLT/Thm_WeierstrassCurve_eq_zero_of_smul_eq_zero_of_reducePoint_eq_zero.lean`
-- `Theorems/FLT/Thm_WeierstrassCurve_exists_addMonoidHom_coe_eq_veluPointMap2.lean`
 - `Theorems/FLT/Thm_WeierstrassCurve_exists_intermediateField_countable_map_eq_and_finrankAlong_eq.lean`
 - `Theorems/FLT/Thm_WeierstrassCurve_finite_torsionBy_of_natCast_ne_zero.lean`
 - `Theorems/FLT/Thm_WeierstrassCurve_nonempty_torsionBy_addEquiv_zmod_prod_of_isAlgClosed.lean`
 - `Theorems/FLT/Thm_WeierstrassCurve_reducePoint_some_add_some_of_le_one.lean`
 - `Theorems/FLT/Thm_WeierstrassCurve_sum_eq_zero_of_forall_mem_iff_smul_eq_zero.lean`
 - `Theorems/FLT/Thm_WeierstrassCurve_velu2QuadDisc_ne_zero_of_two_torsion.lean`
+- `Theorems/FLT/Thm_WeierstrassCurve_velu2_line_image_factored.lean`
 - `Theorems/FLT/Thm_WeierstrassCurve_veluGx_ne_zero_of_two_torsion.lean`
 - `Theorems/FLT/Thm_WeierstrassCurve_velu_map_equation_of_oddOrderSummingSet.lean`
 - `Theorems/KN/Thm_HorizontalPadicL_localEulerFactorDegreeTwo_iff_not_degreeBelowTwo.lean`
@@ -835,6 +836,7 @@ Classified files: **1396 / 1396** in **1396** dependency nodes, including **0** 
 - `Theorems/FLT/Thm_WeierstrassCurve_Affine_valuation_weilNum.lean`
 - `Theorems/FLT/Thm_WeierstrassCurve_card_torsionBy_eq_sq_of_isAlgClosed.lean`
 - `Theorems/FLT/Thm_WeierstrassCurve_eval_psi2Sq_veluQuotient_veluX_eq_zero_of_eval_psi2Sq_eq_zero.lean`
+- `Theorems/FLT/Thm_WeierstrassCurve_exists_addMonoidHom_coe_eq_veluPointMap2.lean`
 - `Theorems/FLT/Thm_WeierstrassCurve_exists_addOrderOf_eq_and_vcInvFun_ne_nsmul_of_pow_three_eq_one.lean`
 - `Theorems/FLT/Thm_WeierstrassCurve_exists_addOrderOf_eq_and_vcInvFun_ne_nsmul_of_sq_eq_neg_one.lean`
 - `Theorems/FLT/Thm_WeierstrassCurve_reducePoint_add.lean`
