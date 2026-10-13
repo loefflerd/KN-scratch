@@ -322,9 +322,6 @@ theorem permU_sq_ne_one : permU ^ 2 ≠ 1 := by
     div_neg_of_neg_of_pos (by linarith) hpos
   linarith
 
-scoped instance fact_prime_two_freeProduct : Fact (Nat.Prime 2) := ⟨Nat.prime_two⟩
-scoped instance fact_prime_three_freeProduct : Fact (Nat.Prime 3) := ⟨Nat.prime_three⟩
-
 theorem orderOf_permS : orderOf permS = 2 :=
   orderOf_eq_prime permS_sq permS_ne_one
 

@@ -36,6 +36,11 @@ perl -0pi -e 's/^set_option .*\n+(end.*\n)/$1/mg' -- "${files[@]}" || exit
 perl -0pi -e 's/^p2m_reactivate.*\n+(end.*\n)/$1/mg' -- "${files[@]}" || exit
 perl -0pi -e 's/^p2m_open.*\n+(end.*\n)/$1/mg' -- "${files[@]}" || exit
 perl -0pi -e 's/^universe .*\n+(end.*\n)/$1/mg' -- "${files[@]}" || exit
+perl -0pi -e 's/^local notation .*\n+(end.*\n)/$1/mg' -- "${files[@]}" || exit
+perl -0pi -e 's/^attribute \[local.*\n+(end.*\n)/$1/mg' -- "${files[@]}" || exit
+
+# Don't close multiple namespaces at once
+perl -0pi -e 's/^end (\w+)\.(.*)\n/end $2\nend $1\n/mg' -- "${files[@]}" || exit
 
 # Close up empty sections (named or unnamed)
 perl -0pi -e 's/^(noncomputable )?section (.*)\n+end \2\n+//mg' -- "${files[@]}" || exit

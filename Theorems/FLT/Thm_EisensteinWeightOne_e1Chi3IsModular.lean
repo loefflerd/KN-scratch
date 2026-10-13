@@ -899,8 +899,6 @@ namespace AnalyticCore
 
 namespace Gamma0Three
 
-scoped instance fact_prime_three_twoGenSweep : Fact (Nat.Prime 3) := ⟨by norm_num⟩
-
 def repOfLabel : Option (ZMod 3) → SL(2, ℤ)
   | none => 1
   | some k => ⟨!![0, -1; 1, (k.val : ℤ)], by simp [Matrix.det_fin_two_of]⟩

@@ -85,8 +85,6 @@ set_option linter.unusedSimpArgs false
 
 noncomputable section
 
-scoped instance instFactNatPrime2_s13e2 : Fact (Nat.Prime 2) := ⟨Nat.prime_two⟩
-scoped instance instFactNatPrime3_s13e2 : Fact (Nat.Prime 3) := ⟨Nat.prime_three⟩
 scoped instance instFactNatPrime7_s13e2 : Fact (Nat.Prime 7) := ⟨by norm_num⟩
 
 namespace WeierstrassCurve
@@ -841,8 +839,6 @@ namespace Gamma0Fourteen
 p2m_open "Matrix P2MW.S_WeierstrassCurve_Affine_exists_algEquiv_restrictAlong_placeOfPoint_eq_add.Matrix Subgroup P2MW.S_WeierstrassCurve_Affine_exists_algEquiv_restrictAlong_placeOfPoint_eq_add.Subgroup"
 p2m_open_scoped "Pointwise P2MW.S_WeierstrassCurve_Affine_exists_algEquiv_restrictAlong_placeOfPoint_eq_add.Pointwise"
 
-scoped instance fact_prime_two_etaSweep : Fact (Nat.Prime 2) := ⟨by norm_num⟩
-
 end Gamma0Fourteen
 end ModularCurve
 end
@@ -856,8 +852,6 @@ namespace RibetEndgame
 
 
 section Showcase
-
-scoped instance fact_prime_three_exchangeShowcase : Fact (Nat.Prime 3) := ⟨by norm_num⟩
 
 end Showcase
 end RibetEndgame

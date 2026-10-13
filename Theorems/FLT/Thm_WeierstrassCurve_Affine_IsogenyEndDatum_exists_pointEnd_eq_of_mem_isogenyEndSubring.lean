@@ -85,8 +85,6 @@ set_option linter.unusedSimpArgs false
 
 noncomputable section
 
-scoped instance instFactNatPrime2_s13e2 : Fact (Nat.Prime 2) := ⟨Nat.prime_two⟩
-scoped instance instFactNatPrime3_s13e2 : Fact (Nat.Prime 3) := ⟨Nat.prime_three⟩
 scoped instance instFactNatPrime7_s13e2 : Fact (Nat.Prime 7) := ⟨by norm_num⟩
 
 namespace WeierstrassCurve

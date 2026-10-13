@@ -67,9 +67,6 @@ noncomputable section
 namespace K2Seam3
 namespace SqfreeSieve
 
-scoped instance fact_prime_two : Fact (Nat.Prime 2) := ⟨by norm_num⟩
-scoped instance fact_prime_three : Fact (Nat.Prime 3) := ⟨by norm_num⟩
-
 abbrev KwExistsSqfreeSqAdd : Prop :=
   ∀ D : ℕ, 1 ≤ D → ∃ c : ℕ, 1 ≤ c ∧ Squarefree (c ^ 2 + D)
 
