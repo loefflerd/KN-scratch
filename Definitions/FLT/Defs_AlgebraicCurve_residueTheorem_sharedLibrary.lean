@@ -33,6 +33,12 @@ public import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
 public import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaceClassification
 public import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
 
+public import Theorems.FLT.Thm_AlgebraicCurve_instIsCurveOverRatFunc
+
+import Theorems.FLT.Thm_AlgebraicCurve_Place_ramificationIndex_eq_ramificationIdx_fiberCenter
+import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_deg_placeInfty
+import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_ord_placeInfty_X
+
 /-!
 # Shared library for the residue theorems
 
@@ -256,69 +262,12 @@ theorem exists_sub_algebraMap_intDegree_neg {x : RatFunc K}
   rw [hdegeq, hCdeg] at hlt
   exact_mod_cast Polynomial.natDegree_lt_natDegree hnz hlt
 
-public theorem deg_placeInfty : (placeInfty K).deg = 1 := by
-  have hbij : Function.Bijective (Algebra.ofId K (placeInfty K).ResidueField) := by
-    constructor
-    · exact fun a b h => (algebraMap K ((placeInfty K).ResidueField)).injective h
-    · intro y
-      obtain ⟨⟨x, hx⟩, rfl⟩ := IsLocalRing.residue_surjective y
-      obtain ⟨c, hc⟩ := exists_sub_algebraMap_intDegree_neg K
-        ((Valuation.mem_valuationSubring_iff _ _).mp hx)
-      refine ⟨c, ?_⟩
-      show IsLocalRing.residue _ (algebraMap K (placeInfty K).toValuationSubring c) = _
-      rw [← sub_eq_zero, ← map_sub, IsLocalRing.residue_eq_zero_iff,
-        Place.mem_maximalIdeal_iff_adicValuation_lt_one]
-      show (placeInfty K).adicValuation (algebraMap K (RatFunc K) c - x) < 1
-      rw [← (inftyValuation_isEquiv_adicValuation K).lt_one_iff_lt_one,
-        show algebraMap K (RatFunc K) c - x = -(x - algebraMap K (RatFunc K) c) from
-          (neg_sub _ _).symm, Valuation.map_neg]
-      rcases hc with hc | hc
-      · rw [hc, _root_.map_zero]
-        exact zero_lt_one
-      · rw [RatFunc.inftyValuation_apply, RatFunc.inftyValuationDef]
-        split
-        · exact zero_lt_one
-        · rw [show (1 : ℤᵐ⁰) = exp 0 from rfl, exp_lt_exp]
-          exact hc
-  rw [Place.deg, ← (AlgEquiv.ofBijective _ hbij).toLinearEquiv.finrank_eq,
-    Module.finrank_self]
-
 end DegInfty
 
 end RationalFunctionField
 end AlgebraicCurve
 end
 
-noncomputable section
-
-namespace AlgebraicCurve
-
-namespace RationalFunctionField
-
-variable (K : Type*) [Field K]
-
-scoped instance instFiniteResidueOfHeightOneSpectrum (w : HeightOneSpectrum K[X]) :
-    (Place.ofHeightOneSpectrum (K := K) (F := RatFunc K) w).FiniteResidue := by
-  obtain ⟨p, hp, hw⟩ := exists_irreducible_span K w
-  refine Place.finiteResidue_of_deg_pos _ ?_
-  rw [deg_ofHeightOneSpectrum K hw]
-  exact hp.natDegree_pos
-
-scoped instance instFiniteResiduePlaceInfty [DecidableEq (RatFunc K)] :
-    (placeInfty K).FiniteResidue :=
-  Place.finiteResidue_of_deg_pos _ (by rw [deg_placeInfty K]; exact one_pos)
-
-variable {K} in
-
-scoped instance instFiniteResidue (v : Place K (RatFunc K)) : v.FiniteResidue := by
-  classical
-  rcases eq_ofHeightOneSpectrum_or_eq_placeInfty v with ⟨w, rfl⟩ | rfl
-  · exact instFiniteResidueOfHeightOneSpectrum K w
-  · exact instFiniteResiduePlaceInfty K
-
-end RationalFunctionField
-end AlgebraicCurve
-end
 noncomputable section
 
 namespace AlgebraicCurve
@@ -375,120 +324,8 @@ public theorem ord_placeInfty_eq_intDegree_mul {f : RatFunc K} (hf : f ≠ 0) :
     RatFunc.intDegree_polynomial]
   ring
 
-public theorem ord_placeInfty_X : (placeInfty K).ord (RatFunc.X : RatFunc K) = -1 := by
-  have hX : (RatFunc.X : RatFunc K) ≠ 0 := RatFunc.X_ne_zero
-  have hneg : (placeInfty K).ord (RatFunc.X : RatFunc K) < 0 := by
-    by_contra h
-    have hmem : (RatFunc.X : RatFunc K) ∈ (placeInfty K).toValuationSubring :=
-      (placeInfty K).mem_of_ord_nonneg hX (not_lt.mp h)
-    rw [placeInfty_toValuationSubring, Valuation.mem_valuationSubring_iff,
-      RatFunc.inftyValuation_apply, RatFunc.inftyValuation_of_nonzero K hX,
-      RatFunc.intDegree_X, show (1 : ℤᵐ⁰) = exp 0 from rfl, exp_le_exp] at hmem
-    omega
-  obtain ⟨π, hπ⟩ :=
-    IsDiscreteValuationRing.exists_irreducible (placeInfty K).toValuationSubring
-  have hπ0 : (π : RatFunc K) ≠ 0 := by
-    simpa [ne_eq, ZeroMemClass.coe_eq_zero] using hπ.ne_zero
-  have hdvd : (placeInfty K).ord (RatFunc.X : RatFunc K) ∣ 1 := by
-    rw [← (placeInfty K).ord_coe_irreducible hπ, ord_placeInfty_eq_intDegree_mul K hπ0]
-    exact Dvd.intro_left _ rfl
-  rcases Int.isUnit_iff.mp (isUnit_of_dvd_one hdvd) with h | h <;> omega
-
 end PlaceInfty
 end RationalFunctionField
-end AlgebraicCurve
-end
-noncomputable section
-
-namespace AlgebraicCurve
-
-namespace Place
-
-section SupportTransfer
-
-variable {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F'] [Algebra F F']
-  [FiniteDimensional F F']
-
-variable (w : Place K F')
-
-omit [FiniteDimensional F F'] in
-
-theorem _root_.AlgebraicCurve.Place.aeval_mem {Q : Polynomial F} {x : F'}
-    (hcoeff : ∀ i, algebraMap F F' (Q.coeff i) ∈ w.toValuationSubring)
-    (hx : x ∈ w.toValuationSubring) :
-    Polynomial.aeval x Q ∈ w.toValuationSubring := by
-  rw [Polynomial.aeval_def, Polynomial.eval₂_eq_sum_range]
-  exact sum_mem fun i _ => mul_mem (hcoeff i) (pow_mem hx i)
-
-theorem _root_.AlgebraicCurve.Place.exists_coeff_ord_ne_zero {f : F'} (hf : f ≠ 0) (hford : w.ord f ≠ 0) :
-    ∃ i < (minpoly F f).natDegree, (minpoly F f).coeff i ≠ 0 ∧
-      w.ord (algebraMap F F' ((minpoly F f).coeff i)) ≠ 0 := by
-  by_contra hcon
-  push Not at hcon
-  set P := minpoly F f with hPdef
-  have hint : _root_.IsIntegral F f := Algebra.IsIntegral.isIntegral f
-  have hmonic : P.Monic := minpoly.monic hint
-  have hdeg : 0 < P.natDegree := minpoly.natDegree_pos hint
-  have hc0 : P.coeff 0 ≠ 0 := minpoly.coeff_zero_ne_zero hint hf
-  have hcoeff : ∀ i, algebraMap F F' (P.coeff i) ∈ w.toValuationSubring := by
-    intro i
-    rcases lt_trichotomy i P.natDegree with hi | hi | hi
-    · rcases eq_or_ne (P.coeff i) 0 with h0 | h0
-      · simp [h0]
-      · exact w.mem_of_ord_nonneg (by simpa using h0) (by have := hcon i hi h0; omega)
-    · subst hi
-      simp [hmonic.coeff_natDegree]
-    · simp [Polynomial.coeff_eq_zero_of_natDegree_lt hi]
-  have hfmem : f ∈ w.toValuationSubring := by
-    refine w.mem_of_eval_monic_eq_zero (P := P.map (algebraMap F F')) (hmonic.map _)
-      (fun i => by simpa using hcoeff i) ?_
-    rw [Polynomial.eval_map, ← Polynomial.aeval_def, hPdef, minpoly.aeval]
-  have hfpos : 0 < w.ord f := lt_of_le_of_ne (w.ord_nonneg_of_mem hfmem) (Ne.symm hford)
-  have hkey : algebraMap F F' (P.coeff 0) = -(f * Polynomial.aeval f P.divX) := by
-    have hsplit : Polynomial.aeval f (Polynomial.X * P.divX + Polynomial.C (P.coeff 0))
-        = (0 : F') := by rw [P.X_mul_divX_add]; exact minpoly.aeval F f
-    rw [map_add, map_mul, Polynomial.aeval_X, Polynomial.aeval_C] at hsplit
-    linear_combination hsplit
-  have hcof_mem : Polynomial.aeval f P.divX ∈ w.toValuationSubring :=
-    w.aeval_mem (fun i => by rw [Polynomial.coeff_divX]; exact hcoeff (i + 1)) hfmem
-  have hcof_ne : Polynomial.aeval f P.divX ≠ 0 := by
-    intro h
-    rw [h, mul_zero, _root_.neg_zero] at hkey
-    exact hc0 (by simpa using hkey)
-  have hpos0 : 0 < w.ord (algebraMap F F' (P.coeff 0)) := by
-    rw [hkey, w.ord_neg, w.ord_mul hf hcof_ne]
-    have := w.ord_nonneg_of_mem hcof_mem
-    omega
-  have := hcon 0 hdeg hc0
-  omega
-
-end SupportTransfer
-end Place
-section Assembly
-
-variable {K : Type*} [Field K] {F' : Type*} [Field F'] [Algebra K F']
-  [Algebra (RatFunc K) F'] [IsScalarTower K (RatFunc K) F']
-  [FiniteDimensional (RatFunc K) F'] [Algebra.IsSeparable (RatFunc K) F']
-
-theorem finite_setOf_ord_ne_zero_of_finiteDimensional {f : F'} (hf : f ≠ 0) :
-    {w : Place K F' | w.ord f ≠ 0}.Finite := by
-  classical
-  set P := minpoly (RatFunc K) f with hPdef
-  refine Set.Finite.subset (Set.Finite.biUnion (Set.finite_Iio P.natDegree) (fun i _ =>
-    Set.Finite.biUnion (s := {v : Place K (RatFunc K) | v.ord (P.coeff i) ≠ 0})
-      ?_ (fun v _ => Place.finite_setOf_restrict_eq v))) ?_
-  · rcases eq_or_ne (P.coeff i) 0 with h0 | h0
-    · simp [h0]
-    · exact RationalFunctionField.finite_setOf_ord_ne_zero h0
-  · intro w hw
-    obtain ⟨i, hi, hci, hord⟩ := w.exists_coeff_ord_ne_zero (F := RatFunc K) hf hw
-    simp only [Set.mem_iUnion, Set.mem_ofPred_eq, exists_prop]
-    refine ⟨i, hi, w.restrict (RatFunc K), ?_, rfl⟩
-    intro h0
-    apply hord
-    rw [w.ord_restrict, h0, mul_zero]
-
-end Assembly
 end AlgebraicCurve
 end
 noncomputable section
@@ -517,7 +354,7 @@ theorem _root_.AlgebraicCurve.Place.adicValuation_algebraMap {c : K} (hc : c ≠
   rw [← v.coe_algebraMap]
   exact (v.adicValuation_coe_eq_one_iff _).mpr (v.isUnit_algebraMap hc)
 
-theorem _root_.AlgebraicCurve.Place.ord_algebraMap (c : K) : v.ord (algebraMap K F c) = 0 := by
+public theorem ord_algebraMap (c : K) : v.ord (algebraMap K F c) = 0 := by
   rcases eq_or_ne c 0 with rfl | hc
   · rw [_root_.map_zero, v.ord_zero]
   · simp only [ord, v.adicValuation_algebraMap hc, log_one, _root_.neg_zero]
@@ -813,81 +650,9 @@ namespace AlgebraicCurve
 
 namespace Place
 
-section Uniqueness
-
-variable {K F : Type*} [Field K] [Field F] [Algebra K F] (w : Place K F)
-
-theorem eq_ord_of_addHom_of_nonneg_iff (φ : F → ℤ)
-    (hmul : ∀ x y, x ≠ 0 → y ≠ 0 → φ (x * y) = φ x + φ y)
-    (hone : ∃ t, t ≠ 0 ∧ φ t = 1)
-    (hiff : ∀ x, x ≠ 0 → (0 ≤ φ x ↔ x ∈ w.toValuationSubring))
-    {x : F} (hx : x ≠ 0) : φ x = w.ord x := by
-  obtain ⟨t, ht0, ht1⟩ := hone
-  have hφ1 : φ 1 = 0 := by
-    have := hmul 1 1 one_ne_zero one_ne_zero
-    rw [mul_one] at this
-    omega
-  have hinv : ∀ y, y ≠ 0 → φ y⁻¹ = -φ y := by
-    intro y hy
-    have h1 : φ (y * y⁻¹) = φ y + φ y⁻¹ := hmul y y⁻¹ hy (inv_ne_zero hy)
-    rw [mul_inv_cancel₀ hy, hφ1] at h1
-    omega
-  have hpow : ∀ (y : F), y ≠ 0 → ∀ m : ℕ, φ (y ^ m) = m * φ y := by
-    intro y hy m
-    induction m with
-    | zero => simpa using hφ1
-    | succ m ih =>
-      rw [pow_succ, hmul _ _ (pow_ne_zero _ hy) hy, ih]
-      push_cast
-      ring
-  have hzpow : ∀ (y : F) (n : ℤ), y ≠ 0 → φ (y ^ n) = n * φ y := by
-    intro y n hy
-    rcases n with m | m
-    · simpa using hpow y hy m
-    · rw [zpow_negSucc, hinv _ (pow_ne_zero _ hy), hpow y hy, Int.negSucc_eq]
-      push_cast
-      ring
-  have hsign : ∀ y, y ≠ 0 → (0 ≤ φ y ↔ 0 ≤ w.ord y) := by
-    intro y hy
-    rw [hiff y hy, w.mem_iff_ord_nonneg hy]
-  have hzero : ∀ y, y ≠ 0 → (φ y = 0 ↔ w.ord y = 0) := by
-    intro y hy
-    have h1 := hsign y hy
-    have h2 := hsign y⁻¹ (inv_ne_zero hy)
-    rw [hinv y hy, w.ord_inv] at h2
-    omega
-  have htord : 0 < w.ord t := by
-    have h1 := (hsign t ht0).mp (by omega)
-    have h2 := (hzero t ht0).not.mp (by omega)
-    omega
-  have hcancel : ∀ y, y ≠ 0 → w.ord y = φ y * w.ord t := by
-    intro y hy
-    have hyt : y * t ^ (-(φ y)) ≠ 0 := mul_ne_zero hy (zpow_ne_zero _ ht0)
-    have h1 : φ (y * t ^ (-(φ y))) = 0 := by
-      rw [hmul _ _ hy (zpow_ne_zero _ ht0), hzpow t _ ht0, ht1]
-      ring
-    have h2 : w.ord (y * t ^ (-(φ y))) = 0 := (hzero _ hyt).mp h1
-    rw [w.ord_mul hy (zpow_ne_zero _ ht0), w.ord_zpow] at h2
-    linarith
-  obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible w.toValuationSubring
-  have hπ0 : (π : F) ≠ 0 := by
-    simpa [ne_eq, ZeroMemClass.coe_eq_zero] using hπ.ne_zero
-  have hπcancel := hcancel (π : F) hπ0
-  rw [w.ord_coe_irreducible hπ] at hπcancel
-  have htord1 : w.ord t = 1 := by
-    have hdvd : w.ord t ∣ 1 := ⟨φ (π : F), by linarith⟩
-    have := Int.le_of_dvd one_pos hdvd
-    omega
-  have := hcancel x hx
-  rw [htord1, mul_one] at this
-  exact this.symm
-
-end Uniqueness
 variable {K F F' : Type*} [Field K] [Field F] [Field F']
   [Algebra K F] [Algebra K F'] [Algebra F F'] [IsScalarTower K F F']
   [FiniteDimensional F F'] [Algebra.IsSeparable F F']
-
-attribute [local instance 0] valuationSubringAlgebra
 
 section Setup
 
@@ -897,99 +662,6 @@ scoped instance (priority := 100) instIsScalarTowerSubtypeMemValuationSubringToV
   IsScalarTower.of_algebraMap_eq fun _ => rfl
 
 end Setup
-section ValuationDictionary
-
-variable {v : Place K F} {w : Place K F'}
-
-theorem neg_log_valuation_fiberCenter_eq_ord (hw : w.restrict F = v) {x : F'} (hx : x ≠ 0) :
-    -log ((fiberCenter F' v hw).valuation F' x) = w.ord x := by
-  refine eq_ord_of_addHom_of_nonneg_iff w
-    (fun y => -log ((fiberCenter F' v hw).valuation F' y)) ?_ ?_ ?_ hx
-  · intro a b ha hb
-    show -log ((fiberCenter F' v hw).valuation F' (a * b)) =
-      -log ((fiberCenter F' v hw).valuation F' a) +
-        -log ((fiberCenter F' v hw).valuation F' b)
-    rw [map_mul, log_mul ((Valuation.ne_zero_iff _).mpr ha) ((Valuation.ne_zero_iff _).mpr hb)]
-    ring
-  · obtain ⟨t, ht⟩ := (fiberCenter F' v hw).valuation_exists_uniformizer F'
-    refine ⟨t, ?_, ?_⟩
-    · intro h
-      rw [h, _root_.map_zero] at ht
-      exact exp_ne_zero ht.symm
-    · show -log ((fiberCenter F' v hw).valuation F' t) = 1
-      rw [ht, log_exp]
-      ring
-  · intro y hy
-    have hy0 : (fiberCenter F' v hw).valuation F' y ≠ 0 := (Valuation.ne_zero_iff _).mpr hy
-    show 0 ≤ -log ((fiberCenter F' v hw).valuation F' y) ↔ y ∈ w.toValuationSubring
-    have hmem : y ∈ w.toValuationSubring ↔ (fiberCenter F' v hw).valuation F' y ≤ 1 := by
-      rw [toValuationSubring_eq_of_restrict_eq hw,
-        HeightOneSpectrum.valuationSubringAtPrime_eq_valuationSubring]
-      exact Iff.rfl
-    rw [hmem]
-    constructor
-    · intro h
-      calc (fiberCenter F' v hw).valuation F' y
-          = exp (log ((fiberCenter F' v hw).valuation F' y)) := (exp_log hy0).symm
-        _ ≤ exp 0 := by rw [exp_le_exp]; omega
-        _ = 1 := exp_zero
-    · intro h
-      have h1 : exp (log ((fiberCenter F' v hw).valuation F' y)) ≤ exp 0 := by
-        rw [exp_log hy0, exp_zero]
-        exact h
-      rw [exp_le_exp] at h1
-      omega
-
-theorem le_ord_iff_mem_pow_fiberCenter (hw : w.restrict F = v)
-    {c : integralClosureAt F' v} (hc : c ≠ 0) (n : ℕ) :
-    (n : ℤ) ≤ w.ord (algebraMap (integralClosureAt F' v) F' c) ↔
-      c ∈ (fiberCenter F' v hw).asIdeal ^ n := by
-  have hcF : algebraMap (integralClosureAt F' v) F' c ≠ 0 := by
-    simpa using (IsFractionRing.injective (integralClosureAt F' v) F').ne_iff.mpr hc
-  rw [← neg_log_valuation_fiberCenter_eq_ord hw hcF,
-    HeightOneSpectrum.valuation_of_algebraMap,
-    ← HeightOneSpectrum.intValuation_le_pow_iff_mem]
-  have h0 : (fiberCenter F' v hw).intValuation c ≠ 0 :=
-    HeightOneSpectrum.intValuation_ne_zero _ c hc
-  constructor
-  · intro h
-    calc (fiberCenter F' v hw).intValuation c
-        = exp (log ((fiberCenter F' v hw).intValuation c)) := (exp_log h0).symm
-      _ ≤ exp (-(n : ℤ)) := by rw [exp_le_exp]; omega
-  · intro h
-    have h1 : exp (log ((fiberCenter F' v hw).intValuation c)) ≤ exp (-(n : ℤ)) := by
-      rw [exp_log h0]
-      exact h
-    rw [exp_le_exp] at h1
-    omega
-
-public theorem ramificationIndex_eq_ramificationIdx_fiberCenter (hw : w.restrict F = v) :
-    w.ramificationIndex F =
-      (IsLocalRing.maximalIdeal v.toValuationSubring).ramificationIdx'
-        (fiberCenter F' v hw).asIdeal := by
-  obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible v.toValuationSubring
-  have hπ0 : π ≠ 0 := hπ.ne_zero
-  have hπC : algebraMap v.toValuationSubring (integralClosureAt F' v) π ≠ 0 :=
-    algebraMap_integralClosureAt_ne_zero hπ0
-  have hmap : (IsLocalRing.maximalIdeal v.toValuationSubring).map
-      (algebraMap v.toValuationSubring (integralClosureAt F' v))
-        = Ideal.span {algebraMap v.toValuationSubring (integralClosureAt F' v) π} := by
-    rw [hπ.maximalIdeal_eq, Ideal.map_span, Set.image_singleton]
-  have hord : w.ord (algebraMap (integralClosureAt F' v) F'
-      (algebraMap v.toValuationSubring (integralClosureAt F' v) π))
-        = w.ramificationIndex F := by
-    rw [ord_algebraMap_integralClosureAt hw, ValuationSubring.algebraMap_apply,
-      v.ord_coe_irreducible hπ, mul_one]
-  refine (Ideal.ramificationIdx'_spec ?_ ?_).symm
-  · rw [hmap, Ideal.span_singleton_le_iff_mem,
-      ← le_ord_iff_mem_pow_fiberCenter hw hπC, hord]
-  · rw [hmap, Ideal.span_singleton_le_iff_mem,
-      ← le_ord_iff_mem_pow_fiberCenter hw hπC, hord]
-    have : 0 < w.ramificationIndex F := w.ramificationIndex_pos
-    push_cast
-    omega
-
-end ValuationDictionary
 section ResidueDictionary
 
 variable {v : Place K F} {w : Place K F'}
@@ -1366,47 +1038,6 @@ noncomputable section
 
 namespace AlgebraicCurve
 
-variable (K F : Type*) [Field K] [Field F] [Algebra K F]
-
-def KaehlerRankOne : Prop :=
-  Module.Free F Ω[F⁄K] ∧ Module.finrank F Ω[F⁄K] = 1
-
-variable {K F}
-
-open scoped AlgebraicCurve.IsCurveOver in
-theorem IsCurveOver.of_finiteResidue_of_kaehlerRankOne
-    [HasPrincipalDivisors K F] [∀ v : Place K F, v.FiniteResidue]
-    (hΩ : KaehlerRankOne K F) : IsCurveOver K F where
-  finiteResidue v := Place.FiniteResidue.finite (v := v)
-  kaehler_free_rank_one := hΩ
-
-namespace RationalFunctionField
-
-variable (K : Type*) [Field K]
-
-theorem isCurveOver_of_kaehlerRankOne (hΩ : KaehlerRankOne K (RatFunc K)) :
-    IsCurveOver K (RatFunc K) :=
-  IsCurveOver.of_finiteResidue_of_kaehlerRankOne hΩ
-
-end RationalFunctionField
-end AlgebraicCurve
-end
-noncomputable section
-
-namespace AlgebraicCurve
-
-section Identity
-
-variable (K F F' : Type*) [Field K] [Field F] [Field F']
-  [Algebra K F] [Algebra K F'] [Algebra F F'] [IsScalarTower K F F']
-  [Algebra.IsIntegral F F']
-
-def RamificationInertiaIdentity : Prop :=
-  ∀ (v : Place K F) (s : Finset (Place K F')), (∀ w : Place K F', w ∈ s ↔ w.restrict F = v) →
-    ∑ w ∈ s, (w.ramificationIndex F : ℤ) * (w.deg : ℤ)
-      = (Module.finrank F F' : ℤ) * (v.deg : ℤ)
-
-end Identity
 namespace Divisor
 open AlgebraicCurve.Divisor
 
@@ -1416,139 +1047,14 @@ variable {K F F' : Type*} [Field K] [Field F] [Field F']
   [Algebra K F] [Algebra K F'] [Algebra F F'] [IsScalarTower K F F']
   [Algebra.IsIntegral F F']
 
-theorem degree_eq_sum_support (D : Divisor K F) :
+public theorem degree_eq_sum_support (D : Divisor K F) :
     degree D = ∑ v ∈ D.support, D v * (v.deg : ℤ) := by
   rw [degree, Finsupp.liftAddHom_apply, Finsupp.sum]
   rfl
 
-theorem degree_eq_finrank_mul_of_forall_eq_ord_algebraMap
-    (H : RamificationInertiaIdentity K F F') {g : F}
-    {D' : Divisor K F'} (hD' : ∀ w : Place K F', D' w = w.ord (algebraMap F F' g))
-    {D : Divisor K F} (hD : ∀ v : Place K F, D v = v.ord g) :
-    degree D' = (Module.finrank F F' : ℤ) * degree D := by
-  classical
-  have hmaps : ∀ w ∈ D'.support, w.restrict F ∈ D.support := by
-    intro w hw
-    rw [Finsupp.mem_support_iff] at hw ⊢
-    intro h0
-    apply hw
-    rw [hD' w, w.ord_restrict g, hD] at *
-    rw [h0, mul_zero]
-  have happ : ∀ w : Place K F', D' w = (w.ramificationIndex F : ℤ) * D (w.restrict F) := by
-    intro w
-    rw [hD' w, w.ord_restrict g, hD]
-  rw [degree_eq_sum_support, degree_eq_sum_support,
-    ← Finset.sum_fiberwise_of_maps_to hmaps fun w => D' w * (w.deg : ℤ), Finset.mul_sum]
-  refine Finset.sum_congr rfl fun v hv => ?_
-  have hfiber : ∀ w : Place K F',
-      w ∈ D'.support.filter (fun w => w.restrict F = v) ↔ w.restrict F = v := by
-    intro w
-    simp only [Finset.mem_filter, Finsupp.mem_support_iff, and_iff_right_iff_imp]
-    intro hw
-    rw [happ w, hw]
-    have he : 0 < w.ramificationIndex F := w.ramificationIndex_pos
-    have hv0 : D v ≠ 0 := Finsupp.mem_support_iff.mp hv
-    exact mul_ne_zero (by exact_mod_cast he.ne') hv0
-  calc
-    ∑ w ∈ D'.support with w.restrict F = v, D' w * (w.deg : ℤ)
-        = D v * ∑ w ∈ D'.support.filter (fun w => w.restrict F = v),
-            (w.ramificationIndex F : ℤ) * (w.deg : ℤ) := by
-          rw [Finset.mul_sum]
-          refine Finset.sum_congr rfl fun w hw => ?_
-          rw [happ w, ((hfiber w).mp hw)]
-          ring
-    _ = D v * ((Module.finrank F F' : ℤ) * (v.deg : ℤ)) := by
-          rw [H v _ hfiber]
-    _ = (Module.finrank F F' : ℤ) * (D v * (v.deg : ℤ)) := by ring
 
 end Pullback
-section Galois
-
-variable {K F F' : Type*} [Field K] [Field F] [Field F']
-  [Algebra K F] [Algebra K F'] [Algebra F F'] [IsScalarTower K F F']
-
-theorem _root_.AlgebraicCurve.Place.ord_prod {ι : Type*} (v : Place K F') (s : Finset ι)
-    (g : ι → F') (hg : ∀ i ∈ s, g i ≠ 0) :
-    v.ord (∏ i ∈ s, g i) = ∑ i ∈ s, v.ord (g i) := by
-  classical
-  induction s using Finset.cons_induction with
-  | empty => simp
-  | cons i s hi ih =>
-    rw [Finset.prod_cons, Finset.sum_cons,
-      v.ord_mul (hg i (Finset.mem_cons_self i s))
-        (Finset.prod_ne_zero_iff.mpr fun j hj => hg j (Finset.mem_cons_of_mem hj)),
-      ih fun j hj => hg j (Finset.mem_cons_of_mem hj)]
-
-variable [FiniteDimensional F F']
-
-theorem sum_smul_apply_eq_ord_prod {f : F'} (hf : f ≠ 0)
-    {D : Divisor K F'} (hD : ∀ w : Place K F', D w = w.ord f) (w : Place K F') :
-    (∑ σ : F' ≃ₐ[F] F', (AlgEquiv.restrictScalars K σ) • D) w
-      = w.ord (∏ σ : F' ≃ₐ[F] F', σ f) := by
-  classical
-  rw [w.ord_prod _ _ fun σ _ => by simpa using hf, Finset.sum_apply']
-  refine Finset.sum_congr rfl fun σ _ => ?_
-  rw [smul_apply, hD]
-  have h := Place.ord_smul (AlgEquiv.restrictScalars K σ)
-    ((AlgEquiv.restrictScalars K σ)⁻¹ • w) f
-  rw [smul_inv_smul] at h
-  exact h.symm
-
-theorem degree_eq_zero_of_isGalois [IsGalois F F'] [HasPrincipalDivisors K F]
-    (H : RamificationInertiaIdentity K F F')
-    {f : F'} {D : Divisor K F'} (hD : ∀ w : Place K F', D w = w.ord f) :
-    degree D = 0 := by
-  classical
-  rcases eq_or_ne f 0 with rfl | hf
-  · have : D = 0 := Finsupp.ext fun w => by simpa using hD w
-    rw [this, _root_.map_zero]
-  set E : Divisor K F' := ∑ σ : F' ≃ₐ[F] F', (AlgEquiv.restrictScalars K σ) • D with hE
-  have hEord : ∀ w : Place K F', E w = w.ord (algebraMap F F' (Algebra.norm F f)) := by
-    intro w
-    rw [hE, sum_smul_apply_eq_ord_prod hf hD w, Algebra.norm_eq_prod_automorphisms F f]
-  have hnorm : Algebra.norm F f ≠ 0 := (Algebra.norm_ne_zero_iff (R := F)).mpr hf
-  obtain ⟨D₀, hD₀, hD₀deg⟩ := HasPrincipalDivisors.exists_divisor (K := K)
-    (Algebra.norm F f) hnorm
-  have hEdeg : degree E = 0 := by
-    rw [degree_eq_finrank_mul_of_forall_eq_ord_algebraMap H hEord hD₀, hD₀deg, mul_zero]
-  have hEdeg' : degree E = (Module.finrank F F' : ℤ) * degree D := by
-    rw [hE, map_sum]
-    simp only [degree_smul]
-    rw [Finset.sum_const, Finset.card_univ, nsmul_eq_mul]
-    congr 1
-    exact_mod_cast (Nat.card_eq_fintype_card (α := F' ≃ₐ[F] F')).symm.trans
-      (IsGalois.card_aut_eq_finrank F F')
-  have hpos : (0 : ℤ) < (Module.finrank F F' : ℤ) := by
-    exact_mod_cast Module.finrank_pos (R := F) (M := F')
-  rw [hEdeg] at hEdeg'
-  exact (mul_eq_zero.mp hEdeg'.symm).resolve_left hpos.ne'
-
-end Galois
 end Divisor
-namespace RationalFunctionField
-
-variable {K : Type*} [Field K] {F' : Type*} [Field F'] [Algebra K F']
-  [Algebra (RatFunc K) F'] [IsScalarTower K (RatFunc K) F']
-  [FiniteDimensional (RatFunc K) F'] [Algebra.IsSeparable (RatFunc K) F']
-
-def principalDivisorOf {f : F'} (hf : f ≠ 0) : Divisor K F' :=
-  ⟨(finite_setOf_ord_ne_zero_of_finiteDimensional hf).toFinset, fun w => w.ord f, fun w => by
-    simp [Set.Finite.mem_toFinset]⟩
-
-theorem degree_eq_zero_of_forall_eq_ord_of_isGalois [IsGalois (RatFunc K) F']
-    (H : RamificationInertiaIdentity K (RatFunc K) F')
-    {f : F'} {D : Divisor K F'} (hD : ∀ w : Place K F', D w = w.ord f) :
-    Divisor.degree D = 0 :=
-  Divisor.degree_eq_zero_of_isGalois H hD
-
-theorem hasPrincipalDivisors_of_isGalois [IsGalois (RatFunc K) F']
-    (H : RamificationInertiaIdentity K (RatFunc K) F') :
-    HasPrincipalDivisors K F' where
-  exists_divisor _ hf :=
-    ⟨principalDivisorOf hf, fun _ => rfl,
-      degree_eq_zero_of_forall_eq_ord_of_isGalois H fun _ => rfl⟩
-
-end RationalFunctionField
 end AlgebraicCurve
 end
 noncomputable section
@@ -1871,117 +1377,16 @@ namespace AlgebraicCurve
 
 variable (K : Type*) [Field K]
 
-def kaehlerPolynomialBasis : Basis Unit K[X] Ω[K[X]⁄K] :=
-  (Basis.singleton Unit K[X]).map (KaehlerDifferential.polynomialEquiv K).symm
 
-scoped instance instFormallyEtalePolynomialRatFunc : Algebra.FormallyEtale K[X] (RatFunc K) :=
-  Algebra.FormallyEtale.of_isLocalization (nonZeroDivisors K[X])
 
-def kaehlerRatFuncBasis : Basis Unit (RatFunc K) Ω[(RatFunc K)⁄K] :=
-  ((kaehlerPolynomialBasis K).baseChange (RatFunc K)).map
-    (KaehlerDifferential.tensorKaehlerEquivOfFormallyEtale K K[X] (RatFunc K))
 
-theorem kaehlerRankOne_ratFunc : KaehlerRankOne K (RatFunc K) :=
-  ⟨Module.Free.of_basis (kaehlerRatFuncBasis K),
-    (Module.finrank_eq_card_basis (kaehlerRatFuncBasis K)).trans (by simp)⟩
 
-public scoped instance instIsCurveOverRatFunc : IsCurveOver K (RatFunc K) := by
-  exact RationalFunctionField.isCurveOver_of_kaehlerRankOne K (kaehlerRankOne_ratFunc K)
+attribute [scoped instance] instIsCurveOverRatFunc
 
 end AlgebraicCurve
 end
 section
 
-noncomputable section
-
-namespace AlgebraicCurve
-
-namespace Place
-
-attribute [local instance 0] valuationSubringAlgebra
-
-variable {K F F' : Type*} [Field K] [Field F] [Field F']
-  [Algebra K F] [Algebra K F'] [Algebra F F'] [IsScalarTower K F F']
-  [FiniteDimensional F F'] [Algebra.IsSeparable F F']
-
-theorem sum_ramificationIndex_mul_inertiaDeg_of_forall_mem_iff
-    (v : Place K F) (s : Finset (Place K F'))
-    (hs : ∀ w : Place K F', w ∈ s ↔ w.restrict F = v) :
-    ∑ w ∈ s, (w.ramificationIndex F : ℤ) * (w.inertiaDeg F : ℤ)
-      = (Module.finrank F F' : ℤ) := by
-  classical
-  have hkey := sum_ramificationIdx'_mul_inertiaDeg'_integralClosureAt (F' := F') v
-  rw [← hkey]
-  push_cast
-  refine Finset.sum_bij
-    (fun w hw => (fiberCenter F' v ((hs w).mp hw)).asIdeal) ?_ ?_ ?_ ?_
-  · intro w hw
-    rw [IsDedekindDomain.mem_primesOverFinset_iff (maximalIdeal_ne_bot v)]
-    exact ⟨(fiberCenter F' v ((hs w).mp hw)).isPrime,
-      fiberCenter_liesOver ((hs w).mp hw)⟩
-  · intro w hw w' hw' h
-    exact eq_of_fiberCenter_eq ((hs w).mp hw) ((hs w').mp hw')
-      (HeightOneSpectrum.ext h)
-  · intro P hP
-    rw [IsDedekindDomain.mem_primesOverFinset_iff (maximalIdeal_ne_bot v)] at hP
-    obtain ⟨hP1, hP2⟩ := hP
-    have hPne : P ≠ ⊥ := by
-      intro h
-      apply maximalIdeal_ne_bot v
-      have h2 := hP2.over
-      rw [h, Ideal.under_def, Ideal.comap_bot_of_injective _
-        (algebraMap_integralClosureAt_injective v)] at h2
-      exact h2
-    refine ⟨placeOfPrime ⟨P, hP1, hPne⟩,
-      (hs _).mpr (restrict_placeOfPrime ⟨P, hP1, hPne⟩), ?_⟩
-    exact congrArg HeightOneSpectrum.asIdeal
-      (fiberCenter_placeOfPrime (⟨P, hP1, hPne⟩ :
-        HeightOneSpectrum (integralClosureAt F' v)))
-  · intro w hw
-    rw [ramificationIndex_eq_ramificationIdx_fiberCenter ((hs w).mp hw),
-      inertiaDeg_eq_inertiaDeg_fiberCenter ((hs w).mp hw)]
-
-theorem sum_ramificationIndex_mul_deg_of_forall_mem_iff
-    (v : Place K F) (s : Finset (Place K F'))
-    (hs : ∀ w : Place K F', w ∈ s ↔ w.restrict F = v) :
-    ∑ w ∈ s, (w.ramificationIndex F : ℤ) * (w.deg : ℤ)
-      = (Module.finrank F F' : ℤ) * (v.deg : ℤ) := by
-  have hsum := sum_ramificationIndex_mul_inertiaDeg_of_forall_mem_iff v s hs
-  calc ∑ w ∈ s, (w.ramificationIndex F : ℤ) * (w.deg : ℤ)
-      = ∑ w ∈ s, (v.deg : ℤ) * ((w.ramificationIndex F : ℤ) * (w.inertiaDeg F : ℤ)) := by
-        refine Finset.sum_congr rfl fun w hw => ?_
-        have hdeg : (w.restrict F).deg * w.inertiaDeg F = w.deg :=
-          deg_restrict_mul_inertiaDeg (K := K) (F := F) (w := w)
-        rw [(hs w).mp hw] at hdeg
-        rw [← hdeg]
-        push_cast
-        ring
-    _ = (v.deg : ℤ) * ∑ w ∈ s, (w.ramificationIndex F : ℤ) * (w.inertiaDeg F : ℤ) := by
-        rw [Finset.mul_sum]
-    _ = (Module.finrank F F' : ℤ) * (v.deg : ℤ) := by rw [hsum]; ring
-
-end Place
-theorem ramificationInertiaIdentity_of_finiteDimensional
-    (K F F' : Type*) [Field K] [Field F] [Field F']
-    [Algebra K F] [Algebra K F'] [Algebra F F'] [IsScalarTower K F F']
-    [FiniteDimensional F F'] [Algebra.IsSeparable F F'] :
-    RamificationInertiaIdentity K F F' := fun v s hs =>
-  Place.sum_ramificationIndex_mul_deg_of_forall_mem_iff v s hs
-
-namespace RationalFunctionField
-
-variable {K : Type*} [Field K] {F' : Type*} [Field F'] [Algebra K F']
-  [Algebra (RatFunc K) F'] [IsScalarTower K (RatFunc K) F']
-  [FiniteDimensional (RatFunc K) F'] [Algebra.IsSeparable (RatFunc K) F']
-
-scoped instance (priority := 50) instHasPrincipalDivisorsOfIsGalois [IsGalois (RatFunc K) F'] :
-    HasPrincipalDivisors K F' :=
-  hasPrincipalDivisors_of_isGalois
-    (ramificationInertiaIdentity_of_finiteDimensional K (RatFunc K) F')
-
-end RationalFunctionField
-end AlgebraicCurve
-end
 noncomputable section
 
 namespace AlgebraicCurve
@@ -2014,20 +1419,6 @@ public theorem ordDifferentialWellDefined_ratFunc_of_perfectField (K : Type*) [F
     exact exists_ord_zero_smul_of_smul_dX_eq he0 he'0 (he'ord.trans heord.symm) hDe hDe'
 
 end AlgebraicCurve
-end
-noncomputable section
-
-namespace ModularCurve
-
-section Corollaries
-
-variable (K : Type*) [Field K]
-
-scoped instance instHasPrincipalDivisorsRatFuncSelf : HasPrincipalDivisors K (RatFunc K) :=
-  RationalFunctionField.instHasPrincipalDivisorsOfIsGalois
-
-end Corollaries
-end ModularCurve
 end
 noncomputable section
 

@@ -24,11 +24,14 @@ import Mathlib.RingTheory.AdicCompletion.Completeness
 import Mathlib.RingTheory.Artinian.Instances
 import Mathlib.RingTheory.Norm.Transitivity
 import Mathlib.RingTheory.PicardGroup
+
 import Definitions.FLT.Def_AlgebraicCurve_CanonicalLocalResidueInstanceV2
 import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
 import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
 import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
 import Definitions.FLT.Defs_AlgebraicCurve_residueTheorem_sharedLibrary
+import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_ord_placeInfty_X
+import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_deg_placeInfty
 
 /-!
 # Residue theorem for K(x), K algebraically closed

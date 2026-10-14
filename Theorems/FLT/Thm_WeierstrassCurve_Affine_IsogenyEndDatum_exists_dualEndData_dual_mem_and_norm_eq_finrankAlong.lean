@@ -21,11 +21,18 @@ import Mathlib.Order.CompletePartialOrder
 import Mathlib.RingTheory.DedekindDomain.Different
 import Mathlib.RingTheory.LocalProperties.Reduced
 import Mathlib.Tactic.NormNum.Prime
+
+import Definitions.FLT.Defs_AlgebraicCurve_residueTheorem_sharedLibrary
 import Definitions.FLT.Defs_IsogenyEndDatum_sharedLibrary
 import Definitions.FLT.Def_AlgebraicCurve_PlaceEvaluation
 import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
 import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
+import Definitions.FLT.Def_EllipticCurve_FunctionFieldPullback
 import Theorems.FLT.Thm_AlgebraicCurve_normFormulaAlong
+import Theorems.FLT.Thm_AlgebraicCurve_Place_evalAt_algebraMap
+import Theorems.FLT.Thm_AlgebraicCurve_Place_evalAt_mul
+import Theorems.FLT.Thm_AlgebraicCurve_Place_evalAt_ne_zero
+import Theorems.FLT.Thm_AlgebraicCurve_Place_min_ord_le_ord_add
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_CoordinateRing_XYIdeal_ne_bot
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_Point_exists_zsmul_eq_of_isAlgClosed
@@ -33,7 +40,6 @@ import Theorems.FLT.Thm_WeierstrassCurve_Affine_algebraMap_mk_C_X_notMem_toValua
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField
 import Theorems.FLT.Thm_WeierstrassCurve_finite_torsionBy_of_natCast_ne_zero
 import Theorems.FLT.Thm_WeierstrassCurve_nonempty_torsionBy_addEquiv_zmod_prod_of_isAlgClosed
-import Definitions.FLT.Def_EllipticCurve_FunctionFieldPullback
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_CoordinateRing_isDedekindDomain
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_placeOfPoint_some_eq_ofHeightOneSpectrum
 
@@ -976,7 +982,7 @@ theorem two_mul_ord_Y_eq_three_mul_ord_X (hv : ¬ IsFinitePlace v) :
   · by_cases hBc : v.ord η = v.ord (polyToFunctionField W c₁)
     · exfalso
       have hmin : min (v.ord η) (v.ord (polyToFunctionField W c₁))
-          ≤ v.ord (η + polyToFunctionField W c₁) := v.min_ord_le_ord_add hfac0
+          ≤ v.ord (η + polyToFunctionField W c₁) := v.min_ord_le_ord_add' hfac0
       rw [← hBc, min_self] at hmin
       have hBA : v.ord (polyToFunctionField W X) ≤ v.ord η := hBc ▸ hc₁ord
       omega
@@ -1400,33 +1406,6 @@ def restrictResidueFieldEquiv (hw : w.restrict F = v) :
     (w.restrict F).ResidueField ≃+* IsLocalRing.ResidueField v.toValuationSubring :=
   IsLocalRing.ResidueField.mapEquiv (placeCongrEquiv hw)
 
-theorem inertiaDeg_eq_inertiaDeg_fiberCenter (hw : w.restrict F = v) :
-    w.inertiaDeg F =
-      (fiberCenter F' v hw).asIdeal.inertiaDeg v.toValuationSubring := by
-  have := fiberCenter_liesOver hw
-  rw [Ideal.inertiaDeg_eq_of_isMaximal (IsLocalRing.maximalIdeal v.toValuationSubring)
-    (fiberCenter F' v hw).asIdeal]
-  show Module.finrank (w.restrict F).ResidueField w.ResidueField = _
-  refine Algebra.finrank_eq_of_equiv_equiv (restrictResidueFieldEquiv hw)
-    (residueFieldEquivQuotientCenter hw).symm ?_
-  ext a
-  obtain ⟨a, rfl⟩ := IsLocalRing.residue_surjective a
-  simp only [RingHom.coe_comp, Function.comp_apply, RingEquiv.toRingHom_eq_coe,
-    RingHom.coe_coe]
-  apply (residueFieldEquivQuotientCenter hw).injective
-  rw [RingEquiv.apply_symm_apply]
-  show IsLocalRing.residue w.toValuationSubring
-      (toValuationSubringOfRestrictEq hw
-        (algebraMap v.toValuationSubring (integralClosureAt F' v) (placeCongrEquiv hw a)))
-    = IsLocalRing.residue w.toValuationSubring (restrictInclusion F w a)
-  refine congrArg _ (Subtype.ext ?_)
-  show algebraMap (integralClosureAt F' v) F'
-      (algebraMap v.toValuationSubring (integralClosureAt F' v) (placeCongrEquiv hw a))
-    = algebraMap F F' (a : F)
-  rw [← IsScalarTower.algebraMap_apply,
-    IsScalarTower.algebraMap_apply v.toValuationSubring F F']
-  rfl
-
 end ResidueDictionary
 end Place
 end AlgebraicCurve
@@ -1667,13 +1646,6 @@ end Structural
 end Place
 end AlgebraicCurve
 
-namespace ModularCurve
-
-open IntermediateField
-
-attribute [local instance 0] AlgebraicCurve.Place.valuationSubringAlgebra
-
-end ModularCurve
 end
 
 section

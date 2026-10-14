@@ -20,14 +20,18 @@ public import Definitions.FLT.Def_WeierstrassCurve_FunctionFieldQuadratic
 public import Definitions.FLT.Def_WeierstrassCurve_OddOrderSummingSet
 public import Definitions.FLT.Def_WeierstrassCurve_VeluPointMap
 public import Definitions.FLT.Def_WeierstrassCurve_VeluQuotientMap
+public import Definitions.FLT.Defs_IsogenyEndDatum_sharedLibrary
 
 import Mathlib.AlgebraicGeometry.EllipticCurve.DivisionPolynomial.Degree
 
 import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
 import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaceClassification
 import Definitions.FLT.Def_EllipticCurve_FunctionFieldPullback
+
 import Definitions.FLT.Def_WeierstrassCurve_RatPointHom
 
+import Theorems.FLT.Thm_AlgebraicCurve_Divisor_degree_eq_sum_support
+import Theorems.FLT.Thm_AlgebraicCurve_Place_ord_algebraMap
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_CoordinateRing_XYIdeal_ne_bot
 
 /-!
@@ -48,24 +52,6 @@ open Polynomial IsDedekindDomain WithZero IsLocalRing WeierstrassCurve Affine Po
 open scoped Polynomial.Bivariate Pointwise nonZeroDivisors
 
 set_option backward.isDefEq.respectTransparency.types false
-
-section
-
-namespace WeierstrassCurve
-
-section PowHelpers
-
-variable {k : Type*} [Field k] {V : WeierstrassCurve k} {q : ℕ} {φ : k →+* k}
-
-lemma some_congr {R : Type*} [CommRing R] {V' : Affine R} {x₁ x₂ y₁ y₂ : R}
-    (hx : x₁ = x₂) (hy : y₁ = y₂) (h₁ : V'.Nonsingular x₁ y₁) (h₂ : V'.Nonsingular x₂ y₂) :
-    Affine.Point.some x₁ y₁ h₁ = Affine.Point.some x₂ y₂ h₂ := by
-  subst hx; subst hy; rfl
-
-end PowHelpers
-
-end WeierstrassCurve
-end
 
 section
 
@@ -432,12 +418,6 @@ public theorem algebraMap_eq_mk_C_C (a : F) :
     Algebra.algebraMap_self_apply]
   rfl
 
-@[expose] public def heightOneSpectrumOfEquation {x y : F} (h : W.Equation x y) :
-    HeightOneSpectrum W.CoordinateRing where
-  asIdeal := XYIdeal W x (C y)
-  isPrime := by exact (XYIdeal_isMaximal h).isPrime
-  ne_bot := by exact XYIdeal_ne_bot x (C y)
-
 @[scoped simp]
 theorem heightOneSpectrumOfEquation_asIdeal {x y : F} (h : W.Equation x y) :
     (heightOneSpectrumOfEquation h).asIdeal = XYIdeal W x (C y) := rfl
@@ -452,9 +432,6 @@ theorem exists_sub_algebraMap_mem {x y : F} (h : W.Equation x y) (r : W.Coordina
     Algebra.algebraMap_self_apply]
 
 end CoordinateRing
-
-@[expose] public def IsFinitePlace (v : AlgebraicCurve.Place F W.FunctionField) : Prop :=
-  ∀ r : W.CoordinateRing, algebraMap W.CoordinateRing W.FunctionField r ∈ v.toValuationSubring
 
 @[expose] public def IsFinitePlace.ringHom {v : AlgebraicCurve.Place F W.FunctionField} (hv : IsFinitePlace v) :
     W.CoordinateRing →+* v.toValuationSubring where
@@ -500,10 +477,6 @@ theorem IsFinitePlace.centre_ne_bot {v : AlgebraicCurve.Place F W.FunctionField}
   exact mul_mem (hv r) (hv.inv_mem hs0)
 
 variable [IsDedekindDomain W.CoordinateRing]
-
-@[expose] public def placeOfEquation {x y : F} (h : W.Equation x y) :
-    AlgebraicCurve.Place F W.FunctionField :=
-  AlgebraicCurve.Place.ofHeightOneSpectrum (heightOneSpectrumOfEquation h)
 
 theorem deg_placeOfEquation {x y : F} (h : W.Equation x y) : (placeOfEquation h).deg = 1 :=
   AlgebraicCurve.Place.deg_ofHeightOneSpectrum_eq_one _ (exists_sub_algebraMap_mem h)
@@ -950,45 +923,11 @@ theorem evalAt_inv (hv : v.IsRational) {f : F} (hf : f ≠ 0) (h : v.ord f = 0) 
   rw [mul_inv_cancel₀ hf, v.evalAt_one] at hmul
   exact eq_inv_of_mul_eq_one_right hmul.symm
 
-theorem isRational_of_deg_eq_one (h : v.deg = 1) : v.IsRational := by
-  intro x
-  have hbot : (⊥ : Subalgebra K v.ResidueField) = ⊤ :=
-    Subalgebra.bot_eq_top_iff_finrank_eq_one.mpr h
-  have hx : x ∈ (⊥ : Subalgebra K v.ResidueField) := by
-    rw [hbot]
-    exact Algebra.mem_top
-  exact Algebra.mem_bot.mp hx
-
 end Place
 end AlgebraicCurve
 end
 section
 
-noncomputable section
-
-namespace AlgebraicCurve
-
-namespace Place
-
-variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
-
-theorem isUnit_algebraMap {c : K} (hc : c ≠ 0) :
-    IsUnit (algebraMap K v.toValuationSubring c) :=
-  (isUnit_iff_ne_zero.mpr hc).map _
-
-theorem adicValuation_algebraMap {c : K} (hc : c ≠ 0) :
-    v.adicValuation (algebraMap K F c) = 1 := by
-  rw [← v.coe_algebraMap]
-  exact (v.adicValuation_coe_eq_one_iff _).mpr (v.isUnit_algebraMap hc)
-
-public theorem ord_algebraMap (c : K) : v.ord (algebraMap K F c) = 0 := by
-  rcases eq_or_ne c 0 with rfl | hc
-  · rw [_root_.map_zero, v.ord_zero]
-  · simp only [ord, v.adicValuation_algebraMap hc, log_one, _root_.neg_zero]
-
-end Place
-end AlgebraicCurve
-end
 section
 
 noncomputable section
@@ -1198,13 +1137,6 @@ public theorem isFinitePlace_of_mem
   rw [algebraMap_smul_basis]
   exact add_mem (hpoly p) (mul_mem (hpoly q) hy)
 
-public theorem ord_X_neg_of_not_isFinitePlace (hv : ¬ IsFinitePlace v) :
-    v.ord (polyToFunctionField W X) < 0 := by
-  by_contra hcon
-  push Not at hcon
-  exact hv (isFinitePlace_of_mem v
-    (v.mem_of_ord_nonneg (polyToFunctionField_ne_zero Polynomial.X_ne_zero) hcon))
-
 theorem two_mul_ord_Y_eq_three_mul_ord_X (hv : ¬ IsFinitePlace v) :
     2 * v.ord (algebraMap W.CoordinateRing W.FunctionField (CoordinateRing.mk W Y))
       = 3 * v.ord (polyToFunctionField W X) := by
@@ -1382,21 +1314,6 @@ end WeierstrassCurve
 end
 section
 
-noncomputable section
-
-namespace AlgebraicCurve
-
-namespace Place
-
-variable {K F F' : Type*} [Field K] [Field F] [Field F']
-  [Algebra K F] [Algebra K F'] [Algebra F F'] [IsScalarTower K F F']
-  [FiniteDimensional F F'] [Algebra.IsSeparable F F']
-
-attribute [local instance 0] valuationSubringAlgebra
-
-end Place
-end AlgebraicCurve
-end
 section
 
 noncomputable section
@@ -1415,10 +1332,6 @@ namespace WeierstrassCurve
 namespace Affine
 
 variable {F : Type*} [Field F] {W : Affine F}
-
-public theorem algebraMap_polynomial_eq_mk_C (p : F[X]) :
-    algebraMap F[X] W.CoordinateRing p = CoordinateRing.mk W (C p) :=
-  rfl
 
 theorem algebraMap_coordinateRing_ne_zero {r : W.CoordinateRing} (hr : r ≠ 0) :
     algebraMap W.CoordinateRing W.FunctionField r ≠ 0 :=
@@ -1452,11 +1365,6 @@ theorem ord_placeOfEquation_ne_zero_iff [IsDedekindDomain W.CoordinateRing] {x y
   rw [placeOfEquation, Place.ord_ofHeightOneSpectrum_ne_zero_iff _ hr,
     heightOneSpectrumOfEquation_asIdeal]
 
-public theorem ord_placeOfEquation_nonneg [IsDedekindDomain W.CoordinateRing] {x y : F}
-    (h : W.Equation x y) (r : W.CoordinateRing) :
-    0 ≤ (placeOfEquation h).ord (algebraMap W.CoordinateRing W.FunctionField r) :=
-  (placeOfEquation h).ord_nonneg_of_mem (isFinitePlace_placeOfEquation h r)
-
 public theorem ord_placeOfEquation_pos_iff [IsDedekindDomain W.CoordinateRing] {x y : F}
     (h : W.Equation x y) {r : W.CoordinateRing} (hr : r ≠ 0) :
     0 < (placeOfEquation h).ord (algebraMap W.CoordinateRing W.FunctionField r)
@@ -1482,18 +1390,6 @@ public theorem centre_placeOfEquation [IsDedekindDomain W.CoordinateRing] {x y :
   · simp only [Submodule.zero_mem]
   rw [(isFinitePlace_placeOfEquation h).mem_centre_iff_ord_ne_zero hr,
     ord_placeOfEquation_ne_zero_iff h hr]
-
-end Affine
-end WeierstrassCurve
-namespace WeierstrassCurve
-namespace Affine
-
-variable {F : Type*} [Field F] (W : Affine F)
-
-variable {W}
-
-@[expose] public def yGen (W : Affine F) : W.FunctionField :=
-  algebraMap W.CoordinateRing W.FunctionField (CoordinateRing.mk W Y)
 
 end Affine
 end WeierstrassCurve
@@ -1855,29 +1751,8 @@ theorem sum_range_addOrderOf_shift_invariant {G : Type*} [AddCommGroup G] {Q : G
 end FullPeriod
 end WeierstrassCurve
 end
+
 section
-
-noncomputable section
-
-namespace AlgebraicCurve
-
-namespace Divisor
-
-section Pullback
-
-variable {K F F' : Type*} [Field K] [Field F] [Field F']
-  [Algebra K F] [Algebra K F'] [Algebra F F'] [IsScalarTower K F F']
-  [Algebra.IsIntegral F F']
-
-public theorem degree_eq_sum_support (D : Divisor K F) :
-    degree D = ∑ v ∈ D.support, D v * (v.deg : ℤ) := by
-  rw [degree, Finsupp.liftAddHom_apply, Finsupp.sum]
-  rfl
-
-end Pullback
-end Divisor
-end AlgebraicCurve
-end
 
 section
 
@@ -1912,21 +1787,6 @@ public theorem polyToFunctionField_X_ne_algebraMap (c : F) :
   intro hcon
   refine polyToFunctionField_ne_zero (W := W) (X_sub_C_ne_zero c) ?_
   rw [map_sub, polyToFunctionField_C, hcon, sub_self]
-
-theorem equation_map_polyToFunctionField_yGen :
-    (W.map (algebraMap F W.FunctionField)).toAffine.Equation
-      (polyToFunctionField W X) (yGen W) := by
-  rw [equation_iff]
-  have hrel := smul_basis_mul_Y (W' := W) 0 1
-  rw [zero_smul, zero_add, one_smul, one_mul, one_mul, zero_sub] at hrel
-  have h2 := congrArg (algebraMap W.CoordinateRing W.FunctionField) hrel
-  rw [map_mul, algebraMap_smul_basis, _root_.map_neg, neg_mul, ← sub_eq_add_neg] at h2
-  simp only [map_a₁, map_a₂, map_a₃, map_a₄, map_a₆]
-  simp only [map_add, map_mul, map_pow, polyToFunctionField_C] at h2
-  rw [show yGen W = algebraMap W.CoordinateRing W.FunctionField (CoordinateRing.mk W Y)
-    from rfl]
-  simp only [polyToFunctionField_apply] at h2 ⊢
-  linear_combination h2
 
 end GenericPoint
 end Affine
@@ -2176,19 +2036,6 @@ end Place
 end AlgebraicCurve
 end
 section
-
-noncomputable section
-
-namespace AlgebraicCurve
-
-namespace Place
-
-attribute [local instance 0] valuationSubringAlgebra
-
-end Place
-
-end AlgebraicCurve
-end
 
 noncomputable section
 
@@ -3481,24 +3328,6 @@ variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
 theorem evalAt_zero : v.evalAt (0 : F) = 0 := by
   rw [← (algebraMap K F).map_zero, v.evalAt_algebraMap]
 
-theorem evalAt_add (hv : v.IsRational) {f g : F} (hf : f ∈ v.toValuationSubring)
-    (hg : g ∈ v.toValuationSubring) :
-    v.evalAt (f + g) = v.evalAt f + v.evalAt g := by
-  apply v.algebraMap_residueField_injective
-  rw [map_add, v.algebraMap_evalAt hv (add_mem hf hg), v.algebraMap_evalAt hv hf,
-    v.algebraMap_evalAt hv hg, ← map_add]
-  rfl
-
-theorem evalAt_neg (hv : v.IsRational) {f : F} (hf : f ∈ v.toValuationSubring) :
-    v.evalAt (-f) = -v.evalAt f := by
-  apply v.algebraMap_residueField_injective
-  rw [_root_.map_neg, v.algebraMap_evalAt hv (neg_mem hf), v.algebraMap_evalAt hv hf, ← _root_.map_neg]
-  rfl
-
-theorem evalAt_sub (hv : v.IsRational) {f g : F} (hf : f ∈ v.toValuationSubring)
-    (hg : g ∈ v.toValuationSubring) :
-    v.evalAt (f - g) = v.evalAt f - v.evalAt g := by
-  rw [sub_eq_add_neg, v.evalAt_add hv hf (neg_mem hg), v.evalAt_neg hv hg, sub_eq_add_neg]
 
 end Place
 end AlgebraicCurve

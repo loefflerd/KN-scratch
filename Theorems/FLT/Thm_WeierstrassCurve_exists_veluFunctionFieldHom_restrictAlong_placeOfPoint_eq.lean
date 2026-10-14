@@ -158,29 +158,14 @@ theorem placeOfEquation_injective {x₁ y₁ x₂ y₂ : F} (h₁ : W.Equation x
   eq_of_XYIdeal_eq h₂
     (congrArg HeightOneSpectrum.asIdeal (S13_ofHeightOneSpectrum_injective h))
 
-scoped instance S13_instIsDedekindDomainCoordinateRing [IsAlgClosed F] [W.IsElliptic] :
-    IsDedekindDomain W.CoordinateRing :=
-  CoordinateRing.isDedekindDomain (W := W)
-
 section CentredGate
 
 variable [DecidableEq F] [GenusOnePlaceGate W] [GenusOnePlaceGate.IsCentred W]
 
-@[scoped simp]
-theorem placeOfPoint_some {x y : F} (h : W.Nonsingular x y) :
-    placeOfPoint (.some x y h) = placeOfEquation h.left :=
-  placeOfPoint_some_eq_ofHeightOneSpectrum h (heightOneSpectrumOfEquation h.left) rfl
-
 namespace InfinitePlace
-
-def place : AlgebraicCurve.Place F W.FunctionField := placeOfPoint (0 : W.Point)
 
 theorem deg_eq_one : (place : AlgebraicCurve.Place F W.FunctionField).deg = 1 :=
   deg_placeOfPoint (W := W) 0
-
-theorem not_isFinitePlace [IsAlgClosed F] [W.IsElliptic] :
-    ¬ IsFinitePlace (place : AlgebraicCurve.Place F W.FunctionField) := fun h =>
-  algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero (W := W) (h _)
 
 theorem eq_of_not_isFinitePlace
     (v : AlgebraicCurve.Place F W.FunctionField) (hv : ¬ IsFinitePlace v) :
@@ -199,12 +184,6 @@ theorem placeOfPoint_zero : placeOfPoint (.zero : W.Point) = InfinitePlace.place
 
 theorem placeOfPoint_zero' : placeOfPoint (0 : W.Point) = InfinitePlace.place := rfl
 
-theorem placeOfPoint_injective : Function.Injective (placeOfPoint (W := W)) :=
-  (pointEquivPlace (W := W)).injective
-
-theorem placeOfPoint_surjective (_hΔ : W.Δ ≠ 0) : Function.Surjective (placeOfPoint (W := W)) :=
-  (pointEquivPlace (W := W)).surjective
-
 theorem placeOfPoint_surjective' : Function.Surjective (placeOfPoint (W := W)) :=
   (pointEquivPlace (W := W)).surjective
 
@@ -218,47 +197,13 @@ scoped instance instHasPrincipalDivisorsFunctionField_s13 {F : Type*} [Field F] 
     {W : Affine F} : HasPrincipalDivisors F W.FunctionField :=
   hasPrincipalDivisors_functionField W
 
-section AutoNorm
-variable {F : Type*} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
-variable {V W : Affine F} [V.IsElliptic] [W.IsElliptic]
-
-theorem normFormulaAlong_of_elliptic (ι : V.FunctionField →ₐ[F] W.FunctionField)
-    (hfin : FiniteAlong F ι) : NormFormulaAlong F ι hfin := by
-  have : HasPrincipalDivisors F W.FunctionField := hasPrincipalDivisors_functionField W
-  have : CharZero V.FunctionField :=
-    charZero_of_injective_algebraMap (algebraMap F V.FunctionField).injective
-  have hsep : SeparableAlong F ι := by
-    let := algebraAlong ι
-    have := isScalarTower_along ι
-    have : Module.Finite V.FunctionField W.FunctionField := hfin
-    show Algebra.IsSeparable V.FunctionField W.FunctionField
-    infer_instance
-  exact AlgebraicCurve.normFormulaAlong ι hfin hsep
-
-end AutoNorm
-
 namespace IsogenyEndDatum
 
 variable {F : Type*} [Field F] [DecidableEq F] [IsAlgClosed F] [CharZero F]
 variable {W : Affine F} [W.IsElliptic] [GenusOnePlaceGate W] [AbelTheorem W]
 
-private theorem _root_.WeierstrassCurve.Affine.IsogenyEndDatum.normFormulaAlong_auto (D : IsogenyEndDatum W) : NormFormulaAlong F D.ι D.hfin :=
-  normFormulaAlong_of_elliptic D.ι D.hfin
-
-private def _root_.WeierstrassCurve.Affine.IsogenyEndDatum.pointEnd' (D : IsogenyEndDatum W) : AddMonoid.End W.Point := D.pointEnd D.normFormulaAlong_auto
-
 theorem pointEnd_eq_pointEnd' (D : IsogenyEndDatum W) (hN : NormFormulaAlong F D.ι D.hfin) :
     D.pointEnd hN = D.pointEnd' := rfl
-
-theorem pointEnd'_apply (D : IsogenyEndDatum W) (P : W.Point) :
-    D.pointEnd' P = genusOnePic0Equiv W
-      (Pic0.pushforwardAlongHom D.ι D.hι D.hfin D.normFormulaAlong_auto (pointClass P)) :=
-  pointEnd_apply D _ P
-
-theorem pointEnd'_eq_of_seam (D : IsogenyEndDatum W) (g : W.Point → W.Point) (hg0 : g 0 = 0)
-    (hg : ∀ P, (placeOfPoint P).restrictAlong D.ι D.hι = placeOfPoint (g P)) (P : W.Point) :
-    D.pointEnd' P = g P :=
-  pointEnd_eq_of_seam D _ g hg0 hg P
 
 end IsogenyEndDatum
 end Affine
@@ -642,14 +587,6 @@ def veluYFun (x₀ y₀ : F) : W.FunctionField :=
 section OrdAtPoint
 
 variable [IsDedekindDomain W.CoordinateRing]
-
-theorem ord_polyToFunctionField_pos_iff {x y : F} (h : W.Equation x y) {p : F[X]}
-    (hp : p ≠ 0) :
-    0 < (placeOfEquation h).ord (polyToFunctionField W p) ↔ p.eval x = 0 := by
-  rw [polyToFunctionField_apply, algebraMap_polynomial_eq_mk_C,
-    ord_placeOfEquation_pos_iff h (fun hcon => polyToFunctionField_ne_zero hp
-      (by rw [polyToFunctionField_apply, algebraMap_polynomial_eq_mk_C, hcon, _root_.map_zero])),
-    mk_mem_XYIdeal_iff h, Polynomial.evalEval_C]
 
 theorem ord_polyToFunctionField_eq_zero_iff {x y : F} (h : W.Equation x y) {p : F[X]}
     (hp : p ≠ 0) :

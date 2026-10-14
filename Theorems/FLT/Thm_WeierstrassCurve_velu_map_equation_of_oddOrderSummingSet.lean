@@ -31,6 +31,7 @@ import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
 import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaceClassification
 import Definitions.FLT.Def_WeierstrassCurve_FunctionFieldQuadratic
 import Definitions.FLT.Def_WeierstrassCurve_RatPointHom
+import Definitions.FLT.Defs_AlgebraicCurve_residueTheorem_sharedLibrary
 import Definitions.FLT.Defs_WeierstrassCurve_veluSharedLibrary
 
 /-!
@@ -235,43 +236,6 @@ theorem ord_placeInfty_eq_zero_of_intDegree_eq_zero {f : RatFunc K} (hf : f ≠ 
     ← (inftyValuation_isEquiv_adicValuation K).eq_one_iff_eq_one,
     RatFunc.inftyValuation_apply, RatFunc.inftyValuation_of_nonzero K hf, h]
   rfl
-
-theorem ord_placeInfty_eq_intDegree_mul {f : RatFunc K} (hf : f ≠ 0) :
-    (placeInfty K).ord f = f.intDegree * (placeInfty K).ord (RatFunc.X) := by
-  have hinj := IsFractionRing.injective K[X] (RatFunc K)
-  have hpoly : ∀ q : K[X], q ≠ 0 →
-      (placeInfty K).ord (algebraMap K[X] (RatFunc K) q)
-        = (q.natDegree : ℤ) * (placeInfty K).ord (RatFunc.X) := by
-    intro q hq
-    have hq' : algebraMap K[X] (RatFunc K) q ≠ 0 := (map_ne_zero_iff _ hinj).mpr hq
-    have hX : (RatFunc.X : RatFunc K) ≠ 0 := RatFunc.X_ne_zero
-    have hXpow : (RatFunc.X : RatFunc K) ^ q.natDegree ≠ 0 := pow_ne_zero _ hX
-    have hXpoly : (RatFunc.X : RatFunc K) ^ q.natDegree
-        = algebraMap K[X] (RatFunc K) (Polynomial.X ^ q.natDegree) := by
-      rw [map_pow, RatFunc.algebraMap_X]
-    have hdeg : (algebraMap K[X] (RatFunc K) q / RatFunc.X ^ q.natDegree).intDegree = 0 := by
-      rw [RatFunc.intDegree_div hq' hXpow, RatFunc.intDegree_polynomial, hXpoly,
-        RatFunc.intDegree_polynomial, natDegree_X_pow, sub_self]
-    have hne : algebraMap K[X] (RatFunc K) q / RatFunc.X ^ q.natDegree ≠ 0 :=
-      div_ne_zero hq' hXpow
-    have h0 := ord_placeInfty_eq_zero_of_intDegree_eq_zero K hne hdeg
-    have hsplit : algebraMap K[X] (RatFunc K) q
-        = (algebraMap K[X] (RatFunc K) q / RatFunc.X ^ q.natDegree)
-          * RatFunc.X ^ q.natDegree :=
-      (div_mul_cancel₀ _ hXpow).symm
-    rw [hsplit, (placeInfty K).ord_mul hne hXpow, h0, zero_add, ← zpow_natCast,
-      (placeInfty K).ord_zpow]
-  have hnum' : algebraMap K[X] (RatFunc K) f.num ≠ 0 :=
-    (map_ne_zero_iff _ hinj).mpr (RatFunc.num_ne_zero hf)
-  have hden' : algebraMap K[X] (RatFunc K) f.denom ≠ 0 :=
-    (map_ne_zero_iff _ hinj).mpr f.denom_ne_zero
-  rw [show f = algebraMap K[X] (RatFunc K) f.num * (algebraMap K[X] (RatFunc K) f.denom)⁻¹ by
-      rw [← div_eq_mul_inv, f.num_div_denom],
-    (placeInfty K).ord_mul hnum' (inv_ne_zero hden'), (placeInfty K).ord_inv,
-    hpoly _ (RatFunc.num_ne_zero hf), hpoly _ f.denom_ne_zero, ← div_eq_mul_inv,
-    RatFunc.intDegree_div hnum' hden', RatFunc.intDegree_polynomial,
-    RatFunc.intDegree_polynomial]
-  ring
 
 theorem ord_placeInfty_X : (placeInfty K).ord (RatFunc.X : RatFunc K) = -1 := by
   have hX : (RatFunc.X : RatFunc K) ≠ 0 := RatFunc.X_ne_zero
@@ -932,33 +896,6 @@ def placeCongrEquiv {u u' : Place K F} (h : u = u') :
 def restrictResidueFieldEquiv (hw : w.restrict F = v) :
     (w.restrict F).ResidueField ≃+* IsLocalRing.ResidueField v.toValuationSubring :=
   IsLocalRing.ResidueField.mapEquiv (placeCongrEquiv hw)
-
-theorem inertiaDeg_eq_inertiaDeg_fiberCenter (hw : w.restrict F = v) :
-    w.inertiaDeg F =
-      (fiberCenter F' v hw).asIdeal.inertiaDeg v.toValuationSubring := by
-  have := fiberCenter_liesOver hw
-  rw [Ideal.inertiaDeg_eq_of_isMaximal (IsLocalRing.maximalIdeal v.toValuationSubring)
-    (fiberCenter F' v hw).asIdeal]
-  show Module.finrank (w.restrict F).ResidueField w.ResidueField = _
-  refine Algebra.finrank_eq_of_equiv_equiv (restrictResidueFieldEquiv hw)
-    (residueFieldEquivQuotientCenter hw).symm ?_
-  ext a
-  obtain ⟨a, rfl⟩ := IsLocalRing.residue_surjective a
-  simp only [RingHom.coe_comp, Function.comp_apply, RingEquiv.toRingHom_eq_coe,
-    RingHom.coe_coe]
-  apply (residueFieldEquivQuotientCenter hw).injective
-  rw [RingEquiv.apply_symm_apply]
-  show IsLocalRing.residue w.toValuationSubring
-      (toValuationSubringOfRestrictEq hw
-        (algebraMap v.toValuationSubring (integralClosureAt F' v) (placeCongrEquiv hw a)))
-    = IsLocalRing.residue w.toValuationSubring (restrictInclusion F w a)
-  refine congrArg _ (Subtype.ext ?_)
-  show algebraMap (integralClosureAt F' v) F'
-      (algebraMap v.toValuationSubring (integralClosureAt F' v) (placeCongrEquiv hw a))
-    = algebraMap F F' (a : F)
-  rw [← IsScalarTower.algebraMap_apply,
-    IsScalarTower.algebraMap_apply v.toValuationSubring F F']
-  rfl
 
 end ResidueDictionary
 

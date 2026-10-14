@@ -22,9 +22,11 @@ import Mathlib.RingTheory.Norm.Transitivity
 import Mathlib.RingTheory.TotallySplit
 import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
 import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaceClassification
+import Definitions.FLT.Defs_AlgebraicCurve_residueTheorem_sharedLibrary
 import Theorems.FLT.Thm_AlgebraicCurve_residueTheoremK_ratFunc_of_isAlgClosed
 import Theorems.FLT.Thm_AlgebraicCurve_residueTraceCompletionCommute
-import Definitions.FLT.Defs_AlgebraicCurve_residueTheorem_sharedLibrary
+import Theorems.FLT.Thm_AlgebraicCurve_Place_ramificationIndex_eq_ramificationIdx_fiberCenter
+
 
 /-!
 # Residue theorem over an algebraically closed base field
@@ -151,7 +153,7 @@ theorem sum_ramificationIndex_mul_inertiaDeg [HasPrincipalDivisors K F'] :
       (fiberCenter_placeOfPrime (⟨P, hP1, hPne⟩ :
         HeightOneSpectrum (integralClosureAt F' v)))
   · intro w hw
-    rw [ramificationIndex_eq_ramificationIdx_fiberCenter (Place.mem_fiber.mp hw),
+    rw [ramificationIndex_eq_ramificationIdx_fiberCenter _ (Place.mem_fiber.mp hw),
       inertiaDeg_eq_inertiaDeg_fiberCenter (Place.mem_fiber.mp hw)]
 
 end Assembly
