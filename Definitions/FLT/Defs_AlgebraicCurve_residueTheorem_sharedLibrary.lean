@@ -35,6 +35,7 @@ public import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
 
 public import Theorems.FLT.Thm_AlgebraicCurve_instIsCurveOverRatFunc
 
+import Theorems.FLT.Thm_AlgebraicCurve_Place_ord_algebraMap
 import Theorems.FLT.Thm_AlgebraicCurve_Place_ramificationIndex_eq_ramificationIdx_fiberCenter
 import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_deg_placeInfty
 import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_ord_placeInfty_X
@@ -353,11 +354,6 @@ theorem _root_.AlgebraicCurve.Place.adicValuation_algebraMap {c : K} (hc : c ≠
     v.adicValuation (algebraMap K F c) = 1 := by
   rw [← v.coe_algebraMap]
   exact (v.adicValuation_coe_eq_one_iff _).mpr (v.isUnit_algebraMap hc)
-
-public theorem ord_algebraMap (c : K) : v.ord (algebraMap K F c) = 0 := by
-  rcases eq_or_ne c 0 with rfl | hc
-  · rw [_root_.map_zero, v.ord_zero]
-  · simp only [ord, v.adicValuation_algebraMap hc, log_one, _root_.neg_zero]
 
 theorem _root_.AlgebraicCurve.Place.ord_eq_neg_log_of_valuationSubring_eq (w : Valuation F ℤᵐ⁰)
     (hw : w.valuationSubring = v.toValuationSubring) {π : F} (hπ : w π = exp (-1 : ℤ))

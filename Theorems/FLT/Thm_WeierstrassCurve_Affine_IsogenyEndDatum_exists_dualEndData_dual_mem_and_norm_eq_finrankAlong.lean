@@ -24,6 +24,7 @@ import Mathlib.Tactic.NormNum.Prime
 
 import Definitions.FLT.Defs_AlgebraicCurve_residueTheorem_sharedLibrary
 import Definitions.FLT.Defs_IsogenyEndDatum_sharedLibrary
+import Theorems.FLT.Thm_AlgebraicCurve_Place_ord_algebraMap
 import Definitions.FLT.Def_AlgebraicCurve_PlaceEvaluation
 import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
 import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces

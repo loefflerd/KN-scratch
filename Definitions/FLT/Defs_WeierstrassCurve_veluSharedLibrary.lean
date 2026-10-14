@@ -33,6 +33,7 @@ import Definitions.FLT.Def_WeierstrassCurve_RatPointHom
 import Theorems.FLT.Thm_AlgebraicCurve_Divisor_degree_eq_sum_support
 import Theorems.FLT.Thm_AlgebraicCurve_Place_ord_algebraMap
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_CoordinateRing_XYIdeal_ne_bot
+import Theorems.FLT.Thm_AlgebraicCurve_Place_min_ord_le_ord_add_v2
 
 /-!
 # Shared library for the odd-order Vélu construction
@@ -937,24 +938,6 @@ namespace Place
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
 
-theorem min_ord_le_ord_add {f g : F} (hfg : f + g ≠ 0) :
-    min (v.ord f) (v.ord g) ≤ v.ord (f + g) := by
-  rcases eq_or_ne f 0 with rfl | hf
-  · simp
-  rcases eq_or_ne g 0 with rfl | hg
-  · simp
-  have h1 : v.adicValuation (f + g) ≤ max (v.adicValuation f) (v.adicValuation g) :=
-    Valuation.map_add _ f g
-  have hje : v.adicValuation (f + g) ≠ 0 := v.adicValuation_ne_zero hfg
-  rcases max_cases (v.adicValuation f) (v.adicValuation g) with ⟨hmax, -⟩ | ⟨hmax, -⟩ <;>
-    rw [hmax] at h1
-  · have h2 := (WithZero.log_le_log hje (v.adicValuation_ne_zero hf)).mpr h1
-    simp only [ord]
-    omega
-  · have h2 := (WithZero.log_le_log hje (v.adicValuation_ne_zero hg)).mpr h1
-    simp only [ord]
-    omega
-
 theorem ord_add_eq_min {f g : F} (hf : f ≠ 0) (hg : g ≠ 0) (h : v.ord f ≠ v.ord g) :
     v.ord (f + g) = min (v.ord f) (v.ord g) := by
   have hval : v.adicValuation f ≠ v.adicValuation g := by
@@ -1188,7 +1171,7 @@ theorem two_mul_ord_Y_eq_three_mul_ord_X (hv : ¬ IsFinitePlace v) :
   · by_cases hBc : v.ord η = v.ord (polyToFunctionField W c₁)
     · exfalso
       have hmin : min (v.ord η) (v.ord (polyToFunctionField W c₁))
-          ≤ v.ord (η + polyToFunctionField W c₁) := v.min_ord_le_ord_add hfac0
+          ≤ v.ord (η + polyToFunctionField W c₁) := v.min_ord_le_ord_add' hfac0
       rw [← hBc, min_self] at hmin
       have hBA : v.ord (polyToFunctionField W X) ≤ v.ord η := hBc ▸ hc₁ord
       omega

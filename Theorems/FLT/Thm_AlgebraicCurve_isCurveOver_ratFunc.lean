@@ -18,6 +18,7 @@ public import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
 import Mathlib.RingTheory.DedekindDomain.Factorization
 import Mathlib.RingTheory.Flat.TorsionFree
 import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaceClassification
+import Theorems.FLT.Thm_AlgebraicCurve_Place_ord_algebraMap
 import Definitions.FLT.Def_P2M_Util
 
 /-!
@@ -262,11 +263,6 @@ private theorem _root_.AlgebraicCurve.Place.adicValuation_algebraMap {c : K} (hc
   exact (v.adicValuation_coe_eq_one_iff _).mpr (v.isUnit_algebraMap hc)
 
 p2m_export "AlgebraicCurve.Place" "adicValuation_algebraMap"
-
-private theorem _root_.AlgebraicCurve.Place.ord_algebraMap (c : K) : v.ord (algebraMap K F c) = 0 := by
-  rcases eq_or_ne c 0 with rfl | hc
-  · rw [map_zero, v.ord_zero]
-  · simp only [ord, v.adicValuation_algebraMap hc, log_one, neg_zero]
 
 p2m_export "AlgebraicCurve.Place" "ord_algebraMap"
 

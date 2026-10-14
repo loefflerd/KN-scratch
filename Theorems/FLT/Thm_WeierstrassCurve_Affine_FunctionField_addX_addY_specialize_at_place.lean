@@ -13,6 +13,8 @@ module
 
 public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 public import Definitions.FLT.Def_WeierstrassCurve_FunctionFieldQuadratic
+import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
+import Theorems.FLT.Thm_AlgebraicCurve_Place_min_ord_le_ord_add_v2
 
 /-!
 # Chord formulas on generic points specialise to the group law
@@ -93,24 +95,6 @@ namespace Place
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
 
-private theorem min_ord_le_ord_add {f g : F} (hfg : f + g ≠ 0) :
-    min (v.ord f) (v.ord g) ≤ v.ord (f + g) := by
-  rcases eq_or_ne f 0 with rfl | hf
-  · simp
-  rcases eq_or_ne g 0 with rfl | hg
-  · simp
-  have h1 : v.adicValuation (f + g) ≤ max (v.adicValuation f) (v.adicValuation g) :=
-    Valuation.map_add _ f g
-  have hje : v.adicValuation (f + g) ≠ 0 := v.adicValuation_ne_zero hfg
-  rcases max_cases (v.adicValuation f) (v.adicValuation g) with ⟨hmax, -⟩ | ⟨hmax, -⟩ <;>
-    rw [hmax] at h1
-  · have h2 := (WithZero.log_le_log hje (v.adicValuation_ne_zero hf)).mpr h1
-    simp only [ord]
-    omega
-  · have h2 := (WithZero.log_le_log hje (v.adicValuation_ne_zero hg)).mpr h1
-    simp only [ord]
-    omega
-
 private theorem ord_add_eq_min {f g : F} (hf : f ≠ 0) (hg : g ≠ 0) (h : v.ord f ≠ v.ord g) :
     v.ord (f + g) = min (v.ord f) (v.ord g) := by
   have hval : v.adicValuation f ≠ v.adicValuation g := by
@@ -139,47 +123,6 @@ private theorem ord_add_eq_min {f g : F} (hf : f ≠ 0) (hg : g ≠ 0) (h : v.or
     omega
 
 end Place
-end AlgebraicCurve
-
-end
-
-section
-
-namespace AlgebraicCurve
-
-namespace Place
-
-section SinglePlace
-
-variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
-
-private theorem ord_nonneg_of_mem {f : F} (hf : f ∈ v.toValuationSubring) : 0 ≤ v.ord f := by
-  rcases eq_or_ne f 0 with rfl | hf0
-  · simp
-  obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible v.toValuationSubring
-  obtain ⟨n, u, hu⟩ :=
-    IsDiscreteValuationRing.eq_unit_mul_pow_irreducible
-      (x := (⟨f, hf⟩ : v.toValuationSubring)) (by simpa [Subtype.ext_iff] using hf0) hπ
-  have hcoe : f = ((u : v.toValuationSubring) : F) * ((π : F) ^ (n : ℤ)) := by
-    have h := congrArg (Subtype.val) hu
-    push_cast at h
-    rw [zpow_natCast]
-    exact h
-  rw [hcoe, v.ord_unit_smul_zpow u hπ (n : ℤ)]
-  exact Int.natCast_nonneg n
-
-private theorem mem_of_ord_nonneg {f : F} (hf : f ≠ 0) (h : 0 ≤ v.ord f) :
-    f ∈ v.toValuationSubring := by
-  obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible v.toValuationSubring
-  obtain ⟨u, hu⟩ := v.exists_unit_mul_zpow hf hπ
-  rw [hu, show v.ord f = (((v.ord f).toNat : ℕ) : ℤ) from (Int.toNat_of_nonneg h).symm,
-    zpow_natCast]
-  exact mul_mem (u : v.toValuationSubring).2 (pow_mem (π : v.toValuationSubring).2 _)
-
-end SinglePlace
-
-end Place
-
 end AlgebraicCurve
 
 end
@@ -438,7 +381,7 @@ theorem es1a10_ncPole_vanishesAt_add {f g : F} (hf : es1a10_ncPole_vanishesAt v 
   rcases eq_or_ne (f + g) 0 with h0 | h0
   · exact Or.inl h0
   · refine Or.inr ?_
-    have h1 := v.min_ord_le_ord_add h0
+    have h1 := v.min_ord_le_ord_add' h0
     have h2 : (0 : ℤ) < min (v.ord f) (v.ord g) := lt_min hf0 hg0
     exact h2.trans_le h1
 
@@ -718,7 +661,7 @@ theorem es1a10_ncPole_poleData {a₁ a₂ a₃ a₄ a₆ : K} {ξp ηp : F}
       · calc v.ord ξp
             ≤ min (v.ord ηp) (v.ord (algebraMap K F a₁ * ξp + algebraMap K F a₃)) :=
               le_min hge hsord
-          _ ≤ _ := v.min_ord_le_ord_add hSp0
+          _ ≤ _ := v.min_ord_le_ord_add' hSp0
     omega
   have hSpk : v.ord (ηp + (algebraMap K F a₁ * ξp + algebraMap K F a₃))
       = v.ord ηp := by
@@ -1512,7 +1455,7 @@ theorem es1a10_ncVertical_vanishesAt_add {f g : F}
   rcases eq_or_ne (f + g) 0 with h0 | h0
   · exact Or.inl h0
   · refine Or.inr ?_
-    have h1 := v.min_ord_le_ord_add h0
+    have h1 := v.min_ord_le_ord_add' h0
     have h2 : (0 : ℤ) < min (v.ord f) (v.ord g) := lt_min hf0 hg0
     exact h2.trans_le h1
 
@@ -2084,7 +2027,7 @@ theorem es1a9_vanishesAt_add_nc {f g : F} (hf : es1a9_vanishesAt_nc v f)
   rcases eq_or_ne (f + g) 0 with h0 | h0
   · exact Or.inl h0
   · refine Or.inr ?_
-    have h1 := v.min_ord_le_ord_add h0
+    have h1 := v.min_ord_le_ord_add' h0
     have h2 : (0 : ℤ) < min (v.ord f) (v.ord g) := lt_min hf0 hg0
     exact h2.trans_le h1
 

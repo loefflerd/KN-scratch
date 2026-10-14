@@ -32,11 +32,11 @@ public import Theorems.FLT.Thm_WeierstrassCurve_Affine_CoordinateRing_isDedekind
 public import Theorems.FLT.Thm_WeierstrassCurve_Affine_algebraMap_mk_C_X_notMem_toValuationSubring_placeOfPoint_zero
 public import Theorems.FLT.Thm_WeierstrassCurve_Affine_hasPrincipalDivisors_functionField
 public import Theorems.FLT.Thm_WeierstrassCurve_Affine_placeOfPoint_some_eq_ofHeightOneSpectrum
+public import Theorems.FLT.Thm_AlgebraicCurve_Place_min_ord_le_ord_add_v2
 
 import Theorems.FLT.Thm_AlgebraicCurve_Place_evalAt_algebraMap
 import Theorems.FLT.Thm_AlgebraicCurve_Place_evalAt_mul
 import Theorems.FLT.Thm_AlgebraicCurve_Place_evalAt_ne_zero
-import Theorems.FLT.Thm_AlgebraicCurve_Place_min_ord_le_ord_add
 import Theorems.FLT.Thm_AlgebraicCurve_Place_ord_algebraMap
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_FunctionField_addX_addY_specialize_at_place
 import Definitions.FLT.Defs_AlgebraicCurve_residueTheorem_sharedLibrary
@@ -622,22 +622,6 @@ end WeierstrassCurve
 end
 
 section
-
-namespace AlgebraicCurve
-namespace Place
-
-variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
-
-public theorem min_ord_le_ord_add' {f g : F} (hfg : f + g ≠ 0) :
-    min (v.ord f) (v.ord g) ≤ v.ord (f + g) := by
-  rcases eq_or_ne f 0 with rfl | hf
-  · simp
-  rcases eq_or_ne g 0 with rfl | hg
-  · simp
-  exact v.min_ord_le_ord_add hf hg hfg
-
-end Place
-end AlgebraicCurve
 
 namespace WeierstrassCurve
 namespace Affine

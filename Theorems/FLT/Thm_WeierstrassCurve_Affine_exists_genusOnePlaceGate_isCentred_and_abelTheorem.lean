@@ -16,7 +16,9 @@ public import Definitions.FLT.Def_WeierstrassCurve_GenusOnePlaceGateCentred
 import Mathlib.RingTheory.Polynomial.DegreeLT
 import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
 import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
+import Theorems.FLT.Thm_AlgebraicCurve_Place_ord_algebraMap
 import Theorems.FLT.Thm_AlgebraicCurve_Place_ord_eq_neg_log_of_valuationSubring_eq
+import Theorems.FLT.Thm_AlgebraicCurve_Place_min_ord_le_ord_add_v2
 import Definitions.FLT.Def_P2M_Util
 
 /-!
@@ -150,7 +152,8 @@ theorem exists_eq_XYIdeal_of_isMaximal [IsAlgClosed F] (𝔪 : Ideal W.Coordinat
 
 end CoordinateRing
 
-end WeierstrassCurve.Affine
+end Affine
+end WeierstrassCurve
 
 open P2MW.S_WeierstrassCurve_Affine_exists_genusOnePlaceGate_isCentred_and_abelTheorem.WeierstrassCurve.Affine.CoordinateRing
 
@@ -304,7 +307,9 @@ theorem RRSpace_zero : RRSpace W 0 = (1 : Submodule F W.CoordinateRing) := by
   rw [hq0, zero_smul, add_zero, hp0, smul, mul_one, ← algebraMap_eq_mk_C_C_s18priv]
   exact Submodule.mem_one.mpr ⟨p.coeff 0, rfl⟩
 
-end WeierstrassCurve.Affine.CoordinateRing
+end CoordinateRing
+end Affine
+end WeierstrassCurve
 end
 
 section
@@ -409,7 +414,8 @@ scoped instance [IsAlgClosed F] [W.IsElliptic] : IsDedekindDomain W.CoordinateRi
 
 end CoordinateRing
 
-end WeierstrassCurve.Affine
+end Affine
+end WeierstrassCurve
 end
 
 
@@ -505,7 +511,8 @@ theorem deg_ofHeightOneSpectrum_eq_one (w : HeightOneSpectrum R)
           rw [key]
     _ < 1 := (w.valuation_lt_one_iff_mem (K := F) _).mpr hmem
 
-end AlgebraicCurve.Place
+end Place
+end AlgebraicCurve
 
 namespace WeierstrassCurve
 namespace Affine
@@ -745,7 +752,8 @@ theorem geomPlaceOfPoint_surjective [InfinitePlace W] [IsAlgClosed F] (hΔ : W.�
     exact ⟨.some x y ((W.equation_iff_nonsingular_of_Δ_ne_zero hΔ).mp h), rfl⟩
   · exact ⟨.zero, (InfinitePlace.eq_of_not_isFinitePlace v hv).symm⟩
 
-end WeierstrassCurve.Affine
+end Affine
+end WeierstrassCurve
 end
 
 section
@@ -788,7 +796,8 @@ class GeomAbelTheorem : Prop where
     ∀ D : AlgebraicCurve.Divisor F W.FunctionField, Divisor.degree D = 0 →
       (Divisor.IsPrincipal D ↔ geomDivisorSum D = 0)
 
-end WeierstrassCurve.Affine
+end Affine
+end WeierstrassCurve
 end
 
 
@@ -803,24 +812,6 @@ namespace Place
 p2m_open "AlgebraicCurve.Place AlgebraicCurve"
 
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
-
-private theorem _root_.AlgebraicCurve.Place.min_ord_le_ord_add {f g : F} (hfg : f + g ≠ 0) :
-    min (v.ord f) (v.ord g) ≤ v.ord (f + g) := by
-  rcases eq_or_ne f 0 with rfl | hf
-  · simp
-  rcases eq_or_ne g 0 with rfl | hg
-  · simp
-  have h1 : v.adicValuation (f + g) ≤ max (v.adicValuation f) (v.adicValuation g) :=
-    Valuation.map_add _ f g
-  have hje : v.adicValuation (f + g) ≠ 0 := v.adicValuation_ne_zero hfg
-  rcases max_cases (v.adicValuation f) (v.adicValuation g) with ⟨hmax, -⟩ | ⟨hmax, -⟩ <;>
-    rw [hmax] at h1
-  · have h2 := (WithZero.log_le_log hje (v.adicValuation_ne_zero hf)).mpr h1
-    simp only [ord]
-    omega
-  · have h2 := (WithZero.log_le_log hje (v.adicValuation_ne_zero hg)).mpr h1
-    simp only [ord]
-    omega
 
 private theorem _root_.AlgebraicCurve.Place.ord_add_eq_min {f g : F} (hf : f ≠ 0) (hg : g ≠ 0)
     (h : v.ord f ≠ v.ord g) :
@@ -849,18 +840,6 @@ private theorem _root_.AlgebraicCurve.Place.ord_add_eq_min {f g : F} (hf : f ≠
     have h2 : v.ord (f + g) = v.ord g := by simp only [ord, h1]
     simp only [ord] at hlog h2 ⊢
     omega
-
-private theorem _root_.AlgebraicCurve.Place.ord_algebraMap (c : K) : v.ord (algebraMap K F c) = 0 := by
-  rcases eq_or_ne c 0 with rfl | hc
-  · simp
-  have hmem : algebraMap K F c ∈ v.toValuationSubring := v.algebraMap_mem' c
-  have hmem' : (algebraMap K F c)⁻¹ ∈ v.toValuationSubring := by
-    rw [← map_inv₀]
-    exact v.algebraMap_mem' c⁻¹
-  have h1 := v.ord_nonneg_of_mem hmem
-  have h2 := v.ord_nonneg_of_mem hmem'
-  rw [v.ord_inv] at h2
-  omega
 
 private theorem _root_.AlgebraicCurve.Place.ord_pow (f : F) (n : ℕ) : v.ord (f ^ n) = n * v.ord f := by
   rw [← zpow_natCast, v.ord_zpow]
@@ -917,7 +896,8 @@ private theorem _root_.AlgebraicCurve.Place.le_ord_ringHom_of_natDegree_le {φ :
   have h1 : (p.natDegree : ℤ) ≤ (d : ℤ) := by exact_mod_cast hd
   nlinarith
 
-end AlgebraicCurve.Place
+end Place
+end AlgebraicCurve
 
 namespace WeierstrassCurve
 namespace Affine
@@ -1125,7 +1105,7 @@ theorem two_mul_ord_Y_eq_three_mul_ord_X (hv : ¬ IsFinitePlace v) :
   · grind
   · by_cases hBc : v.ord η = v.ord (polyToFunctionField W c₁)
     · have hmin : min (v.ord η) (v.ord (polyToFunctionField W c₁))
-          ≤ v.ord (η + polyToFunctionField W c₁) := v.min_ord_le_ord_add hfac0
+          ≤ v.ord (η + polyToFunctionField W c₁) := v.min_ord_le_ord_add' hfac0
       grind
     · have hsum : v.ord (η + polyToFunctionField W c₁)
           = min (v.ord η) (v.ord (polyToFunctionField W c₁)) :=
@@ -1444,7 +1424,8 @@ scoped instance instInfinitePlace [IsAlgClosed F] [IsDedekindDomain W.Coordinate
     eq_of_not_isFinitePlace_of_not_isFinitePlace hv
       (exists_not_isFinitePlace (W := W)).choose_spec
 
-end WeierstrassCurve.Affine
+end Affine
+end WeierstrassCurve
 end
 
 section
@@ -1521,7 +1502,8 @@ theorem ord_ofHeightOneSpectrum_eq_count (w : HeightOneSpectrum R) {f : L} (hf :
       = FractionalIdeal.count L w (FractionalIdeal.spanSingleton R⁰ f) := by
   rw [ord_ofHeightOneSpectrum_eq_neg_log w hf, FractionalIdeal.count_spanSingleton w hf]
 
-end AlgebraicCurve.Place
+end Place
+end AlgebraicCurve
 
 namespace WeierstrassCurve
 namespace Affine
@@ -1691,7 +1673,8 @@ scoped instance instAbelTheorem [HasPrincipalDivisors F W.FunctionField] : GeomA
   isPrincipal_iff_geomDivisorSum_eq_zero _D h0 :=
     ⟨geomDivisorSum_eq_zero_of_isPrincipal', isPrincipal_of_geomDivisorSum_eq_zero' h0⟩
 
-end WeierstrassCurve.Affine
+end Affine
+end WeierstrassCurve
 end
 
 section

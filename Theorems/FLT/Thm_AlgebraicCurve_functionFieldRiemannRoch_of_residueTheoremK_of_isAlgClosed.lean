@@ -22,6 +22,11 @@ import Mathlib.NumberTheory.RatFunc.Ostrowski
 import Mathlib.RingTheory.PicardGroup
 import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR
 import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
+import Definitions.FLT.Def_AlgebraicCurve_CanonicalLocalResidueInstanceV2
+import Definitions.FLT.Def_AlgebraicCurve_PlaceEvaluation
+import Definitions.FLT.Defs_IsogenyEndDatum_sharedLibrary
+import Definitions.FLT.Defs_WeierstrassCurve_veluSharedLibrary
+import Theorems.FLT.Thm_AlgebraicCurve_Place_evalAt_ne_zero
 import Definitions.FLT.Def_P2M_Util
 
 /-!
@@ -379,80 +384,24 @@ p2m_open "AlgebraicCurve.Place"
 
 variable (v : Place K F)
 
-private def _root_.AlgebraicCurve.Place.uniformizerSubring : v.toValuationSubring :=
-  (IsDiscreteValuationRing.exists_irreducible v.toValuationSubring).choose
-
 p2m_export "AlgebraicCurve.Place" "uniformizerSubring"
 p2m_export "AlgebraicCurve.Place" "coe_uniformizerSubring"
-private theorem _root_.AlgebraicCurve.Place.irreducible_uniformizerSubring : Irreducible v.uniformizerSubring :=
-  (IsDiscreteValuationRing.exists_irreducible v.toValuationSubring).choose_spec
-
 p2m_export "AlgebraicCurve.Place" "irreducible_uniformizerSubring"
-private theorem _root_.AlgebraicCurve.Place.uniformizerSubring_mem_maximalIdeal :
-    v.uniformizerSubring ∈ IsLocalRing.maximalIdeal v.toValuationSubring :=
-  (IsLocalRing.mem_maximalIdeal _).mpr v.irreducible_uniformizerSubring.not_isUnit
-
 p2m_export "AlgebraicCurve.Place" "uniformizerSubring_mem_maximalIdeal"
-private theorem _root_.AlgebraicCurve.Place.uniformizer_mem : v.uniformizer ∈ v.toValuationSubring :=
-  v.uniformizerSubring.2
-
 p2m_export "AlgebraicCurve.Place" "uniformizer_mem"
-private def _root_.AlgebraicCurve.Place.simplePoleSubmodule : Submodule K F where
-  carrier := {f | v.uniformizer * f ∈ v.toValuationSubring}
-  add_mem' {f g} hf hg := by
-    simpa only [Set.mem_ofPred_eq, mul_add] using add_mem hf hg
-  zero_mem' := by simpa only [Set.mem_ofPred_eq, mul_zero] using zero_mem _
-  smul_mem' c f hf := by
-    show v.uniformizer * (c • f) ∈ v.toValuationSubring
-    rw [Algebra.smul_def, mul_left_comm]
-    exact mul_mem (v.algebraMap_mem' c) hf
-
 p2m_export "AlgebraicCurve.Place" "simplePoleSubmodule"
 @[scoped simp]
 theorem mem_simplePoleSubmodule {f : F} :
     f ∈ v.simplePoleSubmodule ↔ v.uniformizer * f ∈ v.toValuationSubring := Iff.rfl
 
-private theorem _root_.AlgebraicCurve.Place.mem_simplePoleSubmodule_of_mem {f : F} (hf : f ∈ v.toValuationSubring) :
-    f ∈ v.simplePoleSubmodule :=
-  mul_mem v.uniformizer_mem hf
-
 p2m_export "AlgebraicCurve.Place" "mem_simplePoleSubmodule_of_mem"
-private def _root_.AlgebraicCurve.Place.simplePoleMulUniformizer : v.simplePoleSubmodule →ₗ[K] v.toValuationSubring where
-  toFun f := ⟨v.uniformizer * f.1, f.2⟩
-  map_add' f g := Subtype.ext (mul_add _ _ _)
-  map_smul' c f := Subtype.ext <| by
-    show v.uniformizer * ((c • f : v.simplePoleSubmodule) : F)
-        = ((c • ⟨v.uniformizer * f.1, f.2⟩ : v.toValuationSubring) : F)
-    simp only [Algebra.smul_def, MulMemClass.coe_mul, v.coe_algebraMap, Submodule.coe_smul,
-      mul_left_comm]
-
 p2m_export "AlgebraicCurve.Place" "simplePoleMulUniformizer"
-private def _root_.AlgebraicCurve.Place.simplePoleResidueAux : v.simplePoleSubmodule →ₗ[K] v.ResidueField :=
-  (Ideal.Quotient.mkₐ K (IsLocalRing.maximalIdeal v.toValuationSubring)).toLinearMap
-    ∘ₗ v.simplePoleMulUniformizer
-
 p2m_export "AlgebraicCurve.Place" "simplePoleResidueAux"
 theorem simplePoleResidueAux_apply (f : v.simplePoleSubmodule) :
     v.simplePoleResidueAux f = IsLocalRing.residue _ ⟨v.uniformizer * f.1, f.2⟩ := rfl
 
-private theorem _root_.AlgebraicCurve.Place.simplePoleResidueAux_eq_zero_of_mem {f : F} (hf : f ∈ v.toValuationSubring) :
-    v.simplePoleResidueAux ⟨f, v.mem_simplePoleSubmodule_of_mem hf⟩ = 0 := by
-  rw [simplePoleResidueAux_apply, IsLocalRing.residue_eq_zero_iff]
-  have hmul : (⟨v.uniformizer * f, mul_mem v.uniformizer_mem hf⟩ : v.toValuationSubring)
-      = v.uniformizerSubring * ⟨f, hf⟩ := Subtype.ext rfl
-  rw [hmul]
-  exact Ideal.mul_mem_right _ _ v.uniformizerSubring_mem_maximalIdeal
-
 p2m_export "AlgebraicCurve.Place" "simplePoleResidueAux_eq_zero_of_mem"
-private def _root_.AlgebraicCurve.Place.localResidueExtend : F →ₗ[K] v.ResidueField :=
-  v.simplePoleResidueAux.exists_extend.choose
-
 p2m_export "AlgebraicCurve.Place" "localResidueExtend"
-private theorem _root_.AlgebraicCurve.Place.localResidueExtend_apply_of_mem {f : F} (hf : f ∈ v.simplePoleSubmodule) :
-    v.localResidueExtend f = v.simplePoleResidueAux ⟨f, hf⟩ :=
-  congrArg (fun φ => φ (⟨f, hf⟩ : v.simplePoleSubmodule))
-    v.simplePoleResidueAux.exists_extend.choose_spec
-
 p2m_export "AlgebraicCurve.Place" "localResidueExtend_apply_of_mem"
 end Place
 end AlgebraicCurve
@@ -529,45 +478,13 @@ private theorem _root_.AlgebraicCurve.Place.residue_ne_zero_of_ord_eq_zero {f : 
   (residue_ne_zero_iff_isUnit _).mpr (v.isUnit_mk_of_ord_eq_zero hf h)
 
 p2m_export "AlgebraicCurve.Place" "residue_ne_zero_of_ord_eq_zero"
-private def _root_.AlgebraicCurve.Place.IsRational : Prop := Function.Surjective (algebraMap K v.ResidueField)
-
 p2m_export "AlgebraicCurve.Place" "IsRational"
-private def _root_.AlgebraicCurve.Place.residueInv : v.ResidueField → K :=
-  Function.invFun (algebraMap K v.ResidueField)
-
 p2m_export "AlgebraicCurve.Place" "residueInv"
-private theorem _root_.AlgebraicCurve.Place.algebraMap_residueInv (hv : v.IsRational) (x : v.ResidueField) :
-    algebraMap K v.ResidueField (v.residueInv x) = x :=
-  Function.invFun_eq (hv x)
-
 p2m_export "AlgebraicCurve.Place" "algebraMap_residueInv"
 
-open Classical in
-private def _root_.AlgebraicCurve.Place.evalAt (f : F) : K :=
-  if hf : f ∈ v.toValuationSubring then
-    v.residueInv (residue v.toValuationSubring ⟨f, hf⟩)
-  else 0
-
 p2m_export "AlgebraicCurve.Place" "evalAt"
-private theorem _root_.AlgebraicCurve.Place.evalAt_of_mem {f : F} (hf : f ∈ v.toValuationSubring) :
-    v.evalAt f = v.residueInv (residue v.toValuationSubring ⟨f, hf⟩) :=
-  dite_eq_left hf
-
 p2m_export "AlgebraicCurve.Place" "evalAt_of_mem"
-private theorem _root_.AlgebraicCurve.Place.algebraMap_evalAt (hv : v.IsRational) {f : F} (hf : f ∈ v.toValuationSubring) :
-    algebraMap K v.ResidueField (v.evalAt f)
-      = residue v.toValuationSubring (⟨f, hf⟩ : v.toValuationSubring) := by
-  rw [v.evalAt_of_mem hf]
-  exact v.algebraMap_residueInv hv _
-
 p2m_export "AlgebraicCurve.Place" "algebraMap_evalAt"
-private theorem _root_.AlgebraicCurve.Place.evalAt_ne_zero (hv : v.IsRational) {f : F} (hf : f ≠ 0) (h : v.ord f = 0) :
-    v.evalAt f ≠ 0 := by
-  intro h0
-  have hres := v.algebraMap_evalAt hv (v.mem_of_ord_nonneg hf h.ge)
-  rw [h0, _root_.map_zero] at hres
-  exact v.residue_ne_zero_of_ord_eq_zero hf h hres.symm
-
 p2m_export "AlgebraicCurve.Place" "evalAt_ne_zero"
 end Place
 
@@ -789,50 +706,15 @@ p2m_open "AlgebraicCurve.Place"
 
 variable (v : Place K F)
 
-private def _root_.AlgebraicCurve.Place.poleSubmodule (n : ℕ) : Submodule K F where
-  carrier := {f | v.uniformizer ^ n * f ∈ v.toValuationSubring}
-  add_mem' {f g} hf hg := by
-    simpa only [Set.mem_ofPred_eq, mul_add] using add_mem hf hg
-  zero_mem' := by simpa only [Set.mem_ofPred_eq, mul_zero] using zero_mem _
-  smul_mem' c f hf := by
-    show v.uniformizer ^ n * (c • f) ∈ v.toValuationSubring
-    rw [Algebra.smul_def, mul_left_comm]
-    exact mul_mem (v.algebraMap_mem' c) hf
-
 p2m_export "AlgebraicCurve.Place" "poleSubmodule"
 @[scoped simp]
 theorem mem_poleSubmodule {n : ℕ} {f : F} :
     f ∈ v.poleSubmodule n ↔ v.uniformizer ^ n * f ∈ v.toValuationSubring := Iff.rfl
 
-private theorem _root_.AlgebraicCurve.Place.uniformizer_pow_ne_zero (n : ℕ) : (v.uniformizer ^ n : F) ≠ 0 :=
-  pow_ne_zero n v.uniformizer_ne_zero
-
 p2m_export "AlgebraicCurve.Place" "uniformizer_pow_ne_zero"
-private theorem _root_.AlgebraicCurve.Place.ord_uniformizer_pow (n : ℕ) : v.ord (v.uniformizer ^ n) = (n : ℤ) := by
-  rw [show (v.uniformizer ^ n : F) = v.uniformizer ^ (n : ℤ) from (zpow_natCast _ n).symm,
-    v.ord_zpow, v.ord_uniformizer, mul_one]
-
 p2m_export "AlgebraicCurve.Place" "ord_uniformizer_pow"
-@[scoped simp]
-private theorem _root_.AlgebraicCurve.Place.poleSubmodule_one : v.poleSubmodule 1 = v.simplePoleSubmodule := by
-  ext f; simp [mem_poleSubmodule, mem_simplePoleSubmodule]
-
 p2m_export "AlgebraicCurve.Place" "poleSubmodule_one"
-private theorem _root_.AlgebraicCurve.Place.mem_poleSubmodule_iff_ord {n : ℕ} {f : F} (hf : f ≠ 0) :
-    f ∈ v.poleSubmodule n ↔ -(n : ℤ) ≤ v.ord f := by
-  rw [mem_poleSubmodule, v.mem_iff_ord_nonneg (mul_ne_zero (v.uniformizer_pow_ne_zero n) hf),
-    v.ord_mul (v.uniformizer_pow_ne_zero n) hf, v.ord_uniformizer_pow]
-  omega
-
 p2m_export "AlgebraicCurve.Place" "mem_poleSubmodule_iff_ord"
-private theorem _root_.AlgebraicCurve.Place.poleSubmodule_mono : Monotone v.poleSubmodule := by
-  intro m n hmn f hf
-  rcases eq_or_ne f 0 with rfl | hf0
-  · exact zero_mem _
-  · rw [v.mem_poleSubmodule_iff_ord hf0] at hf ⊢
-    have : -(n : ℤ) ≤ -(m : ℤ) := by exact_mod_cast neg_le_neg (Nat.cast_le.mpr hmn)
-    omega
-
 p2m_export "AlgebraicCurve.Place" "poleSubmodule_mono"
 end Place
 theorem gate_poleSubmodule_strictMono (v : Place K F) (n : ℕ) :
@@ -858,29 +740,6 @@ p2m_export "AlgebraicCurve.Place" "ext coe_algebraMap ResidueField deg FiniteRes
 p2m_open "AlgebraicCurve.Place"
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
 
-private theorem _root_.AlgebraicCurve.Place.ord_sub_evalAt_pos (hrat : v.IsRational) {f : F} (hf : f ∈ v.toValuationSubring)
-    (hne : f - algebraMap K F (v.evalAt f) ≠ 0) :
-    0 < v.ord (f - algebraMap K F (v.evalAt f)) := by
-  have hmem : f - algebraMap K F (v.evalAt f) ∈ v.toValuationSubring :=
-    sub_mem hf (v.algebraMap_mem' _)
-  rcases eq_or_ne (v.ord (f - algebraMap K F (v.evalAt f))) 0 with h0 | h0
-  · exfalso
-    refine v.evalAt_ne_zero hrat hne h0 ?_
-    have hres : algebraMap K v.ResidueField
-        (v.evalAt (f - algebraMap K F (v.evalAt f))) = 0 := by
-      rw [v.algebraMap_evalAt hrat hmem]
-      have hcoe : (⟨f - algebraMap K F (v.evalAt f), hmem⟩ : v.toValuationSubring)
-          = ⟨f, hf⟩ - algebraMap K v.toValuationSubring (v.evalAt f) := by
-        refine Subtype.ext ?_
-        show f - algebraMap K F (v.evalAt f)
-          = f - (algebraMap K v.toValuationSubring (v.evalAt f) : F)
-        rw [Place.coe_algebraMap]
-      rw [hcoe, map_sub, sub_eq_zero, ← v.algebraMap_evalAt hrat hf,
-        IsScalarTower.algebraMap_apply K v.toValuationSubring v.ResidueField,
-        IsLocalRing.ResidueField.algebraMap_eq]
-    exact (map_eq_zero_iff _ (algebraMap K v.ResidueField).injective).mp hres
-  · have hnonneg := v.ord_nonneg_of_mem hmem
-    omega
 p2m_export "AlgebraicCurve.Place" "ord_sub_evalAt_pos"
 end Place
 end AlgebraicCurve
@@ -897,14 +756,6 @@ p2m_export "AlgebraicCurve.Place" "ext coe_algebraMap ResidueField deg FiniteRes
 p2m_open "AlgebraicCurve.Place"
 variable {K F : Type*} [Field K] [Field F] [Algebra K F] (v : Place K F)
 
-private theorem _root_.AlgebraicCurve.Place.isRational_of_deg_eq_one (h : v.deg = 1) : v.IsRational := by
-  intro x
-  have hbot : (⊥ : Subalgebra K v.ResidueField) = ⊤ :=
-    Subalgebra.bot_eq_top_iff_finrank_eq_one.mpr h
-  have hx : x ∈ (⊥ : Subalgebra K v.ResidueField) := by
-    rw [hbot]
-    exact Algebra.mem_top
-  exact Algebra.mem_bot.mp hx
 p2m_export "AlgebraicCurve.Place" "isRational_of_deg_eq_one"
 end Place
 end AlgebraicCurve
@@ -2450,109 +2301,14 @@ p2m_open "AlgebraicCurve.Place"
 
 variable (v : Place K F)
 
-private theorem _root_.AlgebraicCurve.Place.uniformizer_pow_inv_mem_poleSubmodule_self (m : ℕ) :
-    (v.uniformizer ^ (m + 2))⁻¹ ∈ v.poleSubmodule (m + 2) :=
-  (gate_poleSubmodule_strictMono v (m + 1)).1
-
 p2m_export "AlgebraicCurve.Place" "uniformizer_pow_inv_mem_poleSubmodule_self"
-private theorem _root_.AlgebraicCurve.Place.higherPoleMonomial_sum_mem_poleSubmodule {s : Finset ℕ} {N : ℕ}
-    (hs : ∀ m ∈ s, m < N) (c : ℕ → K) :
-    ∑ m ∈ s, c m • (v.uniformizer ^ (m + 2))⁻¹ ∈ v.poleSubmodule (N + 1) :=
-  Submodule.sum_mem _ fun m hm =>
-    Submodule.smul_mem _ _ <|
-      v.poleSubmodule_mono (by have := hs m hm; omega)
-        (v.uniformizer_pow_inv_mem_poleSubmodule_self m)
-
 p2m_export "AlgebraicCurve.Place" "higherPoleMonomial_sum_mem_poleSubmodule"
-private theorem _root_.AlgebraicCurve.Place.higherPoleMonomial_coeff_eq_zero_of_mem (s : Finset ℕ) (c : ℕ → K)
-    (hmem : ∑ m ∈ s, c m • (v.uniformizer ^ (m + 2))⁻¹ ∈ v.poleSubmodule 1) :
-    ∀ m ∈ s, c m = 0 := by
-  induction s using Finset.induction_on_max with
-  | empty => intro m hm; exact absurd hm (Finset.notMem_empty m)
-  | insert N s hN ih =>
-    have hNs : N ∉ s := fun h => absurd (hN N h) (lt_irrefl N)
-    rw [Finset.sum_insert hNs] at hmem
-    have hrest : ∑ m ∈ s, c m • (v.uniformizer ^ (m + 2))⁻¹ ∈ v.poleSubmodule (N + 1) :=
-      v.higherPoleMonomial_sum_mem_poleSubmodule hN c
-    have hwhole := v.poleSubmodule_mono (Nat.one_le_iff_ne_zero.mpr (Nat.succ_ne_zero N)) hmem
-    have htop : c N • (v.uniformizer ^ (N + 2))⁻¹ ∈ v.poleSubmodule (N + 1) := by
-      have hsub := (v.poleSubmodule (N + 1)).sub_mem hwhole hrest
-      rwa [add_sub_cancel_right] at hsub
-    have hcN : c N = 0 := by
-      by_contra hcN
-      exact (gate_poleSubmodule_strictMono v (N + 1)).2 <|
-        (inv_smul_smul₀ hcN ((v.uniformizer ^ (N + 2))⁻¹)) ▸
-          (v.poleSubmodule (N + 1)).smul_mem (c N)⁻¹ htop
-    intro m hm
-    rcases Finset.mem_insert.mp hm with rfl | hm'
-    · exact hcN
-    · refine ih ?_ m hm'
-      rwa [hcN, zero_smul, zero_add] at hmem
-
 p2m_export "AlgebraicCurve.Place" "higherPoleMonomial_coeff_eq_zero_of_mem"
-private theorem _root_.AlgebraicCurve.Place.linearIndependent_higherPoleMonomial_mkQ :
-    LinearIndependent K
-      (fun m : ℕ => (v.poleSubmodule 1).mkQ ((v.uniformizer ^ (m + 2))⁻¹)) := by
-  rw [linearIndependent_iff']
-  intro s c hsum m hm
-  refine v.higherPoleMonomial_coeff_eq_zero_of_mem s c ?_ m hm
-  have h := hsum
-  simp only [← map_smul, ← map_sum] at h
-  rwa [Submodule.mkQ_apply, Submodule.Quotient.mk_eq_zero] at h
-
 p2m_export "AlgebraicCurve.Place" "linearIndependent_higherPoleMonomial_mkQ"
-private def _root_.AlgebraicCurve.Place.higherPoleCorrectionAux :
-    Submodule.span K
-        (Set.range fun m : ℕ => (v.poleSubmodule 1).mkQ ((v.uniformizer ^ (m + 2))⁻¹))
-      →ₗ[K] v.ResidueField :=
-  (Basis.span v.linearIndependent_higherPoleMonomial_mkQ).constr K
-    (fun m => v.localResidueExtend ((v.uniformizer ^ (m + 2))⁻¹))
-
 p2m_export "AlgebraicCurve.Place" "higherPoleCorrectionAux"
-private def _root_.AlgebraicCurve.Place.higherPoleCorrection : F →ₗ[K] v.ResidueField :=
-  v.higherPoleCorrectionAux.exists_extend.choose ∘ₗ (v.poleSubmodule 1).mkQ
-
 p2m_export "AlgebraicCurve.Place" "higherPoleCorrection"
-private theorem _root_.AlgebraicCurve.Place.higherPoleCorrection_apply_of_mem {f : F} (hf : f ∈ v.poleSubmodule 1) :
-    v.higherPoleCorrection f = 0 := by
-  unfold higherPoleCorrection
-  rw [LinearMap.comp_apply, Submodule.mkQ_apply, (Submodule.Quotient.mk_eq_zero _).mpr hf,
-    _root_.map_zero]
-
 p2m_export "AlgebraicCurve.Place" "higherPoleCorrection_apply_of_mem"
-private theorem _root_.AlgebraicCurve.Place.higherPoleCorrection_uniformizer_pow_inv (m : ℕ) :
-    v.higherPoleCorrection ((v.uniformizer ^ (m + 2))⁻¹)
-      = v.localResidueExtend ((v.uniformizer ^ (m + 2))⁻¹) := by
-  have hmem : (v.poleSubmodule 1).mkQ ((v.uniformizer ^ (m + 2))⁻¹)
-      ∈ Submodule.span K
-          (Set.range fun m : ℕ => (v.poleSubmodule 1).mkQ ((v.uniformizer ^ (m + 2))⁻¹)) :=
-    Submodule.subset_span ⟨m, rfl⟩
-  have hext := DFunLike.congr_fun v.higherPoleCorrectionAux.exists_extend.choose_spec
-    ⟨(v.poleSubmodule 1).mkQ ((v.uniformizer ^ (m + 2))⁻¹), hmem⟩
-  refine hext.trans ?_
-  unfold higherPoleCorrectionAux
-  have hb := (Basis.span v.linearIndependent_higherPoleMonomial_mkQ).constr_basis K
-    (fun m => v.localResidueExtend ((v.uniformizer ^ (m + 2))⁻¹)) m
-  rwa [Basis.span_apply] at hb
-
 p2m_export "AlgebraicCurve.Place" "higherPoleCorrection_uniformizer_pow_inv"
-private def _root_.AlgebraicCurve.Place.canonicalLocalResidueDataKOfExtend : v.CanonicalLocalResidueDataK where
-  res := v.localResidueExtend - v.higherPoleCorrection
-  res_of_mem f hf := by
-    have h1 : f ∈ v.poleSubmodule 1 :=
-      v.poleSubmodule_one ▸ v.mem_simplePoleSubmodule_of_mem hf
-    rw [LinearMap.sub_apply, v.higherPoleCorrection_apply_of_mem h1, sub_zero,
-      v.localResidueExtend_apply_of_mem (v.mem_simplePoleSubmodule_of_mem hf),
-      v.simplePoleResidueAux_eq_zero_of_mem hf]
-  res_simplePole f hf := by
-    have h1 : f ∈ v.poleSubmodule 1 := v.poleSubmodule_one ▸ hf
-    rw [LinearMap.sub_apply, v.higherPoleCorrection_apply_of_mem h1, sub_zero,
-      v.localResidueExtend_apply_of_mem hf, simplePoleResidueAux_apply]
-  res_higherPoleMonomial n hn := by
-    obtain ⟨m, rfl⟩ := Nat.exists_eq_add_of_le hn
-    rw [show 1 + m + 1 = m + 2 from by omega, LinearMap.sub_apply,
-      v.higherPoleCorrection_uniformizer_pow_inv m, sub_self]
-
 p2m_export "AlgebraicCurve.Place" "canonicalLocalResidueDataKOfExtend"
 end Place
 namespace Place
