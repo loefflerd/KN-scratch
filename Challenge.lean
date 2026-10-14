@@ -11,10 +11,9 @@ This is a formalized statement of the first case of Theorem 1.1 in the paper
 
 Daniel Kriz and Asbjørn Nordentoft, _Horizontal p-adic L-functions_, https://arxiv.org/abs/2310.20678
 
-We add two extra hypotheses not present in the source, corresponding to major
-theorems which are beyond the scope of this project to formalize: firstly, modularity of the
-elliptic curve; secondly, the existence of a single quadratic twist with non-vanishing
-L-value.
+We add two extra hypotheses not present in the source, corresponding to major theorems which are
+beyond the scope of this project to formalize: firstly, modularity of the elliptic curve;
+secondly, the existence of a single quadratic twist with non-vanishing L-value.
 
 The modularity hypothesis supplies a weight-two cusp form whose q-expansion is exactly the
 arithmetic L-series of the curve. The level is required to be the least positive level admitting
@@ -26,6 +25,14 @@ value and conductor coprime to `N * d`. No parity restriction is placed on this 
 The conclusion counts primitive characters of exact order `d`, with conductor at most `X`
 and coprime to `N`, having nonzero central value. The inverse-character convention in the
 Mellin integral is exactly the convention used by the existing development.
+
+The formalization uses Mathlib pinned at commit `f6090c7095e1e56b3464c1daba5f24631f1290d2`, to
+match the latest available version of Tau Ceti. (Tau Ceti is not a dependency for the statement,
+only for the proof, but nonetheless the Mathlib revisions need to match.) The pinned Mathlib
+version may be inspected at:
+
+https://github.com/leanprover-community/mathlib4/tree/f6090c7095e1e56b3464c1daba5f24631f1290d2
+
 -/
 
 @[expose] public noncomputable section publicSection
