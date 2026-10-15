@@ -47,6 +47,7 @@ import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_ord_placeInfty_alge
 import Theorems.FLT.Thm_AlgebraicCurve_RationalFunctionField_subsingleton_setOf_forall_ne_ofHeightOneSpectrum
 import Theorems.FLT.Thm_AlgebraicCurve_finite_setOf_ord_ne_zero_of_finiteDimensional
 import Theorems.FLT.Thm_WeierstrassCurve_Affine_adjoin_yCoord_eq_top
+import Theorems.FLT.Thm_AlgebraicCurve_Divisor_degree_eq_sum_support
 
 /-!
 # Vélu's formulas land on the quotient curve (odd order)

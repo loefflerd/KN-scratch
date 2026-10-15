@@ -22,6 +22,7 @@ import Mathlib.NumberTheory.Cyclotomic.Basic
 import Theorems.FLT.Thm_Polynomial_mem_range_of_unique_common_root
 import Theorems.FLT.Thm_ModularCurve_coeffMap_injective
 import Theorems.FLT.Thm_ModularCurve_exists_phiIrreducible_evalSymm
+import Definitions.FLT.Defs_modularPolynomial_sharedLibrary
 import Definitions.FLT.Def_P2M_Util
 
 /-!
@@ -67,6 +68,8 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 
 section privateSection
 
+open _root_.ModularCurve.W1
+
 set_option backward.isDefEq.respectTransparency.types false
 
 namespace P2MW.S_ModularCurve_jqN_div_mem_modularFunctionField
@@ -82,68 +85,15 @@ p2m_open "ModularCurve~coeffEmb_qExpand"
 
 variable {K : Type*} [Field K] [Algebra ℚ K]
 
-def TS (K : Type*) [Field K] [Algebra ℚ K] (e : ℕ) [NeZero e] (u : Kˣ) : LaurentSeries K :=
-  qExpand K e (qTwist u (coeffEmb K jq))
 
-theorem TS_coeff_mul (e : ℕ) [NeZero e] (u : Kˣ) (n : ℤ) :
-    (TS K e u).coeff ((e : ℤ) * n) = ((u ^ n : Kˣ) : K) * algebraMap ℚ K (jq.coeff n) := by
-  rw [TS, qExpand_coeff_mul, qTwist_coeff, coeffEmb_coeff]
 
-theorem TS_coeff_of_not_dvd (e : ℕ) [NeZero e] (u : Kˣ) {k : ℤ} (hk : ¬ (e : ℤ) ∣ k) :
-    (TS K e u).coeff k = 0 := by
-  exact qExpand_coeff_of_not_dvd (R := K) (N := e) _ hk
 
-theorem TS_coeff_neg (e : ℕ) [NeZero e] (u : Kˣ) : (TS K e u).coeff (-(e : ℤ)) = ((u⁻¹ : Kˣ) : K) := by
-  have h := TS_coeff_mul (K := K) e u (-1)
-  rw [mul_neg_one] at h
-  rw [h, coeff_jq_neg_one, map_one, mul_one, zpow_neg_one]
 
-theorem TS_coeff_of_lt (e : ℕ) [NeZero e] (u : Kˣ) {k : ℤ} (hk : k < -(e : ℤ)) : (TS K e u).coeff k = 0 := by
-  by_cases hd : (e : ℤ) ∣ k
-  · obtain ⟨n, rfl⟩ := hd
-    have he : (0 : ℤ) < e := by exact_mod_cast Nat.pos_of_ne_zero (NeZero.ne e)
-    have hn : n < -1 := by
-      by_contra hcon
-      push Not at hcon
-      have : -(e : ℤ) ≤ (e : ℤ) * n := by nlinarith
-      exact absurd hk (not_lt.mpr this)
-    rw [TS_coeff_mul, coeff_jq_of_lt hn, map_zero, mul_zero]
-  · exact TS_coeff_of_not_dvd e u hd
 
-theorem TS_ne_zero (e : ℕ) [NeZero e] (u : Kˣ) : TS K e u ≠ 0 := by
-  intro h
-  have := TS_coeff_neg (K := K) e u
-  rw [h, HahnSeries.coeff_zero] at this
-  exact (u⁻¹).ne_zero this.symm
 
-theorem TS_injective {e e' : ℕ} [NeZero e] [NeZero e'] {u u' : Kˣ} (h : TS K e u = TS K e' u') :
-    e = e' ∧ u = u' := by
-  have key : ∀ {a a' : ℕ} [NeZero a] [NeZero a'] {v v' : Kˣ}, TS K a v = TS K a' v' → a ≤ a' := by
-    intro a a' _ _ v v' hh
-    by_contra hlt
-    push Not at hlt
-    have h1 := TS_coeff_neg (K := K) a v
-    have hlt' : (-(a : ℤ)) < -(a' : ℤ) := by
-      have : (a' : ℤ) < a := by exact_mod_cast hlt
-      omega
-    have h2 : (TS K a' v').coeff (-(a : ℤ)) = 0 := TS_coeff_of_lt a' v' hlt'
-    rw [← hh, h1] at h2
-    exact (v⁻¹).ne_zero h2
-  have hee : e = e' := le_antisymm (key h) (key h.symm)
-  subst hee
-  refine ⟨rfl, ?_⟩
-  have h1 := TS_coeff_neg (K := K) e u
-  rw [h, TS_coeff_neg] at h1
-  exact (inv_injective (Units.val_injective h1)).symm
 
-theorem qTwist_TS (v : Kˣ) (e : ℕ) [NeZero e] (u : Kˣ) : qTwist v (TS K e u) = TS K e (v ^ (e : ℤ) * u) := by
-  rw [TS, qTwist_qExpand, qTwist_qTwist]; rfl
 
-theorem qExpand_TS (m e : ℕ) [NeZero m] [NeZero e] (u : Kˣ) : qExpand K m (TS K e u) = TS K (m * e) u := by
-  rw [TS, qExpand_qExpand]; rfl
 
-theorem TS_congr {e e' : ℕ} [NeZero e] [NeZero e'] (h : e = e') (u : Kˣ) : TS K e u = TS K e' u := by
-  subst h; rfl
 
 theorem coeffEmb_qExpand (n : ℕ) [NeZero n] (x : LaurentSeries ℚ) :
     coeffEmb K (qExpand ℚ n x) = qExpand K n (coeffEmb K x) :=
@@ -151,16 +101,16 @@ theorem coeffEmb_qExpand (n : ℕ) [NeZero n] (x : LaurentSeries ℚ) :
 
 theorem iota_jqN (N d : ℕ) [NeZero N] [NeZero d] :
     coeffEmb K (qExpand ℚ N (jqN d)) = TS K (N * d) 1 := by
-  rw [jqN, coeffEmb_qExpand, coeffEmb_qExpand, qExpand_qExpand, TS, qTwist_one_apply]
+  rw [jqN, coeffEmb_qExpand, coeffEmb_qExpand, qExpand_qExpand, TS_eq_coeffEmb, qTwist_one_apply]
 
 theorem iota_jq (N : ℕ) [NeZero N] : coeffEmb K (qExpand ℚ N jq) = TS K N 1 := by
-  rw [coeffEmb_qExpand, TS, qTwist_one_apply]
+  rw [coeffEmb_qExpand, TS_eq_coeffEmb, qTwist_one_apply]
 
 theorem conj_zero_eq (p : ℕ) [Fact p.Prime] (ζ : Kˣ) : conj p ζ (0 : Fin (p + 1)) = TS K (p * p) 1 := by
-  rw [conj_zero, TS, qTwist_one_apply]
+  rw [conj_zero, TS_eq_coeffEmb, qTwist_one_apply]
 
 theorem conj_succ_eq (p : ℕ) [Fact p.Prime] (ζ : Kˣ) (b : Fin p) : conj p ζ b.succ = TS K 1 (ζ ^ (b : ℕ)) := by
-  rw [conj_succ, TS, qExpand_one_apply]
+  rw [conj_succ, TS_eq_coeffEmb, qExpand_one_apply]
 
 theorem qTwist_iota_of_pow_eq_one (N : ℕ) [NeZero N] (v : Kˣ) (hv : v ^ N = 1) (x : LaurentSeries ℚ) :
     qTwist v (coeffEmb K (qExpand ℚ N x)) = coeffEmb K (qExpand ℚ N x) := by
@@ -196,6 +146,7 @@ omit [Algebra ℚ K] in
 theorem coe_qTwistEquiv (u : Kˣ) : ((qTwistEquiv u : LaurentSeries K ≃+* LaurentSeries K) : LaurentSeries K →+* LaurentSeries K) = qTwist u :=
   RingHom.ext fun _ => rfl
 
+omit [Algebra ℚ K] in
 theorem qTwist_TS_one_cycle (ζ : Kˣ) {p : ℕ} (hζp : ζ ^ p = 1) (b : ℕ) :
     qTwist ζ (TS K 1 (ζ ^ b)) = TS K 1 (ζ ^ ((b + 1) % p)) := by
   rw [qTwist_TS]
@@ -228,6 +179,7 @@ theorem roots_phiProd_conj (p : ℕ) [Fact p.Prime] (ζ : Kˣ) :
     rw [Multiset.map_map]; rfl
   rw [hm, Polynomial.roots_multiset_prod_X_sub_C, Multiset.singleton_add]
 
+omit [Algebra ℚ K] in
 theorem roots_phiProd_conj_nodup (p : ℕ) [hp : Fact p.Prime] (ζ : Kˣ) (hζ : IsPrimitiveRoot (ζ : K) p) :
     (TS K (p * p) 1 ::ₘ (Multiset.range p).map (fun b => TS K 1 (ζ ^ b))).Nodup := by
   refine Multiset.nodup_cons.mpr ⟨?_, ?_⟩
@@ -282,6 +234,7 @@ theorem isPrimitiveRoot_pow_div {N : ℕ} [NeZero N] {ζ : Kˣ} (hζ : IsPrimiti
   rw [Nat.div_div_self hpN hN] at h
   rwa [← Units.val_pow_eq_pow_val] at h
 
+omit [Algebra ℚ K] in
 theorem qExpand_qTwist_TS (e : ℕ) [NeZero e] (u : Kˣ) (m : ℕ) [NeZero m] (w : Kˣ) :
     qExpand K e (qTwist u (TS K m w)) = TS K (e * m) (u ^ (m : ℤ) * w) := by
   rw [qTwist_TS, qExpand_TS]
@@ -335,7 +288,8 @@ theorem roots_prime_at_slot_nodup (N : ℕ) [NeZero N] (ζ : Kˣ) (hζ : IsPrimi
   · intro hmem
     obtain ⟨b, hb, heq⟩ := Multiset.mem_map.mp hmem
     have h := (TS_injective (K := K) (e := e) (e' := p * (p * e))
-      (u := u * ζ ^ (b * (N / p))) (u' := u ^ (p * p)) heq).1
+      (u := u * ζ ^ (b * (N / p))) (u' := u ^ (p * p))
+      (by simpa only [TS_eq_coeffEmb] using heq)).1
     have hp2 : 2 ≤ p := hp.out.two_le
     have he1 : 0 < e := Nat.pos_of_ne_zero (NeZero.ne e)
     have hmono : 2 * (2 * e) ≤ p * (p * e) := Nat.mul_le_mul hp2 (Nat.mul_le_mul hp2 le_rfl)
@@ -345,7 +299,8 @@ theorem roots_prime_at_slot_nodup (N : ℕ) [NeZero N] (ζ : Kˣ) (hζ : IsPrimi
     intro b hb b' hb' heq
     rw [Multiset.mem_range] at hb hb'
     have h := (TS_injective (K := K) (e := e) (e' := e)
-      (u := u * ζ ^ (b * (N / p))) (u' := u * ζ ^ (b' * (N / p))) heq).2
+      (u := u * ζ ^ (b * (N / p))) (u' := u * ζ ^ (b' * (N / p)))
+      (by simpa only [TS_eq_coeffEmb] using heq)).2
     have h2 : ζ ^ (b * (N / p)) = ζ ^ (b' * (N / p)) := mul_left_cancel h
     have h3 : (ζ ^ (N / p)) ^ b = (ζ ^ (N / p)) ^ b' := by
       rw [← pow_mul, ← pow_mul, Nat.mul_comm (N / p) b, Nat.mul_comm (N / p) b']
@@ -390,26 +345,9 @@ p2m_export "ModularCurve" "qExpand qExpand_coeff_mul qExpand_coeff_of_not_dvd qE
 namespace W1
 p2m_open "ModularCurve~coeffEmb_qExpand"
 
-def phiAtSeed {R : Type*} [CommRing R] {n : ℕ} [NeZero n] (data : ModularPolynomialData n) (x : R) :
-    Polynomial R :=
-  data.Φ.map (Polynomial.eval₂RingHom (Int.castRingHom R) x)
 
-theorem phiAtSeed_map {R S : Type*} [CommRing R] [CommRing S] {n : ℕ} [NeZero n]
-    (data : ModularPolynomialData n) (x : R) (f : R →+* S) :
-    (phiAtSeed data x).map f = phiAtSeed data (f x) := by
-  rw [phiAtSeed, phiAtSeed, Polynomial.map_map]
-  congr 1
-  refine Polynomial.ringHom_ext' ?_ ?_
-  · exact RingHom.ext_int _ _
-  · simp
 
-theorem phiAtSeed_monic {R : Type*} [CommRing R] [Nontrivial R] {n : ℕ} [NeZero n]
-    (data : ModularPolynomialData n) (x : R) : (phiAtSeed data x).Monic :=
-  data.monic.map _
 
-theorem phiAtSeed_natDegree {R : Type*} [CommRing R] [Nontrivial R] {n : ℕ} [NeZero n]
-    (data : ModularPolynomialData n) (x : R) : (phiAtSeed data x).natDegree = dedekindPsi n := by
-  rw [phiAtSeed, data.monic.natDegree_map, data.natDegree_eq]
 
 theorem phiAtSeed_jq_eval (n : ℕ) [NeZero n] (data : ModularPolynomialData n) :
     (phiAtSeed data jq).eval (jqN n) = 0 := by
@@ -419,10 +357,6 @@ theorem phiAtSeed_jq_eval (n : ℕ) [NeZero n] (data : ModularPolynomialData n) 
   refine Polynomial.ringHom_ext' (RingHom.ext_int _ _) ?_
   simp [evalAtJ_X]
 
-theorem phiAtSeed_eval_map {R S : Type*} [CommRing R] [CommRing S] {n : ℕ} [NeZero n]
-    (data : ModularPolynomialData n) (x y : R) (f : R →+* S) (h : (phiAtSeed data x).eval y = 0) :
-    (phiAtSeed data (f x)).eval (f y) = 0 := by
-  rw [← phiAtSeed_map, Polynomial.eval_map, Polynomial.eval₂_hom, h, map_zero]
 
 theorem phiAtSeed_jqN_eval (n : ℕ) [NeZero n] (data : ModularPolynomialData n) (M : ℕ) [NeZero M] :
     (phiAtSeed data (jqN M)).eval (jqN (M * n)) = 0 := by
@@ -482,25 +416,25 @@ private theorem jqN_mem_of_div_primes {K : Type*} [Field K] [Algebra ℚ K]
     have h2 : TS K (N * (d / p)) 1 = TS K (p * (N / p * (d / p))) ((1 : Kˣ) ^ p) := by
       rw [one_pow]
       exact TS_congr hpe.symm 1
-    exact (iota_jqN N (d / p)).trans h2
+    simpa only [TS_eq_coeffEmb] using (iota_jqN N (d / p)).trans h2
   have hseed_q : coeffEmb K (qExpand ℚ N (jqN (d / q)))
       = qExpand K (q * (N / q * (d / q))) (qTwist ((1 : Kˣ) ^ q) (coeffEmb K jq)) := by
     have h2 : TS K (N * (d / q)) 1 = TS K (q * (N / q * (d / q))) ((1 : Kˣ) ^ q) := by
       rw [one_pow]
       exact TS_congr hqe.symm 1
-    exact (iota_jqN N (d / q)).trans h2
+    simpa only [TS_eq_coeffEmb] using (iota_jqN N (d / q)).trans h2
   have hdist_p : coeffEmb K (qExpand ℚ N (jqN d))
       = qExpand K (p * (p * (N / p * (d / p)))) (qTwist ((1 : Kˣ) ^ (p * p)) (coeffEmb K jq)) := by
     have h2 : TS K (N * d) 1 = TS K (p * (p * (N / p * (d / p)))) ((1 : Kˣ) ^ (p * p)) := by
       rw [one_pow]
       exact TS_congr hpe2.symm 1
-    exact (iota_jqN N d).trans h2
+    simpa only [TS_eq_coeffEmb] using (iota_jqN N d).trans h2
   have hdist_q : coeffEmb K (qExpand ℚ N (jqN d))
       = qExpand K (q * (q * (N / q * (d / q)))) (qTwist ((1 : Kˣ) ^ (q * q)) (coeffEmb K jq)) := by
     have h2 : TS K (N * d) 1 = TS K (q * (q * (N / q * (d / q)))) ((1 : Kˣ) ^ (q * q)) := by
       rw [one_pow]
       exact TS_congr hqe2.symm 1
-    exact (iota_jqN N d).trans h2
+    simpa only [TS_eq_coeffEmb] using (iota_jqN N d).trans h2
   have hrootA : ∀ y : LaurentSeries K,
       Polynomial.aeval y (phiAtSeed data_p (⟨jqN (d / p), hmp⟩ : F)) = 0 ↔
         (y = qExpand K (p * (p * (N / p * (d / p)))) (qTwist ((1 : Kˣ) ^ (p * p)) (coeffEmb K jq)) ∨
@@ -543,7 +477,8 @@ private theorem jqN_mem_of_div_primes {K : Type*} [Field K] [Algebra ℚ K]
       · exact hy2.trans hdist_q.symm
       · exfalso
         have hTS : TS K (N / p * (d / p)) (1 * ζ ^ (b * (N / p)))
-            = TS K (N / q * (d / q)) (1 * ζ ^ (c * (N / q))) := hy1.symm.trans hy2
+            = TS K (N / q * (d / q)) (1 * ζ ^ (c * (N / q))) := by
+              simpa only [TS_eq_coeffEmb] using hy1.symm.trans hy2
         have he : N / p * (d / p) = N / q * (d / q) := (TS_injective hTS).1
         have h1 : p * p * (N / p * (d / p)) = q * q * (N / p * (d / p)) := by
           rw [mul_assoc, hpe2, mul_assoc, he, hqe2]
@@ -631,19 +566,19 @@ private theorem ModularCurve.jqN_div_mem_modularFunctionField (M : ℕ) [NeZero 
     have h2 : TS K ((M * p) * (M * p)) 1 = TS K (p * (M * p * M)) ((1 : Kˣ) ^ p) := by
       rw [one_pow]
       exact TS_congr (by ring) 1
-    exact (iota_jqN (M * p) (M * p)).trans h2
+    simpa only [TS_eq_coeffEmb] using (iota_jqN (M * p) (M * p)).trans h2
   have hdist : coeffEmb K (qExpand ℚ (M * p) (jqN M))
       = qExpand K (M * p * M) (qTwist (1 * ζ ^ (0 * (M * p / p))) (coeffEmb K jq)) := by
     have h2 : TS K ((M * p) * M) 1 = TS K (M * p * M) (1 * ζ ^ (0 * (M * p / p))) := by
       rw [Nat.zero_mul, pow_zero, mul_one]
-    exact (iota_jqN (M * p) M).trans h2
+    simpa only [TS_eq_coeffEmb] using (iota_jqN (M * p) M).trans h2
   have hspread : coeffEmb K (qExpand ℚ (M * p) (jqN (M * p * p)))
       = qExpand K (p * (p * (M * p * M))) (qTwist ((1 : Kˣ) ^ (p * p)) (coeffEmb K jq)) := by
     have h2 : TS K ((M * p) * (M * p * p)) 1
         = TS K (p * (p * (M * p * M))) ((1 : Kˣ) ^ (p * p)) := by
       rw [one_pow]
       exact TS_congr (by ring) 1
-    exact (iota_jqN (M * p) (M * p * p)).trans h2
+    simpa only [TS_eq_coeffEmb] using (iota_jqN (M * p) (M * p * p)).trans h2
   have hrootA : ∀ y : LaurentSeries K,
       Polynomial.aeval y A = 0 ↔
         (y = qExpand K (p * (p * (M * p * M))) (qTwist ((1 : Kˣ) ^ (p * p)) (coeffEmb K jq)) ∨

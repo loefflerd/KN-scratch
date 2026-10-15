@@ -15,6 +15,7 @@ public import Definitions.FLT.Def_AlgebraicCurve_AdelicIndex
 public import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
 
 import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
+import Theorems.FLT.Thm_AlgebraicCurve_Divisor_degree_eq_sum_support
 import Definitions.FLT.Def_P2M_Util
 
 /-!
@@ -82,11 +83,6 @@ variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 namespace Divisor
 p2m_export "AlgebraicCurve.Divisor" "degree"
 end Divisor
-p2m_open_scoped "AlgebraicCurve.Divisor" in
-theorem Divisor.degree_eq_sum_support (D : Divisor K F) :
-    Divisor.degree D = ∑ v ∈ D.support, D v * (v.deg : ℤ) := by
-  rw [Divisor.degree, Finsupp.liftAddHom_apply, Finsupp.sum]
-  rfl
 variable {D : Divisor K F}
 p2m_open_scoped "AlgebraicCurve.Divisor" in
 

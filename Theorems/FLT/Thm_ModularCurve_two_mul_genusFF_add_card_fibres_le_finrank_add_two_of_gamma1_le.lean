@@ -44,6 +44,7 @@ import Theorems.FLT.Thm_KaehlerDifferential_D_ne_zero_of_transcendental
 import Theorems.FLT.Thm_ModularCurve_JOneES_exists_transcendental_finiteDimensional_laurentBaseChange
 import Theorems.FLT.Thm_ModularCurve_ord_sub_algebraMap_le_one_laurentBaseChange_qExpFunctionFieldC_of_ne_zero_of_ne_1728
 import Theorems.FLT.Thm_ModularCurve_transcendental_jqModC
+import Theorems.FLT.Thm_AlgebraicCurve_Divisor_degree_eq_sum_support
 import Definitions.FLT.Def_P2M_Util
 
 /-!
@@ -94,6 +95,8 @@ set_option maxHeartbeats 3200000
 section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
+
+open AlgebraicCurve Divisor
 
 namespace P2MW.S_ModularCurve_two_mul_genusFF_add_card_fibres_le_finrank_add_two_of_gamma1_le
 
@@ -282,10 +285,6 @@ end Bridge
 section Identity
 
 variable (k : Type u) [Field k] [IsAlgClosed k] {F : Type v} [Field F] [Algebra k F]
-
-theorem degree_eq_sum_support (D : Divisor k F) :
-    D.degree = ∑ v ∈ D.support, D v * (v.deg : ℤ) := by
-  simp [Divisor.degree, Finsupp.sum]
 
 theorem exists_sum_ordDiff_D_eq (x : F) (hx : Transcendental k x)
     (hfin : FiniteDimensional (IntermediateField.adjoin k ({x} : Set F)) F)

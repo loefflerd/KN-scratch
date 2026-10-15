@@ -1043,11 +1043,6 @@ variable {K F F' : Type*} [Field K] [Field F] [Field F']
   [Algebra K F] [Algebra K F'] [Algebra F F'] [IsScalarTower K F F']
   [Algebra.IsIntegral F F']
 
-public theorem degree_eq_sum_support (D : Divisor K F) :
-    degree D = ∑ v ∈ D.support, D v * (v.deg : ℤ) := by
-  rw [degree, Finsupp.liftAddHom_apply, Finsupp.sum]
-  rfl
-
 
 end Pullback
 end Divisor

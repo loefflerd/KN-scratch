@@ -21,6 +21,9 @@ import Mathlib.RingTheory.PicardGroup
 import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
 import Definitions.FLT.Def_AlgebraicCurve_PoleDivisorPackage
 import Theorems.FLT.Thm_AlgebraicCurve_Place_sum_ramificationIndex_mul_inertiaDeg
+import Theorems.FLT.Thm_AlgebraicCurve_Divisor_degree_eq_sum_support
+import Theorems.FLT.Thm_AlgebraicCurve_ell_eq_zero_of_degree_neg
+import Theorems.FLT.Thm_AlgebraicCurve_indexOfSpecialty_eq_of_genusReached
 import Definitions.FLT.Def_P2M_Util
 
 /-!
@@ -81,11 +84,6 @@ variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 namespace Divisor
 p2m_export "AlgebraicCurve.Divisor" "degree degree_single principal smul_def smul_apply pullback pullback_apply degree_pullback"
 end Divisor
-p2m_open_scoped "AlgebraicCurve.Divisor" in
-theorem Divisor.degree_eq_sum_support (D : Divisor K F) :
-    Divisor.degree D = ∑ v ∈ D.support, D v * (v.deg : ℤ) := by
-  rw [Divisor.degree, Finsupp.liftAddHom_apply, Finsupp.sum]
-  rfl
 variable {D : Divisor K F}
 p2m_open_scoped "AlgebraicCurve.Divisor" in
 
@@ -109,9 +107,6 @@ theorem lSpace_eq_bot_of_degree_neg [IsCurveOver K F]
   have hdegPD : 0 ≤ Divisor.degree (P + D) := Divisor.degree_nonneg_of_nonneg heff
   rw [map_add, hPdeg, zero_add] at hdegPD
   exact absurd hdegPD (not_le.mpr hD)
-theorem ell_eq_zero_of_degree_neg [IsCurveOver K F] (hD : Divisor.degree D < 0) :
-    ell D = 0 := by
-  rw [ell, lSpace_eq_bot_of_degree_neg hD, finrank_bot]
 end AlgebraicCurve
 
 noncomputable section
@@ -968,52 +963,6 @@ theorem indexOfSpecialty_eq_zero_of_genusReached [IsCurveOver K F] [Nonempty (Pl
   exact Module.finrank_zero_of_subsingleton
 
 
-theorem indexOfSpecialty_eq_of_genusReached [IsCurveOver K F] [Nonempty (Place K F)]
-    [FiniteDimensional K (LSpace (0 : Divisor K F))]
-    {γ : ℤ} {D₀ : Divisor K F} (h : RiemannGenusReachedAt γ D₀) (D : Divisor K F) :
-    Module.Finite K (adeleSpace K F ⧸ adeleBddPrincipal K F D) ∧
-      (indexOfSpecialty D : ℤ) = (ell D : ℤ) - (Divisor.degree D + 1 - γ) := by
-  classical
-  have hDD' : D ≤ D ⊔ D₀ := le_sup_left
-  have hD0D' : D₀ ≤ D ⊔ D₀ := le_sup_right
-  have := finiteDimensional_lSpace (K := K) (D ⊔ D₀)
-  have heqD' : Divisor.degree (D ⊔ D₀) - ell (D ⊔ D₀) = γ - 1 := h.eq_of_ge hD0D'
-  have hsa : adeleSpace K F = adeleBdd (D ⊔ D₀) ⊔ globalSub K F := by
-    refine le_antisymm ?_ (adeleBdd_sup_globalSub_le_adeleSpace _)
-    rw [adeleSpace_eq_of_genusReached h]
-    exact sup_le_sup_right (adeleBdd_mono hD0D') _
-  have hABsub : adeleBdd D ⊔ globalSub K F ≤ adeleBdd (D ⊔ D₀) ⊔ globalSub K F :=
-    sup_le_sup_right (adeleBdd_mono hDD') _
-  have hBCsub : adeleBdd (D ⊔ D₀) ⊔ globalSub K F ≤ adeleSpace K F :=
-    adeleBdd_sup_globalSub_le_adeleSpace _
-  have hCB : (adeleBdd (D ⊔ D₀) ⊔ globalSub K F).comap (adeleSpace K F).subtype = ⊤ := by
-    rw [← hsa, Submodule.comap_subtype_self]
-  have hfinCB : Module.Finite K (adeleSpace K F ⧸
-      (adeleBdd (D ⊔ D₀) ⊔ globalSub K F).comap (adeleSpace K F).subtype) := by
-    rw [hCB]
-    have : Subsingleton (adeleSpace K F ⧸ (⊤ : Submodule K (adeleSpace K F))) :=
-      Submodule.Quotient.subsingleton_iff.mpr rfl
-    exact Module.Finite.of_finite
-  have hdimCB : finrank K (adeleSpace K F ⧸
-      (adeleBdd (D ⊔ D₀) ⊔ globalSub K F).comap (adeleSpace K F).subtype) = 0 := by
-    rw [hCB]
-    have : Subsingleton (adeleSpace K F ⧸ (⊤ : Submodule K (adeleSpace K F))) :=
-      Submodule.Quotient.subsingleton_iff.mpr rfl
-    exact Module.finrank_zero_of_subsingleton
-  obtain ⟨hfinBA, hdimBA⟩ := finrank_adeleBddSup_quotient (K := K) hDD'
-  have := hfinBA
-  obtain ⟨hfinCA, hdimCA⟩ := Submodule.finrank_quotient_chain
-    (A := adeleBdd D ⊔ globalSub K F) (B := adeleBdd (D ⊔ D₀) ⊔ globalSub K F)
-    (C := adeleSpace K F) hABsub hBCsub
-  have hieq : indexOfSpecialty D
-      = finrank K (adeleSpace K F ⧸
-        (adeleBdd D ⊔ globalSub K F).comap (adeleSpace K F).subtype) := by
-    rw [indexOfSpecialty_eq, adeleBddPrincipal_eq_comap]
-  rw [adeleBddPrincipal_eq_comap]
-  refine ⟨hfinCA, ?_⟩
-  rw [hieq]
-  push_cast [hdimCA, hdimCB]
-  linarith [hdimBA, heqD']
 
 theorem gate_indexOfSpecialty_at_witness [IsCurveOver K F] [Nonempty (Place K F)]
     [FiniteDimensional K (LSpace (0 : Divisor K F))]

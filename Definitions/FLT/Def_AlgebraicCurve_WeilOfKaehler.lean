@@ -160,19 +160,11 @@ def ResidueTheorem : Prop :=
   ∀ [HasPrincipalDivisors K F] {ω : Ω[F⁄K]} (hω : ω ≠ 0) (f : F),
     weilOfKaehler K F hω ⟨diagonalHom K F f, diagonal_mem_adeleSpace f⟩ = 0
 
-variable {K F}
-
-variable (K F)
-
 def WeilKaehlerAgree : Prop :=
   ∀ [HasPrincipalDivisors K F] {ω : Ω[F⁄K]} (hω : ω ≠ 0),
     weilOfKaehler K F hω ≠ 0 ∧
     weilOfKaehler K F hω ∈ omegaSpace (canonicalDivisorOf hω) ∧
     ∀ D : Divisor K F, weilOfKaehler K F hω ∈ omegaSpace D → D ≤ canonicalDivisorOf hω
-
-variable {K F}
-
-variable (K F)
 
 def ResiduePairingSurjective : Prop :=
   ∀ [HasPrincipalDivisors K F] (W D : Divisor K F)

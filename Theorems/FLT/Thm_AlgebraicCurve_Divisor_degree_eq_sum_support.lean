@@ -112,9 +112,6 @@ theorem lSpace_eq_bot_of_degree_neg [IsCurveOver K F]
   have hdegPD : 0 ≤ Divisor.degree (P + D) := Divisor.degree_nonneg_of_nonneg heff
   rw [map_add, hPdeg, zero_add] at hdegPD
   exact absurd hdegPD (not_le.mpr hD)
-theorem ell_eq_zero_of_degree_neg [IsCurveOver K F] (hD : Divisor.degree D < 0) :
-    ell D = 0 := by
-  rw [ell, lSpace_eq_bot_of_degree_neg hD, finrank_bot]
 end AlgebraicCurve
 
 open _root_.AlgebraicCurve _root_.P2MW.S_AlgebraicCurve_Divisor_degree_eq_sum_support.AlgebraicCurve in

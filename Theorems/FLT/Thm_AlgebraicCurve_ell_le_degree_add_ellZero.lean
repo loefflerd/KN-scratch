@@ -16,6 +16,8 @@ public import Definitions.FLT.Def_AlgebraicCurve_IsCurveOver
 
 import Mathlib.RingTheory.Flat.TorsionFree
 import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
+import Theorems.FLT.Thm_AlgebraicCurve_Divisor_degree_eq_sum_support
+import Theorems.FLT.Thm_AlgebraicCurve_ell_eq_zero_of_degree_neg
 import Definitions.FLT.Def_P2M_Util
 
 /-!
@@ -82,11 +84,6 @@ variable {K F : Type*} [Field K] [Field F] [Algebra K F]
 namespace Divisor
 p2m_export "AlgebraicCurve.Divisor" "degree degree_single principal smul_def"
 end Divisor
-p2m_open_scoped "AlgebraicCurve.Divisor" in
-theorem Divisor.degree_eq_sum_support (D : Divisor K F) :
-    Divisor.degree D = ∑ v ∈ D.support, D v * (v.deg : ℤ) := by
-  rw [Divisor.degree, Finsupp.liftAddHom_apply, Finsupp.sum]
-  rfl
 variable {D : Divisor K F}
 p2m_open_scoped "AlgebraicCurve.Divisor" in
 
@@ -110,9 +107,6 @@ theorem lSpace_eq_bot_of_degree_neg [IsCurveOver K F]
   have hdegPD : 0 ≤ Divisor.degree (P + D) := Divisor.degree_nonneg_of_nonneg heff
   rw [map_add, hPdeg, zero_add] at hdegPD
   exact absurd hdegPD (not_le.mpr hD)
-theorem ell_eq_zero_of_degree_neg [IsCurveOver K F] (hD : Divisor.degree D < 0) :
-    ell D = 0 := by
-  rw [ell, lSpace_eq_bot_of_degree_neg hD, finrank_bot]
 end AlgebraicCurve
 
 noncomputable section

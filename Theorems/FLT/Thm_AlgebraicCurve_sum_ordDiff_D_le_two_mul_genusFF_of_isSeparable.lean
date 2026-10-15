@@ -38,6 +38,7 @@ import Theorems.FLT.Thm_AlgebraicCurve_linearIndependent_pow_of_transcendental
 import Theorems.FLT.Thm_AlgebraicCurve_stichtenothGenusExists_of_isCurveOver
 import Theorems.FLT.Thm_AlgebraicCurve_weilDualityAdelic_of_functionFieldRiemannRoch_of_stichtenothGenusExists
 import Theorems.FLT.Thm_KaehlerDifferential_D_ne_zero_of_transcendental
+import Theorems.FLT.Thm_AlgebraicCurve_Divisor_degree_eq_sum_support
 import Definitions.FLT.Def_P2M_Util
 
 /-!
@@ -84,6 +85,8 @@ https://github.com/anthropics/fermats-last-theorem/blob/aa2d8b34692b16c70f699536
 section privateSection
 
 set_option backward.isDefEq.respectTransparency.types false
+
+open AlgebraicCurve Divisor
 
 namespace P2MW.S_AlgebraicCurve_sum_ordDiff_D_le_two_mul_genusFF_of_isSeparable
 
@@ -310,13 +313,6 @@ theorem towerX_poleDivisor_apply (w : Place k F) :
       rw [hres]; positivity
     rw [happ, Finsupp.single_eq_of_ne hw, mul_zero, ite_eq_right (not_lt.mpr h0)]
 
-omit [DecidableEq (RatFunc k)] [Algebra (RatFunc k) F] [IsScalarTower k (RatFunc k) F]
-  [FiniteDimensional (RatFunc k) F] [Algebra.IsSeparable (RatFunc k) F]
-  [HasPrincipalDivisors k F] in
-
-theorem degree_eq_sum_support (D : Divisor k F) :
-    D.degree = ∑ v ∈ D.support, D v * (v.deg : ℤ) := by
-  simp [Divisor.degree, Finsupp.sum]
 
 theorem sum_poles_eq_finrank (hdeg1 : ∀ w : Place k F, w.deg = 1) :
     ∃ P : Finset (Place k F),
