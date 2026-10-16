@@ -549,7 +549,7 @@ theorem refl_slash_b (φ : Hc N n R) (l : ℕ) (b : Fin l) :
     rw [hs]
     refine slash_refl_key φ 1 _ _ ?_ ?_ <;>
       (ext i j; fin_cases i <;> fin_cases j <;>
-        simp [Jm, Um, Matrix.mul_apply, Fin.sum_univ_two, Matrix.adjugate_fin_two_of] <;> ring)
+        simp [Jm, Um, Matrix.mul_apply, Fin.sum_univ_two, Matrix.adjugate_fin_two_of] ; try ring)
 
 theorem refl_slash_diag (φ : Hc N n R) (l : ℕ) :
     reflection (slash !![(l : ℤ), 0; 0, 1] φ.val)

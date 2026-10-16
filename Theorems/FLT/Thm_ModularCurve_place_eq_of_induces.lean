@@ -15,7 +15,7 @@ public import Definitions.FLT.Def_ModularCurve_EMD
 public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 
 import Mathlib.Algebra.Order.Ring.Star
-import Mathlib.Data.Rat.Star
+import Mathlib.Algebra.Order.Star.Rat
 import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
 import Definitions.FLT.Def_P2M_Util
 

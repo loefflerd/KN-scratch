@@ -409,7 +409,7 @@ omit [CharZero K] in
 lemma roots_character_eq_pow {q : ℕ} [NeZero q] [HasEnoughRootsOfUnity K q]
     (χ : rootsOfUnity q K →* Kˣ) :
     ∃ a < q, ∀ h : rootsOfUnity q K, (χ h : K) = (h.val : K) ^ a := by
-  obtain ⟨ζ, hζ⟩ := HasEnoughRootsOfUnity.exists_primitiveRoot K q
+  obtain ⟨ζ, hζ⟩ := HasEnoughRootsOfUnity.exists_isPrimitiveRoot K q
   let z : rootsOfUnity q K := hζ.toRootsOfUnity
   have hz : z ^ q = 1 := by
     apply Subtype.ext
@@ -476,7 +476,7 @@ lemma marginal_norm_le_of_primitive_vanish {p m : ℕ} [Fact p.Prime]
       ∀ η : G →* ℂ_[p], ∑ x, f x * η x.1 * (x.2.val : ℂ_[p]) ^ a = 0) :
     ∀ g, ‖∑ h, f (g, h)‖ ≤ B / p := by
   classical
-  obtain ⟨ζ, hζ⟩ := HasEnoughRootsOfUnity.exists_primitiveRoot ℂ_[p] p
+  obtain ⟨ζ, hζ⟩ := HasEnoughRootsOfUnity.exists_isPrimitiveRoot ℂ_[p] p
   have hpq : p ∣ p ^ m := dvd_pow_self _ hm.ne'
   let k : rootsOfUnity (p ^ m) ℂ_[p] :=
     ⟨hζ.toRootsOfUnity.val, rootsOfUnity_le_of_dvd hpq hζ.toRootsOfUnity.property⟩

@@ -2875,7 +2875,6 @@ theorem mmr62_cd_map_dupSlope_eq_slope [CharZero F]
   simp only [negY, WeierstrassCurve.map_a₁, WeierstrassCurve.map_a₂, WeierstrassCurve.map_a₃, WeierstrassCurve.map_a₄,
     map_div₀, map_add, map_sub, map_mul, map_pow, _root_.map_neg, map_ofNat,
     AlgHom.commutes]
-  try ring
 
 theorem mmr62_cd_collision_addSumX_eq_map_dupX [CharZero F]
     (hx : φ₁ (polyToFunctionField W X) = φ₂ (polyToFunctionField W X))
@@ -2888,7 +2887,6 @@ theorem mmr62_cd_collision_addSumX_eq_map_dupX [CharZero F]
   rw [hx, hy, ← hslope]
   simp only [addX, WeierstrassCurve.map_a₁, WeierstrassCurve.map_a₂, map_add, map_sub, map_mul,
     map_pow, AlgHom.commutes]
-  try ring
 
 theorem mmr62_cd_map_dupX_transcendental [IsAlgClosed F] [CharZero F]
     (φ : W.FunctionField →ₐ[F] W.FunctionField) :

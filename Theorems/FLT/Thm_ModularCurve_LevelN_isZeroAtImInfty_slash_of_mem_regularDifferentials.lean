@@ -223,7 +223,7 @@ theorem periodic_of_mem {F : ℍ → ℂ} (hF : F ∈ ring N) : Periodic (F ∘ 
     simp only [comp_apply, ofComplex_apply_of_im_pos hw, ofComplex_apply_of_im_pos hw']
     have h := apply_smul_of_mem N (T_pow_mem_Gamma N) hF ⟨w, hw⟩
     rw [modular_T_zpow_smul] at h
-    convert h using 2 ; try with_reducible_and_instances rfl
+    convert h using 2
     ext
     simp [UpperHalfPlane.coe_vadd, add_comm]
   · have hw0 : w.im ≤ 0 := not_lt.mp hw
@@ -583,12 +583,9 @@ theorem analyticAt_cf_G : AnalyticAt ℂ (cf N G) 0 := by
 theorem cf_G_zero : cf N G 0 = 1 := by
   rw [cf, UpperHalfPlane.cuspFunction_apply_zero (hN N) (analyticAt_cf_G N) (periodic_G N)]
   have : Tendsto G atImInfty (𝓝 1) := by
-    first
-      | simpa [G] using (tendsto_E4_atImInfty).pow 3
-      | (simpa [G] using ((tendsto_E4_atImInfty).pow 3 :))
-      | (simpa [Function.comp_def] using (tendsto_E4_atImInfty).pow 3)
-      | exact (tendsto_E4_atImInfty).pow 3
-      | (have h__ := (tendsto_E4_atImInfty).pow 3; (try simp [] at h__); exact h__)
+    have h__ := (tendsto_E4_atImInfty).pow 3
+    try simp [] at h__
+    exact h__
   exact this.limUnder_eq
 
 theorem meromorphicOrderAt_cf_G : meromorphicOrderAt (cf N G) 0 = 0 := by

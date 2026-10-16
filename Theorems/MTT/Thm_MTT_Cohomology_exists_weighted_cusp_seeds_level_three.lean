@@ -15,7 +15,7 @@ public import Definitions.MTT.Def_MTT_ParabolicCohomology
 public import Mathlib.NumberTheory.ModularForms.QExpansion
 public import Mathlib.RingTheory.MvPowerSeries.Order
 
-import Mathlib.Data.Int.Star
+import Mathlib.Algebra.Order.Star.Int
 import Mathlib.NumberTheory.ModularForms.Discriminant
 import Mathlib.RingTheory.PowerSeries.Expand
 import Mathlib.RingTheory.PowerSeries.Order

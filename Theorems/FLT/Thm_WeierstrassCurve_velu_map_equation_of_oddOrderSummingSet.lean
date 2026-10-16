@@ -18,7 +18,7 @@ import Mathlib.Algebra.Algebra.IsSimpleRing
 import Mathlib.Algebra.Order.Ring.Star
 import Mathlib.AlgebraicGeometry.EllipticCurve.DivisionPolynomial.Degree
 import Mathlib.Analysis.Normed.Ring.Lemmas
-import Mathlib.Data.Int.Star
+import Mathlib.Algebra.Order.Star.Int
 import Mathlib.FieldTheory.PurelyInseparable.Exponent
 import Mathlib.Order.CompletePartialOrder
 import Mathlib.RingTheory.LocalProperties.Reduced

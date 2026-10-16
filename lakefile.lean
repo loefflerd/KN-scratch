@@ -8,11 +8,11 @@ package «KNIndependent» where
 
 require mathlib from git
   "https://github.com/leanprover-community/mathlib4" @
-  "f6090c7095e1e56b3464c1daba5f24631f1290d2"
+  "074063781836922cb02701cd12943c9f51731afa"
 
 require TauCeti from git
   "https://github.com/TauCetiProject/TauCeti.git" @
-  "6a02913b2e33f539f63b73b7cdae4a3f18197478"
+  "ead24a3b604c3df52bdc2b656f23d15d370ee0e8"
 
 @[default_target]
 lean_lib «Definitions» where

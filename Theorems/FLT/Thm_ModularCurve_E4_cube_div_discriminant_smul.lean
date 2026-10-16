@@ -77,9 +77,7 @@ theorem E4_cube_div_discriminant_smul' (γ : SL(2, ℤ)) (τ : ℍ) :
   have hd : denom (mapGL ℝ γ : GL (Fin 2) ℝ) τ ≠ 0 := denom_ne_zero _ _
   rw [hE, hΔ, mul_pow, ← zpow_natCast, ← zpow_mul]
   norm_num
-  first
-  | rw [mul_div_mul_left _ _ (zpow_ne_zero 12 hd)]
-  | rw [mul_div_mul_left _ _ (pow_ne_zero 12 hd)]
+  rw [mul_div_mul_left _ _ (pow_ne_zero 12 hd)]
 
 end ModularCurve
 

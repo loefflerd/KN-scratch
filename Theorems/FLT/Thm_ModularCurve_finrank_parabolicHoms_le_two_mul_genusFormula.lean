@@ -16,7 +16,7 @@ public import Definitions.FLT.Def_ModularCurve_GenusNumerics
 public import Definitions.FLT.Def_ModularCurve_PeriodMap
 
 import Mathlib.Algebra.Order.Ring.Star
-import Mathlib.Data.Rat.Star
+import Mathlib.Algebra.Order.Star.Rat
 import Theorems.FLT.Thm_ModularCurve_CuspSpace_card_cuspSpace_eq_cuspCount
 import Theorems.FLT.Thm_ModularCurve_Gamma0_index
 import Theorems.FLT.Thm_ModularCurve_Period_six_mul_finrank_parabolicHoms_add_le_index

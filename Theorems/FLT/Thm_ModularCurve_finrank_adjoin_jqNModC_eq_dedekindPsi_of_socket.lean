@@ -198,7 +198,7 @@ theorem phiAtSeed_jqNModC_eval {R : Type*} [CommRing R] (n : ℕ) [NeZero n] (da
   have h := data.eval_jqNModC_mul_eq_zero R d
   rw [phiAtSeed, Polynomial.eval_map]
   convert h using 2
-  exact Polynomial.ringHom_ext' (RingHom.ext_int _ _) (by first | rfl | simp)
+  exact Polynomial.ringHom_ext' (RingHom.ext_int _ _) (by simp)
 
 theorem phiAtSeed_jqNModC_eval_symm {R : Type*} [CommRing R] (n : ℕ) [NeZero n] (data : ModularPolynomialData n)
     (hsymm : EvalSymm data.Φ) (d : ℕ) [NeZero d] :
@@ -206,7 +206,7 @@ theorem phiAtSeed_jqNModC_eval_symm {R : Type*} [CommRing R] (n : ℕ) [NeZero n
   have h := data.eval_jqNModC_of_mul_eq_zero hsymm R d
   rw [phiAtSeed, Polynomial.eval_map]
   convert h using 2
-  exact Polynomial.ringHom_ext' (RingHom.ext_int _ _) (by first | rfl | simp)
+  exact Polynomial.ringHom_ext' (RingHom.ext_int _ _) (by simp)
 
 theorem phiAtSeed_TS_eval {K : Type*} [Field K] (A : ℕ) [NeZero A] (n : ℕ) [NeZero n]
     (data : ModularPolynomialData n) (d : ℕ) [NeZero d] :
@@ -427,7 +427,7 @@ open ModularCurve.W1 in
 private theorem ModularCurve.finrank_adjoin_jqNModC_eq_dedekindPsi_of_socket {K : Type*} [Field K] (d : ℕ) [NeZero d] (hbase : ∀ (p : ℕ) [Fact (Nat.Prime p)], p ∣ d → jqNModC K p ∉ IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) : Module.finrank (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) (IntermediateField.adjoin (IntermediateField.adjoin K ({jqModC K} : Set (LaurentSeries K))) ({jqNModC K d} : Set (LaurentSeries K))) = dedekindPsi d := by
   have hd : (d : K) ≠ 0 := natCast_ne_zero_of_socket d hbase
   have : NeZero ((d : ℕ) : K) := ⟨hd⟩
-  obtain ⟨z, hz⟩ := HasEnoughRootsOfUnity.exists_primitiveRoot (AlgebraicClosure K) d
+  obtain ⟨z, hz⟩ := HasEnoughRootsOfUnity.exists_isPrimitiveRoot (AlgebraicClosure K) d
   have hzu : IsUnit z := hz.isUnit (NeZero.ne d)
   have hζ : IsPrimitiveRoot ((hzu.unit : (AlgebraicClosure K)ˣ) : AlgebraicClosure K) d := by
     rw [IsUnit.unit_spec]

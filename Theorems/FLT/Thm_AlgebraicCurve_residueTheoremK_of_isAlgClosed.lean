@@ -2386,7 +2386,7 @@ theorem kwF4R1V386a_finrankCompletionEF [Algebra.IsSeparable E F] :
       (w'.restrict E).adicCompletionIntegers w'.adicCompletion :=
     Module.IsTorsionFree.comap
       (algebraMap (w'.restrict E).adicCompletionIntegers w'.adicCompletion)
-      (fun _ hr => .of_ne_zero <| by simpa using hinj.ne hr.ne_zero)
+      (fun _ hr => .of_ne_zero <| by simpa only [map_zero] using hinj.ne hr.ne_zero)
       (fun r x => Algebra.smul_def r x)
   let : Module.IsTorsionFree
       (w'.restrict E).adicCompletionIntegers w'.adicCompletionIntegers :=

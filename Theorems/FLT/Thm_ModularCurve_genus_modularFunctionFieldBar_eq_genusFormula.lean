@@ -16,7 +16,7 @@ public import Definitions.FLT.Def_ModularCurve_ArithmeticGalois
 public import Definitions.FLT.Def_ModularCurve_GenusNumerics
 
 import Mathlib.Algebra.Order.Ring.Star
-import Mathlib.Data.Rat.Star
+import Mathlib.Algebra.Order.Star.Rat
 import Theorems.FLT.Thm_AlgebraicCurve_Place_ordDiff_D_eq_ord_sub_one
 import Theorems.FLT.Thm_AlgebraicCurve_Place_ordDiff_eq_ordDifferential
 import Theorems.FLT.Thm_AlgebraicCurve_twelve_mul_eq_of_sum_ordDiff_eq

@@ -17,7 +17,7 @@ public import Definitions.FLT.Def_WeierstrassCurve_GenusOnePlaceGateCentred
 import Mathlib.Algebra.Order.Ring.Star
 import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
 import Mathlib.Analysis.Normed.Ring.Lemmas
-import Mathlib.Data.Int.Star
+import Mathlib.Algebra.Order.Star.Int
 import Mathlib.RingTheory.LocalProperties.Reduced
 import Mathlib.Tactic.NormNum.Prime
 import Definitions.FLT.Def_AlgebraicCurve_PlacesOverDVR

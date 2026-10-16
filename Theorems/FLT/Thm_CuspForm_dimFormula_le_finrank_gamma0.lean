@@ -188,19 +188,12 @@ theorem solution (N : ℕ) [NeZero N] (k : ℕ) (hk : 4 ≤ k) (hke : Even k) :
       map_smul' := by
         intro d y
         funext n
+        simp only [Submodule.coe_smul, RingHom.id_apply, Pi.smul_apply, smul_eq_mul]
         first
-          | rfl
-          | (simp only [Submodule.coe_smul, RingHom.id_apply, Pi.smul_apply, smul_eq_mul]
-             first
-               | rfl
-               | rw [IntermediateField.coe_smul, HahnSeries.coeff_smul, smul_eq_mul]
-               | (rw [IntermediateField.coe_smul, Algebra.smul_def]
-                  first
-                    | rw [HahnSeries.coeff_single_zero_mul]
-                    | rw [HahnSeries.single_zero_mul_coeff]
-                    | (rw [ModularCurve.algebraMap_laurentSeries_eq_single]
-                       first | rw [HahnSeries.coeff_single_zero_mul] )
-                    )) }
+          | rw [IntermediateField.coe_smul, HahnSeries.coeff_smul, smul_eq_mul]
+          | rw [IntermediateField.coe_smul, Algebra.smul_def,
+              ModularCurve.algebraMap_laurentSeries_eq_single,
+              HahnSeries.coeff_single_zero_mul] }
   have hE : ∀ y n, E y n = (((y : ↥(riemannRochSpace D)) : ↥(modularFunctionFieldBar N)) : LaurentSeries (AlgebraicClosure ℚ)).coeff n :=
     fun _ _ => rfl
   have hEinj : Function.Injective E := by

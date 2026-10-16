@@ -170,26 +170,22 @@ def evalHom (t : F) (w : Place K F) (hrat : w.IsRational) (ht : t ∈ w.toValuat
     exact w.evalAt_one
   map_mul' a b := by
     apply w.algebraMap_residueField_injective
-    try dsimp only
     rw [map_mul, w.algebraMap_evalAt hrat (forall_mem_of_mem t w ht (a * b)),
       w.algebraMap_evalAt hrat (forall_mem_of_mem t w ht a),
       w.algebraMap_evalAt hrat (forall_mem_of_mem t w ht b), ← map_mul]
     rfl
   map_zero' := by
     apply w.algebraMap_residueField_injective
-    try dsimp only
     rw [map_zero, w.algebraMap_evalAt hrat (forall_mem_of_mem t w ht 0)]
     rfl
   map_add' a b := by
     apply w.algebraMap_residueField_injective
-    try dsimp only
     rw [map_add, w.algebraMap_evalAt hrat (forall_mem_of_mem t w ht (a + b)),
       w.algebraMap_evalAt hrat (forall_mem_of_mem t w ht a),
       w.algebraMap_evalAt hrat (forall_mem_of_mem t w ht b), ← map_add]
     rfl
   commutes' c := by
     apply w.algebraMap_residueField_injective
-    try dsimp only
     rw [w.algebraMap_evalAt hrat (forall_mem_of_mem t w ht _)]
     show IsLocalRing.residue w.toValuationSubring _ =
       IsLocalRing.residue w.toValuationSubring (algebraMap K w.toValuationSubring c)

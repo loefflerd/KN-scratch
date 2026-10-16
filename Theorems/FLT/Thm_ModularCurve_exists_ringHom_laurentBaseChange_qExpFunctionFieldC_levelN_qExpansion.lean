@@ -15,7 +15,7 @@ public import Definitions.FLT.Def_ModularCurve_JqCoeff
 public import Definitions.FLT.Def_ModularCurve_LevelNFunctionField
 public import Definitions.FLT.Def_ModularCurve_X1
 
-import Mathlib.Data.Int.Star
+import Mathlib.Algebra.Order.Star.Int
 import Theorems.FLT.Thm_ModularCurve_LevelN_exists_algHom_laurentSeries_qExpansion
 import Theorems.FLT.Thm_WLight_exists_levelFraction_of_stable_family
 import Theorems.FLT.Thm_WLight_frickeFunction_modularity_package

@@ -870,7 +870,7 @@ theorem exists_double_fiber_card [W.IsElliptic] {n : ℕ} (hodd : Odd n)
       ↑R2fin := ⟨hmaps, hinj, hsurj⟩
   calc Nat.card {P : W.toAffine⟮K⟯ // n • P = Q ∨ n • P = -Q}
       = Set.ncard {P : W.toAffine⟮K⟯ | n • P = Q ∨ n • P = -Q} :=
-        Nat.card_coe_set_eq _
+        Nat.card_coe_set_eq {P : W.toAffine⟮K⟯ | n • P = Q ∨ n • P = -Q}
     _ = (coords W '' {P : W.toAffine⟮K⟯ | n • P = Q ∨ n • P = -Q}).ncard :=
         (hbij.injOn.ncard_image).symm
     _ = (↑R2fin : Set (K × K)).ncard := by rw [hbij.image_eq]

@@ -190,7 +190,7 @@ theorem solution (N : ℕ) [NeZero N]
     (S : Finset (AlgebraicCurve.Place (AlgebraicClosure ℚ) ↥(ModularCurve.modularFunctionFieldBar N)))
     (hS : ∀ v, v ∈ S ↔ v.ord (ModularCurve.jBar N) < 0) :
     S.card = ModularCurve.cuspCount N := by
-  obtain ⟨z, hz⟩ := HasEnoughRootsOfUnity.exists_primitiveRoot (AlgebraicClosure ℚ) N
+  obtain ⟨z, hz⟩ := HasEnoughRootsOfUnity.exists_isPrimitiveRoot (AlgebraicClosure ℚ) N
   set ζ : (AlgebraicClosure ℚ)ˣ := (hz.isUnit (NeZero.ne N)).unit with hζdef
   have hζ : IsPrimitiveRoot (ζ : AlgebraicClosure ℚ) N := by
     rw [hζdef, IsUnit.unit_spec]

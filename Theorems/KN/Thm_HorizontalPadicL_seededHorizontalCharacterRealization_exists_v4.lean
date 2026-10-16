@@ -94,7 +94,7 @@ private noncomputable def liftFiniteCharacter
       rw [mem_rootsOfUnity, ← map_pow]
       simp [fu, n]
   let hζ : (primitiveRoots n MTT.Qbar).Nonempty := by
-    obtain ⟨ζ, hζ⟩ := HasEnoughRootsOfUnity.exists_primitiveRoot MTT.Qbar n
+    obtain ⟨ζ, hζ⟩ := HasEnoughRootsOfUnity.exists_isPrimitiveRoot MTT.Qbar n
     exact ⟨ζ, (mem_primitiveRoots (NeZero.pos n)).2 hζ⟩
   let e : rootsOfUnity n MTT.Qbar ≃* rootsOfUnity n ℂ_[p] :=
     rootsOfUnityEquivOfPrimitiveRoots ιp.injective hζ

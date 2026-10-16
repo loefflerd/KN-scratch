@@ -14,7 +14,7 @@ module
 public import Mathlib.NumberTheory.ModularForms.DedekindEta
 
 import Mathlib.AlgebraicTopology.FundamentalGroupoid.SimplyConnected
-import Mathlib.Data.Int.Star
+import Mathlib.Algebra.Order.Star.Int
 import Mathlib.GroupTheory.Schreier
 import Mathlib.LinearAlgebra.Matrix.FixedDetMatrices
 import Mathlib.NumberTheory.ModularForms.Discriminant

@@ -14,7 +14,7 @@ module
 public import Definitions.FLT.Def_ModularCurve_X0ModL
 
 import Mathlib.Algebra.Order.Ring.Star
-import Mathlib.Data.Int.Star
+import Mathlib.Algebra.Order.Star.Int
 import Mathlib.FieldTheory.Relrank
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.RegularLocalRing.Defs

@@ -15,7 +15,7 @@ public import Mathlib.NumberTheory.ModularForms.Discriminant
 public import Definitions.FLT.Def_ModularCurve_LaurentCoeff
 public import Definitions.FLT.Def_ModularCurve_X0
 
-import Mathlib.Data.Int.Star
+import Mathlib.Algebra.Order.Star.Int
 import Mathlib.Order.CompletePartialOrder
 import Theorems.FLT.Thm_ModularCurve_jqModC_eq_qExpansion_E4_cube_div_discriminant
 import Theorems.FLT.Thm_ModularCurve_qExpansion_discriminant_eq_map_X_mul_dedekindEtaUnit

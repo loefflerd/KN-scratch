@@ -77,7 +77,7 @@ instance (n : ℕ) [NeZero n] :
   intro d hd hd0
   rw [Set.mem_singleton_iff] at hd
   subst d
-  exact HasEnoughRootsOfUnity.exists_primitiveRoot MTT.Qbar n
+  exact HasEnoughRootsOfUnity.exists_isPrimitiveRoot MTT.Qbar n
 
 instance (n : ℕ) [NeZero n] : NumberField (cyclotomicFieldQbar n) :=
   IsCyclotomicExtension.numberField {n} ℚ _

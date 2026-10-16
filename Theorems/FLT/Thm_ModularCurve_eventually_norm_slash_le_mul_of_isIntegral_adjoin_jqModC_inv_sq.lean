@@ -14,7 +14,7 @@ module
 public import Mathlib.NumberTheory.ModularForms.Discriminant
 public import Definitions.FLT.Def_ModularCurve_JqCoeff
 
-import Mathlib.Data.Int.Star
+import Mathlib.Algebra.Order.Star.Int
 import Mathlib.Order.CompletePartialOrder
 import Definitions.FLT.Def_ModularCurve_LaurentCoeff
 import Theorems.FLT.Thm_ModularCurve_jqModC_eq_qExpansion_E4_cube_div_discriminant

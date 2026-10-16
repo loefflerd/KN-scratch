@@ -926,6 +926,11 @@ private theorem rval_aux : ∀ (M : ℕ) [NeZero M] {K : Type*} [Field K]
       have hmindvd : minpoly K⟮jqModC K⟯⟮jqNModC K (a * d'')⟯ (jqNModC K M)
           ∣ phiAtSeed dp (IntermediateField.AdjoinSimple.gen K⟮jqModC K⟯ (jqNModC K (a * d''))) :=
         minpoly.dvd _ _ haev
+      let : Module.Free K⟮jqModC K⟯ K⟮jqModC K⟯⟮jqNModC K (a * d'')⟯ :=
+        Module.Free.of_divisionRing _ _
+      let : Module.Free K⟮jqModC K⟯⟮jqNModC K (a * d'')⟯
+          K⟮jqModC K⟯⟮jqNModC K (a * d'')⟯⟮jqNModC K M⟯ :=
+        Module.Free.of_divisionRing _ _
       have htow := Module.finrank_mul_finrank K⟮jqModC K⟯ K⟮jqModC K⟯⟮jqNModC K (a * d'')⟯
         K⟮jqModC K⟯⟮jqNModC K (a * d'')⟯⟮jqNModC K M⟯
       have habs : IntermediateField.adjoin K⟮jqModC K⟯

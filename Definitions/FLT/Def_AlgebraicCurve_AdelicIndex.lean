@@ -9,7 +9,7 @@ Licensed under Apache License 2.0
 module
 
 public import Mathlib.Algebra.Order.Ring.Star
-public import Mathlib.Data.Int.Star
+public import Mathlib.Algebra.Order.Star.Int
 public import Mathlib.Order.CompletePartialOrder
 public import Mathlib.RingTheory.Henselian
 public import Mathlib.RingTheory.RegularLocalRing.Defs

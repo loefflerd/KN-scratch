@@ -14,7 +14,7 @@ module
 public import Mathlib.Algebra.Squarefree.Basic
 
 import Mathlib.Algebra.Order.Ring.Star
-import Mathlib.Data.Int.Star
+import Mathlib.Algebra.Order.Star.Int
 import Theorems.FLT.Thm_Nat_exists_squarefree_sq_add
 import Definitions.FLT.Def_P2M_Util
 

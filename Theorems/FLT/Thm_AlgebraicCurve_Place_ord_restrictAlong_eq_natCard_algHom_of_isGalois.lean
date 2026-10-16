@@ -15,7 +15,7 @@ public import Definitions.FLT.Def_AlgebraicCurve_Correspondence
 
 import Mathlib.Algebra.Lie.OfAssociative
 import Mathlib.Algebra.Order.Ring.Star
-import Mathlib.Data.Int.Star
+import Mathlib.Algebra.Order.Star.Int
 import Mathlib.RingTheory.PicardGroup
 import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaces
 import Theorems.FLT.Thm_AlgebraicCurve_Place_card_fiberOver_mul_ramificationIndex_mul_inertiaDeg

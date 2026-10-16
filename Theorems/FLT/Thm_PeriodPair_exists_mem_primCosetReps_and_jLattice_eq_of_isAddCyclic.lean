@@ -16,7 +16,8 @@ public import Definitions.FLT.Def_PeriodPair_Uniformization
 
 import Mathlib.Algebra.Order.Ring.Star
 import Mathlib.Algebra.Quaternion
-import Mathlib.Data.Int.Star
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.GroupTheory.SpecificGroups.Cyclic.Subgroup
 import Mathlib.NumberTheory.ModularForms.Basic
 import Definitions.FLT.Def_P2M_Util
 
@@ -266,7 +267,7 @@ open AddSubgroup AddMonoidHom
 section NatGen
 
 noncomputable def natGen (K : AddSubgroup ℤ) : ℕ :=
-  (Int.subgroup_cyclic K).choose.natAbs
+  ((K.isAddCyclic_iff_exists_zmultiples_eq_top).mp (AddSubgroup.isAddCyclic K)).choose.natAbs
 
 theorem zmultiples_natAbs (a : ℤ) :
     AddSubgroup.zmultiples ((a.natAbs : ℕ) : ℤ) = AddSubgroup.zmultiples a := by
@@ -275,8 +276,10 @@ theorem zmultiples_natAbs (a : ℤ) :
 
 theorem zmultiples_natGen (K : AddSubgroup ℤ) :
     AddSubgroup.zmultiples ((natGen K : ℕ) : ℤ) = K := by
-  have h := (Int.subgroup_cyclic K).choose_spec
-  rw [natGen, zmultiples_natAbs, AddSubgroup.zmultiples_eq_closure, ← h]
+  have h := ((K.isAddCyclic_iff_exists_zmultiples_eq_top).mp
+    (AddSubgroup.isAddCyclic K)).choose_spec
+  rw [natGen, zmultiples_natAbs]
+  exact h
 
 theorem natGen_cast_mem (K : AddSubgroup ℤ) : ((natGen K : ℕ) : ℤ) ∈ K := by
   have h : ((natGen K : ℕ) : ℤ) ∈ AddSubgroup.zmultiples ((natGen K : ℕ) : ℤ) :=

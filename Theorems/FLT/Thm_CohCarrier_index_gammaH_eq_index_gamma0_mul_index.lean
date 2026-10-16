@@ -14,7 +14,7 @@ module
 public import Definitions.FLT.Def_CohCarrier_Level
 
 import Mathlib.Algebra.Order.Ring.Star
-import Mathlib.Data.Int.Star
+import Mathlib.Algebra.Order.Star.Int
 import Definitions.FLT.Def_P2M_Util
 
 /-!

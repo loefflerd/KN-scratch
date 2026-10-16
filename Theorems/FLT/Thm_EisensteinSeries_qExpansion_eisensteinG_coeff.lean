@@ -16,7 +16,7 @@ public import Mathlib.NumberTheory.ModularForms.QExpansion
 
 public import Definitions.FLT.Def_EisensteinSeries_EisensteinG
 
-import Mathlib.Data.Int.Star
+import Mathlib.Algebra.Order.Star.Int
 import Mathlib.NumberTheory.ModularForms.EisensteinSeries.QExpansion
 import Mathlib.Topology.Separation.CompletelyRegular
 import Definitions.FLT.Def_P2M_Util
@@ -127,7 +127,7 @@ theorem eisensteinG_tendstoLocallyUniformly (hk : 3 ≤ k) (a : Fin 2 → ZMod N
       (EisensteinSeries.eisensteinG N k a ·) Filter.atTop := by
   have hk' : (2 : ℝ) < k := by norm_cast
   have p_sum : Summable fun x : congrSet N a => ‖x.val‖ ^ (-k) :=
-    mod_cast (summable_one_div_norm_rpow hk').subtype (congrSet N a)
+    mod_cast (summable_one_div_norm_rpow hk').subtype (· ∈ congrSet N a)
   simp only [tendstoLocallyUniformly_iff_forall_isCompact, eisensteinG_eq]
   intro K hK
   obtain ⟨A, B, hB, HABK⟩ := subset_verticalStrip_of_isCompact hK
@@ -443,7 +443,7 @@ lemma summable_inner (hk : 3 ≤ k) (b : ZMod N) (τ : ℍ) :
   refine Summable.of_norm_bounded hfull.prod fun c => ?_
   have hsub : Summable fun d : cls N b => ‖((((c : ℂ)) * τ + d.1) ^ k)⁻¹‖ := by
     have := (hfull.prod_factor c)
-    refine (this.subtype {d : ℤ | (d : ZMod N) = b}).congr fun d => ?_
+    refine (this.subtype (fun d : ℤ => (d : ZMod N) = b)).congr fun d => ?_
     simp [eisSummand_natCast]
   refine (norm_tsum_le_tsum_norm hsub).trans ?_
   have := Summable.tsum_subtype_le (fun d : ℤ => ‖((((c : ℂ)) * τ + d) ^ k)⁻¹‖) {d : ℤ | (d : ZMod N) = b}

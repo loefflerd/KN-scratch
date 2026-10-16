@@ -13,7 +13,7 @@ module
 
 public import Definitions.FLT.Def_EisensteinSeries_WeierstrassZeta
 
-import Mathlib.Data.Int.Star
+import Mathlib.Algebra.Order.Star.Int
 import Mathlib.NumberTheory.ModularForms.EisensteinSeries.E2.Summable
 import Mathlib.Topology.Separation.CompletelyRegular
 import Definitions.FLT.Def_P2M_Util
@@ -452,7 +452,7 @@ lemma summable_crow_nat (z : ℂ) : Summable fun n : ℕ => crow τ z n := by
   rw [e2] at hb2
   calc _ ≤ 2 * π * ρ ^ n / (1 - ρ) + 2 * π * (Real.exp (2 * π * z.im) * ρ ^ n) / (1 - ρ) :=
         add_le_add hb1 hb2
-    _ = A * ρ ^ n := by rw [hA, hK]; field_simp; try ring_nf
+    _ = A * ρ ^ n := by rw [hA, hK]; field_simp
 
 lemma summable_crow_neg (z : ℂ) : Summable fun n : ℕ => crow τ z (-n) := by
   have hτ : 0 < τ.im := τ.2

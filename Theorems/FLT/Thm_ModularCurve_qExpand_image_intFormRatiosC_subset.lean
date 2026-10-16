@@ -14,7 +14,7 @@ module
 public import Definitions.FLT.Def_ModularCurve_X1
 
 import Mathlib.Algebra.Order.Ring.Star
-import Mathlib.Data.Int.Star
+import Mathlib.Algebra.Order.Star.Int
 import Theorems.FLT.Thm_UpperHalfPlane_qCoeff_comp_heckeDiagMatrix_smul
 import Definitions.FLT.Def_P2M_Util
 

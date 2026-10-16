@@ -446,7 +446,8 @@ lemma integral_T_horiz :
   obtain ⟨C', hC'⟩ := hΦ'
   have hG : IntegrableOn (fun p : ℝ × ℝ => Φ' ⟨p.1, p.2⟩ 1) T := by
     refine integrableOn_T_of_bound hδ ?_ (C := C') fun p hp => ?_
-    · refine (hc.comp continuous_mk2.continuousOn fun p hp => hDU (mk_mem_D hp.1 hp.2)).clm_apply
+    · refine (hc.comp (continuous_mk2.continuousOn (s := T))
+        fun p hp => hDU (mk_mem_D hp.1 hp.2)).clm_apply
         continuousOn_const
     · calc ‖Φ' ⟨p.1, p.2⟩ 1‖ ≤ ‖Φ' ⟨p.1, p.2⟩‖ * ‖(1 : ℂ)‖ := ContinuousLinearMap.le_opNorm _ _
         _ = ‖Φ' ⟨p.1, p.2⟩‖ := by rw [norm_one, mul_one]
@@ -486,7 +487,8 @@ include hδ hDU hc hΦ' in
 lemma integrableOn_T_apply (v : ℂ) : IntegrableOn (fun p : ℝ × ℝ => Φ' ⟨p.1, p.2⟩ v) T := by
   obtain ⟨C', hC'⟩ := hΦ'
   refine integrableOn_T_of_bound hδ ?_ (C := C' * ‖v‖) fun p hp => ?_
-  · exact (hc.comp continuous_mk2.continuousOn fun p hp => hDU (mk_mem_D hp.1 hp.2)).clm_apply
+  · exact (hc.comp (continuous_mk2.continuousOn (s := T))
+      fun p hp => hDU (mk_mem_D hp.1 hp.2)).clm_apply
       continuousOn_const
   · calc ‖Φ' ⟨p.1, p.2⟩ v‖ ≤ ‖Φ' ⟨p.1, p.2⟩‖ * ‖v‖ := ContinuousLinearMap.le_opNorm _ _
       _ ≤ C' * Real.exp (-δ * p.2) * ‖v‖ :=

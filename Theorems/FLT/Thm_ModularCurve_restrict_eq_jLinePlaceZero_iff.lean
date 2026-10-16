@@ -15,7 +15,7 @@ public import Definitions.FLT.Def_AlgebraicCurve_DivisorPushPull
 public import Definitions.FLT.Def_ModularCurve_JLinePlaces
 
 import Mathlib.Algebra.Order.Ring.Star
-import Mathlib.Data.Int.Star
+import Mathlib.Algebra.Order.Star.Int
 import Theorems.FLT.Thm_ModularCurve_eq_jLinePlaceZero_iff_ord_jGen_pos
 import Definitions.FLT.Def_P2M_Util
 

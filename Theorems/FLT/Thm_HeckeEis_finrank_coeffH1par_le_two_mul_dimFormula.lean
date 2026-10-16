@@ -16,7 +16,7 @@ public import Definitions.FLT.Def_Gamma0CoeffCohomology
 public import Definitions.FLT.Def_HeckeEis_BinaryFormRep
 public import Definitions.FLT.Def_ModularCurve_GenusNumerics
 
-import Mathlib.Data.Rat.Star
+import Mathlib.Algebra.Order.Star.Rat
 import Theorems.FLT.Thm_HeckeEis_exists_induced_binaryFormRepSL_top
 import Theorems.FLT.Thm_HeckeEis_finrank_coeffH1par_gamma0_le_finrank_coeffH1par_top_induced
 import Theorems.FLT.Thm_HeckeEis_finrank_coeffH1par_top_add_le

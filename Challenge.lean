@@ -26,12 +26,12 @@ The conclusion counts primitive characters of exact order `d`, with conductor at
 and coprime to `N`, having nonzero central value. The inverse-character convention in the
 Mellin integral is exactly the convention used by the existing development.
 
-The formalization uses Mathlib pinned at commit `f6090c7095e1e56b3464c1daba5f24631f1290d2`, to
+The formalization uses Mathlib pinned at commit `074063781836922cb02701cd12943c9f51731afa`, to
 match the latest available version of Tau Ceti. (Tau Ceti is not a dependency for the statement,
 only for the proof, but nonetheless the Mathlib revisions need to match.) The pinned Mathlib
 version may be inspected at:
 
-https://github.com/leanprover-community/mathlib4/tree/f6090c7095e1e56b3464c1daba5f24631f1290d2
+https://github.com/leanprover-community/mathlib4/tree/074063781836922cb02701cd12943c9f51731afa
 
 -/
 

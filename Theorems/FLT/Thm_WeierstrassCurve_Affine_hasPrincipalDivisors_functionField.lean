@@ -17,7 +17,7 @@ public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 
 import Mathlib.Algebra.Order.Ring.Star
 import Mathlib.Analysis.Normed.Ring.Lemmas
-import Mathlib.Data.Int.Star
+import Mathlib.Algebra.Order.Star.Int
 import Mathlib.FieldTheory.PurelyInseparable.Exponent
 import Mathlib.RingTheory.PicardGroup
 import Mathlib.RingTheory.Polynomial.DegreeLT
@@ -381,7 +381,7 @@ p2m_open "FractionalIdeal P2MW.S_WeierstrassCurve_Affine_hasPrincipalDivisors_fu
 open scoped nonZeroDivisors Polynomial.Bivariate
 
 namespace FractionalIdeal
-p2m_export "FractionalIdeal" "mul_inv_cancel_iff_isUnit count_mul coeIdeal_span_singleton count zero_mem ext count_zpow map_eq_zero_iff count_well_defined mul coeIdeal_inj count_maximal map isPrincipal_iff spanSingleton_mul_spanSingleton count_one spanSingleton_one exists_eq_spanSingleton_mul coeIdeal_mul spanSingleton spanSingleton_zero le_one_iff_exists_coeIdeal spanSingleton_ne_zero_iff num coeIdeal_top finprod_heightOneSpectrum_factorization"
+p2m_export "FractionalIdeal" "mul_inv_cancel_iff_isUnit count_mul coeIdeal_span_singleton count zero_mem ext count_zpow map_eq_zero_iff count_well_defined mul coeIdeal_inj count_maximal map isPrincipal_iff count_one exists_eq_spanSingleton_mul coeIdeal_mul spanSingleton le_one_iff_exists_coeIdeal spanSingleton_ne_zero_iff num coeIdeal_top finprod_heightOneSpectrum_factorization"
 p2m_open "FractionalIdeal"
 
 variable {R : Type*} (K : Type*) [CommRing R] [IsDomain R] [Field K] [Algebra R K]
@@ -434,7 +434,7 @@ theorem isUnit_of_forall_isMaximal [IsNoetherianRing R]
   have ha' : algebraMap R K a ≠ 0 := mt IsFractionRing.to_map_eq_zero_iff.mp ha
   refine IsUnit.mul ?_ (isUnit_coeIdeal_of_forall_isMaximal K hmax J ?_)
   · exact isUnit_iff_exists_inv.mpr ⟨spanSingleton R⁰ (algebraMap R K a), by
-      rw [spanSingleton_mul_spanSingleton, inv_mul_cancel₀ ha', spanSingleton_one]⟩
+      rw [← map_mul, inv_mul_cancel₀ ha', map_one]⟩
   · rintro rfl
     simp at hI
 
@@ -1578,7 +1578,7 @@ p2m_open "AlgebraicCurve~Place.ord_nonneg_of_mem~Place.mem_of_ord_nonneg~Place.m
 open scoped nonZeroDivisors Polynomial.Bivariate
 
 namespace FractionalIdeal
-p2m_export "FractionalIdeal" "mul_inv_cancel_iff_isUnit count_mul coeIdeal_span_singleton count zero_mem ext count_zpow map_eq_zero_iff count_well_defined mul coeIdeal_inj count_maximal map isPrincipal_iff spanSingleton_mul_spanSingleton count_one spanSingleton_one exists_eq_spanSingleton_mul coeIdeal_mul spanSingleton spanSingleton_zero le_one_iff_exists_coeIdeal spanSingleton_ne_zero_iff num coeIdeal_top finprod_heightOneSpectrum_factorization"
+p2m_export "FractionalIdeal" "mul_inv_cancel_iff_isUnit count_mul coeIdeal_span_singleton count zero_mem ext count_zpow map_eq_zero_iff count_well_defined mul coeIdeal_inj count_maximal map isPrincipal_iff count_one exists_eq_spanSingleton_mul coeIdeal_mul spanSingleton le_one_iff_exists_coeIdeal spanSingleton_ne_zero_iff num coeIdeal_top finprod_heightOneSpectrum_factorization"
 p2m_open "FractionalIdeal"
 
 variable {R : Type*} [CommRing R] [IsDedekindDomain R]
@@ -1594,7 +1594,7 @@ theorem count_spanSingleton (w : HeightOneSpectrum R) {f : L} (hf : f ≠ 0) :
   have hd : (d : R) ≠ 0 := nonZeroDivisors.ne_zero d.2
   have hI : spanSingleton R⁰ (IsLocalization.mk' L n d) =
       spanSingleton R⁰ ((algebraMap R L) (d : R))⁻¹ * ↑(Ideal.span {n} : Ideal R) := by
-    rw [coeIdeal_span_singleton, spanSingleton_mul_spanSingleton]
+    rw [coeIdeal_span_singleton, ← map_mul]
     congr 1
     rw [IsFractionRing.mk'_eq_div, div_eq_mul_inv, mul_comm]
   rw [count_well_defined L w (spanSingleton_ne_zero_iff.mpr hf) hI]
@@ -1790,7 +1790,7 @@ theorem isPrincipal_of_geomDivisorSum_eq_zero' [HasPrincipalDivisors F W.Functio
   obtain ⟨f, hf⟩ := (FractionalIdeal.isPrincipal_iff _).mp (ClassGroup.mk_eq_one_iff.mp hcls)
   have hf0 : f ≠ 0 := by
     rintro rfl
-    rw [FractionalIdeal.spanSingleton_zero] at hf
+    rw [map_zero] at hf
     exact Units.ne_zero (unitIdealOfDivisor D) hf
   have hfin : ∀ w : HeightOneSpectrum W.CoordinateRing,
       D (AlgebraicCurve.Place.ofHeightOneSpectrum (K := F) w)

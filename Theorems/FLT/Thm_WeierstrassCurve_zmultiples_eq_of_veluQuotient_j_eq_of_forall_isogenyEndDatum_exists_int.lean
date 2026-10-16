@@ -19,7 +19,7 @@ public import Definitions.FLT.Def_WeierstrassCurve_Velu
 
 import Mathlib.Algebra.Order.Ring.Star
 import Mathlib.AlgebraicGeometry.EllipticCurve.IsomOfJ
-import Mathlib.Data.Int.Star
+import Mathlib.Algebra.Order.Star.Int
 import Theorems.FLT.Thm_AlgebraicCurve_Divisor_pushforwardAlong_pushforwardAlong
 import Theorems.FLT.Thm_AlgebraicCurve_finiteAlong_comp
 import Theorems.FLT.Thm_AlgebraicCurve_finiteAlong_of_surjective

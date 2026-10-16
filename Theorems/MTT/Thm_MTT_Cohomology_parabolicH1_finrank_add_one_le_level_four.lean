@@ -16,7 +16,7 @@ public import Mathlib.LinearAlgebra.FiniteDimensional.Defs
 
 import Mathlib.Algebra.Order.Ring.Star
 import Mathlib.Analysis.CStarAlgebra.Classes
-import Mathlib.Data.Int.Star
+import Mathlib.Algebra.Order.Star.Int
 import Mathlib.GroupTheory.Schreier
 import Mathlib.LinearAlgebra.Matrix.FixedDetMatrices
 import Mathlib.RingTheory.MvPolynomial.IrreducibleQuadratic

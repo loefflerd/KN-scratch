@@ -15,7 +15,7 @@ public import Definitions.FLT.Def_AlgebraicCurve_Repartitions
 public import Definitions.FLT.Def_ModularCurve_LevelNFunctionField
 
 import Mathlib.Analysis.Complex.Polynomial.Basic
-import Mathlib.Data.Int.Star
+import Mathlib.Algebra.Order.Star.Int
 import Mathlib.NumberTheory.ModularForms.LevelOne.GradedRing
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.RegularLocalRing.Defs

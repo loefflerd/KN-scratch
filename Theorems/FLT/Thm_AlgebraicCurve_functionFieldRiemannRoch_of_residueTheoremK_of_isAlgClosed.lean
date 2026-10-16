@@ -16,7 +16,7 @@ public import Definitions.FLT.Def_AlgebraicCurve_LocalResidue
 public import Definitions.FLT.Def_AlgebraicCurve_RiemannRochRows
 
 import Mathlib.Algebra.Polynomial.Basis
-import Mathlib.Data.Int.LeastGreatest
+import Mathlib.Order.Int.LeastGreatest
 import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
 import Mathlib.NumberTheory.RatFunc.Ostrowski
 import Mathlib.RingTheory.PicardGroup

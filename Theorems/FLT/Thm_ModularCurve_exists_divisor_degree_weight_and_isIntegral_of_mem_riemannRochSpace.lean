@@ -17,7 +17,7 @@ public import Definitions.FLT.Def_ModularCurve_MazurStepThreeInputs
 
 import Mathlib.Algebra.Order.Ring.Star
 import Mathlib.Analysis.Normed.Ring.Lemmas
-import Mathlib.Data.Int.Star
+import Mathlib.Algebra.Order.Star.Int
 import Theorems.FLT.Thm_AlgebraicCurve_Place_ord_add_eq_of_lt
 import Theorems.FLT.Thm_AlgebraicCurve_isIntegral_adjoin_of_forall_ord_nonneg
 import Theorems.FLT.Thm_ModularCurve_card_eq_cuspCount_of_forall_mem_iff_ord_jBar_neg

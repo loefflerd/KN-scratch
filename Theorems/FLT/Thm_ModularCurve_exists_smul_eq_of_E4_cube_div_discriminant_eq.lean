@@ -13,7 +13,7 @@ module
 
 public import Mathlib.NumberTheory.ModularForms.Discriminant
 
-import Mathlib.Data.Int.Star
+import Mathlib.Algebra.Order.Star.Int
 import Mathlib.NumberTheory.LSeries.Nonvanishing
 import Mathlib.NumberTheory.ModularForms.LevelOne.GradedRing
 import Definitions.FLT.Def_PeriodPair_Uniformization

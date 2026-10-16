@@ -87,10 +87,8 @@ p2m_open "AlgebraicCurve.Place AlgebraicCurve"
 
 theorem algebraMap_hahn_eq_C {K L : Type*} [Field K] [Field L] [Algebra K L] (c : K) :
     (algebraMap K (HahnSeries ℚ L)) c = HahnSeries.C (algebraMap K L c) := by
-  first
-  | exact HahnSeries.algebraMap_apply
-  | rw [HahnSeries.algebraMap_apply', IsScalarTower.algebraMap_apply K L (PowerSeries L),
-      PowerSeries.algebraMap_eq, HahnSeries.ofPowerSeries_C]
+  rw [HahnSeries.algebraMap_apply', IsScalarTower.algebraMap_apply K L (PowerSeries L),
+    PowerSeries.algebraMap_eq, HahnSeries.ofPowerSeries_C]
 
 theorem eval₂_C_single_one {L : Type*} [Field L] (q : L[X]) :
     q.eval₂ (HahnSeries.C : L →+* HahnSeries ℚ L) (HahnSeries.single (1 : ℚ) (1 : L))

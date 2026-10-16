@@ -16,7 +16,7 @@ public import Definitions.FLT.Def_ModularCurve_X1
 
 import Mathlib.Algebra.Order.Ring.Star
 import Mathlib.Analysis.Complex.Polynomial.Basic
-import Mathlib.Data.Int.Star
+import Mathlib.Algebra.Order.Star.Int
 import Mathlib.NumberTheory.Modular
 import Mathlib.NumberTheory.ModularForms.NormTrace
 import Definitions.FLT.Def_AlgebraicCurve_Repartitions

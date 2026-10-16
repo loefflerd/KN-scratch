@@ -15,7 +15,7 @@ public import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
 public import Definitions.FLT.Def_ModularCurve_PeriodMap
 
 import Mathlib.Algebra.Order.Ring.Star
-import Mathlib.Data.Int.Star
+import Mathlib.Algebra.Order.Star.Int
 import Mathlib.GroupTheory.Transfer
 import Mathlib.NumberTheory.NumberField.Basic
 import Theorems.FLT.Thm_Matrix_SpecialLinearGroup_finrank_addMonoidHom_eq_of_forall_trace_ne

@@ -376,7 +376,7 @@ theorem exists_isUnit_conj_integral
       funext j; ext i; rfl
     rw [this]
     exact hli.comp _ e.symm.injective
-  have hU : IsUnit h := Matrix.linearIndependent_cols_iff_isUnit.mp hcols
+  have hU : IsUnit h := Matrix.linearIndependent_col_iff_isUnit.mp hcols
   refine ⟨h, hU, fun x hx i j ↦ ?_⟩
   let C : Matrix (Fin n) (Fin n) R := Matrix.of fun k j ↦
     b.repr ⟨x.mulVec (col (e.symm j)), hstab x hx _ (b (e.symm j)).2⟩ (e.symm k)

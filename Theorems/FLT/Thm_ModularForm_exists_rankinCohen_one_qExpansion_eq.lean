@@ -92,8 +92,6 @@ theorem hasDerivAt_comp_smul {F : ℍ → ℂ} (hF : MDiff F) (γ : SL(2, ℤ)) 
     exact (mdifferentiableAt_iff.mp (hF _)).hasDerivAt
   have := hF'.comp (τ : ℂ) hs
   convert this using 1 <;> first
-    | with_reducible_and_instances rfl
-    | rfl
     | (ext z; simp only [Function.comp_apply, ofComplex_apply]; done)
     | (ext z; simp only [Function.comp_apply, ofComplex_apply]; rfl)
     | (rw [det_coe_SL]; push_cast; ring)

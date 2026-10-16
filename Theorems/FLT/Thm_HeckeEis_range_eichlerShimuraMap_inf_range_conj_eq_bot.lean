@@ -16,7 +16,7 @@ public import Definitions.FLT.Def_HeckeEis_EichlerIntegral
 
 import Mathlib.Algebra.Ring.IsFormallyReal
 import Mathlib.Analysis.Complex.Liouville
-import Mathlib.Data.Int.Star
+import Mathlib.Algebra.Order.Star.Int
 import Mathlib.MeasureTheory.Integral.ExpDecay
 import Mathlib.NumberTheory.ModularForms.Bounds
 import Theorems.FLT.Thm_Complex_integral_modularFundamentalDomain_eq_boundary_of_hasFDerivAt
@@ -1326,14 +1326,15 @@ theorem f_eq_zero : f = 0 := by
   have hint : IntegrableOn h fdC := by
     refine Integrable.mono' ((((integrableOn_exp_neg_im (by positivity : (0 : ℝ) < 2 * c₁ / 2) (-(1 / 2)) (1 / 2)).mono_set
       fdC_subset_prod).const_mul (C₁ ^ 2 * K))) ?_ ?_
-    · exact (hcont.mono fun z hz => hz.2.2).aestronglyMeasurable measurableSet_fdC
+    · exact (hcont.mono (t := fdC) fun z hz => hz.2.2).aestronglyMeasurable measurableSet_fdC
     · exact ae_restrict_of_forall_mem measurableSet_fdC hbound
   have hnn : 0 ≤ᵐ[volume.restrict fdC] h :=
     ae_restrict_of_forall_mem measurableSet_fdC fun z hz => by have := hz.2.2; positivity
   have hae : h =ᵐ[volume.restrict fdC] 0 := (setIntegral_eq_zero_iff_of_nonneg_ae hnn hint).mp h0
   have hae' : h =ᵐ[volume.restrict fdInt] 0 := ae_restrict_of_ae_restrict_of_subset fdInt_subset_fdC hae
   have heq : Set.EqOn h 0 fdInt :=
-    Measure.eqOn_open_of_ae_eq hae' isOpen_fdInt (hcont.mono fun z hz => hz.2.2) continuousOn_const
+    Measure.eqOn_open_of_ae_eq hae' isOpen_fdInt
+      (hcont.mono (t := fdInt) fun z hz => hz.2.2) continuousOn_const
   have hvan : ∀ z ∈ fdInt, f (ofComplex z) = 0 := by
     intro z hz
     have h1 := heq hz

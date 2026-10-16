@@ -367,7 +367,6 @@ theorem solution (N : ℕ) [NeZero N]
     refine Finset.sum_congr rfl (fun k _ => ?_)
     simp only [hc, eq_intCast, Complex.ofReal_intCast]
     rw [← map_intCast (HahnSeries.C : ℂ →+* LaurentSeries ℂ)]
-    try ring
   have hH0 : H = 0 := (ModularForm.qExpansion_eq_zero_iff one_pos hΓ H).mp hqH
   have hpt : (H : ℍ → ℂ) σ = 0 := by rw [hH0]; rfl
   rw [hHcoe, Finset.sum_apply] at hpt

@@ -373,7 +373,7 @@ theorem isUnit_of_forall_isMaximal [IsNoetherianRing R]
   have ha' : algebraMap R K a ≠ 0 := mt IsFractionRing.to_map_eq_zero_iff.mp ha
   refine IsUnit.mul ?_ (isUnit_coeIdeal_of_forall_isMaximal K hmax J ?_)
   · exact isUnit_iff_exists_inv.mpr ⟨spanSingleton R⁰ (algebraMap R K a), by
-      rw [spanSingleton_mul_spanSingleton, inv_mul_cancel₀ ha', spanSingleton_one]⟩
+      rw [← map_mul, inv_mul_cancel₀ ha', map_one]⟩
   · rintro rfl
     simp at hI
 
@@ -1452,7 +1452,7 @@ theorem count_spanSingleton (w : HeightOneSpectrum R) {f : L} (hf : f ≠ 0) :
   have hd : (d : R) ≠ 0 := nonZeroDivisors.ne_zero d.2
   have hI : spanSingleton R⁰ (IsLocalization.mk' L n d) =
       spanSingleton R⁰ ((algebraMap R L) (d : R))⁻¹ * ↑(Ideal.span {n} : Ideal R) := by
-    rw [coeIdeal_span_singleton, spanSingleton_mul_spanSingleton]
+    rw [coeIdeal_span_singleton, ← map_mul]
     congr 1
     rw [IsFractionRing.mk'_eq_div, div_eq_mul_inv, mul_comm]
   rw [count_well_defined L w (spanSingleton_ne_zero_iff.mpr hf) hI]
@@ -1640,7 +1640,7 @@ theorem isPrincipal_of_geomDivisorSum_eq_zero' [HasPrincipalDivisors F W.Functio
   obtain ⟨f, hf⟩ := (FractionalIdeal.isPrincipal_iff _).mp (ClassGroup.mk_eq_one_iff.mp hcls)
   have hf0 : f ≠ 0 := by
     rintro rfl
-    rw [FractionalIdeal.spanSingleton_zero] at hf
+    rw [map_zero] at hf
     exact Units.ne_zero (unitIdealOfDivisor D) hf
   have hfin : ∀ w : HeightOneSpectrum W.CoordinateRing,
       D (AlgebraicCurve.Place.ofHeightOneSpectrum (K := F) w)

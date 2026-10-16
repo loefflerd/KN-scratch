@@ -17,7 +17,7 @@ public import Definitions.FLT.Def_EisensteinSeries_EisensteinG
 
 import Mathlib.Algebra.Order.Ring.Star
 import Mathlib.Analysis.Complex.LocallyUniformLimit
-import Mathlib.Data.Int.Star
+import Mathlib.Algebra.Order.Star.Int
 import Mathlib.NumberTheory.ModularForms.EisensteinSeries.IsBoundedAtImInfty
 import Mathlib.NumberTheory.ModularForms.EisensteinSeries.MDifferentiable
 import Mathlib.NumberTheory.ModularForms.Identities
@@ -131,7 +131,7 @@ theorem eisensteinG_tendstoLocallyUniformly (hk : 3 ≤ k) (a : Fin 2 → ZMod N
       (EisensteinSeries.eisensteinG N k a ·) Filter.atTop := by
   have hk' : (2 : ℝ) < k := by norm_cast
   have p_sum : Summable fun x : congrSet N a => ‖x.val‖ ^ (-k) :=
-    mod_cast (summable_one_div_norm_rpow hk').subtype (congrSet N a)
+    mod_cast (summable_one_div_norm_rpow hk').subtype (· ∈ congrSet N a)
   simp only [tendstoLocallyUniformly_iff_forall_isCompact, eisensteinG_eq]
   intro K hK
   obtain ⟨A, B, hB, HABK⟩ := subset_verticalStrip_of_isCompact hK

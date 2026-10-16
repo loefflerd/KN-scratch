@@ -16,7 +16,7 @@ public import Mathlib.LinearAlgebra.FiniteDimensional.Defs
 
 import Mathlib.Algebra.Order.Ring.Star
 import Mathlib.Analysis.CStarAlgebra.Classes
-import Mathlib.Data.Int.Star
+import Mathlib.Algebra.Order.Star.Int
 import Mathlib.LinearAlgebra.FreeModule.PID
 import Mathlib.LinearAlgebra.Trace
 import Mathlib.RingTheory.Flat.TorsionFree

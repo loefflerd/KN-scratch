@@ -109,7 +109,6 @@ theorem T_zpow_mul_mul_T_zpow_apply (j j' : ℤ) (γ : Matrix.SpecialLinearGroup
   constructor <;>
   · simp [Matrix.SpecialLinearGroup.coe_mul, ModularGroup.coe_T_zpow, Matrix.mul_apply,
       Matrix.vecMul, dotProduct, Fin.sum_univ_succ]
-    try ring
 
 end AlliAux1Gen
 

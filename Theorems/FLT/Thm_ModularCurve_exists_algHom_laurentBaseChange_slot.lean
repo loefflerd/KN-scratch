@@ -109,10 +109,11 @@ theorem finrank_adjoin_adjoin (N : ℕ) [NeZero N] :
 
 theorem isIntegral_jqN (N : ℕ) [NeZero N] :
     IsIntegral (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) (jqN N) := by
+  let : Module.Free ℚ⟮jq⟯ ℚ⟮jq⟯⟮jqN N⟯ := Module.Free.of_divisionRing _ _
   have hfin : FiniteDimensional (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ)))
       (IntermediateField.adjoin (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ)))
         ({jqN N} : Set (LaurentSeries ℚ))) :=
-    Module.finite_of_finrank_pos
+    Module.finite_of_finrank_pos (R := ℚ⟮jq⟯) (M := ℚ⟮jq⟯⟮jqN N⟯)
       (by rw [finrank_adjoin_jqN_eq_dedekindPsi]; exact dedekindPsi_pos N (NeZero.ne N))
   have h := IsIntegral.of_finite (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ)))
     (AdjoinSimple.gen (IntermediateField.adjoin ℚ ({jq} : Set (LaurentSeries ℚ))) (jqN N))

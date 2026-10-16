@@ -13,7 +13,7 @@ module
 
 public import Mathlib.NumberTheory.ModularForms.DedekindEta
 
-import Mathlib.Data.Int.Star
+import Mathlib.Algebra.Order.Star.Int
 import Mathlib.NumberTheory.ModularForms.Discriminant
 import Theorems.FLT.Thm_CuspForm_exists_gamma0_apply_eq_eta_mul_pow_twentyfour
 import Definitions.FLT.Def_P2M_Util
@@ -391,7 +391,6 @@ lemma F_slash_neg_one (a b c : ℕ) (k : ℤ) (hk : Even k) :
     apply UpperHalfPlane.ext
     rw [UpperHalfPlane.specialLinearGroup_apply]
     simp [Matrix.SpecialLinearGroup.coe_neg]
-    try ring
   have h10 : ((-1 : SL(2, ℤ)) 1 0 : ℤ) = 0 := by
     simp [Matrix.SpecialLinearGroup.coe_neg]
   have h11 : ((-1 : SL(2, ℤ)) 1 1 : ℤ) = -1 := by

@@ -62,7 +62,7 @@ open scoped Modular MatrixGroups Pointwise
 
 namespace FLT.Gamma0FundamentalSet
 
-def gammaFundamentalSet (Γ : Subgroup SL(2, ℤ)) : Set ℍ :=
+noncomputable def gammaFundamentalSet (Γ : Subgroup SL(2, ℤ)) : Set ℍ :=
   ⋃ q : SL(2, ℤ) ⧸ Γ, (Quotient.out q)⁻¹ • 𝒟
 
 theorem mem_gammaFundamentalSet_iff {Γ : Subgroup SL(2, ℤ)} {z : ℍ} :
@@ -110,7 +110,7 @@ theorem exists_gamma0_smul_mem (N : ℕ) (z : ℍ) :
     ∃ γ ∈ Gamma0 N, γ • z ∈ gammaFundamentalSet (Gamma0 N) :=
   exists_smul_mem_gammaFundamentalSet (Gamma0 N) z
 
-def truncatedGammaFundamentalSet (Γ : Subgroup SL(2, ℤ)) (y : ℝ) : Set ℍ :=
+noncomputable def truncatedGammaFundamentalSet (Γ : Subgroup SL(2, ℤ)) (y : ℝ) : Set ℍ :=
   ⋃ q : SL(2, ℤ) ⧸ Γ, (Quotient.out q)⁻¹ • truncatedFundamentalDomain y
 
 instance : ContinuousConstSMul SL(2, ℤ) ℍ where

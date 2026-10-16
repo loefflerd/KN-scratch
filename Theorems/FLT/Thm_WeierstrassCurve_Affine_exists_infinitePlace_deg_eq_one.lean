@@ -16,7 +16,7 @@ public import Mathlib.RingTheory.SimpleRing.Principal
 public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 
 import Mathlib.Algebra.Order.Ring.Star
-import Mathlib.Data.Int.Star
+import Mathlib.Algebra.Order.Star.Int
 import Mathlib.RingTheory.Henselian
 import Mathlib.RingTheory.Polynomial.DegreeLT
 import Mathlib.RingTheory.RegularLocalRing.Defs

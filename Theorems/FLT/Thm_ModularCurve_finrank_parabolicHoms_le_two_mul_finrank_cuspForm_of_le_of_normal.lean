@@ -302,7 +302,7 @@ theorem hasDerivAt_smul_ofComplex (γ : SL(2, ℤ)) (τ : ℍ) :
     funext z
     rw [MulAction.compHom_smul_def]
   rw [h2] at h1
-  convert h1 using 1; try rfl
+  convert h1 using 1
   rw [hdet]
   push_cast
   rw [zpow_neg, one_div]
@@ -320,7 +320,7 @@ theorem hasDerivAt_comp_smul {G : ℍ → ℂ} {g : ℍ → ℂ}
     simpa only [ofComplex_apply] using hG (γ • τ)
   have hcomp := houter.comp (↑τ : ℂ) (hasDerivAt_smul_ofComplex γ τ)
   rw [← hfun] at hcomp
-  convert hcomp using 1; try rfl
+  convert hcomp using 1
   exact ModularForm.SL_slash_apply (g : ℍ → ℂ) γ τ
 
 theorem hasEquivariantPrimitiveOf_act (δ : Γ) (g : CuspForm Γ' 2) {G : ℍ → ℂ}

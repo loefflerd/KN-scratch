@@ -17,7 +17,7 @@ public import Mathlib.RingTheory.SimpleRing.Principal
 public import Definitions.FLT.Def_AlgebraicCurve_DivisorClassGroup
 public import Definitions.FLT.Def_HahnSeries_RamificationBound
 
-import Mathlib.Data.Int.Star
+import Mathlib.Algebra.Order.Star.Int
 import Definitions.FLT.Def_AlgebraicCurve_RatFuncPlaceClassification
 import Theorems.FLT.Thm_AlgebraicCurve_Place_exists_ord_mul_eq_order_of_hasRamBound
 import Theorems.FLT.Thm_AlgebraicCurve_Place_ramificationIndex_eq_of_restrict_eq
@@ -83,10 +83,8 @@ p2m_open "AlgebraicCurve.Place AlgebraicCurve"
 
 theorem algebraMap_hahn_eq_C {K L : Type*} [Field K] [Field L] [Algebra K L] (c : K) :
     (algebraMap K (HahnSeries ℚ L)) c = HahnSeries.C (algebraMap K L c) := by
-  first
-  | exact HahnSeries.algebraMap_apply
-  | rw [HahnSeries.algebraMap_apply', IsScalarTower.algebraMap_apply K L (PowerSeries L),
-      PowerSeries.algebraMap_eq, HahnSeries.ofPowerSeries_C]
+  rw [HahnSeries.algebraMap_apply', IsScalarTower.algebraMap_apply K L (PowerSeries L),
+    PowerSeries.algebraMap_eq, HahnSeries.ofPowerSeries_C]
 
 theorem eval₂_C_single_one {L : Type*} [Field L] (q : L[X]) :
     q.eval₂ (HahnSeries.C : L →+* HahnSeries ℚ L) (HahnSeries.single (1 : ℚ) (1 : L))

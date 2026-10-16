@@ -13,7 +13,7 @@ module
 
 public import Definitions.FLT.Def_AlgebraicCurve_PoleDivisorPackage
 
-import Mathlib.Data.Int.LeastGreatest
+import Mathlib.Order.Int.LeastGreatest
 import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
 import Mathlib.RingTheory.Flat.TorsionFree
 import Mathlib.RingTheory.PicardGroup

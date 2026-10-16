@@ -426,9 +426,10 @@ lemma mob_injective (A B C D : K) (h : A * D - B * C = 1) :
     by_cases hC : C = 0
     · simp only [mob, ite_eq_left hC] at hxy
       split_ifs at hxy with hs
-      all_goals first
-        | exact Option.noConfusion hxy
-        | (rw [hC, mul_zero, add_zero] at hs; rw [hs, hC] at h; simp at h)
+      all_goals
+        rw [hC, mul_zero, add_zero] at hs
+        rw [hs, hC] at h
+        simp at h
     · by_cases hs : A + s * C = 0
       · simp [mob, hC, hs] at hxy
       · simp only [mob, ite_eq_right hC, ite_eq_right hs, Option.some.injEq] at hxy
@@ -439,9 +440,10 @@ lemma mob_injective (A B C D : K) (h : A * D - B * C = 1) :
     by_cases hC : C = 0
     · simp only [mob, ite_eq_left hC] at hxy
       split_ifs at hxy with ht
-      all_goals first
-        | exact Option.noConfusion hxy
-        | (rw [hC, mul_zero, add_zero] at ht; rw [ht, hC] at h; simp at h)
+      all_goals
+        rw [hC, mul_zero, add_zero] at ht
+        rw [ht, hC] at h
+        simp at h
     · by_cases ht : A + t * C = 0
       · simp [mob, hC, ht] at hxy
       · simp only [mob, ite_eq_right hC, ite_eq_right ht, Option.some.injEq] at hxy

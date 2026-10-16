@@ -14,7 +14,7 @@ module
 public import Mathlib.Algebra.Algebra.Defs
 public import Mathlib.LinearAlgebra.LinearIndependent.Defs
 
-import Mathlib.Data.Int.LeastGreatest
+import Mathlib.Order.Int.LeastGreatest
 import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
 import Mathlib.RingTheory.Flat.TorsionFree
 import Mathlib.RingTheory.PicardGroup

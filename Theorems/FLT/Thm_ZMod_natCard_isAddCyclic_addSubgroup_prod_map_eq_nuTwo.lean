@@ -14,8 +14,8 @@ module
 public import Definitions.FLT.Def_ModularCurve_GenusNumerics
 
 import Mathlib.Algebra.Order.Ring.Star
-import Mathlib.Data.Int.ConditionallyCompleteOrder
-import Mathlib.Data.Int.Star
+import Mathlib.Order.Int.ConditionallyCompleteOrder
+import Mathlib.Algebra.Order.Star.Int
 import Mathlib.Order.CompletePartialOrder
 import Definitions.FLT.Def_P2M_Util
 

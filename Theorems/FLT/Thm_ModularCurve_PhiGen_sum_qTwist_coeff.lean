@@ -353,7 +353,7 @@ theorem phiAtSeed_jq_eval (n : ℕ) [NeZero n] (data : ModularPolynomialData n) 
     (phiAtSeed data jq).eval (jqN n) = 0 := by
   have h := data.eval_eq_zero
   rw [phiAtSeed, Polynomial.eval_map]
-  convert h using 2; try rfl
+  convert h using 2
   refine Polynomial.ringHom_ext' (RingHom.ext_int _ _) ?_
   simp [evalAtJ_X]
 
@@ -557,6 +557,8 @@ private theorem ModularCurve.trace_jqN_prime {K : Type*} [Field K] [Algebra ℚ 
     simp
   have hgint : IsIntegral ℚ⟮jq⟯ gen := IsIntegral.of_finite ℚ⟮jq⟯ gen
   have hfin1 : Module.finrank ℚ⟮jq⟯⟮gen⟯ ℚ⟮jq⟯⟮jqN ℓ⟯ = 1 := by
+    let : Module.Free ℚ⟮jq⟯ ℚ⟮jq⟯⟮gen⟯ := Module.Free.of_divisionRing _ _
+    let : Module.Free ℚ⟮jq⟯⟮gen⟯ ℚ⟮jq⟯⟮jqN ℓ⟯ := Module.Free.of_divisionRing _ _
     have htow := Module.finrank_mul_finrank ℚ⟮jq⟯ ℚ⟮jq⟯⟮gen⟯ ℚ⟮jq⟯⟮jqN ℓ⟯
     have ha : Module.finrank ℚ⟮jq⟯ ℚ⟮jq⟯⟮gen⟯ = (minpoly ℚ⟮jq⟯ gen).natDegree :=
       IntermediateField.adjoin.finrank hgint

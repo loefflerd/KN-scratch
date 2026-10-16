@@ -324,7 +324,7 @@ private theorem ModularCurve.PhiGen.splits_of_prime {K : Type*} [Field K] [Algeb
     Units.ext (by rw [Units.coe_map]; exact hσ)
   have h := congrArg (Polynomial.map (coeffMap (σ : CyclotomicField p ℚ →+* K))) (splits_of_prime_cyclotomicField p data)
   rw [map_coeffMap_phiProd, hσu, Polynomial.map_map] at h
-  convert h using 2 ; try rfl
+  convert h using 2
   refine Polynomial.ringHom_ext' (RingHom.ext_int _ _) ?_
   simp only [RingHom.comp_apply, evalAtJ_X]
   rw [coeffMap_coeffEmb_algHom]
